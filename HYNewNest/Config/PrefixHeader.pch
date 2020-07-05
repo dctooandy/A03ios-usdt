@@ -1,0 +1,20 @@
+//
+//  PrefixHeader.pch
+//  HYNewNest
+//
+//  Created by zaky on 03/07/2020.
+//  Copyright © 2020 james. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "MacroConfigure.h" //通用宏
+#import "GlobalConstant.h" //全局变量
+#import "NNPageRouter.h"   //简易路由
+
+
+#endif /* PrefixHeader_pch */

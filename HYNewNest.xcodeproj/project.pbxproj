@@ -3,19 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D13385624AD8F9B00B29783 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D13385524AD8F9B00B29783 /* AppDelegate.m */; };
-		3D13385924AD8F9B00B29783 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D13385824AD8F9B00B29783 /* SceneDelegate.m */; };
+		017D1772491556C809C97BCD /* Pods_HYNewNest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF7A2146C28453736D5663C /* Pods_HYNewNest.framework */; };
+		167E2F2A00629D00667FC492 /* Pods_HYNewNestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */; };
 		3D13385C24AD8F9B00B29783 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D13385B24AD8F9B00B29783 /* ViewController.m */; };
-		3D13385F24AD8F9B00B29783 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D13385D24AD8F9B00B29783 /* Main.storyboard */; };
-		3D13386124AD8F9C00B29783 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D13386024AD8F9C00B29783 /* Assets.xcassets */; };
-		3D13386424AD8F9C00B29783 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D13386224AD8F9C00B29783 /* LaunchScreen.storyboard */; };
-		3D13386724AD8F9C00B29783 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D13386624AD8F9C00B29783 /* main.m */; };
 		3D13387124AD8F9C00B29783 /* HYNewNestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D13387024AD8F9C00B29783 /* HYNewNestTests.m */; };
 		3D13387C24AD8F9C00B29783 /* HYNewNestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D13387B24AD8F9C00B29783 /* HYNewNestUITests.m */; };
+		3D13389224AF28D700B29783 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D13388A24AF28D600B29783 /* Assets.xcassets */; };
+		3D13389324AF28D700B29783 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D13388B24AF28D600B29783 /* LaunchScreen.storyboard */; };
+		3D1338A324AF2E5200B29783 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1338A024AF2E5200B29783 /* main.m */; };
+		3D1338A424AF2E5200B29783 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1338A124AF2E5200B29783 /* AppDelegate.m */; };
+		3D1338B924AF3AB200B29783 /* NNPageRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1338B824AF3AB200B29783 /* NNPageRouter.m */; };
+		5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,23 +39,34 @@
 
 /* Begin PBXFileReference section */
 		3D13385124AD8F9B00B29783 /* HYNewNest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HYNewNest.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D13385424AD8F9B00B29783 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		3D13385524AD8F9B00B29783 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3D13385724AD8F9B00B29783 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		3D13385824AD8F9B00B29783 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		3D13385A24AD8F9B00B29783 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		3D13385B24AD8F9B00B29783 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		3D13385E24AD8F9B00B29783 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3D13386024AD8F9C00B29783 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3D13386324AD8F9C00B29783 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		3D13386524AD8F9C00B29783 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3D13386624AD8F9C00B29783 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3D13386C24AD8F9C00B29783 /* HYNewNestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HYNewNestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D13387024AD8F9C00B29783 /* HYNewNestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYNewNestTests.m; sourceTree = "<group>"; };
 		3D13387224AD8F9C00B29783 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D13387724AD8F9C00B29783 /* HYNewNestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HYNewNestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D13387B24AD8F9C00B29783 /* HYNewNestUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYNewNestUITests.m; sourceTree = "<group>"; };
 		3D13387D24AD8F9C00B29783 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D13388A24AF28D600B29783 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3D13388C24AF28D600B29783 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3D13389F24AF2E5200B29783 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3D1338A024AF2E5200B29783 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3D1338A124AF2E5200B29783 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3D1338A224AF2E5200B29783 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D1338B124AF2F6600B29783 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		3D1338B424AF3A2D00B29783 /* MacroConfigure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacroConfigure.h; sourceTree = "<group>"; };
+		3D1338B524AF3A2D00B29783 /* GlobalConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalConstant.h; sourceTree = "<group>"; };
+		3D1338B724AF3AB200B29783 /* NNPageRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NNPageRouter.h; sourceTree = "<group>"; };
+		3D1338B824AF3AB200B29783 /* NNPageRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NNPageRouter.m; sourceTree = "<group>"; };
+		62DF1724D3A54A4E27D4B55B /* Pods-HYNewNest-HYNewNestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; path = "Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.debug.xcconfig"; sourceTree = "<group>"; };
+		A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEF7A2146C28453736D5663C /* Pods_HYNewNest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNest_HYNewNestUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2D62AAB840E46D1A6C31D05 /* Pods-HYNewNestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNestTests.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNestTests/Pods-HYNewNestTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F6CE8CAC1544E651FCBD92C6 /* Pods-HYNewNest-HYNewNestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest-HYNewNestUITests.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F7369947BD28FDAEFDBB6399 /* Pods-HYNewNest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.release.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.release.xcconfig"; sourceTree = "<group>"; };
+		FB136AFAD485E031A2148702 /* Pods-HYNewNestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNestTests.release.xcconfig"; path = "Target Support Files/Pods-HYNewNestTests/Pods-HYNewNestTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				017D1772491556C809C97BCD /* Pods_HYNewNest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				167E2F2A00629D00667FC492 /* Pods_HYNewNestTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,12 +90,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39161D15FBBFB52668D62B53 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */,
+				F7369947BD28FDAEFDBB6399 /* Pods-HYNewNest.release.xcconfig */,
+				F6CE8CAC1544E651FCBD92C6 /* Pods-HYNewNest-HYNewNestUITests.debug.xcconfig */,
+				62DF1724D3A54A4E27D4B55B /* Pods-HYNewNest-HYNewNestUITests.release.xcconfig */,
+				C2D62AAB840E46D1A6C31D05 /* Pods-HYNewNestTests.debug.xcconfig */,
+				FB136AFAD485E031A2148702 /* Pods-HYNewNestTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		3D13384824AD8F9A00B29783 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +117,8 @@
 				3D13386F24AD8F9C00B29783 /* HYNewNestTests */,
 				3D13387A24AD8F9C00B29783 /* HYNewNestUITests */,
 				3D13385224AD8F9B00B29783 /* Products */,
+				39161D15FBBFB52668D62B53 /* Pods */,
+				3FFDA09A060FFD0AB09F0AE0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,17 +135,17 @@
 		3D13385324AD8F9B00B29783 /* HYNewNest */ = {
 			isa = PBXGroup;
 			children = (
-				3D13385424AD8F9B00B29783 /* AppDelegate.h */,
-				3D13385524AD8F9B00B29783 /* AppDelegate.m */,
-				3D13385724AD8F9B00B29783 /* SceneDelegate.h */,
-				3D13385824AD8F9B00B29783 /* SceneDelegate.m */,
+				3D1338A724AF2EDF00B29783 /* Resources */,
+				3D1338A624AF2E7D00B29783 /* Vendors(第三方库) */,
+				3D13389E24AF2E5200B29783 /* AppEntry */,
+				3D13389B24AF2D1900B29783 /* Categories */,
+				3D13389A24AF2D1900B29783 /* Config */,
+				3D13389C24AF2D1900B29783 /* Features(主代码) */,
+				3D13389D24AF2D1900B29783 /* Helper */,
+				3D13389924AF2D1900B29783 /* Utility(工具类) */,
+				3D13388924AF28D600B29783 /* Other */,
 				3D13385A24AD8F9B00B29783 /* ViewController.h */,
 				3D13385B24AD8F9B00B29783 /* ViewController.m */,
-				3D13385D24AD8F9B00B29783 /* Main.storyboard */,
-				3D13386024AD8F9C00B29783 /* Assets.xcassets */,
-				3D13386224AD8F9C00B29783 /* LaunchScreen.storyboard */,
-				3D13386524AD8F9C00B29783 /* Info.plist */,
-				3D13386624AD8F9C00B29783 /* main.m */,
 			);
 			path = HYNewNest;
 			sourceTree = "<group>";
@@ -137,6 +168,170 @@
 			path = HYNewNestUITests;
 			sourceTree = "<group>";
 		};
+		3D13388924AF28D600B29783 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				3D13388A24AF28D600B29783 /* Assets.xcassets */,
+				3D13388B24AF28D600B29783 /* LaunchScreen.storyboard */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		3D13389924AF2D1900B29783 /* Utility(工具类) */ = {
+			isa = PBXGroup;
+			children = (
+				3D1338B624AF3A5200B29783 /* NNPageRouter */,
+			);
+			path = "Utility(工具类)";
+			sourceTree = "<group>";
+		};
+		3D13389A24AF2D1900B29783 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				3D1338B424AF3A2D00B29783 /* MacroConfigure.h */,
+				3D1338B524AF3A2D00B29783 /* GlobalConstant.h */,
+				3D1338B124AF2F6600B29783 /* PrefixHeader.pch */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		3D13389B24AF2D1900B29783 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		3D13389C24AF2D1900B29783 /* Features(主代码) */ = {
+			isa = PBXGroup;
+			children = (
+				3D1338A824AF2F4200B29783 /* LoginRegisterComponent */,
+			);
+			path = "Features(主代码)";
+			sourceTree = "<group>";
+		};
+		3D13389D24AF2D1900B29783 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		3D13389E24AF2E5200B29783 /* AppEntry */ = {
+			isa = PBXGroup;
+			children = (
+				3D13389F24AF2E5200B29783 /* AppDelegate.h */,
+				3D1338A124AF2E5200B29783 /* AppDelegate.m */,
+				3D1338A024AF2E5200B29783 /* main.m */,
+				3D1338A224AF2E5200B29783 /* Info.plist */,
+			);
+			path = AppEntry;
+			sourceTree = "<group>";
+		};
+		3D1338A624AF2E7D00B29783 /* Vendors(第三方库) */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Vendors(第三方库)";
+			sourceTree = "<group>";
+		};
+		3D1338A724AF2EDF00B29783 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3D1338A824AF2F4200B29783 /* LoginRegisterComponent */ = {
+			isa = PBXGroup;
+			children = (
+				3D1338A924AF2F4200B29783 /* Register */,
+				3D1338AD24AF2F4200B29783 /* Login */,
+			);
+			path = LoginRegisterComponent;
+			sourceTree = "<group>";
+		};
+		3D1338A924AF2F4200B29783 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				3D1338AA24AF2F4200B29783 /* Controller */,
+				3D1338AB24AF2F4200B29783 /* Model */,
+				3D1338AC24AF2F4200B29783 /* View */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		3D1338AA24AF2F4200B29783 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3D1338AB24AF2F4200B29783 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3D1338AC24AF2F4200B29783 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3D1338AD24AF2F4200B29783 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3D1338AE24AF2F4200B29783 /* Controller */,
+				3D1338AF24AF2F4200B29783 /* Model */,
+				3D1338B024AF2F4200B29783 /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		3D1338AE24AF2F4200B29783 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3D1338AF24AF2F4200B29783 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3D1338B024AF2F4200B29783 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3D1338B624AF3A5200B29783 /* NNPageRouter */ = {
+			isa = PBXGroup;
+			children = (
+				3D1338B724AF3AB200B29783 /* NNPageRouter.h */,
+				3D1338B824AF3AB200B29783 /* NNPageRouter.m */,
+			);
+			path = NNPageRouter;
+			sourceTree = "<group>";
+		};
+		3FFDA09A060FFD0AB09F0AE0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AEF7A2146C28453736D5663C /* Pods_HYNewNest.framework */,
+				BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */,
+				A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,9 +339,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D13388024AD8F9C00B29783 /* Build configuration list for PBXNativeTarget "HYNewNest" */;
 			buildPhases = (
+				E016B7A80FC4A5DA5714F36A /* [CP] Check Pods Manifest.lock */,
 				3D13384D24AD8F9B00B29783 /* Sources */,
 				3D13384E24AD8F9B00B29783 /* Frameworks */,
 				3D13384F24AD8F9B00B29783 /* Resources */,
+				C08FB099C221193B86170E0B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -161,6 +358,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D13388324AD8F9C00B29783 /* Build configuration list for PBXNativeTarget "HYNewNestTests" */;
 			buildPhases = (
+				07FE59F898FD07A542E97751 /* [CP] Check Pods Manifest.lock */,
 				3D13386824AD8F9C00B29783 /* Sources */,
 				3D13386924AD8F9C00B29783 /* Frameworks */,
 				3D13386A24AD8F9C00B29783 /* Resources */,
@@ -179,9 +377,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D13388624AD8F9C00B29783 /* Build configuration list for PBXNativeTarget "HYNewNestUITests" */;
 			buildPhases = (
+				F9F6491387A6732DA715C6CA /* [CP] Check Pods Manifest.lock */,
 				3D13387324AD8F9C00B29783 /* Sources */,
 				3D13387424AD8F9C00B29783 /* Frameworks */,
 				3D13387524AD8F9C00B29783 /* Resources */,
+				28822A1001555599A37308F2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -240,9 +440,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D13386424AD8F9C00B29783 /* LaunchScreen.storyboard in Resources */,
-				3D13386124AD8F9C00B29783 /* Assets.xcassets in Resources */,
-				3D13385F24AD8F9B00B29783 /* Main.storyboard in Resources */,
+				3D13389224AF28D700B29783 /* Assets.xcassets in Resources */,
+				3D13389324AF28D700B29783 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,15 +461,118 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		07FE59F898FD07A542E97751 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HYNewNestTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		28822A1001555599A37308F2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C08FB099C221193B86170E0B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E016B7A80FC4A5DA5714F36A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HYNewNest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9F6491387A6732DA715C6CA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HYNewNest-HYNewNestUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3D13384D24AD8F9B00B29783 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D1338A324AF2E5200B29783 /* main.m in Sources */,
 				3D13385C24AD8F9B00B29783 /* ViewController.m in Sources */,
-				3D13385624AD8F9B00B29783 /* AppDelegate.m in Sources */,
-				3D13386724AD8F9C00B29783 /* main.m in Sources */,
-				3D13385924AD8F9B00B29783 /* SceneDelegate.m in Sources */,
+				3D1338A424AF2E5200B29783 /* AppDelegate.m in Sources */,
+				3D1338B924AF3AB200B29783 /* NNPageRouter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,18 +608,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3D13385D24AD8F9B00B29783 /* Main.storyboard */ = {
+		3D13388B24AF28D600B29783 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3D13385E24AD8F9B00B29783 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		3D13386224AD8F9C00B29783 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3D13386324AD8F9C00B29783 /* Base */,
+				3D13388C24AF28D600B29783 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -375,7 +669,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -427,7 +721,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -437,10 +731,13 @@
 		};
 		3D13388124AD8F9C00B29783 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = HYNewNest/Info.plist;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = HYNewNest/Config/PrefixHeader.pch;
+				INFOPLIST_FILE = HYNewNest/AppEntry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -453,10 +750,13 @@
 		};
 		3D13388224AD8F9C00B29783 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7369947BD28FDAEFDBB6399 /* Pods-HYNewNest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = HYNewNest/Info.plist;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = HYNewNest/Config/PrefixHeader.pch;
+				INFOPLIST_FILE = HYNewNest/AppEntry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -469,6 +769,7 @@
 		};
 		3D13388424AD8F9C00B29783 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2D62AAB840E46D1A6C31D05 /* Pods-HYNewNestTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -488,6 +789,7 @@
 		};
 		3D13388524AD8F9C00B29783 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB136AFAD485E031A2148702 /* Pods-HYNewNestTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -507,6 +809,7 @@
 		};
 		3D13388724AD8F9C00B29783 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6CE8CAC1544E651FCBD92C6 /* Pods-HYNewNest-HYNewNestUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = HYNewNestUITests/Info.plist;
@@ -524,6 +827,7 @@
 		};
 		3D13388824AD8F9C00B29783 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62DF1724D3A54A4E27D4B55B /* Pods-HYNewNest-HYNewNestUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = HYNewNestUITests/Info.plist;
