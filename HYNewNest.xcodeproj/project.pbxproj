@@ -17,6 +17,27 @@
 		3D1338A324AF2E5200B29783 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1338A024AF2E5200B29783 /* main.m */; };
 		3D1338A424AF2E5200B29783 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1338A124AF2E5200B29783 /* AppDelegate.m */; };
 		3D1338B924AF3AB200B29783 /* NNPageRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1338B824AF3AB200B29783 /* NNPageRouter.m */; };
+		3DA4F15024B30A090039123F /* SGQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DA4F13B24B30A080039123F /* SGQRCode.bundle */; };
+		3DA4F15124B30A090039123F /* UIImage+SGImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */; };
+		3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F14024B30A080039123F /* UIButton+Indicator.m */; };
+		3DA4F15324B30A090039123F /* SGQRCodeHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F14124B30A080039123F /* SGQRCodeHelperTool.m */; };
+		3DA4F15424B30A090039123F /* SGQRCodeScanningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F14224B30A080039123F /* SGQRCodeScanningView.m */; };
+		3DA4F15524B30A090039123F /* SGQRCodeScanManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F14324B30A080039123F /* SGQRCodeScanManager.m */; };
+		3DA4F15624B30A090039123F /* SGQRCodeGenerateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F14424B30A080039123F /* SGQRCodeGenerateManager.m */; };
+		3DA4F15724B30A090039123F /* SGQRCodeAlbumManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F14924B30A080039123F /* SGQRCodeAlbumManager.m */; };
+		3DA4F15F24B30D610039123F /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F15E24B30D610039123F /* GTMBase64.m */; };
+		3DA4F16924B312BE0039123F /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F16524B312BD0039123F /* NSString+Validation.m */; };
+		3DA4F16A24B312BE0039123F /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F16724B312BD0039123F /* UIView+Extension.m */; };
+		3DA4F16B24B312BE0039123F /* UIViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F16824B312BD0039123F /* UIViewController+Extension.m */; };
+		3DA4F16E24B314F30039123F /* UIImage+ESUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F16C24B314F20039123F /* UIImage+ESUtilities.m */; };
+		3DA4F17C24B315940039123F /* NSURL+HYLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F17A24B315930039123F /* NSURL+HYLink.m */; };
+		3DA4F17D24B315940039123F /* UIFont+RCFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F17B24B315930039123F /* UIFont+RCFont.m */; };
+		3DA4F18424B317490039123F /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F17F24B317490039123F /* LoadingView.m */; };
+		3DA4F18524B317490039123F /* HYEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F18224B317490039123F /* HYEncryptor.m */; };
+		3DA4F18924B317E40039123F /* WMDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F18724B317E40039123F /* WMDragView.m */; };
+		3DA4F19D24B3195F0039123F /* HYRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F19B24B3195F0039123F /* HYRefreshHeader.m */; };
+		3DA4F1A124B3199A0039123F /* HYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F19F24B3199A0039123F /* HYNavigationController.m */; };
+		3DA4F1A424B31A110039123F /* NSString+Font.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F1A324B31A110039123F /* NSString+Font.m */; };
 		5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +79,49 @@
 		3D1338B524AF3A2D00B29783 /* GlobalConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalConstant.h; sourceTree = "<group>"; };
 		3D1338B724AF3AB200B29783 /* NNPageRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NNPageRouter.h; sourceTree = "<group>"; };
 		3D1338B824AF3AB200B29783 /* NNPageRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NNPageRouter.m; sourceTree = "<group>"; };
+		3DA4F13A24B30A080039123F /* SGQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCode.h; sourceTree = "<group>"; };
+		3DA4F13B24B30A080039123F /* SGQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SGQRCode.bundle; sourceTree = "<group>"; };
+		3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SGImageSize.m"; sourceTree = "<group>"; };
+		3DA4F13E24B30A080039123F /* UIButton+Indicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Indicator.h"; sourceTree = "<group>"; };
+		3DA4F13F24B30A080039123F /* UIImage+SGImageSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SGImageSize.h"; sourceTree = "<group>"; };
+		3DA4F14024B30A080039123F /* UIButton+Indicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Indicator.m"; sourceTree = "<group>"; };
+		3DA4F14124B30A080039123F /* SGQRCodeHelperTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeHelperTool.m; sourceTree = "<group>"; };
+		3DA4F14224B30A080039123F /* SGQRCodeScanningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeScanningView.m; sourceTree = "<group>"; };
+		3DA4F14324B30A080039123F /* SGQRCodeScanManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeScanManager.m; sourceTree = "<group>"; };
+		3DA4F14424B30A080039123F /* SGQRCodeGenerateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeGenerateManager.m; sourceTree = "<group>"; };
+		3DA4F14524B30A080039123F /* SGQRCodeAlbumManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeAlbumManager.h; sourceTree = "<group>"; };
+		3DA4F14624B30A080039123F /* SGQRCodeHelperTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeHelperTool.h; sourceTree = "<group>"; };
+		3DA4F14724B30A080039123F /* SGQRCodeScanningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeScanningView.h; sourceTree = "<group>"; };
+		3DA4F14824B30A080039123F /* SGQRCodeScanManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeScanManager.h; sourceTree = "<group>"; };
+		3DA4F14924B30A080039123F /* SGQRCodeAlbumManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeAlbumManager.m; sourceTree = "<group>"; };
+		3DA4F14A24B30A080039123F /* SGQRCodeGenerateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeGenerateManager.h; sourceTree = "<group>"; };
+		3DA4F15C24B30D610039123F /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		3DA4F15D24B30D610039123F /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		3DA4F15E24B30D610039123F /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		3DA4F16324B312BD0039123F /* UIViewController+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extension.h"; sourceTree = "<group>"; };
+		3DA4F16424B312BD0039123F /* NSString+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validation.h"; sourceTree = "<group>"; };
+		3DA4F16524B312BD0039123F /* NSString+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validation.m"; sourceTree = "<group>"; };
+		3DA4F16624B312BD0039123F /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		3DA4F16724B312BD0039123F /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		3DA4F16824B312BD0039123F /* UIViewController+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extension.m"; sourceTree = "<group>"; };
+		3DA4F16C24B314F20039123F /* UIImage+ESUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ESUtilities.m"; sourceTree = "<group>"; };
+		3DA4F16D24B314F20039123F /* UIImage+ESUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ESUtilities.h"; sourceTree = "<group>"; };
+		3DA4F17824B315930039123F /* UIFont+RCFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+RCFont.h"; sourceTree = "<group>"; };
+		3DA4F17924B315930039123F /* NSURL+HYLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+HYLink.h"; sourceTree = "<group>"; };
+		3DA4F17A24B315930039123F /* NSURL+HYLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+HYLink.m"; sourceTree = "<group>"; };
+		3DA4F17B24B315930039123F /* UIFont+RCFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+RCFont.m"; sourceTree = "<group>"; };
+		3DA4F17F24B317490039123F /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
+		3DA4F18024B317490039123F /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
+		3DA4F18224B317490039123F /* HYEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYEncryptor.m; sourceTree = "<group>"; };
+		3DA4F18324B317490039123F /* HYEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYEncryptor.h; sourceTree = "<group>"; };
+		3DA4F18724B317E40039123F /* WMDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDragView.m; sourceTree = "<group>"; };
+		3DA4F18824B317E40039123F /* WMDragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDragView.h; sourceTree = "<group>"; };
+		3DA4F19B24B3195F0039123F /* HYRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYRefreshHeader.m; sourceTree = "<group>"; };
+		3DA4F19C24B3195F0039123F /* HYRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYRefreshHeader.h; sourceTree = "<group>"; };
+		3DA4F19F24B3199A0039123F /* HYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYNavigationController.m; sourceTree = "<group>"; };
+		3DA4F1A024B3199A0039123F /* HYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYNavigationController.h; sourceTree = "<group>"; };
+		3DA4F1A224B31A110039123F /* NSString+Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Font.h"; sourceTree = "<group>"; };
+		3DA4F1A324B31A110039123F /* NSString+Font.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Font.m"; sourceTree = "<group>"; };
 		62DF1724D3A54A4E27D4B55B /* Pods-HYNewNest-HYNewNestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; path = "Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.debug.xcconfig"; sourceTree = "<group>"; };
 		A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,6 +244,10 @@
 		3D13389924AF2D1900B29783 /* Utility(工具类) */ = {
 			isa = PBXGroup;
 			children = (
+				3DA4F19A24B3195F0039123F /* HYRefreshHeader */,
+				3DA4F18124B317490039123F /* HYEncryptor */,
+				3DA4F17E24B317490039123F /* LoadingView */,
+				3DA4F15B24B30D610039123F /* GTMBase64 */,
 				3D1338B624AF3A5200B29783 /* NNPageRouter */,
 			);
 			path = "Utility(工具类)";
@@ -198,6 +266,20 @@
 		3D13389B24AF2D1900B29783 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				3DA4F1A224B31A110039123F /* NSString+Font.h */,
+				3DA4F1A324B31A110039123F /* NSString+Font.m */,
+				3DA4F17924B315930039123F /* NSURL+HYLink.h */,
+				3DA4F17A24B315930039123F /* NSURL+HYLink.m */,
+				3DA4F17824B315930039123F /* UIFont+RCFont.h */,
+				3DA4F17B24B315930039123F /* UIFont+RCFont.m */,
+				3DA4F16D24B314F20039123F /* UIImage+ESUtilities.h */,
+				3DA4F16C24B314F20039123F /* UIImage+ESUtilities.m */,
+				3DA4F16424B312BD0039123F /* NSString+Validation.h */,
+				3DA4F16524B312BD0039123F /* NSString+Validation.m */,
+				3DA4F16624B312BD0039123F /* UIView+Extension.h */,
+				3DA4F16724B312BD0039123F /* UIView+Extension.m */,
+				3DA4F16324B312BD0039123F /* UIViewController+Extension.h */,
+				3DA4F16824B312BD0039123F /* UIViewController+Extension.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -205,6 +287,7 @@
 		3D13389C24AF2D1900B29783 /* Features(主代码) */ = {
 			isa = PBXGroup;
 			children = (
+				3DA4F19E24B3199A0039123F /* BASE */,
 				3D1338A824AF2F4200B29783 /* LoginRegisterComponent */,
 			);
 			path = "Features(主代码)";
@@ -231,6 +314,8 @@
 		3D1338A624AF2E7D00B29783 /* Vendors(第三方库) */ = {
 			isa = PBXGroup;
 			children = (
+				3DA4F18624B317E40039123F /* WMDragView */,
+				3DA4F13924B30A080039123F /* SGQRCode */,
 			);
 			path = "Vendors(第三方库)";
 			sourceTree = "<group>";
@@ -320,6 +405,92 @@
 				3D1338B824AF3AB200B29783 /* NNPageRouter.m */,
 			);
 			path = NNPageRouter;
+			sourceTree = "<group>";
+		};
+		3DA4F13924B30A080039123F /* SGQRCode */ = {
+			isa = PBXGroup;
+			children = (
+				3DA4F13A24B30A080039123F /* SGQRCode.h */,
+				3DA4F13B24B30A080039123F /* SGQRCode.bundle */,
+				3DA4F13C24B30A080039123F /* Category */,
+				3DA4F14124B30A080039123F /* SGQRCodeHelperTool.m */,
+				3DA4F14224B30A080039123F /* SGQRCodeScanningView.m */,
+				3DA4F14324B30A080039123F /* SGQRCodeScanManager.m */,
+				3DA4F14424B30A080039123F /* SGQRCodeGenerateManager.m */,
+				3DA4F14524B30A080039123F /* SGQRCodeAlbumManager.h */,
+				3DA4F14624B30A080039123F /* SGQRCodeHelperTool.h */,
+				3DA4F14724B30A080039123F /* SGQRCodeScanningView.h */,
+				3DA4F14824B30A080039123F /* SGQRCodeScanManager.h */,
+				3DA4F14924B30A080039123F /* SGQRCodeAlbumManager.m */,
+				3DA4F14A24B30A080039123F /* SGQRCodeGenerateManager.h */,
+			);
+			path = SGQRCode;
+			sourceTree = "<group>";
+		};
+		3DA4F13C24B30A080039123F /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */,
+				3DA4F13E24B30A080039123F /* UIButton+Indicator.h */,
+				3DA4F13F24B30A080039123F /* UIImage+SGImageSize.h */,
+				3DA4F14024B30A080039123F /* UIButton+Indicator.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		3DA4F15B24B30D610039123F /* GTMBase64 */ = {
+			isa = PBXGroup;
+			children = (
+				3DA4F15C24B30D610039123F /* GTMBase64.h */,
+				3DA4F15D24B30D610039123F /* GTMDefines.h */,
+				3DA4F15E24B30D610039123F /* GTMBase64.m */,
+			);
+			path = GTMBase64;
+			sourceTree = "<group>";
+		};
+		3DA4F17E24B317490039123F /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				3DA4F17F24B317490039123F /* LoadingView.m */,
+				3DA4F18024B317490039123F /* LoadingView.h */,
+			);
+			path = LoadingView;
+			sourceTree = "<group>";
+		};
+		3DA4F18124B317490039123F /* HYEncryptor */ = {
+			isa = PBXGroup;
+			children = (
+				3DA4F18224B317490039123F /* HYEncryptor.m */,
+				3DA4F18324B317490039123F /* HYEncryptor.h */,
+			);
+			path = HYEncryptor;
+			sourceTree = "<group>";
+		};
+		3DA4F18624B317E40039123F /* WMDragView */ = {
+			isa = PBXGroup;
+			children = (
+				3DA4F18724B317E40039123F /* WMDragView.m */,
+				3DA4F18824B317E40039123F /* WMDragView.h */,
+			);
+			path = WMDragView;
+			sourceTree = "<group>";
+		};
+		3DA4F19A24B3195F0039123F /* HYRefreshHeader */ = {
+			isa = PBXGroup;
+			children = (
+				3DA4F19B24B3195F0039123F /* HYRefreshHeader.m */,
+				3DA4F19C24B3195F0039123F /* HYRefreshHeader.h */,
+			);
+			path = HYRefreshHeader;
+			sourceTree = "<group>";
+		};
+		3DA4F19E24B3199A0039123F /* BASE */ = {
+			isa = PBXGroup;
+			children = (
+				3DA4F19F24B3199A0039123F /* HYNavigationController.m */,
+				3DA4F1A024B3199A0039123F /* HYNavigationController.h */,
+			);
+			path = BASE;
 			sourceTree = "<group>";
 		};
 		3FFDA09A060FFD0AB09F0AE0 /* Frameworks */ = {
@@ -440,6 +611,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DA4F15024B30A090039123F /* SGQRCode.bundle in Resources */,
 				3D13389224AF28D700B29783 /* Assets.xcassets in Resources */,
 				3D13389324AF28D700B29783 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -569,10 +741,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DA4F16924B312BE0039123F /* NSString+Validation.m in Sources */,
+				3DA4F18424B317490039123F /* LoadingView.m in Sources */,
+				3DA4F15724B30A090039123F /* SGQRCodeAlbumManager.m in Sources */,
 				3D1338A324AF2E5200B29783 /* main.m in Sources */,
+				3DA4F15524B30A090039123F /* SGQRCodeScanManager.m in Sources */,
+				3DA4F19D24B3195F0039123F /* HYRefreshHeader.m in Sources */,
+				3DA4F18524B317490039123F /* HYEncryptor.m in Sources */,
+				3DA4F15624B30A090039123F /* SGQRCodeGenerateManager.m in Sources */,
+				3DA4F1A124B3199A0039123F /* HYNavigationController.m in Sources */,
+				3DA4F15124B30A090039123F /* UIImage+SGImageSize.m in Sources */,
+				3DA4F15324B30A090039123F /* SGQRCodeHelperTool.m in Sources */,
 				3D13385C24AD8F9B00B29783 /* ViewController.m in Sources */,
 				3D1338A424AF2E5200B29783 /* AppDelegate.m in Sources */,
+				3DA4F17C24B315940039123F /* NSURL+HYLink.m in Sources */,
+				3DA4F1A424B31A110039123F /* NSString+Font.m in Sources */,
+				3DA4F15424B30A090039123F /* SGQRCodeScanningView.m in Sources */,
+				3DA4F16E24B314F30039123F /* UIImage+ESUtilities.m in Sources */,
+				3DA4F17D24B315940039123F /* UIFont+RCFont.m in Sources */,
+				3DA4F15F24B30D610039123F /* GTMBase64.m in Sources */,
 				3D1338B924AF3AB200B29783 /* NNPageRouter.m in Sources */,
+				3DA4F16A24B312BE0039123F /* UIView+Extension.m in Sources */,
+				3DA4F16B24B312BE0039123F /* UIViewController+Extension.m in Sources */,
+				3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */,
+				3DA4F18924B317E40039123F /* WMDragView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -735,6 +927,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HYNewNest/Vendors(第三方库)/IN3SAnalytics",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = HYNewNest/Config/PrefixHeader.pch;
 				INFOPLIST_FILE = HYNewNest/AppEntry/Info.plist;
@@ -754,6 +950,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HYNewNest/Vendors(第三方库)/IN3SAnalytics",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = HYNewNest/Config/PrefixHeader.pch;
 				INFOPLIST_FILE = HYNewNest/AppEntry/Info.plist;

@@ -9,6 +9,7 @@ target 'HYNewNest' do
   # Pods for HYNewNest
   pod 'Reachability'
   pod 'AFNetworking'
+  pod 'JSONModel'
   pod 'MJRefresh'
   pod 'MJExtension'
   pod 'SDWebImage'
