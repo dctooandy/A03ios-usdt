@@ -15,6 +15,7 @@
 #import "MacroConfigure.h" //通用宏
 #import "GlobalConstant.h" //全局变量
 #import "NNPageRouter.h"   //简易路由
+#import "CNSkinManager.h"  //肤色管理
 #import <Masonry/Masonry.h>
 #import "UIView+Extension.h"
 #import "UIViewController+Extension.h"

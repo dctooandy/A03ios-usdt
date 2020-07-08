@@ -39,6 +39,8 @@
 		3DA4F1A124B3199A0039123F /* HYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F19F24B3199A0039123F /* HYNavigationController.m */; };
 		3DA4F1A424B31A110039123F /* NSString+Font.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F1A324B31A110039123F /* NSString+Font.m */; };
 		5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */; };
+		D5FBFDC824B4672200BBCAD8 /* CNSkinManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FBFDC724B4672200BBCAD8 /* CNSkinManager.m */; };
+		D5FBFDF824B59DB100BBCAD8 /* SkinMapValue.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5FBFDF724B59DB100BBCAD8 /* SkinMapValue.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +130,9 @@
 		AEF7A2146C28453736D5663C /* Pods_HYNewNest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNest_HYNewNestUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D62AAB840E46D1A6C31D05 /* Pods-HYNewNestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNestTests.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNestTests/Pods-HYNewNestTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D5FBFDC624B4672200BBCAD8 /* CNSkinManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNSkinManager.h; sourceTree = "<group>"; };
+		D5FBFDC724B4672200BBCAD8 /* CNSkinManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNSkinManager.m; sourceTree = "<group>"; };
+		D5FBFDF724B59DB100BBCAD8 /* SkinMapValue.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SkinMapValue.plist; sourceTree = "<group>"; };
 		F6CE8CAC1544E651FCBD92C6 /* Pods-HYNewNest-HYNewNestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest-HYNewNestUITests.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F7369947BD28FDAEFDBB6399 /* Pods-HYNewNest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.release.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.release.xcconfig"; sourceTree = "<group>"; };
 		FB136AFAD485E031A2148702 /* Pods-HYNewNestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNestTests.release.xcconfig"; path = "Target Support Files/Pods-HYNewNestTests/Pods-HYNewNestTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -244,6 +249,7 @@
 		3D13389924AF2D1900B29783 /* Utility(工具类) */ = {
 			isa = PBXGroup;
 			children = (
+				D5FBFDC524B4661D00BBCAD8 /* Skin */,
 				3DA4F19A24B3195F0039123F /* HYRefreshHeader */,
 				3DA4F18124B317490039123F /* HYEncryptor */,
 				3DA4F17E24B317490039123F /* LoadingView */,
@@ -503,6 +509,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D5FBFDC524B4661D00BBCAD8 /* Skin */ = {
+			isa = PBXGroup;
+			children = (
+				D5FBFDC624B4672200BBCAD8 /* CNSkinManager.h */,
+				D5FBFDC724B4672200BBCAD8 /* CNSkinManager.m */,
+				D5FBFDF724B59DB100BBCAD8 /* SkinMapValue.plist */,
+			);
+			path = Skin;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -611,6 +627,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5FBFDF824B59DB100BBCAD8 /* SkinMapValue.plist in Resources */,
 				3DA4F15024B30A090039123F /* SGQRCode.bundle in Resources */,
 				3D13389224AF28D700B29783 /* Assets.xcassets in Resources */,
 				3D13389324AF28D700B29783 /* LaunchScreen.storyboard in Resources */,
@@ -761,6 +778,7 @@
 				3DA4F17D24B315940039123F /* UIFont+RCFont.m in Sources */,
 				3DA4F15F24B30D610039123F /* GTMBase64.m in Sources */,
 				3D1338B924AF3AB200B29783 /* NNPageRouter.m in Sources */,
+				D5FBFDC824B4672200BBCAD8 /* CNSkinManager.m in Sources */,
 				3DA4F16A24B312BE0039123F /* UIView+Extension.m in Sources */,
 				3DA4F16B24B312BE0039123F /* UIViewController+Extension.m in Sources */,
 				3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */,

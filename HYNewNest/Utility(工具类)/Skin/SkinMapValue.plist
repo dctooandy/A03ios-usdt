@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>normal下6位16进制颜色值，key值必须大写</key>
+	<string>和normal相对应black颜色值，格式同key</string>
+	<key>EEEEEE</key>
+	<string>34872D</string>
+</dict>
+</plist>
