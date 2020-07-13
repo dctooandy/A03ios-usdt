@@ -52,6 +52,10 @@ NSDictionary *SkinDictionary() {
 #pragma - mark 换肤-颜色
 
 + (UIColor *)skin_colorWithHex:(NSString *)hexColor {
+    return [CNSkinManager skin_colorWithHex:hexColor alpha:1.0];
+}
+
++ (UIColor *)skin_colorWithHex:(NSString *)hexColor alpha:(CGFloat)alpha {
     
     if (hexColor.length < 6) {
         return nil;
@@ -72,10 +76,10 @@ NSDictionary *SkinDictionary() {
     if (hex.length < 6) {
         hex = hexColor;
     }
-    return [CNSkinManager colorWithHex:hex];
+    return [CNSkinManager colorWithHex:hex alpha:alpha];
 }
 
-+ (UIColor *)colorWithHex:(NSString *)hexValue {
++ (UIColor *)colorWithHex:(NSString *)hexValue alpha:(CGFloat)alpha {
     if (hexValue.length < 6) {
         return nil;
     }
@@ -92,7 +96,7 @@ NSDictionary *SkinDictionary() {
     range.location = 4;
     [[NSScanner scannerWithString:[hexValue substringWithRange:range]] scanHexInt:&blue];
 
-    return [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1.0];
+    return [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:alpha];
 }
 
 
