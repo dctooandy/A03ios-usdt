@@ -37,14 +37,14 @@ typedef NS_ENUM(NSUInteger, SKinType) {
 
 @interface UIColor (Skin)
 
-/// 换肤专用颜色API，内部已做好不同肤色颜色映射，不同肤色也是传默认颜色key值, 默认alpha = 1
-/// @param hexColor  默认颜色 SKinTypeNormal 16进制颜色值，如 "7F4CEE" 不限大小写
-+ (UIColor *)skin_colorWithHex:(NSString *)hexColor;
-
 /// 换肤专用颜色API，内部已做好不同肤色颜色映射，不同肤色也是传默认颜色key值
 /// @param hexColor  默认颜色 SKinTypeNormal 16进制颜色值，如 "7F4CEE" 不限大小写
 /// @param alpha 色值透明度
 + (UIColor *)skin_colorWithHex:(NSString *)hexColor alpha:(CGFloat)alpha;
+
+/// API和上面相同， 默认 alpha = 1
++ (UIColor *)skin_colorWithHex:(NSString *)hexColor;
+
 @end
 
 @interface UIImage (Skin)
