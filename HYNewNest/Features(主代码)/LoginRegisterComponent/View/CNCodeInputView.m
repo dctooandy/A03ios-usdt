@@ -8,16 +8,25 @@
 
 #import "CNCodeInputView.h"
 
+int TotalSecond = 10;
+
 @interface CNCodeInputView () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *tipLb;
 @property (weak, nonatomic) IBOutlet UITextField *inputTF;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
+@property (weak, nonatomic) IBOutlet UIButton *codeBtn;
+@property (weak, nonatomic) IBOutlet UIButton *eyeBtn;
 
 /// 记录对错，用于UI改变风格
 @property (assign, nonatomic) BOOL wrongCode;
 @property (nonatomic, strong) UIColor *hilghtColor;
 @property (nonatomic, strong) UIColor *wrongColor;
 @property (nonatomic, strong) UIColor *normalColor;
+
+/// 验证码定时器
+@property (strong, nonatomic) NSTimer *secondTimer;
+@property (assign, nonatomic) int second;
+
 @end
 
 @implementation CNCodeInputView
@@ -73,64 +82,44 @@
 
 - (void)setPhoneLogin:(BOOL)phoneLogin {
     _phoneLogin = phoneLogin;
-    if (phoneLogin) {
-        self.inputTF.placeholder = @"请输入验证码";
-//        self.eyeBtn.hidden = YES;
-//        self.eyeBtn.selected = NO;
-        self.inputTF.secureTextEntry = NO;
+    self.inputTF.placeholder = phoneLogin ? @"请输入验证码": @"请输入密码";
+    self.codeBtn.hidden = !phoneLogin;
+    self.eyeBtn.hidden = phoneLogin;
+    self.inputTF.secureTextEntry = phoneLogin ? NO: self.eyeBtn.selected;
+}
+
+#pragma - mark Timer
+
+- (void)timerAciton {
+    if (_second == 0) {
+        _second = TotalSecond;
+        [self.secondTimer invalidate];
+        self.secondTimer = nil;
+        self.codeBtn.enabled = YES;
+        [self.codeBtn setTitle:[NSString stringWithFormat:@"重新发送"] forState:UIControlStateNormal];
     } else {
-        self.inputTF.placeholder = @"请输入密码";
-//        self.eyeBtn.hidden = NO;
+        [self.codeBtn setTitle:[NSString stringWithFormat:@"%ds", _second] forState:UIControlStateDisabled];
+        _second--;
     }
 }
 
-//
-//- (void)setBtnEnable:(BOOL)enabled {
-//    if (enabled && _second == TotalSecond) {
-//        self.codeBtn.enabled = YES;
-//        self.codeBtn.layer.borderWidth = 0;
-//        self.codeBtn.layer.borderColor = nil;
-//        self.codeBtn.backgroundColor = kHexColor(0xFFD700);
-//    } else {
-//        self.codeBtn.enabled = NO;
-//        self.codeBtn.layer.borderWidth = 1;
-//        self.codeBtn.layer.borderColor = kHexColor(0xF7F7F7).CGColor;
-//        self.codeBtn.backgroundColor = [UIColor whiteColor];
-//    }
-//}
-//
-//
-//
-//- (void)timerAciton {
-//    if (_second == 0) {
-//        _second = TotalSecond;
-//        [self.secondTimer invalidate];
-//        self.secondTimer = nil;
-//        [self.codeBtn setTitle:[NSString stringWithFormat:@"重新发送"] forState:UIControlStateNormal];
-//        [self.codeBtn setTitle:[NSString stringWithFormat:@"重新发送"] forState:UIControlStateDisabled];
-//        [self setBtnEnable:YES];
-//    } else {
-//        [self.codeBtn setTitle:[NSString stringWithFormat:@"重新发送(%ds)", _second] forState:UIControlStateDisabled];
-//        _second--;
-//    }
-//}
-//
-//- (NSTimer *)secondTimer {
-//    if (_secondTimer == nil) {
-//        _secondTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerAciton) userInfo:nil repeats:YES];
-//        [_secondTimer setFireDate:[NSDate distantFuture]];
-//    }
-//    return _secondTimer;
-//}
-//
-//- (IBAction)sendCode:(UIButton *)sender {
+- (NSTimer *)secondTimer {
+    if (_secondTimer == nil) {
+        _secondTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerAciton) userInfo:nil repeats:YES];
+        [_secondTimer setFireDate:[NSDate distantFuture]];
+        self.second = TotalSecond;
+    }
+    return _secondTimer;
+}
+
+- (IBAction)sendCode:(UIButton *)sender {
 //    if (![self.inputTF.text isValidPhoneNum]) {
 //        [CNHUB showError:@"请输入正确的手机号"];
 //        return;
 //    }
-//    [self setBtnEnable:NO];
-//    [self.secondTimer setFireDate:[NSDate distantPast]];
-//    
+    self.codeBtn.enabled = NO;
+    [self.secondTimer setFireDate:[NSDate distantPast]];
+    
 //    __weak typeof(self) weakSelf = self;
 //    [CNLoginRequest getSMSCodeWithType:CNSMSCodeTypeLogin phone:self.inputTF.text completionHandler:^(id responseObj, NSString *errorMsg) {
 //        if (errorMsg) {
@@ -140,5 +129,5 @@
 //            weakSelf.codeId = [responseObj objectForKey:@"messageId"];
 //        }
 //    }];
-//}
+}
 @end

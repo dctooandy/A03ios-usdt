@@ -36,10 +36,12 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     self.lineView.backgroundColor = self.hilghtColor;
+    self.tipLb.hidden = NO;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     self.lineView.backgroundColor = self.normalColor;
+    self.tipLb.hidden = YES;
 }
 
 - (void)textFieldChange:(UITextField *)textField {
@@ -73,9 +75,5 @@
 
 - (void)getImageCode {
     [self sendCode:self.codeBtn];
-}
-
-- (void)setIsLogin:(BOOL)isLogin {
-    self.tipLb.hidden = isLogin;
 }
 @end

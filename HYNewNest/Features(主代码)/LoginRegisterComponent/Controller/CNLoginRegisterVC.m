@@ -14,10 +14,9 @@
 
 @interface CNLoginRegisterVC () <CNAccountInputViewDelegate, CNCodeInputViewDelegate,  CNImageCodeInputViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (strong, nonatomic) IBOutlet UIScrollView *switchSV;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentWidth;
-//@property (strong, nonatomic) CNLoginVM *viewModel;
 
 #pragma mark - Login
 @property (weak, nonatomic) IBOutlet CNAccountInputView *loginAccountView;
@@ -54,6 +53,12 @@
     [self setDelegate];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.switchSV.frame = self.bgView.bounds;
+    self.contentWidth.constant = self.switchSV.frame.size.width * 2;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
@@ -65,12 +70,7 @@
 }
 
 - (void)configUI {
-    self.contentWidth.constant = kScreenWidth * 2;
-    self.switchSV.frame = CGRectMake(0, 0, kScreenWidth, self.contentView.bounds.size.height);
-    [self.contentView addSubview:self.switchSV];
-    
-    self.loginImageCodeView.isLogin = YES;
-    
+    [self.bgView addSubview:self.switchSV];
     if (_isRegister) {
         [self gotoRegister:nil];
     }

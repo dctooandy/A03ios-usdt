@@ -18,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CNImageCodeInputView : CNBaseXibView
 @property (nonatomic, readonly) NSString *imageCode;
 @property (nonatomic, readonly) NSString *imageCodeId;
-@property (nonatomic, assign) BOOL isLogin;
 /// 图形验证码是否有值
 @property (nonatomic, assign) BOOL correct;
 @property (nonatomic, weak) id delegate;
