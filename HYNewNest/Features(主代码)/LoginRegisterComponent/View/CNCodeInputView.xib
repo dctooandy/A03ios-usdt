@@ -26,7 +26,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码或手机验证码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZI9-1o-5Rl">
-                    <rect key="frame" x="0.0" y="58.5" width="276" height="19.5"/>
+                    <rect key="frame" x="0.0" y="48" width="276" height="30"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
@@ -35,7 +35,7 @@
                     </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zNf-wj-JDq">
-                    <rect key="frame" x="288" y="53.5" width="88" height="30"/>
+                    <rect key="frame" x="288" y="48" width="88" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="88" id="XIK-Mj-6In"/>
                     </constraints>
@@ -45,12 +45,12 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZzN-sK-jsu">
-                    <rect key="frame" x="354" y="57.5" width="22" height="22"/>
+                    <rect key="frame" x="354" y="52" width="22" height="22"/>
                     <state key="normal" image="mute.png"/>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cfA-lO-mIA">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cfA-lO-mIA" customClass="CNLineView">
                     <rect key="frame" x="0.0" y="88" width="376" height="1"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="ZDj-E6-f4n"/>
                     </constraints>
@@ -61,6 +61,7 @@
                 <constraint firstItem="zNf-wj-JDq" firstAttribute="centerY" secondItem="ZI9-1o-5Rl" secondAttribute="centerY" id="4ZO-41-Z1U"/>
                 <constraint firstAttribute="trailing" secondItem="zNf-wj-JDq" secondAttribute="trailing" id="6wB-xG-Gce"/>
                 <constraint firstItem="lgT-N8-sqa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ani-bP-Ewx"/>
+                <constraint firstItem="cfA-lO-mIA" firstAttribute="top" secondItem="zNf-wj-JDq" secondAttribute="bottom" constant="10" id="DSn-Gm-DgF"/>
                 <constraint firstAttribute="bottom" secondItem="cfA-lO-mIA" secondAttribute="bottom" id="FZe-Wb-KzL"/>
                 <constraint firstAttribute="trailing" secondItem="ZI9-1o-5Rl" secondAttribute="trailing" constant="100" id="G8Q-3d-2DO"/>
                 <constraint firstAttribute="trailing" secondItem="cfA-lO-mIA" secondAttribute="trailing" id="JrN-y6-K03"/>

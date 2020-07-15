@@ -17,8 +17,6 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *switchSV;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentWidth;
-@property (weak, nonatomic) IBOutlet UIButton *gotoRegisterBtn;
-@property (weak, nonatomic) IBOutlet UILabel *titleLb;
 //@property (strong, nonatomic) CNLoginVM *viewModel;
 
 #pragma mark - Login
@@ -40,9 +38,6 @@
 @property (weak, nonatomic) IBOutlet CNLoginBtn *registerBtn;
 @property (assign, nonatomic) BOOL isRegister;
 
-// === LCKHS 注册送活动 ===
-@property (weak, nonatomic) IBOutlet UIImageView *registerLCKHSBanner;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *registerLCKHSBannerH;
 
 @end
 
@@ -82,7 +77,7 @@
     self.loginImageCodeView.isLogin = YES;
     
     if (_isRegister) {
-        [self gotoRegister:self.gotoRegisterBtn];
+        [self gotoRegister:nil];
     }
 }
 
@@ -125,52 +120,14 @@
 }
 
 - (IBAction)gotoRegister:(UIButton *)sender {
-    sender.hidden = YES;
-    self.titleLb.hidden = NO;
-//    [self.switchSV setContentOffset:CGPointMake(kScreenWidth, 0)];
-    self.view.backgroundColor = kHexColor(0xFFD700);
-}
-
-- (IBAction)phoneRegister:(UIButton *)sender {
-    sender.selected = YES;
-    self.accountBtn.selected = NO;
-    [UIView animateWithDuration:0.2 animations:^{
-        self.yellowLineView.center = CGPointMake(sender.center.x, self.yellowLineView.center.y);
-    }];
-    self.registerImageCodeView.hidden = YES;
-    self.registerCodeViewH.constant = 0;
-    self.phoneView.hidden = NO;
-    self.phoneViewH.constant = 80;
-    
-    self.registerBtn.enabled = self.phoneView.correct;
-}
-
-- (IBAction)accountRegister:(UIButton *)sender {
-    sender.selected = YES;
-    self.phoneBtn.selected = NO;
-    [UIView animateWithDuration:0.2 animations:^{
-        self.yellowLineView.center = CGPointMake(sender.center.x, self.yellowLineView.center.y);
-    }];
-    
-    self.registerImageCodeView.hidden = NO;
-    self.registerCodeViewH.constant = 80;
-    
-    self.registerBtn.enabled = self.phoneView.correct && self.registerImageCodeView.correct;
-    [self.registerImageCodeView getImageCode];
+    [self.switchSV setContentOffset:CGPointMake(kScreenWidth, 0)];
 }
 
 - (IBAction)forgotPassword:(id)sender {
 //    [self.navigationController pushViewController:[ForgetPasswordViewController new] animated:YES];
 }
 
-- (IBAction)cannotGetSmsCode:(id)sender {
-    
-//    [CustomerPopView initWithParentVC:self];
-}
-
 - (IBAction)goToLogin:(UIButton *)sender {
-    self.gotoRegisterBtn.hidden = NO;
-    self.titleLb.hidden = YES;
     [self.switchSV setContentOffset:CGPointMake(0, 0)];
     self.view.backgroundColor = [UIColor whiteColor];
 }

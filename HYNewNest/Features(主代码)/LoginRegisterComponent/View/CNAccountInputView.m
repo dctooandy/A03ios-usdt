@@ -27,7 +27,7 @@
     [super loadViewFromXib];
     [self.inputTF addTarget:self action:@selector(textFieldChange:) forControlEvents:UIControlEventEditingChanged];
     
-    self.normalColor = kHexColorAlpha(0xFFFFFF, 0.5);
+    self.normalColor = kHexColorAlpha(0xFFFFFF, 0.15);
     self.hilghtColor = kHexColor(0x10B4DD);
     self.wrongColor = kHexColor(0xFF5860);
 }
