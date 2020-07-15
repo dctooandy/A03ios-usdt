@@ -2,7 +2,7 @@
 //  CNAccountInputView.h
 //  HYNewNest
 //
-//  Created by cean.q on 22020/7/13.
+//  Created by cean.q on 2020/7/13.
 //  Copyright © 2020 james. All rights reserved.
 //
 
