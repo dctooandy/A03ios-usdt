@@ -8,19 +8,19 @@
 
 #import "CNLoginRegisterVC.h"
 #import "CNLoginBtn.h"
-#import "CNPhoneInputView.h"
 #import "CNImageCodeInputView.h"
 #import "CNAccountInputView.h"
 #import "CNCodeInputView.h"
 
-@interface CNLoginRegisterVC () <CNAccountInputViewDelegate, CNPhoneInputViewDelegate, CNCodeInputViewDelegate,  CNImageCodeInputViewDelegate>
-@property (strong, nonatomic) IBOutlet UIScrollView *switchSV;
+@interface CNLoginRegisterVC () <CNAccountInputViewDelegate, CNCodeInputViewDelegate,  CNImageCodeInputViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (strong, nonatomic) IBOutlet UIScrollView *switchSV;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentWidth;
 //@property (strong, nonatomic) CNLoginVM *viewModel;
 
 #pragma mark - Login
-@property (weak, nonatomic) IBOutlet CNAccountInputView *accountView;
+@property (weak, nonatomic) IBOutlet CNAccountInputView *loginAccountView;
 @property (weak, nonatomic) IBOutlet CNCodeInputView *loginCodeView;
 @property (weak, nonatomic) IBOutlet CNLoginBtn *loginBtn;
 @property (weak, nonatomic) IBOutlet CNImageCodeInputView *loginImageCodeView;
@@ -28,13 +28,8 @@
 @property (assign, nonatomic) BOOL needImageCode;
 
 #pragma mark - Register
-@property (weak, nonatomic) IBOutlet UIView *yellowLineView;
-@property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
-@property (weak, nonatomic) IBOutlet UIButton *accountBtn;
-@property (weak, nonatomic) IBOutlet CNPhoneInputView *phoneView;
+@property (weak, nonatomic) IBOutlet CNAccountInputView *registerAccountView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *phoneViewH;
-@property (weak, nonatomic) IBOutlet CNImageCodeInputView *registerImageCodeView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *registerCodeViewH;
 @property (weak, nonatomic) IBOutlet CNLoginBtn *registerBtn;
 @property (assign, nonatomic) BOOL isRegister;
 
@@ -84,10 +79,9 @@
 #pragma mark - InputViewDelegate
 
 - (void)setDelegate {
-    self.accountView.delegate = self;
-    self.phoneView.delegate = self;
+    self.loginAccountView.delegate = self;
+    self.registerAccountView.delegate = self;
     self.loginCodeView.delegate = self;
-    self.registerImageCodeView.delegate = self;
 }
 
 - (void)accountInputViewTextChange:(CNAccountInputView *)view {
@@ -96,22 +90,22 @@
 }
 
 - (void)codeInputViewTextChange:(CNAccountInputView *)view {
-    self.loginBtn.enabled = view.correct && self.accountView.correct;
+    self.loginBtn.enabled = view.correct && self.loginAccountView.correct;
 }
 
-- (void)phoneViewTextChange:(CNPhoneInputView *)view {
-    if (self.phoneBtn.selected) {
-        self.registerBtn.enabled = view.correct;
-    } else {
-        self.registerBtn.enabled = self.registerImageCodeView.correct && view.correct;
-    }
-}
+//- (void)phoneViewTextChange:(CNPhoneInputView *)view {
+//    if (self.phoneBtn.selected) {
+//        self.registerBtn.enabled = view.correct;
+//    } else {
+//        self.registerBtn.enabled = self.registerImageCodeView.correct && view.correct;
+//    }
+//}
 
-- (void)imageCodeViewTextChange:(CNImageCodeInputView *)view {
-    if ([view isEqual:self.registerImageCodeView]) {
-        self.registerBtn.enabled = self.phoneView.correct && view.correct;
-    }
-}
+//- (void)imageCodeViewTextChange:(CNImageCodeInputView *)view {
+//    if ([view isEqual:self.registerImageCodeView]) {
+//        self.registerBtn.enabled = self.phoneView.correct && view.correct;
+//    }
+//}
 
 #pragma mark - ButtonAction
 
