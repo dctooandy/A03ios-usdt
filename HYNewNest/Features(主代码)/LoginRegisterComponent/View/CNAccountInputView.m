@@ -39,6 +39,10 @@
     self.lineView.backgroundColor = self.wrongColor;
 }
 
+- (void)setPlaceholder:(NSString *)text {
+    self.inputTF.placeholder = text;
+}
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     self.tipLb.hidden = NO;
     self.lineView.backgroundColor = _wrongAccout ? self.wrongColor: self.hilghtColor;

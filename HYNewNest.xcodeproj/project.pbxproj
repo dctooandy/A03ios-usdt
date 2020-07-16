@@ -39,8 +39,23 @@
 		3DA4F1A124B3199A0039123F /* HYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F19F24B3199A0039123F /* HYNavigationController.m */; };
 		3DA4F1A424B31A110039123F /* NSString+Font.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F1A324B31A110039123F /* NSString+Font.m */; };
 		5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */; };
+		D571B19624BE9F120087B5EC /* CNLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19524BE9F120087B5EC /* CNLineView.m */; };
+		D571B19924BEA4620087B5EC /* CNTwoStatusBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19724BEA4620087B5EC /* CNTwoStatusBtn.m */; };
+		D571B19D24BFF2B10087B5EC /* CNOneStatusBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19C24BFF2B10087B5EC /* CNOneStatusBtn.m */; };
+		D571B1A124BFFD510087B5EC /* CNBaseTF.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B1A024BFFD510087B5EC /* CNBaseTF.m */; };
 		D5FBFDC824B4672200BBCAD8 /* CNSkinManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FBFDC724B4672200BBCAD8 /* CNSkinManager.m */; };
 		D5FBFDF824B59DB100BBCAD8 /* SkinMapValue.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5FBFDF724B59DB100BBCAD8 /* SkinMapValue.plist */; };
+		D5FBFE2D24BC05E400BBCAD8 /* CNLoginRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FBFE0124BC05E400BBCAD8 /* CNLoginRegisterVC.m */; };
+		D5FBFE3424BC05E400BBCAD8 /* CNLoginRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5FBFE0A24BC05E400BBCAD8 /* CNLoginRegisterVC.xib */; };
+		D5FBFE3924BC05E400BBCAD8 /* CNCodeInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5FBFE1524BC05E400BBCAD8 /* CNCodeInputView.xib */; };
+		D5FBFE3B24BC05E400BBCAD8 /* CNAccountInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5FBFE1C24BC05E400BBCAD8 /* CNAccountInputView.xib */; };
+		D5FBFE3D24BC05E400BBCAD8 /* CNImageCodeInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FBFE1E24BC05E400BBCAD8 /* CNImageCodeInputView.m */; };
+		D5FBFE3F24BC05E400BBCAD8 /* CNAccountInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FBFE2024BC05E400BBCAD8 /* CNAccountInputView.m */; };
+		D5FBFE4224BC05E400BBCAD8 /* CNCodeInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FBFE2324BC05E400BBCAD8 /* CNCodeInputView.m */; };
+		D5FBFE4324BC05E400BBCAD8 /* CNImageCodeInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5FBFE2524BC05E400BBCAD8 /* CNImageCodeInputView.xib */; };
+		D5FBFE8A24BC28B200BBCAD8 /* CNBaseXibView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FBFE7124BC28B100BBCAD8 /* CNBaseXibView.m */; };
+		D5FBFE8B24BC28B200BBCAD8 /* CNBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FBFE7424BC28B100BBCAD8 /* CNBaseModel.m */; };
+		D5FBFE8D24BC28B200BBCAD8 /* CNBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FBFE7A24BC28B200BBCAD8 /* CNBaseVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,9 +145,35 @@
 		AEF7A2146C28453736D5663C /* Pods_HYNewNest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNest_HYNewNestUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D62AAB840E46D1A6C31D05 /* Pods-HYNewNestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNestTests.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNestTests/Pods-HYNewNestTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D571B19424BE9F120087B5EC /* CNLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNLineView.h; sourceTree = "<group>"; };
+		D571B19524BE9F120087B5EC /* CNLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNLineView.m; sourceTree = "<group>"; };
+		D571B19724BEA4620087B5EC /* CNTwoStatusBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNTwoStatusBtn.m; sourceTree = "<group>"; };
+		D571B19824BEA4620087B5EC /* CNTwoStatusBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNTwoStatusBtn.h; sourceTree = "<group>"; };
+		D571B19B24BFF2B10087B5EC /* CNOneStatusBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNOneStatusBtn.h; sourceTree = "<group>"; };
+		D571B19C24BFF2B10087B5EC /* CNOneStatusBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNOneStatusBtn.m; sourceTree = "<group>"; };
+		D571B19F24BFFD510087B5EC /* CNBaseTF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNBaseTF.h; sourceTree = "<group>"; };
+		D571B1A024BFFD510087B5EC /* CNBaseTF.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNBaseTF.m; sourceTree = "<group>"; };
 		D5FBFDC624B4672200BBCAD8 /* CNSkinManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNSkinManager.h; sourceTree = "<group>"; };
 		D5FBFDC724B4672200BBCAD8 /* CNSkinManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNSkinManager.m; sourceTree = "<group>"; };
 		D5FBFDF724B59DB100BBCAD8 /* SkinMapValue.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SkinMapValue.plist; sourceTree = "<group>"; };
+		D5FBFE0124BC05E400BBCAD8 /* CNLoginRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNLoginRegisterVC.m; sourceTree = "<group>"; };
+		D5FBFE0624BC05E400BBCAD8 /* CNLoginRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNLoginRegisterVC.h; sourceTree = "<group>"; };
+		D5FBFE0A24BC05E400BBCAD8 /* CNLoginRegisterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNLoginRegisterVC.xib; sourceTree = "<group>"; };
+		D5FBFE1524BC05E400BBCAD8 /* CNCodeInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNCodeInputView.xib; sourceTree = "<group>"; };
+		D5FBFE1724BC05E400BBCAD8 /* CNImageCodeInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNImageCodeInputView.h; sourceTree = "<group>"; };
+		D5FBFE1924BC05E400BBCAD8 /* CNAccountInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNAccountInputView.h; sourceTree = "<group>"; };
+		D5FBFE1B24BC05E400BBCAD8 /* CNCodeInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCodeInputView.h; sourceTree = "<group>"; };
+		D5FBFE1C24BC05E400BBCAD8 /* CNAccountInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNAccountInputView.xib; sourceTree = "<group>"; };
+		D5FBFE1E24BC05E400BBCAD8 /* CNImageCodeInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNImageCodeInputView.m; sourceTree = "<group>"; };
+		D5FBFE2024BC05E400BBCAD8 /* CNAccountInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNAccountInputView.m; sourceTree = "<group>"; };
+		D5FBFE2324BC05E400BBCAD8 /* CNCodeInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCodeInputView.m; sourceTree = "<group>"; };
+		D5FBFE2524BC05E400BBCAD8 /* CNImageCodeInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNImageCodeInputView.xib; sourceTree = "<group>"; };
+		D5FBFE7024BC28B100BBCAD8 /* CNBaseXibView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNBaseXibView.h; sourceTree = "<group>"; };
+		D5FBFE7124BC28B100BBCAD8 /* CNBaseXibView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNBaseXibView.m; sourceTree = "<group>"; };
+		D5FBFE7324BC28B100BBCAD8 /* CNBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNBaseModel.h; sourceTree = "<group>"; };
+		D5FBFE7424BC28B100BBCAD8 /* CNBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNBaseModel.m; sourceTree = "<group>"; };
+		D5FBFE7824BC28B200BBCAD8 /* CNBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNBaseVC.h; sourceTree = "<group>"; };
+		D5FBFE7A24BC28B200BBCAD8 /* CNBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNBaseVC.m; sourceTree = "<group>"; };
 		F6CE8CAC1544E651FCBD92C6 /* Pods-HYNewNest-HYNewNestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest-HYNewNestUITests.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F7369947BD28FDAEFDBB6399 /* Pods-HYNewNest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.release.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.release.xcconfig"; sourceTree = "<group>"; };
 		FB136AFAD485E031A2148702 /* Pods-HYNewNestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNestTests.release.xcconfig"; path = "Target Support Files/Pods-HYNewNestTests/Pods-HYNewNestTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -240,7 +281,6 @@
 		3D13388924AF28D600B29783 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				3D13388A24AF28D600B29783 /* Assets.xcassets */,
 				3D13388B24AF28D600B29783 /* LaunchScreen.storyboard */,
 			);
 			path = Other;
@@ -293,8 +333,8 @@
 		3D13389C24AF2D1900B29783 /* Features(主代码) */ = {
 			isa = PBXGroup;
 			children = (
+				D5FBFDF924BC05E400BBCAD8 /* LoginRegisterComponent */,
 				3DA4F19E24B3199A0039123F /* BASE */,
-				3D1338A824AF2F4200B29783 /* LoginRegisterComponent */,
 			);
 			path = "Features(主代码)";
 			sourceTree = "<group>";
@@ -329,79 +369,9 @@
 		3D1338A724AF2EDF00B29783 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3D13388A24AF28D600B29783 /* Assets.xcassets */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		3D1338A824AF2F4200B29783 /* LoginRegisterComponent */ = {
-			isa = PBXGroup;
-			children = (
-				3D1338A924AF2F4200B29783 /* Register */,
-				3D1338AD24AF2F4200B29783 /* Login */,
-			);
-			path = LoginRegisterComponent;
-			sourceTree = "<group>";
-		};
-		3D1338A924AF2F4200B29783 /* Register */ = {
-			isa = PBXGroup;
-			children = (
-				3D1338AA24AF2F4200B29783 /* Controller */,
-				3D1338AB24AF2F4200B29783 /* Model */,
-				3D1338AC24AF2F4200B29783 /* View */,
-			);
-			path = Register;
-			sourceTree = "<group>";
-		};
-		3D1338AA24AF2F4200B29783 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		3D1338AB24AF2F4200B29783 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		3D1338AC24AF2F4200B29783 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		3D1338AD24AF2F4200B29783 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				3D1338AE24AF2F4200B29783 /* Controller */,
-				3D1338AF24AF2F4200B29783 /* Model */,
-				3D1338B024AF2F4200B29783 /* View */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		3D1338AE24AF2F4200B29783 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		3D1338AF24AF2F4200B29783 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		3D1338B024AF2F4200B29783 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		3D1338B624AF3A5200B29783 /* NNPageRouter */ = {
@@ -493,8 +463,13 @@
 		3DA4F19E24B3199A0039123F /* BASE */ = {
 			isa = PBXGroup;
 			children = (
-				3DA4F19F24B3199A0039123F /* HYNavigationController.m */,
-				3DA4F1A024B3199A0039123F /* HYNavigationController.h */,
+				D571B19E24BFFD290087B5EC /* TextFeild */,
+				D571B19A24BFF1F00087B5EC /* Button */,
+				D5FBFE7224BC28B100BBCAD8 /* Model */,
+				D5FBFE5324BC28B100BBCAD8 /* Networking */,
+				D5FBFE7524BC28B200BBCAD8 /* Controller */,
+				D5FBFE5924BC28B100BBCAD8 /* View */,
+				D5FBFE5624BC28B100BBCAD8 /* ViewModel */,
 			);
 			path = BASE;
 			sourceTree = "<group>";
@@ -509,6 +484,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D571B19A24BFF1F00087B5EC /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				D571B19B24BFF2B10087B5EC /* CNOneStatusBtn.h */,
+				D571B19C24BFF2B10087B5EC /* CNOneStatusBtn.m */,
+				D571B19824BEA4620087B5EC /* CNTwoStatusBtn.h */,
+				D571B19724BEA4620087B5EC /* CNTwoStatusBtn.m */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		D571B19E24BFFD290087B5EC /* TextFeild */ = {
+			isa = PBXGroup;
+			children = (
+				D571B19F24BFFD510087B5EC /* CNBaseTF.h */,
+				D571B1A024BFFD510087B5EC /* CNBaseTF.m */,
+			);
+			path = TextFeild;
+			sourceTree = "<group>";
+		};
 		D5FBFDC524B4661D00BBCAD8 /* Skin */ = {
 			isa = PBXGroup;
 			children = (
@@ -517,6 +512,110 @@
 				D5FBFDF724B59DB100BBCAD8 /* SkinMapValue.plist */,
 			);
 			path = Skin;
+			sourceTree = "<group>";
+		};
+		D5FBFDF924BC05E400BBCAD8 /* LoginRegisterComponent */ = {
+			isa = PBXGroup;
+			children = (
+				D5FBFDFD24BC05E400BBCAD8 /* Controller */,
+				D5FBFE0D24BC05E400BBCAD8 /* Model */,
+				D5FBFE2924BC05E400BBCAD8 /* Request */,
+				D5FBFE1424BC05E400BBCAD8 /* View */,
+				D5FBFDFA24BC05E400BBCAD8 /* ViewModel */,
+			);
+			path = LoginRegisterComponent;
+			sourceTree = "<group>";
+		};
+		D5FBFDFA24BC05E400BBCAD8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D5FBFDFD24BC05E400BBCAD8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D5FBFE0624BC05E400BBCAD8 /* CNLoginRegisterVC.h */,
+				D5FBFE0124BC05E400BBCAD8 /* CNLoginRegisterVC.m */,
+				D5FBFE0A24BC05E400BBCAD8 /* CNLoginRegisterVC.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D5FBFE0D24BC05E400BBCAD8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D5FBFE1424BC05E400BBCAD8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D5FBFE1924BC05E400BBCAD8 /* CNAccountInputView.h */,
+				D5FBFE2024BC05E400BBCAD8 /* CNAccountInputView.m */,
+				D5FBFE1C24BC05E400BBCAD8 /* CNAccountInputView.xib */,
+				D5FBFE1B24BC05E400BBCAD8 /* CNCodeInputView.h */,
+				D5FBFE2324BC05E400BBCAD8 /* CNCodeInputView.m */,
+				D5FBFE1524BC05E400BBCAD8 /* CNCodeInputView.xib */,
+				D5FBFE1724BC05E400BBCAD8 /* CNImageCodeInputView.h */,
+				D5FBFE1E24BC05E400BBCAD8 /* CNImageCodeInputView.m */,
+				D5FBFE2524BC05E400BBCAD8 /* CNImageCodeInputView.xib */,
+				D571B19424BE9F120087B5EC /* CNLineView.h */,
+				D571B19524BE9F120087B5EC /* CNLineView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D5FBFE2924BC05E400BBCAD8 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		D5FBFE5324BC28B100BBCAD8 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		D5FBFE5624BC28B100BBCAD8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D5FBFE5924BC28B100BBCAD8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D5FBFE7024BC28B100BBCAD8 /* CNBaseXibView.h */,
+				D5FBFE7124BC28B100BBCAD8 /* CNBaseXibView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D5FBFE7224BC28B100BBCAD8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D5FBFE7324BC28B100BBCAD8 /* CNBaseModel.h */,
+				D5FBFE7424BC28B100BBCAD8 /* CNBaseModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D5FBFE7524BC28B200BBCAD8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D5FBFE7824BC28B200BBCAD8 /* CNBaseVC.h */,
+				D5FBFE7A24BC28B200BBCAD8 /* CNBaseVC.m */,
+				3DA4F1A024B3199A0039123F /* HYNavigationController.h */,
+				3DA4F19F24B3199A0039123F /* HYNavigationController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -629,8 +728,12 @@
 			files = (
 				D5FBFDF824B59DB100BBCAD8 /* SkinMapValue.plist in Resources */,
 				3DA4F15024B30A090039123F /* SGQRCode.bundle in Resources */,
+				D5FBFE3924BC05E400BBCAD8 /* CNCodeInputView.xib in Resources */,
 				3D13389224AF28D700B29783 /* Assets.xcassets in Resources */,
 				3D13389324AF28D700B29783 /* LaunchScreen.storyboard in Resources */,
+				D5FBFE4324BC05E400BBCAD8 /* CNImageCodeInputView.xib in Resources */,
+				D5FBFE3B24BC05E400BBCAD8 /* CNAccountInputView.xib in Resources */,
+				D5FBFE3424BC05E400BBCAD8 /* CNLoginRegisterVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -763,12 +866,17 @@
 				3DA4F15724B30A090039123F /* SGQRCodeAlbumManager.m in Sources */,
 				3D1338A324AF2E5200B29783 /* main.m in Sources */,
 				3DA4F15524B30A090039123F /* SGQRCodeScanManager.m in Sources */,
+				D5FBFE2D24BC05E400BBCAD8 /* CNLoginRegisterVC.m in Sources */,
 				3DA4F19D24B3195F0039123F /* HYRefreshHeader.m in Sources */,
 				3DA4F18524B317490039123F /* HYEncryptor.m in Sources */,
 				3DA4F15624B30A090039123F /* SGQRCodeGenerateManager.m in Sources */,
 				3DA4F1A124B3199A0039123F /* HYNavigationController.m in Sources */,
+				D571B19924BEA4620087B5EC /* CNTwoStatusBtn.m in Sources */,
+				D5FBFE8B24BC28B200BBCAD8 /* CNBaseModel.m in Sources */,
 				3DA4F15124B30A090039123F /* UIImage+SGImageSize.m in Sources */,
+				D5FBFE8A24BC28B200BBCAD8 /* CNBaseXibView.m in Sources */,
 				3DA4F15324B30A090039123F /* SGQRCodeHelperTool.m in Sources */,
+				D571B19624BE9F120087B5EC /* CNLineView.m in Sources */,
 				3D13385C24AD8F9B00B29783 /* ViewController.m in Sources */,
 				3D1338A424AF2E5200B29783 /* AppDelegate.m in Sources */,
 				3DA4F17C24B315940039123F /* NSURL+HYLink.m in Sources */,
@@ -776,12 +884,18 @@
 				3DA4F15424B30A090039123F /* SGQRCodeScanningView.m in Sources */,
 				3DA4F16E24B314F30039123F /* UIImage+ESUtilities.m in Sources */,
 				3DA4F17D24B315940039123F /* UIFont+RCFont.m in Sources */,
+				D5FBFE4224BC05E400BBCAD8 /* CNCodeInputView.m in Sources */,
+				D5FBFE3D24BC05E400BBCAD8 /* CNImageCodeInputView.m in Sources */,
+				D5FBFE8D24BC28B200BBCAD8 /* CNBaseVC.m in Sources */,
 				3DA4F15F24B30D610039123F /* GTMBase64.m in Sources */,
 				3D1338B924AF3AB200B29783 /* NNPageRouter.m in Sources */,
+				D5FBFE3F24BC05E400BBCAD8 /* CNAccountInputView.m in Sources */,
 				D5FBFDC824B4672200BBCAD8 /* CNSkinManager.m in Sources */,
 				3DA4F16A24B312BE0039123F /* UIView+Extension.m in Sources */,
 				3DA4F16B24B312BE0039123F /* UIViewController+Extension.m in Sources */,
 				3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */,
+				D571B19D24BFF2B10087B5EC /* CNOneStatusBtn.m in Sources */,
+				D571B1A124BFFD510087B5EC /* CNBaseTF.m in Sources */,
 				3DA4F18924B317E40039123F /* WMDragView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -25,7 +25,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL phoneLogin;
 @property (nonatomic, weak) id delegate;
 
+/// 区别注册登录
+@property (nonatomic, assign) BOOL isRegister;
+
 - (void)showWrongMsg:(NSString *)msg;
+- (void)setPlaceholder:(NSString *)text;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -47,6 +47,10 @@ int TotalSecond = 10;
     self.lineView.backgroundColor = self.wrongColor;
 }
 
+- (void)setPlaceholder:(NSString *)text {
+    self.inputTF.placeholder = text;
+}
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     self.tipLb.hidden = NO;
     self.tipLb.text = self.phoneLogin ? @"验证码*": @"密码*";

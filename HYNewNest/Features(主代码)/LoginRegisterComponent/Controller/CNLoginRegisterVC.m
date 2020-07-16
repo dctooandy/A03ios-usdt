@@ -30,7 +30,8 @@
 
 #pragma mark - Register
 @property (weak, nonatomic) IBOutlet CNAccountInputView *registerAccountView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *phoneViewH;
+@property (weak, nonatomic) IBOutlet CNCodeInputView *registerCodeView;
+@property (weak, nonatomic) IBOutlet CNCodeInputView *reRegisterCodeView;
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *registerBtn;
 @property (assign, nonatomic) BOOL isRegister;
 
@@ -73,6 +74,10 @@
 
 - (void)configUI {
     [self.bgView addSubview:self.switchSV];
+    self.registerAccountView.isRegister = YES;
+    [self.registerAccountView setPlaceholder:@"用户名"];
+    [self.registerCodeView setPlaceholder:@"输入密码"];
+    [self.reRegisterCodeView setPlaceholder:@"再次输入密码"];
     if (_isRegister) {
         [self gotoRegister:nil];
     }
@@ -82,37 +87,38 @@
 
 - (void)setDelegate {
     self.loginAccountView.delegate = self;
-    self.registerAccountView.delegate = self;
     self.loginCodeView.delegate = self;
+    self.registerAccountView.delegate = self;
+    self.registerCodeView.delegate = self;
+    self.reRegisterCodeView.delegate = self;
 }
 
 - (void)accountInputViewTextChange:(CNAccountInputView *)view {
-    self.loginBtn.enabled = view.correct && self.loginCodeView.correct;
-    self.loginCodeView.phoneLogin = view.phoneLogin;
+    if ([view isEqual:self.loginAccountView]) {
+        self.loginBtn.enabled = view.correct && self.loginCodeView.correct;
+        self.loginCodeView.phoneLogin = view.phoneLogin;
+    } else {
+        self.registerBtn.enabled = self.registerAccountView.correct && self.registerCodeView.correct && self.reRegisterCodeView.correct;
+    }
 }
 
 - (void)codeInputViewTextChange:(CNAccountInputView *)view {
-    self.loginBtn.enabled = view.correct && self.loginAccountView.correct;
+    if ([view isEqual:self.loginCodeView]) {
+        self.loginBtn.enabled = view.correct && self.loginAccountView.correct;
+    } else {
+        self.registerBtn.enabled = self.registerAccountView.correct && self.registerCodeView.correct && self.reRegisterCodeView.correct;
+    }
 }
-
-//- (void)phoneViewTextChange:(CNPhoneInputView *)view {
-//    if (self.phoneBtn.selected) {
-//        self.registerBtn.enabled = view.correct;
-//    } else {
-//        self.registerBtn.enabled = self.registerImageCodeView.correct && view.correct;
-//    }
-//}
-
-//- (void)imageCodeViewTextChange:(CNImageCodeInputView *)view {
-//    if ([view isEqual:self.registerImageCodeView]) {
-//        self.registerBtn.enabled = self.phoneView.correct && view.correct;
-//    }
-//}
 
 #pragma mark - ButtonAction
 
 - (IBAction)back:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)goToLogin:(UIButton *)sender {
+    [self.switchSV setContentOffset:CGPointMake(0, 0)];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (IBAction)gotoRegister:(UIButton *)sender {
@@ -123,14 +129,8 @@
     sender.selected = !sender.selected;
 }
 
-
 - (IBAction)forgotPassword:(id)sender {
 //    [self.navigationController pushViewController:[ForgetPasswordViewController new] animated:YES];
-}
-
-- (IBAction)goToLogin:(UIButton *)sender {
-    [self.switchSV setContentOffset:CGPointMake(0, 0)];
-    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (IBAction)registerRule:(id)sender {
@@ -140,92 +140,28 @@
 #pragma mark - Login
 
 - (IBAction)loginAction:(UIButton *)sender {
-    
-//    if (self.loginCodeView.code.length == 0) {
-//        NSString *tip = self.accountView.phoneLogin ? @"请输入验证码": @"请输入密码";
-//        [CNHUB showError:tip];
-//        return;
-//    }
-//
-//    __weak typeof(self) weakSelf = self;
-//    // 手机登录
-//    if (self.accountView.phoneLogin) {
-//        [self showLoading];
-//        [self.viewModel phoneLoginSmsCode:self.loginCodeView.code smsCodeId:self.accountView.codeId finishHandler:^(NSString * _Nullable errMsg) {
-//            [weakSelf hideLoading];
-//            if ([errMsg isEqualToString:ERROR_BIND_MOBILE_NOBIND]) {
-//                [weakSelf showNoRegisterAlert];
-//            } else if (errMsg) {
-//                [CNHUB showError:errMsg];
-//            } else {
-//                [CNHUB showSuccess:@"登录成功"];
-//                BOOL isNeedSetGesture = [PCCircleViewConst getIsNeedSetGestureCurrentLoginName];
-//                if (isNeedSetGesture) {
-//                    [PCCircleViewConst setNeedSetGestureCurrentLoginName:false];
-//                    [LCAppDelegate setLockGestureAfterRegist];
-//                }else{
-//                    //当有手势密码的时候就会出问题，所以重置根控制器
-//                    [LCAppDelegate  createRootTabarController];
-//                }
-//              //  [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-//            }
-//        }];
-//        return;
-//    }
-//
+ 
+    __weak typeof(self) weakSelf = self;
+    // 手机登录
+    if (self.loginCodeView.phoneLogin) {
+        
+        return;
+    }
+
     // 账号登录
-//    if (self.needImageCode) {
-//        if (self.loginImageCodeView.imageCode.length == 0) {
+    if (self.needImageCode) {
+        if (self.loginImageCodeView.imageCode.length == 0) {
 //            [CNHUB showError:@"请输入图形验证码"];
-//            return;
-//        }
-//
-//        [self accountLogin];
-//        return;
-//    }
-//
-//    // 需要检测是否需要图形验证码
-//    [self showLoading];
-//    [self.viewModel accountPreLogin:self.accountView.account finishHandler:^(NSString * _Nullable errMsg) {
-//        [weakSelf hideLoading];
-//        if ([errMsg isEqualToString:ERROR_CAPTCHA_EMPTY]) {
-//            weakSelf.needImageCode = YES;
-//            [CNHUB showError:@"需要验证图形验证码"];
-//        } else if (errMsg) {
-//            [CNHUB showError:errMsg];
-//        } else {
-//            [weakSelf accountLogin];
-//        }
-//    }];
+            return;
+        }
+        [self accountLogin];
+        return;
+    }
 }
 
 // 账号登录
 - (void)accountLogin {
-//    __weak typeof(self) weakSelf = self;
-//    [self showLoading];
-//    [self.viewModel accountLogin:self.accountView.account password:self.loginCodeView.code imageCode:self.loginImageCodeView.imageCode imageCodeId:self.loginImageCodeView.imageCodeId finishHandler:^(NSString * _Nonnull errMsg) {
-//        [weakSelf hideLoading];
-//        if ([errMsg isEqualToString:ERROR_PWD_ERROR_MORE_TIMES]) {
-//            weakSelf.needImageCode = YES;
-//            [CNHUB showError:@"需要验证图形验证码"];
-//        } else if ([errMsg isEqualToString:ERROR_LOGIN_LOCK_ACCOUNT]) {
-//            [weakSelf lockAccount];
-//        } else if (errMsg) {
-//            [CNHUB showError:errMsg];
-//        } else {
-//            [CNHUB showSuccess:@"登录成功"];
-//
-//            BOOL isNeedSetGesture = [PCCircleViewConst getIsNeedSetGestureCurrentLoginName];
-//            if (isNeedSetGesture) {
-//                [PCCircleViewConst setNeedSetGestureCurrentLoginName:false];
-//                [LCAppDelegate setLockGestureAfterRegist];
-//            }else{
-//                //当有手势密码的时候就会出问题，所以重置根控制器
-//                [LCAppDelegate  createRootTabarController];
-//            }
-//        //[weakSelf.navigationController popToRootViewControllerAnimated:YES];
-//        }
-//    }];
+
 }
 
 - (void)lockAccount {

@@ -17,9 +17,10 @@
                 <outlet property="loginCodeView" destination="vK6-gf-yzO" id="63k-wO-Gyd"/>
                 <outlet property="loginImageCodeView" destination="SfY-3I-9jV" id="xmu-mO-DAe"/>
                 <outlet property="loginImageCodeViewH" destination="hxQ-QK-38n" id="jcx-RP-naY"/>
-                <outlet property="phoneViewH" destination="sxg-9R-Ei9" id="HN6-Kc-Sgf"/>
+                <outlet property="reRegisterCodeView" destination="z3O-uN-pkb" id="egg-0m-hgN"/>
                 <outlet property="registerAccountView" destination="VQ0-bZ-lqu" id="Ula-pw-Glq"/>
                 <outlet property="registerBtn" destination="B9t-YC-g4T" id="WdQ-Vh-XRI"/>
+                <outlet property="registerCodeView" destination="ir0-JM-89g" id="P7x-4O-agF"/>
                 <outlet property="remeberCodeBtn" destination="GY9-19-I68" id="5lI-c9-y8h"/>
                 <outlet property="switchSV" destination="AQP-nK-WZJ" id="JXL-sJ-8CY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

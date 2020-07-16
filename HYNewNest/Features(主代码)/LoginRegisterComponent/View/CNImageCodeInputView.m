@@ -7,15 +7,15 @@
 //
 
 #import "CNImageCodeInputView.h"
-#import "CNImageCodeModel.h"
-#import "CNLoginRequest.h"
+//#import "CNImageCodeModel.h"
+//#import "CNLoginRequest.h"
 
 @interface CNImageCodeInputView () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *tipLb;
 @property (weak, nonatomic) IBOutlet UITextField *inputTF;
 @property (weak, nonatomic) IBOutlet UIButton *codeBtn;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
-@property (strong, nonatomic) CNImageCodeModel *codeModel;
+//@property (strong, nonatomic) CNImageCodeModel *codeModel;
 
 @property (nonatomic, strong) UIColor *hilghtColor;
 @property (nonatomic, strong) UIColor *normalColor;
@@ -56,9 +56,9 @@
     return [self.inputTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
 }
 
-- (NSString *)imageCodeId {
-    return self.codeModel.captchaId;
-}
+//- (NSString *)imageCodeId {
+//    return self.codeModel.captchaId;
+//}
 
 - (IBAction)sendCode:(UIButton *)sender {
 //    __weak typeof(self) weakSelf = self;

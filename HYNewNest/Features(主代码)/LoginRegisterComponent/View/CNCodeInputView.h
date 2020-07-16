@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id delegate;
 
 - (void)showWrongMsg:(NSString *)msg;
+- (void)setPlaceholder:(NSString *)text;
 @end
 
 NS_ASSUME_NONNULL_END
