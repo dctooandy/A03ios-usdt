@@ -43,6 +43,8 @@
 		D571B19924BEA4620087B5EC /* CNTwoStatusBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19724BEA4620087B5EC /* CNTwoStatusBtn.m */; };
 		D571B19D24BFF2B10087B5EC /* CNOneStatusBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19C24BFF2B10087B5EC /* CNOneStatusBtn.m */; };
 		D571B1A124BFFD510087B5EC /* CNBaseTF.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B1A024BFFD510087B5EC /* CNBaseTF.m */; };
+		D571B1AA24C03D790087B5EC /* CNStatementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D571B1A724C03D790087B5EC /* CNStatementView.xib */; };
+		D571B1AB24C03D790087B5EC /* CNStatementView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B1A924C03D790087B5EC /* CNStatementView.m */; };
 		D5FBFDC824B4672200BBCAD8 /* CNSkinManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FBFDC724B4672200BBCAD8 /* CNSkinManager.m */; };
 		D5FBFDF824B59DB100BBCAD8 /* SkinMapValue.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5FBFDF724B59DB100BBCAD8 /* SkinMapValue.plist */; };
 		D5FBFE2D24BC05E400BBCAD8 /* CNLoginRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FBFE0124BC05E400BBCAD8 /* CNLoginRegisterVC.m */; };
@@ -153,6 +155,9 @@
 		D571B19C24BFF2B10087B5EC /* CNOneStatusBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNOneStatusBtn.m; sourceTree = "<group>"; };
 		D571B19F24BFFD510087B5EC /* CNBaseTF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNBaseTF.h; sourceTree = "<group>"; };
 		D571B1A024BFFD510087B5EC /* CNBaseTF.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNBaseTF.m; sourceTree = "<group>"; };
+		D571B1A724C03D790087B5EC /* CNStatementView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNStatementView.xib; sourceTree = "<group>"; };
+		D571B1A824C03D790087B5EC /* CNStatementView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNStatementView.h; sourceTree = "<group>"; };
+		D571B1A924C03D790087B5EC /* CNStatementView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNStatementView.m; sourceTree = "<group>"; };
 		D5FBFDC624B4672200BBCAD8 /* CNSkinManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNSkinManager.h; sourceTree = "<group>"; };
 		D5FBFDC724B4672200BBCAD8 /* CNSkinManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNSkinManager.m; sourceTree = "<group>"; };
 		D5FBFDF724B59DB100BBCAD8 /* SkinMapValue.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SkinMapValue.plist; sourceTree = "<group>"; };
@@ -564,6 +569,9 @@
 				D5FBFE2524BC05E400BBCAD8 /* CNImageCodeInputView.xib */,
 				D571B19424BE9F120087B5EC /* CNLineView.h */,
 				D571B19524BE9F120087B5EC /* CNLineView.m */,
+				D571B1A824C03D790087B5EC /* CNStatementView.h */,
+				D571B1A924C03D790087B5EC /* CNStatementView.m */,
+				D571B1A724C03D790087B5EC /* CNStatementView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -730,6 +738,7 @@
 				3DA4F15024B30A090039123F /* SGQRCode.bundle in Resources */,
 				D5FBFE3924BC05E400BBCAD8 /* CNCodeInputView.xib in Resources */,
 				3D13389224AF28D700B29783 /* Assets.xcassets in Resources */,
+				D571B1AA24C03D790087B5EC /* CNStatementView.xib in Resources */,
 				3D13389324AF28D700B29783 /* LaunchScreen.storyboard in Resources */,
 				D5FBFE4324BC05E400BBCAD8 /* CNImageCodeInputView.xib in Resources */,
 				D5FBFE3B24BC05E400BBCAD8 /* CNAccountInputView.xib in Resources */,
@@ -893,6 +902,7 @@
 				D5FBFDC824B4672200BBCAD8 /* CNSkinManager.m in Sources */,
 				3DA4F16A24B312BE0039123F /* UIView+Extension.m in Sources */,
 				3DA4F16B24B312BE0039123F /* UIViewController+Extension.m in Sources */,
+				D571B1AB24C03D790087B5EC /* CNStatementView.m in Sources */,
 				3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */,
 				D571B19D24BFF2B10087B5EC /* CNOneStatusBtn.m in Sources */,
 				D571B1A124BFFD510087B5EC /* CNBaseTF.m in Sources */,

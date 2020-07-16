@@ -187,7 +187,7 @@
                                                 <color key="titleColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
-                                                <action selector="registerRule:" destination="-1" eventType="touchUpInside" id="Qdo-Aa-2gg"/>
+                                                <action selector="statementRule:" destination="-1" eventType="touchUpInside" id="kI1-q8-DN8"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -303,7 +303,7 @@
                                                 <color key="titleColor" red="0.062745098040000002" green="0.70588235290000001" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
-                                                <action selector="registerRule:" destination="-1" eventType="touchUpInside" id="msK-pp-vtn"/>
+                                                <action selector="statementRule:" destination="-1" eventType="touchUpInside" id="R3z-DN-rea"/>
                                             </connections>
                                         </button>
                                     </subviews>

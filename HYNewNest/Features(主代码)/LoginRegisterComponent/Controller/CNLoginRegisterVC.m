@@ -11,8 +11,9 @@
 #import "CNImageCodeInputView.h"
 #import "CNAccountInputView.h"
 #import "CNCodeInputView.h"
+#import "CNStatementView.h"
 
-@interface CNLoginRegisterVC () <CNAccountInputViewDelegate, CNCodeInputViewDelegate,  CNImageCodeInputViewDelegate>
+@interface CNLoginRegisterVC () <CNAccountInputViewDelegate, CNCodeInputViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (strong, nonatomic) IBOutlet UIScrollView *switchSV;
@@ -133,8 +134,8 @@
 //    [self.navigationController pushViewController:[ForgetPasswordViewController new] animated:YES];
 }
 
-- (IBAction)registerRule:(id)sender {
-//    [self.navigationController pushViewController:[CNStatementVC new] animated:YES];
+- (IBAction)statementRule:(id)sender {
+    [CNStatementView showStatement];
 }
 
 #pragma mark - Login
