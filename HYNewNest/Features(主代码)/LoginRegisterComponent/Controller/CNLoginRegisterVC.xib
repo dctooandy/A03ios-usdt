@@ -13,13 +13,14 @@
                 <outlet property="bgView" destination="lFq-ZA-9Ly" id="V62-13-j1x"/>
                 <outlet property="contentWidth" destination="5qn-JH-aVN" id="MgC-UD-W5m"/>
                 <outlet property="loginAccountView" destination="lfD-sj-tlg" id="XjK-C5-Ob5"/>
-                <outlet property="loginBtn" destination="1yO-hQ-dcT" id="ASt-Fb-8Zp"/>
+                <outlet property="loginBtn" destination="1yO-hQ-dcT" id="qyh-ze-aTp"/>
                 <outlet property="loginCodeView" destination="vK6-gf-yzO" id="63k-wO-Gyd"/>
                 <outlet property="loginImageCodeView" destination="SfY-3I-9jV" id="xmu-mO-DAe"/>
                 <outlet property="loginImageCodeViewH" destination="hxQ-QK-38n" id="jcx-RP-naY"/>
                 <outlet property="phoneViewH" destination="sxg-9R-Ei9" id="HN6-Kc-Sgf"/>
                 <outlet property="registerAccountView" destination="VQ0-bZ-lqu" id="Ula-pw-Glq"/>
-                <outlet property="registerBtn" destination="B9t-YC-g4T" id="vc5-VK-cjV"/>
+                <outlet property="registerBtn" destination="B9t-YC-g4T" id="WdQ-Vh-XRI"/>
+                <outlet property="remeberCodeBtn" destination="GY9-19-I68" id="5lI-c9-y8h"/>
                 <outlet property="switchSV" destination="AQP-nK-WZJ" id="JXL-sJ-8CY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -98,6 +99,13 @@
                                         <constraint firstAttribute="bottom" secondItem="ig3-Sq-dlG" secondAttribute="bottom" id="vlk-dj-Eg5"/>
                                     </constraints>
                                 </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lfD-sj-tlg" customClass="CNAccountInputView">
+                                    <rect key="frame" x="30" y="188" width="322.5" height="75"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="75" id="m5X-hC-Dju"/>
+                                    </constraints>
+                                </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vK6-gf-yzO" customClass="CNCodeInputView">
                                     <rect key="frame" x="30" y="263" width="322.5" height="75"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -112,6 +120,17 @@
                                         <constraint firstAttribute="height" constant="75" id="hxQ-QK-38n"/>
                                     </constraints>
                                 </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GY9-19-I68">
+                                    <rect key="frame" x="30" y="436.5" width="105" height="22"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <state key="normal" title="  记住密码" image="l_qh">
+                                        <color key="titleColor" white="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <state key="selected" image="l_qh_s"/>
+                                    <connections>
+                                        <action selector="remeberAction:" destination="-1" eventType="touchUpInside" id="61y-rC-7zf"/>
+                                    </connections>
+                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ax-fe-kPs">
                                     <rect key="frame" x="287.5" y="433" width="65" height="29"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -122,32 +141,33 @@
                                         <action selector="forgotPassword:" destination="-1" eventType="touchUpInside" id="6ur-ZN-0PQ"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1yO-hQ-dcT" customClass="CNLoginBtn">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1yO-hQ-dcT" customClass="CNTwoStatusBtn">
                                     <rect key="frame" x="30" y="502" width="322.5" height="48"/>
-                                    <color key="backgroundColor" red="0.062745098040000002" green="0.70588235290000001" blue="0.86666666670000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="48" id="ikL-dy-avB"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                     <state key="normal" title="登录">
-                                        <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <state key="disabled">
+                                        <color key="titleColor" white="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
                                         <action selector="loginAction:" destination="-1" eventType="touchUpInside" id="U8y-BK-rby"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWK-GS-vFt" customClass="CNLoginBtn">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWK-GS-vFt" customClass="CNOneStatusBtn">
                                     <rect key="frame" x="30" y="580" width="322.5" height="48"/>
-                                    <color key="backgroundColor" red="0.062745098040000002" green="0.70588235290000001" blue="0.86666666670000003" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="48" id="B31-wY-pRf"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                     <state key="normal" title="注册">
-                                        <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="0.074509803921568626" green="0.52156862745098043" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
-                                        <action selector="gotoRegister:" destination="-1" eventType="touchUpInside" id="IRQ-9k-W8D"/>
+                                        <action selector="gotoRegister:" destination="-1" eventType="touchUpInside" id="SDZ-oO-4TV"/>
                                     </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xVJ-hQ-hM5">
@@ -182,19 +202,13 @@
                                         <constraint firstAttribute="bottom" secondItem="cBP-Kz-yrK" secondAttribute="bottom" id="fSw-q2-OzI"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lfD-sj-tlg" customClass="CNAccountInputView">
-                                    <rect key="frame" x="30" y="188" width="322.5" height="75"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="75" id="m5X-hC-Dju"/>
-                                    </constraints>
-                                </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="DWK-GS-vFt" secondAttribute="trailing" constant="30" id="0k3-Cr-RQu"/>
                                 <constraint firstAttribute="trailing" secondItem="1yO-hQ-dcT" secondAttribute="trailing" constant="30" id="0p2-pc-Czy"/>
                                 <constraint firstItem="vK6-gf-yzO" firstAttribute="top" secondItem="lfD-sj-tlg" secondAttribute="bottom" id="1Sb-OF-nz4"/>
+                                <constraint firstItem="GY9-19-I68" firstAttribute="leading" secondItem="ZzA-Aa-cAB" secondAttribute="leading" constant="30" id="ARA-Di-baM"/>
                                 <constraint firstItem="vK6-gf-yzO" firstAttribute="leading" secondItem="ZzA-Aa-cAB" secondAttribute="leading" constant="30" id="AXT-Uq-Hsh"/>
                                 <constraint firstItem="FU8-Ow-S83" firstAttribute="top" secondItem="ZzA-Aa-cAB" secondAttribute="top" constant="52" id="BxO-zd-H3B"/>
                                 <constraint firstAttribute="trailing" secondItem="SfY-3I-9jV" secondAttribute="trailing" constant="30" id="Egb-rP-Emq"/>
@@ -202,6 +216,7 @@
                                 <constraint firstItem="xVJ-hQ-hM5" firstAttribute="centerX" secondItem="ZzA-Aa-cAB" secondAttribute="centerX" id="Kdp-vq-NHd"/>
                                 <constraint firstItem="lfD-sj-tlg" firstAttribute="top" secondItem="FU8-Ow-S83" secondAttribute="bottom" constant="30" id="MX8-Ps-H4n"/>
                                 <constraint firstItem="xVJ-hQ-hM5" firstAttribute="top" secondItem="DWK-GS-vFt" secondAttribute="bottom" constant="40" id="Nfb-JW-o1K"/>
+                                <constraint firstItem="2Ax-fe-kPs" firstAttribute="centerY" secondItem="GY9-19-I68" secondAttribute="centerY" id="Pcb-rx-daR"/>
                                 <constraint firstItem="1yO-hQ-dcT" firstAttribute="leading" secondItem="ZzA-Aa-cAB" secondAttribute="leading" constant="30" id="Rfq-rN-9WV"/>
                                 <constraint firstAttribute="trailing" secondItem="2Ax-fe-kPs" secondAttribute="trailing" constant="30" id="Uiw-fg-9wF"/>
                                 <constraint firstItem="2Ax-fe-kPs" firstAttribute="top" secondItem="SfY-3I-9jV" secondAttribute="bottom" constant="20" id="W5W-f4-Qse"/>
@@ -255,14 +270,17 @@
                                         <constraint firstAttribute="height" constant="75" id="dh3-W2-Vhf"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B9t-YC-g4T" customClass="CNLoginBtn">
+                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B9t-YC-g4T" customClass="CNTwoStatusBtn">
                                     <rect key="frame" x="30" y="382" width="322.5" height="52"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="52" id="tfq-oU-NTR"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                     <state key="normal" title="提交">
-                                        <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <state key="disabled">
+                                        <color key="titleColor" white="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
                                         <action selector="registerAction:" destination="-1" eventType="touchUpInside" id="ZN4-S4-KIK"/>
@@ -360,5 +378,7 @@
     </objects>
     <resources>
         <image name="l_USDT" width="245" height="227"/>
+        <image name="l_qh" width="40" height="22"/>
+        <image name="l_qh_s" width="40" height="22"/>
     </resources>
 </document>

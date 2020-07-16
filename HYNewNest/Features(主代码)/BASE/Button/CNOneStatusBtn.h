@@ -1,8 +1,8 @@
 //
-//  CNLoginBtn.h
+//  CNOneStatusBtn.h
 //  HYNewNest
 //
-//  Created by cean.q on 2020/7/15.
+//  Created by cean.q on 2020/7/16.
 //  Copyright © 2020 james. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CNLoginBtn : UIButton
+@interface CNOneStatusBtn : UIButton
 
 @end
 

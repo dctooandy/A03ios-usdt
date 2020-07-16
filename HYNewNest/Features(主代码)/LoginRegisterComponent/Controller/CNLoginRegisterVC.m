@@ -7,7 +7,7 @@
 //  
 
 #import "CNLoginRegisterVC.h"
-#import "CNLoginBtn.h"
+#import "CNTwoStatusBtn.h"
 #import "CNImageCodeInputView.h"
 #import "CNAccountInputView.h"
 #import "CNCodeInputView.h"
@@ -21,15 +21,17 @@
 #pragma mark - Login
 @property (weak, nonatomic) IBOutlet CNAccountInputView *loginAccountView;
 @property (weak, nonatomic) IBOutlet CNCodeInputView *loginCodeView;
-@property (weak, nonatomic) IBOutlet CNLoginBtn *loginBtn;
+@property (weak, nonatomic) IBOutlet CNTwoStatusBtn *loginBtn;
 @property (weak, nonatomic) IBOutlet CNImageCodeInputView *loginImageCodeView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginImageCodeViewH;
 @property (assign, nonatomic) BOOL needImageCode;
+@property (weak, nonatomic) IBOutlet UIButton *remeberCodeBtn;
+
 
 #pragma mark - Register
 @property (weak, nonatomic) IBOutlet CNAccountInputView *registerAccountView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *phoneViewH;
-@property (weak, nonatomic) IBOutlet CNLoginBtn *registerBtn;
+@property (weak, nonatomic) IBOutlet CNTwoStatusBtn *registerBtn;
 @property (assign, nonatomic) BOOL isRegister;
 
 
@@ -116,6 +118,11 @@
 - (IBAction)gotoRegister:(UIButton *)sender {
     [self.switchSV setContentOffset:CGPointMake(kScreenWidth, 0)];
 }
+
+- (IBAction)remeberAction:(UIButton *)sender {
+    sender.selected = !sender.selected;
+}
+
 
 - (IBAction)forgotPassword:(id)sender {
 //    [self.navigationController pushViewController:[ForgetPasswordViewController new] animated:YES];
@@ -283,48 +290,7 @@
         [weakSelf registerSuccess:YES];
     }];
 }
-
-#pragma mark Promo LCKHS
-
-- (void)loadPromoLCKHSData {
-    LCPromoLCKHSService *service = kAppDelegatePromoLCKHSService;
-    BOOL isReady = [service isServiceReady];
-    if (!isReady) {
-        __weak typeof(self) weakSelf = self;
-        [service getPromoLCKHSStatusInfoFinishHandler:^(NSString * _Nullable errMsg) {
-            __strong typeof(weakSelf) strongSelf = weakSelf;
-            [strongSelf setupLCKHSPromoLayout];
-        }];
-        return;
-    }
-    
-    [self setupLCKHSPromoLayout];
-}
-
-- (void)setupLCKHSPromoLayout {
-    LCPromoLCKHSService *service = kAppDelegatePromoLCKHSService;
-    BOOL isShowPromo = [service isShowPromoLayout];
-    if (isShowPromo) {
-        BOOL isRegisterPage = self.gotoRegisterBtn.hidden;
-        if (isRegisterPage) {
-            self.gotoRegisterLCKHSView.hidden = YES;
-        } else { // login page
-            self.gotoRegisterLCKHSView.hidden = NO;
-        }
-
-        self.titleLb.text = @"注册即送 最高888元";
-        
-        // banner size 375, 140
-        CGFloat bannerW = kScreenWidth;
-        CGFloat height = floor(((140.0f / 375.0f) * bannerW) * 100) / 100;
-        self.registerLCKHSBannerH.constant = height;
-    } else {
-        // 非活动的文案画面 (原先的值)
-        self.titleLb.text = @"注册即送 最高5000元";
-        self.registerLCKHSBannerH.constant = 0.0f;
-    }
-}
-
+ 
 #pragma mark - Setter & Getter
 
 - (void)setNeedImageCode:(BOOL)needImageCode {
