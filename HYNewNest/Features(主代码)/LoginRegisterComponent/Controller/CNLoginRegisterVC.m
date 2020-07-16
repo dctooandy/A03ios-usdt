@@ -15,7 +15,6 @@
 
 @interface CNLoginRegisterVC () <CNAccountInputViewDelegate, CNCodeInputViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (strong, nonatomic) IBOutlet UIScrollView *switchSV;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentWidth;
 
@@ -59,7 +58,7 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.switchSV.frame = self.bgView.bounds;
+    self.switchSV.frame = self.view.bounds;
     self.contentWidth.constant = self.switchSV.frame.size.width * 2;
 }
 
@@ -74,7 +73,7 @@
 }
 
 - (void)configUI {
-    [self.bgView addSubview:self.switchSV];
+    [self.view addSubview:self.switchSV];
     self.registerAccountView.isRegister = YES;
     [self.registerAccountView setPlaceholder:@"用户名"];
     [self.registerCodeView setPlaceholder:@"输入密码"];

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "CNLoginRegisterVC.h"
 
 @interface ViewController ()
 
@@ -21,5 +22,8 @@
     self.view.backgroundColor = [UIColor greenColor];
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self presentViewController:[CNLoginRegisterVC loginVC] animated:YES completion:nil];
+}
 
 @end

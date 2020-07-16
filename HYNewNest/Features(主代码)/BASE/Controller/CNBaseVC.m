@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = kHexColor(0x19182A);
 }
 
 - (void)addNaviRightItemWithImageName:(NSString *)name {

@@ -10,7 +10,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CNLoginRegisterVC">
             <connections>
-                <outlet property="bgView" destination="lFq-ZA-9Ly" id="V62-13-j1x"/>
                 <outlet property="contentWidth" destination="5qn-JH-aVN" id="MgC-UD-W5m"/>
                 <outlet property="loginAccountView" destination="lfD-sj-tlg" id="XjK-C5-Ob5"/>
                 <outlet property="loginBtn" destination="1yO-hQ-dcT" id="qyh-ze-aTp"/>
@@ -31,26 +30,14 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lFq-ZA-9Ly">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="l_USDT" translatesAutoresizingMaskIntoConstraints="NO" id="yNd-Lc-lrS">
-                            <rect key="frame" x="100" y="30" width="245" height="227"/>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" red="0.098039215686274508" green="0.094117647058823528" blue="0.16470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="yNd-Lc-lrS" secondAttribute="trailing" constant="30" id="G4H-Ns-WNm"/>
-                        <constraint firstItem="yNd-Lc-lrS" firstAttribute="top" secondItem="lFq-ZA-9Ly" secondAttribute="top" constant="30" id="zs6-TC-REg"/>
-                    </constraints>
-                </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="l_USDT" translatesAutoresizingMaskIntoConstraints="NO" id="yNd-Lc-lrS">
+                    <rect key="frame" x="100" y="30" width="245" height="227"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="lFq-ZA-9Ly" secondAttribute="bottom" id="Jcp-xb-Swt"/>
-                <constraint firstItem="lFq-ZA-9Ly" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="VgU-Ln-Ge3"/>
-                <constraint firstItem="lFq-ZA-9Ly" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="dpU-1W-Kt9"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="lFq-ZA-9Ly" secondAttribute="trailing" id="lWm-OF-LB0"/>
+                <constraint firstItem="yNd-Lc-lrS" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="30" id="n9W-ir-neg"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="yNd-Lc-lrS" secondAttribute="trailing" constant="30" id="tpw-SB-viq"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="139" y="153"/>
