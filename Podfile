@@ -24,6 +24,11 @@ target 'HYNewNest' do
   pod 'GTSDK'
   pod 'Bugly'
   pod 'JKCategories'
+  
+  # 网络模块
+  pod 'IVNetworkLibrary2.0',:git =>'http://10.66.72.115/mobile-iOS-Library/IVNetworkLibrary2.0.git'
+  # 缓存模块
+  pod 'IVCacheLibrary',:git =>'http://10.66.72.115/mobile-iOS-Library/IVCacheLibrary.git'
 
   target 'HYNewNestTests' do
     inherit! :search_paths
