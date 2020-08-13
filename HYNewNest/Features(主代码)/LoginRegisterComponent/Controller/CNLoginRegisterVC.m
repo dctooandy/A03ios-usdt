@@ -12,29 +12,52 @@
 #import "CNAccountInputView.h"
 #import "CNCodeInputView.h"
 #import "CNStatementView.h"
+#import "CNBindPhoneVC.h"
+#import "CNForgotCodeVC.h"
+#import "CNLoginSuccChooseAccountVC.h"
+#import "UILabel+Gradient.h"
+#import "ApiErrorCodeConst.h"
+
+#import "CNLoginRequest.h"
+#import "SmsCodeModel.h"
+
+
+/// 最大允许登录错误次数
+NSInteger AllowTotalWrongCount = 3;
 
 @interface CNLoginRegisterVC () <CNAccountInputViewDelegate, CNCodeInputViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *switchSV;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentWidth;
 
-#pragma mark - Login
+#pragma mark - Login Property
+@property (weak, nonatomic) IBOutlet UILabel *lblHYSZZ;
+/// 登录账户视图
 @property (weak, nonatomic) IBOutlet CNAccountInputView *loginAccountView;
+/// 登录密码和验证码视图
 @property (weak, nonatomic) IBOutlet CNCodeInputView *loginCodeView;
+/// 登录按钮
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *loginBtn;
+/// 登录图形验证码视图
 @property (weak, nonatomic) IBOutlet CNImageCodeInputView *loginImageCodeView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginImageCodeViewH;
+/// 登录是否需要图形验证码
 @property (assign, nonatomic) BOOL needImageCode;
-@property (weak, nonatomic) IBOutlet UIButton *remeberCodeBtn;
 
+@property (nonatomic, assign) NSInteger wrongCount;
 
-#pragma mark - Register
+#pragma mark - Register Property
+/// 注册账户视图
 @property (weak, nonatomic) IBOutlet CNAccountInputView *registerAccountView;
+/// 注册密码视图
 @property (weak, nonatomic) IBOutlet CNCodeInputView *registerCodeView;
 @property (weak, nonatomic) IBOutlet CNCodeInputView *reRegisterCodeView;
+/// 注册按钮
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *registerBtn;
+/// 当前呈现是注册或登录
 @property (assign, nonatomic) BOOL isRegister;
 
+@property (nonatomic, strong) SmsCodeModel *smsModel;
 
 @end
 
@@ -52,32 +75,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.wrongCount = 0;
+    
+//    self.navBarTransparent = YES;
+//    self.makeTranslucent = YES;
+    
     [self configUI];
     [self setDelegate];
-}
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    self.switchSV.frame = self.view.bounds;
-    self.contentWidth.constant = self.switchSV.frame.size.width * 2;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.needImageCode = NO;
+    
 }
 
 - (void)configUI {
     [self.view addSubview:self.switchSV];
+    self.view.backgroundColor = kHexColor(0x212137);
+    [self.lblHYSZZ setupGradientColorFrom:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE)];
     self.registerAccountView.isRegister = YES;
     [self.registerAccountView setPlaceholder:@"用户名"];
+    self.registerCodeView.codeType = CNCodeTypeAccountRegister;
     [self.registerCodeView setPlaceholder:@"输入密码"];
+    self.reRegisterCodeView.codeType = CNCodeTypeAccountRegister;
     [self.reRegisterCodeView setPlaceholder:@"再次输入密码"];
+    self.switchSV.frame = UIScreen.mainScreen.bounds;
+    self.contentWidth.constant = kScreenWidth * 2;
     if (_isRegister) {
         [self gotoRegister:nil];
     }
@@ -96,13 +116,13 @@
 - (void)accountInputViewTextChange:(CNAccountInputView *)view {
     if ([view isEqual:self.loginAccountView]) {
         self.loginBtn.enabled = view.correct && self.loginCodeView.correct;
-        self.loginCodeView.phoneLogin = view.phoneLogin;
+        self.loginCodeView.account = view.account;
     } else {
         self.registerBtn.enabled = self.registerAccountView.correct && self.registerCodeView.correct && self.reRegisterCodeView.correct;
     }
 }
 
-- (void)codeInputViewTextChange:(CNAccountInputView *)view {
+- (void)codeInputViewTextChange:(CNCodeInputView *)view {
     if ([view isEqual:self.loginCodeView]) {
         self.loginBtn.enabled = view.correct && self.loginAccountView.correct;
     } else {
@@ -110,122 +130,107 @@
     }
 }
 
+- (void)didReceiveSmsCodeModel:(SmsCodeModel *)model {
+    self.smsModel = model;
+}
+
 #pragma mark - ButtonAction
 
-- (IBAction)back:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+/// DEBUG 环境 点击三次切换Domain
+- (IBAction)switchEnvironmentTap:(UITapGestureRecognizer *)sender {
+    [[HYNetworkConfigManager shareManager] switchEnvirnment];
 }
 
+/// 去登录页面
 - (IBAction)goToLogin:(UIButton *)sender {
     [self.switchSV setContentOffset:CGPointMake(0, 0)];
-    self.view.backgroundColor = [UIColor whiteColor];
 }
 
+/// 去注册页面
 - (IBAction)gotoRegister:(UIButton *)sender {
     [self.switchSV setContentOffset:CGPointMake(kScreenWidth, 0)];
 }
 
-- (IBAction)remeberAction:(UIButton *)sender {
-    sender.selected = !sender.selected;
-}
 
+/// 忘记密码
 - (IBAction)forgotPassword:(id)sender {
-//    [self.navigationController pushViewController:[ForgetPasswordViewController new] animated:YES];
+    CNForgotCodeVC *vc = [CNForgotCodeVC new];
+    vc.bindType = CNSMSCodeTypeForgotPassword;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
+/// 声明规则
 - (IBAction)statementRule:(id)sender {
-    [CNStatementView showStatement];
+    [CNStatementView showWithTitle:@"服务协议" content:@""];
 }
 
-#pragma mark - Login
+#pragma mark - Login Action
 
 - (IBAction)loginAction:(UIButton *)sender {
  
-    __weak typeof(self) weakSelf = self;
-    // 手机登录
-    if (self.loginCodeView.phoneLogin) {
-        
-        return;
-    }
+    NSLog(@"account=%@,code=%@,imgCode=%@", self.loginAccountView.account, self.loginCodeView.code, self.loginImageCodeView.imageCode);
 
     // 账号登录
     if (self.needImageCode) {
         if (self.loginImageCodeView.imageCode.length == 0) {
-//            [CNHUB showError:@"请输入图形验证码"];
+            [CNHUB showError:@"请输入图形验证码"];
             return;
         }
-        [self accountLogin];
-        return;
     }
-}
-
-// 账号登录
-- (void)accountLogin {
-
-}
-
-- (void)lockAccount {
-//    self.loginBtn.enabled = NO;
-//    LCWeak
-//    [CNAlertView showNormalTitle:@"账号锁定" message:@"密码错误5次，账号已被锁定，请5分钟后再试或联系客服解锁" defaultTitle:@"联系客服" needCancelButton:YES defaultAction:^{
-//        [CustomerPopView initWithParentVC:weakSelf];
-//    }];
-}
-
-- (void)showNoRegisterAlert {
-//    [CNAlertView showNormalTitle:@"该手机号尚未注册" message:@"您是否注册新的游戏账户？" defaultTitle:@"注册" needCancelButton:YES defaultAction:^{
-//        [self autoRegister];
-//    }];
-}
-
-#pragma mark - Register
-
-- (IBAction)registerAction:(UIButton *)sender {
     
-//    __weak typeof(self) weakSelf = self;
-//    // 手机注册
-//    if (self.phoneBtn.selected) {
-//        CNVerificationCodeVC *codeVC = [[CNVerificationCodeVC alloc] init];
-//        codeVC.phoneNum = self.phoneView.phone;
-//        codeVC.smsUseType = CNSMSCodeTypeRegister;
-//        [self.navigationController pushViewController:codeVC animated:YES];
-//        return;
-//    }
-//    // 账号注册
-//    [self showLoading];
-//    [self.viewModel accountRegisterPhoneNum:self.phoneView.phone imageCode:self.registerImageCodeView.imageCode imageCodeId:self.registerImageCodeView.imageCodeId finishHandler:^(NSString * _Nullable errMsg) {
-//        [weakSelf hideLoading];
-//        if (errMsg) {
-//            [CNHUB showError:errMsg];
-//            return;
-//        }
-//        // 注册成功
-//        [weakSelf registerSuccess:NO];
-//    }];
+    [self Login];
 }
 
-- (void)registerSuccess:(BOOL)phoneRegister {
-//    [CNHUB showSuccess:@"注册成功"];
-    /* 需求更改，统一用账号显示
-     // 手机注册时是手机号
-     NSString *account = phoneRegister ? self.accountView.account :[CNUserManager shareManager].userInfo.loginName;
-     CNRegisterSuccessView *view = [[CNRegisterSuccessView alloc] initWithAccount:account password:[CNUserManager shareManager].userInfo.password isPhone:phoneRegister];
-     */
-    
-//    CNRegisterSuccessView *view = [[CNRegisterSuccessView alloc] initWithAccount:[CNUserManager shareManager].userInfo.loginName password:[CNUserManager shareManager].userInfo.password isPhone:NO];
-//    [self.navigationController pushViewController:[[ChargeViewController alloc] initWithView:view] animated:YES];
-}
-/*
-- (void)autoRegister {
-    __weak typeof(self) weakSelf = self;
-    [self.viewModel autoRegisterFinishHandler:^(NSString * _Nullable errMsg) {
-        if (errMsg) {
-            [CNHUB showError:errMsg];
-            return;
+/// 登录
+- (void)Login {
+    WEAKSELF_DEFINE
+    [CNLoginRequest accountLogin:self.loginAccountView.account
+                        password:self.loginCodeView.code
+                       messageId:self.smsModel.messageId
+                       imageCode:self.loginImageCodeView.imageCode.length>0?self.loginImageCodeView.imageCode:@""
+                     imageCodeId:self.loginImageCodeView.imageCodeId.length>0?self.loginImageCodeView.imageCodeId:@""
+               completionHandler:^(id responseObj, NSString *errorMsg) {
+        STRONGSELF_DEFINE
+        if (!errorMsg) {
+            // 判断多账号调用多账号登录
+            if ([responseObj objectForKey:@"samePhoneLoginNames"]) {
+                CNLoginSuccChooseAccountVC *vc = [CNLoginSuccChooseAccountVC new];
+                vc.samePhoneLogNameModel = [SamePhoneLoginNameModel cn_parse:responseObj];
+                [strongSelf.navigationController pushViewController:vc animated:YES];
+                
+            } else {
+                [CNHUB showSuccess:@"登录成功"];
+                [strongSelf.navigationController popToRootViewControllerAnimated:YES];
+            }
+        } else {
+            if ([responseObj isEqualToString:ImageCodeNULL_ErrorCode]) {
+                strongSelf.wrongCount = 3;
+            } else {
+                strongSelf.wrongCount += 1;
+            }
         }
-        [weakSelf registerSuccess:YES];
     }];
 }
+
+
+/// 账号锁定
+- (void)lockAccount {
+
+}
+
+#pragma mark - Register Action
+
+- (IBAction)registerAction:(UIButton *)sender {
+    [CNLoginRequest accountRegisterUserName:self.registerAccountView.account password:self.registerCodeView.code completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            [CNHUB showSuccess:@"注册成功"];
+            CNBindPhoneVC *vc = [CNBindPhoneVC new];
+            vc.bindType = CNSMSCodeTypeRegister;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }];
+}
+
  
 #pragma mark - Setter & Getter
 
@@ -233,16 +238,14 @@
     _needImageCode = needImageCode;
     if (needImageCode) {
         self.loginImageCodeView.hidden = NO;
-        self.loginImageCodeViewH.constant = 80;
+        self.loginImageCodeViewH.constant = 75;
         [self.loginImageCodeView getImageCode];
     }
 }
-*/
-//- (CNLoginVM *)viewModel {
-//    if (!_viewModel) {
-//        _viewModel = [[CNLoginVM alloc] init];
-//    }
-//    return _viewModel;
-//}
+
+- (void)setWrongCount:(NSInteger)wrongCount {
+    _wrongCount = wrongCount;
+    self.needImageCode = (wrongCount >= AllowTotalWrongCount);
+}
 
 @end

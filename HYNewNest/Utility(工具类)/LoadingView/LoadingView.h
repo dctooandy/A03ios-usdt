@@ -10,8 +10,11 @@
 
 @interface LoadingView : UIView
 
-+ (void)showLoadingViewWithToView:(UIView *)toView;
++ (void)show;
++ (void)showSuccess;
++ (void)hide;
 
++ (void)showLoadingViewWithToView:(nullable UIView *)toView needMask:(BOOL)needMask;
++ (void)hideLoadingViewForView:(nullable UIView *)view;
 
-+ (void)hideLoadingViewForView:(UIView *)view;
 @end

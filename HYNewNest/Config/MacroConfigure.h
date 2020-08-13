@@ -31,7 +31,9 @@
 #define KImageName(name)            [UIImage imageNamed:name]
 #define KIsEmptyString(string)      (([string isKindOfClass:[NSNull class]] || string == nil || [string length] == 0 || [string isEqualToString:@"(null)"]) ? YES : NO)
 #define KSafeString(string)         IsEmptyString(string)?@"":string
-#define AD(width)                   ((width)*IPHONE_WIDTH/375.0)
+#define AD(width)                   ((width)*kScreenWidth/375.0)
+#define NSNumberAddInt(num, i) num = @( num.floatValue + i )
+#define NSNumberMultiplyInt(num, i) num = @( num.floatValue * i )
 
 
 #define WEAKSELF_DEFINE     __weak __typeof(self)weakSelf = self;
@@ -39,6 +41,14 @@
 #define KWeakObj(type)      __weak typeof(type) weak##type = type;
 #define KStrongObj(type)    __strong typeof(type) strong##type = type;
 
+
+#define kPreventRepeatTime(_seconds_) \
+static BOOL shouldPrevent; \
+if (shouldPrevent) return; \
+shouldPrevent = YES; \
+dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((_seconds_) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ \
+shouldPrevent = NO; \
+});
 
 
 #define KSetStatusBarBGColor(UIColor)   UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];\

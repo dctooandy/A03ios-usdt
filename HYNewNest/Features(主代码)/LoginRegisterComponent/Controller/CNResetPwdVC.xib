@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CNResetPwdVC">
+            <connections>
+                <outlet property="accountSelectView" destination="Rvg-x4-puf" id="8R7-X2-6pL"/>
+                <outlet property="codeView" destination="Q1t-RG-6Dy" id="tnH-ez-Q6N"/>
+                <outlet property="reCodeView" destination="VzE-9M-W4p" id="RVS-ZY-rpX"/>
+                <outlet property="submitBtn" destination="nFO-3x-zvl" id="KlX-t1-dYG"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择账号设置新密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUl-Ut-rJo">
+                    <rect key="frame" x="30" y="96" width="273" height="36"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                    <color key="textColor" white="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VzE-9M-W4p" customClass="CNCodeInputView">
+                    <rect key="frame" x="30" y="312" width="354" height="75"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="75" id="0D3-Tt-CRW"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFO-3x-zvl" customClass="CNTwoStatusBtn">
+                    <rect key="frame" x="30" y="437" width="354" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="wvQ-3J-7CG"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                    <state key="normal" title="提交">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="disabled">
+                        <color key="titleColor" white="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="submit:" destination="-1" eventType="touchUpInside" id="I3e-ia-gCC"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rvg-x4-puf" customClass="CNAccountSelectView">
+                    <rect key="frame" x="30" y="162" width="354" height="75"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="75" id="EN3-bQ-Vxx"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="KdE-l3-DPF" appends="YES" id="7Ai-GL-W7l"/>
+                    </connections>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q1t-RG-6Dy" customClass="CNCodeInputView">
+                    <rect key="frame" x="30" y="237" width="354" height="75"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="75" id="XNN-kI-ldY"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="wUl-Ut-rJo" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="52" id="2AT-An-wqK"/>
+                <constraint firstItem="Q1t-RG-6Dy" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="7ds-A5-XfK"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Rvg-x4-puf" secondAttribute="trailing" constant="30" id="EcR-li-cKg"/>
+                <constraint firstItem="Q1t-RG-6Dy" firstAttribute="top" secondItem="Rvg-x4-puf" secondAttribute="bottom" id="FgU-90-vM0"/>
+                <constraint firstItem="VzE-9M-W4p" firstAttribute="top" secondItem="Q1t-RG-6Dy" secondAttribute="bottom" id="SkE-zl-quF"/>
+                <constraint firstItem="wUl-Ut-rJo" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="Snt-TZ-eA6"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="VzE-9M-W4p" secondAttribute="trailing" constant="30" id="Xgs-bZ-ax4"/>
+                <constraint firstItem="VzE-9M-W4p" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="bRh-1i-Ifj"/>
+                <constraint firstItem="Rvg-x4-puf" firstAttribute="top" secondItem="wUl-Ut-rJo" secondAttribute="bottom" constant="30" id="dAb-hC-cmi"/>
+                <constraint firstItem="nFO-3x-zvl" firstAttribute="top" secondItem="VzE-9M-W4p" secondAttribute="bottom" constant="50" id="jnN-MS-7cy"/>
+                <constraint firstItem="Rvg-x4-puf" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="qb2-k4-VBG"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Q1t-RG-6Dy" secondAttribute="trailing" constant="30" id="skR-wr-ueP"/>
+                <constraint firstItem="nFO-3x-zvl" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="thp-uX-X6f"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="nFO-3x-zvl" secondAttribute="trailing" constant="30" id="zC2-1c-ZCH"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="216" y="90"/>
+        </view>
+        <tapGestureRecognizer id="KdE-l3-DPF">
+            <connections>
+                <action selector="didClickAccountSelect:" destination="-1" id="tRE-oh-tTE"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+</document>

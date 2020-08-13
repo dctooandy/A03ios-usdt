@@ -7,7 +7,8 @@
 //
 
 #import "NSString+Validation.h"
-
+// 真实姓名
+#define kValidationRealName @"(^[\u4e00-\u9fa5]{1}[\u4e00-\u9fa5\\·]{0,8}[\u4e00-\u9fa5]{1}$)|(^[a-zA-Z]{1}[a-zA-Z\\s]{0,10}[a-zA-Z]{1,10}$)"
 //手机号码验证 ok
 #define kValidationPhone @"^((1[3456789][0-9]))\\d{8}$"
 //邮箱验证  ^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$
@@ -34,12 +35,12 @@
 #define kValidationLetterOrNumber @"^[a-zA-Z0-9\u4e00-\u9fa5]{4,16}$"
 // URL
 #define kValidationURL @"((http|https)://)(([a-zA-Z0-9\\._-]+\\.[a-zA-Z]{2,6})|([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}))(:[0-9]{1,4})*(/[a-zA-Z0-9\\&%_\\./-~-]*)?"
-
 //支付宝姓名
 #define kValidationALIPAYNAME @"^[\u4E00-\u9FA5`~!@#$%^&*()+=|{}':;,\\[\\].<>/?…—‘”“’·]+$"
-
-
-
+//usdt
+#define kValidationUSDTAddr @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,80}$"
+//wx账号
+#define kValidationWechat @"^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}+$"
 
 @implementation NSString (Validation)
 
@@ -125,6 +126,15 @@
             break;
         case ValidationALIPAYNAME:
             str = kValidationALIPAYNAME;
+            break;
+        case ValidationTypeUSDTAddress:
+            str = kValidationUSDTAddr;
+            break;
+        case ValidationTypeWechat:
+            str = kValidationWechat;
+            break;
+        case ValidationTypeRealName:
+            str = kValidationRealName;
             break;
         default:
             str = @"";

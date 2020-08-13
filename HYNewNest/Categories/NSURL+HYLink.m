@@ -24,7 +24,7 @@
     if ([strUrl hasPrefix:@"http"]) {
         url = [NSURL URLWithString:strUrl];
     }else{
-//        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Config_DefaultCDNAdress,strUrl]];
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[IVHttpManager shareManager].cdn,strUrl]];
     }
     
     return url;
@@ -39,7 +39,7 @@
     strUrl = [strUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
     if (![strUrl hasPrefix:@"http"]) {
-//        strUrl = [NSString stringWithFormat:@"%@%@",Config_DefaultCDNAdress,strUrl];
+        strUrl = [NSString stringWithFormat:@"%@%@",[IVHttpManager shareManager].cdn,strUrl];
     }
     
     return strUrl;
@@ -54,47 +54,47 @@
     strUrl = [strUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
     if (![strUrl hasPrefix:@"http"]) {
-//        strUrl = [NSString stringWithFormat:@"%@%@",Confit_H5Adress,strUrl];
+        strUrl = [NSString stringWithFormat:@"%@%@",[IVHttpManager shareManager].domain,strUrl];
     }
     
     if ([strUrl containsString:@"?"]) {
-//        strUrl = [NSString stringWithFormat:@"%@&appid=%@",strUrl,config_appId];
+        strUrl = [NSString stringWithFormat:@"%@&appid=%@",strUrl,[IVHttpManager shareManager].appId];
     }else{
-//        strUrl = [NSString stringWithFormat:@"%@?appid=%@",strUrl,config_appId];
+        strUrl = [NSString stringWithFormat:@"%@?appid=%@",strUrl,[IVHttpManager shareManager].appId];
     }
     
-//    if ([ManageDataModel shareManage].getLoginUserModel) {
-//        strUrl = [NSString stringWithFormat:@"%@&loginName=%@",strUrl,[ManageDataModel shareManage].getLoginUserModel.loginName];
-//    }
+    if ([CNUserManager shareManager].isLogin) {
+        strUrl = [NSString stringWithFormat:@"%@&loginName=%@",strUrl,[CNUserManager shareManager].userInfo.loginName];
+    }
     
     if (ticket.length > 0) {
         strUrl = [NSString stringWithFormat:@"%@&ticket=%@",strUrl,ticket];
     }
     //dark light
-//    if (ThemeType == 0) {
-//        strUrl = [NSString stringWithFormat:@"%@&theme=dark",strUrl];
-//    }else{
-//        strUrl = [NSString stringWithFormat:@"%@&theme=light",strUrl];
-//    }
+    if ([CNSkinManager currSkinType] == SKinTypeBlack) {
+        strUrl = [NSString stringWithFormat:@"%@&theme=dark",strUrl];
+    }else{
+        strUrl = [NSString stringWithFormat:@"%@&theme=light",strUrl];
+    }
     
     return strUrl;
 }
 
 //风采
-//+ (NSString *)getFCH5StrUrlWithID:(NSString *)ID{
-//
-//    if (ID.length == 0) {
-//        return @"";
-//    }
-//    NSString *strUrl = [NSString stringWithFormat:@"%@/detailsPage?id=%@&appid=%@",Confit_H5Adress,ID,config_appId];
-//    //dark light
-//    if (ThemeType == 0) {
-//        strUrl = [NSString stringWithFormat:@"%@&theme=dark",strUrl];
-//    }else{
-//        strUrl = [NSString stringWithFormat:@"%@&theme=light",strUrl];
-//    }
-//    strUrl = [strUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-//    return strUrl;
-//}
++ (NSString *)getFCH5StrUrlWithID:(NSString *)ID{
+
+    if (ID.length == 0) {
+        return @"";
+    }
+    NSString *strUrl = [NSString stringWithFormat:@"%@/detailsPage?id=%@&appid=%@",[IVHttpManager shareManager].domain, ID, [IVHttpManager shareManager].appId];
+    //dark light
+    if ([CNSkinManager currSkinType] == SKinTypeBlack) {
+        strUrl = [NSString stringWithFormat:@"%@&theme=dark",strUrl];
+    }else{
+        strUrl = [NSString stringWithFormat:@"%@&theme=light",strUrl];
+    }
+    strUrl = [strUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    return strUrl;
+}
 
 @end

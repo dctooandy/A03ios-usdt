@@ -43,6 +43,8 @@ typedef NS_ENUM(NSUInteger, LineDirection) {
 
 - (void)drawDashLineWidth:(CGFloat)lineLength lineHeight:(CGFloat)lineHeight lineSpacing:(CGFloat)lineSpacing lineColor:(UIColor *)lineColor;
 
+/// 给view添加10px圆角和阴影
+- (void)addCornerAndShadow;
 
 @end
 
@@ -57,3 +59,5 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
     rect.size.height = height * scale;
     return rect;
 }
+
+

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HYXiMaTopView">
+            <connections>
+                <outlet property="lblAmount" destination="5uw-pf-nyk" id="oFu-c3-VR1"/>
+                <outlet property="lblTitle" destination="SZ2-Ot-hy1" id="pKP-hy-r4f"/>
+                <outlet property="lblXimaCurrency" destination="JwE-vM-z2o" id="5bc-eh-gTW"/>
+                <outlet property="ruleBtn" destination="5kI-MG-RoS" id="lLz-Ia-UiA"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="153"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="洗码总额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZ2-Ot-hy1">
+                    <rect key="frame" x="30" y="42" width="61.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="0.40089897260273971" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kI-MG-RoS">
+                    <rect key="frame" x="103.5" y="42" width="49" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title=" 规则" image="icon_rule">
+                        <color key="titleColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="didClickRule:" destination="-1" eventType="touchUpInside" id="TdX-1n-gIw"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uw-pf-nyk">
+                    <rect key="frame" x="30" y="69" width="60.5" height="42"/>
+                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="36"/>
+                    <color key="textColor" white="1" alpha="0.80190496575342463" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USDT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JwE-vM-z2o">
+                    <rect key="frame" x="102.5" y="89" width="37.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="0.80190496575342463" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NVC-X0-ahv">
+                    <rect key="frame" x="30" y="152.5" width="315" height="0.5"/>
+                    <color key="backgroundColor" white="1" alpha="0.1525042808219178" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="qEP-yv-Wrb"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="JwE-vM-z2o" firstAttribute="bottom" secondItem="5uw-pf-nyk" secondAttribute="bottom" constant="-5" id="B6X-Mt-GmL"/>
+                <constraint firstItem="5uw-pf-nyk" firstAttribute="leading" secondItem="SZ2-Ot-hy1" secondAttribute="leading" id="EDu-ml-lpC"/>
+                <constraint firstItem="5uw-pf-nyk" firstAttribute="top" secondItem="SZ2-Ot-hy1" secondAttribute="bottom" constant="9" id="QGa-xH-eox"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="NVC-X0-ahv" secondAttribute="trailing" constant="30" id="RDK-bB-wYF"/>
+                <constraint firstItem="5kI-MG-RoS" firstAttribute="centerY" secondItem="SZ2-Ot-hy1" secondAttribute="centerY" id="Un2-Mw-VDZ"/>
+                <constraint firstItem="SZ2-Ot-hy1" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="aUY-I3-ytc"/>
+                <constraint firstItem="NVC-X0-ahv" firstAttribute="leading" secondItem="5uw-pf-nyk" secondAttribute="leading" id="bVW-9E-vck"/>
+                <constraint firstItem="SZ2-Ot-hy1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="42" id="cNK-gE-Zig"/>
+                <constraint firstItem="JwE-vM-z2o" firstAttribute="leading" secondItem="5uw-pf-nyk" secondAttribute="trailing" constant="12" id="g30-fb-sn0"/>
+                <constraint firstItem="5kI-MG-RoS" firstAttribute="leading" secondItem="SZ2-Ot-hy1" secondAttribute="trailing" constant="12" id="mAT-1R-5rf"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="NVC-X0-ahv" secondAttribute="bottom" id="ubo-Yc-Hdd"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="74.637681159420296" y="70.647321428571431"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_rule" width="14" height="14"/>
+    </resources>
+</document>

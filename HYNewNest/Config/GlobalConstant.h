@@ -13,14 +13,10 @@
 
 
 //APP参数
-#define kBundleName         [NSBundle mainBundle].infoDictionary[@"CFBundleName"]
-#define kDisplayName        [NSBundle mainBundle].infoDictionary[@"CFBundleDisplayName"]
-#define kPackageName        [NSBundle mainBundle].infoDictionary[@"PackageName"]
-#define kBuglyAppID         [NSBundle mainBundle].infoDictionary[@"BUGLY.APP_ID"]
-#define kSystemVersionFloat [[[UIDevice currentDevice] systemVersion] floatValue]
-#define kKeywindow          [UIApplication sharedApplication].keyWindow
 #define kAppDelegate        (AppDelegate *)[UIApplication sharedApplication].delegate
-
+#define kKeywindow          [[[UIApplication sharedApplication] windows] objectAtIndex:0]
+  
+#define kDownload_XJK_Address @"https://www.dcbox.com/downloadapp.php"
 
 //屏幕宽高
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
@@ -42,7 +38,7 @@
 //状态栏高度
 #define kStatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
 //顶部高度
-#define kNavPlusStatusBarHeight (KNavBarHeight+KStatusBarHeight)
+#define kNavPlusStaBarHeight (kNavBarHeight+kStatusBarHeight)
 
 
 

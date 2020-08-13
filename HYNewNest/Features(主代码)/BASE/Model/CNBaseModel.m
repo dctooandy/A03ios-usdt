@@ -9,5 +9,6 @@
 #import "CNBaseModel.h"
 
 @implementation CNBaseModel
+kHYCodingDesc // yymodel 解析都需要遵循
 
 @end

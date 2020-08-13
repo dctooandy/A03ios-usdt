@@ -9,6 +9,8 @@
 #import "CNStatementView.h"
 
 @interface CNStatementView ()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constrOfHoverWidth;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @end
 
@@ -18,10 +20,15 @@
     [super loadViewFromXib];
     self.textView.backgroundColor = self.backgroundColor;
     self.textView.textColor = kHexColorAlpha(0xFFFFFF, 0.6);
+    self.textView.font = [UIFont systemFontOfSize:AD(14)];
+    self.constrOfHoverWidth.constant = AD(345);
 }
 
-+ (void)showStatement {
++ (void)showWithTitle:(NSString *)title content:(NSString *)content{
+    
     CNStatementView *alert = [[CNStatementView alloc] init];
+    alert.lblTitle.text = title;
+    alert.textView.text = content;
     
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     [window endEditing:YES];

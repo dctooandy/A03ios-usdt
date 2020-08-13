@@ -1,0 +1,181 @@
+//
+//  CNHomeRequest.m
+//  HYNewNest
+//
+//  Created by Lenhulk on 2020/7/21.
+//  Copyright © 2020 emneoma. All rights reserved.
+//
+
+#import "CNHomeRequest.h"
+
+@implementation CNHomeRequest
+
++ (void)requestDynamicLive800AddressCompletionHandler:(HandlerBlock)handler{
+    
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"bizCode"] = @"800_DEPLOY";
+    
+    [self POST:kGatewayPath(config_dynamicQuery) parameters:param completionHandler:handler];
+}
+
++ (void)callCenterCallBackMessageId:(NSString *)messageId
+                            smsCode:(NSString *)smsCode
+                           mobileNo:(NSString *)mobileNo
+                            handler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"type"] = mobileNo ? @(0) : @(1);// 是否用户绑定手机，0：否
+    param[@"messageId"] = messageId;
+    param[@"mobileNo"] = mobileNo;
+    param[@"smsCode"] = smsCode;
+  
+    [self POST:kGatewayPath(config_callBackPhone) parameters:param completionHandler:handler];
+}
+
++ (void)requestH5TicketHandler:(HandlerBlock)handler {
+    
+    [self POST:kGatewayPath(config_h5Ticket) parameters:[kNetworkMgr baseParam] completionHandler:^(id responseObj, NSString *errorMsg) {
+        NSString *ticket = [responseObj objectForKey:@"ticket"];
+        handler(ticket, errorMsg);
+    }];
+}
+
++ (void)requestBannerWhere:(BannerWhere)where Handler:(HandlerBlock)handler{
+    NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
+    if (where == BannerWhereHome) {
+        paramDic[@"imageGroups"] = @"TOP_BANNER";
+    } else if (where == BannerWhereGame) {
+        paramDic[@"imageGroups"] = @"ZR_APP_SLOT_BANNER";
+    } else {
+        paramDic[@"imageGroups"] = @"SHARING_SET";
+        paramDic[@"flag"] = @1;
+    }
+    [self POST:kGatewayExtraPath(config_new_queryImageList) parameters:paramDic completionHandler:handler];
+}
+
++ (void)requestGetAnnouncesHandler:(HandlerBlock)handler {
+    [self POST:kGatewayPath(config_queryAnnoumces) parameters:[kNetworkMgr baseParam] completionHandler:handler];
+}
+
++ (void)requestInGameUrlGameType:(NSString *)gameType
+                          gameId:(NSString *)gameId
+                        gameCode:(NSString *)gameCode
+                         handler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"gameCode"] = gameCode;
+    param[@"gameType"] = gameType;
+    param[@"gameId"] = gameId.length > 0 ? gameId : @"";
+    
+    [self POST:kGatewayPath(config_inGame) parameters:param completionHandler:handler];
+}
+
++ (void)queryElecGamePlayLogHandler:(HandlerBlock)handler {
+    NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
+    [paramDic setObject:@"1" forKey:@"type"];
+    
+    [self POST:kGatewayExtraPath(config_queryPlayLog) parameters:paramDic completionHandler:handler];
+}
+
++ (void)queryFavoriteElecHandler:(HandlerBlock)handler {
+    NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
+    [paramDic setObject:@"1" forKey:@"flag"];
+    
+    [self POST:kGatewayPath(config_queryFavoriteGame) parameters:paramDic completionHandler:handler];
+}
+
++ (void)updateFavoriteElecGameId:(NSString *)gameId
+                    platformCode:(NSString *)platformCode
+                            flag:(ElecGameFavoriteFlag)flag
+                         handler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
+    paramDic[@"gameId"] = gameId;
+    paramDic[@"platformCode"] = platformCode;
+    paramDic[@"flag"] = @(flag);
+    
+    [self POST:kGatewayPath(config_updateFavorite) parameters:paramDic completionHandler:handler];
+}
+
++ (void)queryElecGamesOneOfThreeType:(ElecGame3Type)type
+                             handler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
+    [paramDic setObject:@"1" forKey:@"pageNo"];
+    [paramDic setObject:@"10" forKey:@"pageSize"];
+    paramDic[@"currency"] = [CNUserManager shareManager].userInfo.currency;
+    switch (type) {
+        case ElecGame3TypePayout:{
+            [paramDic setObject:@"1" forKey:@"payoutFlag"];
+            [paramDic setObject:@"0" forKey:@"poolFlag"];
+            [paramDic setObject:@"0" forKey:@"highFlag"];
+            break;
+        }
+        case ElecGame3TypeHigh: {
+            [paramDic setObject:@"0" forKey:@"payoutFlag"];
+            [paramDic setObject:@"0" forKey:@"poolFlag"];
+            [paramDic setObject:@"1" forKey:@"highFlag"];
+            break;
+        }
+        case ElecGame3TypePool: {
+            [paramDic setObject:@"0" forKey:@"payoutFlag"];
+            [paramDic setObject:@"1" forKey:@"poolFlag"];
+            [paramDic setObject:@"0" forKey:@"highFlag"];
+            break;
+        }
+        default:
+            break;
+    }
+    [self POST:kGatewayPath(config_queryElecGame) parameters:paramDic completionHandler:handler];
+}
+
++ (void)searchElecGameName:(NSString *)gameName
+                    pageNo:(NSInteger)pageNo
+                   handler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
+    paramDic[@"currency"] = [CNUserManager shareManager].userInfo.currency;
+    paramDic[@"pageNo"] = @(pageNo);
+    paramDic[@"pageSize"] = @(100);
+    paramDic[@"gameName"] = [gameName stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    [self POST:kGatewayPath(config_queryElecGame) parameters:paramDic completionHandler:handler];
+}
+
+/**{
+    "pageNo": "1",
+    "pageSize": "20",
+    "loginName": "fzoe88usdt",
+    "productId": "A03",
+    "platformNames": ["AG", "PNG", "PP", "TTG"],
+    "payLines": [{
+        "low": "1",
+        "high": "4"
+    }, {
+        "low": "5",
+        "high": "9"
+    }],
+    "gameType": "1,2,6"
+}*/
++ (void)queryElecGamesWithPageNo:(NSInteger)pageNo
+                        gemeType:(NSString *)gameType
+                   platformNames:(NSArray<NSString *> *)platformNames
+                        payLines:(NSArray<NSDictionary *> *)payLines
+                         handler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
+    paramDic[@"pageSize"] = @(20);
+    paramDic[@"pageNo"] = @(pageNo);
+    if (gameType.length > 0) {
+        paramDic[@"gameTypes"] = gameType;//游戏类型
+    }
+    if (platformNames.count > 0) {
+        paramDic[@"platformNames"] = platformNames;//平台名
+    }
+    paramDic[@"payLines"] = payLines;//赔付线
+    
+    [self POST:kGatewayPath(config_queryElecGame) parameters:paramDic completionHandler:handler];
+}
+
+
+@end

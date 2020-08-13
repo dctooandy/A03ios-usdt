@@ -67,7 +67,19 @@ typedef NS_ENUM(NSInteger, ValidationType) {
     /**
      *  支付宝姓名
      */
-    ValidationALIPAYNAME = 13
+    ValidationALIPAYNAME = 13,
+    /**
+     *  USDT地址
+     */
+    ValidationTypeUSDTAddress = 14,
+    /**
+     *  微信号
+     */
+    ValidationTypeWechat = 15,
+    /**
+     * 真实姓名
+     */
+    ValidationTypeRealName,
 };
 @interface NSString (Validation)
 /**

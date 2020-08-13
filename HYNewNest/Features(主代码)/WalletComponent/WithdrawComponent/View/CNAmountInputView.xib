@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CNAmountInputView">
+            <connections>
+                <outlet property="inputTF" destination="PEs-hE-loV" id="ZPn-nH-xm8"/>
+                <outlet property="lineView" destination="a7X-e9-LwN" id="DMJ-vD-Hcn"/>
+                <outlet property="tipLb" destination="d34-G3-SMU" id="wCE-yR-xZc"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="bgm-P0-vdT">
+            <rect key="frame" x="0.0" y="0.0" width="376" height="89"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d34-G3-SMU">
+                    <rect key="frame" x="0.0" y="20" width="0.0" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.062745098040000002" green="0.70588235290000001" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="以f开头5-11位数字和字母组合/11位手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PEs-hE-loV" customClass="CNBaseTF">
+                    <rect key="frame" x="0.0" y="48" width="376" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="tEA-gL-ieJ"/>
+                    </constraints>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="owQ-mB-fjo"/>
+                    </connections>
+                </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7X-e9-LwN" customClass="CNLineView">
+                    <rect key="frame" x="0.0" y="88" width="376" height="1"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="eas-Mk-uNJ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="a7X-e9-LwN" firstAttribute="top" secondItem="PEs-hE-loV" secondAttribute="bottom" constant="10" id="6P4-hi-5gQ"/>
+                <constraint firstItem="d34-G3-SMU" firstAttribute="leading" secondItem="bgm-P0-vdT" secondAttribute="leading" id="8vN-8w-8fe"/>
+                <constraint firstItem="d34-G3-SMU" firstAttribute="top" secondItem="bgm-P0-vdT" secondAttribute="top" constant="20" id="J3O-zq-8FO"/>
+                <constraint firstAttribute="trailing" secondItem="a7X-e9-LwN" secondAttribute="trailing" id="aDe-Ao-OYM"/>
+                <constraint firstItem="a7X-e9-LwN" firstAttribute="leading" secondItem="bgm-P0-vdT" secondAttribute="leading" id="dgW-dn-8T9"/>
+                <constraint firstItem="PEs-hE-loV" firstAttribute="leading" secondItem="bgm-P0-vdT" secondAttribute="leading" id="kol-uZ-CPe"/>
+                <constraint firstAttribute="bottom" secondItem="a7X-e9-LwN" secondAttribute="bottom" id="sSq-Tr-8ao"/>
+                <constraint firstAttribute="trailing" secondItem="PEs-hE-loV" secondAttribute="trailing" id="tu1-4f-mwv"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="3Qi-GY-JUj"/>
+            <point key="canvasLocation" x="319" y="-67"/>
+        </view>
+    </objects>
+</document>

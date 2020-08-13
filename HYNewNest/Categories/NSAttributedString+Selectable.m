@@ -18,7 +18,7 @@
                                 isUnderline:(BOOL)isUnderline
                                      URLStr:(NSString *)urlStr {
     //普通字体的大小颜色
-    NSDictionary * normalAtt = @{NSFontAttributeName:[UIFont systemFontOfSize:AD(12)], NSForegroundColorAttributeName:[UIColor colorTabbarAd]};
+    NSDictionary * normalAtt = @{NSFontAttributeName:[UIFont systemFontOfSize:AD(12)], NSForegroundColorAttributeName:[UIColor lightGrayColor]};
    
     //可点击字体的大小颜色
     NSMutableDictionary * specAtt = @{NSFontAttributeName:[UIFont systemFontOfSize:AD(12)], NSForegroundColorAttributeName:selColor}.mutableCopy;

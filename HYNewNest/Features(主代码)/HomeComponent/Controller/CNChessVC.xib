@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CNChessVC">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0YC-CM-GX4">
+                    <rect key="frame" x="15" y="44" width="384" height="156"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WhX-iq-KHB">
+                            <rect key="frame" x="0.0" y="0.0" width="384" height="156"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="-15" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" backgroundImage="banner-chesscard"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="ASReal:" destination="-1" eventType="touchUpInside" id="9x3-bG-1wZ"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AS真人棋牌" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCa-fe-iSG">
+                            <rect key="frame" x="15" y="16" width="87" height="19.5"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="边娱乐边赚钱 你想象不到" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMD-ya-zQX">
+                            <rect key="frame" x="15" y="41.5" width="115.5" height="12"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                            <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0dM-QX-0wR">
+                            <rect key="frame" x="15" y="102" width="90" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="90" id="oMe-LV-uU2"/>
+                                <constraint firstAttribute="height" constant="30" id="pYX-kz-A2b"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                            <state key="normal" title="立即进入" backgroundImage="l_btn_select"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="15"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="zCa-fe-iSG" firstAttribute="leading" secondItem="0YC-CM-GX4" secondAttribute="leading" constant="15" id="Gxh-IC-haU"/>
+                        <constraint firstItem="zCa-fe-iSG" firstAttribute="top" secondItem="0YC-CM-GX4" secondAttribute="top" constant="16" id="Hu4-gA-Rz2"/>
+                        <constraint firstItem="tMD-ya-zQX" firstAttribute="top" secondItem="zCa-fe-iSG" secondAttribute="bottom" constant="6" id="N2P-U2-vBF"/>
+                        <constraint firstAttribute="bottom" secondItem="0dM-QX-0wR" secondAttribute="bottom" constant="24" id="QJQ-FY-AXb"/>
+                        <constraint firstAttribute="bottom" secondItem="WhX-iq-KHB" secondAttribute="bottom" id="fzA-bJ-D7X"/>
+                        <constraint firstAttribute="trailing" secondItem="WhX-iq-KHB" secondAttribute="trailing" id="icW-uD-Phv"/>
+                        <constraint firstItem="WhX-iq-KHB" firstAttribute="top" secondItem="0YC-CM-GX4" secondAttribute="top" id="lSM-Tr-XoI"/>
+                        <constraint firstItem="WhX-iq-KHB" firstAttribute="leading" secondItem="0YC-CM-GX4" secondAttribute="leading" id="nYx-aD-YKe"/>
+                        <constraint firstItem="0dM-QX-0wR" firstAttribute="leading" secondItem="zCa-fe-iSG" secondAttribute="leading" id="rG0-Cj-F42"/>
+                        <constraint firstItem="tMD-ya-zQX" firstAttribute="leading" secondItem="zCa-fe-iSG" secondAttribute="leading" id="x6M-or-Ad0"/>
+                        <constraint firstAttribute="width" secondItem="0YC-CM-GX4" secondAttribute="height" multiplier="345:140" id="zsy-dM-Pqf"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="0YC-CM-GX4" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="IGc-Sk-iBj"/>
+                <constraint firstItem="0YC-CM-GX4" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="15" id="hPX-46-EzT"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="0YC-CM-GX4" secondAttribute="trailing" constant="15" id="rfT-rD-uJM"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="139" y="141"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="banner-chesscard" width="345" height="140"/>
+        <image name="l_btn_select" width="315" height="48"/>
+    </resources>
+</document>

@@ -7,15 +7,15 @@
 //
 
 #import "CNImageCodeInputView.h"
-//#import "CNImageCodeModel.h"
-//#import "CNLoginRequest.h"
+#import "CNImageCodeModel.h"
+#import "CNLoginRequest.h"
 
 @interface CNImageCodeInputView () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *tipLb;
 @property (weak, nonatomic) IBOutlet UITextField *inputTF;
 @property (weak, nonatomic) IBOutlet UIButton *codeBtn;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
-//@property (strong, nonatomic) CNImageCodeModel *codeModel;
+@property (strong, nonatomic) CNImageCodeModel *codeModel;
 
 @property (nonatomic, strong) UIColor *hilghtColor;
 @property (nonatomic, strong) UIColor *normalColor;
@@ -56,22 +56,22 @@
     return [self.inputTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
 }
 
-//- (NSString *)imageCodeId {
-//    return self.codeModel.captchaId;
-//}
+- (NSString *)imageCodeId {
+    return self.codeModel.captchaId;
+}
 
 - (IBAction)sendCode:(UIButton *)sender {
-//    __weak typeof(self) weakSelf = self;
-//    sender.enabled = NO;
-//    CNImageCodeType type = _isLogin ? CNImageCodeTypeLogin: CNImageCodeTypeRegister;
-//    [CNLoginRequest getImageCodeWithType:type completionHandler:^(id responseObj, NSString *errorMsg) {
-//        sender.enabled = YES;
-//        if (!errorMsg) {
-//            weakSelf.codeModel = [CNImageCodeModel cn_parse:responseObj];
-//            [sender setImage:weakSelf.codeModel.image forState:UIControlStateNormal];
-//        }
-//    }];
+    __weak typeof(self) weakSelf = self;
+    sender.enabled = NO;
+    [CNLoginRequest getImageCodeWithType:CNImageCodeTypeLogin completionHandler:^(id responseObj, NSString *errorMsg) {
+        sender.enabled = YES;
+        if (!errorMsg) {
+            weakSelf.codeModel = [CNImageCodeModel cn_parse:responseObj];
+            [sender setImage:weakSelf.codeModel.decodeImage forState:UIControlStateNormal];
+        }
+    }];
 }
+
 
 - (void)getImageCode {
     [self sendCode:self.codeBtn];

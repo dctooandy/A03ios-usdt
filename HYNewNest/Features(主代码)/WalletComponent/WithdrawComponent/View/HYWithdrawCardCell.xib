@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="HYWithdrawCardCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="106"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="106"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yhM-J9-dpm">
+                        <rect key="frame" x="30" y="10" width="315" height="86"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Exchanges-logo-5" translatesAutoresizingMaskIntoConstraints="NO" id="B8O-dC-ok1">
+                                <rect key="frame" x="15" y="19" width="48" height="48"/>
+                                <color key="backgroundColor" red="0.023529411764705882" green="0.023529411764705882" blue="0.043137254901960784" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="T7z-yR-wVH"/>
+                                    <constraint firstAttribute="width" constant="48" id="pQ0-Dd-WeK"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="24"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Huobi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lk-e7-OXb">
+                                <rect key="frame" x="79" y="24" width="49.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ERC20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1C-MM-ro5">
+                                <rect key="frame" x="137.5" y="30.5" width="38.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="0.80316245719178081" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="****  ****  ****  1234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJB-0y-l54">
+                                <rect key="frame" x="79" y="51" width="206" height="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                <color key="textColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="0.80316245719178081" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="B8O-dC-ok1" firstAttribute="centerY" secondItem="yhM-J9-dpm" secondAttribute="centerY" id="BzL-Zi-kJv"/>
+                            <constraint firstAttribute="bottom" secondItem="xJB-0y-l54" secondAttribute="bottom" constant="18" id="C1R-O4-QTY"/>
+                            <constraint firstItem="xJB-0y-l54" firstAttribute="leading" secondItem="0lk-e7-OXb" secondAttribute="leading" id="EJp-pH-LRJ"/>
+                            <constraint firstItem="0lk-e7-OXb" firstAttribute="leading" secondItem="B8O-dC-ok1" secondAttribute="trailing" constant="16" id="GH7-5A-OsI"/>
+                            <constraint firstAttribute="trailing" secondItem="xJB-0y-l54" secondAttribute="trailing" constant="30" id="Jl7-G8-rUY"/>
+                            <constraint firstItem="s1C-MM-ro5" firstAttribute="leading" secondItem="0lk-e7-OXb" secondAttribute="trailing" constant="9" id="Of2-6J-0ID"/>
+                            <constraint firstItem="0lk-e7-OXb" firstAttribute="top" secondItem="yhM-J9-dpm" secondAttribute="top" constant="24" id="WGg-Jt-ouQ"/>
+                            <constraint firstItem="B8O-dC-ok1" firstAttribute="leading" secondItem="yhM-J9-dpm" secondAttribute="leading" constant="15" id="eWu-QO-mg3"/>
+                            <constraint firstItem="s1C-MM-ro5" firstAttribute="bottom" secondItem="0lk-e7-OXb" secondAttribute="bottom" id="p0G-Li-b1K"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="yhM-J9-dpm" secondAttribute="trailing" constant="30" id="2rY-q2-koI"/>
+                    <constraint firstItem="yhM-J9-dpm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="8bS-P4-moH"/>
+                    <constraint firstItem="yhM-J9-dpm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="9j5-I9-W26"/>
+                    <constraint firstAttribute="bottom" secondItem="yhM-J9-dpm" secondAttribute="bottom" constant="10" id="SRx-9j-XoH"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="bgView" destination="yhM-J9-dpm" id="7Hy-qF-FV0"/>
+                <outlet property="imgvIcon" destination="B8O-dC-ok1" id="TTB-a6-x7x"/>
+                <outlet property="lblCardAddr" destination="xJB-0y-l54" id="BRc-Se-Pdg"/>
+                <outlet property="lblProtocol" destination="s1C-MM-ro5" id="6H8-6n-cgz"/>
+                <outlet property="lblTitle" destination="0lk-e7-OXb" id="cqk-ER-lTu"/>
+            </connections>
+            <point key="canvasLocation" x="321" y="77"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Exchanges-logo-5" width="32" height="32"/>
+    </resources>
+</document>

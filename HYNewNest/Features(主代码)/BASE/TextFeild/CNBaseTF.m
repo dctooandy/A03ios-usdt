@@ -31,10 +31,23 @@
     [clearButton setImage:[UIImage imageNamed:@"l_form_delete"] forState:UIControlStateNormal];
     self.clearButtonMode = UITextFieldViewModeWhileEditing;
     
-    NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:self.placeholder attributes:
-    @{NSForegroundColorAttributeName:kHexColorAlpha(0xFFFFFF, 0.3),
-                 NSFontAttributeName:self.font
-    }];
-    self.attributedPlaceholder = attrString;
+    if (self.placeholder != nil) {
+        NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:self.placeholder attributes:
+                                          @{NSForegroundColorAttributeName:kHexColorAlpha(0xFFFFFF, 0.3),
+                                            NSFontAttributeName:self.font
+                                          }];
+        self.attributedPlaceholder = attrString;
+    }
+}
+
+- (void)setPlaceholder:(NSString *)placeholder {
+    [super setPlaceholder:placeholder];
+    if (placeholder != nil) {
+        NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:self.placeholder attributes:
+                                          @{NSForegroundColorAttributeName:kHexColorAlpha(0xFFFFFF, 0.3),
+                                            NSFontAttributeName:self.font
+                                          }];
+        self.attributedPlaceholder = attrString;
+    }
 }
 @end

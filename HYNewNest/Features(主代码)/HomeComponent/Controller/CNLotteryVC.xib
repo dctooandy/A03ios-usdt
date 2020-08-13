@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CNLotteryVC">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g0C-Qh-acf">
+                    <rect key="frame" x="15" y="44" width="384" height="128"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ev7-Ee-Qxm">
+                            <rect key="frame" x="0.0" y="0.0" width="384" height="128"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="-15" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" backgroundImage="banner-lotto"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="AGLottery:" destination="-1" eventType="touchUpInside" id="gce-Xt-HaL"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AG彩票" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdO-vc-YyR">
+                            <rect key="frame" x="12" y="12" width="55" height="20"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.96  高赔率" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nh-ur-N0t">
+                            <rect key="frame" x="12" y="35" width="58" height="12"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                            <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="2nh-ur-N0t" firstAttribute="top" secondItem="zdO-vc-YyR" secondAttribute="bottom" constant="3" id="DL5-Dn-5PL"/>
+                        <constraint firstItem="2nh-ur-N0t" firstAttribute="leading" secondItem="zdO-vc-YyR" secondAttribute="leading" id="Dnr-Sv-mRo"/>
+                        <constraint firstItem="zdO-vc-YyR" firstAttribute="top" secondItem="g0C-Qh-acf" secondAttribute="top" constant="12" id="Odh-u6-uTN"/>
+                        <constraint firstAttribute="bottom" secondItem="ev7-Ee-Qxm" secondAttribute="bottom" id="TQl-4c-eQz"/>
+                        <constraint firstItem="ev7-Ee-Qxm" firstAttribute="top" secondItem="g0C-Qh-acf" secondAttribute="top" id="Z52-WT-xth"/>
+                        <constraint firstItem="ev7-Ee-Qxm" firstAttribute="leading" secondItem="g0C-Qh-acf" secondAttribute="leading" id="bAr-Jd-MWz"/>
+                        <constraint firstAttribute="trailing" secondItem="ev7-Ee-Qxm" secondAttribute="trailing" id="bEo-gI-mde"/>
+                        <constraint firstItem="zdO-vc-YyR" firstAttribute="leading" secondItem="g0C-Qh-acf" secondAttribute="leading" constant="12" id="qOb-jl-ek6"/>
+                        <constraint firstAttribute="width" secondItem="g0C-Qh-acf" secondAttribute="height" multiplier="3:1" id="sQj-9c-BIq"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TJQ-Af-LsK">
+                    <rect key="frame" x="15" y="188" width="384" height="128"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFO-uw-Svz">
+                            <rect key="frame" x="0.0" y="0.0" width="384" height="128"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="-15" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" backgroundImage="banner-QG"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="QCLottery:" destination="-1" eventType="touchUpInside" id="iCn-3H-PaC"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QG刮刮乐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCe-oQ-IOi">
+                            <rect key="frame" x="12" y="12" width="73" height="20"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全民“刮”出巨额大奖" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6eq-Ee-Fl5">
+                            <rect key="frame" x="12" y="35" width="93" height="12"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                            <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="TCe-oQ-IOi" firstAttribute="leading" secondItem="TJQ-Af-LsK" secondAttribute="leading" constant="12" id="14U-ei-Ac0"/>
+                        <constraint firstAttribute="bottom" secondItem="RFO-uw-Svz" secondAttribute="bottom" id="7KH-Td-jas"/>
+                        <constraint firstItem="RFO-uw-Svz" firstAttribute="top" secondItem="TJQ-Af-LsK" secondAttribute="top" id="Ki5-Zp-NPh"/>
+                        <constraint firstItem="TCe-oQ-IOi" firstAttribute="top" secondItem="TJQ-Af-LsK" secondAttribute="top" constant="12" id="UFd-9I-Dyu"/>
+                        <constraint firstItem="6eq-Ee-Fl5" firstAttribute="top" secondItem="TCe-oQ-IOi" secondAttribute="bottom" constant="3" id="kFI-Gn-f0N"/>
+                        <constraint firstItem="RFO-uw-Svz" firstAttribute="leading" secondItem="TJQ-Af-LsK" secondAttribute="leading" id="lqM-lt-2mx"/>
+                        <constraint firstItem="6eq-Ee-Fl5" firstAttribute="leading" secondItem="TCe-oQ-IOi" secondAttribute="leading" id="x4g-dn-sLZ"/>
+                        <constraint firstAttribute="trailing" secondItem="RFO-uw-Svz" secondAttribute="trailing" id="zml-73-Go6"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="TJQ-Af-LsK" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="15" id="0VO-oj-8wL"/>
+                <constraint firstItem="g0C-Qh-acf" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="Dcm-fC-WkY"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="g0C-Qh-acf" secondAttribute="trailing" constant="15" id="k6u-ML-wJT"/>
+                <constraint firstItem="TJQ-Af-LsK" firstAttribute="top" secondItem="g0C-Qh-acf" secondAttribute="bottom" constant="16" id="lRx-83-ei8"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="TJQ-Af-LsK" secondAttribute="trailing" constant="15" id="nb3-5u-mcw"/>
+                <constraint firstItem="TJQ-Af-LsK" firstAttribute="width" secondItem="TJQ-Af-LsK" secondAttribute="height" multiplier="3:1" id="or6-gC-opA"/>
+                <constraint firstItem="g0C-Qh-acf" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="15" id="qxS-Ec-gUU"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="139" y="85"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="banner-QG" width="345" height="115"/>
+        <image name="banner-lotto" width="345" height="115"/>
+    </resources>
+</document>

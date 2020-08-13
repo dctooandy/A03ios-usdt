@@ -7,24 +7,50 @@
 //
 
 #import "HYNavigationController.h"
+#import "CNSkinManager.h"
+#import <UIImage+JKColor.h>
 
-@interface HYNavigationController ()<UIGestureRecognizerDelegate>
-
+@interface HYNavigationController ()<UIGestureRecognizerDelegate, UINavigationControllerDelegate>
 @end
 
 @implementation HYNavigationController
 
+#pragma mark - VIEW LIFE
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.interactivePopGestureRecognizer.delegate = self;
-    // Do any additional setup after loading the view.
+    self.delegate = self;
+    
+    [self setupAppearance];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupAppearance) name:CNSkinChangeNotification object:nil];
 }
 
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)setupAppearance {
+    
+    [self setNeedsStatusBarAppearanceUpdate];
+    
+    [self.navigationBar setShadowImage:[[UIImage alloc]init]];
+    if ([CNSkinManager currSkinType] == SKinTypeBlack) {
+        [self.navigationBar setBackgroundImage:[UIImage jk_imageWithColor:kHexColor(0x1A1A2C)] forBarMetrics:UIBarMetricsDefault];
+        [self.navigationBar setBarTintColor:[UIColor whiteColor]];
+        [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName: [UIFont fontPFSB18]}];
+    } else {
+        // 白色主题
+    }
+    
+}
+
+#pragma mark - GESTURE
+
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-  if (self.viewControllers.count <= 1 ) {
-      return NO;
-  }
-  return YES;
+    return self.viewControllers.count > 1;
 }
 
 // 允许同时响应多个手势
@@ -40,29 +66,64 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
    return [gestureRecognizer isKindOfClass:UIScreenEdgePanGestureRecognizer.class];
 }
 
+#pragma mark - PUSH & POP
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     if ([self.topViewController isKindOfClass:viewController.class]) {
         return;
     }
-    //当存在子控制器时才隐藏tabBar
     if (self.viewControllers.count>0) {
-//        [(HYTabBarViewController *)[HYGPageRouter currentTabBarController] hideSuspendBall];
-//        self.interactivePopGestureRecognizer.enabled = NO;
+        //当存在子控制器时才隐藏tabBar
         viewController.hidesBottomBarWhenPushed = YES;
+        //饭回按钮
+        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"l_back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+//        backItem.imageInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+        viewController.navigationItem.leftBarButtonItem = backItem;
     }
     //  push入栈
     [super pushViewController:viewController animated:animated];
 }
 
-- (UIViewController *)popViewControllerAnimated:(BOOL)animated{
+- (void)back {
+    [self popViewControllerAnimated:YES];
+}
 
-    //判断即将到栈底
-    if (self.viewControllers.count == 0) {
-       
-    }
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated{
     //pop出栈
     return [super popViewControllerAnimated:animated];
 }
+
+#pragma mark - DELEGATE
+// 屏幕已经渲染完成  即将显示出来
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    viewController.automaticallyAdjustsScrollViewInsets = false;//  防止状态栏向下偏移
+    // 背景色
+     if (viewController.bgColor)
+     {
+         viewController.view.backgroundColor = viewController.bgColor;
+     }
+    // 隐藏导航栏
+     if (viewController.hideNavgation) {
+         self.navigationBar.translucent = YES;
+         [self setNavigationBarHidden:YES animated:NO];
+     } else {
+         self.navigationBar.translucent = NO;
+         [self setNavigationBarHidden:NO animated:NO];
+     }
+    // vc的view去掉导航栏的边距，但是保留导航栏的NavBar
+     if (viewController.makeTranslucent) {
+         self.navigationBar.translucent = YES;
+     } else {
+         self.navigationBar.translucent = NO;
+     }
+    UIView *barBackgroundView = [[self.navigationBar subviews] objectAtIndex:0];// _UIBarBackground
+    if (viewController.navBarTransparent) {
+        barBackgroundView.alpha = 0;
+    } else {
+        barBackgroundView.alpha = 1;
+    }
+}
+
+#pragma mark - CUSTOM
 
 + (HYNavigationController *)navigationControllerWithController:(Class)controller tabBarTitle:(NSString *)tabBarTitle normalImage:(UIImage *)normalImage selectedImage:(UIImage *)selectedImage{
     UIViewController *vc = [[controller alloc] init];;
@@ -79,16 +140,20 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
    
     vc.tabBarItem = item;
     vc.tabBarItem.title = tabBarTitle;
-    //vc.title = tabBarTitle;
+    vc.title = tabBarTitle;
 
     HYNavigationController *nav = [[HYNavigationController alloc] initWithRootViewController:vc];
-    [nav.navigationBar setShadowImage:[UIImage new]];
-    [nav.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    [nav.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17], NSForegroundColorAttributeName:[UIColor darkTextColor]}];
-
-    nav.navigationBar.translucent = YES;
-    
     return nav;
+}
+
+#pragma mark - STATUSBAR
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    if ([CNSkinManager currSkinType] == SKinTypeBlack) {
+        return UIStatusBarStyleLightContent;
+    } else {
+        return UIStatusBarStyleDefault;
+    }
 }
 
 #pragma mark - 控制屏幕旋转方法

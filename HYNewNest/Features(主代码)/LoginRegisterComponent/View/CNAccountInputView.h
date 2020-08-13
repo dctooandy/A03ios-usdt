@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CNAccountInputView : CNBaseXibView
 /// 账号
-@property (nonatomic, readonly) NSString *account;
+@property (nonatomic, copy) NSString *account;
 /// 用户账号是否正确
 @property (nonatomic, assign) BOOL correct;
 /// 手机或者账号登录
@@ -30,6 +30,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)showWrongMsg:(NSString *)msg;
 - (void)setPlaceholder:(NSString *)text;
+
+
+/// 电话回拨新增页面，为了不改版原来业务，修改键盘类型即可避免
+/// 后期优化：与上面合并成枚举，区分各种输入来源
+@property (nonatomic, assign) BOOL fromServer;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -8,17 +8,17 @@
 
 #import "CNCodeInputView.h"
 
-int TotalSecond = 10;
+int TotalSecond = 60;
 
 @interface CNCodeInputView () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *tipLb;
 @property (weak, nonatomic) IBOutlet UITextField *inputTF;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputTrailing;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (weak, nonatomic) IBOutlet UIButton *codeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *eyeBtn;
 
-/// 记录对错，用于UI改变风格
-@property (assign, nonatomic) BOOL wrongCode;
+
 @property (nonatomic, strong) UIColor *hilghtColor;
 @property (nonatomic, strong) UIColor *wrongColor;
 @property (nonatomic, strong) UIColor *normalColor;
@@ -53,7 +53,28 @@ int TotalSecond = 10;
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     self.tipLb.hidden = NO;
-    self.tipLb.text = self.phoneLogin ? @"验证码*": @"密码*";
+    switch (_codeType) {
+        case CNCodeTypeAccountRegister:
+            self.tipLb.text = @"请输入字母与数字组合的密码，8位以上*";
+            break;
+        case CNCodeTypeAccountLogin:
+            self.tipLb.text = @"密码*";
+            break;
+        case CNCodeTypeBindPhone:
+        case CNCodeTypePhoneLogin:
+        case CNCodeTypeBankCard:
+            self.tipLb.text = @"验证码*";
+            break;
+        case CNCodeTypeNewPwd:
+            self.tipLb.text = @"新密码*";
+            break;
+        case CNCodeTypeOldPwd:
+            self.tipLb.text = @"旧密码*";
+            break;
+        default:
+            break;
+    }
+    self.tipLb.textColor = _wrongCode ? self.wrongColor: self.hilghtColor;
     self.lineView.backgroundColor = _wrongCode ? self.wrongColor: self.hilghtColor;
 }
 
@@ -65,11 +86,22 @@ int TotalSecond = 10;
 - (void)textFieldChange:(UITextField *)textField {
     
     NSString *text = textField.text;
-    
-    self.correct = (text.length >= 1);
+    switch (_codeType) {
+        case CNCodeTypeBindPhone:
+        case CNCodeTypePhoneLogin:
+        case CNCodeTypeBankCard:
+            self.correct = (text.length >= 6);
+            break;
+        default:
+            self.correct = (text.length >= 8);
+            break;
+    }
     if (text.length >= 16) {
         textField.text = [text substringToIndex:16];
     }
+    self.lineView.backgroundColor = self.hilghtColor;
+    self.tipLb.textColor = self.hilghtColor;
+
     if (_delegate && [_delegate respondsToSelector:@selector(codeInputViewTextChange:)]) {
         [_delegate codeInputViewTextChange:self];
     }
@@ -84,12 +116,17 @@ int TotalSecond = 10;
     self.inputTF.secureTextEntry = sender.selected;
 }
 
-- (void)setPhoneLogin:(BOOL)phoneLogin {
-    _phoneLogin = phoneLogin;
-    self.inputTF.placeholder = phoneLogin ? @"请输入验证码": @"请输入密码";
-    self.codeBtn.hidden = !phoneLogin;
-    self.eyeBtn.hidden = phoneLogin;
-    self.inputTF.secureTextEntry = phoneLogin ? NO: self.eyeBtn.selected;
+- (void)setAccount:(NSString *)account {
+    _account = account;
+    if ([account hasPrefix:@"1"]) {
+//        self.codeType = CNCodeTypePhoneLogin;
+        self.codeBtn.hidden = !(account.length > 10);
+        self.inputTF.keyboardType = UIKeyboardTypeNumberPad;
+    } else {
+        self.codeType = CNCodeTypeAccountLogin;
+        self.codeBtn.hidden = YES;
+        self.inputTF.keyboardType = UIKeyboardTypeDefault;
+    }
 }
 
 #pragma - mark Timer
@@ -117,21 +154,70 @@ int TotalSecond = 10;
 }
 
 - (IBAction)sendCode:(UIButton *)sender {
-//    if (![self.inputTF.text isValidPhoneNum]) {
-//        [CNHUB showError:@"请输入正确的手机号"];
-//        return;
-//    }
     self.codeBtn.enabled = NO;
     [self.secondTimer setFireDate:[NSDate distantPast]];
     
-//    __weak typeof(self) weakSelf = self;
-//    [CNLoginRequest getSMSCodeWithType:CNSMSCodeTypeLogin phone:self.inputTF.text completionHandler:^(id responseObj, NSString *errorMsg) {
-//        if (errorMsg) {
-//            [CNHUB showError:errorMsg];
-//        } else {
-//            [CNHUB showSuccess:@"验证码已发送"];
-//            weakSelf.codeId = [responseObj objectForKey:@"messageId"];
-//        }
-//    }];
+    if (self.codeType==CNCodeTypeBankCard) {
+        [CNLoginRequest getSMSCodeByLoginNameType:CNSMSCodeTypeChangeBank completionHandler:^(id responseObj, NSString *errorMsg) {
+            [kKeywindow jk_makeToast:[NSString stringWithFormat:@"向手机%@\n发送了一条验证码", [CNUserManager shareManager].userDetail.mobileNo] duration:2 position:JKToastPositionCenter];
+            SmsCodeModel *smsModel = [SmsCodeModel cn_parse:responseObj];
+            self.smsModel = smsModel;
+            if (self->_delegate && [self->_delegate respondsToSelector:@selector(didReceiveSmsCodeModel:)]) {
+                [self->_delegate didReceiveSmsCodeModel:smsModel];
+            }
+        }];
+        
+    } else {
+        // 发送验证码请求
+        [CNLoginRequest getSMSCodeWithType:self.codeType == CNCodeTypeBindPhone?CNSMSCodeTypeBindPhone:CNSMSCodeTypeLogin
+                                     phone:self.account
+                         completionHandler:^(id responseObj, NSString *errorMsg) {
+            [kKeywindow jk_makeToast:[NSString stringWithFormat:@"向手机%@\n发送了一条验证码", self.account] duration:2 position:JKToastPositionCenter];
+            SmsCodeModel *smsModel = [SmsCodeModel cn_parse:responseObj];
+            self.smsModel = smsModel;
+            if (self->_delegate && [self->_delegate respondsToSelector:@selector(didReceiveSmsCodeModel:)]) {
+                [self->_delegate didReceiveSmsCodeModel:smsModel];
+            }
+        }];
+    }
+}
+
+- (void)setCodeType:(CNCodeType)codeType {
+    _codeType = codeType;
+    self.eyeBtn.hidden = NO;
+    switch (codeType) {
+        case CNCodeTypeAccountRegister:
+            self.inputTrailing.constant = 50;
+            break;
+        case CNCodeTypeBindPhone:
+        case CNCodeTypePhoneLogin:
+            self.inputTF.placeholder = @"请输入验证码";
+            self.eyeBtn.hidden = YES;
+            self.inputTF.secureTextEntry = NO;
+            break;
+        case CNCodeTypeAccountLogin:
+            self.inputTF.placeholder = @"请输入密码";
+            self.inputTF.secureTextEntry = self.eyeBtn.selected;
+            break;
+        case CNCodeTypeNewPwd:
+            self.inputTrailing.constant = 50;
+            self.inputTF.secureTextEntry = self.eyeBtn.selected;
+            self.tipLb.text = @"新密码*";
+            self.tipLb.hidden = YES;
+            break;
+        case CNCodeTypeOldPwd:
+            self.inputTrailing.constant = 50;
+            self.inputTF.secureTextEntry = self.eyeBtn.selected;
+            self.tipLb.text = @"旧密码*";
+            self.tipLb.hidden = YES;
+            break;
+        case CNCodeTypeBankCard:
+            self.inputTF.placeholder = @"请输入验证码";
+            self.eyeBtn.hidden = YES;
+            self.inputTF.secureTextEntry = NO;
+            break;
+        default:
+            break;
+    }
 }
 @end

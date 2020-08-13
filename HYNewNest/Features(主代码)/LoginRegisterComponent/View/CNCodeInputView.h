@@ -7,12 +7,26 @@
 //
 
 #import "CNBaseXibView.h"
+#import "SmsCodeModel.h"
+#import "CNLoginRequest.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+typedef NS_ENUM(NSUInteger, CNCodeType) {
+    CNCodeTypePhoneLogin,       //手机登录
+    CNCodeTypeAccountLogin,     //账号登录
+    CNCodeTypeAccountRegister,  //账号注册
+    CNCodeTypeNewPwd,           //修改密码
+    CNCodeTypeOldPwd,           //旧密码
+    CNCodeTypeBankCard,
+    CNCodeTypeBindPhone
+};
 
 @class CNCodeInputView;
 @protocol CNCodeInputViewDelegate
 - (void)codeInputViewTextChange:(CNCodeInputView *)view;
+@optional
+- (void)didReceiveSmsCodeModel:(SmsCodeModel *)model;
 @end
 
 @interface CNCodeInputView : CNBaseXibView
@@ -20,9 +34,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSString *code;
 /// 密码输入是否符合规则
 @property (nonatomic, assign) BOOL correct;
-/// 手机或者账号登录
-@property (nonatomic, assign) BOOL phoneLogin;
+/// 传入的账号/手机号
+@property (nonatomic, copy) NSString *account;
+
+/// 记录对错，用于UI改变风格
+@property (assign, nonatomic) BOOL wrongCode;
+
+@property (nonatomic, strong) SmsCodeModel *smsModel;
+
 @property (nonatomic, weak) id delegate;
+
+@property (nonatomic, assign) CNCodeType codeType;
 
 - (void)showWrongMsg:(NSString *)msg;
 - (void)setPlaceholder:(NSString *)text;

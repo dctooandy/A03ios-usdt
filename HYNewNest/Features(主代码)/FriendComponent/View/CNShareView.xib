@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CNShareView">
+            <connections>
+                <outlet property="bottom" destination="Vdi-Wj-HmU" id="3He-a5-Or2"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWw-6O-s1l">
+                    <rect key="frame" x="0.0" y="896" width="414" height="270"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFP-qj-my7">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="84.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享给好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5S-MC-Hmy">
+                                    <rect key="frame" x="166" y="16" width="82" height="19.5"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                    <color key="textColor" white="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nfT-nu-4lF" customClass="CNLineView">
+                                    <rect key="frame" x="0.0" y="53.5" width="414" height="1"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="KPa-S0-N0y"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wg-wd-jWO">
+                                    <rect key="frame" x="366" y="11" width="30" height="30"/>
+                                    <state key="normal" backgroundImage="l_close"/>
+                                    <connections>
+                                        <action selector="close:" destination="-1" eventType="touchUpInside" id="1ok-fJ-8P2"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="nfT-nu-4lF" firstAttribute="top" secondItem="p5S-MC-Hmy" secondAttribute="bottom" constant="18" id="117-T4-I1g"/>
+                                <constraint firstItem="9Wg-wd-jWO" firstAttribute="centerY" secondItem="p5S-MC-Hmy" secondAttribute="centerY" id="2wm-Lc-zyt"/>
+                                <constraint firstAttribute="trailing" secondItem="nfT-nu-4lF" secondAttribute="trailing" id="6Ik-KA-fga"/>
+                                <constraint firstAttribute="trailing" secondItem="9Wg-wd-jWO" secondAttribute="trailing" constant="18" id="BZr-sy-fIg"/>
+                                <constraint firstItem="nfT-nu-4lF" firstAttribute="leading" secondItem="aFP-qj-my7" secondAttribute="leading" id="Gps-JJ-D8Q"/>
+                                <constraint firstItem="p5S-MC-Hmy" firstAttribute="top" secondItem="aFP-qj-my7" secondAttribute="top" constant="16" id="azh-VU-QPE"/>
+                                <constraint firstAttribute="bottom" secondItem="nfT-nu-4lF" secondAttribute="bottom" constant="30" id="r1i-FY-UiD"/>
+                                <constraint firstItem="p5S-MC-Hmy" firstAttribute="centerX" secondItem="aFP-qj-my7" secondAttribute="centerX" id="tkk-bf-YGY"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nd4-ht-0Cf">
+                            <rect key="frame" x="0.0" y="54.5" width="414" height="215.5"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Seb-z0-4Sj">
+                                    <rect key="frame" x="15" y="10" width="384" height="95.5"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YtA-rr-SH3">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="95.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="80" id="hYi-EQ-mNl"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                            <inset key="titleEdgeInsets" minX="-40" minY="40" maxX="0.0" maxY="0.0"/>
+                                            <inset key="imageEdgeInsets" minX="20" minY="-20" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="微信好友" image="share_wx">
+                                                <color key="titleColor" white="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="plaformAction:" destination="-1" eventType="touchUpInside" id="6Hj-Ws-sf2"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FH9-hN-QWL">
+                                            <rect key="frame" x="101.5" y="0.0" width="80" height="95.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                            <inset key="titleEdgeInsets" minX="-40" minY="40" maxX="0.0" maxY="0.0"/>
+                                            <inset key="imageEdgeInsets" minX="20" minY="-20" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="微信朋友圈" image="share_pyq">
+                                                <color key="titleColor" white="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="plaformAction:" destination="-1" eventType="touchUpInside" id="L39-9s-q5C"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQK-dj-vXb">
+                                            <rect key="frame" x="202.5" y="0.0" width="80" height="95.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                            <inset key="titleEdgeInsets" minX="-40" minY="40" maxX="0.0" maxY="0.0"/>
+                                            <inset key="imageEdgeInsets" minX="20" minY="-20" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="新浪微博" image="share_sina">
+                                                <color key="titleColor" white="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="plaformAction:" destination="-1" eventType="touchUpInside" id="7d3-1L-vsd"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLK-el-aju">
+                                            <rect key="frame" x="304" y="0.0" width="80" height="95.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                            <inset key="titleEdgeInsets" minX="-40" minY="40" maxX="0.0" maxY="0.0"/>
+                                            <inset key="imageEdgeInsets" minX="20" minY="-20" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="QQ" image="share_qq">
+                                                <color key="titleColor" white="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="plaformAction:" destination="-1" eventType="touchUpInside" id="4Uf-Rd-zcl"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="XLK-el-aju" firstAttribute="width" secondItem="YtA-rr-SH3" secondAttribute="width" id="PNj-l4-nCT"/>
+                                        <constraint firstItem="VQK-dj-vXb" firstAttribute="width" secondItem="YtA-rr-SH3" secondAttribute="width" id="VLs-53-ZN1"/>
+                                        <constraint firstItem="FH9-hN-QWL" firstAttribute="width" secondItem="YtA-rr-SH3" secondAttribute="width" id="ffa-io-hgB"/>
+                                    </constraints>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="kAZ-9A-EXg">
+                                    <rect key="frame" x="15" y="105.5" width="80" height="95"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0E-gE-S1J">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="95"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="80" id="FzK-Ip-SdK"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                            <inset key="titleEdgeInsets" minX="-40" minY="40" maxX="0.0" maxY="0.0"/>
+                                            <inset key="imageEdgeInsets" minX="20" minY="-20" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="复制链接" image="share_lianjie">
+                                                <color key="titleColor" white="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="plaformAction:" destination="-1" eventType="touchUpInside" id="emy-Jo-ppg"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="Seb-z0-4Sj" secondAttribute="trailing" constant="15" id="9b6-WJ-iNB"/>
+                                <constraint firstItem="Seb-z0-4Sj" firstAttribute="top" secondItem="Nd4-ht-0Cf" secondAttribute="top" constant="10" id="AdE-kH-Udi"/>
+                                <constraint firstAttribute="bottom" secondItem="kAZ-9A-EXg" secondAttribute="bottom" constant="15" id="N6D-Im-ptd"/>
+                                <constraint firstItem="kAZ-9A-EXg" firstAttribute="top" secondItem="Seb-z0-4Sj" secondAttribute="bottom" id="h1A-g3-PNU"/>
+                                <constraint firstItem="Seb-z0-4Sj" firstAttribute="leading" secondItem="Nd4-ht-0Cf" secondAttribute="leading" constant="15" id="iWQ-yZ-YA1"/>
+                                <constraint firstItem="kAZ-9A-EXg" firstAttribute="leading" secondItem="Nd4-ht-0Cf" secondAttribute="leading" constant="15" id="kSY-Qh-wev"/>
+                                <constraint firstItem="kAZ-9A-EXg" firstAttribute="height" secondItem="Seb-z0-4Sj" secondAttribute="height" id="pb6-F3-Q5n"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Nd4-ht-0Cf" firstAttribute="leading" secondItem="iWw-6O-s1l" secondAttribute="leading" id="9yA-kO-wFo"/>
+                        <constraint firstItem="aFP-qj-my7" firstAttribute="leading" secondItem="iWw-6O-s1l" secondAttribute="leading" id="C64-6I-ove"/>
+                        <constraint firstItem="Nd4-ht-0Cf" firstAttribute="top" secondItem="nfT-nu-4lF" secondAttribute="bottom" id="GpQ-z5-bgq"/>
+                        <constraint firstAttribute="trailing" secondItem="Nd4-ht-0Cf" secondAttribute="trailing" id="KO3-xO-myO"/>
+                        <constraint firstItem="aFP-qj-my7" firstAttribute="top" secondItem="iWw-6O-s1l" secondAttribute="top" id="LY4-Hv-Lww"/>
+                        <constraint firstAttribute="height" constant="270" id="MUB-Uu-qbB"/>
+                        <constraint firstAttribute="trailing" secondItem="aFP-qj-my7" secondAttribute="trailing" id="nfu-OP-ghR"/>
+                        <constraint firstAttribute="bottom" secondItem="Nd4-ht-0Cf" secondAttribute="bottom" id="ukh-zu-yHo"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="iWw-6O-s1l" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5gY-od-R9a"/>
+                <constraint firstAttribute="bottom" secondItem="iWw-6O-s1l" secondAttribute="bottom" constant="-270" id="Vdi-Wj-HmU"/>
+                <constraint firstAttribute="trailing" secondItem="iWw-6O-s1l" secondAttribute="trailing" id="enh-fW-aor"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="0bx-rG-ZxG"/>
+            <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="l_close" width="30" height="30"/>
+        <image name="share_lianjie" width="42" height="42"/>
+        <image name="share_pyq" width="42" height="42"/>
+        <image name="share_qq" width="42" height="42"/>
+        <image name="share_sina" width="42" height="42"/>
+        <image name="share_wx" width="42" height="42"/>
+    </resources>
+</document>

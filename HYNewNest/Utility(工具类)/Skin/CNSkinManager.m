@@ -43,9 +43,13 @@ NSDictionary *SkinDictionary() {
 + (void)setSkinTpye:(SKinType)type {
     [CNSkinManager defaultManager].currentSkin = type;
     [[NSUserDefaults standardUserDefaults] setInteger:(NSInteger)type forKey:currentSkinKey];
-    
+    [[NSUserDefaults standardUserDefaults] synchronize];
     // 切换发送通知
     [[NSNotificationCenter defaultCenter] postNotificationName:CNSkinChangeNotification object:nil userInfo:nil];
+}
+
++ (SKinType)currSkinType {
+    return (SKinType)[[NSUserDefaults standardUserDefaults] integerForKey:currentSkinKey];
 }
 
 

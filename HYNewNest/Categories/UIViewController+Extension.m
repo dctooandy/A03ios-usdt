@@ -12,6 +12,8 @@
 static NSString *bgColorKey = @"bgColorKey";
 static NSString *makeTranslucentKey = @"makeTranslucentKey";
 static NSString *hideNavgationKey = @"hideNavgationKey";
+static NSString *navBarTransparentKey = @"navBarTransparentKey";
+static NSString *navPopupBlockKey = @"navPopupBlockKey";
 
 
 @implementation UIViewController (Extension)
@@ -48,30 +50,23 @@ static NSString *hideNavgationKey = @"hideNavgationKey";
     return [objc_getAssociatedObject(self, &hideNavgationKey) boolValue];
 }
 
+- (void)setNavBarTransparent:(BOOL)navBarTransparent
+{
+    objc_setAssociatedObject(self, &navBarTransparentKey, @(navBarTransparent), OBJC_ASSOCIATION_ASSIGN);
+}
 
+- (BOOL)navBarTransparent
+{
+    return objc_getAssociatedObject(self, &navBarTransparentKey);
+}
 
-+ (UIViewController *)getCurrentViewController{
-    UIViewController* currentViewController = UIApplication.sharedApplication.keyWindow .rootViewController;
-    BOOL runLoopFind = YES;
-    while (runLoopFind) {
-        if (currentViewController.presentedViewController) {
-            currentViewController = currentViewController.presentedViewController;
-        } else if ([currentViewController isKindOfClass:[UINavigationController class]]) {
-            UINavigationController* navigationController = (UINavigationController* )currentViewController;
-            currentViewController = [navigationController.childViewControllers lastObject];
-        } else if ([currentViewController isKindOfClass:[UITabBarController class]]) {
-            UITabBarController* tabBarController = (UITabBarController* )currentViewController;
-            currentViewController = tabBarController.selectedViewController;
-        } else {
-            NSUInteger childViewControllerCount = currentViewController.childViewControllers.count;
-            if (childViewControllerCount > 0) {
-                currentViewController = currentViewController.childViewControllers.lastObject;
-                return currentViewController;
-            } else {
-                return currentViewController;
-            }
-        }
-    }    return currentViewController;
+- (void)setNavPopupBlock:(void (^)(id))navPopupBlock
+{
+    objc_setAssociatedObject(self, &navPopupBlockKey, navPopupBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (void (^)(id))navPopupBlock {
+    return objc_getAssociatedObject(self, &navPopupBlockKey);
 }
 
 @end

@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CNElectionTypeSelectorView">
+            <connections>
+                <outlet property="allHallBtn" destination="9Cp-NA-xA4" id="7j2-j0-fl1"/>
+                <outlet property="allLineBtn" destination="6df-WX-gp3" id="YLe-x7-nVC"/>
+                <outlet property="allTpyeBtn" destination="9Xm-1k-7yb" id="f4X-3F-5iu"/>
+                <outlet property="bottom" destination="Vdi-Wj-HmU" id="3He-a5-Or2"/>
+                <outlet property="clearBtn" destination="qy2-yV-F1m" id="RAt-cB-56V"/>
+                <outlet property="submitBtn" destination="Um1-vj-t9Z" id="6R5-LZ-fPT"/>
+                <outletCollection property="hallBtnArray" destination="Wtk-tw-fOw" id="C19-3V-jNZ"/>
+                <outletCollection property="hallBtnArray" destination="psL-Nu-rkq" id="KVE-A5-bAa"/>
+                <outletCollection property="hallBtnArray" destination="Lcn-8z-qLl" id="6oz-by-oqO"/>
+                <outletCollection property="hallBtnArray" destination="dM6-rt-wlu" id="NX8-eN-YXV"/>
+                <outletCollection property="hallBtnArray" destination="IKU-G7-7Zt" id="B19-PH-e5J"/>
+                <outletCollection property="hallBtnArray" destination="RwS-6y-ZXW" id="vtA-PQ-tiq"/>
+                <outletCollection property="hallBtnArray" destination="jxi-UD-RxR" id="Gwr-G3-Xj0"/>
+                <outletCollection property="hallBtnArray" destination="S50-Lh-I2T" id="w8x-89-fci"/>
+                <outletCollection property="typeBtnArray" destination="cXu-gW-zqx" id="yIN-UT-f0S"/>
+                <outletCollection property="typeBtnArray" destination="Gyn-o1-KhK" id="DP4-JO-hV5"/>
+                <outletCollection property="typeBtnArray" destination="Mfb-ex-vrB" id="11P-TZ-iM6"/>
+                <outletCollection property="typeBtnArray" destination="fSC-hb-Y7S" id="omp-yp-v5z"/>
+                <outletCollection property="typeBtnArray" destination="Y7Q-RN-Pem" id="3p2-Mk-XKH"/>
+                <outletCollection property="typeBtnArray" destination="vbd-kL-kOX" id="A2L-w6-w6p"/>
+                <outletCollection property="typeBtnArray" destination="OLg-aJ-3wQ" id="Gc9-Qd-KyK"/>
+                <outletCollection property="typeBtnArray" destination="Brg-jj-Nir" id="piQ-qE-Tfa"/>
+                <outletCollection property="lineBtnArray" destination="cAD-Yc-NTp" id="wu0-ij-Tvw"/>
+                <outletCollection property="lineBtnArray" destination="Ffq-BF-NNw" id="uGJ-Vg-K7e"/>
+                <outletCollection property="lineBtnArray" destination="UcL-27-sXv" id="859-K6-eSz"/>
+                <outletCollection property="lineBtnArray" destination="NnY-Hd-YUY" id="t6h-lJ-ZEa"/>
+                <outletCollection property="lineBtnArray" destination="uD8-UI-rKU" id="yn4-4G-GyF"/>
+                <outletCollection property="lineBtnArray" destination="rYB-kD-5PW" id="NxT-MK-u3Z"/>
+                <outletCollection property="lineBtnArray" destination="Ux9-2w-t4H" id="RNg-dR-K4Y"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWw-6O-s1l">
+                    <rect key="frame" x="0.0" y="326" width="414" height="570"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFP-qj-my7">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="84.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="筛选" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5S-MC-Hmy">
+                                    <rect key="frame" x="190.5" y="16" width="33" height="19.5"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                    <color key="textColor" white="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nfT-nu-4lF" customClass="CNLineView">
+                                    <rect key="frame" x="0.0" y="53.5" width="414" height="1"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="KPa-S0-N0y"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wg-wd-jWO">
+                                    <rect key="frame" x="366" y="11" width="30" height="30"/>
+                                    <state key="normal" backgroundImage="l_close"/>
+                                    <connections>
+                                        <action selector="close:" destination="-1" eventType="touchUpInside" id="1ok-fJ-8P2"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="nfT-nu-4lF" firstAttribute="top" secondItem="p5S-MC-Hmy" secondAttribute="bottom" constant="18" id="117-T4-I1g"/>
+                                <constraint firstItem="9Wg-wd-jWO" firstAttribute="centerY" secondItem="p5S-MC-Hmy" secondAttribute="centerY" id="2wm-Lc-zyt"/>
+                                <constraint firstAttribute="trailing" secondItem="nfT-nu-4lF" secondAttribute="trailing" id="6Ik-KA-fga"/>
+                                <constraint firstAttribute="trailing" secondItem="9Wg-wd-jWO" secondAttribute="trailing" constant="18" id="BZr-sy-fIg"/>
+                                <constraint firstItem="nfT-nu-4lF" firstAttribute="leading" secondItem="aFP-qj-my7" secondAttribute="leading" id="Gps-JJ-D8Q"/>
+                                <constraint firstItem="p5S-MC-Hmy" firstAttribute="top" secondItem="aFP-qj-my7" secondAttribute="top" constant="16" id="azh-VU-QPE"/>
+                                <constraint firstAttribute="bottom" secondItem="nfT-nu-4lF" secondAttribute="bottom" constant="30" id="r1i-FY-UiD"/>
+                                <constraint firstItem="p5S-MC-Hmy" firstAttribute="centerX" secondItem="aFP-qj-my7" secondAttribute="centerX" id="tkk-bf-YGY"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nd4-ht-0Cf">
+                            <rect key="frame" x="0.0" y="54.5" width="414" height="515.5"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TwL-uG-QIY">
+                                    <rect key="frame" x="30" y="15" width="354" height="140"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="游戏厅" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-7O-S7k">
+                                            <rect key="frame" x="0.0" y="0.0" width="43" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                            <color key="textColor" white="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="Zev-c8-1SY">
+                                            <rect key="frame" x="0.0" y="32" width="354" height="108"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="6BO-ZX-pHr">
+                                                    <rect key="frame" x="0.0" y="0.0" width="354" height="30"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Cp-NA-xA4" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="全部"/>
+                                                            <connections>
+                                                                <action selector="hallAction:" destination="-1" eventType="touchUpInside" id="Pa2-PL-cUY"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wtk-tw-fOw" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="91" y="0.0" width="81.5" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="AG"/>
+                                                            <connections>
+                                                                <action selector="hallAction:" destination="-1" eventType="touchUpInside" id="RLq-0I-Oec"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="psL-Nu-rkq" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="181.5" y="0.0" width="82" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="PP"/>
+                                                            <connections>
+                                                                <action selector="hallAction:" destination="-1" eventType="touchUpInside" id="QDh-Yi-sk7"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lcn-8z-qLl" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="272.5" y="0.0" width="81.5" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="TTG"/>
+                                                            <connections>
+                                                                <action selector="hallAction:" destination="-1" eventType="touchUpInside" id="VXn-Yc-oOx"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="lfm-l2-f3z"/>
+                                                    </constraints>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="dTs-Hn-UN0">
+                                                    <rect key="frame" x="0.0" y="39" width="354" height="30"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dM6-rt-wlu" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="PT"/>
+                                                            <connections>
+                                                                <action selector="hallAction:" destination="-1" eventType="touchUpInside" id="9iO-gY-ajH"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKU-G7-7Zt" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="91" y="0.0" width="81.5" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="MG"/>
+                                                            <connections>
+                                                                <action selector="hallAction:" destination="-1" eventType="touchUpInside" id="Dlp-k5-hE9"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RwS-6y-ZXW" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="181.5" y="0.0" width="82" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="PNG"/>
+                                                            <connections>
+                                                                <action selector="hallAction:" destination="-1" eventType="touchUpInside" id="qgk-Q2-Hev"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxi-UD-RxR" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="272.5" y="0.0" width="81.5" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="BSG"/>
+                                                            <connections>
+                                                                <action selector="hallAction:" destination="-1" eventType="touchUpInside" id="cef-fW-Azm"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="3dE-mb-wWt">
+                                                    <rect key="frame" x="0.0" y="78" width="82" height="30"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S50-Lh-I2T" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="NT"/>
+                                                            <connections>
+                                                                <action selector="hallAction:" destination="-1" eventType="touchUpInside" id="Oe9-fG-jqN"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="S50-Lh-I2T" firstAttribute="width" secondItem="9Cp-NA-xA4" secondAttribute="width" id="6fs-wt-yd7"/>
+                                                <constraint firstAttribute="bottom" secondItem="3dE-mb-wWt" secondAttribute="bottom" id="BeX-11-cBR"/>
+                                                <constraint firstAttribute="trailing" secondItem="6BO-ZX-pHr" secondAttribute="trailing" id="RLG-va-uWL"/>
+                                                <constraint firstItem="6BO-ZX-pHr" firstAttribute="top" secondItem="Zev-c8-1SY" secondAttribute="top" id="fbI-Kv-Wwd"/>
+                                                <constraint firstItem="3dE-mb-wWt" firstAttribute="leading" secondItem="Zev-c8-1SY" secondAttribute="leading" id="j02-cZ-Ofd"/>
+                                                <constraint firstItem="6BO-ZX-pHr" firstAttribute="leading" secondItem="Zev-c8-1SY" secondAttribute="leading" id="lfS-rf-jHG"/>
+                                                <constraint firstAttribute="trailing" secondItem="dTs-Hn-UN0" secondAttribute="trailing" id="ngn-Fh-vqP"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="Zev-c8-1SY" secondAttribute="trailing" id="3Wm-cs-zcZ"/>
+                                        <constraint firstItem="XGd-7O-S7k" firstAttribute="top" secondItem="TwL-uG-QIY" secondAttribute="top" id="Lsd-Wk-JFo"/>
+                                        <constraint firstItem="Zev-c8-1SY" firstAttribute="leading" secondItem="TwL-uG-QIY" secondAttribute="leading" id="dsm-kl-W4r"/>
+                                        <constraint firstItem="XGd-7O-S7k" firstAttribute="leading" secondItem="TwL-uG-QIY" secondAttribute="leading" id="g1M-eE-fUe"/>
+                                        <constraint firstItem="Zev-c8-1SY" firstAttribute="top" secondItem="XGd-7O-S7k" secondAttribute="bottom" constant="15" id="rW2-yg-nvJ"/>
+                                        <constraint firstAttribute="bottom" secondItem="Zev-c8-1SY" secondAttribute="bottom" id="t8H-zZ-CZe"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VMj-7C-nXP">
+                                    <rect key="frame" x="30" y="170" width="354" height="140"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="游戏类型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aJ-Up-MiS">
+                                            <rect key="frame" x="0.0" y="0.0" width="57.5" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                            <color key="textColor" white="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="v5K-9g-vHc">
+                                            <rect key="frame" x="0.0" y="32" width="354" height="108"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="gvg-u1-jTn">
+                                                    <rect key="frame" x="0.0" y="0.0" width="354" height="30"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Xm-1k-7yb" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="全部"/>
+                                                            <connections>
+                                                                <action selector="typeAction:" destination="-1" eventType="touchUpInside" id="vFO-zE-cPJ"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cXu-gW-zqx" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="91" y="0.0" width="81.5" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="老虎机"/>
+                                                            <connections>
+                                                                <action selector="typeAction:" destination="-1" eventType="touchUpInside" id="Sac-Jv-sfv"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gyn-o1-KhK" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="181.5" y="0.0" width="82" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="桌面游戏"/>
+                                                            <connections>
+                                                                <action selector="typeAction:" destination="-1" eventType="touchUpInside" id="Dvw-n1-rlF"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mfb-ex-vrB" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="272.5" y="0.0" width="81.5" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="纸牌"/>
+                                                            <connections>
+                                                                <action selector="typeAction:" destination="-1" eventType="touchUpInside" id="AJX-VJ-MJA"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="QaN-1s-b8a"/>
+                                                    </constraints>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="zj3-c0-btA">
+                                                    <rect key="frame" x="0.0" y="39" width="354" height="30"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSC-hb-Y7S" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="街机游戏"/>
+                                                            <connections>
+                                                                <action selector="typeAction:" destination="-1" eventType="touchUpInside" id="A5A-Cb-435"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7Q-RN-Pem" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="91" y="0.0" width="81.5" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="赛车"/>
+                                                            <connections>
+                                                                <action selector="typeAction:" destination="-1" eventType="touchUpInside" id="GKb-yG-F45"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbd-kL-kOX" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="181.5" y="0.0" width="82" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="刮刮乐"/>
+                                                            <connections>
+                                                                <action selector="typeAction:" destination="-1" eventType="touchUpInside" id="3PL-i8-W5I"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLg-aJ-3wQ" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="272.5" y="0.0" width="81.5" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="视频扑克"/>
+                                                            <connections>
+                                                                <action selector="typeAction:" destination="-1" eventType="touchUpInside" id="t2c-P0-SNg"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="KRU-WW-mk4">
+                                                    <rect key="frame" x="0.0" y="78" width="82" height="30"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Brg-jj-Nir" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="其他"/>
+                                                            <connections>
+                                                                <action selector="typeAction:" destination="-1" eventType="touchUpInside" id="Jha-7y-XFS"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gvg-u1-jTn" firstAttribute="leading" secondItem="v5K-9g-vHc" secondAttribute="leading" id="1i4-ao-U9m"/>
+                                                <constraint firstAttribute="bottom" secondItem="KRU-WW-mk4" secondAttribute="bottom" id="DvW-AP-J4p"/>
+                                                <constraint firstAttribute="trailing" secondItem="gvg-u1-jTn" secondAttribute="trailing" id="F0B-ww-fkh"/>
+                                                <constraint firstItem="gvg-u1-jTn" firstAttribute="top" secondItem="v5K-9g-vHc" secondAttribute="top" id="Rcx-VU-EW4"/>
+                                                <constraint firstAttribute="trailing" secondItem="zj3-c0-btA" secondAttribute="trailing" id="hlM-Th-CZX"/>
+                                                <constraint firstItem="KRU-WW-mk4" firstAttribute="leading" secondItem="v5K-9g-vHc" secondAttribute="leading" id="x6t-XS-4MF"/>
+                                                <constraint firstItem="Brg-jj-Nir" firstAttribute="width" secondItem="9Xm-1k-7yb" secondAttribute="width" id="xRa-4f-dgM"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="v5K-9g-vHc" secondAttribute="trailing" id="1S9-kW-Nyp"/>
+                                        <constraint firstItem="4aJ-Up-MiS" firstAttribute="top" secondItem="VMj-7C-nXP" secondAttribute="top" id="4RL-vX-Gnm"/>
+                                        <constraint firstItem="4aJ-Up-MiS" firstAttribute="leading" secondItem="VMj-7C-nXP" secondAttribute="leading" id="Bkq-oG-Gql"/>
+                                        <constraint firstAttribute="bottom" secondItem="v5K-9g-vHc" secondAttribute="bottom" id="Ffw-Ih-hVq"/>
+                                        <constraint firstItem="v5K-9g-vHc" firstAttribute="leading" secondItem="VMj-7C-nXP" secondAttribute="leading" id="Ye1-YP-Nik"/>
+                                        <constraint firstItem="v5K-9g-vHc" firstAttribute="top" secondItem="4aJ-Up-MiS" secondAttribute="bottom" constant="15" id="oVe-s3-lsO"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Um1-vj-t9Z" customClass="CNTwoStatusBtn">
+                                    <rect key="frame" x="214.5" y="443.5" width="169.5" height="48"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="48" id="vXZ-He-7Qb"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                    <state key="normal" title="确定">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <state key="disabled">
+                                        <color key="titleColor" white="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="24"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="submitAction:" destination="-1" eventType="touchUpInside" id="JTT-bv-HXu"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qy2-yV-F1m">
+                                    <rect key="frame" x="30" y="443.5" width="169.5" height="48"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="48" id="po3-WU-E3e"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                    <state key="normal" title="清除筛选条件">
+                                        <color key="titleColor" red="0.098039215686274508" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <state key="disabled">
+                                        <color key="titleColor" white="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="24"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="clearAction:" destination="-1" eventType="touchUpInside" id="qhy-sV-GND"/>
+                                    </connections>
+                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="deD-Ce-Drj">
+                                    <rect key="frame" x="30" y="325" width="354" height="101"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赔付线" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzz-FV-nIR">
+                                            <rect key="frame" x="0.0" y="0.0" width="43" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                            <color key="textColor" white="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="IDP-ly-fP9">
+                                            <rect key="frame" x="0.0" y="32" width="354" height="69"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="2Tu-dC-DSW">
+                                                    <rect key="frame" x="0.0" y="0.0" width="354" height="30"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6df-WX-gp3" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="全部"/>
+                                                            <connections>
+                                                                <action selector="lineAction:" destination="-1" eventType="touchUpInside" id="PjD-W3-Wae"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAD-Yc-NTp" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="91" y="0.0" width="81.5" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="1-4线"/>
+                                                            <connections>
+                                                                <action selector="lineAction:" destination="-1" eventType="touchUpInside" id="PKf-LD-DdN"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ffq-BF-NNw" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="181.5" y="0.0" width="82" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="5-9线"/>
+                                                            <connections>
+                                                                <action selector="lineAction:" destination="-1" eventType="touchUpInside" id="Nlo-sA-aHr"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UcL-27-sXv" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="272.5" y="0.0" width="81.5" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="15-25线"/>
+                                                            <connections>
+                                                                <action selector="lineAction:" destination="-1" eventType="touchUpInside" id="fPj-Nn-lti"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="2XZ-L4-LsN"/>
+                                                    </constraints>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="4bm-KN-gjn">
+                                                    <rect key="frame" x="0.0" y="39" width="354" height="30"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnY-Hd-YUY" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="30-50线"/>
+                                                            <connections>
+                                                                <action selector="lineAction:" destination="-1" eventType="touchUpInside" id="O5C-hH-gFV"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uD8-UI-rKU" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="91" y="0.0" width="81.5" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="51-146线"/>
+                                                            <connections>
+                                                                <action selector="lineAction:" destination="-1" eventType="touchUpInside" id="b9V-aC-uOk"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYB-kD-5PW" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="181.5" y="0.0" width="82" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="243线"/>
+                                                            <connections>
+                                                                <action selector="lineAction:" destination="-1" eventType="touchUpInside" id="1KT-Lk-RUn"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ux9-2w-t4H" customClass="CNSelectBtn">
+                                                            <rect key="frame" x="272.5" y="0.0" width="81.5" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="1024线"/>
+                                                            <connections>
+                                                                <action selector="lineAction:" destination="-1" eventType="touchUpInside" id="URg-E7-8Db"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="4bm-KN-gjn" secondAttribute="trailing" id="EFf-4w-Nyo"/>
+                                                <constraint firstItem="2Tu-dC-DSW" firstAttribute="top" secondItem="IDP-ly-fP9" secondAttribute="top" id="WgI-ga-DSQ"/>
+                                                <constraint firstItem="2Tu-dC-DSW" firstAttribute="leading" secondItem="IDP-ly-fP9" secondAttribute="leading" id="ZNr-G8-F99"/>
+                                                <constraint firstAttribute="trailing" secondItem="2Tu-dC-DSW" secondAttribute="trailing" id="c5P-PT-hYU"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="mzz-FV-nIR" firstAttribute="top" secondItem="deD-Ce-Drj" secondAttribute="top" id="2sq-PO-yUb"/>
+                                        <constraint firstAttribute="trailing" secondItem="IDP-ly-fP9" secondAttribute="trailing" id="DwX-aZ-dFZ"/>
+                                        <constraint firstItem="IDP-ly-fP9" firstAttribute="top" secondItem="mzz-FV-nIR" secondAttribute="bottom" constant="15" id="Nsk-ln-FBo"/>
+                                        <constraint firstItem="mzz-FV-nIR" firstAttribute="leading" secondItem="deD-Ce-Drj" secondAttribute="leading" id="Z8t-0b-tUp"/>
+                                        <constraint firstAttribute="bottom" secondItem="IDP-ly-fP9" secondAttribute="bottom" id="hjY-WP-FIA"/>
+                                        <constraint firstItem="IDP-ly-fP9" firstAttribute="leading" secondItem="deD-Ce-Drj" secondAttribute="leading" id="jak-oK-teY"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="deD-Ce-Drj" secondAttribute="trailing" constant="30" id="5dw-Fb-JuI"/>
+                                <constraint firstAttribute="trailing" secondItem="Um1-vj-t9Z" secondAttribute="trailing" constant="30" id="7bC-Px-fEr"/>
+                                <constraint firstItem="deD-Ce-Drj" firstAttribute="top" secondItem="VMj-7C-nXP" secondAttribute="bottom" constant="15" id="9n2-G7-a6H"/>
+                                <constraint firstAttribute="trailing" secondItem="VMj-7C-nXP" secondAttribute="trailing" constant="30" id="Hwj-Tb-9zH"/>
+                                <constraint firstAttribute="trailing" secondItem="TwL-uG-QIY" secondAttribute="trailing" constant="30" id="Qfj-rK-Hnm"/>
+                                <constraint firstItem="VMj-7C-nXP" firstAttribute="top" secondItem="TwL-uG-QIY" secondAttribute="bottom" constant="15" id="SgJ-eb-U0z"/>
+                                <constraint firstItem="Um1-vj-t9Z" firstAttribute="leading" secondItem="qy2-yV-F1m" secondAttribute="trailing" constant="15" id="UIq-iN-NCz"/>
+                                <constraint firstItem="Um1-vj-t9Z" firstAttribute="width" secondItem="qy2-yV-F1m" secondAttribute="width" id="UzR-7T-aBM"/>
+                                <constraint firstItem="Um1-vj-t9Z" firstAttribute="bottom" secondItem="qy2-yV-F1m" secondAttribute="bottom" id="Yju-sx-Ew1"/>
+                                <constraint firstItem="TwL-uG-QIY" firstAttribute="top" secondItem="Nd4-ht-0Cf" secondAttribute="top" constant="15" id="aZ3-4j-K12"/>
+                                <constraint firstItem="TwL-uG-QIY" firstAttribute="leading" secondItem="Nd4-ht-0Cf" secondAttribute="leading" constant="30" id="dGc-Pn-ePY"/>
+                                <constraint firstItem="deD-Ce-Drj" firstAttribute="leading" secondItem="Nd4-ht-0Cf" secondAttribute="leading" constant="30" id="eDZ-Ea-gme"/>
+                                <constraint firstAttribute="bottom" secondItem="Um1-vj-t9Z" secondAttribute="bottom" constant="24" id="m2O-yi-IaP"/>
+                                <constraint firstItem="qy2-yV-F1m" firstAttribute="leading" secondItem="Nd4-ht-0Cf" secondAttribute="leading" constant="30" id="pLX-dT-KsH"/>
+                                <constraint firstItem="VMj-7C-nXP" firstAttribute="leading" secondItem="Nd4-ht-0Cf" secondAttribute="leading" constant="30" id="zSs-lg-4ES"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Nd4-ht-0Cf" firstAttribute="leading" secondItem="iWw-6O-s1l" secondAttribute="leading" id="9yA-kO-wFo"/>
+                        <constraint firstItem="aFP-qj-my7" firstAttribute="leading" secondItem="iWw-6O-s1l" secondAttribute="leading" id="C64-6I-ove"/>
+                        <constraint firstItem="Nd4-ht-0Cf" firstAttribute="top" secondItem="nfT-nu-4lF" secondAttribute="bottom" id="GpQ-z5-bgq"/>
+                        <constraint firstAttribute="trailing" secondItem="Nd4-ht-0Cf" secondAttribute="trailing" id="KO3-xO-myO"/>
+                        <constraint firstItem="aFP-qj-my7" firstAttribute="top" secondItem="iWw-6O-s1l" secondAttribute="top" id="LY4-Hv-Lww"/>
+                        <constraint firstAttribute="height" constant="570" id="MUB-Uu-qbB"/>
+                        <constraint firstAttribute="trailing" secondItem="aFP-qj-my7" secondAttribute="trailing" id="nfu-OP-ghR"/>
+                        <constraint firstAttribute="bottom" secondItem="Nd4-ht-0Cf" secondAttribute="bottom" id="ukh-zu-yHo"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="iWw-6O-s1l" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5gY-od-R9a"/>
+                <constraint firstAttribute="bottom" secondItem="iWw-6O-s1l" secondAttribute="bottom" id="Vdi-Wj-HmU"/>
+                <constraint firstAttribute="trailing" secondItem="iWw-6O-s1l" secondAttribute="trailing" id="enh-fW-aor"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="0bx-rG-ZxG"/>
+            <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="l_close" width="30" height="30"/>
+    </resources>
+</document>

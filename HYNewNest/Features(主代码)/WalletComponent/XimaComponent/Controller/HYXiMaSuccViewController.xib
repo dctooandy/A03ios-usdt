@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HYXiMaSuccViewController">
+            <connections>
+                <outlet property="backBtn" destination="Yu0-cX-EZg" id="rQS-lN-IFz"/>
+                <outlet property="congrsLb" destination="o5n-ds-pf3" id="Cfw-ZQ-c20"/>
+                <outlet property="successLb" destination="LJF-Qb-2oU" id="U08-CX-sHi"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="deposit-success" translatesAutoresizingMaskIntoConstraints="NO" id="Vbn-jW-XBq">
+                    <rect key="frame" x="123" y="111" width="168" height="131"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="恭喜您" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5n-ds-pf3">
+                    <rect key="frame" x="179.5" y="260" width="55.5" height="21"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成功洗码，到账100.00USDT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJF-Qb-2oU">
+                    <rect key="frame" x="30" y="291" width="354" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="0.8005672089041096" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0rl-xt-ubo">
+                    <rect key="frame" x="15" y="370.5" width="384" height="128"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="0rl-xt-ubo" secondAttribute="height" multiplier="345:115" id="Lkh-kR-haE"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="banner-1"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="didTapBanner:" destination="-1" eventType="touchUpInside" id="tGH-cF-KpR"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yu0-cX-EZg" customClass="CNTwoStatusBtn">
+                    <rect key="frame" x="30" y="578.5" width="354" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="MmS-nN-f5M"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                    <state key="normal" title="返回">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="disabled">
+                        <color key="titleColor" white="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="didTabBack:" destination="-1" eventType="touchUpInside" id="TkO-yA-UxL"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="LJF-Qb-2oU" firstAttribute="top" secondItem="o5n-ds-pf3" secondAttribute="bottom" constant="10" id="5x4-bd-Ndk"/>
+                <constraint firstItem="Vbn-jW-XBq" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="A5v-tB-nFA"/>
+                <constraint firstItem="o5n-ds-pf3" firstAttribute="top" secondItem="Vbn-jW-XBq" secondAttribute="bottom" constant="18" id="AoX-fz-zW7"/>
+                <constraint firstItem="Yu0-cX-EZg" firstAttribute="top" secondItem="0rl-xt-ubo" secondAttribute="bottom" constant="80" id="DSy-jU-7np"/>
+                <constraint firstItem="LJF-Qb-2oU" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="G6f-FJ-hN2"/>
+                <constraint firstItem="0rl-xt-ubo" firstAttribute="top" secondItem="LJF-Qb-2oU" secondAttribute="bottom" constant="60" id="Lbz-jj-LjX"/>
+                <constraint firstItem="o5n-ds-pf3" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="PMd-wH-PTU"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Yu0-cX-EZg" secondAttribute="trailing" constant="30" id="QEs-MS-paQ"/>
+                <constraint firstItem="Vbn-jW-XBq" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="67" id="QUC-8N-PFV"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="LJF-Qb-2oU" secondAttribute="trailing" constant="30" id="VZK-if-AlL"/>
+                <constraint firstItem="0rl-xt-ubo" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="15" id="WOZ-6Z-VKx"/>
+                <constraint firstItem="Yu0-cX-EZg" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="ofj-G3-6o9"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="0rl-xt-ubo" secondAttribute="trailing" constant="15" id="yhy-lS-WnR"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="137.68115942028987" y="112.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="banner-1" width="345" height="115"/>
+        <image name="deposit-success" width="168" height="131"/>
+    </resources>
+</document>

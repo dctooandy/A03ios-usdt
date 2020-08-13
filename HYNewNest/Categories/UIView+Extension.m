@@ -85,8 +85,6 @@
 
 - (void)setSize:(CGSize)size
 {
-//    self.width = size.width;
-//    self.height = size.height;
     CGRect frame = self.frame;
     frame.size = size;
     self.frame = frame;
@@ -215,6 +213,16 @@
     [shapeLayer setPath:path];
     CGPathRelease(path);
     [self.layer addSublayer:shapeLayer];
+}
+
+- (void)addCornerAndShadow{
+    self.clipsToBounds = NO;
+    self.layer.masksToBounds = NO;
+    self.layer.cornerRadius = AD(10);
+    self.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.layer.shadowOffset = CGSizeMake(2.0, 2.0f);
+    self.layer.shadowRadius = 10;
+    self.layer.shadowOpacity = 0.13f; //透明度
 }
 
 

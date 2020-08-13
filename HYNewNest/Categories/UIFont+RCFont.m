@@ -77,6 +77,7 @@
 +(UIFont *)fontPFM12{ return [UIFont fontWithName:@"PingFangSC-Medium" size:12]; }
 +(UIFont *)fontPFM13{ return [UIFont fontWithName:@"PingFangSC-Medium" size:13]; }
 +(UIFont *)fontPFM14{ return [UIFont fontWithName:@"PingFangSC-Medium" size:14]; }
++(UIFont *)fontPFM15{ return [UIFont fontWithName:@"PingFangSC-Medium" size:15]; }
 +(UIFont *)fontPFM16{ return [UIFont fontWithName:@"PingFangSC-Medium" size:16]; }
 +(UIFont *)fontPFM17{ return [UIFont fontWithName:@"PingFangSC-Medium" size:17]; }
 +(UIFont *)fontPFM18{ return [UIFont fontWithName:@"PingFangSC-Medium" size:18]; }
@@ -89,6 +90,7 @@
 +(UIFont *)fontPFSB16{ return [UIFont fontWithName:@"PingFangSC-Semibold" size:16]; }
 +(UIFont *)fontPFSB17{ return [UIFont fontWithName:@"PingFangSC-Semibold" size:17]; }
 +(UIFont *)fontPFSB18{ return [UIFont fontWithName:@"PingFangSC-Semibold" size:18]; }
++(UIFont *)fontPFSB21{ return [UIFont fontWithName:@"PingFangSC-Semibold" size:21]; }
 +(UIFont *)fontPFSB22{ return [UIFont fontWithName:@"PingFangSC-Semibold" size:22]; }
 
 +(UIFont *)fontSFR12{ return [[UIFont fontWithName:@".SFUIText-Regular" size:12] fontWithSize:12]; }

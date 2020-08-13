@@ -14,7 +14,7 @@
 @property (assign, nonatomic) BOOL hideNavgation;
 
 /*
- *  设置页面背景色  不传则默为白色
+ *  设置页面背景色
  */
 @property (strong, nonatomic) UIColor *bgColor;
 
@@ -23,9 +23,16 @@
 */
 @property (assign, nonatomic) BOOL makeTranslucent;
 
+/*
+*   导航栏背景色变为透明
+*/
+@property (assign, nonatomic) BOOL navBarTransparent;
 
+/*
+*   导航控制器pop返回后执行的block
+*/
+@property (copy, nonatomic) void(^navPopupBlock)(id obj);
 
-+ (UIViewController *)getCurrentViewController;
 @end
 
 

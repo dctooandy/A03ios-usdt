@@ -1,0 +1,81 @@
+//
+//  CNNormalInputView.m
+//  HYNewNest
+//
+//  Created by cean.q on 2020/8/3.
+//  Copyright © 2020 james. All rights reserved.
+//
+
+#import "CNNormalInputView.h"
+
+
+@interface CNNormalInputView () <UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *tipLb;
+@property (weak, nonatomic) IBOutlet UITextField *inputTF;
+@property (weak, nonatomic) IBOutlet UIView *lineView;
+
+@property (nonatomic, strong) UIColor *hilghtColor;
+@property (nonatomic, strong) UIColor *wrongColor;
+@property (nonatomic, strong) UIColor *normalColor;
+@end
+
+@implementation CNNormalInputView
+
+- (void)loadViewFromXib {
+    [super loadViewFromXib];
+    [self.inputTF addTarget:self action:@selector(textFieldChange:) forControlEvents:UIControlEventEditingChanged];
+    
+    self.normalColor = kHexColorAlpha(0xFFFFFF, 0.15);
+    self.hilghtColor = kHexColor(0x10B4DD);
+    self.wrongColor = kHexColor(0xFF5860);
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.tipLb.hidden = NO;
+    self.lineView.backgroundColor = _wrongAccout ? self.wrongColor: self.hilghtColor;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    self.tipLb.hidden = YES;
+    self.lineView.backgroundColor = self.normalColor;
+    if (_delegate && [_delegate respondsToSelector:@selector(inputViewDidEndEditing:)]) {
+        [_delegate inputViewDidEndEditing:self];
+    }
+}
+
+- (void)textFieldChange:(UITextField *)textField {
+    // 只要已修改就去掉错误提示
+    self.wrongAccout = NO;
+    self.lineView.backgroundColor = self.hilghtColor;
+    self.tipLb.textColor = self.hilghtColor;
+    self.tipLb.text = self.inputTF.placeholder;
+    if (_delegate && [_delegate respondsToSelector:@selector(inputViewTextChange:)]) {
+        [_delegate inputViewTextChange:self];
+    }
+}
+
+- (NSString *)text {
+    return [self.inputTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+}
+
+- (void)showWrongMsg:(NSString *)msg {
+    self.wrongAccout = YES;
+    self.tipLb.hidden = NO;
+    self.tipLb.text = msg;
+    self.tipLb.textColor = self.wrongColor;
+    self.lineView.backgroundColor = self.wrongColor;
+}
+
+- (void)setText:(NSString *)text {
+    self.inputTF.text = text;
+}
+
+- (void)setPlaceholder:(NSString *)text {
+    self.inputTF.placeholder = text;
+    self.tipLb.text = text;
+}
+
+- (void)setKeyboardType:(UIKeyboardType)keyboardType {
+    self.inputTF.keyboardType = keyboardType;
+}
+@end

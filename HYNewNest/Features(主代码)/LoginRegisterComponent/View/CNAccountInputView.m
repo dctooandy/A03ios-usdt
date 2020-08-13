@@ -56,21 +56,30 @@
 - (void)textFieldChange:(UITextField *)textField {
     
     NSString *text = textField.text;
-    if (text.length == 0) {
-        self.wrongAccout = NO;
-        self.tipLb.text = @"";
-        return;
+    
+    // 注册不需要改变
+    if (!self.isRegister) {
+        if (text.length == 0) {
+            self.wrongAccout = NO;
+            self.tipLb.text = @"";
+            return;
+        }
+        
+        if (![text hasPrefix:@"1"] && !([text hasPrefix:@"f"] || [text hasPrefix:@"F"])) {
+            // 客服回拨可以输入其他符合，所以提示语修改下
+            if (self.fromServer) {
+                [self showWrongMsg:@"您输入的手机不符合规则*"];
+            } else {
+                [self showWrongMsg:@"您输入的账号不符合规则*"];
+            }
+            return;
+        }
+        
+        self.lineView.backgroundColor = self.hilghtColor;
+        self.tipLb.textColor = self.hilghtColor;
     }
     
-    if (![text hasPrefix:@"1"] && !([text hasPrefix:@"k"] || [text hasPrefix:@"K"])) {
-        [self showWrongMsg:@"您输入的账号不符合规则*"];
-        return;
-    }
-    
-    self.lineView.backgroundColor = self.hilghtColor;
-    self.tipLb.textColor = self.hilghtColor;
-
-    if ([text hasPrefix:@"1"]) {
+    if (!self.isRegister && [text hasPrefix:@"1"]) {
         self.tipLb.text = @"手机号码*";
         self.phoneLogin = YES;
         if (text.length >= 11) {
@@ -98,4 +107,19 @@
     return [self.inputTF.text stringByReplacingOccurrencesOfString:@" " withString:@""].lowercaseString;
 }
 
+- (void)setAccount:(NSString * _Nonnull)account {
+    self.inputTF.text = [account stringByReplacingOccurrencesOfString:@" " withString:@""];
+}
+
+- (void)setIsRegister:(BOOL)isRegister {
+    _isRegister = isRegister;
+    if (isRegister) {
+        self.tipLb.text = @"用户名*";
+    }
+}
+
+- (void)setFromServer:(BOOL)fromServer {
+    _fromServer = fromServer;
+    self.inputTF.keyboardType = UIKeyboardTypePhonePad;
+}
 @end

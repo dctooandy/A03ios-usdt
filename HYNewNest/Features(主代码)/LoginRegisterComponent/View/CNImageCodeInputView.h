@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 图形验证码是否有值
 @property (nonatomic, assign) BOOL correct;
 @property (nonatomic, weak) id delegate;
-
+/// 获取验证码
 - (void)getImageCode;
 @end
 

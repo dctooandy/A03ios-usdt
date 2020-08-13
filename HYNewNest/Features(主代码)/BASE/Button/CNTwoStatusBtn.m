@@ -27,11 +27,16 @@
 }
 
 - (void)commonInit {
-//    self.layer.cornerRadius = self.height/2.0;
     self.titleLabel.font = [UIFont systemFontOfSize:16 weight:UIFontWeightMedium];
     [self setTitleColor:kHexColorAlpha(0xFFFFFF, 0.3) forState:UIControlStateDisabled];
     [self setTitleColor:kHexColorAlpha(0xFFFFFF, 1.0) forState:UIControlStateNormal];
     self.enabled = NO;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.layer.cornerRadius = self.height*0.5;
+    self.layer.masksToBounds = YES;
 }
 
 - (void)setEnabled:(BOOL)enabled {

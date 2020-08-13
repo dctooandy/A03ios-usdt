@@ -22,8 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 FOUNDATION_EXPORT NSString * const CNSkinChangeNotification;
 
 typedef NS_ENUM(NSUInteger, SKinType) {
-    SKinTypeNormal, // 默认色
     SKinTypeBlack,  // 暗黑色
+    SKinTypeWhite,  // 白色
 };
 
 @interface CNSkinManager : NSObject
@@ -31,7 +31,7 @@ typedef NS_ENUM(NSUInteger, SKinType) {
 /// 切换当前皮肤类型
 /// @param type  SKinType 类型
 + (void)setSkinTpye:(SKinType)type;
-
++ (SKinType)currSkinType;
 @end
 
 

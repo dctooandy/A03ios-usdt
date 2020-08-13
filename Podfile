@@ -9,9 +9,8 @@ target 'HYNewNest' do
   # Pods for HYNewNest
   pod 'Reachability'
   pod 'AFNetworking'
-  pod 'JSONModel'
   pod 'MJRefresh'
-  pod 'MJExtension'
+  pod 'YYModel'
   pod 'SDWebImage'
   pod 'SDWebImage/GIF'
   pod 'Masonry'
@@ -21,8 +20,8 @@ target 'HYNewNest' do
   pod 'FCUUID'
   pod 'SJVideoPlayer'
   # 个推
-  pod 'GTSDK'
-  pod 'Bugly'
+  # pod 'GTSDK'
+  # pod 'Bugly'
   pod 'JKCategories'
   
   # 网络模块

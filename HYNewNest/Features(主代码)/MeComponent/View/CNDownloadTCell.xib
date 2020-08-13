@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="127" id="KGk-i7-Jjw" customClass="CNDownloadTCell">
+            <rect key="frame" x="0.0" y="0.0" width="413" height="127"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="413" height="127"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5c9-qc-yrL">
+                        <rect key="frame" x="15" y="10" width="383" height="117"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Abj-XP-xxZ">
+                                <rect key="frame" x="0.0" y="0.0" width="383" height="117"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="-15" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" backgroundImage="xz"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dJx-lS-YAr">
+                                <rect key="frame" x="15" y="15" width="87" height="87"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dJx-lS-YAr" secondAttribute="height" multiplier="1:1" id="d0A-Xg-2bH"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="百家乐、炸金花 、骰包..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvZ-8t-Af8">
+                                <rect key="frame" x="117" y="66" width="115.5" height="12"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                                <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bw-jf-kGw">
+                                <rect key="frame" x="308" y="42.5" width="60" height="32"/>
+                                <color key="backgroundColor" red="0.098039215686274508" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="BLx-QB-Ocp"/>
+                                    <constraint firstAttribute="height" constant="32" id="Kce-SQ-fIi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <state key="normal" title="下载">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="doloadApp:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="NeS-ka-VyX"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="沙巴体育" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K15-UO-Zb7">
+                                <rect key="frame" x="117" y="39" width="65.5" height="19"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dJx-lS-YAr" firstAttribute="leading" secondItem="5c9-qc-yrL" secondAttribute="leading" constant="15" id="1YE-9r-XCq"/>
+                            <constraint firstItem="K15-UO-Zb7" firstAttribute="leading" secondItem="dJx-lS-YAr" secondAttribute="trailing" constant="15" id="3J4-X9-57B"/>
+                            <constraint firstItem="Abj-XP-xxZ" firstAttribute="top" secondItem="5c9-qc-yrL" secondAttribute="top" id="DO3-8X-AJQ"/>
+                            <constraint firstAttribute="trailing" secondItem="Abj-XP-xxZ" secondAttribute="trailing" id="NYK-5z-Ceh"/>
+                            <constraint firstAttribute="trailing" secondItem="0Bw-jf-kGw" secondAttribute="trailing" constant="15" id="OLA-PH-750"/>
+                            <constraint firstAttribute="bottom" secondItem="Abj-XP-xxZ" secondAttribute="bottom" id="WQ8-ZP-1Us"/>
+                            <constraint firstItem="0Bw-jf-kGw" firstAttribute="centerY" secondItem="5c9-qc-yrL" secondAttribute="centerY" id="Xnt-LC-fzo"/>
+                            <constraint firstItem="dJx-lS-YAr" firstAttribute="top" secondItem="5c9-qc-yrL" secondAttribute="top" constant="15" id="kXH-bf-9BG"/>
+                            <constraint firstAttribute="bottom" secondItem="dJx-lS-YAr" secondAttribute="bottom" constant="15" id="lTI-fd-6QF"/>
+                            <constraint firstItem="fvZ-8t-Af8" firstAttribute="top" secondItem="K15-UO-Zb7" secondAttribute="bottom" constant="8" id="rtG-sa-G8l"/>
+                            <constraint firstItem="fvZ-8t-Af8" firstAttribute="leading" secondItem="K15-UO-Zb7" secondAttribute="leading" id="xA7-Ys-6gU"/>
+                            <constraint firstItem="K15-UO-Zb7" firstAttribute="centerY" secondItem="5c9-qc-yrL" secondAttribute="centerY" constant="-10" id="zOm-VP-XeR"/>
+                            <constraint firstItem="Abj-XP-xxZ" firstAttribute="leading" secondItem="5c9-qc-yrL" secondAttribute="leading" id="zfV-k0-RIn"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="5c9-qc-yrL" secondAttribute="trailing" constant="15" id="52P-Vz-YPb"/>
+                    <constraint firstItem="5c9-qc-yrL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="K9v-SD-Vd0"/>
+                    <constraint firstAttribute="bottom" secondItem="5c9-qc-yrL" secondAttribute="bottom" id="agC-ZE-0JQ"/>
+                    <constraint firstItem="5c9-qc-yrL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="eff-3i-1GI"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="appDescLb" destination="fvZ-8t-Af8" id="KwS-Em-5Lf"/>
+                <outlet property="appImageV" destination="dJx-lS-YAr" id="AIM-on-4Rr"/>
+                <outlet property="appNameLb" destination="K15-UO-Zb7" id="Sx0-iZ-20x"/>
+            </connections>
+            <point key="canvasLocation" x="205.07246376811597" y="122.87946428571428"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="xz" width="345" height="100"/>
+    </resources>
+</document>
