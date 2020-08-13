@@ -10,6 +10,7 @@
 #import "CNNormalInputView.h"
 #import "CNCodeInputView.h"
 #import "NSString+Validation.h"
+#import <IVLoganAnalysis/IVLAManager.h>
 
 @interface CNAddAddressVC () <CNNormalInputViewDelegate, CNCodeInputViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *goldBtn;
@@ -153,7 +154,6 @@
     
     switch (_addrType) {
         case HYAddressTypeBANKCARD:{
-            
             break;
         }
             
@@ -165,8 +165,10 @@
                                                     handler:^(id responseObj, NSString *errorMsg) {
                 if (KIsEmptyString(errorMsg)) {
                     [CNHUB showSuccess:@"小金库添加成功"];
-                    [CNLoginRequest getUserInfoByTokenCompletionHandler:nil];
                     [self.navigationController popViewControllerAnimated:YES];
+                    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                        [IVLAManager singleEventId:@"A03_bankcard_update"];
+                    });
                 }
             }];
             break;
@@ -180,8 +182,10 @@
                                                    handler:^(id responseObj, NSString *errorMsg) {
                 if (KIsEmptyString(errorMsg)) {
                     [CNHUB showSuccess:@"地址添加成功"];
-                    [CNLoginRequest getUserInfoByTokenCompletionHandler:nil];
                     [self.navigationController popViewControllerAnimated:YES];
+                    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                        [IVLAManager singleEventId:@"A03_bankcard_update"];
+                    });
                 }
             }];
             break;

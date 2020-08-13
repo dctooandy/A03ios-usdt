@@ -19,6 +19,7 @@
 
 #import "CNWDAccountRequest.h"
 #import "ABCOneKeyRegisterBFBHelper.h"
+#import <IVLoganAnalysis/IVLAManager.h>
 
 @interface CNAddressManagerVC () <UITableViewDelegate, UITableViewDataSource>
 // 顶部页签
@@ -148,6 +149,9 @@
             if (KIsEmptyString(errorMsg)) {
                 [CNHUB showSuccess:@"删除成功"];
                 [self queryAccounts];
+                dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                    [IVLAManager singleEventId:@"A03_bankcard_update"];
+                });
             }
         }];
         

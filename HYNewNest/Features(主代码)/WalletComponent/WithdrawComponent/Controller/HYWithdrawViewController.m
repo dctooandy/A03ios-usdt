@@ -19,7 +19,7 @@
 #import "CNWithdrawRequest.h"
 #import "CNWDAccountRequest.h"
 #import "CNUserCenterRequest.h"
-
+#import <IVLoganAnalysis/IVLAManager.h>
 
 @interface HYWithdrawViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet HYXiMaTopView *topView;
@@ -167,8 +167,11 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                                            remarks:@""
                                            handler:^(id responseObj, NSString *errorMsg) {
         STRONGSELF_DEFINE
-        if (KIsEmptyString(errorMsg)) {
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             [strongSelf.comfirmView showSuccessWithdraw];
+            dispatch_async(dispatch_queue_create(0, 0), ^{
+                [IVLAManager singleEventId:@"A03_withdraw_create" errorCode:@"" errorMsg:@"" customsData:@{@"requestId":responseObj[@"referenceId"]}];
+            });
         }
     }];
 }
