@@ -115,6 +115,9 @@
     self.switchBtn.layer.borderColor = kHexColor(0x19CECE).CGColor;
     self.switchBtn.layer.borderWidth = 1;
     
+    if ([CNUserManager shareManager].userDetail.newAccountFlag == 1) {
+        self.switchBtn.hidden = YES;
+    }
     // 根据货币切换UI
     [self switchCurrencyUI];
 }

@@ -28,6 +28,8 @@ target 'HYNewNest' do
   pod 'IVNetworkLibrary2.0',:git =>'http://10.66.72.115/mobile-iOS-Library/IVNetworkLibrary2.0.git'
   # 缓存模块
   pod 'IVCacheLibrary',:git =>'http://10.66.72.115/mobile-iOS-Library/IVCacheLibrary.git'
+  
+  pod 'IVLoganAnalysis',:git =>'http://10.66.72.115/mobile-iOS-library/IVLoganAnalysis.git'
 
   target 'HYNewNestTests' do
     inherit! :search_paths

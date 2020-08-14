@@ -26,7 +26,6 @@
 #import "UUMarqueeView.h"
 #import "CNMessageBoxView.h"
 #import "HYWideOneBtnAlertView.h"
-#import "CNCompleteInfoVC.h"
 
 #import "CNHomeRequest.h"
 #import "CNUserCenterRequest.h"
@@ -112,14 +111,13 @@
 //            [userDefault synchronize];
 //         }
 //    }
-    [self.navigationController pushViewController:[CNCompleteInfoVC new] animated:YES];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.hideNavgation = YES;
     [self configUI];
     
-    [self addNaviRightItemWithTitle:@"测试入口"];
 
     [self userDidLogin];
     [self requestAnnouncement];

@@ -46,7 +46,11 @@
     if ([CNUserManager shareManager].isLogin) {
         [self configLogInUI];
         [self reloadBalance];
-        [self switchAccountUIChange];
+        if ([CNUserManager shareManager].userDetail.newAccountFlag == 1) {
+            self.switchModeBtn.hidden = YES;
+        } else {
+            [self switchAccountUIChange];
+        }
     } else {
         [self configLogoutUI];
     }
@@ -83,7 +87,7 @@
 
 - (void)switchAccountUIChange {
     if (self.bottomView.hidden) {
-        [self showHide:self.showHideBtn];
+        [self showHide:self.showHideBtn]; //切换时展开 不然会有消失不见的奇怪的问题
     }
     if ([CNUserManager shareManager].isUsdtMode) {
         self.switchModeBtn.selected = NO;
@@ -94,7 +98,6 @@
         self.bottomViewH.constant = 44;
         self.bottomViewSpacing.constant = 0;
     }
-    [self reloadBalance];
 }
 
 // 消息

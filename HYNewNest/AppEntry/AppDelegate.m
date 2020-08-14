@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "SplashViewController.h"
 #import <IQKeyboardManager/IQKeyboardManager.h>
+#import <IVLoganAnalysis/IVLAManager.h>
 
 @interface AppDelegate ()
 
@@ -18,7 +19,25 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    // 天网埋点
+    [IVLAManager setLogEnabled:YES];
+    [IVLAManager startWithProductId:@"A03"           //产品ID
+                        productName:@"hyyl"          //产品Name
+                          channelId:@""     //渠道号
+                              appId:@"5308e20b"      //分配的appId
+                             appKey:@"5308e20b"      //分配的appKey
+                     sessionTimeout:5000             //超时时间，秒
+#ifdef DEBUG
+                        environment:IVLA_Loacl
+#else
+                        environment:IVLA_Dis        //环境: 线上
+#endif
+                          loginName:^NSString *{     //获取登录名
+        return [CNUserManager shareManager].printedloginName;
+    }];
+
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = [[SplashViewController alloc] init];
     [self.window makeKeyAndVisible];
