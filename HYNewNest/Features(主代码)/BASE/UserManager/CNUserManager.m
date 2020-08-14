@@ -8,6 +8,7 @@
 
 #import "CNUserManager.h"
 #import <IVHttpManager.h>
+#import <WebKit/WebKit.h>
 
 @interface CNUserManager ()
 @property (nonatomic, copy) NSString *modelFile;
@@ -54,6 +55,8 @@
 }
 
 - (BOOL)cleanUserInfo {
+    [self deleteWebCache];
+    
     if (self.userInfo == nil) {
         return YES;
     }
@@ -62,6 +65,16 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:HYLogoutSuccessNotification object:nil];
     [[NSFileManager defaultManager] removeItemAtPath:self.modelFile2 error:nil];
     return [[NSFileManager defaultManager] removeItemAtPath:self.modelFile error:nil];
+}
+
+- (void)deleteWebCache {
+    //allWebsiteDataTypes清除所有缓存
+    NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+    NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+
+    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
+        
+    }];
 }
 
 

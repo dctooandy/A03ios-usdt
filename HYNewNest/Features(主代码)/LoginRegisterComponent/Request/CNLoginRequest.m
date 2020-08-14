@@ -301,10 +301,11 @@
 
     [self POST:kGatewayExtraPath(config_getTopDomain) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-            if ([CNUserManager shareManager].userInfo.starLevel >= 3) {
-                [CNUserManager shareManager].userInfo.isWhiteListUser = YES;
-                [[CNUserManager shareManager] saveUerInfoToSandBox];
-            }
+            //TODO: 还不知道这个接口是否不用了
+//            if ([CNUserManager shareManager].userInfo.starLevel >= 3) {
+//                [CNUserManager shareManager].userInfo.isWhiteListUser = YES;
+//                [[CNUserManager shareManager] saveUerInfoToSandBox];
+//            }
         }
         !completionHandler?:completionHandler(responseObj, errorMsg);
     }];
@@ -318,18 +319,26 @@
     [self POST:kGatewayPath(config_switchAccount) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             if (responseObj[@"loginName"]) {
-                [CNUserManager shareManager].userInfo.currency = @"CNY";
-                [CNUserManager shareManager].userInfo.loginName = responseObj[@"loginName"];
-                [[CNUserManager shareManager] saveUerInfoToSandBox];
-                [IVHttpManager shareManager].loginName = responseObj[@"loginName"];
+                NSString *newLoginName = responseObj[@"loginName"];
+                CNUserModel *userInfo = [CNUserManager shareManager].userInfo;
+                userInfo.loginName = newLoginName;
+                if (![newLoginName hasSuffix:@"usdt"]) {
+                    userInfo.currency = @"CNY";
+                } else {
+                    userInfo.currency = @"USDT";
+                }
+                NSDictionary *newUIF = [userInfo yy_modelToJSONObject];
+                [[CNUserManager shareManager] saveUserInfo:newUIF];
+                [[CNUserManager shareManager] deleteWebCache];
+//                [IVHttpManager shareManager].loginName = responseObj[@"loginName"]; //也要改网络框架的loginName
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil];
+                if ([CNUserManager shareManager].isUsdtMode) {
+                    [CNHUB showSuccess:@"切换到了USDT模式"];
+                } else {
+                    [CNHUB showSuccess:@"切换到了CNY模式"];
+                }
                 !completionHandler?:completionHandler(responseObj, errorMsg);
-            }
-            if ([CNUserManager shareManager].isUsdtMode) {
-                [CNHUB showSuccess:@"切换到了USDT模式"];
-            } else {
-                [CNHUB showSuccess:@"切换到了CNY模式"];
             }
         }
     }];

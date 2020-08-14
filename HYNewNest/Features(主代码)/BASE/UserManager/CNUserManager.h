@@ -33,15 +33,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param userInfo  NSDictionary 用户信息
 - (BOOL)saveUserInfo:(NSDictionary *)userInfo;
 
-/// 更新到沙盒
-- (BOOL)saveUerInfoToSandBox;
-
 /// 存储根据token获取到的用户详细信息
 /// @param userDetail 用户详细信息
 - (BOOL)saveUserDetail:(NSDictionary *)userDetail;
 
 /// 清除用户数据，内存和沙盒都清除
 - (BOOL)cleanUserInfo;
+
+/// 清浏览器缓存
+- (void)deleteWebCache;
 
 @end
 
