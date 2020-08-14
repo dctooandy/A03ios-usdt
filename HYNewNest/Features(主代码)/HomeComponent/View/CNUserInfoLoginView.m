@@ -49,6 +49,7 @@
         if ([CNUserManager shareManager].userDetail.newAccountFlag == 1) {
             self.switchModeBtn.hidden = YES;
         } else {
+            self.switchModeBtn.hidden = NO;
             [self switchAccountUIChange];
         }
     } else {
