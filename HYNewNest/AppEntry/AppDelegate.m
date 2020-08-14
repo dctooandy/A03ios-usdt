@@ -29,7 +29,7 @@
                              appKey:@"5308e20b"      //分配的appKey
                      sessionTimeout:5000             //超时时间，秒
 #ifdef DEBUG
-                        environment:IVLA_Loacl
+                        environment:IVLA_Dev
 #else
                         environment:IVLA_Dis        //环境: 线上
 #endif

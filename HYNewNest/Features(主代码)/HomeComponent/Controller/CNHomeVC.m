@@ -19,6 +19,7 @@
 #import "HYRechargeViewController.h"
 #import "HYRechargeCNYViewController.h"
 #import "HYWithdrawViewController.h"
+#import <MJRefresh/MJRefresh.h>
 
 #import "CNUserInfoLoginView.h"
 #import "CNServerView.h"
@@ -32,6 +33,7 @@
 #import "CNLoginRequest.h"
 
 @interface CNHomeVC () <CNUserInfoLoginViewDelegate, CNServerViewDelegate, SDCycleScrollViewDelegate, UUMarqueeViewDelegate>
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 /// 滚动视图
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 /// 滚动视图宽
@@ -118,7 +120,6 @@
     self.hideNavgation = YES;
     [self configUI];
     
-
     [self userDidLogin];
     [self requestAnnouncement];
 
@@ -174,6 +175,12 @@
     
     // 默认选择第一个
     [self switchGame:self.switchBtnArr.firstObject];
+
+    __weak typeof(self) wSelf = self;
+    self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [wSelf userDidLogin];
+        [wSelf requestAnnouncement];
+    }];
 }
 
 
@@ -221,6 +228,7 @@
         }
         strongSelf.bannerView.imageURLStringsGroup = imgUrls;
         strongSelf.bannModels = modArr;
+        [strongSelf.scrollView.mj_header endRefreshing];
     }];
     
 }

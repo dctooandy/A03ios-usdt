@@ -101,7 +101,9 @@
             if (self->_currPage == 0) {
                 self.articals = articals.copy;
             } else {
-                [self.articals addObjectsFromArray:articals];
+                if (articals.count > 0) {
+                    [self.articals addObjectsFromArray:articals];
+                }
             }
             self.currPage ++;
             if (data.count == 0) {
