@@ -137,7 +137,7 @@
     
     if ([CNUserManager shareManager].isLogin) {
         self.brandView.hidden = NO;
-        self.brandViewH.constant = 710;
+        self.brandViewH.constant = 600;
         
         [self.infoView reloadBalance];
     } else {
