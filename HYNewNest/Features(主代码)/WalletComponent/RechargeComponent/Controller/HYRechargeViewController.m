@@ -187,7 +187,13 @@ USDT支付渠道
 - (void)queryDepositBankPayWays {
     [CNRechargeRequest queryUSDTPayWalletsHandler:^(id responseObj, NSString *errorMsg) {
         NSArray *depositModels = [DepositsBankModel cn_parse:responseObj];
-        self.depositModels = depositModels;
+        NSMutableArray *models = @[].mutableCopy;
+        for (DepositsBankModel *bank in depositModels) {
+            if (([bank.bankname isEqualToString:@"dcbox"] || [HYRechargeHelper isUSDTOtherBankModel:bank])) {
+                [models addObject:bank];
+            }
+        }
+        self.depositModels = models;
         self.selcPayWayIdx = 0;
         [self queryOnlineBankAmount];
     }];
