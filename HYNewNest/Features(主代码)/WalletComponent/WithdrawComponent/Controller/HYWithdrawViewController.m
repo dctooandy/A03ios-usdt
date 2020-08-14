@@ -51,7 +51,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     [super viewDidAppear:animated];
     [self bunchRequest];
     
-    if (![CNUserManager shareManager].userDetail.mobileNoBind || ![CNUserManager shareManager].userDetail.realName) {
+    if ((![CNUserManager shareManager].isUsdtMode)
+        && (![CNUserManager shareManager].userDetail.mobileNoBind || ![CNUserManager shareManager].userDetail.realName)) {
         [HYTextAlertView showWithTitle:@"完善信息" content:@"对不起！系统发现您还没有完成实名认证，请先完成实名认证，再进行提现操作。" comfirmText:@"去认证" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm){
             if (isComfirm) {
                 [self.navigationController pushViewController:[CNCompleteInfoVC new] animated:YES];
@@ -73,11 +74,12 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 
 
 - (void)setupTopView {
-    self.topView.lblTitle.text = @"可提现金额";
+    NSString *tx = [CNUserManager shareManager].isUsdtMode?@"提币":@"提现";
+    self.topView.lblTitle.text = [NSString stringWithFormat:@"可%@金额", tx];
     [self.topView.ruleBtn setTitle:@" 说明" forState:UIControlStateNormal];
     self.topView.clickBlock = ^{
-        NSString *content = [NSString stringWithFormat:@"根据《菲律宾反洗钱法》规定：\n1. 提币需达到充币的1倍有效投注额\n2. 可提币金额＝总资产 - 各厅不足1%@下的金额\n3. 如参与了网站的优惠活动，提币需根据相关活动规则有效投注额\n\n具体提币情况以审核完结果为准。", [CNUserManager shareManager].userInfo.currency];
-        [HYWideOneBtnAlertView showWithTitle:@"提现说明" content:content comfirmText:@"我知道了" comfirmHandler:^{
+        NSString *content = [NSString stringWithFormat:@"根据《菲律宾反洗钱法》规定：\n1. %@需达到充币的1倍有效投注额\n2. 可%@金额＝总资产 - 各厅不足1%@下的金额\n3. 如参与了网站的优惠活动，%@需根据相关活动规则有效投注额\n\n具体%@情况以审核完结果为准。", tx, tx, [CNUserManager shareManager].userInfo.currency, tx, tx];
+        [HYWideOneBtnAlertView showWithTitle:[NSString stringWithFormat:@"%@说明", tx] content:content comfirmText:@"我知道了" comfirmHandler:^{
         }];
     };
 }
@@ -185,7 +187,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     UILabel *lblTitle = [[UILabel alloc] init];
     [bgView addSubview:lblTitle];
     lblTitle.frame = CGRectMake(30, 60-15-17, 100, 17);
-    lblTitle.text = [CNUserManager shareManager].isUsdtMode ? @"提现地址" : @"提现至";
+    lblTitle.text = [CNUserManager shareManager].isUsdtMode ? @"提币地址" : @"提现至";
     lblTitle.textColor = kHexColorAlpha(0xFFFFFF, 0.4);
     lblTitle.font = [UIFont fontPFR15];
     return bgView;

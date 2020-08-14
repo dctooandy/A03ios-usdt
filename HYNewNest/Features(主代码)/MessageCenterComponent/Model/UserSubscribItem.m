@@ -13,7 +13,7 @@
 - (NSString *)name {
     NSDictionary *newName = @{@"PROMOTION":@"红利",
                               @"DEPOSIT":@"充值",
-                              @"WITHDRAW":@"提现",
+                              @"WITHDRAW":[CNUserManager shareManager].isUsdtMode?@"提币":@"提现",
                               @"MODIFY_BANKCARD":@"修改收款地址"};
     if ([newName.allKeys containsObject:self.code]) {
         return newName[self.code];

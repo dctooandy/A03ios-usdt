@@ -70,7 +70,7 @@
                 }
                 iscorrect = NO;
             } else if (amount > [self.model.withdrawBal floatValue]) {
-                [self showWrongMsg:@"可提现余额不足"];
+                [self showWrongMsg:@"可提余额不足"];
                 iscorrect = NO;
             } else {
                 self.tipLb.text = @"请输入提款金额";

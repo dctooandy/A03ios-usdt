@@ -120,7 +120,7 @@
     
     // money
     UILabel *lblMon = [[UILabel alloc] init];
-    lblMon.text = @"可提现金额";
+    lblMon.text = [CNUserManager shareManager].isUsdtMode?@"可提币金额":@"可提现金额";
     lblMon.frame = CGRectMake(30, CGRectGetMaxY(self.lblTitle.frame)+32, kScreenWidth-60, 17);
     lblMon.textColor = kHexColorAlpha(0xFFFFFF, 0.4);
     lblMon.font = [UIFont fontPFR15];

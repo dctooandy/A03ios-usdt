@@ -83,7 +83,7 @@
         self.topViewHeight.constant = 0;
         if ([type containsString:@"充值"]) {
             self.recoType = transactionRecord_rechargeType;
-        } else if ([type containsString:@"提现"]) {
+        } else if ([type containsString:@"提现"] || [type containsString:@"提币"]) {
             self.recoType = transactionRecord_withdrawType;
         } else if ([type containsString:@"洗码"]) {
             self.recoType = transactionRecord_XMType;

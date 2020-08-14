@@ -28,7 +28,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"添加小金库";
     
     if (self.addrType == HYAddressTypeUSDT) {
         [self otherAddress:self.otherBtn];
@@ -52,6 +51,7 @@
         case HYAddressTypeDCBOX:
             self.goldBtn.selected = YES;
             self.otherBtn.selected = NO;
+            self.title = @"添加小金库";
             // 小金库
             self.borderLineCenterX.constant = 0;
             [self.platformInputView setPlaceholder:@"请输入币付宝账号"];
@@ -62,6 +62,7 @@
         case HYAddressTypeUSDT:
             self.goldBtn.selected = NO;
             self.otherBtn.selected = YES;
+            self.title = @"添加USDT地址";
             // 其他地址
             self.borderLineCenterX.constant = kScreenWidth * 0.5;
             [self.platformInputView setPlaceholder:@"请输入平台地址称"];

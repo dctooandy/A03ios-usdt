@@ -251,7 +251,7 @@
     self.CNYBusinessView.hidden = isUsdtMode;
     self.CNYBusinessViewH.constant = isUsdtMode ? 0: 80;
     
-    self.forthTapLb.text = isUsdtMode ? @"提现地址": @"银行卡";
+    self.forthTapLb.text = isUsdtMode ? @"提币地址": @"银行卡";
     self.sixthTapLb.text = isUsdtMode ? @"充值指南": @"意见反馈";
 }
 
