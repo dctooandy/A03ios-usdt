@@ -13,6 +13,8 @@
                 <outlet property="bannerHeight" destination="r8p-f6-nLZ" id="dtl-j3-CkA"/>
                 <outlet property="bannerView" destination="jDb-89-UUB" id="lG3-4m-swd"/>
                 <outlet property="baoJiangCV" destination="Ll0-EB-tfE" id="e16-c1-kZB"/>
+                <outlet property="baoJiangContainer" destination="qYa-J7-qFY" id="c0Q-np-EVn"/>
+                <outlet property="baoJiangContainerH" destination="FQD-ED-ZxG" id="JmQ-C9-VXD"/>
                 <outlet property="btnBottomLineX" destination="Ibs-uN-thv" id="STp-s3-lzP"/>
                 <outlet property="btnView" destination="xGP-zJ-xYU" id="fVw-yw-tFc"/>
                 <outlet property="btnViewH" destination="8Yt-XB-goN" id="H3f-ix-nad"/>
@@ -23,11 +25,15 @@
                 <outlet property="filterCollectionView" destination="Esx-5C-B6X" id="bzp-gJ-9pl"/>
                 <outlet property="hallBtn" destination="USQ-8B-ePs" id="02O-cv-s4K"/>
                 <outlet property="jiangChiCV" destination="Znv-fo-tj1" id="q8J-m4-j6c"/>
+                <outlet property="jiangChiContainer" destination="Mmh-7F-2gc" id="Dga-QA-3dt"/>
+                <outlet property="jiangChiContainerH" destination="FcQ-d0-4RQ" id="mDx-Oo-fiD"/>
                 <outlet property="lineBtn" destination="P6C-8i-da5" id="9c5-6c-UzK"/>
                 <outlet property="lineView" destination="2y7-DZ-rIn" id="Pz1-C1-vBV"/>
                 <outlet property="listContentView" destination="nFN-Cd-i2l" id="Urc-Er-716"/>
                 <outlet property="listRecommendSV" destination="qfG-dn-c6L" id="EqA-Ha-OAm"/>
                 <outlet property="paiCaiCV" destination="hrn-zc-7Nj" id="DCu-0Y-P9u"/>
+                <outlet property="paiCaiContainer" destination="dAB-cL-Fei" id="0Kq-Hz-Z0D"/>
+                <outlet property="paiCaiContainerH" destination="Hwd-SY-RFv" id="XGZ-tS-KLE"/>
                 <outlet property="recommendBtn" destination="43y-Wi-Mz2" id="9vA-zw-hOA"/>
                 <outlet property="typeBtn" destination="KaR-MK-qNE" id="fXH-35-qFE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -401,7 +407,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="137.68115942028987" y="184.48660714285714"/>
+            <point key="canvasLocation" x="-36" y="154"/>
         </view>
     </objects>
     <resources>

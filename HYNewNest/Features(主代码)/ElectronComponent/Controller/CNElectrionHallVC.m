@@ -51,11 +51,18 @@ typedef enum : NSUInteger {
 @property (weak, nonatomic) IBOutlet UIView *bannerView;
 // banner 视图高
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bannerHeight;
+
 /// 高爆奖游戏，水平方向
+@property (weak, nonatomic) IBOutlet UIView *baoJiangContainer;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *baoJiangContainerH;
 @property (weak, nonatomic) IBOutlet UICollectionView *baoJiangCV;
 /// 高奖池游戏，水平方向
+@property (weak, nonatomic) IBOutlet UIView *jiangChiContainer;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *jiangChiContainerH;
 @property (weak, nonatomic) IBOutlet UICollectionView *jiangChiCV;
 /// 高派彩游戏，水平方向
+@property (weak, nonatomic) IBOutlet UIView *paiCaiContainer;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *paiCaiContainerH;
 @property (weak, nonatomic) IBOutlet UICollectionView *paiCaiCV;
 /// 下载按钮
 @property (weak, nonatomic) IBOutlet UIButton *downLoadBtn;
@@ -149,7 +156,12 @@ typedef enum : NSUInteger {
         if (!errorMsg) {
             QueryElecGameModel *qModel = [QueryElecGameModel cn_parse:responseObj];
             self.highGames = qModel.data;
-            [self.baoJiangCV reloadData];
+            if (self.highGames.count) {
+                [self.baoJiangCV reloadData];
+            } else {
+                self.baoJiangContainer.hidden = YES;
+                self.baoJiangContainerH.constant = 0;
+            }
         }
     }];
 
@@ -162,7 +174,12 @@ typedef enum : NSUInteger {
         if (!errorMsg) {
             QueryElecGameModel *qModel = [QueryElecGameModel cn_parse:responseObj];
             self.poolGames = qModel.data;
-            [self.jiangChiCV reloadData];
+            if (self.poolGames.count) {
+                [self.jiangChiCV reloadData];
+            } else {
+                self.jiangChiContainer.hidden = YES;
+                self.jiangChiContainerH.constant = 0;
+            }
         }
     }];
 }
@@ -173,7 +190,12 @@ typedef enum : NSUInteger {
         if (!errorMsg) {
             QueryElecGameModel *qModel = [QueryElecGameModel cn_parse:responseObj];
             self.payoutGames = qModel.data;
-            [self.paiCaiCV reloadData];
+            if (self.payoutGames.count) {
+                [self.paiCaiCV reloadData];
+            } else {
+                self.paiCaiContainer.hidden = YES;
+                self.paiCaiContainerH.constant = 0;
+            }
         }
     }];
 }
