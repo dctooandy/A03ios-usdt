@@ -11,6 +11,7 @@
 #import "CNCodeInputView.h"
 #import "NSString+Validation.h"
 #import <IVLoganAnalysis/IVLAManager.h>
+#import "CNCompleteInfoVC.h"
 
 @interface CNAddAddressVC () <CNNormalInputViewDelegate, CNCodeInputViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *goldBtn;
@@ -39,9 +40,21 @@
     
     [self setDelegate];
     
-    // 验证码须传入手机号
-    self.codeInputView.account = [CNUserManager shareManager].userDetail.mobileNo;
-    self.codeInputView.codeType = CNCodeTypeBankCard;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if (![CNUserManager shareManager].userDetail.mobileNoBind) {
+        [HYTextAlertView showWithTitle:@"手机绑定" content:@"对不起！系统发现您还没有绑定手机，请先完成手机绑定流程，再进行添加地址操作。" comfirmText:@"确定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
+            if (isComfirm) {
+                [self.navigationController pushViewController:[CNCompleteInfoVC new] animated:YES];
+            }
+        }];
+        
+    } else {
+        // 验证码须传入手机号
+        self.codeInputView.account = [CNUserManager shareManager].userDetail.mobileNo;
+        self.codeInputView.codeType = CNCodeTypeBankCard;
+    }
 }
 
 - (void)configUI {
