@@ -63,6 +63,8 @@
         // 注册来的
         case CNSMSCodeTypeRegister:
             [self addNaviLeftItemNil];
+            // 注册过来也要变成bind类型
+            self.bindType = CNSMSCodeTypeBindPhone;
             break;
         // 安全中心来的
         case CNSMSCodeTypeBindPhone:
@@ -155,7 +157,7 @@
 
     WEAKSELF_DEFINE
     // 请求短信
-    [CNLoginRequest getSMSCodeWithType:self.bindType == CNSMSCodeTypeBindPhone?CNSMSCodeTypeBindPhone:CNSMSCodeTypeChangePhone
+    [CNLoginRequest getSMSCodeWithType:self.bindType
                                  phone:self.inputTF.text
                      completionHandler:^(id responseObj, NSString *errorMsg) {
         

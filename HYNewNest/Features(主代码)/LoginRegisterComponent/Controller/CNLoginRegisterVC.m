@@ -203,7 +203,13 @@ NSInteger AllowTotalWrongCount = 3;
                 [strongSelf.navigationController popToRootViewControllerAnimated:YES];
             }
         } else {
-            if ([responseObj isEqualToString:ImageCodeNULL_ErrorCode]) {
+            if ([responseObj isEqualToString:LoginPassExpired_ErrorCode]) {
+                [HYTextAlertView showWithTitle:@"账号激活" content:@"由于我们检测到您的该账号长时间没有登录，请您修改密码。" comfirmText:@"修改密码" cancelText:nil comfirmHandler:^(BOOL isComfirm) {
+                    CNForgotCodeVC *vc = [CNForgotCodeVC new];
+                    vc.bindType = CNSMSCodeTypeForgotPassword;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }];
+            } else if ([responseObj isEqualToString:ImageCodeNULL_ErrorCode]) {
                 strongSelf.wrongCount = 3;
             } else {
                 strongSelf.wrongCount += 1;
@@ -213,10 +219,6 @@ NSInteger AllowTotalWrongCount = 3;
 }
 
 
-/// 账号锁定
-- (void)lockAccount {
-
-}
 
 #pragma mark - Register Action
 
