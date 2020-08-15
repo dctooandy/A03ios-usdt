@@ -19,7 +19,8 @@
              TokenInvalid_ErrorCode,
              TokenNotMatch_ErrorCode,
              SingleDeviceLogin_ErrorCode,
-             TokenEmpty_ErrorCode];
+             TokenEmpty_ErrorCode,
+             Network_LoginName_ErroCode];
 }
 
 + (id)GET:(NSString *)path parameters:(NSDictionary *)parameters completionHandler:(HandlerBlock)completionHandler {

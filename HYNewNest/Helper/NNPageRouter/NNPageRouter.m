@@ -32,18 +32,6 @@
     [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[CNLoginRegisterVC loginVC] animated:YES];
 }
 
-+ (void)jump2RechargeVc {
-    
-}
-
-+ (void)jump2WithdrawVc {
-    
-}
-
-+ (void)jump2BuyVc {
-    
-}
-
 + (void)openExchangeElecCurrencyPageIsSell:(BOOL)isSell {
     [CNRechargeRequest queryUSDTCounterTransferType:isSell?1:0 Handler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
