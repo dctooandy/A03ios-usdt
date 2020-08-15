@@ -109,6 +109,7 @@
             if ([model.bankName isEqualToString:@"BTC"]) {
             }
             else if ([model.bankName isEqualToString:@"BITOLL"]) {
+                [usdts addObject:model];
             }
             else if ([model.bankName isEqualToString:@"USDT"]) {
                 [usdts addObject:model];
