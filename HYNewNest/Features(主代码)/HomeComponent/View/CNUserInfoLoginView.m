@@ -65,7 +65,7 @@
 - (void)configLogInUI {
     self.loginView.hidden = YES;
 
-    [self.headerIcon sd_setImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userDetail.avatar]];
+    [self.headerIcon sd_setImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userInfo.avatar]];
     self.nameLb.text = [CNUserManager shareManager].printedloginName;
     self.vipLb.text = [NSString stringWithFormat:@"VIP%ld", [CNUserManager shareManager].userInfo.starLevel];
     // 默认展示底部视图

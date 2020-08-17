@@ -19,12 +19,12 @@
 @property (strong, nonatomic) JHVerificationCodeView *codeView;
 @property (weak, nonatomic) IBOutlet UIView *shakingView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputTfTopMargin;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLbH;
 @property (weak, nonatomic) IBOutlet CNBaseTF *inputTF;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLbTopMargin;
 @property (weak, nonatomic) IBOutlet UILabel *titleLb;
 /// 手机输入提示语
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *phoneInputTipTopMargin;
 @property (weak, nonatomic) IBOutlet UILabel *phoneInputTip;
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *submitBtn;
 @property (weak, nonatomic) IBOutlet UIButton *sendCodeBtn;
@@ -47,7 +47,6 @@
     [super viewDidLoad];
 //    self.navBarTransparent = YES;
 //    self.makeTranslucent = YES;
-    self.view.backgroundColor = kHexColor(0x212137);
     
     [self.inputTF addTarget:self action:@selector(textFieldChange:) forControlEvents:UIControlEventEditingChanged];
     self.normalColor = kHexColorAlpha(0xFFFFFF, 0.15);
@@ -61,17 +60,15 @@
     switch (self.bindType) {
         // 登录来的忘记密码，完成后跳转至密码重设
         case CNSMSCodeTypeForgotPassword:
+            self.view.backgroundColor = kHexColor(0x212137);
             break;
-        // 安全中心来的，修改绑定手机号，完成后跳转至新绑定手机 CNBindPhoneVC
+            
+        // 安全中心来的，修改绑定手机号，完成解绑后跳转至绑定手机 CNBindPhoneVC
         case CNSMSCodeTypeChangePhone:
             self.titleLb.hidden = YES;
             self.title = @"手机号修改";
             self.titleLbTopMargin.constant = 0;
             self.inputTfTopMargin.constant = 0;
-            self.titleLbH.constant = 0;
-            //
-//            self.inputTF.text = [CNUserManager shareManager].userDetail.mobileNo;
-//            [self checkPhone:[CNUserManager shareManager].userDetail.mobileNo];
             break;
         default:
             break;
@@ -170,12 +167,16 @@
         strongSelf.smsModel = [SmsCodeModel cn_parse:responseObj];
         // 高亮变化, 界面UI变化
         NSString *lastForth = [self.inputTF.text substringFromIndex:(self.inputTF.text.length-4)];
-        strongSelf.phoneInputTip.text = [NSString stringWithFormat:@"短信验证验证码已发送至：\n****%@", lastForth];
         // 如果是忘记密码需要隐藏
-//        if (strongSelf.bindType == CNSMSCodeTypeForgotPassword) {
+        if (strongSelf.bindType == CNSMSCodeTypeForgotPassword) {
             strongSelf.inputTF.hidden = YES;
             strongSelf.lineView.hidden = YES;
-//        }
+            strongSelf.phoneInputTip.text = [NSString stringWithFormat:@"短信验证验证码已发送至：\n****%@", lastForth];
+        } else {
+            strongSelf.inputTF.userInteractionEnabled = NO;
+            self.phoneInputTipTopMargin.constant = 20+40+35;
+            strongSelf.phoneInputTip.text = [NSString stringWithFormat:@"我们已向您的尾号为%@的手机发送验证码，\n请在下方输入6位短信验证码*", lastForth];
+        }
         [strongSelf.codeView clear];
         [strongSelf initCodeView];
         strongSelf.submitBtn.enabled = NO;

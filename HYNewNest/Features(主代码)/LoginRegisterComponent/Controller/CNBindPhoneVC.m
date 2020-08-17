@@ -69,7 +69,7 @@
         // 安全中心来的
         case CNSMSCodeTypeBindPhone:
             self.titleLb.hidden = YES;
-            self.navigationItem.title = @"绑定新手机";
+            self.navigationItem.title = @"手机号修改";
             self.jumbBtn.hidden = YES;
             break;
         default:
