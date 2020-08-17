@@ -18,8 +18,11 @@
 @interface CNForgotCodeVC () <UITextFieldDelegate>
 @property (strong, nonatomic) JHVerificationCodeView *codeView;
 @property (weak, nonatomic) IBOutlet UIView *shakingView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputTfTopMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLbH;
 @property (weak, nonatomic) IBOutlet CNBaseTF *inputTF;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLbTopMargin;
 @property (weak, nonatomic) IBOutlet UILabel *titleLb;
 /// 手机输入提示语
 @property (weak, nonatomic) IBOutlet UILabel *phoneInputTip;
@@ -63,8 +66,12 @@
         case CNSMSCodeTypeChangePhone:
             self.titleLb.hidden = YES;
             self.title = @"手机号修改";
-            self.inputTF.text = [CNUserManager shareManager].userDetail.mobileNo;
-            [self checkPhone:[CNUserManager shareManager].userDetail.mobileNo];
+            self.titleLbTopMargin.constant = 0;
+            self.inputTfTopMargin.constant = 0;
+            self.titleLbH.constant = 0;
+            //
+//            self.inputTF.text = [CNUserManager shareManager].userDetail.mobileNo;
+//            [self checkPhone:[CNUserManager shareManager].userDetail.mobileNo];
             break;
         default:
             break;
@@ -164,8 +171,11 @@
         // 高亮变化, 界面UI变化
         NSString *lastForth = [self.inputTF.text substringFromIndex:(self.inputTF.text.length-4)];
         strongSelf.phoneInputTip.text = [NSString stringWithFormat:@"短信验证验证码已发送至：\n****%@", lastForth];
-        strongSelf.inputTF.hidden = YES;
-        strongSelf.lineView.hidden = YES;
+        // 如果是忘记密码需要隐藏
+//        if (strongSelf.bindType == CNSMSCodeTypeForgotPassword) {
+            strongSelf.inputTF.hidden = YES;
+            strongSelf.lineView.hidden = YES;
+//        }
         [strongSelf.codeView clear];
         [strongSelf initCodeView];
         strongSelf.submitBtn.enabled = NO;
