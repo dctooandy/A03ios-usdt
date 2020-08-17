@@ -45,8 +45,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.navBarTransparent = YES;
-//    self.makeTranslucent = YES;
+
     self.view.backgroundColor = kHexColor(0x212137);
 
     [self.inputTF addTarget:self action:@selector(textFieldChange:) forControlEvents:UIControlEventEditingChanged];
@@ -62,6 +61,8 @@
     switch (self.bindType) {
         // 注册来的
         case CNSMSCodeTypeRegister:
+            self.navBarTransparent = YES;
+            self.makeTranslucent = YES;
             [self addNaviLeftItemNil];
             // 注册过来也要变成bind类型
             self.bindType = CNSMSCodeTypeBindPhone;

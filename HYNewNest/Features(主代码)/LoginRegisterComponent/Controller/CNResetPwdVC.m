@@ -26,8 +26,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.navBarTransparent = YES;
-//    self.makeTranslucent = YES;
+    self.navBarTransparent = YES;
+    self.makeTranslucent = YES;
     
     [self configUI];
     [self setDelegate];

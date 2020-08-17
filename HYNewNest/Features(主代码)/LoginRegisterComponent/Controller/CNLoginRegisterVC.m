@@ -77,8 +77,8 @@ NSInteger AllowTotalWrongCount = 3;
     [super viewDidLoad];
     self.wrongCount = 0;
     
-//    self.navBarTransparent = YES;
-//    self.makeTranslucent = YES;
+    self.navBarTransparent = YES;
+    self.makeTranslucent = YES;
     
     [self configUI];
     [self setDelegate];

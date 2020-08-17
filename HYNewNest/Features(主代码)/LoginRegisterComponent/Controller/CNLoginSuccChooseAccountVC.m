@@ -51,8 +51,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-//    self.navBarTransparent = YES;
-//    self.makeTranslucent = YES;
+    self.navBarTransparent = YES;
+    self.makeTranslucent = YES;
     self.view.backgroundColor = kHexColor(0x212137);
     
     self.accountSelectView.loginNameTf.text = self.samePhoneLogNameModel.samePhoneLoginNames.firstObject.loginName;

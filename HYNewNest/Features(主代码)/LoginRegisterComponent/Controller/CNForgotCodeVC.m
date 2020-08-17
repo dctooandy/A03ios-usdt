@@ -45,8 +45,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.navBarTransparent = YES;
-//    self.makeTranslucent = YES;
     
     [self.inputTF addTarget:self action:@selector(textFieldChange:) forControlEvents:UIControlEventEditingChanged];
     self.normalColor = kHexColorAlpha(0xFFFFFF, 0.15);
@@ -60,6 +58,8 @@
     switch (self.bindType) {
         // 登录来的忘记密码，完成后跳转至密码重设
         case CNSMSCodeTypeForgotPassword:
+            self.navBarTransparent = YES;
+            self.makeTranslucent = YES;
             self.view.backgroundColor = kHexColor(0x212137);
             break;
             
