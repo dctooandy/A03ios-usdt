@@ -45,6 +45,8 @@ NSInteger AllowTotalWrongCount = 3;
 @property (assign, nonatomic) BOOL needImageCode;
 
 @property (nonatomic, assign) NSInteger wrongCount;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topMarginConst0;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topMarginConst;
 
 #pragma mark - Register Property
 /// 注册账户视图
@@ -76,6 +78,8 @@ NSInteger AllowTotalWrongCount = 3;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.wrongCount = 0;
+    self.topMarginConst0.constant = self.topMarginConst.constant = kNavPlusStaBarHeight + 52;
+    
     
     self.navBarTransparent = YES;
     self.makeTranslucent = YES;
