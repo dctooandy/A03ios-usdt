@@ -46,11 +46,11 @@
     if ([CNUserManager shareManager].isLogin) {
         [self configLogInUI];
         [self reloadBalance];
-        if ([CNUserManager shareManager].userDetail.newAccountFlag == 1) {
-            self.switchModeBtn.hidden = YES;
-        } else {
+        if ([CNUserManager shareManager].userInfo.isWhiteListUser) {
             self.switchModeBtn.hidden = NO;
             [self switchAccountUIChange];
+        } else {
+            self.switchModeBtn.hidden = YES;
         }
     } else {
         [self configLogoutUI];

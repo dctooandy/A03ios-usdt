@@ -89,7 +89,7 @@
             if (!errorMsg) {
                 [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
                 [CNLoginRequest getUserInfoByTokenCompletionHandler:nil]; // 请求详细信息
-                //            [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
+                [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
             }
             completionHandler(responseObj, errorMsg);
         }
@@ -110,7 +110,7 @@
         if (!errorMsg) {
             [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
             [CNLoginRequest getUserInfoByTokenCompletionHandler:nil]; // 请求详细信息
-            //        [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
+            [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
         }
         completionHandler(responseObj, errorMsg);
     }];
@@ -152,7 +152,7 @@
         if (!errorMsg) {
             [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
             [CNLoginRequest getUserInfoByTokenCompletionHandler:nil]; // 请求详细信息
-            //        [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
+            [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
         }
         completionHandler(responseObj, errorMsg);
     }];
@@ -300,12 +300,10 @@
     param[@"topDomain"] = [CNUserManager shareManager].printedloginName;
 
     [self POST:kGatewayExtraPath(config_getTopDomain) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
-        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-            //TODO: 还不知道这个接口是否不用了
-//            if ([CNUserManager shareManager].userInfo.starLevel >= 3) {
-//                [CNUserManager shareManager].userInfo.isWhiteListUser = YES;
-//                [[CNUserManager shareManager] saveUerInfoToSandBox];
-//            }
+        if (KIsEmptyString(errorMsg)) {
+            CNUserModel *userInfo = [CNUserManager shareManager].userInfo;
+            userInfo.isWhiteListUser = YES;
+            [[CNUserManager shareManager] saveUserInfo:[userInfo yy_modelToJSONObject]];
         }
         !completionHandler?:completionHandler(responseObj, errorMsg);
     }];
@@ -330,7 +328,6 @@
                 NSDictionary *newUIF = [userInfo yy_modelToJSONObject];
                 [[CNUserManager shareManager] saveUserInfo:newUIF];
                 [[CNUserManager shareManager] deleteWebCache];
-//                [IVHttpManager shareManager].loginName = responseObj[@"loginName"]; //也要改网络框架的loginName
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil];
                 if ([CNUserManager shareManager].isUsdtMode) {
