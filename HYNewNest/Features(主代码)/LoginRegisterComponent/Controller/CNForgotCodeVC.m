@@ -63,6 +63,8 @@
         case CNSMSCodeTypeChangePhone:
             self.titleLb.hidden = YES;
             self.title = @"手机号修改";
+            self.inputTF.text = [CNUserManager shareManager].userDetail.mobileNo;
+            [self checkPhone:[CNUserManager shareManager].userDetail.mobileNo];
             break;
         default:
             break;
@@ -135,11 +137,17 @@
     textField.text = [text substringToIndex:11];
     
     // 校验手机号规格
-    BOOL inputRight = [textField.text validationType:ValidationTypePhone];
+    [self checkPhone:text];
+    self.lineView.backgroundColor = self.phoneInputTip.textColor;
+}
+
+// 校验手机号规格
+- (void)checkPhone:(NSString *)text {
+    self.phoneInputTip.hidden = NO;
+    BOOL inputRight = [text validationType:ValidationTypePhone];
     self.phoneInputTip.text = inputRight ? @"手机号码格式正确**": @"您输入的手机号码不符合规则*";
     self.sendCodeBtn.hidden = !inputRight;
-    self.lineView.backgroundColor = inputRight ? self.hilghtColor: self.wrongColor;
-    self.phoneInputTip.textColor = self.lineView.backgroundColor;
+    self.phoneInputTip.textColor = inputRight ? self.hilghtColor: self.wrongColor;
     self.wrongAccout = !inputRight;
 }
 

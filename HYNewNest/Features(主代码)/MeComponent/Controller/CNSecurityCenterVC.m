@@ -30,7 +30,8 @@
 }
 
 - (void)updateData {
-    self.phoneTF.text = [CNUserManager shareManager].userDetail.mobileNo;
+    NSString *phone = [CNUserManager shareManager].userDetail.mobileNo;
+    self.phoneTF.text = [phone stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];;
     self.weixinTF.text = [CNUserManager shareManager].userDetail.onlineMessenger2;
     self.emailTF.text = [CNUserManager shareManager].userDetail.email;
 }
