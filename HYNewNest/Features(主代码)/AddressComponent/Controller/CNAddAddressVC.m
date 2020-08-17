@@ -11,6 +11,7 @@
 #import "CNCodeInputView.h"
 #import "NSString+Validation.h"
 #import <IVLoganAnalysis/IVLAManager.h>
+#import "CNCompleteInfoVC.h"
 
 @interface CNAddAddressVC () <CNNormalInputViewDelegate, CNCodeInputViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *goldBtn;
@@ -19,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *borderLineCenterX;
 
+@property (weak, nonatomic) IBOutlet UIButton *btomTipsTitle;
+@property (weak, nonatomic) IBOutlet UILabel *btomTipsLb;
 @property (weak, nonatomic) IBOutlet CNNormalInputView *platformInputView;
 @property (weak, nonatomic) IBOutlet CNNormalInputView *linkInputView;
 @property (weak, nonatomic) IBOutlet CNCodeInputView *codeInputView;
@@ -28,7 +31,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"添加小金库";
     
     if (self.addrType == HYAddressTypeUSDT) {
         [self otherAddress:self.otherBtn];
@@ -38,9 +40,21 @@
     
     [self setDelegate];
     
-    // 验证码须传入手机号
-    self.codeInputView.account = [CNUserManager shareManager].userDetail.mobileNo;
-    self.codeInputView.codeType = CNCodeTypeBankCard;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if (![CNUserManager shareManager].userDetail.mobileNoBind) {
+        [HYTextAlertView showWithTitle:@"手机绑定" content:@"对不起！系统发现您还没有绑定手机，请先完成手机绑定流程，再进行添加地址操作。" comfirmText:@"确定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
+            if (isComfirm) {
+                [self.navigationController pushViewController:[CNCompleteInfoVC new] animated:YES];
+            }
+        }];
+        
+    } else {
+        // 验证码须传入手机号
+        self.codeInputView.account = [CNUserManager shareManager].userDetail.mobileNo;
+        self.codeInputView.codeType = CNCodeTypeBankCard;
+    }
 }
 
 - (void)configUI {
@@ -52,21 +66,29 @@
         case HYAddressTypeDCBOX:
             self.goldBtn.selected = YES;
             self.otherBtn.selected = NO;
+            self.title = @"添加小金库";
             // 小金库
             self.borderLineCenterX.constant = 0;
-            [self.platformInputView setPlaceholder:@"请输入币付宝账号"];
+            [self.platformInputView setPlaceholder:@"请输入您的小金库钱包账号"];
             [self.linkInputView setPlaceholder:@"请再次输入金库号"];
             [self.codeInputView setPlaceholder:@"请输入验证码"];
+            [self.submitBtn setTitle:@"添加小金库钱包" forState:UIControlStateNormal];
+            self.btomTipsTitle.hidden = YES;
+            self.btomTipsLb.hidden = YES;
             break;
             
         case HYAddressTypeUSDT:
             self.goldBtn.selected = NO;
             self.otherBtn.selected = YES;
+            self.title = @"添加USDT地址";
             // 其他地址
             self.borderLineCenterX.constant = kScreenWidth * 0.5;
-            [self.platformInputView setPlaceholder:@"请输入平台地址称"];
-            [self.linkInputView setPlaceholder:@"请输入或粘贴您的USDT收款链接"];
+            [self.platformInputView setPlaceholder:@"请输入平台地址名称"];
+            [self.linkInputView setPlaceholder:@"请输入或粘贴钱包地址"];
             [self.codeInputView setPlaceholder:@"请输入验证码"];
+            [self.submitBtn setTitle:@"添加USDT钱包" forState:UIControlStateNormal];
+            self.btomTipsTitle.hidden = NO;
+            self.btomTipsLb.hidden = NO;
             break;
             
         default:

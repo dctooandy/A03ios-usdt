@@ -12,6 +12,8 @@
 #import "CNHomeRequest.h"
 #import <MJRefresh/MJRefresh.h>
 #import "GameStartPlayViewController.h"
+#import "LYEmptyView.h"
+#import "UIView+Empty.h"
 
 @interface CNELSearchVC () <UICollectionViewDataSource, UICollectionViewDelegate>
 /// 搜索框
@@ -84,6 +86,9 @@
     self.resultCV.collectionViewLayout = flowLayout;
     [self.resultCV registerNib:[UINib nibWithNibName:@"CNElectrionHallCCell" bundle:nil] forCellWithReuseIdentifier:kCNElectrionHallCCellID];
     self.resultCV.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(search:)];
+    self.resultCV.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"no date"
+                                                           titleStr:@"暂无内容"
+                                                          detailStr:@""];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {

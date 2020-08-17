@@ -9,6 +9,7 @@
 #import "HYWithdrawAddCardFooter.h"
 #import "UIView+DottedLine.h"
 #import "CNAddAddressVC.h"
+#import "CNAddBankCardVC.h"
 
 @interface HYWithdrawAddCardFooter ()
 @property (weak, nonatomic) IBOutlet UIView *bgView;
@@ -29,9 +30,15 @@
 }
 
 - (IBAction)addAddrClick:(id)sender {
-    CNAddAddressVC *vc = [CNAddAddressVC new];
-    vc.addrType = HYAddressTypeUSDT;
-    [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:vc animated:YES];
+    if ([CNUserManager shareManager].isUsdtMode) {
+        CNAddAddressVC *vc = [CNAddAddressVC new];
+        vc.addrType = HYAddressTypeDCBOX;
+        [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:vc animated:YES];
+    } else {
+        CNAddBankCardVC *vc = [CNAddBankCardVC new];
+        [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:vc animated:YES];
+    }
+    
 }
 
 

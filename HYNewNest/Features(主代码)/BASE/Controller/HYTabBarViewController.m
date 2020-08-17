@@ -124,45 +124,19 @@
         
     NSInteger index = [tabBarController.viewControllers indexOfObject:viewController];
     
-//    if (index==4 && (![ManageDataModel shareManage].getLoginUserModel || [ManageDataModel shareManage].isTryPlay)) {
-//        [HYAlertView showToastViewWithTitle:@"温馨提示" content:@"我的页面有很多资金信息，登录后才可以查看哦" leftTitle:@"注册" rightTitle:@"登录" confirmBtnBlock:^(BOOL isConfirm) {
-//
-//            if (isConfirm) {
-////                STRONGSELF_DEFINE
-////                [strongSelf loginClick];
-//                [HYGPageRouter jump2RegisterPage];
-//            }else{
-////                STRONGSELF_DEFINE
-////                [strongSelf registerClick];
-//                [HYGPageRouter jump2LoginPage];
-//            }
-//        }];
-//
-//
-//        return NO;
-//    }
-//
-//    if (index==4 && ![ManageDataModel shareManage].userPrivateModel.mobileNo && !IsEmptyString([ManageDataModel shareManage].balance) && [[ManageDataModel shareManage].balance floatValue] > 0) {
-//
-//        NSString *lastAlertBindPhoneKey = @"kLastAlertBindPhoneKey";
-//        NSDate *lastDate = [UserDefault readAnyObjectUserDeftalusWithKey:lastAlertBindPhoneKey];
-//        if (lastDate) {
-//            if ([[NSDate date] timeIntervalSinceDate:lastDate]<= 24*60*60) {
-//                //24小时之内弹出过
-//                return YES;
-//            }
-//        }
-//        [UserDefault writeAnyObjectUserDefaultsWithKey:lastAlertBindPhoneKey value:[NSDate date]];
-//
-//        WEAKSELF_DEFINE
-//        [HYAlertView showToastViewWithTitle:@"温馨提示" content:@"为保障您的资金安全，请尽快绑定手机号" leftTitle:@"" rightTitle:@"去绑定" confirmBtnBlock:^(BOOL isConfirm) {
-//
-//            STRONGSELF_DEFINE
-//            VerifyPhoneNumberViewController *vc = [[VerifyPhoneNumberViewController alloc] init];
-//            vc.hidesBottomBarWhenPushed = YES;
-//            [strongSelf.selectedViewController pushViewController:vc animated:YES];
-//        }];
-//    }
+    if (index == 3 && ![CNUserManager shareManager].isLogin) {
+
+        [HYTextAlertView showWithTitle:@"温馨提示" content:@"我的页面有很多资金信息，登录后才可以查看哦" comfirmText:@"登录" cancelText:@"注册" comfirmHandler:^(BOOL isComfirm) {
+            if (isComfirm) {
+                [NNPageRouter jump2Login];
+            } else {
+                [NNPageRouter jump2Register];
+            }
+        }];
+
+        return NO;
+    }
+
     return YES;
 }
 
@@ -210,7 +184,9 @@
 - (void)call400{
     
     NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",@"4001203093"];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str] options:@{} completionHandler:^(BOOL success) {
+        [CNHUB showSuccess:@"正在为您拨通.."];
+    }];
 }
 
 

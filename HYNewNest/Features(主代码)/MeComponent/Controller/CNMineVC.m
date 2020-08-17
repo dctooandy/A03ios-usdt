@@ -115,9 +115,6 @@
     self.switchBtn.layer.borderColor = kHexColor(0x19CECE).CGColor;
     self.switchBtn.layer.borderWidth = 1;
     
-    if ([CNUserManager shareManager].userDetail.newAccountFlag == 1) {
-        self.switchBtn.hidden = YES;
-    }
     // 根据货币切换UI
     [self switchCurrencyUI];
 }
@@ -243,6 +240,12 @@
 
 
 - (void)switchCurrencyUI {
+    if ([CNUserManager shareManager].userDetail.newAccountFlag == 1) {
+        self.switchBtn.hidden = YES;
+    } else {
+        self.switchBtn.hidden = NO;
+    }
+    
     BOOL isUsdtMode = [CNUserManager shareManager].isUsdtMode;
     self.switchBtn.selected = isUsdtMode;
     self.currencyLb.text = isUsdtMode ? @"USDT": @"CNY";
@@ -251,7 +254,7 @@
     self.CNYBusinessView.hidden = isUsdtMode;
     self.CNYBusinessViewH.constant = isUsdtMode ? 0: 80;
     
-    self.forthTapLb.text = isUsdtMode ? @"提现地址": @"银行卡";
+    self.forthTapLb.text = isUsdtMode ? @"提币地址": @"银行卡";
     self.sixthTapLb.text = isUsdtMode ? @"充值指南": @"意见反馈";
 }
 

@@ -12,6 +12,8 @@
             <connections>
                 <outlet property="borderLineCenterX" destination="FBK-hg-VgS" id="2xX-8A-VMA"/>
                 <outlet property="bottomLine" destination="O9X-Ck-hDR" id="iQh-7Y-OAX"/>
+                <outlet property="btomTipsLb" destination="bbZ-H9-SiW" id="fCd-aB-qOK"/>
+                <outlet property="btomTipsTitle" destination="dmy-mo-Bzk" id="K1w-7g-5bj"/>
                 <outlet property="codeInputView" destination="Z5l-eH-dIo" id="Id4-UB-c3E"/>
                 <outlet property="goldBtn" destination="ehq-pc-lky" id="brE-eB-7gz"/>
                 <outlet property="linkInputView" destination="NA1-ca-qVu" id="icI-UW-pzs"/>

@@ -137,7 +137,7 @@
             break;
             
         case CNRecordTypeWithdraw:
-            self.title = @"提现详情";
+            self.title = [CNUserManager shareManager].isUsdtMode?@"提币详情":@"提现详情";
             self.touZhuView.hidden = YES;
             self.touZhuViewH.constant = 0;
             

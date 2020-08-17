@@ -25,8 +25,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewH;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewSpacing;
 
-@property (nonatomic, strong, nullable) CNUserModel *userInfo;
-
 #pragma - mark 未登录属性
 @property (weak, nonatomic) IBOutlet UIView *loginView;
 
@@ -49,6 +47,7 @@
         if ([CNUserManager shareManager].userDetail.newAccountFlag == 1) {
             self.switchModeBtn.hidden = YES;
         } else {
+            self.switchModeBtn.hidden = NO;
             [self switchAccountUIChange];
         }
     } else {
@@ -64,7 +63,7 @@
     self.loginView.hidden = YES;
     
     self.nameLb.text = [CNUserManager shareManager].printedloginName;
-    self.vipLb.text = [NSString stringWithFormat:@"VIP%ld", self.userInfo.starLevel];
+    self.vipLb.text = [NSString stringWithFormat:@"VIP%ld", [CNUserManager shareManager].userInfo.starLevel];
     // 默认展示底部视图
     self.showHideBtn.selected = YES;
     [self showHide:self.showHideBtn];

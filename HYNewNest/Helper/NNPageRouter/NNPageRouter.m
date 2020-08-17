@@ -25,23 +25,11 @@
 }
 
 + (void)jump2Login {
-    [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[CNLoginRegisterVC registerVC] animated:YES];
-}
-
-+ (void)jump2Register {
     [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[CNLoginRegisterVC loginVC] animated:YES];
 }
 
-+ (void)jump2RechargeVc {
-    
-}
-
-+ (void)jump2WithdrawVc {
-    
-}
-
-+ (void)jump2BuyVc {
-    
++ (void)jump2Register {
+    [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[CNLoginRegisterVC registerVC] animated:YES];
 }
 
 + (void)openExchangeElecCurrencyPageIsSell:(BOOL)isSell {

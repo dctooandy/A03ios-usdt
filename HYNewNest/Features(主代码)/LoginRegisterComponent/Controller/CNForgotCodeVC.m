@@ -204,7 +204,7 @@
             STRONGSELF_DEFINE
             if (KIsEmptyString(errorMsg)) {
                 CNBindPhoneVC *bindVc = [CNBindPhoneVC new];
-                bindVc.bindType = CNSMSCodeTypeBindPhone;
+                bindVc.bindType = CNSMSCodeTypeChangePhone;
                 [strongSelf.navigationController pushViewController:bindVc animated:YES];
             }
         }];

@@ -43,13 +43,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = [CNUserManager shareManager].isUsdtMode ? @"提现地址管理" : @"银行卡管理";
+    self.title = [CNUserManager shareManager].isUsdtMode ? @"提币地址管理" : @"银行卡管理";
     
     [self configUI];
     
     if ([CNUserManager shareManager].isUsdtMode) {
         //usdt模式
-        self.addrType = HYAddressTypeUSDT;
+        self.addrType = HYAddressTypeDCBOX;
     } else {
         //RMB模式
         self.addrType = HYAddressTypeBANKCARD;
@@ -109,6 +109,7 @@
             if ([model.bankName isEqualToString:@"BTC"]) {
             }
             else if ([model.bankName isEqualToString:@"BITOLL"]) {
+                [usdts addObject:model];
             }
             else if ([model.bankName isEqualToString:@"USDT"]) {
                 [usdts addObject:model];

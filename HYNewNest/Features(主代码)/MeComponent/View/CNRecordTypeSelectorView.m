@@ -7,7 +7,6 @@
 //
 
 #import "CNRecordTypeSelectorView.h"
-#import "CNSelectBtn.h"
 #import "CNTwoStatusBtn.h"
 
 @interface CNRecordTypeSelectorView ()
@@ -31,6 +30,8 @@
     [window endEditing:YES];
     alert.frame = window.bounds;
     [window addSubview:alert];
+    
+    [alert.withdrawBtn setTitle:[CNUserManager shareManager].isUsdtMode?@"提币":@"提现" forState:UIControlStateNormal];
     
     // 设置默认选择
     NSInteger typeIndex = 0;
