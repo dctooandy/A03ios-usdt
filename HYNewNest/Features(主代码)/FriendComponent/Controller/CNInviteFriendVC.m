@@ -67,7 +67,9 @@
 }
 
 - (void)rightItemAction {
-    [HYOneBtnAlertView showWithTitle:@"规则说明" content:@"1、您必须达到1星级方可参加活动；\n2、被邀请人单周有效投注额≥800USDT，您可以获取无流水要求0.1%佣金，无上限；\n3、重复注册将无法产生该优惠；\n4、币游享有本活动最终解释权，如有不诚实套利用户，获取的金额会被撤销；" comfirmText:@"我知道了" comfirmHandler:^{
+    
+    NSString *content = [NSString stringWithFormat:@"1、您必须达到1星级方可参加活动；\n2、被邀请人单周有效投注额≥%@，您可以获取无流水要求0.1%%佣金，无上限；\n3、重复注册将无法产生该优惠；\n4、币游享有本活动最终解释权，如有不诚实套利用户，获取的金额会被撤销；", [CNUserManager shareManager].isUsdtMode?@"800USDT":@"1500CNY"];
+    [HYOneBtnAlertView showWithTitle:@"规则说明" content:content comfirmText:@"我知道了" comfirmHandler:^{
     }];
 }
 
@@ -104,7 +106,7 @@
 
 // 查看我的收入
 - (IBAction)seeMyIncome:(id)sender {
-    [NNPageRouter jump2HTMLWithStrURL:H5_URL_SHARE title:@"好友推荐"];
+    [NNPageRouter jump2HTMLWithStrURL:@"https://m.ag88win.com" title:@"好友推荐"];
 }
 
 // 分享
