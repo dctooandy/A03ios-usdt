@@ -107,7 +107,8 @@
 
 - (void)setupCSSuspendBall {
     CGFloat btnWH = 60.f;
-    NSArray *imgNameGroup = @[@"", @"", @"形状",@"形状结合"];
+//    NSArray *imgNameGroup = @[@"", @"", @"形状",@"形状结合"];
+    NSArray *imgNameGroup = @[@"cunqu", @"help", @"phone_s"];
     SuspendBall *suspendBall = [SuspendBall suspendBallWithFrame:CGRectMake(kScreenWidth - btnWH, kScreenHeight *0.75, btnWH, btnWH) delegate:self subBallImageArray:imgNameGroup];
     suspendBall.top = kNavPlusStaBarHeight;
     suspendBall.bottom = kTabBarHeight + kSafeAreaHeight;

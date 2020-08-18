@@ -8,7 +8,7 @@
 #import "UIButton+JKImagePosition.h"
 
 /*** 分类方法  ***/
-@interface UIView (Extension)
+@interface UIView (lhzExtension)
 @property (nonatomic, assign) CGFloat lhz_width;
 @property (nonatomic, assign) CGFloat lhz_height;
 
@@ -19,7 +19,7 @@
 @property (nonatomic, assign) CGFloat lhz_centerY;
 @end
 
-@implementation UIView (Extension)
+@implementation UIView (lhzExtension)
 
 - (CGFloat)lhz_width
 {
@@ -116,11 +116,15 @@ static CGFloat btnSmallImageWidth = 60;
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self initialization];
-        //self.layer.cornerRadius = fullButtonWidth / 2;
+
+        [self setBackgroundImage:[UIImage imageNamed:@"bg_w"] forState:0];
         
-        //[self setBackgroundImage:[self resizeImage:[UIImage imageNamed:@"BallKF_0"] wantSize:CGSizeMake(btnBigImageWidth, btnBigImageWidth)] forState:0];
-        [self.imageView setImage:[UIImage imageNamed:@"BallKF_0"]];
-//        [self.imageView:[UIImage imageNamed:@"BallKF_0"]  forState:UIControlStateNormal];
+        [self setImage:[UIImage imageNamed:@"service-float"] forState:UIControlStateNormal];
+        [self setTitle:@"客服" forState:UIControlStateNormal];
+        self.titleLabel.font = [UIFont fontPFM13];
+        [self setTitleColor:kHexColor(0x10B4DD) forState:UIControlStateNormal];
+        [self jk_setImagePosition:LXMImagePositionTop spacing:3];
+
         [self addTarget:self action:@selector(suspendBallShow) forControlEvents:UIControlEventTouchUpInside];
 
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moveSuspend:)];
@@ -250,7 +254,11 @@ static CGFloat btnSmallImageWidth = 60;
     __weak typeof(self) weakSelf = self;
     if(_showFunction == NO) {
 
-        [self setImage:[self resizeImage:[UIImage imageNamed:@"BallR_0"] wantSize:CGSizeMake(btnSmallImageWidth, btnSmallImageWidth)] forState:0];
+        [self setImage:[UIImage imageNamed:@"arrow_cs"] forState:UIControlStateNormal];
+        [self setBackgroundImage:[UIImage imageNamed:@"bg"] forState:0];
+        [self setTitle:nil forState:UIControlStateNormal];
+        self.imageEdgeInsets = UIEdgeInsetsZero;
+        self.titleEdgeInsets = UIEdgeInsetsZero;
         _showFunction = YES;
         
         [self functionMenuShow];
@@ -261,8 +269,10 @@ static CGFloat btnSmallImageWidth = 60;
         return;
         
     }else if (_showFunction == YES) { //full state
-      
-       [self setImage:[self resizeImage:[UIImage imageNamed:@"BallKF_0"] wantSize:CGSizeMake(btnBigImageWidth, btnBigImageWidth)] forState:0];
+        [self setImage:[UIImage imageNamed:@"service-float"] forState:UIControlStateNormal];
+        [self setBackgroundImage:[UIImage imageNamed:@"bg_w"] forState:0];
+        [self setTitle:@"客服" forState:UIControlStateNormal];
+        [self jk_setImagePosition:LXMImagePositionTop spacing:3];
         _showFunction = NO;
         
         [self.functionMenu removeFromSuperview];
@@ -319,11 +329,11 @@ static CGFloat btnSmallImageWidth = 60;
         [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.functionMenu attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1 constant:10]];
     } else if (myCenterX >= KScreenWidth / 2) { //屏幕的右侧
         [self addSubMenuView:NO];
-        [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.functionMenu attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
+        [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.functionMenu attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1 constant:-10]];
     }
     self.functionMenu.translatesAutoresizingMaskIntoConstraints = NO;
     [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.functionMenu attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:fullButtonWidth]];
-    [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.functionMenu attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:self.imageNameGroup.count * (fullButtonWidth)]];
+    [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.functionMenu attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:self.imageNameGroup.count * fullButtonWidth]];
     [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.functionMenu attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
 }
 
@@ -334,21 +344,19 @@ static CGFloat btnSmallImageWidth = 60;
     }
     NSArray *titles;
     if (self.imageNameGroup.count == 3) {
-        titles = @[@"问题",@"问题",@"回拨"];
-    } else {
-        titles = @[@"问题",@"问题",@"回拨",@"400"];
+        titles = @[@"存取",@"疑问",@"回拨"];
     }
     for (int i = 0; i < self.imageNameGroup.count; i++) {
         UIButton *functionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [functionBtn setBackgroundImage:[UIImage imageNamed:@"椭圆形"] forState:UIControlStateNormal];
+        [functionBtn setBackgroundImage:[UIImage imageNamed:@"bg"] forState:UIControlStateNormal];
         UIImage *img = [UIImage imageNamed:self.imageNameGroup[i]];
         if (img) {
             [functionBtn setImage:img forState:UIControlStateNormal];
         }
         [functionBtn setTitle:titles[i] forState:UIControlStateNormal];
-        [functionBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        functionBtn.titleLabel.font = [UIFont systemFontOfSize:11];
-        [functionBtn jk_setImagePosition:LXMImagePositionTop spacing:3];
+        [functionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        functionBtn.titleLabel.font = [UIFont fontPFM13];
+        [functionBtn jk_setImagePosition:LXMImagePositionTop spacing:2];
         
         functionBtn.lhz_y = 0;
         functionBtn.lhz_width = fullButtonWidth;
@@ -359,23 +367,7 @@ static CGFloat btnSmallImageWidth = 60;
             functionBtn.lhz_x = (self.imageNameGroup.count-i-1) * fullButtonWidth;
         }
         
-        // !!!: 为了三端统一
-        if (!img) {
-            UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, functionBtn.lhz_width, 20)];
-            lb.textAlignment = NSTextAlignmentCenter;
-            lb.font = [UIFont systemFontOfSize:11];
-            lb.textColor = [UIColor blackColor];
-            if (i == 0) {
-                // 存取款
-                lb.text = @"充提币";
-            } else {
-                // 其他
-                lb.text = @"其他";
-            }
-            [functionBtn addSubview:lb];
-        }
-        
-        functionBtn.layer.cornerRadius = fullButtonWidth / 2;
+//        functionBtn.layer.cornerRadius = fullButtonWidth / 2;
         //            functionBtn.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.6];
         functionBtn.tag = i;
         [functionBtn addTarget:self action:@selector(menuBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
