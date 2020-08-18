@@ -31,27 +31,39 @@
     
     [self reloadCollectionViewData];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     // 已登录 获取最近玩过的游戏
     if ([CNUserManager shareManager].isLogin) {
-        WEAKSELF_DEFINE
-        [CNHomeRequest queryElecGamePlayLogHandler:^(id responseObj, NSString *errorMsg) {
-            STRONGSELF_DEFINE
-            if (errorMsg) {
-                return;
-            }
-            NSMutableArray *logElecArr = @[].mutableCopy;
-            NSArray<ElecLogGameModel *> *logArr = [ElecLogGameModel cn_parse:responseObj];
-            for (ElecLogGameModel *model in logArr) {
-                
-                if ([model.gameParam.gameType isEqualToString:@"1"]) { //筛选出电游类型
-                    [logElecArr addObject:model];
-                }
-            }
-            strongSelf.dataSource = logElecArr;
-            [strongSelf reloadCollectionViewData];
-        }];
+        [self queryRecentGames];
     }
-    
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)queryRecentGames {
+    WEAKSELF_DEFINE
+    [CNHomeRequest queryElecGamePlayLogHandler:^(id responseObj, NSString *errorMsg) {
+        STRONGSELF_DEFINE
+        if (errorMsg) {
+            return;
+        }
+        NSMutableArray *logElecArr = @[].mutableCopy;
+        NSArray<ElecLogGameModel *> *logArr = [ElecLogGameModel cn_parse:responseObj];
+        for (ElecLogGameModel *model in logArr) {
+            
+            if ([model.gameParam.gameType isEqualToString:@"1"]) { //筛选出电游类型
+                [logElecArr addObject:model];
+            }
+        }
+        strongSelf.dataSource = logElecArr;
+        [strongSelf reloadCollectionViewData];
+    }];
 }
 
 - (IBAction)entryAGBuYu:(id)sender {
