@@ -55,10 +55,6 @@ NSDictionary *SkinDictionary() {
 
 #pragma - mark 换肤-颜色
 
-+ (UIColor *)skin_colorWithHex:(NSString *)hexColor {
-    return [CNSkinManager skin_colorWithHex:hexColor alpha:1.0];
-}
-
 + (UIColor *)skin_colorWithHex:(NSString *)hexColor alpha:(CGFloat)alpha {
     
     if (hexColor.length < 6) {
@@ -133,8 +129,12 @@ NSDictionary *SkinDictionary() {
 
 @implementation UIColor (Skin)
 
++ (UIColor *)skin_colorWithHex:(NSString *)hexColor alpha:(CGFloat)alpha {
+    return [CNSkinManager skin_colorWithHex:hexColor alpha:alpha];
+}
+
 + (UIColor *)skin_colorWithHex:(NSString *)hexColor {
-    return [CNSkinManager skin_colorWithHex:hexColor];
+    return [CNSkinManager skin_colorWithHex:hexColor alpha:1.0];
 }
 
 @end

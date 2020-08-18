@@ -6,9 +6,9 @@
 //  Copyright © 2020 james. All rights reserved.
 
 /** 换肤文件管理
- 1、设置当前肤色, “setSkinTpye:”，默认是 SKinTypeNormal
- 2、填写对应颜色值到 SkinMapValue.plist 中，normal 颜色值为key ，black 颜色值为value，注意大写；UIColor分类API
- 3、图片命名，black 需要在normal 前加上 “black_”, 例如 normal图片是 “banner”，black图片就是 “black_banner”；UIImage分类API
+ 1、设置当前肤色, “setSkinTpye:”，默认是 SKinTypeDefault
+ 2、填写对应颜色值到 SkinMapValue.plist 中，Default 颜色值为key ，Black 颜色值为 value，注意大写；UIColor 分类 API
+ 3、图片命名，Black 需要在 Default 前加上 “black_”, 例如 Default 图片是 “banner”，Black 图片就是 “black_banner”；UIImage 分类 API
  4、图片和颜色加载时机最好在 "viewWillAppear:" 中，这样切换肤色后，页面会重新刷新，避免发通知
  5、无法在 "viewWillAppear:" 中实现的，可以监听通知 “CNSkinChangeNotification”，切换皮肤内部会发出通知
  */
@@ -22,8 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 FOUNDATION_EXPORT NSString * const CNSkinChangeNotification;
 
 typedef NS_ENUM(NSUInteger, SKinType) {
-    SKinTypeBlack,  // 暗黑色
-    SKinTypeWhite,  // 白色
+    SKinTypeDefault, // 默认色
+    SKinTypeBlack,   // 暗黑色
 };
 
 @interface CNSkinManager : NSObject
