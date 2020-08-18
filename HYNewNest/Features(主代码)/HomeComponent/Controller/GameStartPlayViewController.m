@@ -397,9 +397,11 @@ form.submit();\
          // 竖直复原约束
          WEAKSELF_DEFINE
          if ([self.gameUrl containsString:@"callbackUrl"]) {
-             self.hideNavgation = YES;
+//             self.hideNavgation = YES;
+             [self.navigationController setNavigationBarHidden:YES animated:YES];
          } else {
-             self.hideNavgation = NO;
+//             self.hideNavgation = NO;
+              [self.navigationController setNavigationBarHidden:NO animated:YES];
              self.navigationItem.title = self.gameName;
              [self addNaviRightItemWithImageName:@"shuaxin"];
          }
