@@ -31,7 +31,6 @@
 #define H5_URL_GET_VIPRECORD @"/pub_site/vip_record" //兑换记录
 #define H5_URL_INTEGRAL_EXCHANGE @"/pub_site/vip_mall" //积分兑换豪礼
 #define H5_URL_ABOUT_US @"/about"
-#define H5_URL_CDK_CODE @"/cdkey" //cdk优惠码
 
 
 #pragma mark - API PATH

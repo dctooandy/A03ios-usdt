@@ -240,10 +240,10 @@
 
 
 - (void)switchCurrencyUI {
-    if ([CNUserManager shareManager].userDetail.newAccountFlag == 1) {
-        self.switchBtn.hidden = YES;
-    } else {
+    if ([CNUserManager shareManager].userInfo.isWhiteListUser) {
         self.switchBtn.hidden = NO;
+    } else {
+        self.switchBtn.hidden = YES;
     }
     
     BOOL isUsdtMode = [CNUserManager shareManager].isUsdtMode;

@@ -10,8 +10,10 @@
 #import "CNVIPLabel.h"
 #import "CNUserCenterRequest.h"
 #import "CNUserModel.h"
+#import <UIImageView+WebCache.h>
 
 @interface CNUserInfoLoginView ()
+@property (weak, nonatomic) IBOutlet UIImageView *headerIcon;
 @property (weak, nonatomic) IBOutlet UILabel *nameLb;
 @property (weak, nonatomic) IBOutlet CNVIPLabel *vipLb;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLb;
@@ -44,11 +46,11 @@
     if ([CNUserManager shareManager].isLogin) {
         [self configLogInUI];
         [self reloadBalance];
-        if ([CNUserManager shareManager].userDetail.newAccountFlag == 1) {
-            self.switchModeBtn.hidden = YES;
-        } else {
+        if ([CNUserManager shareManager].userInfo.isWhiteListUser) {
             self.switchModeBtn.hidden = NO;
             [self switchAccountUIChange];
+        } else {
+            self.switchModeBtn.hidden = YES;
         }
     } else {
         [self configLogoutUI];
@@ -57,11 +59,13 @@
 
 - (void)configLogoutUI {
     self.loginView.hidden = NO;
+    self.headerIcon.image = nil;
 }
 
 - (void)configLogInUI {
     self.loginView.hidden = YES;
-    
+
+    [self.headerIcon sd_setImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userInfo.avatar]];
     self.nameLb.text = [CNUserManager shareManager].printedloginName;
     self.vipLb.text = [NSString stringWithFormat:@"VIP%ld", [CNUserManager shareManager].userInfo.starLevel];
     // 默认展示底部视图

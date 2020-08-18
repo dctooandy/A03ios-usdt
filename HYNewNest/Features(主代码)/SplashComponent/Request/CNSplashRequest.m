@@ -9,6 +9,8 @@
 #import "CNSplashRequest.h"
 #import "UpdateVersionModel.h"
 #import "FCUUID.h"
+#import "HYTextAlertView.h"
+#import "AppDelegate.h"
 
 @implementation CNSplashRequest
 
@@ -16,10 +18,13 @@
     [self POST:kGatewayPath(config_upgradeApp) parameters:[kNetworkMgr baseParam] completionHandler:^(id responseObj, NSString *errorMsg) {
         
         UpdateVersionModel *updateVersion = [UpdateVersionModel cn_parse:responseObj];
+        __block NSURL *downURL = [NSURL URLWithString:updateVersion.appDownUrl];
+        
         if ([updateVersion.flag integerValue ] == 0) {
             // 不更新
             handler(NO);
         }
+        
         else if([updateVersion.flag integerValue] >= 1){
             if (updateVersion.appDownUrl.length < 1) { //没有下载连接地址
                 handler(NO);
@@ -31,23 +36,20 @@
             NSString *cancelTitle = @"";
             NSString *suretitle = @"";
             if ([updateVersion.flag integerValue ] == 1) {
-//                title = [NSString stringWithFormat:@"检测到新版本 V%@",updateVersion.versionCode ] ;
-//                cancelTitle = @"暂不更新";
-//                suretitle= @"更新";
+                title = [NSString stringWithFormat:@"检测到新版本 V%@",updateVersion.versionCode ] ;
+                cancelTitle = @"暂不更新";
+                suretitle= @"更新";
                 
-//                [HYAlertView showToastViewWithTitle:title content:content leftTitle:cancelTitle rightTitle:@"更新" isHideMaskviewTip:NO confirmBtnBlock:^(BOOL isConfirm) {
-//                    if (isConfirm) {
-//                        if (@available(iOS 10.0, *)) {
-//                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:updateVersion.appDownUrl] options:@{} completionHandler:^(BOOL success) {
-//
-//                            }];
-//                        } else {
-//                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:updateVersion.appDownUrl]];
-//                        }
-//                    }
-//                    // 弱更 不管怎样都往下走
-//                    hanlder(NO);
-//                }];
+                [HYTextAlertView showWithTitle:title content:content comfirmText:suretitle cancelText:cancelTitle comfirmHandler:^(BOOL isComfirm) {
+                    if (isComfirm && [[UIApplication sharedApplication] canOpenURL:downURL]) {
+                        [[UIApplication sharedApplication] openURL:downURL options:@{} completionHandler:^(BOOL success) {
+                            [CNHUB showSuccess:@"正在为您打开下载链接.."];
+                        }];
+                    }
+                    // 弱更 不管怎样都往下走
+                    handler(NO);
+                }];
+                
                 
             }else if([updateVersion.flag integerValue ] == 2){
                 
@@ -65,28 +67,20 @@
                     }
                 }
                 
-//                title = [NSString stringWithFormat:@"⚠️请更新到新版本 V%@",updateVersion.versionCode];
-//                cancelTitle = @"退出应用";
-//                suretitle= @"强制更新";
-//                [HYAlertView showToastViewWithTitle:title content:content leftTitle:cancelTitle rightTitle:@"更新" isHideMaskviewTip:YES confirmBtnBlock:^(BOOL isConfirm) {
-//                    if (isConfirm) {
-//                        if (@available(iOS 10.0, *)) {
-//                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:updateVersion.appDownUrl] options:@{} completionHandler:^(BOOL success) {
-//
-//                            }];
-//                        } else {
-//                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:updateVersion.appDownUrl]];
-//                        }
-////                        [ManageDataModel exitAapplication];
-//                        // 强更 不往下走
-//                        hanlder(YES);
-//                    }else{
-//                        if (([updateVersion.flag integerValue ] == 2)) {
-//                            [ManageDataModel exitAapplication];
-//                        }
-//                    }
-//                }];
-                handler(YES);
+                title = [NSString stringWithFormat:@"⚠️请更新到新版本 V%@",updateVersion.versionCode];
+                cancelTitle = @"退出应用";
+                suretitle= @"强制更新";
+                [HYTextAlertView showWithTitle:title content:content comfirmText:suretitle cancelText:cancelTitle comfirmHandler:^(BOOL isComfirm) {
+                    if (isComfirm && [[UIApplication sharedApplication] canOpenURL:downURL]) {
+                        [[UIApplication sharedApplication] openURL:downURL options:@{} completionHandler:^(BOOL success) {
+                            [CNHUB showSuccess:@"正在为您打开下载链接.."];
+                            handler(YES);
+                        }];
+                    } else {
+                        [self exitAapplication];
+                    }
+                }];
+                
             }
         }
     }];
@@ -120,6 +114,15 @@
     [paramDic setObject:[FCUUID uuidForDevice] forKey:@"deviceId"];
     [self POST:kGatewayPath(config_areaLimit) parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
         handler([responseObj boolValue]);
+    }];
+}
+
++ (void)exitAapplication {
+    UIWindow *window = kAppDelegate.window;
+    [UIView animateWithDuration:1.0f animations:^{
+        window.alpha = 0;
+    } completion:^(BOOL finished) {
+        exit(0);
     }];
 }
 

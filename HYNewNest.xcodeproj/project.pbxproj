@@ -594,7 +594,7 @@
 		04C6E1F424D41C3C006F4DAC /* CNAddressInfoTCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNAddressInfoTCell.h; sourceTree = "<group>"; };
 		04C6E1F524D41C3C006F4DAC /* CNAddressInfoTCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNAddressInfoTCell.m; sourceTree = "<group>"; };
 		04C6E1F624D41C3C006F4DAC /* CNAddressInfoTCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNAddressInfoTCell.xib; sourceTree = "<group>"; };
-		3D13385124AD8F9B00B29783 /* HYNewNest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HYNewNest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D13385124AD8F9B00B29783 /* 币游.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "币游.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D13386C24AD8F9C00B29783 /* HYNewNestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HYNewNestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D13387024AD8F9C00B29783 /* HYNewNestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYNewNestTests.m; sourceTree = "<group>"; };
 		3D13387224AD8F9C00B29783 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1460,7 +1460,7 @@
 		3D13385224AD8F9B00B29783 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3D13385124AD8F9B00B29783 /* HYNewNest.app */,
+				3D13385124AD8F9B00B29783 /* 币游.app */,
 				3D13386C24AD8F9C00B29783 /* HYNewNestTests.xctest */,
 				3D13387724AD8F9C00B29783 /* HYNewNestUITests.xctest */,
 			);
@@ -2587,7 +2587,7 @@
 			);
 			name = HYNewNest;
 			productName = HYNewNest;
-			productReference = 3D13385124AD8F9B00B29783 /* HYNewNest.app */;
+			productReference = 3D13385124AD8F9B00B29783 /* 币游.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3D13386B24AD8F9C00B29783 /* HYNewNestTests */ = {
@@ -3294,9 +3294,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nn.hy.HYNewNest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = 1.0.02;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-dev";
+				PRODUCT_NAME = "币游";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -3320,9 +3320,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nn.hy.HYNewNest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = 1.0.02;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hy.HYNewNest;
+				PRODUCT_NAME = "币游";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

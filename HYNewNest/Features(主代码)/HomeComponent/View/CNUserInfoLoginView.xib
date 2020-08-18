@@ -14,6 +14,7 @@
                 <outlet property="bottomViewH" destination="etQ-u6-6eu" id="Led-ma-Btu"/>
                 <outlet property="bottomViewSpacing" destination="NVD-Ee-EKy" id="aKo-nm-z5u"/>
                 <outlet property="currencyLb" destination="otD-ws-LfD" id="DE0-2l-DUZ"/>
+                <outlet property="headerIcon" destination="UML-xs-Jw0" id="FeG-lZ-mt2"/>
                 <outlet property="loginView" destination="bWe-Js-K1F" id="5y4-ts-Wf5"/>
                 <outlet property="messageBtn" destination="iY9-j2-FJE" id="c3f-6K-nng"/>
                 <outlet property="moneyLb" destination="oAS-o1-hZh" id="Faf-IR-ofN"/>
@@ -32,7 +33,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sLZ-3h-qrV">
                     <rect key="frame" x="0.0" y="0.0" width="363" height="101"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="3tc-jN-zmn">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="3tc-jN-zmn">
                             <rect key="frame" x="14" y="20" width="80" height="80"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="80" id="Do0-uN-Sek"/>
@@ -101,6 +102,13 @@
                                 <action selector="switchAccount:" destination="-1" eventType="touchUpInside" id="yRB-U7-Pvy"/>
                             </connections>
                         </button>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UML-xs-Jw0">
+                            <rect key="frame" x="14" y="20" width="55" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="55" id="Ngk-Ia-fUh"/>
+                                <constraint firstAttribute="height" constant="55" id="aTZ-pE-Vbf"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -108,8 +116,10 @@
                         <constraint firstItem="6bR-cx-1xW" firstAttribute="top" secondItem="BDz-Ef-YRp" secondAttribute="bottom" constant="15" id="53j-Hf-AFd"/>
                         <constraint firstItem="otD-ws-LfD" firstAttribute="centerY" secondItem="oAS-o1-hZh" secondAttribute="centerY" constant="3" id="7jH-qS-Ljq"/>
                         <constraint firstItem="oAS-o1-hZh" firstAttribute="centerY" secondItem="6bR-cx-1xW" secondAttribute="centerY" id="9Xg-gY-oku"/>
+                        <constraint firstItem="UML-xs-Jw0" firstAttribute="top" secondItem="sLZ-3h-qrV" secondAttribute="top" constant="20" id="FCF-JJ-hMH"/>
                         <constraint firstItem="iY9-j2-FJE" firstAttribute="centerY" secondItem="BDz-Ef-YRp" secondAttribute="centerY" id="FTB-hu-Mwa"/>
                         <constraint firstItem="g7V-V1-Wjw" firstAttribute="centerY" secondItem="6bR-cx-1xW" secondAttribute="centerY" id="GCQ-UL-uEN"/>
+                        <constraint firstItem="UML-xs-Jw0" firstAttribute="leading" secondItem="sLZ-3h-qrV" secondAttribute="leading" constant="14" id="HjJ-HP-e44"/>
                         <constraint firstItem="6bR-cx-1xW" firstAttribute="leading" secondItem="BDz-Ef-YRp" secondAttribute="leading" id="OLn-r7-zb9"/>
                         <constraint firstItem="K84-Vk-Gst" firstAttribute="leading" secondItem="BDz-Ef-YRp" secondAttribute="trailing" constant="6" id="PZK-bp-LfF"/>
                         <constraint firstItem="iY9-j2-FJE" firstAttribute="leading" secondItem="K84-Vk-Gst" secondAttribute="trailing" constant="10" id="Qh3-Vf-TXi"/>
@@ -388,7 +398,7 @@
                 <constraint firstItem="GBy-vV-Zaw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qGN-Z2-P8J"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="233" y="47"/>
+            <point key="canvasLocation" x="232.60869565217394" y="46.540178571428569"/>
         </view>
     </objects>
     <resources>

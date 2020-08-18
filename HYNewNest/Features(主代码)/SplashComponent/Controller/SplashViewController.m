@@ -11,10 +11,6 @@
 #import "HYNavigationController.h"
 #import "UIImage+ESUtilities.h"
 #import <UIImageView+WebCache.h>
-//#import "LoginAPIData.h"
-//#import "CNTimeLog.h"
-//#import "HomeAPIData.h"
-//#import "ConfigAddressModel.h"
 #import "CNSplashRequest.h"
 
 
@@ -95,8 +91,9 @@
     }];
     
     [CNSplashRequest queryNewVersion:^(BOOL isHardUpdate) {
-        //TODO: 更新弹窗
-        [self requestAreaLimit];
+        if (!isHardUpdate) {
+            [self requestAreaLimit];
+        }
     }];
     
 }
@@ -203,16 +200,6 @@
 - (void)goToLoginStart{
     [self invalidateTimer];
     
-//    if ([[ManageDataModel shareManage] getLoginUserModel]) {
-////        [HYGPageRouter jump2MainPage];
-//        [LoginAPIData requsetWhiteListSuccess:^(id responseObject) {
-//            [HYGPageRouter jump2MainPage];
-//        } failure:^(MLFrameworkError *error) {
-//            [HYGPageRouter changeRootVc2TYGGPage];
-//        }];
-//    } else {
-//        [HYGPageRouter jump2LoginPage];
-//    }
     [NNPageRouter changeRootVc2MainPage];
 
 }

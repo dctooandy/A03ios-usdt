@@ -419,7 +419,7 @@
 
 - (UUMarqueeView *)marqueeView{
     if (!_marqueeView) {
-        _marqueeView = [[UUMarqueeView alloc] initWithFrame:CGRectMake(20, 0, self.adBgView.width-60, self.adBgView.height)];
+        _marqueeView = [[UUMarqueeView alloc] initWithFrame:CGRectMake(20, 0, self.adBgView.width-20, self.adBgView.height)];
         _marqueeView.delegate = self;
         _marqueeView.timeIntervalPerScroll = 1.0f;
         _marqueeView.timeDurationPerScroll = 1.0f;

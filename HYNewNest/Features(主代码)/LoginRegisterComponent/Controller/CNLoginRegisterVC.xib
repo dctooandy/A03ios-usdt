@@ -22,6 +22,8 @@
                 <outlet property="registerBtn" destination="B9t-YC-g4T" id="WdQ-Vh-XRI"/>
                 <outlet property="registerCodeView" destination="ir0-JM-89g" id="P7x-4O-agF"/>
                 <outlet property="switchSV" destination="AQP-nK-WZJ" id="JXL-sJ-8CY"/>
+                <outlet property="topMarginConst" destination="uz9-Xw-2St" id="IjP-CV-RrQ"/>
+                <outlet property="topMarginConst0" destination="BxO-zd-H3B" id="mfK-M4-0PG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -215,7 +217,7 @@
                             <rect key="frame" x="382.5" y="0.0" width="382.5" height="700"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7e-vY-Z5E">
-                                    <rect key="frame" x="286.5" y="44" width="70" height="32"/>
+                                    <rect key="frame" x="286.5" y="24" width="70" height="32"/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                     <state key="normal" title="去登录 ＞">
                                         <color key="titleColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
@@ -325,9 +327,9 @@
                                 <constraint firstAttribute="trailing" secondItem="T7e-vY-Z5E" secondAttribute="trailing" constant="26" id="PXp-Vk-JAQ"/>
                                 <constraint firstItem="h6o-d8-huP" firstAttribute="centerX" secondItem="v2C-Tp-I0L" secondAttribute="centerX" id="RyG-wB-fAW"/>
                                 <constraint firstAttribute="bottom" secondItem="Jq6-Fa-SOJ" secondAttribute="bottom" constant="60" id="SgC-uu-8A3"/>
+                                <constraint firstItem="T7e-vY-Z5E" firstAttribute="top" secondItem="v2C-Tp-I0L" secondAttribute="top" constant="24" id="VAd-ki-b8w"/>
                                 <constraint firstItem="B9t-YC-g4T" firstAttribute="leading" secondItem="v2C-Tp-I0L" secondAttribute="leading" constant="30" id="aJW-W9-uGf"/>
                                 <constraint firstAttribute="trailing" secondItem="z3O-uN-pkb" secondAttribute="trailing" constant="30" id="bKz-7X-kCr"/>
-                                <constraint firstItem="T7e-vY-Z5E" firstAttribute="top" secondItem="v2C-Tp-I0L" secondAttribute="top" constant="44" id="f2m-8L-BMv"/>
                                 <constraint firstItem="Jq6-Fa-SOJ" firstAttribute="top" secondItem="h6o-d8-huP" secondAttribute="bottom" constant="24" id="nU4-hp-RPd"/>
                                 <constraint firstItem="z3O-uN-pkb" firstAttribute="leading" secondItem="v2C-Tp-I0L" secondAttribute="leading" constant="30" id="qop-hA-Th1"/>
                                 <constraint firstItem="ir0-JM-89g" firstAttribute="top" secondItem="VQ0-bZ-lqu" secondAttribute="bottom" id="rTV-4S-tlf"/>
