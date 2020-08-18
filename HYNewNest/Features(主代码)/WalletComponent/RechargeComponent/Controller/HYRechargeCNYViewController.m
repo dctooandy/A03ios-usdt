@@ -69,6 +69,7 @@
         return;
     }
     _selcBqbankIdx = selcBqbankIdx;
+    // 设置BQbank后自动选中
     [self.editView setupBQBankModel:self.BQBanks[selcBqbankIdx]];
 }
 
@@ -77,8 +78,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"充值";
-    self.selcPayWayIdx = 0;
-    self.selcBqbankIdx = 0;
+    _selcPayWayIdx = 0;
+    _selcBqbankIdx = 0;
     
     self.view.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"kongduixiang" titleStr:@"" detailStr:@"暂无充值方式提供"];
     [self.view ly_showEmptyView];
@@ -136,7 +137,13 @@
 }
 
 - (void)didTapSelectBank:(OnlineBanksModel *)bankModel {
-    [self queryBQBanks];
+    HYRechargePayWayController *vc = [[HYRechargePayWayController alloc] initWithBQbanks:self.BQBanks selcIdx:_selcBqbankIdx];
+    vc.navPopupBlock = ^(id obj) {
+        if ([obj isKindOfClass:[NSNumber class]]) {
+            self.selcBqbankIdx = [(NSNumber *)obj integerValue];
+        }
+    };
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didChangeIsStatusRight:(BOOL)isStatusRight { 
@@ -199,6 +206,8 @@
             AmountListModel *aModel = [AmountListModel cn_parse:responseObj];
             self.curAmountModel = aModel;
             [self setupMainEditView];
+            // bq支付需要这个
+            [self queryBQBanks];
         }
     }];
 }
@@ -232,14 +241,7 @@
             NSArray *dictArr = responseObj[@"bankList"];
             NSArray *bqBanks = [BQBankModel cn_parse:dictArr];
             self.BQBanks = bqBanks;
-            
-            HYRechargePayWayController *vc = [[HYRechargePayWayController alloc] initWithBQbanks:bqBanks selcIdx:self.selcBqbankIdx];
-            vc.navPopupBlock = ^(id obj) {
-                if ([obj isKindOfClass:[NSNumber class]]) {
-                    self.selcBqbankIdx = [(NSNumber *)obj integerValue];
-                }
-            };
-            [self.navigationController pushViewController:vc animated:YES];
+            self.selcBqbankIdx = 0;
         }
     }];
 }

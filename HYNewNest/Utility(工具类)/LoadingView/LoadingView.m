@@ -23,9 +23,6 @@
 
 + (void)show {
     [self showLoadingViewWithToView:kKeywindow needMask:NO];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self hide];
-    });
 }
 
 + (void)showSuccess {
@@ -39,15 +36,13 @@
     if (!loadingView) {
         return;
     }
+    [loadingView.loadingImageView stopAnimating];
     [UIView animateWithDuration:0.15 animations:^{
-        [loadingView.loadingImageView stopAnimating];
         loadingView.loadingImageView.alpha = 0;
         loadingView.successImageView.alpha = 1;
     } completion:^(BOOL finished) {
-        //1s 后消失
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self hide];
-        });
+        //s 后消失
+        [self hide];
     }];
 }
 
@@ -124,9 +119,10 @@
 }
 
 - (void)removeLoadingSubViews {
-    [UIView animateWithDuration:0.15 animations:^{
-        self.contentView.alpha = 0.1;
-        self.loadingImageView.alpha = 0.1;
+    [UIView animateWithDuration:0.25 animations:^{
+        self.contentView.alpha = 0;
+        self.loadingImageView.alpha = 0;
+        self.successImageView.alpha = 0;
         [self.loadingImageView stopAnimating];
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
