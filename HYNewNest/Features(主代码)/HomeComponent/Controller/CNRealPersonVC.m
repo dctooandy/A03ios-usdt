@@ -34,13 +34,13 @@
         //???: CNY 线路是啥？
         
     }):nil choseUsdtLineHandler:^{
-        [NNPageRouter jump2GameName:@"AG旗舰" gameType:@"BAC" gameId:@"" gameCode:@"A03003"];
+        [NNPageRouter jump2GameName:@"真人百家乐-旗舰厅" gameType:@"BAC" gameId:@"" gameCode:@"A03003"];
     }];
 }
 
 // 进入AGIN
 - (IBAction)AGIN:(id)sender {
-    [NNPageRouter jump2GameName:@"AG国际" gameType:@"BAC" gameId:@"" gameCode:@"A03026"];
+    [NNPageRouter jump2GameName:@"真人百家乐-国际厅" gameType:@"BAC" gameId:@"" gameCode:@"A03026"];
 }
 
 

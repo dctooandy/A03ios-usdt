@@ -63,7 +63,7 @@
 }
 
 - (IBAction)entryAGBuYu:(id)sender {
-    [NNPageRouter jump2GameName:@"AG捕鱼王" gameType:@"6" gameId:@"" gameCode:@"A03026"];
+    [NNPageRouter jump2GameName:@"捕鱼王" gameType:@"6" gameId:@"" gameCode:@"A03026"];
 }
 
 //进入电游大厅

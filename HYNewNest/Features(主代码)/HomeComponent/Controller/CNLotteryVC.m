@@ -28,7 +28,7 @@
 
 // AG彩票
 - (IBAction)AGLottery:(id)sender {
-    [NNPageRouter jump2GameName:@"AG彩票" gameType:@"" gameId:@"直接进厅" gameCode:@"A03004"];
+    [NNPageRouter jump2GameName:@"彩票" gameType:@"" gameId:@"直接进厅" gameCode:@"A03004"];
 }
 
 // QC刮刮乐
