@@ -105,8 +105,7 @@
         }];
         [self.loadingImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self);
-            make.width.mas_equalTo(140);
-            make.height.mas_equalTo(105);
+            make.height.width.mas_equalTo(90);
         }];
         [self.successImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self);
@@ -120,6 +119,7 @@
     [UIView animateWithDuration:0.15 animations:^{
         self.contentView.alpha = 1.0;
         self.loadingImageView.alpha = 1.0;
+        [self.loadingImageView startAnimating];
     }];
 }
 
@@ -127,6 +127,7 @@
     [UIView animateWithDuration:0.15 animations:^{
         self.contentView.alpha = 0.1;
         self.loadingImageView.alpha = 0.1;
+        [self.loadingImageView stopAnimating];
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
@@ -159,11 +160,22 @@
         _loadingImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _loadingImageView.alpha = 0.1;
 
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"A03loading" ofType:@"gif"];
-        NSData *data = [NSData dataWithContentsOfFile:path];
-        UIImage *image = [UIImage sd_animatedGIFWithData:data];
-        _loadingImageView.image = image;
+        // gif
+//        NSString *path = [[NSBundle mainBundle] pathForResource:@"A03loading" ofType:@"gif"];
+//        NSData *data = [NSData dataWithContentsOfFile:path];
+//        UIImage *image = [UIImage sd_animatedGIFWithData:data];
+//        _loadingImageView.image = image;
         
+        // 帧动画
+        _loadingImageView.image = [UIImage imageNamed:@"loading_0"];
+        _loadingImageView.contentMode = UIViewContentModeCenter;
+        _loadingImageView.userInteractionEnabled = YES;
+        NSMutableArray *imageArray = [[NSMutableArray array] init];
+        for (NSInteger i = 0 ; i < 26; i ++ ) {
+            NSString *imageName = [NSString stringWithFormat:@"loading_%ld",i];
+            [imageArray addObject:[UIImage imageNamed:imageName]];
+        }
+        _loadingImageView.animationImages = imageArray;
     }
     return _loadingImageView;
 }

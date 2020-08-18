@@ -42,10 +42,6 @@
     }
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (void)queryRecentGames {
     WEAKSELF_DEFINE
     [CNHomeRequest queryElecGamePlayLogHandler:^(id responseObj, NSString *errorMsg) {

@@ -315,7 +315,6 @@
 		E9B5497324CF0467002CE6EF /* HYArticalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B5497124CF0467002CE6EF /* HYArticalCell.xib */; };
 		E9B5497624CF110B002CE6EF /* StrengthVideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B5497424CF110B002CE6EF /* StrengthVideoTableViewCell.m */; };
 		E9B5497924CF1174002CE6EF /* VideoThumbnailManage.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B5497724CF1174002CE6EF /* VideoThumbnailManage.m */; };
-		E9D9446224C1842300252222 /* A03loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = E9D9446124C1842200252222 /* A03loading.gif */; };
 		E9D9446C24C1EC1300252222 /* HYTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9446B24C1EC1300252222 /* HYTabBarViewController.m */; };
 		E9D9447724C1F37900252222 /* HYBonusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9447624C1F37900252222 /* HYBonusViewController.m */; };
 		E9D9447A24C1F39C00252222 /* HYGloryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9447924C1F39C00252222 /* HYGloryViewController.m */; };
@@ -594,7 +593,7 @@
 		04C6E1F424D41C3C006F4DAC /* CNAddressInfoTCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNAddressInfoTCell.h; sourceTree = "<group>"; };
 		04C6E1F524D41C3C006F4DAC /* CNAddressInfoTCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNAddressInfoTCell.m; sourceTree = "<group>"; };
 		04C6E1F624D41C3C006F4DAC /* CNAddressInfoTCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNAddressInfoTCell.xib; sourceTree = "<group>"; };
-		3D13385124AD8F9B00B29783 /* 币游.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "币游.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D13385124AD8F9B00B29783 /* 币游_dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "币游_dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D13386C24AD8F9C00B29783 /* HYNewNestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HYNewNestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D13387024AD8F9C00B29783 /* HYNewNestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYNewNestTests.m; sourceTree = "<group>"; };
 		3D13387224AD8F9C00B29783 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -893,7 +892,6 @@
 		E9B5497524CF110B002CE6EF /* StrengthVideoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengthVideoTableViewCell.h; sourceTree = "<group>"; };
 		E9B5497724CF1174002CE6EF /* VideoThumbnailManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoThumbnailManage.m; sourceTree = "<group>"; };
 		E9B5497824CF1174002CE6EF /* VideoThumbnailManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoThumbnailManage.h; sourceTree = "<group>"; };
-		E9D9446124C1842200252222 /* A03loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = A03loading.gif; sourceTree = "<group>"; };
 		E9D9446A24C1EC1300252222 /* HYTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYTabBarViewController.h; sourceTree = "<group>"; };
 		E9D9446B24C1EC1300252222 /* HYTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYTabBarViewController.m; sourceTree = "<group>"; };
 		E9D9447524C1F37900252222 /* HYBonusViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYBonusViewController.h; sourceTree = "<group>"; };
@@ -1460,7 +1458,7 @@
 		3D13385224AD8F9B00B29783 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3D13385124AD8F9B00B29783 /* 币游.app */,
+				3D13385124AD8F9B00B29783 /* 币游_dev.app */,
 				3D13386C24AD8F9C00B29783 /* HYNewNestTests.xctest */,
 				3D13387724AD8F9C00B29783 /* HYNewNestUITests.xctest */,
 			);
@@ -1631,7 +1629,6 @@
 		3D1338A724AF2EDF00B29783 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E9D9446124C1842200252222 /* A03loading.gif */,
 				3D13388A24AF28D600B29783 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -2587,7 +2584,7 @@
 			);
 			name = HYNewNest;
 			productName = HYNewNest;
-			productReference = 3D13385124AD8F9B00B29783 /* 币游.app */;
+			productReference = 3D13385124AD8F9B00B29783 /* 币游_dev.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3D13386B24AD8F9C00B29783 /* HYNewNestTests */ = {
@@ -2716,7 +2713,6 @@
 				3D13389224AF28D700B29783 /* Assets.xcassets in Resources */,
 				E9A269D824D80D8700B512FF /* HYRechargePayWayController.xib in Resources */,
 				048A0EF524C9401B00411819 /* CNGameLineView.xib in Resources */,
-				E9D9446224C1842300252222 /* A03loading.gif in Resources */,
 				D571B1AA24C03D790087B5EC /* CNStatementView.xib in Resources */,
 				0487C9ED24D297CA0013715A /* CNMessageCenterVC.xib in Resources */,
 				3D13389324AF28D700B29783 /* LaunchScreen.storyboard in Resources */,
@@ -3296,7 +3292,7 @@
 				);
 				MARKETING_VERSION = 1.0.02;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-dev";
-				PRODUCT_NAME = "币游";
+				PRODUCT_NAME = "币游_dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;

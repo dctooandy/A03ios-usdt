@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3D13385024AD8F9B00B29783"
-               BuildableName = "HYNewNest.app"
+               BuildableName = "&#x5e01;&#x6e38;.app"
                BlueprintName = "HYNewNest"
                ReferencedContainer = "container:HYNewNest.xcodeproj">
             </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3D13385024AD8F9B00B29783"
-            BuildableName = "HYNewNest.app"
+            BuildableName = "&#x5e01;&#x6e38;.app"
             BlueprintName = "HYNewNest"
             ReferencedContainer = "container:HYNewNest.xcodeproj">
          </BuildableReference>
@@ -82,7 +82,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3D13385024AD8F9B00B29783"
-            BuildableName = "HYNewNest.app"
+            BuildableName = "&#x5e01;&#x6e38;.app"
             BlueprintName = "HYNewNest"
             ReferencedContainer = "container:HYNewNest.xcodeproj">
          </BuildableReference>
