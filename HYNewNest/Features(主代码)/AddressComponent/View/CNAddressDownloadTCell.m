@@ -49,13 +49,12 @@
 }
 
 - (IBAction)didTapMore:(id)sender {
-    MyLog(@"点了更多要干嘛啊？？？");
-//    NSURL *url = [NSURL URLWithString:kDownload_XJK_Address];
-//    if ([[UIApplication sharedApplication] canOpenURL:url]) {
-//        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
-//            [CNHUB showSuccess:@"请在外部浏览器查看"];
-//        }];
-//    }
+    NSURL *url = [NSURL URLWithString:kDownload_XJK_Address];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+            [CNHUB showSuccess:@"请在外部浏览器查看"];
+        }];
+    }
 }
 
 // 在view中重写以下方法，其中self.xxx就是那个希望被触发点击事件的按钮
@@ -67,6 +66,11 @@
     if (CGRectContainsPoint(self.linkView.lblDown.bounds, newPoint)) {
         self.linkView.tapBlock();
         return self.linkView;
+    }
+    
+    CGPoint newPoint2 = [self.downloadBtn convertPoint:point fromView:self];
+    if (CGRectContainsPoint(self.downloadBtn.bounds, newPoint2)) {
+        return self.downloadBtn;
     }
     
     return nil;

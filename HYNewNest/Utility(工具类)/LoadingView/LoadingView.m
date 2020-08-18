@@ -41,8 +41,7 @@
         loadingView.loadingImageView.alpha = 0;
         loadingView.successImageView.alpha = 1;
     } completion:^(BOOL finished) {
-        //s 后消失
-        [self hide];
+        [self hideLoadingViewForView:kKeywindow];
     }];
 }
 

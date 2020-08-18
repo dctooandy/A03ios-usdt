@@ -74,7 +74,12 @@
         } else {
             [LoadingView hide];
             if (error) {
-                [CNHUB showError:error.localizedDescription];
+                // 错误信息处理
+                if ([response.head.errCode isEqualToString:Network_TimeOut_ErroCode]) {
+                    [CNHUB showError: @"请求超时 请重试"];
+                } else {
+                    [CNHUB showError:error.localizedDescription];
+                }
                 !completionHandler ?: completionHandler(nil, error.localizedDescription);
             } else {
                 //一些错误信息不要提示

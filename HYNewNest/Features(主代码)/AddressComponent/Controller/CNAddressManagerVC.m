@@ -177,8 +177,9 @@
             return self.bankAccounts.count>0 ? self.bankAccounts.count+1 : 1;
             break;
         case HYAddressTypeDCBOX:
-            //有卡：显示卡和一个添加；无卡：显示一键绑定和下载
-            return self.dcboxAccounts.count>0 ? self.dcboxAccounts.count+1 : 2;
+//            //有卡：显示卡和一个添加；无卡：显示一键绑定和下载
+//            return self.dcboxAccounts.count>0 ? self.dcboxAccounts.count+1 : 2;
+            return self.dcboxAccounts.count + 2;;
             break;
         case HYAddressTypeUSDT:
             //有卡：显示卡和添加；无卡：显示添加
@@ -211,32 +212,49 @@
             break;
             
         case HYAddressTypeDCBOX:
-            if (self.dcboxAccounts.count == 0) { //无卡
-                if (indexPath.row == self.dcboxAccounts.count) { //倒数第二个cell：一键注册/绑定小金库
-                    CNAddressAddTCell *addCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressAddTCellID forIndexPath:indexPath];
-                    addCell.titleLb.text = @"一键注册/绑定小金库";
-                    return addCell;
-                    
-                } else { //最后一个cell：下载小金库
-                    CNAddressDownloadTCell *downloadCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressDownloadTCellID forIndexPath:indexPath];
-                    return downloadCell;
-                }
-                
-            } else { //有卡
-                if (indexPath.row == self.dcboxAccounts.count) { //最后一个cell：添加小金库
-                    CNAddressAddTCell *addCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressAddTCellID forIndexPath:indexPath];
-                    addCell.titleLb.text = @"添加小金库";
-                    return addCell;
-                    
-                } else { //卡列表
-                    AccountModel *model = self.dcboxAccounts[indexPath.row];
-                    CNAddressInfoTCell *infoCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressInfoTCellID forIndexPath:indexPath];
-                    infoCell.model = model;
-                    infoCell.deleteBlock = ^{
-                        [self deleteAccountIdx:indexPath.row];
-                    };
-                    return infoCell;
-                }
+//            if (self.dcboxAccounts.count == 0) { //无卡
+//                if (indexPath.row == self.dcboxAccounts.count) { //倒数第二个cell：一键注册/绑定小金库
+//                    CNAddressAddTCell *addCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressAddTCellID forIndexPath:indexPath];
+//                    addCell.titleLb.text = @"一键注册/绑定小金库";
+//                    return addCell;
+//
+//                } else { //最后一个cell：下载小金库
+//                    CNAddressDownloadTCell *downloadCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressDownloadTCellID forIndexPath:indexPath];
+//                    return downloadCell;
+//                }
+//
+//            } else { //有卡
+//                if (indexPath.row == self.dcboxAccounts.count) { //最后一个cell：添加小金库
+//                    CNAddressAddTCell *addCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressAddTCellID forIndexPath:indexPath];
+//                    addCell.titleLb.text = @"添加小金库";
+//                    return addCell;
+//
+//                } else { //卡列表
+//                    AccountModel *model = self.dcboxAccounts[indexPath.row];
+//                    CNAddressInfoTCell *infoCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressInfoTCellID forIndexPath:indexPath];
+//                    infoCell.model = model;
+//                    infoCell.deleteBlock = ^{
+//                        [self deleteAccountIdx:indexPath.row];
+//                    };
+//                    return infoCell;
+//                }
+//            }
+            if (indexPath.row == self.dcboxAccounts.count) { //倒数第二个
+                CNAddressAddTCell *addCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressAddTCellID forIndexPath:indexPath];
+                addCell.titleLb.text = self.dcboxAccounts.count>2?@"添加小金库":@"一键注册/绑定小金库";
+                return addCell;
+            } else if (indexPath.row == self.dcboxAccounts.count+1) { //倒数第一个
+                CNAddressDownloadTCell *downloadCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressDownloadTCellID forIndexPath:indexPath];
+                return downloadCell;
+            } else {
+                 //卡列表
+                AccountModel *model = self.dcboxAccounts[indexPath.row];
+                CNAddressInfoTCell *infoCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressInfoTCellID forIndexPath:indexPath];
+                infoCell.model = model;
+                infoCell.deleteBlock = ^{
+                    [self deleteAccountIdx:indexPath.row];
+                };
+                return infoCell;
             }
             break;
             
@@ -273,17 +291,28 @@
             break;
             
         case HYAddressTypeDCBOX:
-            if (self.dcboxAccounts.count == 0 && indexPath.row == self.dcboxAccounts.count) { //一键注册/绑定小金库
-                WEAKSELF_DEFINE
-                [[ABCOneKeyRegisterBFBHelper shareInstance] startOneKeyRegisterBFBHandler:^{
-                    STRONGSELF_DEFINE
-                    [strongSelf queryAccounts];
-                }];
-                
-            } else if (self.dcboxAccounts.count > 0 && indexPath.row == self.dcboxAccounts.count) { // 添加卡
-                CNAddAddressVC *vc = [CNAddAddressVC new];
-                vc.addrType = self.addrType;
-                [self.navigationController pushViewController:vc animated:YES];
+//            if (self.dcboxAccounts.count == 0 && indexPath.row == self.dcboxAccounts.count) { //一键注册/绑定小金库
+//                WEAKSELF_DEFINE
+//                [[ABCOneKeyRegisterBFBHelper shareInstance] startOneKeyRegisterBFBHandler:^{
+//                    STRONGSELF_DEFINE
+//                    [strongSelf queryAccounts];
+//                }];
+//
+//            } else if (self.dcboxAccounts.count > 0 && indexPath.row == self.dcboxAccounts.count) { // 添加卡
+//                CNAddAddressVC *vc = [CNAddAddressVC new];
+//                vc.addrType = self.addrType;
+//                [self.navigationController pushViewController:vc animated:YES];
+//            }
+            if (indexPath.row == self.dcboxAccounts.count) { //倒数第二个
+                if (self.dcboxAccounts.count > 2) {
+                    CNAddAddressVC *vc = [CNAddAddressVC new];
+                    vc.addrType = self.addrType;
+                    [self.navigationController pushViewController:vc animated:YES];
+                } else {
+                    [[ABCOneKeyRegisterBFBHelper shareInstance] startOneKeyRegisterBFBHandler:^{
+                        [self queryAccounts];
+                    }];
+                }
             }
             break;
             

@@ -104,12 +104,10 @@
 // 非法访问
 #define IlleigalAccess_ErroCode @"GW_899998"
 
-
-// !!!: 是vip用户
-#define Network_VIPUser_ErroCode @"GWX_601437"
-#define Network_VIPUser_ErroCode2 @"GWX_601435"
-
 // 登录名不匹配
 #define Network_LoginName_ErroCode @"GW_890406"
+
+// 超时
+#define Network_TimeOut_ErroCode @"-1001"
 
 #endif /* ApiErrorCodeConst_h */
