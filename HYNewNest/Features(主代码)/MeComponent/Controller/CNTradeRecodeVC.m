@@ -81,6 +81,7 @@
             self.dayParm = 30;
         }
         self.topViewHeight.constant = 0;
+        self.topView.hidden = YES;
         if ([type containsString:@"充值"]) {
             self.recoType = transactionRecord_rechargeType;
         } else if ([type containsString:@"提现"] || [type containsString:@"提币"]) {
@@ -92,6 +93,7 @@
         } else {
             self.recoType = transactionRecord_betRecordType;
             self.topViewHeight.constant = 30;
+            self.topView.hidden = NO;
         }
         // 请求接口，刷新表格数据
         self.currentPage = 1;
@@ -398,6 +400,7 @@
 
 - (void)initHeaderView {
     self.topViewHeight.constant = 0;
+    self.topView.hidden = YES;
     self.titleList = @[@"全部",@"真人",@"电游",@"体育",@"彩票",@"棋牌"];
     
     self.menuView = [[segmentHeaderView alloc] initWithFrame:self.topView.bounds titles:self.titleList];

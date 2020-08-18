@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign) CGFloat              xmRate;
 @property (nonatomic , copy) NSString              * xmType;
 
+@property (nonatomic , copy) NSString              * xmName;
 @end
 
 

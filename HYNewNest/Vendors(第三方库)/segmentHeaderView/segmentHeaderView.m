@@ -353,7 +353,7 @@ static CGFloat const HLUnderLineH = 2;
     if (!_titleScrollView) {
         
         _titleScrollView = [[UIScrollView alloc] init];
-        _titleScrollView.backgroundColor = kHexColor(0x0D0D16);
+//        _titleScrollView.backgroundColor = kHexColor(0x0D0D16);
         _titleScrollView.showsHorizontalScrollIndicator = NO;
         self.titleScrollView.frame = self.bounds;
         [self addSubview:self.titleScrollView];

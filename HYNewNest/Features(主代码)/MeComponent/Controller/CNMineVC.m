@@ -256,6 +256,10 @@
     
     self.forthTapLb.text = isUsdtMode ? @"提币地址": @"银行卡";
     self.sixthTapLb.text = isUsdtMode ? @"充值指南": @"意见反馈";
+    
+    [self requestAccountBalance];
+    [self requestBetAmount];
+    [self requestMonthPromoteAndXima];
 }
 
 #pragma mark - REQUEST

@@ -23,9 +23,6 @@
 }
 
 - (NSString *)gameKindName {
-    if (self.gameKindName) {
-        return self.gameKindName;
-    }
     switch ([self.gameKind integerValue]) {
         case 1:
             return @"体育";

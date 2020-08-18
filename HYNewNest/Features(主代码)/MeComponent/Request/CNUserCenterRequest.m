@@ -57,11 +57,10 @@
 }
 
 + (void)requestAccountBalanceHandler:(HandlerBlock)handler {
-    kPreventRepeatTime(1);
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
-    [param setObject:@"9" forKey:@"flag"];  //1 缓存15秒 9不缓存 不传默认缓存2分钟
-    [param setObject:@(1) forKey:@"defineFlag"]; //1usdt账户余额  0人民币账户余额
+//    [param setObject:@"9" forKey:@"flag"];  //1 缓存15秒 9不缓存 不传默认缓存2分钟
+    [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"]; //1usdt账户余额  0人民币账户余额
     
     [self POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:handler];
 }
