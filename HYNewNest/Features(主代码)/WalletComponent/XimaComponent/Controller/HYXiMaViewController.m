@@ -95,7 +95,6 @@ static NSString * const KXiMaCell = @"HYXiMaCell";
 #pragma mark - ACTION
 /// 全部洗码
 - (IBAction)allWashClick:(id)sender {
-    MyLog(@"全部洗码啦");
     NSMutableArray *selTypeItems = @[].mutableCopy;
     for (NSNumber *idxNum in self.selectedIndexs) {
         XmTypesItem *item = self.xmTypeItems[[idxNum intValue]];
@@ -132,17 +131,18 @@ static NSString * const KXiMaCell = @"HYXiMaCell";
 //        self.xmPlatfModel = platfModel;
         
         NSMutableArray *allItem = @[].mutableCopy;
-        NSMutableArray *allType = @[].mutableCopy;
+        NSMutableArray *allType = @[].mutableCopy;//类型数组
         for (XmPlatformModel *model in platfModels) {
             
             for (XmPlatformListItem *item in model.xmPlatformList) {
-                
-                NSString *type = item.xmType;
-                [allType addObject:type];
-                [allItem addObject:item];
+                if (!KIsEmptyString(item.xmType)) {
+                    NSString *type = item.xmType;
+                    [allType addObject:type];
+                    [allItem addObject:item];
+                }
             }
         }
-        self.xmPlfListItems = allItem;
+        self.xmPlfListItems = allItem; //下个方法就无用了
         
         [CNXiMaRequest xmCalcAmountV3WithXmTypes:allType.copy handler:^(id responseObj, NSString *errorMsg) {
             if (errorMsg) {
@@ -153,12 +153,20 @@ static NSString * const KXiMaCell = @"HYXiMaCell";
             self.xmCalAmountModel = amoutModel;
             
             NSMutableArray *allTypeItem = @[].mutableCopy;
+            NSInteger i = 0;
             for (XmListItem *listItem in amoutModel.xmList) {
                 for (XmTypesItem *typeItem in listItem.xmTypes) {
+                    XmPlatformListItem *item = self.xmPlfListItems[i];
+                    typeItem.xmName = item.xmName;
                     [allTypeItem addObject:typeItem];
+                    i ++;
                 }
             }
-            self.xmTypeItems = allTypeItem;
+            //有金额的排到前面
+            NSArray <XmTypesItem *>*data = [allTypeItem sortedArrayUsingComparator:^NSComparisonResult(XmTypesItem * obj1, XmTypesItem * obj2) {
+                return obj1.xmAmount < obj2.xmAmount;
+            }];
+            self.xmTypeItems = data;
             
             [self.tableView.mj_header endRefreshing];
             [self.tableView reloadData];
@@ -177,9 +185,9 @@ static NSString * const KXiMaCell = @"HYXiMaCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HYXiMaCell * cell = [tableView dequeueReusableCellWithIdentifier:KXiMaCell];
-    XmPlatformListItem *item = self.xmPlfListItems[indexPath.row];
+//    XmPlatformListItem *item = self.xmPlfListItems[indexPath.row];
     XmTypesItem *type = self.xmTypeItems[indexPath.row];
-    cell.lblName.text = item.xmName;
+    cell.lblName.text = type.xmName;
     cell.lblXimaAmount.text = [NSString stringWithFormat:@"%.2f", type.xmAmount];
     cell.lblBetAmount.text = [NSString stringWithFormat:@"%.2f", type.betAmount];
     cell.lblRate.text = [NSString stringWithFormat:@"%.1f%%", type.xmRate];
@@ -201,10 +209,12 @@ static NSString * const KXiMaCell = @"HYXiMaCell";
     
     if ([self.selectedIndexs containsObject:@(indexPath.row)]) {
         [self.selectedIndexs removeObject:@(indexPath.row)];
-        self.topView.lblAmount.text = [NSString stringWithFormat:@"%.2f", self.amount - typeItem.xmAmount];
+        self.amount -= typeItem.xmAmount;
+        self.topView.lblAmount.text = [NSString stringWithFormat:@"%.2f", self.amount];
     }else{
         [self.selectedIndexs addObject:@(indexPath.row)];
-        self.topView.lblAmount.text = [NSString stringWithFormat:@"%.2f", self.amount + typeItem.xmAmount];
+        self.amount += typeItem.xmAmount;
+        self.topView.lblAmount.text = [NSString stringWithFormat:@"%.2f", self.amount];
     }
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     
