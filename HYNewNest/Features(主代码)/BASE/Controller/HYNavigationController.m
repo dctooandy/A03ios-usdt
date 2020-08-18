@@ -37,13 +37,13 @@
     [self setNeedsStatusBarAppearanceUpdate];
     
     [self.navigationBar setShadowImage:[[UIImage alloc]init]];
-    if ([CNSkinManager currSkinType] == SKinTypeBlack) {
+//    if ([CNSkinManager currSkinType] == SKinTypeBlack) {
         [self.navigationBar setBackgroundImage:[UIImage jk_imageWithColor:kHexColor(0x1A1A2C)] forBarMetrics:UIBarMetricsDefault];
         [self.navigationBar setBarTintColor:[UIColor whiteColor]];
         [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName: [UIFont fontPFSB18]}];
-    } else {
-        // 白色主题
-    }
+//    } else {
+//        // 白色主题
+//    }
     
 }
 
@@ -149,11 +149,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
 #pragma mark - STATUSBAR
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    if ([CNSkinManager currSkinType] == SKinTypeBlack) {
+//    if ([CNSkinManager currSkinType] == SKinTypeBlack) {
         return UIStatusBarStyleLightContent;
-    } else {
-        return UIStatusBarStyleDefault;
-    }
+//    } else {
+//        return UIStatusBarStyleDefault;
+//    }
 }
 
 #pragma mark - 控制屏幕旋转方法

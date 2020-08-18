@@ -30,13 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-        
-    if ([CNSkinManager currSkinType] == SKinTypeBlack) {
-        self.view.backgroundColor = [UIColor blackColor];
-    } else {
-        self.view.backgroundColor = [UIColor whiteColor];
-    }
-    
+            
     UIImageView *imgView = [[UIImageView alloc]init];
     imgView.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:imgView];
@@ -225,13 +219,6 @@
     self.timer = nil;
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    if ([CNSkinManager currSkinType] == SKinTypeBlack) {
-        return UIStatusBarStyleLightContent;
-    } else {
-        return UIStatusBarStyleDefault;
-    }
-}
 
 
 

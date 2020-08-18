@@ -94,11 +94,11 @@
 #pragma mark - STATUSBAR
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    if ([CNSkinManager currSkinType] == SKinTypeBlack) {
+//    if ([CNSkinManager currSkinType] == SKinTypeBlack) {
         return UIStatusBarStyleLightContent;
-    } else {
-        return UIStatusBarStyleDefault;
-    }
+//    } else {
+//        return UIStatusBarStyleDefault;
+//    }
 }
 
 

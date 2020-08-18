@@ -43,11 +43,11 @@
         // 设置背景
         UIImage *bgimg = [UIImage createImageWithRadius:0 Color:KColorRGB(12, 11, 17) bounds:CGRectMake(0, 0, kScreenWidth, kTabBarHeight)];
         appearance.backgroundImage = bgimg;
-        if (CNSkinManager.currSkinType == SKinTypeBlack) {
-            appearance.backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-        } else {
+//        if (CNSkinManager.currSkinType == SKinTypeBlack) { //没效果？
+//            appearance.backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+//        } else {
             appearance.backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        }
+//        }
         appearance.backgroundColor = [UIColor clearColor];
         // 去除分割线
 //        appearance.shadowImage = [UIImage new];
