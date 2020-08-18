@@ -64,7 +64,7 @@ NSDictionary *SkinDictionary() {
     // 读取 plist 中的对应颜色换肤色值
     NSString *hex = hexColor.uppercaseString;
     switch ([CNSkinManager defaultManager].currentSkin) {
-        case SKinTypeBlack:
+        case SKinTypeLight:
             hex = [SkinDictionary() objectForKey:hex];
             break;
             
@@ -110,8 +110,8 @@ NSDictionary *SkinDictionary() {
     
     NSString *newName = name;
     switch ([CNSkinManager defaultManager].currentSkin) {
-        case SKinTypeBlack:
-            newName = [NSString stringWithFormat:@"black_%@", name];
+        case SKinTypeLight:
+            newName = [NSString stringWithFormat:@"light_%@", name];
             break;
             
         default:
