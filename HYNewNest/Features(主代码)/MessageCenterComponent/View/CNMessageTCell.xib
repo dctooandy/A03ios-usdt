@@ -79,7 +79,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
-                <outlet property="contentLb" destination="xtm-Xm-Rih" id="dxa-PJ-ZON"/>
+                <outlet property="contentLb" destination="xtm-Xm-Rih" id="Vtu-vT-oUA"/>
                 <outlet property="timeLb" destination="8p9-jv-E6H" id="Qo4-dX-5ag"/>
             </connections>
             <point key="canvasLocation" x="167" y="38"/>

@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"消息中心";
-    [self addNaviRightItemWithImageName:@"sz"];
+//    [self addNaviRightItemWithImageName:@"sz"];
     [self configUI];
     
     self.currPage = 0;
@@ -43,9 +43,9 @@
     [self requestLetters];
 }
 
-- (void)rightItemAction {
-    [self.navigationController pushViewController:[CNNotifySettingVC new] animated:YES];
-}
+//- (void)rightItemAction {
+//    [self.navigationController pushViewController:[CNNotifySettingVC new] animated:YES];
+//}
 
 - (void)configUI {
     self.tableView.backgroundColor = self.view.backgroundColor;

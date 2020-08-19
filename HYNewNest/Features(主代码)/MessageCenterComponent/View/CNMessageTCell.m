@@ -13,6 +13,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    self.contentLb.font = [UIFont systemFontOfSize:AD(12)];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
