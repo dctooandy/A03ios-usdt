@@ -46,6 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.inputTF.placeholder = [NSString stringWithFormat:@"请输入%@手机号", [CNUserManager shareManager].userDetail.mobileNo];
     [self.inputTF addTarget:self action:@selector(textFieldChange:) forControlEvents:UIControlEventEditingChanged];
     self.normalColor = kHexColorAlpha(0xFFFFFF, 0.15);
     self.hilghtColor = kHexColor(0x10B4DD);
@@ -63,13 +64,6 @@
             self.view.backgroundColor = kHexColor(0x212137);
             break;
             
-        // 安全中心来的，修改绑定手机号，完成解绑后跳转至绑定手机 CNBindPhoneVC
-        case CNSMSCodeTypeChangePhone:
-            self.titleLb.hidden = YES;
-            self.title = @"手机号修改";
-            self.titleLbTopMargin.constant = 0;
-            self.inputTfTopMargin.constant = 0;
-            break;
         default:
             break;
     }
@@ -167,16 +161,9 @@
         strongSelf.smsModel = [SmsCodeModel cn_parse:responseObj];
         // 高亮变化, 界面UI变化
         NSString *lastForth = [self.inputTF.text substringFromIndex:(self.inputTF.text.length-4)];
-        // 如果是忘记密码需要隐藏
-        if (strongSelf.bindType == CNSMSCodeTypeForgotPassword) {
-            strongSelf.inputTF.hidden = YES;
-            strongSelf.lineView.hidden = YES;
-            strongSelf.phoneInputTip.text = [NSString stringWithFormat:@"短信验证验证码已发送至：\n****%@", lastForth];
-        } else {
-            strongSelf.inputTF.userInteractionEnabled = NO;
-            self.phoneInputTipTopMargin.constant = 20+40+35;
-            strongSelf.phoneInputTip.text = [NSString stringWithFormat:@"我们已向您的尾号为%@的手机发送验证码，\n请在下方输入6位短信验证码*", lastForth];
-        }
+        strongSelf.inputTF.hidden = YES;
+        strongSelf.lineView.hidden = YES;
+        strongSelf.phoneInputTip.text = [NSString stringWithFormat:@"短信验证验证码已发送至：\n****%@", lastForth];
         [strongSelf.codeView clear];
         [strongSelf initCodeView];
         strongSelf.submitBtn.enabled = NO;
@@ -193,33 +180,19 @@
         return;
     }
     WEAKSELF_DEFINE
-    if (self.bindType == CNSMSCodeTypeForgotPassword) {
-        [CNLoginRequest forgetPasswordValidateSmsCode:self.smsModel.smsCode
-                                            messageId:self.smsModel.messageId
-                                             phoneNum:self.inputTF.text
-                                    completionHandler:^(id responseObj, NSString *errorMsg) {
-            STRONGSELF_DEFINE
-            if (KIsEmptyString(errorMsg)) {
-                CNResetPwdVC *vc = [CNResetPwdVC new];
-                vc.smsCode = strongSelf.smsModel.smsCode;
-                vc.fpwdModel = [SamePhoneLoginNameModel cn_parse:responseObj];
-                [strongSelf.navigationController pushViewController:vc animated:YES];
-            }
-        }];
-        
-    } else {
-        [CNLoginRequest verifySMSCodeWithType:self.bindType
-                                      smsCode:self.smsModel.smsCode
-                                    smsCodeId:self.smsModel.messageId
-                            completionHandler:^(id responseObj, NSString *errorMsg) {
-            STRONGSELF_DEFINE
-            if (KIsEmptyString(errorMsg)) {
-                CNBindPhoneVC *bindVc = [CNBindPhoneVC new];
-                bindVc.bindType = CNSMSCodeTypeChangePhone;
-                [strongSelf.navigationController pushViewController:bindVc animated:YES];
-            }
-        }];
-    }
+    [CNLoginRequest forgetPasswordValidateSmsCode:self.smsModel.smsCode
+                                        messageId:self.smsModel.messageId
+                                         phoneNum:self.inputTF.text
+                                completionHandler:^(id responseObj, NSString *errorMsg) {
+        STRONGSELF_DEFINE
+        if (KIsEmptyString(errorMsg)) {
+            CNResetPwdVC *vc = [CNResetPwdVC new];
+            vc.smsCode = strongSelf.smsModel.smsCode;
+            vc.fpwdModel = [SamePhoneLoginNameModel cn_parse:responseObj];
+            [strongSelf.navigationController pushViewController:vc animated:YES];
+        }
+    }];
+
 }
 
 #pragma - mark Timer

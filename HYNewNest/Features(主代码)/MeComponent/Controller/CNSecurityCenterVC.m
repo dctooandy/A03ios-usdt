@@ -38,17 +38,20 @@
 
 // 修改手机号
 - (IBAction)changePhoneNum:(id)sender {
-    if (self.phoneTF.text.length > 0) {
-        // 已经绑定手机号，走解绑
-        CNForgotCodeVC *vc = [CNForgotCodeVC new];
-        vc.bindType = CNSMSCodeTypeChangePhone;
-        [self.navigationController pushViewController:vc animated:YES];
-    } else {
-        // 未绑定的直接去绑定
-        CNBindPhoneVC *vc = [CNBindPhoneVC new];
-        vc.bindType = CNSMSCodeTypeBindPhone;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+//    if (self.phoneTF.text.length > 0) {
+//        // 已经绑定手机号，走解绑
+//        CNForgotCodeVC *vc = [CNForgotCodeVC new];
+//        vc.bindType = CNSMSCodeTypeChangePhone;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    } else {
+//        // 未绑定的直接去绑定
+//        CNBindPhoneVC *vc = [CNBindPhoneVC new];
+//        vc.bindType = CNSMSCodeTypeBindPhone;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
+    CNBindPhoneVC *vc = [CNBindPhoneVC new];
+    vc.bindType = self.phoneTF.text.length > 0 ? CNSMSCodeTypeUnbind : CNSMSCodeTypeBindPhone;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 // 修改密码

@@ -46,8 +46,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.view.backgroundColor = kHexColor(0x212137);
-
     [self.inputTF addTarget:self action:@selector(textFieldChange:) forControlEvents:UIControlEventEditingChanged];
     self.normalColor = kHexColorAlpha(0xFFFFFF, 0.15);
     self.hilghtColor = kHexColor(0x10B4DD);
@@ -61,16 +59,30 @@
     switch (self.bindType) {
         // 注册来的
         case CNSMSCodeTypeRegister:
+            self.view.backgroundColor = kHexColor(0x212137);
             self.navBarTransparent = YES;
             self.makeTranslucent = YES;
             [self addNaviLeftItemNil];
             // 注册过来也要变成bind类型
             self.bindType = CNSMSCodeTypeBindPhone;
             break;
-        // 安全中心来的
+        // 安全中心来的 未绑手机
         case CNSMSCodeTypeBindPhone:
             self.titleLb.hidden = YES;
+            self.navigationItem.title = @"绑定新手机";
+            self.jumbBtn.hidden = YES;
+            break;
+        // 安全中心来的 解绑
+        case CNSMSCodeTypeUnbind:
+            self.inputTF.placeholder = [NSString stringWithFormat:@"请输入%@手机号",[CNUserManager shareManager].userDetail.mobileNo];
+            self.titleLb.hidden = YES;
             self.navigationItem.title = @"手机号修改";
+            self.jumbBtn.hidden = YES;
+            break;
+        // 解绑来的 绑新手机
+        case CNSMSCodeTypeChangePhone:
+            self.titleLb.hidden = YES;
+            self.navigationItem.title = @"绑定新手机";
             self.jumbBtn.hidden = YES;
             break;
         default:
@@ -157,8 +169,8 @@
 - (IBAction)sendSmsCode:(UIButton *)sender {
 
     WEAKSELF_DEFINE
-    // 请求短信
-    [CNLoginRequest getSMSCodeWithType:self.bindType
+    // 请求短信   a03没有这个用处：CNSMSCodeTypeUnbind
+    [CNLoginRequest getSMSCodeWithType:self.bindType == CNSMSCodeTypeUnbind?CNSMSCodeTypeChangePhone:self.bindType
                                  phone:self.inputTF.text
                      completionHandler:^(id responseObj, NSString *errorMsg) {
         
@@ -175,7 +187,6 @@
         [strongSelf.codeView becomeFirstResponder];
         strongSelf.submitBtn.enabled = NO;
         sender.enabled = NO;
-        strongSelf.codeTip.hidden = YES;
         [strongSelf initCodeView];
         [strongSelf.secondTimer setFireDate:[NSDate distantPast]];
     }];
@@ -201,6 +212,20 @@
                 }
                 [CNHUB showSuccess:@"绑定成功"];
                 [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+        }];
+    
+    } else if (self.bindType == CNSMSCodeTypeUnbind) {
+        
+        [CNLoginRequest verifySMSCodeWithType:CNSMSCodeTypeChangePhone
+                                      smsCode:self.smsModel.smsCode
+                                    smsCodeId:self.smsModel.messageId
+                            completionHandler:^(id responseObj, NSString *errorMsg) {
+            if (KIsEmptyString(errorMsg)) {
+                [CNHUB showSuccess:@"验证成功"];
+                CNBindPhoneVC *bindVc = [CNBindPhoneVC new];
+                bindVc.bindType = CNSMSCodeTypeChangePhone;
+                [self.navigationController pushViewController:bindVc animated:YES];
             }
         }];
         

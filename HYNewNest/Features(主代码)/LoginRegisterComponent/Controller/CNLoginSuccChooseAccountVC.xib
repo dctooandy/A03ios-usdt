@@ -29,30 +29,29 @@
                             <color key="textColor" white="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ve5-PQ-wqH">
-                            <rect key="frame" x="0.0" y="41" width="175" height="34"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="34" id="BS2-D2-SZm"/>
-                                <constraint firstAttribute="width" constant="175" id="bu5-m1-8Ql"/>
-                            </constraints>
-                        </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="匿名  安全  游戏  稳定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OpM-f5-PkI">
                             <rect key="frame" x="0.0" y="91" width="118.5" height="15"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="币游数字站" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsw-6N-OOm">
+                            <rect key="frame" x="0.0" y="39" width="175" height="41"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="34"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <gestureRecognizers/>
                     <constraints>
-                        <constraint firstItem="ve5-PQ-wqH" firstAttribute="leading" secondItem="qZc-Zp-EPP" secondAttribute="leading" id="30z-Xb-gt2"/>
+                        <constraint firstItem="Lsw-6N-OOm" firstAttribute="top" secondItem="2fS-sC-h9X" secondAttribute="bottom" constant="10" id="31D-pm-Jv4"/>
                         <constraint firstItem="2fS-sC-h9X" firstAttribute="top" secondItem="qZc-Zp-EPP" secondAttribute="top" id="3eD-Lq-9bQ"/>
-                        <constraint firstAttribute="trailing" secondItem="ve5-PQ-wqH" secondAttribute="trailing" id="9xr-LO-Z35"/>
-                        <constraint firstItem="ve5-PQ-wqH" firstAttribute="top" secondItem="2fS-sC-h9X" secondAttribute="bottom" constant="12" id="Ih5-yv-x7G"/>
+                        <constraint firstItem="OpM-f5-PkI" firstAttribute="top" secondItem="Lsw-6N-OOm" secondAttribute="bottom" constant="11" id="5Dj-oT-xgv"/>
                         <constraint firstAttribute="bottom" secondItem="OpM-f5-PkI" secondAttribute="bottom" id="JdS-4d-r5n"/>
+                        <constraint firstItem="Lsw-6N-OOm" firstAttribute="centerX" secondItem="qZc-Zp-EPP" secondAttribute="centerX" id="M7d-Sw-7vs"/>
                         <constraint firstItem="2fS-sC-h9X" firstAttribute="leading" secondItem="qZc-Zp-EPP" secondAttribute="leading" id="NO1-Pc-IRf"/>
-                        <constraint firstItem="OpM-f5-PkI" firstAttribute="top" secondItem="ve5-PQ-wqH" secondAttribute="bottom" constant="16" id="TYx-QE-mfu"/>
+                        <constraint firstItem="Lsw-6N-OOm" firstAttribute="leading" secondItem="OpM-f5-PkI" secondAttribute="leading" id="dZ1-cb-Ff1"/>
                         <constraint firstItem="OpM-f5-PkI" firstAttribute="leading" secondItem="qZc-Zp-EPP" secondAttribute="leading" id="v6H-bN-HVr"/>
                     </constraints>
                 </view>
@@ -93,6 +92,7 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="qZc-Zp-EPP" secondAttribute="trailing" constant="209" id="1AK-th-H6U"/>
                 <constraint firstItem="v4p-XN-AKB" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="30" id="941-W0-k47"/>
                 <constraint firstItem="oNn-OH-OZR" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="FSj-ES-kcS"/>
                 <constraint firstItem="qZc-Zp-EPP" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="52" id="GIU-Vy-PHi"/>

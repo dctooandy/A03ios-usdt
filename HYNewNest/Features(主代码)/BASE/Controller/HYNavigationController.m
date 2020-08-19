@@ -68,9 +68,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
 
 #pragma mark - PUSH & POP
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    if ([self.topViewController isKindOfClass:viewController.class]) {
-        return;
-    }
+    // 防止重复push
+//    if ([self.topViewController isKindOfClass:viewController.class]) {
+//        return;
+//    }
+    
     if (self.viewControllers.count>0) {
         //当存在子控制器时才隐藏tabBar
         viewController.hidesBottomBarWhenPushed = YES;
@@ -79,6 +81,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
 //        backItem.imageInsets = UIEdgeInsetsMake(0, -10, 0, 0);
         viewController.navigationItem.leftBarButtonItem = backItem;
     }
+    
     //  push入栈
     [super pushViewController:viewController animated:animated];
 }

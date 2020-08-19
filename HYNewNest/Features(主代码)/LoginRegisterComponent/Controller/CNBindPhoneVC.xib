@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -130,7 +130,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TTB-nh-bU5" customClass="CNTwoStatusBtn">
-                    <rect key="frame" x="30" y="392" width="354" height="48"/>
+                    <rect key="frame" x="30" y="425" width="354" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="bNk-3D-qWE"/>
                     </constraints>
@@ -146,7 +146,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Vw-J1-oP9" customClass="CNOneStatusBtn">
-                    <rect key="frame" x="30" y="470" width="354" height="48"/>
+                    <rect key="frame" x="30" y="503" width="354" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="AmJ-BF-AuY"/>
                     </constraints>
@@ -161,7 +161,7 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="TTB-nh-bU5" firstAttribute="top" secondItem="zlC-Sk-kCd" secondAttribute="bottom" constant="10" id="1SH-Fr-yOq"/>
+                <constraint firstItem="TTB-nh-bU5" firstAttribute="top" secondItem="zlC-Sk-kCd" secondAttribute="bottom" constant="43" id="1SH-Fr-yOq"/>
                 <constraint firstItem="4Vw-J1-oP9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="4P2-N5-L1f"/>
                 <constraint firstItem="uQU-51-wMD" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="4gc-N5-Fa5"/>
                 <constraint firstItem="G1O-it-Bhq" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="BYf-Ye-M2u"/>
@@ -181,7 +181,7 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="4Vw-J1-oP9" secondAttribute="trailing" constant="30" id="tF6-Dy-QZo"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="301" y="121"/>
+            <point key="canvasLocation" x="-349" y="151"/>
         </view>
     </objects>
 </document>
