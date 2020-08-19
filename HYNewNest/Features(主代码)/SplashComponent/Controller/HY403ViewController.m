@@ -7,6 +7,7 @@
 //
 
 #import "HY403ViewController.h"
+#import "CNTwoStatusBtn.h"
 
 @interface HY403ViewController ()
 
@@ -16,54 +17,54 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.makeTranslucent = YES;
+    self.navBarTransparent = YES;
     [self setupUI];
 }
 
 - (void)setupUI{
-    
-    UIImageView *bgImageView = [[UIImageView alloc] init];
-    bgImageView.frame = [UIScreen mainScreen].bounds;
-    bgImageView.image = [UIImage imageNamed:@"Error403Bg"];
-    [self.view addSubview:bgImageView];
-    
+    UIImage *img403 = [UIImage imageNamed:@"403-h5"];
     UIImageView *topImageView = [[UIImageView alloc] init];
-    topImageView.frame = CGRectMake(0 , kScreenHeight * 0.5 - (kScreenWidth * 0.6) - 40, kScreenWidth, kScreenHeight * 0.6);
-    topImageView.image = [UIImage imageNamed:@"ErrorNew403"];
+    topImageView.frame = CGRectMake(0, KIsIphoneXSeries?kNavPlusStaBarHeight:0, kScreenWidth, kScreenWidth * img403.size.height / img403.size.width);
+    topImageView.image = img403;
     [self.view addSubview:topImageView];
     
     UILabel *titleLbl = [[UILabel alloc] init];
-    titleLbl.text = @"尊敬的客户\nDear Customers";
-    titleLbl.frame = CGRectMake(0, kScreenHeight * 0.5 - (KIsIphoneXSeries ? 20 : 40), kScreenWidth, 50);
+    titleLbl.text = @"尊敬的客户";
+    titleLbl.frame = CGRectMake(0, kScreenHeight * 0.5 - (KIsIphoneXSeries ? 35 : 55), kScreenWidth, 23);
     titleLbl.textAlignment = NSTextAlignmentCenter;
-    titleLbl.font = [UIFont fontWithName:@"PingFangSC-Regular" size:13];
-    titleLbl.textColor = kHexColor(0x676767);
-    titleLbl.numberOfLines = 2;
+    titleLbl.font = [UIFont fontPFSB21];
+    titleLbl.textColor = kHexColor(0xFFFFFF);
     [self.view addSubview:titleLbl];
     
+    UILabel *subtitleLbl = [[UILabel alloc] init];
+    subtitleLbl.text = @"Dear Customers";
+    subtitleLbl.frame = CGRectMake(0, titleLbl.bottom+2, kScreenWidth, 23);
+    subtitleLbl.textAlignment = NSTextAlignmentCenter;
+    subtitleLbl.font = [UIFont fontPFSB16];
+    subtitleLbl.textColor = kHexColor(0xFFFFFF);
+    [self.view addSubview:subtitleLbl];
+    
     UITextView *tipTextView = [[UITextView alloc] init];
-    tipTextView.frame = CGRectMake(25, CGRectGetMaxY(titleLbl.frame), kScreenWidth - 50, 250);
+    tipTextView.frame = CGRectMake(32, CGRectGetMaxY(subtitleLbl.frame)+15, kScreenWidth - 64, 250);
     tipTextView.backgroundColor = [UIColor clearColor];
-    tipTextView.textColor = kHexColor(0x676767);
-    tipTextView.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:12];
     tipTextView.editable = NO;
     [self.view addSubview:tipTextView];
     
-    NSString *content = @"由于IP访问太过频繁，您所尝试的网页现在无法打开。\n您可以通过以下方式联系我们的客服中心。由此给您带来的不便我们深表歉意；\n\nDue to the frequent IP access, your attempt to visit our website has been denied. Should you have any inquiries，We apologize for the inconvenience caused; \n\n菲律宾客服热线：+63-999-5168-188\n\nPlease contact our customer service center at +63-999-5168-188, Live help";
+    NSString *content = @"由于IP访问太过频繁，您所尝试的网页现在无法打开。\n您可以通过以下方式联系我们的客服中心。由此给您带来的不便我们深表歉意；\nDue to the frequent IP access, your attempt to visit our website has been denied. Should you have any inquiries，We apologize for the inconvenience caused; \n\n菲律宾客服热线：+63-999-5168-188\nPlease contact our customer service center at +63-999-5168-188, Live help";
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:content];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
 //    [paragraphStyle setLineSpacing:1];//调整行间距
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [content length])];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:kHexColor(0x676767) range:NSMakeRange(0, [content length])];
-    [attributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:12] range:NSMakeRange(0, [content length])];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:[content rangeOfString:@"+63-999-5168-188"]];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:[content rangeOfString:@"cs@ga88.com"]];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:kHexColor(0x9595BF) range:NSMakeRange(0, [content length])];
+    [attributedString addAttribute:NSFontAttributeName value:[UIFont fontPFR14] range:NSMakeRange(0, [content length])];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:kHexColor(0x32C5FF) range:[content rangeOfString:@"+63-999-5168-188"]];
     tipTextView.attributedText = attributedString;
     
-    UIButton *btnSure = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnSure.frame = CGRectMake(30, kScreenHeight - 50 - 35, kScreenWidth - 60, 50);
+    CNTwoStatusBtn *btnSure = [CNTwoStatusBtn new];
+    btnSure.frame = CGRectMake((kScreenWidth-180)*0.5, kScreenHeight - 78 - kSafeAreaHeight, 180, 48);
     [btnSure setTitle:@"在线客服" forState:UIControlStateNormal];
-    btnSure.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
+    btnSure.titleLabel.font = [UIFont fontPFSB14];
     btnSure.layer.cornerRadius = 5;
     [btnSure addTarget:self action:@selector(btnSureClick) forControlEvents:UIControlEventTouchUpInside];
     [btnSure setBackgroundColor:kHexColor(0xCFA461)];

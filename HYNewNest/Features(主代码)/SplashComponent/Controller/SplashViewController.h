@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SplashViewController : CNBaseVC
 
-+ (void)saveImageUrl:(NSString *)url link:(NSString *)link;
-
 @end
 
 NS_ASSUME_NONNULL_END

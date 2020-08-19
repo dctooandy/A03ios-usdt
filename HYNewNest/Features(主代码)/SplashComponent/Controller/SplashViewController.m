@@ -12,51 +12,53 @@
 #import "UIImage+ESUtilities.h"
 #import <UIImageView+WebCache.h>
 #import "CNSplashRequest.h"
+#import <AVKit/AVKit.h>
 
-
-#define kLastSplashImageUrlDicKey @"kLastSplashImageUrlDicKey"
-
-@interface SplashViewController ()
-@property (nonatomic,strong) NSTimer *timer;
-@property (nonatomic,assign) NSInteger requestTime;
+@interface SplashViewController () {
+    BOOL _videoDidEnd;
+}
 @property (nonatomic,strong) NSArray *gatewaysArr;
 @property (nonatomic,assign) NSInteger selectGatewayIndex;
 @property (nonatomic,assign) NSInteger requestGWTimes;
 @property (nonatomic,strong) UIImageView *adImgView;
+
+@property (nonatomic,strong) AVPlayer *player;
 @end
 
 @implementation SplashViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-            
-    UIImageView *imgView = [[UIImageView alloc]init];
-    imgView.contentMode = UIViewContentModeScaleAspectFill;
-    [self.view addSubview:imgView];
-    [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
-    }];
-    imgView.image = [UIImage imageNamed:@"qdy"];
-
-    UIImageView *adView = [[UIImageView alloc]init];
-    self.adImgView = adView;
-    adView.layer.masksToBounds = YES;
-    NSDictionary *dic = [[NSUserDefaults standardUserDefaults] objectForKey:kLastSplashImageUrlDicKey];
-    [adView sd_setImageWithURL:[NSURL URLWithString:dic[@"imgurl"]?:@""]];
-    [self.view addSubview:adView];
-    adView.contentMode = UIViewContentModeScaleAspectFill;
-    [adView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.equalTo(self.view);
-        if (KIsIphoneXSeries) {
-            make.bottom.equalTo(self.view).offset(-144);
-        }else{
-            make.bottom.equalTo(self.view).offset(-100);
-        }
-    }];
     
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(goToLoginStart) userInfo:nil repeats:NO];
-    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    // 启动图背景
+//    UIImageView *imgView = [[UIImageView alloc]init];
+//    imgView.contentMode = UIViewContentModeScaleAspectFill;
+//    [self.view addSubview:imgView];
+//    [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+//    }];
+//    imgView.image = [UIImage imageNamed:@"qdy"];
+
+    
+    // 播放完成通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayEnd) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+    
+    //读取本地视频路径
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"CIRCULAR_06" ofType:@"mp4"];
+    //为即将播放的视频内容进行建模
+    AVPlayerItem *avplayerItem = [[AVPlayerItem alloc] initWithURL:[NSURL fileURLWithPath:path]];
+    //给播放器赋值要播放的对象模型
+    AVPlayer *avplayer = [AVPlayer playerWithPlayerItem:avplayerItem];
+    self.player = avplayer;
+    [avplayer play];
+    //指定显示的Layer
+    AVPlayerLayer *layer = [AVPlayerLayer playerLayerWithPlayer:avplayer];
+    layer.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+    // 和启动图拉伸方式一致
+    layer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    [self.view.layer addSublayer:layer];
+    
+    
     
     // 基本废弃
 //    [CNSplashRequest welcome:^(id responseObj, NSString *errorMsg) {
@@ -84,6 +86,7 @@
         
     }];
     
+    // 检查新版本 -> 检查区域限制 -> 进入首页
     [CNSplashRequest queryNewVersion:^(BOOL isHardUpdate) {
         if (!isHardUpdate) {
             [self requestAreaLimit];
@@ -162,7 +165,7 @@
 #else
     [CNSplashRequest checkAreaLimit:^(BOOL isAllowEntry) {
         if (!isAllowEntry) {
-            [self goTo404];
+            [self goTo403];
         } else {
             [self goToLoginStart];
         }
@@ -170,55 +173,40 @@
 #endif
 }
 
+#pragma mark - 跳转
 
-
-+ (void)saveImageUrl:(NSString *)url link:(NSString *)link{
-    NSDictionary *dic = @{@"imgurl":url?:@"",@"link":link?:@""};
-    [[NSUserDefaults standardUserDefaults]setObject:dic forKey:kLastSplashImageUrlDicKey];
-    [[NSUserDefaults standardUserDefaults]synchronize];
-}
-
-- (void)goTo404{
-   [self invalidateTimer];
+- (void)goTo403{
+    if (!_videoDidEnd) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self goTo403];
+        });
+        return;
+    }
     
     HY403ViewController *vc = [[HY403ViewController alloc] init];
     HYNavigationController *nav = [[HYNavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBar.translucent = YES;
-    
-    UIImage *clearImg = [UIImage createImageWithColor:[UIColor clearColor]];
-    [nav.navigationBar setBackgroundImage:clearImg forBarMetrics:UIBarMetricsDefault];
     [NNControllerHelper changeRootVc:nav];
     
 }
 
 - (void)goToLoginStart{
-    [self invalidateTimer];
+    if (!_videoDidEnd) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self goToLoginStart];
+        });
+        return;
+    }
     
     [NNPageRouter changeRootVc2MainPage];
 
 }
 
 
-- (void)adBtnTap{
-    NSDictionary *dic = [[NSUserDefaults standardUserDefaults]objectForKey:kLastSplashImageUrlDicKey];
-    if (dic == nil) {
-        return;
-    }
-    
-    NSString *link = [NSString stringWithFormat:@"%@",dic[@"link"]];
-    if (KIsEmptyString(link)) {
-        return;
-    }
-    
-    [self invalidateTimer];
+- (void)videoPlayEnd {
+    _videoDidEnd = YES;
+    [_player seekToTime:CMTimeMake(0, 1)];
+    [_player play];
 }
-
-- (void)invalidateTimer {
-    
-    [self.timer invalidate];
-    self.timer = nil;
-}
-
 
 
 

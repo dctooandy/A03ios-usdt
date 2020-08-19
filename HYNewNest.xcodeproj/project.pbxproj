@@ -186,6 +186,8 @@
 		3DA4F19D24B3195F0039123F /* HYRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F19B24B3195F0039123F /* HYRefreshHeader.m */; };
 		3DA4F1A124B3199A0039123F /* HYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F19F24B3199A0039123F /* HYNavigationController.m */; };
 		3DA4F1A424B31A110039123F /* NSString+Font.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F1A324B31A110039123F /* NSString+Font.m */; };
+		3DE3CA8F24ECF6E300D591C4 /* CIRCULAR_06.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */; };
+		3DE3CA9024ECF6E300D591C4 /* CIRCULAR.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */; };
 		5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */; };
 		D571B19624BE9F120087B5EC /* CNLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19524BE9F120087B5EC /* CNLineView.m */; };
 		D571B19924BEA4620087B5EC /* CNTwoStatusBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19724BEA4620087B5EC /* CNTwoStatusBtn.m */; };
@@ -652,6 +654,8 @@
 		3DA4F1A024B3199A0039123F /* HYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYNavigationController.h; sourceTree = "<group>"; };
 		3DA4F1A224B31A110039123F /* NSString+Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Font.h"; sourceTree = "<group>"; };
 		3DA4F1A324B31A110039123F /* NSString+Font.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Font.m"; sourceTree = "<group>"; };
+		3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CIRCULAR_06.mp4; sourceTree = "<group>"; };
+		3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CIRCULAR.png; sourceTree = "<group>"; };
 		62DF1724D3A54A4E27D4B55B /* Pods-HYNewNest-HYNewNestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; path = "Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.debug.xcconfig"; sourceTree = "<group>"; };
 		A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1630,6 +1634,8 @@
 			isa = PBXGroup;
 			children = (
 				3D13388A24AF28D600B29783 /* Assets.xcassets */,
+				3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */,
+				3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -2710,9 +2716,11 @@
 				0487C9BD24D01DDE0013715A /* CNTradeRecodeVC.xib in Resources */,
 				0487C9DB24D2627D0013715A /* CNXimaRecordTCell.xib in Resources */,
 				04935BE424D8FC5B007A33EF /* CNElectrionHallCCell.xib in Resources */,
+				3DE3CA9024ECF6E300D591C4 /* CIRCULAR.png in Resources */,
 				3D13389224AF28D700B29783 /* Assets.xcassets in Resources */,
 				E9A269D824D80D8700B512FF /* HYRechargePayWayController.xib in Resources */,
 				048A0EF524C9401B00411819 /* CNGameLineView.xib in Resources */,
+				3DE3CA8F24ECF6E300D591C4 /* CIRCULAR_06.mp4 in Resources */,
 				D571B1AA24C03D790087B5EC /* CNStatementView.xib in Resources */,
 				0487C9ED24D297CA0013715A /* CNMessageCenterVC.xib in Resources */,
 				3D13389324AF28D700B29783 /* LaunchScreen.storyboard in Resources */,
