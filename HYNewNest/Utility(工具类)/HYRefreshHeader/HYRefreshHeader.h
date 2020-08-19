@@ -8,7 +8,7 @@
 
 #import <MJRefresh/MJRefresh.h>
 
-
+/// 未使用
 @interface HYRefreshHeader : MJRefreshGifHeader
 
 @end

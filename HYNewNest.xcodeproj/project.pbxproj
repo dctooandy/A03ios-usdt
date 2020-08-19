@@ -1515,10 +1515,8 @@
 			isa = PBXGroup;
 			children = (
 				E98BEF3424D3D23100E6B0C8 /* HYDownloadLinkView */,
-				E9B5496424CECE23002CE6EF /* LTSegmentedBar */,
 				E986A19D24CB35D8000F9CFF /* HYAlertView */,
 				04C0F0DF24C2B282007F1420 /* HUB */,
-				D5FBFDC524B4661D00BBCAD8 /* Skin */,
 				3DA4F19A24B3195F0039123F /* HYRefreshHeader */,
 				3DA4F17E24B317490039123F /* LoadingView */,
 			);
@@ -1579,8 +1577,6 @@
 				E9D9447124C1F35700252222 /* MeComponent */,
 				04935BD324D7D3A6007A33EF /* ElectronComponent */,
 				0487C9DC24D27B3C0013715A /* MessageCenterComponent */,
-				04C6E1E124D40219006F4DAC /* AddressComponent */,
-				0430AB1E24E24E4B00C873DC /* BankCardComponent */,
 				0487CA0124D3B6580013715A /* FriendComponent */,
 				0487CA0824D3CB240013715A /* FeedBackComponent */,
 				E9D9446324C1954200252222 /* SplashComponent */,
@@ -1593,6 +1589,7 @@
 		3D13389D24AF2D1900B29783 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				D5FBFDC524B4661D00BBCAD8 /* Skin */,
 				3DA4F18124B317490039123F /* HYEncryptor */,
 				3DA4F15B24B30D610039123F /* GTMBase64 */,
 				E986A19324CA9A82000F9CFF /* HYRechargeHelper */,
@@ -1615,6 +1612,7 @@
 		3D1338A624AF2E7D00B29783 /* Vendors(第三方库) */ = {
 			isa = PBXGroup;
 			children = (
+				E9B5496424CECE23002CE6EF /* LTSegmentedBar */,
 				040A08B724E114A900FBD534 /* OCBarrage(弹幕) */,
 				E97054A124DBB5030007F845 /* SuspendBall */,
 				E986A1B124CC7F2A000F9CFF /* SDCycleScrollView */,
@@ -2041,6 +2039,8 @@
 		E986A15D24C979F6000F9CFF /* WalletComponent */ = {
 			isa = PBXGroup;
 			children = (
+				0430AB1E24E24E4B00C873DC /* BankCardComponent */,
+				04C6E1E124D40219006F4DAC /* AddressComponent */,
 				E98BEEEC24D0341A00E6B0C8 /* CTZN(充提指南) */,
 				E986A15E24C979F6000F9CFF /* XimaComponent */,
 				E986A16224C979F6000F9CFF /* RechargeComponent */,
