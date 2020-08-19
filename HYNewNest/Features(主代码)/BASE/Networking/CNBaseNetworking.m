@@ -83,7 +83,10 @@
                 !completionHandler ?: completionHandler(nil, error.localizedDescription);
             } else {
                 //一些错误信息不要提示
-                if (![path containsString:config_getByCardBin]) {
+                if ([response.head.errCode isEqualToString:Network_TopDomainEmpty_ErroCode]) {
+                    // 不显示错误
+                }
+                else if (![path containsString:config_getByCardBin]) {
                     [CNHUB showError:response.head.errMsg];
                 }
                 !completionHandler ?: completionHandler(response.head.errCode, response.head.errMsg);

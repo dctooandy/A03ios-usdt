@@ -241,7 +241,7 @@
 //            }
             if (indexPath.row == self.dcboxAccounts.count) { //倒数第二个
                 CNAddressAddTCell *addCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressAddTCellID forIndexPath:indexPath];
-                addCell.titleLb.text = self.dcboxAccounts.count>2?@"添加小金库":@"一键注册/绑定小金库";
+                addCell.titleLb.text = self.dcboxAccounts.count>0?@"添加小金库":@"一键注册/绑定小金库";
                 return addCell;
             } else if (indexPath.row == self.dcboxAccounts.count+1) { //倒数第一个
                 CNAddressDownloadTCell *downloadCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressDownloadTCellID forIndexPath:indexPath];
@@ -304,7 +304,7 @@
 //                [self.navigationController pushViewController:vc animated:YES];
 //            }
             if (indexPath.row == self.dcboxAccounts.count) { //倒数第二个
-                if (self.dcboxAccounts.count > 2) {
+                if (self.dcboxAccounts.count > 0) {
                     CNAddAddressVC *vc = [CNAddAddressVC new];
                     vc.addrType = self.addrType;
                     [self.navigationController pushViewController:vc animated:YES];

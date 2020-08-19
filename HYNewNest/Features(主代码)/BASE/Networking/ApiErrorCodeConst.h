@@ -107,6 +107,9 @@
 // 登录名不匹配
 #define Network_LoginName_ErroCode @"GW_890406"
 
+// 非白用户
+#define Network_TopDomainEmpty_ErroCode @"GWX_601435"
+
 // 超时
 #define Network_TimeOut_ErroCode @"-1001"
 

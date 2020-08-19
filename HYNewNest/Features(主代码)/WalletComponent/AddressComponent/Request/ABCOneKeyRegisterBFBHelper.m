@@ -48,7 +48,6 @@ static dispatch_once_t onceToken;
             return;
         }
         
-        [self sendVerifyCode:nil];
         [CNVerifyMsgAlertView showPhone:phone reSendCode:^{
             [self sendVerifyCode:nil];
                 
