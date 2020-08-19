@@ -96,29 +96,6 @@
 }
 
 
-- (void)showJumpBtn{
-    
-    UIView *shadowBg = [[UIView alloc]init];
-    shadowBg.backgroundColor = [UIColor blackColor];
-    shadowBg.alpha = 0.2;
-    [self.view addSubview:shadowBg];
-    shadowBg.layer.masksToBounds = YES;
-    shadowBg.layer.cornerRadius = 4;
-
-    UIButton *jumpbtn = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-52-15, 30, 52, 30)];
-    [jumpbtn setTitle:@"跳过" forState:UIControlStateNormal];
-    jumpbtn.backgroundColor = [UIColor clearColor];
-    jumpbtn.titleLabel.font = [UIFont fontPFM13];
-    [jumpbtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [jumpbtn addTarget:self action:@selector(goToLoginStart) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:jumpbtn];
-
-    [shadowBg mas_makeConstraints:^(MASConstraintMaker *make) {
-       make.edges.equalTo(jumpbtn).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
-    }];
-}
-
-
 //
 //-(void)requestNewAddressForApp {
 //    ///welcome

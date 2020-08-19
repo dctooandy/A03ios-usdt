@@ -9,7 +9,7 @@
 #import "CNSplashRequest.h"
 #import "UpdateVersionModel.h"
 #import "FCUUID.h"
-#import "HYTextAlertView.h"
+#import "HYUpdateAlertView.h"
 #import "AppDelegate.h"
 
 @implementation CNSplashRequest
@@ -19,28 +19,26 @@
         
         UpdateVersionModel *updateVersion = [UpdateVersionModel cn_parse:responseObj];
         __block NSURL *downURL = [NSURL URLWithString:updateVersion.appDownUrl];
+
         
-        if ([updateVersion.flag integerValue ] == 0) {
-            // 不更新
+        if ([updateVersion.flag integerValue] == 0 || updateVersion.appDownUrl.length < 1) {
+            // 不更新 或 没有配置下载链接
             handler(NO);
+           return;
         }
         
-        else if([updateVersion.flag integerValue] >= 1){
-            if (updateVersion.appDownUrl.length < 1) { //没有下载连接地址
-                handler(NO);
-                return ;
-            }
+        if([updateVersion.flag integerValue] >= 1){
             
             NSString *title = @"";
             NSString *content = updateVersion.upgradeDesc[@"des"] ?: @"";
             NSString *cancelTitle = @"";
             NSString *suretitle = @"";
-            if ([updateVersion.flag integerValue ] == 1) {
-                title = [NSString stringWithFormat:@"检测到新版本 V%@",updateVersion.versionCode ] ;
+            if ([updateVersion.flag integerValue] == 1) {
+                title = [NSString stringWithFormat:@"检测到新版本 V%@",updateVersion.versionCode] ;
                 cancelTitle = @"暂不更新";
                 suretitle= @"更新";
                 
-                [HYTextAlertView showWithTitle:title content:content comfirmText:suretitle cancelText:cancelTitle comfirmHandler:^(BOOL isComfirm) {
+                [HYUpdateAlertView showWithVersionString:updateVersion.versionCode isForceUpdate:NO handler:^(BOOL isComfirm) {
                     if (isComfirm && [[UIApplication sharedApplication] canOpenURL:downURL]) {
                         [[UIApplication sharedApplication] openURL:downURL options:@{} completionHandler:^(BOOL success) {
                             [CNHUB showSuccess:@"正在为您打开下载链接.."];
@@ -49,7 +47,6 @@
                     // 弱更 不管怎样都往下走
                     handler(NO);
                 }];
-                
                 
             }else if([updateVersion.flag integerValue ] == 2){
                 
@@ -70,7 +67,7 @@
                 title = [NSString stringWithFormat:@"⚠️请更新到新版本 V%@",updateVersion.versionCode];
                 cancelTitle = @"退出应用";
                 suretitle= @"强制更新";
-                [HYTextAlertView showWithTitle:title content:content comfirmText:suretitle cancelText:cancelTitle comfirmHandler:^(BOOL isComfirm) {
+                [HYUpdateAlertView showWithVersionString:updateVersion.versionCode isForceUpdate:YES handler:^(BOOL isComfirm) {
                     if (isComfirm && [[UIApplication sharedApplication] canOpenURL:downURL]) {
                         [[UIApplication sharedApplication] openURL:downURL options:@{} completionHandler:^(BOOL success) {
                             [CNHUB showSuccess:@"正在为您打开下载链接.."];
