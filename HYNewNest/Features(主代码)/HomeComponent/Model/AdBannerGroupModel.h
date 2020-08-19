@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)   NSString *customerId;
 @property(nonatomic,copy)   NSString *domainName; //图片url头
-@property(nonatomic,strong) NSArray <AdBannerModel> *bannersModel;
+@property(nonatomic,strong) NSArray <AdBannerModel *> *bannersModel;
 
 @end
 
@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)   NSString *customerId;
 @property(nonatomic,copy)   NSString *domainName; //图片url头
-@property(nonatomic,strong) NSArray <AdBannerModel> *bannersModel;
+@property(nonatomic,strong) NSArray <AdBannerModel *> *bannersModel;
 
 @end
 
@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)   NSString *customerId;
 @property(nonatomic,copy)   NSString *domainName; //url头
-@property(nonatomic,strong) NSArray <AdBannerModel> *bannersModel;
+@property(nonatomic,strong) NSArray <AdBannerModel *> *bannersModel;
 
 @end
 

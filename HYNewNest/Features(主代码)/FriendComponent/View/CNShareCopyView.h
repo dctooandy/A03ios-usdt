@@ -12,10 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef enum : NSUInteger {
     CNShareTypeWechat,
-    CNShareTypeWechatFriend,
+    CNShareTypeSMS,
     CNShareTypeSina,
     CNShareTypeQQ,
     CNShareTypeCopy,
+    CNShareTypeWechatFriend,
 } CNShareType;
 
 

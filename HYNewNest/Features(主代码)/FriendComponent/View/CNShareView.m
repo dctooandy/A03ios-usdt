@@ -7,8 +7,9 @@
 //
 
 #import "CNShareView.h"
+#import <MessageUI/MessageUI.h>
 
-@interface CNShareView ()
+@interface CNShareView ()<MFMessageComposeViewControllerDelegate>
 @property (nonatomic, strong) FriendShareGroupModel *shareModel;
 #pragma mark - 回拨弹框属性
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottom;
@@ -47,6 +48,15 @@
         case CNShareTypeCopy:
             [CNHUB showSuccess:@"已复制到剪切板！"];
             break;
+            
+        case CNShareTypeSMS: {
+            AdBannerModel *model = self.shareModel.bannersModel.firstObject;
+            NSString *shareLink = [NSString stringWithFormat:@"%@%@", model.linkUrl, [CNUserManager shareManager].userInfo.customerId];
+            
+            [self showMessageView:nil title:@"铁子，来币游国际一起领USDT" body:[NSString stringWithFormat:@"点击链接，参与游戏，和我一起赢奖励：%@", shareLink]];
+            
+            break;
+        }
         default:{
             NSArray *models = self.shareModel.bannersModel;
             NSString *url;
@@ -80,6 +90,57 @@
 // 关闭页面
 - (IBAction)close:(id)sender {
     [self removeFromSuperview];
+}
+
+// 发送短信
+- (void)showMessageView:(NSArray *)phones title:(NSString *)title body:(NSString *)body
+{
+    if([MFMessageComposeViewController canSendText]) {
+        MFMessageComposeViewController * controller = [[MFMessageComposeViewController alloc] init];
+        // --phones发短信的手机号码的数组，数组中是一个即单发,多个即群发。
+        controller.recipients = phones;
+        // --短信界面 BarButtonItem (取消按钮) 颜色
+        controller.navigationBar.tintColor = [UIColor redColor];
+        // --短信内容
+        controller.body = body;
+        controller.messageComposeDelegate = self;
+        [[NNControllerHelper currentRootVcOfNavController] presentViewController:controller animated:YES completion:nil];
+    }
+    else
+    {
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
+                                                                                 message:@"该设备不支持短信功能"
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:alertAction];
+        
+        [[NNControllerHelper currentRootVcOfNavController] presentViewController:alertController animated:YES completion:nil];
+        
+    }
+}
+
+#pragma mark delegate
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+
+    [[NNControllerHelper currentRootVcOfNavController] dismissViewControllerAnimated:YES completion:nil];
+
+    switch (result) {
+        case MessageComposeResultCancelled:
+            MyLog(@"取消发送");
+            break;
+            
+        case MessageComposeResultSent:
+            MyLog(@"已发送");
+            break;
+            
+        case MessageComposeResultFailed:
+            MyLog(@"发送失败");
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end

@@ -59,7 +59,8 @@
             [self.openBtn setImage:[UIImage imageNamed:@"share_qq_white"] forState:UIControlStateNormal];
             break;
         case CNShareTypeCopy:
-            
+        case CNShareTypeSMS:
+                        
             break;
     }
 }
@@ -68,7 +69,7 @@
 - (IBAction)defaultAction:(id)sender {
     [self removeFromSuperview];
     // 跳转各平台
-    if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:self.url]]) {
+    if(self.url && [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:self.url]]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.url] options:@{} completionHandler:^(BOOL success) {
         }];
     } else {
