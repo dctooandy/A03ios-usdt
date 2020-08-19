@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UILabel (hiddenText)
 
 @property (nonatomic, copy) NSString *originText;
+@property (nonatomic, assign) BOOL isOriginTextHidden;
 
 /// 文字变成*****
 - (void)hideOriginText;

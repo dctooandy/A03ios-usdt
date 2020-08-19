@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 
 static NSString *originTextKey = @"originTextKey";
+static NSString *kIsHiddenKey  = @"kIsHiddenKey";
 
 @interface UILabel ()
 
@@ -19,15 +20,31 @@ static NSString *originTextKey = @"originTextKey";
 
 - (void)setOriginText:(NSString *)originText {
     objc_setAssociatedObject(self, &originTextKey, originText, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    self.text = originText;
+    if (!self.isOriginTextHidden) {
+        self.text = originText;
+    }
 }
 
 - (NSString *)originText {
     return objc_getAssociatedObject(self, &originTextKey);
 }
 
+- (void)setIsOriginTextHidden:(BOOL)isOriginTextHidden {
+    objc_setAssociatedObject(self, &kIsHiddenKey, @(isOriginTextHidden), OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (BOOL)isOriginTextHidden {
+    return objc_getAssociatedObject(self, &kIsHiddenKey);
+}
+
+
+
 - (void)hideOriginText {
-    self.text = @"******";
+    self.isOriginTextHidden = YES;
+//    if (self.isIndicating) {
+//        [self hideIndicator];
+//    }
+    self.text = @"*****";
 }
 
 - (void)showOriginText {
@@ -36,6 +53,11 @@ static NSString *originTextKey = @"originTextKey";
     } else {
         self.text = @"";
     }
+    self.isOriginTextHidden = NO;
+    
+//    if (self.isIndicating) {
+//        [self showIndicatorIsBig:NO];
+//    }
 }
 
 @end

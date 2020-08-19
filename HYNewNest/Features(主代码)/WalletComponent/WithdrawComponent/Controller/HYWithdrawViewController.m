@@ -117,11 +117,13 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 
 #pragma mark - REQUEST
 - (void)requestBalance {
+    [self.topView.lblAmount showIndicatorIsBig:YES];
     [CNUserCenterRequest requestAccountBalanceHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
             AccountMoneyDetailModel *moneyModel = [AccountMoneyDetailModel cn_parse:responseObj];
             self.moneyModel = moneyModel;
-            self.topView.lblAmount.text = [moneyModel.withdrawBal jk_toDisplayNumberWithDigit:2];
+//            self.topView.lblAmount.text = [moneyModel.withdrawBal jk_toDisplayNumberWithDigit:2];
+            [self.topView.lblAmount hideIndicatorWithText:[moneyModel.withdrawBal jk_toDisplayNumberWithDigit:2]];
         }
     }];
 }

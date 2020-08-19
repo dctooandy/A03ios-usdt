@@ -31,6 +31,7 @@
 #import "CNUserManager.h" //用户信息管理单利
 #import "HYNetworkConfigManager.h" //网络环境配置
 #import "HYTextAlertView.h" //文字alert
+#import "UILabel+Indicator.h"//菊花label
 
 
 #endif /* PrefixHeader_pch */

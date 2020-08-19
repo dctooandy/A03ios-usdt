@@ -51,7 +51,6 @@
 }
 
 + (void)requestBetAmountHandler:(HandlerBlock)handler {
-    kPreventRepeatTime(5);
     
     [self POST:kGatewayExtraPath(config_betAmountLevel) parameters:[kNetworkMgr baseParam] completionHandler:handler];
 }
@@ -66,7 +65,6 @@
 }
 
 + (void)requestMonthPromoteAndXimaHandler:(HandlerBlock)handler {
-    kPreventRepeatTime(5);
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     [param setObject:@(1) forKey:@"inclPromoAmountByMonth"];

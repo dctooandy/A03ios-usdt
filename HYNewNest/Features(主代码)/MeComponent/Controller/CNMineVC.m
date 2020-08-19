@@ -265,40 +265,44 @@
 #pragma mark - REQUEST
 
 - (void)requestMonthPromoteAndXima {
+    [self.monthPromoLb showIndicatorIsBig:NO];
+    [self.monthXiMaLb showIndicatorIsBig:NO];
     WEAKSELF_DEFINE
     [CNUserCenterRequest requestMonthPromoteAndXimaHandler:^(id responseObj, NSString *errorMsg) {
         STRONGSELF_DEFINE
         
         PromoteXimaModel *pxModel = [PromoteXimaModel cn_parse:responseObj];
-//        NSNumber *promoAmountByMonth = NSNumberMultiplyInt(pxModel.promoAmountByMonth, 0.0001);
-//        NSNumber *rebatedAmountByMonth = NSNumberMultiplyInt(pxModel.rebatedAmountByMonth, 0.0001);
         
-        strongSelf.monthPromoLb.originText = [pxModel.promoAmountByMonth jk_toDisplayNumberWithDigit:2];
-        strongSelf.monthXiMaLb.originText = [pxModel.rebatedAmountByMonth jk_toDisplayNumberWithDigit:2];
+//        strongSelf.monthPromoLb.originText = [pxModel.promoAmountByMonth jk_toDisplayNumberWithDigit:2];
+//        strongSelf.monthXiMaLb.originText = [pxModel.rebatedAmountByMonth jk_toDisplayNumberWithDigit:2];
+        [strongSelf.monthPromoLb hideIndicatorWithText:[pxModel.promoAmountByMonth jk_toDisplayNumberWithDigit:2]];
+        [strongSelf.monthXiMaLb hideIndicatorWithText:[pxModel.rebatedAmountByMonth jk_toDisplayNumberWithDigit:2]];
     }];
 }
 
 - (void)requestAccountBalance {
+    [self.amountLb showIndicatorIsBig:NO];
     WEAKSELF_DEFINE
     [CNUserCenterRequest requestAccountBalanceHandler:^(id responseObj, NSString *errorMsg) {
         
         STRONGSELF_DEFINE
         AccountMoneyDetailModel *model = [AccountMoneyDetailModel cn_parse:responseObj];
         
-        strongSelf.amountLb.originText = [model.balance jk_toDisplayNumberWithDigit:2];
+//        strongSelf.amountLb.originText = [model.balance jk_toDisplayNumberWithDigit:2];
+        [strongSelf.amountLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
         strongSelf.currencyLb.text = model.currency;
     }];
 }
 
 - (void)requestBetAmount {
+    [self.weekAmountLb showIndicatorIsBig:NO];
     WEAKSELF_DEFINE
     [CNUserCenterRequest requestBetAmountHandler:^(id responseObj, NSString *errorMsg) {
         STRONGSELF_DEFINE
         BetAmountModel *model = [BetAmountModel cn_parse:responseObj];
         
-//        NSNumber *weekBetAmount = NSNumberMultiplyInt(model.weekBetAmount, 0.0001);
-        strongSelf.weekAmountLb.originText = [model.weekBetAmount jk_toDisplayNumberWithDigit:2];
-
+//        strongSelf.weekAmountLb.originText = [model.weekBetAmount jk_toDisplayNumberWithDigit:2];
+        [strongSelf.weekAmountLb hideIndicatorWithText:[model.weekBetAmount jk_toDisplayNumberWithDigit:2]];
     }];
 }
 

@@ -189,6 +189,7 @@
 		3DE3CA8F24ECF6E300D591C4 /* CIRCULAR_06.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */; };
 		3DE3CA9024ECF6E300D591C4 /* CIRCULAR.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */; };
 		3DE3CA9324ED5CFC00D591C4 /* HYUpdateAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3CA9224ED5CFC00D591C4 /* HYUpdateAlertView.m */; };
+		3DE3CA9624ED6AEC00D591C4 /* UILabel+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3CA9524ED6AEC00D591C4 /* UILabel+Indicator.m */; };
 		5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */; };
 		D571B19624BE9F120087B5EC /* CNLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19524BE9F120087B5EC /* CNLineView.m */; };
 		D571B19924BEA4620087B5EC /* CNTwoStatusBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19724BEA4620087B5EC /* CNTwoStatusBtn.m */; };
@@ -659,6 +660,8 @@
 		3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CIRCULAR.png; sourceTree = "<group>"; };
 		3DE3CA9124ED5CFC00D591C4 /* HYUpdateAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYUpdateAlertView.h; sourceTree = "<group>"; };
 		3DE3CA9224ED5CFC00D591C4 /* HYUpdateAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYUpdateAlertView.m; sourceTree = "<group>"; };
+		3DE3CA9424ED6AEC00D591C4 /* UILabel+Indicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Indicator.h"; sourceTree = "<group>"; };
+		3DE3CA9524ED6AEC00D591C4 /* UILabel+Indicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Indicator.m"; sourceTree = "<group>"; };
 		62DF1724D3A54A4E27D4B55B /* Pods-HYNewNest-HYNewNestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; path = "Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.debug.xcconfig"; sourceTree = "<group>"; };
 		A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1565,6 +1568,8 @@
 				E9B5495824CE92BA002CE6EF /* UILabel+hiddenText.m */,
 				E98BEF0C24D274F700E6B0C8 /* UILabel+Gradient.h */,
 				E98BEF0D24D274F700E6B0C8 /* UILabel+Gradient.m */,
+				3DE3CA9424ED6AEC00D591C4 /* UILabel+Indicator.h */,
+				3DE3CA9524ED6AEC00D591C4 /* UILabel+Indicator.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -2924,6 +2929,7 @@
 				E9B5496924CECE23002CE6EF /* LTSegmentedBar.m in Sources */,
 				E993094624D7B59A00E0843B /* HYRechargeViewController.m in Sources */,
 				048A0EEA24C834B200411819 /* CNChessVC.m in Sources */,
+				3DE3CA9624ED6AEC00D591C4 /* UILabel+Indicator.m in Sources */,
 				040A08D524E114A900FBD534 /* OCBarrageManager.m in Sources */,
 				0487C9BC24D01DDE0013715A /* CNTradeRecodeVC.m in Sources */,
 				E9B5495324CDB646002CE6EF /* UUMarqueeView.m in Sources */,
