@@ -33,12 +33,12 @@
 
 - (void)commonViewsSetup {
     // 半透明背景
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-kNavPlusStaBarHeight)];
     bgView.backgroundColor = kHexColorAlpha(0x000000, 0.4);
     [self addSubview:bgView];
     
       // 主背景
-    UIView *mainView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, 426+kSafeAreaHeight)];
+    UIView *mainView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-kNavPlusStaBarHeight, kScreenWidth, 426+kSafeAreaHeight)];
     self.mainView = mainView;
     mainView.tag = 150;
     mainView.backgroundColor = kHexColor(0x212137);
@@ -77,7 +77,7 @@
     [mainView addSubview:btn];
     
     [UIView animateWithDuration:0.25 animations:^{
-        mainView.y = kScreenHeight - 345 - kSafeAreaHeight;
+        mainView.y = kScreenHeight-kNavPlusStaBarHeight - 345 - kSafeAreaHeight;
     }];
 }
 
@@ -276,7 +276,7 @@
     UIView *mainView = [self viewWithTag:150];
     
     [UIView animateWithDuration:0.25 animations:^{
-        mainView.y = kScreenHeight;
+        mainView.y = kScreenHeight-kNavPlusStaBarHeight;
     } completion:^(BOOL finished) {
        [self removeFromSuperview];
     }];

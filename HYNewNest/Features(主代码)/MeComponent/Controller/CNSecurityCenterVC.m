@@ -66,7 +66,7 @@
         STRONGSELF_DEFINE
         [strongSelf submitBindAccount:text isEMail:sender.tag];
     }];
-    [kKeywindow addSubview:bind];
+    [self.view addSubview:bind];
 }
 
 - (void)submitBindAccount:(NSString *)account isEMail:(BOOL)isEMail {

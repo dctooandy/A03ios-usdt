@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CNSettingVC">
             <connections>
                 <outlet property="birthTF" destination="zAB-86-NvH" id="OHx-Re-Cox"/>
+                <outlet property="btmVersionLb" destination="KZV-dh-s2E" id="9pB-6l-4st"/>
                 <outlet property="headerIV" destination="8Af-wt-ycy" id="FWD-Fv-CCV"/>
                 <outlet property="sexTF" destination="Ahd-Tf-BSz" id="IEn-Yz-JqI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -95,7 +96,7 @@
                                     </constraints>
                                 </view>
                                 <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择性别" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ahd-Tf-BSz" customClass="CNBaseTF">
-                                    <rect key="frame" x="226" y="19.5" width="120" height="17"/>
+                                    <rect key="frame" x="226" y="19" width="120" height="18.5"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="120" id="6is-hf-d8d"/>
                                     </constraints>
@@ -141,7 +142,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择生日" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zAB-86-NvH" customClass="CNBaseTF">
-                                    <rect key="frame" x="226" y="19.5" width="120" height="17"/>
+                                    <rect key="frame" x="226" y="19" width="120" height="18.5"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="120" id="Qe7-10-4QD"/>
                                     </constraints>
@@ -262,21 +263,30 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="版本号：%@\nCOPYRIGHT © 2022 币游国际. ALL RIGHTS RESERVED.\n币游国际版权所有" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZV-dh-s2E">
+                    <rect key="frame" x="20" y="740" width="374" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.050980392156862744" green="0.050980392156862744" blue="0.086274509803921567" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="HPe-yO-y6t" secondAttribute="trailing" constant="15" id="Bg0-ls-1S3"/>
+                <constraint firstItem="HPe-yO-y6t" firstAttribute="top" secondItem="KZV-dh-s2E" secondAttribute="bottom" constant="20" id="Hgl-aN-Er3"/>
                 <constraint firstItem="wKK-M8-35R" firstAttribute="top" secondItem="2qQ-Kb-Phv" secondAttribute="bottom" constant="15" id="Ut3-3a-46i"/>
+                <constraint firstItem="KZV-dh-s2E" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="YAW-zw-2Ur"/>
                 <constraint firstItem="2qQ-Kb-Phv" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="15" id="cCq-ga-S0M"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="HPe-yO-y6t" secondAttribute="bottom" constant="25" id="d3n-Oh-K3k"/>
                 <constraint firstItem="2qQ-Kb-Phv" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="15" id="dLF-YA-Hml"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="2qQ-Kb-Phv" secondAttribute="trailing" constant="15" id="hP1-Hr-2Y1"/>
                 <constraint firstItem="wKK-M8-35R" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="15" id="n1C-sC-c7U"/>
                 <constraint firstItem="HPe-yO-y6t" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="qMT-Ga-PKf"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="KZV-dh-s2E" secondAttribute="trailing" constant="20" id="tYA-jr-RrY"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="wKK-M8-35R" secondAttribute="trailing" constant="15" id="y7x-wH-aLa"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
+            <point key="canvasLocation" x="1" y="148"/>
         </view>
     </objects>
     <resources>

@@ -252,7 +252,7 @@
 - (void)submitRechargeRequest {
     if (KIsEmptyString([CNUserManager shareManager].userDetail.realName)) {
         WEAKSELF_DEFINE
-        [kKeywindow addSubview:[[HYWithdrawComfirmView alloc] initRealNameSubmitBlock:^(NSString * _Nonnull realName) {
+        [self.view addSubview:[[HYWithdrawComfirmView alloc] initRealNameSubmitBlock:^(NSString * _Nonnull realName) {
             STRONGSELF_DEFINE
             [strongSelf bindRealName:realName];
         }]];
@@ -275,7 +275,7 @@
                         [CNHUB showSuccess:@"请在外部浏览器查看"];
                         // 支付等待
                         HYWithdrawComfirmView *view = [[HYWithdrawComfirmView alloc] initWithAmountModel:nil sumbitBlock:nil];
-                        [kKeywindow addSubview:view];
+                        [self.view addSubview:view];
                         [view showRechargeWaiting];
                     }];
                 } else {

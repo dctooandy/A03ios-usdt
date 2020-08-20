@@ -20,7 +20,7 @@
     // Initialization code
     
     [self.bgView addCornerAndShadow];
-    self.backgroundColor = kHexColor(0x0D0D16);
+    self.backgroundColor = kHexColor(0x10101C);
     self.bgView.backgroundColor = kHexColor(0x212137);
     
 }

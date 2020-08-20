@@ -111,7 +111,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         [strongSelf sumbimtWithdrawAmount:withdrawAmout];
     }];
     self.comfirmView = view;
-    [kKeywindow addSubview:view];
+    [self.view addSubview:view];
 }
 
 

@@ -29,12 +29,12 @@
     self.clickBlock = comfirmBlock;
     
     // 半透明背景
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-kNavPlusStaBarHeight)];
     bgView.backgroundColor = kHexColorAlpha(0x000000, 0.4);
     [self addSubview:bgView];
     
       // 主背景
-    UIView *mainView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, 230+kSafeAreaHeight)];
+    UIView *mainView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-kNavPlusStaBarHeight, kScreenWidth, 230+kSafeAreaHeight)];
     self.mainView = mainView;
     mainView.tag = 150;
     mainView.backgroundColor = kHexColor(0x212137);
@@ -80,7 +80,7 @@
     
     
     [UIView animateWithDuration:0.25 animations:^{
-        mainView.y = kScreenHeight - 230 - kSafeAreaHeight;
+        mainView.y = kScreenHeight-kNavPlusStaBarHeight - 230 - kSafeAreaHeight;
     }];
     
     return self;
@@ -118,7 +118,7 @@
     UIView *mainView = [self viewWithTag:150];
     
     [UIView animateWithDuration:0.25 animations:^{
-        mainView.y = kScreenHeight;
+        mainView.y = kScreenHeight-kNavPlusStaBarHeight;
     } completion:^(BOOL finished) {
        [self removeFromSuperview];
     }];

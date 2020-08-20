@@ -11,7 +11,7 @@
 #import "HYDownloadLinkView.h"
 #import "HYRechargeHelper.h"
 #import "CNTwoStatusBtn.h"
-
+#import "HYOneBtnAlertView.h"
 
 @interface ChargeManualMessgeView ()
 @property (copy,nonatomic) NSString *addressText;
@@ -260,7 +260,12 @@
 #pragma mark - SAVE IMG
 
 - (void)saveQrCodeImg {
-    UIImageWriteToSavedPhotosAlbum(self.qrCodeImgv.image, self,@selector(image:didFinishSavingWithError:contextInfo:),nil);
+    kPreventRepeatTime(2);
+    [HYOneBtnAlertView showWithTitle:@"保存支付二维码到相册" content:@"若第一次保存请允许访问权限弹窗，否则小游无法为您保存图片哦~" comfirmText:@"好的" comfirmHandler:^{
+        UIImageWriteToSavedPhotosAlbum(self.qrCodeImgv.image, self,@selector(image:didFinishSavingWithError:contextInfo:),nil);
+        // 私有api
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"photos-redirect://"] options:@{} completionHandler:nil];
+    }];
 }
 
 - (void)image:(UIImage*)image didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo {

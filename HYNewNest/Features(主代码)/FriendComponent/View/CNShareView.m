@@ -53,7 +53,7 @@
             AdBannerModel *model = self.shareModel.bannersModel.firstObject;
             NSString *shareLink = [NSString stringWithFormat:@"%@%@", model.linkUrl, [CNUserManager shareManager].userInfo.customerId];
             
-            [self showMessageView:nil title:@"铁子，来币游国际一起领USDT" body:[NSString stringWithFormat:@"点击链接，参与游戏，和我一起赢奖励：%@", shareLink]];
+            [self showMessageView:nil title:@"" body:[NSString stringWithFormat:@"铁子，来币游国际一起领USDT，点击链接参与游戏赢大奖：%@", shareLink]];
             
             break;
         }
@@ -123,7 +123,7 @@
 #pragma mark delegate
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
 
-    [[NNControllerHelper currentRootVcOfNavController] dismissViewControllerAnimated:YES completion:nil];
+    [controller dismissViewControllerAnimated:YES completion:nil];
 
     switch (result) {
         case MessageComposeResultCancelled:

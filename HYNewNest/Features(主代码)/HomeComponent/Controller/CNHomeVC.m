@@ -94,25 +94,6 @@
     //        [self updateUserInfo];
     //    }
     
-    /// 弹窗盒子逻辑
-//    if ([CNUserManager shareManager].isLogin) {
-//        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-//        NSDate *nowDate = [NSDate date];
-//        NSString *agoDateStr = [userDefault stringForKey:@"AgoDate"];
-//
-//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-//        NSString *nowDateStr = [dateFormatter stringFromDate:nowDate];
-//
-//        if ([agoDateStr isEqualToString:nowDateStr]) {
-//            MyLog(@"弹窗盒子一天就显示一次");
-//         }else{
-//            // 需要执行的方法写在这里
-//            [CNMessageBoxView showMessageBoxWithImages:@[@"deposit-success",@"deposit-fail",@"banner-1"]];
-//            [userDefault setObject:nowDateStr forKey:@"AgoDate"];
-//            [userDefault synchronize];
-//         }
-//    }
 }
 
 - (void)viewDidLoad {
@@ -122,6 +103,7 @@
     
     [self userDidLogin];
     [self requestAnnouncement];
+    [self requestNewsBox];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYSwitchAcoutSuccNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYLoginSuccessNotification object:nil];
@@ -201,6 +183,27 @@
 
 
 #pragma mark - REQUEST
+- (void)requestNewsBox {
+    if ([CNUserManager shareManager].isLogin) {
+        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+        NSDate *nowDate = [NSDate date];
+        NSString *agoDateStr = [userDefault stringForKey:@"AgoDate"];
+
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *nowDateStr = [dateFormatter stringFromDate:nowDate];
+
+        if ([agoDateStr isEqualToString:nowDateStr]) {
+            MyLog(@"弹窗盒子一天就显示一次");
+         }else{
+            // 需要执行的方法写在这里
+            [CNMessageBoxView showMessageBoxWithImages:@[@"位图备份",@"deposit-success",@"deposit-fail"]];
+            [userDefault setObject:nowDateStr forKey:@"AgoDate"];
+            [userDefault synchronize];
+         }
+    }
+}
+
 - (void)requestHomeBanner {
     WEAKSELF_DEFINE
     [CNHomeRequest requestBannerWhere:BannerWhereHome Handler:^(id responseObj, NSString *errorMsg) {

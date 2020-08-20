@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = kHexColor(0x10101C);
+    self.view.backgroundColor = kHexColor(0x10101C); //主暗蓝色背景色
 }
 
 -(void)addNaviLeftItemNil{
