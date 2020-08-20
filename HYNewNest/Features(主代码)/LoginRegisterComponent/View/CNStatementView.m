@@ -24,12 +24,9 @@
     self.constrOfHoverWidth.constant = AD(345);
 }
 
-+ (void)showWithTitle:(NSString *)title content:(NSString *)content{
++ (void)show {
     
     CNStatementView *alert = [[CNStatementView alloc] init];
-    alert.lblTitle.text = title;
-    alert.textView.text = content;
-    
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     [window endEditing:YES];
     alert.frame = window.bounds;

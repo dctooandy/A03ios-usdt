@@ -31,7 +31,6 @@ NSInteger AllowTotalWrongCount = 3;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentWidth;
 
 #pragma mark - Login Property
-@property (weak, nonatomic) IBOutlet UILabel *lblHYSZZ;
 /// 登录账户视图
 @property (weak, nonatomic) IBOutlet CNAccountInputView *loginAccountView;
 /// 登录密码和验证码视图
@@ -93,7 +92,6 @@ NSInteger AllowTotalWrongCount = 3;
 - (void)configUI {
     [self.view addSubview:self.switchSV];
     self.view.backgroundColor = kHexColor(0x212137);
-    [self.lblHYSZZ setupGradientColorFrom:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE)];
     self.registerAccountView.isRegister = YES;
     [self.registerAccountView setPlaceholder:@"用户名"];
     self.registerCodeView.codeType = CNCodeTypeAccountRegister;
@@ -165,7 +163,7 @@ NSInteger AllowTotalWrongCount = 3;
 
 /// 声明规则
 - (IBAction)statementRule:(id)sender {
-    [CNStatementView showWithTitle:@"服务协议" content:@""];
+    [CNStatementView show];
 }
 
 #pragma mark - Login Action
