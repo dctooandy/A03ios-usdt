@@ -76,13 +76,12 @@ NSInteger AllowTotalWrongCount = 3;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.wrongCount = 0;
-    self.topMarginConst0.constant = self.topMarginConst.constant = kNavPlusStaBarHeight + 52;
-    
-    
-    self.navBarTransparent = YES;
     self.makeTranslucent = YES;
+    self.navBarTransparent = YES;
     
+    self.wrongCount = 0;
+    self.topMarginConst0.constant = self.topMarginConst.constant = kNavPlusStaBarHeight + 35;
+        
     [self configUI];
     [self setDelegate];
     self.needImageCode = NO;

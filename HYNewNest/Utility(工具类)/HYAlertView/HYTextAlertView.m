@@ -53,7 +53,6 @@
     [btnComfirm setTitle:comfirmText forState:UIControlStateNormal];
     btnComfirm.titleLabel.font = [UIFont fontPFM16];
     [btnComfirm setTitleColor:kHexColor(0x10B4DD) forState:UIControlStateNormal];
-    [btnComfirm addLineDirection:LineDirectionTop color:kHexColorAlpha(0xFFFFFF, 0.3) width:0.5]; //上边线
     btnComfirm.tag = 123;
     [btnComfirm addTarget:self action:@selector(comfirmClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:btnComfirm];
@@ -63,7 +62,7 @@
         btnComfirm.frame = CGRectMake(AD(255/2.0), lblContent.bottom + AD(28), AD(255/2.0), AD(50));
         
         UIButton *btnCancel = [UIButton buttonWithType:UIButtonTypeSystem];
-        btnCancel.frame = CGRectMake(0, btnComfirm.y, AD(255/2.0), 50);
+        btnCancel.frame = CGRectMake(0, btnComfirm.y, AD(255/2.0), AD(50));
         [btnCancel setTitle:cancelText forState:UIControlStateNormal];
         btnCancel.titleLabel.font = [UIFont fontPFM16];
         [btnCancel setTitleColor:kHexColorAlpha(0xFFFFFF, 0.9) forState:UIControlStateNormal];
@@ -72,7 +71,7 @@
         [btnCancel addTarget:self action:@selector(comfirmClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:btnCancel];
     }
-    
+    [btnComfirm addLineDirection:LineDirectionTop color:kHexColorAlpha(0xFFFFFF, 0.3) width:0.5]; //上边线
     
     return self;
 }
