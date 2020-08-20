@@ -39,7 +39,6 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string></string>
 		<string>mqq</string>
 		<string>sinaweibo</string>
 		<string>weixin</string>
@@ -75,5 +74,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>小游需要您的允许才能为您保存图片</string>
 </dict>
 </plist>

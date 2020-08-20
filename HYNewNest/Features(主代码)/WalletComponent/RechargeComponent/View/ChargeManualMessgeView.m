@@ -141,8 +141,12 @@
         maxY = CGRectGetMaxY(qrCodeImgv.frame);
         
         NSString *url = address;
-        if (url) {
-            if (chargeType == ChargeMsgTypeDCBOX) {
+        if (url && chargeType == ChargeMsgTypeDCBOX) {
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:url]]) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{} completionHandler:^(BOOL success) {
+                    [CNHUB showSuccess:@"请在外部浏览器查看"];
+                }];
+            } else {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [HYTextAlertView showWithTitle:@"温馨提示" content:@"您还未安装小金库APP" comfirmText:@"立即安装" cancelText:nil comfirmHandler:^(BOOL isComfirm){
                         if (isComfirm) {

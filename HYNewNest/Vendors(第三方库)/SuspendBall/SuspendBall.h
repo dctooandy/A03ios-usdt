@@ -34,7 +34,6 @@ typedef void(^FunctionClickAction)(UIButton *);
 /** 主悬浮球背景颜色  */
 @property (nonatomic, strong) UIColor *superBallBackColor;
 /** 主悬浮球初始状态是否需要展开 default:YES  */
-///!!!: TO DO: fix bug
 @property (nonatomic ,assign) BOOL showFunction;
 /** 松开悬浮球后是否需要黏在屏幕的左右两端 default:YES */
 @property (nonatomic ,assign) BOOL stickToScreen;
@@ -51,6 +50,7 @@ typedef void(^FunctionClickAction)(UIButton *);
 /*****          控件          *****/
 /** 功能菜单  */
 @property (nonatomic, strong) UIView *functionMenu;
+@property (strong,nonatomic) UIView *bgView; //!<可点击背景遮罩
 //** 代理 */
 @property (nonatomic, weak) id<SuspendBallDelegte> delegate;
 

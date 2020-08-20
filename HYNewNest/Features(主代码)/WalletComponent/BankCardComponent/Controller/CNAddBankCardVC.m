@@ -143,6 +143,8 @@
         [HYTextAlertView showWithTitle:@"手机绑定" content:@"对不起！系统发现您还没有绑定手机，请先完成手机绑定流程，再进行绑卡操作。" comfirmText:@"确定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
             if (isComfirm) {
                 [self.navigationController pushViewController:[CNCompleteInfoVC new] animated:YES];
+            } else {
+                [self.navigationController popViewControllerAnimated:YES];
             }
         }];
         

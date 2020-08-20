@@ -131,7 +131,6 @@ static CGFloat btnSmallImageWidth = 60;
         pan.delegate = self;
         pan.delaysTouchesBegan = NO;
         [self addGestureRecognizer:pan];
-        [self suspendBallShow];
         
     }
     return self;
@@ -170,7 +169,6 @@ static CGFloat btnSmallImageWidth = 60;
 - (void)didMoveToSuperview
 {
     [super didMoveToSuperview];
-    [self suspendBallShow];
 }
 
 - (void)initialization
@@ -253,13 +251,17 @@ static CGFloat btnSmallImageWidth = 60;
 
     __weak typeof(self) weakSelf = self;
     if(_showFunction == NO) {
-
+        // 调整主按钮
         [self setImage:[UIImage imageNamed:@"arrow_cs"] forState:UIControlStateNormal];
         [self setBackgroundImage:[UIImage imageNamed:@"bg"] forState:0];
         [self setTitle:nil forState:UIControlStateNormal];
         self.imageEdgeInsets = UIEdgeInsetsZero;
         self.titleEdgeInsets = UIEdgeInsetsZero;
         _showFunction = YES;
+        
+        //添加背景
+       [self.superview addSubview:self.bgView];
+       [self.superview insertSubview:self.bgView belowSubview:self];
         
         [self functionMenuShow];
         
@@ -269,11 +271,15 @@ static CGFloat btnSmallImageWidth = 60;
         return;
         
     }else if (_showFunction == YES) { //full state
+        // 调整主按钮
         [self setImage:[UIImage imageNamed:@"service-float"] forState:UIControlStateNormal];
         [self setBackgroundImage:[UIImage imageNamed:@"bg_w"] forState:0];
         [self setTitle:@"客服" forState:UIControlStateNormal];
         [self jk_setImagePosition:LXMImagePositionTop spacing:3];
         _showFunction = NO;
+        
+        // 移除
+        [self.bgView removeFromSuperview];
         
         [self.functionMenu removeFromSuperview];
         
@@ -463,6 +469,18 @@ static CGFloat btnSmallImageWidth = 60;
         _functionMenu = [[UIView alloc] init];
     }
     return _functionMenu;
+}
+
+- (UIView *)bgView {
+    if (!_bgView) {
+        _bgView = [[UIView alloc] init];
+        _bgView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight);
+        _bgView.backgroundColor = kHexColorAlpha(0x000000, 0.7);
+        _bgView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(suspendBallShow)];
+        [_bgView addGestureRecognizer:tap];
+    }
+    return _bgView;
 }
 
 #pragma mark - private method

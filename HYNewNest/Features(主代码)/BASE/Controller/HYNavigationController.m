@@ -10,6 +10,7 @@
 #import "CNSkinManager.h"
 #import <UIImage+JKColor.h>
 
+
 @interface HYNavigationController ()<UIGestureRecognizerDelegate, UINavigationControllerDelegate>
 @end
 
@@ -69,9 +70,10 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
 #pragma mark - PUSH & POP
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     // 防止重复push
-//    if ([self.topViewController isKindOfClass:viewController.class]) {
-//        return;
-//    }
+    
+    if ([self.topViewController isKindOfClass:viewController.class] && ![viewController isKindOfClass:[NSClassFromString(@"CNBindPhoneVC") class]]) {
+        return;
+    }
     
     if (self.viewControllers.count>0) {
         //当存在子控制器时才隐藏tabBar
