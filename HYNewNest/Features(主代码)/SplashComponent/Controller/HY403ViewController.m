@@ -69,6 +69,7 @@
     [btnSure addTarget:self action:@selector(btnSureClick) forControlEvents:UIControlEventTouchUpInside];
     [btnSure setBackgroundColor:kHexColor(0xCFA461)];
     [btnSure setTitleColor:kHexColor(0xFFFFFF) forState:UIControlStateNormal];
+    btnSure.enabled = YES;
     [self.view addSubview:btnSure];
 }
 
