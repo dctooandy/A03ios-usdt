@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CNStatementView : CNBaseXibView
-+ (void)showWithTitle:(NSString *)title content:(NSString *)content;
++ (void)show;
 @end
 
 NS_ASSUME_NONNULL_END
