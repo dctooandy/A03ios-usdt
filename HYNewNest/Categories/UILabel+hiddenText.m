@@ -34,7 +34,7 @@ static NSString *kIsHiddenKey  = @"kIsHiddenKey";
 }
 
 - (BOOL)isOriginTextHidden {
-    return objc_getAssociatedObject(self, &kIsHiddenKey);
+    return [objc_getAssociatedObject(self, &kIsHiddenKey) boolValue];
 }
 
 
@@ -48,12 +48,12 @@ static NSString *kIsHiddenKey  = @"kIsHiddenKey";
 }
 
 - (void)showOriginText {
+    self.isOriginTextHidden = NO;
     if (self.originText != nil && self.originText.length > 0) {
         self.text = self.originText;
     } else {
         self.text = @"";
     }
-    self.isOriginTextHidden = NO;
     
 //    if (self.isIndicating) {
 //        [self showIndicatorIsBig:NO];

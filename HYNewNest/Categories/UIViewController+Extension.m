@@ -37,7 +37,7 @@ static NSString *navPopupBlockKey = @"navPopupBlockKey";
 
 - (BOOL)makeTranslucent
 {
-    return objc_getAssociatedObject(self, &makeTranslucentKey);
+    return [objc_getAssociatedObject(self, &makeTranslucentKey) boolValue];
 }
 
 - (void)setHideNavgation:(BOOL)hideNavgation
@@ -57,7 +57,7 @@ static NSString *navPopupBlockKey = @"navPopupBlockKey";
 
 - (BOOL)navBarTransparent
 {
-    return objc_getAssociatedObject(self, &navBarTransparentKey);
+    return [objc_getAssociatedObject(self, &navBarTransparentKey) boolValue];
 }
 
 - (void)setNavPopupBlock:(void (^)(id))navPopupBlock
