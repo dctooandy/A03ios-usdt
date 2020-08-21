@@ -58,46 +58,66 @@
     NSString *text = textField.text;
     
     // 注册不需要改变
-    if (!self.isRegister) {
+//    if (!self.isRegister) {
         if (text.length == 0) {
             self.wrongAccout = NO;
             self.tipLb.text = @"";
             return;
         }
         
-        if (![text hasPrefix:@"1"] && !([text hasPrefix:@"f"] || [text hasPrefix:@"F"])) {
-            // 客服回拨可以输入其他符合，所以提示语修改下
-            if (self.fromServer) {
-                [self showWrongMsg:@"您输入的手机不符合规则*"];
-            } else {
-                [self showWrongMsg:@"您输入的账号不符合规则*"];
-            }
+//        if (![text hasPrefix:@"1"] && !([text hasPrefix:@"f"] || [text hasPrefix:@"F"])) {
+//            // 客服回拨可以输入其他符合，所以提示语修改下
+//            if (self.fromServer) {
+//                [self showWrongMsg:@"您输入的手机不符合规则*"];
+//            } else {
+//                [self showWrongMsg:@"您输入的账号不符合规则*"];
+//            }
+//            return;
+//        }
+    if (text.length > 11) {
+        textField.text = [text substringToIndex:11];
+    }
+
+        // 校验
+    if (self.fromServer) {
+        if ((![text hasPrefix:@"1"] || ![textField.text validationType:ValidationTypePhone])) {
+            [self showWrongMsg:@"您输入的手机不符合规则*"];
             return;
         }
-        
-        self.lineView.backgroundColor = self.hilghtColor;
-        self.tipLb.textColor = self.hilghtColor;
+    } else if (self.isRegister){
+        if (!([text hasPrefix:@"f"] || [text hasPrefix:@"F"]) || ![textField.text validationType:ValidationTypeUserName]) {
+            [self showWrongMsg:@"f开头的5-11位数字+字母组合*"];
+            return;
+        }
+    } else {
+        if ((![text hasPrefix:@"1"] && !([text hasPrefix:@"f"] || [text hasPrefix:@"F"])) ||
+            (([text hasPrefix:@"f"] || [text hasPrefix:@"F"]) && ![textField.text validationType:ValidationTypeUserName]) ||
+            ([text hasPrefix:@"1"] && ![textField.text validationType:ValidationTypePhone])) {
+            [self showWrongMsg:@"以f开头的5-11位数字+字母组合或11位手机号码*"];
+            return;
+        }
     }
+    self.wrongAccout = NO;
+
+        
+    self.lineView.backgroundColor = self.hilghtColor;
+    self.tipLb.textColor = self.hilghtColor;
+//}
     
     if (!self.isRegister && [text hasPrefix:@"1"]) {
         self.tipLb.text = @"手机号码*";
         self.phoneLogin = YES;
-        if (text.length >= 11) {
-            textField.text = [text substringToIndex:11];
-        }
     } else {
         self.tipLb.text = @"用户名*";
         self.phoneLogin = NO;
-        if (text.length > 12) {
-            textField.text = [text substringToIndex:12];
-        }
     }
-    
+
     if (self.phoneLogin) {
         self.correct = (textField.text.length >= 11);
     } else {
         self.correct = (textField.text.length >= 5);
     }
+    
     if (_delegate && [_delegate respondsToSelector:@selector(accountInputViewTextChange:)]) {
         [_delegate accountInputViewTextChange:self];
     }

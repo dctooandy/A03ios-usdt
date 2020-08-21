@@ -55,10 +55,11 @@ int TotalSecond = 60;
     self.tipLb.hidden = NO;
     switch (_codeType) {
         case CNCodeTypeAccountRegister:
-            self.tipLb.text = @"请输入字母与数字组合的密码，8位以上*";
+            self.tipLb.text = @"请输入字母与数字组合的密码，8位以上";
             break;
         case CNCodeTypeAccountLogin:
-            self.tipLb.text = @"密码*";
+            self.tipLb.text = @"密码/验证码";
+            self.inputTF.placeholder = @"请输入密码或手机验证码";
             break;
         case CNCodeTypeBindPhone:
         case CNCodeTypePhoneLogin:
@@ -92,6 +93,10 @@ int TotalSecond = 60;
         case CNCodeTypeBankCard:
             self.correct = (text.length >= 6);
             break;
+        case CNCodeTypeAccountLogin:
+        case CNCodeTypeAccountRegister:
+            self.correct = [text validationType:ValidationTypePassword];
+            break;
         default:
             self.correct = (text.length >= 8);
             break;
@@ -119,7 +124,7 @@ int TotalSecond = 60;
 - (void)setAccount:(NSString *)account {
     _account = account;
     if ([account hasPrefix:@"1"]) {
-//        self.codeType = CNCodeTypePhoneLogin;
+        self.codeType = CNCodeTypePhoneLogin;
         self.codeBtn.hidden = !(account.length > 10);
         self.inputTF.keyboardType = UIKeyboardTypeNumberPad;
     } else {

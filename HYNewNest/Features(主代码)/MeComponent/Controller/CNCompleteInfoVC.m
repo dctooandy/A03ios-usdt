@@ -35,6 +35,7 @@
 - (void)setDelegate {
     self.nameInputView.delegate = self;
     self.phoneInputView.delegate = self;
+    self.phoneInputView.fromServer = YES;
     self.codeInputView.delegate = self;
     [self.nameInputView setPlaceholder:@"请输入您的真实姓名"];
     [self.phoneInputView setPlaceholder:@"请输入您要绑定的手机号"];

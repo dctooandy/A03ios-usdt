@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 游戏类型
 @property (weak, nonatomic) IBOutlet UILabel *typeLb;
 /// 游戏人数
-@property (weak, nonatomic) IBOutlet UILabel *playCountLb;
+//@property (weak, nonatomic) IBOutlet UILabel *playCountLb;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -125,7 +125,7 @@
     cell.titleLb.text = model.gameName;
     [cell.icon sd_setImageWithURL:[NSURL URLWithString:model.gameImg] placeholderImage:[UIImage imageNamed:@"gamepic-1"]];
     cell.typeLb.text = model.platformDisplayName;
-    cell.playCountLb.text = [NSString stringWithFormat:@"%@人正在游戏", model.gameParam.playLine];
+//    cell.playCountLb.text = [NSString stringWithFormat:@"%@人正在游戏", model.gameParam.playLine];
     return cell;
 }
 

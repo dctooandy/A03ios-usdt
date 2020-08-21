@@ -204,14 +204,14 @@
                                         <constraint firstAttribute="height" constant="75" id="sxg-9R-Ei9"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ir0-JM-89g" customClass="CNCodeInputView">
+                                <view tag="22" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ir0-JM-89g" customClass="CNCodeInputView">
                                     <rect key="frame" x="30" y="188" width="322.5" height="75"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="75" id="cmx-A9-YZk"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3O-uN-pkb" customClass="CNCodeInputView">
+                                <view tag="33" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3O-uN-pkb" customClass="CNCodeInputView">
                                     <rect key="frame" x="30" y="263" width="322.5" height="75"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>

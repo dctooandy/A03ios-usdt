@@ -22,9 +22,11 @@
 //日期中的日验证(01~09和1~31)
 #define kValidationDay @"^((0?[1-9])|((1|2)[0-9])|30|31)$"
 //密码验证 ok
-#define kValidationPassword @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z_]{8,20}$"
-//用户名验证 ok
-#define kValidationUserName @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z_]{6,16}$"
+//#define kValidationPassword @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z_]{8,20}$"
+#define kValidationPassword @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$"
+////用户名验证 ok
+//#define kValidationUserName @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z_]{6,16}$"
+#define kValidationUserName @"^[fF][0-9a-zA-Z]{4,10}$"
 //银行卡简单验证 16位和19位
 #define kValidationBankCard @"^\\d{16,19}$"
 //验证码纯数字6位
