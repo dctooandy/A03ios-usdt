@@ -74,7 +74,10 @@
             break;
         // 安全中心来的 解绑
         case CNSMSCodeTypeUnbind:
-            self.inputTF.placeholder = [NSString stringWithFormat:@"请输入%@手机号",[CNUserManager shareManager].userDetail.mobileNo];
+//            self.inputTF.placeholder = [NSString stringWithFormat:@"请输入%@手机号",[CNUserManager shareManager].userDetail.mobileNo];
+            self.inputTF.text = [CNUserManager shareManager].userDetail.mobileNo;
+            self.inputTF.userInteractionEnabled = NO;
+            self.sendCodeBtn.hidden = NO;
             self.titleLb.hidden = YES;
             self.navigationItem.title = @"手机号修改";
             self.jumbBtn.hidden = YES;
@@ -170,26 +173,43 @@
 
     WEAKSELF_DEFINE
     // 请求短信   a03没有这个用处：CNSMSCodeTypeUnbind
-    [CNLoginRequest getSMSCodeWithType:self.bindType == CNSMSCodeTypeUnbind?CNSMSCodeTypeChangePhone:self.bindType
-                                 phone:self.inputTF.text
-                     completionHandler:^(id responseObj, NSString *errorMsg) {
+    if (self.bindType == CNSMSCodeTypeUnbind) {
+        [CNLoginRequest getSMSCodeByLoginNameType:CNSMSCodeTypeChangePhone
+                                completionHandler:^(id responseObj, NSString *errorMsg) {
+            STRONGSELF_DEFINE
+            SmsCodeModel *smsModel = [SmsCodeModel cn_parse: responseObj];
+            strongSelf.smsModel = smsModel;
+
+            sender.enabled = NO;
+            [strongSelf didSendCodeUIChange];
+        }];
         
-        STRONGSELF_DEFINE
-        SmsCodeModel *smsModel = [SmsCodeModel cn_parse: responseObj];
-        strongSelf.smsModel = smsModel;
-        
-        // 高亮变化, 界面UI变化
-        strongSelf.codeTip.hidden = YES;
-        strongSelf.sendTipLb.hidden = NO;
-        NSString *lastForth = [self.inputTF.text substringFromIndex:(self.inputTF.text.length-4)];
-        strongSelf.sendTipLb.text = [NSString stringWithFormat:@"我们已向您的尾号为%@的手机发送验证码，\n请在下方，输入6位短信验证码*", lastForth];
-        [strongSelf.codeView clear];
-        [strongSelf.codeView becomeFirstResponder];
-        strongSelf.submitBtn.enabled = NO;
-        sender.enabled = NO;
-        [strongSelf initCodeView];
-        [strongSelf.secondTimer setFireDate:[NSDate distantPast]];
-    }];
+    } else {
+        [CNLoginRequest getSMSCodeWithType:self.bindType
+                                     phone:self.inputTF.text
+                         completionHandler:^(id responseObj, NSString *errorMsg) {
+            STRONGSELF_DEFINE
+            SmsCodeModel *smsModel = [SmsCodeModel cn_parse: responseObj];
+            strongSelf.smsModel = smsModel;
+            
+            sender.enabled = NO;
+            [strongSelf didSendCodeUIChange];
+        }];
+    }
+}
+
+// 高亮变化, 界面UI变化
+- (void)didSendCodeUIChange {
+    self.codeTip.hidden = YES;
+    self.sendTipLb.hidden = NO;
+    NSString *lastForth = [self.inputTF.text substringFromIndex:(self.inputTF.text.length-4)];
+    self.sendTipLb.text = [NSString stringWithFormat:@"我们已向您的尾号为%@的手机发送验证码，\n请在下方，输入6位短信验证码*", lastForth];
+    [self.codeView clear];
+    [self.codeView becomeFirstResponder];
+    self.submitBtn.enabled = NO;
+    
+    [self initCodeView];
+    [self.secondTimer setFireDate:[NSDate distantPast]];
 }
 
 /// 校验短信验证码
