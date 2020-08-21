@@ -102,9 +102,9 @@
                 completionHandler:(HandlerBlock)completionHandler{
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
-    [param setObject:loginName forKey:@"loginName"];
-    [param setObject:messageId forKey:@"messageId"];
-    [param setObject:validateId forKey:@"validateId"];
+    param[@"loginName"] = loginName;
+    param[@"messageId"] = messageId;
+    param[@"validateId"] = validateId;
     
     [self POST:kGatewayPath(config_loginMessageIdAndLoginName) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
@@ -226,14 +226,14 @@
             completionHandler:(HandlerBlock)completionHandler{
     
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
-    [paramDic setObject:loginName forKey:@"loginName"];
-//    [paramDic setObject:[CNEncrypt encryptString:newPassword] forKey:@"newPassword"];
-    [paramDic setObject:newPassword forKey:@"newPassword"];
-    [paramDic setObject:smsCode forKey:@"smsCode"];
-    [paramDic setObject:@"2" forKey:@"type"];
-    [paramDic setObject:@"2" forKey:@"use"];
-    [paramDic setObject:validateId forKey:@"validateId"];
-    [paramDic setObject:messageId forKey:@"messageId"];
+    paramDic[@"type"] = @2;
+    paramDic[@"use"] = @2;
+    paramDic[@"loginName"] = loginName;
+//    paramDic[@"newPassword"] = [CNEncrypt encryptString:newPassword];
+    paramDic[@"newPassword"] = newPassword;
+    paramDic[@"smsCode"] = smsCode;
+    paramDic[@"validateId"] = validateId;
+    paramDic[@"messageId"] = messageId;
     
     [self POST:kGatewayPath(config_modifyPwdBySmsCode) parameters:paramDic completionHandler:completionHandler];
 }

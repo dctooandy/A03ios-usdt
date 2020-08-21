@@ -65,19 +65,19 @@
                             handler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
-    [param setObject:accountNo forKey:@"accountNo"];
-    [param setObject:accountNo forKey:@"accountNo2"];
-    [param setObject:@"DCBOX" forKey:@"accountType"];
-    [param setObject:@"DCBOX" forKey:@"walletType"];
-    [param setObject:@"DCBOX" forKey:@"bankName"];
-    [param setObject:@"ERC20" forKey:@"protocol"];
-    [param setObject:[CNUserManager shareManager].printedloginName forKey:@"accountName"];
-    [param setObject:isOneKey?@(1):@(2) forKey:@"flag"];
+    param[@"accountNo"] = accountNo;
+    param[@"accountNo2"] = accountNo;
+    param[@"accountType"] = @"DCBOX";
+    param[@"walletType"] = @"DCBOX";
+    param[@"bankName"] = @"DCBOX";
+    param[@"protocol"] = @"ERC20";
+    param[@"accountName"] = [CNUserManager shareManager].printedloginName;
+    param[@"flag"] = isOneKey?@1:@2;
     if (validateId) {
-        [param setObject:validateId forKey:@"validateId"];
+        param[@"validateId"] = validateId;
     }
     if (messageId) {
-        [param setObject:messageId forKey:@"messageId"];
+        param[@"messageId"] = messageId;
     }
     
     [self POST:kGatewayPath(config_create) parameters:param completionHandler:handler];
@@ -92,18 +92,18 @@
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     // 协议改为自动判定
-    [param setObject:accountNo  forKey:@"accountNo"];
-    [param setObject:bankAlias forKey:@"bankAlias"];
-    [param setObject:@"USDT" forKey:@"accountType"];
-    [param setObject:@"USDT" forKey:@"walletType"];
-    [param setObject:[CNUserManager shareManager].printedloginName forKey:@"accountName"];
-    [param setObject:[self autoUsdtProtocolAccountNo:accountNo] forKey:@"protocol"];
-    [param setObject:@(2) forKey:@"flag"];
+    param[@"accountNo"] = accountNo;
+    param[@"bankAlias"] = bankAlias;
+    param[@"accountType"] = @"USDT";
+    param[@"walletType"] = @"USDT";
+    param[@"accountName"] = [CNUserManager shareManager].printedloginName;
+    param[@"protocol"] = [self autoUsdtProtocolAccountNo:accountNo];
+    [param setObject:@2 forKey:@"flag"];
     if (validateId) {
-        [param setObject:validateId forKey:@"validateId"];
+        param[@"validateId"] = validateId;
     }
     if (messageId) {
-        [param setObject:messageId forKey:@"messageId"];
+        param[@"messageId"] = messageId;
     }
 
     [self POST:kGatewayPath(config_create) parameters:param completionHandler:handler];

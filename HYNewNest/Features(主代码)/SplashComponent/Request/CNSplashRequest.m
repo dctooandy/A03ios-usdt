@@ -108,7 +108,7 @@
 
 + (void)checkAreaLimit:(void(^)(BOOL isAllowEntry))handler {
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
-    [paramDic setObject:[FCUUID uuidForDevice] forKey:@"deviceId"];
+    paramDic[@"deviceId"] = [FCUUID uuidForDevice];
     [self POST:kGatewayPath(config_areaLimit) parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
         handler([responseObj boolValue]);
     }];

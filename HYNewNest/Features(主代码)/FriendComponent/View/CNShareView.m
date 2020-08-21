@@ -47,6 +47,8 @@
     switch (self.shareType) {
         case CNShareTypeCopy:
             [CNHUB showSuccess:@"已复制到剪切板！"];
+            [self removeFromSuperview];
+            
             break;
             
         case CNShareTypeSMS: {
@@ -79,10 +81,12 @@
                 }
             }
             [CNShareCopyView showWithShareTpye:self.shareType url:url];
+            [self removeFromSuperview];
+            
             break;
         }
     }
-    [self removeFromSuperview];
+    
 }
 
 
@@ -120,10 +124,8 @@
     }
 }
 
-#pragma mark delegate
+#pragma mark MFMessageComposeViewControllerDelegate
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
-
-    [controller dismissViewControllerAnimated:YES completion:nil];
 
     switch (result) {
         case MessageComposeResultCancelled:
@@ -141,6 +143,10 @@
         default:
             break;
     }
+    
+    [controller dismissViewControllerAnimated:YES completion:^{
+        [self removeFromSuperview];
+    }];
 }
 
 @end
