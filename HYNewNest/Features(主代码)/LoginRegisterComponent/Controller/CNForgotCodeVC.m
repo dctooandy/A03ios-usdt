@@ -46,7 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.inputTF.placeholder = [NSString stringWithFormat:@"请输入%@手机号", [CNUserManager shareManager].userDetail.mobileNo];
+    self.inputTF.placeholder = @"请输入您的绑定手机号码";
     [self.inputTF addTarget:self action:@selector(textFieldChange:) forControlEvents:UIControlEventEditingChanged];
     self.normalColor = kHexColorAlpha(0xFFFFFF, 0.15);
     self.hilghtColor = kHexColor(0x10B4DD);

@@ -17,7 +17,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgvIcon;
 @property (weak, nonatomic) IBOutlet UILabel *lblPayWayName;
 @property (weak, nonatomic) IBOutlet UILabel *lblPayWayLimit;
+
 @property (weak, nonatomic) IBOutlet UIView *protocolBgView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *amountTfViewTopMargin;
 
 @property (weak, nonatomic) IBOutlet UIView *amountTfBgView;
 @property (weak, nonatomic) IBOutlet UILabel *lblUponAmoTf;
@@ -77,6 +79,21 @@
     }
     // 选中第一个
     [self protocolSelected:firstBtn];
+    
+    // tmd小金库要隐藏
+    if ([HYRechargeHelper isOnlinePayWayDCBox:self.deposModel]) {
+        self.protocolBgView.hidden = YES;
+        self.amountTfViewTopMargin.constant = 22;
+        [self mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(249-62);
+        }];
+    } else {
+        self.protocolBgView.hidden = NO;
+        self.amountTfViewTopMargin.constant = 86;
+        [self mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(249);
+        }];
+    }
 }
 
 

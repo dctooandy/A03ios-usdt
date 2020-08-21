@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HYRechargeEditView">
             <connections>
                 <outlet property="amountTfBgView" destination="Vac-jk-PJF" id="qVd-VV-Hdt"/>
+                <outlet property="amountTfViewTopMargin" destination="rAV-Hy-Ied" id="bhL-Al-g4n"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="wr2-hT-fg6"/>
                 <outlet property="imgvIcon" destination="L8L-Cn-xVg" id="VCZ-CR-6D1"/>
                 <outlet property="lblPayWayLimit" destination="TUe-zy-0gp" id="DIG-kP-gCu"/>
@@ -117,9 +118,9 @@
             </subviews>
             <constraints>
                 <constraint firstItem="Vn1-qc-Wec" firstAttribute="top" secondItem="cLg-ul-BjC" secondAttribute="bottom" constant="22" id="0X4-06-e6v"/>
-                <constraint firstItem="Vac-jk-PJF" firstAttribute="top" secondItem="Vn1-qc-Wec" secondAttribute="bottom" constant="24" id="1mD-z1-FqL"/>
                 <constraint firstItem="cLg-ul-BjC" firstAttribute="top" secondItem="7Jh-91-lEK" secondAttribute="bottom" id="6Lu-wb-6PI"/>
                 <constraint firstItem="TUe-zy-0gp" firstAttribute="leading" secondItem="G7O-AT-SUu" secondAttribute="trailing" constant="8" id="6lF-3S-KF0"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Vac-jk-PJF" secondAttribute="bottom" constant="27.5" id="CKn-Xp-2be"/>
                 <constraint firstItem="PH8-jE-f3k" firstAttribute="centerY" secondItem="TUe-zy-0gp" secondAttribute="centerY" id="EQp-5G-ENr"/>
                 <constraint firstItem="G7O-AT-SUu" firstAttribute="centerY" secondItem="L8L-Cn-xVg" secondAttribute="centerY" id="Gef-PG-4y5"/>
                 <constraint firstItem="TUe-zy-0gp" firstAttribute="centerY" secondItem="L8L-Cn-xVg" secondAttribute="centerY" id="Glq-zp-Xbe"/>
@@ -136,6 +137,7 @@
                 <constraint firstAttribute="trailing" secondItem="bsh-Da-Pac" secondAttribute="trailing" constant="16" id="hi8-gJ-fZU"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="7Jh-91-lEK" secondAttribute="trailing" id="jTX-xV-Y1g"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="cLg-ul-BjC" secondAttribute="trailing" id="jUP-5U-dw3"/>
+                <constraint firstItem="Vac-jk-PJF" firstAttribute="top" secondItem="cLg-ul-BjC" secondAttribute="bottom" constant="86" id="rAV-Hy-Ied"/>
                 <constraint firstItem="Vac-jk-PJF" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="14" id="vVR-CO-Hsr"/>
                 <constraint firstItem="7Jh-91-lEK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="zRa-Bm-rb5"/>
             </constraints>
@@ -143,7 +145,7 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="109.42028985507247" y="-13.392857142857142"/>
+            <point key="canvasLocation" x="-93" y="-5"/>
         </view>
     </objects>
     <resources>

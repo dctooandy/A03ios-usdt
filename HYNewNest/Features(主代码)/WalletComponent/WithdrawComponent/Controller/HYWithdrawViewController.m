@@ -74,8 +74,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 
 
 - (void)setupTopView {
-    NSString *tx = [CNUserManager shareManager].isUsdtMode?@"提币":@"提现";
-    self.topView.lblTitle.text = [NSString stringWithFormat:@"可%@金额", tx];
+    NSString *tx = [CNUserManager shareManager].isUsdtMode?@"提币USDT":@"提现金额";
+    self.topView.lblTitle.text = [NSString stringWithFormat:@"可%@", tx];
     [self.topView.ruleBtn setTitle:@" 说明" forState:UIControlStateNormal];
     self.topView.clickBlock = ^{
         NSString *content = [NSString stringWithFormat:@"根据《菲律宾反洗钱法》规定：\n1. %@需达到充币的1倍有效投注额\n2. 可%@金额＝总资产 - 各厅不足1%@下的金额\n3. 如参与了网站的优惠活动，%@需根据相关活动规则有效投注额\n\n具体%@情况以审核完结果为准。", tx, tx, [CNUserManager shareManager].userInfo.currency, tx, tx];
@@ -95,7 +95,6 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     footer.frame = CGRectMake(0, 0, kScreenWidth, 106);
     self.tableView.tableFooterView = footer;
     
-    self.sumitBtn.enabled = YES;
     self.sumitBtn.layer.shadowColor = [UIColor blackColor].CGColor;
     self.sumitBtn.layer.shadowOffset = CGSizeMake(2.0, 2.0f);
     self.sumitBtn.layer.shadowOpacity = 0.13f; //透明度
@@ -124,6 +123,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
             self.moneyModel = moneyModel;
 //            self.topView.lblAmount.text = [moneyModel.withdrawBal jk_toDisplayNumberWithDigit:2];
             [self.topView.lblAmount hideIndicatorWithText:[moneyModel.withdrawBal jk_toDisplayNumberWithDigit:2]];
+            
+            self.sumitBtn.enabled = YES;
         }
     }];
 }

@@ -88,7 +88,7 @@
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbZ-H9-SiW">
                     <rect key="frame" x="72" y="745" width="270" height="29"/>
-                    <string key="text">提现到其他账户，属于即时到账转款，为保障您的
+                    <string key="text">提币到其他账户，属于即时到账转款，为保障您的
 资金安全，请确保账号输入无误！</string>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>

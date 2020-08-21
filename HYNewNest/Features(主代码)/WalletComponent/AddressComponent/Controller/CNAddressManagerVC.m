@@ -164,7 +164,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_addrType == HYAddressTypeDCBOX && self.dcboxAccounts.count == 0 && indexPath.row == 1) {
-        return 180;
+        return 180; // 下载小金库高度
     } else {
         return 115;
     }
@@ -177,9 +177,8 @@
             return self.bankAccounts.count>0 ? self.bankAccounts.count+1 : 1;
             break;
         case HYAddressTypeDCBOX:
-//            //有卡：显示卡和一个添加；无卡：显示一键绑定和下载
-//            return self.dcboxAccounts.count>0 ? self.dcboxAccounts.count+1 : 2;
-            return self.dcboxAccounts.count + 2;;
+            //有卡：显示卡和添加和下载，有三张卡：没有添加；无卡：显示一键绑定和下载
+            return self.dcboxAccounts.count == 3 ? self.dcboxAccounts.count+1 : self.dcboxAccounts.count+2;
             break;
         case HYAddressTypeUSDT:
             //有卡：显示卡和添加；无卡：显示添加
@@ -212,38 +211,12 @@
             break;
             
         case HYAddressTypeDCBOX:
-//            if (self.dcboxAccounts.count == 0) { //无卡
-//                if (indexPath.row == self.dcboxAccounts.count) { //倒数第二个cell：一键注册/绑定小金库
-//                    CNAddressAddTCell *addCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressAddTCellID forIndexPath:indexPath];
-//                    addCell.titleLb.text = @"一键注册/绑定小金库";
-//                    return addCell;
-//
-//                } else { //最后一个cell：下载小金库
-//                    CNAddressDownloadTCell *downloadCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressDownloadTCellID forIndexPath:indexPath];
-//                    return downloadCell;
-//                }
-//
-//            } else { //有卡
-//                if (indexPath.row == self.dcboxAccounts.count) { //最后一个cell：添加小金库
-//                    CNAddressAddTCell *addCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressAddTCellID forIndexPath:indexPath];
-//                    addCell.titleLb.text = @"添加小金库";
-//                    return addCell;
-//
-//                } else { //卡列表
-//                    AccountModel *model = self.dcboxAccounts[indexPath.row];
-//                    CNAddressInfoTCell *infoCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressInfoTCellID forIndexPath:indexPath];
-//                    infoCell.model = model;
-//                    infoCell.deleteBlock = ^{
-//                        [self deleteAccountIdx:indexPath.row];
-//                    };
-//                    return infoCell;
-//                }
-//            }
-            if (indexPath.row == self.dcboxAccounts.count) { //倒数第二个
+            if (self.dcboxAccounts.count < 3 && indexPath.row == self.dcboxAccounts.count) { //倒数第二个
                 CNAddressAddTCell *addCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressAddTCellID forIndexPath:indexPath];
                 addCell.titleLb.text = self.dcboxAccounts.count>0?@"添加小金库":@"一键注册/绑定小金库";
                 return addCell;
-            } else if (indexPath.row == self.dcboxAccounts.count+1) { //倒数第一个
+            } else if ((indexPath.row == self.dcboxAccounts.count+1) ||
+                       (indexPath.row == self.dcboxAccounts.count && self.dcboxAccounts.count == 3)) { //倒数第一个
                 CNAddressDownloadTCell *downloadCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressDownloadTCellID forIndexPath:indexPath];
                 return downloadCell;
             } else {
@@ -303,7 +276,7 @@
 //                vc.addrType = self.addrType;
 //                [self.navigationController pushViewController:vc animated:YES];
 //            }
-            if (indexPath.row == self.dcboxAccounts.count) { //倒数第二个
+            if (self.dcboxAccounts.count < 3 && indexPath.row == self.dcboxAccounts.count) { //倒数第二个
                 if (self.dcboxAccounts.count > 0) {
                     CNAddAddressVC *vc = [CNAddAddressVC new];
                     vc.addrType = self.addrType;

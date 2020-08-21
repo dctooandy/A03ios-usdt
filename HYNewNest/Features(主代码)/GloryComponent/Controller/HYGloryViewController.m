@@ -29,8 +29,8 @@
     HYArticalTableViewController *vc1 = [[HYArticalTableViewController alloc] init];
     vc1.listType = A03ArticleTagListEssence;
     
-    HYArticalTableViewController *vc2 = [[HYArticalTableViewController alloc] init];
-    vc2.listType = A03ArticleTagListMasterGame;
+//    HYArticalTableViewController *vc2 = [[HYArticalTableViewController alloc] init];
+//    vc2.listType = A03ArticleTagListMasterGame;
     
     HYArticalTableViewController *vc3 = [[HYArticalTableViewController alloc] init];
     vc3.listType = A03ArticleTagListTrends;
@@ -52,8 +52,10 @@
     }];
 
     // Setup Title and VC here
-    [self.segBarVC setUpWithItems:@[@"精选", @"币游大师赛", @"币游动态", @"币游简报"]
-             childViewControllers:@[vc1, vc2, vc3, vc4]];
+//    [self.segBarVC setUpWithItems:@[@"精选", @"币游大师赛", @"币游动态", @"币游简报"]
+//             childViewControllers:@[vc1, vc2, vc3, vc4]];
+    [self.segBarVC setUpWithItems:@[@"精选", @"币游动态", @"币游简报"]
+             childViewControllers:@[vc1, vc3, vc4]];
 }
 
 
