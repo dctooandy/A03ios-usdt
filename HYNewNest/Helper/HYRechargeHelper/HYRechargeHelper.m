@@ -69,8 +69,9 @@
     if (amountInteger >0) {
 
         if (amountInteger >= 10000) {
-            amountInteger = amountInteger/10000;
-            showStrAmount = [NSString stringWithFormat:@"%ld万",amountInteger];
+            NSNumber *amoutFloat = @(amountInteger/10000.0);
+//            showStrAmount = [NSString stringWithFormat:@"%.4lf万",amoutFloat];
+            showStrAmount = [[self toDisplayNumber:amoutFloat] stringByAppendingString:@"万"];
         }else{
             showStrAmount = [NSString stringWithFormat:@"%ld",amountInteger];
         }
@@ -78,6 +79,21 @@
     return showStrAmount;
 }
 
+// 有小数显示最多四位小数 没有则不显示
++ (NSString*)toDisplayNumber:(NSNumber *)number
+{
+    NSString *result = nil;
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [formatter setRoundingMode:NSNumberFormatterRoundFloor];
+    [formatter setMinimumFractionDigits:0];
+    [formatter setMaximumFractionDigits:4];
+    result = [formatter stringFromNumber:number];
+    if (result == nil)
+        return @"";
+    return result;
+    
+}
 
 + (BOOL)isUSDTBankModelPublicChain:(DepositsBankModel *)bank {
     if ([bank.payCategory isEqualToString:@"2"] ||

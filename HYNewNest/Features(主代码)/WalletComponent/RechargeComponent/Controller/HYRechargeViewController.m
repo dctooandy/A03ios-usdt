@@ -40,6 +40,8 @@
     
     [self setupViews];
     [self queryDepositBankPayWays];
+    // !!!:  没数据 先隐藏顶部tipsView
+    [self didClickCloseTip];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

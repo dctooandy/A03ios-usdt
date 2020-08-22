@@ -115,13 +115,12 @@
             break;
         case 1:
             [self.btnSubmit setTitle:@"启动微信支付" forState:UIControlStateNormal];
-            [self.btnSubmit setImage:[UIImage imageNamed:@"Icon Alipay Copy"] forState:UIControlStateNormal];
+            [self.btnSubmit setImage:[UIImage imageNamed:@"share_wx_white"] forState:UIControlStateNormal];
             self.tipLb.text = @"温馨提示：修改金额和重复支付订单无效，微信提示到账时间为2小时，实际到账时间为3-5分钟，请放心支付。";
             break;
         case 2:
             [self.btnSubmit setTitle:@"完成支付" forState:UIControlStateNormal];
             self.tipLb.text = @"温馨提示：可登录您的网银账号，汇款到此账号。";
-//            [self.btnSubmit setImage:[UIImage imageNamed:@"Icon Alipay Copy"] forState:UIControlStateNormal];
             break;
         default:
             break;
@@ -179,7 +178,7 @@
             appName = @"支付宝";
             break;
         case 1:
-            urlStr = @"wechat://";
+            urlStr = @"weixin://";
             appName = @"微信";
             break;
         case 2:
