@@ -240,7 +240,7 @@
 
 
 - (void)switchCurrencyUI {
-    if ([CNUserManager shareManager].userInfo.isWhiteListUser) {
+    if (![CNUserManager shareManager].userDetail.newAccountFlag) {
         self.switchBtn.hidden = NO;
     } else {
         self.switchBtn.hidden = YES;

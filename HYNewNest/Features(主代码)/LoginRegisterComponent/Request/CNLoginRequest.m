@@ -89,7 +89,7 @@
             if (!errorMsg) {
                 [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
                 [CNLoginRequest getUserInfoByTokenCompletionHandler:nil]; // 请求详细信息
-                [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
+//                [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
             }
             completionHandler(responseObj, errorMsg);
         }
@@ -110,7 +110,7 @@
         if (!errorMsg) {
             [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
             [CNLoginRequest getUserInfoByTokenCompletionHandler:nil]; // 请求详细信息
-            [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
+//            [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
         }
         completionHandler(responseObj, errorMsg);
     }];
@@ -152,7 +152,7 @@
         if (!errorMsg) {
             [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
             [CNLoginRequest getUserInfoByTokenCompletionHandler:nil]; // 请求详细信息
-            [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
+//            [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
         }
         completionHandler(responseObj, errorMsg);
     }];
@@ -294,20 +294,21 @@
     }];
 }
 
-+ (void)checkTopDomainSuccessHandler:(nullable HandlerBlock)completionHandler {
-    NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"appGroup"] = @"GROUP_A03_H5_REAL_NEW";
-    param[@"topDomain"] = [CNUserManager shareManager].printedloginName;
-
-    [self POST:kGatewayExtraPath(config_getTopDomain) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
-        if (KIsEmptyString(errorMsg)) {
-            CNUserModel *userInfo = [CNUserManager shareManager].userInfo;
-            userInfo.isWhiteListUser = YES;
-            [[CNUserManager shareManager] saveUserInfo:[userInfo yy_modelToJSONObject]];
-        }
-        !completionHandler?:completionHandler(responseObj, errorMsg);
-    }];
-}
+// 又特么不用top域名判断了
+//+ (void)checkTopDomainSuccessHandler:(nullable HandlerBlock)completionHandler {
+//    NSMutableDictionary *param = [kNetworkMgr baseParam];
+//    param[@"appGroup"] = @"GROUP_A03_H5_REAL_NEW";
+//    param[@"topDomain"] = [CNUserManager shareManager].printedloginName;
+//
+//    [self POST:kGatewayExtraPath(config_getTopDomain) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+//        if (KIsEmptyString(errorMsg)) {
+//            CNUserModel *userInfo = [CNUserManager shareManager].userInfo;
+//            userInfo.isWhiteListUser = YES;
+//            [[CNUserManager shareManager] saveUserInfo:[userInfo yy_modelToJSONObject]];
+//        }
+//        !completionHandler?:completionHandler(responseObj, errorMsg);
+//    }];
+//}
 
 + (void)switchAccountSuccessHandler:(HandlerBlock)completionHandler {
     NSMutableDictionary *param = [kNetworkMgr baseParam];

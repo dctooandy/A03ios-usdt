@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *token;
 @property (nonatomic, copy)NSString *validateId;
 /// 用户是否高级用户
-@property (nonatomic, assign) BOOL isWhiteListUser;
+//@property (nonatomic, assign) BOOL isWhiteListUser;
 
 @end
 
