@@ -28,6 +28,8 @@
                 <outlet property="nickNameLb" destination="tmG-wz-MyA" id="FTr-ZY-OBC"/>
                 <outlet property="scrollContentView" destination="z1O-DJ-YiD" id="F61-Sd-Lfz"/>
                 <outlet property="scrollContentW" destination="KQo-6S-o1P" id="DHY-yA-IOa"/>
+                <outlet property="shareBgView" destination="BpC-IV-WtY" id="iaB-Fa-ItY"/>
+                <outlet property="shareBgViewH" destination="pbd-Ke-6gA" id="Y4D-Ey-Wfi"/>
                 <outlet property="sixthTapLb" destination="MxN-37-T5p" id="XJ2-rC-WX3"/>
                 <outlet property="switchBtn" destination="Fm6-UV-UE2" id="Nzv-B3-6dh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -43,7 +45,7 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z1O-DJ-YiD">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="911.66666666666663"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="902.33333333333337"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WnY-VM-pN0" userLabel="InfoView">
                                     <rect key="frame" x="15" y="30" width="384" height="45"/>
@@ -759,10 +761,10 @@
                                     </constraints>
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BpC-IV-WtY">
-                                    <rect key="frame" x="15" y="592.33333333333337" width="384" height="100"/>
+                                    <rect key="frame" x="15" y="592.33333333333337" width="384" height="91"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tlY-Pn-eFM">
-                                            <rect key="frame" x="0.0" y="0.0" width="384" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="384" height="91"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="-15" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" backgroundImage="yaoqing"/>
                                             <userDefinedRuntimeAttributes>
@@ -782,7 +784,7 @@
                                         <constraint firstAttribute="trailing" secondItem="tlY-Pn-eFM" secondAttribute="trailing" id="8qd-Xn-kDr"/>
                                         <constraint firstAttribute="bottom" secondItem="tlY-Pn-eFM" secondAttribute="bottom" id="DNO-5r-42Y"/>
                                         <constraint firstItem="tlY-Pn-eFM" firstAttribute="top" secondItem="BpC-IV-WtY" secondAttribute="top" id="Ozk-fp-YHX"/>
-                                        <constraint firstAttribute="width" secondItem="BpC-IV-WtY" secondAttribute="height" multiplier="345:90" id="bWG-SP-rpF"/>
+                                        <constraint firstAttribute="height" constant="91" id="pbd-Ke-6gA"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -792,10 +794,10 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DJk-mb-UDh">
-                                    <rect key="frame" x="15" y="707.33333333333337" width="384" height="111.33333333333337"/>
+                                    <rect key="frame" x="15" y="698.33333333333337" width="384" height="111"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgA-Zd-taH">
-                                            <rect key="frame" x="0.0" y="0.0" width="384" height="111.33333333333333"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="384" height="111"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="-15" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" backgroundImage="xz"/>
                                             <userDefinedRuntimeAttributes>
@@ -806,7 +808,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </button>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CLs-5Q-0PD">
-                                            <rect key="frame" x="15" y="15" width="81.333333333333329" height="81.333333333333329"/>
+                                            <rect key="frame" x="15" y="15" width="81.333333333333329" height="81"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="CLs-5Q-0PD" secondAttribute="height" multiplier="1:1" id="D15-DX-DQN"/>
                                             </constraints>
@@ -818,13 +820,13 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="百家乐、炸金花 、骰包..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NmA-yG-xIv">
-                                            <rect key="frame" x="111.33333333333334" y="63.333333333333258" width="115.33333333333334" height="12"/>
+                                            <rect key="frame" x="111.33333333333334" y="63" width="115.33333333333334" height="12"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
                                             <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YWN-ak-Fsx">
-                                            <rect key="frame" x="309" y="39.666666666666629" width="60" height="32"/>
+                                            <rect key="frame" x="309" y="39.333333333333258" width="60" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="8JU-c6-FXm"/>
                                                 <constraint firstAttribute="height" constant="32" id="jpe-xM-Uw0"/>
@@ -844,7 +846,7 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="沙巴体育" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ec-1z-w9j">
-                                            <rect key="frame" x="111.33333333333334" y="36" width="65.333333333333343" height="19.333333333333329"/>
+                                            <rect key="frame" x="111.33333333333334" y="35.666666666666629" width="65.333333333333343" height="19.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -874,7 +876,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0zX-Xz-mSg">
-                                    <rect key="frame" x="15" y="848.66666666666663" width="384" height="48"/>
+                                    <rect key="frame" x="15" y="839.33333333333337" width="384" height="48"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="48" id="7KQ-SC-lU7"/>
                                     </constraints>

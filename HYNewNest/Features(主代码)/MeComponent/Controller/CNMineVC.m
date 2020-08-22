@@ -51,6 +51,10 @@
 /// 本月戏码
 @property (weak, nonatomic) IBOutlet UILabel *monthXiMaLb;
 
+#pragma mark - 好友邀请
+@property (weak, nonatomic) IBOutlet UIView *shareBgView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *shareBgViewH;
+
 #pragma mark - 底部单个下载
 /// App图片
 @property (weak, nonatomic) IBOutlet UIImageView *appImageV;
@@ -253,6 +257,9 @@
     
     self.forthTapLb.text = isUsdtMode ? @"提币地址": @"银行卡";
     self.sixthTapLb.text = isUsdtMode ? @"充值指南": @"意见反馈";
+    
+    self.shareBgView.hidden = !isUsdtMode;
+    self.shareBgViewH.constant = isUsdtMode?AD(90):0;
     
     [self requestAccountBalance];
     [self requestBetAmount];
