@@ -124,15 +124,6 @@ NSInteger AllowTotalWrongCount = 3;
 }
 
 - (void)codeInputViewTextChange:(CNCodeInputView *)view {
-    if ((view.codeType == CNCodeTypeAccountRegister || view.codeType == CNCodeTypeAccountLogin) && ![view.code validationType:ValidationTypePassword]) {
-        view.wrongCode = NO;
-        [view showWrongMsg:@"请输入8-16位数字及字母的组合"];
-        if (view.tag == 33) {
-            if (![view.code isEqualToString:self.registerCodeView.code]) {
-                [view showWrongMsg:@"两次输入的密码不一致"];
-            }
-        }
-    }
     if ([view isEqual:self.loginCodeView]) {
         self.loginBtn.enabled = view.correct && self.loginAccountView.correct;
     } else {

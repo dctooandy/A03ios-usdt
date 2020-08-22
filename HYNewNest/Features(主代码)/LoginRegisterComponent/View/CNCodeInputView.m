@@ -38,10 +38,13 @@ int TotalSecond = 60;
     self.normalColor = kHexColorAlpha(0xFFFFFF, 0.15);
     self.hilghtColor = kHexColor(0x10B4DD);
     self.wrongColor = kHexColor(0xFF5860);
+    
+    // 第一次，输入UI正常默认正常
+    self.correct = YES;
 }
 
 - (void)showWrongMsg:(NSString *)msg {
-    self.wrongCode = YES;
+    self.correct = NO;
     self.tipLb.text = msg;
     self.tipLb.textColor = self.wrongColor;
     self.lineView.backgroundColor = self.wrongColor;
@@ -52,7 +55,6 @@ int TotalSecond = 60;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    self.tipLb.hidden = NO;
     switch (_codeType) {
         case CNCodeTypeAccountRegister:
             self.tipLb.text = @"请输入字母与数字组合的密码，8位以上";
@@ -75,23 +77,22 @@ int TotalSecond = 60;
         default:
             break;
     }
-    self.tipLb.textColor = _wrongCode ? self.wrongColor: self.hilghtColor;
-    self.lineView.backgroundColor = _wrongCode ? self.wrongColor: self.hilghtColor;
+    if (self.correct) {
+        self.tipLb.hidden = NO;
+        self.tipLb.textColor = self.hilghtColor;
+        self.lineView.backgroundColor = self.hilghtColor;
+    }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    self.tipLb.hidden = YES;
-    self.lineView.backgroundColor = self.normalColor;
-}
-
-- (void)textFieldChange:(UITextField *)textField {
-    
     NSString *text = textField.text;
+    NSString *wrongTip = @"请输入8-16位数字及字母的组合";
     switch (_codeType) {
         case CNCodeTypeBindPhone:
         case CNCodeTypePhoneLogin:
         case CNCodeTypeBankCard:
             self.correct = (text.length >= 6);
+            wrongTip = @"请输入6位验证码";
             break;
         case CNCodeTypeAccountLogin:
         case CNCodeTypeAccountRegister:
@@ -101,14 +102,21 @@ int TotalSecond = 60;
             self.correct = (text.length >= 8);
             break;
     }
-    if (text.length >= 16) {
-        textField.text = [text substringToIndex:16];
+    if (self.correct) {
+        self.tipLb.hidden = YES;
+        self.lineView.backgroundColor = self.normalColor;
+    } else {
+        [self showWrongMsg:wrongTip];
     }
-    self.lineView.backgroundColor = self.hilghtColor;
-    self.tipLb.textColor = self.hilghtColor;
-
     if (_delegate && [_delegate respondsToSelector:@selector(codeInputViewTextChange:)]) {
         [_delegate codeInputViewTextChange:self];
+    }
+}
+
+- (void)textFieldChange:(UITextField *)textField {
+    NSString *text = textField.text;
+    if (text.length >= 16) {
+        textField.text = [text substringToIndex:16];
     }
 }
 

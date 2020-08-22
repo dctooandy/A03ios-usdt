@@ -37,9 +37,6 @@ typedef NS_ENUM(NSUInteger, CNCodeType) {
 /// 传入的账号/手机号
 @property (nonatomic, copy) NSString *account;
 
-/// 记录对错，用于UI改变风格
-@property (assign, nonatomic) BOOL wrongCode;
-
 @property (nonatomic, strong) SmsCodeModel *smsModel;
 
 @property (nonatomic, weak) id delegate;

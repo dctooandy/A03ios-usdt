@@ -146,11 +146,11 @@
 }
 
 - (void)codeInputViewTextChange:(CNCodeInputView *)view {
-    if (![view.code validationType:ValidationTypePhoneCode]) {
-        [view showWrongMsg:@"请输入6位数字验证码"];
-    } else {
-        view.wrongCode = NO;
-    }
+//    if (![view.code validationType:ValidationTypePhoneCode]) {
+//        [view showWrongMsg:@"请输入6位数字验证码"];
+//    } else {
+//        view.wrongCode = NO;
+//    }
     
     // 按钮可点击条件
     self.submitBtn.enabled = (!self.platformInputView.wrongAccout)
