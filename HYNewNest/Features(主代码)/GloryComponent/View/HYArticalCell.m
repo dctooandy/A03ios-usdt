@@ -28,7 +28,7 @@
     self.lblDateStr.text = model.publishDate;
     NSString *urlStr = model.bannerUrl;
     
-    [self.imgv sd_setImageWithURL:[NSURL getUrlWithString:urlStr] placeholderImage:[UIImage imageNamed:@"pic-1"]];
+    [self.imgv sd_setImageWithURL:[NSURL getUrlWithString:urlStr] placeholderImage:[UIImage imageNamed:@"1"]];
 }
 
 - (void)awakeFromNib {

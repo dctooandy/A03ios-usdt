@@ -509,7 +509,7 @@ typedef enum : NSUInteger {
 #pragma mark - LAZY LOAD
 - (SDCycleScrollView *)banner {
     if (!_banner) {
-        SDCycleScrollView *cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, AD(345), AD(115)) delegate:self placeholderImage:[UIImage imageNamed:@"bannerdefault"]];
+        SDCycleScrollView *cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, AD(345), AD(115)) delegate:self placeholderImage:[UIImage imageNamed:@"3"]];
         cycleScrollView2.layer.cornerRadius = 10;
         cycleScrollView2.layer.masksToBounds = YES;
         cycleScrollView2.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;

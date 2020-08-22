@@ -28,7 +28,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mwe-A0-68Y" userLabel="HeaderView">
                             <rect key="frame" x="0.0" y="0.0" width="384" height="90"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wallet" translatesAutoresizingMaskIntoConstraints="NO" id="8Af-wt-ycy">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2" translatesAutoresizingMaskIntoConstraints="NO" id="8Af-wt-ycy">
                                     <rect key="frame" x="301" y="22.5" width="45" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="NQq-Gp-a5L"/>
@@ -290,7 +290,7 @@
         </view>
     </objects>
     <resources>
+        <image name="2" width="114" height="106"/>
         <image name="go" width="8" height="13"/>
-        <image name="wallet" width="18" height="18"/>
     </resources>
 </document>

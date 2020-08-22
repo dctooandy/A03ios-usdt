@@ -53,7 +53,7 @@
     _model = model;
     
     self.lblTitle.text = model.title;
-    [self.topImgView sd_setImageWithURL:[NSURL getUrlWithString:model.imgUrl] placeholderImage:[UIImage imageNamed:@"bannerdefault"]];
+    [self.topImgView sd_setImageWithURL:[NSURL getUrlWithString:model.imgUrl] placeholderImage:[UIImage imageNamed:@"3"]];
     self.lblEndDate.text = [NSString stringWithFormat:@"截止时间:%@",model.endDate];
     
     self.shadowView.hidden = YES;

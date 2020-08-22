@@ -23,7 +23,7 @@
 - (void)setModel:(ElecGameModel *)model {
     _model = model;
     
-    [self.icon sd_setImageWithURL:[NSURL getUrlWithString:model.gameImage] placeholderImage:[UIImage imageNamed:@"gamepic-1"]];
+    [self.icon sd_setImageWithURL:[NSURL getUrlWithString:model.gameImage] placeholderImage:[UIImage imageNamed:@"1"]];
     self.titleLb.text = model.gameName;
     self.descLb.text = [NSString stringWithFormat:@"热度%@",model.popularity];
     self.favoBtn.selected = model.isFavorite;

@@ -409,7 +409,7 @@
 #pragma mark - LAZY LOAD
 - (SDCycleScrollView *)bannerView {
     if (!_bannerView) {
-        SDCycleScrollView *cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth - 30, 115) delegate:self placeholderImage:[UIImage imageNamed:@"bannerdefault"]];
+        SDCycleScrollView *cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth - 30, 115) delegate:self placeholderImage:[UIImage imageNamed:@"3"]];
         cycleScrollView2.layer.cornerRadius = 10;
         cycleScrollView2.layer.masksToBounds = YES;
         cycleScrollView2.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
