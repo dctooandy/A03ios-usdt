@@ -32,7 +32,6 @@
 }
 
 - (void)configUI {
-    self.navigationItem.title = @"修改密码";
     [self.oldeCodeView setPlaceholder:@"请输入旧密码"];
     [self.codeView setPlaceholder:@"请输入新密码"];
     [self.reCodeView setPlaceholder:@"确认密码"];
@@ -56,7 +55,7 @@
 - (IBAction)submit:(UIButton *)sender {
     
     if (![self.codeView.code isEqualToString:self.reCodeView.code]) {
-        [self.reCodeView showWrongMsg:@"密码不一致请重新输入"];
+        [self.reCodeView showWrongMsg:@"两次输入密码不一致 请重新输入"];
         return;
     }
     

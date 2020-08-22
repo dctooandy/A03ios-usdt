@@ -224,6 +224,11 @@ NSInteger AllowTotalWrongCount = 3;
 #pragma mark - Register Action
 
 - (IBAction)registerAction:(UIButton *)sender {
+    if (![self.registerCodeView.code isEqualToString:self.reRegisterCodeView.code]) {
+        [self.reRegisterCodeView showWrongMsg:@"两次输入密码不一致 请重新输入"];
+        return;
+    }
+    
     [CNLoginRequest accountRegisterUserName:self.registerAccountView.account password:self.registerCodeView.code completionHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
             [CNHUB showSuccess:@"注册成功"];

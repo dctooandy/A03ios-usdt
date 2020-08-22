@@ -45,6 +45,7 @@ int TotalSecond = 60;
 
 - (void)showWrongMsg:(NSString *)msg {
     self.correct = NO;
+    self.tipLb.hidden = NO;
     self.tipLb.text = msg;
     self.tipLb.textColor = self.wrongColor;
     self.lineView.backgroundColor = self.wrongColor;
@@ -96,6 +97,7 @@ int TotalSecond = 60;
             break;
         case CNCodeTypeAccountLogin:
         case CNCodeTypeAccountRegister:
+        case CNCodeTypeNewPwd:
             self.correct = [text validationType:ValidationTypePassword];
             break;
         default:
@@ -117,6 +119,47 @@ int TotalSecond = 60;
     NSString *text = textField.text;
     if (text.length >= 16) {
         textField.text = [text substringToIndex:16];
+    }
+    
+    switch (_codeType) {
+        // 密码校验
+        case CNCodeTypeAccountLogin:
+        case CNCodeTypeAccountRegister:
+        case CNCodeTypeNewPwd:
+            if (textField.text.length >= 8) {
+                self.correct = [textField.text validationType:ValidationTypePassword];
+            } else {
+                return;
+            }
+            if (self.correct) {
+                self.tipLb.hidden = NO;
+                self.tipLb.textColor = self.hilghtColor;
+                self.lineView.backgroundColor = self.hilghtColor;
+            } else {
+                [self showWrongMsg:@"请输入8-16位数字及字母的组合"];
+                
+            }
+            break;
+        // 验证码校验
+        case CNCodeTypeBindPhone:
+        case CNCodeTypePhoneLogin:
+        case CNCodeTypeBankCard:
+            if (textField.text.length >= 6) {
+                self.correct = [textField.text validationType:ValidationTypePhoneCode];
+            } else {
+                return;
+            }
+            if (self.correct) {
+                self.tipLb.hidden = NO;
+                self.tipLb.textColor = self.hilghtColor;
+                self.lineView.backgroundColor = self.hilghtColor;
+            } else {
+                [self showWrongMsg:@"请输入6位数字验证码"];
+                
+            }
+            break;
+        default:
+            break;
     }
 }
 
