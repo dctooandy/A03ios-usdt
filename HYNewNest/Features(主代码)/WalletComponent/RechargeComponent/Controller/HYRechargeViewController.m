@@ -132,7 +132,7 @@
         make.left.equalTo(self.view).offset(15);
         make.right.equalTo(self.view).offset(-15);
         make.top.equalTo(self.imgvBanner.mas_bottom).offset(24);
-        make.height.mas_equalTo(249);
+        make.height.mas_equalTo(249); //changeable
     }];
 }
 

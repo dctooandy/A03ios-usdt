@@ -168,6 +168,12 @@
         lblTip.font = [UIFont fontPFR14];
         lblTip.textAlignment = NSTextAlignmentCenter;
         [mainView addSubview:lblTip];
+        if (chargeType == ChargeMsgTypeDCBOX) {
+            UIImageView *hand = [UIImageView new];
+            hand.frame = CGRectMake(AD(51), lblTip.top, 14, 16);
+            [hand setImage:[UIImage imageNamed:@"longpress"]];
+            [mainView addSubview:hand];
+        }
         
         maxY = CGRectGetMaxY(lblTip.frame);
         
