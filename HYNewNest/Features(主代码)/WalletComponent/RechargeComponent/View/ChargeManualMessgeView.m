@@ -171,7 +171,7 @@
         if (chargeType == ChargeMsgTypeDCBOX) {
             UIImageView *hand = [UIImageView new];
             hand.frame = CGRectMake(AD(51), lblTip.top, 14, 16);
-            [hand setImage:[UIImage imageNamed:@"longpress"]];
+            [hand setImage:[UIImage imageNamed:@"modal-lonepress"]];
             [mainView addSubview:hand];
         }
         

@@ -15,6 +15,7 @@
 #import "HYWithdrawAddCardFooter.h"
 #import "HYWithdrawComfirmView.h"
 #import "CNCompleteInfoVC.h"
+#import "HYTabBarViewController.h"
 
 #import "CNWithdrawRequest.h"
 #import "CNWDAccountRequest.h"
@@ -39,12 +40,18 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     [super viewDidLoad];
     self.title = [CNUserManager shareManager].isUsdtMode ? @"提币" : @"提现";
     [self.sumitBtn setTitle:[CNUserManager shareManager].isUsdtMode ? @"提币" : @"提现" forState:UIControlStateNormal];
-    [self addNaviRightItemWithImageName:@"service"];
+//    [self addNaviRightItemWithImageName:@"service"];
     
     self.selectedIdx = 0;
     [self setupTopView];
     [self setupTableView];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] showSuspendBall];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -68,9 +75,9 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     [self requestWithdrawAddress];
 }
 
-- (void)rightItemAction {
-    [NNPageRouter jump2Live800Type:CNLive800TypeDeposit];
-}
+//- (void)rightItemAction {
+//    [NNPageRouter jump2Live800Type:CNLive800TypeDeposit];
+//}
 
 
 - (void)setupTopView {

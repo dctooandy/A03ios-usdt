@@ -146,6 +146,11 @@
     if (self.suspendBall && self.suspendBall.showFunction == YES) {
         [self.suspendBall suspendBallShow];
     }
+    self.suspendBall.hidden = YES;
+}
+
+- (void)showSuspendBall {
+    self.suspendBall.hidden = NO;
 }
 
 - (void)suspendBall:(UIButton *)subBall didSelectTag:(NSInteger)tag{

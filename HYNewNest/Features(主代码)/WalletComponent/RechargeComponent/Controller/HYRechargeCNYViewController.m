@@ -20,6 +20,7 @@
 #import "CNRechargeChosePayTypeVC.h"
 #import "LYEmptyView.h"
 #import "UIView+Empty.h"
+#import "HYTabBarViewController.h"
 
 @interface HYRechargeCNYViewController () <HYRechargeCNYEditViewDelegate>
 @property (nonatomic, assign) NSInteger selcPayWayIdx;
@@ -57,7 +58,7 @@
 
 #pragma mark - Setter
 - (void)setSelcPayWayIdx:(NSInteger)selcPayWayIdx {
-    if (!_paytypeList) {
+    if (!_paytypeList || _paytypeList.count == 0) {
         return;
     }
     _selcPayWayIdx = selcPayWayIdx;
@@ -81,15 +82,22 @@
     _selcPayWayIdx = 0;
     _selcBqbankIdx = 0;
     
-    self.view.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"kongduixiang" titleStr:@"" detailStr:@"暂无充值方式提供"];
-    [self.view ly_showEmptyView];
+    LYEmptyView *empView = [LYEmptyView emptyActionViewWithImage:[UIImage imageNamed:@"kongduixiang"] titleStr:@"" detailStr:@"暂无充币方式提供" btnTitleStr:@"刷新试试" btnClickBlock:^{
+        [self queryCNYPayways];
+    }];
+    empView.actionBtnBackGroundColor = kHexColor(0x2B2B45);
+    empView.actionBtnCornerRadius = 10;
+    empView.actionBtnTitleColor = [UIColor lightGrayColor];
+    self.view.ly_emptyView = empView;
     
     [self queryCNYPayways];
     [self setupSubmitBtn];
 }
 
-- (void)kefu {
-    [NNPageRouter jump2Live800Type:CNLive800TypeDeposit];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] showSuspendBall];
 }
 
 - (void)setupMainEditView {
@@ -181,6 +189,10 @@
             
             self.paytypeList = (NSArray<PayWayV3PayTypeItem *> *)[NSArray arrayWithArray:tmp];
             [self refreshQueryData];
+            
+            [self.view ly_hideEmptyView];
+        } else {
+            [self.view ly_showEmptyView];
         }
     }];
 }

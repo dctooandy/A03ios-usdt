@@ -9,7 +9,7 @@
 #import "HYNavigationController.h"
 #import "CNSkinManager.h"
 #import <UIImage+JKColor.h>
-
+#import "HYTabBarViewController.h"
 
 @interface HYNavigationController ()<UIGestureRecognizerDelegate, UINavigationControllerDelegate>
 @end
@@ -70,7 +70,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
 #pragma mark - PUSH & POP
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     // 防止重复push
-    
     if ([self.topViewController isKindOfClass:viewController.class] && ![viewController isKindOfClass:[NSClassFromString(@"CNBindPhoneVC") class]]) {
         return;
     }
@@ -82,6 +81,13 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
         UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"l_back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
 //        backItem.imageInsets = UIEdgeInsetsMake(0, -10, 0, 0);
         viewController.navigationItem.leftBarButtonItem = backItem;
+        
+        // 控制客服球
+        [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] hideSuspendBall];
+        
+    } else {
+        // 控制客服球
+        [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] showSuspendBall];
     }
     
     //  push入栈
@@ -93,8 +99,18 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
 }
 
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated{
+    // 控制客服球
+    if (self.viewControllers.count <= 2) {
+        [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] showSuspendBall];
+    }
     //pop出栈
     return [super popViewControllerAnimated:animated];
+}
+
+- (NSArray<__kindof UIViewController *> *)popToRootViewControllerAnimated:(BOOL)animated {
+    // 控制客服球
+    [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] showSuspendBall];
+    return [super popToRootViewControllerAnimated:animated];
 }
 
 #pragma mark - DELEGATE

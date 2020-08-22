@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HYTabBarViewController : UITabBarController
 -(void)hideSuspendBall;
+-(void)showSuspendBall;
 @end
 
 NS_ASSUME_NONNULL_END

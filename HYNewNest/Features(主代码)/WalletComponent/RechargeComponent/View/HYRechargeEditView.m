@@ -80,7 +80,7 @@
     // 选中第一个
     [self protocolSelected:firstBtn];
     
-    // tmd小金库要隐藏
+    // tmd小金库要隐藏协议
     if ([HYRechargeHelper isOnlinePayWayDCBox:self.deposModel]) {
         self.protocolBgView.hidden = YES;
         self.amountTfViewTopMargin.constant = 22;

@@ -14,6 +14,9 @@
 #import "HYRechargeHelper.h"
 #import "ChargeManualMessgeView.h"
 #import "CNTradeRecodeVC.h"
+#import "HYTabBarViewController.h"
+#import "LYEmptyView.h"
+#import "UIView+Empty.h"
 
 @interface HYRechargeViewController () <HYRechargeEditViewDelegate>
 @property (nonatomic, strong) UILabel *lblTip;
@@ -33,19 +36,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"充值";
-    [self addNaviRightItemWithImageName:@"service"];
+    self.title = @"充币";
     
     [self setupViews];
     [self queryDepositBankPayWays];
 }
 
-- (void)rightItemAction {
-    [NNPageRouter jump2Live800Type:CNLive800TypeDeposit];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] showSuspendBall];
 }
 
 - (void)setSelcPayWayIdx:(NSInteger)selcPayWayIdx {
-    if (!_depositModels) {
+    if (!_depositModels || _depositModels.count == 0) {
         return;
     }
     _selcPayWayIdx = selcPayWayIdx;
@@ -62,6 +66,15 @@
     [self setupBanner];
     [self setupMainEditView];
     [self setupSubmitBtn];
+
+    LYEmptyView *empView = [LYEmptyView emptyActionViewWithImage:[UIImage imageNamed:@"kongduixiang"] titleStr:@"" detailStr:@"暂无充币方式提供" btnTitleStr:@"刷新试试" btnClickBlock:^{
+        [self queryDepositBankPayWays];
+    }];
+    empView.actionBtnBackGroundColor = kHexColor(0x2B2B45);
+    empView.actionBtnCornerRadius = 10;
+    empView.actionBtnTitleColor = [UIColor lightGrayColor];
+    self.view.ly_emptyView = empView;
+    
 }
 
 -(void)setupTopLable {
@@ -195,7 +208,15 @@ USDT支付渠道
         }
         self.depositModels = models;
         self.selcPayWayIdx = 0;
-        [self queryOnlineBankAmount];
+        
+        if (models.count == 0) {
+            self.editView.hidden = YES;
+            [self.view ly_showEmptyView];
+        } else {
+            self.editView.hidden = NO;
+            [self.view ly_hideEmptyView];
+            [self queryOnlineBankAmount];
+        }
     }];
 }
 
