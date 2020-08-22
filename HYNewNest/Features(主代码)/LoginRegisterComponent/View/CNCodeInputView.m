@@ -18,6 +18,8 @@ int TotalSecond = 60;
 @property (weak, nonatomic) IBOutlet UIButton *codeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *eyeBtn;
 
+/// 记录对错，用于UI改变风格
+@property (assign, nonatomic) BOOL wrongCode;
 
 @property (nonatomic, strong) UIColor *hilghtColor;
 @property (nonatomic, strong) UIColor *wrongColor;
@@ -39,12 +41,12 @@ int TotalSecond = 60;
     self.hilghtColor = kHexColor(0x10B4DD);
     self.wrongColor = kHexColor(0xFF5860);
     
-    // 第一次，输入UI正常默认正常
-    self.correct = YES;
+    // 第一次不能正常
+    self.correct = NO;
 }
 
 - (void)showWrongMsg:(NSString *)msg {
-    self.correct = NO;
+    self.wrongCode = YES;
     self.tipLb.hidden = NO;
     self.tipLb.text = msg;
     self.tipLb.textColor = self.wrongColor;
@@ -78,11 +80,10 @@ int TotalSecond = 60;
         default:
             break;
     }
-    if (self.correct) {
-        self.tipLb.hidden = NO;
-        self.tipLb.textColor = self.hilghtColor;
-        self.lineView.backgroundColor = self.hilghtColor;
-    }
+    self.tipLb.hidden = NO;
+    self.tipLb.textColor = _wrongCode? self.wrongColor :self.hilghtColor;
+    self.lineView.backgroundColor = _wrongCode? self.wrongColor :self.hilghtColor;
+    
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -107,37 +108,37 @@ int TotalSecond = 60;
     if (self.correct) {
         self.tipLb.hidden = YES;
         self.lineView.backgroundColor = self.normalColor;
+        self.wrongCode = NO;
     } else {
         [self showWrongMsg:wrongTip];
     }
-    if (_delegate && [_delegate respondsToSelector:@selector(codeInputViewTextChange:)]) {
-        [_delegate codeInputViewTextChange:self];
-    }
+
 }
 
 - (void)textFieldChange:(UITextField *)textField {
-    NSString *text = textField.text;
-    if (text.length >= 16) {
-        textField.text = [text substringToIndex:16];
+    if (textField.text.length >= 16) {
+        textField.text = [textField.text substringToIndex:16];
     }
+    NSString *text = textField.text;
+    
+    self.lineView.backgroundColor = self.hilghtColor;
+    self.tipLb.textColor = self.hilghtColor;
+    self.tipLb.hidden = NO;
     
     switch (_codeType) {
         // 密码校验
         case CNCodeTypeAccountLogin:
         case CNCodeTypeAccountRegister:
         case CNCodeTypeNewPwd:
-            if (textField.text.length >= 8) {
-                self.correct = [textField.text validationType:ValidationTypePassword];
+            if (text.length >= 8) { // 大于最低开始判断
+                if (![text validationType:ValidationTypePassword]) {
+                    self.correct = NO;
+                    [self showWrongMsg:@"请输入8-16位数字及字母的组合"];
+                } else {
+                    self.correct = YES;
+                }
             } else {
-                return;
-            }
-            if (self.correct) {
-                self.tipLb.hidden = NO;
-                self.tipLb.textColor = self.hilghtColor;
-                self.lineView.backgroundColor = self.hilghtColor;
-            } else {
-                [self showWrongMsg:@"请输入8-16位数字及字母的组合"];
-                
+                self.correct = NO;
             }
             break;
         // 验证码校验
@@ -145,21 +146,23 @@ int TotalSecond = 60;
         case CNCodeTypePhoneLogin:
         case CNCodeTypeBankCard:
             if (textField.text.length >= 6) {
-                self.correct = [textField.text validationType:ValidationTypePhoneCode];
+                if (![text validationType:ValidationTypePhoneCode]) {
+                    self.correct = NO;
+                    [self showWrongMsg:@"请输入6位数字验证码"];
+                } else {
+                    self.correct = YES;
+                }
             } else {
-                return;
+                self.correct = NO;
             }
-            if (self.correct) {
-                self.tipLb.hidden = NO;
-                self.tipLb.textColor = self.hilghtColor;
-                self.lineView.backgroundColor = self.hilghtColor;
-            } else {
-                [self showWrongMsg:@"请输入6位数字验证码"];
-                
-            }
+            
             break;
         default:
             break;
+    }
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(codeInputViewTextChange:)]) {
+        [_delegate codeInputViewTextChange:self];
     }
 }
 

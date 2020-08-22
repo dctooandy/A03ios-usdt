@@ -30,6 +30,8 @@
     self.normalColor = kHexColorAlpha(0xFFFFFF, 0.15);
     self.hilghtColor = kHexColor(0x10B4DD);
     self.wrongColor = kHexColor(0xFF5860);
+    
+    self.correct = NO; //初始化不能正确
 }
 
 - (void)showWrongMsg:(NSString *)msg {
@@ -50,30 +52,27 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    NSString *text = textField.text;
-    NSString *wrongTip = @"";
+    
     if (self.phoneLogin || self.fromServer) {
         self.correct = [textField.text validationType:ValidationTypePhone];
-        wrongTip = @"您输入的手机不符合规则";
-    } else if (self.isRegister) {
-        self.correct = [textField.text validationType:ValidationTypeUserName];
-        wrongTip = @"以f开头的5-11位数字+字母组合的密码";
-    } else {
-        if ((([text hasPrefix:@"f"] || [text hasPrefix:@"F"]) && ![text validationType:ValidationTypeUserName] && text.length >= 5) ||
-        ([text hasPrefix:@"1"] && ![text validationType:ValidationTypePhone] && text.length >= 11)) {
-            
+       [self showWrongMsg:@"您输入的手机不符合规则"];
+    } else { //结束编辑时校验不根据长度
+        if (![textField.text validationType:ValidationTypeUserName]) {
+            if (self.isRegister) {
+                [self showWrongMsg:@"f开头的5-11位数字+字母组合"];
+            } else {
+                [self showWrongMsg:@"f开头的5-11位数字+字母组合 或 11位手机号码"];
+            }
             self.correct = NO;
-            wrongTip = @"以f开头的5-11位数字+字母组合的密码 或 11位手机号码";
         } else {
             self.correct = YES;
         }
     }
+
     if (self.correct) {
         self.tipLb.hidden = YES;
         self.lineView.backgroundColor = self.normalColor;
         self.wrongAccout = NO;
-    } else {
-        [self showWrongMsg:wrongTip];
     }
 
 }
@@ -89,6 +88,7 @@
     self.lineView.backgroundColor = self.hilghtColor;
     self.tipLb.textColor = self.hilghtColor;
     
+    // 这里校验是判断手机号 还是 账号
     if (!self.isRegister && [text hasPrefix:@"1"]) {
         self.tipLb.text = @"手机号码*";
         self.phoneLogin = YES;
@@ -98,23 +98,28 @@
     }
 
     // 校验
-    self.correct = YES;
+    // 手机号
     if ((self.fromServer || self.phoneLogin) && text.length >= 11) {
         if (![textField.text validationType:ValidationTypePhone]) {
-            [self showWrongMsg:@"您输入的手机不符合规则*"];
+            [self showWrongMsg:@"您输入的手机不符合规则"];
             self.correct = NO;
+        } else {
+            self.correct = YES;
         }
-    } else if (self.isRegister && text.length >= 5){
+    // 用户名
+    } else if (text.length >= 5){
         if (![textField.text validationType:ValidationTypeUserName]) {
-            [self showWrongMsg:@"f开头的5-11位数字+字母组合*"];
+            if (self.isRegister) {
+                [self showWrongMsg:@"f开头的5-11位数字+字母组合"];
+            } else {
+                [self showWrongMsg:@"f开头的5-11位数字+字母组合 或 11位手机号码"];
+            }
             self.correct = NO;
+        } else {
+            self.correct = YES;
         }
     } else {
-        if ((([text hasPrefix:@"f"] || [text hasPrefix:@"F"]) && ![textField.text validationType:ValidationTypeUserName] && text.length >= 5) ||
-            ([text hasPrefix:@"1"] && ![textField.text validationType:ValidationTypePhone] && text.length >= 11)) {
-            [self showWrongMsg:@"以f开头的5-11位数字+字母组合或11位手机号码*"];
-            self.correct = NO;
-        }
+        self.correct = NO;
     }
     
     if (_delegate && [_delegate respondsToSelector:@selector(accountInputViewTextChange:)]) {
