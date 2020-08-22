@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="amountLb" destination="od3-f1-NWs" id="pMd-TG-Iep"/>
                 <outlet property="btnBtm" destination="mk0-tb-XfB" id="PBa-qa-GjG"/>
+                <outlet property="currencyLb" destination="cim-ae-XXY" id="hbQ-J6-hBe"/>
                 <outlet property="flowLb" destination="5Qd-rr-Y7n" id="y2Q-R3-RSF"/>
                 <outlet property="flowView" destination="Vt9-ST-STS" id="dHc-nY-PtQ"/>
                 <outlet property="flowViewH" destination="bjb-Nh-6vD" id="bBG-iS-vMj"/>

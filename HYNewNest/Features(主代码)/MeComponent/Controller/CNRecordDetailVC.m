@@ -44,6 +44,8 @@
 
 
 #pragma - mark 数据展示
+/// 单位
+@property (weak, nonatomic) IBOutlet UILabel *currencyLb;
 /// 金额
 @property (weak, nonatomic) IBOutlet UILabel *amountLb;
 /// 订单状态，颜色值（已到账、充值完成：5A9F7C；等待支付：AEA876；交易失败：BD4848）最好和数据源绑定
@@ -97,6 +99,7 @@
 - (void)configUI {
     [self.amountLb setupGradientColorFrom:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE)];
     /// 通用参数
+    self.currencyLb.text = [CNUserManager shareManager].userInfo.currency;
     self.amountLb.text = self.model.amount?:self.model.betAmount;
     self.recordStatusLb.text = self.model.flagDesc;
     self.recordStatusLb.textColor = self.model.statsColor;

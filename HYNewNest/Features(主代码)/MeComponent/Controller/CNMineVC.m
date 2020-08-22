@@ -88,6 +88,7 @@
     self.hideNavgation = YES;
     [self configUI];
     
+    [self switchCurrencyUI];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchCurrencyUI) name:HYSwitchAcoutSuccNotification object:nil];
 }
 
@@ -240,14 +241,10 @@
 
 
 - (void)switchCurrencyUI {
-    if (![CNUserManager shareManager].userDetail.newAccountFlag) {
-        self.switchBtn.hidden = NO;
-    } else {
-        self.switchBtn.hidden = YES;
-    }
+    self.switchBtn.hidden = [CNUserManager shareManager].userDetail.newAccountFlag;
     
     BOOL isUsdtMode = [CNUserManager shareManager].isUsdtMode;
-    self.switchBtn.selected = isUsdtMode;
+    self.switchBtn.selected = !isUsdtMode;
     self.currencyLb.text = isUsdtMode ? @"USDT": @"CNY";
     self.USDTBusinessView.hidden = !isUsdtMode;
     self.USDTBusinessViewH.constant = isUsdtMode ? 80: 0;

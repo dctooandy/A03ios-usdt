@@ -258,7 +258,7 @@
     switch (_recoType) {
         case transactionRecord_rechargeType:
         case transactionRecord_withdrawType:
-            [cell.icon sd_setImageWithURL:[NSURL getUrlWithString:model.itemIcon] placeholderImage:[UIImage imageNamed:@"usdt"]];
+            [cell.icon sd_setImageWithURL:[NSURL getUrlWithString:model.itemIcon] placeholderImage:[UIImage imageNamed:[CNUserManager shareManager].isUsdtMode?@"usdt":@"cny"]];
             break;
         case transactionRecord_XMType:
             [cell.icon sd_setImageWithURL:[NSURL getUrlWithString:model.itemIcon] placeholderImage:[UIImage imageNamed:@"chouma1"]];
@@ -299,7 +299,7 @@
     cell.timeLb.text = model.createDate;
     cell.statusLb.text = model.flagDesc;
     cell.statusLb.textColor = model.statsColor;
-    cell.currencyLb.text = [CNUserManager shareManager].isUsdtMode?@"USDT":@"CNY";
+    cell.currencyLb.text = [CNUserManager shareManager].userInfo.currency;
     // 游戏独特数据
     if (_recoType == transactionRecord_betRecordType) {
         cell.titleLb.text = model.gameType?:@"    ";
