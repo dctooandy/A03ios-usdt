@@ -73,7 +73,7 @@
                 [self showWrongMsg:@"可提余额不足"];
                 iscorrect = NO;
             } else {
-                self.tipLb.text = @"请输入提款金额";
+                self.tipLb.text = ([CNUserManager shareManager].isUsdtMode?@"请输入提币金额":@"请输入提款金额");
                 self.tipLb.textColor = self.hilghtColor;
                 self.lineView.backgroundColor = self.hilghtColor;
                 iscorrect = YES;
@@ -102,7 +102,7 @@
     _codeType = codeType;
     switch (codeType) {
         case CNAmountTypeWithdraw:{
-            self.tipLb.text = @"请输入提款金额";
+            self.tipLb.text = ([CNUserManager shareManager].isUsdtMode?@"请输入提币金额":@"请输入提款金额");
             self.tipLb.hidden = YES;
             self.inputTF.keyboardType = UIKeyboardTypeDecimalPad;
             break;

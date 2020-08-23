@@ -156,7 +156,7 @@
     if (amoutModel) {
         inputView.model = self.amoutModel;
     }
-    [inputView setPlaceholder:@"请输入提款金额"];
+    [inputView setPlaceholder:([CNUserManager shareManager].isUsdtMode?@"请输入提币金额":@"请输入提款金额")];
     [self.mainView addSubview:inputView];
     
     return self;

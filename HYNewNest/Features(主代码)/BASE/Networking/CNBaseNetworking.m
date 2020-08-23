@@ -70,6 +70,7 @@
             [CNHUB showError:@"登录失效，请重新登录"];
             !completionHandler ?: completionHandler(response.head.errCode, @"登录失效，请重新登录");
             [[CNUserManager shareManager] cleanUserInfo];
+            [[NNControllerHelper currentTabBarController] setSelectedIndex:0];
             
         } else {
             [LoadingView hide];

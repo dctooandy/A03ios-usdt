@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -39,12 +39,12 @@
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXE-OW-iDD">
                             <rect key="frame" x="30" y="74.5" width="285" height="241.5"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            <mutableString key="text">欢迎使用环亚服务协议！
-      为使用环亚的服务，您应当阅读并遵守《服务协议》（以下简称“本协议”）。请您务必审慎阅读、充分理解各条款内容，特别是免除或者限制腾讯责任的条款、对用户权利进行限制的条款、约定争议解决方式和司法管辖的条款（如第十八条相关约定）等，以及开通或使用某项服务的单独协议或规则。限制、免责条款或者其他涉及您重大权益的条款可能以加粗、加下划线等形式提示您重点注意。
+                            <mutableString key="text">欢迎使用币游服务协议！
+      为使用币游的服务，您应当阅读并遵守《服务协议》（以下简称“本协议”）。请您务必审慎阅读、充分理解各条款内容，特别是免除或者限制腾讯责任的条款、对用户权利进行限制的条款、约定争议解决方式和司法管辖的条款（如第十八条相关约定）等，以及开通或使用某项服务的单独协议或规则。限制、免责条款或者其他涉及您重大权益的条款可能以加粗、加下划线等形式提示您重点注意。
 一、【协议的范围】
-      1.1本协议是用户与环亚之间关于其使用环亚的服务所订立的协议。“环亚”是指环亚和/或其相关服务可能存在的运营关联单位。“用户”是指环亚的服务的使用人，在本协议中更多地称为“您”。
+      1.1本协议是用户与币游之间关于其使用币游的服务所订立的协议。“币游”是指币游和/或其相关服务可能存在的运营关联单位。“用户”是指币游的服务的使用人，在本协议中更多地称为“您”。
 
-      1.2环亚的服务是指环亚向用户提供的，包括但不限于即时通讯、网络媒体、互联网增值、互动娱乐、金融支付、广告等产品及服务，具体服务以环亚实际提供的为准（以下简称“本服务”）。 
+      1.2币游的服务是指币游向用户提供的，包括但不限于即时通讯、网络媒体、互联网增值、互动娱乐、金融支付、广告等产品及服务，具体服务以币游实际提供的为准（以下简称“本服务”）。 
 </mutableString>
                             <color key="textColor" white="1" alpha="0.60421125856164382" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
