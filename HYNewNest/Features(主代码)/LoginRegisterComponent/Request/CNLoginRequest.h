@@ -190,7 +190,9 @@ typedef NS_ENUM(NSUInteger, CNSMSCodeType) {
  */
 + (void)logoutHandler:(HandlerBlock)completionHandler;
 
-/// 检查是否VIP客户 
+
+#pragma mark VIP & Swtich Accoutn
+/// 检查是否VIP客户
 //+ (void)checkTopDomainSuccessHandler:(nullable HandlerBlock)completionHandler;
 
 /// 切换影子账户

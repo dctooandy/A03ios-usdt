@@ -10,6 +10,7 @@
 #import "CNEncrypt.h"
 #import "HYEncryptor.h"
 #import "HYNetworkConfigManager.h"
+#import "CNPushRequest.h"
 
 @implementation CNLoginRequest
 
@@ -94,6 +95,10 @@
                 [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
                 [CNLoginRequest getUserInfoByTokenCompletionHandler:nil]; // 请求详细信息
 //                [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
+                // 推送相关
+                [CNPushRequest GetUDIDHandler:nil];
+                [CNPushRequest GTInterfaceHandler:nil];
+                
             }
             completionHandler(responseObj, errorMsg);
         }
@@ -115,6 +120,9 @@
             [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
             [CNLoginRequest getUserInfoByTokenCompletionHandler:nil]; // 请求详细信息
 //            [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
+            // 推送相关
+            [CNPushRequest GetUDIDHandler:nil];
+            [CNPushRequest GTInterfaceHandler:nil];
         }
         completionHandler(responseObj, errorMsg);
     }];
@@ -157,6 +165,9 @@
             [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
             [CNLoginRequest getUserInfoByTokenCompletionHandler:nil]; // 请求详细信息
 //            [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
+            // 推送相关
+            [CNPushRequest GetUDIDHandler:nil];
+            [CNPushRequest GTInterfaceHandler:nil];
         }
         completionHandler(responseObj, errorMsg);
     }];

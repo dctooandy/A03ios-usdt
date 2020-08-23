@@ -12,6 +12,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
+@property (copy, nonatomic) NSString *token;
 
 - (void)changeRootViewController:(UIViewController*)viewController;
 
