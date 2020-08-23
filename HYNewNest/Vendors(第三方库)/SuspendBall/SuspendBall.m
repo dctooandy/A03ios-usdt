@@ -348,10 +348,7 @@ static CGFloat btnSmallImageWidth = 60;
     for(UIView* sub in [self.functionMenu subviews]){
         [sub removeFromSuperview];
     }
-    NSArray *titles;
-    if (self.imageNameGroup.count == 3) {
-        titles = @[@"存取",@"疑问",@"回拨"];
-    }
+    NSArray *titles = @[@"存取",@"疑问",@"回拨",@"400"];
     for (int i = 0; i < self.imageNameGroup.count; i++) {
         UIButton *functionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [functionBtn setBackgroundImage:[UIImage imageNamed:@"bg"] forState:UIControlStateNormal];

@@ -107,7 +107,7 @@
 
 - (void)setupCSSuspendBall {
     CGFloat btnWH = 60.f;
-    NSArray *imgNameGroup = @[@"cunqu", @"help", @"phone_s"];
+    NSArray *imgNameGroup = @[@"cunqu", @"help", @"phone_s", @"phone_s"];
     SuspendBall *suspendBall = [SuspendBall suspendBallWithFrame:CGRectMake(kScreenWidth - btnWH, kScreenHeight *0.75, btnWH, btnWH) delegate:self subBallImageArray:imgNameGroup];
     suspendBall.top = kNavPlusStaBarHeight;
     suspendBall.bottom = kTabBarHeight + kSafeAreaHeight;
@@ -154,8 +154,7 @@
 }
 
 - (void)suspendBall:(UIButton *)subBall didSelectTag:(NSInteger)tag{
-    
-    [self hideSuspendBall];
+    [self.suspendBall suspendBallShow];
     
     if(tag == 0){
         //客服 存取款问题

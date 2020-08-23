@@ -8,6 +8,7 @@
 
 #import "CNLoginRequest.h"
 #import "CNEncrypt.h"
+#import "HYEncryptor.h"
 #import "HYNetworkConfigManager.h"
 
 @implementation CNLoginRequest
@@ -77,6 +78,9 @@
     // ???: 加密就会失败
 //    paras[@"loginName"] = [CNEncrypt encryptString:account];
 //    paras[@"verifyStr"] = [CNEncrypt encryptString:password];
+//    paras[@"loginName"] = [HYEncryptor encryptString:account publicKey:PublicKey];
+//    paras[@"verifyStr"] = [HYEncryptor encryptString:password publicKey:PublicKey];
+
     paras[@"loginName"] = account;
     paras[@"verifyStr"] = password;
     paras[@"captcha"] = imageCode;
