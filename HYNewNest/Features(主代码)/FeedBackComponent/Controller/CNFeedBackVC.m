@@ -13,6 +13,7 @@
 #define kCNFeedBackLeftTCellID  @"CNFeedBackLeftTCell"
 #import "CNUserCenterRequest.h"
 #import "CNBaseTF.h"
+#import <UIImageView+WebCache.h>
 
 @interface CNFeedBackVC () <UITableViewDataSource>
 // 底部间隔，随键盘而起
@@ -41,7 +42,6 @@
     }
     [CNUserCenterRequest submitSugestionContent:_suggesTf.text handler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
-            [CNHUB showSuccess:@"反馈已收到,客服会尽快回复"];
             self.suggesTf.text = @"";
             [self querySuggestions];
         }
@@ -76,22 +76,25 @@
 #pragma - mark UITableViewDataSource
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.suggests.count;
+    return self.suggests.count*2;
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
 
-//    UserSuggestionModel *model = self.suggests[indexPath.row];
-    UserSuggestionModel *model = self.suggests[self.suggests.count-1-indexPath.row];
-    if (model.suggestType == 0) {
+    NSInteger modelIdx = (2*self.suggests.count)-1-indexPath.row;//model 是倒序的
+    UserSuggestionModel *model = self.suggests[modelIdx/2];
+    
+    if (indexPath.row % 2 == 0) {
         CNFeedBackRightTCell *cell = [tableView dequeueReusableCellWithIdentifier:kCNFeedBackRightTCellID forIndexPath:indexPath];
         cell.timeLb.text = model.createdDate;
         cell.contentLb.text = model.content;
+        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userInfo.avatar] placeholderImage:[UIImage imageNamed:@"2"]];
         return cell;
     } else {
         CNFeedBackLeftTCell *cell = [tableView dequeueReusableCellWithIdentifier:kCNFeedBackLeftTCellID forIndexPath:indexPath];
-        cell.timeLb.text = model.createdDate;
-        cell.contentLb.text = model.content;
+        cell.timeLb.text = model.lastUpdate;
+        cell.contentLb.text = model.remarks?:@"反馈已收到,客服会尽快回复";
+        cell.imageV.image = [UIImage imageNamed:@"a03_main_kefu"];
         return cell;
     }
 }
