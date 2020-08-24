@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 消息盒子弹框
 /// @param images 数组，可以是 图片，图片名称 或 图片地址
-+ (void)showMessageBoxWithImages:(NSArray *)images;
++ (void)showMessageBoxWithImages:(NSArray *)images onView:(UIView *)onView tapBlock:(void(^)(int idx))tapBlock;
 
 @end
 

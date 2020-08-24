@@ -12,6 +12,7 @@
 #import "GameModel.h"
 #import "AdBannerGroupModel.h"
 #import "AnnounceModel.h"
+#import "MessageBoxModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -26,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 ///动态表单获取5个客服链接
 + (void)requestDynamicLive800AddressCompletionHandler:(HandlerBlock)handler;
+
+/// 弹窗盒子
++ (void)queryMessageBoxHandler:(HandlerBlock)handler;
 
 /// 客服回拨
 + (void)callCenterCallBackMessageId:(nullable NSString *)messageId

@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIPageControl *pageC;
 @property (weak, nonatomic) IBOutlet UIButton *closeBtn;
 @property (nonatomic, copy) NSArray *images;
+@property (nonatomic, copy) void(^tapBlock)(int idx);
 @end
 
 @implementation CNMessageBoxView
@@ -22,36 +23,40 @@
     [super loadViewFromXib];
 }
 
-+ (void)showMessageBoxWithImages:(NSArray *)images {
++ (void)showMessageBoxWithImages:(NSArray *)images onView:(UIView *)onView tapBlock:(void(^)(int idx))tapBlock {
     
     CNMessageBoxView *alert = [[CNMessageBoxView alloc] init];
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [window endEditing:YES];
-    alert.frame = window.bounds;
-    [window addSubview:alert];
+    alert.frame = onView.bounds;
+    [onView addSubview:alert];
     
     alert.images = images;
+    alert.tapBlock = tapBlock;
     [alert configUI];
 }
 
 - (void)configUI {
     // 和父视图左右间隔22.5，宽高比 330/416
-    CGFloat left = 22.5;
-    CGFloat itemW = (kScreenWidth - left*2);
+    CGFloat itemW = (kScreenWidth - 22*2);
     CGFloat itemH = self.scrollView.bounds.size.height;
     NSInteger itemCount = self.images.count;
-    CGFloat itemSpace = 10;
-    self.scrollView.contentSize = CGSizeMake((itemW+itemSpace)*itemCount, itemH);
+    CGFloat itemSpace = 12;
+    self.scrollView.contentSize = CGSizeMake( (itemW + itemSpace) * itemCount, itemH);
     self.scrollView.delegate = self;
     // 创建图片视图
     CGRect frame = CGRectMake(0, 0, itemW, itemH);
     for (int i = 0; i < itemCount; i++) {
-        frame.origin.x = (itemW + itemSpace) * i;
+        frame.origin.x = itemSpace*0.5 + (itemW + itemSpace) * i;
         UIImageView *iv = [[UIImageView alloc] initWithFrame:frame];
+        iv.backgroundColor = kHexColor(0x212137);
         [self.scrollView addSubview:iv];
-        iv.contentMode = UIViewContentModeScaleAspectFill;
+        iv.contentMode = UIViewContentModeScaleAspectFit;
         iv.layer.cornerRadius = 8;
         iv.layer.masksToBounds = YES;
+        
+        iv.userInteractionEnabled = YES;
+        iv.tag = i;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImg:)];
+        [iv addGestureRecognizer:tap];
         
         // 加载图片
         id image = self.images[i];
@@ -71,6 +76,12 @@
     
     // pagaC
     self.pageC.numberOfPages = itemCount;
+}
+
+- (void)didTapImg:(UITapGestureRecognizer *)gesture {
+    if (self.tapBlock) {
+        self.tapBlock((int)gesture.view.tag);
+    }
 }
 
 #pragma mark - UIScrollViewDelegate

@@ -20,6 +20,7 @@
 #import "HYRechargeCNYViewController.h"
 #import "HYWithdrawViewController.h"
 #import <MJRefresh/MJRefresh.h>
+#import "NSURL+HYLink.h"
 
 #import "CNUserInfoLoginView.h"
 #import "CNServerView.h"
@@ -52,6 +53,7 @@
 @property (weak, nonatomic) IBOutlet UIView *adBgView;
 @property (nonatomic, strong) UUMarqueeView *marqueeView; /// 滚动公告
 @property (nonatomic, strong) NSArray<AnnounceModel *> *annoModels;
+@property (nonatomic, strong) NSArray<MessageBoxModel *> *msgBoxModels;
 
 #pragma - mark 游戏切换属性
 /// 游戏内容视图
@@ -225,9 +227,8 @@
 #pragma mark - REQUEST
 - (void)requestNewsBox {
     if ([CNUserManager shareManager].isLogin) {
-        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
         NSDate *nowDate = [NSDate date];
-        NSString *agoDateStr = [userDefault stringForKey:@"AgoDate"];
+        NSString *agoDateStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"AgoDate"];
 
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -235,12 +236,26 @@
 
         if ([agoDateStr isEqualToString:nowDateStr]) {
             MyLog(@"弹窗盒子一天就显示一次");
-         }else{
+        }else{
             // 需要执行的方法写在这里
-            [CNMessageBoxView showMessageBoxWithImages:@[@"位图备份",@"deposit-success",@"deposit-fail"]];
-            [userDefault setObject:nowDateStr forKey:@"AgoDate"];
-            [userDefault synchronize];
-         }
+            [CNHomeRequest queryMessageBoxHandler:^(id responseObj, NSString *errorMsg) {
+                if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+                    NSArray<MessageBoxModel *> *models = [MessageBoxModel cn_parse:responseObj[@"data"]];
+                    self.msgBoxModels = models;
+                    NSMutableArray *imgs = @[].mutableCopy;
+                    for (MessageBoxModel *m in models) {
+                        NSString *url = [NSURL getStrUrlWithString: m.imgUrl];
+                        [imgs addObject:url];
+                    }
+                    [CNMessageBoxView showMessageBoxWithImages:imgs onView:self.view tapBlock:^(int idx) {
+                        MessageBoxModel *m = self.msgBoxModels[idx];
+                        [NNPageRouter jump2HTMLWithStrURL:m.link title:@"活动"];
+                    }];
+                    [[NSUserDefaults standardUserDefaults] setObject:nowDateStr forKey:@"AgoDate"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                }
+            }];
+        }
     }
 }
 

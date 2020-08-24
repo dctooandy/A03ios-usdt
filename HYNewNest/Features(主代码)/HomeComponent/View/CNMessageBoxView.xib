@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,14 +23,14 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jnG-qK-2Na">
                     <rect key="frame" x="0.0" y="218.5" width="414" height="459"/>
                     <subviews>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdn-XT-46o">
-                            <rect key="frame" x="22.5" y="0.0" width="391.5" height="459"/>
+                        <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdn-XT-46o">
+                            <rect key="frame" x="16" y="0.0" width="382" height="459"/>
                         </scrollView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="tdn-XT-46o" firstAttribute="leading" secondItem="jnG-qK-2Na" secondAttribute="leading" constant="22.5" id="7kY-ho-lfF"/>
-                        <constraint firstAttribute="trailing" secondItem="tdn-XT-46o" secondAttribute="trailing" id="Cdt-dC-sVg"/>
+                        <constraint firstItem="tdn-XT-46o" firstAttribute="leading" secondItem="jnG-qK-2Na" secondAttribute="leading" constant="16" id="7kY-ho-lfF"/>
+                        <constraint firstAttribute="trailing" secondItem="tdn-XT-46o" secondAttribute="trailing" constant="16" id="Cdt-dC-sVg"/>
                         <constraint firstItem="tdn-XT-46o" firstAttribute="top" secondItem="jnG-qK-2Na" secondAttribute="top" id="O5z-pw-RpA"/>
                         <constraint firstAttribute="width" secondItem="jnG-qK-2Na" secondAttribute="height" multiplier="375:416" id="Rk4-13-OuW"/>
                         <constraint firstAttribute="bottom" secondItem="tdn-XT-46o" secondAttribute="bottom" id="uwZ-kP-a7f"/>

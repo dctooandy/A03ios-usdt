@@ -166,6 +166,7 @@
 		3D1338A324AF2E5200B29783 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1338A024AF2E5200B29783 /* main.m */; };
 		3D1338A424AF2E5200B29783 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1338A124AF2E5200B29783 /* AppDelegate.m */; };
 		3D1338B924AF3AB200B29783 /* NNPageRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1338B824AF3AB200B29783 /* NNPageRouter.m */; };
+		3D564E2024F3C02C006846DD /* MessageBoxModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D564E1F24F3C02C006846DD /* MessageBoxModel.m */; };
 		3D643F7724F253E300B9AAA7 /* HYEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F7524F253E200B9AAA7 /* HYEncryptor.m */; };
 		3D643F8824F29F3600B9AAA7 /* AlertViewHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F7D24F29F3600B9AAA7 /* AlertViewHelp.m */; };
 		3D643F8924F29F3600B9AAA7 /* IVOtherInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F8124F29F3600B9AAA7 /* IVOtherInfoModel.m */; };
@@ -1123,6 +1124,8 @@
 		3D1338B524AF3A2D00B29783 /* GlobalConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalConstant.h; sourceTree = "<group>"; };
 		3D1338B724AF3AB200B29783 /* NNPageRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NNPageRouter.h; sourceTree = "<group>"; };
 		3D1338B824AF3AB200B29783 /* NNPageRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NNPageRouter.m; sourceTree = "<group>"; };
+		3D564E1E24F3C02C006846DD /* MessageBoxModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageBoxModel.h; sourceTree = "<group>"; };
+		3D564E1F24F3C02C006846DD /* MessageBoxModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageBoxModel.m; sourceTree = "<group>"; };
 		3D643F7524F253E200B9AAA7 /* HYEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYEncryptor.m; sourceTree = "<group>"; };
 		3D643F7624F253E200B9AAA7 /* HYEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYEncryptor.h; sourceTree = "<group>"; };
 		3D643F7824F264E100B9AAA7 /* 币游_devRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "币游_devRelease.entitlements"; sourceTree = "<group>"; };
@@ -3600,6 +3603,8 @@
 				E986A11424C73DB8000F9CFF /* AnnounceModel.m */,
 				3D643F9924F396BC00B9AAA7 /* GameLineModel.h */,
 				3D643F9A24F396BC00B9AAA7 /* GameLineModel.m */,
+				3D564E1E24F3C02C006846DD /* MessageBoxModel.h */,
+				3D564E1F24F3C02C006846DD /* MessageBoxModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5197,6 +5202,7 @@
 				3D643F9724F36D3E00B9AAA7 /* HYVIPViewController.m in Sources */,
 				042372A324CE65A000D37B9C /* CNSettingVC.m in Sources */,
 				0487CA0624D3BAB90013715A /* CNInviteFriendVC.m in Sources */,
+				3D564E2024F3C02C006846DD /* MessageBoxModel.m in Sources */,
 				E98BEF1C24D2BCA400E6B0C8 /* HYWithdrawCardCell.m in Sources */,
 				E9AE9F0424DAAF4500E8F4D8 /* ABCOneKeyRegisterBFBHelper.m in Sources */,
 				E969EB3824E2427900D58FE9 /* HYRechargeCNYViewController.m in Sources */,

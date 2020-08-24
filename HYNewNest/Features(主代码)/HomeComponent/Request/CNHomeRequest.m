@@ -18,6 +18,14 @@
     [self POST:kGatewayPath(config_dynamicQuery) parameters:param completionHandler:handler];
 }
 
++ (void)queryMessageBoxHandler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"bizCode"] = @"MESSAGE_BOX";
+    
+    [self POST:kGatewayPath(config_dynamicQuery) parameters:param completionHandler:handler];
+}
+
 + (void)callCenterCallBackMessageId:(NSString *)messageId
                             smsCode:(NSString *)smsCode
                            mobileNo:(NSString *)mobileNo
