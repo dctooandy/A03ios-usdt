@@ -31,16 +31,12 @@
     
     [self reloadCollectionViewData];
     
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
     // 已登录 获取最近玩过的游戏
     if ([CNUserManager shareManager].isLogin) {
         [self queryRecentGames];
     }
 }
+
 
 - (void)queryRecentGames {
     WEAKSELF_DEFINE

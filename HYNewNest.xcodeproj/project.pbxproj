@@ -175,6 +175,8 @@
 		3D643F8D24F29F3600B9AAA7 /* HeartSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F8624F29F3600B9AAA7 /* HeartSocketManager.m */; };
 		3D643F8E24F29F3600B9AAA7 /* HeartPacketData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F8724F29F3600B9AAA7 /* HeartPacketData.m */; };
 		3D643F9124F2A91B00B9AAA7 /* CNPushRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F9024F2A91B00B9AAA7 /* CNPushRequest.m */; };
+		3D643F9724F36D3E00B9AAA7 /* HYVIPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F9524F36D3E00B9AAA7 /* HYVIPViewController.m */; };
+		3D643F9824F36D3E00B9AAA7 /* HYVIPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D643F9624F36D3E00B9AAA7 /* HYVIPViewController.xib */; };
 		3DA4F15024B30A090039123F /* SGQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DA4F13B24B30A080039123F /* SGQRCode.bundle */; };
 		3DA4F15124B30A090039123F /* UIImage+SGImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */; };
 		3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F14024B30A080039123F /* UIButton+Indicator.m */; };
@@ -1138,6 +1140,9 @@
 		3D643F8724F29F3600B9AAA7 /* HeartPacketData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeartPacketData.m; sourceTree = "<group>"; };
 		3D643F8F24F2A91B00B9AAA7 /* CNPushRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNPushRequest.h; sourceTree = "<group>"; };
 		3D643F9024F2A91B00B9AAA7 /* CNPushRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNPushRequest.m; sourceTree = "<group>"; };
+		3D643F9424F36D3E00B9AAA7 /* HYVIPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYVIPViewController.h; sourceTree = "<group>"; };
+		3D643F9524F36D3E00B9AAA7 /* HYVIPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYVIPViewController.m; sourceTree = "<group>"; };
+		3D643F9624F36D3E00B9AAA7 /* HYVIPViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYVIPViewController.xib; sourceTree = "<group>"; };
 		3DA4F13A24B30A080039123F /* SGQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCode.h; sourceTree = "<group>"; };
 		3DA4F13B24B30A080039123F /* SGQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SGQRCode.bundle; sourceTree = "<group>"; };
 		3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SGImageSize.m"; sourceTree = "<group>"; };
@@ -2596,6 +2601,7 @@
 		3D13389C24AF2D1900B29783 /* Features(主代码) */ = {
 			isa = PBXGroup;
 			children = (
+				3D643F9224F36CC200B9AAA7 /* VIPComponent */,
 				E986A15D24C979F6000F9CFF /* WalletComponent */,
 				E9D9446F24C1F35700252222 /* BonusComponent */,
 				E9D9446D24C1F35700252222 /* GloryComponent */,
@@ -2699,6 +2705,24 @@
 				3D643F9024F2A91B00B9AAA7 /* CNPushRequest.m */,
 			);
 			path = Push;
+			sourceTree = "<group>";
+		};
+		3D643F9224F36CC200B9AAA7 /* VIPComponent */ = {
+			isa = PBXGroup;
+			children = (
+				3D643F9324F36CC200B9AAA7 /* Controller */,
+			);
+			path = VIPComponent;
+			sourceTree = "<group>";
+		};
+		3D643F9324F36CC200B9AAA7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3D643F9424F36D3E00B9AAA7 /* HYVIPViewController.h */,
+				3D643F9524F36D3E00B9AAA7 /* HYVIPViewController.m */,
+				3D643F9624F36D3E00B9AAA7 /* HYVIPViewController.xib */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		3DA4F13924B30A080039123F /* SGQRCode */ = {
@@ -4648,6 +4672,7 @@
 				D5A4448924F3932400014DC6 /* 数字7_00010.png in Resources */,
 				D5FBFE4324BC05E400BBCAD8 /* CNImageCodeInputView.xib in Resources */,
 				D5A4458924F393AD00014DC6 /* 棋牌_00032.png in Resources */,
+				3D643F9824F36D3E00B9AAA7 /* HYVIPViewController.xib in Resources */,
 				0487C9B324CFF3170013715A /* CNSecurityCenterVC.xib in Resources */,
 				D5A443D824F378CD00014DC6 /* 彩票_00091.png in Resources */,
 				D5A446E024F3941400014DC6 /* 合成 1_00014.png in Resources */,
@@ -5159,6 +5184,7 @@
 				044DC69524DD1A35005CB550 /* CNShareCopyView.m in Sources */,
 				0487CA0D24D3CC380013715A /* CNFeedBackVC.m in Sources */,
 				048A0EE024C832F800411819 /* CNElectronicVC.m in Sources */,
+				3D643F9724F36D3E00B9AAA7 /* HYVIPViewController.m in Sources */,
 				042372A324CE65A000D37B9C /* CNSettingVC.m in Sources */,
 				0487CA0624D3BAB90013715A /* CNInviteFriendVC.m in Sources */,
 				E98BEF1C24D2BCA400E6B0C8 /* HYWithdrawCardCell.m in Sources */,

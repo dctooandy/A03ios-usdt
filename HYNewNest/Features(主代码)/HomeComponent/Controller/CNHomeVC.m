@@ -134,6 +134,12 @@
     [self.infoView updateLoginStatusUI];
     self.infoViewH.constant = 135;
     [self requestHomeBanner];
+    // 最近玩过的电游
+    for (CNBaseVC *vc in self.childViewControllers) {
+        if ([vc isKindOfClass:[CNElectronicVC class]]) {
+            [(CNElectronicVC *)vc queryRecentGames];
+        }
+    }
 }
 
 - (void)userDidLogout {
