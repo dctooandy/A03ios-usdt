@@ -55,7 +55,9 @@
     
     if (self.phoneLogin || self.fromServer) {
         self.correct = [textField.text validationType:ValidationTypePhone];
-       [self showWrongMsg:@"您输入的手机不符合规则"];
+        if (!self.correct) {
+            [self showWrongMsg:@"您输入的手机不符合规则"];
+        }
     } else { //结束编辑时校验不根据长度
         if (![textField.text validationType:ValidationTypeUserName]) {
             if (self.isRegister) {

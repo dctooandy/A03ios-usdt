@@ -184,9 +184,38 @@ NSInteger AllowTotalWrongCount = 3;
 
 /// 登录
 - (void)Login {
+    /* 为防止漏掉情况走到这里，需要再次检验格式 */
+    // 账号
+    NSString *account = self.loginAccountView.account;
+    if (self.loginAccountView.phoneLogin) {
+        if (![account validationType:ValidationTypePhone]) {
+            [self.loginAccountView showWrongMsg:@"您输入的手机不符合规则"];
+            return;
+        }
+    } else {
+        if (![account validationType:ValidationTypeUserName]) {
+            [self.loginAccountView showWrongMsg:@"f开头的5-11位数字+字母组合"];
+            return;
+        }
+    }
+    
+    // 密码
+    NSString *code = self.loginCodeView.code;
+    if (self.loginAccountView.phoneLogin) {
+        if (code.length < 6) {
+            [self.loginCodeView showWrongMsg:@"请输入6位验证码"];
+            return;
+        }
+    } else {
+        if (![code validationType:ValidationTypePassword]) {
+            [self.loginCodeView showWrongMsg:@"请输入8-16位数字及字母的组合"];
+            return;
+        }
+    }
+    
     WEAKSELF_DEFINE
-    [CNLoginRequest accountLogin:self.loginAccountView.account
-                        password:self.loginCodeView.code
+    [CNLoginRequest accountLogin:account
+                        password:code
                        messageId:self.smsModel.messageId
                        imageCode:self.loginImageCodeView.imageCode.length>0?self.loginImageCodeView.imageCode:@""
                      imageCodeId:self.loginImageCodeView.imageCodeId.length>0?self.loginImageCodeView.imageCodeId:@""
