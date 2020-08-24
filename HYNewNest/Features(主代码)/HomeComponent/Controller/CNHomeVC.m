@@ -59,6 +59,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pageViewH;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *switchBtnArr;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *gameTypeLbArr;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *gameImageVArr;
+
 @property (nonatomic, assign) NSInteger currPage;
 
 #pragma - mark logo, 品牌和赞助商
@@ -155,6 +157,7 @@
     // 配置游戏切换内容
     [self initGameVC];
     
+    [self loadGig];
     // 默认选择第一个
     [self switchGame:self.switchBtnArr.firstObject];
 
@@ -163,6 +166,33 @@
         [wSelf userDidLogin];
         [wSelf requestAnnouncement];
     }];
+}
+
+// 加载动图和图片
+- (void)loadGig {
+    // 动图名称
+    NSArray *imageNames = @[@"合成 1_000", @"数字7_000", @"足球_000", @"彩票_000", @"棋牌_000"];
+    
+    // 按钮高亮动图
+    for (int i = 0; i < self.gameImageVArr.count; i++) {
+        UIImageView *iv = self.gameImageVArr[i];
+        UIImage *gifImage = [UIImage animatedImageNamed:imageNames[i] duration:3];
+        iv.highlightedImage = gifImage;
+        iv.image = [UIImage imageNamed:imageNames[i]];
+        iv.highlighted = NO;
+    }
+}
+
+// 选择加载gif图
+- (void)selectGif:(NSInteger)index {
+    if (index >= self.gameImageVArr.count) {
+        return;
+    }
+    // 按钮高亮动图
+    for (int i = 0; i < self.gameImageVArr.count; i++) {
+        UIImageView *iv = self.gameImageVArr[i];
+        iv.highlighted = (i == index);
+    }
 }
 
 
@@ -396,6 +426,7 @@
     }
     sender.selected = YES;
     sender.layer.borderWidth = 1;
+    [self selectGif:sender.tag];
     
     // 点击按钮下标
     NSInteger index = [self.switchBtnArr indexOfObject:sender];
