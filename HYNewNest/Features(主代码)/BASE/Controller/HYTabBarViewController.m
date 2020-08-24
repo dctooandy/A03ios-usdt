@@ -10,7 +10,7 @@
 #import "HYTabBarViewController.h"
 #import "HYNavigationController.h"
 #import "CNHomeVC.h"
-//#import "HYVIPViewController.h"
+#import "HYVIPViewController.h"
 #import "HYBonusViewController.h"
 #import "HYGloryViewController.h"
 #import "CNMineVC.h"
@@ -22,6 +22,7 @@
 
 @interface HYTabBarViewController ()<UITabBarControllerDelegate, SuspendBallDelegte, CNServerViewDelegate>
 @property (nonatomic, strong) SuspendBall *suspendBall;
+@property (strong, nonatomic) HYNavigationController *bonusNavVC;
 @end
 
 @implementation HYTabBarViewController
@@ -34,6 +35,23 @@
     [self setupCSSuspendBall];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupAppearance) name:CNSkinChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSwitchAcount) name:HYSwitchAcoutSuccNotification object:nil];
+    
+}
+
+- (void)didSwitchAcount{
+    NSMutableArray *childVcs = [self.viewControllers mutableCopy];
+    if (![CNUserManager shareManager].isUsdtMode) { //rmb 去掉“优惠”
+        if (childVcs.count == 5) {
+            [childVcs removeObjectAtIndex:2];
+        }
+        self.viewControllers = childVcs.copy;
+    } else {
+        if (childVcs.count == 4) {
+            [childVcs insertObject:self.bonusNavVC atIndex:2];
+        }
+        self.viewControllers = childVcs.copy;
+    }
 }
 
 - (void)setupAppearance{
@@ -76,16 +94,17 @@
                                                                  selectedImage:[UIImage imageNamed:@"Home_s"]];
     [vcs addObject:homeNav];
     
-//    HYNavigationController *vipNav = [HYNavigationController navigationControllerWithController:[HYVIPViewController class]
-//                                                                                        tabBarTitle:@"VIP"
-//                                                                                        normalImage:[UIImage imageNamed:@"vip"]
-//                                                                                      selectedImage:[UIImage imageNamed:@"vip_s"]];
-//    [vcs addObject:vipNav];
+    HYNavigationController *vipNav = [HYNavigationController navigationControllerWithController:[HYVIPViewController class]
+                                                                                        tabBarTitle:@"VIP"
+                                                                                        normalImage:[UIImage imageNamed:@"vip"]
+                                                                                      selectedImage:[UIImage imageNamed:@"vip_s"]];
+    [vcs addObject:vipNav];
     
     HYNavigationController *bonusNav = [HYNavigationController navigationControllerWithController:[HYBonusViewController class]
                                                                                             tabBarTitle:@"优惠"
                                                                                             normalImage:[UIImage imageNamed:@"youhui"]
                                                                                           selectedImage:[UIImage imageNamed:@"youhui_s"]];
+    self.bonusNavVC = bonusNav;
     [vcs addObject:bonusNav];
    
     HYNavigationController *gloryNav = [HYNavigationController navigationControllerWithController:[HYGloryViewController class]
