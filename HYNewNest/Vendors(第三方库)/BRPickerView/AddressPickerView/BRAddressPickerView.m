@@ -368,8 +368,8 @@
     [bgView addSubview:label];
     label.backgroundColor = [UIColor clearColor];
     label.textAlignment = NSTextAlignmentCenter;
-    //label.textColor = [UIColor redColor];
-    label.font = [UIFont systemFontOfSize:14.0f * kScaleFit];
+    label.textColor = kDefaultThemeColor;
+    label.font = [UIFont systemFontOfSize:kBRFontSize * kScaleFit];
     // 字体自适应属性
     label.adjustsFontSizeToFitWidth = YES;
     // 自适应最小字体缩放比例

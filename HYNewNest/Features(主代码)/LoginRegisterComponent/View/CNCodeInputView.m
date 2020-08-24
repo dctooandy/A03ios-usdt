@@ -131,11 +131,9 @@ int TotalSecond = 60;
         case CNCodeTypeAccountRegister:
         case CNCodeTypeNewPwd:
             if (text.length >= 8) { // 大于最低开始判断
-                if (![text validationType:ValidationTypePassword]) {
-                    self.correct = NO;
+                self.correct = [text validationType:ValidationTypePassword];
+                if (!self.correct) {
                     [self showWrongMsg:@"请输入8-16位数字及字母的组合"];
-                } else {
-                    self.correct = YES;
                 }
             } else {
                 self.correct = NO;
@@ -146,11 +144,9 @@ int TotalSecond = 60;
         case CNCodeTypePhoneLogin:
         case CNCodeTypeBankCard:
             if (textField.text.length >= 6) {
-                if (![text validationType:ValidationTypePhoneCode]) {
-                    self.correct = NO;
+                self.correct = [text validationType:ValidationTypePhoneCode];
+                if (!self.correct) {
                     [self showWrongMsg:@"请输入6位数字验证码"];
-                } else {
-                    self.correct = YES;
                 }
             } else {
                 self.correct = NO;

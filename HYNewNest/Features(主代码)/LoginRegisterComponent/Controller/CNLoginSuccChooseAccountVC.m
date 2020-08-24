@@ -7,7 +7,7 @@
 //
 
 #import "CNLoginSuccChooseAccountVC.h"
-#import "CNAlertPickerView.h"
+#import "BRPickerView.h"
 #import "CNAccountSelectView.h"
 #import "CNTwoStatusBtn.h"
 
@@ -28,11 +28,11 @@
     }
     
     WEAKSELF_DEFINE
-    [CNAlertPickerView showList:names title:@"选择账号" finish:^(NSString * _Nonnull selectText) {
+    [BRStringPickerView showStringPickerWithTitle:@"选择账号" dataSource:names defaultSelValue:self.selectedName resultBlock:^(id selectValue, NSInteger index) {
         STRONGSELF_DEFINE
-        strongSelf.selectedName = selectText;
+        strongSelf.selectedName = selectValue;
         strongSelf.loginBtn.enabled = YES;
-        strongSelf.accountSelectView.loginNameTf.text = selectText;
+        strongSelf.accountSelectView.loginNameTf.text = selectValue;
     }];
 }
 

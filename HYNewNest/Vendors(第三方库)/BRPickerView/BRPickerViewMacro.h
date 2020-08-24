@@ -47,6 +47,8 @@ blue:((CGFloat)(rgbValue & 0xFF)) / 255.0 alpha:(a)]
 #define kBRToolBarColor BR_RGB_HEX(0x212137, 1.0f)
 // 分割线颜色
 #define kBRLineColor BR_RGB_HEX(0xFFFFFF, 0.1)
+// 字体大小
+#define kBRFontSize 20
 
 // 静态库中编写 Category 时的便利宏，用于解决 Category 方法从静态库中加载需要特别设置的问题
 #ifndef BRSYNTH_DUMMY_CLASS
