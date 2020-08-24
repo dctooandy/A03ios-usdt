@@ -12,7 +12,7 @@
 #import "CNLoginRequest.h"
 #import "CNLoginRegisterVC.h"
 #import "CNAccountSelectView.h"
-#import "CNAlertPickerView.h"
+#import "BRPickerView.h"
 
 @interface CNResetPwdVC () <CNCodeInputViewDelegate>
 /// 注册密码视图
@@ -64,9 +64,9 @@
     }
     
     WEAKSELF_DEFINE
-    [CNAlertPickerView showList:names title:@"选择账号" finish:^(NSString * _Nonnull selectText) {
+    [BRStringPickerView showStringPickerWithTitle:@"选择账号" dataSource:names defaultSelValue:self.accountSelectView.loginNameTf.text resultBlock:^(id selectValue, NSInteger index) {
         STRONGSELF_DEFINE
-        strongSelf.accountSelectView.loginNameTf.text = selectText;
+        strongSelf.accountSelectView.loginNameTf.text = selectValue;
     }];
 }
 

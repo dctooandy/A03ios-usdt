@@ -274,8 +274,8 @@ typedef NS_ENUM(NSInteger, BRStringPickerMode) {
     UILabel *label = [[UILabel alloc]init];
     label.backgroundColor = [UIColor clearColor];
     label.textAlignment = NSTextAlignmentCenter;
-//    label.textColor = BR_RGB_HEX(0x999999, 1.0);
-    label.font = [UIFont systemFontOfSize:14.0f * kScaleFit];
+    label.textColor = kDefaultThemeColor;
+    label.font = [UIFont systemFontOfSize:kBRFontSize * kScaleFit];
     // 字体自适应属性
     label.adjustsFontSizeToFitWidth = YES;
     // 自适应最小字体缩放比例

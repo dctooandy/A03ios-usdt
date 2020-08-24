@@ -12,7 +12,6 @@
 #import "CNLoginRequest.h"
 #import "CNLoginRegisterVC.h"
 #import "CNAccountSelectView.h"
-#import "CNAlertPickerView.h"
 
 @interface CNChangePwdVC () <CNCodeInputViewDelegate>
 /// 注册密码视图

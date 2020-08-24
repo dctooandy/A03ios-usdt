@@ -7,7 +7,6 @@
 //
 
 #import "CNSettingVC.h"
-#import "CNAlertPickerView.h"
 #import "BRPickerView.h"
 #import "CNChoseImageVC.h"
 #import "CNFeedBackVC.h"
@@ -56,10 +55,14 @@
 
 /// 选择性别
 - (IBAction)choseSex:(id)sender {
-    [CNAlertPickerView showList:@[@"男", @"女"] title:@"性别选择" finish:^(NSString * _Nonnull selectText) {
-        self.sexTF.text = selectText;
+    [BRStringPickerView showStringPickerWithTitle:@"性别选择" dataSource:@[@"男", @"女"] defaultSelValue:self.sexTF.text resultBlock:^(id selectValue, NSInteger index) {
+        // 选择一样不处理
+        if ([self.sexTF.text isEqualToString:selectValue]) {
+            return;
+        }
+        self.sexTF.text = selectValue;
         NSString *codeOfGender = @"F";
-        if ([selectText isEqualToString:@"男"]) {
+        if ([selectValue isEqualToString:@"男"]) {
             codeOfGender = @"M";
         }
         [CNUserCenterRequest modifyUserRealName:nil gender:codeOfGender birth:nil avatar:nil onlineMessenger2:nil email:nil handler:^(id responseObj, NSString *errorMsg) {
@@ -73,6 +76,10 @@
 /// 选择生日
 - (IBAction)choseBirthday:(id)sender {
     [BRDatePickerView showDatePickerWithTitle:@"生日选择" dateType:BRDatePickerModeYMD defaultSelValue:self.birthTF.text resultBlock:^(NSString *selectValue) {
+        // 选择一样不处理
+        if ([self.birthTF.text isEqualToString:selectValue]) {
+            return;
+        }
         self.birthTF.text = selectValue;
         [CNUserCenterRequest modifyUserRealName:nil gender:nil birth:selectValue avatar:nil onlineMessenger2:nil email:nil handler:^(id responseObj, NSString *errorMsg) {
             if (!KIsEmptyString(errorMsg)) {
