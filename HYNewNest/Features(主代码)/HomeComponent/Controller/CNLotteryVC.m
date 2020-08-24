@@ -7,6 +7,7 @@
 //
 
 #import "CNLotteryVC.h"
+#import "HYInGameHelper.h"
 
 @interface CNLotteryVC ()
 
@@ -28,12 +29,14 @@
 
 // AG彩票
 - (IBAction)AGLottery:(id)sender {
-    [NNPageRouter jump2GameName:@"彩票" gameType:@"" gameId:@"直接进厅" gameCode:@"A03004"];
+//    [NNPageRouter jump2GameName:@"彩票" gameType:@"" gameId:@"直接进厅" gameCode:@"A03004"];
+    [[HYInGameHelper sharedInstance] inGame:InGameTypeKENO];
 }
 
 // QC刮刮乐
 - (IBAction)QCLottery:(id)sender {
-    [NNPageRouter jump2GameName:@"QG刮刮乐" gameType:@"12" gameId:@"" gameCode:@"A03080"];
+//    [NNPageRouter jump2GameName:@"QG刮刮乐" gameType:@"12" gameId:@"" gameCode:@"A03080"];
+    [[HYInGameHelper sharedInstance] inGame:InGameTypeQG];
 }
 
 

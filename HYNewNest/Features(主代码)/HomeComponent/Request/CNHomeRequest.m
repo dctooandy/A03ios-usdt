@@ -60,15 +60,27 @@
 + (void)requestInGameUrlGameType:(NSString *)gameType
                           gameId:(NSString *)gameId
                         gameCode:(NSString *)gameCode
+                platformCurrency:(nullable NSString *)platformCurrency
                          handler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"gameCode"] = gameCode;
     param[@"gameType"] = gameType;
     param[@"gameId"] = gameId.length > 0 ? gameId : @"";
+    param[@"platformCurrency"] = platformCurrency;
     
     [self POST:kGatewayPath(config_inGame) parameters:param completionHandler:handler];
 }
+
++ (void)queryGamesHandler:(HandlerBlock)handler {
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"currency"] = [CNUserManager shareManager].userInfo.currency;
+    
+    [self POST:kGatewayPath(config_queryGames) parameters:param completionHandler:handler];
+}
+
+
+#pragma mark 电游
 
 + (void)queryElecGamePlayLogHandler:(HandlerBlock)handler {
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];

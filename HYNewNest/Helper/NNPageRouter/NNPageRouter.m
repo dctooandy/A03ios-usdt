@@ -94,11 +94,13 @@
 + (void)jump2GameName:(NSString *)gameName
              gameType:(NSString *)gameType
                gameId:(NSString *)gameId
-             gameCode:(NSString *)gameCode {
+             gameCode:(NSString *)gameCode
+     platformCurrency:(nullable NSString *)platformCurrency {
     
     [CNHomeRequest requestInGameUrlGameType:gameType
                                      gameId:gameId
                                    gameCode:gameCode
+                           platformCurrency:platformCurrency
                                     handler:^(id responseObj, NSString *errorMsg) {
         
         GameModel *gameModel = [GameModel cn_parse:responseObj];

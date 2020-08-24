@@ -7,6 +7,7 @@
 //
 
 #import "CNSportVC.h"
+#import "HYInGameHelper.h"
 
 @interface CNSportVC ()
 
@@ -26,17 +27,20 @@
 
 // 进入沙巴
 - (IBAction)SABA:(id)sender {
-    [NNPageRouter jump2GameName:@"沙巴体育" gameType:@"7" gameId:@"" gameCode:@"A03031"];
+//    [NNPageRouter jump2GameName:@"沙巴体育" gameType:@"7" gameId:@"" gameCode:@"A03031"];
+    [[HYInGameHelper sharedInstance] inGame:InGameTypeSHABA];
 }
 
 // 进入易胜博
 - (IBAction)YSB:(id)sender {
-    [NNPageRouter jump2GameName:@"易胜博体育" gameType:@"" gameId:@"" gameCode:@"A03068"];
+//    [NNPageRouter jump2GameName:@"易胜博体育" gameType:@"" gameId:@"" gameCode:@"A03068"];
+    [[HYInGameHelper sharedInstance] inGame:InGameTypeYSB];
 }
 
 // 进入环亚
 - (IBAction)HY:(id)sender {
-    [NNPageRouter jump2GameName:@"币游体育" gameType:@"" gameId:@"" gameCode:@"A03062"];
+//    [NNPageRouter jump2GameName:@"币游体育" gameType:@"" gameId:@"" gameCode:@"A03062"];
+    [[HYInGameHelper sharedInstance] inGame:InGameTypeHYTY];
 }
 
 

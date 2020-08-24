@@ -10,7 +10,7 @@
 #import "CNElResentPlayCCell.h"
 #import <UIImageView+WebCache.h>
 #import "CNElectrionHallVC.h"
-
+#import "HYInGameHelper.h"
 #import "CNHomeRequest.h"
 
 #define kCNElResentPlayCCell  @"CNElResentPlayCCell"
@@ -59,7 +59,8 @@
 }
 
 - (IBAction)entryAGBuYu:(id)sender {
-    [NNPageRouter jump2GameName:@"捕鱼王" gameType:@"6" gameId:@"" gameCode:@"A03026"];
+//    [NNPageRouter jump2GameName:@"捕鱼王" gameType:@"6" gameId:@"" gameCode:@"A03026"];
+    [[HYInGameHelper sharedInstance] inGame:InGameTypeAGBY];
 }
 
 //进入电游大厅
@@ -132,7 +133,8 @@
     [NNPageRouter jump2GameName:model.gameName
                        gameType:model.gameParam.gameType
                          gameId:model.gameParam.gameId
-                       gameCode:model.gameParam.gameCode];
+                       gameCode:model.gameParam.gameCode
+               platformCurrency:nil];
 }
 
 @end

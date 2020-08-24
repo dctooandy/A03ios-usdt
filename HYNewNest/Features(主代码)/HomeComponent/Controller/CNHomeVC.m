@@ -31,6 +31,7 @@
 #import "CNHomeRequest.h"
 #import "CNUserCenterRequest.h"
 #import "CNLoginRequest.h"
+#import "HYInGameHelper.h"
 
 @interface CNHomeVC () <CNUserInfoLoginViewDelegate, CNServerViewDelegate, SDCycleScrollViewDelegate, UUMarqueeViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -131,7 +132,10 @@
 - (void)userDidLogin {
     [self.infoView updateLoginStatusUI];
     self.infoViewH.constant = 135;
+    
     [self requestHomeBanner];
+    // 游戏线路
+    [[HYInGameHelper sharedInstance] queryHomeInGamesStatus];
     // 最近玩过的电游
     for (CNBaseVC *vc in self.childViewControllers) {
         if ([vc isKindOfClass:[CNElectronicVC class]]) {
@@ -209,6 +213,8 @@
          }
     }
 }
+
+
 
 - (void)requestHomeBanner {
     WEAKSELF_DEFINE

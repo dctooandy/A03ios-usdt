@@ -476,7 +476,7 @@ typedef enum : NSUInteger {
         gameCode = [NSString stringWithFormat:@"A03%@", model.platformCode];
     }
     
-    [CNHomeRequest requestInGameUrlGameType:model.gameType gameId:model.gameId gameCode:gameCode handler:^(id responseObj, NSString *errorMsg) {
+    [CNHomeRequest requestInGameUrlGameType:model.gameType gameId:model.gameId gameCode:gameCode platformCurrency:nil handler:^(id responseObj, NSString *errorMsg) {
         
         GameModel *gameModel = [GameModel cn_parse:responseObj];
         NSMutableString *gameUrl = gameModel.url.mutableCopy;

@@ -43,10 +43,12 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 /// @param gameType 游戏类型
 /// @param gameId 游戏ID
 /// @param gameCode 游戏代码
+/// @param platformCurrency 线路（游戏货币）
 + (void)jump2GameName:(NSString *)gameName
              gameType:(NSString *)gameType
                gameId:(NSString *)gameId
-             gameCode:(NSString *)gameCode;
+             gameCode:(NSString *)gameCode
+     platformCurrency:(nullable NSString *)platformCurrency;
 
 /// 跳转到H5
 +(void)jump2HTMLWithStrURL: (NSString *)strURL title:(NSString *)title;

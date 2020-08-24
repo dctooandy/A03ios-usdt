@@ -92,6 +92,7 @@
 #define config_subscrib_modify  @"subscribe/modify" //修改员订阅设置
 
 #pragma mark 游戏
+#define config_queryGames @"game/queryGames" // 查询游戏线路
 #define config_inGame   @"game/inGame"     //进入游戏大厅
 //#define config_outGame   @"game/outGame"     //退出游戏大厅
 

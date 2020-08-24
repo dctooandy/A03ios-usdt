@@ -7,6 +7,7 @@
 //
 
 #import "CNChessVC.h"
+#import "HYInGameHelper.h"
 
 @interface CNChessVC ()
 
@@ -27,7 +28,8 @@
 
 // AS真人
 - (IBAction)ASReal:(id)sender {
-    [NNPageRouter jump2GameName:@"AS真人棋牌" gameType:@"BAC" gameId:@"" gameCode:@"A03064"];
+//    [NNPageRouter jump2GameName:@"AS真人棋牌" gameType:@"BAC" gameId:@"" gameCode:@"A03064"];
+    [[HYInGameHelper sharedInstance] inGame:InGameTypeAGSTAR];
 }
 
 @end

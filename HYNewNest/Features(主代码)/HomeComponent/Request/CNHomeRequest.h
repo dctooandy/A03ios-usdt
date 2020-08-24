@@ -27,13 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
 ///动态表单获取5个客服链接
 + (void)requestDynamicLive800AddressCompletionHandler:(HandlerBlock)handler;
 
-
 /// 客服回拨
 + (void)callCenterCallBackMessageId:(nullable NSString *)messageId
                             smsCode:(nullable NSString *)smsCode
                            mobileNo:(nullable NSString*)mobileNo
                             handler:(HandlerBlock)handler;
-
 
 ///进入H5获取ticket
 + (void)requestH5TicketHandler:(HandlerBlock)handler;
@@ -48,16 +46,18 @@ typedef NS_ENUM(NSInteger, BannerWhere) {
 + (void)requestBannerWhere:(BannerWhere)where
                    Handler:(HandlerBlock)handler;
 
-
 ///获取公告
 + (void)requestGetAnnouncesHandler:(HandlerBlock)handler;
-
 
 /// 进游戏
 +(void)requestInGameUrlGameType:(NSString *)gameType
                          gameId:(NSString *)gameId
                        gameCode:(NSString *)gameCode
+               platformCurrency:(nullable NSString *)platformCurrency
                         handler:(HandlerBlock)handler;
+
+/// 查询游戏线路
++ (void)queryGamesHandler:(HandlerBlock)handler;
 
  
 #pragma mark 电游

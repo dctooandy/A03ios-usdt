@@ -177,6 +177,8 @@
 		3D643F9124F2A91B00B9AAA7 /* CNPushRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F9024F2A91B00B9AAA7 /* CNPushRequest.m */; };
 		3D643F9724F36D3E00B9AAA7 /* HYVIPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F9524F36D3E00B9AAA7 /* HYVIPViewController.m */; };
 		3D643F9824F36D3E00B9AAA7 /* HYVIPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D643F9624F36D3E00B9AAA7 /* HYVIPViewController.xib */; };
+		3D643F9B24F396BC00B9AAA7 /* GameLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F9A24F396BC00B9AAA7 /* GameLineModel.m */; };
+		3D643F9E24F39BA600B9AAA7 /* HYInGameHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F9D24F39BA600B9AAA7 /* HYInGameHelper.m */; };
 		3DA4F15024B30A090039123F /* SGQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DA4F13B24B30A080039123F /* SGQRCode.bundle */; };
 		3DA4F15124B30A090039123F /* UIImage+SGImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */; };
 		3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F14024B30A080039123F /* UIButton+Indicator.m */; };
@@ -648,6 +650,10 @@
 		3D643F9424F36D3E00B9AAA7 /* HYVIPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYVIPViewController.h; sourceTree = "<group>"; };
 		3D643F9524F36D3E00B9AAA7 /* HYVIPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYVIPViewController.m; sourceTree = "<group>"; };
 		3D643F9624F36D3E00B9AAA7 /* HYVIPViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYVIPViewController.xib; sourceTree = "<group>"; };
+		3D643F9924F396BC00B9AAA7 /* GameLineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameLineModel.h; sourceTree = "<group>"; };
+		3D643F9A24F396BC00B9AAA7 /* GameLineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameLineModel.m; sourceTree = "<group>"; };
+		3D643F9C24F39BA600B9AAA7 /* HYInGameHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYInGameHelper.h; sourceTree = "<group>"; };
+		3D643F9D24F39BA600B9AAA7 /* HYInGameHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYInGameHelper.m; sourceTree = "<group>"; };
 		3DA4F13A24B30A080039123F /* SGQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCode.h; sourceTree = "<group>"; };
 		3DA4F13B24B30A080039123F /* SGQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SGQRCode.bundle; sourceTree = "<group>"; };
 		3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SGImageSize.m"; sourceTree = "<group>"; };
@@ -2035,6 +2041,8 @@
 			children = (
 				E986A0FF24C6E0CD000F9CFF /* CNHomeRequest.h */,
 				E986A10024C6E0CD000F9CFF /* CNHomeRequest.m */,
+				3D643F9C24F39BA600B9AAA7 /* HYInGameHelper.h */,
+				3D643F9D24F39BA600B9AAA7 /* HYInGameHelper.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -2057,6 +2065,8 @@
 				E986A10E24C73604000F9CFF /* AdBannerGroupModel.m */,
 				E986A11324C73DB8000F9CFF /* AnnounceModel.h */,
 				E986A11424C73DB8000F9CFF /* AnnounceModel.m */,
+				3D643F9924F396BC00B9AAA7 /* GameLineModel.h */,
+				3D643F9A24F396BC00B9AAA7 /* GameLineModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3204,6 +3214,7 @@
 				E98BEF1724D2AF9B00E6B0C8 /* HYWithdrawViewController.m in Sources */,
 				0487C96E24CE9A630013715A /* BRDatePickerView.m in Sources */,
 				E9063B9324D6F3480000273A /* HYNewCTZNCell.m in Sources */,
+				3D643F9B24F396BC00B9AAA7 /* GameLineModel.m in Sources */,
 				D571B1A124BFFD510087B5EC /* CNBaseTF.m in Sources */,
 				04C0F0E824C2E250007F1420 /* JHVerificationCodeView.m in Sources */,
 				0487C9E724D27BDD0013715A /* CNNotifySettingTCell.m in Sources */,
@@ -3221,6 +3232,7 @@
 				E97054AA24DC10040007F845 /* AgentRecordModel.m in Sources */,
 				E9B5497224CF0467002CE6EF /* HYArticalCell.m in Sources */,
 				3D643F9124F2A91B00B9AAA7 /* CNPushRequest.m in Sources */,
+				3D643F9E24F39BA600B9AAA7 /* HYInGameHelper.m in Sources */,
 				E986A11B24C7DFE7000F9CFF /* GameModel.m in Sources */,
 				E986A18224C97C0E000F9CFF /* AccountModel.m in Sources */,
 			);
