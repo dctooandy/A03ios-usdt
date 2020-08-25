@@ -41,8 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /// pop到某个控制器
-+ (void)pop2ViewControllerClassString:(NSString *)className;
-+ (void)pop2ViewControllerClass:(Class)aClass;
++ (BOOL)pop2ViewControllerClassString:(NSString *)className;
++ (BOOL)pop2ViewControllerClass:(Class)aClass;
 
 
 @end

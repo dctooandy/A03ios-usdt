@@ -14,7 +14,6 @@
 #import "CNCompleteInfoVC.h"
 #import "CNWDAccountRequest.h"
 #import "CNLoginRequest.h"
-#import "CNCompleteInfoVC.h"
 #import "NSURL+HYLink.h"
 #import <UIImageView+WebCache.h>
 #import <IVLoganAnalysis/IVLAManager.h>
@@ -139,8 +138,8 @@
 
 // 提交
 - (IBAction)submit:(id)sender {
-    if (![CNUserManager shareManager].userDetail.mobileNoBind) {
-        [HYTextAlertView showWithTitle:@"手机绑定" content:@"对不起！系统发现您还没有绑定手机，请先完成手机绑定流程，再进行绑卡操作。" comfirmText:@"确定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
+    if (![CNUserManager shareManager].userDetail.mobileNoBind || KIsEmptyString([CNUserManager shareManager].userDetail.realName)) {
+        [HYTextAlertView showWithTitle:@"完善信息" content:@"对不起！系统发现您还没有完成实名认证，请先完成实名认证，再进行绑卡操作。" comfirmText:@"确定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
             if (isComfirm) {
                 [self.navigationController pushViewController:[CNCompleteInfoVC new] animated:YES];
             } else {

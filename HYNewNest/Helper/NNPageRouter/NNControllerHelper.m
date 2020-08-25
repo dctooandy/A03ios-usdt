@@ -81,19 +81,21 @@
     }    return currentViewController;
 }
 
-+ (void)pop2ViewControllerClassString:(NSString *)className {
++ (BOOL)pop2ViewControllerClassString:(NSString *)className {
     Class theClass = NSClassFromString(className);
     NSAssert(theClass, @"theClass you named is not exist");
-    [self pop2ViewControllerClass:theClass];
+    return [self pop2ViewControllerClass:theClass];
 }
 
-+ (void)pop2ViewControllerClass:(Class)aClass {
++ (BOOL)pop2ViewControllerClass:(Class)aClass {
     for (UIViewController *controller in kCurNavVC.viewControllers) {
         if ([controller isKindOfClass:aClass]) {
             UIViewController *A = (UIViewController *)controller;
-                 [kCurNavVC popToViewController:A animated:YES];
+            [kCurNavVC popToViewController:A animated:YES];
+            return YES;
         }
     }
+    return NO;
 }
 
 @end

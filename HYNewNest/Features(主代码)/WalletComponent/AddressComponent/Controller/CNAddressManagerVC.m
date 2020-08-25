@@ -9,6 +9,7 @@
 #import "CNAddressManagerVC.h"
 #import "CNAddAddressVC.h"
 #import "CNAddBankCardVC.h"
+#import "CNBindPhoneVC.h"
 
 #import "CNAddressAddTCell.h"
 #define kCNAddressAddTCellID  @"CNAddressAddTCell"
@@ -264,27 +265,26 @@
             break;
             
         case HYAddressTypeDCBOX:
-//            if (self.dcboxAccounts.count == 0 && indexPath.row == self.dcboxAccounts.count) { //一键注册/绑定小金库
-//                WEAKSELF_DEFINE
-//                [[ABCOneKeyRegisterBFBHelper shareInstance] startOneKeyRegisterBFBHandler:^{
-//                    STRONGSELF_DEFINE
-//                    [strongSelf queryAccounts];
-//                }];
-//
-//            } else if (self.dcboxAccounts.count > 0 && indexPath.row == self.dcboxAccounts.count) { // 添加卡
-//                CNAddAddressVC *vc = [CNAddAddressVC new];
-//                vc.addrType = self.addrType;
-//                [self.navigationController pushViewController:vc animated:YES];
-//            }
             if (self.dcboxAccounts.count < 3 && indexPath.row == self.dcboxAccounts.count) { //倒数第二个
                 if (self.dcboxAccounts.count > 0) {
                     CNAddAddressVC *vc = [CNAddAddressVC new];
                     vc.addrType = self.addrType;
                     [self.navigationController pushViewController:vc animated:YES];
                 } else {
-                    [[ABCOneKeyRegisterBFBHelper shareInstance] startOneKeyRegisterBFBHandler:^{
-                        [self queryAccounts];
-                    }];
+                    if (![CNUserManager shareManager].userDetail.mobileNoBind) {
+                        [HYTextAlertView showWithTitle:@"手机绑定" content:@"对不起！系统发现您还没有绑定手机，请先完成手机绑定流程，再进行添加地址操作。" comfirmText:@"确定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
+                            if (isComfirm) {
+                                CNBindPhoneVC *vc = [CNBindPhoneVC new];
+                                vc.bindType = CNSMSCodeTypeBindPhone;
+                                [self.navigationController pushViewController:vc animated:YES];
+                            }
+                        }];
+                        
+                    } else {
+                        [[ABCOneKeyRegisterBFBHelper shareInstance] startOneKeyRegisterBFBHandler:^{
+                            [self queryAccounts];
+                        }];
+                    }
                 }
             }
             break;
