@@ -140,10 +140,9 @@
 #pragma mark  UITabBarControllerDelegate
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
-        
-    NSInteger index = [tabBarController.viewControllers indexOfObject:viewController];
     
-    if (index == 3 && ![CNUserManager shareManager].isLogin) {
+    HYNavigationController *curNav = (HYNavigationController *)viewController;
+    if ([curNav.jk_rootViewController isKindOfClass:[CNMineVC class]] && ![CNUserManager shareManager].isLogin) {
 
         [HYTextAlertView showWithTitle:@"温馨提示" content:@"我的页面有很多资金信息，登录后才可以查看哦" comfirmText:@"登录" cancelText:@"注册" comfirmHandler:^(BOOL isComfirm) {
             if (isComfirm) {

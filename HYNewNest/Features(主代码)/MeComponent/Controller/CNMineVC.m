@@ -26,6 +26,8 @@
 #import "HYRechargeViewController.h"
 #import "HYRechargeCNYViewController.h"
 #import "CNLoginRequest.h"
+#import <UIImageView+WebCache.h>
+#import "NSURL+HYLink.h"
 
 @interface CNMineVC ()
 /// 滚动视图
@@ -65,6 +67,8 @@
 /// 下载按钮
 @property (weak, nonatomic) IBOutlet UIButton *downLoadBtn;
 
+@property (nonatomic, strong) NSArray<OtherAppModel *> *otherApps;
+
 #pragma mark - CNY和USDT区别
 /// CNY和USDT 切换按钮
 @property (weak, nonatomic) IBOutlet UIButton *switchBtn;
@@ -91,6 +95,7 @@
     
     self.hideNavgation = YES;
     [self configUI];
+    [self requestOtherAppData];
     
     [self switchCurrencyUI];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchCurrencyUI) name:HYSwitchAcoutSuccNotification object:nil];
@@ -224,12 +229,31 @@
 
 // 下载APP
 - (IBAction)doloadApp:(id)sender {
-    
+    if (!_otherApps || _otherApps.count == 0) {
+        [kKeywindow jk_makeToast:@"正在请求下载数据 请稍后.."];
+        [self requestOtherAppData];
+        return;
+    }
+    OtherAppModel *model = self.otherApps[0];
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:model.appDownUrl]]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.appDownUrl] options:@{} completionHandler:^(BOOL success) {
+            [CNHUB showSuccess:@"正在为您跳转..."];
+        }];
+    } else {
+        [CNHUB showError:@"未知错误 无法下载"];
+    }
 }
 
 // 更多下载
 - (IBAction)moreDoload:(id)sender {
-    [self.navigationController pushViewController:[CNDownloadVC new] animated:YES];
+    if (!_otherApps || _otherApps.count == 0) {
+        [kKeywindow jk_makeToast:@"正在请求下载数据 请稍后.."];
+        [self requestOtherAppData];
+        return;
+    }
+    CNDownloadVC * downVc = [CNDownloadVC new];
+    downVc.otherApps = self.otherApps;
+    [self.navigationController pushViewController:downVc animated:YES];
 }
 
 #pragma mark - 货币界面业务切换
@@ -267,6 +291,19 @@
 }
 
 #pragma mark - REQUEST
+
+- (void)requestOtherAppData {
+    [CNUserCenterRequest requestOtherGameAppListHandler:^(id responseObj, NSString *errorMsg) {
+        NSArray *otherApps = [OtherAppModel cn_parse:responseObj];
+        if (otherApps.count > 0) {
+            self.otherApps = otherApps;
+            OtherAppModel *model = otherApps.firstObject;
+            self.appNameLb.text = model.appName;
+            self.appDescLb.text = model.appDesc;
+            [self.appImageV sd_setImageWithURL:[NSURL getUrlWithString:model.appImage] placeholderImage:[UIImage imageNamed:@"2"]];
+        }
+    }];
+}
 
 - (void)requestMonthPromoteAndXima {
     [self.monthPromoLb showIndicatorIsBig:NO];

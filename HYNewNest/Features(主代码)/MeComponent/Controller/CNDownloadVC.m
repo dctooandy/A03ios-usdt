@@ -8,17 +8,17 @@
 
 #import "CNDownloadVC.h"
 #import "CNDownloadTCell.h"
-#import "CNUserCenterRequest.h"
 #import "LYEmptyView.h"
 #import "UIView+Empty.h"
 #import <UIImageView+WebCache.h>
+#import "NSURL+HYLink.h"
 
 #define kCNDownloadTCellID  @"CNDownloadTCell"
 
 @interface CNDownloadVC () <UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSArray<OtherAppModel *> *otherApps;
+
 @end
 
 @implementation CNDownloadVC
@@ -28,7 +28,7 @@
     self.title = @"APP下载";
     [self configUI];
     
-    [self requestData];
+    [self.tableView reloadData];
 }
 
 
@@ -41,13 +41,13 @@
                                                            detailStr:@""];
 }
 
-- (void)requestData {
-    [CNUserCenterRequest requestOtherGameAppListHandler:^(id responseObj, NSString *errorMsg) {
-        NSArray *otherApps = [OtherAppModel cn_parse:responseObj];
-        self.otherApps = otherApps;
-        [self.tableView reloadData];
-    }];
-}
+//- (void)requestData {
+//    [CNUserCenterRequest requestOtherGameAppListHandler:^(id responseObj, NSString *errorMsg) {
+//        NSArray *otherApps = [OtherAppModel cn_parse:responseObj];
+//        self.otherApps = otherApps;
+//        [self.tableView reloadData];
+//    }];
+//}
 
 
 #pragma - mark UITableViewDataSource, UITableViewDelegate
@@ -61,7 +61,7 @@
     CNDownloadTCell *cell = [tableView dequeueReusableCellWithIdentifier:kCNDownloadTCellID forIndexPath:indexPath];
     cell.appNameLb.text = model.appName;
     cell.appDescLb.text = model.appDesc;
-    [cell.appImageV sd_setImageWithURL:[NSURL URLWithString:model.appImage]];
+    [cell.appImageV sd_setImageWithURL:[NSURL getUrlWithString:model.appImage] placeholderImage:[UIImage imageNamed:@"2"]];
     cell.downloadAction = ^{
         NSLog(@"点击下载%ld", (long)indexPath.row);
         if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:model.appDownUrl]]) {
