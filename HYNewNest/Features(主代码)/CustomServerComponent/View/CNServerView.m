@@ -42,7 +42,7 @@
 
 - (void)configUI {
     self.phoneView.fromServer = YES;
-    [self.phoneView setPlaceholder:@"请输入您想接通的电话"];
+    [self.phoneView setPlaceholder:@"请输入您想接通的11位手机号码"];
     self.codeView.codeType = CNCodeTypePhoneLogin;
     [self.codeView setPlaceholder:@"6位数字验证码"];
     [self setDelegate];
@@ -67,6 +67,21 @@
                      callBack:self.phoneView.account
                          code:self.codeView.code
                     messageId:self.codeView.smsModel.messageId];
+        [self close:nil];
+    }
+}
+
+- (IBAction)dialBindedPhone:(id)sender {
+    if (![CNUserManager shareManager].isLogin) {
+        [CNHUB showError:@"您未登录 请输入要回拨的手机号后提交"];
+        return;
+    }
+    if (![CNUserManager shareManager].userDetail.mobileNoBind) {
+        [CNHUB showError:@"您未绑定手机号 请先到“我的-安全中心“绑定"];
+        return;
+    }
+    if (_delegate && [_delegate respondsToSelector:@selector(serverViewWillDialBindedPhone)]) {
+        [_delegate serverViewWillDialBindedPhone];
         [self close:nil];
     }
 }

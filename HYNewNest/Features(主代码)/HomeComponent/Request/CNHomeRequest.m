@@ -26,9 +26,9 @@
     [self POST:kGatewayPath(config_dynamicQuery) parameters:param completionHandler:handler];
 }
 
-+ (void)callCenterCallBackMessageId:(NSString *)messageId
-                            smsCode:(NSString *)smsCode
-                           mobileNo:(NSString *)mobileNo
++ (void)callCenterCallBackMessageId:(nullable NSString *)messageId
+                            smsCode:(nullable NSString *)smsCode
+                           mobileNo:(nullable NSString *)mobileNo
                             handler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];

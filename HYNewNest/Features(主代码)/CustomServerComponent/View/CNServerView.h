@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 按钮代理事件
 @protocol CNServerViewDelegate <NSObject>
 - (void)serverView:(CNServerView *)server callBack:(NSString *)phone code:(NSString *)code messageId:(NSString *)messageId;
+- (void)serverViewWillDialBindedPhone;
 @end
 
 @interface CNServerView : CNBaseXibView

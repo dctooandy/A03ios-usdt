@@ -89,7 +89,7 @@
     self.tipLb.textColor = self.hilghtColor;
     
     // 这里校验是判断手机号 还是 账号
-    if (!self.isRegister && [text hasPrefix:@"1"]) {
+    if ((!self.isRegister && [text hasPrefix:@"1"]) || self.fromServer) {
         self.tipLb.text = @"手机号码*";
         self.phoneLogin = YES;
     } else {
@@ -105,7 +105,7 @@
             [self showWrongMsg:@"您输入的手机不符合规则"];
         }
     // 用户名
-    } else if (text.length >= 5){
+    } else if (text.length >= 5 && !self.fromServer){
         self.correct = [textField.text validationType:ValidationTypeUserName];
         if (!self.correct) {
             if (self.isRegister) {

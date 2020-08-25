@@ -23,7 +23,6 @@
 #import "NSURL+HYLink.h"
 
 #import "CNUserInfoLoginView.h"
-#import "CNServerView.h"
 #import "SDCycleScrollView.h"
 #import "UUMarqueeView.h"
 #import "CNMessageBoxView.h"
@@ -34,7 +33,7 @@
 #import "CNLoginRequest.h"
 #import "HYInGameHelper.h"
 
-@interface CNHomeVC () <CNUserInfoLoginViewDelegate, CNServerViewDelegate, SDCycleScrollViewDelegate, UUMarqueeViewDelegate>
+@interface CNHomeVC () <CNUserInfoLoginViewDelegate,  SDCycleScrollViewDelegate, UUMarqueeViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 /// 滚动视图
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -409,20 +408,6 @@
 
 - (void)depositAction {
     [NNPageRouter jump2Live800Type:CNLive800TypeDeposit];
-}
-
-- (void)serverView:(CNServerView *)server callBack:(NSString *)phone code:(NSString *)code messageId:(NSString *)messageId {
-    NSLog(@"phone=%@,code=%@, mid=%@", phone, code, messageId);
-    // 请求接口处理完成移除
-    [server removeFromSuperview];
-    [CNHomeRequest callCenterCallBackMessageId:messageId
-                                       smsCode:code
-                                      mobileNo:phone
-                                       handler:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg) {
-            [kKeywindow jk_makeToast:@"客户代表将于1-10分钟内为您致电，请保持电话畅通哦 (^o^)" duration:3 position:JKToastPositionCenter];
-        }
-    }];
 }
 
 

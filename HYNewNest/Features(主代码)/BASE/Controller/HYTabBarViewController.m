@@ -189,25 +189,37 @@
     }
 }
 
-- (void)serverView:(CNServerView *)server callBack:(NSString *)phone code:(NSString *)code messageId:(NSString *)messageId {
-    NSLog(@"phone=%@,code=%@, mid=%@", phone, code, messageId);
-    // 请求接口处理完成移除
-    [server removeFromSuperview];
-    [CNHomeRequest callCenterCallBackMessageId:messageId
-                                       smsCode:code
-                                      mobileNo:phone
-                                       handler:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg) {
-            [kKeywindow jk_makeToast:@"客户代表将于1-10分钟内为您致电，请保持电话畅通哦 (^o^)" duration:3 position:JKToastPositionCenter];
-        }
-    }];
-}
-
 - (void)call400{
     
     NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",@"4001203093"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str] options:@{} completionHandler:^(BOOL success) {
         [CNHUB showSuccess:@"正在为您拨通.."];
+    }];
+}
+
+
+#pragma mark - CNServerViewDelegate 电话回拨
+
+- (void)serverView:(CNServerView *)server callBack:(NSString *)phone code:(NSString *)code messageId:(NSString *)messageId {
+    [CNHomeRequest callCenterCallBackMessageId:messageId
+                                       smsCode:code
+                                      mobileNo:phone
+                                       handler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            [kKeywindow jk_makeToast:@"客户代表将于1-10分钟内为您致电，请保持电话畅通哦 (^o^)" duration:4 position:JKToastPositionCenter];
+        }
+    }];
+}
+
+- (void)serverViewWillDialBindedPhone {
+    
+    [CNHomeRequest callCenterCallBackMessageId:nil
+                                       smsCode:nil
+                                      mobileNo:nil
+                                       handler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            [kKeywindow jk_makeToast:@"客户代表将于1-10分钟内为您致电，请保持电话畅通哦 (^o^)" duration:4 position:JKToastPositionCenter];
+        }
     }];
 }
 
