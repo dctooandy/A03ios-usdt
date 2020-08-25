@@ -68,7 +68,7 @@
 
 - (void)rightItemAction {
     
-    [HYOneBtnAlertView showWithTitle:@"规则说明" content:@"1、您必须达到1星级方可参加活动；\n2、被邀请人单周有效投注额≥1500USDT，您可以获取无流水要求0.1%%佣金，无上限；\n3、重复注册将无法产生该优惠；\n4、币游享有本活动最终解释权，如有不诚实套利用户，获取的金额会被撤销；" comfirmText:@"我知道了" comfirmHandler:^{
+    [HYOneBtnAlertView showWithTitle:@"规则说明" content:@"1、您必须达到1星级方可参加活动；\n2、被邀请人单周有效投注额≥1500USDT，您可以获取无流水要求0.1%佣金，无上限；\n3、重复注册将无法产生该优惠；\n4、币游享有本活动最终解释权，如有不诚实套利用户，获取的金额会被撤销；" comfirmText:@"我知道了" comfirmHandler:^{
     }];
 }
 

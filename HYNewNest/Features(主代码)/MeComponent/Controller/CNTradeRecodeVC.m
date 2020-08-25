@@ -82,7 +82,7 @@
         }
         self.topViewHeight.constant = 0;
         self.topView.hidden = YES;
-        if ([type containsString:@"充值"]) {
+        if ([type containsString:@"充值"] || [type containsString:@"充币"]) {
             self.recoType = transactionRecord_rechargeType;
         } else if ([type containsString:@"提现"] || [type containsString:@"提币"]) {
             self.recoType = transactionRecord_withdrawType;

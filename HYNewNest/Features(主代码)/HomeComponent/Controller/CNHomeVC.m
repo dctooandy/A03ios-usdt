@@ -66,10 +66,6 @@
 
 @property (nonatomic, assign) NSInteger currPage;
 
-#pragma - mark logo, 品牌和赞助商
-/// 品牌和赞助商
-@property (weak, nonatomic) IBOutlet UIView *brandView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *brandViewH;
 @end
 
 @implementation CNHomeVC
@@ -121,16 +117,7 @@
     
     CNBaseVC *vc = [self.childViewControllers objectAtIndex:self.currPage];
     self.pageViewH.constant = vc.totalHeight;
-    
-    if ([CNUserManager shareManager].isLogin) {
-        self.brandView.hidden = NO;
-        self.brandViewH.constant = 600;
-        
-        [self.infoView reloadBalance];
-    } else {
-        self.brandView.hidden = YES;
-        self.brandViewH.constant = 0;
-    }
+
 }
 
 - (void)userDidLogin {

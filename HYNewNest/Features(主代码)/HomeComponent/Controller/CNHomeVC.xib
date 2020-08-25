@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -12,8 +12,6 @@
             <connections>
                 <outlet property="adBgView" destination="A7T-hK-3in" id="YDB-Us-fRM"/>
                 <outlet property="bannerBgView" destination="zyr-R6-wLq" id="RS5-nC-t8A"/>
-                <outlet property="brandView" destination="Me2-l2-ko6" id="35M-lj-goD"/>
-                <outlet property="brandViewH" destination="piz-XV-bof" id="3VX-8h-mre"/>
                 <outlet property="infoView" destination="TdK-gk-EZH" id="A8I-g1-8DP"/>
                 <outlet property="infoViewH" destination="ihl-Ay-wKb" id="17F-7z-oAB"/>
                 <outlet property="pageView" destination="Mai-XV-E4U" id="wgF-ba-ZRA"/>
@@ -104,7 +102,7 @@
                                                         <action selector="switchGame:" destination="-1" eventType="touchUpInside" id="egJ-GU-WzG"/>
                                                     </connections>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VCu-HH-qcM">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VCu-HH-qcM">
                                                     <rect key="frame" x="8.5" y="0.0" width="52" height="52"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="52" id="gYS-RZ-StD"/>
@@ -152,7 +150,7 @@
                                                         <action selector="switchGame:" destination="-1" eventType="touchUpInside" id="fFO-T6-UGq"/>
                                                     </connections>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4aR-w5-0cv">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4aR-w5-0cv">
                                                     <rect key="frame" x="8" y="0.0" width="52" height="52"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="4aR-w5-0cv" secondAttribute="height" multiplier="1:1" id="2Dx-cs-pgm"/>
@@ -201,7 +199,7 @@
                                                         <action selector="switchGame:" destination="-1" eventType="touchUpInside" id="yrw-vs-gsC"/>
                                                     </connections>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ga8-s5-6VZ">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ga8-s5-6VZ">
                                                     <rect key="frame" x="8.5" y="0.0" width="52" height="52"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="52" id="G4v-br-U3G"/>
@@ -250,7 +248,7 @@
                                                         <action selector="switchGame:" destination="-1" eventType="touchUpInside" id="J6j-9L-JO1"/>
                                                     </connections>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gJ9-1r-xEp">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gJ9-1r-xEp">
                                                     <rect key="frame" x="8.5" y="0.0" width="52" height="52"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="52" id="AmT-fw-KzU"/>
@@ -299,7 +297,7 @@
                                                         <action selector="switchGame:" destination="-1" eventType="touchUpInside" id="dPh-4f-rvY"/>
                                                     </connections>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CEg-AT-I7W">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CEg-AT-I7W">
                                                     <rect key="frame" x="8.5" y="0.0" width="52" height="52"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="CEg-AT-I7W" secondAttribute="height" multiplier="1:1" id="bXU-SF-oDK"/>

@@ -12,6 +12,7 @@
 @interface CNRecordTypeSelectorView ()
 @property (strong, nonatomic) IBOutletCollection(CNSelectBtn) NSArray *typeBtnArray;
 @property (strong, nonatomic) IBOutletCollection(CNSelectBtn) NSArray *dayBtnArray;
+
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *submitBtn;
 @property (nonatomic, copy) NSString *selectType;
 @property (nonatomic, copy) NSString *selectDay;
@@ -31,6 +32,7 @@
     alert.frame = window.bounds;
     [window addSubview:alert];
     
+    [alert.depostiBtn setTitle:[CNUserManager shareManager].isUsdtMode?@"充币":@"充值" forState:UIControlStateNormal];
     [alert.withdrawBtn setTitle:[CNUserManager shareManager].isUsdtMode?@"提币":@"提现" forState:UIControlStateNormal];
     
     // 设置默认选择

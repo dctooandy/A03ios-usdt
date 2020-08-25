@@ -26,7 +26,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+        <view contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="363" height="145"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -316,6 +316,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="363" height="145"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shape" translatesAutoresizingMaskIntoConstraints="NO" id="Sim-dp-tCw">
+                            <rect key="frame" x="0.0" y="0.0" width="92" height="113"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="92" id="Fbn-CG-xgH"/>
+                                <constraint firstAttribute="height" constant="113" id="ed8-GX-7F0"/>
+                            </constraints>
+                        </imageView>
                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTb-7Q-XWA">
                             <rect key="frame" x="24" y="92" width="150" height="38"/>
                             <constraints>
@@ -378,11 +385,13 @@
                         <constraint firstItem="7ua-jq-xoI" firstAttribute="leading" secondItem="MTb-7Q-XWA" secondAttribute="trailing" constant="15" id="FYT-JH-xdu"/>
                         <constraint firstItem="tSp-Jm-n9v" firstAttribute="top" secondItem="y2T-pI-nHY" secondAttribute="bottom" id="NCY-w4-IL8"/>
                         <constraint firstItem="PeP-4f-OQh" firstAttribute="leading" secondItem="bWe-Js-K1F" secondAttribute="leading" constant="63" id="Oco-TT-I1n"/>
+                        <constraint firstItem="Sim-dp-tCw" firstAttribute="leading" secondItem="0Qw-xn-dyU" secondAttribute="leading" id="Sgf-UL-8eV"/>
                         <constraint firstItem="7ua-jq-xoI" firstAttribute="height" secondItem="MTb-7Q-XWA" secondAttribute="height" id="dyd-oa-jOE"/>
                         <constraint firstItem="PeP-4f-OQh" firstAttribute="top" secondItem="bWe-Js-K1F" secondAttribute="top" constant="12" id="jbW-7b-rzR"/>
                         <constraint firstItem="MTb-7Q-XWA" firstAttribute="leading" secondItem="bWe-Js-K1F" secondAttribute="leading" constant="24" id="l5m-LI-qwk"/>
                         <constraint firstItem="y2T-pI-nHY" firstAttribute="leading" secondItem="PeP-4f-OQh" secondAttribute="trailing" constant="-12" id="mWr-kc-zd0"/>
                         <constraint firstAttribute="trailing" secondItem="7ua-jq-xoI" secondAttribute="trailing" constant="24" id="vw7-ME-f0D"/>
+                        <constraint firstItem="Sim-dp-tCw" firstAttribute="top" secondItem="bWe-Js-K1F" secondAttribute="top" id="zIc-Yz-SxG"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="0Qw-xn-dyU"/>
                 </view>
@@ -398,11 +407,12 @@
                 <constraint firstItem="GBy-vV-Zaw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qGN-Z2-P8J"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="232.60869565217394" y="46.540178571428569"/>
+            <point key="canvasLocation" x="-170.28985507246378" y="63.950892857142854"/>
         </view>
     </objects>
     <resources>
         <image name="CNY" width="57" height="39"/>
+        <image name="Shape" width="84" height="81"/>
         <image name="USDT" width="57" height="39"/>
         <image name="avatar" width="73" height="73"/>
         <image name="buy" width="20" height="20"/>
