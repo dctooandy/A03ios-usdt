@@ -74,20 +74,22 @@
 }
 
 - (void)reloadBalance {
-    [self.moneyLb showIndicatorIsBig:NO];
-    //金额
-    WEAKSELF_DEFINE
-    [CNUserCenterRequest requestAccountBalanceHandler:^(id responseObj, NSString *errorMsg) {
-        STRONGSELF_DEFINE
-        AccountMoneyDetailModel *model = [AccountMoneyDetailModel cn_parse:responseObj];
-        if (!model) {
-            return;
-        }
-//        strongSelf.moneyLb.text = [model.balance jk_toDisplayNumberWithDigit:2];
-        [strongSelf.moneyLb hideIndicatorWithText: [model.balance jk_toDisplayNumberWithDigit:2]];
-        strongSelf.currencyLb.text = model.currency;
-        
-    }];
+    if ([CNUserManager shareManager].isLogin) {
+        [self.moneyLb showIndicatorIsBig:NO];
+        //金额
+        WEAKSELF_DEFINE
+        [CNUserCenterRequest requestAccountBalanceHandler:^(id responseObj, NSString *errorMsg) {
+            STRONGSELF_DEFINE
+            AccountMoneyDetailModel *model = [AccountMoneyDetailModel cn_parse:responseObj];
+            if (!model) {
+                return;
+            }
+    //        strongSelf.moneyLb.text = [model.balance jk_toDisplayNumberWithDigit:2];
+            [strongSelf.moneyLb hideIndicatorWithText: [model.balance jk_toDisplayNumberWithDigit:2]];
+            strongSelf.currencyLb.text = model.currency;
+            
+        }];
+    }
 }
 
 - (void)switchAccountUIChange {

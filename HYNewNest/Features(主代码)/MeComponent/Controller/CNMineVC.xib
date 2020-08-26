@@ -28,6 +28,7 @@
                 <outlet property="nickNameLb" destination="tmG-wz-MyA" id="FTr-ZY-OBC"/>
                 <outlet property="scrollContentView" destination="z1O-DJ-YiD" id="F61-Sd-Lfz"/>
                 <outlet property="scrollContentW" destination="KQo-6S-o1P" id="DHY-yA-IOa"/>
+                <outlet property="scrollView" destination="9b1-FJ-wgg" id="ZWZ-2P-1Go"/>
                 <outlet property="shareBgView" destination="BpC-IV-WtY" id="iaB-Fa-ItY"/>
                 <outlet property="shareBgViewH" destination="pbd-Ke-6gA" id="Y4D-Ey-Wfi"/>
                 <outlet property="sixthTapLb" destination="MxN-37-T5p" id="XJ2-rC-WX3"/>

@@ -28,8 +28,10 @@
 #import "CNLoginRequest.h"
 #import <UIImageView+WebCache.h>
 #import "NSURL+HYLink.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface CNMineVC ()
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 /// 滚动视图
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 /// 滚动视图宽
@@ -97,7 +99,6 @@
     [self configUI];
     [self requestOtherAppData];
     
-    [self switchCurrencyUI];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchCurrencyUI) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchCurrencyUI) name:HYSwitchAcoutSuccNotification object:nil];
 }
@@ -105,16 +106,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if ([CNUserManager shareManager].isLogin) {
-        self.VIPLb.text = [NSString stringWithFormat:@"VIP%ld", [CNUserManager shareManager].userInfo.starLevel];
-        self.nickNameLb.text = [CNUserManager shareManager].printedloginName;
-        [self.headerIV sd_setBackgroundImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userDetail.avatar] forState:UIControlStateNormal];
-        
-        [self requestAccountBalance];
-        [self requestBetAmount];
-        [self requestMonthPromoteAndXima];
+    kPreventRepeatTime(60);
+    [self switchCurrencyUI];
 
-    }
 }
 
 - (void)configUI {
@@ -126,8 +120,10 @@
     self.switchBtn.layer.borderColor = kHexColor(0x19CECE).CGColor;
     self.switchBtn.layer.borderWidth = 1;
     
-    // 根据货币切换UI
-    [self switchCurrencyUI];
+    __weak typeof(self) wSelf = self;
+    self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [wSelf switchCurrencyUI];
+    }];
 }
 
 #pragma mark - 按钮事件
@@ -268,8 +264,10 @@
     }];
 }
 
-
+/// 切换账户的时候 （刷新界面和数据）
 - (void)switchCurrencyUI {
+    
+    // 1.不同货币模式UI变化
     self.switchBtn.hidden = [CNUserManager shareManager].userDetail.newAccountFlag;
     
     BOOL isUsdtMode = [CNUserManager shareManager].isUsdtMode;
@@ -286,9 +284,18 @@
     self.shareBgView.hidden = !isUsdtMode;
     self.shareBgViewH.constant = isUsdtMode?AD(90):0;
     
-    [self requestAccountBalance];
-    [self requestBetAmount];
-    [self requestMonthPromoteAndXima];
+    // 2.用户信息
+    if ([CNUserManager shareManager].isLogin) {
+        self.VIPLb.text = [NSString stringWithFormat:@"VIP%ld", [CNUserManager shareManager].userInfo.starLevel];
+        self.nickNameLb.text = [CNUserManager shareManager].printedloginName;
+        [self.headerIV sd_setBackgroundImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userDetail.avatar] forState:UIControlStateNormal];
+        
+        // 3.加载相关金额
+        [self requestAccountBalance];
+        [self requestBetAmount];
+        [self requestMonthPromoteAndXima];
+    }
+    
 }
 
 #pragma mark - REQUEST
@@ -333,6 +340,8 @@
 //        strongSelf.amountLb.originText = [model.balance jk_toDisplayNumberWithDigit:2];
         [strongSelf.amountLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
         strongSelf.currencyLb.text = model.currency;
+        
+        [strongSelf.scrollView.mj_header endRefreshing];
     }];
 }
 

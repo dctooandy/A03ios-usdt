@@ -80,6 +80,9 @@
     [super viewDidLayoutSubviews];
     [self.bannerBgView addSubview:self.bannerView];
     [self.adBgView addSubview:self.marqueeView];
+    
+    CNBaseVC *vc = [self.childViewControllers objectAtIndex:self.currPage];
+    self.pageViewH.constant = vc.totalHeight;
 }
 
 - (void)rightItemAction {
@@ -114,9 +117,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    CNBaseVC *vc = [self.childViewControllers objectAtIndex:self.currPage];
-    self.pageViewH.constant = vc.totalHeight;
-
+    kPreventRepeatTime(60);
+    [self.infoView reloadBalance];
 }
 
 - (void)userDidLogin {
@@ -124,12 +126,15 @@
     self.infoViewH.constant = 135;
     
     [self requestHomeBanner];
-    // 游戏线路
-    [[HYInGameHelper sharedInstance] queryHomeInGamesStatus];
-    // 最近玩过的电游
-    for (CNBaseVC *vc in self.childViewControllers) {
-        if ([vc isKindOfClass:[CNElectronicVC class]]) {
-            [(CNElectronicVC *)vc queryRecentGames];
+    
+    if ([CNUserManager shareManager].isLogin) {
+        // 游戏线路
+        [[HYInGameHelper sharedInstance] queryHomeInGamesStatus];
+        // 最近玩过的电游
+        for (CNBaseVC *vc in self.childViewControllers) {
+            if ([vc isKindOfClass:[CNElectronicVC class]]) {
+                [(CNElectronicVC *)vc queryRecentGames];
+            }
         }
     }
 }
