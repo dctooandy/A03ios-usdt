@@ -13,6 +13,8 @@
 #import <IVLoganAnalysis/IVLAManager.h>
 #import "CNCompleteInfoVC.h"
 #import "CNBindPhoneVC.h"
+#import "HYDownloadLinkView.h"
+#import "ABCOneKeyRegisterBFBHelper.h"
 
 @interface CNAddAddressVC () <CNNormalInputViewDelegate, CNCodeInputViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *goldBtn;
@@ -68,7 +70,7 @@
             
             break;
             
-        case HYAddressTypeDCBOX:
+        case HYAddressTypeDCBOX: {
             self.goldBtn.selected = YES;
             self.otherBtn.selected = NO;
             self.title = @"添加小金库";
@@ -80,7 +82,16 @@
             [self.submitBtn setTitle:@"添加小金库钱包" forState:UIControlStateNormal];
             self.btomTipsTitle.hidden = YES;
             self.btomTipsLb.hidden = YES;
+            
+            HYDownloadLinkView *linkView = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(AD(96), self.codeInputView.bottom, AD(182), AD(30)) normalText:@"还没有小金库账号？" tapableText:@"一键注册" tapColor:kHexColor(0x10B4DD) urlValue:nil];
+            linkView.tapBlock = ^{
+                [[ABCOneKeyRegisterBFBHelper shareInstance] startOneKeyRegisterBFBHandler:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
+            };
+            [self.view addSubview:linkView];
             break;
+        }
             
         case HYAddressTypeUSDT:
             self.goldBtn.selected = NO;
