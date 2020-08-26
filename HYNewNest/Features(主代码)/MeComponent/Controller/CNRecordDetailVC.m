@@ -128,7 +128,7 @@
     
     switch (self.detailType) {
         case CNRecordTypeDeposit:
-            self.title = @"充值详情";
+            self.title = [CNUserManager shareManager].isUsdtMode?@"充币详情":@"充值详情";
             self.touZhuView.hidden = YES;
             self.touZhuViewH.constant = 0;
             
