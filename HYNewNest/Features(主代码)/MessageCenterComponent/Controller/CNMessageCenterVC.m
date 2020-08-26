@@ -25,7 +25,7 @@
 
 @property (nonatomic, assign) NSInteger selecTag; //0公告 1站内信
 @property (nonatomic, assign) NSInteger currPage; // 站内信页码
-@property (nonatomic, strong) NSMutableArray<ArticalModel*> *articals;//站内信
+@property (nonatomic, strong) NSMutableArray<AnnounceModel*> *articals;//站内信
 @property (nonatomic, strong) NSArray<AnnounceModel *> *announces;//公告
 @end
 
@@ -37,7 +37,7 @@
 //    [self addNaviRightItemWithImageName:@"sz"];
     [self configUI];
     
-    self.currPage = 0;
+    self.currPage = 1;
     self.articals = @[].mutableCopy;
     [self requestAnnouncement];
     [self requestLetters];
@@ -97,9 +97,9 @@
     [CNUserCenterRequest queryLetterPageNo:self.currPage pageSize:10 handler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             NSArray *data = responseObj[@"data"];
-            NSArray<ArticalModel*> *articals = [ArticalModel cn_parse:data];
+            NSArray<AnnounceModel*> *articals = [AnnounceModel cn_parse:data];
             if (self->_currPage == 0) {
-                self.articals = articals.copy;
+                self.articals = articals.mutableCopy;
             } else {
                 if (articals.count > 0) {
                     [self.articals addObjectsFromArray:articals];
@@ -129,9 +129,9 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     CNMessageTCell *cell = [tableView dequeueReusableCellWithIdentifier:kCNMessageTCellID forIndexPath:indexPath];
     if (self.selecTag) {
-        ArticalModel *arti = self.articals[indexPath.row];
-        cell.timeLb.text = arti.publishDate;
-        cell.contentLb.text = arti.articleContent;
+        AnnounceModel *arti = self.articals[indexPath.row];
+        cell.timeLb.text = arti.createDate;
+        cell.contentLb.text = arti.content;
     } else {
         AnnounceModel *anno = self.announces[indexPath.row];
         cell.timeLb.text = anno.createDate;
