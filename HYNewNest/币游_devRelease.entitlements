@@ -4,11 +4,5 @@
 <dict>
 	<key>aps-environment</key>
 	<string>development</string>
-	<key>keychain-access-groups</key>
-	<array>
-		<string>$(AppIdentifierPrefix)com.hy.HYNewNest</string>
-		<string>$(AppIdentifierPrefix)com.zero.hy</string>
-		<string>$(AppIdentifierPrefix)come.zero.hy.ag</string>
-	</array>
 </dict>
 </plist>

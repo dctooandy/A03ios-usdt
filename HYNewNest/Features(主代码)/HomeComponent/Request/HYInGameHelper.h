@@ -32,6 +32,12 @@ typedef NS_ENUM(NSUInteger, InGameType) {
 // 进入游戏 编号
 - (void)inGame:(InGameType)gType;
 
+// 进入电游
+- (void)inElecGameGameName:(NSString *)gameName
+                  gameType:(NSString *)gameType
+                    gameId:(NSString *)gameId
+                  gameCode:(NSString *)gameCode;
+
 @end
 
 NS_ASSUME_NONNULL_END

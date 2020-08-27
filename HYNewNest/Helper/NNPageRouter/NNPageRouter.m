@@ -110,6 +110,36 @@
         }
         GameStartPlayViewController *vc = [[GameStartPlayViewController alloc] initGameWithGameUrl:gameUrl title:gameName];
         [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:vc animated:YES];
+        
+    }];
+}
+
++ (void)jump2ElecGameName:(NSString *)gameName
+                 gameType:(NSString *)gameType
+                   gameId:(NSString *)gameId
+                 gameCode:(NSString *)gameCode
+         platformCurrency:(NSString *)platformCurrency {
+    
+    [CNHomeRequest requestInGameUrlGameType:gameType
+                                     gameId:gameId
+                                   gameCode:gameCode
+                           platformCurrency:platformCurrency handler:^(id responseObj, NSString *errorMsg) {
+        
+        GameModel *gameModel = [GameModel cn_parse:responseObj];
+        NSMutableString *gameUrl = gameModel.url.mutableCopy;
+        if (KIsEmptyString(gameUrl)) {
+           [kKeywindow jk_makeToast:@"获取游戏数据为空" duration:1.5 position:JKToastPositionCenter];
+           return;
+        }
+        if (gameModel.postMap) {
+            if (![gameUrl containsString:@"?"]) {
+                [gameUrl appendString:@"?"];
+            }
+            [gameUrl appendFormat:@"gameID=%@&gameType=%@&username=%@&password=%@", gameModel.postMap.gameID, gameModel.postMap.gameType, gameModel.postMap.username, gameModel.postMap.password];
+        }
+        GameStartPlayViewController *vc = [[GameStartPlayViewController alloc] initGameWithGameUrl:gameUrl.copy title:gameName];
+        [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:vc animated:YES];
+
     }];
 }
 

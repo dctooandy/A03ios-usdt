@@ -14,6 +14,7 @@
 #import "GameStartPlayViewController.h"
 #import "LYEmptyView.h"
 #import "UIView+Empty.h"
+#import "HYInGameHelper.h"
 
 @interface CNELSearchVC () <UICollectionViewDataSource, UICollectionViewDelegate>
 /// 搜索框
@@ -47,7 +48,9 @@
             if (self.currentPage == 1) {
                 self.games = games.copy;
             } else {
-                [self.games addObjectsFromArray:games];
+                if (games.count > 0) {
+                    [self.games addObjectsFromArray:games];
+                }
             }
             if (model.totalPage == self.currentPage) {
                 [self.resultCV.mj_footer endRefreshingWithNoMoreData];
@@ -121,24 +124,8 @@
         gameCode = [NSString stringWithFormat:@"A03%@", model.platformCode];
     }
     
-    [CNHomeRequest requestInGameUrlGameType:model.gameType gameId:model.gameId gameCode:gameCode platformCurrency:nil handler:^(id responseObj, NSString *errorMsg) {
-        
-        GameModel *gameModel = [GameModel cn_parse:responseObj];
-        NSMutableString *gameUrl = gameModel.url.mutableCopy;
-        if (KIsEmptyString(gameUrl)) {
-           [kKeywindow jk_makeToast:@"获取游戏数据为空" duration:1.5 position:JKToastPositionCenter];
-           return;
-        }
-        if (gameModel.postMap) {
-            if (![gameUrl containsString:@"?"]) {
-                [gameUrl appendString:@"?"];
-            }
-            [gameUrl appendFormat:@"gameID=%@&gameType=%@&username=%@&password=%@", gameModel.postMap.gameID, gameModel.postMap.gameType, gameModel.postMap.username, gameModel.postMap.password];
-        }
-        GameStartPlayViewController *vc = [[GameStartPlayViewController alloc] initGameWithGameUrl:gameUrl.copy title:model.gameName];
-        [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:vc animated:YES];
-
-    }];
+    [[HYInGameHelper sharedInstance] inElecGameGameName:model.gameName gameType:model.gameType gameId:model.gameId gameCode:model.platformCode];
+    
 }
 
 @end

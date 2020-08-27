@@ -38,7 +38,7 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 /// @param type 客服类型
 +(void)jump2Live800Type:(CNLive800Type)type;
 
-/// 首页跳到游戏
+/// 首页跳到游戏（该方法不直接使用了，请通过HYInGameHelper查看）
 /// @param gameName 游戏名
 /// @param gameType 游戏类型
 /// @param gameId 游戏ID
@@ -49,6 +49,13 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
                gameId:(NSString *)gameId
              gameCode:(NSString *)gameCode
      platformCurrency:(nullable NSString *)platformCurrency;
+
+/// 跳到电子游戏（该方法不直接使用了，请通过HYInGameHelper查看）
++ (void)jump2ElecGameName:(NSString *)gameName
+                 gameType:(NSString *)gameType
+                   gameId:(NSString *)gameId
+                 gameCode:(NSString *)gameCode
+         platformCurrency:(nullable NSString *)platformCurrency;
 
 /// 跳转到H5
 +(void)jump2HTMLWithStrURL: (NSString *)strURL title:(NSString *)title;

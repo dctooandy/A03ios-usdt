@@ -12,6 +12,7 @@
 #import "CNElectrionHallVC.h"
 #import "HYInGameHelper.h"
 #import "CNHomeRequest.h"
+#import "HYInGameHelper.h"
 
 #define kCNElResentPlayCCell  @"CNElResentPlayCCell"
 
@@ -130,11 +131,10 @@
     
     ElecLogGameModel *model = self.dataSource[indexPath.row];
     
-    [NNPageRouter jump2GameName:model.gameName
-                       gameType:model.gameParam.gameType
-                         gameId:model.gameParam.gameId
-                       gameCode:model.gameParam.gameCode
-               platformCurrency:nil];
+    [[HYInGameHelper sharedInstance] inElecGameGameName:model.gameName
+                                               gameType:model.gameParam.gameType
+                                                 gameId:model.gameParam.gameId
+                                               gameCode:model.gameParam.gameCode];
 }
 
 @end

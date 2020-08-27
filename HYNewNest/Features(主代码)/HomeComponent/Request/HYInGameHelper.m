@@ -110,8 +110,10 @@ NSString *const InGameTypeString[] = {
     }
 
     MyLog(@"===> %@,%@,%@,%@", gameName, gameType, gameId, gameCode);
+    
     // 游戏线路
     if ([self.inGameDict.allKeys containsObject:gameCode]) {
+        
         NSArray *gameLines = self.inGameDict[gameCode];
         BOOL hasCNY = NO;
         BOOL hasUSDT = NO;
@@ -131,19 +133,42 @@ NSString *const InGameTypeString[] = {
         
         // 容错
     } else {
-        if ([CNUserManager shareManager].isUsdtMode) {
-            [CNGameLineView choseCnyLineHandler:nil choseUsdtLineHandler:^{
-                [NNPageRouter jump2GameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:@"USDT"];
-            }];
-        } else {
-            [CNGameLineView choseCnyLineHandler:^{
-                [NNPageRouter jump2GameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:@"CNY"];
-            } choseUsdtLineHandler:nil];
-        }
-        
+        [NNPageRouter jump2GameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:nil];
     }
     
-    
 }
+
+- (void)inElecGameGameName:(NSString *)gameName
+                  gameType:(NSString *)gameType
+                    gameId:(NSString *)gameId
+                  gameCode:(NSString *)gameCode {
+    
+    MyLog(@"===> %@,%@,%@,%@", gameName, gameType, gameId, gameCode);
+    // 游戏线路
+    if ([self.inGameDict.allKeys containsObject:gameCode]) {
+        
+        NSArray *gameLines = self.inGameDict[gameCode];
+        BOOL hasCNY = NO;
+        BOOL hasUSDT = NO;
+        for (NSDictionary *dict in gameLines) {
+            GameLineModel *model = [GameLineModel cn_parse:dict];
+            if ([model.platformCurrency isEqualToString:@"CNY"]) {
+                hasCNY = YES;
+            } else if ([model.platformCurrency isEqualToString:@"USDT"]) {
+                hasUSDT = YES;
+            }
+        }
+        [CNGameLineView choseCnyLineHandler:hasCNY?^{
+            [NNPageRouter jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:@"CNY"];
+        }:nil choseUsdtLineHandler:hasUSDT?^{
+            [NNPageRouter jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:@"USDT"];
+        }:nil];
+        
+        // 容错
+    } else {
+        [NNPageRouter jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:nil];
+    }
+}
+
 
 @end
