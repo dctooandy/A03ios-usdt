@@ -113,14 +113,10 @@
                    completionHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
             if ([responseObj isKindOfClass:[NSDictionary class]]) {
-                CNUserModel *model = [CNUserManager shareManager].userInfo;
-                model.messageId = responseObj[@"messageId"];
-                model.validateId = responseObj[@"validateId"];
-                [[CNUserManager shareManager] saveUserInfo:[model yy_modelToJSONObject]];
                 [CNLoginRequest getUserInfoByTokenCompletionHandler:nil]; // 更新信息
+                [CNHUB showSuccess:@"绑定手机号成功"];
+                [self.navigationController popViewControllerAnimated:YES];
             }
-            [CNHUB showSuccess:@"绑定手机号成功"];
-            [self.navigationController popViewControllerAnimated:YES];
         }
     }];
 }

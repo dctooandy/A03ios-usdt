@@ -104,10 +104,6 @@
     return !self.userInfo.customerType;
 }
 
-- (BOOL)isUsdtMode {
-    return [self.userInfo.loginName hasSuffix:@"usdt"];
-}
-
 - (NSString *)printedloginName {
     NSString *loginName = self.userInfo.loginName;
     if (!KIsEmptyString(loginName)) {
@@ -121,6 +117,22 @@
     }
 }
 
+- (BOOL)isUsdtMode {
+    return [self.userInfo.loginName hasSuffix:@"usdt"];
+//    if (self.userInfo) {
+//        return [self.userInfo.uiMode caseInsensitiveCompare:@"usdt"] == NSOrderedSame;
+//    } else {
+//        return YES; //默认是USDT模式的
+//    }
+}
+
+- (BOOL)isUiModeHasOptions {
+    if (self.userInfo) {
+        return self.userInfo.uiModeOptions.count > 1;
+    } else {
+        return NO; //默认隐藏切换按钮
+    }
+}
 
 #pragma mark - SETTER
 

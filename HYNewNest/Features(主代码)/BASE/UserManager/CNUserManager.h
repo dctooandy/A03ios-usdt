@@ -17,15 +17,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nullable) CNUserModel *userInfo;
 /// 用户信息
 @property (nonatomic, strong, nullable) CNUserDetailModel *userDetail;
+
 /// 是否登录
 @property (nonatomic, readonly, assign, getter=isLogin) BOOL login;
 /// 是否试玩 ：废弃
 //@property (nonatomic, readonly, getter=isTryUser) BOOL tryUser;
 /// 去掉“usdt”后缀的登录名
 @property (nonatomic, readonly, copy) NSString *printedloginName;
+
 /// 当前是USDT模式还是RMB模式
 @property (nonatomic, readonly, assign, getter=isUsdtMode) BOOL usdtMode;
-
+/// 是否双模式用户
+@property (nonatomic, readonly, assign, getter=isUiModeHasOptions) BOOL uiModeHasOptions;
 
 + (instancetype)shareManager;
 

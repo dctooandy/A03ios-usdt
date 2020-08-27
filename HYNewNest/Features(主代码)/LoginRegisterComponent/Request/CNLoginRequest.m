@@ -328,18 +328,21 @@
 + (void)switchAccountSuccessHandler:(HandlerBlock)completionHandler {
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     //1 主账户 2 USDT 在这里usdtmodeon已经打开了
-    [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@2 forKey:@"accountType"];
+//    [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@2 forKey:@"accountType"]; //废弃
+    param[@"uiMode"] = [CNUserManager shareManager].isUsdtMode?@"CNY":@"USDT";
     
     [self POST:kGatewayPath(config_switchAccount) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             if (responseObj[@"loginName"]) {
-                NSString *newLoginName = responseObj[@"loginName"];
                 CNUserModel *userInfo = [CNUserManager shareManager].userInfo;
-                userInfo.loginName = newLoginName;
-                if (![newLoginName hasSuffix:@"usdt"]) {
+                userInfo.loginName = responseObj[@"loginName"];
+                userInfo.subAccountFlag = responseObj[@"subAccountFlag"];
+                if (![userInfo.loginName hasSuffix:@"usdt"]) {
                     userInfo.currency = @"CNY";
+                    userInfo.uiMode = @"CNY";
                 } else {
                     userInfo.currency = @"USDT";
+                    userInfo.uiMode = @"USDT";
                 }
                 NSDictionary *newUIF = [userInfo yy_modelToJSONObject];
                 [[CNUserManager shareManager] saveUserInfo:newUIF];

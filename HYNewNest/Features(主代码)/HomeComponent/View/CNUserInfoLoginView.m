@@ -46,7 +46,8 @@
     if ([CNUserManager shareManager].isLogin) {
         [self configLogInUI];
         [self reloadBalance];
-        if (![CNUserManager shareManager].userDetail.newAccountFlag) {
+//        if (![CNUserManager shareManager].userDetail.newAccountFlag) {
+        if ([CNUserManager shareManager].isUiModeHasOptions) {
             self.switchModeBtn.hidden = NO;
             [self switchAccountUIChange];
         } else {

@@ -96,7 +96,7 @@
     [super viewDidLoad];
     
     self.hideNavgation = YES;
-    [self configUI];
+   
     [self requestOtherAppData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchCurrencyUI) name:HYLoginSuccessNotification object:nil];
@@ -111,6 +111,11 @@
 
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self configUI];
+}
+
 - (void)configUI {
     self.scrollContentView.backgroundColor = self.view.backgroundColor;
     self.scrollContentW.constant = kScreenWidth;
@@ -123,6 +128,7 @@
     __weak typeof(self) wSelf = self;
     self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [wSelf switchCurrencyUI];
+        [wSelf requestOtherAppData];
     }];
 }
 
@@ -268,11 +274,12 @@
 - (void)switchCurrencyUI {
     
     // 1.不同货币模式UI变化
-    self.switchBtn.hidden = [CNUserManager shareManager].userDetail.newAccountFlag;
+//    self.switchBtn.hidden = [CNUserManager shareManager].userDetail.newAccountFlag;
+    self.switchBtn.hidden = ![CNUserManager shareManager].isUiModeHasOptions;
     
     BOOL isUsdtMode = [CNUserManager shareManager].isUsdtMode;
     self.switchBtn.selected = !isUsdtMode;
-    self.currencyLb.text = isUsdtMode ? @"USDT": @"CNY";
+    self.currencyLb.text = [CNUserManager shareManager].userInfo.uiMode;
     self.USDTBusinessView.hidden = !isUsdtMode;
     self.USDTBusinessViewH.constant = isUsdtMode ? 80: 0;
     self.CNYBusinessView.hidden = isUsdtMode;

@@ -222,26 +222,20 @@
         [CNLoginRequest requestPhoneBind:self.smsModel.smsCode
                                messageId:self.smsModel.messageId
                        completionHandler:^(id responseObj, NSString *errorMsg) {
-            if (KIsEmptyString(errorMsg)) {
-                if ([responseObj isKindOfClass:[NSDictionary class]]) {
-                    CNUserModel *model = [CNUserManager shareManager].userInfo;
-                    model.messageId = responseObj[@"messageId"];
-                    model.validateId = responseObj[@"validateId"];
-                    [[CNUserManager shareManager] saveUserInfo:[model yy_modelToJSONObject]];
-                    // 更新信息
-                    [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
-                        [CNHUB showSuccess:@"绑定成功"];
-                        
-                        // 如果返回安全中心失败 证明是从别处过来的
-                        if (![NNControllerHelper pop2ViewControllerClassString:@"CNSecurityCenterVC"]) {
-                            // 如果返回首页失败 证明不是注册 是从绑卡过来的
-                            if (![NNControllerHelper pop2ViewControllerClassString:@"CNHomeVC"]) {
-                                // 直接返回就好
-                                [self.navigationController popViewControllerAnimated:YES];
-                            }
+            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+                // 更新信息
+                [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
+                    [CNHUB showSuccess:@"绑定成功"];
+                    
+                    // 如果返回安全中心失败 证明是从别处过来的
+                    if (![NNControllerHelper pop2ViewControllerClassString:@"CNSecurityCenterVC"]) {
+                        // 如果返回首页失败 证明不是注册 是从绑卡过来的
+                        if (![NNControllerHelper pop2ViewControllerClassString:@"CNHomeVC"]) {
+                            // 直接返回就好
+                            [self.navigationController popViewControllerAnimated:YES];
                         }
-                    }];
-                }
+                    }
+                }];
             }
         }];
     
@@ -263,14 +257,8 @@
         [CNLoginRequest requestRebindPhone:self.smsModel.smsCode
                                  messageId:self.smsModel.messageId
                          completionHandler:^(id responseObj, NSString *errorMsg) {
-            if (KIsEmptyString(errorMsg)) {
-                if ([responseObj isKindOfClass:[NSDictionary class]]) {
-                    CNUserModel *model = [CNUserManager shareManager].userInfo;
-                    model.messageId = responseObj[@"messageId"];
-                    model.validateId = responseObj[@"validateId"];
-                    [[CNUserManager shareManager] saveUserInfo:[model yy_modelToJSONObject]];
-                    [CNLoginRequest getUserInfoByTokenCompletionHandler:nil];
-                }
+            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+                [CNLoginRequest getUserInfoByTokenCompletionHandler:nil];
                 [CNHUB showSuccess:@"修改成功"];
                 if (![NNControllerHelper pop2ViewControllerClassString:@"CNSecurityCenterVC"]) {
                     [self.navigationController popViewControllerAnimated:YES];

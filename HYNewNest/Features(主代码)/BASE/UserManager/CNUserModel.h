@@ -31,20 +31,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *customerId;
 @property (nonatomic, assign)BOOL customerType; // 会员类型：YES 真钱，NO 试玩
 @property (nonatomic, copy)NSString *loginName;
-@property (nonatomic, copy)NSString *mainCustLevel; //？
-@property (nonatomic, copy)NSString *messageId;
+@property (nonatomic, copy)NSString *maxCustLevel; //？
 @property (nonatomic, copy)NSString *mobileNo;
+@property (nonatomic, assign)BOOL newAccountFlag;
 @property (nonatomic, assign)BOOL newwalletFlag;
 @property (nonatomic, copy)NSString *noLoginDays;
-@property (nonatomic, copy)NSString *password;
-@property (nonatomic, copy)NSString *pd;         //？
-//@property (nonatomic, copy)NSString *realName;
+@property (nonatomic, copy)NSString *subAccountFlag;
 @property (nonatomic, assign)NSInteger starLevel;// 等级
 @property (nonatomic, copy)NSString *starLevelName;
 @property (nonatomic, copy)NSString *token;
-@property (nonatomic, copy)NSString *validateId;
-/// 用户是否高级用户
-//@property (nonatomic, assign) BOOL isWhiteListUser;
+@property (nonatomic, copy)NSString *uiMode;
+@property (nonatomic, strong)NSArray *uiModeOptions;
+
 
 @end
 
