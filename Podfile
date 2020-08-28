@@ -31,6 +31,8 @@ target 'HYNewNest' do
   pod 'IVCacheLibrary',:git =>'http://10.66.72.115/mobile-iOS-Library/IVCacheLibrary.git'
   # 天网
   pod 'IVLoganAnalysis',:git =>'http://10.66.72.115/mobile-iOS-library/IVLoganAnalysis.git'
+  
+  pod 'LookinServer', :configurations => ['Debug']
 
   target 'HYNewNestTests' do
     inherit! :search_paths
