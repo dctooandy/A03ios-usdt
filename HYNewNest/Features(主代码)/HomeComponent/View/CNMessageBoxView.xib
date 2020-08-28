@@ -27,7 +27,6 @@
                             <rect key="frame" x="16" y="0.0" width="382" height="459"/>
                         </scrollView>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="tdn-XT-46o" firstAttribute="leading" secondItem="jnG-qK-2Na" secondAttribute="leading" constant="16" id="7kY-ho-lfF"/>
                         <constraint firstAttribute="trailing" secondItem="tdn-XT-46o" secondAttribute="trailing" constant="16" id="Cdt-dC-sVg"/>

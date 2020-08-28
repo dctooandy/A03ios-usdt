@@ -40,7 +40,7 @@
     CGFloat itemH = self.scrollView.bounds.size.height;
     NSInteger itemCount = self.images.count;
     CGFloat itemSpace = 12;
-    self.scrollView.contentSize = CGSizeMake( (itemW + itemSpace) * itemCount, itemH);
+    self.scrollView.contentSize = CGSizeMake( (itemW + itemSpace) * itemCount, 0);
     self.scrollView.delegate = self;
     // 创建图片视图
     CGRect frame = CGRectMake(0, 0, itemW, itemH);
