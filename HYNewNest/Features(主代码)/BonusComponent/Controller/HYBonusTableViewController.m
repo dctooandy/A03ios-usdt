@@ -36,7 +36,7 @@ static NSString *const KBonusCell = @"HYBonusCell";
             [strongSelf.delegate refreshBegin];
         }
     }];
-    self.tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"no date"
+    self.tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"kongduixiang"
                                                             titleStr:@"暂无内容"
                                                            detailStr:@""];
 }

@@ -51,7 +51,7 @@
     self.tableView.backgroundColor = self.view.backgroundColor;
     [self.tableView registerNib:[UINib nibWithNibName:kCNMessageTCellID bundle:nil] forCellReuseIdentifier:kCNMessageTCellID];
     self.tableView.estimatedRowHeight = 150;
-    self.tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"no date"
+    self.tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"kongduixiang"
                                                             titleStr:@"暂无内容"
                                                            detailStr:@""];
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestLetters)];

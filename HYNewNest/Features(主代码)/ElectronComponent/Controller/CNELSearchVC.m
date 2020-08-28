@@ -89,7 +89,7 @@
     self.resultCV.collectionViewLayout = flowLayout;
     [self.resultCV registerNib:[UINib nibWithNibName:@"CNElectrionHallCCell" bundle:nil] forCellWithReuseIdentifier:kCNElectrionHallCCellID];
     self.resultCV.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(search:)];
-    self.resultCV.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"no date"
+    self.resultCV.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"kongduixiang"
                                                            titleStr:@"暂无内容"
                                                           detailStr:@""];
 }

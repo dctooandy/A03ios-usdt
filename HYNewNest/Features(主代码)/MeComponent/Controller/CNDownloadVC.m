@@ -36,7 +36,7 @@
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = self.view.backgroundColor;
     [self.tableView registerNib:[UINib nibWithNibName:kCNDownloadTCellID bundle:nil] forCellReuseIdentifier:kCNDownloadTCellID];
-    self.tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"no date"
+    self.tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"kongduixiang"
                                                             titleStr:@"暂无内容"
                                                            detailStr:@""];
 }

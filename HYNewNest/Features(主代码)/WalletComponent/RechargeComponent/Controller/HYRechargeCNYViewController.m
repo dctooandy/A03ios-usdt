@@ -82,7 +82,7 @@
     _selcPayWayIdx = 0;
     _selcBqbankIdx = 0;
     
-    LYEmptyView *empView = [LYEmptyView emptyActionViewWithImage:[UIImage imageNamed:@"kongduixiang"] titleStr:@"" detailStr:@"暂无充币方式提供" btnTitleStr:@"刷新试试" btnClickBlock:^{
+    LYEmptyView *empView = [LYEmptyView emptyActionViewWithImage:[UIImage imageNamed:@"kongduixiang"] titleStr:@"" detailStr:@"暂无充值方式提供" btnTitleStr:@"刷新试试" btnClickBlock:^{
         [self queryCNYPayways];
     }];
     empView.actionBtnBackGroundColor = kHexColor(0x2B2B45);
