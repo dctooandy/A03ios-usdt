@@ -30,7 +30,7 @@
     
     if (!isForce) {
         UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [closeBtn setImage:[UIImage imageNamed:@"a_close"] forState:UIControlStateNormal];
+        [closeBtn setImage:[UIImage imageNamed:@"l_close"] forState:UIControlStateNormal];
         [closeBtn addTarget:self action:@selector(byebye) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:closeBtn];
         [closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
