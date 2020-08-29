@@ -65,8 +65,6 @@ typedef enum : NSUInteger {
 @property (weak, nonatomic) IBOutlet UIView *paiCaiContainer;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *paiCaiContainerH;
 @property (weak, nonatomic) IBOutlet UICollectionView *paiCaiCV;
-/// 下载按钮
-@property (weak, nonatomic) IBOutlet UIButton *downLoadBtn;
 
 #pragma mark - 筛选和收藏属性
 /// 筛选和收藏，垂直方向
@@ -99,7 +97,6 @@ typedef enum : NSUInteger {
     self.cvWidth.constant = kScreenWidth;
     self.bannerHeight.constant = AD(115);
     [self.bannerView addSubview:self.banner];
-    self.downLoadBtn.enabled = YES;
     
     self.currentPage = 1;
     self.filtedGames = @[].mutableCopy;
@@ -370,11 +367,6 @@ typedef enum : NSUInteger {
     }];
 }
 
-// App下载
-- (IBAction)downloadApp:(UIButton *)sender {
-    
-}
-
 
 #pragma mark - UICollectionViewDataSource, UICollectionViewDelegate
 
@@ -470,14 +462,12 @@ typedef enum : NSUInteger {
     if (!model) {
         return;
     }
-    NSString *gameCode;
-    if ([model.platformCode containsString:@"A03"]) {
-        gameCode = model.platformCode;
-    }else{
-        gameCode = [NSString stringWithFormat:@"A03%@", model.platformCode];
-    }
     
-    [[HYInGameHelper sharedInstance] inElecGameGameName:model.gameName gameType:model.gameType gameId:model.gameId gameCode:gameCode];
+    [[HYInGameHelper sharedInstance] inElecGameGameName:model.gameName
+                                               gameType:model.gameType
+                                                 gameId:model.gameId
+                                               gameCode:model.platformCode
+                                platformSupportCurrency:model.platformSupportCurrency];
     
 }
 

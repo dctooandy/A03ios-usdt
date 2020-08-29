@@ -141,32 +141,49 @@ NSString *const InGameTypeString[] = {
 - (void)inElecGameGameName:(NSString *)gameName
                   gameType:(NSString *)gameType
                     gameId:(NSString *)gameId
-                  gameCode:(NSString *)gameCode {
+                  gameCode:(NSString *)gameCode
+   platformSupportCurrency:(nullable NSString *)platformSupportCurrency {
     
-    MyLog(@"===> %@,%@,%@,%@", gameName, gameType, gameId, gameCode);
+    NSString *newGameCode;
+    if ([gameCode hasPrefix:@"A03"]) {
+        newGameCode = gameCode;
+    }else{
+        newGameCode = [NSString stringWithFormat:@"A03%@", gameCode];
+    }
+    
+    MyLog(@"===> %@,%@,%@,%@", gameName, gameType, gameId, newGameCode);
+    
     // 游戏线路
-    if ([self.inGameDict.allKeys containsObject:gameCode]) {
+    if ([self.inGameDict.allKeys containsObject:newGameCode]) {
         
-        NSArray *gameLines = self.inGameDict[gameCode];
+        NSArray *gameLines = self.inGameDict[newGameCode];
         BOOL hasCNY = NO;
         BOOL hasUSDT = NO;
         for (NSDictionary *dict in gameLines) {
             GameLineModel *model = [GameLineModel cn_parse:dict];
             if ([model.platformCurrency isEqualToString:@"CNY"]) {
-                hasCNY = YES;
+                if (platformSupportCurrency.length > 0 && ![platformSupportCurrency containsString:@"CNY"]) { // 该游戏不支持CNY
+                    hasCNY = NO;
+                } else {
+                    hasCNY = YES;
+                }
             } else if ([model.platformCurrency isEqualToString:@"USDT"]) {
-                hasUSDT = YES;
+                if (platformSupportCurrency.length > 0 && ![platformSupportCurrency containsString:@"USDT"]) { // 该游戏不支持CNY
+                    hasUSDT = NO;
+                } else {
+                    hasUSDT = YES;
+                }
             }
         }
         [CNGameLineView choseCnyLineHandler:hasCNY?^{
-            [NNPageRouter jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:@"CNY"];
+            [NNPageRouter jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:newGameCode platformCurrency:@"CNY"];
         }:nil choseUsdtLineHandler:hasUSDT?^{
-            [NNPageRouter jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:@"USDT"];
+            [NNPageRouter jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:newGameCode platformCurrency:@"USDT"];
         }:nil];
         
         // 容错
     } else {
-        [NNPageRouter jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:nil];
+        [NNPageRouter jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:newGameCode platformCurrency:nil];
     }
 }
 

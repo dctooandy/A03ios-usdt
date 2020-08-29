@@ -35,6 +35,8 @@
 
 // 搜索
 - (IBAction)search:(UIButton *)sender {
+    [self.view endEditing:YES];
+    
     NSString *keyword = self.searchTF.text;
     if (keyword.length == 0) {
         [CNHUB showError:self.searchTF.placeholder];
@@ -117,14 +119,12 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     __block ElecGameModel *model = self.games[indexPath.row];
-    NSString *gameCode;
-    if ([model.platformCode containsString:@"A03"]) {
-        gameCode = model.platformCode;
-    }else{
-        gameCode = [NSString stringWithFormat:@"A03%@", model.platformCode];
-    }
     
-    [[HYInGameHelper sharedInstance] inElecGameGameName:model.gameName gameType:model.gameType gameId:model.gameId gameCode:model.platformCode];
+    [[HYInGameHelper sharedInstance] inElecGameGameName:model.gameName
+                                               gameType:model.gameType
+                                                 gameId:model.gameId
+                                               gameCode:model.platformCode
+                                platformSupportCurrency:model.platformSupportCurrency];
     
 }
 

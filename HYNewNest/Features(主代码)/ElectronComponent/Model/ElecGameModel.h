@@ -42,12 +42,13 @@
 @property(nonatomic,assign) BOOL isFavorite; //是否收藏
 @property(nonatomic,assign) BOOL isUpHot; //是否热门
 @property(nonatomic,copy) NSString *payLine;
-@property(nonatomic,copy) NSString *platformCode;
+@property(nonatomic,copy) NSString *platformCode; //gameCode
 @property(nonatomic,copy) NSString *platformName;
+@property(nonatomic,copy) NSString *platformSupportCurrency; //支持货币
 @property(nonatomic,copy) NSString *gameType;
 @property(nonatomic,assign) BOOL tryFlag;
-@property(nonatomic,copy) NSString *gameHotValue; //??
-@property(nonatomic,copy) NSString *popularity; //??
+@property(nonatomic,copy) NSString *gameHotValue; //旧热度
+@property(nonatomic,copy) NSString *popularity; //热度
 @end
 
 

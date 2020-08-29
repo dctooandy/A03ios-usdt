@@ -20,7 +20,6 @@
                 <outlet property="btnViewH" destination="8Yt-XB-goN" id="H3f-ix-nad"/>
                 <outlet property="collectionBtn" destination="DbE-bz-pRR" id="qkA-xw-dh8"/>
                 <outlet property="cvWidth" destination="DVk-DR-BED" id="28B-5Y-dGS"/>
-                <outlet property="downLoadBtn" destination="Bap-1u-slg" id="DK3-22-kpA"/>
                 <outlet property="filterBtn" destination="OgA-Tz-1fV" id="glU-JM-RQE"/>
                 <outlet property="filterCollectionView" destination="Esx-5C-B6X" id="bzp-gJ-9pl"/>
                 <outlet property="hallBtn" destination="USQ-8B-ePs" id="02O-cv-s4K"/>
@@ -183,22 +182,6 @@
                                         <constraint firstItem="LEj-KI-ZwJ" firstAttribute="leading" secondItem="dAB-cL-Fei" secondAttribute="leading" constant="15" id="vp9-Si-WLz"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bap-1u-slg" customClass="CNTwoStatusBtn">
-                                    <rect key="frame" x="30" y="820" width="350" height="48"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="48" id="aDs-ZK-QSq"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                    <state key="normal" title="币游电游APP下载">
-                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </state>
-                                    <state key="disabled">
-                                        <color key="titleColor" white="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="downloadApp:" destination="-1" eventType="touchUpInside" id="L3o-Xy-9TB"/>
-                                    </connections>
-                                </button>
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="qYa-J7-qFY" secondAttribute="trailing" id="2tL-dH-NPb"/>
@@ -208,12 +191,9 @@
                                 <constraint firstItem="Mmh-7F-2gc" firstAttribute="leading" secondItem="qfG-dn-c6L" secondAttribute="leading" id="BXl-Vd-fpb"/>
                                 <constraint firstAttribute="trailing" secondItem="Mmh-7F-2gc" secondAttribute="trailing" id="Mim-8V-ReE"/>
                                 <constraint firstItem="qYa-J7-qFY" firstAttribute="top" secondItem="jDb-89-UUB" secondAttribute="bottom" id="Of0-dp-FEw"/>
-                                <constraint firstAttribute="bottom" secondItem="Bap-1u-slg" secondAttribute="bottom" constant="30" id="WEZ-AQ-rL3"/>
-                                <constraint firstAttribute="trailing" secondItem="Bap-1u-slg" secondAttribute="trailing" constant="30" id="b5r-4Q-fk6"/>
                                 <constraint firstAttribute="trailing" secondItem="jDb-89-UUB" secondAttribute="trailing" constant="15" id="dRT-bL-vsS"/>
-                                <constraint firstItem="Bap-1u-slg" firstAttribute="leading" secondItem="qfG-dn-c6L" secondAttribute="leading" constant="30" id="h4j-uW-OZW"/>
-                                <constraint firstItem="Bap-1u-slg" firstAttribute="top" secondItem="dAB-cL-Fei" secondAttribute="bottom" constant="30" id="iwm-X4-kAt"/>
                                 <constraint firstItem="dAB-cL-Fei" firstAttribute="top" secondItem="Mmh-7F-2gc" secondAttribute="bottom" id="lyq-ar-8jA"/>
+                                <constraint firstAttribute="bottom" secondItem="dAB-cL-Fei" secondAttribute="bottom" constant="69" id="mRU-EX-Y9m"/>
                                 <constraint firstItem="dAB-cL-Fei" firstAttribute="leading" secondItem="qfG-dn-c6L" secondAttribute="leading" id="sBV-5u-utA"/>
                                 <constraint firstAttribute="trailing" secondItem="dAB-cL-Fei" secondAttribute="trailing" id="vHz-ko-Jja"/>
                                 <constraint firstItem="Mmh-7F-2gc" firstAttribute="top" secondItem="qYa-J7-qFY" secondAttribute="bottom" id="yUv-KN-63a"/>
