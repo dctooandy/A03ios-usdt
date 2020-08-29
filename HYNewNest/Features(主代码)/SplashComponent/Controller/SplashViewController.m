@@ -74,16 +74,13 @@
 //    }];
     
     [CNSplashRequest queryCDNH5Domain:^(id responseObj, NSString *errorMsg) {
-        if ([responseObj isKindOfClass:[NSDictionary class]]) {
-            NSString *cdnAddr = responseObj[@"csdnAddress"];
-            NSString *h5Addr = responseObj[@"h5Address"];
-            if ([cdnAddr containsString:@","]) {
-                cdnAddr = [cdnAddr componentsSeparatedByString:@","].firstObject;
-            }
-            [IVHttpManager shareManager].cdn = cdnAddr;
-            [IVHttpManager shareManager].domain = h5Addr;
+        NSString *cdnAddr = responseObj[@"csdnAddress"];
+        NSString *h5Addr = responseObj[@"h5Address"];
+        if ([cdnAddr containsString:@","]) {
+            cdnAddr = [cdnAddr componentsSeparatedByString:@","].firstObject;
         }
-        
+        [IVHttpManager shareManager].cdn = cdnAddr;
+        [IVHttpManager shareManager].domain = h5Addr;
     }];
     
     // 检查新版本 -> 检查区域限制 -> 进入首页

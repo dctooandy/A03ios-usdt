@@ -98,10 +98,8 @@
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
     [paramDic setObject:@"APP_ADDRESS_MANAGER" forKey:@"bizCode"];
     [self POST:kGatewayPath(config_dynamicQuery) parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
-        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             handler([responseObj[@"data"] firstObject], errorMsg);
-        } else {
-            handler(responseObj, errorMsg);
         }
     }];
 }

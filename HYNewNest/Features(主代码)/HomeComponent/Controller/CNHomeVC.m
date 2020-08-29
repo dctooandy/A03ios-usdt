@@ -230,21 +230,19 @@
         }else{
             // 需要执行的方法写在这里
             [CNHomeRequest queryMessageBoxHandler:^(id responseObj, NSString *errorMsg) {
-                if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-                    NSArray<MessageBoxModel *> *models = [MessageBoxModel cn_parse:responseObj[@"data"]];
-                    self.msgBoxModels = models;
-                    NSMutableArray *imgs = @[].mutableCopy;
-                    for (MessageBoxModel *m in models) {
-                        NSString *url = [NSURL getStrUrlWithString: m.imgUrl];
-                        [imgs addObject:url];
-                    }
-                    [CNMessageBoxView showMessageBoxWithImages:imgs onView:self.view tapBlock:^(int idx) {
-                        MessageBoxModel *m = self.msgBoxModels[idx];
-                        [NNPageRouter jump2HTMLWithStrURL:m.link title:@"活动"];
-                    }];
-                    [[NSUserDefaults standardUserDefaults] setObject:nowDateStr forKey:@"AgoDate"];
-                    [[NSUserDefaults standardUserDefaults] synchronize];
+                NSArray<MessageBoxModel *> *models = [MessageBoxModel cn_parse:responseObj];
+                self.msgBoxModels = models;
+                NSMutableArray *imgs = @[].mutableCopy;
+                for (MessageBoxModel *m in models) {
+                    NSString *url = [NSURL getStrUrlWithString: m.imgUrl];
+                    [imgs addObject:url];
                 }
+                [CNMessageBoxView showMessageBoxWithImages:imgs onView:self.view tapBlock:^(int idx) {
+                    MessageBoxModel *m = self.msgBoxModels[idx];
+                    [NNPageRouter jump2HTMLWithStrURL:m.link title:@"活动"];
+                }];
+                [[NSUserDefaults standardUserDefaults] setObject:nowDateStr forKey:@"AgoDate"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
             }];
         }
     }

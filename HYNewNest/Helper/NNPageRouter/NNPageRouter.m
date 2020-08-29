@@ -66,11 +66,8 @@
             break;
     }
     [CNHomeRequest requestDynamicLive800AddressCompletionHandler:^(id responseObj, NSString *errorMsg) {
-        if (!KIsEmptyString(errorMsg)) {
-            [CNHUB showError:errorMsg];
-            return;
-        }
-        NSArray *data = [responseObj objectForKey:@"data"];
+
+        NSArray *data = responseObj;
         NSMutableString *newUrl;
         for (NSDictionary *body in data) {
             if ([body[@"domian"] isEqualToString:keyName]) {

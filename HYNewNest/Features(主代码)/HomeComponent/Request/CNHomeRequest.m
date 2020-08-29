@@ -15,7 +15,11 @@
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"bizCode"] = @"800_DEPLOY";
     
-    [self POST:kGatewayPath(config_dynamicQuery) parameters:param completionHandler:handler];
+    [self POST:kGatewayPath(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            handler(responseObj[@"data"], errorMsg);
+        }
+    }];
 }
 
 + (void)queryMessageBoxHandler:(HandlerBlock)handler {
@@ -23,7 +27,11 @@
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"bizCode"] = @"MESSAGE_BOX";
     
-    [self POST:kGatewayPath(config_dynamicQuery) parameters:param completionHandler:handler];
+    [self POST:kGatewayPath(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            handler(responseObj[@"data"], errorMsg);
+        }
+    }];
 }
 
 + (void)callCenterCallBackMessageId:(nullable NSString *)messageId

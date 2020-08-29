@@ -10,8 +10,9 @@
 #import "UILabel+Gradient.h"
 #import "DXRadianLayerView.h"
 #import "UUMarqueeView.h"
+#import "CNVIPRequest.h"
 
-@interface HYVIPViewController ()
+@interface HYVIPViewController () <UUMarqueeViewDelegate>
 // 顶部背景
 @property (weak, nonatomic) IBOutlet DXRadianLayerView *topRadianView;
 // 底部背景
@@ -25,7 +26,8 @@
 
 // -------- 大奖公告 --------
 @property (weak, nonatomic) IBOutlet UILabel *lblDjgg;
-// TODO: 获奖轮播
+// 获奖轮播
+@property (strong,nonatomic) UUMarqueeView *marqueeView;
 
 // -------- 本月进度 --------
 @property (weak, nonatomic) IBOutlet UIView *ByjdTopBg;
@@ -60,6 +62,10 @@
 // 累计身份
 @property (weak, nonatomic) IBOutlet UIView *LjsfBg;
 
+// -------- 数据源 --------
+@property (strong, nonatomic) NSArray <VIPRewardAnocModel *>* rewards;
+@property (strong, nonatomic) VIPLevelData *vipLevel;
+
 @end
 
 @implementation HYVIPViewController
@@ -67,10 +73,21 @@
 
 #pragma mark - View Life Cycle
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUIAttributes];
     
+    [self requestRewardAnnouncement];
+    if ([CNUserManager shareManager].isLogin) {
+        [self requestUsrVIPPromotion];
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestUsrVIPPromotion) name:HYLoginSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usrDidLogout) name:HYLogoutSuccessNotification object:nil];
 }
 
 
@@ -83,6 +100,7 @@
     
     [self.sxhTopLb setupGradientColorFrom:kHexColor(0xFFEFCB) toColor:kHexColor(0xA28455)];
     
+    [self.bottomBgView addSubview:self.marqueeView];
     self.bottomBgView.backgroundColor = [UIColor jk_gradientFromColor:kHexColor(0x0A1D25) toColor:kHexColor(0x070D17) withHeight:self.bottomBgView.height];
     
     [self.ByjdTopBg jk_setRoundedCorners:UIRectCornerTopLeft|UIRectCornerTopRight radius:4];
@@ -92,6 +110,10 @@
     [self.ByjdBtmBg jk_setRoundedCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight radius:4];
     [self.LjsfBg jk_setRoundedCorners:UIRectCornerAllCorners radius:4];
     [self.ZzzpBg jk_setRoundedCorners:UIRectCornerAllCorners radius:4];
+    
+}
+
+- (void)usrDidLogout {
     
 }
 
@@ -114,14 +136,63 @@
 }
 
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - Request
+- (void)requestRewardAnnouncement {
+    [CNVIPRequest requestRewardBroadcastHandler:^(id responseObj, NSString *errorMsg) {
+        self.rewards = [VIPRewardAnocModel cn_parse:responseObj];
+        [self.marqueeView reloadData];
+    }];
 }
-*/
+
+- (void)requestUsrVIPPromotion {
+    [CNVIPRequest requestVIPPromotionHandler:^(id responseObj, NSString *errorMsg) {
+        self.vipLevel = [VIPLevelData cn_parse:responseObj];
+        //TODO: 带入数据
+    }];
+}
+
+#pragma mark - UUMarqueeViewDelegate
+
+- (NSUInteger)numberOfDataForMarqueeView:(UUMarqueeView*)marqueeView {
+    return self.rewards.count;
+}
+
+- (NSUInteger)numberOfVisibleItemsForMarqueeView:(UUMarqueeView*)marqueeView {
+    return 1;
+}
+
+- (void)createItemView:(UIView *)itemView forMarqueeView:(UUMarqueeView *)marqueeView{
+    
+    UILabel *content = [[UILabel alloc] initWithFrame:itemView.bounds];
+    content.font = [UIFont systemFontOfSize:10.0f];
+    content.tag = 1001;
+    [itemView addSubview:content];
+}
+
+- (void)updateItemView:(UIView *)itemView atIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView *)marqueeView{
+        
+    VIPRewardAnocModel *model = [self.rewards objectAtIndex:index];
+    if (model) {
+        UILabel *content = [itemView viewWithTag:1001];
+        content.textColor = kHexColor(0xCFA461);
+        content.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:12];
+        content.text = [NSString stringWithFormat:@"恭喜 %@ 抽中 %@",model.loginname,model.prizeName];
+    }
+}
+
+
+#pragma mark - Lazy Load
+
+- (UUMarqueeView *)marqueeView{
+    if (!_marqueeView) {
+        _marqueeView = [[UUMarqueeView alloc] initWithFrame:CGRectMake(self.lblDjgg.right + 5, self.lblDjgg.top - 5, kScreenWidth-self.lblDjgg.right-20, 30)];
+        _marqueeView.delegate = self;
+        _marqueeView.timeIntervalPerScroll = 1.0f;
+        _marqueeView.timeDurationPerScroll = 1.0f;
+        _marqueeView.touchEnabled = NO;
+    }
+    return _marqueeView;
+}
+
 
 @end

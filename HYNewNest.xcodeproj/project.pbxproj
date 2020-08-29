@@ -169,6 +169,9 @@
 		3D3A9B6424F90666003FB33C /* UIWindow+Motion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B6324F90666003FB33C /* UIWindow+Motion.m */; };
 		3D3A9B6A24FA3696003FB33C /* DXRadianLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B6824FA3696003FB33C /* DXRadianLayerView.m */; };
 		3D3A9B6F24FA427D003FB33C /* JLXUICollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B6D24FA427C003FB33C /* JLXUICollectionViewFlowLayout.m */; };
+		3D3A9B7324FA7DA5003FB33C /* CNVIPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B7224FA7DA5003FB33C /* CNVIPRequest.m */; };
+		3D3A9B7624FA815F003FB33C /* VIPRewardAnocModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B7524FA815F003FB33C /* VIPRewardAnocModel.m */; };
+		3D3A9B7924FA8631003FB33C /* VIPLevelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B7824FA8631003FB33C /* VIPLevelData.m */; };
 		3D564E2024F3C02C006846DD /* MessageBoxModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D564E1F24F3C02C006846DD /* MessageBoxModel.m */; };
 		3D643F7724F253E300B9AAA7 /* HYEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F7524F253E200B9AAA7 /* HYEncryptor.m */; };
 		3D643F8824F29F3600B9AAA7 /* AlertViewHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F7D24F29F3600B9AAA7 /* AlertViewHelp.m */; };
@@ -1133,6 +1136,12 @@
 		3D3A9B6924FA3696003FB33C /* DXRadianLayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXRadianLayerView.h; sourceTree = "<group>"; };
 		3D3A9B6C24FA427C003FB33C /* JLXUICollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLXUICollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		3D3A9B6D24FA427C003FB33C /* JLXUICollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLXUICollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		3D3A9B7124FA7DA5003FB33C /* CNVIPRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNVIPRequest.h; sourceTree = "<group>"; };
+		3D3A9B7224FA7DA5003FB33C /* CNVIPRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNVIPRequest.m; sourceTree = "<group>"; };
+		3D3A9B7424FA815F003FB33C /* VIPRewardAnocModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPRewardAnocModel.h; sourceTree = "<group>"; };
+		3D3A9B7524FA815F003FB33C /* VIPRewardAnocModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPRewardAnocModel.m; sourceTree = "<group>"; };
+		3D3A9B7724FA8631003FB33C /* VIPLevelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPLevelData.h; sourceTree = "<group>"; };
+		3D3A9B7824FA8631003FB33C /* VIPLevelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPLevelData.m; sourceTree = "<group>"; };
 		3D564E1E24F3C02C006846DD /* MessageBoxModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageBoxModel.h; sourceTree = "<group>"; };
 		3D564E1F24F3C02C006846DD /* MessageBoxModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageBoxModel.m; sourceTree = "<group>"; };
 		3D643F7524F253E200B9AAA7 /* HYEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYEncryptor.m; sourceTree = "<group>"; };
@@ -2726,8 +2735,21 @@
 		3D3A9B6E24FA427D003FB33C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3D3A9B7724FA8631003FB33C /* VIPLevelData.h */,
+				3D3A9B7824FA8631003FB33C /* VIPLevelData.m */,
+				3D3A9B7424FA815F003FB33C /* VIPRewardAnocModel.h */,
+				3D3A9B7524FA815F003FB33C /* VIPRewardAnocModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		3D3A9B7024FA7D7F003FB33C /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				3D3A9B7124FA7DA5003FB33C /* CNVIPRequest.h */,
+				3D3A9B7224FA7DA5003FB33C /* CNVIPRequest.m */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 		3D643F7924F29F3600B9AAA7 /* Push */ = {
@@ -2756,6 +2778,7 @@
 		3D643F9224F36CC200B9AAA7 /* VIPComponent */ = {
 			isa = PBXGroup;
 			children = (
+				3D3A9B7024FA7D7F003FB33C /* Request */,
 				3D3A9B6E24FA427D003FB33C /* Model */,
 				3D3A9B6B24FA427C003FB33C /* View */,
 				3D643F9324F36CC200B9AAA7 /* Controller */,
@@ -5156,6 +5179,7 @@
 				0430AB3124E38F8300C873DC /* CNBankVerifySmsView.m in Sources */,
 				04C6E1F724D41C3C006F4DAC /* CNAddressInfoTCell.m in Sources */,
 				E9A269DC24D80FCC00B512FF /* HYRechargePayWayCell.m in Sources */,
+				3D3A9B7924FA8631003FB33C /* VIPLevelData.m in Sources */,
 				04935BCC24D68C84007A33EF /* CNNormalInputView.m in Sources */,
 				E98BEF0224D1AF4300E6B0C8 /* HYXiMaTopView.m in Sources */,
 				0487C9AA24CFBA6A0013715A /* JJCollectionViewRoundFlowLayout+Alignment.m in Sources */,
@@ -5271,6 +5295,7 @@
 				E98BEF2524D2C40100E6B0C8 /* HYWithdrawAddCardFooter.m in Sources */,
 				040A08D124E114A900FBD534 /* OCBarrageDescriptor.m in Sources */,
 				0430AB3624E3B84700C873DC /* CNCompleteInfoVC.m in Sources */,
+				3D3A9B7324FA7DA5003FB33C /* CNVIPRequest.m in Sources */,
 				D571B1AB24C03D790087B5EC /* CNStatementView.m in Sources */,
 				04C6E1DF24D3E995006F4DAC /* CNFeedBackLeftTCell.m in Sources */,
 				3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */,
@@ -5299,6 +5324,7 @@
 				3DA4F18924B317E40039123F /* WMDragView.m in Sources */,
 				E986A1A324CB37C3000F9CFF /* HYBaseAlertView.m in Sources */,
 				040A08D624E114A900FBD534 /* OCBarrageTrackInfo.m in Sources */,
+				3D3A9B7624FA815F003FB33C /* VIPRewardAnocModel.m in Sources */,
 				E9D9446C24C1EC1300252222 /* HYTabBarViewController.m in Sources */,
 				3D643F7724F253E300B9AAA7 /* HYEncryptor.m in Sources */,
 				E986A12624C7EAA6000F9CFF /* OtherAppModel.m in Sources */,
