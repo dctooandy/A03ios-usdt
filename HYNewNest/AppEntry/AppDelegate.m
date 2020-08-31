@@ -86,7 +86,8 @@
         NSString *token = [[[[deviceToken description] stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
         self.token = token;
     }
-    
+
+#ifndef DEBUG
     NSLog(@"did register remote token with :%@", self.token);
     [GeTuiSdk registerDeviceTokenData:deviceToken];
     
@@ -97,7 +98,8 @@
             MyLog(@"超级签名推送error==%@",errorMsg);
         }
     }];
-
+#endif
+    
 }
 
 

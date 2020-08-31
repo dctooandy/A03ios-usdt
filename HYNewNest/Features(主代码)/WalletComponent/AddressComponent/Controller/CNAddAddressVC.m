@@ -28,9 +28,25 @@
 @property (weak, nonatomic) IBOutlet CNNormalInputView *platformInputView;
 @property (weak, nonatomic) IBOutlet CNNormalInputView *linkInputView;
 @property (weak, nonatomic) IBOutlet CNCodeInputView *codeInputView;
+
+@property (strong,nonatomic) HYDownloadLinkView *linkView;
 @end
 
 @implementation CNAddAddressVC
+
+- (HYDownloadLinkView *)linkView {
+    if (!_linkView) {
+        HYDownloadLinkView *linkView = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(AD(96), self.codeInputView.bottom, AD(182), AD(30)) normalText:@"还没有小金库账号？" tapableText:@"一键注册" tapColor:kHexColor(0x10B4DD) urlValue:nil];
+        linkView.tapBlock = ^{
+            [[ABCOneKeyRegisterBFBHelper shareInstance] startOneKeyRegisterBFBHandler:^{
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+        };
+        [self.view addSubview:linkView];
+        _linkView = linkView;
+    }
+    return _linkView;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -65,6 +81,7 @@
 }
 
 - (void)configUI {
+    self.linkView.hidden = YES;
     switch (_addrType) {
         case HYAddressTypeBANKCARD:
             
@@ -82,14 +99,8 @@
             [self.submitBtn setTitle:@"添加小金库钱包" forState:UIControlStateNormal];
             self.btomTipsTitle.hidden = YES;
             self.btomTipsLb.hidden = YES;
+            self.linkView.hidden = NO;
             
-            HYDownloadLinkView *linkView = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(AD(96), self.codeInputView.bottom, AD(182), AD(30)) normalText:@"还没有小金库账号？" tapableText:@"一键注册" tapColor:kHexColor(0x10B4DD) urlValue:nil];
-            linkView.tapBlock = ^{
-                [[ABCOneKeyRegisterBFBHelper shareInstance] startOneKeyRegisterBFBHandler:^{
-                    [self.navigationController popViewControllerAnimated:YES];
-                }];
-            };
-            [self.view addSubview:linkView];
             break;
         }
             

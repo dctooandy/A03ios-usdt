@@ -18,6 +18,7 @@
 @property (nonatomic, copy) AddBFBBlock addBFBBlock;
 @property (strong,nonatomic) SmsCodeModel *phoneModel;
 @property (copy,nonatomic) NSString *accountNo; //!<创建的账号ID
+@property (weak,nonatomic) CNVerifyMsgAlertView *alertView;
 @end
 
 @implementation ABCOneKeyRegisterBFBHelper
@@ -48,7 +49,7 @@ static dispatch_once_t onceToken;
             return;
         }
         
-        [CNVerifyMsgAlertView showPhone:phone reSendCode:^{
+        CNVerifyMsgAlertView *alertView = [CNVerifyMsgAlertView showPhone:phone reSendCode:^{
             [self sendVerifyCode:nil];
                 
         } finish:^(NSString * _Nonnull smsCode) {
@@ -57,10 +58,12 @@ static dispatch_once_t onceToken;
                     if (addBFBBlock) {
                         addBFBBlock();
                         [ABCOneKeyRegisterBFBHelper attempDealloc];
+                        [CNVerifyMsgAlertView removeAlertView];
                     }
                 }];
             }];
         }];
+        self.alertView = alertView;
     }];
 
     
@@ -83,6 +86,7 @@ static dispatch_once_t onceToken;
 /// 创建小金库
 - (void)createBitollAccountVerifyCode:(NSString *)smsCode successHandler:(void(^)(void))successHandler {
     if (!smsCode) {
+        [kKeywindow jk_makeToast:@"请填写验证码" duration:3 position:JKToastPositionCenter];
         return;
     }
     [CNWDAccountRequest createGoldAccountSmsCode:smsCode
@@ -94,10 +98,13 @@ static dispatch_once_t onceToken;
             if (successHandler) {
                 successHandler();
             }
-        } else {
-            [CNHUB showError:@"创建小金库失败"];
-            [ABCOneKeyRegisterBFBHelper attempDealloc];
         }
+//        else {
+//            if ([errorMsg isEqualToString:@"验证码输入错误"]) {
+//                [CNHUB showError:@"验证码输入错误 请重新发送"];
+//                [self.alertView resetCodeView];
+//            }
+//        }
     }];
 
 }
@@ -114,7 +121,7 @@ static dispatch_once_t onceToken;
                 successHandler();
             }
         } else {
-            [CNHUB showError:@"绑定失败"];
+//            [CNHUB showError:@"系统错误 绑定失败"];
             [ABCOneKeyRegisterBFBHelper attempDealloc];
         }
     }];

@@ -31,7 +31,7 @@
 
 @implementation CNVerifyMsgAlertView
 
-+ (void)showPhone:(NSString *)phone
++ (CNVerifyMsgAlertView *)showPhone:(NSString *)phone
        reSendCode:(nonnull dispatch_block_t)sendCodeBlock
            finish:(nonnull void (^)(NSString * _Nonnull))finishBlock {
     
@@ -47,6 +47,23 @@
     [alert sendCode:alert.codeBtn];
     
     [alert initCodeView];
+    
+    return alert;
+}
+
+- (void)resetCodeView {
+    _second = 0;
+    [self timerAciton];
+    [self.codeView clear];
+}
+
++ (void)removeAlertView {
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    for (UIView *view in window.subviews) {
+        if ([view isKindOfClass:[CNVerifyMsgAlertView class]]) {
+            [view removeFromSuperview];
+        }
+    }
 }
 
 - (void)initCodeView {
@@ -92,6 +109,7 @@
 
 // 发送验证码
 - (IBAction)sendCode:(UIButton *)sender {
+    _second = 60;
     self.codeBtn.enabled = NO;
     [self.secondTimer setFireDate:[NSDate distantPast]];
     // 发送验证码
@@ -104,10 +122,6 @@
 // 提交
 - (IBAction)submitAction:(UIButton *)sender {
     !_finishBlock ?: _finishBlock(self.smsCode);
-    // 这是干嘛？如果要业务处理完成移除，可以开放一个api，或者把当前值传出去
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self removeFromSuperview];
-    });
 }
 
 // 关闭页面
