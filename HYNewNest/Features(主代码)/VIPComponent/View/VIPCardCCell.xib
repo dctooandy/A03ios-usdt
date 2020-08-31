@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="333" height="148"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="江湖豪侠 出手不凡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRW-P5-co9">
-                        <rect key="frame" x="215.5" y="56.5" width="101.5" height="14.5"/>
+                        <rect key="frame" x="215.5" y="62.5" width="101.5" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.92549019607843142" green="1" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -33,12 +33,12 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zSa-BK-C60">
-                        <rect key="frame" x="264" y="21" width="53" height="31.5"/>
+                        <rect key="frame" x="264" y="21" width="53" height="37.5"/>
                         <attributedString key="attributedText">
                             <fragment content="赌侠">
                                 <attributes>
                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <font key="NSFont" size="26" name="HiraginoSansGB-W6"/>
+                                    <font key="NSFont" size="26" name="STHeitiSC-Medium"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
@@ -86,7 +86,7 @@
                 <outlet property="lbSubTitle" destination="RRW-P5-co9" id="Lqe-dI-fCc"/>
                 <outlet property="lbTitle" destination="zSa-BK-C60" id="Wqd-oi-yRu"/>
             </connections>
-            <point key="canvasLocation" x="161.59420289855075" y="89.732142857142847"/>
+            <point key="canvasLocation" x="-138" y="80"/>
         </collectionViewCell>
     </objects>
     <resources>

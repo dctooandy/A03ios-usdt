@@ -59,12 +59,14 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 @property (weak, nonatomic) IBOutlet UIProgressView *prgsViewDeposit;
 
 // 累计身份
+@property (weak, nonatomic) IBOutlet UIStackView *rankStackView;
 @property (weak, nonatomic) IBOutlet UILabel *lbDuzunTime;
 @property (weak, nonatomic) IBOutlet UILabel *lbDushenTime;
 @property (weak, nonatomic) IBOutlet UILabel *lbDushengTime;
 @property (weak, nonatomic) IBOutlet UILabel *lbDuwangTime;
 @property (weak, nonatomic) IBOutlet UILabel *lbDubaTime;
 @property (weak, nonatomic) IBOutlet UILabel *lbDuxiaTime;
+@property (weak, nonatomic) IBOutlet UIView *unloginLbBGView;
 
 // -------- 两个按钮 --------
 // 至尊转盘
@@ -89,24 +91,38 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupUIAttributes];
+    self.hideNavgation = YES;
     [self setupCollectionView];
     
     [self requestRewardAnnouncement];
-    if ([CNUserManager shareManager].isLogin) {
-        [self requestUsrVIPPromotion];
-    }
+    [self userStatusChanged];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestUsrVIPPromotion) name:HYLoginSuccessNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usrDidLogout) name:HYLogoutSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLoginSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLogoutSuccessNotification object:nil];
     
     m_currentIndex = 0;
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    [self setupUIAttributes];
+}
+
+- (void)userStatusChanged {
+    if ([CNUserManager shareManager].isLogin) {
+        [self requestUsrVIPPromotion];
+        self.rankStackView.hidden = NO;
+        self.unloginLbBGView.hidden = YES;
+    } else {
+        self.rankStackView.hidden = YES;
+        self.unloginLbBGView.hidden = NO;
+    }
 }
 
 
 #pragma mark - Custom Func
 - (void)setupUIAttributes {
-    self.hideNavgation = YES;
     
     self.topRadianView.backgroundColor = [UIColor jk_gradientFromColor:kHexColor(0x0F2129) toColor:kHexColor(0x0C2928) withHeight:self.topRadianView.height];
     self.topRadianView.radian = 12;
