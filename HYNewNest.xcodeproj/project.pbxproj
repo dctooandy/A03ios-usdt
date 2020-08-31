@@ -172,6 +172,8 @@
 		3D3A9B7324FA7DA5003FB33C /* CNVIPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B7224FA7DA5003FB33C /* CNVIPRequest.m */; };
 		3D3A9B7624FA815F003FB33C /* VIPRewardAnocModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B7524FA815F003FB33C /* VIPRewardAnocModel.m */; };
 		3D3A9B7924FA8631003FB33C /* VIPLevelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B7824FA8631003FB33C /* VIPLevelData.m */; };
+		3D3A9B7D24FCCC26003FB33C /* VIPCardCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B7B24FCCC26003FB33C /* VIPCardCCell.m */; };
+		3D3A9B7E24FCCC26003FB33C /* VIPCardCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D3A9B7C24FCCC26003FB33C /* VIPCardCCell.xib */; };
 		3D564E2024F3C02C006846DD /* MessageBoxModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D564E1F24F3C02C006846DD /* MessageBoxModel.m */; };
 		3D643F7724F253E300B9AAA7 /* HYEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F7524F253E200B9AAA7 /* HYEncryptor.m */; };
 		3D643F8824F29F3600B9AAA7 /* AlertViewHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F7D24F29F3600B9AAA7 /* AlertViewHelp.m */; };
@@ -1142,6 +1144,9 @@
 		3D3A9B7524FA815F003FB33C /* VIPRewardAnocModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPRewardAnocModel.m; sourceTree = "<group>"; };
 		3D3A9B7724FA8631003FB33C /* VIPLevelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPLevelData.h; sourceTree = "<group>"; };
 		3D3A9B7824FA8631003FB33C /* VIPLevelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPLevelData.m; sourceTree = "<group>"; };
+		3D3A9B7A24FCCC26003FB33C /* VIPCardCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPCardCCell.h; sourceTree = "<group>"; };
+		3D3A9B7B24FCCC26003FB33C /* VIPCardCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPCardCCell.m; sourceTree = "<group>"; };
+		3D3A9B7C24FCCC26003FB33C /* VIPCardCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VIPCardCCell.xib; sourceTree = "<group>"; };
 		3D564E1E24F3C02C006846DD /* MessageBoxModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageBoxModel.h; sourceTree = "<group>"; };
 		3D564E1F24F3C02C006846DD /* MessageBoxModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageBoxModel.m; sourceTree = "<group>"; };
 		3D643F7524F253E200B9AAA7 /* HYEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYEncryptor.m; sourceTree = "<group>"; };
@@ -2728,6 +2733,9 @@
 			children = (
 				3D3A9B6C24FA427C003FB33C /* JLXUICollectionViewFlowLayout.h */,
 				3D3A9B6D24FA427C003FB33C /* JLXUICollectionViewFlowLayout.m */,
+				3D3A9B7A24FCCC26003FB33C /* VIPCardCCell.h */,
+				3D3A9B7B24FCCC26003FB33C /* VIPCardCCell.m */,
+				3D3A9B7C24FCCC26003FB33C /* VIPCardCCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4533,6 +4541,7 @@
 				D5A4438D24F378CD00014DC6 /* 彩票_00031.png in Resources */,
 				D5A4462C24F393E500014DC6 /* 足球_00093.png in Resources */,
 				D5A444B624F3932400014DC6 /* 数字7_00069.png in Resources */,
+				3D3A9B7E24FCCC26003FB33C /* VIPCardCCell.xib in Resources */,
 				D5A446DD24F3941400014DC6 /* 合成 1_00015.png in Resources */,
 				D5A4446E24F3932400014DC6 /* 数字7_00049.png in Resources */,
 				D5A446DA24F3941400014DC6 /* 合成 1_00010.png in Resources */,
@@ -5319,6 +5328,7 @@
 				D571B1A124BFFD510087B5EC /* CNBaseTF.m in Sources */,
 				04C0F0E824C2E250007F1420 /* JHVerificationCodeView.m in Sources */,
 				0487C9E724D27BDD0013715A /* CNNotifySettingTCell.m in Sources */,
+				3D3A9B7D24FCCC26003FB33C /* VIPCardCCell.m in Sources */,
 				3D643F8C24F29F3600B9AAA7 /* KeyChain.m in Sources */,
 				E986A18F24CA8DB9000F9CFF /* ChooseAvatarsModel.m in Sources */,
 				3DA4F18924B317E40039123F /* WMDragView.m in Sources */,
@@ -5501,7 +5511,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = PTALWADUNN;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5515,7 +5525,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.12;
+				MARKETING_VERSION = 1.0.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hy.HYNewNest;
 				PRODUCT_NAME = "币游_dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5529,7 +5539,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = PTALWADUNN;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5543,7 +5553,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.12;
+				MARKETING_VERSION = 1.0.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hy.HYNewNest;
 				PRODUCT_NAME = "币游";
 				TARGETED_DEVICE_FAMILY = "1,2";

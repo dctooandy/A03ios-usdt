@@ -11,8 +11,17 @@
 #import "DXRadianLayerView.h"
 #import "UUMarqueeView.h"
 #import "CNVIPRequest.h"
+#import "JLXUICollectionViewFlowLayout.h"
+#import "VIPCardCCell.h"
 
+static NSString * const kVIPCardCCell = @"VIPCardCCell";
 @interface HYVIPViewController () <UUMarqueeViewDelegate>
+{
+    // collectionView 滚动相关
+    NSInteger m_currentIndex;
+    CGFloat m_dragStartX;
+    CGFloat m_dragEndX;
+}
 // 顶部背景
 @property (weak, nonatomic) IBOutlet DXRadianLayerView *topRadianView;
 // 底部背景
@@ -22,6 +31,7 @@
 
 // -------- 顶部卡片 --------
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionViewCard;
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 
 
 // -------- 大奖公告 --------
@@ -65,7 +75,7 @@
 // -------- 数据源 --------
 @property (strong, nonatomic) NSArray <VIPRewardAnocModel *>* rewards;
 @property (strong, nonatomic) VIPLevelData *vipLevel;
-
+@property (strong,nonatomic) NSArray *cardArray;
 @end
 
 @implementation HYVIPViewController
@@ -80,6 +90,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUIAttributes];
+    [self setupCollectionView];
     
     [self requestRewardAnnouncement];
     if ([CNUserManager shareManager].isLogin) {
@@ -88,6 +99,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestUsrVIPPromotion) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usrDidLogout) name:HYLogoutSuccessNotification object:nil];
+    
+    m_currentIndex = 0;
 }
 
 
@@ -113,8 +126,31 @@
     
 }
 
-- (void)usrDidLogout {
+- (void)setupCollectionView {
+    self.cardArray  = @[@{@"赌侠":@"江湖豪侠 出手不凡"},
+                        @{@"赌霸":@"雄图霸业 大杀四方"},
+                        @{@"赌王":@"赌运亨通 百战称王"},
+                        @{@"赌圣":@"圣手搓牌 有叫必应"},
+                        @{@"赌神":@"逢赌必赢 赌坛封神"},
+                        @{@"赌尊":@"至尊无敌 无所不能"}];
     
+    JLXUICollectionViewFlowLayout *layout = [[JLXUICollectionViewFlowLayout alloc] init];
+    layout.itemSize = CGSizeMake(AD(333), AD(148));
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    layout.minimumLineSpacing = AD(10);
+    layout.minimumInteritemSpacing = AD(10);
+    [self.collectionViewCard setCollectionViewLayout:layout animated:YES];
+    self.collectionViewCard.pagingEnabled = NO;
+    self.collectionViewCard.showsHorizontalScrollIndicator = NO;
+    self.collectionViewCard.contentSize = CGSizeMake(self.cardArray.count*kScreenWidth, 0);
+    [self.collectionViewCard registerNib:[UINib nibWithNibName:kVIPCardCCell bundle:nil] forCellWithReuseIdentifier:kVIPCardCCell];
+    
+    [self.collectionViewCard reloadData];
+    
+}
+
+- (void)usrDidLogout {
+    //TODO:
 }
 
 
@@ -180,6 +216,60 @@
     }
 }
 
+
+#pragma mark - UICollectionViewDataSource
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.cardArray.count;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    //自定义item的UIEdgeInsets
+    return UIEdgeInsetsMake(0, self.view.bounds.size.width/2.0-AD(325)/2, 0, self.view.bounds.size.width/2.0-AD(325)/2);
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *dict = self.cardArray[indexPath.item];
+    VIPCardCCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kVIPCardCCell forIndexPath:indexPath];
+    cell.cardName = dict.allKeys.firstObject;
+    cell.lbTitle.text = dict.allKeys.firstObject;
+    cell.lbSubTitle.text = dict.allValues.firstObject;
+    return cell;
+}
+
+//手指拖动开始
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    m_dragStartX = scrollView.contentOffset.x;
+}
+
+//手指拖动停止
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    m_dragEndX = scrollView.contentOffset.x;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self fixCellToCenter];
+    });
+}
+
+//配置cell居中
+- (void)fixCellToCenter {
+    //最小滚动距离
+    float dragMiniDistance = self.view.bounds.size.width/20.0f;
+    if (m_dragStartX - m_dragEndX >= dragMiniDistance) {
+        m_currentIndex -= 1;//向右
+    }else if(m_dragEndX -  m_dragStartX >= dragMiniDistance){
+        m_currentIndex += 1;//向左
+    }
+    NSInteger maxIndex = [self.collectionViewCard numberOfItemsInSection:0] - 1;
+    
+    m_currentIndex = m_currentIndex <= 0 ? 0 : m_currentIndex;
+    m_currentIndex = m_currentIndex >= maxIndex ? maxIndex : m_currentIndex;
+    
+    self.pageControl.currentPage = m_currentIndex;
+    [self.collectionViewCard scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:m_currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+}
 
 #pragma mark - Lazy Load
 
