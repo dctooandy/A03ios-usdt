@@ -96,6 +96,11 @@
     [super viewDidLoad];
     
     self.hideNavgation = YES;
+    __weak typeof(self) wSelf = self;
+    self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [wSelf switchCurrencyUI];
+        [wSelf requestOtherAppData];
+    }];
    
     [self requestOtherAppData];
     
@@ -125,11 +130,6 @@
     self.switchBtn.layer.borderColor = kHexColor(0x19CECE).CGColor;
     self.switchBtn.layer.borderWidth = 1;
     
-    __weak typeof(self) wSelf = self;
-    self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [wSelf switchCurrencyUI];
-        [wSelf requestOtherAppData];
-    }];
 }
 
 #pragma mark - 按钮事件
@@ -309,6 +309,10 @@
 
 - (void)requestOtherAppData {
     [CNUserCenterRequest requestOtherGameAppListHandler:^(id responseObj, NSString *errorMsg) {
+        [self.scrollView.mj_header endRefreshing];
+        if (errorMsg) {
+            return;
+        }
         NSArray *otherApps = [OtherAppModel cn_parse:responseObj];
         if (otherApps.count > 0) {
             self.otherApps = otherApps;
@@ -347,8 +351,6 @@
 //        strongSelf.amountLb.originText = [model.balance jk_toDisplayNumberWithDigit:2];
         [strongSelf.amountLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
         strongSelf.currencyLb.text = model.currency;
-        
-        [strongSelf.scrollView.mj_header endRefreshing];
     }];
 }
 

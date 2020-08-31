@@ -254,6 +254,7 @@
     WEAKSELF_DEFINE
     [CNHomeRequest requestBannerWhere:BannerWhereHome Handler:^(id responseObj, NSString *errorMsg) {
         STRONGSELF_DEFINE
+        [strongSelf.scrollView.mj_header endRefreshing];
         if (!KIsEmptyString(errorMsg)) {
             return;
         }
@@ -277,7 +278,7 @@
         }
         strongSelf.bannerView.imageURLStringsGroup = imgUrls;
         strongSelf.bannModels = modArr;
-        [strongSelf.scrollView.mj_header endRefreshing];
+        
     }];
     
 }
