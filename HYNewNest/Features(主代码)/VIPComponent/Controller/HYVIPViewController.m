@@ -17,17 +17,20 @@
 static NSString * const kVIPCardCCell = @"VIPCardCCell";
 @interface HYVIPViewController () <UUMarqueeViewDelegate>
 {
-    // collectionView 滚动相关
-    NSInteger m_currentIndex;
+    // collectionView 起始&终止x位置
     CGFloat m_dragStartX;
     CGFloat m_dragEndX;
 }
+@property (nonatomic, assign) NSInteger m_currentIndex;
+// 最顶部距离
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topMarginConstrain;
 // 顶部背景
 @property (weak, nonatomic) IBOutlet DXRadianLayerView *topRadianView;
 // 底部背景
 @property (weak, nonatomic) IBOutlet UIView *bottomBgView;
 // vip私享会2.0
-@property (weak, nonatomic) IBOutlet UILabel *sxhTopLb;
+@property (weak, nonatomic) IBOutlet UIButton *vipSxhTopBtn;
+
 
 // -------- 顶部卡片 --------
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionViewCard;
@@ -41,7 +44,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 // -------- 本月进度 --------
 @property (weak, nonatomic) IBOutlet UIView *ByjdTopBg;
-@property (weak, nonatomic) IBOutlet UILabel *lblByjd;
+@property (weak, nonatomic) IBOutlet UILabel *lblByjdSubTitle;
 @property (weak, nonatomic) IBOutlet UIView *ByjdBtmBg;
 
 // 本月流水
@@ -100,23 +103,29 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLogoutSuccessNotification object:nil];
     
-    m_currentIndex = 0;
+    _m_currentIndex = 0;
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    
+    // 放在这里才能正常绘制
     [self setupUIAttributes];
 }
 
 - (void)userStatusChanged {
     if ([CNUserManager shareManager].isLogin) {
-        [self requestUsrVIPPromotion];
         self.rankStackView.hidden = NO;
         self.unloginLbBGView.hidden = YES;
+        //TODO: 请求数据
+        [self requestUsrVIPPromotion];
+        
     } else {
         self.rankStackView.hidden = YES;
         self.unloginLbBGView.hidden = NO;
+        self.prgsViewAmount.progress = 0.0;
+        self.prgsViewDeposit.progress = 0.0;
+        self.lblThisMonthAmount.text = @"本月流水：-";
+        self.lblThisMonthDeposit.text = @"本月充值：-";
     }
 }
 
@@ -124,10 +133,15 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 #pragma mark - Custom Func
 - (void)setupUIAttributes {
     
+    if (!KIsIphoneXSeries) {
+        self.topMarginConstrain.constant = -kStatusBarHeight;
+    }
+    
     self.topRadianView.backgroundColor = [UIColor jk_gradientFromColor:kHexColor(0x0F2129) toColor:kHexColor(0x0C2928) withHeight:self.topRadianView.height];
     self.topRadianView.radian = 12;
     
-    [self.sxhTopLb setupGradientColorFrom:kHexColor(0xFFEFCB) toColor:kHexColor(0xA28455)];
+    [self.vipSxhTopBtn setTitleColor:[UIColor jk_gradientFromColor:kHexColor(0xFFEFCB) toColor:kHexColor(0xA28455) withHeight:20]
+                            forState:UIControlStateNormal];
     
     [self.bottomBgView addSubview:self.marqueeView];
     self.bottomBgView.backgroundColor = [UIColor jk_gradientFromColor:kHexColor(0x0A1D25) toColor:kHexColor(0x070D17) withHeight:self.bottomBgView.height];
@@ -171,6 +185,11 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 
 #pragma mark - Action
+- (IBAction)didTapVIPSxh:(id)sender {
+    MyLog(@"VIP SXH");
+    //TODO: VIP私享会2.0 弹窗
+}
+
 - (IBAction)didTapDashenBoard:(id)sender {
     MyLog(@"大神吧");
 }
@@ -189,6 +208,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 
 #pragma mark - Request
+// 抽奖广播
 - (void)requestRewardAnnouncement {
     [CNVIPRequest requestRewardBroadcastHandler:^(id responseObj, NSString *errorMsg) {
         self.rewards = [VIPRewardAnocModel cn_parse:responseObj];
@@ -196,10 +216,13 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     }];
 }
 
+// 用户等级信息
 - (void)requestUsrVIPPromotion {
+    //TODO: 带入数据
     [CNVIPRequest requestVIPPromotionHandler:^(id responseObj, NSString *errorMsg) {
         self.vipLevel = [VIPLevelData cn_parse:responseObj];
-        //TODO: 带入数据
+        self.prgsViewAmount.progress = 0.7;
+        self.prgsViewDeposit.progress = 0.5;
     }];
 }
 
@@ -274,18 +297,50 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     //最小滚动距离
     float dragMiniDistance = self.view.bounds.size.width/20.0f;
     if (m_dragStartX - m_dragEndX >= dragMiniDistance) {
-        m_currentIndex -= 1;//向右
+        self.m_currentIndex -= 1;//向右
     }else if(m_dragEndX -  m_dragStartX >= dragMiniDistance){
-        m_currentIndex += 1;//向左
+        self.m_currentIndex += 1;//向左
     }
     NSInteger maxIndex = [self.collectionViewCard numberOfItemsInSection:0] - 1;
     
-    m_currentIndex = m_currentIndex <= 0 ? 0 : m_currentIndex;
-    m_currentIndex = m_currentIndex >= maxIndex ? maxIndex : m_currentIndex;
+    self.m_currentIndex = _m_currentIndex <= 0 ? 0 : _m_currentIndex;
+    self.m_currentIndex = _m_currentIndex >= maxIndex ? maxIndex : _m_currentIndex;
     
-    self.pageControl.currentPage = m_currentIndex;
-    [self.collectionViewCard scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:m_currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+    self.pageControl.currentPage = _m_currentIndex;
+    [self.collectionViewCard scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:_m_currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
+
+
+#pragma mark - SET
+//0 - 5 依次是： 赌侠 赌霸 赌王 赌圣 赌神 赌尊
+- (void)setM_currentIndex:(NSInteger)m_currentIndex {
+    _m_currentIndex = m_currentIndex;
+    switch (m_currentIndex) {
+        case 0:
+            self.lblByjdSubTitle.text = @"(择一达成 晋级赌霸)";
+            //(您已达标赌侠 继续加油哦)
+            break;
+        case 1:
+            self.lblByjdSubTitle.text = @"(择一达成 晋级赌王)";
+            break;
+        case 2:
+            self.lblByjdSubTitle.text = @"(择一达成 晋级赌圣)";
+            break;
+        case 3:
+            self.lblByjdSubTitle.text = @"(择一达成 晋级赌神)";
+            break;
+        case 4:
+            self.lblByjdSubTitle.text = @"(择一达成 晋级赌尊)";
+            break;
+        case 5:
+            self.lblByjdSubTitle.text = @"(达标且流水最高晋级唯一赌尊)";
+            //(您已达标,流水最高可晋级赌尊)
+            break;
+        default:
+            break;
+    }
+}
+
 
 #pragma mark - Lazy Load
 
