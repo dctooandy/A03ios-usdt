@@ -24,7 +24,7 @@
         return;
     }
     
-    [self.videoImgv sd_setImageWithURL:[NSURL URLWithString:model.img]];
+    [self.videoImgv sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"1"]];
     [self.bottomBtn setTitle:model.type forState:UIControlStateNormal];
     
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:model.type attributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:AD(12)], NSForegroundColorAttributeName:kHexColor(0xFFFFFF)}];

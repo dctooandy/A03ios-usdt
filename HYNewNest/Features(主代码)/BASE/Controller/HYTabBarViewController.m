@@ -191,7 +191,7 @@
 
 - (void)call400{
     
-    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",@"4001203093"];
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",@"4001200938"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str] options:@{} completionHandler:^(BOOL success) {
         [CNHUB showSuccess:@"正在为您拨通.."];
     }];

@@ -106,7 +106,6 @@
     
     [self userDidLogin];
     [self requestAnnouncement];
-    [self requestNewsBox];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYSwitchAcoutSuccNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYLoginSuccessNotification object:nil];
@@ -128,6 +127,8 @@
     [self requestHomeBanner];
     
     if ([CNUserManager shareManager].isLogin) {
+        // 弹窗盒子
+         [self requestNewsBox];
         // 游戏线路
         [[HYInGameHelper sharedInstance] queryHomeInGamesStatus];
         // 最近玩过的电游

@@ -47,11 +47,11 @@
     for (int i = 0; i < itemCount; i++) {
         frame.origin.x = itemSpace*0.5 + (itemW + itemSpace) * i;
         UIImageView *iv = [[UIImageView alloc] initWithFrame:frame];
-        iv.backgroundColor = kHexColor(0x212137);
         [self.scrollView addSubview:iv];
         iv.contentMode = UIViewContentModeScaleAspectFit;
-        iv.layer.cornerRadius = 8;
-        iv.layer.masksToBounds = YES;
+//        iv.backgroundColor = kHexColor(0x212137);
+//        iv.layer.cornerRadius = 8;
+//        iv.layer.masksToBounds = YES;
         
         iv.userInteractionEnabled = YES;
         iv.tag = i;

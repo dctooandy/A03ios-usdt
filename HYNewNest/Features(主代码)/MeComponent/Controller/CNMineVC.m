@@ -233,7 +233,7 @@
 // 下载APP
 - (IBAction)doloadApp:(id)sender {
     if (!_otherApps || _otherApps.count == 0) {
-        [kKeywindow jk_makeToast:@"正在请求下载数据 请稍后.."];
+        [kKeywindow jk_makeToast:@"正在请求下载数据 请稍后.." duration:3 position:JKToastPositionCenter];
         [self requestOtherAppData];
         return;
     }
@@ -250,7 +250,7 @@
 // 更多下载
 - (IBAction)moreDoload:(id)sender {
     if (!_otherApps || _otherApps.count == 0) {
-        [kKeywindow jk_makeToast:@"正在请求下载数据 请稍后.."];
+        [kKeywindow jk_makeToast:@"正在请求下载数据 请稍后.." duration:3 position:JKToastPositionCenter];
         [self requestOtherAppData];
         return;
     }

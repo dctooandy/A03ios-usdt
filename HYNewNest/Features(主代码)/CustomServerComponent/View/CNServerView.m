@@ -42,7 +42,7 @@
 
 - (void)configUI {
     self.phoneView.fromServer = YES;
-    [self.phoneView setPlaceholder:@"请输入您想接通的11位手机号码"];
+    [self.phoneView setPlaceholder:@"请输入您想接通的电话"];
     self.codeView.codeType = CNCodeTypePhoneLogin;
     [self.codeView setPlaceholder:@"6位数字验证码"];
     [self setDelegate];
