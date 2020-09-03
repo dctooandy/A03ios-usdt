@@ -14,6 +14,8 @@
 #import "JLXUICollectionViewFlowLayout.h"
 #import "VIPCardCCell.h"
 
+#import "VIPMonthlyAlertsVC.h"
+
 static NSString * const kVIPCardCCell = @"VIPCardCCell";
 @interface HYVIPViewController () <UUMarqueeViewDelegate>
 {
@@ -179,15 +181,23 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     
 }
 
-- (void)usrDidLogout {
-    //TODO:
-}
-
 
 #pragma mark - Action
 - (IBAction)didTapVIPSxh:(id)sender {
     MyLog(@"VIP SXH");
     //TODO: VIP私享会2.0 弹窗
+    if (0) {
+        
+    } else {
+        // 月报弹窗
+        VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
+        vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
+        //添加子控制器 该方法调用了willMoveToParentViewController：方法
+        [self addChildViewController:vc];
+        //将子控制器视图添加到容器控制器的视图中
+        [self.view addSubview:vc.view];
+    }
+
 }
 
 - (IBAction)didTapDashenBoard:(id)sender {

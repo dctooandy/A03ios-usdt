@@ -208,6 +208,10 @@
 		3DA4F19D24B3195F0039123F /* HYRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F19B24B3195F0039123F /* HYRefreshHeader.m */; };
 		3DA4F1A124B3199A0039123F /* HYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F19F24B3199A0039123F /* HYNavigationController.m */; };
 		3DA4F1A424B31A110039123F /* NSString+Font.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F1A324B31A110039123F /* NSString+Font.m */; };
+		3DCFEA8B25009D020071F356 /* V_SlideCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8825009D010071F356 /* V_SlideCard.m */; };
+		3DCFEA8C25009D020071F356 /* V_SlideCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8925009D010071F356 /* V_SlideCardCell.m */; };
+		3DCFEA8F25009D5E0071F356 /* VIPMonthlyAlertsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8E25009D5E0071F356 /* VIPMonthlyAlertsVC.m */; };
+		3DCFEA932500D0880071F356 /* VIPMonlyAlertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA922500D0880071F356 /* VIPMonlyAlertCell.m */; };
 		3DE3CA8F24ECF6E300D591C4 /* CIRCULAR_06.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */; };
 		3DE3CA9024ECF6E300D591C4 /* CIRCULAR.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */; };
 		3DE3CA9324ED5CFC00D591C4 /* HYUpdateAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3CA9224ED5CFC00D591C4 /* HYUpdateAlertView.m */; };
@@ -1216,6 +1220,15 @@
 		3DA4F1A024B3199A0039123F /* HYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYNavigationController.h; sourceTree = "<group>"; };
 		3DA4F1A224B31A110039123F /* NSString+Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Font.h"; sourceTree = "<group>"; };
 		3DA4F1A324B31A110039123F /* NSString+Font.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Font.m"; sourceTree = "<group>"; };
+		3DCFEA8725009D010071F356 /* V_SlideCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_SlideCardCell.h; sourceTree = "<group>"; };
+		3DCFEA8825009D010071F356 /* V_SlideCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V_SlideCard.m; sourceTree = "<group>"; };
+		3DCFEA8925009D010071F356 /* V_SlideCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V_SlideCardCell.m; sourceTree = "<group>"; };
+		3DCFEA8A25009D010071F356 /* V_SlideCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_SlideCard.h; sourceTree = "<group>"; };
+		3DCFEA8D25009D5E0071F356 /* VIPMonthlyAlertsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPMonthlyAlertsVC.h; sourceTree = "<group>"; };
+		3DCFEA8E25009D5E0071F356 /* VIPMonthlyAlertsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPMonthlyAlertsVC.m; sourceTree = "<group>"; };
+		3DCFEA902500A0990071F356 /* SlideCard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlideCard.h; sourceTree = "<group>"; };
+		3DCFEA912500D0880071F356 /* VIPMonlyAlertCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPMonlyAlertCell.h; sourceTree = "<group>"; };
+		3DCFEA922500D0880071F356 /* VIPMonlyAlertCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPMonlyAlertCell.m; sourceTree = "<group>"; };
 		3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CIRCULAR_06.mp4; sourceTree = "<group>"; };
 		3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CIRCULAR.png; sourceTree = "<group>"; };
 		3DE3CA9124ED5CFC00D591C4 /* HYUpdateAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYUpdateAlertView.h; sourceTree = "<group>"; };
@@ -2681,6 +2694,7 @@
 		3D1338A624AF2E7D00B29783 /* Vendors(第三方库) */ = {
 			isa = PBXGroup;
 			children = (
+				3DCFEA8625009D010071F356 /* SlideCard */,
 				E9B5496424CECE23002CE6EF /* LTSegmentedBar */,
 				040A08B724E114A900FBD534 /* OCBarrage(弹幕) */,
 				E97054A124DBB5030007F845 /* SuspendBall */,
@@ -2736,6 +2750,8 @@
 				3D3A9B7A24FCCC26003FB33C /* VIPCardCCell.h */,
 				3D3A9B7B24FCCC26003FB33C /* VIPCardCCell.m */,
 				3D3A9B7C24FCCC26003FB33C /* VIPCardCCell.xib */,
+				3DCFEA912500D0880071F356 /* VIPMonlyAlertCell.h */,
+				3DCFEA922500D0880071F356 /* VIPMonlyAlertCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2800,6 +2816,8 @@
 				3D643F9424F36D3E00B9AAA7 /* HYVIPViewController.h */,
 				3D643F9524F36D3E00B9AAA7 /* HYVIPViewController.m */,
 				3D643F9624F36D3E00B9AAA7 /* HYVIPViewController.xib */,
+				3DCFEA8D25009D5E0071F356 /* VIPMonthlyAlertsVC.h */,
+				3DCFEA8E25009D5E0071F356 /* VIPMonthlyAlertsVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2897,6 +2915,19 @@
 			);
 			path = BASE;
 			sourceTree = "<group>";
+		};
+		3DCFEA8625009D010071F356 /* SlideCard */ = {
+			isa = PBXGroup;
+			children = (
+				3DCFEA8725009D010071F356 /* V_SlideCardCell.h */,
+				3DCFEA8825009D010071F356 /* V_SlideCard.m */,
+				3DCFEA8925009D010071F356 /* V_SlideCardCell.m */,
+				3DCFEA8A25009D010071F356 /* V_SlideCard.h */,
+				3DCFEA902500A0990071F356 /* SlideCard.h */,
+			);
+			name = SlideCard;
+			path = "HYNewNest/Vendors(第三方库)/SlideCard";
+			sourceTree = SOURCE_ROOT;
 		};
 		3FFDA09A060FFD0AB09F0AE0 /* Frameworks */ = {
 			isa = PBXGroup;
@@ -5131,6 +5162,7 @@
 				E986A18C24C9D39B000F9CFF /* XmCalcAmountModel.m in Sources */,
 				0487C99024CEC8040013715A /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				3D3A9B6F24FA427D003FB33C /* JLXUICollectionViewFlowLayout.m in Sources */,
+				3DCFEA932500D0880071F356 /* VIPMonlyAlertCell.m in Sources */,
 				E986A12924C7EEA1000F9CFF /* ElecGameModel.m in Sources */,
 				E9D9449E24C5735B00252222 /* SplashViewController.m in Sources */,
 				E994D40D24E521E300D0D81A /* CardBinTypeModel.m in Sources */,
@@ -5156,6 +5188,7 @@
 				0487C9F424D2AADC0013715A /* CNMessageTCell.m in Sources */,
 				0487C9F024D2A0620013715A /* CNTextSaleBtn.m in Sources */,
 				E986A1A624CB3C18000F9CFF /* HYTextAlertView.m in Sources */,
+				3DCFEA8F25009D5E0071F356 /* VIPMonthlyAlertsVC.m in Sources */,
 				E9D9449024C5454F00252222 /* HYNetworkConfigManager.m in Sources */,
 				040A08D424E114A900FBD534 /* CALayer+OCBarrage.m in Sources */,
 				048A0EF324C9401100411819 /* CNGameLineView.m in Sources */,
@@ -5174,6 +5207,7 @@
 				0487C9C124D113C90013715A /* CNTradeRecordTCell.m in Sources */,
 				04C0F11024C59298007F1420 /* CNBaseNetworking.m in Sources */,
 				E9A269D724D80D8700B512FF /* HYRechargePayWayController.m in Sources */,
+				3DCFEA8B25009D020071F356 /* V_SlideCard.m in Sources */,
 				E98BEEE924D023B200E6B0C8 /* UIView+Empty.m in Sources */,
 				D5FBFE8A24BC28B200BBCAD8 /* CNBaseXibView.m in Sources */,
 				04C0F10624C58CF4007F1420 /* CNNotificationName.m in Sources */,
@@ -5270,6 +5304,7 @@
 				04935BD924D7D45E007A33EF /* CNElectrionHallVC.m in Sources */,
 				E9E9590124D41BC400E866B6 /* CreditQueryResultModel.m in Sources */,
 				E969EB3B24E2755F00D58FE9 /* HYRechargeCNYEditView.m in Sources */,
+				3DCFEA8C25009D020071F356 /* V_SlideCardCell.m in Sources */,
 				D5FBFE3F24BC05E400BBCAD8 /* CNAccountInputView.m in Sources */,
 				044DC69524DD1A35005CB550 /* CNShareCopyView.m in Sources */,
 				0487CA0D24D3CC380013715A /* CNFeedBackVC.m in Sources */,
