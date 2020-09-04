@@ -100,7 +100,7 @@
         _slideCard.cellScaleSpace = 0.11; // 缩放大小
         _slideCard.cellCenterYOffset = - 50; //Y轴偏移
 
-        _slideCard.cellSize = CGSizeMake(AD(316), AD(284));
+        _slideCard.cellSize = CGSizeMake(AD(316), AD(317));
         _slideCard.cellOffsetDirection = CellOffsetDirectionTop; // 缩小的view方向向上
         
         [_slideCard registerCellClassName:@"VIPMonlyAlertCell"];
