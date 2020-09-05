@@ -202,7 +202,7 @@
             btmLb.font = [UIFont fontPFR14];
             btmLb.textColor = kHexColor(0x884C0C);
             btmLb.textAlignment = NSTextAlignmentCenter;
-            btmLb.text = @"播报结束,小游祝您月月赢大钱,次次中大奖";//exp
+            btmLb.text = @"播报结束,小游祝您月月赢大钱,次次中大奖";
             [btmLb sizeToFit];
             btmLb.x = 0;
             btmLb.bottom = self.bgView.height - AD(11);
