@@ -78,6 +78,9 @@
             angle = (moveToX / width - 1)  * M_PI_4 / 2;
         }
         self.transform = CGAffineTransformMakeRotation(angle);
+
+        self.contentView.alpha = 1.0;
+        
     } else {
         //中间cell 缩放+位移
         CGFloat percentMain = [[params objectForKey:PERCENTMAIN] floatValue];
@@ -90,6 +93,8 @@
         }
         self.transform = CGAffineTransformMakeScale(scale, scale);
         self.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - currentSpaceY);
+        
+        self.contentView.alpha = scale;
     }
 }
 
@@ -152,10 +157,10 @@
     if (_contentView == nil) {
         _contentView = [[UIView alloc] initWithFrame:self.bounds];
         _contentView.backgroundColor = [UIColor whiteColor];
-        _contentView.layer.borderColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1].CGColor;
-        _contentView.layer.borderWidth = 1.0;
-        _contentView.layer.cornerRadius = 5.0;
-        _contentView.layer.masksToBounds = YES;
+//        _contentView.layer.borderColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1].CGColor;
+//        _contentView.layer.borderWidth = 1.0;
+//        _contentView.layer.cornerRadius = 5.0;
+//        _contentView.layer.masksToBounds = YES;
     }
     return _contentView;
 }

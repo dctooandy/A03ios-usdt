@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UIImageView *rankImgv;
 @property (nonatomic, strong) UIButton *btmButton;
 @property (nonatomic, strong) UILabel *btmColorLb;
+@property (nonatomic, weak) id<VIPMonlyAlertDelegate> delegate;
 @end
 
 @implementation VIPMonlyAlertCell
@@ -85,8 +86,9 @@
     self.btmButton = btmBtn;
 }
 
-- (void)setupAlertType:(VIPMonlyAlertType)type AndDataDict:(NSDictionary *)dict {
+- (void)setupAlertType:(VIPMonlyAlertType)type delegate:(id)delegate dataDict:(NSDictionary *)dict {
     _alertType = type;
+    self.delegate = delegate;
     
     switch (type) {
         case VIPMonlyAlertTypeCondition: {
@@ -156,7 +158,9 @@
             self.rankImgv.hidden = YES;
             self.btmColorLb.hidden = YES;
             
-            //TODO: 绘制表格
+            // 绘制表格
+            NSArray *leftText = @[@"入会礼金",@"月度分红",@"至尊转盘",@"累计身份",@"累计送出"];
+            NSArray *rightNum = @[@"5,588usdt",@"308usdt",@"15次",@"123,123,120usdt",@"123,123,120usdt"]; //exp
             // 线的路径 横线
             for (int i=0; i<6; i++) {
                 UIBezierPath *linePath = [UIBezierPath bezierPath];
@@ -185,24 +189,25 @@
             for (int i=0; i<5; i++) { //hang
                 for (int j=0; j<2; j++) { //lie
                     UILabel *lb = [UILabel new];
-                    lb.frame = CGRectMake(AD(21) + j*AD(137), AD(47) + i*AD(35), AD(137), AD(35));
+                    lb.frame = CGRectMake(AD(21) + j*AD(137), AD(47) + i*AD(35+1), AD(137), AD(35));
                     lb.textAlignment = NSTextAlignmentCenter;
                     lb.textColor = kHexColor(0x884C0C);
                     lb.font = [UIFont fontPFR13];
-                    lb.text = @"入会礼金";
+                    lb.text = j==0 ? (leftText[i]) : (rightNum[i]);
                     [self.bgView addSubview:lb];
                 }
             }
             
-            UILabel *btmColorLb = [[UILabel alloc] init];
-            btmColorLb.font = [UIFont fontPFR14];
-            btmColorLb.textColor = kHexColor(0x884C0C);
-            btmColorLb.textAlignment = NSTextAlignmentCenter;
-            btmColorLb.text = @"播报结束,小游祝您月月赢大钱,次次中大奖";//exp
-            btmColorLb.x = 0;
-            btmColorLb.y = AD(235);
-            btmColorLb.width = self.bgView.width;
-            [self.bgView addSubview:btmColorLb];
+            UILabel *btmLb = [[UILabel alloc] init];
+            btmLb.font = [UIFont fontPFR14];
+            btmLb.textColor = kHexColor(0x884C0C);
+            btmLb.textAlignment = NSTextAlignmentCenter;
+            btmLb.text = @"播报结束,小游祝您月月赢大钱,次次中大奖";//exp
+            [btmLb sizeToFit];
+            btmLb.x = 0;
+            btmLb.bottom = self.bgView.height - AD(11);
+            btmLb.width = self.bgView.width;
+            [self.bgView addSubview:btmLb];
             
             break;
         }
@@ -220,9 +225,8 @@
             self.rankImgv.height = 123;
             
             self.btmColorLb.hidden = NO;
-            [self.btmButton setTitle:@"看看月报" forState:UIControlStateNormal];
             
-            BOOL isCanRank = YES; //exp
+            BOOL isCanRank = NO; //exp
             if (isCanRank) {
                 self.rankImgv.image = [UIImage imageNamed:@"编组 7备份 2"];//exp
                 self.btmColorLb.text = @"恭喜您荣膺赌尊\n小游送你入会礼金9,888usdt";//exp
@@ -230,6 +234,7 @@
             } else {
                 self.rankImgv.image = [UIImage imageNamed:@"yuebaonone"];
                 self.btmColorLb.text = @"您还未达到入会等级\n请再接再励哦~";
+                [self.btmButton setTitle:@"看看月报" forState:UIControlStateNormal];
             }
             self.btmColorLb.y = self.rankImgv.bottom + 5;
             
@@ -245,17 +250,28 @@
 #pragma mark - ACTION
 - (void)didTapBtmBtn:(UIButton *)btn {
     switch (self.alertType) {
+            
         case VIPMonlyAlertTypeValue:
             MyLog(@"关闭");
-            //TODO: 滑动下一个
+            if(self.delegate && [self.delegate respondsToSelector:@selector(didTapNextOne)]) {
+                [self.delegate didTapNextOne];
+            }
             break;
+            
         case VIPMonlyAlertTypePersonal:
             if ([btn.titleLabel.text isEqualToString:@"看看月报"]) {
                 MyLog(@"kk yuebao");
-            } else {
+                if(self.delegate && [self.delegate respondsToSelector:@selector(didTapMonthlyReport)]) {
+                    [self.delegate didTapMonthlyReport];
+                }
+            } else if ([btn.titleLabel.text isEqualToString:@"领取"]) {
                 MyLog(@"ling qu");
+                if(self.delegate && [self.delegate respondsToSelector:@selector(didTapReceiveGift)]) {
+                    [self.delegate didTapReceiveGift];
+                }
             }
             break;
+            
         default:
             break;
     }

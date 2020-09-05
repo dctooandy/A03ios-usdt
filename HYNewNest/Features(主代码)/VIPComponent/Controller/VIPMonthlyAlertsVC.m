@@ -10,7 +10,7 @@
 #import "SlideCard.h"
 #import "VIPMonlyAlertCell.h"
 
-@interface VIPMonthlyAlertsVC () <V_SlideCardDataSource, V_SlideCardDelegate>
+@interface VIPMonthlyAlertsVC () <V_SlideCardDataSource, V_SlideCardDelegate, VIPMonlyAlertDelegate>
 @property (nonatomic, strong) V_SlideCard *slideCard;
 @property (nonatomic, strong) NSArray *listData;
 @end
@@ -48,6 +48,20 @@
 }
 
 
+#pragma mark - VIPMonlyAlertDelegate
+- (void)didTapNextOne {
+    [self.slideCard animateTopCardToDirection:PanDirectionRight];
+}
+
+- (void)didTapReceiveGift {
+    //TODO: 领取之后跳过
+    [self.slideCard animateTopCardToDirection:PanDirectionRight];
+}
+
+- (void)didTapMonthlyReport {
+    //TODO: 弹出月报
+}
+
 #pragma mark - V_SlideCardDataSource
 - (void)loadNewDataInSlideCard:(V_SlideCard *)slideCard {
     //准备移除
@@ -58,38 +72,38 @@
 }
 
 - (void)slideCard:(V_SlideCard *)slideCard loadNewDataInCell:(V_SlideCardCell *)cell atIndex:(NSInteger)index {
-    //TODO: 这里赋值 & 添加按钮
+    //TODO: 这里赋值
     VIPMonlyAlertCell *aCell = (VIPMonlyAlertCell *)cell;
-    [aCell setupAlertType:index AndDataDict:@{}];
+    [aCell setupAlertType:index delegate:self dataDict:@{}];
 }
 
-// MEIYONG?
 - (NSInteger)numberOfItemsInSlideCard:(V_SlideCard *)slideCard {
 //    return self.listData.count;
     return 3;
 }
 
-#pragma mark - V_SlideCardDelegate
-
-- (void)slideCard:(V_SlideCard *)slideCard topCell:(V_SlideCardCell *)cell didPanPercent:(CGFloat)percent withDirection:(PanDirection)direction atIndex:(NSInteger)index {
-    
-}
-
-- (void)slideCard:(V_SlideCard *)slideCard topCell:(V_SlideCardCell *)cell willScrollToDirection:(PanDirection)direction atIndex:(NSInteger)index {
-    
-}
-
-- (void)slideCard:(V_SlideCard *)slideCard topCell:(V_SlideCardCell *)cell didChangedStateWithDirection:(PanDirection)direction atIndex:(NSInteger)index {
-    
-}
-
-- (void)slideCard:(V_SlideCard *)slideCard didResetFrameInCell:(V_SlideCardCell *)cell atIndex:(NSInteger)index {
-
-}
-
-- (void)slideCard:(V_SlideCard *)slideCard didSelectCell:(V_SlideCardCell *)cell atIndex:(NSInteger)index {
-
-}
+// 代理方法
+//#pragma mark - V_SlideCardDelegate
+//
+//- (void)slideCard:(V_SlideCard *)slideCard topCell:(V_SlideCardCell *)cell didPanPercent:(CGFloat)percent withDirection:(PanDirection)direction atIndex:(NSInteger)index {
+//
+//}
+//
+//- (void)slideCard:(V_SlideCard *)slideCard topCell:(V_SlideCardCell *)cell willScrollToDirection:(PanDirection)direction atIndex:(NSInteger)index {
+//
+//}
+//
+//- (void)slideCard:(V_SlideCard *)slideCard topCell:(V_SlideCardCell *)cell didChangedStateWithDirection:(PanDirection)direction atIndex:(NSInteger)index {
+//
+//}
+//
+//- (void)slideCard:(V_SlideCard *)slideCard didResetFrameInCell:(V_SlideCardCell *)cell atIndex:(NSInteger)index {
+//
+//}
+//
+//- (void)slideCard:(V_SlideCard *)slideCard didSelectCell:(V_SlideCardCell *)cell atIndex:(NSInteger)index {
+//
+//}
 
 
 #pragma mark - getter
@@ -105,7 +119,7 @@
         
         [_slideCard registerCellClassName:@"VIPMonlyAlertCell"];
         _slideCard.dataSource = self;
-        _slideCard.delegate = self;
+//        _slideCard.delegate = self;
     }
     return _slideCard;
 }

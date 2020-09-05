@@ -8,17 +8,26 @@
 
 #import "V_SlideCardCell.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSInteger, VIPMonlyAlertType) {
     VIPMonlyAlertTypeCondition = 0, //入会情况
     VIPMonlyAlertTypeValue,         //送出价值
     VIPMonlyAlertTypePersonal       // 个人战报
 };
 
-NS_ASSUME_NONNULL_BEGIN
+@protocol VIPMonlyAlertDelegate <NSObject>
+// 看看月报
+- (void)didTapMonthlyReport;
+// 领取奖励
+- (void)didTapReceiveGift;
+// 滑动下一个(关闭)
+- (void)didTapNextOne;
+@end
 
 @interface VIPMonlyAlertCell : V_SlideCardCell
 
-- (void)setupAlertType:(VIPMonlyAlertType)type AndDataDict:(NSDictionary *)dict;
+- (void)setupAlertType:(VIPMonlyAlertType)type delegate:(id)delegate dataDict:(NSDictionary *)dict;
 
 @end
 
