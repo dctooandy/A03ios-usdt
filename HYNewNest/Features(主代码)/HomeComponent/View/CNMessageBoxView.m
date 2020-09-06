@@ -9,7 +9,13 @@
 #import "CNMessageBoxView.h"
 #import <UIImageView+WebCache.h>
 
+#import "VIPNewVersionView.h"
+
 @interface CNMessageBoxView () <UIScrollViewDelegate>
+{
+    NSInteger _itemCount;
+}
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewHCons;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageC;
 @property (weak, nonatomic) IBOutlet UIButton *closeBtn;
@@ -38,15 +44,16 @@
     // 和父视图左右间隔22.5，宽高比 330/416
     CGFloat itemW = (kScreenWidth - 22*2);
     CGFloat itemH = self.scrollView.bounds.size.height;
-    NSInteger itemCount = self.images.count;
+    _itemCount = self.images.count;
     CGFloat itemSpace = 12;
-    self.scrollView.contentSize = CGSizeMake( (itemW + itemSpace) * itemCount, 0);
+    self.scrollView.contentSize = CGSizeMake( (itemW + itemSpace) * _itemCount, 0);
     self.scrollView.delegate = self;
     // 创建图片视图
     CGRect frame = CGRectMake(0, 0, itemW, itemH);
-    for (int i = 0; i < itemCount; i++) {
+    for (int i = 0; i < _itemCount; i++) {
         frame.origin.x = itemSpace*0.5 + (itemW + itemSpace) * i;
         UIImageView *iv = [[UIImageView alloc] initWithFrame:frame];
+        
         [self.scrollView addSubview:iv];
         iv.contentMode = UIViewContentModeScaleAspectFit;
 //        iv.backgroundColor = kHexColor(0x212137);
@@ -75,7 +82,7 @@
     }
     
     // pagaC
-    self.pageC.numberOfPages = itemCount;
+    self.pageC.numberOfPages = _itemCount;
 }
 
 - (void)didTapImg:(UITapGestureRecognizer *)gesture {
@@ -89,13 +96,31 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     int page = scrollView.contentOffset.x / (kScreenWidth-45);
     self.pageC.currentPage = page;
-    if (page == self.images.count - 1) {
+    if (page == _itemCount - 1) {
         self.closeBtn.hidden = NO;
         self.pageC.hidden = YES;
     } else {
         self.closeBtn.hidden = YES;
         self.pageC.hidden = NO;
     }
+    
+    if (self.images.count == 0) { // VIPde
+        NSArray *subViews = scrollView.subviews;
+        if (page - 1 > 0) {
+            UIView *view = subViews[page - 1];
+            view.transform = CGAffineTransformMakeTranslation(-20, 0);
+        }
+        else if (page + 1 <= _itemCount - 1) {
+            UIView *view = subViews[page+1];
+            view.transform = CGAffineTransformMakeTranslation(20, 0);
+        }
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    int page = scrollView.contentOffset.x / (kScreenWidth-45);
+    UIView *view = scrollView.subviews[page];
+    view.transform = CGAffineTransformIdentity;
 }
 
 #pragma mark - button Action
@@ -103,6 +128,35 @@
 // 关闭页面
 - (IBAction)close:(id)sender {
     [self removeFromSuperview];
+}
+
+
+#pragma mark - VIP 私享会
++ (void)showVIPSXHMessageBoxOnView:(UIView *)onView tapBlock:(void (^)(int))tapBlock {
+    CNMessageBoxView *alert = [[CNMessageBoxView alloc] init];
+    alert.frame = onView.bounds;
+    [onView addSubview:alert];
+
+    alert.tapBlock = tapBlock;
+    [alert configVIPUI];
+}
+
+- (void)configVIPUI {
+    CGFloat itemW = (kScreenWidth - 16*2);
+    CGFloat itemH = AD(271);
+    self.scrollViewHCons.constant = AD(271);
+    _itemCount = 4;
+//    CGFloat itemSpace = 16;
+    self.scrollView.contentSize = CGSizeMake(itemW * _itemCount, 0);
+    self.scrollView.delegate = self;
+    self.scrollView.clipsToBounds = YES;//和弹窗盒子不同 这里直接裁掉
+    for (int i=0; i<_itemCount; i++) {
+        VIPNewVersionView *view = [VIPNewVersionView new];
+        view.frame = CGRectMake(itemW * i, 0, itemW, itemH);
+        view.idx = i;
+        [self.scrollView addSubview:view];
+    }
+    self.pageC.numberOfPages = _itemCount;
 }
 
 @end

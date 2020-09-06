@@ -212,6 +212,9 @@
 		3DCFEA8C25009D020071F356 /* V_SlideCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8925009D010071F356 /* V_SlideCardCell.m */; };
 		3DCFEA8F25009D5E0071F356 /* VIPMonthlyAlertsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8E25009D5E0071F356 /* VIPMonthlyAlertsVC.m */; };
 		3DCFEA932500D0880071F356 /* VIPMonlyAlertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA922500D0880071F356 /* VIPMonlyAlertCell.m */; };
+		3DCFEA962504C4F00071F356 /* VIPNewVersionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA952504C4F00071F356 /* VIPNewVersionView.m */; };
+		3DCFEA982504C50E0071F356 /* VIPNewVersionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEA972504C50E0071F356 /* VIPNewVersionView.xib */; };
+		3DCFEA9A25050AD90071F356 /* 方正兰亭大黑_GBK.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEA9925050AD90071F356 /* 方正兰亭大黑_GBK.ttf */; };
 		3DE3CA8F24ECF6E300D591C4 /* CIRCULAR_06.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */; };
 		3DE3CA9024ECF6E300D591C4 /* CIRCULAR.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */; };
 		3DE3CA9324ED5CFC00D591C4 /* HYUpdateAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3CA9224ED5CFC00D591C4 /* HYUpdateAlertView.m */; };
@@ -1229,6 +1232,10 @@
 		3DCFEA902500A0990071F356 /* SlideCard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlideCard.h; sourceTree = "<group>"; };
 		3DCFEA912500D0880071F356 /* VIPMonlyAlertCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPMonlyAlertCell.h; sourceTree = "<group>"; };
 		3DCFEA922500D0880071F356 /* VIPMonlyAlertCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPMonlyAlertCell.m; sourceTree = "<group>"; };
+		3DCFEA942504C4F00071F356 /* VIPNewVersionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPNewVersionView.h; sourceTree = "<group>"; };
+		3DCFEA952504C4F00071F356 /* VIPNewVersionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPNewVersionView.m; sourceTree = "<group>"; };
+		3DCFEA972504C50E0071F356 /* VIPNewVersionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VIPNewVersionView.xib; sourceTree = "<group>"; };
+		3DCFEA9925050AD90071F356 /* 方正兰亭大黑_GBK.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "方正兰亭大黑_GBK.ttf"; sourceTree = "<group>"; };
 		3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CIRCULAR_06.mp4; sourceTree = "<group>"; };
 		3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CIRCULAR.png; sourceTree = "<group>"; };
 		3DE3CA9124ED5CFC00D591C4 /* HYUpdateAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYUpdateAlertView.h; sourceTree = "<group>"; };
@@ -2714,6 +2721,7 @@
 		3D1338A724AF2EDF00B29783 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3DCFEA9925050AD90071F356 /* 方正兰亭大黑_GBK.ttf */,
 				D5A4425724F36F4200014DC6 /* Gif */,
 				3D13388A24AF28D600B29783 /* Assets.xcassets */,
 				3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */,
@@ -2752,6 +2760,9 @@
 				3D3A9B7C24FCCC26003FB33C /* VIPCardCCell.xib */,
 				3DCFEA912500D0880071F356 /* VIPMonlyAlertCell.h */,
 				3DCFEA922500D0880071F356 /* VIPMonlyAlertCell.m */,
+				3DCFEA942504C4F00071F356 /* VIPNewVersionView.h */,
+				3DCFEA952504C4F00071F356 /* VIPNewVersionView.m */,
+				3DCFEA972504C50E0071F356 /* VIPNewVersionView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4599,6 +4610,7 @@
 				D5A4464624F393E500014DC6 /* 足球_00016.png in Resources */,
 				D5A444B324F3932400014DC6 /* 数字7_00040.png in Resources */,
 				D5A4454024F393AC00014DC6 /* 棋牌_00063.png in Resources */,
+				3DCFEA9A25050AD90071F356 /* 方正兰亭大黑_GBK.ttf in Resources */,
 				D5A443B424F378CD00014DC6 /* 彩票_00071.png in Resources */,
 				048A168924CA712700411819 /* CNServerView.xib in Resources */,
 				D5A4455C24F393AC00014DC6 /* 棋牌_00057.png in Resources */,
@@ -4917,6 +4929,7 @@
 				D5A4460F24F393E500014DC6 /* 足球_00055.png in Resources */,
 				D5A4461B24F393E500014DC6 /* 足球_00095.png in Resources */,
 				D5A443DD24F378CD00014DC6 /* 彩票_00032.png in Resources */,
+				3DCFEA982504C50E0071F356 /* VIPNewVersionView.xib in Resources */,
 				D5A444B224F3932400014DC6 /* 数字7_00054.png in Resources */,
 				04C0F0F224C54AE8007F1420 /* CNResetPwdVC.xib in Resources */,
 				D5A4458D24F393AD00014DC6 /* 棋牌_00031.png in Resources */,
@@ -5159,6 +5172,7 @@
 				040A08D524E114A900FBD534 /* OCBarrageManager.m in Sources */,
 				0487C9BC24D01DDE0013715A /* CNTradeRecodeVC.m in Sources */,
 				E9B5495324CDB646002CE6EF /* UUMarqueeView.m in Sources */,
+				3DCFEA962504C4F00071F356 /* VIPNewVersionView.m in Sources */,
 				E986A18C24C9D39B000F9CFF /* XmCalcAmountModel.m in Sources */,
 				0487C99024CEC8040013715A /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				3D3A9B6F24FA427D003FB33C /* JLXUICollectionViewFlowLayout.m in Sources */,
@@ -5546,7 +5560,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = PTALWADUNN;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5560,7 +5574,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.15;
+				MARKETING_VERSION = 1.0.16;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hy.HYNewNest;
 				PRODUCT_NAME = "币游_dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5574,7 +5588,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = PTALWADUNN;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5588,7 +5602,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.15;
+				MARKETING_VERSION = 1.0.16;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hy.HYNewNest;
 				PRODUCT_NAME = "币游";
 				TARGETED_DEVICE_FAMILY = "1,2";

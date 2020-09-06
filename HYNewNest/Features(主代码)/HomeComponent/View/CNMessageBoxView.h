@@ -15,6 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param images 数组，可以是 图片，图片名称 或 图片地址
 + (void)showMessageBoxWithImages:(NSArray *)images onView:(UIView *)onView tapBlock:(void(^)(int idx))tapBlock;
 
+
+/// VIP私享会2.0 介绍
++ (void)showVIPSXHMessageBoxOnView:(UIView *)onView tapBlock:(void(^)(int idx))tapBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

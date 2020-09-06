@@ -15,6 +15,7 @@
 #import "VIPCardCCell.h"
 
 #import "VIPMonthlyAlertsVC.h"
+#import "CNMessageBoxView.h"
 
 static NSString * const kVIPCardCCell = @"VIPCardCCell";
 @interface HYVIPViewController () <UUMarqueeViewDelegate>
@@ -186,7 +187,10 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 - (IBAction)didTapVIPSxh:(id)sender {
     MyLog(@"VIP SXH");
     //TODO: VIP私享会2.0 弹窗
-    if (0) {
+    if (1) {
+        [CNMessageBoxView showVIPSXHMessageBoxOnView:self.view tapBlock:^(int idx) {
+            
+        }];
         
     } else {
         // 月报弹窗
