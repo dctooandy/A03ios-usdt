@@ -37,12 +37,23 @@
     });
 }
 
++ (void)showWaiting:(NSString *)wait {
+    if (wait.length == 0) {
+        return;
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        CNHUB *view = [self creatTipViewWithMsg:wait];
+        view.tipIV.image = [UIImage imageNamed:@"编组"];
+        view.centerY = kScreenHeight*0.5;
+    });
+}
+
 + (instancetype)creatTipViewWithMsg:(NSString *)msg {
     CGFloat fontSize = 14, left = 30, otherLength = 76, y = 60;
     CGFloat textLength = msg.length * fontSize;
     CGFloat mixWidth = kScreenWidth - left * 2;
     int numLine  = ceil(textLength / (mixWidth - otherLength));
-    CGFloat height = numLine * (fontSize+4) + 32;
+    CGFloat height = numLine * (fontSize+4) + 38;
     
     if ((textLength + otherLength) < mixWidth) {
         left = (kScreenWidth - (textLength + otherLength)) / 2.0;
@@ -62,7 +73,7 @@
 }
 
 - (void)creatTimer {
-    self.hideTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timerAciton) userInfo:nil repeats:NO];
+    self.hideTimer = [NSTimer scheduledTimerWithTimeInterval:2.5 target:self selector:@selector(timerAciton) userInfo:nil repeats:NO];
 }
 
 - (void)timerAciton {

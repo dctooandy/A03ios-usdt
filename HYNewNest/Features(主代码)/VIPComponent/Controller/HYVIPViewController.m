@@ -222,7 +222,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 }
 
 - (IBAction)didTapDashenBoard:(id)sender {
-    MyLog(@"大神吧");
+    MyLog(@"大神榜");
 }
 
 - (IBAction)didTapMoreRights:(id)sender {
@@ -231,10 +231,12 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 - (IBAction)didTapZZZP:(id)sender {
     MyLog(@"至尊转盘");
+    [CNHUB showWaiting:@"十月来袭 敬请期待"];
 }
 
 - (IBAction)didTapLJSF:(id)sender {
     MyLog(@"累计身份");
+    [CNHUB showWaiting:@"十月来袭 敬请期待"];
 }
 
 
