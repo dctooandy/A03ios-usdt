@@ -1,16 +1,23 @@
 //
-//  TAAnimatedDotView.m
+//  TAExampleDotView.m
 //  TAPageControl
 //
-//  Created by Tanguy Aladenise on 2015-01-22.
+//  Created by Tanguy Aladenise on 2015-01-23.
 //  Copyright (c) 2015 Tanguy Aladenise. All rights reserved.
 //
 
-#import "TAAnimatedDotView.h"
+#import "TAExampleDotView.h"
 
 static CGFloat const kAnimateDuration = 1;
 
-@implementation TAAnimatedDotView
+@interface TAExampleDotView ()
+{
+    CGPoint _origPoint;
+    CGSize _origSize;
+}
+@end
+
+@implementation TAExampleDotView
 
 - (instancetype)init
 {
@@ -43,21 +50,12 @@ static CGFloat const kAnimateDuration = 1;
     return self;
 }
 
-- (void)setDotColor:(UIColor *)dotColor
-{
-    _dotColor = dotColor;
-    self.layer.borderColor  = dotColor.CGColor;
-}
 
 - (void)initialization
 {
-//    _dotColor = [UIColor whiteColor];
-//    self.backgroundColor    = [UIColor clearColor];
-    _dotColor = kHexColor(0xF8EEAC);
-    self.backgroundColor = kHexColorAlpha(0xFFFFFF, 0.3);
-    self.layer.cornerRadius = CGRectGetWidth(self.frame) / 2;
-//    self.layer.borderColor  = [UIColor whiteColor].CGColor;
-//    self.layer.borderWidth  = 2;
+    self.backgroundColor = kHexColorAlpha(0xFFFFFF, 0.5);
+    self.layer.cornerRadius = self.width*0.5;
+    
 }
 
 
@@ -73,18 +71,22 @@ static CGFloat const kAnimateDuration = 1;
 
 - (void)animateToActiveState
 {
+    _origPoint = self.jk_origin;
+    _origSize = self.size;
     [UIView animateWithDuration:kAnimateDuration delay:0 usingSpringWithDamping:.5 initialSpringVelocity:-20 options:UIViewAnimationOptionCurveLinear animations:^{
-        self.backgroundColor = self->_dotColor;
-        self.transform = CGAffineTransformMakeScale(1.5, 1.5);
+        self.height = self->_origSize.height * 2;
+        self.y = self->_origPoint.y - self->_origSize.height;
+        self.backgroundColor = [UIColor jk_gradientFromColor:kHexColor(0x2E99F0) toColor:kHexColor(0x02EED9) withHeight:self.height];
     } completion:nil];
 }
 
 - (void)animateToDeactiveState
 {
+
     [UIView animateWithDuration:kAnimateDuration delay:0 usingSpringWithDamping:.5 initialSpringVelocity:0 options:UIViewAnimationOptionCurveLinear animations:^{
-//        self.backgroundColor = [UIColor clearColor];
-        self.backgroundColor = kHexColorAlpha(0xFFFFFF, 0.3);
-        self.transform = CGAffineTransformIdentity;
+        self.backgroundColor = kHexColorAlpha(0xFFFFFF, 0.5);
+        self.height = self->_origSize.height;
+        self.y = self->_origPoint.y;
     } completion:nil];
 }
 

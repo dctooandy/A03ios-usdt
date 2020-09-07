@@ -13,9 +13,10 @@
 #import "CNVIPRequest.h"
 #import "JLXUICollectionViewFlowLayout.h"
 #import "VIPCardCCell.h"
-
+#import "TAPageControl.h"
 #import "VIPMonthlyAlertsVC.h"
 #import "CNMessageBoxView.h"
+
 
 static NSString * const kVIPCardCCell = @"VIPCardCCell";
 @interface HYVIPViewController () <UUMarqueeViewDelegate>
@@ -37,7 +38,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 // -------- 顶部卡片 --------
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionViewCard;
-@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (weak, nonatomic) IBOutlet TAPageControl *pageControl;
 
 
 // -------- 大奖公告 --------
@@ -107,6 +108,8 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLogoutSuccessNotification object:nil];
     
     _m_currentIndex = 0;
+    self.pageControl.numberOfPages = 6;
+    self.pageControl.dotSize = CGSizeMake(AD(7), AD(7));
 }
 
 - (void)viewDidLayoutSubviews {
@@ -185,11 +188,25 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 #pragma mark - Action
 - (IBAction)didTapVIPSxh:(id)sender {
-    MyLog(@"VIP SXH");
-    //TODO: VIP私享会2.0 弹窗
     if (1) {
+        // VIP私享会2.0 弹窗
         [CNMessageBoxView showVIPSXHMessageBoxOnView:self.view tapBlock:^(int idx) {
-            
+            switch (idx) {
+                case 0:
+                    
+                    break;
+                case 1:
+                    
+                    break;
+                case 2:
+                
+                    break;
+                case 3:
+                
+                    break;
+                default:
+                    break;
+            }
         }];
         
     } else {

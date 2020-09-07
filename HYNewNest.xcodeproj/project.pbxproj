@@ -215,6 +215,7 @@
 		3DCFEA962504C4F00071F356 /* VIPNewVersionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA952504C4F00071F356 /* VIPNewVersionView.m */; };
 		3DCFEA982504C50E0071F356 /* VIPNewVersionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEA972504C50E0071F356 /* VIPNewVersionView.xib */; };
 		3DCFEA9A25050AD90071F356 /* 方正兰亭大黑_GBK.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEA9925050AD90071F356 /* 方正兰亭大黑_GBK.ttf */; };
+		3DCFEAA1250624CD0071F356 /* TAExampleDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA9F250624CD0071F356 /* TAExampleDotView.m */; };
 		3DE3CA8F24ECF6E300D591C4 /* CIRCULAR_06.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */; };
 		3DE3CA9024ECF6E300D591C4 /* CIRCULAR.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */; };
 		3DE3CA9324ED5CFC00D591C4 /* HYUpdateAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3CA9224ED5CFC00D591C4 /* HYUpdateAlertView.m */; };
@@ -1236,6 +1237,8 @@
 		3DCFEA952504C4F00071F356 /* VIPNewVersionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPNewVersionView.m; sourceTree = "<group>"; };
 		3DCFEA972504C50E0071F356 /* VIPNewVersionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VIPNewVersionView.xib; sourceTree = "<group>"; };
 		3DCFEA9925050AD90071F356 /* 方正兰亭大黑_GBK.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "方正兰亭大黑_GBK.ttf"; sourceTree = "<group>"; };
+		3DCFEA9F250624CD0071F356 /* TAExampleDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAExampleDotView.m; sourceTree = "<group>"; };
+		3DCFEAA0250624CD0071F356 /* TAExampleDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAExampleDotView.h; sourceTree = "<group>"; };
 		3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CIRCULAR_06.mp4; sourceTree = "<group>"; };
 		3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CIRCULAR.png; sourceTree = "<group>"; };
 		3DE3CA9124ED5CFC00D591C4 /* HYUpdateAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYUpdateAlertView.h; sourceTree = "<group>"; };
@@ -2453,6 +2456,8 @@
 		04C0F11824C686B7007F1420 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3DCFEAA0250624CD0071F356 /* TAExampleDotView.h */,
+				3DCFEA9F250624CD0071F356 /* TAExampleDotView.m */,
 				04C0F11924C68715007F1420 /* CNUserInfoLoginView.h */,
 				04C0F11A24C68715007F1420 /* CNUserInfoLoginView.m */,
 				04C0F11E24C687D8007F1420 /* CNUserInfoLoginView.xib */,
@@ -5317,6 +5322,7 @@
 				0487C9C524D11F0D0013715A /* CNNoDataView.m in Sources */,
 				04935BD924D7D45E007A33EF /* CNElectrionHallVC.m in Sources */,
 				E9E9590124D41BC400E866B6 /* CreditQueryResultModel.m in Sources */,
+				3DCFEAA1250624CD0071F356 /* TAExampleDotView.m in Sources */,
 				E969EB3B24E2755F00D58FE9 /* HYRechargeCNYEditView.m in Sources */,
 				3DCFEA8C25009D020071F356 /* V_SlideCardCell.m in Sources */,
 				D5FBFE3F24BC05E400BBCAD8 /* CNAccountInputView.m in Sources */,

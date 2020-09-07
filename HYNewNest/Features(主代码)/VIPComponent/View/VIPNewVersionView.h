@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface VIPNewVersionView : CNBaseXibView
 @property (nonatomic, assign) NSInteger idx;
+@property (nonatomic, copy) void(^tapBlock)(NSInteger curIdx);
 @end
 
 NS_ASSUME_NONNULL_END

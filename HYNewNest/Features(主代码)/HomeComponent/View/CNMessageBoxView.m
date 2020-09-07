@@ -14,6 +14,7 @@
 @interface CNMessageBoxView () <UIScrollViewDelegate>
 {
     NSInteger _itemCount;
+    CGFloat _lastContentOffset;
 }
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewHCons;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -28,6 +29,9 @@
 - (void)loadViewFromXib {
     [super loadViewFromXib];
 }
+
+
+#pragma mark - 弹窗盒子
 
 + (void)showMessageBoxWithImages:(NSArray *)images onView:(UIView *)onView tapBlock:(void(^)(int idx))tapBlock {
     
@@ -104,23 +108,29 @@
         self.pageC.hidden = NO;
     }
     
-    if (self.images.count == 0) { // VIPde
-        NSArray *subViews = scrollView.subviews;
-        if (page - 1 > 0) {
-            UIView *view = subViews[page - 1];
+    // VIP私享会间距效果
+    if (self.images.count == 0) {
+        //判断滚动方向
+        if (_lastContentOffset > scrollView.contentOffset.x && page-1 >= 0) {
+            // 向左滚动
+            UIView *view = scrollView.subviews[page-1];
             view.transform = CGAffineTransformMakeTranslation(-20, 0);
-        }
-        else if (page + 1 <= _itemCount - 1) {
-            UIView *view = subViews[page+1];
+            
+        } else if (_lastContentOffset < scrollView.contentOffset.x && page+1 <= _itemCount-1) {
+            // 向右滚动
+            UIView *view = scrollView.subviews[page+1];
             view.transform = CGAffineTransformMakeTranslation(20, 0);
         }
+        _lastContentOffset = scrollView.contentOffset.x;
     }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    int page = scrollView.contentOffset.x / (kScreenWidth-45);
-    UIView *view = scrollView.subviews[page];
-    view.transform = CGAffineTransformIdentity;
+    // VIP私享会间距复原
+    NSArray *views = scrollView.subviews;
+    for (UIView *view in views) {
+        view.transform = CGAffineTransformIdentity;
+    }
 }
 
 #pragma mark - button Action
@@ -142,11 +152,13 @@
 }
 
 - (void)configVIPUI {
+    [self.closeBtn setImage:[UIImage imageNamed:@"vip_close"] forState:UIControlStateNormal];
+    self.pageC.currentPageIndicatorTintColor = kHexColor(0xF8EEAC);
+    
     CGFloat itemW = (kScreenWidth - 16*2);
     CGFloat itemH = AD(271);
     self.scrollViewHCons.constant = AD(271);
     _itemCount = 4;
-//    CGFloat itemSpace = 16;
     self.scrollView.contentSize = CGSizeMake(itemW * _itemCount, 0);
     self.scrollView.delegate = self;
     self.scrollView.clipsToBounds = YES;//和弹窗盒子不同 这里直接裁掉
@@ -154,9 +166,22 @@
         VIPNewVersionView *view = [VIPNewVersionView new];
         view.frame = CGRectMake(itemW * i, 0, itemW, itemH);
         view.idx = i;
+        WEAKSELF_DEFINE
+        view.tapBlock = ^(NSInteger curIdx) {
+            STRONGSELF_DEFINE
+            [strongSelf didTapBtn:curIdx];
+        };
         [self.scrollView addSubview:view];
+        
     }
     self.pageC.numberOfPages = _itemCount;
+    
+}
+
+- (void)didTapBtn:(NSInteger)btnIdx {
+    if (self.tapBlock) {
+        self.tapBlock((int)btnIdx);
+    }
 }
 
 @end

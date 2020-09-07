@@ -52,6 +52,9 @@
                             <state key="normal" title="查看详情">
                                 <color key="titleColor" red="0.55686274509803924" green="0.3411764705882353" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="didTapVersionBtn:" destination="-1" eventType="touchUpInside" id="uI7-1h-hAK"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -66,11 +69,11 @@
                     </constraints>
                 </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="G2F-iv-gkN">
-                    <rect key="frame" x="159" y="108" width="176" height="82"/>
+                    <rect key="frame" x="135" y="108" width="200" height="82"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="82" id="AS2-VG-JZu"/>
-                        <constraint firstAttribute="width" constant="176" id="KEE-it-3hK"/>
+                        <constraint firstAttribute="width" constant="200" id="KEE-it-3hK"/>
                     </constraints>
                     <string key="text">福利加码
 赌尊降临</string>
@@ -79,7 +82,7 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="累计身份 最高领百万" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oel-d1-wjk">
-                    <rect key="frame" x="182" y="22" width="150" height="86"/>
+                    <rect key="frame" x="182" y="17" width="150" height="86"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="D2a-CK-3fR"/>
                         <constraint firstAttribute="height" constant="86" id="VcQ-Jo-Nui"/>
@@ -93,7 +96,7 @@
                 <constraint firstItem="P9b-RX-gkV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9S2-na-sGH"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="VlG-d0-EiQ" secondAttribute="bottom" id="Du7-bZ-EIE"/>
                 <constraint firstAttribute="trailing" secondItem="P9b-RX-gkV" secondAttribute="trailing" id="IE9-6H-kpo"/>
-                <constraint firstItem="G2F-iv-gkN" firstAttribute="top" secondItem="oel-d1-wjk" secondAttribute="bottom" id="Nn9-Iz-cp5"/>
+                <constraint firstItem="G2F-iv-gkN" firstAttribute="top" secondItem="oel-d1-wjk" secondAttribute="bottom" constant="5" id="Nn9-Iz-cp5"/>
                 <constraint firstItem="P9b-RX-gkV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Pmu-aQ-Gnc"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="VlG-d0-EiQ" secondAttribute="trailing" id="Rmr-gc-xll"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="oel-d1-wjk" secondAttribute="trailing" constant="15" id="X6e-xa-Y1j"/>

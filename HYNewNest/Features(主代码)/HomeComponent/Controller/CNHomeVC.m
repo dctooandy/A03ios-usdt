@@ -448,8 +448,9 @@
         cycleScrollView2.layer.cornerRadius = 10;
         cycleScrollView2.layer.masksToBounds = YES;
         cycleScrollView2.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
+        cycleScrollView2.pageControlStyle = SDCycleScrollViewPageContolStyleBiyou;
+        cycleScrollView2.pageControlDotSize = CGSizeMake(AD(6), AD(6));
         cycleScrollView2.autoScrollTimeInterval = 4;
-        cycleScrollView2.currentPageDotColor = kHexColor(0x02EED9); // 自定义分页控件小圆标颜色
         _bannerView = cycleScrollView2;
     }
     return _bannerView;
