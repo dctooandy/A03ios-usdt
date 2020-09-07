@@ -78,8 +78,7 @@
 }
 
 - (NSInteger)numberOfItemsInSlideCard:(V_SlideCard *)slideCard {
-//    return self.listData.count;
-    return 3;
+    return self.listData.count;
 }
 
 // 代理方法

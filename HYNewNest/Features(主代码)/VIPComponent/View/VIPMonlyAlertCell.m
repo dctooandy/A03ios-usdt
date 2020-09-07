@@ -15,7 +15,7 @@
 @property (nonatomic, strong) UIImageView *rankImgv;
 @property (nonatomic, strong) UIButton *btmButton;
 @property (nonatomic, strong) UILabel *btmColorLb;
-@property (nonatomic, weak) id<VIPMonlyAlertDelegate> delegate;
+@property (nonatomic, weak) id<VIPMonlyAlertDelegate> actionDelegate;
 @end
 
 @implementation VIPMonlyAlertCell
@@ -88,7 +88,7 @@
 
 - (void)setupAlertType:(VIPMonlyAlertType)type delegate:(id)delegate dataDict:(NSDictionary *)dict {
     _alertType = type;
-    self.delegate = delegate;
+    self.actionDelegate = delegate;
     
     switch (type) {
         case VIPMonlyAlertTypeCondition: {
@@ -253,21 +253,21 @@
             
         case VIPMonlyAlertTypeValue:
             MyLog(@"关闭");
-            if(self.delegate && [self.delegate respondsToSelector:@selector(didTapNextOne)]) {
-                [self.delegate didTapNextOne];
+            if(self.actionDelegate && [self.actionDelegate respondsToSelector:@selector(didTapNextOne)]) {
+                [self.actionDelegate didTapNextOne];
             }
             break;
             
         case VIPMonlyAlertTypePersonal:
             if ([btn.titleLabel.text isEqualToString:@"看看月报"]) {
                 MyLog(@"kk yuebao");
-                if(self.delegate && [self.delegate respondsToSelector:@selector(didTapMonthlyReport)]) {
-                    [self.delegate didTapMonthlyReport];
+                if(self.actionDelegate && [self.actionDelegate respondsToSelector:@selector(didTapMonthlyReport)]) {
+                    [self.actionDelegate didTapMonthlyReport];
                 }
             } else if ([btn.titleLabel.text isEqualToString:@"领取"]) {
                 MyLog(@"ling qu");
-                if(self.delegate && [self.delegate respondsToSelector:@selector(didTapReceiveGift)]) {
-                    [self.delegate didTapReceiveGift];
+                if(self.actionDelegate && [self.actionDelegate respondsToSelector:@selector(didTapReceiveGift)]) {
+                    [self.actionDelegate didTapReceiveGift];
                 }
             }
             break;
