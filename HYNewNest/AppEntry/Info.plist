@@ -90,6 +90,10 @@
 	</dict>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>小游需要您的允许才能为您保存图片</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>方正兰亭大黑_GBK.ttf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
@@ -117,9 +121,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>方正兰亭大黑_GBK.ttf</string>
-	</array>
 </dict>
 </plist>

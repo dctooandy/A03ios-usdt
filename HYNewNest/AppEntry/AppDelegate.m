@@ -75,7 +75,8 @@
 #pragma mark - 推送回调
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // 发送deveiceToken给服务器
-    [SendHeartSocket sendHeartPacketWithApnsToken:deviceToken userid:[[CNUserManager shareManager].userInfo.customerId intValue]];
+//    [SendHeartSocket sendHeartPacketWithApnsToken:deviceToken userid:[[CNUserManager shareManager].userInfo.customerId intValue]];
+    
     if (@available(iOS 13, *)){
        if (![deviceToken isKindOfClass:[NSData class]]) return;
        const unsigned *tokenBytes = (const unsigned *)[deviceToken bytes];
@@ -89,8 +90,12 @@
         self.token = token;
     }
 
-    NSLog(@"did register remote token with :%@", self.token);
+#ifdef DEBUG
+    [kKeywindow jk_makeToast:[NSString stringWithFormat:@"===didRegisterRemoteNotifications===\ncustomerId:%@\ndeviceToken:%@",[CNUserManager shareManager].userInfo.customerId, self.token] duration:5 position:JKToastPositionBottom];
+#endif
+    
     [GeTuiSdk registerDeviceTokenData:deviceToken];
+    
     
     [CNPushRequest GTInterfaceHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
