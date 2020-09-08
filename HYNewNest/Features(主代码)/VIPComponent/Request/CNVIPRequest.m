@@ -10,6 +10,20 @@
 
 @implementation CNVIPRequest
 
++ (void)vipxxhGuideHandler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"bizCode"] = @"VIPSXH_GUIDE";
+    param[@"conditions"] = @[@{@"name":@"currency",@"value":[CNUserManager shareManager].userInfo.currency?:@"USDT"}];
+    
+    [self POST:kGatewayPath(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            handler(responseObj[@"data"], errorMsg);
+        }
+    }];
+    
+}
+
 + (void)requestRewardBroadcastHandler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];

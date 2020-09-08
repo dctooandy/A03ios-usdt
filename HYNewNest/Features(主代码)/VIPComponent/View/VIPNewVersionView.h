@@ -7,11 +7,13 @@
 //
 
 #import "CNBaseXibView.h"
+#import "VIPGuideModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VIPNewVersionView : CNBaseXibView
 @property (nonatomic, assign) NSInteger idx;
+@property (nonatomic, strong) VIPGuideModel *model;
 @property (nonatomic, copy) void(^tapBlock)(NSInteger curIdx);
 @end
 

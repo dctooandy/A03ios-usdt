@@ -42,19 +42,21 @@
             break;
         case 1:
             attrStr = [[NSMutableAttributedString alloc] initWithString:@"累计身份\n最高领百万" attributes:@{NSFontAttributeName:kGBKFont(24), NSForegroundColorAttributeName:kRedColor}];
-            self.contentTv.text = @"累计私享会身份可领取礼品\n最少3次就可领\n24重超值礼品等您来拿\n最高可领百万大奖";
+            self.contentTv.text = [NSString stringWithFormat:@"累计私享会身份可领取礼品\n最少%ld次就可领\n%ld重超值礼品等您来拿\n最高可领百万大奖",self.model.applyTimes,self.model.prizeCount];
             [self.btmBtn setTitle:@"福利月" forState:UIControlStateNormal];
             break;
         case 2:
             attrStr = [[NSMutableAttributedString alloc] initWithString:@"全新赌尊等级\n享受更高权益" attributes:@{NSFontAttributeName:kGBKFont(24), NSForegroundColorAttributeName:kRedColor}];
-            self.contentTv.text = @"入会礼金  9,888usdt\n转盘次数30次\n月分红 388usdt";
+            self.contentTv.text = [NSString stringWithFormat:@"入会礼金  %ld%@\n转盘次数%ld次\n月分红 %ld%@",(long)self.model.maxRhlj,self.model.currency.lowercaseString,self.model.maxZpTimes,self.model.maxYdfh,self.model.currency.lowercaseString];
             [self.btmBtn setTitle:@"累计身份" forState:UIControlStateNormal];
             break;
-        case 3:
+        case 3: {
             attrStr = [[NSMutableAttributedString alloc] initWithString:@"超级福利月\n百万大奖" attributes:@{NSFontAttributeName:kGBKFont(24), NSForegroundColorAttributeName:kRedColor}];
-            self.contentTv.text = @"4月、8月、12月为专属福利月\n至尊转盘奖品大升级\n价值百万超级神秘大奖\n超高中奖率等您来抽";
+            NSString *flyStr = [self.model.welfareMonth stringByReplacingOccurrencesOfString:@";" withString:@"月、"];
+            self.contentTv.text = [NSString stringWithFormat:@"%@月为专属福利月\n至尊转盘奖品大升级\n价值百万超级神秘大奖\n超高中奖率等您来抽",flyStr];
             [self.btmBtn setTitle:@"我了解了" forState:UIControlStateNormal];
             break;
+        }
         default:
             break;
     }

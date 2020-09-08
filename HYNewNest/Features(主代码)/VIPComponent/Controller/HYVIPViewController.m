@@ -96,12 +96,21 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    // 2.0弹窗
+    [self requestNewVersion];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.hideNavgation = YES;
     [self setupCollectionView];
     
-//    [self requestRewardAnnouncement];
+    // 抽奖播报
+    [self requestRewardAnnouncement];
+    // 用户登录状态配置(获取用户信息)
     [self userStatusChanged];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLoginSuccessNotification object:nil];
@@ -188,28 +197,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 #pragma mark - Action
 - (IBAction)didTapVIPSxh:(id)sender {
-    if (1) {
-        // VIP私享会2.0 弹窗
-        [CNMessageBoxView showVIPSXHMessageBoxOnView:self.view tapBlock:^(int idx) {
-            switch (idx) {
-                case 0:
-                    
-                    break;
-                case 1:
-                    
-                    break;
-                case 2:
-                
-                    break;
-                case 3:
-                
-                    break;
-                default:
-                    break;
-            }
-        }];
-        
-    } else {
+    
         // 月报弹窗
         VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
         vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
@@ -217,7 +205,6 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
         [self addChildViewController:vc];
         //将子控制器视图添加到容器控制器的视图中
         [self.view addSubview:vc.view];
-    }
 
 }
 
@@ -247,6 +234,31 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 
 #pragma mark - Request
+- (void)requestNewVersion {
+    BOOL isReaded = [[NSUserDefaults standardUserDefaults] boolForKey:@"isAlreadyReadVersion2.0"];
+    if (!isReaded) {
+        // VIP私享会2.0 弹窗
+        [CNMessageBoxView showVIPSXHMessageBoxOnView:self.view tapBlock:^(int idx) {
+            switch (idx) {
+                case 0:
+                    
+                    break;
+                case 1:
+                    
+                    break;
+                case 2:
+                    
+                    break;
+                case 3:
+                    
+                    break;
+                default:
+                    break;
+            }
+        }];
+    }
+}
+
 // 抽奖广播
 - (void)requestRewardAnnouncement {
     [CNVIPRequest requestRewardBroadcastHandler:^(id responseObj, NSString *errorMsg) {

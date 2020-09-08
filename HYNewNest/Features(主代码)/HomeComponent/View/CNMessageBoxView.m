@@ -10,6 +10,7 @@
 #import <UIImageView+WebCache.h>
 
 #import "VIPNewVersionView.h"
+#import "CNVIPRequest.h"
 
 @interface CNMessageBoxView () <UIScrollViewDelegate>
 {
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *closeBtn;
 @property (nonatomic, copy) NSArray *images;
 @property (nonatomic, copy) void(^tapBlock)(int idx);
+@property (nonatomic, strong) VIPGuideModel *model;
 @end
 
 @implementation CNMessageBoxView
@@ -142,13 +144,25 @@
 
 
 #pragma mark - VIP 私享会
-+ (void)showVIPSXHMessageBoxOnView:(UIView *)onView tapBlock:(void (^)(int))tapBlock {
-    CNMessageBoxView *alert = [[CNMessageBoxView alloc] init];
-    alert.frame = onView.bounds;
-    [onView addSubview:alert];
 
-    alert.tapBlock = tapBlock;
-    [alert configVIPUI];
++ (void)showVIPSXHMessageBoxOnView:(UIView *)onView tapBlock:(void (^)(int))tapBlock {
+    // 直接等接口返回
+    [CNVIPRequest vipxxhGuideHandler:^(id responseObj, NSString *errorMsg) {
+        if (KIsEmptyString(errorMsg)) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isAlreadyReadVersion2.0"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            VIPGuideModel *model = [[VIPGuideModel cn_parse:responseObj] firstObject];
+            
+            CNMessageBoxView *alert = [[CNMessageBoxView alloc] init];
+            alert.model = model;
+            alert.frame = onView.bounds;
+            [onView addSubview:alert];
+            
+            alert.tapBlock = tapBlock;
+            [alert configVIPUI];
+        }
+    }];
 }
 
 - (void)configVIPUI {
@@ -165,8 +179,9 @@
     for (int i=0; i<_itemCount; i++) {
         VIPNewVersionView *view = [VIPNewVersionView new];
         view.frame = CGRectMake(itemW * i, 0, itemW, itemH);
-        view.idx = i;
         WEAKSELF_DEFINE
+        view.model = weakSelf.model;
+        view.idx = i;
         view.tapBlock = ^(NSInteger curIdx) {
             STRONGSELF_DEFINE
             [strongSelf didTapBtn:curIdx];
@@ -179,6 +194,9 @@
 }
 
 - (void)didTapBtn:(NSInteger)btnIdx {
+    if (btnIdx == 3) {
+        [self removeFromSuperview];
+    }
     if (self.tapBlock) {
         self.tapBlock((int)btnIdx);
     }

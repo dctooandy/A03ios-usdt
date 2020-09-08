@@ -227,6 +227,7 @@
 		3DCFEAB925075D420071F356 /* VIPChartDSBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEAB725075D420071F356 /* VIPChartDSBCell.m */; };
 		3DCFEABA25075D420071F356 /* VIPChartDSBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEAB825075D420071F356 /* VIPChartDSBCell.xib */; };
 		3DCFEABD2507ACDE0071F356 /* UIColor+HYExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEABC2507ACDE0071F356 /* UIColor+HYExtension.m */; };
+		3DCFEAC02507B8110071F356 /* VIPGuideModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEABF2507B8110071F356 /* VIPGuideModel.m */; };
 		3DE3CA8F24ECF6E300D591C4 /* CIRCULAR_06.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */; };
 		3DE3CA9024ECF6E300D591C4 /* CIRCULAR.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */; };
 		3DE3CA9324ED5CFC00D591C4 /* HYUpdateAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3CA9224ED5CFC00D591C4 /* HYUpdateAlertView.m */; };
@@ -1267,6 +1268,8 @@
 		3DCFEAB825075D420071F356 /* VIPChartDSBCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VIPChartDSBCell.xib; sourceTree = "<group>"; };
 		3DCFEABB2507ACDE0071F356 /* UIColor+HYExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+HYExtension.h"; sourceTree = "<group>"; };
 		3DCFEABC2507ACDE0071F356 /* UIColor+HYExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HYExtension.m"; sourceTree = "<group>"; };
+		3DCFEABE2507B8110071F356 /* VIPGuideModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPGuideModel.h; sourceTree = "<group>"; };
+		3DCFEABF2507B8110071F356 /* VIPGuideModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPGuideModel.m; sourceTree = "<group>"; };
 		3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CIRCULAR_06.mp4; sourceTree = "<group>"; };
 		3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CIRCULAR.png; sourceTree = "<group>"; };
 		3DE3CA9124ED5CFC00D591C4 /* HYUpdateAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYUpdateAlertView.h; sourceTree = "<group>"; };
@@ -2821,6 +2824,8 @@
 				3D3A9B7824FA8631003FB33C /* VIPLevelData.m */,
 				3D3A9B7424FA815F003FB33C /* VIPRewardAnocModel.h */,
 				3D3A9B7524FA815F003FB33C /* VIPRewardAnocModel.m */,
+				3DCFEABE2507B8110071F356 /* VIPGuideModel.h */,
+				3DCFEABF2507B8110071F356 /* VIPGuideModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5345,6 +5350,7 @@
 				E9D944A124C5759400252222 /* UpdateVersionModel.m in Sources */,
 				3DA4F17D24B315940039123F /* UIFont+RCFont.m in Sources */,
 				E986A17624C979F6000F9CFF /* PayOnlinePaymentModel.m in Sources */,
+				3DCFEAC02507B8110071F356 /* VIPGuideModel.m in Sources */,
 				0487C97724CEAE1B0013715A /* CNMineVC.m in Sources */,
 				3DCFEAAA250730FE0071F356 /* VIPChartDJTQCell.m in Sources */,
 				E98BEF1224D2A32700E6B0C8 /* HYXiMaSuccViewController.m in Sources */,
