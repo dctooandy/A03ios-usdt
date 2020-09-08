@@ -16,7 +16,7 @@
 #import "TAPageControl.h"
 #import "VIPMonthlyAlertsVC.h"
 #import "CNMessageBoxView.h"
-
+#import "VIPTwoChartVC.h"
 
 static NSString * const kVIPCardCCell = @"VIPCardCCell";
 @interface HYVIPViewController () <UUMarqueeViewDelegate>
@@ -101,7 +101,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     self.hideNavgation = YES;
     [self setupCollectionView];
     
-    [self requestRewardAnnouncement];
+//    [self requestRewardAnnouncement];
     [self userStatusChanged];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLoginSuccessNotification object:nil];
@@ -123,7 +123,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
         self.rankStackView.hidden = NO;
         self.unloginLbBGView.hidden = YES;
         //TODO: 请求数据
-        [self requestUsrVIPPromotion];
+//        [self requestUsrVIPPromotion];
         
     } else {
         self.rankStackView.hidden = YES;
@@ -223,10 +223,16 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 - (IBAction)didTapDashenBoard:(id)sender {
     MyLog(@"大神榜");
+    VIPTwoChartVC *chartVc = [[VIPTwoChartVC alloc] initWithType:VIPChartTypeBigGodBoard];
+    [self presentViewController:chartVc animated:YES completion:^{
+    }];
 }
 
 - (IBAction)didTapMoreRights:(id)sender {
     MyLog(@"更多特权");
+    VIPTwoChartVC *chartVc = [[VIPTwoChartVC alloc] initWithType:VIPChartTypeRankRight];
+    [self presentViewController:chartVc animated:YES completion:^{
+    }];
 }
 
 - (IBAction)didTapZZZP:(id)sender {

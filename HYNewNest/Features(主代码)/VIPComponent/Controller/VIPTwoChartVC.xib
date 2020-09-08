@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VIPTwoChartVC">
+            <connections>
+                <outlet property="lbTitle" destination="sqi-9z-sx7" id="iKe-xX-m6Y"/>
+                <outlet property="tableView" destination="Spo-gB-Vc6" id="UTf-Sb-Krj"/>
+                <outlet property="topMarginCons" destination="WMc-SQ-rWa" id="rSf-Qa-zi4"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qFs-NH-KOn">
+                    <rect key="frame" x="0.0" y="90" width="414" height="806"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAQ-XA-D29">
+                            <rect key="frame" x="0.0" y="60" width="414" height="1"/>
+                            <color key="backgroundColor" red="0.2627450980392157" green="0.30196078431372547" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="B7L-yS-7n4"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="私享会大神榜(usdt)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqi-9z-sx7">
+                            <rect key="frame" x="15" y="21" width="144.5" height="19.5"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                            <color key="textColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHV-Em-bdV">
+                            <rect key="frame" x="372" y="16" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="ZYb-n4-UgL"/>
+                                <constraint firstAttribute="width" constant="30" id="vrz-Bp-oEC"/>
+                            </constraints>
+                            <state key="normal" image="vip_close"/>
+                            <connections>
+                                <action selector="didTapDismissBtn:" destination="-1" eventType="touchUpInside" id="tdR-yf-6By"/>
+                            </connections>
+                        </button>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="45" estimatedRowHeight="-1" sectionHeaderHeight="45" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Spo-gB-Vc6">
+                            <rect key="frame" x="0.0" y="61" width="414" height="745"/>
+                            <color key="backgroundColor" red="0.12941176469999999" green="0.1529411765" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="lUd-Zk-Ajw"/>
+                                <outlet property="delegate" destination="-1" id="KbU-An-lEW"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.12941176470588234" green="0.15294117647058825" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Spo-gB-Vc6" secondAttribute="trailing" id="3bH-UC-L17"/>
+                        <constraint firstItem="hAQ-XA-D29" firstAttribute="top" secondItem="qFs-NH-KOn" secondAttribute="top" constant="60" id="NpJ-a9-Ftq"/>
+                        <constraint firstItem="Spo-gB-Vc6" firstAttribute="top" secondItem="hAQ-XA-D29" secondAttribute="bottom" id="PRA-Gu-sEC"/>
+                        <constraint firstAttribute="trailing" secondItem="hAQ-XA-D29" secondAttribute="trailing" id="T98-KG-7Vx"/>
+                        <constraint firstItem="sqi-9z-sx7" firstAttribute="leading" secondItem="qFs-NH-KOn" secondAttribute="leading" constant="15" id="aCc-Mu-oR8"/>
+                        <constraint firstItem="Spo-gB-Vc6" firstAttribute="leading" secondItem="qFs-NH-KOn" secondAttribute="leading" id="bgO-9w-fca"/>
+                        <constraint firstItem="uHV-Em-bdV" firstAttribute="centerY" secondItem="sqi-9z-sx7" secondAttribute="centerY" id="hdn-K2-ly6"/>
+                        <constraint firstItem="hAQ-XA-D29" firstAttribute="leading" secondItem="qFs-NH-KOn" secondAttribute="leading" id="iOl-CR-HD3"/>
+                        <constraint firstAttribute="bottom" secondItem="Spo-gB-Vc6" secondAttribute="bottom" id="j9i-pB-Pxj"/>
+                        <constraint firstAttribute="trailing" secondItem="uHV-Em-bdV" secondAttribute="trailing" constant="12" id="lSJ-UW-mnr"/>
+                        <constraint firstItem="sqi-9z-sx7" firstAttribute="top" secondItem="qFs-NH-KOn" secondAttribute="top" constant="21" id="sj2-9m-mre"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="qFs-NH-KOn" secondAttribute="bottom" id="B41-U9-P2h"/>
+                <constraint firstItem="qFs-NH-KOn" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="46" id="WMc-SQ-rWa"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="qFs-NH-KOn" secondAttribute="trailing" id="qhW-V8-zDw"/>
+                <constraint firstItem="qFs-NH-KOn" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="xVm-sA-vRZ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="131.8840579710145" y="116.51785714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="vip_close" width="30" height="30"/>
+    </resources>
+</document>

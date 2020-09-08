@@ -216,6 +216,16 @@
 		3DCFEA982504C50E0071F356 /* VIPNewVersionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEA972504C50E0071F356 /* VIPNewVersionView.xib */; };
 		3DCFEA9A25050AD90071F356 /* 方正兰亭大黑_GBK.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEA9925050AD90071F356 /* 方正兰亭大黑_GBK.ttf */; };
 		3DCFEAA1250624CD0071F356 /* TAExampleDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA9F250624CD0071F356 /* TAExampleDotView.m */; };
+		3DCFEAA525066C580071F356 /* VIPTwoChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEAA325066C580071F356 /* VIPTwoChartVC.m */; };
+		3DCFEAA625066C580071F356 /* VIPTwoChartVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEAA425066C580071F356 /* VIPTwoChartVC.xib */; };
+		3DCFEAAA250730FE0071F356 /* VIPChartDJTQCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEAA8250730FE0071F356 /* VIPChartDJTQCell.m */; };
+		3DCFEAAB250730FE0071F356 /* VIPChartDJTQCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEAA9250730FE0071F356 /* VIPChartDJTQCell.xib */; };
+		3DCFEAAE250733370071F356 /* VIPChartHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEAAD250733370071F356 /* VIPChartHeaderView.m */; };
+		3DCFEAB0250733570071F356 /* VIPChartHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEAAF250733570071F356 /* VIPChartHeaderView.xib */; };
+		3DCFEAB325075C440071F356 /* VIPChartDSBHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEAB225075C440071F356 /* VIPChartDSBHeaderView.m */; };
+		3DCFEAB525075C5B0071F356 /* VIPChartDSBHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEAB425075C5B0071F356 /* VIPChartDSBHeaderView.xib */; };
+		3DCFEAB925075D420071F356 /* VIPChartDSBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEAB725075D420071F356 /* VIPChartDSBCell.m */; };
+		3DCFEABA25075D420071F356 /* VIPChartDSBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEAB825075D420071F356 /* VIPChartDSBCell.xib */; };
 		3DE3CA8F24ECF6E300D591C4 /* CIRCULAR_06.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */; };
 		3DE3CA9024ECF6E300D591C4 /* CIRCULAR.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */; };
 		3DE3CA9324ED5CFC00D591C4 /* HYUpdateAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3CA9224ED5CFC00D591C4 /* HYUpdateAlertView.m */; };
@@ -1239,6 +1249,21 @@
 		3DCFEA9925050AD90071F356 /* 方正兰亭大黑_GBK.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "方正兰亭大黑_GBK.ttf"; sourceTree = "<group>"; };
 		3DCFEA9F250624CD0071F356 /* TAExampleDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAExampleDotView.m; sourceTree = "<group>"; };
 		3DCFEAA0250624CD0071F356 /* TAExampleDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAExampleDotView.h; sourceTree = "<group>"; };
+		3DCFEAA225066C580071F356 /* VIPTwoChartVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPTwoChartVC.h; sourceTree = "<group>"; };
+		3DCFEAA325066C580071F356 /* VIPTwoChartVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPTwoChartVC.m; sourceTree = "<group>"; };
+		3DCFEAA425066C580071F356 /* VIPTwoChartVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VIPTwoChartVC.xib; sourceTree = "<group>"; };
+		3DCFEAA7250730FE0071F356 /* VIPChartDJTQCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPChartDJTQCell.h; sourceTree = "<group>"; };
+		3DCFEAA8250730FE0071F356 /* VIPChartDJTQCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPChartDJTQCell.m; sourceTree = "<group>"; };
+		3DCFEAA9250730FE0071F356 /* VIPChartDJTQCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VIPChartDJTQCell.xib; sourceTree = "<group>"; };
+		3DCFEAAC250733370071F356 /* VIPChartHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPChartHeaderView.h; sourceTree = "<group>"; };
+		3DCFEAAD250733370071F356 /* VIPChartHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPChartHeaderView.m; sourceTree = "<group>"; };
+		3DCFEAAF250733570071F356 /* VIPChartHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VIPChartHeaderView.xib; sourceTree = "<group>"; };
+		3DCFEAB125075C440071F356 /* VIPChartDSBHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPChartDSBHeaderView.h; sourceTree = "<group>"; };
+		3DCFEAB225075C440071F356 /* VIPChartDSBHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPChartDSBHeaderView.m; sourceTree = "<group>"; };
+		3DCFEAB425075C5B0071F356 /* VIPChartDSBHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VIPChartDSBHeaderView.xib; sourceTree = "<group>"; };
+		3DCFEAB625075D420071F356 /* VIPChartDSBCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPChartDSBCell.h; sourceTree = "<group>"; };
+		3DCFEAB725075D420071F356 /* VIPChartDSBCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPChartDSBCell.m; sourceTree = "<group>"; };
+		3DCFEAB825075D420071F356 /* VIPChartDSBCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VIPChartDSBCell.xib; sourceTree = "<group>"; };
 		3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CIRCULAR_06.mp4; sourceTree = "<group>"; };
 		3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CIRCULAR.png; sourceTree = "<group>"; };
 		3DE3CA9124ED5CFC00D591C4 /* HYUpdateAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYUpdateAlertView.h; sourceTree = "<group>"; };
@@ -2768,6 +2793,18 @@
 				3DCFEA942504C4F00071F356 /* VIPNewVersionView.h */,
 				3DCFEA952504C4F00071F356 /* VIPNewVersionView.m */,
 				3DCFEA972504C50E0071F356 /* VIPNewVersionView.xib */,
+				3DCFEAA7250730FE0071F356 /* VIPChartDJTQCell.h */,
+				3DCFEAA8250730FE0071F356 /* VIPChartDJTQCell.m */,
+				3DCFEAA9250730FE0071F356 /* VIPChartDJTQCell.xib */,
+				3DCFEAB625075D420071F356 /* VIPChartDSBCell.h */,
+				3DCFEAB725075D420071F356 /* VIPChartDSBCell.m */,
+				3DCFEAB825075D420071F356 /* VIPChartDSBCell.xib */,
+				3DCFEAAC250733370071F356 /* VIPChartHeaderView.h */,
+				3DCFEAAD250733370071F356 /* VIPChartHeaderView.m */,
+				3DCFEAAF250733570071F356 /* VIPChartHeaderView.xib */,
+				3DCFEAB125075C440071F356 /* VIPChartDSBHeaderView.h */,
+				3DCFEAB225075C440071F356 /* VIPChartDSBHeaderView.m */,
+				3DCFEAB425075C5B0071F356 /* VIPChartDSBHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2834,6 +2871,9 @@
 				3D643F9624F36D3E00B9AAA7 /* HYVIPViewController.xib */,
 				3DCFEA8D25009D5E0071F356 /* VIPMonthlyAlertsVC.h */,
 				3DCFEA8E25009D5E0071F356 /* VIPMonthlyAlertsVC.m */,
+				3DCFEAA225066C580071F356 /* VIPTwoChartVC.h */,
+				3DCFEAA325066C580071F356 /* VIPTwoChartVC.m */,
+				3DCFEAA425066C580071F356 /* VIPTwoChartVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4436,6 +4476,7 @@
 				D5A446D424F3941400014DC6 /* 合成 1_00048.png in Resources */,
 				D5A4463324F393E500014DC6 /* 足球_00048.png in Resources */,
 				D5A4456F24F393AC00014DC6 /* 棋牌_00092.png in Resources */,
+				3DCFEABA25075D420071F356 /* VIPChartDSBCell.xib in Resources */,
 				D5A445FC24F393E500014DC6 /* 足球_00021.png in Resources */,
 				D5A4453424F393AC00014DC6 /* 棋牌_00017.png in Resources */,
 				D5A4440124F37A9E00014DC6 /* 彩票_0004.png in Resources */,
@@ -4452,6 +4493,7 @@
 				D5A4457324F393AD00014DC6 /* 棋牌_00050.png in Resources */,
 				D5A4470C24F3941400014DC6 /* 合成 1_00080.png in Resources */,
 				E98BEF2724D2C41E00E6B0C8 /* HYWithdrawAddCardFooter.xib in Resources */,
+				3DCFEAAB250730FE0071F356 /* VIPChartDJTQCell.xib in Resources */,
 				D5A4455724F393AC00014DC6 /* 棋牌_0005.png in Resources */,
 				0487C9B824D005D20013715A /* CNChangePwdVC.xib in Resources */,
 				D5A443E924F378CD00014DC6 /* 彩票_00037.png in Resources */,
@@ -4524,6 +4566,7 @@
 				D5A4461424F393E500014DC6 /* 足球_00094.png in Resources */,
 				D5A443FD24F37A9E00014DC6 /* 彩票_0001.png in Resources */,
 				D5A444C124F3932400014DC6 /* 数字7_00087.png in Resources */,
+				3DCFEAB0250733570071F356 /* VIPChartHeaderView.xib in Resources */,
 				D5A443A724F378CD00014DC6 /* 彩票_00053.png in Resources */,
 				D5A4453D24F393AC00014DC6 /* 棋牌_00062.png in Resources */,
 				D5A4457624F393AD00014DC6 /* 棋牌_00093.png in Resources */,
@@ -4679,6 +4722,7 @@
 				D5A443AD24F378CD00014DC6 /* 彩票_00027.png in Resources */,
 				D5A444C524F3932500014DC6 /* 数字7_00046.png in Resources */,
 				D5A443A024F378CD00014DC6 /* 彩票_00033.png in Resources */,
+				3DCFEAB525075C5B0071F356 /* VIPChartDSBHeaderView.xib in Resources */,
 				D5A4461924F393E500014DC6 /* 足球_00056.png in Resources */,
 				D5A4462524F393E500014DC6 /* 足球_00092.png in Resources */,
 				04C6E1F824D41C3C006F4DAC /* CNAddressInfoTCell.xib in Resources */,
@@ -4762,6 +4806,7 @@
 				D5A4462224F393E500014DC6 /* 足球_00084.png in Resources */,
 				D5A443E424F378CD00014DC6 /* 彩票_00018.png in Resources */,
 				D5A4465824F393E500014DC6 /* 足球_0002.png in Resources */,
+				3DCFEAA625066C580071F356 /* VIPTwoChartVC.xib in Resources */,
 				D5A4458124F393AD00014DC6 /* 棋牌_00020.png in Resources */,
 				D5A4464A24F393E500014DC6 /* 足球_00029.png in Resources */,
 				D5A4453924F393AC00014DC6 /* 棋牌_00011.png in Resources */,
@@ -5146,6 +5191,7 @@
 			files = (
 				04C0F11B24C68715007F1420 /* CNUserInfoLoginView.m in Sources */,
 				0405FF6B24D3DAE400AC46D2 /* CNFeedBackRightTCell.m in Sources */,
+				3DCFEAA525066C580071F356 /* VIPTwoChartVC.m in Sources */,
 				3D643F8E24F29F3600B9AAA7 /* HeartPacketData.m in Sources */,
 				0487C9D124D144E60013715A /* CNSelectBtn.m in Sources */,
 				0487C97224CE9A630013715A /* BRAddressPickerView.m in Sources */,
@@ -5162,6 +5208,7 @@
 				04C0F0F124C54AE8007F1420 /* CNResetPwdVC.m in Sources */,
 				3DA4F15724B30A090039123F /* SGQRCodeAlbumManager.m in Sources */,
 				04C0F13224C7D2A6007F1420 /* CNSportVC.m in Sources */,
+				3DCFEAB925075D420071F356 /* VIPChartDSBCell.m in Sources */,
 				E986A1C624CC7F2B000F9CFF /* TAAnimatedDotView.m in Sources */,
 				0487C96D24CE9A630013715A /* NSDate+BRPickerView.m in Sources */,
 				0487C9DA24D2627D0013715A /* CNXimaRecordTCell.m in Sources */,
@@ -5283,6 +5330,7 @@
 				3D3A9B6A24FA3696003FB33C /* DXRadianLayerView.m in Sources */,
 				0487C9CD24D133270013715A /* CNRecordTypeSelectorView.m in Sources */,
 				3DE3CA9324ED5CFC00D591C4 /* HYUpdateAlertView.m in Sources */,
+				3DCFEAB325075C440071F356 /* VIPChartDSBHeaderView.m in Sources */,
 				E98BEEE824D023B200E6B0C8 /* LYEmptyBaseView.m in Sources */,
 				044DC69124DD01AA005CB550 /* CNShareView.m in Sources */,
 				04C6E1E624D4029D006F4DAC /* CNAddressManagerVC.m in Sources */,
@@ -5292,6 +5340,7 @@
 				3DA4F17D24B315940039123F /* UIFont+RCFont.m in Sources */,
 				E986A17624C979F6000F9CFF /* PayOnlinePaymentModel.m in Sources */,
 				0487C97724CEAE1B0013715A /* CNMineVC.m in Sources */,
+				3DCFEAAA250730FE0071F356 /* VIPChartDJTQCell.m in Sources */,
 				E98BEF1224D2A32700E6B0C8 /* HYXiMaSuccViewController.m in Sources */,
 				E986A17F24C97B21000F9CFF /* CNWDAccountRequest.m in Sources */,
 				D5FBFE4224BC05E400BBCAD8 /* CNCodeInputView.m in Sources */,
@@ -5307,6 +5356,7 @@
 				D5FBFE8D24BC28B200BBCAD8 /* CNBaseVC.m in Sources */,
 				E986A1C724CC7F2B000F9CFF /* TAAbstractDotView.m in Sources */,
 				040A08D724E114A900FBD534 /* OCBarrageRenderView.m in Sources */,
+				3DCFEAAE250733370071F356 /* VIPChartHeaderView.m in Sources */,
 				04C0F0E324C2B282007F1420 /* CNHUB.m in Sources */,
 				3DA4F15F24B30D610039123F /* GTMBase64.m in Sources */,
 				E986A11824C73FE9000F9CFF /* BetAmountModel.m in Sources */,
