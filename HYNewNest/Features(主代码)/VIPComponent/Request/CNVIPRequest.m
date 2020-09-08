@@ -10,7 +10,7 @@
 
 @implementation CNVIPRequest
 
-+ (void)vipxxhGuideHandler:(HandlerBlock)handler {
++ (void)vipsxhGuideHandler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"bizCode"] = @"VIPSXH_GUIDE";
@@ -22,6 +22,14 @@
         }
     }];
     
+}
+
++ (void)vipsxhMonthReportHandler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"currency"] = [CNUserManager shareManager].userInfo.currency?:@"USDT";
+    
+    [self POST:kGatewayExtraPath(activity_vipSxhReport) parameters:param completionHandler:handler];
 }
 
 + (void)requestRewardBroadcastHandler:(HandlerBlock)handler {
@@ -36,14 +44,14 @@
     }];
 }
 
-+ (void)requestVIPPromotionHandler:(HandlerBlock)handler {
-    
-    NSMutableDictionary *param = [kNetworkMgr baseParam];
-    [param setObject:@"VIPPRIVILEGE_ACTIVITY_ID" forKey:@"activityKey"];
-    [param setObject:@"VIPPRIVILEGE" forKey:@"promoCode"];
-    
-    [self POST:kGatewayExtraPath(config_VIPPromotion) parameters:param completionHandler:handler];
-    
-}
+//+ (void)requestVIPPromotionHandler:(HandlerBlock)handler {
+//    
+//    NSMutableDictionary *param = [kNetworkMgr baseParam];
+//    [param setObject:@"VIPPRIVILEGE_ACTIVITY_ID" forKey:@"activityKey"];
+//    [param setObject:@"VIPPRIVILEGE" forKey:@"promoCode"];
+//    
+//    [self POST:kGatewayExtraPath(config_VIPPromotion) parameters:param completionHandler:handler];
+//    
+//}
 
 @end

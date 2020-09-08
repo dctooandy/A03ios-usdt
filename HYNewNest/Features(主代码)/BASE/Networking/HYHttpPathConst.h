@@ -9,13 +9,6 @@
 #ifndef HYHttpPathConst_h
 #define HYHttpPathConst_h
 
-#pragma mark - GAME
-
-#define AGGameCode @"A03003"  //AG旗舰/币游厅
-#define ShaBaSportGameCode @"A03031"
-#define HuanyaSportGameCode @"A03062"
-#define BBINSportGameCode @"A03017"
-
 
 #pragma mark - 转账记录 类型 code
 #define TransferTypeOutVault @"111602" //转出小金库
@@ -101,7 +94,7 @@
 #define config_changeLimitBonus  @"limitRed/modify" //修改限红
 #define config_new_queryByKeyList  @"a03/queryByKeyList" //获取体育竞猜广告图片  查询游戏平台platform AG TTG
 
-#define config_VIPPromotion  @"promo/a03/exclusive/privilege" //获取VIP私享会等级
+#define config_VIPPromotion  @"promo/a03/exclusive/privilege" //获取VIP私享会等级 deprecated
 
 #pragma mark 提现地址管理
 #define config_getRealNamePhone @"customer/modifyCustomerRealNamePhone" //修改手机和姓名
@@ -116,7 +109,7 @@
 #define config_modifyUserInfo  @"customer/modify" //绑定真实姓名
 #define config_getByCardBin    @"getByCardBin" //获取银行名称
 
-#pragma mark 积分
+#pragma mark 积分:deprecapted
 #define config_new_queryMyScore @"a03/integral/queryInfo" //查询我的积分
 #define config_new_exchangeScore @"a03/integral/exchange"  //兑换积分
 
@@ -132,7 +125,7 @@
 #define config_transfer_to_local @"game/transferToLocal" //账户明细 转至本地
 #define config_drawCancelRequest  @"withdraw/cancelRequest" // 取款 “等待状态”取消订单
 
-#pragma mark 小金库
+#pragma mark 小金库:deprecapted
 #define config_vault_yebInterestStatis @"yeb/yebInterestStatis" //小金库 过夜利息利息统计
 #define confit_vault_transferIn @"yeb/transferIn" //转入小金库 从本地余额
 #define config_vault_transferOut @"yeb/transferOut" //转出小金库 到本地余额
@@ -173,6 +166,8 @@
 #define config_updateFavorite     @"game/updateFavorite"  //修改游戏收藏
 #define config_queryFavoriteGame  @"game/queryFavorite"  //查询游戏收藏
 
+#pragma mark VIP私享会
+#define activity_vipSxhReport   @"a03/activity/vipsxh/war/report" //月报-个人战报
 
 
 #endif /* HYHttpPathConst_h */

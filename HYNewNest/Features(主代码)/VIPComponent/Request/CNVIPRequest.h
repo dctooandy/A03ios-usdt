@@ -16,11 +16,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CNVIPRequest : CNBaseNetworking
 
 /// 2.0弹窗
-+ (void)vipxxhGuideHandler:(HandlerBlock)handler;
++ (void)vipsxhGuideHandler:(HandlerBlock)handler;
+/// 月报弹窗
++ (void)vipsxhMonthReportHandler:(HandlerBlock)handler;
 
 + (void)requestRewardBroadcastHandler:(HandlerBlock)handler;
 
-+ (void)requestVIPPromotionHandler:(HandlerBlock)handler;
 
 @end
 

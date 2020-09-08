@@ -147,7 +147,7 @@
 
 + (void)showVIPSXHMessageBoxOnView:(UIView *)onView tapBlock:(void (^)(int))tapBlock {
     // 直接等接口返回
-    [CNVIPRequest vipxxhGuideHandler:^(id responseObj, NSString *errorMsg) {
+    [CNVIPRequest vipsxhGuideHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isAlreadyReadVersion2.0"];
             [[NSUserDefaults standardUserDefaults] synchronize];

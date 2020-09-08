@@ -13,10 +13,15 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgvCard;
 @property (weak, nonatomic) IBOutlet UILabel *lbDuzun;
+@property (weak, nonatomic) IBOutlet UIImageView *imgvMyRank;
 
 @end
 
 @implementation VIPCardCCell
+
+- (void)setIsCurRank:(BOOL)isCurRank {
+    _imgvMyRank.hidden = !isCurRank;
+}
 
 - (void)setCardName:(NSString *)cardName {
     _cardName = cardName;

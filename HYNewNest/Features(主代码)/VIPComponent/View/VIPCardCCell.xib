@@ -70,10 +70,18 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myrank" translatesAutoresizingMaskIntoConstraints="NO" id="unc-a5-Cnd">
+                        <rect key="frame" x="0.0" y="0.0" width="61" height="63"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="61" id="4rR-O4-LUz"/>
+                            <constraint firstAttribute="height" constant="63" id="m0K-7H-rzi"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="zSa-BK-C60" secondAttribute="trailing" constant="16" id="3Oo-l3-Ik7"/>
+                <constraint firstItem="unc-a5-Cnd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="5gI-u6-qaq"/>
                 <constraint firstItem="hAu-fk-UC9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="E32-0Z-Whh"/>
                 <constraint firstAttribute="trailing" secondItem="cog-Pw-LEJ" secondAttribute="trailing" constant="16" id="MZW-kd-Ujo"/>
                 <constraint firstItem="eEE-0S-5ga" firstAttribute="top" secondItem="gzy-Wx-tMO" secondAttribute="bottom" constant="3" id="SPz-iW-wj1"/>
@@ -86,6 +94,7 @@
                 <constraint firstAttribute="bottom" secondItem="hAu-fk-UC9" secondAttribute="bottom" id="aMX-Sb-6e7"/>
                 <constraint firstItem="RRW-P5-co9" firstAttribute="trailing" secondItem="zSa-BK-C60" secondAttribute="trailing" id="f7d-Kk-qSo"/>
                 <constraint firstItem="cog-Pw-LEJ" firstAttribute="top" secondItem="RRW-P5-co9" secondAttribute="bottom" constant="2.5" id="qDb-82-M6d"/>
+                <constraint firstItem="unc-a5-Cnd" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="qsK-yz-qVU"/>
                 <constraint firstAttribute="trailing" secondItem="hAu-fk-UC9" secondAttribute="trailing" id="yhR-TQ-dNK"/>
                 <constraint firstItem="zSa-BK-C60" firstAttribute="leading" secondItem="hAu-fk-UC9" secondAttribute="trailing" constant="-69" id="yii-dR-cmf"/>
             </constraints>
@@ -93,15 +102,17 @@
             <size key="customSize" width="106" height="91"/>
             <connections>
                 <outlet property="imgvCard" destination="hAu-fk-UC9" id="fU6-Jo-skY"/>
+                <outlet property="imgvMyRank" destination="unc-a5-Cnd" id="IYZ-fq-SE6"/>
                 <outlet property="lbDuzun" destination="cog-Pw-LEJ" id="wSF-PN-AxB"/>
                 <outlet property="lbReachNum" destination="eEE-0S-5ga" id="koh-uU-0W1"/>
                 <outlet property="lbSubTitle" destination="RRW-P5-co9" id="Lqe-dI-fCc"/>
                 <outlet property="lbTitle" destination="zSa-BK-C60" id="Wqd-oi-yRu"/>
             </connections>
-            <point key="canvasLocation" x="-407" y="82"/>
+            <point key="canvasLocation" x="128" y="51"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="myrank" width="60" height="62"/>
         <image name="赌侠" width="333" height="148"/>
     </resources>
 </document>

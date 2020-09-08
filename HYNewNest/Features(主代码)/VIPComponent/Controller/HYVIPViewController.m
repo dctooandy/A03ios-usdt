@@ -197,15 +197,20 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 #pragma mark - Action
 - (IBAction)didTapVIPSxh:(id)sender {
-    
-        // 月报弹窗
-        VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
-        vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
-        //添加子控制器 该方法调用了willMoveToParentViewController：方法
-        [self addChildViewController:vc];
-        //将子控制器视图添加到容器控制器的视图中
-        [self.view addSubview:vc.view];
+    [CNVIPRequest vipsxhMonthReportHandler:^(id responseObj, NSString *errorMsg) {
+        //TODO: wait for data
+        if (KIsEmptyString(errorMsg)) {
+            
+            //???: 月报弹窗显示规则
+            VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
+            vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
+            //添加子控制器 该方法调用了willMoveToParentViewController：方法
+            [self addChildViewController:vc];
+            //将子控制器视图添加到容器控制器的视图中
+            [self.view addSubview:vc.view];
+        }
 
+    }];
 }
 
 - (IBAction)didTapDashenBoard:(id)sender {
@@ -269,12 +274,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 // 用户等级信息
 - (void)requestUsrVIPPromotion {
-    //TODO: 带入数据
-    [CNVIPRequest requestVIPPromotionHandler:^(id responseObj, NSString *errorMsg) {
-        self.vipLevel = [VIPLevelData cn_parse:responseObj];
-        self.prgsViewAmount.progress = 0.7;
-        self.prgsViewDeposit.progress = 0.5;
-    }];
+    
 }
 
 #pragma mark - UUMarqueeViewDelegate
@@ -327,6 +327,11 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     cell.cardName = dict.allKeys.firstObject;
     cell.lbTitle.text = dict.allKeys.firstObject;
     cell.lbSubTitle.text = dict.allValues.firstObject;
+    if (indexPath.row == 0) { //exp: 是否当前等级
+        cell.isCurRank = YES;
+    } else {
+        cell.isCurRank = NO;
+    }
     if (indexPath.row == 5) { //TODO: 是否有独尊出现
         cell.duzunName = @"Geraltbaba";
     } else {
