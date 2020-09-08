@@ -226,6 +226,7 @@
 		3DCFEAB525075C5B0071F356 /* VIPChartDSBHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEAB425075C5B0071F356 /* VIPChartDSBHeaderView.xib */; };
 		3DCFEAB925075D420071F356 /* VIPChartDSBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEAB725075D420071F356 /* VIPChartDSBCell.m */; };
 		3DCFEABA25075D420071F356 /* VIPChartDSBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEAB825075D420071F356 /* VIPChartDSBCell.xib */; };
+		3DCFEABD2507ACDE0071F356 /* UIColor+HYExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEABC2507ACDE0071F356 /* UIColor+HYExtension.m */; };
 		3DE3CA8F24ECF6E300D591C4 /* CIRCULAR_06.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */; };
 		3DE3CA9024ECF6E300D591C4 /* CIRCULAR.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */; };
 		3DE3CA9324ED5CFC00D591C4 /* HYUpdateAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3CA9224ED5CFC00D591C4 /* HYUpdateAlertView.m */; };
@@ -1264,6 +1265,8 @@
 		3DCFEAB625075D420071F356 /* VIPChartDSBCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPChartDSBCell.h; sourceTree = "<group>"; };
 		3DCFEAB725075D420071F356 /* VIPChartDSBCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPChartDSBCell.m; sourceTree = "<group>"; };
 		3DCFEAB825075D420071F356 /* VIPChartDSBCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VIPChartDSBCell.xib; sourceTree = "<group>"; };
+		3DCFEABB2507ACDE0071F356 /* UIColor+HYExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+HYExtension.h"; sourceTree = "<group>"; };
+		3DCFEABC2507ACDE0071F356 /* UIColor+HYExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HYExtension.m"; sourceTree = "<group>"; };
 		3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CIRCULAR_06.mp4; sourceTree = "<group>"; };
 		3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CIRCULAR.png; sourceTree = "<group>"; };
 		3DE3CA9124ED5CFC00D591C4 /* HYUpdateAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYUpdateAlertView.h; sourceTree = "<group>"; };
@@ -2679,6 +2682,8 @@
 				E98BEF0D24D274F700E6B0C8 /* UILabel+Gradient.m */,
 				3DE3CA9424ED6AEC00D591C4 /* UILabel+Indicator.h */,
 				3DE3CA9524ED6AEC00D591C4 /* UILabel+Indicator.m */,
+				3DCFEABB2507ACDE0071F356 /* UIColor+HYExtension.h */,
+				3DCFEABC2507ACDE0071F356 /* UIColor+HYExtension.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -5259,6 +5264,7 @@
 				040A08D424E114A900FBD534 /* CALayer+OCBarrage.m in Sources */,
 				048A0EF324C9401100411819 /* CNGameLineView.m in Sources */,
 				E986A1C224CC7F2B000F9CFF /* UIView+SDExtension.m in Sources */,
+				3DCFEABD2507ACDE0071F356 /* UIColor+HYExtension.m in Sources */,
 				E98BEEEA24D023B200E6B0C8 /* UIView+LYExtension.m in Sources */,
 				E9D9449724C5734400252222 /* WelcomeModel.m in Sources */,
 				E986A12224C7E802000F9CFF /* CNUserCenterRequest.m in Sources */,

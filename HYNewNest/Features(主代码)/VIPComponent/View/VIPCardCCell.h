@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *lbTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lbSubTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lbReachNum;
-@property (strong,nonatomic) NSString *cardName; 
+@property (copy,nonatomic) NSString *cardName;
+@property (copy, nonatomic) NSString *duzunName;//独尊是否显示以及她的名字，如果不现实传空字符
 @end
 
 NS_ASSUME_NONNULL_END

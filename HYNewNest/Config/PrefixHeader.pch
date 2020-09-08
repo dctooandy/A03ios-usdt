@@ -31,6 +31,7 @@
 #import "HYNetworkConfigManager.h" //网络环境配置
 #import "HYTextAlertView.h" //文字alert
 #import "UILabel+Indicator.h"//菊花label ***隐藏label 配套使用
+#import "UIColor+HYExtension.h"
 
 #ifdef DEBUG
 #import "UIWindow+Motion.h" //Lookin摇一摇功能

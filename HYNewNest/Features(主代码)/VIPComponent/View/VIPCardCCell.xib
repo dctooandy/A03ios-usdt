@@ -61,11 +61,21 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 齐齐哈尔王会员 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cog-Pw-LEJ">
+                        <rect key="frame" x="224" y="74.5" width="93" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="qOQ-WQ-FGw"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="zSa-BK-C60" secondAttribute="trailing" constant="16" id="3Oo-l3-Ik7"/>
                 <constraint firstItem="hAu-fk-UC9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="E32-0Z-Whh"/>
+                <constraint firstAttribute="trailing" secondItem="cog-Pw-LEJ" secondAttribute="trailing" constant="16" id="MZW-kd-Ujo"/>
                 <constraint firstItem="eEE-0S-5ga" firstAttribute="top" secondItem="gzy-Wx-tMO" secondAttribute="bottom" constant="3" id="SPz-iW-wj1"/>
                 <constraint firstItem="hAu-fk-UC9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="SU0-yn-Pez"/>
                 <constraint firstItem="zSa-BK-C60" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="21" id="TSH-p3-fhh"/>
@@ -75,6 +85,7 @@
                 <constraint firstItem="gzy-Wx-tMO" firstAttribute="trailing" secondItem="zSa-BK-C60" secondAttribute="trailing" id="YRV-iM-99E"/>
                 <constraint firstAttribute="bottom" secondItem="hAu-fk-UC9" secondAttribute="bottom" id="aMX-Sb-6e7"/>
                 <constraint firstItem="RRW-P5-co9" firstAttribute="trailing" secondItem="zSa-BK-C60" secondAttribute="trailing" id="f7d-Kk-qSo"/>
+                <constraint firstItem="cog-Pw-LEJ" firstAttribute="top" secondItem="RRW-P5-co9" secondAttribute="bottom" constant="2.5" id="qDb-82-M6d"/>
                 <constraint firstAttribute="trailing" secondItem="hAu-fk-UC9" secondAttribute="trailing" id="yhR-TQ-dNK"/>
                 <constraint firstItem="zSa-BK-C60" firstAttribute="leading" secondItem="hAu-fk-UC9" secondAttribute="trailing" constant="-69" id="yii-dR-cmf"/>
             </constraints>
@@ -82,11 +93,12 @@
             <size key="customSize" width="106" height="91"/>
             <connections>
                 <outlet property="imgvCard" destination="hAu-fk-UC9" id="fU6-Jo-skY"/>
+                <outlet property="lbDuzun" destination="cog-Pw-LEJ" id="wSF-PN-AxB"/>
                 <outlet property="lbReachNum" destination="eEE-0S-5ga" id="koh-uU-0W1"/>
                 <outlet property="lbSubTitle" destination="RRW-P5-co9" id="Lqe-dI-fCc"/>
                 <outlet property="lbTitle" destination="zSa-BK-C60" id="Wqd-oi-yRu"/>
             </connections>
-            <point key="canvasLocation" x="-138" y="80"/>
+            <point key="canvasLocation" x="-407" y="82"/>
         </collectionViewCell>
     </objects>
     <resources>

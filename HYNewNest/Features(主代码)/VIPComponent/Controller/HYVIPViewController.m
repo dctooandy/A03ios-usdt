@@ -315,6 +315,11 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     cell.cardName = dict.allKeys.firstObject;
     cell.lbTitle.text = dict.allKeys.firstObject;
     cell.lbSubTitle.text = dict.allValues.firstObject;
+    if (indexPath.row == 5) { //TODO: 是否有独尊出现
+        cell.duzunName = @"Geraltbaba";
+    } else {
+        cell.duzunName = @"";
+    }
     return cell;
 }
 
