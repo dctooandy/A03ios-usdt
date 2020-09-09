@@ -11,6 +11,7 @@
 #import "VIPChartDJTQCell.h"
 #import "VIPChartDSBHeaderView.h"
 #import "VIPChartDSBCell.h"
+#import "CNVIPRequest.h"
 
 static NSString * const VIPDJTQCell = @"VIPChartDJTQCell";//等级特权cell
 static NSString * const VIPDJTQChartHeader = @"VIPChartHeaderView";//头部标题
@@ -31,8 +32,14 @@ static NSString * const VIPDSBChartHeader = @"VIPChartDSBHeaderView";//头部标
 - (id)initWithType:(VIPChartType)type {
     self = [super init];
     _type = type;
-    
+
     return self;
+}
+
+- (void)requestBoard {
+    [CNVIPRequest vipsxhBigGodBoardHandler:^(id responseObj, NSString *errorMsg) {
+        //TODO: wait for data
+    }];
 }
 
 - (void)viewDidLoad {
@@ -47,6 +54,7 @@ static NSString * const VIPDSBChartHeader = @"VIPChartDSBHeaderView";//头部标
         self.lbTitle.text = @"私享会大神榜(usdt)";
         [self.tableView registerNib:[UINib nibWithNibName:VIPDSBCell bundle:nil] forCellReuseIdentifier:VIPDSBCell];
         [self.tableView registerNib:[UINib nibWithNibName:VIPDSBChartHeader bundle:nil] forHeaderFooterViewReuseIdentifier:VIPDSBChartHeader];
+        [self requestBoard];
     }
 
 }

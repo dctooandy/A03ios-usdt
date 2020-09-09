@@ -118,12 +118,12 @@
 }
 
 - (BOOL)isUsdtMode {
-    return [self.userInfo.loginName hasSuffix:@"usdt"];
-//    if (self.userInfo) {
-//        return [self.userInfo.uiMode caseInsensitiveCompare:@"usdt"] == NSOrderedSame;
-//    } else {
-//        return YES; //默认是USDT模式的
-//    }
+//    return [self.userInfo.loginName hasSuffix:@"usdt"];
+    if (self.userInfo) {
+        return [self.userInfo.uiMode caseInsensitiveCompare:@"usdt"] == NSOrderedSame;
+    } else {
+        return YES; //默认是USDT模式的
+    }
 }
 
 - (BOOL)isUiModeHasOptions {

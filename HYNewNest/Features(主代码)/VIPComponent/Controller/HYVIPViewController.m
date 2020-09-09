@@ -99,19 +99,20 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    // 2.0弹窗
-    [self requestNewVersion];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.hideNavgation = YES;
     [self setupCollectionView];
-    
-    // 抽奖播报
+    [self userStatusChanged];// 用户登录状态配置UI
+
+    // 月报
+    [self requestMonthReport];
+    // 首页数据
+    [self vipHomeData];
+    //X 抽奖播报 (首页代替)
     [self requestRewardAnnouncement];
-    // 用户登录状态配置(获取用户信息)
-    [self userStatusChanged];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLogoutSuccessNotification object:nil];
@@ -131,9 +132,6 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     if ([CNUserManager shareManager].isLogin) {
         self.rankStackView.hidden = NO;
         self.unloginLbBGView.hidden = YES;
-        //TODO: 请求数据
-//        [self requestUsrVIPPromotion];
-        
     } else {
         self.rankStackView.hidden = YES;
         self.unloginLbBGView.hidden = NO;
@@ -197,11 +195,12 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 #pragma mark - Action
 - (IBAction)didTapVIPSxh:(id)sender {
+    //测试地带
     [CNVIPRequest vipsxhMonthReportHandler:^(id responseObj, NSString *errorMsg) {
         //TODO: wait for data
+        
         if (KIsEmptyString(errorMsg)) {
             
-            //???: 月报弹窗显示规则
             VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
             vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
             //添加子控制器 该方法调用了willMoveToParentViewController：方法
@@ -239,8 +238,17 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 
 #pragma mark - Request
-- (void)requestNewVersion {
-    BOOL isReaded = [[NSUserDefaults standardUserDefaults] boolForKey:@"isAlreadyReadVersion2.0"];
+- (void)vipHomeData {
+    if (![CNUserManager shareManager].isLogin) {
+        return;
+    }
+    [CNVIPRequest vipsxhHomeHandler:^(id responseObj, NSString *errorMsg) {
+        //TODO: wait for data
+    }];
+}
+
+- (void)requestMonthReport {
+    BOOL isReaded = [[NSUserDefaults standardUserDefaults] boolForKey:@"isAlreadyReadVersion2.0"];//只显示一次就不再展示了
     if (!isReaded) {
         // VIP私享会2.0 弹窗
         [CNMessageBoxView showVIPSXHMessageBoxOnView:self.view tapBlock:^(int idx) {
@@ -261,6 +269,38 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
                     break;
             }
         }];
+    } else {
+        // 登陆+是否第一次 显示月报
+        if (![CNUserManager shareManager].isLogin) {
+            return;
+        }
+       // 月报一个月展示一次
+       NSDate *nowDate = [NSDate date];
+       NSString *lastMonthStr = [[NSUserDefaults standardUserDefaults] stringForKey:HYVipMonthReportLastimeDate];
+
+       NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+       [dateFormatter setDateFormat:@"yyyy-MM"];
+       __block NSString *nowMonthStr = [dateFormatter stringFromDate:nowDate];
+
+       if (![lastMonthStr isEqualToString:nowMonthStr]) {
+       
+           [CNVIPRequest vipsxhMonthReportHandler:^(id responseObj, NSString *errorMsg) {
+               //TODO: wait for data
+               
+               if (KIsEmptyString(errorMsg)) {
+                   [[NSUserDefaults standardUserDefaults] setValue:nowMonthStr forKey:HYVipMonthReportLastimeDate];
+                   [[NSUserDefaults standardUserDefaults] synchronize];
+                   
+                   VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
+                   vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
+                   //添加子控制器 该方法调用了willMoveToParentViewController：方法
+                   [self addChildViewController:vc];
+                   //将子控制器视图添加到容器控制器的视图中
+                   [self.view addSubview:vc.view];
+               }
+
+           }];
+       }
     }
 }
 

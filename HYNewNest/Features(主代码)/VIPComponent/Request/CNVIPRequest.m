@@ -45,13 +45,47 @@
 }
 
 //+ (void)requestVIPPromotionHandler:(HandlerBlock)handler {
-//    
+//
 //    NSMutableDictionary *param = [kNetworkMgr baseParam];
 //    [param setObject:@"VIPPRIVILEGE_ACTIVITY_ID" forKey:@"activityKey"];
 //    [param setObject:@"VIPPRIVILEGE" forKey:@"promoCode"];
-//    
+//
 //    [self POST:kGatewayExtraPath(config_VIPPromotion) parameters:param completionHandler:handler];
-//    
+//
 //}
+
++ (void)vipsxhHomeHandler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"currency"] = [CNUserManager shareManager].userInfo.currency?:@"USDT";
+    
+    [self POST:kGatewayExtraPath(activity_vipSxhHome) parameters:param completionHandler:handler];
+}
+
++ (void)vipsxhZzzpHandler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"currency"] = [CNUserManager shareManager].userInfo.currency?:@"USDT";
+    
+    [self POST:kGatewayExtraPath(activity_vipSxhZzzp) parameters:param completionHandler:handler];
+}
+
++ (void)vipsxhBigGodBoardHandler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"currency"] = [CNUserManager shareManager].userInfo.currency?:@"USDT";
+    
+    [self POST:kGatewayExtraPath(activity_vipSxhRank) parameters:param completionHandler:handler];
+}
+
++ (void)vipsxhDrawGiftMoneyLevelStatus:(NSString *)levelStatus handler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"currency"] = [CNUserManager shareManager].userInfo.currency?:@"USDT";
+    param[@"promoCode"] = @"VIPSXH";
+    param[@"levelStatus"] = levelStatus;
+    
+    [self POST:kGatewayExtraPath(activity_vipSxhDraw) parameters:param completionHandler:handler];
+}
 
 @end

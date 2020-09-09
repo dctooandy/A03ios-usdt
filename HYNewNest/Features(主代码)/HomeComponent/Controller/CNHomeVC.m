@@ -220,7 +220,7 @@
 - (void)requestNewsBox {
     if ([CNUserManager shareManager].isLogin) {
         NSDate *nowDate = [NSDate date];
-        NSString *agoDateStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"AgoDate"];
+        NSString *agoDateStr = [[NSUserDefaults standardUserDefaults] stringForKey:HYHomeMessageBoxLastimeDate];
 
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -242,7 +242,7 @@
                     MessageBoxModel *m = self.msgBoxModels[idx];
                     [NNPageRouter jump2HTMLWithStrURL:m.link title:@"活动"];
                 }];
-                [[NSUserDefaults standardUserDefaults] setObject:nowDateStr forKey:@"AgoDate"];
+                [[NSUserDefaults standardUserDefaults] setObject:nowDateStr forKey:HYHomeMessageBoxLastimeDate];
                 [[NSUserDefaults standardUserDefaults] synchronize];
             }];
         }

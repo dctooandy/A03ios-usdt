@@ -168,6 +168,9 @@
 
 #pragma mark VIP私享会
 #define activity_vipSxhReport   @"a03/activity/vipsxh/war/report" //月报-个人战报
-
+#define activity_vipSxhHome     @"a03/activity/vipsxh/home" //私享会首页
+#define activity_vipSxhZzzp     @"a03/activity/vipsxh/zzzp" //私享会至尊转盘
+#define activity_vipSxhRank     @"a03/activity/vipsxh/rank" //大神榜
+#define activity_vipSxhDraw     @"promo/a03/draw" //领取入会礼金
 
 #endif /* HYHttpPathConst_h */
