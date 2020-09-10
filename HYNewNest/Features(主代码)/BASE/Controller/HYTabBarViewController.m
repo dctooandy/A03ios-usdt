@@ -23,6 +23,7 @@
 @interface HYTabBarViewController ()<UITabBarControllerDelegate, SuspendBallDelegte, CNServerViewDelegate>
 @property (nonatomic, strong) SuspendBall *suspendBall;
 @property (strong, nonatomic) HYNavigationController *bonusNavVC;
+@property (strong, nonatomic) HYNavigationController *vipNavVC;
 @end
 
 @implementation HYTabBarViewController
@@ -41,14 +42,16 @@
 
 - (void)didSwitchAcount{
     NSMutableArray *childVcs = [self.viewControllers mutableCopy];
-    if (![CNUserManager shareManager].isUsdtMode) { //rmb 去掉“优惠”
+    if (![CNUserManager shareManager].isUsdtMode) { //rmb 去掉“优惠”&"vip"
         if (childVcs.count == 5) {
-            [childVcs removeObjectAtIndex:2];
+            [childVcs removeObjectAtIndex:1];
+            [childVcs removeObjectAtIndex:1];
         }
         self.viewControllers = childVcs.copy;
     } else {
-        if (childVcs.count == 4) {
-            [childVcs insertObject:self.bonusNavVC atIndex:2];
+        if (childVcs.count == 3) {
+            [childVcs insertObject:self.bonusNavVC atIndex:1];
+            [childVcs insertObject:self.vipNavVC atIndex:1];
         }
         self.viewControllers = childVcs.copy;
     }
@@ -98,6 +101,7 @@
                                                                                         tabBarTitle:@"VIP"
                                                                                         normalImage:[UIImage imageNamed:@"vip"]
                                                                                       selectedImage:[UIImage imageNamed:@"vip_s"]];
+    self.vipNavVC = vipNav;
     [vcs addObject:vipNav];
     
     HYNavigationController *bonusNav = [HYNavigationController navigationControllerWithController:[HYBonusViewController class]
