@@ -107,12 +107,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param amount 金额
 /// @param depositor 存款人
 /// @param depositorType 如果是用户曾经付款记录里的人传1 否则传0
-/// @param bankCode payBank银行码
 + (void)submitBQPaymentPayType:(NSString *)payType
                         amount:(NSString *)amount
                      depositor:(NSString *)depositor
                  depositorType:(NSInteger)depositorType
-                      bankCode:(NSString *)bankCode
+//                      bankCode:(NSString *)bankCode
                        handler:(HandlerBlock)handler;
 
 @end

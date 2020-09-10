@@ -58,7 +58,7 @@
 
 - (void)countDown {
     self.seconds --;
-    self.timeLb.text = [NSString stringWithFormat:@"%ld:%ld", _seconds/60, _seconds%60];
+    self.timeLb.text = [NSString stringWithFormat:@"%02ld:%02ld", _seconds/60, _seconds%60];
     if (_seconds <= 0) {
         [_timer invalidate];
         _timer = nil;

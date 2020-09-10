@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet CNNormalInputView *depositorTfView;
 @property (weak, nonatomic) IBOutlet UIView *depositIdBtnsContain;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *depositIdBtnsContainH;
+
 @property (weak, nonatomic) IBOutlet UIView *btmBankSelcView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btmBankSelcViewH;
 @property (weak, nonatomic) IBOutlet UIImageView *bankIcon;
@@ -158,19 +159,16 @@
             }
         }
         
-        // 选择收款银行
-        self.btmBankSelcView.hidden = NO;
-        self.btmBankSelcViewH.constant = 80;
 
-    } else {
-        
-        self.btmBankSelcView.hidden = YES;
-        self.btmBankSelcViewH.constant = 0;
     }
+    
+    // 选择收款银行 暂时废弃 隐藏掉
+    self.btmBankSelcView.hidden = YES;
+    self.btmBankSelcViewH.constant = 0;
     
     // 调整高度
     [self mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.btmBankSelcView).offset(40);
+        make.bottom.equalTo(self.btmBankSelcView).offset(20);
     }];
 }
 
@@ -256,8 +254,7 @@
 
 - (void)checkEnableStatus {
     
-    if (((!self.btmBankSelcView.hidden && self.bqBankModel) || self.btmBankSelcView.hidden)
-        && (self.depositor || self.depositorId)
+    if ((self.depositor || self.depositorId)
         && self.rechargeAmount) {
         
         if (_delegate && [_delegate respondsToSelector:@selector(didChangeIsStatusRight:)]) {

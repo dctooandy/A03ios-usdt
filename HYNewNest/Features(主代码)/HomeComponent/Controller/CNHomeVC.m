@@ -85,20 +85,6 @@
     self.pageViewH.constant = vc.totalHeight;
 }
 
-- (void)rightItemAction {
-    // !!!: FOR TEST ONLY
-    //    if (![CNUserManager shareManager].isLogin) {
-    //        [CNLoginRequest creatTryAcountCompletionHandler:^(id responseObj, NSString *errorMsg) {
-    //            [HYTextAlertView showWithTitle:@"试玩账户" content:@"系统为您自动分配试玩额度2,000元" comfirmText:@"确定" comfirmHandler:^{
-    //            }];
-    //            [self updateUserInfo];
-    //        }];
-    //    } else {
-    //        [self updateUserInfo];
-    //    }
-    
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.hideNavgation = YES;

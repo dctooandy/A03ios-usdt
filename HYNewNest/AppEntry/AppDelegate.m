@@ -96,14 +96,9 @@
     
     [GeTuiSdk registerDeviceTokenData:deviceToken];
     
-    
-    [CNPushRequest GTInterfaceHandler:^(id responseObj, NSString *errorMsg) {
-        if (KIsEmptyString(errorMsg)) {
-            MyLog(@"超级签名推送responseObject==%@",responseObj);
-        } else {
-            MyLog(@"超级签名推送error==%@",errorMsg);
-        }
-    }];
+    // 推送相关
+    [CNPushRequest GetUDIDHandler:nil];
+    [CNPushRequest GTInterfaceHandler:nil];
     
 }
 

@@ -24,11 +24,11 @@
 
 @interface HYRechargeCNYViewController () <HYRechargeCNYEditViewDelegate>
 @property (nonatomic, assign) NSInteger selcPayWayIdx;
-@property (nonatomic, assign) NSInteger selcBqbankIdx;
+//@property (nonatomic, assign) NSInteger selcBqbankIdx;
 @property (strong, nonatomic) NSArray <PayWayV3PayTypeItem *> *paytypeList;  //支付方式
 @property (nonatomic, strong) OnlineBanksModel *curOnliBankModel;
 @property (strong, nonatomic) AmountListModel *curAmountModel;
-@property (nonatomic, strong) NSArray <BQBankModel *> *BQBanks; //选择支付银行
+//@property (nonatomic, strong) NSArray <BQBankModel *> *BQBanks; //选择支付银行
 
 @property (nonatomic, strong) CNTwoStatusBtn *btnSubmit;
 @property (nonatomic, strong) UIScrollView *scrollContainer;
@@ -65,14 +65,14 @@
     [self refreshQueryData];
 }
 
-- (void)setSelcBqbankIdx:(NSInteger)selcBqbankIdx {
-    if (!_BQBanks) {
-        return;
-    }
-    _selcBqbankIdx = selcBqbankIdx;
-    // 设置BQbank后自动选中
-    [self.editView setupBQBankModel:self.BQBanks[selcBqbankIdx]];
-}
+//- (void)setSelcBqbankIdx:(NSInteger)selcBqbankIdx {
+//    if (!_BQBanks) {
+//        return;
+//    }
+//    _selcBqbankIdx = selcBqbankIdx;
+//    // 设置BQbank后自动选中
+//    [self.editView setupBQBankModel:self.BQBanks[selcBqbankIdx]];
+//}
 
 #pragma mark - View life cycle
 
@@ -80,7 +80,7 @@
     [super viewDidLoad];
     self.title = @"充值";
     _selcPayWayIdx = 0;
-    _selcBqbankIdx = 0;
+//    _selcBqbankIdx = 0;
     
     LYEmptyView *empView = [LYEmptyView emptyActionViewWithImage:[UIImage imageNamed:@"kongduixiang"] titleStr:@"" detailStr:@"暂无充值方式提供" btnTitleStr:@"刷新试试" btnClickBlock:^{
         [self queryCNYPayways];
@@ -144,15 +144,15 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)didTapSelectBank:(OnlineBanksModel *)bankModel {
-    HYRechargePayWayController *vc = [[HYRechargePayWayController alloc] initWithBQbanks:self.BQBanks selcIdx:_selcBqbankIdx];
-    vc.navPopupBlock = ^(id obj) {
-        if ([obj isKindOfClass:[NSNumber class]]) {
-            self.selcBqbankIdx = [(NSNumber *)obj integerValue];
-        }
-    };
-    [self.navigationController pushViewController:vc animated:YES];
-}
+//- (void)didTapSelectBank:(OnlineBanksModel *)bankModel {
+//    HYRechargePayWayController *vc = [[HYRechargePayWayController alloc] initWithBQbanks:self.BQBanks selcIdx:_selcBqbankIdx];
+//    vc.navPopupBlock = ^(id obj) {
+//        if ([obj isKindOfClass:[NSNumber class]]) {
+//            self.selcBqbankIdx = [(NSNumber *)obj integerValue];
+//        }
+//    };
+//    [self.navigationController pushViewController:vc animated:YES];
+//}
 
 - (void)didChangeIsStatusRight:(BOOL)isStatusRight { 
     self.btnSubmit.enabled = isStatusRight;
@@ -219,7 +219,7 @@
             self.curAmountModel = aModel;
             [self setupMainEditView];
             // bq支付需要这个
-            [self queryBQBanks];
+//            [self queryBQBanks];
         }
     }];
 }
@@ -241,22 +241,22 @@
 }
 
 /**
- 可用银行
+ 可用银行。 新版本不再需要
  */
-- (void)queryBQBanks {
-    PayWayV3PayTypeItem *item = self.paytypeList[_selcPayWayIdx];
-    [CNRechargeRequest queryBQBanksPayType:item.payType
-                                 depositor:self.editView.depositor
-                               depositorId:self.editView.depositorId
-                                   handler:^(id responseObj, NSString *errorMsg) {
-        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-            NSArray *dictArr = responseObj[@"bankList"];
-            NSArray *bqBanks = [BQBankModel cn_parse:dictArr];
-            self.BQBanks = bqBanks;
-            self.selcBqbankIdx = 0;
-        }
-    }];
-}
+//- (void)queryBQBanks {
+//    PayWayV3PayTypeItem *item = self.paytypeList[_selcPayWayIdx];
+//    [CNRechargeRequest queryBQBanksPayType:item.payType
+//                                 depositor:self.editView.depositor
+//                               depositorId:self.editView.depositorId
+//                                   handler:^(id responseObj, NSString *errorMsg) {
+//        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+//            NSArray *dictArr = responseObj[@"bankList"];
+//            NSArray *bqBanks = [BQBankModel cn_parse:dictArr];
+//            self.BQBanks = bqBanks;
+//            self.selcBqbankIdx = 0;
+//        }
+//    }];
+//}
 
 /**
  提交订单
@@ -297,13 +297,12 @@
         }];
     
     } else {
-        __block BQBankModel *bqBankModel = self.BQBanks[_selcBqbankIdx];
+//        __block BQBankModel *bqBankModel = self.BQBanks[_selcBqbankIdx];
         // BQ转账
         [CNRechargeRequest submitBQPaymentPayType:item.payType
                                            amount:self.editView.rechargeAmount
                                         depositor:self.editView.depositor?:self.editView.depositorId
                                     depositorType:self.editView.depositor?0:1
-                                         bankCode:bqBankModel.bankCode
                                           handler:^(id responseObj, NSString *errorMsg) {
             if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
                 BQPaymentModel *paymentBQModel = [BQPaymentModel cn_parse:responseObj];

@@ -128,7 +128,7 @@
                         amount:(NSString *)amount
                      depositor:(NSString *)depositor
                  depositorType:(NSInteger)depositorType
-                      bankCode:(NSString *)bankCode
+//                      bankCode:(NSString *)bankCode
                        handler:(HandlerBlock)handler{
 
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
@@ -136,7 +136,7 @@
     paramDic[@"amount"] = amount;
     paramDic[@"depositor"] = depositor;
     paramDic[@"depositorType"] = @(depositorType);
-    paramDic[@"bankCode"] = bankCode;
+//    paramDic[@"bankCode"] = bankCode;
 
     [self POST:kGatewayPath(config_BQPayment) parameters:paramDic completionHandler:handler];
 }
