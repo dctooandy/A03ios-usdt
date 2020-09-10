@@ -82,9 +82,9 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="累计身份 最高领百万" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oel-d1-wjk">
-                    <rect key="frame" x="182" y="17" width="150" height="86"/>
+                    <rect key="frame" x="132" y="17" width="200" height="86"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="150" id="D2a-CK-3fR"/>
+                        <constraint firstAttribute="width" constant="200" id="D2a-CK-3fR"/>
                         <constraint firstAttribute="height" constant="86" id="VcQ-Jo-Nui"/>
                     </constraints>
                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="24"/>

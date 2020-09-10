@@ -56,6 +56,7 @@
 
 - (BOOL)cleanUserInfo {
     [self deleteWebCache];
+    [self clearUserDefault];
     
     if (self.userInfo == nil) {
         return YES;
@@ -67,6 +68,7 @@
     return [[NSFileManager defaultManager] removeItemAtPath:self.modelFile error:nil];
 }
 
+/// 清H5缓存
 - (void)deleteWebCache {
     //allWebsiteDataTypes清除所有缓存
     NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
@@ -75,6 +77,13 @@
     [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
         
     }];
+}
+
+/// 清偏好设置
+- (void)clearUserDefault {
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:HYHomeMessageBoxLastimeDate];
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:HYVipMonthReportLastimeDate];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 

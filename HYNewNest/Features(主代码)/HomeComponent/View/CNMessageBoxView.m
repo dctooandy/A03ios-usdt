@@ -97,6 +97,12 @@
     }
 }
 
+// 关闭页面
+- (IBAction)close:(id)sender {
+    [self removeFromSuperview];
+}
+
+
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -135,18 +141,19 @@
     }
 }
 
-#pragma mark - button Action
-
-// 关闭页面
-- (IBAction)close:(id)sender {
-    [self removeFromSuperview];
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    // VIP私享会间距复原
+    NSArray *views = scrollView.subviews;
+    for (UIView *view in views) {
+        view.transform = CGAffineTransformIdentity;
+    }
 }
 
 
 #pragma mark - VIP 私享会
 
-+ (void)showVIPSXHMessageBoxOnView:(UIView *)onView tapBlock:(void (^)(int))tapBlock {
-    // 直接等接口返回
++ (void)showVIPSXHMessageBoxOnView:(UIView *)onView{
+    // 等接口返回
     [CNVIPRequest vipsxhGuideHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isAlreadyReadVersion2.0"];
@@ -159,7 +166,6 @@
             alert.frame = onView.bounds;
             [onView addSubview:alert];
             
-            alert.tapBlock = tapBlock;
             [alert configVIPUI];
         }
     }];
@@ -196,9 +202,10 @@
 - (void)didTapBtn:(NSInteger)btnIdx {
     if (btnIdx == 3) {
         [self removeFromSuperview];
-    }
-    if (self.tapBlock) {
-        self.tapBlock((int)btnIdx);
+    } else {
+        //翻页
+        CGFloat itemW = (kScreenWidth - 16*2);
+        [self.scrollView setContentOffset:CGPointMake(itemW*(btnIdx+1), 0) animated:YES];
     }
 }
 

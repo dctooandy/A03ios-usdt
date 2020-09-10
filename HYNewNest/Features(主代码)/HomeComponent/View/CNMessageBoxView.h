@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /// VIP私享会2.0 介绍
-+ (void)showVIPSXHMessageBoxOnView:(UIView *)onView tapBlock:(void(^)(int idx))tapBlock;
++ (void)showVIPSXHMessageBoxOnView:(UIView *)onView;
 
 @end
 

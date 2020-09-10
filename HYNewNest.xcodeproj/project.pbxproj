@@ -228,6 +228,7 @@
 		3DCFEABA25075D420071F356 /* VIPChartDSBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEAB825075D420071F356 /* VIPChartDSBCell.xib */; };
 		3DCFEABD2507ACDE0071F356 /* UIColor+HYExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEABC2507ACDE0071F356 /* UIColor+HYExtension.m */; };
 		3DCFEAC02507B8110071F356 /* VIPGuideModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEABF2507B8110071F356 /* VIPGuideModel.m */; };
+		3DCFEAC3250A06990071F356 /* VIPMonthlyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEAC2250A06990071F356 /* VIPMonthlyModel.m */; };
 		3DE3CA8F24ECF6E300D591C4 /* CIRCULAR_06.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */; };
 		3DE3CA9024ECF6E300D591C4 /* CIRCULAR.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */; };
 		3DE3CA9324ED5CFC00D591C4 /* HYUpdateAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3CA9224ED5CFC00D591C4 /* HYUpdateAlertView.m */; };
@@ -1270,6 +1271,8 @@
 		3DCFEABC2507ACDE0071F356 /* UIColor+HYExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HYExtension.m"; sourceTree = "<group>"; };
 		3DCFEABE2507B8110071F356 /* VIPGuideModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPGuideModel.h; sourceTree = "<group>"; };
 		3DCFEABF2507B8110071F356 /* VIPGuideModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPGuideModel.m; sourceTree = "<group>"; };
+		3DCFEAC1250A06990071F356 /* VIPMonthlyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPMonthlyModel.h; sourceTree = "<group>"; };
+		3DCFEAC2250A06990071F356 /* VIPMonthlyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPMonthlyModel.m; sourceTree = "<group>"; };
 		3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CIRCULAR_06.mp4; sourceTree = "<group>"; };
 		3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CIRCULAR.png; sourceTree = "<group>"; };
 		3DE3CA9124ED5CFC00D591C4 /* HYUpdateAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYUpdateAlertView.h; sourceTree = "<group>"; };
@@ -2826,6 +2829,8 @@
 				3D3A9B7524FA815F003FB33C /* VIPRewardAnocModel.m */,
 				3DCFEABE2507B8110071F356 /* VIPGuideModel.h */,
 				3DCFEABF2507B8110071F356 /* VIPGuideModel.m */,
+				3DCFEAC1250A06990071F356 /* VIPMonthlyModel.h */,
+				3DCFEAC2250A06990071F356 /* VIPMonthlyModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5410,6 +5415,7 @@
 				04935BC824D56793007A33EF /* CNAddAddressVC.m in Sources */,
 				3DA4F16A24B312BE0039123F /* UIView+Extension.m in Sources */,
 				E9063B8F24D6ED6E0000273A /* HYNewCTZNViewController.m in Sources */,
+				3DCFEAC3250A06990071F356 /* VIPMonthlyModel.m in Sources */,
 				E98BEF0E24D274F700E6B0C8 /* UILabel+Gradient.m in Sources */,
 				3DA4F16B24B312BE0039123F /* UIViewController+Extension.m in Sources */,
 				E98BEEFE24D1815200E6B0C8 /* HYXiMaViewController.m in Sources */,
@@ -5628,7 +5634,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = PTALWADUNN;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5642,7 +5648,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.18;
+				MARKETING_VERSION = 1.0.19;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hy.HYNewNest;
 				PRODUCT_NAME = "币游_dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5656,7 +5662,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = PTALWADUNN;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5670,7 +5676,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.18;
+				MARKETING_VERSION = 1.0.19;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hy.HYNewNest;
 				PRODUCT_NAME = "币游";
 				TARGETED_DEVICE_FAMILY = "1,2";

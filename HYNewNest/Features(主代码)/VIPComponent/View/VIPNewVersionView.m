@@ -9,7 +9,7 @@
 #import "VIPNewVersionView.h"
 
 #define kRedColor       kHexColor(0x8F1C34)
-#define kGBKFont(s)     [UIFont fontWithName:@"FZLTDHK--GBK1-0" size:(s)]
+#define kGBKFont(s)     [UIFont fontWithName:@"FZLTDHK--GBK1-0" size:(AD(s))]
 
 @interface VIPNewVersionView ()
 @property (weak, nonatomic) IBOutlet UILabel *attrTopLb;

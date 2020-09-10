@@ -9,61 +9,43 @@
 #import "VIPMonthlyAlertsVC.h"
 #import "SlideCard.h"
 #import "VIPMonlyAlertCell.h"
+#import "CNVIPRequest.h"
 
 @interface VIPMonthlyAlertsVC () <V_SlideCardDataSource, V_SlideCardDelegate, VIPMonlyAlertDelegate>
 @property (nonatomic, strong) V_SlideCard *slideCard;
 @property (nonatomic, strong) NSArray *listData;
+@property (nonatomic, strong) VIPMonthlyModel *model;
 @end
 
 @implementation VIPMonthlyAlertsVC
 
+
+#pragma mark - View Life Cycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     self.view.backgroundColor = kHexColorAlpha(0x000000, 0.8);
     
-    [self.view addSubview:self.slideCard];//加入滑动组件
-    [self.slideCard reloadData];
+    // 月报
+    [CNVIPRequest vipsxhMonthReportHandler:^(id responseObj, NSString *errorMsg) {
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            self.model = [VIPMonthlyModel cn_parse:responseObj];
+            if (self.model) {
+                [self.view addSubview:self.slideCard];//加入滑动组件
+                [self.slideCard reloadData];
+            }
+        } else {
+            // 失败复原记录
+            [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:HYVipMonthReportLastimeDate];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [self removeSelfFromFatherVC];
+        }
+    }];
 }
 
-#pragma mark - event response
-
-- (void)buttonClickAction:(UIButton *)sender {
-     // 按钮点击缩放效果
-     CABasicAnimation*pulse = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-     pulse.timingFunction= [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-     pulse.duration = 0.08;
-     pulse.repeatCount= 1;
-     pulse.autoreverses= YES;
-     pulse.fromValue= [NSNumber numberWithFloat:0.9];
-     pulse.toValue= [NSNumber numberWithFloat:1.1];
-     [sender.layer addAnimation:pulse forKey:nil];
-     
-    if (sender.tag == 520) {
-        [self.slideCard animateTopCardToDirection:PanDirectionRight];
-    } else {
-        [self.slideCard animateTopCardToDirection:PanDirectionLeft];
-    }
-}
-
-
-#pragma mark - VIPMonlyAlertDelegate
-- (void)didTapNextOne {
-    [self.slideCard animateTopCardToDirection:PanDirectionRight];
-}
-
-- (void)didTapReceiveGift {
-    //TODO: 领取之后跳过
-    [self.slideCard animateTopCardToDirection:PanDirectionRight];
-}
-
-- (void)didTapMonthlyReport {
-    //TODO: 弹出月报
-}
-
-#pragma mark - V_SlideCardDataSource
-- (void)loadNewDataInSlideCard:(V_SlideCard *)slideCard {
+/// 从父VC移除
+- (void)removeSelfFromFatherVC {
     //准备移除
     [self willMoveToParentViewController:nil];
     [self.view removeFromSuperview];
@@ -71,10 +53,37 @@
     [self removeFromParentViewController];
 }
 
+
+#pragma mark - VIPMonlyAlertDelegate
+- (void)didTapNextOne {
+    [self.slideCard animateTopCardToDirection:PanDirectionRight]; //关闭
+}
+
+- (void)didTapReceiveGift {
+    // 领取礼金
+    [CNVIPRequest vipsxhDrawGiftMoneyLevelStatus:self.model.clubLevel
+                                         handler:^(id responseObj, NSString *errorMsg) {
+        if (KIsEmptyString(errorMsg)) {
+            [self.slideCard animateTopCardToDirection:PanDirectionLeft];
+        }
+    }];
+    
+}
+
+- (void)didTapMonthlyReport {
+    [self.slideCard animateTopCardToDirection:PanDirectionLeft];
+}
+
+
+#pragma mark - V_SlideCardDataSource
+- (void)loadNewDataInSlideCard:(V_SlideCard *)slideCard {
+    [self removeSelfFromFatherVC];
+}
+
 - (void)slideCard:(V_SlideCard *)slideCard loadNewDataInCell:(V_SlideCardCell *)cell atIndex:(NSInteger)index {
-    //TODO: 这里赋值
+    // 这里赋值
     VIPMonlyAlertCell *aCell = (VIPMonlyAlertCell *)cell;
-    [aCell setupAlertType:index delegate:self dataDict:@{}];
+    [aCell setupAlertType:index delegate:self dataDict:self.model];
 }
 
 - (NSInteger)numberOfItemsInSlideCard:(V_SlideCard *)slideCard {
@@ -125,7 +134,7 @@
 
 - (NSArray *)listData {
     if (_listData == nil) {
-        _listData = @[@1,@2,@3];
+        _listData = @[@"个人战报",@"入会情况",@"送出价值"];
     }
     return _listData;
 }

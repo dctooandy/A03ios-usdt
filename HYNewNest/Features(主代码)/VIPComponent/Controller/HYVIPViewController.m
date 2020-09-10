@@ -195,21 +195,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 #pragma mark - Action
 - (IBAction)didTapVIPSxh:(id)sender {
-    //测试地带
-    [CNVIPRequest vipsxhMonthReportHandler:^(id responseObj, NSString *errorMsg) {
-        //TODO: wait for data
-        
-        if (KIsEmptyString(errorMsg)) {
-            
-            VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
-            vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
-            //添加子控制器 该方法调用了willMoveToParentViewController：方法
-            [self addChildViewController:vc];
-            //将子控制器视图添加到容器控制器的视图中
-            [self.view addSubview:vc.view];
-        }
-
-    }];
+    [self requestMonthReport];
 }
 
 - (IBAction)didTapDashenBoard:(id)sender {
@@ -249,58 +235,33 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 - (void)requestMonthReport {
     BOOL isReaded = [[NSUserDefaults standardUserDefaults] boolForKey:@"isAlreadyReadVersion2.0"];//只显示一次就不再展示了
-    if (!isReaded) {
+    if (!isReaded) { //!isReaded
         // VIP私享会2.0 弹窗
-        [CNMessageBoxView showVIPSXHMessageBoxOnView:self.view tapBlock:^(int idx) {
-            switch (idx) {
-                case 0:
-                    
-                    break;
-                case 1:
-                    
-                    break;
-                case 2:
-                    
-                    break;
-                case 3:
-                    
-                    break;
-                default:
-                    break;
-            }
-        }];
+        [CNMessageBoxView showVIPSXHMessageBoxOnView:self.view];
+        
     } else {
-        // 登陆+是否第一次 显示月报
         if (![CNUserManager shareManager].isLogin) {
             return;
         }
        // 月报一个月展示一次
-       NSDate *nowDate = [NSDate date];
        NSString *lastMonthStr = [[NSUserDefaults standardUserDefaults] stringForKey:HYVipMonthReportLastimeDate];
-
        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
        [dateFormatter setDateFormat:@"yyyy-MM"];
-       __block NSString *nowMonthStr = [dateFormatter stringFromDate:nowDate];
+       __block NSString *nowMonthStr = [dateFormatter stringFromDate:[NSDate date]];
 
        if (![lastMonthStr isEqualToString:nowMonthStr]) {
-       
-           [CNVIPRequest vipsxhMonthReportHandler:^(id responseObj, NSString *errorMsg) {
-               //TODO: wait for data
-               
-               if (KIsEmptyString(errorMsg)) {
-                   [[NSUserDefaults standardUserDefaults] setValue:nowMonthStr forKey:HYVipMonthReportLastimeDate];
-                   [[NSUserDefaults standardUserDefaults] synchronize];
-                   
-                   VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
-                   vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
-                   //添加子控制器 该方法调用了willMoveToParentViewController：方法
-                   [self addChildViewController:vc];
-                   //将子控制器视图添加到容器控制器的视图中
-                   [self.view addSubview:vc.view];
-               }
+ 
+            VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
+            vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
+            //添加子控制器 该方法调用了willMoveToParentViewController：方法
+            [self addChildViewController:vc];
+            [self.view addSubview:vc.view];
 
-           }];
+           [[NSUserDefaults standardUserDefaults] setValue:nowMonthStr forKey:HYVipMonthReportLastimeDate];
+           [[NSUserDefaults standardUserDefaults] synchronize];
+        
        }
+        
     }
 }
 

@@ -86,7 +86,7 @@
     self.btmButton = btmBtn;
 }
 
-- (void)setupAlertType:(VIPMonlyAlertType)type delegate:(id)delegate dataDict:(NSDictionary *)dict {
+- (void)setupAlertType:(VIPMonlyAlertType)type delegate:(id)delegate dataDict:(VIPMonthlyModel *)model {
     _alertType = type;
     self.actionDelegate = delegate;
     
@@ -95,9 +95,9 @@
             self.bgView.height = AD(284);
             self.btmButton.hidden = YES;
             
-            self.topSubLb.text = @"( 5月累计入会500名,祝贺他们! ) ";//exp
+            self.topSubLb.text = [NSString stringWithFormat:@"( 5月累计入会%ld名,祝贺他们! ) ", model.vipRhqk.betCount];
             self.rankImgv.hidden = NO;
-            self.btmColorLb.text = @"齐齐哈尔王会员荣膺“赌尊”\n(流水120,340usdt-充值120,540usdt)";//exp
+            self.btmColorLb.text = [NSString stringWithFormat:@"%@会员荣膺“赌尊”\n(流水%@usdt-充值%@usdt)", model.vipRhqk.betZunName, model.vipRhqk.depositAmount, model.vipRhqk.betAmount];
             
             UIView *framk = [UIView new];
             framk.backgroundColor = [UIColor clearColor];
@@ -110,7 +110,7 @@
             CGFloat cLeft = AD(18);
             CGFloat cMargin = AD(30);
             CGFloat cWidth = AD(24);
-            NSArray *numArr = @[@2, @24, @3, @15, @6];//exp
+            NSArray *numArr = @[model.vipRhqk.betGoldCount, model.vipRhqk.betSaintCount, model.vipRhqk.betKingCount, model.vipRhqk.betBaCount, model.vipRhqk.betXiaCount];
             for (int i=0; i<5; i++) {
                 UILabel *rank = [UILabel new];
                 rank.font = [UIFont fontPFR12];
@@ -132,8 +132,7 @@
                 num.font = [UIFont fontDBOfMIDSMALLSize];
                 num.textColor = kHexColor(0x884C0C);
                 [num sizeToFit];
-                num.x = rank.x;
-                num.width = rank.width;
+                num.centerX = rank.centerX;
                 num.bottom = rank.top - AD(4);
                 [framk addSubview:num];
                 if (i != 4) {
@@ -160,7 +159,11 @@
             
             // 绘制表格
             NSArray *leftText = @[@"入会礼金",@"月度分红",@"至尊转盘",@"累计身份",@"累计送出"];
-            NSArray *rightNum = @[@"5,588usdt",@"308usdt",@"15次",@"123,123,120usdt",@"123,123,120usdt"]; //exp
+            NSArray *rightNum = @[[model.vipScjz.rhlj stringByAppendingString:@"usdt"],
+                                  [model.vipScjz.ydfh stringByAppendingString:@"usdt"],
+                                  [model.vipScjz.zzzp stringByAppendingString:@"usdt"],
+                                  [model.vipScjz.ljsf stringByAppendingString:@"usdt"],
+                                  [model.vipScjz.ljsc stringByAppendingString:@"usdt"]];
             // 线的路径 横线
             for (int i=0; i<6; i++) {
                 UIBezierPath *linePath = [UIBezierPath bezierPath];
@@ -217,7 +220,7 @@
             self.btmButton.hidden = NO;
             self.btmButton.y = self.bgView.bottom + AD(10);
             
-            self.topSubLb.text = @"( 您的战绩：流水120,000usdt-充值345,467usdt )";//exp
+            self.topSubLb.text = [NSString stringWithFormat:@"( 您的战绩：流水%.2lfusdt-充值%.2lfusdt )", model.totalBetAmount, model.totalDepositAmount];
             
             self.rankImgv.hidden = NO;
             self.rankImgv.contentMode = UIViewContentModeCenter;
@@ -226,10 +229,10 @@
             
             self.btmColorLb.hidden = NO;
             
-            BOOL isCanRank = NO; //exp
+            BOOL isCanRank = !KIsEmptyString(model.betName);
             if (isCanRank) {
-                self.rankImgv.image = [UIImage imageNamed:@"编组 7备份 2"];//exp
-                self.btmColorLb.text = @"恭喜您荣膺赌尊\n小游送你入会礼金9,888usdt";//exp
+                self.rankImgv.image = [UIImage imageNamed:[NSString stringWithFormat:@"rank_%@", model.clubLevel]];
+                self.btmColorLb.text = [NSString stringWithFormat:@"恭喜您荣膺%@\n小游送你入会礼金%@usdt", model.betName, model.preRequest?model.preRequest[@"amount"]:@"0"];
                 [self.btmButton setTitle:@"领取" forState:UIControlStateNormal];
             } else {
                 self.rankImgv.image = [UIImage imageNamed:@"yuebaonone"];
@@ -252,7 +255,6 @@
     switch (self.alertType) {
             
         case VIPMonlyAlertTypeValue:
-            MyLog(@"关闭");
             if(self.actionDelegate && [self.actionDelegate respondsToSelector:@selector(didTapNextOne)]) {
                 [self.actionDelegate didTapNextOne];
             }
@@ -260,12 +262,10 @@
             
         case VIPMonlyAlertTypePersonal:
             if ([btn.titleLabel.text isEqualToString:@"看看月报"]) {
-                MyLog(@"kk yuebao");
                 if(self.actionDelegate && [self.actionDelegate respondsToSelector:@selector(didTapMonthlyReport)]) {
                     [self.actionDelegate didTapMonthlyReport];
                 }
             } else if ([btn.titleLabel.text isEqualToString:@"领取"]) {
-                MyLog(@"ling qu");
                 if(self.actionDelegate && [self.actionDelegate respondsToSelector:@selector(didTapReceiveGift)]) {
                     [self.actionDelegate didTapReceiveGift];
                 }

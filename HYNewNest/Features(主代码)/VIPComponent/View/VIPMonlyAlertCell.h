@@ -7,13 +7,15 @@
 //
 
 #import "V_SlideCardCell.h"
+#import "VIPMonthlyModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, VIPMonlyAlertType) {
-    VIPMonlyAlertTypeCondition = 0, //入会情况
-    VIPMonlyAlertTypeValue,         //送出价值
-    VIPMonlyAlertTypePersonal       // 个人战报
+    VIPMonlyAlertTypePersonal = 0,   //个人战报
+    VIPMonlyAlertTypeCondition,      //入会情况
+    VIPMonlyAlertTypeValue,          //送出价值
+
 };
 
 @protocol VIPMonlyAlertDelegate <NSObject>
@@ -27,7 +29,7 @@ typedef NS_ENUM(NSInteger, VIPMonlyAlertType) {
 
 @interface VIPMonlyAlertCell : V_SlideCardCell
 
-- (void)setupAlertType:(VIPMonlyAlertType)type delegate:(id)delegate dataDict:(NSDictionary *)dict;
+- (void)setupAlertType:(VIPMonlyAlertType)type delegate:(id)delegate dataDict:(VIPMonthlyModel *)model;
 
 @end
 
