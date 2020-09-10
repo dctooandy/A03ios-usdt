@@ -9,11 +9,7 @@
 #import "VIPChartDJTQCell.h"
 
 @interface VIPChartDJTQCell ()
-@property (weak, nonatomic) IBOutlet UILabel *lbFirst;
 @property (weak, nonatomic) IBOutlet UIButton *btnCS;
-@property (weak, nonatomic) IBOutlet UILabel *lbSecond;
-@property (weak, nonatomic) IBOutlet UILabel *lbThird;
-@property (weak, nonatomic) IBOutlet UILabel *lbFourth;
 
 @end
 

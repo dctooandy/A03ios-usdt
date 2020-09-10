@@ -210,7 +210,7 @@
 
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        NSString *nowDateStr = [dateFormatter stringFromDate:nowDate];
+        __block NSString *nowDateStr = [dateFormatter stringFromDate:nowDate];
 
         if ([agoDateStr isEqualToString:nowDateStr]) {
             MyLog(@"弹窗盒子一天就显示一次");

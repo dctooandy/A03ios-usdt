@@ -22,12 +22,15 @@
                 <outlet property="lbDuwangTime" destination="eQU-7E-29j" id="Z78-pW-TbS"/>
                 <outlet property="lbDuxiaTime" destination="hZR-7a-SqA" id="8EJ-FB-fH0"/>
                 <outlet property="lbDuzunTime" destination="LhY-Sb-AR2" id="L7W-bN-enY"/>
+                <outlet property="lbDuzunTip" destination="eVc-8d-In0" id="zh2-wq-ey8"/>
+                <outlet property="lbVipRight" destination="TpE-DX-g5Z" id="SO8-fw-CQJ"/>
                 <outlet property="lblByjdSubTitle" destination="bTf-bQ-fTh" id="6BT-B3-RCS"/>
                 <outlet property="lblDjgg" destination="I0q-dW-eM5" id="ibN-T5-HH4"/>
                 <outlet property="lblNextLevelAmount" destination="pCf-CL-JCp" id="dPl-3X-4cD"/>
                 <outlet property="lblNextLevelDeposit" destination="gfV-5u-9we" id="zZY-KZ-Xop"/>
                 <outlet property="lblThisMonthAmount" destination="J80-p6-w6w" id="b3L-wR-1xf"/>
                 <outlet property="lblThisMonthDeposit" destination="U5U-Iu-Rhg" id="dyj-tB-3Ju"/>
+                <outlet property="lineDepositPrgsBG" destination="w61-PN-QYR" id="Xj4-Dx-yLN"/>
                 <outlet property="pageControl" destination="hSq-uQ-wyB" id="HIy-D5-d3m"/>
                 <outlet property="prgsViewAmount" destination="Mh3-dw-OQt" id="E3W-nX-fzO"/>
                 <outlet property="prgsViewDeposit" destination="UAH-s3-R0T" id="f7h-Em-01d"/>
@@ -376,6 +379,12 @@
                                     <color key="textColor" red="1" green="0.98431372549999996" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="说明：其他达标用户保持赌神" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVc-8d-In0">
+                                    <rect key="frame" x="20" y="59" width="159.5" height="14.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" white="1" alpha="0.80319148936170215" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -400,8 +409,10 @@
                                 <constraint firstItem="kLJ-aU-u0K" firstAttribute="centerY" secondItem="NOB-rL-H0k" secondAttribute="centerY" id="V1I-8r-UsR"/>
                                 <constraint firstItem="w61-PN-QYR" firstAttribute="top" secondItem="gfV-5u-9we" secondAttribute="bottom" constant="7" id="VV0-mo-wdP"/>
                                 <constraint firstItem="kLJ-aU-u0K" firstAttribute="leading" secondItem="NOB-rL-H0k" secondAttribute="trailing" constant="5" id="YNc-jk-qRl"/>
+                                <constraint firstItem="eVc-8d-In0" firstAttribute="leading" secondItem="J80-p6-w6w" secondAttribute="leading" id="Zgk-S7-R8p"/>
                                 <constraint firstItem="UAH-s3-R0T" firstAttribute="leading" secondItem="2dZ-SF-rUk" secondAttribute="leading" constant="20" id="bw8-2Z-CGO"/>
                                 <constraint firstAttribute="height" constant="175" id="fvV-mv-DeS"/>
+                                <constraint firstItem="eVc-8d-In0" firstAttribute="top" secondItem="Mh3-dw-OQt" secondAttribute="bottom" constant="15" id="hG1-Qt-lUm"/>
                                 <constraint firstAttribute="trailing" secondItem="pCf-CL-JCp" secondAttribute="trailing" constant="20" id="jRd-7w-heP"/>
                                 <constraint firstAttribute="trailing" secondItem="4sR-4D-yS9" secondAttribute="trailing" constant="8" id="m4U-VS-fOV"/>
                                 <constraint firstItem="w61-PN-QYR" firstAttribute="leading" secondItem="2dZ-SF-rUk" secondAttribute="leading" constant="20" id="mrD-2d-iNG"/>

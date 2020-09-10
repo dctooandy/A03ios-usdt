@@ -25,6 +25,7 @@ static NSString * const VIPDSBChartHeader = @"VIPChartDSBHeaderView";//头部标
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign,nonatomic) VIPChartType type;
+@property (nonatomic, strong) NSArray <VIPDSBUsrModel *>*dsbModels;
 @end
 
 @implementation VIPTwoChartVC
@@ -38,7 +39,10 @@ static NSString * const VIPDSBChartHeader = @"VIPChartDSBHeaderView";//头部标
 
 - (void)requestBoard {
     [CNVIPRequest vipsxhBigGodBoardHandler:^(id responseObj, NSString *errorMsg) {
-        //TODO: wait for data
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            self.dsbModels = [VIPDSBUsrModel cn_parse:responseObj[@"rankData"]];
+            [self.tableView reloadData];
+        }
     }];
 }
 
@@ -50,6 +54,7 @@ static NSString * const VIPDSBChartHeader = @"VIPChartDSBHeaderView";//头部标
         self.lbTitle.text = @"等级特权(usdt)";
         [self.tableView registerNib:[UINib nibWithNibName:VIPDJTQCell bundle:nil] forCellReuseIdentifier:VIPDJTQCell];
         [self.tableView registerNib:[UINib nibWithNibName:VIPDJTQChartHeader bundle:nil] forHeaderFooterViewReuseIdentifier:VIPDJTQChartHeader];
+        [self.tableView reloadData];
     } else {
         self.lbTitle.text = @"私享会大神榜(usdt)";
         [self.tableView registerNib:[UINib nibWithNibName:VIPDSBCell bundle:nil] forCellReuseIdentifier:VIPDSBCell];
@@ -76,20 +81,34 @@ static NSString * const VIPDSBChartHeader = @"VIPChartDSBHeaderView";//头部标
 #pragma mark - TableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (_type == VIPChartTypeRankRight) {
-        return 6;
+        return self.equityData.count;
     } else {
-        return 20;
+        return self.dsbModels.count;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell;
     if (_type == VIPChartTypeRankRight) {
-        cell = [tableView dequeueReusableCellWithIdentifier:VIPDJTQCell];
+        NSDictionary *dict = @{@"2":@"赌侠",@"3":@"赌霸",@"4":@"赌王",@"5":@"赌圣",@"6":@"赌神",@"7":@"赌尊"};
+        EquityDataItem *item = self.equityData[indexPath.row];
+        
+        VIPChartDJTQCell *cell = (VIPChartDJTQCell *)[tableView dequeueReusableCellWithIdentifier:VIPDJTQCell];
+        cell.lbFirst.text = dict[item.clubLevel];
+        cell.lbSecond.text = [item.rhljAmount jk_toDisplayNumberWithDigit:0];
+        cell.lbThird.text = [item.ydfhAmount jk_toDisplayNumberWithDigit:0];
+        cell.lbFourth.text = item.zzzpTime;
+        return cell;
+        
     } else {
-        cell = [tableView dequeueReusableCellWithIdentifier:VIPDSBCell];
+        VIPDSBUsrModel *model = self.dsbModels[indexPath.row];
+        
+        VIPChartDSBCell *cell = (VIPChartDSBCell *)[tableView dequeueReusableCellWithIdentifier:VIPDSBCell];
+        cell.lbUsrName.text = model.loginName;
+        cell.lbBetAmount.text = [model.totalBetAmount jk_toDisplayNumberWithDigit:0];
+        cell.lbDepositAmount.text = [model.totalDepositAmount jk_toDisplayNumberWithDigit:0];
+        cell.lbLevelName.text = model.clubName;
+        return cell;
     }
-    return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

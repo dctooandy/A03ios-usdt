@@ -15,4 +15,4 @@ NSNotificationName const HYSwitchAcoutSuccNotification        = @"HYSwitchAcoutS
 
 NSString * const HYNotShowCTZNEUserDefaultKey = @"HYNotShowCTZNEUserDefaultKey";
 NSString * const HYHomeMessageBoxLastimeDate = @"HYHomeMessageBoxLastimeDate";
-NSString * const HYVipMonthReportLastimeDate = @"HYHomeMessageBoxLastimeDate";
+NSString * const HYVipMonthReportLastimeDate = @"HYVipMonthReportLastimeDate";

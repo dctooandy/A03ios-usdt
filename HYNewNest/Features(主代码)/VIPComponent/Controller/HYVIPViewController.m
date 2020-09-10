@@ -39,6 +39,8 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 // -------- 顶部卡片 --------
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionViewCard;
 @property (weak, nonatomic) IBOutlet TAPageControl *pageControl;
+// 会员权益
+@property (weak, nonatomic) IBOutlet UILabel *lbVipRight;
 
 
 // -------- 大奖公告 --------
@@ -48,8 +50,9 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 // -------- 本月进度 --------
 @property (weak, nonatomic) IBOutlet UIView *ByjdTopBg;
-@property (weak, nonatomic) IBOutlet UILabel *lblByjdSubTitle;
 @property (weak, nonatomic) IBOutlet UIView *ByjdBtmBg;
+@property (weak, nonatomic) IBOutlet UILabel *lblByjdSubTitle;
+@property (weak, nonatomic) IBOutlet UIView *lineDepositPrgsBG;
 
 // 本月流水
 @property (weak, nonatomic) IBOutlet UILabel *lblThisMonthAmount;
@@ -64,6 +67,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 @property (weak, nonatomic) IBOutlet UILabel *lblNextLevelDeposit;
 // 存款进度条
 @property (weak, nonatomic) IBOutlet UIProgressView *prgsViewDeposit;
+@property (weak, nonatomic) IBOutlet UILabel *lbDuzunTip;//说明：其他达标用户保持赌神
 
 // 累计身份
 @property (weak, nonatomic) IBOutlet UIStackView *rankStackView;
@@ -83,8 +87,8 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 // -------- 数据源 --------
 @property (strong, nonatomic) NSArray <VIPRewardAnocModel *>* rewards;
-@property (strong, nonatomic) VIPLevelData *vipLevel;
-@property (strong,nonatomic) NSArray *cardArray;
+@property (strong, nonatomic) NSArray *cardArray;
+@property (strong, nonatomic) VIPHomeUserModel *sxhModel;
 @end
 
 @implementation HYVIPViewController
@@ -99,24 +103,24 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    // 月报
+    [self requestMonthReport];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.hideNavgation = YES;
     [self setupCollectionView];
-    [self userStatusChanged];// 用户登录状态配置UI
 
-    // 月报
-    [self requestMonthReport];
-    // 首页数据
-    [self vipHomeData];
     //X 抽奖播报 (首页代替)
     [self requestRewardAnnouncement];
+    
+    [self userStatusChanged];// 用户登录状态配置UI&请求
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLogoutSuccessNotification object:nil];
     
+    // 顶部
     _m_currentIndex = 0;
     self.pageControl.numberOfPages = 6;
     self.pageControl.dotSize = CGSizeMake(AD(7), AD(7));
@@ -129,9 +133,13 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 }
 
 - (void)userStatusChanged {
+    // 首页数据
+    [self vipHomeData];
+    
     if ([CNUserManager shareManager].isLogin) {
         self.rankStackView.hidden = NO;
         self.unloginLbBGView.hidden = YES;
+        
     } else {
         self.rankStackView.hidden = YES;
         self.unloginLbBGView.hidden = NO;
@@ -192,6 +200,18 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     
 }
 
+- (void)setupUIDatas {
+    [self.collectionViewCard reloadData];
+    
+    self.lblThisMonthDeposit.text = [NSString stringWithFormat:@"本月充值:%@", [_sxhModel.totalDepositAmount jk_toDisplayNumberWithDigit:2]];
+    self.lblThisMonthAmount.text = [NSString stringWithFormat:@"本月流水:%@",[_sxhModel.totalBetAmount jk_toDisplayNumberWithDigit:2]];
+    self.lbDuzunTime.text = [NSString stringWithFormat:@"%@",_sxhModel.vipRhqk.betZunCount];
+    self.lbDushenTime.text = [NSString stringWithFormat:@"%@",_sxhModel.vipRhqk.betGoldCount];
+    self.lbDushengTime.text = [NSString stringWithFormat:@"%@",_sxhModel.vipRhqk.betSaintCount];
+    self.lbDuwangTime.text = [NSString stringWithFormat:@"%@",_sxhModel.vipRhqk.betKingCount];
+    self.lbDubaTime.text = [NSString stringWithFormat:@"%@",_sxhModel.vipRhqk.betBaCount];
+    self.lbDuxiaTime.text = [NSString stringWithFormat:@"%@",_sxhModel.vipRhqk.betXiaCount];
+}
 
 #pragma mark - Action
 - (IBAction)didTapVIPSxh:(id)sender {
@@ -206,8 +226,13 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 }
 
 - (IBAction)didTapMoreRights:(id)sender {
-    MyLog(@"更多特权");
+    if (!_sxhModel) {
+        [self vipHomeData];
+        [kKeywindow jk_makeToast:@"正在为您请求私享会数据.." duration:4 position:JKToastPositionBottom];
+        return;
+    }
     VIPTwoChartVC *chartVc = [[VIPTwoChartVC alloc] initWithType:VIPChartTypeRankRight];
+    chartVc.equityData = self.sxhModel.equityData;
     [self presentViewController:chartVc animated:YES completion:^{
     }];
 }
@@ -225,11 +250,17 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 #pragma mark - Request
 - (void)vipHomeData {
-    if (![CNUserManager shareManager].isLogin) {
-        return;
-    }
     [CNVIPRequest vipsxhHomeHandler:^(id responseObj, NSString *errorMsg) {
-        //TODO: wait for data
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            VIPHomeUserModel *model = [VIPHomeUserModel cn_parse:responseObj];
+//            model.totalBetAmount = @12345678;
+//            model.totalDepositAmount = @8795613;
+            self.sxhModel = model;
+            [self setupUIDatas];
+            self.m_currentIndex = 0;
+        }
+        
+        
     }];
 }
 
@@ -245,9 +276,10 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
         }
        // 月报一个月展示一次
        NSString *lastMonthStr = [[NSUserDefaults standardUserDefaults] stringForKey:HYVipMonthReportLastimeDate];
+        NSDate *date = [NSDate date];
        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
        [dateFormatter setDateFormat:@"yyyy-MM"];
-       __block NSString *nowMonthStr = [dateFormatter stringFromDate:[NSDate date]];
+    NSString *nowMonthStr = [dateFormatter stringFromDate: date];
 
        if (![lastMonthStr isEqualToString:nowMonthStr]) {
  
@@ -328,16 +360,36 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     cell.cardName = dict.allKeys.firstObject;
     cell.lbTitle.text = dict.allKeys.firstObject;
     cell.lbSubTitle.text = dict.allValues.firstObject;
-    if (indexPath.row == 0) { //exp: 是否当前等级
+    cell.duzunName = @"";
+    switch (indexPath.row) { //达标人数
+        case 0:
+            cell.lbReachNum.text = [NSString stringWithFormat:@"本月已达标%@名", self.sxhModel.vipRhqk.betXiaCount];
+            break;
+        case 1:
+            cell.lbReachNum.text = [NSString stringWithFormat:@"本月已达标%@名", self.sxhModel.vipRhqk.betBaCount];
+            break;
+        case 2:
+            cell.lbReachNum.text = [NSString stringWithFormat:@"本月已达标%@名", self.sxhModel.vipRhqk.betKingCount];
+            break;
+        case 3:
+            cell.lbReachNum.text = [NSString stringWithFormat:@"本月已达标%@名", self.sxhModel.vipRhqk.betSaintCount];
+            break;
+        case 4:
+            cell.lbReachNum.text = [NSString stringWithFormat:@"本月已达标%@名", self.sxhModel.vipRhqk.betGoldCount];
+            break;
+        case 5:
+            cell.duzunName = self.sxhModel.vipRhqk.betZunName?:@"";
+            cell.lbReachNum.text = [NSString stringWithFormat:@"本月已达标%@名", self.sxhModel.vipRhqk.betZunCount];
+            break;
+        default:
+            break;
+    }
+    if (indexPath.row == [self.sxhModel.clubLevel integerValue]-2) { //当前等级
         cell.isCurRank = YES;
     } else {
         cell.isCurRank = NO;
     }
-    if (indexPath.row == 5) { //TODO: 是否有独尊出现
-        cell.duzunName = @"Geraltbaba";
-    } else {
-        cell.duzunName = @"";
-    }
+    
     return cell;
 }
 
@@ -376,27 +428,62 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 #pragma mark - SET
 //0 - 5 依次是： 赌侠 赌霸 赌王 赌圣 赌神 赌尊
 - (void)setM_currentIndex:(NSInteger)m_currentIndex {
+    if (m_currentIndex < 0 || m_currentIndex > 5) {
+        return;
+    }
     _m_currentIndex = m_currentIndex;
+    
+    NSArray *eqArr = self.sxhModel.equityData;
+    EquityDataItem *item = eqArr.count>0 ? eqArr[m_currentIndex] : nil;
+    if (item) {
+        self.lbVipRight.text = [NSString stringWithFormat:@"会员权益: 入会礼金%@usdt", [item.rhljAmount jk_toDisplayNumberWithDigit:0]];
+        self.lblNextLevelAmount.text = [[item.betAmount jk_toDisplayNumberWithDigit:2] stringByAppendingFormat:@" usdt"];
+        self.lblNextLevelDeposit.text = [[item.depositAmount jk_toDisplayNumberWithDigit:2] stringByAppendingFormat:@" usdt"];
+        
+        float amoutPrgs = [_sxhModel.totalBetAmount floatValue] / [item.betAmount floatValue];
+        self.prgsViewAmount.progress = amoutPrgs;
+        self.prgsViewAmount.tintColor = amoutPrgs >= 1.0 ? kHexColor(0xE11470) : kHexColor(0x3AE3C5);
+        
+        float depoPrgs = [_sxhModel.totalDepositAmount floatValue] / [item.depositAmount floatValue];
+        self.prgsViewDeposit.progress = depoPrgs;
+        self.prgsViewDeposit.tintColor = depoPrgs >= 1.0 ? kHexColor(0xE11470) : kHexColor(0x3AE3C5);
+    }
+    
+    self.prgsViewDeposit.hidden = NO;
+    self.lblNextLevelDeposit.hidden = NO;
+    self.lblThisMonthDeposit.hidden = NO;
+    self.lineDepositPrgsBG.hidden = NO;
+    self.lbDuzunTip.hidden = YES;
+    
     switch (m_currentIndex) {
         case 0:
-            self.lblByjdSubTitle.text = @"(择一达成 晋级赌霸)";
-            //(您已达标赌侠 继续加油哦)
+            self.lblByjdSubTitle.text = self.sxhModel.clubLevel.integerValue>=2 ? @"(您已达标赌侠 继续加油哦)" : @"(择一达成 晋级赌侠)";
             break;
         case 1:
-            self.lblByjdSubTitle.text = @"(择一达成 晋级赌王)";
+            self.lblByjdSubTitle.text = self.sxhModel.clubLevel.integerValue>=3 ? @"(您已达标赌霸 继续加油哦)" : @"(择一达成 晋级赌霸)";
             break;
         case 2:
-            self.lblByjdSubTitle.text = @"(择一达成 晋级赌圣)";
+            self.lblByjdSubTitle.text = self.sxhModel.clubLevel.integerValue>=4 ? @"(您已达标赌王 继续加油哦)" : @"(择一达成 晋级赌王)";
             break;
         case 3:
-            self.lblByjdSubTitle.text = @"(择一达成 晋级赌神)";
+            self.lblByjdSubTitle.text = self.sxhModel.clubLevel.integerValue>=5 ? @"(您已达标赌圣 继续加油哦)" : @"(择一达成 晋级赌圣)";
             break;
         case 4:
-            self.lblByjdSubTitle.text = @"(择一达成 晋级赌尊)";
+            self.lblByjdSubTitle.text = self.sxhModel.clubLevel.integerValue>=6 ? @"(您已达标赌神 继续加油哦)" : @"(择一达成 晋级赌神)";
             break;
         case 5:
-            self.lblByjdSubTitle.text = @"(达标且流水最高晋级唯一赌尊)";
-            //(您已达标,流水最高可晋级赌尊)
+            self.lblByjdSubTitle.text =  self.sxhModel.clubLevel.integerValue==7 ? @"(您已达标,流水最高可晋级赌尊)" : @"(达标且流水最高晋级唯一赌尊)";
+            
+            // 赌尊流水进度有变化
+            float amoutPrgs = [_sxhModel.totalBetAmount floatValue] / [item.betAmount floatValue];
+            self.prgsViewAmount.progress = amoutPrgs;
+            self.prgsViewAmount.tintColor = amoutPrgs >= 1.0 ? kHexColor(0xE11470) : kHexColor(0x3AE3C5);
+            // 赌尊隐藏存款进度
+            self.lbDuzunTip.hidden = NO;
+            self.prgsViewDeposit.hidden = YES;
+            self.lblNextLevelDeposit.hidden = YES;
+            self.lblThisMonthDeposit.hidden = YES;
+            self.lineDepositPrgsBG.hidden = YES;
             break;
         default:
             break;

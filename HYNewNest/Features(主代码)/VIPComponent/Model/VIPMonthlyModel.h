@@ -13,7 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface VipRhqk :CNBaseModel
 /// 累计入会名额
 @property (nonatomic , assign) NSInteger              betCount;
-
+/// 赌尊数
+@property (nonatomic , strong) NSNumber             * betZunCount;
 /// 赌霸数
 @property (nonatomic , strong) NSNumber             * betBaCount;
 /// 赌神数
@@ -24,7 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSNumber             * betSaintCount;
 /// 赌侠数
 @property (nonatomic , strong) NSNumber             * betXiaCount;
-
 /// 赌尊名
 @property (nonatomic , copy) NSString              * betZunName;
 /// 赌尊充值
@@ -37,19 +37,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface VipScjz :CNBaseModel
 /// 累计送出
-@property (nonatomic , copy) NSString              * ljsc;
+@property (nonatomic , strong) NSNumber              * ljsc;
 /// 累计身份
-@property (nonatomic , copy) NSString              * ljsf;
+@property (nonatomic , strong) NSNumber              * ljsf;
 /// 入会礼金
-@property (nonatomic , copy) NSString              * rhlj;
+@property (nonatomic , strong) NSNumber              * rhlj;
 /// 月度分红
-@property (nonatomic , copy) NSString              * ydfh;
+@property (nonatomic , strong) NSNumber              * ydfh;
 /// 至尊转盘
-@property (nonatomic , copy) NSString              * zzzp;
-
+@property (nonatomic , strong) NSNumber              * zzzp;
+@property (nonatomic , strong) NSNumber              * prize;
 @end
 
 
+/// 月报模型
 @interface VIPMonthlyModel :CNBaseModel
 /// 入会情况
 @property (nonatomic , strong) VipRhqk              * vipRhqk;

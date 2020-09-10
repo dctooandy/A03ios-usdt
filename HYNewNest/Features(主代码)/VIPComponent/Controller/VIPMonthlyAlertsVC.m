@@ -64,6 +64,7 @@
     [CNVIPRequest vipsxhDrawGiftMoneyLevelStatus:self.model.clubLevel
                                          handler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
+            [CNHUB showSuccess:@"领取成功"];
             [self.slideCard animateTopCardToDirection:PanDirectionLeft];
         }
     }];

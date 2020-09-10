@@ -158,12 +158,12 @@
             self.btmColorLb.hidden = YES;
             
             // 绘制表格
-            NSArray *leftText = @[@"入会礼金",@"月度分红",@"至尊转盘",@"累计身份",@"累计送出"];
-            NSArray *rightNum = @[[model.vipScjz.rhlj stringByAppendingString:@"usdt"],
-                                  [model.vipScjz.ydfh stringByAppendingString:@"usdt"],
-                                  [model.vipScjz.zzzp stringByAppendingString:@"usdt"],
-                                  [model.vipScjz.ljsf stringByAppendingString:@"usdt"],
-                                  [model.vipScjz.ljsc stringByAppendingString:@"usdt"]];
+            NSArray *leftText = @[@"入会礼金",@"月度分红",@"至尊转盘",@"累计身份",@"累计送出"];            
+            NSArray *rightNum = @[[[model.vipScjz.rhlj jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"],
+                                  [[model.vipScjz.ydfh jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"],
+                                  [[model.vipScjz.zzzp jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"],
+                                  [[model.vipScjz.ljsf jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"],
+                                  [[model.vipScjz.ljsc jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"]];
             // 线的路径 横线
             for (int i=0; i<6; i++) {
                 UIBezierPath *linePath = [UIBezierPath bezierPath];

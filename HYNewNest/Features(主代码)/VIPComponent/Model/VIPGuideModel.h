@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 私享会2.0模型
 @interface VIPGuideModel : CNBaseModel
 @property (nonatomic , assign) NSInteger              applyTimes;
 @property (nonatomic , copy) NSString              * currency;

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VIPHomeUserModel.h"
 
 typedef NS_ENUM(NSUInteger, VIPChartType) {
     VIPChartTypeBigGodBoard, // 大神榜
@@ -16,6 +17,7 @@ typedef NS_ENUM(NSUInteger, VIPChartType) {
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VIPTwoChartVC : UIViewController
+@property (nonatomic , strong) NSArray <EquityDataItem *>              * equityData;
 - initWithType:(VIPChartType)type;
 @end
 

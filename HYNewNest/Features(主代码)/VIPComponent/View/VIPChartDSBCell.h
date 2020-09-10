@@ -11,6 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VIPChartDSBCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *lbUsrName;
+@property (weak, nonatomic) IBOutlet UILabel *lbBetAmount;
+@property (weak, nonatomic) IBOutlet UILabel *lbDepositAmount;
+@property (weak, nonatomic) IBOutlet UILabel *lbLevelName;
 
 @end
 
