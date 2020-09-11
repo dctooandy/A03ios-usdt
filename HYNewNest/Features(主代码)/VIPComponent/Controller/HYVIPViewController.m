@@ -17,6 +17,7 @@
 #import "VIPMonthlyAlertsVC.h"
 #import "CNMessageBoxView.h"
 #import "VIPTwoChartVC.h"
+#import "CNLoginRegisterVC.h"
 
 static NSString * const kVIPCardCCell = @"VIPCardCCell";
 @interface HYVIPViewController () <UUMarqueeViewDelegate>
@@ -53,6 +54,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 @property (weak, nonatomic) IBOutlet UIView *ByjdBtmBg;
 @property (weak, nonatomic) IBOutlet UILabel *lblByjdSubTitle;
 @property (weak, nonatomic) IBOutlet UIView *lineDepositPrgsBG;
+@property (weak, nonatomic) IBOutlet UIButton *btnLogin;
 
 // 本月流水
 @property (weak, nonatomic) IBOutlet UILabel *lblThisMonthAmount;
@@ -137,10 +139,14 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     [self vipHomeData];
     
     if ([CNUserManager shareManager].isLogin) {
+        self.lblByjdSubTitle.hidden = NO;
+        self.btnLogin.hidden = YES;
         self.rankStackView.hidden = NO;
         self.unloginLbBGView.hidden = YES;
         
     } else {
+        self.lblByjdSubTitle.hidden = YES;
+        self.btnLogin.hidden = NO;
         self.rankStackView.hidden = YES;
         self.unloginLbBGView.hidden = NO;
         self.prgsViewAmount.progress = 0.0;
@@ -216,6 +222,10 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 }
 
 #pragma mark - Action
+- (IBAction)didTapLogin:(id)sender {
+    [self.navigationController pushViewController:[CNLoginRegisterVC loginVC] animated:YES];
+}
+
 - (IBAction)didTapVIPSxh:(id)sender {
 #ifdef DEBUG
     VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
@@ -266,8 +276,6 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
             [self setupUIDatas];
             self.m_currentIndex = 0;
         }
-        
-        
     }];
 }
 

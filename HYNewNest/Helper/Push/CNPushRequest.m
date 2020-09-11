@@ -24,9 +24,9 @@
     [self POST:kGatewayPath(@"/customer/createCustomerUdid") parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
             times = 0;
-#ifdef DEBUG
-        [kKeywindow jk_makeToast:[NSString stringWithFormat:@"UDID接口参数:%@\nresponseObject==%@\nerror==%@",param ,responseObj, errorMsg] duration:5 position:JKToastPositionTop];
-#endif
+//#ifdef DEBUG
+//        [kKeywindow jk_makeToast:[NSString stringWithFormat:@"UDID接口参数:%@\nresponseObject==%@\nerror==%@",param ,responseObj, errorMsg] duration:5 position:JKToastPositionTop];
+//#endif
             if (completionHandler) {
                 completionHandler(responseObj, errorMsg);
             }
@@ -65,9 +65,9 @@
     [self POST:kGatewayPath(@"ips/ipsSuperSignSend") parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
             times = 0;
-#ifdef DEBUG
-        [kKeywindow jk_makeToast:[NSString stringWithFormat:@"超签参数:%@\n超签responseObject==%@\n超签error==%@",param ,responseObj, errorMsg] duration:5 position:JKToastPositionCenter];
-#endif
+//#ifdef DEBUG
+//        [kKeywindow jk_makeToast:[NSString stringWithFormat:@"超签参数:%@\n超签responseObject==%@\n超签error==%@",param ,responseObj, errorMsg] duration:5 position:JKToastPositionCenter];
+//#endif
             if (completionHandler) {
                 completionHandler(responseObj, errorMsg);
             }

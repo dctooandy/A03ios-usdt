@@ -121,7 +121,7 @@
     if (_slideCard == nil) {
         _slideCard = [[V_SlideCard alloc] initWithFrame:self.view.bounds];
         _slideCard.cellScaleSpace = 0.11; // 缩放大小
-        _slideCard.cellCenterYOffset = - 50; //Y轴偏移
+//        _slideCard.cellCenterYOffset = - 50; //Y轴偏移
 
         _slideCard.cellSize = CGSizeMake(AD(316), AD(317));
         _slideCard.cellOffsetDirection = CellOffsetDirectionTop; // 缩小的view方向向上

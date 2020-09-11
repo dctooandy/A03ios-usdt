@@ -88,9 +88,9 @@
         self.token = token;
     }
 
-#ifdef DEBUG
-    [kKeywindow jk_makeToast:[NSString stringWithFormat:@"===didRegisterRemoteNotifications===\ncustomerId:%@\ndeviceToken:%@",[CNUserManager shareManager].userInfo.customerId, self.token] duration:5 position:JKToastPositionBottom];
-#endif
+//#ifdef DEBUG
+//    [kKeywindow jk_makeToast:[NSString stringWithFormat:@"===didRegisterRemoteNotifications===\ncustomerId:%@\ndeviceToken:%@",[CNUserManager shareManager].userInfo.customerId, self.token] duration:5 position:JKToastPositionBottom];
+//#endif
     
     [GeTuiSdk registerDeviceTokenData:deviceToken];
     

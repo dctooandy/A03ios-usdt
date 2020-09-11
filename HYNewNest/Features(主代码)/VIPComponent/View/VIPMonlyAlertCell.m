@@ -167,11 +167,11 @@
             NSArray *leftText = @[@"入会礼金",@"月度分红",@"至尊转盘",@"累计身份",@"累计送出"];
             NSArray *rightNum;
             if (model.vipScjz) {
-                rightNum = @[[[model.vipScjz.rhlj jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"],
-                             [[model.vipScjz.ydfh jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"],
-                             [[model.vipScjz.zzzp jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"],
-                             [[model.vipScjz.ljsf jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"],
-                             [[model.vipScjz.ljsc jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"]];
+                rightNum = @[[[model.vipScjz.rhlj jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" usdt"],
+                             [[model.vipScjz.ydfh jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" usdt"],
+                             [[model.vipScjz.zzzp jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" 次"],
+                             [[model.vipScjz.ljsf jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" usdt"],
+                             [[model.vipScjz.ljsc jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" usdt"]];
             } else {
                 rightNum = @[@"0 usdt",@"0 usdt",@"0 usdt",@"0 usdt",@"0 usdt"];
             }

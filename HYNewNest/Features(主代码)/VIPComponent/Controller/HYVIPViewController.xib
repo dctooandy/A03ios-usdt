@@ -15,6 +15,7 @@
                 <outlet property="LjsfBg" destination="zBF-yF-ycI" id="ui2-bd-h1b"/>
                 <outlet property="ZzzpBg" destination="eym-Sh-0bT" id="2Q5-LU-Imn"/>
                 <outlet property="bottomBgView" destination="KMA-BO-i4h" id="sBU-tX-K9d"/>
+                <outlet property="btnLogin" destination="kw7-i6-gEg" id="bSt-wk-dIK"/>
                 <outlet property="collectionViewCard" destination="g2w-Lu-VqX" id="gZY-TV-y3Q"/>
                 <outlet property="lbDubaTime" destination="sJ2-Qr-5h3" id="DNt-6I-rEe"/>
                 <outlet property="lbDushenTime" destination="OnD-kv-OXG" id="cTB-YO-cuo"/>
@@ -77,14 +78,24 @@
                                     <color key="textColor" red="0.36078431372549019" green="0.26666666666666666" blue="0.10980392156862745" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kw7-i6-gEg">
+                                    <rect key="frame" x="287" y="6" width="63" height="28"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <state key="normal" title="[请先登录]"/>
+                                    <connections>
+                                        <action selector="didTapLogin:" destination="-1" eventType="touchUpInside" id="2fz-Pj-mE1"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="bTf-bQ-fTh" secondAttribute="trailing" constant="20" id="PsC-h1-TN7"/>
                                 <constraint firstItem="bTf-bQ-fTh" firstAttribute="centerY" secondItem="QtP-6Z-Za5" secondAttribute="centerY" id="QmX-99-egv"/>
+                                <constraint firstItem="kw7-i6-gEg" firstAttribute="trailing" secondItem="bTf-bQ-fTh" secondAttribute="trailing" id="Rtb-1Q-jCE"/>
                                 <constraint firstAttribute="height" constant="40" id="SPI-Qh-ZKY"/>
                                 <constraint firstItem="jZ9-I3-5lb" firstAttribute="leading" secondItem="QtP-6Z-Za5" secondAttribute="leading" constant="20" id="a6w-pb-Rot"/>
                                 <constraint firstItem="jZ9-I3-5lb" firstAttribute="centerY" secondItem="QtP-6Z-Za5" secondAttribute="centerY" id="ivS-kF-0kj"/>
+                                <constraint firstItem="kw7-i6-gEg" firstAttribute="centerY" secondItem="bTf-bQ-fTh" secondAttribute="centerY" id="yRI-up-kGw"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2dZ-SF-rUk">

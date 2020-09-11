@@ -47,7 +47,7 @@
             break;
         case 2:
             attrStr = [[NSMutableAttributedString alloc] initWithString:@"全新赌尊等级\n享受更高权益" attributes:@{NSFontAttributeName:kGBKFont(24), NSForegroundColorAttributeName:kRedColor}];
-            self.contentTv.text = [NSString stringWithFormat:@"入会礼金  %ld%@\n转盘次数%ld次\n月分红 %ld%@",(long)self.model.maxRhlj,self.model.currency.lowercaseString,self.model.maxZpTimes,self.model.maxYdfh,self.model.currency.lowercaseString];
+            self.contentTv.text = [NSString stringWithFormat:@"入会礼金  %ld%@\n转盘次数 %ld次\n月分红 %ld%@",(long)self.model.maxRhlj,self.model.currency.lowercaseString,self.model.maxZpTimes,self.model.maxYdfh,self.model.currency.lowercaseString];
             [self.btmBtn setTitle:@"累计身份" forState:UIControlStateNormal];
             break;
         case 3: {
