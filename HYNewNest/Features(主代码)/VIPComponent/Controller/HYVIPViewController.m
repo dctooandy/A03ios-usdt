@@ -217,7 +217,13 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 #pragma mark - Action
 - (IBAction)didTapVIPSxh:(id)sender {
-    [self requestMonthReport];
+#ifdef DEBUG
+    VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
+    vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
+    //添加子控制器 该方法调用了willMoveToParentViewController：方法
+    [self addChildViewController:vc];
+    [self.view addSubview:vc.view];
+#endif
 }
 
 - (IBAction)didTapDashenBoard:(id)sender {

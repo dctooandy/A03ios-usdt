@@ -100,9 +100,7 @@
 
 - (void)resetFrame:(NSNotification *)notification {
     if (self.currentState == FirstCard) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(setAnimatingState:)]) {
-            [self.delegate setAnimatingState:YES];
-        }
+        [self.delegate setAnimatingState:YES];
     }
     [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.5 initialSpringVelocity:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
         if (self.currentState == FirstCard) {
@@ -114,9 +112,7 @@
             self.transform = CGAffineTransformMakeScale(scale, scale);
         }
     } completion:^(BOOL finished) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(setAnimatingState:)]) {
-            [self.delegate setAnimatingState:YES];
-        }
+        [self.delegate setAnimatingState:NO];
     }];
 }
 
