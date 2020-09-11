@@ -34,9 +34,11 @@
     [self setupControllers];
     [self setupAppearance];
     [self setupCSSuspendBall];
+    [self didSwitchAcount];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupAppearance) name:CNSkinChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSwitchAcount) name:HYSwitchAcoutSuccNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSwitchAcount) name:HYLoginSuccessNotification object:nil];
     
 }
 

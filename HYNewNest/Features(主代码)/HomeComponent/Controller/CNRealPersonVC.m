@@ -30,19 +30,13 @@
 
 // 进入AGQJ
 - (IBAction)AGQJ:(id)sender {
-//    [CNGameLineView choseCnyLineHandler:([CNUserManager shareManager].isUsdtMode == NO) ? (^{
-//        // CNY 线路
-//
-//    }):nil choseUsdtLineHandler:^{
-//        // USDT 线路
-//        [NNPageRouter jump2GameName:@"真人百家乐-旗舰厅" gameType:@"BAC" gameId:@"" gameCode:@"A03003"];
-//    }];
+
     [[HYInGameHelper sharedInstance] inGame:InGameTypeAGQJ];
 }
 
 // 进入AGIN
 - (IBAction)AGIN:(id)sender {
-//    [NNPageRouter jump2GameName:@"真人百家乐-国际厅" gameType:@"BAC" gameId:@"" gameCode:@"A03026"];
+
     [[HYInGameHelper sharedInstance] inGame:InGameTypeAGIN];
 }
 

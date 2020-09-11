@@ -363,7 +363,7 @@ form.submit();\
 
 //必须返回YES
 - (BOOL)shouldAutorotate{
-    if ([self.gameName isEqualToString:@"真人百家乐-旗舰厅"] || [self.gameName isEqualToString:@"AS真人棋牌"] || [self.gameName isEqualToString:@"彩票"]) {
+    if ([self.gameName isEqualToString:@"百家乐-旗舰厅"] || [self.gameName isEqualToString:@"AS真人棋牌"] || [self.gameName isEqualToString:@"彩票"]) {
         return NO;
     } else {
         return YES;
@@ -372,7 +372,7 @@ form.submit();\
 
 
  - (BOOL)onDYDeviceOrientationDidChange{
-     if ([self.gameName isEqualToString:@"真人百家乐-旗舰厅"] || [self.gameName isEqualToString:@"AS真人棋牌"] || [self.gameName isEqualToString:@"彩票"]) {
+     if ([self.gameName isEqualToString:@"百家乐-旗舰厅"] || [self.gameName isEqualToString:@"AS真人棋牌"] || [self.gameName isEqualToString:@"彩票"]) {
          return NO;
      }
      

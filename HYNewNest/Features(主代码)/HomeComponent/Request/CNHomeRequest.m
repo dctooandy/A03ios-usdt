@@ -200,7 +200,9 @@
     if (platformNames.count > 0) {
         paramDic[@"platformNames"] = platformNames;//平台名
     }
-    paramDic[@"payLines"] = payLines;//赔付线
+    if (payLines.count > 0) {
+        paramDic[@"payLines"] = payLines;//赔付线
+    }
     
     [self POST:kGatewayPath(config_queryElecGame) parameters:paramDic completionHandler:handler];
 }

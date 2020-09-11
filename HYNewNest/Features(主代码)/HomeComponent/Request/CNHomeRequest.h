@@ -19,8 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CNHomeRequest : CNBaseNetworking
 
 /**
- 白名单 存取款客服  vip_depositLive800
- 白名单 其他客服    vip_otheLive800
  数字站 存取款客服  usdt_depositLive800
  数字站 其他客服    usdt_otheLive800
  忘记密码
