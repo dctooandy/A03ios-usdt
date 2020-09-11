@@ -115,7 +115,7 @@
                                         <constraint firstAttribute="height" constant="0.5" id="mdh-rY-CoW"/>
                                     </constraints>
                                 </view>
-                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Mh3-dw-OQt">
+                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mh3-dw-OQt">
                                     <rect key="frame" x="20" y="40" width="330" height="4"/>
                                     <color key="tintColor" red="0.2274509804" green="0.89019607840000003" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -129,7 +129,7 @@
                                         <constraint firstAttribute="height" constant="0.5" id="x8r-R3-eGR"/>
                                     </constraints>
                                 </view>
-                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UAH-s3-R0T">
+                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UAH-s3-R0T">
                                     <rect key="frame" x="20" y="79" width="330" height="4"/>
                                     <color key="tintColor" red="0.2274509804" green="0.89019607840000003" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -657,7 +657,7 @@
                 <constraint firstAttribute="bottom" secondItem="KMA-BO-i4h" secondAttribute="bottom" id="upV-m1-eCA"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="198.55072463768118" y="137.94642857142856"/>
+            <point key="canvasLocation" x="562" y="165"/>
         </view>
     </objects>
     <resources>

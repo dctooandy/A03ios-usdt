@@ -74,8 +74,6 @@
 
 #pragma mark - 推送回调
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    // 发送deveiceToken给服务器
-//    [SendHeartSocket sendHeartPacketWithApnsToken:deviceToken userid:[[CNUserManager shareManager].userInfo.customerId intValue]];
     
     if (@available(iOS 13, *)){
        if (![deviceToken isKindOfClass:[NSData class]]) return;

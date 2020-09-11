@@ -205,12 +205,14 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     
     self.lblThisMonthDeposit.text = [NSString stringWithFormat:@"本月充值:%@", [_sxhModel.totalDepositAmount jk_toDisplayNumberWithDigit:2]];
     self.lblThisMonthAmount.text = [NSString stringWithFormat:@"本月流水:%@",[_sxhModel.totalBetAmount jk_toDisplayNumberWithDigit:2]];
-    self.lbDuzunTime.text = [NSString stringWithFormat:@"%@",_sxhModel.vipRhqk.betZunCount];
-    self.lbDushenTime.text = [NSString stringWithFormat:@"%@",_sxhModel.vipRhqk.betGoldCount];
-    self.lbDushengTime.text = [NSString stringWithFormat:@"%@",_sxhModel.vipRhqk.betSaintCount];
-    self.lbDuwangTime.text = [NSString stringWithFormat:@"%@",_sxhModel.vipRhqk.betKingCount];
-    self.lbDubaTime.text = [NSString stringWithFormat:@"%@",_sxhModel.vipRhqk.betBaCount];
-    self.lbDuxiaTime.text = [NSString stringWithFormat:@"%@",_sxhModel.vipRhqk.betXiaCount];
+    
+    // 累计身份
+    self.lbDuzunTime.text = [NSString stringWithFormat:@"%ld",_sxhModel.historyBet.betZunCount];
+    self.lbDushenTime.text = [NSString stringWithFormat:@"%ld",_sxhModel.historyBet.betGoldCount];
+    self.lbDushengTime.text = [NSString stringWithFormat:@"%ld",_sxhModel.historyBet.betSaintCount];
+    self.lbDuwangTime.text = [NSString stringWithFormat:@"%ld",_sxhModel.historyBet.betKingCount];
+    self.lbDubaTime.text = [NSString stringWithFormat:@"%ld",_sxhModel.historyBet.betBaCount];
+    self.lbDuxiaTime.text = [NSString stringWithFormat:@"%ld",_sxhModel.historyBet.betXiaCount];
 }
 
 #pragma mark - Action
@@ -219,7 +221,6 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 }
 
 - (IBAction)didTapDashenBoard:(id)sender {
-    MyLog(@"大神榜");
     VIPTwoChartVC *chartVc = [[VIPTwoChartVC alloc] initWithType:VIPChartTypeBigGodBoard];
     [self presentViewController:chartVc animated:YES completion:^{
     }];
@@ -475,9 +476,13 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
             self.lblByjdSubTitle.text =  self.sxhModel.clubLevel.integerValue==7 ? @"(您已达标,流水最高可晋级赌尊)" : @"(达标且流水最高晋级唯一赌尊)";
             
             // 赌尊流水进度有变化
-            float amoutPrgs = [_sxhModel.totalBetAmount floatValue] / [item.betAmount floatValue];
-            self.prgsViewAmount.progress = amoutPrgs;
-            self.prgsViewAmount.tintColor = amoutPrgs >= 1.0 ? kHexColor(0xE11470) : kHexColor(0x3AE3C5);
+            if (self.sxhModel.clubLevel.integerValue == 7) {
+                float amoutPrgs = [_sxhModel.totalBetAmount floatValue] / [_sxhModel.vipRhqk.betAmount floatValue];
+                self.prgsViewAmount.progress = amoutPrgs;
+                self.prgsViewAmount.tintColor = amoutPrgs >= 1.0 ? kHexColor(0xE11470) : kHexColor(0x3AE3C5);
+                self.lblNextLevelAmount.text = amoutPrgs >= 1.0 ? @"当前最高" : [NSString stringWithFormat:@"当前最高%@ usdt", _sxhModel.vipRhqk.betAmount];
+            }
+            
             // 赌尊隐藏存款进度
             self.lbDuzunTip.hidden = NO;
             self.prgsViewDeposit.hidden = YES;
