@@ -95,9 +95,9 @@
             self.bgView.height = AD(284);
             self.btmButton.hidden = YES;
             
-            self.topSubLb.text = [NSString stringWithFormat:@"( 5月累计入会%ld名,祝贺他们! ) ", model.vipRhqk.betCount];
+            self.topSubLb.text = [NSString stringWithFormat:@"( 5月累计入会%ld名,祝贺他们! ) ", (model.vipRhqk) ? model.vipRhqk.betCount : 0];
             self.rankImgv.hidden = NO;
-            self.btmColorLb.text = [NSString stringWithFormat:@"%@会员荣膺“赌尊”\n(流水%@usdt-充值%@usdt)", model.vipRhqk.betZunName, model.vipRhqk.depositAmount, model.vipRhqk.betAmount];
+            self.btmColorLb.text = [NSString stringWithFormat:@"%@会员荣膺“赌尊”\n(流水%@usdt-充值%@usdt)", (model.vipRhqk) ? model.vipRhqk.betZunName : @"", (model.vipRhqk) ? model.vipRhqk.depositAmount : @"0", (model.vipRhqk) ?  model.vipRhqk.betAmount : @"0"];
             
             UIView *framk = [UIView new];
             framk.backgroundColor = [UIColor clearColor];
@@ -110,7 +110,13 @@
             CGFloat cLeft = AD(18);
             CGFloat cMargin = AD(30);
             CGFloat cWidth = AD(24);
-            NSArray *numArr = @[model.vipRhqk.betGoldCount, model.vipRhqk.betSaintCount, model.vipRhqk.betKingCount, model.vipRhqk.betBaCount, model.vipRhqk.betXiaCount];
+            NSArray *numArr;
+            if (model.vipRhqk) {
+                numArr = @[model.vipRhqk.betGoldCount, model.vipRhqk.betSaintCount, model.vipRhqk.betKingCount, model.vipRhqk.betBaCount, model.vipRhqk.betXiaCount];
+            } else {
+                numArr = @[@0,@0,@0,@0,@0];
+            }
+             
             for (int i=0; i<5; i++) {
                 UILabel *rank = [UILabel new];
                 rank.font = [UIFont fontPFR12];
@@ -158,12 +164,18 @@
             self.btmColorLb.hidden = YES;
             
             // 绘制表格
-            NSArray *leftText = @[@"入会礼金",@"月度分红",@"至尊转盘",@"累计身份",@"累计送出"];            
-            NSArray *rightNum = @[[[model.vipScjz.rhlj jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"],
-                                  [[model.vipScjz.ydfh jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"],
-                                  [[model.vipScjz.zzzp jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"],
-                                  [[model.vipScjz.ljsf jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"],
-                                  [[model.vipScjz.ljsc jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"]];
+            NSArray *leftText = @[@"入会礼金",@"月度分红",@"至尊转盘",@"累计身份",@"累计送出"];
+            NSArray *rightNum;
+            if (model.vipScjz) {
+                rightNum = @[[[model.vipScjz.rhlj jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"],
+                             [[model.vipScjz.ydfh jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"],
+                             [[model.vipScjz.zzzp jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"],
+                             [[model.vipScjz.ljsf jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"],
+                             [[model.vipScjz.ljsc jk_toDisplayNumberWithDigit:0] stringByAppendingString:@"usdt"]];
+            } else {
+                rightNum = @[@"0 usdt",@"0 usdt",@"0 usdt",@"0 usdt",@"0 usdt"];
+            }
+            
             // 线的路径 横线
             for (int i=0; i<6; i++) {
                 UIBezierPath *linePath = [UIBezierPath bezierPath];
