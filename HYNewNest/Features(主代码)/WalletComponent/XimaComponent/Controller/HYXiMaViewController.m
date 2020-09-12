@@ -38,9 +38,13 @@ static NSString * const KXiMaCell = @"HYXiMaCell";
     
     self.amount = 0.f;
     self.selectedIndexs = @[].mutableCopy;
+    
     [self setupTopView];
     [self setupTableView];
-    [self requestData];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1), dispatch_get_main_queue(), ^{
+        [self requestData];
+    });
+    
 }
 
 - (void)rightItemAction {
@@ -144,8 +148,14 @@ static NSString * const KXiMaCell = @"HYXiMaCell";
         }
         self.xmPlfListItems = allItem; //下个方法就无用了
         
+        // 洗码提示弹窗
+        if (![CNUserManager shareManager].isUsdtMode) {
+            [HYTextAlertView showWithTitle:@"温馨提示" content:@"您洗码成功后额度将会添加至USDT模式的钱包，请切换模式查收" comfirmText:@"确认" cancelText:nil comfirmHandler:^(BOOL isComfirm) {
+            }];
+        }
+        
         [CNXiMaRequest xmCalcAmountV3WithXmTypes:allType.copy handler:^(id responseObj, NSString *errorMsg) {
-            if (errorMsg) {
+            if (errorMsg || ![responseObj isKindOfClass:[NSDictionary class]]) {
                 return;
             }
             
