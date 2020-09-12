@@ -24,6 +24,12 @@
     
 }
 
++ (void)vipsxhIsShowReportHandler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *parm = [kNetworkMgr baseParam];
+    [self POST:kGatewayExtraPath(activity_vipSxhFrame) parameters:parm completionHandler:handler];
+}
+
 + (void)vipsxhMonthReportHandler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];

@@ -17,4 +17,4 @@ UIKIT_EXTERN NSNotificationName const HYSwitchAcoutSuccNotification;
 #pragma mark - UserDefaultKey
 UIKIT_EXTERN NSString * const HYNotShowCTZNEUserDefaultKey;
 UIKIT_EXTERN NSString * const HYHomeMessageBoxLastimeDate;
-UIKIT_EXTERN NSString * const HYVipMonthReportLastimeDate;
+UIKIT_EXTERN NSString * const HYVIPIsAlreadyShowV2Alert;

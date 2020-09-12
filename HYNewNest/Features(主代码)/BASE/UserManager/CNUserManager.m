@@ -81,8 +81,8 @@
 
 /// 清偏好设置
 - (void)clearUserDefault {
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:HYNotShowCTZNEUserDefaultKey];
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:HYHomeMessageBoxLastimeDate];
-    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:HYVipMonthReportLastimeDate];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

@@ -156,7 +156,7 @@
     // 等接口返回
     [CNVIPRequest vipsxhGuideHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isAlreadyReadVersion2.0"];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:HYVIPIsAlreadyShowV2Alert];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
             VIPGuideModel *model = [[VIPGuideModel cn_parse:responseObj] firstObject];

@@ -36,9 +36,6 @@
                 [self.slideCard reloadData];
             }
         } else {
-            // 失败复原记录
-            [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:HYVipMonthReportLastimeDate];
-            [[NSUserDefaults standardUserDefaults] synchronize];
             [self removeSelfFromFatherVC];
         }
     }];

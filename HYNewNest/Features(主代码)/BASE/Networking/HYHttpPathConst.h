@@ -172,5 +172,6 @@
 #define activity_vipSxhZzzp     @"a03/activity/vipsxh/zzzp" //私享会至尊转盘
 #define activity_vipSxhRank     @"a03/activity/vipsxh/rank" //大神榜
 #define activity_vipSxhDraw     @"promo/a03/draw" //领取入会礼金
+#define activity_vipSxhFrame    @"a03/activity/vipsxh/frame" //是否弹窗月报
 
 #endif /* HYHttpPathConst_h */

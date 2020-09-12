@@ -49,6 +49,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 // 获奖轮播
 @property (strong,nonatomic) UUMarqueeView *marqueeView;
 
+
 // -------- 本月进度 --------
 @property (weak, nonatomic) IBOutlet UIView *ByjdTopBg;
 @property (weak, nonatomic) IBOutlet UIView *ByjdBtmBg;
@@ -81,11 +82,13 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 @property (weak, nonatomic) IBOutlet UILabel *lbDuxiaTime;
 @property (weak, nonatomic) IBOutlet UIView *unloginLbBGView;
 
+
 // -------- 两个按钮 --------
 // 至尊转盘
 @property (weak, nonatomic) IBOutlet UIView *ZzzpBg;
 // 累计身份
 @property (weak, nonatomic) IBOutlet UIView *LjsfBg;
+
 
 // -------- 数据源 --------
 @property (strong, nonatomic) NSArray <VIPRewardAnocModel *>* rewards;
@@ -151,8 +154,6 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
         self.unloginLbBGView.hidden = NO;
         self.prgsViewAmount.progress = 0.0;
         self.prgsViewDeposit.progress = 0.0;
-        self.lblThisMonthAmount.text = @"本月流水：-";
-        self.lblThisMonthDeposit.text = @"本月充值：-";
     }
 }
 
@@ -170,7 +171,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     [self.vipSxhTopBtn setTitleColor:[UIColor jk_gradientFromColor:kHexColor(0xFFEFCB) toColor:kHexColor(0xA28455) withHeight:20]
                             forState:UIControlStateNormal];
     
-    [self.bottomBgView addSubview:self.marqueeView];
+//    [self.bottomBgView addSubview:self.marqueeView];
     self.bottomBgView.backgroundColor = [UIColor jk_gradientFromColor:kHexColor(0x0A1D25) toColor:kHexColor(0x070D17) withHeight:self.bottomBgView.height];
     
     [self.ByjdTopBg jk_setRoundedCorners:UIRectCornerTopLeft|UIRectCornerTopRight radius:4];
@@ -209,16 +210,21 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 - (void)setupUIDatas {
     [self.collectionViewCard reloadData];
     
-    self.lblThisMonthDeposit.text = [NSString stringWithFormat:@"本月充值:%@", [_sxhModel.totalDepositAmount jk_toDisplayNumberWithDigit:2]];
-    self.lblThisMonthAmount.text = [NSString stringWithFormat:@"本月流水:%@",[_sxhModel.totalBetAmount jk_toDisplayNumberWithDigit:2]];
+    if ([CNUserManager shareManager].isLogin) {
+        _lblThisMonthDeposit.text = [NSString stringWithFormat:@"本月充值:%@", [_sxhModel.totalDepositAmount jk_toDisplayNumberWithDigit:2]];
+        _lblThisMonthAmount.text = [NSString stringWithFormat:@"本月流水:%@",[_sxhModel.totalBetAmount jk_toDisplayNumberWithDigit:2]];
+    } else {
+        _lblThisMonthAmount.text = @"本月流水：-";
+        _lblThisMonthDeposit.text = @"本月充值：-";
+    }
     
     // 累计身份
-    self.lbDuzunTime.text = [NSString stringWithFormat:@"%ld",_sxhModel.historyBet.betZunCount];
-    self.lbDushenTime.text = [NSString stringWithFormat:@"%ld",_sxhModel.historyBet.betGoldCount];
-    self.lbDushengTime.text = [NSString stringWithFormat:@"%ld",_sxhModel.historyBet.betSaintCount];
-    self.lbDuwangTime.text = [NSString stringWithFormat:@"%ld",_sxhModel.historyBet.betKingCount];
-    self.lbDubaTime.text = [NSString stringWithFormat:@"%ld",_sxhModel.historyBet.betBaCount];
-    self.lbDuxiaTime.text = [NSString stringWithFormat:@"%ld",_sxhModel.historyBet.betXiaCount];
+    self.lbDuzunTime.text = [NSString stringWithFormat:@"%ld",(long)_sxhModel.historyBet.betZunCount];
+    self.lbDushenTime.text = [NSString stringWithFormat:@"%ld",(long)_sxhModel.historyBet.betGoldCount];
+    self.lbDushengTime.text = [NSString stringWithFormat:@"%ld",(long)_sxhModel.historyBet.betSaintCount];
+    self.lbDuwangTime.text = [NSString stringWithFormat:@"%ld",(long)_sxhModel.historyBet.betKingCount];
+    self.lbDubaTime.text = [NSString stringWithFormat:@"%ld",(long)_sxhModel.historyBet.betBaCount];
+    self.lbDuxiaTime.text = [NSString stringWithFormat:@"%ld",(long)_sxhModel.historyBet.betXiaCount];
 }
 
 #pragma mark - Action
@@ -280,8 +286,8 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 }
 
 - (void)requestMonthReport {
-    BOOL isReaded = [[NSUserDefaults standardUserDefaults] boolForKey:@"isAlreadyReadVersion2.0"];//只显示一次就不再展示了
-    if (!isReaded) { //!isReaded
+    BOOL isReaded = [[NSUserDefaults standardUserDefaults] boolForKey:HYVIPIsAlreadyShowV2Alert];//只显示一次就不再展示了
+    if (!isReaded) {
         // VIP私享会2.0 弹窗
         [CNMessageBoxView showVIPSXHMessageBoxOnView:self.view];
         
@@ -289,25 +295,15 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
         if (![CNUserManager shareManager].isLogin) {
             return;
         }
-       // 月报一个月展示一次
-       NSString *lastMonthStr = [[NSUserDefaults standardUserDefaults] stringForKey:HYVipMonthReportLastimeDate];
-        NSDate *date = [NSDate date];
-       NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-       [dateFormatter setDateFormat:@"yyyy-MM"];
-    NSString *nowMonthStr = [dateFormatter stringFromDate: date];
-
-       if (![lastMonthStr isEqualToString:nowMonthStr]) {
- 
-            VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
-            vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
-            //添加子控制器 该方法调用了willMoveToParentViewController：方法
-            [self addChildViewController:vc];
-            [self.view addSubview:vc.view];
-
-           [[NSUserDefaults standardUserDefaults] setValue:nowMonthStr forKey:HYVipMonthReportLastimeDate];
-           [[NSUserDefaults standardUserDefaults] synchronize];
-        
-       }
+        [CNVIPRequest vipsxhIsShowReportHandler:^(id responseObj, NSString *errorMsg) {
+            if (KIsEmptyString(errorMsg) && [responseObj[@"flag"] integerValue] == 1) {
+                VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
+                vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
+                //添加子控制器 该方法调用了willMoveToParentViewController：方法
+                [self addChildViewController:vc];
+                [self.view addSubview:vc.view];
+            }
+        }];
         
     }
 }

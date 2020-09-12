@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 2.0弹窗
 + (void)vipsxhGuideHandler:(HandlerBlock)handler;
+/// 是否弹出月报
++ (void)vipsxhIsShowReportHandler:(HandlerBlock)handler;
 /// 月报弹窗
 + (void)vipsxhMonthReportHandler:(HandlerBlock)handler;
 // kill

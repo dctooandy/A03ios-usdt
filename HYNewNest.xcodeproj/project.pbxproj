@@ -2797,8 +2797,6 @@
 		3D3A9B6B24FA427C003FB33C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3D3A9B6C24FA427C003FB33C /* JLXUICollectionViewFlowLayout.h */,
-				3D3A9B6D24FA427C003FB33C /* JLXUICollectionViewFlowLayout.m */,
 				3D3A9B7A24FCCC26003FB33C /* VIPCardCCell.h */,
 				3D3A9B7B24FCCC26003FB33C /* VIPCardCCell.m */,
 				3D3A9B7C24FCCC26003FB33C /* VIPCardCCell.xib */,
@@ -2886,6 +2884,8 @@
 		3D643F9324F36CC200B9AAA7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3D3A9B6C24FA427C003FB33C /* JLXUICollectionViewFlowLayout.h */,
+				3D3A9B6D24FA427C003FB33C /* JLXUICollectionViewFlowLayout.m */,
 				3D643F9424F36D3E00B9AAA7 /* HYVIPViewController.h */,
 				3D643F9524F36D3E00B9AAA7 /* HYVIPViewController.m */,
 				3D643F9624F36D3E00B9AAA7 /* HYVIPViewController.xib */,
