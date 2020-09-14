@@ -404,6 +404,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     return cell;
 }
 
+
 //手指拖动开始
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     m_dragStartX = scrollView.contentOffset.x;

@@ -88,6 +88,7 @@
             lbBxk.frame = CGRectMake(AD(152), lbXjk.bottom, AD(150), AD(18));
             [btnBanner addSubview:lbBxk];
             UIButton *ulessBtn = [[UIButton alloc] init];
+            ulessBtn.enabled = NO;
             ulessBtn.frame = CGRectMake(AD(152), lbBxk.bottom+AD(10), AD(112), AD(30));
             [ulessBtn setTitle:@"立即下载" forState:UIControlStateNormal];
             [ulessBtn setImage:[UIImage imageNamed:@"download"] forState:UIControlStateNormal];

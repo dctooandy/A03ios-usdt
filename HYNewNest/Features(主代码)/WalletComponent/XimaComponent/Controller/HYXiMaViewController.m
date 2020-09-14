@@ -41,9 +41,7 @@ static NSString * const KXiMaCell = @"HYXiMaCell";
     
     [self setupTopView];
     [self setupTableView];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1), dispatch_get_main_queue(), ^{
-        [self requestData];
-    });
+    [self.tableView.mj_header beginRefreshing];
     
 }
 
@@ -128,12 +126,11 @@ static NSString * const KXiMaCell = @"HYXiMaCell";
 - (void)requestData {
     [CNXiMaRequest xmQueryXmpPlatformHandler:^(id responseObj, NSString *errorMsg) {
         if (errorMsg) {
+            [self.tableView.mj_header endRefreshing];
             return;
         }
         
-        NSArray<XmPlatformModel *> * platfModels = [XmPlatformModel cn_parse:responseObj];
-//        self.xmPlatfModel = platfModel;
-        
+        NSArray<XmPlatformModel *> * platfModels = [XmPlatformModel cn_parse:responseObj];        
         NSMutableArray *allItem = @[].mutableCopy;
         NSMutableArray *allType = @[].mutableCopy;//类型数组
         for (XmPlatformModel *model in platfModels) {
@@ -154,33 +151,37 @@ static NSString * const KXiMaCell = @"HYXiMaCell";
             }];
         }
         
-        [CNXiMaRequest xmCalcAmountV3WithXmTypes:allType.copy handler:^(id responseObj, NSString *errorMsg) {
-            if (errorMsg || ![responseObj isKindOfClass:[NSDictionary class]]) {
-                return;
-            }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
-            XmCalcAmountModel *amoutModel = [XmCalcAmountModel cn_parse:responseObj];
-            self.xmCalAmountModel = amoutModel;
-            
-            NSMutableArray *allTypeItem = @[].mutableCopy;
-            NSInteger i = 0;
-            for (XmListItem *listItem in amoutModel.xmList) {
-                for (XmTypesItem *typeItem in listItem.xmTypes) {
-                    XmPlatformListItem *item = self.xmPlfListItems[i];
-                    typeItem.xmName = item.xmName;
-                    [allTypeItem addObject:typeItem];
-                    i ++;
+            [CNXiMaRequest xmCalcAmountV3WithXmTypes:allType.copy handler:^(id responseObj, NSString *errorMsg) {
+                if (errorMsg || ![responseObj isKindOfClass:[NSDictionary class]]) {
+                    [self.tableView.mj_header endRefreshing];
+                    return;
                 }
-            }
-            //有金额的排到前面
-            NSArray <XmTypesItem *>*data = [allTypeItem sortedArrayUsingComparator:^NSComparisonResult(XmTypesItem * obj1, XmTypesItem * obj2) {
-                return obj1.xmAmount < obj2.xmAmount;
+                
+                XmCalcAmountModel *amoutModel = [XmCalcAmountModel cn_parse:responseObj];
+                self.xmCalAmountModel = amoutModel;
+                
+                NSMutableArray *allTypeItem = @[].mutableCopy;
+                NSInteger i = 0;
+                for (XmListItem *listItem in amoutModel.xmList) {
+                    for (XmTypesItem *typeItem in listItem.xmTypes) {
+                        XmPlatformListItem *item = self.xmPlfListItems[i];
+                        typeItem.xmName = item.xmName;
+                        [allTypeItem addObject:typeItem];
+                        i ++;
+                    }
+                }
+                //有金额的排到前面
+                NSArray <XmTypesItem *>*data = [allTypeItem sortedArrayUsingComparator:^NSComparisonResult(XmTypesItem * obj1, XmTypesItem * obj2) {
+                    return obj1.xmAmount < obj2.xmAmount;
+                }];
+                self.xmTypeItems = data;
+                
+                [self.tableView reloadData];
+                [self.tableView.mj_header endRefreshing];
             }];
-            self.xmTypeItems = data;
-            
-            [self.tableView.mj_header endRefreshing];
-            [self.tableView reloadData];
-        }];
+        });
         
     }];
     

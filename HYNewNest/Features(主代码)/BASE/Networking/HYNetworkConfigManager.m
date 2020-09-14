@@ -103,8 +103,8 @@
             envName = @"运营环境";
             [IVHttpManager shareManager].gateway = @"http://115bi.com";
             [IVHttpManager shareManager].gateways = @[@"http://115bi.com"];
-//            [IVHttpManager shareManager].gateway = @"https://usdtm.hwx22.com";
-//            [IVHttpManager shareManager].gateways = @[@"https://usdtm.hwx22.com"];
+//            [IVHttpManager shareManager].gateway = @"https://www.hygame03.com";
+//            [IVHttpManager shareManager].gateways = @[@"https://www.hygame03.com"];
             break;
         }
         default:
