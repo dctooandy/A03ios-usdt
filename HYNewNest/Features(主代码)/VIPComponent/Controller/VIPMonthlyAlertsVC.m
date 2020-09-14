@@ -58,7 +58,7 @@
 
 - (void)didTapReceiveGift {
     // 领取礼金
-    [CNVIPRequest vipsxhDrawGiftMoneyLevelStatus:self.model.clubLevel
+    [CNVIPRequest vipsxhDrawGiftMoneyLevelStatus:[NSString stringWithFormat:@"%@",self.model.clubLevel]
                                          handler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
             [CNHUB showSuccess:@"领取成功"];

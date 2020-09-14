@@ -24,6 +24,7 @@
 @property (nonatomic, strong) SuspendBall *suspendBall;
 @property (strong, nonatomic) HYNavigationController *bonusNavVC;
 @property (strong, nonatomic) HYNavigationController *vipNavVC;
+@property (strong, nonatomic) HYNavigationController *gloryNavVC;
 @end
 
 @implementation HYTabBarViewController
@@ -48,10 +49,12 @@
         if (childVcs.count == 5) {
             [childVcs removeObjectAtIndex:1];
             [childVcs removeObjectAtIndex:1];
+            [childVcs removeObjectAtIndex:1];
         }
         self.viewControllers = childVcs.copy;
     } else {
-        if (childVcs.count == 3) {
+        if (childVcs.count == 2) {
+            [childVcs insertObject:self.gloryNavVC atIndex:1];
             [childVcs insertObject:self.bonusNavVC atIndex:1];
             [childVcs insertObject:self.vipNavVC atIndex:1];
         }
@@ -117,6 +120,7 @@
                                                                       tabBarTitle:@"风采"
                                                                       normalImage:[UIImage imageNamed:@"Fengcai"]
                                                                     selectedImage:[UIImage imageNamed:@"Fengcai_s"]];
+    self.gloryNavVC = gloryNav;
     [vcs addObject:gloryNav];
     
     HYNavigationController *mineNav = [HYNavigationController navigationControllerWithController:[CNMineVC class]

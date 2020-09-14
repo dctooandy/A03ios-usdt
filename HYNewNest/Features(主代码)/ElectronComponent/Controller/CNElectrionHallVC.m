@@ -246,7 +246,14 @@ typedef enum : NSUInteger {
     }
     // 游戏类型
     NSMutableString *numTypes = @"".mutableCopy;
-    NSDictionary *gameCategory = @{@"老虎机":@"1",@"纸牌":@"2",@"街机游戏":@"3",@"赛车":@"4",@"刮刮乐":@"5",@"视频扑克":@"6",@"桌面游戏":@"7",@"其他":@"8"};
+    NSDictionary *gameCategory = @{@"老虎机":@"1",
+                                   @"桌面游戏":@"2",
+                                   @"纸牌":@"3",
+                                   @"街机游戏":@"4",
+                                   @"其他":@"5",
+                                   @"赛车":@"6",
+                                   @"刮刮乐":@"7",
+                                   @"视频扑克":@"8"};
     if (self.filterTypes.count > 0 && ![self.filterTypes containsObject:@"全部"]) {
         for (int i=0; i<self.filterTypes.count; i++) {
             NSString *tyName = self.filterTypes[i];
@@ -255,6 +262,8 @@ typedef enum : NSUInteger {
                 [numTypes appendString:@","];
             }
         }
+    } else {
+        numTypes = @"0".mutableCopy;
     }
     // 平台
     NSArray *platforms = @[];

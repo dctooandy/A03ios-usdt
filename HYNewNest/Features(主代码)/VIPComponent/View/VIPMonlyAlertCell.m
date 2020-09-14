@@ -241,11 +241,12 @@
             
             self.btmColorLb.hidden = NO;
             
-            BOOL isCanRank = !KIsEmptyString(model.betName);
+            BOOL isCanRank = model.clubLevel && [@[@2,@3,@4,@5,@6,@7] containsObject:model.clubLevel];
             if (isCanRank) {
                 self.rankImgv.image = [UIImage imageNamed:[NSString stringWithFormat:@"rank_%@", model.clubLevel]];
                 self.btmColorLb.text = [NSString stringWithFormat:@"恭喜您荣膺%@\n小游送你入会礼金%@usdt", model.betName, model.preRequest?model.preRequest[@"amount"]:@"0"];
                 [self.btmButton setTitle:@"领取" forState:UIControlStateNormal];
+                if (!model.preRequest) self.btmButton.enabled = NO;
             } else {
                 self.rankImgv.image = [UIImage imageNamed:@"yuebaonone"];
                 self.btmColorLb.text = @"您还未达到入会等级\n请再接再励哦~";

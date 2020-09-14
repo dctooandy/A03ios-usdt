@@ -14,8 +14,8 @@
 NSString *const A03ArticleTagListString[] = {
     [A03ArticleTagListEssence] = @"精选",
     [A03ArticleTagListDigit] = @"数字播报",
-    [A03ArticleTagListBrief] = @"环亚简报",
-    [A03ArticleTagListTrends] = @"AG动态",
+    [A03ArticleTagListBrief] = @"币游简报",
+    [A03ArticleTagListTrends] = @"币游动态",
     [A03ArticleTagListMasterGame] = @"AG环亚大师赛"
 };
 

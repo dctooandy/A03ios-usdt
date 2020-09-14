@@ -57,9 +57,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 送出价值
 @property (nonatomic , strong) VipScjz              * vipScjz;
 /// 是否有可领取的入会礼金 空则没有
-@property (nonatomic , copy) NSDictionary           * preRequest;
+@property (nonatomic , strong) NSDictionary           * preRequest;
 /// 2-7 依次从赌侠到赌尊
-@property (nonatomic , copy) NSString              * clubLevel;
+@property (nonatomic , strong) NSNumber              * clubLevel;
 /// 上月存款
 @property (nonatomic , assign) CGFloat              totalDepositAmount;
 /// 上月月份

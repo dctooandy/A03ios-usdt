@@ -24,7 +24,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A0f-Za-x0q">
                             <rect key="frame" x="0.0" y="0.0" width="384" height="128"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="-15" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" backgroundImage="banner--sport-1"/>
+                            <state key="normal" backgroundImage="banner--sport-3"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                     <integer key="value" value="10"/>
@@ -122,7 +122,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zKx-Ad-wEr">
                             <rect key="frame" x="0.0" y="0.0" width="384" height="128"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="-15" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" backgroundImage="banner--sport-3"/>
+                            <state key="normal" backgroundImage="banner--sport-1"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                     <integer key="value" value="10"/>
@@ -179,7 +179,7 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="zRa-U8-Mtg" secondAttribute="trailing" constant="15" id="xbb-Ad-vDA"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="13.043478260869566" y="173.77232142857142"/>
+            <point key="canvasLocation" x="-597" y="155"/>
         </view>
     </objects>
     <resources>
