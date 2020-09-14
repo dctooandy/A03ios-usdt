@@ -89,8 +89,8 @@
 }
 
 // 代理方法
-//#pragma mark - V_SlideCardDelegate
-//
+#pragma mark - V_SlideCardDelegate
+
 //- (void)slideCard:(V_SlideCard *)slideCard topCell:(V_SlideCardCell *)cell didPanPercent:(CGFloat)percent withDirection:(PanDirection)direction atIndex:(NSInteger)index {
 //
 //}
@@ -100,7 +100,15 @@
 //}
 //
 //- (void)slideCard:(V_SlideCard *)slideCard topCell:(V_SlideCardCell *)cell didChangedStateWithDirection:(PanDirection)direction atIndex:(NSInteger)index {
-//
+//    if (index == 0 && self.model.preRequest) {
+//        // 领取礼金
+//        [CNVIPRequest vipsxhDrawGiftMoneyLevelStatus:[NSString stringWithFormat:@"%@",self.model.clubLevel]
+//                                             handler:^(id responseObj, NSString *errorMsg) {
+//            if (KIsEmptyString(errorMsg)) {
+//                [CNHUB showSuccess:@"已为您自动领取礼金"];
+//            }
+//        }];
+//    }
 //}
 //
 //- (void)slideCard:(V_SlideCard *)slideCard didResetFrameInCell:(V_SlideCardCell *)cell atIndex:(NSInteger)index {

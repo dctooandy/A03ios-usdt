@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -55,10 +55,11 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wrr-iD-zuH">
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wrr-iD-zuH">
                                     <rect key="frame" x="30" y="409" width="152" height="48"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="48" id="PsB-dB-3Nq"/>
+                                        <constraint firstAttribute="width" constant="152" id="XYe-WE-G7r"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                     <state key="normal" title="查看我的收入 ">
@@ -69,7 +70,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PcP-40-4kK" customClass="CNTwoStatusBtn">
-                                    <rect key="frame" x="232" y="409" width="152" height="48"/>
+                                    <rect key="frame" x="30" y="409" width="354" height="48"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="48" id="BUl-DM-wH0"/>
                                     </constraints>
@@ -283,7 +284,6 @@
                                 <constraint firstItem="5Ro-UW-exT" firstAttribute="top" secondItem="aP9-W5-QOJ" secondAttribute="top" constant="20" id="2Hj-X5-foH"/>
                                 <constraint firstItem="Wrr-iD-zuH" firstAttribute="leading" secondItem="hEB-j3-F8W" secondAttribute="leading" constant="30" id="2wG-BE-qxw"/>
                                 <constraint firstItem="hUF-5c-fwj" firstAttribute="trailing" secondItem="1sB-hv-Ry4" secondAttribute="trailing" id="3A1-kZ-tfq"/>
-                                <constraint firstItem="PcP-40-4kK" firstAttribute="leading" secondItem="Wrr-iD-zuH" secondAttribute="trailing" constant="50" id="3Ma-Xp-Z77"/>
                                 <constraint firstItem="5Ro-UW-exT" firstAttribute="leading" secondItem="aP9-W5-QOJ" secondAttribute="leading" id="3U2-Lo-Lwr"/>
                                 <constraint firstAttribute="trailing" secondItem="rVP-9d-ExZ" secondAttribute="trailing" id="7tw-o9-fGY"/>
                                 <constraint firstAttribute="width" constant="414" id="8h3-Z9-gxX"/>
@@ -299,6 +299,7 @@
                                 <constraint firstItem="vQA-Gh-gJc" firstAttribute="centerX" secondItem="hEB-j3-F8W" secondAttribute="centerX" id="f7a-Ug-7Be"/>
                                 <constraint firstItem="rVP-9d-ExZ" firstAttribute="leading" secondItem="hEB-j3-F8W" secondAttribute="leading" id="fyv-cr-TWE"/>
                                 <constraint firstItem="aP9-W5-QOJ" firstAttribute="leading" secondItem="hEB-j3-F8W" secondAttribute="leading" id="hUY-FW-kuK"/>
+                                <constraint firstItem="PcP-40-4kK" firstAttribute="leading" secondItem="Wrr-iD-zuH" secondAttribute="leading" id="iNv-Vz-UzU"/>
                                 <constraint firstItem="5Ro-UW-exT" firstAttribute="bottom" secondItem="aP9-W5-QOJ" secondAttribute="bottom" constant="-20" id="jRk-0c-RDS"/>
                                 <constraint firstItem="hUF-5c-fwj" firstAttribute="top" secondItem="X8R-s2-naD" secondAttribute="top" id="nKn-fv-wSq"/>
                                 <constraint firstItem="5Ro-UW-exT" firstAttribute="trailing" secondItem="aP9-W5-QOJ" secondAttribute="trailing" id="rzz-3G-Xv4"/>
@@ -306,7 +307,6 @@
                                 <constraint firstItem="hUF-5c-fwj" firstAttribute="leading" secondItem="1sB-hv-Ry4" secondAttribute="leading" id="wRv-V4-2a1"/>
                                 <constraint firstItem="PcP-40-4kK" firstAttribute="top" secondItem="Wrr-iD-zuH" secondAttribute="top" id="yTY-Co-IHp"/>
                                 <constraint firstAttribute="trailing" secondItem="PcP-40-4kK" secondAttribute="trailing" constant="30" id="ybn-TO-4il"/>
-                                <constraint firstItem="PcP-40-4kK" firstAttribute="width" secondItem="Wrr-iD-zuH" secondAttribute="width" id="ysf-ed-naS"/>
                             </constraints>
                         </view>
                     </subviews>
