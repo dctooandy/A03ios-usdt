@@ -87,7 +87,7 @@
     // 邀请人样式
     NSString *peple = sumCount.count ?: @"0";
     NSString *amount = sumCount.sumAmount ?: @"0.00";
-    NSString *text = [NSString stringWithFormat:@"我已邀请%@人，获得%@元现金", peple, amount];
+    NSString *text = [NSString stringWithFormat:@"我已邀请%@人，获得%@usdt现金", peple, amount];
 
     NSRange rangeA = [text rangeOfString:peple];
     NSString *tempText = [text componentsSeparatedByString:@"，"].lastObject;
@@ -159,7 +159,7 @@
         // 显示超文本
         ResultItem *item = array[i];
         NSString *amount = [NSString stringWithFormat:@"%.2ld", item.agentCommission];
-        NSString *text = [NSString stringWithFormat:@"%@推荐好友成功，获得%@元礼金    ",item.loginName, amount];
+        NSString *text = [NSString stringWithFormat:@"%@推荐好友成功，获得%@usdt礼金       ",item.loginName, amount];
         NSRange range = [text rangeOfString:amount];
         NSMutableAttributedString *aStr = [[NSMutableAttributedString alloc] initWithString:text];
         [aStr addAttribute:NSForegroundColorAttributeName value:kHexColor(0xD80052) range:range];

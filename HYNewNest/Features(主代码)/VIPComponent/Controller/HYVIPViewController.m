@@ -296,7 +296,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
             return;
         }
         [CNVIPRequest vipsxhIsShowReportHandler:^(id responseObj, NSString *errorMsg) {
-            if (KIsEmptyString(errorMsg) && [responseObj[@"flag"] integerValue] == 1) {
+            if (KIsEmptyString(errorMsg) && [responseObj[@"flag"] integerValue] == 1 && self.childViewControllers.count == 0) {
                 VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
                 vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
                 //添加子控制器 该方法调用了willMoveToParentViewController：方法
