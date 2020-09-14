@@ -12,6 +12,9 @@
 #import "CNVIPRequest.h"
 
 @interface VIPMonthlyAlertsVC () <V_SlideCardDataSource, V_SlideCardDelegate, VIPMonlyAlertDelegate>
+{
+    BOOL _isDrawed;
+}
 @property (nonatomic, strong) V_SlideCard *slideCard;
 @property (nonatomic, strong) NSArray *listData;
 @property (nonatomic, strong) VIPMonthlyModel *model;
@@ -61,6 +64,7 @@
     [CNVIPRequest vipsxhDrawGiftMoneyLevelStatus:[NSString stringWithFormat:@"%@",self.model.clubLevel]
                                          handler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
+            self->_isDrawed = YES;
             [CNHUB showSuccess:@"领取成功"];
             [self.slideCard animateTopCardToDirection:PanDirectionLeft];
         }
@@ -99,17 +103,17 @@
 //
 //}
 //
-//- (void)slideCard:(V_SlideCard *)slideCard topCell:(V_SlideCardCell *)cell didChangedStateWithDirection:(PanDirection)direction atIndex:(NSInteger)index {
-//    if (index == 0 && self.model.preRequest) {
-//        // 领取礼金
-//        [CNVIPRequest vipsxhDrawGiftMoneyLevelStatus:[NSString stringWithFormat:@"%@",self.model.clubLevel]
-//                                             handler:^(id responseObj, NSString *errorMsg) {
-//            if (KIsEmptyString(errorMsg)) {
-//                [CNHUB showSuccess:@"已为您自动领取礼金"];
-//            }
-//        }];
-//    }
-//}
+- (void)slideCard:(V_SlideCard *)slideCard topCell:(V_SlideCardCell *)cell didChangedStateWithDirection:(PanDirection)direction atIndex:(NSInteger)index {
+    if (index == 0 && self.model.preRequest && _isDrawed == NO) {
+        // 领取礼金
+        [CNVIPRequest vipsxhDrawGiftMoneyLevelStatus:[NSString stringWithFormat:@"%@",self.model.clubLevel]
+                                             handler:^(id responseObj, NSString *errorMsg) {
+            if (KIsEmptyString(errorMsg)) {
+                [CNHUB showSuccess:@"已为您自动领取入会礼金"];
+            }
+        }];
+    }
+}
 //
 //- (void)slideCard:(V_SlideCard *)slideCard didResetFrameInCell:(V_SlideCardCell *)cell atIndex:(NSInteger)index {
 //
