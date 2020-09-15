@@ -47,6 +47,7 @@
     
     UILabel *topSubLb = [[UILabel alloc] init];
     topSubLb.text = @"( 5月累计入会500名,祝贺他们! ) ";
+    topSubLb.textColor = kHexColor(0x000000);
     topSubLb.font = [UIFont fontPFR12];
     topSubLb.textAlignment = NSTextAlignmentCenter;
     topSubLb.frame = CGRectMake(0, topTitleLb.bottom+AD(2), self.contentView.width, AD(17));
