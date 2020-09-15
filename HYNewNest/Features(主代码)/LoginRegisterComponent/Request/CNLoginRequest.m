@@ -30,8 +30,11 @@
     NSMutableDictionary *paras = [NSMutableDictionary new];
     paras[@"productId"] = @"A03";
     paras[@"use"] = @(type);
-//    paras[@"mobileNo"] = [CNEncrypt encryptString:phone];
-    paras[@"mobileNo"] = phone;
+//#ifdef DEBUG
+//    paras[@"mobileNo"] = phone;
+//#else
+    paras[@"mobileNo"] = [CNEncrypt encryptString:phone];
+//#endif
     
     [self POST:kGatewayPath(config_SendCodePhone) parameters:paras completionHandler:completionHandler];
 }
@@ -76,14 +79,14 @@
     NSMutableDictionary *paras = [NSMutableDictionary new];
     paras[@"productId"] = @"A03";
     paras[@"messageId"] = messageId;
-    // ???: 加密就会失败
-//    paras[@"loginName"] = [CNEncrypt encryptString:account];
-//    paras[@"verifyStr"] = [CNEncrypt encryptString:password];
-//    paras[@"loginName"] = [HYEncryptor encryptString:account publicKey:PublicKey];
-//    paras[@"verifyStr"] = [HYEncryptor encryptString:password publicKey:PublicKey];
+//#ifdef DEBUG
+//    paras[@"loginName"] = account;
+//    paras[@"verifyStr"] = password;
+//#else
+    paras[@"loginName"] = [CNEncrypt encryptString:account];
+    paras[@"verifyStr"] = [CNEncrypt encryptString:password];
+//#endif
 
-    paras[@"loginName"] = account;
-    paras[@"verifyStr"] = password;
     if (!KIsEmptyString(imageCode)) {
         paras[@"captcha"] = imageCode;
         paras[@"captchaId"] = imageCodeId;
@@ -159,8 +162,11 @@
     
     NSMutableDictionary *paras = [kNetworkMgr baseParam];
     paras[@"loginName"] = loginName;
-//    paras[@"password"] = [CNEncrypt encryptString:password];
-    paras[@"password"] = password;
+//#ifdef DEBUG
+//    paras[@"password"] = password;
+//#else
+    paras[@"password"] = [CNEncrypt encryptString:password];
+//#endif
 
     [self POST:kGatewayPath(config_registUserName) parameters:paras completionHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
@@ -211,10 +217,13 @@
      completionHandler:(HandlerBlock)completionHandler {
     
     NSMutableDictionary *paras = [kNetworkMgr baseParam];
-//    paras[@"oldPassword"] = [CNEncrypt encryptString:oldPassword];
-//    paras[@"newPassword"] = [CNEncrypt encryptString:newPassword];
-    paras[@"oldPassword"] = oldPassword;
-    paras[@"newPassword"] = newPassword;
+//#ifdef DEBUG
+//    paras[@"oldPassword"] = oldPassword;
+//    paras[@"newPassword"] = newPassword;
+//#else
+    paras[@"oldPassword"] = [CNEncrypt encryptString:oldPassword];
+    paras[@"newPassword"] = [CNEncrypt encryptString:newPassword];
+//#endif
     paras[@"type"] = @"1";
     
     [self POST:kGatewayPath(config_modifyPwd) parameters:paras completionHandler:completionHandler];
@@ -246,8 +255,11 @@
     paramDic[@"type"] = @2;
     paramDic[@"use"] = @2;
     paramDic[@"loginName"] = loginName;
-//    paramDic[@"newPassword"] = [CNEncrypt encryptString:newPassword];
-    paramDic[@"newPassword"] = newPassword;
+//#ifdef DEBUG
+//    paramDic[@"newPassword"] = newPassword;
+//#else
+    paramDic[@"newPassword"] = [CNEncrypt encryptString:newPassword];
+//#endif
     paramDic[@"smsCode"] = smsCode;
     paramDic[@"validateId"] = validateId;
     paramDic[@"messageId"] = messageId;

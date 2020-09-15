@@ -54,6 +54,10 @@
     CGFloat itemSpace = 12;
     self.scrollView.contentSize = CGSizeMake( (itemW + itemSpace) * _itemCount, 0);
     self.scrollView.delegate = self;
+    if (_itemCount == 1) {
+        self.closeBtn.hidden = NO;
+        self.pageC.hidden = YES;
+    }
     // 创建图片视图
     CGRect frame = CGRectMake(0, 0, itemW, itemH);
     for (int i = 0; i < _itemCount; i++) {
