@@ -8,21 +8,7 @@
 
 #import "TopTabAGUltimateView.h"
 #import "HYHTMLViewController.h"
-//#import "RechargeViewController.h"
-//#import "RegisterViewController.h"
-//#import "LoginViewController.h"
-//#import "RegistBindViewController.h"
-//#import "TXViewController.h"
-//#import "AddBankCardViewController.h"
-//#import "AGFlagViewController.h"
-//#import "IntegralViewController.h"
-//#import "PersonInfoViewController.h"
-//#import "DYViewController.h"
-//#import "ShareListPopView.h"
-//#import "CNTimeLog.h"
-//#import "LoadingView.h"
-//#import "LoginAPIData.h"
-//#import "ChatMsgLive800Manager.h"
+#import "HYInGameHelper.h"
 
 @interface TopTabAGUltimateView()<WKNavigationDelegate, WKUIDelegate> //WKScriptMessageHandler  要加协议
 
@@ -129,6 +115,11 @@
     
     MyLog(@"log---->didStartProvisionalNavigation %@ \n",[webView.URL absoluteString]);
     NSString *absoluteString = webView.URL.absoluteString;
+    
+    // 百家乐大师赛
+    if ([absoluteString containsString:@"hy://agqj"]) {
+        [[HYInGameHelper sharedInstance] inGame:InGameTypeAGQJ];
+    }
     
     if ([absoluteString containsString:@"landscape.html"] ||
         [absoluteString containsString:@"sensor.html"]) {

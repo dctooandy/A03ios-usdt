@@ -9,6 +9,8 @@
 #import "HYNetworkConfigManager.h"
 #import "CNUserManager.h"
 #import "CNHUB.h"
+#import "CNSplashRequest.h"
+#import "HYInGameHelper.h"
 
 @interface HYNetworkConfigManager ()
 @property (nonatomic, assign, readwrite) IVNEnvironment environment;
@@ -49,12 +51,28 @@
 //Debug才会进入
 - (void)switchEnvirnment {
 #ifdef DEBUG
+    // 切换环境 保存
     self.environment += 1;
     if (self.environment > IVNEnvironmentPublish) {
         self.environment = IVNEnvironmentDevelop;
     }
     [[NSUserDefaults standardUserDefaults] setInteger:self.environment forKey:@"IVNEnvironment"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    // 重新加载游戏线路信息
+    [[HYInGameHelper sharedInstance] queryHomeInGamesStatus];
+    
+    // 重新获取H5/CDN
+    [CNSplashRequest queryCDNH5Domain:^(id responseObj, NSString *errorMsg) {
+        NSString *cdnAddr = responseObj[@"csdnAddress"];
+        NSString *h5Addr = responseObj[@"h5Address"];
+        if ([cdnAddr containsString:@","]) {
+            cdnAddr = [cdnAddr componentsSeparatedByString:@","].firstObject;
+        }
+        [IVHttpManager shareManager].cdn = cdnAddr;
+        [IVHttpManager shareManager].domain = h5Addr;
+    }];
+
 #endif
 }
 
@@ -101,8 +119,6 @@
         case IVNEnvironmentPublish:
         {
             envName = @"运营环境";
-//            [IVHttpManager shareManager].gateway = @"http://115bi.com";
-//            [IVHttpManager shareManager].gateways = @[@"http://115bi.com"];
             [IVHttpManager shareManager].gateway = @"https://www.hygame03.com";
             [IVHttpManager shareManager].gateways = @[@"https://www.hygame03.com", @"https://hygame01.com",@"https://hygame02.com",@"https://hygame04.com",@"https://hygame05.com",@"https://hygame06.com"];
             break;
@@ -117,9 +133,9 @@
     
 #ifdef DEBUG
     [kKeywindow jk_makeToast:[IVHttpManager shareManager].gateway
-                    duration:3
+                    duration:4
                     position:JKToastPositionCenter
-                       title:[NSString stringWithFormat:@"😄已切换到【%@】",envName]];
+                       title:[NSString stringWithFormat:@"😄已切换到%ld --【%@】",environment ,envName]];
 #endif
 }
 
