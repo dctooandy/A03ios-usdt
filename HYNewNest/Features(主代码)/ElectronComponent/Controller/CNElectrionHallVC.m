@@ -262,8 +262,6 @@ typedef enum : NSUInteger {
                 [numTypes appendString:@","];
             }
         }
-    } else {
-        numTypes = @"0".mutableCopy;
     }
     // 平台
     NSArray *platforms = @[];
@@ -453,7 +451,7 @@ typedef enum : NSUInteger {
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    __block ElecGameModel *model;
+    ElecGameModel *model;
     // 区分不同数据源即可，没有点击事件可忽略
     if ([collectionView isEqual:self.baoJiangCV]) { //高爆
         model = self.highGames[indexPath.row];
