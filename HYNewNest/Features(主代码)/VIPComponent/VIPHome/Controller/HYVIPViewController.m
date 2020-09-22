@@ -18,6 +18,7 @@
 #import "CNMessageBoxView.h"
 #import "VIPTwoChartVC.h"
 #import "CNLoginRegisterVC.h"
+#import "HYVIPCumulateIdVC.h"
 
 static NSString * const kVIPCardCCell = @"VIPCardCCell";
 @interface HYVIPViewController () <UUMarqueeViewDelegate>
@@ -260,8 +261,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 }
 
 - (IBAction)didTapLJSF:(id)sender {
-    MyLog(@"累计身份");
-    [CNHUB showWaiting:@"十月来袭 敬请期待"];
+    [self.navigationController pushViewController:[HYVIPCumulateIdVC new] animated:YES];
 }
 
 

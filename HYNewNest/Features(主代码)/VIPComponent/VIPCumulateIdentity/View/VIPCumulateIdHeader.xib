@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="VIPCumulateIdHeader">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="39"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赌尊区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4A1-xx-yfy">
+                    <rect key="frame" x="0.0" y="9" width="55.5" height="21"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3n-aV-fiZ">
+                    <rect key="frame" x="384" y="6" width="30" height="27"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="赌侠">
+                        <color key="titleColor" red="0.75686274509803919" green="0.74901960784313726" blue="0.73333333333333328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapSwitchRankBtn:" destination="-1" eventType="touchUpInside" id="MpX-5g-b9J"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJ4-i5-ZZh">
+                    <rect key="frame" x="336" y="6" width="30" height="27"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="赌霸">
+                        <color key="titleColor" red="0.75686274509999996" green="0.74901960779999999" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapSwitchRankBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="Y8k-Qi-DiW"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wv-0p-2nC">
+                    <rect key="frame" x="288" y="6" width="30" height="27"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="赌王">
+                        <color key="titleColor" red="0.75686274509999996" green="0.74901960779999999" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapSwitchRankBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="EaI-gp-FAs"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xr8-F4-8Cu">
+                    <rect key="frame" x="240" y="6" width="30" height="27"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="赌圣">
+                        <color key="titleColor" red="0.75686274509999996" green="0.74901960779999999" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapSwitchRankBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="2ST-eV-sO7"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RZi-Xh-9mw">
+                    <rect key="frame" x="192" y="6" width="30" height="27"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="赌神">
+                        <color key="titleColor" red="0.75686274509999996" green="0.74901960779999999" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapSwitchRankBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ivg-MG-9Rt"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="RZi-Xh-9mw" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2vO-3N-4NC"/>
+                <constraint firstItem="9wv-0p-2nC" firstAttribute="leading" secondItem="Xr8-F4-8Cu" secondAttribute="trailing" constant="18" id="4mE-Xg-gdF"/>
+                <constraint firstAttribute="trailing" secondItem="n3n-aV-fiZ" secondAttribute="trailing" id="ASI-gc-Jmf"/>
+                <constraint firstItem="9wv-0p-2nC" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Cr8-Ea-Qm2"/>
+                <constraint firstItem="MJ4-i5-ZZh" firstAttribute="leading" secondItem="9wv-0p-2nC" secondAttribute="trailing" constant="18" id="F63-Sw-IfJ"/>
+                <constraint firstItem="n3n-aV-fiZ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="H8x-PU-OTG"/>
+                <constraint firstItem="4A1-xx-yfy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="RtD-cj-B32"/>
+                <constraint firstItem="Xr8-F4-8Cu" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Tvf-11-2ta"/>
+                <constraint firstItem="4A1-xx-yfy" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="VoY-eF-G3E"/>
+                <constraint firstItem="Xr8-F4-8Cu" firstAttribute="leading" secondItem="RZi-Xh-9mw" secondAttribute="trailing" constant="18" id="n8j-of-Lm8"/>
+                <constraint firstItem="MJ4-i5-ZZh" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="oCz-1M-IG2"/>
+                <constraint firstItem="n3n-aV-fiZ" firstAttribute="leading" secondItem="MJ4-i5-ZZh" secondAttribute="trailing" constant="18" id="qfM-uu-bom"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="btnRIght4" destination="RZi-Xh-9mw" id="6vB-x4-756"/>
+                <outlet property="btnRight0" destination="n3n-aV-fiZ" id="x7i-9G-j7j"/>
+                <outlet property="btnRight1" destination="MJ4-i5-ZZh" id="Cqx-ID-BCQ"/>
+                <outlet property="btnRight2" destination="9wv-0p-2nC" id="vv3-M5-qRx"/>
+                <outlet property="btnRight3" destination="Xr8-F4-8Cu" id="nnl-7R-HsT"/>
+                <outlet property="lblLeft" destination="4A1-xx-yfy" id="sHf-vZ-ap3"/>
+            </connections>
+            <point key="canvasLocation" x="336" y="248"/>
+        </view>
+    </objects>
+</document>
