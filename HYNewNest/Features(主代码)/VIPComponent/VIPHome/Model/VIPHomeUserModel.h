@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * zzzpTime;
 @end
 
-
+/// 私享会用户模型
 @interface VIPHomeUserModel :CNBaseModel
 @property (nonatomic , strong) VipRhqk              * vipRhqk;
 @property (nonatomic , strong) VipScjz              * vipScjz;

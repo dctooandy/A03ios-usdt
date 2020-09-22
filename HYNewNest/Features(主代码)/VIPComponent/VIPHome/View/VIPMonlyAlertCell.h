@@ -27,6 +27,7 @@ typedef NS_ENUM(NSInteger, VIPMonlyAlertType) {
 - (void)didTapNextOne;
 @end
 
+/// 月报卡片样式cell
 @interface VIPMonlyAlertCell : V_SlideCardCell
 
 - (void)setupAlertType:(VIPMonlyAlertType)type delegate:(id)delegate dataDict:(VIPMonthlyModel *)model;

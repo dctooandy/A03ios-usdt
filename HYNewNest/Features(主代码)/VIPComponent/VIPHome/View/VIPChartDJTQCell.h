@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 等级特权
 @interface VIPChartDJTQCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *lbFirst;
 @property (weak, nonatomic) IBOutlet UILabel *lbSecond;

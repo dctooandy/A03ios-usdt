@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// 大神榜用户模型
 @interface VIPDSBUsrModel :CNBaseModel
 @property (nonatomic , copy) NSString              * clubLevel;
 @property (nonatomic , copy) NSString              * clubName;
