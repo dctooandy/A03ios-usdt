@@ -9,6 +9,7 @@
 #import "HYVIPCumulateIdVC.h"
 #import "VIPCumulateIdCell.h"
 #import "VIPCumulateIdHeader.h"
+#import "HYVIPRuleAlertView.h"
 
 static NSString * const CUMIDCELL = @"VIPCumulateIdCell";
 static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
@@ -39,7 +40,13 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 - (void)viewDidLoad {
     [super viewDidLoad];
  
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     [self setupUI];
+    //TODO: liebiaoshuju
 }
 
 - (void)setupUI {
@@ -52,7 +59,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
         _stackViewLJSF.hidden = NO;
         _btnLogin.hidden = YES;
         _lblPlsLogin.hidden = YES;
-        //TODO: shenfen cishu
+        [self vipHomeData];
         
     } else {
         _stackViewLJSF.hidden = YES;
@@ -72,6 +79,37 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
     
     [_tableView registerNib:[UINib nibWithNibName:CUMIDCELL bundle:nil] forCellReuseIdentifier:CUMIDCELL];
     [_tableView registerNib:[UINib nibWithNibName:CUMIDHEADER bundle:nil] forHeaderFooterViewReuseIdentifier:CUMIDHEADER];
+}
+
+- (void)setupUIDatas {
+    _lblDuXiaNum.text = [NSString stringWithFormat:@"%ld", self.sxhModel.historyBet.betXiaCount];
+    _lblDuBaNum.text = [NSString stringWithFormat:@"%ld", self.sxhModel.historyBet.betBaCount];
+    _lblDuKingNum.text = [NSString stringWithFormat:@"%ld", self.sxhModel.historyBet.betKingCount];
+    _lblDuSaintNum.text = [NSString stringWithFormat:@"%ld", self.sxhModel.historyBet.betSaintCount];
+    _lblDuGodNum.text = [NSString stringWithFormat:@"%ld", self.sxhModel.historyBet.betGoldCount];
+    _lblDuzunNum.text = [NSString stringWithFormat:@"%ld", self.sxhModel.historyBet.betZunCount];
+}
+
+
+#pragma mark - Request
+- (void)vipHomeData {
+    [CNVIPRequest vipsxhHomeHandler:^(id responseObj, NSString *errorMsg) {
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            VIPHomeUserModel *model = [VIPHomeUserModel cn_parse:responseObj];
+            self.sxhModel = model;
+            [self setupUIDatas];
+        }
+    }];
+}
+
+
+#pragma mark - ACTION
+- (IBAction)didTapRuleBtn:(id)sender {
+    [HYVIPRuleAlertView showCumulateIdentityRule];
+}
+
+- (IBAction)didTapLoginBtn:(id)sender {
+    [NNPageRouter jump2Login];
 }
 
 

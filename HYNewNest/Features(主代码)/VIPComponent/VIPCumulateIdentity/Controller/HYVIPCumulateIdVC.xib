@@ -47,6 +47,9 @@
                     <state key="normal" title="规则">
                         <color key="titleColor" red="0.26666666666666666" green="0.13333333333333333" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="didTapRuleBtn:" destination="-1" eventType="touchUpInside" id="rPg-sT-mzL"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zqB-YL-GPX">
                     <rect key="frame" x="16" y="216.5" width="382" height="70"/>
@@ -57,16 +60,19 @@
                             <color key="textColor" red="0.33333333333333331" green="0.27450980392156865" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JPJ-eh-Rz3">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JPJ-eh-Rz3" customClass="VIPCumulateIdButton">
                             <rect key="frame" x="279" y="12" width="94" height="46"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="94" id="GMk-1Z-Z6d"/>
                                 <constraint firstAttribute="height" constant="46" id="Y1k-OM-yUs"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                            <state key="normal" title="请登录">
+                            <state key="normal" title="请登录" backgroundImage="ljsfbtn">
                                 <color key="titleColor" red="0.41960784313725491" green="0.27450980392156865" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="didTapLoginBtn:" destination="-1" eventType="touchUpInside" id="JqB-uP-Q3G"/>
+                            </connections>
                         </button>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9pH-Af-Axw">
                             <rect key="frame" x="0.0" y="0.0" width="382" height="70"/>
@@ -289,13 +295,13 @@
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您的累计身份次数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TlT-St-4VJ">
                     <rect key="frame" x="16" y="190.5" width="106.5" height="16"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghk-cM-DPM">
                     <rect key="frame" x="344" y="184.5" width="54" height="28"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                     <state key="normal" title="领取记录">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
@@ -329,10 +335,11 @@
                 <constraint firstItem="zqB-YL-GPX" firstAttribute="leading" secondItem="PUh-gS-5jg" secondAttribute="leading" constant="16" id="xYY-kc-2Mq"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="PUh-gS-5jg"/>
-            <point key="canvasLocation" x="184" y="-265"/>
+            <point key="canvasLocation" x="-145" y="-532"/>
         </view>
     </objects>
     <resources>
+        <image name="ljsfbtn" width="92" height="46"/>
         <image name="编组 2" width="375" height="228"/>
     </resources>
 </document>

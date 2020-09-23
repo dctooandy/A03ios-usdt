@@ -7,11 +7,12 @@
 //
 
 #import "VIPCumulateIdCell.h"
+#import "VIPCumulateIdButton.h"
 
 @interface VIPCumulateIdCell ()
 @property (weak, nonatomic) IBOutlet UIView *centerBGView;
 @property (weak, nonatomic) IBOutlet UIButton *btnExpand;
-@property (weak, nonatomic) IBOutlet UIButton *btnReceive;
+@property (weak, nonatomic) IBOutlet VIPCumulateIdButton *btnReceive;
 
 @end
 
@@ -26,6 +27,12 @@
     _btnExpand.backgroundColor = kHexColorAlpha(0x000000, 0.4);
     _btnExpand.layer.cornerRadius = 1;
     _btnExpand.layer.masksToBounds = YES;
+    
+    if (arc4random_uniform(4)%2 == 0) {
+        _btnReceive.enabled = YES;
+    } else {
+        _btnReceive.enabled = NO;
+    }
 }
 
 - (void)layoutSubviews {

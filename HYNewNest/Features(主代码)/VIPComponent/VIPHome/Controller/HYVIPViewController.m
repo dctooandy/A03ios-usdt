@@ -261,7 +261,11 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 }
 
 - (IBAction)didTapLJSF:(id)sender {
-    [self.navigationController pushViewController:[HYVIPCumulateIdVC new] animated:YES];
+    HYVIPCumulateIdVC *vc = [HYVIPCumulateIdVC new];
+    if (self.sxhModel) {
+        vc.sxhModel = self.sxhModel;
+    }
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

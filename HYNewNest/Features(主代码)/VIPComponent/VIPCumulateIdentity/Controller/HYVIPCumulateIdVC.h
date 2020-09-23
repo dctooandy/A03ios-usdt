@@ -7,11 +7,12 @@
 //
 
 #import "CNBaseVC.h"
+#import "CNVIPRequest.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HYVIPCumulateIdVC : CNBaseVC
-
+@property (strong, nonatomic) VIPHomeUserModel *sxhModel;
 @end
 
 NS_ASSUME_NONNULL_END

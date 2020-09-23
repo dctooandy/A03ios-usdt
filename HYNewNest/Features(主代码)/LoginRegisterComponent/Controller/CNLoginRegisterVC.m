@@ -230,7 +230,9 @@ NSInteger AllowTotalWrongCount = 3;
                 
             } else {
                 [CNHUB showSuccess:@"登录成功"];
-                [strongSelf.navigationController popToRootViewControllerAnimated:YES];
+                if (![NNControllerHelper pop2ViewControllerClassString:@"CNHomeVC"]) {
+                    [strongSelf.navigationController popViewControllerAnimated:YES];
+                }
             }
         } else {
             if ([responseObj isEqualToString:LoginPassExpired_ErrorCode]) {

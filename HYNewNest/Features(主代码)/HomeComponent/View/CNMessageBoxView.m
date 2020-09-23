@@ -44,6 +44,8 @@
     alert.images = images;
     alert.tapBlock = tapBlock;
     [alert configUI];
+    
+    [NNControllerHelper currentTabBarController].tabBar.hidden = YES;
 }
 
 - (void)configUI {
@@ -63,13 +65,12 @@
     for (int i = 0; i < _itemCount; i++) {
         frame.origin.x = itemSpace*0.5 + (itemW + itemSpace) * i;
         UIImageView *iv = [[UIImageView alloc] initWithFrame:frame];
-        
         [self.scrollView addSubview:iv];
+//        iv.contentMode = UIViewContentModeCenter;
         iv.contentMode = UIViewContentModeScaleAspectFit;
 //        iv.backgroundColor = kHexColor(0x212137);
 //        iv.layer.cornerRadius = 8;
 //        iv.layer.masksToBounds = YES;
-        
         iv.userInteractionEnabled = YES;
         iv.tag = i;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImg:)];
@@ -81,6 +82,9 @@
             NSString *name = (NSString *)image;
             if ([name hasPrefix:@"http"]) {
                 [iv sd_setImageWithURL:[NSURL URLWithString:name]];
+//                [iv sd_setImageWithURL:[NSURL URLWithString:name] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+//
+//                }];
             } else {
                 iv.image = [UIImage imageNamed:name];
             }
@@ -104,6 +108,7 @@
 // 关闭页面
 - (IBAction)close:(id)sender {
     [self removeFromSuperview];
+    [NNControllerHelper currentTabBarController].tabBar.hidden = NO;
 }
 
 
@@ -171,6 +176,8 @@
             [onView addSubview:alert];
             
             [alert configVIPUI];
+            
+            [NNControllerHelper currentTabBarController].tabBar.hidden = YES;
         }
     }];
 }
@@ -206,6 +213,8 @@
 - (void)didTapBtn:(NSInteger)btnIdx {
     if (btnIdx == 3) {
         [self removeFromSuperview];
+        [NNControllerHelper currentTabBarController].tabBar.hidden = NO;
+        
     } else {
         //翻页
         CGFloat itemW = (kScreenWidth - 16*2);

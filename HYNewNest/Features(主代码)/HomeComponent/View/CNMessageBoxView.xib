@@ -22,27 +22,31 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jnG-qK-2Na">
-                    <rect key="frame" x="0.0" y="178.5" width="414" height="459"/>
+                    <rect key="frame" x="0.0" y="136" width="414" height="544"/>
                     <subviews>
                         <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdn-XT-46o">
-                            <rect key="frame" x="16" y="0.0" width="382" height="459"/>
+                            <rect key="frame" x="16" y="0.0" width="382" height="544"/>
                         </scrollView>
                     </subviews>
                     <constraints>
                         <constraint firstItem="tdn-XT-46o" firstAttribute="leading" secondItem="jnG-qK-2Na" secondAttribute="leading" constant="16" id="7kY-ho-lfF"/>
                         <constraint firstAttribute="trailing" secondItem="tdn-XT-46o" secondAttribute="trailing" constant="16" id="Cdt-dC-sVg"/>
-                        <constraint firstAttribute="height" constant="459" id="Nez-mq-2s9"/>
+                        <constraint firstAttribute="height" constant="544" id="Nez-mq-2s9"/>
                         <constraint firstItem="tdn-XT-46o" firstAttribute="top" secondItem="jnG-qK-2Na" secondAttribute="top" id="O5z-pw-RpA"/>
                         <constraint firstAttribute="bottom" secondItem="tdn-XT-46o" secondAttribute="bottom" id="uwZ-kP-a7f"/>
                     </constraints>
                 </view>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="MfP-76-EA1">
-                    <rect key="frame" x="187.5" y="637.5" width="39" height="37"/>
+                    <rect key="frame" x="187.5" y="685" width="39" height="37"/>
                     <color key="pageIndicatorTintColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="currentPageIndicatorTintColor" red="0.062745098040000002" green="0.70588235290000001" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                 </pageControl>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBY-xf-oIa">
-                    <rect key="frame" x="191.5" y="652.5" width="31" height="30"/>
+                    <rect key="frame" x="187" y="703" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="Pf8-yc-MsK"/>
+                        <constraint firstAttribute="height" constant="40" id="WZi-gb-Vnb"/>
+                    </constraints>
                     <state key="normal" image="circleClose"/>
                     <connections>
                         <action selector="close:" destination="-1" eventType="touchUpInside" id="Nnn-KX-pmN"/>
@@ -51,11 +55,11 @@
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="MfP-76-EA1" firstAttribute="top" secondItem="jnG-qK-2Na" secondAttribute="bottom" id="C7R-qF-9Uf"/>
+                <constraint firstItem="MfP-76-EA1" firstAttribute="top" secondItem="jnG-qK-2Na" secondAttribute="bottom" constant="5" id="C7R-qF-9Uf"/>
                 <constraint firstItem="jnG-qK-2Na" firstAttribute="leading" secondItem="0bx-rG-ZxG" secondAttribute="leading" id="ENC-mW-mkv"/>
                 <constraint firstItem="jnG-qK-2Na" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-40" id="Jer-ve-VFR"/>
                 <constraint firstItem="MfP-76-EA1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="edP-Ez-w0y"/>
-                <constraint firstItem="NBY-xf-oIa" firstAttribute="top" secondItem="jnG-qK-2Na" secondAttribute="bottom" constant="15" id="kRb-81-ugd"/>
+                <constraint firstItem="NBY-xf-oIa" firstAttribute="top" secondItem="jnG-qK-2Na" secondAttribute="bottom" constant="23" id="kRb-81-ugd"/>
                 <constraint firstItem="0bx-rG-ZxG" firstAttribute="trailing" secondItem="jnG-qK-2Na" secondAttribute="trailing" id="q9M-jF-eCO"/>
                 <constraint firstItem="NBY-xf-oIa" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="zEW-0Q-fAN"/>
             </constraints>
