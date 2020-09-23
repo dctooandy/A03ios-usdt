@@ -217,7 +217,12 @@
         }else{
             // 需要执行的方法写在这里
             [CNHomeRequest queryMessageBoxHandler:^(id responseObj, NSString *errorMsg) {
+                
                 NSArray<MessageBoxModel *> *models = [MessageBoxModel cn_parse:responseObj];
+                if (models.count == 0) {
+                    return;
+                }
+                
                 self.msgBoxModels = models;
                 NSMutableArray *imgs = @[].mutableCopy;
                 for (MessageBoxModel *m in models) {

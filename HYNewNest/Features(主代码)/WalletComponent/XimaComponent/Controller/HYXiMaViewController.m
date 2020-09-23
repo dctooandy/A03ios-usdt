@@ -14,6 +14,7 @@
 #import <MJRefresh.h>
 #import "HYXiMaSuccViewController.h"
 #import "HYWideOneBtnAlertView.h"
+#import "HYOneBtnAlertView.h"
 
 @interface HYXiMaViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet HYXiMaTopView *topView;
@@ -103,21 +104,34 @@ static NSString * const KXiMaCell = @"HYXiMaCell";
         [selTypeItems addObject:item];
     }
     WEAKSELF_DEFINE
-    [CNXiMaRequest xmCreateRequestXmBeginDate:self.xmCalAmountModel.xmBeginDate
-                                    xmEndDate:self.xmCalAmountModel.xmEndDate
-                                   xmRequests:selTypeItems
-                                      handler:^(id responseObj, NSString *errorMsg) {
-        STRONGSELF_DEFINE
-        if (KIsEmptyString(errorMsg)) {
-            [CNHUB showSuccess:@"洗码成功"];
-            [strongSelf.selectedIndexs removeAllObjects];
-            [strongSelf requestData];
-            // 到洗码完成
-            HYXiMaSuccViewController *vc = [HYXiMaSuccViewController new];
-            vc.totalAmount = self.amount;
-            [strongSelf.navigationController pushViewController:vc animated:YES];
+    [CNXiMaRequest xmCheckAvaliableHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+            if ([responseObj[@"flag"] isEqualToNumber:@(1)]) { //可以自主洗码
+                [CNXiMaRequest xmCreateRequestXmBeginDate:self.xmCalAmountModel.xmBeginDate
+                                                xmEndDate:self.xmCalAmountModel.xmEndDate
+                                               xmRequests:selTypeItems
+                                                  handler:^(id responseObj, NSString *errorMsg) {
+                    STRONGSELF_DEFINE
+                    if (KIsEmptyString(errorMsg)) {
+                        [CNHUB showSuccess:@"洗码成功"];
+                        [strongSelf.selectedIndexs removeAllObjects];
+                        [strongSelf requestData];
+                        // 到洗码完成
+                        HYXiMaSuccViewController *vc = [HYXiMaSuccViewController new];
+                        vc.totalAmount = self.amount;
+                        [strongSelf.navigationController pushViewController:vc animated:YES];
+                    }
+                }];
+
+            } else {
+                [HYOneBtnAlertView showWithTitle:@"温馨提示" content:@"新用户当周无法自主洗码，请等待下周一系统周洗码" comfirmText:@"我知道了" comfirmHandler:^{
+                }];
+            }
         }
+        
+        
     }];
+    
 }
 
 
@@ -229,7 +243,7 @@ static NSString * const KXiMaCell = @"HYXiMaCell";
     }
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     
-    if (self.selectedIndexs.count > 0) {
+    if (self.amount > 0) {
         self.washBtn.enabled = YES;
     }else{
         self.washBtn.enabled = NO;

@@ -118,6 +118,7 @@
 #define config_xmCalcAmountV3     @"xm/calcAmountV3"   //查询洗码平台类型额度列表
 #define config_xmcreateRequest     @"xm/createRequest"//  创建洗码提案
 #define config_xmdeleteRequest     @"xm/deleteRequest" // 删除洗码记录
+#define config_xmCheckIsCanXm      @"a03/szsc/isxm"
 
 #pragma mark 取款
 #define config_drawCreateRequest  @"withdraw/createRequest"   //取款 提现接口

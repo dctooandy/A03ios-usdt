@@ -10,6 +10,10 @@
 
 @implementation CNXiMaRequest
 
++ (void)xmCheckAvaliableHandler:(HandlerBlock)handler {
+    [self POST:kGatewayExtraPath(config_xmCheckIsCanXm) parameters:[kNetworkMgr baseParam] completionHandler:handler];
+}
+
 + (void)xmQueryXmpPlatformHandler:(HandlerBlock)handler {
     [self POST:kGatewayPath(config_xmQueryXmpPlatform) parameters:[kNetworkMgr baseParam] completionHandler:handler];
 }

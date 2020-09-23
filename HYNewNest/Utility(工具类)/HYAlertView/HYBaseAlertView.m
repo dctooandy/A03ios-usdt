@@ -38,7 +38,7 @@
     [kKeywindow addSubview:self];
     [kKeywindow bringSubviewToFront:self];
     
-    [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.bgView.alpha = 1.0;
         self.contentView.alpha = 1.0;
         self.contentView.transform = CGAffineTransformIdentity;
@@ -48,7 +48,7 @@
 }
 
 - (void)dismiss {
-    [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.bgView.alpha = 0.0;
         self.contentView.alpha = 0.0;
         self.contentView.transform = CGAffineTransformMakeScale(0.5, 0.5);;

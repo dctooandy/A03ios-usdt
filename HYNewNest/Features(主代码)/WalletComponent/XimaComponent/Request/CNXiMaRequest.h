@@ -14,14 +14,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CNXiMaRequest : CNBaseNetworking
 
+
+/// 洗码之前调用 查询是否用户可以洗码
++ (void)xmCheckAvaliableHandler:(HandlerBlock)handler;
+
+
 /// 查询所有游戏厅洗码列表
-/// @param handler 回调
 + (void)xmQueryXmpPlatformHandler:(HandlerBlock)handler;
 
 
 /// 查询洗码额度
 /// @param xmTypeArr 洗码类型数组 @[XmPlatformListItem.xmType]
-/// @param handler 回调
 + (void)xmCalcAmountV3WithXmTypes:(NSArray *)xmTypeArr handler:(HandlerBlock)handler;
 
 
