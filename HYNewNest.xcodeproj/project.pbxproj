@@ -201,6 +201,7 @@
 		3D41DE9C2519F9C6000CA1D6 /* VIPCumulateIdHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D41DE9B2519F9C6000CA1D6 /* VIPCumulateIdHeader.xib */; };
 		3D41DE9F251A0F59000CA1D6 /* HYVIPRuleAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DE9E251A0F59000CA1D6 /* HYVIPRuleAlertView.m */; };
 		3D41DEA5251AF662000CA1D6 /* VIPCumulateIdButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEA4251AF662000CA1D6 /* VIPCumulateIdButton.m */; };
+		3D41DEA8251B4A45000CA1D6 /* HYVIPReceiveAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEA7251B4A45000CA1D6 /* HYVIPReceiveAlertView.m */; };
 		3D564E2024F3C02C006846DD /* MessageBoxModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D564E1F24F3C02C006846DD /* MessageBoxModel.m */; };
 		3D643F7724F253E300B9AAA7 /* HYEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F7524F253E200B9AAA7 /* HYEncryptor.m */; };
 		3D643F8824F29F3600B9AAA7 /* AlertViewHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F7D24F29F3600B9AAA7 /* AlertViewHelp.m */; };
@@ -1221,6 +1222,8 @@
 		3D41DE9E251A0F59000CA1D6 /* HYVIPRuleAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYVIPRuleAlertView.m; sourceTree = "<group>"; };
 		3D41DEA3251AF662000CA1D6 /* VIPCumulateIdButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPCumulateIdButton.h; sourceTree = "<group>"; };
 		3D41DEA4251AF662000CA1D6 /* VIPCumulateIdButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPCumulateIdButton.m; sourceTree = "<group>"; };
+		3D41DEA6251B4A45000CA1D6 /* HYVIPReceiveAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYVIPReceiveAlertView.h; sourceTree = "<group>"; };
+		3D41DEA7251B4A45000CA1D6 /* HYVIPReceiveAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYVIPReceiveAlertView.m; sourceTree = "<group>"; };
 		3D564E1E24F3C02C006846DD /* MessageBoxModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageBoxModel.h; sourceTree = "<group>"; };
 		3D564E1F24F3C02C006846DD /* MessageBoxModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageBoxModel.m; sourceTree = "<group>"; };
 		3D643F7524F253E200B9AAA7 /* HYEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYEncryptor.m; sourceTree = "<group>"; };
@@ -4138,6 +4141,8 @@
 				3DE3CA9224ED5CFC00D591C4 /* HYUpdateAlertView.m */,
 				3D41DE9D251A0F59000CA1D6 /* HYVIPRuleAlertView.h */,
 				3D41DE9E251A0F59000CA1D6 /* HYVIPRuleAlertView.m */,
+				3D41DEA6251B4A45000CA1D6 /* HYVIPReceiveAlertView.h */,
+				3D41DEA7251B4A45000CA1D6 /* HYVIPReceiveAlertView.m */,
 			);
 			path = HYAlertView;
 			sourceTree = "<group>";
@@ -5431,6 +5436,7 @@
 				3D3A9B6A24FA3696003FB33C /* DXRadianLayerView.m in Sources */,
 				0487C9CD24D133270013715A /* CNRecordTypeSelectorView.m in Sources */,
 				3DE3CA9324ED5CFC00D591C4 /* HYUpdateAlertView.m in Sources */,
+				3D41DEA8251B4A45000CA1D6 /* HYVIPReceiveAlertView.m in Sources */,
 				E98BEEE824D023B200E6B0C8 /* LYEmptyBaseView.m in Sources */,
 				044DC69124DD01AA005CB550 /* CNShareView.m in Sources */,
 				04C6E1E624D4029D006F4DAC /* CNAddressManagerVC.m in Sources */,

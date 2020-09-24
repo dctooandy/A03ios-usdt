@@ -8,6 +8,7 @@
 
 #import "VIPCumulateIdCell.h"
 #import "VIPCumulateIdButton.h"
+#import "HYVIPReceiveAlertView.h"
 
 @interface VIPCumulateIdCell ()
 @property (weak, nonatomic) IBOutlet UIView *centerBGView;
@@ -46,6 +47,14 @@
 
     // Configure the view for the selected state
 }
+
+- (IBAction)didTapBtnReceive:(id)sender {
+    MyLog(@"Receive Gift");
+    [HYVIPReceiveAlertView showReceiveAlertTimes:3 gift:@"18线嫩模" comfirmHandler:^(BOOL isComfirm) {
+        MyLog(@"sdfsdfsdgaOOXXXOXXX");
+    }];
+}
+
 
 - (IBAction)didTapBtnExpand:(id)sender {
     MyLog(@"Expandddd");

@@ -48,6 +48,9 @@
                                 <state key="normal" title="领取">
                                     <color key="titleColor" red="0.41960784313725491" green="0.27450980392156865" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="didTapBtnReceive:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="tXE-35-mCA"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.49803921568627452" green="0.4823529411764706" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -90,7 +93,7 @@
                 <outlet property="btnReceive" destination="Cub-8K-bxQ" id="Ng5-4u-QMt"/>
                 <outlet property="centerBGView" destination="IA4-1H-QG1" id="yC7-5x-Naw"/>
             </connections>
-            <point key="canvasLocation" x="22" y="85"/>
+            <point key="canvasLocation" x="153" y="3"/>
         </tableViewCell>
     </objects>
     <resources>

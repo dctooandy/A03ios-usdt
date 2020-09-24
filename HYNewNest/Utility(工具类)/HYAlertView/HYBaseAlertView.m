@@ -18,8 +18,8 @@
 - (UIView *)bgView {
     if (!_bgView) {
         _bgView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        _bgView.backgroundColor = kHexColorAlpha(0x000000, 0.7);
-        _bgView.alpha = 0.0;
+        _bgView.backgroundColor = kHexColorAlpha(0x000000, 0.8);
+        _bgView.alpha = 0.1;
     }
     return _bgView;
 }
@@ -28,8 +28,8 @@
     if (!_contentView) {
         _contentView = [[UIView alloc] init];
         _contentView.backgroundColor = kHexColor(0x343452);
-        _contentView.transform = CGAffineTransformMakeScale(0.5, 0.5);
-        _contentView.alpha = 0.0;
+        _contentView.transform = CGAffineTransformMakeScale(0.2, 0.2);
+        _contentView.alpha = 0.1;
     }
     return _contentView;
 }
@@ -38,7 +38,7 @@
     [kKeywindow addSubview:self];
     [kKeywindow bringSubviewToFront:self];
     
-    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.bgView.alpha = 1.0;
         self.contentView.alpha = 1.0;
         self.contentView.transform = CGAffineTransformIdentity;
@@ -48,10 +48,10 @@
 }
 
 - (void)dismiss {
-    [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        self.bgView.alpha = 0.0;
-        self.contentView.alpha = 0.0;
-        self.contentView.transform = CGAffineTransformMakeScale(0.5, 0.5);;
+    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.bgView.alpha = 0.1;
+        self.contentView.alpha = 0.1;
+        self.contentView.transform = CGAffineTransformMakeScale(0.2, 0.2);;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
