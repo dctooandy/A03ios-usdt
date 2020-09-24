@@ -202,6 +202,8 @@
 		3D41DE9F251A0F59000CA1D6 /* HYVIPRuleAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DE9E251A0F59000CA1D6 /* HYVIPRuleAlertView.m */; };
 		3D41DEA5251AF662000CA1D6 /* VIPCumulateIdButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEA4251AF662000CA1D6 /* VIPCumulateIdButton.m */; };
 		3D41DEA8251B4A45000CA1D6 /* HYVIPReceiveAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEA7251B4A45000CA1D6 /* HYVIPReceiveAlertView.m */; };
+		3D41DEAB251C82F6000CA1D6 /* VIPIdentityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEAA251C82F6000CA1D6 /* VIPIdentityModel.m */; };
+		3D41DEAE251CC6FD000CA1D6 /* UIColor+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEAD251CC6FD000CA1D6 /* UIColor+Gradient.m */; };
 		3D564E2024F3C02C006846DD /* MessageBoxModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D564E1F24F3C02C006846DD /* MessageBoxModel.m */; };
 		3D643F7724F253E300B9AAA7 /* HYEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F7524F253E200B9AAA7 /* HYEncryptor.m */; };
 		3D643F8824F29F3600B9AAA7 /* AlertViewHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F7D24F29F3600B9AAA7 /* AlertViewHelp.m */; };
@@ -238,7 +240,6 @@
 		3DCFEA8C25009D020071F356 /* V_SlideCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8925009D010071F356 /* V_SlideCardCell.m */; };
 		3DCFEA9A25050AD90071F356 /* 方正兰亭大黑_GBK.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEA9925050AD90071F356 /* 方正兰亭大黑_GBK.ttf */; };
 		3DCFEAA1250624CD0071F356 /* TAExampleDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA9F250624CD0071F356 /* TAExampleDotView.m */; };
-		3DCFEABD2507ACDE0071F356 /* UIColor+HYExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEABC2507ACDE0071F356 /* UIColor+HYExtension.m */; };
 		3DE3CA8F24ECF6E300D591C4 /* CIRCULAR_06.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */; };
 		3DE3CA9024ECF6E300D591C4 /* CIRCULAR.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */; };
 		3DE3CA9324ED5CFC00D591C4 /* HYUpdateAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3CA9224ED5CFC00D591C4 /* HYUpdateAlertView.m */; };
@@ -1224,6 +1225,10 @@
 		3D41DEA4251AF662000CA1D6 /* VIPCumulateIdButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPCumulateIdButton.m; sourceTree = "<group>"; };
 		3D41DEA6251B4A45000CA1D6 /* HYVIPReceiveAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYVIPReceiveAlertView.h; sourceTree = "<group>"; };
 		3D41DEA7251B4A45000CA1D6 /* HYVIPReceiveAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYVIPReceiveAlertView.m; sourceTree = "<group>"; };
+		3D41DEA9251C82F6000CA1D6 /* VIPIdentityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPIdentityModel.h; sourceTree = "<group>"; };
+		3D41DEAA251C82F6000CA1D6 /* VIPIdentityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPIdentityModel.m; sourceTree = "<group>"; };
+		3D41DEAC251CC6FD000CA1D6 /* UIColor+Gradient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Gradient.h"; sourceTree = "<group>"; };
+		3D41DEAD251CC6FD000CA1D6 /* UIColor+Gradient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Gradient.m"; sourceTree = "<group>"; };
 		3D564E1E24F3C02C006846DD /* MessageBoxModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageBoxModel.h; sourceTree = "<group>"; };
 		3D564E1F24F3C02C006846DD /* MessageBoxModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageBoxModel.m; sourceTree = "<group>"; };
 		3D643F7524F253E200B9AAA7 /* HYEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYEncryptor.m; sourceTree = "<group>"; };
@@ -1298,8 +1303,6 @@
 		3DCFEA9925050AD90071F356 /* 方正兰亭大黑_GBK.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "方正兰亭大黑_GBK.ttf"; sourceTree = "<group>"; };
 		3DCFEA9F250624CD0071F356 /* TAExampleDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAExampleDotView.m; sourceTree = "<group>"; };
 		3DCFEAA0250624CD0071F356 /* TAExampleDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAExampleDotView.h; sourceTree = "<group>"; };
-		3DCFEABB2507ACDE0071F356 /* UIColor+HYExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+HYExtension.h"; sourceTree = "<group>"; };
-		3DCFEABC2507ACDE0071F356 /* UIColor+HYExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HYExtension.m"; sourceTree = "<group>"; };
 		3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CIRCULAR_06.mp4; sourceTree = "<group>"; };
 		3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CIRCULAR.png; sourceTree = "<group>"; };
 		3DE3CA9124ED5CFC00D591C4 /* HYUpdateAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYUpdateAlertView.h; sourceTree = "<group>"; };
@@ -2715,8 +2718,8 @@
 				E98BEF0D24D274F700E6B0C8 /* UILabel+Gradient.m */,
 				3DE3CA9424ED6AEC00D591C4 /* UILabel+Indicator.h */,
 				3DE3CA9524ED6AEC00D591C4 /* UILabel+Indicator.m */,
-				3DCFEABB2507ACDE0071F356 /* UIColor+HYExtension.h */,
-				3DCFEABC2507ACDE0071F356 /* UIColor+HYExtension.m */,
+				3D41DEAC251CC6FD000CA1D6 /* UIColor+Gradient.h */,
+				3D41DEAD251CC6FD000CA1D6 /* UIColor+Gradient.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -2921,6 +2924,8 @@
 		3D41DE872519ACA0000CA1D6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3D41DEA9251C82F6000CA1D6 /* VIPIdentityModel.h */,
+				3D41DEAA251C82F6000CA1D6 /* VIPIdentityModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5319,6 +5324,7 @@
 				3D41DE7025199DEE000CA1D6 /* VIPMonthlyAlertsVC.m in Sources */,
 				048A168F24CACABF00411819 /* CNAlertPickerView.m in Sources */,
 				E986A1C524CC7F2B000F9CFF /* TAPageControl.m in Sources */,
+				3D41DEAE251CC6FD000CA1D6 /* UIColor+Gradient.m in Sources */,
 				3DA4F15524B30A090039123F /* SGQRCodeScanManager.m in Sources */,
 				E9B5496924CECE23002CE6EF /* LTSegmentedBar.m in Sources */,
 				E993094624D7B59A00E0843B /* HYRechargeViewController.m in Sources */,
@@ -5362,7 +5368,6 @@
 				040A08D424E114A900FBD534 /* CALayer+OCBarrage.m in Sources */,
 				048A0EF324C9401100411819 /* CNGameLineView.m in Sources */,
 				E986A1C224CC7F2B000F9CFF /* UIView+SDExtension.m in Sources */,
-				3DCFEABD2507ACDE0071F356 /* UIColor+HYExtension.m in Sources */,
 				E98BEEEA24D023B200E6B0C8 /* UIView+LYExtension.m in Sources */,
 				E9D9449724C5734400252222 /* WelcomeModel.m in Sources */,
 				E986A12224C7E802000F9CFF /* CNUserCenterRequest.m in Sources */,
@@ -5542,6 +5547,7 @@
 				0487C96E24CE9A630013715A /* BRDatePickerView.m in Sources */,
 				E9063B9324D6F3480000273A /* HYNewCTZNCell.m in Sources */,
 				3D643F9B24F396BC00B9AAA7 /* GameLineModel.m in Sources */,
+				3D41DEAB251C82F6000CA1D6 /* VIPIdentityModel.m in Sources */,
 				D571B1A124BFFD510087B5EC /* CNBaseTF.m in Sources */,
 				04C0F0E824C2E250007F1420 /* JHVerificationCodeView.m in Sources */,
 				0487C9E724D27BDD0013715A /* CNNotifySettingTCell.m in Sources */,

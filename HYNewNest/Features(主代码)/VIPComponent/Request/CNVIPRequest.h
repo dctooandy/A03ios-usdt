@@ -12,6 +12,7 @@
 #import "VIPMonthlyModel.h"
 #import "VIPHomeUserModel.h"
 #import "VIPDSBUsrModel.h"
+#import "VIPIdentityModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,12 +28,17 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)requestRewardBroadcastHandler:(HandlerBlock)handler;
 /// 首页
 + (void)vipsxhHomeHandler:(HandlerBlock)handler;
-/// 至尊转盘
-+ (void)vipsxhZzzpHandler:(HandlerBlock)handler;
 /// 大神榜
 + (void)vipsxhBigGodBoardHandler:(HandlerBlock)handler;
 /// 入会礼金
-+ (void)vipsxhDrawGiftMoneyLevelStatus:(NSString *)levelStatus handler:(HandlerBlock)handler;
++ (void)vipsxhDrawGiftMoneyLevelStatus:(NSString *)levelStatus
+                               handler:(HandlerBlock)handler;
+
+/// 累计身份
++ (void)vipsxhCumulateIdentityHandler:(HandlerBlock)handler;
+/// 累计身份 领取奖励
++ (void)vipsxhApplyCumulateIdentityPrize:(NSNumber *)prizeids
+                                 handler:(HandlerBlock)handler;
 
 @end
 

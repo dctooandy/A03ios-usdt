@@ -8,12 +8,18 @@
 
 #import "VIPCumulateIdCell.h"
 #import "VIPCumulateIdButton.h"
-#import "HYVIPReceiveAlertView.h"
+#import <UIImageView+WebCache.h>
+#import "NSURL+HYLink.h"
+#import "UIColor+Gradient.h"
 
 @interface VIPCumulateIdCell ()
 @property (weak, nonatomic) IBOutlet UIView *centerBGView;
 @property (weak, nonatomic) IBOutlet UIButton *btnExpand;
 @property (weak, nonatomic) IBOutlet VIPCumulateIdButton *btnReceive;
+
+@property (weak, nonatomic) IBOutlet UIImageView *giftImgv;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblContent;
 
 @end
 
@@ -29,17 +35,28 @@
     _btnExpand.layer.cornerRadius = 1;
     _btnExpand.layer.masksToBounds = YES;
     
-    if (arc4random_uniform(4)%2 == 0) {
-        _btnReceive.enabled = YES;
-    } else {
-        _btnReceive.enabled = NO;
-    }
+    _centerBGView.backgroundColor = [UIColor gradientColorImageFromColors:@[kHexColor(0x514C47), kHexColor(0x7F7B6C)] gradientType:GradientTypeUpleftToLowright imgSize:CGSizeMake(kScreenWidth-14*2, 70)];
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
+- (void)setModel:(VIPIdentityModel *)model {
+    _model = model;
     
+    NSString *club;
+    switch (model.clubLevel) {
+        case 2: club = @"赌侠"; break;
+        case 3: club = @"赌霸"; break;
+        case 4: club = @"赌王"; break;
+        case 5: club = @"赌圣"; break;
+        case 6: club = @"赌神"; break;
+        case 7: club = @"赌尊"; break;
+        default:
+            break;
+    }
     
+    [self.giftImgv sd_setImageWithURL:[NSURL getUrlWithString:model.prizeUrl] placeholderImage:[UIImage imageNamed:@"1"]];
+    self.btnReceive.enabled = model.prizeId?YES:NO;
+    self.lblTitle.text = model.title;
+    self.lblContent.text = [NSString stringWithFormat:@"领取条件: %ld次%@   价值: %@%@", model.condition, club, model.amount, model.currency];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -49,15 +66,16 @@
 }
 
 - (IBAction)didTapBtnReceive:(id)sender {
-    MyLog(@"Receive Gift");
-    [HYVIPReceiveAlertView showReceiveAlertTimes:3 gift:@"18线嫩模" comfirmHandler:^(BOOL isComfirm) {
-        MyLog(@"sdfsdfsdgaOOXXXOXXX");
-    }];
+    if (self.receivedBlcok) {
+        self.receivedBlcok();
+    }
 }
 
 
 - (IBAction)didTapBtnExpand:(id)sender {
-    MyLog(@"Expandddd");
+    if (self.expandBlcok) {
+        self.expandBlcok();
+    }
 }
 
 @end

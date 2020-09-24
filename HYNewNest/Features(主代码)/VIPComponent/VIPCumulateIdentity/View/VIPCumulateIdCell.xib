@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="349" height="258"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="wnq-Nd-xME">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wnq-Nd-xME">
                         <rect key="frame" x="0.0" y="0.0" width="349" height="173"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="173" id="Udb-lE-tPJ"/>
@@ -92,12 +92,14 @@
                 <outlet property="btnExpand" destination="zje-7O-8Kb" id="mHY-36-eCC"/>
                 <outlet property="btnReceive" destination="Cub-8K-bxQ" id="Ng5-4u-QMt"/>
                 <outlet property="centerBGView" destination="IA4-1H-QG1" id="yC7-5x-Naw"/>
+                <outlet property="giftImgv" destination="wnq-Nd-xME" id="ffm-fx-Qxv"/>
+                <outlet property="lblContent" destination="YeB-Wm-LhF" id="hjO-IX-r86"/>
+                <outlet property="lblTitle" destination="4lw-6M-yFx" id="zKW-h9-jes"/>
             </connections>
-            <point key="canvasLocation" x="153" y="3"/>
+            <point key="canvasLocation" x="102" y="35"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="1" width="150" height="84"/>
         <image name="形状" width="23" height="22"/>
     </resources>
 </document>

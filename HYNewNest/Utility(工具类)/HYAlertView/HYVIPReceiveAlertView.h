@@ -7,6 +7,7 @@
 //
 
 #import "HYBaseAlertView.h"
+#import "VIPIdentityModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 领取礼物
 + (void)showReceiveAlertTimes:(NSInteger)times
-                         gift:(NSString *)gift
+                         gift:(VIPIdentityModel *)gift
                comfirmHandler:(void(^)(BOOL isComfirm))handler;
 
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "HYVIPReceiveAlertView.h"
+#import <UIImageView+WebCache.h>
+#import "NSURL+HYLink.h"
 
 @interface HYVIPReceiveAlertView ()
 @property (nonatomic, strong) UIButton *leftBtn;
@@ -16,7 +18,7 @@
 @implementation HYVIPReceiveAlertView
 
 + (void)showReceiveAlertTimes:(NSInteger)times
-                         gift:(NSString *)gift
+                         gift:(VIPIdentityModel *)gift
                comfirmHandler:(void (^)(BOOL))handler {
     
     HYVIPReceiveAlertView *a = [[HYVIPReceiveAlertView alloc] initWithTimes:times gift:gift];
@@ -35,7 +37,7 @@
 }
 
 - (instancetype)initWithTimes:(NSInteger)times
-                         gift:(NSString *)gift {
+                         gift:(VIPIdentityModel *)gift {
     self = [super init];
     
     self.contentView.backgroundColor = kHexColor(0xF2EDEA);
@@ -63,15 +65,15 @@
     [self.contentView addSubview:subTitle];
     
     UIImageView *giftImgv = [UIImageView new];
-    giftImgv.image = [UIImage imageNamed:@"1"];//ex
+    [giftImgv sd_setImageWithURL:[NSURL getUrlWithString:gift.prizeUrl] placeholderImage:[UIImage imageNamed:@"1"]];
     giftImgv.frame = CGRectMake(AD(97), AD(83), AD(121), AD(61));
     [self.contentView addSubview:giftImgv];
     
     UILabel *giftName = [UILabel new];
     giftName.frame = CGRectMake(AD(97), AD(142), AD(121), AD(29));
     giftName.textAlignment = NSTextAlignmentCenter;
-    giftName.text = gift;//ex
-    giftName.backgroundColor = [UIColor gradientFromColor:kHexColor(0xA6683B) toColor:kHexColor(0xDA9F5E) withWidth:AD(121)];
+    giftName.text = gift.title;
+    giftName.backgroundColor = [UIColor gradientFromColor:kHexColor(0xA6683B) toColor:kHexColor(0xDA9F5E) withWidth:AD(123)];
     giftName.textColor = kHexColor(0xFFFFFF);
     giftName.font = [UIFont fontPFR14];
     [self.contentView addSubview:giftName];
