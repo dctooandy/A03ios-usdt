@@ -89,12 +89,12 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 }
 
 - (void)setupUIDatas {
-    _lblDuXiaNum.text = [NSString stringWithFormat:@"%ld", self.historyBet.betXiaCount];
-    _lblDuBaNum.text = [NSString stringWithFormat:@"%ld", self.historyBet.betBaCount];
-    _lblDuKingNum.text = [NSString stringWithFormat:@"%ld", self.historyBet.betKingCount];
-    _lblDuSaintNum.text = [NSString stringWithFormat:@"%ld", self.historyBet.betSaintCount];
-    _lblDuGodNum.text = [NSString stringWithFormat:@"%ld", self.historyBet.betGoldCount];
-    _lblDuzunNum.text = [NSString stringWithFormat:@"%ld", self.historyBet.betZunCount];
+    _lblDuXiaNum.text = [NSString stringWithFormat:@"%ld", (long)self.historyBet.betXiaCount];
+    _lblDuBaNum.text = [NSString stringWithFormat:@"%ld", (long)self.historyBet.betBaCount];
+    _lblDuKingNum.text = [NSString stringWithFormat:@"%ld", (long)self.historyBet.betKingCount];
+    _lblDuSaintNum.text = [NSString stringWithFormat:@"%ld", (long)self.historyBet.betSaintCount];
+    _lblDuGodNum.text = [NSString stringWithFormat:@"%ld", (long)self.historyBet.betGoldCount];
+    _lblDuzunNum.text = [NSString stringWithFormat:@"%ld", (long)self.historyBet.betZunCount];
 }
 
 

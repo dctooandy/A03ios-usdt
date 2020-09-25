@@ -261,9 +261,13 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 }
 
 - (IBAction)didTapLJSF:(id)sender {
+#ifdef DEBUG
+    HYVIPCumulateIdVC *vc = [HYVIPCumulateIdVC new];
+    [self.navigationController pushViewController:vc animated:YES];
+#else
     [CNHUB showWaiting:@"十月来袭 敬请期待"];
-//    HYVIPCumulateIdVC *vc = [HYVIPCumulateIdVC new];
-//    [self.navigationController pushViewController:vc animated:YES];
+#endif
+
 }
 
 
