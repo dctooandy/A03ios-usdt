@@ -38,20 +38,39 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 /// 数据
 @property (strong, nonatomic) HistoryBet *historyBet;
 @property (strong, nonatomic) NSDictionary *giftListDict;
+@property (strong, nonatomic) NSDictionary *rankNameLevel;
 @end
 
 @implementation HYVIPCumulateIdVC
 
+- (NSDictionary *)rankNameLevel {
+    if (!_rankNameLevel) {
+        _rankNameLevel = @{@"赌尊":@7,@"赌神":@6,@"赌圣":@5,@"赌王":@4,@"赌霸":@3,@"赌侠":@2};
+    }
+    return _rankNameLevel;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
  
-    _selIdx = 7;//默认赌尊
+    _selIdx = [self.rankNameLevel[@"赌尊"] integerValue];//默认赌尊
+    [self setupUI];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self setupUI];
+    if ([CNUserManager shareManager].isLogin) {
+        _stackViewLJSF.hidden = NO;
+        _btnLogin.hidden = YES;
+        _lblPlsLogin.hidden = YES;
+        
+    } else {
+        _stackViewLJSF.hidden = YES;
+        _btnLogin.hidden = NO;
+        _lblPlsLogin.hidden = NO;
+    }
+    [self vipIdentityData];
 }
 
 - (void)setupUI {
@@ -59,18 +78,6 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
     self.makeTranslucent = YES;
     
     self.view.backgroundColor = _tableView.backgroundColor =  kHexColor(0x181514);
-    
-    if ([CNUserManager shareManager].isLogin) {
-        _stackViewLJSF.hidden = NO;
-        _btnLogin.hidden = YES;
-        _lblPlsLogin.hidden = YES;
-        [self vipIdentityData];
-        
-    } else {
-        _stackViewLJSF.hidden = YES;
-        _btnLogin.hidden = NO;
-        _lblPlsLogin.hidden = NO;
-    }
     
     UIBezierPath *cornerPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 45, 37) byRoundingCorners:UIRectCornerTopLeft|UIRectCornerBottomLeft cornerRadii:CGSizeMake(18, 18)];
     CAShapeLayer *layer = [CAShapeLayer layer];
@@ -170,7 +177,11 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     VIPCumulateIdHeader *header = (VIPCumulateIdHeader *)[tableView dequeueReusableHeaderFooterViewWithIdentifier:CUMIDHEADER];
-    //TODO:-
+    header.didTapBtnBlock = ^(NSString * _Nonnull rankName) {
+        self.selIdx = [self.rankNameLevel[rankName] integerValue];
+        [self.tableView reloadData];
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    };
     return header;
 }
 

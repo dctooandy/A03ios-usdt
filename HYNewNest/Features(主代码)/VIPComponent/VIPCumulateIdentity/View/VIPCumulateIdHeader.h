@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VIPCumulateIdHeader : UITableViewHeaderFooterView
-
+@property (nonatomic, copy) void(^didTapBtnBlock)(NSString *rankName);
 @end
 
 NS_ASSUME_NONNULL_END

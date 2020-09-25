@@ -14,9 +14,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnRight2;
 @property (weak, nonatomic) IBOutlet UIButton *btnRight3;
 @property (weak, nonatomic) IBOutlet UIButton *btnRIght4;
-
+@property (nonatomic, strong) NSArray <UIButton *>* btns;// 5按钮数组
+@property (nonatomic, strong) NSArray <NSString *>* ranks;// 所有等级
+@property (nonatomic, copy) NSString *selRank; // 选中等级
 @property (weak, nonatomic) IBOutlet UILabel *lblLeft;
-@property (nonatomic, copy) NSString *selRank;
 @end
 
 @implementation VIPCumulateIdHeader
@@ -24,26 +25,54 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    _selRank = @"赌尊";
-    
+    // 头部不能设置背景色 无效 必须设置背景view
     self.backgroundView = ({
         UIView * view = [[UIView alloc] initWithFrame:self.bounds];
         view.backgroundColor = kHexColor(0x181514);
         view;
     });
     
+    _selRank = self.ranks[0];
+    self.btns = @[self.btnRIght4,self.btnRight3,self.btnRight2,self.btnRight1,self.btnRight0];
     
 }
 
-- (void)setSelRank:(NSString *)selRank {
-    _selRank = selRank;
-    _lblLeft.text = [NSString stringWithFormat:@"%@区", selRank];
-}
 
 - (IBAction)didTapSwitchRankBtn:(UIButton *)sender {
-    MyLog(@"dianle rank");
     
     self.selRank = sender.titleLabel.text;
+        
+    double xMargin = sender.left - self.lblLeft.left;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.lblLeft.transform = CGAffineTransformMakeTranslation(xMargin, 0);
+        sender.transform = CGAffineTransformMakeTranslation(-xMargin, 0);
+        
+    } completion:^(BOOL finished) {
+        
+        self.lblLeft.transform = CGAffineTransformIdentity;
+        sender.transform = CGAffineTransformIdentity;
+        
+        self.selRank = sender.titleLabel.text;
+        self.lblLeft.text = [NSString stringWithFormat:@"%@区", self->_selRank];
+        NSMutableArray *tmps = [self.ranks mutableCopy];
+        [tmps removeObject:self.selRank];
+        for (int i=0; i<tmps.count; i++) {
+            UIButton *btn = self.btns[i];
+            [btn setTitle:tmps[i] forState:UIControlStateNormal];
+        }
+        
+        if (self.didTapBtnBlock) {
+            self.didTapBtnBlock(self.selRank);
+        }
+    }];
+}
+
+
+- (NSArray<NSString *> *)ranks {
+    if (!_ranks) {
+        _ranks = @[@"赌尊",@"赌神",@"赌圣",@"赌王",@"赌霸",@"赌侠"];
+    }
+    return _ranks;
 }
 
 
