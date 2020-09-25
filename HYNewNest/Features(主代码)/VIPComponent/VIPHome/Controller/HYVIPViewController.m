@@ -261,8 +261,9 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 }
 
 - (IBAction)didTapLJSF:(id)sender {
-    HYVIPCumulateIdVC *vc = [HYVIPCumulateIdVC new];
-    [self.navigationController pushViewController:vc animated:YES];
+    [CNHUB showWaiting:@"十月来袭 敬请期待"];
+//    HYVIPCumulateIdVC *vc = [HYVIPCumulateIdVC new];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
@@ -283,12 +284,20 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 - (void)requestMonthReport {
     BOOL isReaded = [[NSUserDefaults standardUserDefaults] boolForKey:HYVIPIsAlreadyShowV2Alert];//只显示一次就不再展示了
     if (!isReaded) {
+        if (self.childViewControllers.count > 0) {
+            return;
+        }
         // VIP私享会2.0 弹窗
         [CNMessageBoxView showVIPSXHMessageBoxOnView:self.view];
         
     } else {
         if (![CNUserManager shareManager].isLogin) {
             return;
+        }
+        for (UIView *view in self.view.subviews) {
+            if ([view isKindOfClass:[CNMessageBoxView class]]) {
+                return;
+            }
         }
         [CNVIPRequest vipsxhIsShowReportHandler:^(id responseObj, NSString *errorMsg) {
             if (KIsEmptyString(errorMsg) && [responseObj[@"flag"] integerValue] == 1 && self.childViewControllers.count == 0) {
