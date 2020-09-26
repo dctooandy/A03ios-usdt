@@ -204,6 +204,9 @@
 		3D41DEA8251B4A45000CA1D6 /* HYVIPReceiveAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEA7251B4A45000CA1D6 /* HYVIPReceiveAlertView.m */; };
 		3D41DEAB251C82F6000CA1D6 /* VIPIdentityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEAA251C82F6000CA1D6 /* VIPIdentityModel.m */; };
 		3D41DEAE251CC6FD000CA1D6 /* UIColor+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEAD251CC6FD000CA1D6 /* UIColor+Gradient.m */; };
+		3D41DEB9251F1A20000CA1D6 /* WSLPhotoZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEB7251F1A20000CA1D6 /* WSLPhotoZoom.m */; };
+		3D41DEBA251F1A20000CA1D6 /* WSLPictureBrowseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEB8251F1A20000CA1D6 /* WSLPictureBrowseView.m */; };
+		3D41DEBD251F1B47000CA1D6 /* UIImageView+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEBC251F1B47000CA1D6 /* UIImageView+GIF.m */; };
 		3D564E2024F3C02C006846DD /* MessageBoxModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D564E1F24F3C02C006846DD /* MessageBoxModel.m */; };
 		3D643F7724F253E300B9AAA7 /* HYEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F7524F253E200B9AAA7 /* HYEncryptor.m */; };
 		3D643F8824F29F3600B9AAA7 /* AlertViewHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F7D24F29F3600B9AAA7 /* AlertViewHelp.m */; };
@@ -1229,6 +1232,12 @@
 		3D41DEAA251C82F6000CA1D6 /* VIPIdentityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPIdentityModel.m; sourceTree = "<group>"; };
 		3D41DEAC251CC6FD000CA1D6 /* UIColor+Gradient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Gradient.h"; sourceTree = "<group>"; };
 		3D41DEAD251CC6FD000CA1D6 /* UIColor+Gradient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Gradient.m"; sourceTree = "<group>"; };
+		3D41DEB5251F1A20000CA1D6 /* WSLPhotoZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSLPhotoZoom.h; sourceTree = "<group>"; };
+		3D41DEB6251F1A20000CA1D6 /* WSLPictureBrowseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSLPictureBrowseView.h; sourceTree = "<group>"; };
+		3D41DEB7251F1A20000CA1D6 /* WSLPhotoZoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSLPhotoZoom.m; sourceTree = "<group>"; };
+		3D41DEB8251F1A20000CA1D6 /* WSLPictureBrowseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSLPictureBrowseView.m; sourceTree = "<group>"; };
+		3D41DEBB251F1B47000CA1D6 /* UIImageView+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+GIF.h"; sourceTree = "<group>"; };
+		3D41DEBC251F1B47000CA1D6 /* UIImageView+GIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+GIF.m"; sourceTree = "<group>"; };
 		3D564E1E24F3C02C006846DD /* MessageBoxModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageBoxModel.h; sourceTree = "<group>"; };
 		3D564E1F24F3C02C006846DD /* MessageBoxModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageBoxModel.m; sourceTree = "<group>"; };
 		3D643F7524F253E200B9AAA7 /* HYEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYEncryptor.m; sourceTree = "<group>"; };
@@ -2772,6 +2781,7 @@
 		3D1338A624AF2E7D00B29783 /* Vendors(第三方库) */ = {
 			isa = PBXGroup;
 			children = (
+				3D41DEB4251F1A20000CA1D6 /* WSLPictureBrowserView */,
 				3DCFEA8625009D010071F356 /* SlideCard */,
 				E9B5496424CECE23002CE6EF /* LTSegmentedBar */,
 				040A08B724E114A900FBD534 /* OCBarrage(弹幕) */,
@@ -2943,6 +2953,19 @@
 				3D41DEA4251AF662000CA1D6 /* VIPCumulateIdButton.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3D41DEB4251F1A20000CA1D6 /* WSLPictureBrowserView */ = {
+			isa = PBXGroup;
+			children = (
+				3D41DEBB251F1B47000CA1D6 /* UIImageView+GIF.h */,
+				3D41DEBC251F1B47000CA1D6 /* UIImageView+GIF.m */,
+				3D41DEB5251F1A20000CA1D6 /* WSLPhotoZoom.h */,
+				3D41DEB6251F1A20000CA1D6 /* WSLPictureBrowseView.h */,
+				3D41DEB7251F1A20000CA1D6 /* WSLPhotoZoom.m */,
+				3D41DEB8251F1A20000CA1D6 /* WSLPictureBrowseView.m */,
+			);
+			path = WSLPictureBrowserView;
 			sourceTree = "<group>";
 		};
 		3D643F7924F29F3600B9AAA7 /* Push */ = {
@@ -5304,6 +5327,7 @@
 				0487C97224CE9A630013715A /* BRAddressPickerView.m in Sources */,
 				E986A19924CAC47B000F9CFF /* HYRechargeHelper.m in Sources */,
 				0487C9E124D27B960013715A /* CNNotifySettingVC.m in Sources */,
+				3D41DEBA251F1A20000CA1D6 /* WSLPictureBrowseView.m in Sources */,
 				3D41DE7E25199DEE000CA1D6 /* VIPCardCCell.m in Sources */,
 				3DA4F16924B312BE0039123F /* NSString+Validation.m in Sources */,
 				04C0F0EC24C43ADA007F1420 /* CNForgotCodeVC.m in Sources */,
@@ -5468,6 +5492,7 @@
 				3D41DEA5251AF662000CA1D6 /* VIPCumulateIdButton.m in Sources */,
 				3D41DE9A2519F996000CA1D6 /* VIPCumulateIdHeader.m in Sources */,
 				3D41DE7325199DEE000CA1D6 /* VIPDSBUsrModel.m in Sources */,
+				3D41DEBD251F1B47000CA1D6 /* UIImageView+GIF.m in Sources */,
 				E986A1C724CC7F2B000F9CFF /* TAAbstractDotView.m in Sources */,
 				040A08D724E114A900FBD534 /* OCBarrageRenderView.m in Sources */,
 				04C0F0E324C2B282007F1420 /* CNHUB.m in Sources */,
@@ -5522,6 +5547,7 @@
 				E986A19224CA93D3000F9CFF /* BQPaymentModel.m in Sources */,
 				E969EB3524E14B4B00D58FE9 /* MineBindView.m in Sources */,
 				E98BEF2524D2C40100E6B0C8 /* HYWithdrawAddCardFooter.m in Sources */,
+				3D41DEB9251F1A20000CA1D6 /* WSLPhotoZoom.m in Sources */,
 				040A08D124E114A900FBD534 /* OCBarrageDescriptor.m in Sources */,
 				0430AB3624E3B84700C873DC /* CNCompleteInfoVC.m in Sources */,
 				3D3A9B7324FA7DA5003FB33C /* CNVIPRequest.m in Sources */,

@@ -12,7 +12,7 @@
 #import "HYVIPRuleAlertView.h"
 #import "CNVIPRequest.h"
 #import "HYVIPReceiveAlertView.h"
-
+#import "WSLPictureBrowseView.h"
 
 static NSString * const CUMIDCELL = @"VIPCumulateIdCell";
 static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
@@ -74,6 +74,8 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 }
 
 - (void)setupUI {
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     self.navBarTransparent = YES;
     self.makeTranslucent = YES;
     
@@ -110,14 +112,17 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 
     [CNVIPRequest vipsxhCumulateIdentityHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *dict = responseObj[@"identityList"];
-            NSMutableDictionary *newDict = @{}.mutableCopy;
-            for (int i=2; i<8; i++) {
-                NSArray *models = [VIPIdentityModel cn_parse:dict[[NSString stringWithFormat:@"%d", i]]];
-                newDict[@(i)] = models;
+            
+            if ([[responseObj allKeys] containsObject:@"identityList"]) {
+                NSDictionary *dict = responseObj[@"identityList"];
+                NSMutableDictionary *newDict = @{}.mutableCopy;
+                for (int i=2; i<8; i++) {
+                    NSArray *models = [VIPIdentityModel cn_parse:dict[[NSString stringWithFormat:@"%d", i]]];
+                    newDict[@(i)] = models;
+                }
+                self.giftListDict = newDict;
+                [self.tableView reloadData];
             }
-            self.giftListDict = newDict;
-            [self.tableView reloadData];
             
             if ([[responseObj allKeys] containsObject:@"historyBet"]) {
                 self.historyBet = [HistoryBet cn_parse:responseObj[@"historyBet"]];
@@ -137,6 +142,9 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
     [NNPageRouter jump2Login];
 }
 
+- (IBAction)didTapReceiveRecord:(id)sender {
+    MyLog(@"RECEIVE RECORD");
+}
 
 #pragma mark - UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -169,8 +177,32 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
         
     };
     
-    cell.expandBlcok = ^{
-        MyLog(@"查看大图--%ld = %ld", self->_selIdx, indexPath.row);
+    cell.expandBlcok = ^(VIPCumulateIdCell *c ,UIImageView *imgv){
+        STRONGSELF_DEFINE
+        // 自己做的破转场动画
+        UIImageView *animImgv = [[UIImageView alloc] initWithImage:imgv.image];
+        animImgv.clipsToBounds = YES;
+        animImgv.jk_origin = [self.view convertPoint:imgv.jk_origin fromView:c];
+        animImgv.size = imgv.size;
+        __block CGRect orgRect = animImgv.frame;
+        animImgv.contentMode = UIViewContentModeScaleAspectFill;
+        [strongSelf.view addSubview:animImgv];
+        [UIView animateWithDuration:0.25 animations:^{
+            CGFloat imgH = kScreenWidth *  imgv.image.size.height / imgv.image.size.width;
+            animImgv.frame = CGRectMake(0, (kScreenHeight-imgH)*0.5, kScreenWidth, imgH);
+            
+        } completion:^(BOOL finished) {
+            WSLPictureBrowseView * browseView = [[WSLPictureBrowseView alloc] initWithTitle:model.title content:model.introduce urlArray:@[model.prizeUrl]];
+            browseView.orgnRect = orgRect;
+            browseView.viewController = self;
+            [strongSelf.view addSubview:browseView];
+            [strongSelf.navigationController setNavigationBarHidden:YES animated:YES];
+            
+            [animImgv removeFromSuperview];
+        }];
+        
+
+        
     };
     return cell;
 }

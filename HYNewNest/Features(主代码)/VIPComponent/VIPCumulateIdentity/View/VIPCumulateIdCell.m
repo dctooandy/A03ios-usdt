@@ -74,7 +74,7 @@
 
 - (IBAction)didTapBtnExpand:(id)sender {
     if (self.expandBlcok) {
-        self.expandBlcok();
+        self.expandBlcok(self, self.giftImgv);
     }
 }
 
