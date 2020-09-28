@@ -10,9 +10,10 @@
 
 @implementation UIColor (Gradient)
 
-+ (UIColor *)gradientColorImageFromColors:(NSArray *)colors
-                             gradientType:(GradientType)gradientType
-                                  imgSize:(CGSize)imgSize {
++ (UIImage *)gradientImageFromColors:(NSArray*)colors
+                        gradientType:(GradientType)gradientType
+                             imgSize:(CGSize)imgSize{
+    
     NSMutableArray *ar = [NSMutableArray array];
     
     for(UIColor *c in colors) {
@@ -54,7 +55,14 @@
     CGContextRestoreGState(context);
     CGColorSpaceRelease(colorSpace);
     UIGraphicsEndImageContext();
+    return image;
+}
+
++ (UIColor *)gradientColorImageFromColors:(NSArray *)colors
+                             gradientType:(GradientType)gradientType
+                                  imgSize:(CGSize)imgSize {
     
+    UIImage *image = [self gradientImageFromColors:colors gradientType:gradientType imgSize:imgSize];
     return [UIColor colorWithPatternImage:image];
 }
 

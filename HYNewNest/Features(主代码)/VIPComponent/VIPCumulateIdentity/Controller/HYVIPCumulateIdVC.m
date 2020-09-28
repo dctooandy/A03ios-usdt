@@ -13,6 +13,7 @@
 #import "CNVIPRequest.h"
 #import "HYVIPReceiveAlertView.h"
 #import "WSLPictureBrowseView.h"
+#import "VIPReceiveRecordVC.h"
 
 static NSString * const CUMIDCELL = @"VIPCumulateIdCell";
 static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
@@ -143,7 +144,8 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 }
 
 - (IBAction)didTapReceiveRecord:(id)sender {
-    MyLog(@"RECEIVE RECORD");
+    VIPReceiveRecordVC *vc = [VIPReceiveRecordVC new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - UITableView
@@ -192,7 +194,8 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
             animImgv.frame = CGRectMake(0, (kScreenHeight-imgH)*0.5, kScreenWidth, imgH);
             
         } completion:^(BOOL finished) {
-            WSLPictureBrowseView * browseView = [[WSLPictureBrowseView alloc] initWithTitle:model.title content:model.introduce urlArray:@[model.prizeUrl]];
+//            WSLPictureBrowseView * browseView = [[WSLPictureBrowseView alloc] initWithTitle:model.title content:model.introduce urlArray:@[model.prizeUrl]];
+            WSLPictureBrowseView * browseView = [[WSLPictureBrowseView alloc] initWithTitle:model.title content:model.introduce imgArray:@[imgv.image]];
             browseView.orgnRect = orgRect;
             browseView.viewController = self;
             [strongSelf.view addSubview:browseView];

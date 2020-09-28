@@ -40,6 +40,17 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)vipsxhApplyCumulateIdentityPrize:(NSNumber *)prizeids
                                  handler:(HandlerBlock)handler;
 
+typedef NS_ENUM(NSInteger, VIPSxhAwardType) {
+    VIPSxhAwardTypeZZZP = 3,
+    VIPSxhAwardTypeLJSF = 4,
+};
+/// 领取记录
++ (void)vipsxhReceiveAwardRecordPageNo:(NSInteger)pageNo
+                              pageSize:(NSInteger)pageSize
+                                  type:(VIPSxhAwardType)type
+                                   day:(NSInteger)days
+                               handler:(HandlerBlock)handler;
+
 @end
 
 NS_ASSUME_NONNULL_END

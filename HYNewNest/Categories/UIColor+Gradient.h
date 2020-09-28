@@ -34,6 +34,10 @@ typedef NS_ENUM(NSUInteger, GradientType) {// 渐变方向
 //
 //--------------------------------------------------------------------------------
 
++ (UIImage *)gradientImageFromColors:(NSArray*)colors
+                        gradientType:(GradientType)gradientType
+                             imgSize:(CGSize)imgSize;
+
 + (UIColor*)gradientFromColor:(UIColor*)c1 toColor:(UIColor*)c2 withWidth:(CGFloat)width;
 
 @end

@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 导航栏右边按钮图片和事件，事件需重写
 - (void)addNaviRightItemWithTitle:(NSString *)title;
 - (void)addNaviRightItemWithImageName:(NSString *)name;
-- (void)openH5Page:(NSString *)h5url title:(NSString *)title;
+- (void)addNaviRightItemButton:(UIButton *)button;
 - (void)rightItemAction;
 
 /// 用于首页游戏页面内容高度

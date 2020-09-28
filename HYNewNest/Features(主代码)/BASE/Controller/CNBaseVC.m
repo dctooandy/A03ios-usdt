@@ -38,19 +38,31 @@
     [button setTitle:title forState:UIControlStateNormal];
     button.titleLabel.textColor = [UIColor skin_colorWithHex:@"0xFFFFFF"];
     button.titleLabel.font = [UIFont fontPFR15];
-    [button addTarget:self action:@selector(rightItemAction) forControlEvents:UIControlEventTouchUpInside];
-    [button sizeToFit];
-    
-    UIView *cuntomView = [[UIView alloc] initWithFrame:button.bounds];
-    [cuntomView addSubview:button];
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:cuntomView];
-    self.navigationItem.rightBarButtonItem = rightItem;
+//    [button addTarget:self action:@selector(rightItemAction) forControlEvents:UIControlEventTouchUpInside];
+//    [button sizeToFit];
+//
+//    UIView *cuntomView = [[UIView alloc] initWithFrame:button.bounds];
+//    [cuntomView addSubview:button];
+//    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:cuntomView];
+//    self.navigationItem.rightBarButtonItem = rightItem;
+    [self addNaviRightItemButton:button];
 }
 
 - (void)addNaviRightItemWithImageName:(NSString *)name{
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:[UIImage imageNamed:name] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:name] forState:UIControlStateHighlighted];
+//    [button addTarget:self action:@selector(rightItemAction) forControlEvents:UIControlEventTouchUpInside];
+//    [button sizeToFit];
+//
+//    UIView *cuntomView = [[UIView alloc] initWithFrame:button.bounds];
+//    [cuntomView addSubview:button];
+//    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:cuntomView];
+//    self.navigationItem.rightBarButtonItem = rightItem;
+    [self addNaviRightItemButton:button];
+}
+
+- (void)addNaviRightItemButton:(UIButton *)button{
     [button addTarget:self action:@selector(rightItemAction) forControlEvents:UIControlEventTouchUpInside];
     [button sizeToFit];
     
@@ -62,10 +74,6 @@
 
 - (void)rightItemAction {
     
-}
-
-- (void)openH5Page:(NSString *)h5url title:(nonnull NSString *)title {
-
 }
 
 - (void)dealloc {

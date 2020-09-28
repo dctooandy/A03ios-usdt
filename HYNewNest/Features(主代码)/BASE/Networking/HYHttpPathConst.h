@@ -175,5 +175,6 @@
 #define activity_vipSxhFrame    @"a03/activity/vipsxh/frame" //是否弹窗月报
 #define activity_vipSxhIdentity @"a03/activity/vipsxh/identity" //累计身份
 #define activity_vipSxhApply    @"a03/activity/vipsxh/apply" //领取礼物 （累计身份和大转盘）
+#define activity_vipSxhReceiveAward @"promo/a03/common/receive/award" //领取记录
 
 #endif /* HYHttpPathConst_h */

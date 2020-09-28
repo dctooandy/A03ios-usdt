@@ -34,7 +34,7 @@
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *contentLabel;
-
+@property (nonatomic, strong) NSMutableArray * imgArray;
 @end
 
 
@@ -42,6 +42,19 @@
 
 - (void)dealloc {
     [[NNControllerHelper currentTabbarSelectedNavigationController] setNavigationBarHidden:NO animated:YES];
+}
+
+- (instancetype)initWithTitle:(NSString *)title content:(NSString *)content imgArray:(NSArray *)imgArray {
+    self = [self initWithFrame: [UIScreen mainScreen].bounds] ;
+    
+    [self addSubview:self.titleLabel];
+    self.titleLabel.text = title;
+    [self addSubview:self.contentLabel];
+    self.contentLabel.text = content;
+    
+    self.imgArray = imgArray.mutableCopy;
+    
+    return self;
 }
 
 - (instancetype)initWithTitle:(NSString *)title content:(NSString *)content urlArray:(NSArray *)urlArray {
@@ -180,7 +193,13 @@
     for (WSLPhotoZoom *photoZoom in self.scrollView.subviews) {
         [photoZoom removeFromSuperview];
     }
-    self.indexLabel.text = [NSString stringWithFormat:@"1/%lu",(unsigned long)array.count];
+    
+    NSString *str = [NSString stringWithFormat:@"1/%lu",(unsigned long)array.count];
+    NSMutableAttributedString *atrStr = [[NSMutableAttributedString alloc] initWithString:str];
+    [atrStr addAttributes:@{NSFontAttributeName:[UIFont fontPFSB16], NSForegroundColorAttributeName:kHexColor(0xF7EAA4)} range:NSMakeRange(0, 1)];
+    [atrStr addAttributes:@{NSFontAttributeName:[UIFont fontPFR12], NSForegroundColorAttributeName:kHexColor(0xCCCCCC)} range:NSMakeRange(1, str.length-1)];
+    self.indexLabel.attributedText = atrStr;
+    
     self.scrollView.contentSize = CGSizeMake(array.count * self.frame.size.width, self.frame.size.height);
     
     for (int i = 0; i < array.count ; i++) {
@@ -190,7 +209,15 @@
         photoZoomView.imageNormalHeight = 375;
 //        photoZoomView.backgroundColor =[UIColor blackColor];
         photoZoomView.backgroundColor = [UIColor clearColor];
-        if (array == _pathArray) {
+        
+        if (array == _imgArray) {
+            // 内存图片
+            UIImage *img = _imgArray[i];
+            [photoZoomView.imageView setImage:img];
+            NSData *imageData = UIImagePNGRepresentation(img);
+            [self.imageDataArray addObject:imageData];
+            
+        }else if (array == _pathArray) {
             //获取本地图片
             [photoZoomView.imageView showGifImageWithData:[NSData dataWithContentsOfFile:array[i]]];
             
@@ -280,6 +307,11 @@
 }
 
 #pragma mark -- Setter
+
+- (void)setImgArray:(NSMutableArray *)imgArray {
+    _imgArray = imgArray;
+    [self setupImageView:imgArray];
+}
 
 - (void)setUrlArray:(NSMutableArray *)urlArray{
     
@@ -397,8 +429,12 @@
         self.currentImageData = self.imageDataArray[self.index] ;
     }
     
-    self.indexLabel.text = [NSString stringWithFormat:@"%ld/%ld", self.index + 1,(long)self.count];
-    
+//    self.indexLabel.text = [NSString stringWithFormat:@"%ld/%ld", self.index + 1,(long)self.count];
+    NSString *str = [NSString stringWithFormat:@"%ld/%ld", self.index + 1,(long)self.count];
+    NSMutableAttributedString *atrStr = [[NSMutableAttributedString alloc] initWithString:str];
+    [atrStr addAttributes:@{NSFontAttributeName:[UIFont fontPFSB16], NSForegroundColorAttributeName:kHexColor(0xF7EAA4)} range:NSMakeRange(0, 1)];
+    [atrStr addAttributes:@{NSFontAttributeName:[UIFont fontPFR12], NSForegroundColorAttributeName:kHexColor(0xCCCCCC)} range:NSMakeRange(1, str.length-1)];
+    self.indexLabel.attributedText = atrStr;
 }
 
 
