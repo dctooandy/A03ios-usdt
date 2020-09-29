@@ -29,7 +29,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWw-6O-s1l">
-                    <rect key="frame" x="0.0" y="406" width="414" height="490"/>
+                    <rect key="frame" x="0.0" y="896" width="414" height="490"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFP-qj-my7">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="84.5"/>
@@ -277,7 +277,7 @@
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="iWw-6O-s1l" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5gY-od-R9a"/>
-                <constraint firstAttribute="bottom" secondItem="iWw-6O-s1l" secondAttribute="bottom" id="Vdi-Wj-HmU"/>
+                <constraint firstAttribute="bottom" secondItem="iWw-6O-s1l" secondAttribute="bottom" constant="-490" id="Vdi-Wj-HmU"/>
                 <constraint firstAttribute="trailing" secondItem="iWw-6O-s1l" secondAttribute="trailing" id="enh-fW-aor"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="0bx-rG-ZxG"/>

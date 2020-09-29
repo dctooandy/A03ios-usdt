@@ -68,7 +68,7 @@
     alert.submitBtn.enabled = YES;
     alert.callBack = callBack;
     alert.bottom.constant = 0;
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         [alert layoutIfNeeded];
     }];
 }
@@ -105,12 +105,18 @@
 // 提交
 - (IBAction)submitAction:(UIButton *)sender {
     !_callBack ?: _callBack(self.selectType, self.selectDay);
-    [self removeFromSuperview];
+    [self close:nil];
 }
 
 // 关闭页面
 - (IBAction)close:(id)sender {
-    [self removeFromSuperview];
+    self.bottom.constant = -490;
+    [UIView animateWithDuration:0.3 animations:^{
+        [self layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+    
 }
 
 - (void)dealloc {
