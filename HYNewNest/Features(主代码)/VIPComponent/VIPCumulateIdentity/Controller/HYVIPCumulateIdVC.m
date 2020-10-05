@@ -168,7 +168,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 
             if (isComfirm) {
                 // 领取
-                [CNVIPRequest vipsxhApplyCumulateIdentityPrize:@(model.prizeId) handler:^(id responseObj, NSString *errorMsg) {
+                [CNVIPRequest vipsxhApplyCumulateIdentityPrize:model.prizeId handler:^(id responseObj, NSString *errorMsg) {
                     STRONGSELF_DEFINE
                     if (!errorMsg) {
                         [strongSelf vipIdentityData];
@@ -195,16 +195,19 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
             
         } completion:^(BOOL finished) {
 //            WSLPictureBrowseView * browseView = [[WSLPictureBrowseView alloc] initWithTitle:model.title content:model.introduce urlArray:@[model.prizeUrl]];
-            WSLPictureBrowseView * browseView = [[WSLPictureBrowseView alloc] initWithTitle:model.title content:model.introduce imgArray:@[imgv.image]];
-            browseView.orgnRect = orgRect;
-            browseView.viewController = self;
-            [strongSelf.view addSubview:browseView];
-            [strongSelf.navigationController setNavigationBarHidden:YES animated:YES];
             
-            [animImgv removeFromSuperview];
+//            WSLPictureBrowseView * browseView = [[WSLPictureBrowseView alloc] initWithTitle:model.title content:model.introduce imgArray:@[imgv.image]];
+//            browseView.orgnRect = orgRect;
+//            browseView.viewController = self;
+//            [strongSelf.view addSubview:browseView];
+//            [strongSelf.navigationController setNavigationBarHidden:YES animated:YES];
+//
+//            [animImgv removeFromSuperview];
         }];
         
-
+        [CNVIPRequest vipsxhAwardDetailPrizeids:model.prizeId handler:^(id responseObj, NSString *errorMsg) {
+            //TODO: =
+        }];
         
     };
     return cell;
@@ -215,7 +218,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
     header.didTapBtnBlock = ^(NSString * _Nonnull rankName) {
         self.selIdx = [self.rankNameLevel[rankName] integerValue];
         [self.tableView reloadData];
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+//        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     };
     return header;
 }

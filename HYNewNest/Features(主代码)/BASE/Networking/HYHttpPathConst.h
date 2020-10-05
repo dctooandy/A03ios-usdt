@@ -18,12 +18,7 @@
 
 
 #pragma mark - H5
-
-#define H5_URL_SHARE    @"/social_share"
-#define H5_URL_GET_GIFT @"/pub_site/vip_raffle" //抽奖
 #define H5_URL_GET_VIPRECORD @"/pub_site/vip_record" //兑换记录
-#define H5_URL_INTEGRAL_EXCHANGE @"/pub_site/vip_mall" //积分兑换豪礼
-#define H5_URL_ABOUT_US @"/about"
 
 
 #pragma mark - API PATH
@@ -175,6 +170,7 @@
 #define activity_vipSxhFrame    @"a03/activity/vipsxh/frame" //是否弹窗月报
 #define activity_vipSxhIdentity @"a03/activity/vipsxh/identity" //累计身份
 #define activity_vipSxhApply    @"a03/activity/vipsxh/apply" //领取礼物 （累计身份和大转盘）
-#define activity_vipSxhReceiveAward @"promo/a03/common/receive/award" //领取记录
+#define activity_vipSxhReceiveAward     @"promo/a03/common/receive/award" //领取记录
+#define activity_vipSxhAwardDetail      @"a03/activity/vipsxh/detail" //礼物详情
 
 #endif /* HYHttpPathConst_h */

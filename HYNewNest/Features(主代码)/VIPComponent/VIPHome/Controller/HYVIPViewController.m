@@ -256,8 +256,11 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 }
 
 - (IBAction)didTapZZZP:(id)sender {
-    MyLog(@"至尊转盘");
+#ifdef DEBUG
+    [NNPageRouter jump2HTMLWithStrURL:@"/sudoku" title:@"至尊转盘"];
+#else
     [CNHUB showWaiting:@"十月来袭 敬请期待"];
+#endif
 }
 
 - (IBAction)didTapLJSF:(id)sender {

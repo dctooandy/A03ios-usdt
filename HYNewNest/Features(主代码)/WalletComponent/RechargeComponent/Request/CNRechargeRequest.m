@@ -54,7 +54,8 @@
                              Handler:(HandlerBlock)handler {
     
     NSMutableDictionary *parm = [kNetworkMgr baseParam];
-    parm[@"transferType"] = @(transferType);
+//    parm[@"transferType"] = @(transferType);
+    parm[@"transferType"] = @2;
     
     [self POST:kGatewayPath(config_queryDepositCounter) parameters:parm completionHandler:handler];
 }

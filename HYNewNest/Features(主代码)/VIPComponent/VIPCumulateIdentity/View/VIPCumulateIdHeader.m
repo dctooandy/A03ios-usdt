@@ -44,6 +44,10 @@
         
     double xMargin = sender.left - self.lblLeft.left;
     [UIView animateWithDuration:0.3 animations:^{
+//        self.lblLeft.transform = CGAffineTransformConcat(CGAffineTransformMakeTranslation(xMargin*2, 0),
+//                                                         CGAffineTransformMakeScale(0.5, 0.5));
+//        sender.transform = CGAffineTransformConcat(CGAffineTransformMakeTranslation(-xMargin*0.5, 0),
+//                                                   CGAffineTransformMakeScale(2, 2));
         self.lblLeft.transform = CGAffineTransformMakeTranslation(xMargin, 0);
         sender.transform = CGAffineTransformMakeTranslation(-xMargin, 0);
         

@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign) NSInteger              clubLevel;
 @property (nonatomic , assign) NSInteger              condition;
 @property (nonatomic , copy) NSString              * currency;
-@property (nonatomic , assign) NSInteger              prizeId;//奖品ID 如果为空 不可领取
+@property (nonatomic , copy) NSString              * prizeId;//奖品ID 如果为空 不可领取
 @property (nonatomic , copy) NSString              * introduce;//简介
 @property (nonatomic , copy) NSString              * prizeUrl;//图片
 @property (nonatomic , copy) NSString              * tagName;

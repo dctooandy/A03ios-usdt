@@ -9,6 +9,8 @@
 #import "VIPReceiveRecordVC.h"
 #import "CNVIPRequest.h"
 #import "VIPRecordSelectorView.h"
+#import "LYEmptyView.h"
+#import "UIView+Empty.h"
 
 @interface VIPReceiveRecordVC () <UITableViewDelegate, UITableViewDataSource>{
     NSInteger _pageNo;
@@ -27,7 +29,9 @@
         _tableView.delegate = self;
         _tableView.frame = CGRectMake(0, 0, self.view.width, self.view.height);
         _tableView.tableFooterView = [UIView new];
-
+        _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"kongduixiang"
+                                                            titleStr:@"这里空空如也~"
+                                                           detailStr:@"去抽个奖吧！"];
     }
     return _tableView;;
 }

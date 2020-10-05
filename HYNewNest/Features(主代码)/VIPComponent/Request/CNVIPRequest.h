@@ -37,8 +37,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 累计身份
 + (void)vipsxhCumulateIdentityHandler:(HandlerBlock)handler;
 /// 累计身份 领取奖励
-+ (void)vipsxhApplyCumulateIdentityPrize:(NSNumber *)prizeids
++ (void)vipsxhApplyCumulateIdentityPrize:(NSString *)prizeids
                                  handler:(HandlerBlock)handler;
+/// 礼物详情
++ (void)vipsxhAwardDetailPrizeids:(NSString *)prizeids
+                          handler:(HandlerBlock)handler;
 
 typedef NS_ENUM(NSInteger, VIPSxhAwardType) {
     VIPSxhAwardTypeZZZP = 3,

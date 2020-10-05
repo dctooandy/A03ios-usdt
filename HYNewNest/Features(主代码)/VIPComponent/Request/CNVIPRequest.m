@@ -84,7 +84,7 @@
     [self POST:kGatewayExtraPath(activity_vipSxhIdentity) parameters:param completionHandler:handler];
 }
 
-+ (void)vipsxhApplyCumulateIdentityPrize:(NSNumber *)prizeids
++ (void)vipsxhApplyCumulateIdentityPrize:(NSString *)prizeids
                                  handler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
@@ -93,6 +93,18 @@
     param[@"defineFlag"] = @(4); // 至尊转盘3 累计身份4
     
     [self POST:kGatewayExtraPath(activity_vipSxhApply) parameters:param completionHandler:handler];
+}
+
++ (void)vipsxhAwardDetailPrizeids:(NSString *)prizeids
+                          handler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *param = [NSMutableDictionary new];
+    [param setObject:@"A03" forKey:@"productId"];
+    param[@"defineFlag"] = @2; // 至尊转盘1 累计身份2
+    param[@"prizeids"] = prizeids;
+    param[@"currency"] = [CNUserManager shareManager].userInfo.currency?:@"USDT";
+    
+    [self POST:kGatewayExtraPath(activity_vipSxhAwardDetail) parameters:param completionHandler:handler];
 }
 
 + (void)vipsxhReceiveAwardRecordPageNo:(NSInteger)pageNo
