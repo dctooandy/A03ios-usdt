@@ -26,7 +26,7 @@
     CGFloat maxWidth = kScreenWidth - 58*2;
     CGSize textSize = [self.contentLb.text jk_sizeWithFont:self.contentLb.font constrainedToWidth:maxWidth];
     CAShapeLayer *layer = [CAShapeLayer layer];
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, textSize.width+40, textSize.height+20) byRoundingCorners:UIRectCornerTopRight | UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(10, 10)];
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, textSize.width+36, textSize.height+20) byRoundingCorners:UIRectCornerTopRight | UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(20, 20)];
     layer.path = path.CGPath;
     self.textBGView.layer.mask = layer;
 }

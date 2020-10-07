@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"反馈意见";
-//    [self addKeyboardNotification];
+    [self addKeyboardNotification];
     [self configUI];
     
     [self querySuggestions];
@@ -63,7 +63,7 @@
                 [self.tableView reloadData];
             } else {
                 NSArray *arr = [UserSuggestionModel cn_parse:responseObj];
-                if (arr.count) {
+                if (arr.count > 0) {
                     self.suggests = arr;
                     [self.tableView reloadData];
                     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:arr.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -99,7 +99,6 @@
     }
 }
 
-/* 暂不需要
 #pragma - mark 键盘动画
  
 - (void)addKeyboardNotification {
@@ -134,5 +133,5 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-*/
+
 @end
