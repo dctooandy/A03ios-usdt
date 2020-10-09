@@ -24,8 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)vipsxhIsShowReportHandler:(HandlerBlock)handler;
 /// 月报弹窗
 + (void)vipsxhMonthReportHandler:(HandlerBlock)handler;
-// kill
-+ (void)requestRewardBroadcastHandler:(HandlerBlock)handler;
 /// 首页
 + (void)vipsxhHomeHandler:(HandlerBlock)handler;
 /// 大神榜

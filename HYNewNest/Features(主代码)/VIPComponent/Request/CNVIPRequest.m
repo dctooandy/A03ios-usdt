@@ -38,18 +38,6 @@
     [self POST:kGatewayExtraPath(activity_vipSxhReport) parameters:param completionHandler:handler];
 }
 
-+ (void)requestRewardBroadcastHandler:(HandlerBlock)handler {
-    
-    NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"bizCode"] = @"ZZDZP_DATA";
-    
-    [self POST:kGatewayPath(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
-        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-            handler(responseObj[@"data"], errorMsg);
-        }
-    }];
-}
-
 + (void)vipsxhHomeHandler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];

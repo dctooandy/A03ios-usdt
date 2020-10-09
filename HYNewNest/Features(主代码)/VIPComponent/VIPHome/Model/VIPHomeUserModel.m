@@ -19,7 +19,8 @@
 @implementation VIPHomeUserModel
 
 + (NSDictionary<NSString *,id> *)modelContainerPropertyGenericClass {
-    return @{@"equityData":[EquityDataItem class]};
+    return @{@"equityData": [EquityDataItem class],
+             @"prizeList": [VIPRewardAnocModel class]};
 }
 
 @end

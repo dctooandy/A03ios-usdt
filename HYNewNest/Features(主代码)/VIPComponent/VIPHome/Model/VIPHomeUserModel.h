@@ -8,6 +8,7 @@
 
 #import "CNBaseModel.h"
 #import "VIPMonthlyModel.h"
+#import "VIPRewardAnocModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -45,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSNumber *              totalDepositAmount;
 @property (nonatomic , strong) NSNumber *              totalBetAmount;
 @property (nonatomic , strong) NSArray <EquityDataItem *>              * equityData;
-
+@property (nonatomic , strong) NSArray <VIPRewardAnocModel *>          * prizeList;
 @end
 
 NS_ASSUME_NONNULL_END

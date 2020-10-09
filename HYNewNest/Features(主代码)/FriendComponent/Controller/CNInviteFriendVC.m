@@ -105,7 +105,7 @@
 
 // 查看我的收入
 - (IBAction)seeMyIncome:(id)sender {
-    [NNPageRouter jump2HTMLWithStrURL:@"https://m.ag88win.com" title:@"好友推荐"];
+    [NNPageRouter jump2HTMLWithStrURL:@"https://bybole.com" title:@"好友推荐"];
 }
 
 // 分享

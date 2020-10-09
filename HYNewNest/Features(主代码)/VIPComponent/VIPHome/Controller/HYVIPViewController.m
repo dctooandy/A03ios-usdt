@@ -92,7 +92,6 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 
 // -------- 数据源 --------
-@property (strong, nonatomic) NSArray <VIPRewardAnocModel *>* rewards;
 @property (strong, nonatomic) NSArray *cardArray;
 @property (strong, nonatomic) VIPHomeUserModel *sxhModel;
 @end
@@ -109,27 +108,27 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    // 月报
-    [self requestMonthReport];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.hideNavgation = YES;
-    [self setupCollectionView];
-
-    //X 抽奖播报 (首页代替)
-    [self requestRewardAnnouncement];
     
-    [self userStatusChanged];// 用户登录状态配置UI&请求
+    // 顶部卡片部分
+    [self setupCollectionView];
+    self.pageControl.numberOfPages = 6;
+    self.pageControl.dotSize = CGSizeMake(AD(7), AD(7));
+
+    // 月报
+    [self requestMonthReport];
+    
+    // 用户登录状态配置UI & 首页请求数据
+    [self userStatusChanged];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLogoutSuccessNotification object:nil];
     
-    // 顶部
-    _m_currentIndex = 0;
-    self.pageControl.numberOfPages = 6;
-    self.pageControl.dotSize = CGSizeMake(AD(7), AD(7));
+
 }
 
 - (void)viewDidLayoutSubviews {
@@ -172,7 +171,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     [self.vipSxhTopBtn setTitleColor:[UIColor jk_gradientFromColor:kHexColor(0xFFEFCB) toColor:kHexColor(0xA28455) withHeight:20]
                             forState:UIControlStateNormal];
     
-//    [self.bottomBgView addSubview:self.marqueeView];
+    [self.bottomBgView addSubview:self.marqueeView];
     self.bottomBgView.backgroundColor = [UIColor jk_gradientFromColor:kHexColor(0x0A1D25) toColor:kHexColor(0x070D17) withHeight:self.bottomBgView.height];
     
     [self.ByjdTopBg jk_setRoundedCorners:UIRectCornerTopLeft|UIRectCornerTopRight radius:4];
@@ -208,15 +207,29 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     
 }
 
+/// 累计身份相关数据
 - (void)setupUIDatas {
     [self.collectionViewCard reloadData];
     
     if ([CNUserManager shareManager].isLogin) {
         _lblThisMonthDeposit.text = [NSString stringWithFormat:@"本月充值:%@", [_sxhModel.totalDepositAmount jk_toDisplayNumberWithDigit:2]];
         _lblThisMonthAmount.text = [NSString stringWithFormat:@"本月流水:%@",[_sxhModel.totalBetAmount jk_toDisplayNumberWithDigit:2]];
+        
+        // 滚动到对应等级 居中
+        if (self.sxhModel.clubLevel.integerValue > 0) {
+            self.m_currentIndex = self.sxhModel.clubLevel.integerValue - 2;
+            [self.collectionViewCard scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_m_currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self fixCellToCenter];
+            });
+        } else {
+            self.m_currentIndex = 0;
+        }
+        
     } else {
         _lblThisMonthAmount.text = @"本月流水：-";
         _lblThisMonthDeposit.text = @"本月充值：-";
+        self.m_currentIndex = 0;
     }
     
     // 累计身份
@@ -226,6 +239,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     self.lbDuwangTime.text = [NSString stringWithFormat:@"%ld",(long)_sxhModel.historyBet.betKingCount];
     self.lbDubaTime.text = [NSString stringWithFormat:@"%ld",(long)_sxhModel.historyBet.betBaCount];
     self.lbDuxiaTime.text = [NSString stringWithFormat:@"%ld",(long)_sxhModel.historyBet.betXiaCount];
+
 }
 
 #pragma mark - Action
@@ -279,11 +293,9 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     [CNVIPRequest vipsxhHomeHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             VIPHomeUserModel *model = [VIPHomeUserModel cn_parse:responseObj];
-//            model.totalBetAmount = @12345678;
-//            model.totalDepositAmount = @8795613;
             self.sxhModel = model;
             [self setupUIDatas];
-            self.m_currentIndex = 0;
+            [self setupRewardMarqueeView];
         }
     }];
 }
@@ -319,23 +331,18 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     }
 }
 
-// 抽奖广播
-- (void)requestRewardAnnouncement {
-    [CNVIPRequest requestRewardBroadcastHandler:^(id responseObj, NSString *errorMsg) {
-        self.rewards = [VIPRewardAnocModel cn_parse:responseObj];
+//// 抽奖广播
+- (void)setupRewardMarqueeView {
+    if (self.sxhModel.prizeList.count) {
         [self.marqueeView reloadData];
-    }];
+    }
 }
 
-// 用户等级信息
-- (void)requestUsrVIPPromotion {
-    
-}
 
 #pragma mark - UUMarqueeViewDelegate
 
 - (NSUInteger)numberOfDataForMarqueeView:(UUMarqueeView*)marqueeView {
-    return self.rewards.count;
+    return self.sxhModel.prizeList.count;
 }
 
 - (NSUInteger)numberOfVisibleItemsForMarqueeView:(UUMarqueeView*)marqueeView {
@@ -345,20 +352,17 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 - (void)createItemView:(UIView *)itemView forMarqueeView:(UUMarqueeView *)marqueeView{
     
     UILabel *content = [[UILabel alloc] initWithFrame:itemView.bounds];
-    content.font = [UIFont systemFontOfSize:10.0f];
+    content.font = [UIFont fontPFR12];
     content.tag = 1001;
+    content.textColor = kHexColor(0xCFA461);
     [itemView addSubview:content];
 }
 
 - (void)updateItemView:(UIView *)itemView atIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView *)marqueeView{
         
-    VIPRewardAnocModel *model = [self.rewards objectAtIndex:index];
-    if (model) {
-        UILabel *content = [itemView viewWithTag:1001];
-        content.textColor = kHexColor(0xCFA461);
-        content.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:12];
-        content.text = [NSString stringWithFormat:@"恭喜 %@ 抽中 %@",model.loginname,model.prizeName];
-    }
+    VIPRewardAnocModel *model = [self.sxhModel.prizeList objectAtIndex:index];
+    UILabel *content = [itemView viewWithTag:1001];
+    content.text = [NSString stringWithFormat:@"恭喜 %@ 抽中 %@",model.loginname, model.prizedesc];
 }
 
 
@@ -458,6 +462,8 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     
     NSArray *eqArr = self.sxhModel.equityData;
     EquityDataItem *item = eqArr.count>0 ? eqArr[m_currentIndex] : nil;
+    
+    // 修改入会礼金 等级要求流水和存款
     if (item) {
         self.lbVipRight.text = [NSString stringWithFormat:@"会员权益: 入会礼金%@usdt", [item.rhljAmount jk_toDisplayNumberWithDigit:0]];
         self.lblNextLevelAmount.text = [[item.betAmount jk_toDisplayNumberWithDigit:2] stringByAppendingFormat:@" usdt"];
@@ -478,6 +484,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     self.lineDepositPrgsBG.hidden = NO;
     self.lbDuzunTip.hidden = YES;
     
+    // 修改提示文字 赌尊单独修改部分内容
     switch (m_currentIndex) {
         case 0:
             self.lblByjdSubTitle.text = self.sxhModel.clubLevel.integerValue>=2 ? @"(您已达标赌侠 继续加油哦)" : @"(择一达成 晋级赌侠)";

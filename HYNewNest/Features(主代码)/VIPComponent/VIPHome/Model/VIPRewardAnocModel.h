@@ -10,10 +10,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+///奖品模型
 @interface VIPRewardAnocModel : CNBaseModel
-
-@property(nonatomic,copy) NSString *loginname;
-@property(nonatomic,copy) NSString *prizeName;
+@property (nonatomic , copy) NSString              * activityId;
+@property (nonatomic , assign) NSInteger              amount;
+@property (nonatomic , copy) NSString              * createdDate;
+@property (nonatomic , assign) NSInteger              flag;
+@property (nonatomic , copy) NSString              * loginname;
+@property (nonatomic , assign) NSInteger              pageNumber;
+@property (nonatomic , assign) NSInteger              pageSize;
+@property (nonatomic , assign) NSInteger              prizeLevel;
+@property (nonatomic , copy) NSString              * prizeName;
+@property (nonatomic , copy) NSString              * prizedesc;
+@property (nonatomic , assign) NSInteger              prizelevel;
+@property (nonatomic , assign) NSInteger              prizetype;
+@property (nonatomic , copy) NSString              * productId;
+@property (nonatomic , assign) NSInteger              refAmount;
+@property (nonatomic , copy) NSString              * remark;
 
 @end
 

@@ -55,11 +55,10 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wrr-iD-zuH">
-                                    <rect key="frame" x="30" y="409" width="152" height="48"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wrr-iD-zuH">
+                                    <rect key="frame" x="30" y="409" width="162" height="48"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="48" id="PsB-dB-3Nq"/>
-                                        <constraint firstAttribute="width" constant="152" id="XYe-WE-G7r"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                     <state key="normal" title="查看我的收入 ">
@@ -70,7 +69,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PcP-40-4kK" customClass="CNTwoStatusBtn">
-                                    <rect key="frame" x="30" y="409" width="354" height="48"/>
+                                    <rect key="frame" x="222" y="409" width="162" height="48"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="48" id="BUl-DM-wH0"/>
                                     </constraints>
@@ -279,8 +278,10 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstItem="PcP-40-4kK" firstAttribute="width" secondItem="Wrr-iD-zuH" secondAttribute="width" id="0Ud-TC-zqJ"/>
                                 <constraint firstItem="hUF-5c-fwj" firstAttribute="bottom" secondItem="1sB-hv-Ry4" secondAttribute="bottom" id="0rf-XP-gHT"/>
                                 <constraint firstItem="rVP-9d-ExZ" firstAttribute="top" secondItem="Wrr-iD-zuH" secondAttribute="bottom" constant="30" id="1pu-K1-hgI"/>
+                                <constraint firstItem="PcP-40-4kK" firstAttribute="leading" secondItem="Wrr-iD-zuH" secondAttribute="trailing" constant="30" id="255-S0-8Fm"/>
                                 <constraint firstItem="5Ro-UW-exT" firstAttribute="top" secondItem="aP9-W5-QOJ" secondAttribute="top" constant="20" id="2Hj-X5-foH"/>
                                 <constraint firstItem="Wrr-iD-zuH" firstAttribute="leading" secondItem="hEB-j3-F8W" secondAttribute="leading" constant="30" id="2wG-BE-qxw"/>
                                 <constraint firstItem="hUF-5c-fwj" firstAttribute="trailing" secondItem="1sB-hv-Ry4" secondAttribute="trailing" id="3A1-kZ-tfq"/>
@@ -299,7 +300,6 @@
                                 <constraint firstItem="vQA-Gh-gJc" firstAttribute="centerX" secondItem="hEB-j3-F8W" secondAttribute="centerX" id="f7a-Ug-7Be"/>
                                 <constraint firstItem="rVP-9d-ExZ" firstAttribute="leading" secondItem="hEB-j3-F8W" secondAttribute="leading" id="fyv-cr-TWE"/>
                                 <constraint firstItem="aP9-W5-QOJ" firstAttribute="leading" secondItem="hEB-j3-F8W" secondAttribute="leading" id="hUY-FW-kuK"/>
-                                <constraint firstItem="PcP-40-4kK" firstAttribute="leading" secondItem="Wrr-iD-zuH" secondAttribute="leading" id="iNv-Vz-UzU"/>
                                 <constraint firstItem="5Ro-UW-exT" firstAttribute="bottom" secondItem="aP9-W5-QOJ" secondAttribute="bottom" constant="-20" id="jRk-0c-RDS"/>
                                 <constraint firstItem="hUF-5c-fwj" firstAttribute="top" secondItem="X8R-s2-naD" secondAttribute="top" id="nKn-fv-wSq"/>
                                 <constraint firstItem="5Ro-UW-exT" firstAttribute="trailing" secondItem="aP9-W5-QOJ" secondAttribute="trailing" id="rzz-3G-Xv4"/>
@@ -326,7 +326,7 @@
                 <constraint firstItem="Fok-ir-qH4" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="yee-FU-tRn"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
+            <point key="canvasLocation" x="136" y="96"/>
         </view>
     </objects>
     <resources>

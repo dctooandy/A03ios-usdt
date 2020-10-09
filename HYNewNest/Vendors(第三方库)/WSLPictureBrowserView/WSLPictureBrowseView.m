@@ -35,6 +35,8 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, strong) NSMutableArray * imgArray;
+
+@property (nonatomic, strong) NSArray *contents;
 @end
 
 
@@ -44,26 +46,14 @@
     [[NNControllerHelper currentTabbarSelectedNavigationController] setNavigationBarHidden:NO animated:YES];
 }
 
-- (instancetype)initWithTitle:(NSString *)title content:(NSString *)content imgArray:(NSArray *)imgArray {
+- (instancetype)initWithTitle:(NSString *)title content:(NSArray *)content urlArray:(NSArray *)urlArray {
     self = [self initWithFrame: [UIScreen mainScreen].bounds] ;
     
     [self addSubview:self.titleLabel];
     self.titleLabel.text = title;
     [self addSubview:self.contentLabel];
-    self.contentLabel.text = content;
-    
-    self.imgArray = imgArray.mutableCopy;
-    
-    return self;
-}
-
-- (instancetype)initWithTitle:(NSString *)title content:(NSString *)content urlArray:(NSArray *)urlArray {
-    self = [self initWithFrame: [UIScreen mainScreen].bounds] ;
-    
-    [self addSubview:self.titleLabel];
-    self.titleLabel.text = title;
-    [self addSubview:self.contentLabel];
-    self.contentLabel.text = content;
+    self.contents = content;
+    self.contentLabel.text = content[0];
     
     self.urlArray = urlArray.mutableCopy;
     
@@ -429,12 +419,19 @@
         self.currentImageData = self.imageDataArray[self.index] ;
     }
     
+    //页码
 //    self.indexLabel.text = [NSString stringWithFormat:@"%ld/%ld", self.index + 1,(long)self.count];
     NSString *str = [NSString stringWithFormat:@"%ld/%ld", self.index + 1,(long)self.count];
     NSMutableAttributedString *atrStr = [[NSMutableAttributedString alloc] initWithString:str];
     [atrStr addAttributes:@{NSFontAttributeName:[UIFont fontPFSB16], NSForegroundColorAttributeName:kHexColor(0xF7EAA4)} range:NSMakeRange(0, 1)];
     [atrStr addAttributes:@{NSFontAttributeName:[UIFont fontPFR12], NSForegroundColorAttributeName:kHexColor(0xCCCCCC)} range:NSMakeRange(1, str.length-1)];
     self.indexLabel.attributedText = atrStr;
+    
+    // 文字
+    if (self.contents) {
+        self.contentLabel.text = self.contents[scrollIndex];
+        [self.contentLabel sizeToFit];
+    }
 }
 
 

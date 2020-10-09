@@ -54,7 +54,7 @@
     }
     
     [self.giftImgv sd_setImageWithURL:[NSURL getUrlWithString:model.prizeUrl] placeholderImage:[UIImage imageNamed:@"1"]];
-    self.btnReceive.enabled = model.prizeId?YES:NO;
+    self.btnReceive.enabled = KIsEmptyString(model.prizeId)?NO:YES;
     self.lblTitle.text = model.title;
     self.lblContent.text = [NSString stringWithFormat:@"领取条件: %ld次%@   价值: %@%@", model.condition, club, model.amount, model.currency];
 }

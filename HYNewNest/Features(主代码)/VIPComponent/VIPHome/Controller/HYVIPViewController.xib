@@ -54,7 +54,7 @@
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="编组 4" translatesAutoresizingMaskIntoConstraints="NO" id="eWV-cV-QV6">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="19"/>
                         </imageView>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大奖公告：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I0q-dW-eM5">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大奖公告：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I0q-dW-eM5">
                             <rect key="frame" x="22" y="40" width="61.5" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="chM-z5-K8z"/>

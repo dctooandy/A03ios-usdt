@@ -33,6 +33,5 @@
 
 /// VIP 累计身份专用
 @property (nonatomic, assign) CGRect orgnRect;
-- (instancetype) initWithTitle:(NSString *)title content:(NSString *)content  urlArray:(NSArray *)urlArray;
-- (instancetype)initWithTitle:(NSString *)title content:(NSString *)content imgArray:(NSArray *)imgArray;
+- (instancetype) initWithTitle:(NSString *)title content:(NSArray *)content  urlArray:(NSArray *)urlArray;
 @end

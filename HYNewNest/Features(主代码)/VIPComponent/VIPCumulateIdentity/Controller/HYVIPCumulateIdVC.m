@@ -189,24 +189,32 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
         __block CGRect orgRect = animImgv.frame;
         animImgv.contentMode = UIViewContentModeScaleAspectFill;
         [strongSelf.view addSubview:animImgv];
-        [UIView animateWithDuration:0.25 animations:^{
+        [UIView animateWithDuration:0.4 animations:^{
             CGFloat imgH = kScreenWidth *  imgv.image.size.height / imgv.image.size.width;
             animImgv.frame = CGRectMake(0, (kScreenHeight-imgH)*0.5, kScreenWidth, imgH);
-            
         } completion:^(BOOL finished) {
-//            WSLPictureBrowseView * browseView = [[WSLPictureBrowseView alloc] initWithTitle:model.title content:model.introduce urlArray:@[model.prizeUrl]];
-            
-//            WSLPictureBrowseView * browseView = [[WSLPictureBrowseView alloc] initWithTitle:model.title content:model.introduce imgArray:@[imgv.image]];
-//            browseView.orgnRect = orgRect;
-//            browseView.viewController = self;
-//            [strongSelf.view addSubview:browseView];
-//            [strongSelf.navigationController setNavigationBarHidden:YES animated:YES];
-//
-//            [animImgv removeFromSuperview];
         }];
         
+        // 获取礼物详情
         [CNVIPRequest vipsxhAwardDetailPrizeids:model.prizeId handler:^(id responseObj, NSString *errorMsg) {
-            //TODO: =
+            // 处理数据
+            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+                NSMutableArray *contents = @[].mutableCopy;
+                NSMutableArray *picURLs = @[].mutableCopy;
+                for (NSDictionary *dict in responseObj[@"result"]) {
+                    [contents addObject:dict[@"content"]];
+                    [picURLs addObject:dict[@"url"]];
+                }
+                WSLPictureBrowseView * browseView = [[WSLPictureBrowseView alloc] initWithTitle:model.title
+                                                                                        content:contents
+                                                                                       urlArray:picURLs];
+
+                browseView.orgnRect = orgRect;
+                browseView.viewController = self;
+                [strongSelf.view addSubview:browseView];
+                [strongSelf.navigationController setNavigationBarHidden:YES animated:YES];
+            }
+            [animImgv removeFromSuperview];
         }];
         
     };
