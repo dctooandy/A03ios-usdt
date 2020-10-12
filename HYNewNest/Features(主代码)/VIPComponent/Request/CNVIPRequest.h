@@ -46,11 +46,9 @@ typedef NS_ENUM(NSInteger, VIPSxhAwardType) {
     VIPSxhAwardTypeLJSF = 4,
 };
 /// 领取记录
-+ (void)vipsxhReceiveAwardRecordPageNo:(NSInteger)pageNo
-                              pageSize:(NSInteger)pageSize
-                                  type:(VIPSxhAwardType)type
-                                   day:(NSInteger)days
-                               handler:(HandlerBlock)handler;
++ (void)vipsxhReceiveAwardRecordType:(VIPSxhAwardType)type
+                                 day:(NSInteger)days
+                             handler:(HandlerBlock)handler;
 
 @end
 

@@ -95,11 +95,9 @@
     [self POST:kGatewayExtraPath(activity_vipSxhAwardDetail) parameters:param completionHandler:handler];
 }
 
-+ (void)vipsxhReceiveAwardRecordPageNo:(NSInteger)pageNo
-                              pageSize:(NSInteger)pageSize
-                                  type:(VIPSxhAwardType)type
-                                   day:(NSInteger)days
-                               handler:(HandlerBlock)handler{
++ (void)vipsxhReceiveAwardRecordType:(VIPSxhAwardType)type
+                                 day:(NSInteger)days
+                             handler:(HandlerBlock)handler{
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"promoCode"] = @"VIPPRIVILEGE";
@@ -107,8 +105,7 @@
     param[@"currency"] = [CNUserManager shareManager].userInfo.currency?:@"USDT";
     param[@"flags"] = @1;
     param[@"defineFlag"] = @(type); // 至尊转盘3 累计身份4
-    param[@"pageNo"] = @(pageNo);
-    param[@"pageSize"] = @(pageSize);
+    param[@"pageSize"] = @(200);
     param[@"endDate"] = [[NSDate date] jk_formatYMD];
     param[@"beginDate"] = [[NSDate jk_dateWithDaysBeforeNow:days] jk_formatYMD];
     

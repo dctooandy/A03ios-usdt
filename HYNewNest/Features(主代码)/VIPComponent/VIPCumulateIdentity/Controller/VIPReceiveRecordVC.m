@@ -12,12 +12,11 @@
 #import "LYEmptyView.h"
 #import "UIView+Empty.h"
 
-@interface VIPReceiveRecordVC () <UITableViewDelegate, UITableViewDataSource>{
-    NSInteger _pageNo;
-}
+@interface VIPReceiveRecordVC () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, assign) VIPReceiveRecordType curType;
 @property (nonatomic, assign) NSInteger preDays;
+@property (nonatomic, strong) NSArray *awards;
 @end
 
 @implementation VIPReceiveRecordVC
@@ -32,6 +31,7 @@
         _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"kongduixiang"
                                                             titleStr:@"这里空空如也~"
                                                            detailStr:@"去抽个奖吧！"];
+        _tableView.ly_emptyView.transform = CGAffineTransformMakeTranslation(0, -60);
     }
     return _tableView;;
 }
@@ -51,7 +51,6 @@
 
     [self.navigationController.navigationBar setBackgroundImage:[UIColor gradientImageFromColors:@[kHexColor(0x252525), kHexColor(0x1A1A1A)] gradientType:GradientTypeLeftToRight imgSize:CGSizeMake(kScreenWidth, kNavPlusStaBarHeight)]  forBarMetrics:UIBarMetricsDefault];
     
-    _pageNo = 0;
     _curType = 1;
     [self.view addSubview:self.tableView];
     [self requestData];
@@ -66,20 +65,18 @@
     [VIPRecordSelectorView showSelectorWithSelcType:_curType dayParm:_preDays callBack:^(VIPReceiveRecordType type, NSInteger day) {
         self.curType = type;
         self.preDays = day;
-        self->_pageNo = 0;
         [self requestData];
     }];
 }
 
 - (void)requestData {
-    [CNVIPRequest vipsxhReceiveAwardRecordPageNo:_pageNo
-                                        pageSize:20
-                                            type:_curType == 0 ? VIPSxhAwardTypeZZZP : VIPSxhAwardTypeLJSF
-                                             day:_preDays
-                                         handler:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg) {
+    [CNVIPRequest vipsxhReceiveAwardRecordType:_curType == 0 ? VIPSxhAwardTypeZZZP : VIPSxhAwardTypeLJSF
+                                           day:_preDays
+                                       handler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             //TODO: 没数据
-            
+            self.awards = [VIPRewardAnocModel cn_parse:responseObj[@"result"]];
+            [self.tableView reloadData];
         }
     }];
 }
@@ -87,7 +84,7 @@
 
 #pragma mark - UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return self.awards.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -99,9 +96,11 @@
         cell.backgroundColor = kHexColor(0x1A1A1A);
         cell.textLabel.textColor = kHexColor(0xD3D3D3);
     }
-    //TODO: --
-    cell.textLabel.text = @"天然蜜蜡貔貅";
-    cell.detailTextLabel.text = @"2020.05.02 13:30";
+    VIPRewardAnocModel *model = self.awards[indexPath.row];
+    cell.textLabel.text = model.prizedesc;
+    cell.textLabel.font = [UIFont fontPFR13];
+    cell.detailTextLabel.text = model.createdDate;
+    cell.detailTextLabel.font = [UIFont fontPFR13];
     return cell;
 }
 

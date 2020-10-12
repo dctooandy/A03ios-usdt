@@ -51,11 +51,6 @@ shouldPrevent = NO; \
 });
 
 
-#define KSetStatusBarBGColor(UIColor)   UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];\
-if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {\
-    statusBar.backgroundColor = (UIColor);\
-}
-
 #define VIEWSAFEAREAINSETS(view) ({UIEdgeInsets i; if(@available(iOS 11.0, *)) {i = view.safeAreaInsets;} else {i = UIEdgeInsetsZero;} i;})
 
 

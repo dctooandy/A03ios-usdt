@@ -18,7 +18,8 @@
 static NSString * const CUMIDCELL = @"VIPCumulateIdCell";
 static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 
-@interface HYVIPCumulateIdVC () <UITableViewDelegate, UITableViewDataSource>
+@interface HYVIPCumulateIdVC () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
+@property (nonatomic, strong) UIView *statusBgView;
 @property (weak, nonatomic) IBOutlet UIButton *btnRule;
 // 选中身份标示
 @property (nonatomic, assign) NSInteger selIdx;
@@ -43,6 +44,17 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 @end
 
 @implementation HYVIPCumulateIdVC
+
+- (UIView *)statusBgView {
+    if (!_statusBgView) {
+        _statusBgView = [UIView new];
+        _statusBgView.frame = CGRectMake(0, 0, kScreenWidth, kStatusBarHeight);
+        _statusBgView.backgroundColor = kHexColor(0x181514);
+        _statusBgView.alpha = 0;
+        [self.view addSubview:_statusBgView];
+    }
+    return _statusBgView;
+}
 
 - (NSDictionary *)rankNameLevel {
     if (!_rankNameLevel) {
@@ -196,9 +208,9 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
         }];
         
         // 获取礼物详情
-        [CNVIPRequest vipsxhAwardDetailPrizeids:model.prizeId handler:^(id responseObj, NSString *errorMsg) {
+        [CNVIPRequest vipsxhAwardDetailPrizeids:model.title handler:^(id responseObj, NSString *errorMsg) {
             // 处理数据
-            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]] && [responseObj[@"result"] count] > 0) {
                 NSMutableArray *contents = @[].mutableCopy;
                 NSMutableArray *picURLs = @[].mutableCopy;
                 for (NSDictionary *dict in responseObj[@"result"]) {
@@ -213,8 +225,11 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
                 browseView.viewController = self;
                 [strongSelf.view addSubview:browseView];
                 [strongSelf.navigationController setNavigationBarHidden:YES animated:YES];
+                [animImgv removeFromSuperview];
+            } else {
+                [CNHUB showError:@"奖品数据为空"];
+                [animImgv removeFromSuperview];
             }
-            [animImgv removeFromSuperview];
         }];
         
     };
@@ -231,5 +246,22 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
     return header;
 }
 
+
+#pragma mark - UIScrollView
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.tag == 888) {
+        if (scrollView.contentOffset.y > AD(228)+35) {
+            [self.navigationController setNavigationBarHidden:YES animated:YES];
+            [UIView animateWithDuration:0.25 animations:^{
+                self.statusBgView.alpha = 1.0;
+            }];
+        } else {
+            [self.navigationController setNavigationBarHidden:NO animated:YES];
+            [UIView animateWithDuration:0.25 animations:^{
+                self.statusBgView.alpha = 0.0;
+            }];
+        }
+    }
+}
 
 @end
