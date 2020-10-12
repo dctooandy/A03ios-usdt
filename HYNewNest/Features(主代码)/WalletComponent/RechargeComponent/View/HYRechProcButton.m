@@ -14,6 +14,8 @@
 
 @implementation HYRechProcButton
 
+#pragma mark - LAZY
+
 - (CAShapeLayer *)triangleLy {
     if (!_triangleLy) {
         CAShapeLayer *trangle = [CAShapeLayer layer];
@@ -42,8 +44,27 @@
     return _gougou;
 }
 
-- (instancetype)init {
-    self = [super init];
+
+#pragma mark - INIT
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (instancetype)commonInit {
+//    self = [super init];
     
     self.backgroundColor = kHexColor(0x212137);
     self.titleLabel.font = [UIFont fontPFR15];
