@@ -270,21 +270,12 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 }
 
 - (IBAction)didTapZZZP:(id)sender {
-#ifdef DEBUG
     [NNPageRouter jump2HTMLWithStrURL:@"/sudoku" title:@"至尊转盘"];
-#else
-    [CNHUB showWaiting:@"十月来袭 敬请期待"];
-#endif
 }
 
 - (IBAction)didTapLJSF:(id)sender {
-#ifdef DEBUG
     HYVIPCumulateIdVC *vc = [HYVIPCumulateIdVC new];
     [self.navigationController pushViewController:vc animated:YES];
-#else
-    [CNHUB showWaiting:@"十月来袭 敬请期待"];
-#endif
-
 }
 
 

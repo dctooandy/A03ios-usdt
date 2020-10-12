@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface HYUpdateAlertView : HYBaseAlertView
 
 
-+ (void)showWithVersionString:(NSString *)version isForceUpdate:(BOOL)isForce handler:(void(^)(BOOL isComfirm))handler;
++ (void)showWithVersionString:(NSString *)string isForceUpdate:(BOOL)isForce handler:(void(^)(BOOL isComfirm))handler;
 
 @end
 

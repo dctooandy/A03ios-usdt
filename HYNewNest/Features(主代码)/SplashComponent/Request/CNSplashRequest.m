@@ -29,16 +29,11 @@
         
         if([updateVersion.flag integerValue] >= 1){
             
-            NSString *title = @"";
-            NSString *content = updateVersion.upgradeDesc[@"des"] ?: @"";
-            NSString *cancelTitle = @"";
-            NSString *suretitle = @"";
+            NSString *content = updateVersion.upgradeDesc[@"des"] ?: updateVersion.versionCode;
+            
             if ([updateVersion.flag integerValue] == 1) {
-                title = [NSString stringWithFormat:@"检测到新版本 V%@",updateVersion.versionCode] ;
-                cancelTitle = @"暂不更新";
-                suretitle= @"更新";
                 
-                [HYUpdateAlertView showWithVersionString:updateVersion.versionCode isForceUpdate:NO handler:^(BOOL isComfirm) {
+                [HYUpdateAlertView showWithVersionString:content isForceUpdate:NO handler:^(BOOL isComfirm) {
                     if (isComfirm && [[UIApplication sharedApplication] canOpenURL:downURL]) {
                         [[UIApplication sharedApplication] openURL:downURL options:@{} completionHandler:^(BOOL success) {
                             [CNHUB showSuccess:@"正在为您打开下载链接.."];
@@ -64,10 +59,7 @@
                     }
                 }
                 
-                title = [NSString stringWithFormat:@"⚠️请更新到新版本 V%@",updateVersion.versionCode];
-                cancelTitle = @"退出应用";
-                suretitle= @"强制更新";
-                [HYUpdateAlertView showWithVersionString:updateVersion.versionCode isForceUpdate:YES handler:^(BOOL isComfirm) {
+                [HYUpdateAlertView showWithVersionString:content isForceUpdate:YES handler:^(BOOL isComfirm) {
                     if (isComfirm && [[UIApplication sharedApplication] canOpenURL:downURL]) {
                         [[UIApplication sharedApplication] openURL:downURL options:@{} completionHandler:^(BOOL success) {
                             [CNHUB showSuccess:@"正在为您打开下载链接.."];
@@ -113,7 +105,7 @@
 }
 
 + (void)exitAapplication {
-    UIWindow *window = kAppDelegate.window;
+    UIWindow *window = (UIWindow *)kAppDelegate.window;
     [UIView animateWithDuration:1.0f animations:^{
         window.alpha = 0;
     } completion:^(BOOL finished) {

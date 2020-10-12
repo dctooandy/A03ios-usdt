@@ -11,13 +11,13 @@
 
 @implementation HYUpdateAlertView
 
-+ (void)showWithVersionString:(NSString *)version isForceUpdate:(BOOL)isForce handler:(void (^)(BOOL isComfirm))handler {
-    HYUpdateAlertView *a = [[HYUpdateAlertView alloc] initWithVersionString:version isForceUpdate:isForce handler:handler];
++ (void)showWithVersionString:(NSString *)string isForceUpdate:(BOOL)isForce handler:(void (^)(BOOL isComfirm))handler {
+    HYUpdateAlertView *a = [[HYUpdateAlertView alloc] initWithVersionString:string isForceUpdate:isForce handler:handler];
     a.frame = [UIScreen mainScreen].bounds;
     [a show];
 }
 
-- (instancetype)initWithVersionString:(NSString *)version isForceUpdate:(BOOL)isForce handler:(void (^)(BOOL isComfirm))handler {
+- (instancetype)initWithVersionString:(NSString *)string isForceUpdate:(BOOL)isForce handler:(void (^)(BOOL isComfirm))handler {
     self = [super init];
     
     self.comfirmBlock = handler;
@@ -63,7 +63,11 @@
     }];
     
     UILabel *lblContent = [[UILabel alloc] init];
-    lblContent.text = [NSString stringWithFormat:@"最新版本：V%@", version];
+    if (string.length > 6) {
+        lblContent.text = string;
+    } else {
+        lblContent.text = [NSString stringWithFormat:@"最新版本 V%@",string];
+    }
     lblContent.font = [UIFont fontPFR14];
     lblContent.textAlignment = NSTextAlignmentCenter;
     lblContent.textColor = kHexColorAlpha(0xFFFFFF, 0.5);
