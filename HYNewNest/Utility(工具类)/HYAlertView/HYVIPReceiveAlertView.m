@@ -31,7 +31,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     [self.contentView addCornerAndShadow];
-    self.contentView.frame = CGRectMake(AD(30), AD(188), AD(315), AD(238));
+    self.contentView.frame = CGRectMake(AD(30), kNavPlusStaBarHeight + AD(188), AD(315), AD(238));
     self.leftBtn.frame = CGRectMake(AD(46), self.contentView.bottom + AD(9), AD(138), AD(40));
     self.rightBtn.frame = CGRectMake(self.leftBtn.right + AD(8), self.leftBtn.top, AD(138), AD(40));
 }

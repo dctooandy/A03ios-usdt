@@ -71,12 +71,14 @@
     lblContent.font = [UIFont fontPFR14];
     lblContent.textAlignment = NSTextAlignmentCenter;
     lblContent.textColor = kHexColorAlpha(0xFFFFFF, 0.5);
+    lblContent.numberOfLines = 0;
     [self.contentView addSubview:lblContent];
     [lblContent mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(AD(22));
         make.right.equalTo(self.contentView).offset(AD(-22));
         make.top.equalTo(lblTitle.mas_bottom).offset(10);
     }];
+    [lblContent sizeToFit];
     
     CNTwoStatusBtn *btn = btn = [[CNTwoStatusBtn alloc] init];
     [btn setTitle:@"立即更新版本" forState:UIControlStateNormal];

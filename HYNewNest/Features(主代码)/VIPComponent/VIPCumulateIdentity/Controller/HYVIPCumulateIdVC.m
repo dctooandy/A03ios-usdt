@@ -156,8 +156,13 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 }
 
 - (IBAction)didTapReceiveRecord:(id)sender {
-    VIPReceiveRecordVC *vc = [VIPReceiveRecordVC new];
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([CNUserManager shareManager].isLogin) {
+        VIPReceiveRecordVC *vc = [VIPReceiveRecordVC new];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    } else {
+        [CNHUB showError:@"请先登录"];
+    }
 }
 
 #pragma mark - UITableView
@@ -183,6 +188,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
                 [CNVIPRequest vipsxhApplyCumulateIdentityPrize:model.prizeId handler:^(id responseObj, NSString *errorMsg) {
                     STRONGSELF_DEFINE
                     if (!errorMsg) {
+                        [CNHUB showSuccess:@"领取成功!"];
                         [strongSelf vipIdentityData];
                     }
                 }];
