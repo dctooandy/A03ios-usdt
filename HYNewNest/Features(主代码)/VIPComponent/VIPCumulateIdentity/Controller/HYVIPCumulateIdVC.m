@@ -14,11 +14,15 @@
 #import "HYVIPReceiveAlertView.h"
 #import "WSLPictureBrowseView.h"
 #import "VIPReceiveRecordVC.h"
+#import "VIPGiftTableView.h"
 
 static NSString * const CUMIDCELL = @"VIPCumulateIdCell";
 static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 
 @interface HYVIPCumulateIdVC () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
+{
+    CGFloat _lastOffsetY;
+}
 @property (nonatomic, strong) UIView *statusBgView;
 @property (weak, nonatomic) IBOutlet UIButton *btnRule;
 // 选中身份标示
@@ -35,7 +39,8 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 @property (weak, nonatomic) IBOutlet UILabel *lblPlsLogin;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogin;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIScrollView *superScrollView;
+@property (weak, nonatomic) IBOutlet VIPGiftTableView *tableView;
 
 /// 数据
 @property (strong, nonatomic) HistoryBet *historyBet;
@@ -255,19 +260,40 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 
 #pragma mark - UIScrollView
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (scrollView.tag == 888) {
-        if (scrollView.contentOffset.y > AD(228)+35) {
-            [self.navigationController setNavigationBarHidden:YES animated:YES];
-            [UIView animateWithDuration:0.25 animations:^{
-                self.statusBgView.alpha = 1.0;
-            }];
-        } else {
-            [self.navigationController setNavigationBarHidden:NO animated:YES];
-            [UIView animateWithDuration:0.25 animations:^{
-                self.statusBgView.alpha = 0.0;
-            }];
+    
+    if (scrollView == self.tableView){ // 子tableview
+//        MyLog(@"2----%@", NSStringFromCGPoint(scrollView.contentOffset));
+        CGFloat y = AD(228)+35;
+        if (scrollView.contentOffset.y > _lastOffsetY) {
+            // 下滑
+            if (self.superScrollView.contentOffset.y <= y) {
+                scrollView.contentOffset = CGPointMake(0, 0);
+                [self.navigationController setNavigationBarHidden:YES animated:YES];
+                [UIView animateWithDuration:0.25 animations:^{
+                    self.statusBgView.alpha = 1.0;
+                }];
+                
+            }
+        } else if  (scrollView.contentOffset.y < _lastOffsetY) {
+            // 上滑
+            if (scrollView.contentOffset.y <= 0) {
+                [self.superScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+                [self.navigationController setNavigationBarHidden:NO animated:YES];
+                [UIView animateWithDuration:0.25 animations:^{
+                    self.statusBgView.alpha = 0.0;
+                }];
+            }
         }
     }
 }
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    // tableview 下滑则_lastOffsetY大于0
+    if (scrollView == self.tableView) {
+        _lastOffsetY = scrollView.contentOffset.y;
+    }
+    
+}
+
 
 @end
