@@ -209,8 +209,6 @@
 		3D41DEBA251F1A20000CA1D6 /* WSLPictureBrowseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEB8251F1A20000CA1D6 /* WSLPictureBrowseView.m */; };
 		3D41DEBD251F1B47000CA1D6 /* UIImageView+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEBC251F1B47000CA1D6 /* UIImageView+GIF.m */; };
 		3D41DEC025206AAE000CA1D6 /* VIPReceiveRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEBF25206AAE000CA1D6 /* VIPReceiveRecordVC.m */; };
-		3D41DEC42521B539000CA1D6 /* VIPReceiveRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEC22521B539000CA1D6 /* VIPReceiveRecordCell.m */; };
-		3D41DEC52521B539000CA1D6 /* VIPReceiveRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D41DEC32521B539000CA1D6 /* VIPReceiveRecordCell.xib */; };
 		3D41DEC92521CDE7000CA1D6 /* VIPRecordSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D41DEC62521CDE6000CA1D6 /* VIPRecordSelectorView.xib */; };
 		3D41DECA2521CDE7000CA1D6 /* VIPRecordSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEC82521CDE7000CA1D6 /* VIPRecordSelectorView.m */; };
 		3D564E2024F3C02C006846DD /* MessageBoxModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D564E1F24F3C02C006846DD /* MessageBoxModel.m */; };
@@ -1248,9 +1246,6 @@
 		3D41DEBC251F1B47000CA1D6 /* UIImageView+GIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+GIF.m"; sourceTree = "<group>"; };
 		3D41DEBE25206AAE000CA1D6 /* VIPReceiveRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPReceiveRecordVC.h; sourceTree = "<group>"; };
 		3D41DEBF25206AAE000CA1D6 /* VIPReceiveRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPReceiveRecordVC.m; sourceTree = "<group>"; };
-		3D41DEC12521B539000CA1D6 /* VIPReceiveRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPReceiveRecordCell.h; sourceTree = "<group>"; };
-		3D41DEC22521B539000CA1D6 /* VIPReceiveRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPReceiveRecordCell.m; sourceTree = "<group>"; };
-		3D41DEC32521B539000CA1D6 /* VIPReceiveRecordCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VIPReceiveRecordCell.xib; sourceTree = "<group>"; };
 		3D41DEC62521CDE6000CA1D6 /* VIPRecordSelectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VIPRecordSelectorView.xib; sourceTree = "<group>"; };
 		3D41DEC72521CDE6000CA1D6 /* VIPRecordSelectorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPRecordSelectorView.h; sourceTree = "<group>"; };
 		3D41DEC82521CDE7000CA1D6 /* VIPRecordSelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPRecordSelectorView.m; sourceTree = "<group>"; };
@@ -2974,9 +2969,6 @@
 				3D41DE9B2519F9C6000CA1D6 /* VIPCumulateIdHeader.xib */,
 				3D41DEA3251AF662000CA1D6 /* VIPCumulateIdButton.h */,
 				3D41DEA4251AF662000CA1D6 /* VIPCumulateIdButton.m */,
-				3D41DEC12521B539000CA1D6 /* VIPReceiveRecordCell.h */,
-				3D41DEC22521B539000CA1D6 /* VIPReceiveRecordCell.m */,
-				3D41DEC32521B539000CA1D6 /* VIPReceiveRecordCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4638,7 +4630,6 @@
 				D5A4439924F378CD00014DC6 /* 彩票_00035.png in Resources */,
 				D5A443A224F378CD00014DC6 /* 彩票_00030.png in Resources */,
 				D5A4457924F393AD00014DC6 /* 棋牌_00085.png in Resources */,
-				3D41DEC52521B539000CA1D6 /* VIPReceiveRecordCell.xib in Resources */,
 				D5A4464524F393E500014DC6 /* 足球_0006.png in Resources */,
 				D5A4464924F393E500014DC6 /* 足球_0005.png in Resources */,
 				D5A444C424F3932400014DC6 /* 数字7_00091.png in Resources */,
@@ -5402,7 +5393,6 @@
 				E98BEF0A24D25F6E00E6B0C8 /* HYXiMaCell.m in Sources */,
 				E986A1C424CC7F2B000F9CFF /* TADotView.m in Sources */,
 				E9D9447724C1F37900252222 /* HYBonusViewController.m in Sources */,
-				3D41DEC42521B539000CA1D6 /* VIPReceiveRecordCell.m in Sources */,
 				0487C9AD24CFBA6A0013715A /* JJCollectionViewRoundFlowLayout.m in Sources */,
 				0487C97B24CEB2710013715A /* CNChoseImageVC.m in Sources */,
 				D5FBFE2D24BC05E400BBCAD8 /* CNLoginRegisterVC.m in Sources */,

@@ -113,6 +113,10 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
     
     [_tableView registerNib:[UINib nibWithNibName:CUMIDCELL bundle:nil] forCellReuseIdentifier:CUMIDCELL];
     [_tableView registerNib:[UINib nibWithNibName:CUMIDHEADER bundle:nil] forHeaderFooterViewReuseIdentifier:CUMIDHEADER];
+    
+    // 自动布局高度 cell必须有距离底部约束
+//    _tableView.estimatedRowHeight = 258;
+//    _tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 - (void)setupUIDatas {
@@ -252,7 +256,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
     header.didTapBtnBlock = ^(NSString * _Nonnull rankName) {
         self.selIdx = [self.rankNameLevel[rankName] integerValue];
         [self.tableView reloadData];
-//        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+//        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
     };
     return header;
 }

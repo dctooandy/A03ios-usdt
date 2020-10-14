@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIView *centerBGView;
 @property (weak, nonatomic) IBOutlet UIButton *btnExpand;
 @property (weak, nonatomic) IBOutlet VIPCumulateIdButton *btnReceive;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgviewHeightCons;
 
 @property (weak, nonatomic) IBOutlet UIImageView *giftImgv;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
@@ -53,7 +54,14 @@
             break;
     }
     
-    [self.giftImgv sd_setImageWithURL:[NSURL getUrlWithString:model.prizeUrl] placeholderImage:[UIImage imageNamed:@"1"]];
+    [self.giftImgv sd_setImageWithURL:[NSURL getUrlWithString:model.prizeUrl] placeholderImage:[UIImage imageNamed:@"1"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        
+        // 拿到图片改高度
+//        CGFloat h = (kScreenWidth-32) * image.size.height / image.size.width;
+//        self.imgviewHeightCons.constant = h + 70 + 15;
+//        [self setNeedsLayout];
+    }];
+    
     self.btnReceive.enabled = model.residueCount?YES:NO;
     self.lblTitle.text = model.title;
     self.lblContent.text = [NSString stringWithFormat:@"领取条件: %ld次%@   价值: %@%@", model.condition, club, model.amount, model.currency];
