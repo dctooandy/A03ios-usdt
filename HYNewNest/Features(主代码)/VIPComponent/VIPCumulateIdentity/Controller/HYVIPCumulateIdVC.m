@@ -267,7 +267,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
         if (scrollView.contentOffset.y > _lastOffsetY) {
             // 下滑
             if (self.superScrollView.contentOffset.y <= y) {
-                scrollView.contentOffset = CGPointMake(0, 0);
+                scrollView.contentOffset = CGPointZero; //这里如果用动画效果很奇怪
                 [self.navigationController setNavigationBarHidden:YES animated:YES];
                 [UIView animateWithDuration:0.25 animations:^{
                     self.statusBgView.alpha = 1.0;
@@ -277,7 +277,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
         } else if  (scrollView.contentOffset.y < _lastOffsetY) {
             // 上滑
             if (scrollView.contentOffset.y <= 0) {
-                [self.superScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+                [self.superScrollView setContentOffset:CGPointZero animated:YES];
                 [self.navigationController setNavigationBarHidden:NO animated:YES];
                 [UIView animateWithDuration:0.25 animations:^{
                     self.statusBgView.alpha = 0.0;

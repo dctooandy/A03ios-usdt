@@ -93,13 +93,13 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOh-vE-MiA">
-                                                    <rect key="frame" x="28" y="10" width="7.5" height="17"/>
+                                                    <rect key="frame" x="28.5" y="10" width="7" height="17"/>
                                                     <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="14"/>
                                                     <color key="textColor" red="0.53333333333333333" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赌尊" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hh-ty-Xnb">
-                                                    <rect key="frame" x="19" y="31" width="25.5" height="14.5"/>
+                                                    <rect key="frame" x="19.5" y="31" width="25" height="14.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="14.5" id="dNr-yv-PFO"/>
                                                     </constraints>
@@ -113,11 +113,9 @@
                                                 <constraint firstItem="lOh-vE-MiA" firstAttribute="centerX" secondItem="mmD-aV-qRm" secondAttribute="centerX" id="4Nn-lO-fIJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="S6I-as-utF" secondAttribute="trailing" id="B3n-gp-5Cc"/>
                                                 <constraint firstItem="S6I-as-utF" firstAttribute="centerY" secondItem="mmD-aV-qRm" secondAttribute="centerY" id="VdE-6w-AqR"/>
-                                                <constraint firstItem="S6I-as-utF" firstAttribute="leading" secondItem="lOh-vE-MiA" secondAttribute="trailing" constant="27" id="YsQ-mw-1wb"/>
                                                 <constraint firstAttribute="bottom" secondItem="9hh-ty-Xnb" secondAttribute="bottom" constant="11.5" id="clw-Cq-G1h"/>
                                                 <constraint firstItem="9hh-ty-Xnb" firstAttribute="top" secondItem="lOh-vE-MiA" secondAttribute="bottom" constant="4" id="h5I-Tn-j32"/>
                                                 <constraint firstItem="lOh-vE-MiA" firstAttribute="top" secondItem="mmD-aV-qRm" secondAttribute="top" constant="10" id="ooJ-O3-Ndm"/>
-                                                <constraint firstItem="S6I-as-utF" firstAttribute="leading" secondItem="9hh-ty-Xnb" secondAttribute="trailing" constant="18" id="vqa-bE-tbM"/>
                                                 <constraint firstItem="9hh-ty-Xnb" firstAttribute="centerX" secondItem="mmD-aV-qRm" secondAttribute="centerX" id="yOM-BD-JUc"/>
                                             </constraints>
                                         </view>
@@ -209,13 +207,13 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vdo-sN-gwh">
-                                                    <rect key="frame" x="28" y="10" width="7.5" height="17"/>
+                                                    <rect key="frame" x="28.5" y="10" width="7" height="17"/>
                                                     <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="14"/>
                                                     <color key="textColor" red="0.53333333329999999" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赌王" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcN-fN-MeL">
-                                                    <rect key="frame" x="19" y="31" width="25.5" height="14.5"/>
+                                                    <rect key="frame" x="19.5" y="31" width="25" height="14.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="14.5" id="M7Q-RA-d4r"/>
                                                     </constraints>
@@ -231,10 +229,8 @@
                                                 <constraint firstItem="Vdo-sN-gwh" firstAttribute="centerX" secondItem="y7q-sZ-4OI" secondAttribute="centerX" id="IXb-3X-nk7"/>
                                                 <constraint firstAttribute="bottom" secondItem="AcN-fN-MeL" secondAttribute="bottom" constant="11.5" id="LbX-9S-MWM"/>
                                                 <constraint firstItem="Vdo-sN-gwh" firstAttribute="top" secondItem="y7q-sZ-4OI" secondAttribute="top" constant="10" id="Npt-EL-9tp"/>
-                                                <constraint firstItem="vOT-Yo-unk" firstAttribute="leading" secondItem="Vdo-sN-gwh" secondAttribute="trailing" constant="27" id="RJ0-KX-Pv9"/>
                                                 <constraint firstAttribute="trailing" secondItem="vOT-Yo-unk" secondAttribute="trailing" id="Tbs-yF-U8q"/>
                                                 <constraint firstItem="vOT-Yo-unk" firstAttribute="centerY" secondItem="y7q-sZ-4OI" secondAttribute="centerY" id="rEH-rm-tgj"/>
-                                                <constraint firstItem="vOT-Yo-unk" firstAttribute="leading" secondItem="AcN-fN-MeL" secondAttribute="trailing" constant="18" id="xx0-gw-ZZL"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CeW-k6-vMd">
@@ -279,13 +275,13 @@
                                             <rect key="frame" x="318.5" y="6.5" width="63.5" height="57"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKm-Jq-SQj">
-                                                    <rect key="frame" x="28" y="10" width="7.5" height="17"/>
+                                                    <rect key="frame" x="28" y="10" width="7" height="17"/>
                                                     <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="14"/>
                                                     <color key="textColor" red="0.53333333329999999" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赌侠" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzK-sp-zN1">
-                                                    <rect key="frame" x="19" y="31" width="25.5" height="14.5"/>
+                                                    <rect key="frame" x="19" y="31" width="25" height="14.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="14.5" id="VEL-04-lXN"/>
                                                     </constraints>
@@ -298,11 +294,9 @@
                                             <constraints>
                                                 <constraint firstItem="vzK-sp-zN1" firstAttribute="centerX" secondItem="Pnp-Cv-gyK" secondAttribute="centerX" id="0n0-uv-z5F"/>
                                                 <constraint firstItem="jKm-Jq-SQj" firstAttribute="top" secondItem="Pnp-Cv-gyK" secondAttribute="top" constant="10" id="81u-53-XW5"/>
-                                                <constraint firstItem="jKm-Jq-SQj" firstAttribute="leading" secondItem="Pnp-Cv-gyK" secondAttribute="leading" constant="28" id="B90-l0-WU5"/>
                                                 <constraint firstItem="jKm-Jq-SQj" firstAttribute="centerX" secondItem="Pnp-Cv-gyK" secondAttribute="centerX" id="Kdu-l6-6Ng"/>
                                                 <constraint firstAttribute="bottom" secondItem="vzK-sp-zN1" secondAttribute="bottom" constant="11.5" id="QGF-J1-GZW"/>
                                                 <constraint firstItem="vzK-sp-zN1" firstAttribute="top" secondItem="jKm-Jq-SQj" secondAttribute="bottom" constant="4" id="bfI-nc-aX1"/>
-                                                <constraint firstItem="vzK-sp-zN1" firstAttribute="leading" secondItem="Pnp-Cv-gyK" secondAttribute="leading" constant="19" id="xRW-h5-nmx"/>
                                             </constraints>
                                         </view>
                                     </subviews>
