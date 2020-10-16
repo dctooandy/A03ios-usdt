@@ -173,19 +173,30 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     AccountModel *model = self.elecCardsArr[self.selectedIdx];
     NSNumber *amount = [NSNumber numberWithDouble:[amout doubleValue]];
     WEAKSELF_DEFINE
-    [CNWithdrawRequest submitWithdrawRequestAmount:amount
-                                         accountId:model.accountId
-                                          protocol:model.protocol
-                                           remarks:@""
-                                           handler:^(id responseObj, NSString *errorMsg) {
-        STRONGSELF_DEFINE
-        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-            [strongSelf.comfirmView showSuccessWithdraw];
-            dispatch_async(dispatch_queue_create(0, 0), ^{
-                [IVLAManager singleEventId:@"A03_withdraw_create" errorCode:@"" errorMsg:@"" customsData:@{@"requestId":responseObj[@"referenceId"]}];
-            });
-        }
-    }];
+    if ([CNUserManager shareManager].isUsdtMode) {
+        [CNWithdrawRequest submitWithdrawRequestAmount:amount
+                                             accountId:model.accountId
+                                              protocol:model.protocol
+                                               remarks:@""
+                                      subWallAccountId:nil
+                                               handler:^(id responseObj, NSString *errorMsg) {
+            STRONGSELF_DEFINE
+            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+                [strongSelf.comfirmView showSuccessWithdraw];
+                dispatch_async(dispatch_queue_create(0, 0), ^{
+                    [IVLAManager singleEventId:@"A03_withdraw_create" errorCode:@"" errorMsg:@"" customsData:@{@"requestId":responseObj[@"referenceId"]}];
+                });
+            }
+        }];
+        
+    } else {
+        [CNWithdrawRequest withdrawCalculatorMode:@1 amount:amount
+                                        accountId:model.accountId
+                                          handler:^(id responseObj, NSString *errorMsg) {
+            
+        }];
+    }
+
 }
 
 #pragma mark - TABLEVIEW

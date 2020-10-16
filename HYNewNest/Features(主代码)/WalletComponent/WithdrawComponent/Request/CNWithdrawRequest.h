@@ -18,16 +18,28 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)transferBalanceToLocalHandler:(HandlerBlock)handler;
 
 
+/// 取款计算信息查询接口(CNY)
+/// @param mode 0:实时计算， 1:查询配置信息，前端计算
+/// @param amount 金额
+/// @param accountId 账户ID
+/// @param handler 回调
++ (void)withdrawCalculatorMode:(NSNumber *)mode
+                        amount:(NSNumber *)amount
+                     accountId:(NSString *)accountId
+                       handler:(HandlerBlock)handler ;
+
 /// 提交提现订单
 /// @param amount 金额
 /// @param accountId 账户ID
 /// @param protocol usdt协议
 /// @param remarks 备注
+/// @param subWallAccountId 子账户ID (CNY转账才需要传)
 /// @param handler 回调
 + (void)submitWithdrawRequestAmount:(NSNumber *)amount
                           accountId:(NSString *)accountId
                            protocol:(NSString *)protocol
                             remarks:(NSString *)remarks
+                   subWallAccountId:(nullable NSString *)subWallAccountId
                             handler:(HandlerBlock)handler;
 
 @end

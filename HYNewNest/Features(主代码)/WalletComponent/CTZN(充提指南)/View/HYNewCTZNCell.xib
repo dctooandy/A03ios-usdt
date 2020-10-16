@@ -73,7 +73,7 @@
                 <outlet property="playBtn" destination="eSz-fE-r0Q" id="sjd-vX-NlI"/>
                 <outlet property="videoImgv" destination="2ez-TO-VgD" id="JCh-SQ-2Ka"/>
             </connections>
-            <point key="canvasLocation" x="-1372" y="83"/>
+            <point key="canvasLocation" x="-924" y="95"/>
         </tableViewCell>
     </objects>
     <resources>

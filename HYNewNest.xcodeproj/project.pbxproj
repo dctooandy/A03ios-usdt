@@ -167,6 +167,9 @@
 		3D1338A424AF2E5200B29783 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1338A124AF2E5200B29783 /* AppDelegate.m */; };
 		3D1338B924AF3AB200B29783 /* NNPageRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1338B824AF3AB200B29783 /* NNPageRouter.m */; };
 		3D16F0F825369CE100FE0212 /* VIPGiftTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D16F0F725369CE100FE0212 /* VIPGiftTableView.m */; };
+		3D16F10025381EEC00FE0212 /* HYBuyECoinGuideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D16F0FE25381EEC00FE0212 /* HYBuyECoinGuideVC.m */; };
+		3D16F10125381EEC00FE0212 /* HYBuyECoinGuideVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D16F0FF25381EEC00FE0212 /* HYBuyECoinGuideVC.xib */; };
+		3D31B94425399CB7005275BD /* HYBuyECoinComfirmView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B94325399CB7005275BD /* HYBuyECoinComfirmView.m */; };
 		3D3A9B6424F90666003FB33C /* UIWindow+Motion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B6324F90666003FB33C /* UIWindow+Motion.m */; };
 		3D3A9B6A24FA3696003FB33C /* DXRadianLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B6824FA3696003FB33C /* DXRadianLayerView.m */; };
 		3D3A9B7324FA7DA5003FB33C /* CNVIPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B7224FA7DA5003FB33C /* CNVIPRequest.m */; };
@@ -243,6 +246,7 @@
 		3DA4F19D24B3195F0039123F /* HYRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F19B24B3195F0039123F /* HYRefreshHeader.m */; };
 		3DA4F1A124B3199A0039123F /* HYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F19F24B3199A0039123F /* HYNavigationController.m */; };
 		3DA4F1A424B31A110039123F /* NSString+Font.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F1A324B31A110039123F /* NSString+Font.m */; };
+		3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC87A50253967DC0032ED1B /* BuyECoinModel.m */; };
 		3DCFEA8B25009D020071F356 /* V_SlideCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8825009D010071F356 /* V_SlideCard.m */; };
 		3DCFEA8C25009D020071F356 /* V_SlideCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8925009D010071F356 /* V_SlideCardCell.m */; };
 		3DCFEA9A25050AD90071F356 /* 方正兰亭大黑_GBK.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEA9925050AD90071F356 /* 方正兰亭大黑_GBK.ttf */; };
@@ -1173,6 +1177,11 @@
 		3D1338B824AF3AB200B29783 /* NNPageRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NNPageRouter.m; sourceTree = "<group>"; };
 		3D16F0F625369CE100FE0212 /* VIPGiftTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPGiftTableView.h; sourceTree = "<group>"; };
 		3D16F0F725369CE100FE0212 /* VIPGiftTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPGiftTableView.m; sourceTree = "<group>"; };
+		3D16F0FD25381EEC00FE0212 /* HYBuyECoinGuideVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYBuyECoinGuideVC.h; sourceTree = "<group>"; };
+		3D16F0FE25381EEC00FE0212 /* HYBuyECoinGuideVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYBuyECoinGuideVC.m; sourceTree = "<group>"; };
+		3D16F0FF25381EEC00FE0212 /* HYBuyECoinGuideVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYBuyECoinGuideVC.xib; sourceTree = "<group>"; };
+		3D31B94225399CB7005275BD /* HYBuyECoinComfirmView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYBuyECoinComfirmView.h; sourceTree = "<group>"; };
+		3D31B94325399CB7005275BD /* HYBuyECoinComfirmView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYBuyECoinComfirmView.m; sourceTree = "<group>"; };
 		3D3A9B6224F90666003FB33C /* UIWindow+Motion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Motion.h"; sourceTree = "<group>"; };
 		3D3A9B6324F90666003FB33C /* UIWindow+Motion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Motion.m"; sourceTree = "<group>"; };
 		3D3A9B6824FA3696003FB33C /* DXRadianLayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXRadianLayerView.m; sourceTree = "<group>"; };
@@ -1315,6 +1324,8 @@
 		3DA4F1A024B3199A0039123F /* HYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYNavigationController.h; sourceTree = "<group>"; };
 		3DA4F1A224B31A110039123F /* NSString+Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Font.h"; sourceTree = "<group>"; };
 		3DA4F1A324B31A110039123F /* NSString+Font.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Font.m"; sourceTree = "<group>"; };
+		3DC87A4F253967DC0032ED1B /* BuyECoinModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyECoinModel.h; sourceTree = "<group>"; };
+		3DC87A50253967DC0032ED1B /* BuyECoinModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyECoinModel.m; sourceTree = "<group>"; };
 		3DCFEA8725009D010071F356 /* V_SlideCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_SlideCardCell.h; sourceTree = "<group>"; };
 		3DCFEA8825009D010071F356 /* V_SlideCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V_SlideCard.m; sourceTree = "<group>"; };
 		3DCFEA8925009D010071F356 /* V_SlideCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V_SlideCardCell.m; sourceTree = "<group>"; };
@@ -2833,6 +2844,44 @@
 			path = NNPageRouter;
 			sourceTree = "<group>";
 		};
+		3D16F0F925381E8E00FE0212 /* BuyECoinGuide(买币指南) */ = {
+			isa = PBXGroup;
+			children = (
+				3D16F0FA25381E8E00FE0212 /* Controller */,
+				3D16F0FB25381E8E00FE0212 /* Model */,
+				3D16F0FC25381E8E00FE0212 /* View */,
+			);
+			path = "BuyECoinGuide(买币指南)";
+			sourceTree = "<group>";
+		};
+		3D16F0FA25381E8E00FE0212 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3D16F0FD25381EEC00FE0212 /* HYBuyECoinGuideVC.h */,
+				3D16F0FE25381EEC00FE0212 /* HYBuyECoinGuideVC.m */,
+				3D16F0FF25381EEC00FE0212 /* HYBuyECoinGuideVC.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3D16F0FB25381E8E00FE0212 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3DC87A4F253967DC0032ED1B /* BuyECoinModel.h */,
+				3DC87A50253967DC0032ED1B /* BuyECoinModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3D16F0FC25381E8E00FE0212 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3D31B94225399CB7005275BD /* HYBuyECoinComfirmView.h */,
+				3D31B94325399CB7005275BD /* HYBuyECoinComfirmView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3D3A9B6724FA3696003FB33C /* DXRadianLayerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3972,6 +4021,7 @@
 		E986A15D24C979F6000F9CFF /* WalletComponent */ = {
 			isa = PBXGroup;
 			children = (
+				3D16F0F925381E8E00FE0212 /* BuyECoinGuide(买币指南) */,
 				0430AB1E24E24E4B00C873DC /* BankCardComponent */,
 				04C6E1E124D40219006F4DAC /* AddressComponent */,
 				E98BEEEC24D0341A00E6B0C8 /* CTZN(充提指南) */,
@@ -5078,6 +5128,7 @@
 				D5A4460024F393E500014DC6 /* 足球_00025.png in Resources */,
 				D5A446FE24F3941400014DC6 /* 合成 1_00087.png in Resources */,
 				D5A4439424F378CD00014DC6 /* 彩票_00040.png in Resources */,
+				3D16F10125381EEC00FE0212 /* HYBuyECoinGuideVC.xib in Resources */,
 				D5A4463624F393E500014DC6 /* 足球_00062.png in Resources */,
 				D5A4471924F3941400014DC6 /* 合成 1_00068.png in Resources */,
 				D5A446E524F3941400014DC6 /* 合成 1_00033.png in Resources */,
@@ -5517,6 +5568,7 @@
 				040A08D724E114A900FBD534 /* OCBarrageRenderView.m in Sources */,
 				04C0F0E324C2B282007F1420 /* CNHUB.m in Sources */,
 				3DA4F15F24B30D610039123F /* GTMBase64.m in Sources */,
+				3D16F10025381EEC00FE0212 /* HYBuyECoinGuideVC.m in Sources */,
 				3D16F0F825369CE100FE0212 /* VIPGiftTableView.m in Sources */,
 				E986A11824C73FE9000F9CFF /* BetAmountModel.m in Sources */,
 				E9D9449D24C5735B00252222 /* HY403ViewController.m in Sources */,
@@ -5578,6 +5630,7 @@
 				04C6E1DF24D3E995006F4DAC /* CNFeedBackLeftTCell.m in Sources */,
 				3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */,
 				3D41DE7825199DEE000CA1D6 /* VIPChartDSBHeaderView.m in Sources */,
+				3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */,
 				E9D944A424C575D700252222 /* BaseModel.m in Sources */,
 				E98BEF3F24D3E99000E6B0C8 /* CNAmountInputView.m in Sources */,
 				E98BEF2D24D2D35800E6B0C8 /* NSAttributedString+Selectable.m in Sources */,
@@ -5600,6 +5653,7 @@
 				04C0F0E824C2E250007F1420 /* JHVerificationCodeView.m in Sources */,
 				0487C9E724D27BDD0013715A /* CNNotifySettingTCell.m in Sources */,
 				3D643F8C24F29F3600B9AAA7 /* KeyChain.m in Sources */,
+				3D31B94425399CB7005275BD /* HYBuyECoinComfirmView.m in Sources */,
 				E986A18F24CA8DB9000F9CFF /* ChooseAvatarsModel.m in Sources */,
 				3DA4F18924B317E40039123F /* WMDragView.m in Sources */,
 				E986A1A324CB37C3000F9CFF /* HYBaseAlertView.m in Sources */,

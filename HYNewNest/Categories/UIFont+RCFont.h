@@ -46,7 +46,7 @@
  */
 + (UIFont *)fontDBOfMIDSMALLSize;
 + (UIFont *)fontDBOf16Size;
-
++ (UIFont *)fontDBOf15Size;
 + (UIFont *)fontDBOf18Size;
 + (UIFont *)fontDBOf32Size;
 + (UIFont *)fontDBOf20Size;

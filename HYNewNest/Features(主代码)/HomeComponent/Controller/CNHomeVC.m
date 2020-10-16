@@ -16,6 +16,7 @@
 #import "CNMessageCenterVC.h"
 #import "HYXiMaViewController.h"
 #import "HYNewCTZNViewController.h"
+#import "HYBuyECoinGuideVC.h"
 #import "HYRechargeViewController.h"
 #import "HYRechargeCNYViewController.h"
 #import "HYWithdrawViewController.h"
@@ -339,15 +340,19 @@
 
 - (void)buttonArrayAction:(CNActionType)type {
     //usdt模式下 未选择“不再提醒”充提指南 => 进充提指南
-    if ([CNUserManager shareManager].isUsdtMode && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
-        [self presentViewController:[HYNewCTZNViewController new] animated:YES completion:^{
-        }];
-    
-    } else {
+//    if ([CNUserManager shareManager].isUsdtMode && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
+//        [self presentViewController:[HYNewCTZNViewController new] animated:YES completion:^{
+//        }];
+//
+//    } else {
         switch (type) {
             case CNActionTypeBuy: //买
-                [NNPageRouter openExchangeElecCurrencyPageIsSell:NO];
+            {
+                HYBuyECoinGuideVC *vc = [HYBuyECoinGuideVC new];
+                [self.navigationController pushViewController:vc animated:YES];
+//                [NNPageRouter openExchangeElecCurrencyPageIsSell:NO];
                 break;
+            }
             case CNActionTypeDeposit: //充
                 if ([CNUserManager shareManager].isUsdtMode) {
                     [self.navigationController pushViewController:[HYRechargeViewController new] animated:YES];
@@ -367,7 +372,7 @@
                 [self.navigationController pushViewController:[HYXiMaViewController new] animated:YES];
                 break;
         }
-    }
+//    }
     
 }
 

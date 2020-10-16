@@ -125,17 +125,33 @@
     [imgv addGestureRecognizer:tap];
     self.imgvBanner = imgv;
     
+    UIButton *knowBtn = [[UIButton alloc] init];
+    [knowBtn setTitle:@"立即了解" forState:UIControlStateNormal];
+    [knowBtn setTitleColor:kHexColor(0x10B4DD) forState:UIControlStateNormal];
+    knowBtn.titleLabel.font = [UIFont fontPFR13];
+    [imgv addSubview:knowBtn];
+    knowBtn.userInteractionEnabled = NO;
+    [knowBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(imgv).offset(-25);
+        make.bottom.equalTo(imgv).offset(-20);
+        make.width.mas_equalTo(80);
+        make.height.mas_equalTo(24);
+    }];
+    knowBtn.layer.cornerRadius = 12;
+    knowBtn.layer.borderColor = kHexColor(0x19CECE).CGColor;
+    knowBtn.layer.borderWidth = 1;
+    knowBtn.layer.masksToBounds = YES;
 }
 
 - (void)tapBanner:(UITouch *)touch {
-    CGPoint p = [touch locationInView:self.imgvBanner];
-    if (p.y >= AD(75)) {
-        if (p.x >= AD(186) && p.x <= AD(254)) { //立即了解
+//    CGPoint p = [touch locationInView:self.imgvBanner];
+//    if (p.y >= AD(75)) {
+//        if (p.x >= AD(186) && p.x <= AD(254)) { //立即了解
             [NNPageRouter jump2HTMLWithStrURL:@"/pub_site/tutorialReference" title:@"请稍等.."];
-        } else if (p.x > AD(254)) { //一键买币
-            [NNPageRouter openExchangeElecCurrencyPageIsSell:NO];
-        }
-    }
+//        } else if (p.x > AD(254)) { //一键买币
+//            [NNPageRouter openExchangeElecCurrencyPageIsSell:NO];
+//        }
+//    }
 }
 
 - (void)setupMainEditView {

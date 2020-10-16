@@ -28,6 +28,7 @@
 + (UIFont *)fontHBOfSSize{ return [UIFont fontWithName:@"Helvetica-Bold" size:12]; } //Helvetica-Bold  PingFangSC-Medium
 //PingFangSC-Medium
 + (UIFont *)fontDBOfMIDSMALLSize{ return [UIFont fontWithName:@"DINAlternate-Bold" size:14]; }
++ (UIFont *)fontDBOf15Size{ return [UIFont fontWithName:@"DINAlternate-Bold" size:15]; }
 + (UIFont *)fontDBOf16Size{ return [UIFont fontWithName:@"DINAlternate-Bold" size:16]; }
 + (UIFont *)fontDBOf18Size{ return [UIFont fontWithName:@"DINAlternate-Bold" size:18]; }
 + (UIFont *)fontDBOf20Size{ return [UIFont fontWithName:@"DINAlternate-Bold" size:20]; }

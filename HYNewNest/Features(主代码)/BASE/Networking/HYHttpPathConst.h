@@ -120,6 +120,7 @@
 #define config_currencyExchange   @"deposit/currencyExchange"  //取款 当前汇率
 #define config_transfer_to_local @"game/transferToLocal" //账户明细 转至本地
 #define config_drawCancelRequest  @"withdraw/cancelRequest" // 取款 “等待状态”取消订单
+#define config_calculateSeparate  @"withdraw/calculator"   //计算CNY取款返利拆分
 
 #pragma mark 小金库:deprecapted
 #define config_vault_yebInterestStatis @"yeb/yebInterestStatis" //小金库 过夜利息利息统计

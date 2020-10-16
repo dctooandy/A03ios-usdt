@@ -11,7 +11,11 @@
 @implementation CNWDAccountRequest
 
 + (void)queryAccountHandler:(HandlerBlock)handler {
-    [self POST:kGatewayPath(config_getQueryCard) parameters:[kNetworkMgr baseParam] completionHandler:handler];
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    // 0 仅查询银行账户  1 查询当前账户和子账户(usdt)列表  2 仅查询子账户列表
+    // subWalletAccounts
+    param[@"queryType"] = @1;
+    [self POST:kGatewayPath(config_getQueryCard) parameters:param completionHandler:handler];
 }
 
 + (void)deleteAccountId:(NSString *)accountId

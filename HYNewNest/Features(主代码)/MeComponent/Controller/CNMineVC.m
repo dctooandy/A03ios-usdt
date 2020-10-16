@@ -29,6 +29,7 @@
 #import <UIImageView+WebCache.h>
 #import "NSURL+HYLink.h"
 #import <MJRefresh/MJRefresh.h>
+#import "HYBuyECoinGuideVC.h"
 
 @interface CNMineVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -161,13 +162,15 @@
 /// 买充提卖
 - (IBAction)didClickMCTMBtns:(UIButton *)sender {
     //usdt模式下 未选择“不再提醒”充提指南 => 进充提指南
-    if ([CNUserManager shareManager].isUsdtMode && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
-        [self presentViewController:[HYNewCTZNViewController new] animated:YES completion:^{
-        }];
-    
-    } else {
+//    if ([CNUserManager shareManager].isUsdtMode && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
+//        [self presentViewController:[HYNewCTZNViewController new] animated:YES completion:^{
+//        }];
+//
+//    } else {
         if (sender.tag == 0) { // 买币
-            [NNPageRouter openExchangeElecCurrencyPageIsSell:NO];
+            HYBuyECoinGuideVC *vc = [HYBuyECoinGuideVC new];
+            [self.navigationController pushViewController:vc animated:YES];
+    //                [NNPageRouter openExchangeElecCurrencyPageIsSell:NO];
             
         } else if (sender.tag == 1) { // 充值
             if ([CNUserManager shareManager].isUsdtMode) {
@@ -184,7 +187,7 @@
                 [NNPageRouter openExchangeElecCurrencyPageIsSell:YES];
             }];
         }
-    }
+//    }
 }
 
 

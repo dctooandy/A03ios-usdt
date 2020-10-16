@@ -113,6 +113,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
     
     [_tableView registerNib:[UINib nibWithNibName:CUMIDCELL bundle:nil] forCellReuseIdentifier:CUMIDCELL];
     [_tableView registerNib:[UINib nibWithNibName:CUMIDHEADER bundle:nil] forHeaderFooterViewReuseIdentifier:CUMIDHEADER];
+    _tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
     
     // 自动布局高度 cell必须有距离底部约束
 //    _tableView.estimatedRowHeight = 258;
