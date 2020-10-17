@@ -161,54 +161,87 @@
     
     BuyECoinModel *model = self.datas[_curIdx];
     NSArray *imgURLs = [model.imgList componentsSeparatedByString:@";"];
+    NSMutableArray *imgs = @[].mutableCopy;
     
-    dispatch_group_t group = dispatch_group_create();
-    
-    __block NSMutableDictionary *imgDict = @{}.mutableCopy;
-    for (__block int i=0; i<imgURLs.count; i++) {
+    [LoadingView show];
+    [self downloadImage:imgURLs arrayImages:imgs currentIndex:0 success:^(NSArray<NSData *> *resultImages) {
         
-        NSString *url = imgURLs[i];
-        dispatch_group_enter(group);
-        SDWebImageDownloadToken *token = [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:url] options:SDWebImageDownloaderUseNSURLCache progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-            MyLog(@"第%d张图片:%ld/%ld", i, receivedSize, expectedSize);
-        } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-            if (!error) {
-//                NSData *imageData = UIImagePNGRepresentation(image);
-                imgDict[@(i)] = data;
+        [LoadingView hide];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Update the UI
+            CGFloat maxY = 0;
+            for (int i=0; i<resultImages.count; i++) {
+                UIImage *img = [UIImage imageWithData:resultImages[i]];
+                UIImageView *imgv = [UIImageView new];
+                imgv.frame = CGRectMake(0, maxY, kScreenWidth-8, img.size.height*(kScreenWidth-8)/img.size.width);
+                imgv.image = img;
+                maxY = CGRectGetMaxY(imgv.frame);
+                [self.contentScrollView addSubview:imgv];
+                
             }
-            dispatch_group_leave(group);
-        }];
-        [self.downloadTokens addObject:token];
-    }
+            
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            self.contentScrollView.contentSize = CGSizeMake(0, maxY);
+        });
+        
+        
+    } failure:^{
+        [LoadingView hide];
+        [CNHUB showError:@"下载指南失败 获取图片出错"];
+    }];
     
-    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        CGFloat maxY = 0;
-        if (imgURLs.count == imgDict.allKeys.count) {
-            for (int i=1; i<imgURLs.count+1; i++) {
-                UIImage *img = [UIImage imageWithData: imgDict[@(i)]];
-                UIImageView *imgv = [UIImageView new];
-                imgv.frame = CGRectMake(0, maxY, kScreenWidth-8, img.size.height*(kScreenWidth-8)/img.size.width);
-                imgv.image = img;
-                maxY += CGRectGetMaxY(imgv.frame);
-                [self.contentScrollView addSubview:imgv];
-                
-            }
-        } else {
-            for (int i=0; i<imgDict.allKeys.count; i++) {
-                UIImage *img = [UIImage imageWithData: imgDict.allValues[i]];
-                UIImageView *imgv = [UIImageView new];
-                imgv.frame = CGRectMake(0, maxY, kScreenWidth-8, img.size.height*(kScreenWidth-8)/img.size.width);
-                imgv.image = img;
-                maxY += CGRectGetMaxY(imgv.frame);
-                [self.contentScrollView addSubview:imgv];
-                
-            }
+
+    
+}
+
+//递归按序下载图片
+- (void)downloadImage:(NSArray <NSString *> *)arrayURLs arrayImages:(NSMutableArray<NSData *> *)arrayImages currentIndex:(NSUInteger)index success:(void (^)(NSArray <NSData *> *resultImages))success failure:(void (^)(void))failure {
+   
+    __block NSUInteger currentIndex = index;
+   
+    //这里使用 weakself, 在控制器销毁的时候, 当前下载任务完成后,就不会继续下一个任务, 如果使用 self, 那么当控制器销毁的时候, SD 会继续下载直到所有任务完成
+    __weak typeof(self) weakSelf = self;
+   
+    NSString *stringurl = arrayURLs[currentIndex];
+   
+    NSURL *url = [NSURL URLWithString:stringurl];
+    
+    SDWebImageDownloadToken *token = [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:url options:SDWebImageDownloaderUseNSURLCache progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+       
+        float p = receivedSize / (expectedSize * 1.0);
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            weakSelf.progressView.progress = p;
+//        });
+        NSLog(@"当前索引 %lu, 当前进度: %f", (unsigned long)currentIndex, p);
+       
+    } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+        currentIndex++;
+       
+        if (finished && !error && data) {  //下载结束并且没有出错
+            [arrayImages addObject:data];
+           
+//            weakSelf.imageView.image = image;
         }
-        
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        self.contentScrollView.contentSize = CGSizeMake(0, maxY+30);
-    });
-    
+       
+        if (currentIndex == arrayURLs.count) { //停止递归下载
+            
+            if(arrayImages.count > 0){  //当数组有元素存在,认为是成功, 也可以只写一个回调block, 不区分成功与失败
+                if(success){
+                    success(arrayImages);
+                }
+            }else{
+                if(failure){
+                    failure();
+                }
+            }
+            return;
+        } else {
+            //继续递归下载
+            [weakSelf downloadImage:arrayURLs arrayImages:arrayImages currentIndex:currentIndex success:success failure:failure];
+        }
+    }];
+    [self.downloadTokens addObject:token];
 }
 
 
@@ -237,12 +270,6 @@
     [self.view addSubview:view];
     [view show];
     
-//    [HYBuyECoinComfirmView showWithDepositModels:self.depositModels switchHandler:^(NSInteger idx) {
-//        self.selcPayWayIdx = idx;
-//        [self queryOnlineBankAmount];
-//    } submitHandler:^(NSString *amount) {
-//        [self submitUSDTRequest:amount];
-//    }];
 }
 
 - (IBAction)didTapRegisterBtn:(id)sender {

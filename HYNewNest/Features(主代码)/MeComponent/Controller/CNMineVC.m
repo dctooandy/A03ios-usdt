@@ -289,7 +289,7 @@
     self.CNYBusinessViewH.constant = isUsdtMode ? 0: 80;
     
     self.forthTapLb.text = isUsdtMode ? @"提币地址": @"银行卡";
-    self.sixthTapLb.text = isUsdtMode ? @"充值指南": @"意见反馈";
+    self.sixthTapLb.text = isUsdtMode ? @"充提指南": @"意见反馈";
     
     self.shareBgView.hidden = !isUsdtMode;
     self.shareBgViewH.constant = isUsdtMode?AD(90):0;
