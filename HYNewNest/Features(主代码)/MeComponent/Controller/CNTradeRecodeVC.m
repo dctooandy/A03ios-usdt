@@ -112,7 +112,7 @@
     NSString *path;
     switch (_recoType) {
         case transactionRecord_rechargeType: {
-            path = config_queryTransWithCheck;
+            path = config_queryTrans;
             break;
         }
         case transactionRecord_withdrawType: {
@@ -254,6 +254,23 @@
     CreditQueryDataModel *model = self.dataList[indexPath.row];
     CNTradeRecordTCell *cell = [tableView dequeueReusableCellWithIdentifier:kCNTradeRecordTCellID forIndexPath:indexPath];
     
+    // 数据
+    cell.titleLb.text = model.title;
+    cell.amountLb.text = model.amount;
+    cell.timeLb.text = model.createDate;
+    cell.statusLb.text = model.flagDesc;
+    cell.statusLb.textColor = model.statsColor;
+    cell.currencyLb.text = model.currency?:[CNUserManager shareManager].userInfo.currency;
+    // 游戏独特数据
+    if (_recoType == transactionRecord_betRecordType) {
+        cell.titleLb.text = model.gameType?:@"    ";
+        cell.timeLb.text = model.billTime;
+        cell.amountLb.text = model.payoutAmount;
+    }
+    if (_recoType == transactionRecord_rechargeType) {
+        cell.amountLb.text = model.arrivalAmount;
+    }
+    
     // ICON
     switch (_recoType) {
         case transactionRecord_rechargeType:
@@ -293,19 +310,7 @@
             [cell.icon setImage:[UIImage imageNamed:@"usdt"]];
             break;
     }
-    // 数据
-    cell.titleLb.text = model.title;
-    cell.amountLb.text = model.amount;
-    cell.timeLb.text = model.createDate;
-    cell.statusLb.text = model.flagDesc;
-    cell.statusLb.textColor = model.statsColor;
-    cell.currencyLb.text = [CNUserManager shareManager].userInfo.currency;
-    // 游戏独特数据
-    if (_recoType == transactionRecord_betRecordType) {
-        cell.titleLb.text = model.gameType?:@"    ";
-        cell.timeLb.text = model.billTime;
-        cell.amountLb.text = model.payoutAmount;
-    }
+    
     return cell;
 }
 

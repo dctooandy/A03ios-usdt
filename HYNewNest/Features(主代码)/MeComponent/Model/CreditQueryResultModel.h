@@ -68,8 +68,10 @@ typedef NS_ENUM(NSInteger,TransactionProgressState) {
 @property (nonatomic, copy, readonly) NSString *gameKindName;
 @property (nonatomic, copy, readonly) NSString *gamePlatName;
 
-@property (copy,nonatomic) NSString *rate; 
+@property (copy, nonatomic) NSString *rate;
 @property (copy, nonatomic) NSString *amount;
+@property (copy, nonatomic) NSString *arrivalAmount;
+@property (copy, nonatomic) NSString *currency;
 @property (copy, nonatomic) NSString *createDate;
 @property (assign, nonatomic)  TransactionProgressState flag;
 /** 状态描述 */

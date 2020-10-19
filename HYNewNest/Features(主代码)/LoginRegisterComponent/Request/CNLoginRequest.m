@@ -30,11 +30,7 @@
     NSMutableDictionary *paras = [NSMutableDictionary new];
     paras[@"productId"] = @"A03";
     paras[@"use"] = @(type);
-//#ifdef DEBUG
-//    paras[@"mobileNo"] = phone;
-//#else
     paras[@"mobileNo"] = [CNEncrypt encryptString:phone];
-//#endif
     
     [self POST:kGatewayPath(config_SendCodePhone) parameters:paras completionHandler:completionHandler];
 }
@@ -79,13 +75,8 @@
     NSMutableDictionary *paras = [NSMutableDictionary new];
     paras[@"productId"] = @"A03";
     paras[@"messageId"] = messageId;
-//#ifdef DEBUG
-//    paras[@"loginName"] = account;
-//    paras[@"verifyStr"] = password;
-//#else
     paras[@"loginName"] = [CNEncrypt encryptString:account];
     paras[@"verifyStr"] = [CNEncrypt encryptString:password];
-//#endif
 
     if (!KIsEmptyString(imageCode)) {
         paras[@"captcha"] = imageCode;
@@ -162,11 +153,7 @@
     
     NSMutableDictionary *paras = [kNetworkMgr baseParam];
     paras[@"loginName"] = loginName;
-//#ifdef DEBUG
-//    paras[@"password"] = password;
-//#else
     paras[@"password"] = [CNEncrypt encryptString:password];
-//#endif
 
     [self POST:kGatewayPath(config_registUserName) parameters:paras completionHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
@@ -217,13 +204,8 @@
      completionHandler:(HandlerBlock)completionHandler {
     
     NSMutableDictionary *paras = [kNetworkMgr baseParam];
-//#ifdef DEBUG
-//    paras[@"oldPassword"] = oldPassword;
-//    paras[@"newPassword"] = newPassword;
-//#else
     paras[@"oldPassword"] = [CNEncrypt encryptString:oldPassword];
     paras[@"newPassword"] = [CNEncrypt encryptString:newPassword];
-//#endif
     paras[@"type"] = @"1";
     
     [self POST:kGatewayPath(config_modifyPwd) parameters:paras completionHandler:completionHandler];
@@ -255,11 +237,7 @@
     paramDic[@"type"] = @2;
     paramDic[@"use"] = @2;
     paramDic[@"loginName"] = loginName;
-//#ifdef DEBUG
-//    paramDic[@"newPassword"] = newPassword;
-//#else
     paramDic[@"newPassword"] = [CNEncrypt encryptString:newPassword];
-//#endif
     paramDic[@"smsCode"] = smsCode;
     paramDic[@"validateId"] = validateId;
     paramDic[@"messageId"] = messageId;

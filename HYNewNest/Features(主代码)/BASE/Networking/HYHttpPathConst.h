@@ -131,7 +131,8 @@
 #define config_getArticels  @"a03/getArticles" //查询投注详情  电游投注详情用
 
 #pragma mark 交易记录
-#define config_queryTransWithCheck @"deposit/queryTransWithCheck" //充值 查询交易记录中的转账 一项
+//#define config_queryTransWithCheck @"deposit/queryTransWithCheck" //查询交易记录中的 充值 一项
+#define config_queryTrans @"deposit/queryTrans"
 #define config_queryWithDraw @"withdraw/queryRequest" //提现 查询交易记录中的转账 一项
 #define config_queryWithXM @"xm/queryRequest" //洗码 查询交易记录中的转账 一项
 #define config_queryWithIntegral @"integral/queryIntegralLogs" //积分 查询交易记录中的转账 一项
