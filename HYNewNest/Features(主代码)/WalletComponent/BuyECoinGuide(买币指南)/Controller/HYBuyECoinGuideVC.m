@@ -105,11 +105,17 @@
     }
     // 头部
     NSMutableArray *names = @[].mutableCopy;
-    for (BuyECoinModel *model in self.datas) {
+    NSInteger recIdx = 0;
+    for (int i=0; i<self.datas.count; i++) {
+        BuyECoinModel *model = self.datas[i];
         [names addObject:model.name];
+        if ([model.recommend containsString:@"1"]) {
+            recIdx = i; //推荐标签
+        }
     }
-    [self.segmentedBar setItems:names];
     self.segmentedBar.selectedIndex = 0;
+    self.segmentedBar.recomendIndex = recIdx;
+    [self.segmentedBar setItems:names];
     // 标签
     [self setupTags];
     // 内容
@@ -160,11 +166,18 @@
     
     
     BuyECoinModel *model = self.datas[_curIdx];
+    [self.btnRegister setTitle:model.registerText forState:UIControlStateNormal];
+    
     NSArray *imgURLs = [model.imgList componentsSeparatedByString:@";"];
+    NSMutableArray *imgFullURLs = @[].mutableCopy;
+    for (NSString *imgPath in imgURLs) {
+        NSString *imgFullPath = [model.imgRootPath stringByAppendingPathComponent:imgPath];
+        [imgFullURLs addObject:imgFullPath];
+    }
     NSMutableArray *imgs = @[].mutableCopy;
     
     [LoadingView show];
-    [self downloadImage:imgURLs arrayImages:imgs currentIndex:0 success:^(NSArray<NSData *> *resultImages) {
+    [self downloadImage:imgFullURLs arrayImages:imgs currentIndex:0 success:^(NSArray<NSData *> *resultImages) {
         
         [LoadingView hide];
         

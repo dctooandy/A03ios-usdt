@@ -55,6 +55,7 @@
 @property (nonatomic, strong) NSArray <NSString *>*items;
 /** 当前选中的索引, 双向设置 */
 @property (nonatomic, assign) NSInteger selectedIndex;
+@property (nonatomic, assign) NSInteger recomendIndex;
 
 + (LTSegmentedBar *)segmentedBarWithFrame:(CGRect)frame;
 - (void)updateWithConfig: (void(^)(LTSegmentedBarConfig *config))configBlock;

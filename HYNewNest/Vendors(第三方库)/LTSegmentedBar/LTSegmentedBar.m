@@ -206,13 +206,14 @@
                 line.width = 1;
                 line.height = 10;
             }
+            
+            // 要求的图片badge
+            if (self.recomendIndex == i) {
+                [btn showRightTopImageName:@"promo" size:CGSizeMake(31, 16) offsetX:-43 offsetYMultiple:0.25];
+            }
         }
         self.contentView.contentSize = CGSizeMake(lastX, 0);
         self.contentView.scrollEnabled = NO;
-        // UI要求的图片badge
-        if ([btn.titleLabel.text isEqualToString:@"OKEx"]) {
-            [btn showRightTopImageName:@"promo" size:CGSizeMake(31, 16) offsetX:-43 offsetYMultiple:0.25];
-        }
         
     } else {
         // 自动去计算margin
