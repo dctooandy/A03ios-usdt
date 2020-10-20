@@ -209,7 +209,7 @@
             
             // 要求的图片badge
             if (self.recomendIndex == i) {
-                [btn showRightTopImageName:@"promo" size:CGSizeMake(31, 16) offsetX:-43 offsetYMultiple:0.25];
+                [btn showRightTopImageName:@"promo" size:CGSizeMake(31, 16) offsetX:-55 offsetYMultiple:0.25];
             }
         }
         self.contentView.contentSize = CGSizeMake(lastX, 0);

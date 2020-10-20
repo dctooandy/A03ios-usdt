@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BuyECoinModel : CNBaseModel
 @property (nonatomic, copy) NSString *imgList; //
-@property (nonatomic, copy) NSString *imgRootPath; //
+@property (nonatomic, copy) NSString *imgRootPath_h5; //
 @property (nonatomic, copy) NSString *label;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *recommend;

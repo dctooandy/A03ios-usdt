@@ -25,21 +25,21 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xlr-2z-Nh3">
-                    <rect key="frame" x="0.0" y="49" width="414" height="55"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="55"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="55" id="gDN-lc-LBG"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vek-Ur-l6d">
-                    <rect key="frame" x="0.0" y="104" width="414" height="93"/>
+                    <rect key="frame" x="0.0" y="99" width="414" height="93"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="93" id="QYI-kh-3lh"/>
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWm-j0-Qfp">
-                    <rect key="frame" x="4" y="197" width="406" height="699"/>
+                    <rect key="frame" x="10" y="192" width="394" height="704"/>
                 </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ofa-O1-gGc" customClass="CNTwoStatusBtn">
                     <rect key="frame" x="15" y="782" width="167" height="50"/>
@@ -77,13 +77,13 @@
                 <constraint firstAttribute="bottom" secondItem="hWm-j0-Qfp" secondAttribute="bottom" id="UAb-h5-eY6"/>
                 <constraint firstItem="b4Z-so-Z5b" firstAttribute="leading" secondItem="Ofa-O1-gGc" secondAttribute="trailing" constant="50" id="afv-Bk-uER"/>
                 <constraint firstItem="hWm-j0-Qfp" firstAttribute="top" secondItem="Vek-Ur-l6d" secondAttribute="bottom" id="h3D-LG-BGe"/>
-                <constraint firstItem="Xlr-2z-Nh3" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="5" id="hVu-QU-4jY"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="hWm-j0-Qfp" secondAttribute="trailing" constant="4" id="k6m-6J-bSc"/>
+                <constraint firstItem="Xlr-2z-Nh3" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="hVu-QU-4jY"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="hWm-j0-Qfp" secondAttribute="trailing" constant="10" id="k6m-6J-bSc"/>
                 <constraint firstItem="Vek-Ur-l6d" firstAttribute="top" secondItem="Xlr-2z-Nh3" secondAttribute="bottom" id="oII-cA-pOy"/>
                 <constraint firstItem="Vek-Ur-l6d" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="qaX-b1-lVL"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="Ofa-O1-gGc" secondAttribute="bottom" constant="30" id="u8Z-88-f4b"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Vek-Ur-l6d" secondAttribute="trailing" id="vmA-RJ-S5g"/>
-                <constraint firstItem="hWm-j0-Qfp" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="4" id="zxF-l4-pvN"/>
+                <constraint firstItem="hWm-j0-Qfp" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="10" id="zxF-l4-pvN"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="82.608695652173921" y="-26.116071428571427"/>

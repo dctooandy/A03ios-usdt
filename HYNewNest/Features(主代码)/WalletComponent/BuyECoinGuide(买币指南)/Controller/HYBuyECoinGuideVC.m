@@ -53,7 +53,7 @@
         [segmentBar updateWithConfig:^(LTSegmentedBarConfig *config) {
             config.itemNormalColor = kHexColor(0x6D778B);
             config.itemSelectColor = [UIColor whiteColor];
-            config.itemNormalFont = [UIFont fontPFR13];
+            config.itemNormalFont = [UIFont fontPFR14];
             config.itemSelectFont = [UIFont fontPFSB16];
             config.indicatorHeight = 0;
 //            config.indicatorWidth = 20;
@@ -93,7 +93,7 @@
 #pragma mark - SETUP
 
 - (void)setupAttributes {
-    _topBtnsBgView.backgroundColor = _topTagsContainer.backgroundColor = kHexColor(0x212137);
+    _topBtnsBgView.backgroundColor = _topTagsContainer.backgroundColor = self.view.backgroundColor = kHexColor(0x212137);
     _btnRecharge.enabled = YES;
     _btnRegister.enabled = YES;
     _contentScrollView.backgroundColor = kHexColor(0x161627);
@@ -113,9 +113,9 @@
             recIdx = i; //推荐标签
         }
     }
-    self.segmentedBar.selectedIndex = 0;
     self.segmentedBar.recomendIndex = recIdx;
     [self.segmentedBar setItems:names];
+    self.segmentedBar.selectedIndex = 0;
     // 标签
     [self setupTags];
     // 内容
@@ -140,15 +140,15 @@
         tagBtn.titleLabel.font = [UIFont fontPFR12];
         [tagBtn setTitleColor:kHexColor(0xFFFFFF) forState:UIControlStateNormal];
         tagBtn.userInteractionEnabled = NO;
-        tagBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, -5);
+        tagBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 3, 0, -3);
         tagBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -3, 0, 3);
         [tagBtn sizeToFit];
-        //tagBtn.width + 25 -- 按钮宽
-        if (maxX + tagBtn.width + 35 > (kScreenWidth - AD(24))) {
+        //tagBtn.width + 30 -- 按钮宽
+        if (maxX + tagBtn.width + 30 > (kScreenWidth - AD(12))) {
             maxX = leftSpace;
             maxY = maxY + 30 + btnSpace;
         }
-        tagBtn.frame = CGRectMake(maxX, maxY, tagBtn.width + 35, 30);
+        tagBtn.frame = CGRectMake(maxX, maxY, tagBtn.width + 30, 30);
         maxX = CGRectGetMaxX(tagBtn.frame) + btnSpace;
         tagBtn.backgroundColor = kHexColor(0x161627);
         tagBtn.layer.masksToBounds = YES;
@@ -171,8 +171,9 @@
     NSArray *imgURLs = [model.imgList componentsSeparatedByString:@";"];
     NSMutableArray *imgFullURLs = @[].mutableCopy;
     for (NSString *imgPath in imgURLs) {
-        NSString *imgFullPath = [model.imgRootPath stringByAppendingPathComponent:imgPath];
-        [imgFullURLs addObject:imgFullPath];
+        NSString *imgFullPath = [model.imgRootPath_h5 stringByAppendingPathComponent:imgPath];
+        NSString *URLStr = [imgFullPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [imgFullURLs addObject:URLStr];
     }
     NSMutableArray *imgs = @[].mutableCopy;
     
@@ -183,19 +184,20 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             // Update the UI
-            CGFloat maxY = 0;
+            CGFloat maxY = AD(20);
             for (int i=0; i<resultImages.count; i++) {
                 UIImage *img = [UIImage imageWithData:resultImages[i]];
                 UIImageView *imgv = [UIImageView new];
-                imgv.frame = CGRectMake(0, maxY, kScreenWidth-8, img.size.height*(kScreenWidth-8)/img.size.width);
+                imgv.frame = CGRectMake(0, maxY, kScreenWidth-20, img.size.height*(kScreenWidth-20)/img.size.width);
                 imgv.image = img;
-                maxY = CGRectGetMaxY(imgv.frame);
+                maxY = CGRectGetMaxY(imgv.frame) + AD(20);
                 [self.contentScrollView addSubview:imgv];
                 
             }
             
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             self.contentScrollView.contentSize = CGSizeMake(0, maxY);
+//            self.contentScrollView.contentInset = UIEdgeInsetsMake(20, 0, 20, 0);
         });
         
         
