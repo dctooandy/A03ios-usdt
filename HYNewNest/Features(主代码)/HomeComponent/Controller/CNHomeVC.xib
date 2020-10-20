@@ -680,7 +680,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="137.68115942028987" y="380.69196428571428"/>
+            <point key="canvasLocation" x="-267" y="302"/>
         </view>
     </objects>
     <resources>

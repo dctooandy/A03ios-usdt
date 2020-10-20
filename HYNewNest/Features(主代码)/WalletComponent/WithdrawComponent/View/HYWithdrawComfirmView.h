@@ -18,15 +18,22 @@ NS_ASSUME_NONNULL_BEGIN
 /// 真实姓名绑定
 - (instancetype)initRealNameSubmitBlock:(void(^)(NSString *realName))block;
 
+
 /// 提现金额输入
 - (instancetype)initWithAmountModel:(nullable AccountMoneyDetailModel *)amoutModel
                         sumbitBlock:(nullable void(^)(NSString *withdrawAmout))block;
 
-/// 提现确认 正在受理中
+/// CNY提现拆分 提现成功
+- (void)showSuccessWithdrawCNYExUSDT:(NSNumber *)uAmount dismissBlock:(nullable void(^)(void))block;
+
+/// USDT提币成功
 - (void)showSuccessWithdraw;
 
 /// 支付确认 等待到账
 - (void)showRechargeWaiting;
+
+- (void)hideView;
+- (void)removeView;
 
 @end
 

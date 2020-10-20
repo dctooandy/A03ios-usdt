@@ -170,6 +170,12 @@
 		3D16F10025381EEC00FE0212 /* HYBuyECoinGuideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D16F0FE25381EEC00FE0212 /* HYBuyECoinGuideVC.m */; };
 		3D16F10125381EEC00FE0212 /* HYBuyECoinGuideVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D16F0FF25381EEC00FE0212 /* HYBuyECoinGuideVC.xib */; };
 		3D31B94425399CB7005275BD /* HYBuyECoinComfirmView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B94325399CB7005275BD /* HYBuyECoinComfirmView.m */; };
+		3D31B947253ACEF8005275BD /* HYWithdrawActivityAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B946253ACEF8005275BD /* HYWithdrawActivityAlertView.m */; };
+		3D31B94A253D3E42005275BD /* UIView+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B949253D3E42005275BD /* UIView+Badge.m */; };
+		3D31B94E253D6934005275BD /* HYSlideUpComfirmBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B94D253D6934005275BD /* HYSlideUpComfirmBaseView.m */; };
+		3D31B955253D8801005275BD /* WithdrawCalculateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B954253D8801005275BD /* WithdrawCalculateModel.m */; };
+		3D31B958253DBBBD005275BD /* HYWithdrawCalculatorComView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B957253DBBBD005275BD /* HYWithdrawCalculatorComView.m */; };
+		3D31B95B253DEE81005275BD /* HYWithdrawChooseWallectComView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B95A253DEE81005275BD /* HYWithdrawChooseWallectComView.m */; };
 		3D3A9B6424F90666003FB33C /* UIWindow+Motion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B6324F90666003FB33C /* UIWindow+Motion.m */; };
 		3D3A9B6A24FA3696003FB33C /* DXRadianLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B6824FA3696003FB33C /* DXRadianLayerView.m */; };
 		3D3A9B7324FA7DA5003FB33C /* CNVIPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B7224FA7DA5003FB33C /* CNVIPRequest.m */; };
@@ -1182,6 +1188,18 @@
 		3D16F0FF25381EEC00FE0212 /* HYBuyECoinGuideVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYBuyECoinGuideVC.xib; sourceTree = "<group>"; };
 		3D31B94225399CB7005275BD /* HYBuyECoinComfirmView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYBuyECoinComfirmView.h; sourceTree = "<group>"; };
 		3D31B94325399CB7005275BD /* HYBuyECoinComfirmView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYBuyECoinComfirmView.m; sourceTree = "<group>"; };
+		3D31B945253ACEF8005275BD /* HYWithdrawActivityAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYWithdrawActivityAlertView.h; sourceTree = "<group>"; };
+		3D31B946253ACEF8005275BD /* HYWithdrawActivityAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYWithdrawActivityAlertView.m; sourceTree = "<group>"; };
+		3D31B948253D3E42005275BD /* UIView+Badge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Badge.h"; sourceTree = "<group>"; };
+		3D31B949253D3E42005275BD /* UIView+Badge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Badge.m"; sourceTree = "<group>"; };
+		3D31B94C253D6934005275BD /* HYSlideUpComfirmBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSlideUpComfirmBaseView.h; sourceTree = "<group>"; };
+		3D31B94D253D6934005275BD /* HYSlideUpComfirmBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSlideUpComfirmBaseView.m; sourceTree = "<group>"; };
+		3D31B953253D8801005275BD /* WithdrawCalculateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawCalculateModel.h; sourceTree = "<group>"; };
+		3D31B954253D8801005275BD /* WithdrawCalculateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawCalculateModel.m; sourceTree = "<group>"; };
+		3D31B956253DBBBD005275BD /* HYWithdrawCalculatorComView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYWithdrawCalculatorComView.h; sourceTree = "<group>"; };
+		3D31B957253DBBBD005275BD /* HYWithdrawCalculatorComView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYWithdrawCalculatorComView.m; sourceTree = "<group>"; };
+		3D31B959253DEE81005275BD /* HYWithdrawChooseWallectComView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYWithdrawChooseWallectComView.h; sourceTree = "<group>"; };
+		3D31B95A253DEE81005275BD /* HYWithdrawChooseWallectComView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYWithdrawChooseWallectComView.m; sourceTree = "<group>"; };
 		3D3A9B6224F90666003FB33C /* UIWindow+Motion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Motion.h"; sourceTree = "<group>"; };
 		3D3A9B6324F90666003FB33C /* UIWindow+Motion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Motion.m"; sourceTree = "<group>"; };
 		3D3A9B6824FA3696003FB33C /* DXRadianLayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXRadianLayerView.m; sourceTree = "<group>"; };
@@ -2696,6 +2714,7 @@
 		3D13389924AF2D1900B29783 /* Utility(工具类) */ = {
 			isa = PBXGroup;
 			children = (
+				3D31B94B253D691A005275BD /* HYSlideUpComfirmView */,
 				3D3A9B6724FA3696003FB33C /* DXRadianLayerView */,
 				E98BEF3424D3D23100E6B0C8 /* HYDownloadLinkView */,
 				E986A19D24CB35D8000F9CFF /* HYAlertView */,
@@ -2751,6 +2770,8 @@
 				3DE3CA9524ED6AEC00D591C4 /* UILabel+Indicator.m */,
 				3D41DEAC251CC6FD000CA1D6 /* UIColor+Gradient.h */,
 				3D41DEAD251CC6FD000CA1D6 /* UIColor+Gradient.m */,
+				3D31B948253D3E42005275BD /* UIView+Badge.h */,
+				3D31B949253D3E42005275BD /* UIView+Badge.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -2880,6 +2901,28 @@
 				3D31B94325399CB7005275BD /* HYBuyECoinComfirmView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3D31B94B253D691A005275BD /* HYSlideUpComfirmView */ = {
+			isa = PBXGroup;
+			children = (
+				3D31B94C253D6934005275BD /* HYSlideUpComfirmBaseView.h */,
+				3D31B94D253D6934005275BD /* HYSlideUpComfirmBaseView.m */,
+				3D31B956253DBBBD005275BD /* HYWithdrawCalculatorComView.h */,
+				3D31B957253DBBBD005275BD /* HYWithdrawCalculatorComView.m */,
+				3D31B959253DEE81005275BD /* HYWithdrawChooseWallectComView.h */,
+				3D31B95A253DEE81005275BD /* HYWithdrawChooseWallectComView.m */,
+			);
+			path = HYSlideUpComfirmView;
+			sourceTree = "<group>";
+		};
+		3D31B94F253D85BB005275BD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3D31B953253D8801005275BD /* WithdrawCalculateModel.h */,
+				3D31B954253D8801005275BD /* WithdrawCalculateModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		3D3A9B6724FA3696003FB33C /* DXRadianLayerView */ = {
@@ -4149,6 +4192,7 @@
 		E986A17124C979F6000F9CFF /* WithdrawComponent */ = {
 			isa = PBXGroup;
 			children = (
+				3D31B94F253D85BB005275BD /* Model */,
 				E986A17824C97A2E000F9CFF /* Request */,
 				E986A17224C979F6000F9CFF /* Controller */,
 				E986A17424C979F6000F9CFF /* View */,
@@ -4239,6 +4283,8 @@
 				3D41DE9E251A0F59000CA1D6 /* HYVIPRuleAlertView.m */,
 				3D41DEA6251B4A45000CA1D6 /* HYVIPReceiveAlertView.h */,
 				3D41DEA7251B4A45000CA1D6 /* HYVIPReceiveAlertView.m */,
+				3D31B945253ACEF8005275BD /* HYWithdrawActivityAlertView.h */,
+				3D31B946253ACEF8005275BD /* HYWithdrawActivityAlertView.m */,
 			);
 			path = HYAlertView;
 			sourceTree = "<group>";
@@ -4628,7 +4674,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1120;
-				ORGANIZATIONNAME = emneoma.xyz;
+				ORGANIZATIONNAME = BYGJ;
 				TargetAttributes = {
 					3D13385024AD8F9B00B29783 = {
 						CreatedOnToolsVersion = 11.2.1;
@@ -5462,6 +5508,7 @@
 				E9D9449024C5454F00252222 /* HYNetworkConfigManager.m in Sources */,
 				040A08D424E114A900FBD534 /* CALayer+OCBarrage.m in Sources */,
 				048A0EF324C9401100411819 /* CNGameLineView.m in Sources */,
+				3D31B94A253D3E42005275BD /* UIView+Badge.m in Sources */,
 				E986A1C224CC7F2B000F9CFF /* UIView+SDExtension.m in Sources */,
 				E98BEEEA24D023B200E6B0C8 /* UIView+LYExtension.m in Sources */,
 				E9D9449724C5734400252222 /* WelcomeModel.m in Sources */,
@@ -5523,6 +5570,7 @@
 				04C0F12324C69738007F1420 /* CNHomeVC.m in Sources */,
 				E986A19C24CADCA3000F9CFF /* UserSubscribItem.m in Sources */,
 				04C0F11324C594D5007F1420 /* CNLoginRequest.m in Sources */,
+				3D31B94E253D6934005275BD /* HYSlideUpComfirmBaseView.m in Sources */,
 				E986A10F24C73604000F9CFF /* AdBannerGroupModel.m in Sources */,
 				E986A11E24C7E08F000F9CFF /* GameStartPlayViewController.m in Sources */,
 				04C6E1F324D4180D006F4DAC /* CNImaginaryLine.m in Sources */,
@@ -5565,9 +5613,11 @@
 				3D41DE7325199DEE000CA1D6 /* VIPDSBUsrModel.m in Sources */,
 				3D41DEBD251F1B47000CA1D6 /* UIImageView+GIF.m in Sources */,
 				E986A1C724CC7F2B000F9CFF /* TAAbstractDotView.m in Sources */,
+				3D31B95B253DEE81005275BD /* HYWithdrawChooseWallectComView.m in Sources */,
 				040A08D724E114A900FBD534 /* OCBarrageRenderView.m in Sources */,
 				04C0F0E324C2B282007F1420 /* CNHUB.m in Sources */,
 				3DA4F15F24B30D610039123F /* GTMBase64.m in Sources */,
+				3D31B947253ACEF8005275BD /* HYWithdrawActivityAlertView.m in Sources */,
 				3D16F10025381EEC00FE0212 /* HYBuyECoinGuideVC.m in Sources */,
 				3D16F0F825369CE100FE0212 /* VIPGiftTableView.m in Sources */,
 				E986A11824C73FE9000F9CFF /* BetAmountModel.m in Sources */,
@@ -5580,6 +5630,7 @@
 				3D41DEC025206AAE000CA1D6 /* VIPReceiveRecordVC.m in Sources */,
 				3D41DE7125199DEE000CA1D6 /* VIPTwoChartVC.m in Sources */,
 				3D1338B924AF3AB200B29783 /* NNPageRouter.m in Sources */,
+				3D31B955253D8801005275BD /* WithdrawCalculateModel.m in Sources */,
 				040A08D224E114A900FBD534 /* OCBarrageCell.m in Sources */,
 				3D3A9B6424F90666003FB33C /* UIWindow+Motion.m in Sources */,
 				0487C9C524D11F0D0013715A /* CNNoDataView.m in Sources */,
@@ -5651,6 +5702,7 @@
 				3D41DEAB251C82F6000CA1D6 /* VIPIdentityModel.m in Sources */,
 				D571B1A124BFFD510087B5EC /* CNBaseTF.m in Sources */,
 				04C0F0E824C2E250007F1420 /* JHVerificationCodeView.m in Sources */,
+				3D31B958253DBBBD005275BD /* HYWithdrawCalculatorComView.m in Sources */,
 				0487C9E724D27BDD0013715A /* CNNotifySettingTCell.m in Sources */,
 				3D643F8C24F29F3600B9AAA7 /* KeyChain.m in Sources */,
 				3D31B94425399CB7005275BD /* HYBuyECoinComfirmView.m in Sources */,

@@ -16,6 +16,11 @@
 #import "HYWithdrawComfirmView.h"
 #import "CNCompleteInfoVC.h"
 #import "HYTabBarViewController.h"
+#import "HYWithdrawCalculatorComView.h"
+#import "HYWithdrawChooseWallectComView.h"
+#import "HYWithdrawActivityAlertView.h"
+
+#import "CNTradeRecodeVC.h"
 
 #import "CNWithdrawRequest.h"
 #import "CNWDAccountRequest.h"
@@ -26,11 +31,13 @@
 @property (weak, nonatomic) IBOutlet HYXiMaTopView *topView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *sumitBtn;
+
 @property (nonatomic, assign) NSInteger selectedIdx;
-@property (nonatomic, strong) NSMutableArray<AccountModel *> *elecCardsArr;//所有卡
+@property (nonatomic, strong) NSMutableArray<AccountModel *> *elecCardsArr;//所有卡 根据当前模式只会是银行卡 或者 子账户钱包账户
+@property (nonatomic, strong) NSMutableArray<AccountModel *> *subWalletAccounts;//子账户所有钱包
 @property (nonatomic, strong) AccountMoneyDetailModel *moneyModel;
 
-@property (nonatomic, weak) HYWithdrawComfirmView *comfirmView;
+@property (nonatomic, strong) HYWithdrawComfirmView *comfirmView;
 @end
 
 @implementation HYWithdrawViewController
@@ -85,9 +92,14 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     self.topView.lblTitle.text = [NSString stringWithFormat:@"可%@", tx];
     [self.topView.ruleBtn setTitle:@" 说明" forState:UIControlStateNormal];
     self.topView.clickBlock = ^{
-        NSString *content = [NSString stringWithFormat:@"根据《菲律宾反洗钱法》规定：\n1. %@需达到充币的1倍有效投注额\n2. 可%@金额＝总资产 - 各厅不足1%@下的金额\n3. 如参与了网站的优惠活动，%@需根据相关活动规则有效投注额\n\n具体%@情况以审核完结果为准。", tx, tx, [CNUserManager shareManager].userInfo.currency, tx, tx];
-        [HYWideOneBtnAlertView showWithTitle:[NSString stringWithFormat:@"%@说明", tx] content:content comfirmText:@"我知道了" comfirmHandler:^{
-        }];
+        if ([CNUserManager shareManager].isUsdtMode) {
+            NSString *content = [NSString stringWithFormat:@"根据《菲律宾反洗钱法》规定：\n1. %@需达到充币的1倍有效投注额\n2. 可%@金额＝总资产 - 各厅不足1%@下的金额\n3. 如参与了网站的优惠活动，%@需根据相关活动规则有效投注额\n\n具体%@情况以审核完结果为准。", tx, tx, [CNUserManager shareManager].userInfo.currency, tx, tx];
+            [HYWideOneBtnAlertView showWithTitle:[NSString stringWithFormat:@"%@说明", tx] content:content comfirmText:@"我知道了" comfirmHandler:^{
+            }];
+        } else {
+            [self didTapNewCNYRule];
+        }
+        
     };
 }
 
@@ -120,6 +132,13 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     [self.view addSubview:view];
 }
 
+- (void)didTapNewCNYRule {
+    if (self.calculatorModel) {
+        NSString *cont = [NSString stringWithFormat:@"1、需要最低取款%ld元，如不足则会按全额转入USDT账户；\n2、USDT账户如已绑定钱包，则会直接取款到数字钱包；如没有绑定，则转入USDT账户额度；", self.calculatorModel.exchangeAmountLimit];
+        [HYWideOneBtnAlertView showWithTitle:@"提现说明" content:cont comfirmText:@"我知道了" comfirmHandler:^{
+        }];
+    }
+}
 
 #pragma mark - REQUEST
 - (void)requestBalance {
@@ -142,6 +161,14 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         [self.tableView.mj_header endRefreshing];
         STRONGSELF_DEFINE
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            
+            // 子账户钱包是否有值 CNYyong
+            if (responseObj[@"subWalletAccounts"]) {
+                NSArray *subAccounts = responseObj[@"subWalletAccounts"];
+                strongSelf.subWalletAccounts = [AccountModel cn_parse:subAccounts];
+            }
+            
+            
             NSArray *accountArr = responseObj[@"accounts"];
             NSArray *accounts = [AccountModel cn_parse:accountArr];
             //手动筛选
@@ -151,7 +178,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                 if ([subModel.bankName isEqualToString:@"BTC"]) {
                     
                     // usdt卡
-                } else if (([subModel.bankName isEqualToString:@"USDT"] || [subModel.bankName isEqualToString:@"DCBOX"] || [subModel.bankName isEqualToString:@"BITOLL"])
+                } else if (([subModel.bankName isEqualToString:@"USDT"] || [subModel.bankName isEqualToString:@"DCBOX"])
                            && [CNUserManager shareManager].isUsdtMode) {
                     if ([subModel.bankName isEqualToString:@"DCBOX"]) {
                         subModel.bankName = @"小金库";
@@ -169,32 +196,81 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     }];
 }
 
+// 取款返利规则
+- (void)requestCNYWithdrawNewRuleAmount:(nullable NSNumber *)amount AccountId:(nullable NSString *)accountId handler:(void(^)(void))handler {
+    [CNWithdrawRequest withdrawCalculatorMode:accountId?@0:@1
+                                       amount:amount
+                                    accountId:accountId
+                                      handler:^(id responseObj, NSString *errorMsg) {
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            self.calculatorModel = [WithdrawCalculateModel cn_parse:responseObj];
+            !handler?:handler();
+        }
+    }];
+}
+
 - (void)sumbimtWithdrawAmount:(NSString *)amout {
+    // 请求最后一步的闭包
+    __block void(^submitWDRequestBlock)(NSNumber *amount, NSString *accountId, NSString *protocol, NSString *remarks, NSString *subWallAccountId) = ^(NSNumber *amount, NSString *accountId, NSString *protocol, NSString *remarks, NSString *subWallAccountId){
+        
+        [CNWithdrawRequest submitWithdrawRequestAmount:amount
+                                             accountId:accountId
+                                              protocol:protocol
+                                               remarks:remarks
+                                      subWallAccountId:subWallAccountId
+                                               handler:^(id responseObj, NSString *errorMsg) {
+            if (KIsEmptyString(errorMsg)) {
+                [self.comfirmView showSuccessWithdraw];
+            }
+        }];
+    };
+    
     AccountModel *model = self.elecCardsArr[self.selectedIdx];
     NSNumber *amount = [NSNumber numberWithDouble:[amout doubleValue]];
-    WEAKSELF_DEFINE
     if ([CNUserManager shareManager].isUsdtMode) {
-        [CNWithdrawRequest submitWithdrawRequestAmount:amount
-                                             accountId:model.accountId
-                                              protocol:model.protocol
-                                               remarks:@""
-                                      subWallAccountId:nil
-                                               handler:^(id responseObj, NSString *errorMsg) {
-            STRONGSELF_DEFINE
-            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-                [strongSelf.comfirmView showSuccessWithdraw];
-                dispatch_async(dispatch_queue_create(0, 0), ^{
-                    [IVLAManager singleEventId:@"A03_withdraw_create" errorCode:@"" errorMsg:@"" customsData:@{@"requestId":responseObj[@"referenceId"]}];
-                });
+        submitWDRequestBlock(amount, model.accountId, model.protocol, @"", nil);
+        
+    //CNY提现
+    } else {
+        // 计算接口 保存数据 -> 提现明细 -> 选择钱包/转USDT余额 -> 弹窗。。
+        [self requestCNYWithdrawNewRuleAmount:amount
+                                    AccountId:model.accountId
+                                      handler:^(){
+            if (self.calculatorModel && self.calculatorModel.creditExchangeFlag) {
+                [self.comfirmView hideView];
+                
+                [HYWithdrawCalculatorComView showWithCalculatorModel:self.calculatorModel submitHandler:^{
+                    
+                    MyLog(@"点击了下一步");
+                    [HYWithdrawChooseWallectComView showWithAmount:self.calculatorModel.promoInfo.refAmount subWalAccountsModel:self.subWalletAccounts submitHandler:^(NSString * _Nonnull subWallAccountId) {
+                        
+                        MyLog(@"选好子钱包了");
+                        [CNWithdrawRequest submitWithdrawRequestAmount:amount
+                                                             accountId:model.accountId
+                                                              protocol:model.protocol
+                                                               remarks:@""
+                                                      subWallAccountId:subWallAccountId
+                                                               handler:^(id responseObj, NSString *errorMsg) {
+                            if (KIsEmptyString(errorMsg)) {
+                                [self.comfirmView showSuccessWithdrawCNYExUSDT:self.calculatorModel.promoInfo.refAmount dismissBlock:^{
+                                    MyLog(@"点击了关闭");
+                                    [HYWithdrawActivityAlertView showHandedOutGiftUSDTAmount:self.calculatorModel.promoInfo.amount handler:^{
+                                        MyLog(@"点击了去看看");
+                                        CNTradeRecodeVC *recVc = [[CNTradeRecodeVC alloc] init];
+                                        recVc.recoType = transactionRecord_activityType;
+                                        [self.navigationController pushViewController:recVc animated:YES];
+                                    }];
+                                }];
+                            }
+                        }];
+                    }];
+                }];
+                
+            } else { //走正常流程
+                submitWDRequestBlock(amount, model.accountId, model.protocol, @"", nil);
             }
         }];
         
-    } else {
-        [CNWithdrawRequest withdrawCalculatorMode:@1 amount:amount
-                                        accountId:model.accountId
-                                          handler:^(id responseObj, NSString *errorMsg) {
-            
-        }];
     }
 
 }
@@ -243,14 +319,6 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 //    [tableView reloadData];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

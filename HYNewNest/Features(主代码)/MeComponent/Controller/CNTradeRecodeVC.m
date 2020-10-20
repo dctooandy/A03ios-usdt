@@ -15,7 +15,7 @@
 #import "CNRecordTypeSelectorView.h"
 #import "CNRecordDetailVC.h"
 #import "CNBaseNetworking.h"
-#import "CreditQueryResultModel.h"
+
 #import <UIImageView+WebCache.h>
 #import "NSURL+HYLink.h"
 #import <MJRefresh/MJRefresh.h>
@@ -23,7 +23,6 @@
 @interface CNTradeRecodeVC () <segmentHeaderViewDelegate, UITableViewDelegate, UITableViewDataSource>
 // 记录类型标签
 @property (weak, nonatomic) IBOutlet UILabel *typeLb;
-@property (nonatomic, assign) TransactionRecordType recoType;
 @property (nonatomic, assign) NSInteger gameTypeIdx;// 0-5
 // 记录时间 3 7 30
 @property (weak, nonatomic) IBOutlet UILabel *dayLb;
@@ -55,7 +54,28 @@
     self.gameTypeIdx = 0;
     self.dayParm = 3;
     self.dataList = @[].mutableCopy;
-    self.recoType = transactionRecord_rechargeType;
+    if (self.recoType == 0) {
+        self.recoType = transactionRecord_rechargeType;
+    }
+    switch (self.recoType) {
+        case transactionRecord_rechargeType:
+            self.typeLb.text = [CNUserManager shareManager].isUsdtMode?@"充币":@"充值";
+            break;
+        case transactionRecord_XMType:
+            self.typeLb.text = @"洗码";
+            break;
+        case transactionRecord_withdrawType:
+            self.typeLb.text = [CNUserManager shareManager].isUsdtMode?@"提币":@"提现";
+            break;
+        case transactionRecord_activityType:
+            self.typeLb.text = @"优惠领取";
+            break;
+            case transactionRecord_betRecordType:
+            self.typeLb.text = @"投注记录";
+            break;
+        default:
+            break;
+    }
     
     [self requestNewData];
 }

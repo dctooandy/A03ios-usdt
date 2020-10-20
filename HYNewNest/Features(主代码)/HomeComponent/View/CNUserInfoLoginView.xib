@@ -23,6 +23,7 @@
                 <outlet property="showHideBtn" destination="g7V-V1-Wjw" id="Y4J-Mp-Sr9"/>
                 <outlet property="switchModeBtn" destination="tb7-qs-Zp1" id="psw-c2-4FJ"/>
                 <outlet property="vipLb" destination="K84-Vk-Gst" id="loF-df-D46"/>
+                <outlet property="withdrawCNYBtn" destination="2cK-kw-z7Y" id="LQG-uM-Yp8"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

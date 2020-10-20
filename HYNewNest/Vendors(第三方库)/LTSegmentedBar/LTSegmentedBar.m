@@ -7,6 +7,7 @@
 //
 
 #import "LTSegmentedBar.h"
+#import "UIView+Badge.h"
 
 #pragma mark - LTSegmentedBarConfig
 
@@ -105,6 +106,7 @@
         [self.contentView addSubview:btn];
         [self.itemBtns addObject:btn];
         
+        // UI要求的右侧分割线
         if (self.config.splitLineColor) {
             UIView *line = [[UIView alloc] init];
             line.backgroundColor = self.config.splitLineColor;
@@ -207,6 +209,10 @@
         }
         self.contentView.contentSize = CGSizeMake(lastX, 0);
         self.contentView.scrollEnabled = NO;
+        // UI要求的图片badge
+        if ([btn.titleLabel.text isEqualToString:@"OKEx"]) {
+            [btn showRightTopImageName:@"promo" size:CGSizeMake(31, 16) offsetX:-43 offsetYMultiple:0.25];
+        }
         
     } else {
         // 自动去计算margin

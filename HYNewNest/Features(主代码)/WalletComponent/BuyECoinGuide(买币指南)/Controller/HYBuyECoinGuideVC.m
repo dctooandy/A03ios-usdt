@@ -206,7 +206,7 @@
     NSString *stringurl = arrayURLs[currentIndex];
    
     NSURL *url = [NSURL URLWithString:stringurl];
-    
+        
     SDWebImageDownloadToken *token = [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:url options:SDWebImageDownloaderUseNSURLCache progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
        
         float p = receivedSize / (expectedSize * 1.0);
@@ -241,7 +241,7 @@
             [weakSelf downloadImage:arrayURLs arrayImages:arrayImages currentIndex:currentIndex success:success failure:failure];
         }
     }];
-    [self.downloadTokens addObject:token];
+    if (token) [self.downloadTokens addObject:token];
 }
 
 

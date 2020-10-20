@@ -14,5 +14,6 @@ NSNotificationName const HYSwitchAcoutSuccNotification        = @"HYSwitchAcoutS
 
 
 NSString * const HYNotShowCTZNEUserDefaultKey = @"HYNotShowCTZNEUserDefaultKey";
+NSString * const HYNotShowQKFLUserDefaultKey = @"HYNotShowQKFLUserDefaultKey";
 NSString * const HYHomeMessageBoxLastimeDate = @"HYHomeMessageBoxLastimeDate";
 NSString * const HYVIPIsAlreadyShowV2Alert = @"HYVIPIsAlreadyShowV2Alert";

@@ -11,6 +11,7 @@
 #import "CNUserCenterRequest.h"
 #import "CNUserModel.h"
 #import <UIImageView+WebCache.h>
+#import "UIView+Badge.h"
 
 @interface CNUserInfoLoginView ()
 @property (weak, nonatomic) IBOutlet UIImageView *headerIcon;
@@ -22,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
 @property (weak, nonatomic) IBOutlet UIButton *switchModeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
+@property (weak, nonatomic) IBOutlet UIButton *withdrawCNYBtn;
+
 
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewH;
@@ -40,6 +43,8 @@
     // 按钮边框颜色
     self.registerBtn.layer.borderColor = kHexColor(0x19CECE).CGColor;
     self.registerBtn.layer.borderWidth = 1;
+    // 提现右上角NEW
+    [self.withdrawCNYBtn showRightTopImageName:@"new_txgb" size:CGSizeMake(30, 14) offsetX:-30 offsetYMultiple:0];
 }
 
 - (void)updateLoginStatusUI {

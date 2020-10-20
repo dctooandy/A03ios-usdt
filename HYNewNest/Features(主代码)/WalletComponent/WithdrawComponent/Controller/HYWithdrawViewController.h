@@ -9,9 +9,10 @@
 #import "CNBaseVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class WithdrawCalculateModel;
 @interface HYWithdrawViewController : CNBaseVC
 
+@property (nonatomic, strong) WithdrawCalculateModel *calculatorModel; //CNY needed
 @end
 
 NS_ASSUME_NONNULL_END

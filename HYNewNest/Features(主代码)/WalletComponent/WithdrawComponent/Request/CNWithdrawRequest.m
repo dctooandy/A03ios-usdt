@@ -7,6 +7,7 @@
 //
 
 #import "CNWithdrawRequest.h"
+#import <IVLAManager.h>
 
 @implementation CNWithdrawRequest
 
@@ -15,10 +16,11 @@
 }
 
 + (void)withdrawCalculatorMode:(NSNumber *)mode
-                        amount:(NSNumber *)amount
-                       accountId:(NSString *)accountId
-                         handler:(HandlerBlock)handler {
+                        amount:(nullable NSNumber *)amount
+                     accountId:(nullable NSString *)accountId
+                       handler:(HandlerBlock)handler {
     NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"mode"] = mode;
     param[@"amount"] = amount;
     param[@"accountId"] = accountId;
     
@@ -39,7 +41,22 @@
     param[@"remarks"] = remarks;
     param[@"subWallAccountId"] = subWallAccountId;
     
-    [self POST:kGatewayPath(config_drawCreateRequest) parameters:param completionHandler:handler];
+    [self POST:kGatewayPath(config_drawCreateRequest) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+        
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObj allKeys] containsObject:@"referenceId"]) {
+                dispatch_async(dispatch_queue_create(0, 0), ^{
+                    // 取款成功埋点
+                    [IVLAManager singleEventId:@"A03_withdraw_create" errorCode:@"" errorMsg:@"" customsData:@{@"requestId":responseObj[@"referenceId"]}];
+                });
+            }
+        }
+    }];
+}
+
++ (void)getBalancesHandler:(HandlerBlock)handler {
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    [self POST:kGatewayPath(config_getBalances) parameters:param completionHandler:handler];
 }
 
 @end

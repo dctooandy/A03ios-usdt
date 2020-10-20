@@ -361,7 +361,8 @@
                 }
                 break;
             case CNActionTypeWithdraw: //提
-                [self.navigationController pushViewController:[HYWithdrawViewController new] animated:YES];
+//                [self.navigationController pushViewController:[HYWithdrawViewController new] animated:YES];
+                [NNPageRouter jump2Withdraw];
                 break;
             case CNActionTypeSell: //卖
                 [HYWideOneBtnAlertView showWithTitle:@"卖币跳转" content:@"正在为您跳转..请稍后。\n在交易所卖币数字货币，买家会将金额支付到您的银行卡，方便快捷。" comfirmText:@"我知道了，帮我跳转" comfirmHandler:^{

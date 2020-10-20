@@ -30,6 +30,9 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 + (void)jump2Login;
 + (void)jump2Register;
 
+/// 去提现 (双模式统一入口)
++ (void)jump2Withdraw;
+
 /// 外部打开 一键买卖币
 /// @param isSell 是否卖币
 + (void)openExchangeElecCurrencyPageIsSell:(BOOL)isSell;

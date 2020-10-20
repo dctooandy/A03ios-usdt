@@ -16,6 +16,9 @@
 
 #import "CNHomeRequest.h"
 #import "CNRechargeRequest.h"
+#import "CNWithdrawRequest.h"
+#import "HYWithdrawActivityAlertView.h"
+#import "HYWithdrawViewController.h"
 
 @implementation NNPageRouter
 
@@ -30,6 +33,39 @@
 
 + (void)jump2Register {
     [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[CNLoginRegisterVC registerVC] animated:YES];
+}
+
++ (void)jump2Withdraw {
+    if ([CNUserManager shareManager].isUsdtMode) {
+        [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[HYWithdrawViewController new] animated:YES];
+        
+    } else {
+        
+        __block void(^jumpWithdrawBlock)(WithdrawCalculateModel* ) = ^(WithdrawCalculateModel * model) {
+            HYWithdrawViewController *vc = [HYWithdrawViewController new];
+            vc.calculatorModel = model;
+            [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:vc animated:YES];
+        };
+        
+        [CNWithdrawRequest withdrawCalculatorMode:@1 amount:nil accountId:nil handler:^(id responseObj, NSString *errorMsg) {
+            
+            if (!errorMsg && responseObj ) {
+                WithdrawCalculateModel *model = [WithdrawCalculateModel cn_parse:responseObj];
+                
+                if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowQKFLUserDefaultKey]) {
+                    
+                    [HYWithdrawActivityAlertView showWithAmountPercent:model.creditExchangeRatio
+                                                           giftPercent:model.promoInfo.promoRatio
+                                                            mostAmount:model.promoInfo.maxAmount handler:^{
+                        jumpWithdrawBlock(model);
+                        
+                    }];
+                } else {
+                    jumpWithdrawBlock(model);
+                }
+            }
+        }];
+    }
 }
 
 + (void)openExchangeElecCurrencyPageIsSell:(BOOL)isSell {

@@ -23,6 +23,7 @@
 // DATA
 @property (nonatomic, strong) AccountMoneyDetailModel *amoutModel;
 @property (nonatomic, copy) void(^clickBlock)(NSString* text);
+@property (nonatomic, copy) void(^dismissBlock)(void);
 // 完成状态 UI
 @property (nonatomic, strong) UIView *succView;
 @property (nonatomic, strong) UIImageView *depositSuccssImgv;
@@ -41,10 +42,10 @@
     UIView *mainView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-kNavPlusStaBarHeight, kScreenWidth, 426+kSafeAreaHeight)];
     self.mainView = mainView;
     mainView.tag = 150;
-    mainView.backgroundColor = kHexColor(0x212137);
+    mainView.backgroundColor = kHexColor(0x343452);
     [self addSubview:mainView];
       
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:mainView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(20, 20)];
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:mainView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(AD(10), AD(10))];
     CAShapeLayer *layer = [[CAShapeLayer alloc] init];
     layer.path = path.CGPath;
     layer.frame = mainView.bounds;
@@ -65,7 +66,7 @@
     // 关闭按钮
     UIButton *btnCancle = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnCancle setImage:[UIImage imageNamed:@"modal-close"] forState:UIControlStateNormal];
-    btnCancle.frame = CGRectMake(CGRectGetWidth(bgView.frame)-30-25, 10, 30, 30);
+    btnCancle.frame = CGRectMake(CGRectGetWidth(bgView.frame)-30-15, 10, 30, 30);
     [btnCancle addTarget:self action:@selector(removeView) forControlEvents:UIControlEventTouchUpInside];
     [mainView addSubview:btnCancle];
     
@@ -196,6 +197,8 @@
 - (void)showSuccessWithdraw {
     [self showStatusCommonViews];
     
+    self.lblTitle.text = @"提币成功";
+    
     UILabel *contentLb = [[UILabel alloc] init];
     contentLb.textAlignment = NSTextAlignmentCenter;
     contentLb.numberOfLines = 2;
@@ -208,6 +211,26 @@
     [contentLb sizeToFit];
     contentLb.y = self.depositSuccssImgv.bottom;
     contentLb.centerX = self.succView.centerX;
+    
+    [self.succView addSubview:contentLb];
+}
+
+- (void)showSuccessWithdrawCNYExUSDT:(NSNumber *)uAmount dismissBlock:(nullable void(^)(void))block{
+    [self showStatusCommonViews];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.mainView.y = kScreenHeight-kNavPlusStaBarHeight - 345 - kSafeAreaHeight - 81;
+    }];
+    self.dismissBlock = block;
+    self.lblTitle.text = @"提现成功";
+    
+    UILabel *contentLb = [[UILabel alloc] init];
+    NSString *fullStr = [NSString stringWithFormat:@"您的提款正在受理中，预计15分钟内到账\n您的 %@USDT 储蓄将会在取款审批之后转入到您的USDT账户", uAmount];
+    contentLb.text = fullStr;
+    contentLb.numberOfLines = 0;
+    contentLb.font = [UIFont fontPFR14];
+    contentLb.textColor = kHexColor(0xFFFFFF);
+    contentLb.frame = CGRectMake(AD(60), self.depositSuccssImgv.bottom, self.succView.width-AD(120), AD(80));
+    [contentLb sizeToFit];
     [self.succView addSubview:contentLb];
 }
 
@@ -218,7 +241,7 @@
     }];
     
     UIView *succView = [[UIView alloc] init];
-    succView.backgroundColor = kHexColor(0x212137);
+    succView.backgroundColor = kHexColor(0x343452);
     succView.frame = CGRectMake(0, 50, kScreenWidth, 426+kSafeAreaHeight-50);
     self.succView = succView;
     [self.mainView addSubview:succView];
@@ -235,7 +258,6 @@
     CGFloat BtnMargin = 30;
     CGFloat BtnWIdth = (kScreenWidth - LRMargin*2 - BtnMargin)*0.5;
     
-//    CNTwoStatusBtn *topBtn = [[CNTwoStatusBtn alloc] initWithFrame:CGRectMake(kScreenWidth-LRMargin-BtnWIdth, contentLb.bottom+56, BtnWIdth, 48)];
     CNTwoStatusBtn *topBtn = [[CNTwoStatusBtn alloc] initWithFrame:CGRectMake(kScreenWidth-LRMargin-BtnWIdth, succView.height-kSafeAreaHeight-24-48, BtnWIdth, 48)];
     [topBtn setTitle:@"我知道了" forState:UIControlStateNormal];
     topBtn.titleLabel.font = [UIFont fontPFM14];
@@ -272,7 +294,19 @@
     [NNPageRouter jump2Live800Type:CNLive800TypeDeposit];
 }
 
+- (void)hideView {
+    UIView *mainView = [self viewWithTag:150];
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        mainView.y = kScreenHeight-kNavPlusStaBarHeight;
+    } completion:^(BOOL finished) {
+    }];
+}
+
 - (void)removeView{
+    if (self.dismissBlock) {
+        self.dismissBlock();
+    }
     UIView *mainView = [self viewWithTag:150];
     
     [UIView animateWithDuration:0.25 animations:^{

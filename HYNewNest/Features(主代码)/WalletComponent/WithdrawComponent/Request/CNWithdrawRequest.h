@@ -7,6 +7,7 @@
 //
 
 #import "CNBaseNetworking.h"
+#import "WithdrawCalculateModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,12 +21,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 取款计算信息查询接口(CNY)
 /// @param mode 0:实时计算， 1:查询配置信息，前端计算
-/// @param amount 金额
-/// @param accountId 账户ID
+/// @param amount 金额 mode=0时必传
+/// @param accountId 账户ID mode=0时必传
 /// @param handler 回调
 + (void)withdrawCalculatorMode:(NSNumber *)mode
-                        amount:(NSNumber *)amount
-                     accountId:(NSString *)accountId
+                        amount:(nullable NSNumber *)amount
+                     accountId:(nullable NSString *)accountId
                        handler:(HandlerBlock)handler ;
 
 /// 提交提现订单
@@ -41,6 +42,9 @@ NS_ASSUME_NONNULL_BEGIN
                             remarks:(NSString *)remarks
                    subWallAccountId:(nullable NSString *)subWallAccountId
                             handler:(HandlerBlock)handler;
+
+/// 查询所有钱包额度
++ (void)getBalancesHandler:(HandlerBlock)handler;
 
 @end
 
