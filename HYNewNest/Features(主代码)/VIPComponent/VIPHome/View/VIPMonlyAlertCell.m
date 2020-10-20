@@ -112,7 +112,7 @@
             CGFloat cMargin = AD(30);
             CGFloat cWidth = AD(24);
             NSArray *numArr;
-            if (model.vipRhqk) {
+            if (model.vipRhqk && model.vipRhqk.betGoldCount) {
                 numArr = @[model.vipRhqk.betGoldCount, model.vipRhqk.betSaintCount, model.vipRhqk.betKingCount, model.vipRhqk.betBaCount, model.vipRhqk.betXiaCount];
             } else {
                 numArr = @[@0,@0,@0,@0,@0];
