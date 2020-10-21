@@ -49,7 +49,7 @@
         
         // 半透明背景
         UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-        bgView.backgroundColor = kHexColorAlpha(0x000000, 0.3);
+        bgView.backgroundColor = kHexColorAlpha(0x000000, 0.8);
         [self addSubview:bgView];
               
         // 主背景

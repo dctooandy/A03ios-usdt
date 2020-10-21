@@ -34,11 +34,12 @@
 
 @property (nonatomic, strong) NSMutableArray *downloadTokens;
 @property (strong,nonatomic) NSArray<BuyECoinModel*> *datas;
-
+@property (strong,nonatomic) NSMutableDictionary *groupImgsDict;
 
 @property (nonatomic, strong) NSArray<DepositsBankModel *> *depositModels;
 @property (nonatomic, strong) OnlineBanksModel *curOnliBankModel;
 @property (nonatomic, assign, readwrite) NSInteger selcPayWayIdx;
+
 @end
 
 @implementation HYBuyECoinGuideVC
@@ -80,6 +81,7 @@
     [self setupAttributes];
     _curIdx = 0;
     self.downloadTokens = @[].mutableCopy;
+    self.groupImgsDict = @{}.mutableCopy;
     
     [self getDynamicData];
     [self queryDepositBankPayWays];
@@ -159,12 +161,29 @@
 }
 
 - (void)setupContent {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     for (UIView *subView in _contentScrollView.subviews) {
         [subView removeFromSuperview];
     }
+    // 有缓存
+    NSMutableArray *imgs = @[].mutableCopy;
+    if ([self.groupImgsDict[@(_curIdx)] count] > 0) {
+        imgs = self.groupImgsDict[@(_curIdx)];
+        CGFloat maxY = AD(20);
+        for (int i=0; i<imgs.count; i++) {
+            UIImage *img = [UIImage imageWithData:imgs[i]];
+            UIImageView *imgv = [UIImageView new];
+            imgv.frame = CGRectMake(0, maxY, kScreenWidth-20, img.size.height*(kScreenWidth-20)/img.size.width);
+            imgv.image = img;
+            maxY = CGRectGetMaxY(imgv.frame) + AD(20);
+            [self.contentScrollView addSubview:imgv];
+            
+        }
+        self.contentScrollView.contentSize = CGSizeMake(0, maxY);
+        return;
+    }
     
     
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     BuyECoinModel *model = self.datas[_curIdx];
     [self.btnRegister setTitle:model.registerText forState:UIControlStateNormal];
     
@@ -175,12 +194,14 @@
         NSString *URLStr = [imgFullPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [imgFullURLs addObject:URLStr];
     }
-    NSMutableArray *imgs = @[].mutableCopy;
     
     [LoadingView show];
     [self downloadImage:imgFullURLs arrayImages:imgs currentIndex:0 success:^(NSArray<NSData *> *resultImages) {
         
         [LoadingView hide];
+        if (imgs.count > 0) {
+            [self.groupImgsDict setObject:imgs forKey:@(self.curIdx)];
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             // Update the UI
@@ -197,7 +218,6 @@
             
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             self.contentScrollView.contentSize = CGSizeMake(0, maxY);
-//            self.contentScrollView.contentInset = UIEdgeInsetsMake(20, 0, 20, 0);
         });
         
         
