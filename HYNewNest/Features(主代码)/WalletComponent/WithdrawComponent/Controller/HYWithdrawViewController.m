@@ -233,6 +233,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     //CNY提现
     } else {
         // 计算接口 保存数据 -> 提现明细 -> 选择钱包/转USDT余额 -> 弹窗。。
+        WEAKSELF_DEFINE
         [self requestCNYWithdrawNewRuleAmount:amount
                                     AccountId:model.accountId
                                       handler:^(){
@@ -251,8 +252,9 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                                                                remarks:@""
                                                       subWallAccountId:subWallAccountId
                                                                handler:^(id responseObj, NSString *errorMsg) {
+                            STRONGSELF_DEFINE
                             if (KIsEmptyString(errorMsg)) {
-                                [self.comfirmView showSuccessWithdrawCNYExUSDT:self.calculatorModel.promoInfo.refAmount dismissBlock:^{
+                                [strongSelf.comfirmView showSuccessWithdrawCNYExUSDT:self.calculatorModel.promoInfo.refAmount dismissBlock:^{
                                     MyLog(@"点击了关闭");
                                     [HYWithdrawActivityAlertView showHandedOutGiftUSDTAmount:self.calculatorModel.promoInfo.amount handler:^{
                                         MyLog(@"点击了去看看");
@@ -261,6 +263,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                                         [self.navigationController pushViewController:recVc animated:YES];
                                     }];
                                 }];
+                            } else {
+                                [strongSelf.comfirmView removeView];
                             }
                         }];
                     }];

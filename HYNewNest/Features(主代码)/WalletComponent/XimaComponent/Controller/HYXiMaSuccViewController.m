@@ -38,7 +38,8 @@
 #pragma mark - ACTION
 
 - (IBAction)didTapBanner:(id)sender {
-    MyLog(@"dushen");
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    [NNControllerHelper currentTabBarController].selectedIndex = 1;
 }
 
 - (IBAction)didTabBack:(id)sender {

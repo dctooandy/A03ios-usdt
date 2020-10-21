@@ -51,6 +51,7 @@
                 });
             }
         }
+        handler(responseObj, errorMsg);
     }];
 }
 

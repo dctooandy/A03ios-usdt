@@ -52,7 +52,7 @@
             if (!errorMsg && responseObj ) {
                 WithdrawCalculateModel *model = [WithdrawCalculateModel cn_parse:responseObj];
                 
-                if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowQKFLUserDefaultKey]) {
+                if (![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowQKFLUserDefaultKey]) {
                     
                     [HYWithdrawActivityAlertView showWithAmountPercent:model.creditExchangeRatio
                                                            giftPercent:model.promoInfo.promoRatio

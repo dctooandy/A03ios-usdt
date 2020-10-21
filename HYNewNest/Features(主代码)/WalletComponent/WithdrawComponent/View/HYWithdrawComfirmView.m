@@ -42,7 +42,7 @@
     UIView *mainView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-kNavPlusStaBarHeight, kScreenWidth, 426+kSafeAreaHeight)];
     self.mainView = mainView;
     mainView.tag = 150;
-    mainView.backgroundColor = kHexColor(0x343452);
+    mainView.backgroundColor = kHexColor(0x212137);
     [self addSubview:mainView];
       
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:mainView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(AD(10), AD(10))];
@@ -217,9 +217,13 @@
 
 - (void)showSuccessWithdrawCNYExUSDT:(NSNumber *)uAmount dismissBlock:(nullable void(^)(void))block{
     [self showStatusCommonViews];
-    [UIView animateWithDuration:0.2 animations:^{
-        self.mainView.y = kScreenHeight-kNavPlusStaBarHeight - 345 - kSafeAreaHeight - 81;
-    }];
+
+    dispatch_async(dispatch_get_main_queue(), ^{ @autoreleasepool {
+        [UIView animateWithDuration:0.2 animations:^{
+            self.mainView.y = kScreenHeight-kNavPlusStaBarHeight - 345 - kSafeAreaHeight - 81;
+        }];
+    }});
+
     self.dismissBlock = block;
     self.lblTitle.text = @"提现成功";
     

@@ -33,7 +33,7 @@
 + (void)vipsxhMonthReportHandler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"currency"] = [CNUserManager shareManager].userInfo.currency?:@"USDT";
+    param[@"currency"] = @"USDT";
     
     [self POST:kGatewayExtraPath(activity_vipSxhReport) parameters:param completionHandler:handler];
 }
@@ -41,7 +41,7 @@
 + (void)vipsxhHomeHandler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"currency"] = [CNUserManager shareManager].userInfo.currency?:@"USDT";
+    param[@"currency"] = @"USDT";
     
     [self POST:kGatewayExtraPath(activity_vipSxhHome) parameters:param completionHandler:handler];
 }
@@ -49,7 +49,7 @@
 + (void)vipsxhBigGodBoardHandler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"currency"] = [CNUserManager shareManager].userInfo.currency?:@"USDT";
+    param[@"currency"] = @"USDT";
     
     [self POST:kGatewayExtraPath(activity_vipSxhRank) parameters:param completionHandler:handler];
 }
@@ -57,7 +57,7 @@
 + (void)vipsxhDrawGiftMoneyLevelStatus:(NSString *)levelStatus handler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"currency"] = [CNUserManager shareManager].userInfo.currency?:@"USDT";
+    param[@"currency"] = @"USDT";
     param[@"promoCode"] = @"VIPSXH";
     param[@"levelStatus"] = levelStatus;
     
@@ -67,7 +67,7 @@
 
 + (void)vipsxhCumulateIdentityHandler:(HandlerBlock)handler {
     NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"currency"] = [CNUserManager shareManager].userInfo.currency?:@"USDT";
+    param[@"currency"] = @"USDT";
     
     [self POST:kGatewayExtraPath(activity_vipSxhIdentity) parameters:param completionHandler:handler];
 }
@@ -76,7 +76,7 @@
                                  handler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"currency"] = [CNUserManager shareManager].userInfo.currency?:@"USDT";
+    param[@"currency"] = @"USDT";
     param[@"prizeids"] = prizeids;
     param[@"defineFlag"] = @(4); // 至尊转盘3 累计身份4
     
@@ -90,7 +90,7 @@
     [param setObject:@"A03" forKey:@"productId"];
     param[@"defineFlag"] = @2; // 至尊转盘1 累计身份2
     param[@"prizeids"] = prizeids;
-    param[@"currency"] = [CNUserManager shareManager].userInfo.currency?:@"USDT";
+    param[@"currency"] = @"USDT";
     
     [self POST:kGatewayExtraPath(activity_vipSxhAwardDetail) parameters:param completionHandler:handler];
 }
@@ -102,7 +102,7 @@
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"promoCode"] = @"VIPPRIVILEGE";
     param[@"activityKey"] = [CNUserManager shareManager].isUsdtMode?@"VIPPRIVILEGE_ACTIVITY_ID_USDT":@"VIPPRIVILEGE_ACTIVITY_ID_CNY";
-    param[@"currency"] = [CNUserManager shareManager].userInfo.currency?:@"USDT";
+    param[@"currency"] = @"USDT";
     param[@"flags"] = @1;
     param[@"defineFlag"] = @(type); // 至尊转盘3 累计身份4
     param[@"pageSize"] = @(200);
