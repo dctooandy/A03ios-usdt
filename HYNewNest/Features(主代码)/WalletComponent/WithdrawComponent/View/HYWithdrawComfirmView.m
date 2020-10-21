@@ -245,7 +245,7 @@
     }];
     
     UIView *succView = [[UIView alloc] init];
-    succView.backgroundColor = kHexColor(0x343452);
+    succView.backgroundColor = kHexColor(0x212137);
     succView.frame = CGRectMake(0, 50, kScreenWidth, 426+kSafeAreaHeight-50);
     self.succView = succView;
     [self.mainView addSubview:succView];

@@ -89,7 +89,7 @@
     
     UILabel *lblContent = [UILabel new];
     
-    lblContent.text = [NSString stringWithFormat:@"提现增值礼金%@USDT\n已存入您的USDT账户", amount];
+    lblContent.text = [NSString stringWithFormat:@"提现增值礼金%@USDT\n提案已生成，等待审批", amount];
     lblContent.font = [UIFont fontPFSB18];
     lblContent.textColor = kHexColorAlpha(0xFFFFFF, 0.9);
     lblContent.numberOfLines = 2;
@@ -100,7 +100,7 @@
     
     CNTwoStatusBtn *goBtn = [CNTwoStatusBtn new];
     goBtn.frame = CGRectMake(AD(28), lblContent.bottom + AD(40), AD(315) - AD(56), AD(48));
-    [goBtn setTitle:@"去看看" forState:UIControlStateNormal];
+    [goBtn setTitle:@"我知道了" forState:UIControlStateNormal];
     [goBtn addTarget:self action:@selector(goToSee) forControlEvents:UIControlEventTouchUpInside];
     goBtn.enabled = YES;
     [self.contentView addSubview:goBtn];

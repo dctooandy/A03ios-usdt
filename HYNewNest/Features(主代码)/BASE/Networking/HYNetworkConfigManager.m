@@ -54,7 +54,7 @@
     // 切换环境 保存
     self.environment += 1;
     if (self.environment > IVNEnvironmentPublish) {
-        self.environment = IVNEnvironmentDevelop;
+        self.environment = IVNEnvironmentTest;
     }
     [[NSUserDefaults standardUserDefaults] setInteger:self.environment forKey:@"IVNEnvironment"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -94,13 +94,13 @@
     [IVHttpManager shareManager].cdn = @"https://a03front.58baili.com"; //cdn
     
     switch (environment) {
-        case IVNEnvironmentDevelop:
-        {
-            envName = @"本地环境";
-            [IVHttpManager shareManager].gateway = @"http://www.pt-gateway-dev.com";
-            [IVHttpManager shareManager].gateways = @[@"http://www.pt-gateway-dev.com"];
-            break;
-        }
+//        case IVNEnvironmentDevelop:
+//        {
+//            envName = @"本地环境";
+//            [IVHttpManager shareManager].gateway = @"http://www.pt-gateway-dev.com";
+//            [IVHttpManager shareManager].gateways = @[@"http://www.pt-gateway-dev.com"];
+//            break;
+//        }
         case IVNEnvironmentTest:
         {
             envName = @"开发环境"; //同运测
@@ -135,7 +135,7 @@
     [kKeywindow jk_makeToast:[IVHttpManager shareManager].gateway
                     duration:4
                     position:JKToastPositionCenter
-                       title:[NSString stringWithFormat:@"😄已切换到%ld --【%@】",environment ,envName]];
+                       title:[NSString stringWithFormat:@"😄当前是%ld --【%@】",environment ,envName]];
 #endif
 }
 

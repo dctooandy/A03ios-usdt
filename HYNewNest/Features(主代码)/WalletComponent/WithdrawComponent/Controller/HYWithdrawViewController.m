@@ -211,34 +211,33 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 
 - (void)sumbimtWithdrawAmount:(NSString *)amout {
     // 请求最后一步的闭包
-    __block void(^submitWDRequestBlock)(NSNumber *amount, NSString *accountId, NSString *protocol, NSString *remarks, NSString *subWallAccountId) = ^(NSNumber *amount, NSString *accountId, NSString *protocol, NSString *remarks, NSString *subWallAccountId){
-        
-        [CNWithdrawRequest submitWithdrawRequestAmount:amount
-                                             accountId:accountId
-                                              protocol:protocol
-                                               remarks:remarks
-                                      subWallAccountId:subWallAccountId
-                                               handler:^(id responseObj, NSString *errorMsg) {
-            if (KIsEmptyString(errorMsg)) {
-                [self.comfirmView showSuccessWithdraw];
-            }
-        }];
-    };
-    
+    WEAKSELF_DEFINE
     AccountModel *model = self.elecCardsArr[self.selectedIdx];
     NSNumber *amount = [NSNumber numberWithDouble:[amout doubleValue]];
     if ([CNUserManager shareManager].isUsdtMode) {
-        submitWDRequestBlock(amount, model.accountId, model.protocol, @"", nil);
+        [CNWithdrawRequest submitWithdrawRequestAmount:amount
+                                             accountId:model.accountId
+                                              protocol:model.protocol
+                                               remarks:@""
+                                      subWallAccountId:nil
+                                               handler:^(id responseObj, NSString *errorMsg) {
+            STRONGSELF_DEFINE
+            if (KIsEmptyString(errorMsg)) {
+                [strongSelf.comfirmView showSuccessWithdraw];
+                [strongSelf requestBalance];
+            }
+        }];
         
     //CNY提现
     } else {
-        // 计算接口 保存数据 -> 提现明细 -> 选择钱包/转USDT余额 -> 弹窗。。
-        WEAKSELF_DEFINE
-        [self requestCNYWithdrawNewRuleAmount:amount
-                                    AccountId:model.accountId
-                                      handler:^(){
-            if (self.calculatorModel && self.calculatorModel.creditExchangeFlag) {
-                [self.comfirmView hideView];
+        
+        if (self.calculatorModel && self.calculatorModel.creditExchangeFlag) {
+            [self.comfirmView hideView];
+            
+            // 计算接口 保存数据 -> 提现明细 -> 选择钱包/转USDT余额 -> 弹窗。。
+            [self requestCNYWithdrawNewRuleAmount:amount
+                                        AccountId:model.accountId
+                                          handler:^(){
                 
                 [HYWithdrawCalculatorComView showWithCalculatorModel:self.calculatorModel submitHandler:^{
                     
@@ -257,10 +256,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                                 [strongSelf.comfirmView showSuccessWithdrawCNYExUSDT:self.calculatorModel.promoInfo.refAmount dismissBlock:^{
                                     MyLog(@"点击了关闭");
                                     [HYWithdrawActivityAlertView showHandedOutGiftUSDTAmount:self.calculatorModel.promoInfo.amount handler:^{
-                                        MyLog(@"点击了去看看");
-                                        CNTradeRecodeVC *recVc = [[CNTradeRecodeVC alloc] init];
-                                        recVc.recoType = transactionRecord_activityType;
-                                        [self.navigationController pushViewController:recVc animated:YES];
+                                        [strongSelf requestBalance];
                                     }];
                                 }];
                             } else {
@@ -269,11 +265,22 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                         }];
                     }];
                 }];
-                
-            } else { //走正常流程
-                submitWDRequestBlock(amount, model.accountId, model.protocol, @"", nil);
-            }
-        }];
+            }];
+            
+        } else { //走正常流程
+            [CNWithdrawRequest submitWithdrawRequestAmount:amount
+                                                 accountId:model.accountId
+                                                  protocol:model.protocol
+                                                   remarks:@""
+                                          subWallAccountId:nil
+                                                   handler:^(id responseObj, NSString *errorMsg) {
+                STRONGSELF_DEFINE
+                if (KIsEmptyString(errorMsg)) {
+                    [strongSelf.comfirmView showSuccessWithdraw];
+                    [strongSelf requestBalance];
+                }
+            }];
+        }
         
     }
 
