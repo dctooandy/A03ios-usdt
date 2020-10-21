@@ -131,7 +131,7 @@
     
     UILabel *lblTitle = [UILabel new];
     lblTitle.numberOfLines = 2;
-    lblTitle.text = [NSString stringWithFormat:@"USDT账户增值计划\n额外增收%ld%%", gPercent];
+    lblTitle.text = [NSString stringWithFormat:@"USDT账户增值计划\n额外增收%ld%%", (long)gPercent];
     lblTitle.textColor = kHexColorAlpha(0xFFFFFF, 0.9);
     lblTitle.textAlignment = NSTextAlignmentCenter;
     lblTitle.font = [UIFont fontPFSB21];
@@ -140,7 +140,7 @@
     
     UILabel *lblContent = [UILabel new];
     lblContent.numberOfLines = 0;
-    lblContent.text = [NSString stringWithFormat:@"即日起您提现额度的%ld%%，将会按实时汇率转入您的USDT账户，并获得USDT转入金额的%ld%%增值礼金，单日最高可得%ldUSDT。", aPercent, gPercent, mAmount];
+    lblContent.text = [NSString stringWithFormat:@"即日起您提现额度的%ld%%，将会按实时汇率转入您的USDT账户，并获得USDT转入金额的%ld%%增值礼金，单日最高可得%ldUSDT。", (long)aPercent, gPercent, mAmount];
     lblContent.textColor = kHexColorAlpha(0xFFFFFF, 0.5);
     lblContent.font = [UIFont systemFontOfSize:AD(14)];
     lblContent.frame = CGRectMake(AD(21), lblTitle.bottom + AD(25), AD(315)-AD(42), AD(80));
