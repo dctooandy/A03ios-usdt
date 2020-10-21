@@ -45,7 +45,10 @@
     alert.tapBlock = tapBlock;
     [alert configUI];
     
-    [NNControllerHelper currentTabBarController].tabBar.hidden = YES;
+    if ([[NNControllerHelper currentRootVcOfNavController] isKindOfClass:NSClassFromString(@"CNHomeVC")]) {
+        [NNControllerHelper currentTabBarController].tabBar.hidden = YES;
+    }
+    
 }
 
 - (void)configUI {

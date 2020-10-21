@@ -91,13 +91,14 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     NSString *tx = [CNUserManager shareManager].isUsdtMode?@"提币USDT":@"提现金额";
     self.topView.lblTitle.text = [NSString stringWithFormat:@"可%@", tx];
     [self.topView.ruleBtn setTitle:@" 说明" forState:UIControlStateNormal];
+    
     self.topView.clickBlock = ^{
-        if ([CNUserManager shareManager].isUsdtMode) {
+        if (![CNUserManager shareManager].isUsdtMode && self.calculatorModel.creditExchangeFlag) {
+            [self didTapNewCNYRule];
+        } else {
             NSString *content = [NSString stringWithFormat:@"根据《菲律宾反洗钱法》规定：\n1. %@需达到充币的1倍有效投注额\n2. 可%@金额＝总资产 - 各厅不足1%@下的金额\n3. 如参与了网站的优惠活动，%@需根据相关活动规则有效投注额\n\n具体%@情况以审核完结果为准。", tx, tx, [CNUserManager shareManager].userInfo.currency, tx, tx];
             [HYWideOneBtnAlertView showWithTitle:[NSString stringWithFormat:@"%@说明", tx] content:content comfirmText:@"我知道了" comfirmHandler:^{
             }];
-        } else {
-            [self didTapNewCNYRule];
         }
         
     };
