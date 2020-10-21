@@ -40,9 +40,19 @@
 @property (nonatomic, strong) OnlineBanksModel *curOnliBankModel;
 @property (nonatomic, assign, readwrite) NSInteger selcPayWayIdx;
 
+@property(nonatomic,strong) UIProgressView *progressView;
 @end
 
 @implementation HYBuyECoinGuideVC
+
+- (UIProgressView *)progressView {
+    if (!_progressView) {
+        _progressView = [[UIProgressView alloc] init];
+        _progressView.tintColor = kHexColor(0x02EED9);
+        _progressView.frame = CGRectMake(0, 0, _contentScrollView.width, 2);
+    }
+    return _progressView;
+}
 
 - (LTSegmentedBar *)segmentedBar {
     if (!_segmentedBar) {
@@ -115,7 +125,7 @@
             recIdx = i; //推荐标签
         }
     }
-    self.segmentedBar.recomendIndex = recIdx;
+    self.segmentedBar.recomendIndex = recIdx + 1;
     [self.segmentedBar setItems:names];
     self.segmentedBar.selectedIndex = 0;
     // 标签
@@ -164,7 +174,11 @@
     for (UIView *subView in _contentScrollView.subviews) {
         [subView removeFromSuperview];
     }
-    // 有缓存
+    [_contentScrollView addSubview:self.progressView];
+    
+    BuyECoinModel *model = self.datas[_curIdx];
+    [self.btnRegister setTitle:model.registerText forState:UIControlStateNormal];
+    // 取缓存
     NSMutableArray *imgs = @[].mutableCopy;
     if ([self.groupImgsDict[@(_curIdx)] count] > 0) {
         imgs = self.groupImgsDict[@(_curIdx)];
@@ -182,11 +196,7 @@
         return;
     }
     
-    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    BuyECoinModel *model = self.datas[_curIdx];
-    [self.btnRegister setTitle:model.registerText forState:UIControlStateNormal];
-    
     NSArray *imgURLs = [model.imgList componentsSeparatedByString:@";"];
     NSMutableArray *imgFullURLs = @[].mutableCopy;
     for (NSString *imgPath in imgURLs) {
@@ -195,10 +205,8 @@
         [imgFullURLs addObject:URLStr];
     }
     
-    [LoadingView show];
     [self downloadImage:imgFullURLs arrayImages:imgs currentIndex:0 success:^(NSArray<NSData *> *resultImages) {
         
-        [LoadingView hide];
         if (imgs.count > 0) {
             [self.groupImgsDict setObject:imgs forKey:@(self.curIdx)];
         }
@@ -222,7 +230,6 @@
         
         
     } failure:^{
-        [LoadingView hide];
         [CNHUB showError:@"下载指南失败 获取图片出错"];
     }];
     
@@ -245,22 +252,23 @@
     SDWebImageDownloadToken *token = [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:url options:SDWebImageDownloaderUseNSURLCache progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
        
         float p = receivedSize / (expectedSize * 1.0);
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            weakSelf.progressView.progress = p;
-//        });
         NSLog(@"当前索引 %lu, 当前进度: %f", (unsigned long)currentIndex, p);
        
     } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         currentIndex++;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.progressView.hidden = NO;
+            self.progressView.progress = currentIndex / (arrayURLs.count * 1.0);
+        });
        
         if (finished && !error && data) {  //下载结束并且没有出错
             [arrayImages addObject:data];
-           
-//            weakSelf.imageView.image = image;
         }
        
         if (currentIndex == arrayURLs.count) { //停止递归下载
-            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.progressView.hidden = YES;
+            });
             if(arrayImages.count > 0){  //当数组有元素存在,认为是成功, 也可以只写一个回调block, 不区分成功与失败
                 if(success){
                     success(arrayImages);

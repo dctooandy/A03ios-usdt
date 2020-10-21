@@ -208,7 +208,7 @@
             }
             
             // 要求的图片badge
-            if (self.recomendIndex == i) {
+            if (self.recomendIndex != 0 && self.recomendIndex - 1 == i) {
                 [btn showRightTopImageName:@"promo" size:CGSizeMake(31, 16) offsetX:-55 offsetYMultiple:0.25];
             }
         }

@@ -135,7 +135,7 @@
     lblTitle.textColor = kHexColorAlpha(0xFFFFFF, 0.9);
     lblTitle.textAlignment = NSTextAlignmentCenter;
     lblTitle.font = [UIFont fontPFSB21];
-    lblTitle.frame = CGRectMake(0, btnNotShow.bottom + AD(29), AD(315), AD(56));
+    lblTitle.frame = CGRectMake(0, btnNotShow.bottom + AD(29), AD(315), AD(65));
     [self.contentView addSubview:lblTitle];
     
     UILabel *lblContent = [UILabel new];

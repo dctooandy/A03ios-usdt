@@ -69,7 +69,7 @@
     
     UILabel *lblContent = [[UILabel alloc] init];
     lblContent.text = content;
-    lblContent.font = [UIFont systemFontOfSize:AD(14)];
+    lblContent.font = [UIFont systemFontOfSize:AD(15)];
     lblContent.numberOfLines = 0;
     lblContent.textColor = kHexColorAlpha(0xFFFFFF, 0.6);
     [self.contentView addSubview:lblContent];
