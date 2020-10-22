@@ -24,22 +24,22 @@
     [self POST:kGatewayPath(config_queryAmountList) parameters:param completionHandler:handler];
 }
 
-+ (void)queryBQBanksPayType:(NSString *)payType
-                  depositor:(nullable NSString *)depositor
-                depositorId:(nullable NSString *)depositorId
-                    handler:(HandlerBlock)handler {
-    
-    NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"payType"] = payType;
-    if (!KIsEmptyString(depositor)) {
-        param[@"depositor"] = depositor;
-    }
-    if (!KIsEmptyString(depositorId)) {
-        param[@"depositorId"] = depositorId;
-    }
-    
-    [self POST:kGatewayPath(config_queryBQBanks) parameters:param completionHandler:handler];
-}
+//+ (void)queryBQBanksPayType:(NSString *)payType
+//                  depositor:(nullable NSString *)depositor
+//                depositorId:(nullable NSString *)depositorId
+//                    handler:(HandlerBlock)handler {
+//    
+//    NSMutableDictionary *param = [kNetworkMgr baseParam];
+//    param[@"payType"] = payType;
+//    if (!KIsEmptyString(depositor)) {
+//        param[@"depositor"] = depositor;
+//    }
+//    if (!KIsEmptyString(depositorId)) {
+//        param[@"depositorId"] = depositorId;
+//    }
+//    
+//    [self POST:kGatewayPath(config_queryBQBanks) parameters:param completionHandler:handler];
+//}
 
 + (void)queryUSDTPayWalletsHandler:(HandlerBlock)handler {
     

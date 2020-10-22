@@ -16,8 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)didTapSwitchBtnModel:(PayWayV3PayTypeItem *)paytypeItem;
 /// 是否符合充值条件 改变
 - (void)didChangeIsStatusRight:(BOOL)isStatusRight;
-/// 搜索可用银行 deprecated
-- (void)didTapSelectBank:(OnlineBanksModel *)bankModel;
+
 
 @end
 
@@ -40,6 +39,10 @@ NS_ASSUME_NONNULL_BEGIN
                bankModel:(nullable OnlineBanksModel *)bankModel
              amountModel:(nullable AmountListModel *)amountModel;
 //- (void)setupBQBankModel:(BQBankModel *)model;
+
+/// 清空已填数据
+- (void)clearAmountData;
+
 @end
 
 NS_ASSUME_NONNULL_END

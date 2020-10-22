@@ -46,10 +46,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param depositor 付款人（如果是用户手动输入的付款人 就不需要传depositorId）
 /// @param depositorId 付款人id（如果是用户选中曾经付款记录里的人 就不需要传depositor）
 /// @param handler 回调
-+ (void)queryBQBanksPayType:(NSString *)payType
-                  depositor:(nullable NSString *)depositor
-                depositorId:(nullable NSString *)depositorId
-                    handler:(HandlerBlock)handler;
+//+ (void)queryBQBanksPayType:(NSString *)payType
+//                  depositor:(nullable NSString *)depositor
+//                depositorId:(nullable NSString *)depositorId
+//                    handler:(HandlerBlock)handler;
 
 
 /// 查询在线支付银行列表（选中充值渠道后必须调用）

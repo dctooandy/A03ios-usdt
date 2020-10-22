@@ -86,8 +86,12 @@
     self.lblPayWayLimit.text = [NSString stringWithFormat:@"(%@)", [HYRechargeHelper amountTip:itemModel]];
     
     /// 金额选择按钮
+    for (HYRechProcButton *btn in self.amountBtnsContain.subviews) {
+        [btn performSelector:@selector(removeFromSuperview)];
+    }
     CGFloat ItemMargin = 16;
     CGFloat ItemWidht = (kScreenWidth - 15*2 - 14*2 - ItemMargin*2)/3.0;
+    CGFloat ItemHeight = 40;
     NSArray *amoArr;
     if ([HYRechargeHelper isOnlinePayWay:itemModel]) {
         amoArr = bankModel.amountType.amounts;
@@ -104,11 +108,11 @@
             proBtn.tag = i;
 
             [self.amountBtnsContain addSubview:proBtn];
-            proBtn.frame = CGRectMake((ItemMargin + ItemWidht) * (i%3), (i/3) * (40+16), ItemWidht, 40);
+            proBtn.frame = CGRectMake((ItemMargin + ItemWidht) * (i%3), (i/3) * (ItemHeight+ItemMargin), ItemWidht, ItemHeight);
 
         }
         self.amountBtnsContain.hidden = NO;
-        self.amountBtnsContainH.constant = 40 + ((amoArr.count-1)/3)*(40+16);;
+        self.amountBtnsContainH.constant = ItemHeight + ((amoArr.count-1)/3)*(ItemHeight+ItemMargin);;
         self.amountBtnsTopMargin.constant = 22;
     } else {
         self.amountBtnsContain.hidden = YES;
@@ -206,11 +210,18 @@
 }
 
 - (IBAction)didTapBankSelection:(id)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didTapSelectBank:)]) {
-        [self.delegate didTapSelectBank:self.bankModel];
-    }
+//    if (self.delegate && [self.delegate respondsToSelector:@selector(didTapSelectBank:)]) {
+//        [self.delegate didTapSelectBank:self.bankModel];
+//    }
 }
 
+- (void)clearAmountData {
+    for (UIButton *btn in self.amountBtnsContain.subviews) {
+        btn.selected = NO;
+    }
+    self.amountTfView.text = @"";
+    self.rechargeAmount = @"";
+}
 
 #pragma mark - CNNormalInputViewDelegate
 
