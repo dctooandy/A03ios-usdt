@@ -226,11 +226,14 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
             if (KIsEmptyString(errorMsg)) {
                 [strongSelf.comfirmView showSuccessWithdraw];
                 [strongSelf requestBalance];
+            } else {
+                [strongSelf.comfirmView removeView];
             }
         }];
         
     //CNY提现
     } else {
+        __block NSNumber *giftAmount;
         
         if (self.calculatorModel && self.calculatorModel.creditExchangeFlag) {
             [self.comfirmView hideView];
@@ -240,23 +243,32 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                                         AccountId:model.accountId
                                           handler:^(){
                 
-                [HYWithdrawCalculatorComView showWithCalculatorModel:self.calculatorModel submitHandler:^{
+                [HYWithdrawCalculatorComView showWithCalculatorModel:self.calculatorModel submitHandler:^(BOOL isComfirm, id  _Nonnull args, ...){
+                    if (!isComfirm) {
+                        [self.comfirmView removeView];
+                        return;
+                    }
+                    giftAmount = args;
                     
                     MyLog(@"点击了下一步");
-                    [HYWithdrawChooseWallectComView showWithAmount:self.calculatorModel.promoInfo.refAmount subWalAccountsModel:self.subWalletAccounts submitHandler:^(NSString * _Nonnull subWallAccountId) {
+                    [HYWithdrawChooseWallectComView showWithAmount:self.calculatorModel.promoInfo.refAmount subWalAccountsModel:self.subWalletAccounts submitHandler:^(BOOL isComfirm, id  _Nonnull args, ...) {
+                        if (!isComfirm) {
+                            [self.comfirmView removeView];
+                            return;
+                        }
                         
                         MyLog(@"选好子钱包了");
                         [CNWithdrawRequest submitWithdrawRequestAmount:amount
                                                              accountId:model.accountId
                                                               protocol:model.protocol
                                                                remarks:@""
-                                                      subWallAccountId:subWallAccountId
+                                                      subWallAccountId:[NSString stringWithFormat:@"%@", args]
                                                                handler:^(id responseObj, NSString *errorMsg) {
                             STRONGSELF_DEFINE
                             if (KIsEmptyString(errorMsg)) {
                                 [strongSelf.comfirmView showSuccessWithdrawCNYExUSDT:self.calculatorModel.promoInfo.refAmount dismissBlock:^{
                                     MyLog(@"点击了关闭");
-                                    [HYWithdrawActivityAlertView showHandedOutGiftUSDTAmount:self.calculatorModel.promoInfo.amount handler:^{
+                                    [HYWithdrawActivityAlertView showHandedOutGiftUSDTAmount:giftAmount handler:^{
                                         [strongSelf requestBalance];
                                     }];
                                 }];
@@ -279,6 +291,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                 if (KIsEmptyString(errorMsg)) {
                     [strongSelf.comfirmView showSuccessWithdraw];
                     [strongSelf requestBalance];
+                } else {
+                    [strongSelf.comfirmView removeView];
                 }
             }];
         }

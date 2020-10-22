@@ -13,7 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HYWithdrawChooseWallectComView : HYSlideUpComfirmBaseView
 
-+ (void)showWithAmount:(NSNumber *)amount subWalAccountsModel:(nullable NSArray<AccountModel *> *)models submitHandler:(void (^)(NSString * _Nonnull))handler ;
++ (void)showWithAmount:(NSNumber *)amount
+   subWalAccountsModel:(nullable NSArray<AccountModel *> *)models
+         submitHandler:(SubmitComfirmArgsBlock)handler ;
 
 @end
 

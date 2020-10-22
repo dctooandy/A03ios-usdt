@@ -60,7 +60,7 @@
         UIButton *btnCancle = [UIButton buttonWithType:UIButtonTypeCustom];
         [btnCancle setImage:[UIImage imageNamed:@"tips-close"] forState:UIControlStateNormal];
         btnCancle.frame = CGRectMake(kScreenWidth-AD(30)-25, AD(12), AD(30), AD(30));
-        [btnCancle addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+        [btnCancle addTarget:self action:@selector(touchupCloseBtn) forControlEvents:UIControlEventTouchUpInside];
         _cancelBtn = btnCancle;
     }
     return _cancelBtn;;
@@ -119,11 +119,22 @@
 
 #pragma mark - ACTION
 
+/// 点击确认/提交
 - (void)touchupComfirmBtn {
     if (self.submitHandler) {
-        self.submitHandler();
+        self.submitHandler(YES);
     } else if (self.submitArgsHandler) {
-        self.submitArgsHandler(self.args);
+        self.submitArgsHandler(YES, @0, nil);
+    }
+    [self dismiss];
+}
+
+/// 直接关闭
+- (void)touchupCloseBtn {
+    if (self.submitHandler) {
+        self.submitHandler(NO);
+    } else if (self.submitArgsHandler) {
+        self.submitArgsHandler(NO, @0, nil);
     }
     [self dismiss];
 }

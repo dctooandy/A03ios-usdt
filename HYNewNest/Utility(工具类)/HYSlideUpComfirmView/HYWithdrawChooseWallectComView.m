@@ -10,12 +10,16 @@
 
 @interface HYWithdrawChooseWallectComView ()
 @property (nonatomic, strong) NSArray *wallBtns;
+@property (nonatomic, strong) NSNumber *accountId; //if -1 when no wallet
 @end
 
 
 @implementation HYWithdrawChooseWallectComView
 
-+ (void)showWithAmount:(NSNumber *)amount subWalAccountsModel:(nullable NSArray<AccountModel *> *)models submitHandler:(void (^)(NSString * _Nonnull))handler {
++ (void)showWithAmount:(NSNumber *)amount
+   subWalAccountsModel:(nullable NSArray<AccountModel *> *)models
+         submitHandler:(SubmitComfirmArgsBlock)handler {
+    
     HYWithdrawChooseWallectComView *view = [[HYWithdrawChooseWallectComView alloc] initWithContentViewHeight:AD(323) title:@"选择钱包" comfirmBtnText:@"提交"];
     view.submitArgsHandler = handler;
     [view setupWithModels:models amount:amount];
@@ -43,7 +47,7 @@
         UIButton *btn = [self commonBtn:@"USDT余额" orgP:CGPointMake(AD(20), maxY + AD(13))];
         btn.tag = -1;
         btn.selected = YES;
-        self.args = @(-1);
+        self.accountId = @(-1);
         self.wallBtns = @[btn];
         
     } else {
@@ -59,11 +63,18 @@
             
             if (i==0) { //default
                 btn.selected = YES;
-                self.args = @(btn.tag);
+                self.accountId = @(btn.tag);
             }
         }
         self.wallBtns = btns;
     }
+}
+
+- (void)touchupComfirmBtn {
+    if (self.submitArgsHandler) {
+        self.submitArgsHandler(YES, self.accountId, nil);
+    }
+    [self dismiss];
 }
 
 #pragma mark - Common UI
@@ -90,7 +101,7 @@
     }
     sender.selected = YES;
     // 回传的是accountID 或者 -1
-    self.args = @(sender.tag);
+    self.accountId = @(sender.tag);
     
 }
 

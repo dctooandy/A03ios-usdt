@@ -88,8 +88,7 @@
     [self.contentView addSubview:lblTitle];
     
     UILabel *lblContent = [UILabel new];
-    
-    lblContent.text = [NSString stringWithFormat:@"提现增值礼金%@USDT\n提案已生成，等待审批", amount];
+    lblContent.text = [NSString stringWithFormat:@"提现增值礼金%@USDT\n提案已生成，等待审批", [amount jk_toDisplayNumberWithDigit:2]];
     lblContent.font = [UIFont fontPFSB18];
     lblContent.textColor = kHexColorAlpha(0xFFFFFF, 0.9);
     lblContent.numberOfLines = 2;
