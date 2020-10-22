@@ -86,7 +86,7 @@
 + (void)vipsxhAwardDetailPrizeids:(NSString *)prizeids
                           handler:(HandlerBlock)handler {
     
-    NSMutableDictionary *param = [NSMutableDictionary new];
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
     [param setObject:@"A03" forKey:@"productId"];
     param[@"defineFlag"] = @2; // 至尊转盘1 累计身份2
     param[@"prizeids"] = prizeids;

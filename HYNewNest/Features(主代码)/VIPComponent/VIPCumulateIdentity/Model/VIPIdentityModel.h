@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * prizeUrl;//图片
 @property (nonatomic , copy) NSString              * tagName;
 @property (nonatomic , copy) NSString              * title;//标题
-
+@property (nonatomic , copy) NSString              * prizeName;
 @end
 
 NS_ASSUME_NONNULL_END

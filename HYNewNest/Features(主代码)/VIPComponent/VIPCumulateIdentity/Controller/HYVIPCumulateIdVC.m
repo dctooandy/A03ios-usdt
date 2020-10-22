@@ -224,7 +224,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
         }];
         
         // 获取礼物详情
-        [CNVIPRequest vipsxhAwardDetailPrizeids:model.title handler:^(id responseObj, NSString *errorMsg) {
+        [CNVIPRequest vipsxhAwardDetailPrizeids:model.prizeName handler:^(id responseObj, NSString *errorMsg) {
             // 处理数据
             if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]] && [responseObj[@"result"] count] > 0) {
                 NSMutableArray *contents = @[].mutableCopy;

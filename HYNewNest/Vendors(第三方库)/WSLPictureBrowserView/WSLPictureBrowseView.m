@@ -240,7 +240,7 @@
         
         // 调整文字位置
         self.indexLabel.frame = CGRectMake(kScreenWidth - 10 - 30, photoZoomView.imageView.bottom + 11, 30, 20);
-        self.titleLabel.frame = CGRectMake(10, photoZoomView.imageView.bottom + 11, 200, 20);
+        self.titleLabel.frame = CGRectMake(10, photoZoomView.imageView.bottom + 11, 400, 20);
         self.contentLabel.frame = CGRectMake(10, self.titleLabel.bottom + 10, kScreenWidth - 20, 40);
         [self.contentLabel sizeToFit];
         
@@ -376,6 +376,7 @@
         _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, _titleLabel.bottom + 10, 300, 20)];
         _contentLabel.font = [UIFont fontPFR12];
         _contentLabel.textColor = kHexColor(0xCCCCCC);
+        _contentLabel.numberOfLines = 0;
     }
     return _contentLabel;
 }
