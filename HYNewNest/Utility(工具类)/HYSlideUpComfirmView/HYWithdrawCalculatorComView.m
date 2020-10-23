@@ -9,7 +9,7 @@
 #import "HYWithdrawCalculatorComView.h"
 
 @interface HYWithdrawCalculatorComView ()
-@property (nonatomic, strong) NSNumber * numGiftNum;
+@property (nonatomic, strong) NSString * numGiftNum;
 @property (nonatomic, assign) NSInteger exchangeRatio;
 @property (nonatomic, strong) WithdrawCalculateModel *model;
 @end
@@ -85,7 +85,7 @@
     // 全额转USDT USDT数额比例 手动计算的公式
     } else {
         giftNum = [model.promoInfo.amount floatValue] * self.exchangeRatio * 0.01;
-        NSNumber *numGiftNum = [[NSNumber numberWithDouble:giftNum] jk_doFloorWithDigit:2];
+        NSString *numGiftNum = [[NSNumber numberWithDouble:giftNum] jk_toDisplayNumberWithDigit:2];
         math = [NSString stringWithFormat:@"%@ USDT * %ld%% * %ld%% = %@ USDT", model.promoInfo.refAmount,  self.exchangeRatio, model.promoInfo.promoRatio, numGiftNum];
         self.numGiftNum = numGiftNum;
     }
@@ -111,7 +111,7 @@
     UILabel *lblHBLS = [self commonLabel:@"USDT红包(免流水)："
                                     orgP:CGPointMake(AD(20), lblLjtx.bottom + AD(15))];
     
-    NSString *hblsStr = giftNum>0 ? [NSString stringWithFormat:@"%.2f USDT", giftNum] : [NSString stringWithFormat:@"%@ USDT", model.promoInfo.amount];
+    NSString *hblsStr = self.numGiftNum ? [NSString stringWithFormat:@"%@ USDT", self.numGiftNum] : [NSString stringWithFormat:@"%@ USDT", model.promoInfo.amount];
     UILabel *hblsAmo = [self attributedLabel:hblsStr orgP:CGPointMake(0, 0)];
     hblsAmo.right = kScreenWidth - AD(20);
     hblsAmo.bottom = lblHBLS.bottom;
