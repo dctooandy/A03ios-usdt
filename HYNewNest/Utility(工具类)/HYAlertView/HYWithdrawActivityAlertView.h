@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
                    mostAmount:(NSInteger)mAmount
                       handler:(void(^)(void))handler;
 
-+ (void)showHandedOutGiftUSDTAmount:(NSNumber *)amount
++ (void)showHandedOutGiftUSDTAmount:(NSString *)amount
                             handler:(void(^)(void))handler;
 
 @end

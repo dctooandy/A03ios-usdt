@@ -234,7 +234,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         
     //CNY提现
     } else {
-        __block NSNumber *giftAmount;
+        __block NSString *giftAmount;
         
         if (self.calculatorModel && self.calculatorModel.creditExchangeFlag) { //判断该用户是否需要拆分
             [self.comfirmView hideView];
