@@ -1349,7 +1349,7 @@
 		3DCFEA8925009D010071F356 /* V_SlideCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V_SlideCardCell.m; sourceTree = "<group>"; };
 		3DCFEA8A25009D010071F356 /* V_SlideCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_SlideCard.h; sourceTree = "<group>"; };
 		3DCFEA902500A0990071F356 /* SlideCard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlideCard.h; sourceTree = "<group>"; };
-		3DCFEA9925050AD90071F356 /* 方正兰亭大黑_GBK.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "方正兰亭大黑_GBK.ttf"; sourceTree = "<group>"; };
+		3DCFEA9925050AD90071F356 /* 方正兰亭大黑_GBK.ttf */ = {isa = PBXFileReference; lastKnownFileType = text; path = "方正兰亭大黑_GBK.ttf"; sourceTree = "<group>"; };
 		3DCFEA9F250624CD0071F356 /* TAExampleDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAExampleDotView.m; sourceTree = "<group>"; };
 		3DCFEAA0250624CD0071F356 /* TAExampleDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAExampleDotView.h; sourceTree = "<group>"; };
 		3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CIRCULAR_06.mp4; sourceTree = "<group>"; };
@@ -5888,7 +5888,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = PTALWADUNN;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5902,7 +5902,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.4;
+				MARKETING_VERSION = 3.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hy.HYNewNest;
 				PRODUCT_NAME = "币游_dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5916,7 +5916,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = PTALWADUNN;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5930,7 +5930,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.4;
+				MARKETING_VERSION = 3.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hy.HYNewNest;
 				PRODUCT_NAME = "币游";
 				TARGETED_DEVICE_FAMILY = "1,2";

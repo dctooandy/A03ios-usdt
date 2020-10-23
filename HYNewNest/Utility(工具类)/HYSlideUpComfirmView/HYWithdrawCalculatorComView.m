@@ -84,7 +84,7 @@
         math = [NSString stringWithFormat:@"%@ USDT * %ld%% = %@ USDT", model.promoInfo.refAmount, model.promoInfo.promoRatio, model.promoInfo.amount];
     // 全额转USDT USDT数额比例 手动计算的公式
     } else {
-        giftNum = [model.promoInfo.refAmount floatValue] * self.exchangeRatio * 0.01 * model.promoInfo.promoRatio * 0.01;
+        giftNum = [model.promoInfo.amount floatValue] * self.exchangeRatio * 0.01;
         NSNumber *numGiftNum = [[NSNumber numberWithDouble:giftNum] jk_doFloorWithDigit:2];
         math = [NSString stringWithFormat:@"%@ USDT * %ld%% * %ld%% = %@ USDT", model.promoInfo.refAmount,  self.exchangeRatio, model.promoInfo.promoRatio, numGiftNum];
         self.numGiftNum = numGiftNum;
