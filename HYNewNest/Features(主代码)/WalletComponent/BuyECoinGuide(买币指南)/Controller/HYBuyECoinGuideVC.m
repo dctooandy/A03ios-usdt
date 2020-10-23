@@ -340,9 +340,22 @@
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     [param setObject:@"MAIBI_GUIDE" forKey:@"bizCode"];
     [CNBaseNetworking POST:kGatewayPath(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+        
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             NSArray *data = [responseObj objectForKey:@"data"];
-            self.datas = [BuyECoinModel cn_parse:data];
+            
+            if (self.needNotShowBitbase) {
+                NSMutableArray *rawDatas = [BuyECoinModel cn_parse:data];
+                for (BuyECoinModel *model in rawDatas.reverseObjectEnumerator) {
+                    if ([model.name caseInsensitiveCompare:@"Bitbase"] == NSOrderedSame) {
+                        [rawDatas removeObject:model];
+                    }
+                }
+                self.datas = rawDatas.copy;
+            } else {
+                self.datas = [BuyECoinModel cn_parse:data];
+            }
+            
             [self setupViewDatas];
         }
     }];

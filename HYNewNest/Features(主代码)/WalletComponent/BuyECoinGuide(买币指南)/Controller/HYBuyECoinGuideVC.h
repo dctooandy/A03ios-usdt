@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HYBuyECoinGuideVC : CNBaseVC
-
+@property (nonatomic, assign) BOOL needNotShowBitbase;
 
 @end
 

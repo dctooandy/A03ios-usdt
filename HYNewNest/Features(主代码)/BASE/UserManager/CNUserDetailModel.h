@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * customerId;
 @property (nonatomic , assign) NSInteger              customerType;
 /// 会员信用等级
-@property (nonatomic , copy) NSString              * depositLevel;
+@property (nonatomic , assign) NSInteger              depositLevel;
 /// 性别
 @property (nonatomic , copy) NSString              * gender;
 @property (nonatomic , copy) NSString              * integral;

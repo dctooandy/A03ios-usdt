@@ -22,14 +22,10 @@
 #import "CNFeedBackVC.h"
 #import "CNAddressManagerVC.h"
 #import "HYWideOneBtnAlertView.h"
-#import "HYWithdrawViewController.h"
-#import "HYRechargeViewController.h"
-#import "HYRechargeCNYViewController.h"
 #import "CNLoginRequest.h"
 #import <UIImageView+WebCache.h>
 #import "NSURL+HYLink.h"
 #import <MJRefresh/MJRefresh.h>
-#import "HYBuyECoinGuideVC.h"
 
 @interface CNMineVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -168,19 +164,12 @@
 //
 //    } else {
         if (sender.tag == 0) { // 买币
-            HYBuyECoinGuideVC *vc = [HYBuyECoinGuideVC new];
-            [self.navigationController pushViewController:vc animated:YES];
-    //                [NNPageRouter openExchangeElecCurrencyPageIsSell:NO];
+            [NNPageRouter jump2BuyECoin];
             
         } else if (sender.tag == 1) { // 充值
-            if ([CNUserManager shareManager].isUsdtMode) {
-                [self.navigationController pushViewController:[HYRechargeViewController new] animated:YES];
-            } else {
-                [self.navigationController pushViewController:[HYRechargeCNYViewController new] animated:YES];
-            }
+            [NNPageRouter jump2Deposit];
             
         } else if (sender.tag == 2) { // 提现
-//            [self.navigationController pushViewController:[HYWithdrawViewController new] animated:YES];
             [NNPageRouter jump2Withdraw];
             
         } else { //卖币

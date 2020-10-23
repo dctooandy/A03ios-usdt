@@ -32,15 +32,17 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 + (void)jump2Register;
 
 
-/// 去提现 (双模式统一入口)
+/// 去【提】现 (双模式统一入口)
 + (void)jump2Withdraw;
 
+/// 去【充】值(双模式统一入口)
++ (void)jump2Deposit;
 
-/// 去买币 (包含了一键买卖币混合)
+/// 去【买】币 (包含了一键买币)
 + (void)jump2BuyECoin;
 
 
-/// 外部跳转Bitbase 一键买卖币
+/// 外部跳转Bitbase ：一键【买】【卖】币
 /// @param isSell 是否卖币
 + (void)openExchangeElecCurrencyPageIsSell:(BOOL)isSell;
 

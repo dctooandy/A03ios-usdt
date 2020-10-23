@@ -19,6 +19,9 @@
 #import "CNWithdrawRequest.h"
 #import "HYWithdrawActivityAlertView.h"
 #import "HYWithdrawViewController.h"
+#import "HYRechargeViewController.h"
+#import "HYRechargeCNYViewController.h"
+#import "HYBuyECoinGuideVC.h"
 
 @implementation NNPageRouter
 
@@ -28,29 +31,48 @@
 }
 
 + (void)jump2Login {
-    [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[CNLoginRegisterVC loginVC] animated:YES];
+    [kCurNavVC pushViewController:[CNLoginRegisterVC loginVC] animated:YES];
 }
 
 + (void)jump2Register {
-    [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[CNLoginRegisterVC registerVC] animated:YES];
+    [kCurNavVC pushViewController:[CNLoginRegisterVC registerVC] animated:YES];
 }
 
 + (void)jump2BuyECoin {
-    //TODO: -
+    NSInteger depositLevel = [CNUserManager shareManager].userDetail.depositLevel;
+    MyLog(@"****** 当前用户信用等级 == %ld", depositLevel);
+    if (depositLevel > 1 || depositLevel == -15 || depositLevel == -13) {
+        [NNPageRouter openExchangeElecCurrencyPageIsSell:NO];
+    } else {
+        BOOL notshowBitBaseFlag = NO;
+        if (depositLevel == -1 || depositLevel == -11) {
+            notshowBitBaseFlag = YES;
+        }
+        HYBuyECoinGuideVC *vc = [HYBuyECoinGuideVC new];
+        vc.needNotShowBitbase = notshowBitBaseFlag;
+        [kCurNavVC pushViewController:vc animated:YES];
+    }
     
-    
+}
+
++ (void)jump2Deposit {
+    if ([CNUserManager shareManager].isUsdtMode) {
+        [kCurNavVC pushViewController:[HYRechargeViewController new] animated:YES];
+    } else {
+        [kCurNavVC pushViewController:[HYRechargeCNYViewController new] animated:YES];
+    }
 }
 
 + (void)jump2Withdraw {
     if ([CNUserManager shareManager].isUsdtMode) {
-        [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[HYWithdrawViewController new] animated:YES];
+        [kCurNavVC pushViewController:[HYWithdrawViewController new] animated:YES];
         
     } else {
         
         __block void(^jumpWithdrawBlock)(WithdrawCalculateModel* ) = ^(WithdrawCalculateModel * model) {
             HYWithdrawViewController *vc = [HYWithdrawViewController new];
             vc.calculatorModel = model;
-            [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:vc animated:YES];
+            [kCurNavVC pushViewController:vc animated:YES];
         };
         
         [CNWithdrawRequest withdrawCalculatorMode:@1 amount:nil accountId:nil handler:^(id responseObj, NSString *errorMsg) {
@@ -126,7 +148,7 @@
         [newUrl appendFormat:@"&loginname=%@&name=%@&timestamp=%ld", [CNUserManager shareManager].userInfo.loginName,  [CNUserManager shareManager].userInfo.loginName, (NSInteger)[[NSDate date] timeIntervalSince1970]*1000];
         HYHTMLViewController *vc = [[HYHTMLViewController alloc] initWithTitle:@"客服" strUrl:newUrl];
         vc.hidesBottomBarWhenPushed = YES;
-        [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:vc animated:YES];
+        [kCurNavVC pushViewController:vc animated:YES];
     }];
 }
 
@@ -135,7 +157,7 @@
     void(^jumpHTMLBlock)(NSString*, NSString*) = ^(NSString * url, NSString * title) {
         HYHTMLViewController *vc = [[HYHTMLViewController alloc] initWithTitle:title strUrl:url];
         vc.hidesBottomBarWhenPushed = YES;
-        [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:vc animated:YES];
+        [kCurNavVC pushViewController:vc animated:YES];
     };
 
 //    if ([CNUserManager shareManager].isLogin && ![CNUserManager shareManager].isTryUser) {

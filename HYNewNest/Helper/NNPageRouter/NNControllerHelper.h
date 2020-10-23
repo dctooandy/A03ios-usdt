@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#define kCurNavVC [self currentTabbarSelectedNavigationController]
+#define kCurNavVC [NNControllerHelper currentTabbarSelectedNavigationController]
 
 @interface NNControllerHelper : NSObject
 

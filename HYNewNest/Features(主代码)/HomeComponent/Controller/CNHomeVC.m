@@ -15,11 +15,6 @@
 #import "CNChessVC.h"
 #import "CNMessageCenterVC.h"
 #import "HYXiMaViewController.h"
-#import "HYNewCTZNViewController.h"
-#import "HYBuyECoinGuideVC.h"
-#import "HYRechargeViewController.h"
-#import "HYRechargeCNYViewController.h"
-#import "HYWithdrawViewController.h"
 #import <MJRefresh/MJRefresh.h>
 #import "NSURL+HYLink.h"
 
@@ -347,28 +342,23 @@
 //    } else {
         switch (type) {
             case CNActionTypeBuy: //买
-            {
-                HYBuyECoinGuideVC *vc = [HYBuyECoinGuideVC new];
-                [self.navigationController pushViewController:vc animated:YES];
-//                [NNPageRouter openExchangeElecCurrencyPageIsSell:NO];
+                [NNPageRouter jump2BuyECoin];
                 break;
-            }
+                
             case CNActionTypeDeposit: //充
-                if ([CNUserManager shareManager].isUsdtMode) {
-                    [self.navigationController pushViewController:[HYRechargeViewController new] animated:YES];
-                } else {
-                    [self.navigationController pushViewController:[HYRechargeCNYViewController new] animated:YES];
-                }
+                [NNPageRouter jump2Deposit];
                 break;
+                
             case CNActionTypeWithdraw: //提
-//                [self.navigationController pushViewController:[HYWithdrawViewController new] animated:YES];
                 [NNPageRouter jump2Withdraw];
                 break;
+                
             case CNActionTypeSell: //卖
                 [HYWideOneBtnAlertView showWithTitle:@"卖币跳转" content:@"正在为您跳转..请稍后。\n在交易所卖币数字货币，买家会将金额支付到您的银行卡，方便快捷。" comfirmText:@"我知道了，帮我跳转" comfirmHandler:^{
                     [NNPageRouter openExchangeElecCurrencyPageIsSell:YES];
                 }];
                 break;
+                
             case CNActionTypeXima: //洗
                 [self.navigationController pushViewController:[HYXiMaViewController new] animated:YES];
                 break;
