@@ -31,13 +31,14 @@
 @property (weak, nonatomic) IBOutlet HYXiMaTopView *topView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *sumitBtn;
+@property (nonatomic, strong) HYWithdrawComfirmView *comfirmView;
 
 @property (nonatomic, assign) NSInteger selectedIdx;
 @property (nonatomic, strong) NSMutableArray<AccountModel *> *elecCardsArr;//所有卡 根据当前模式只会是银行卡 或者 子账户钱包账户
 @property (nonatomic, strong) NSMutableArray<AccountModel *> *subWalletAccounts;//子账户所有钱包
 @property (nonatomic, strong) AccountMoneyDetailModel *moneyModel;
+@property (nonatomic, strong) WithdrawCalculateModel *giftCalculatorModel;//带参数计算后的 全额和拆分会有所不同
 
-@property (nonatomic, strong) HYWithdrawComfirmView *comfirmView;
 @end
 
 @implementation HYWithdrawViewController
@@ -204,7 +205,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                                     accountId:accountId
                                       handler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-            self.calculatorModel = [WithdrawCalculateModel cn_parse:responseObj];
+            self.giftCalculatorModel = [WithdrawCalculateModel cn_parse:responseObj];
             !handler?:handler();
         }
     }];
@@ -235,7 +236,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     } else {
         __block NSNumber *giftAmount;
         
-        if (self.calculatorModel && self.calculatorModel.creditExchangeFlag) {
+        if (self.calculatorModel && self.calculatorModel.creditExchangeFlag) { //判断该用户是否需要拆分
             [self.comfirmView hideView];
             
             // 计算接口 保存数据 -> 提现明细 -> 选择钱包/转USDT余额 -> 弹窗。。
@@ -243,7 +244,9 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                                         AccountId:model.accountId
                                           handler:^(){
                 
-                [HYWithdrawCalculatorComView showWithCalculatorModel:self.calculatorModel submitHandler:^(BOOL isComfirm, id  _Nonnull args, ...){
+                [HYWithdrawCalculatorComView showWithCalculatorModel:self.giftCalculatorModel
+                                            exchangeRatioOfAllAmount:self.calculatorModel.creditExchangeRatio
+                                                       submitHandler:^(BOOL isComfirm, id  _Nonnull args, ...){
                     if (!isComfirm) {
                         [self.comfirmView removeView];
                         return;
@@ -251,7 +254,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                     giftAmount = args;
                     
                     MyLog(@"点击了下一步");
-                    [HYWithdrawChooseWallectComView showWithAmount:self.calculatorModel.promoInfo.refAmount subWalAccountsModel:self.subWalletAccounts submitHandler:^(BOOL isComfirm, id  _Nonnull args, ...) {
+                    [HYWithdrawChooseWallectComView showWithAmount:self.giftCalculatorModel.promoInfo.refAmount subWalAccountsModel:self.subWalletAccounts submitHandler:^(BOOL isComfirm, id  _Nonnull args, ...) {
                         if (!isComfirm) {
                             [self.comfirmView removeView];
                             return;
@@ -266,7 +269,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                                                                handler:^(id responseObj, NSString *errorMsg) {
                             STRONGSELF_DEFINE
                             if (KIsEmptyString(errorMsg)) {
-                                [strongSelf.comfirmView showSuccessWithdrawCNYExUSDT:self.calculatorModel.promoInfo.refAmount dismissBlock:^{
+                                [strongSelf.comfirmView showSuccessWithdrawCNYExUSDT:self.giftCalculatorModel.promoInfo.refAmount dismissBlock:^{
                                     MyLog(@"点击了关闭");
                                     [HYWithdrawActivityAlertView showHandedOutGiftUSDTAmount:giftAmount handler:^{
                                         [strongSelf requestBalance];

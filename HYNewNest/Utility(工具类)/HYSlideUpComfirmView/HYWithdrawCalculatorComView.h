@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface HYWithdrawCalculatorComView : HYSlideUpComfirmBaseView
 
 + (void)showWithCalculatorModel:(WithdrawCalculateModel *)model
+       exchangeRatioOfAllAmount:(NSInteger)ratio
                   submitHandler:(SubmitComfirmArgsBlock)handler;
 
 @end

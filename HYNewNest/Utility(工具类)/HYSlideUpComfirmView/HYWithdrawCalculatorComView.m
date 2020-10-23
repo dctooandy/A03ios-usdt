@@ -9,15 +9,19 @@
 #import "HYWithdrawCalculatorComView.h"
 
 @interface HYWithdrawCalculatorComView ()
-@property (nonatomic, assign) CGFloat giftAmount;
+@property (nonatomic, strong) NSNumber * numGiftNum;
+@property (nonatomic, assign) NSInteger exchangeRatio;
 @property (nonatomic, strong) WithdrawCalculateModel *model;
 @end
 
 @implementation HYWithdrawCalculatorComView
 
-+ (void)showWithCalculatorModel:(WithdrawCalculateModel *)model submitHandler:(SubmitComfirmArgsBlock)handler {
++ (void)showWithCalculatorModel:(WithdrawCalculateModel *)model
+       exchangeRatioOfAllAmount:(NSInteger)ratio
+                  submitHandler:(SubmitComfirmArgsBlock)handler {
     HYWithdrawCalculatorComView *view = [[HYWithdrawCalculatorComView alloc] initWithContentViewHeight:AD(468) title:@"提现明细" comfirmBtnText:@"下一步"];
     view.submitArgsHandler = handler;
+    view.exchangeRatio = ratio;
     [view setupWithModel:model];
 }
 
@@ -80,9 +84,10 @@
         math = [NSString stringWithFormat:@"%@ USDT * %ld%% = %@ USDT", model.promoInfo.refAmount, model.promoInfo.promoRatio, model.promoInfo.amount];
     // 全额转USDT USDT数额比例 手动计算的公式
     } else {
-        giftNum = [model.promoInfo.refAmount floatValue] * 0.1 * model.promoInfo.promoRatio * 0.01;
-        math = [NSString stringWithFormat:@"%@ USDT * 10%% * %ld%% = %.2f USDT", model.promoInfo.refAmount,  model.promoInfo.promoRatio, giftNum];
-        self.giftAmount = giftNum;
+        giftNum = [model.promoInfo.refAmount floatValue] * self.exchangeRatio * 0.01 * model.promoInfo.promoRatio * 0.01;
+        NSNumber *numGiftNum = [[NSNumber numberWithDouble:giftNum] jk_doFloorWithDigit:2];
+        math = [NSString stringWithFormat:@"%@ USDT * %ld%% * %ld%% = %@ USDT", model.promoInfo.refAmount,  self.exchangeRatio, model.promoInfo.promoRatio, numGiftNum];
+        self.numGiftNum = numGiftNum;
     }
     UILabel *lblMath = [self attributedLabel:math
                                         orgP:CGPointMake(AD(20), usdtGift.bottom + AD(10))];
@@ -114,7 +119,7 @@
 
 - (void)touchupComfirmBtn {
     if (self.submitArgsHandler) {
-        self.submitArgsHandler(YES, self.giftAmount>0?@(self.giftAmount):self.model.promoInfo.amount, nil);
+        self.submitArgsHandler(YES, self.numGiftNum ? self.numGiftNum : self.model.promoInfo.amount, nil);
     }
     [self dismiss];
 }
