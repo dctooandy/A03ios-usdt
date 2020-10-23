@@ -35,6 +35,12 @@
     [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[CNLoginRegisterVC registerVC] animated:YES];
 }
 
++ (void)jump2BuyECoin {
+    //TODO: -
+    
+    
+}
+
 + (void)jump2Withdraw {
     if ([CNUserManager shareManager].isUsdtMode) {
         [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[HYWithdrawViewController new] animated:YES];
@@ -124,57 +130,6 @@
     }];
 }
 
-+ (void)jump2GameName:(NSString *)gameName
-             gameType:(NSString *)gameType
-               gameId:(NSString *)gameId
-             gameCode:(NSString *)gameCode
-     platformCurrency:(nullable NSString *)platformCurrency {
-    
-    [CNHomeRequest requestInGameUrlGameType:gameType
-                                     gameId:gameId
-                                   gameCode:gameCode
-                           platformCurrency:platformCurrency
-                                    handler:^(id responseObj, NSString *errorMsg) {
-        
-        GameModel *gameModel = [GameModel cn_parse:responseObj];
-        NSString *gameUrl = gameModel.url;
-        if ([gameUrl containsString:@"&callbackUrl="]) {
-            gameUrl = [gameUrl stringByReplacingOccurrencesOfString:@"&callbackUrl=" withString:@"&callbackUrl=https://localhost/exit.html"];
-        }
-        GameStartPlayViewController *vc = [[GameStartPlayViewController alloc] initGameWithGameUrl:gameUrl title:gameName];
-        [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:vc animated:YES];
-        
-    }];
-}
-
-+ (void)jump2ElecGameName:(NSString *)gameName
-                 gameType:(NSString *)gameType
-                   gameId:(NSString *)gameId
-                 gameCode:(NSString *)gameCode
-         platformCurrency:(NSString *)platformCurrency {
-    
-    [CNHomeRequest requestInGameUrlGameType:gameType
-                                     gameId:gameId
-                                   gameCode:gameCode
-                           platformCurrency:platformCurrency handler:^(id responseObj, NSString *errorMsg) {
-        
-        GameModel *gameModel = [GameModel cn_parse:responseObj];
-        NSMutableString *gameUrl = gameModel.url.mutableCopy;
-        if (KIsEmptyString(gameUrl)) {
-           [kKeywindow jk_makeToast:@"获取游戏数据为空" duration:1.5 position:JKToastPositionCenter];
-           return;
-        }
-        if (gameModel.postMap) {
-            if (![gameUrl containsString:@"?"]) {
-                [gameUrl appendString:@"?"];
-            }
-            [gameUrl appendFormat:@"gameID=%@&gameType=%@&username=%@&password=%@", gameModel.postMap.gameID, gameModel.postMap.gameType, gameModel.postMap.username, gameModel.postMap.password];
-        }
-        GameStartPlayViewController *vc = [[GameStartPlayViewController alloc] initGameWithGameUrl:gameUrl.copy title:gameName];
-        [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:vc animated:YES];
-
-    }];
-}
 
 + (void)jump2HTMLWithStrURL:(NSString *)strURL title:(NSString *)title {
     void(^jumpHTMLBlock)(NSString*, NSString*) = ^(NSString * url, NSString * title) {

@@ -26,39 +26,29 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 /// 改变根控制器为首页
 + (void)changeRootVc2MainPage;
 
+
 /// 跳到登录注册
 + (void)jump2Login;
 + (void)jump2Register;
 
+
 /// 去提现 (双模式统一入口)
 + (void)jump2Withdraw;
 
-/// 外部打开 一键买卖币
+
+/// 去买币 (包含了一键买卖币混合)
++ (void)jump2BuyECoin;
+
+
+/// 外部跳转Bitbase 一键买卖币
 /// @param isSell 是否卖币
 + (void)openExchangeElecCurrencyPageIsSell:(BOOL)isSell;
+
 
 /// 跳转到客服
 /// @param type 客服类型
 +(void)jump2Live800Type:(CNLive800Type)type;
 
-/// 首页跳到游戏（该方法不直接使用了，请通过HYInGameHelper查看）
-/// @param gameName 游戏名
-/// @param gameType 游戏类型
-/// @param gameId 游戏ID
-/// @param gameCode 游戏代码
-/// @param platformCurrency 线路（游戏货币）
-+ (void)jump2GameName:(NSString *)gameName
-             gameType:(NSString *)gameType
-               gameId:(NSString *)gameId
-             gameCode:(NSString *)gameCode
-     platformCurrency:(nullable NSString *)platformCurrency;
-
-/// 跳到电子游戏（该方法不直接使用了，请通过HYInGameHelper查看）
-+ (void)jump2ElecGameName:(NSString *)gameName
-                 gameType:(NSString *)gameType
-                   gameId:(NSString *)gameId
-                 gameCode:(NSString *)gameCode
-         platformCurrency:(nullable NSString *)platformCurrency;
 
 /// 跳转到H5
 +(void)jump2HTMLWithStrURL: (NSString *)strURL title:(NSString *)title;

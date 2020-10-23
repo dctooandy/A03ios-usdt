@@ -27,12 +27,13 @@ typedef NS_ENUM(NSUInteger, InGameType) {
 
 + (instancetype)sharedInstance;
 
+/// 查询游戏进线(CURRENCY)状态
 - (void)queryHomeInGamesStatus;
 
-// 进入游戏 编号
+/// 进入首页游戏 编号
 - (void)inGame:(InGameType)gType;
 
-// 进入电游
+/// 进入电游
 // platformSupportCurrency(支持的货币渠道)可能是：1."";2."CNY";3."USDT";4."CNY,USDT"
 - (void)inElecGameGameName:(NSString *)gameName
                   gameType:(NSString *)gameType

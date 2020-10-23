@@ -10,6 +10,7 @@
 #import "CNGameLineView.h"
 #import "GameLineModel.h"
 #import "CNHomeRequest.h"
+#import "GameStartPlayViewController.h"
 
 /// gameCode对应表
 NSString *const InGameTypeString[] = {
@@ -39,6 +40,8 @@ NSString *const InGameTypeString[] = {
     });
     return manager;
 }
+
+#pragma mark - Objc Func
 
 - (void)queryHomeInGamesStatus {
     [CNHomeRequest queryGamesHandler:^(id responseObj, NSString *errorMsg) {
@@ -126,14 +129,14 @@ NSString *const InGameTypeString[] = {
             }
         }
         [CNGameLineView choseCnyLineHandler:hasCNY?^{
-            [NNPageRouter jump2GameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:@"CNY"];
+            [HYInGameHelper jump2GameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:@"CNY"];
         }:nil choseUsdtLineHandler:hasUSDT?^{
-            [NNPageRouter jump2GameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:@"USDT"];
+            [HYInGameHelper jump2GameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:@"USDT"];
         }:nil];
         
         // 容错
     } else {
-        [NNPageRouter jump2GameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:nil];
+        [HYInGameHelper jump2GameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:nil];
     }
     
 }
@@ -176,16 +179,76 @@ NSString *const InGameTypeString[] = {
             }
         }
         [CNGameLineView choseCnyLineHandler:hasCNY?^{
-            [NNPageRouter jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:newGameCode platformCurrency:@"CNY"];
+            [HYInGameHelper jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:newGameCode platformCurrency:@"CNY"];
         }:nil choseUsdtLineHandler:hasUSDT?^{
-            [NNPageRouter jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:newGameCode platformCurrency:@"USDT"];
+            [HYInGameHelper jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:newGameCode platformCurrency:@"USDT"];
         }:nil];
         
         // 容错
     } else {
-        [NNPageRouter jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:newGameCode platformCurrency:nil];
+        [HYInGameHelper jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:newGameCode platformCurrency:nil];
     }
 }
 
+
+#pragma mark - Class Func
+/// 首页跳到游戏（该方法内部使用）
+/// @param gameName 游戏名
+/// @param gameType 游戏类型
+/// @param gameId 游戏ID
+/// @param gameCode 游戏代码
+/// @param platformCurrency 线路（游戏货币）
++ (void)jump2GameName:(NSString *)gameName
+             gameType:(NSString *)gameType
+               gameId:(NSString *)gameId
+             gameCode:(NSString *)gameCode
+     platformCurrency:(nullable NSString *)platformCurrency {
+    
+    [CNHomeRequest requestInGameUrlGameType:gameType
+                                     gameId:gameId
+                                   gameCode:gameCode
+                           platformCurrency:platformCurrency
+                                    handler:^(id responseObj, NSString *errorMsg) {
+        
+        GameModel *gameModel = [GameModel cn_parse:responseObj];
+        NSString *gameUrl = gameModel.url;
+        if ([gameUrl containsString:@"&callbackUrl="]) {
+            gameUrl = [gameUrl stringByReplacingOccurrencesOfString:@"&callbackUrl=" withString:@"&callbackUrl=https://localhost/exit.html"];
+        }
+        GameStartPlayViewController *vc = [[GameStartPlayViewController alloc] initGameWithGameUrl:gameUrl title:gameName];
+        [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:vc animated:YES];
+        
+    }];
+}
+
+/// 跳到电子游戏
++ (void)jump2ElecGameName:(NSString *)gameName
+                 gameType:(NSString *)gameType
+                   gameId:(NSString *)gameId
+                 gameCode:(NSString *)gameCode
+         platformCurrency:(NSString *)platformCurrency {
+    
+    [CNHomeRequest requestInGameUrlGameType:gameType
+                                     gameId:gameId
+                                   gameCode:gameCode
+                           platformCurrency:platformCurrency handler:^(id responseObj, NSString *errorMsg) {
+        
+        GameModel *gameModel = [GameModel cn_parse:responseObj];
+        NSMutableString *gameUrl = gameModel.url.mutableCopy;
+        if (KIsEmptyString(gameUrl)) {
+           [kKeywindow jk_makeToast:@"获取游戏数据为空" duration:1.5 position:JKToastPositionCenter];
+           return;
+        }
+        if (gameModel.postMap) {
+            if (![gameUrl containsString:@"?"]) {
+                [gameUrl appendString:@"?"];
+            }
+            [gameUrl appendFormat:@"gameID=%@&gameType=%@&username=%@&password=%@", gameModel.postMap.gameID, gameModel.postMap.gameType, gameModel.postMap.username, gameModel.postMap.password];
+        }
+        GameStartPlayViewController *vc = [[GameStartPlayViewController alloc] initGameWithGameUrl:gameUrl.copy title:gameName];
+        [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:vc animated:YES];
+
+    }];
+}
 
 @end
