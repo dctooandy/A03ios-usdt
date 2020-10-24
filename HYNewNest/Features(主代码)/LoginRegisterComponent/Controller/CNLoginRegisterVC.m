@@ -178,24 +178,23 @@ NSInteger AllowTotalWrongCount = 3;
 #pragma mark - Login Action
 
 - (void)preLoginAction {
-//    [CNLoginRequest accountPreLoginCompletionHandler:^(id responseObj, NSString *errorMsg) {
-//        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-//            PreLoginModel *model = [PreLoginModel cn_parse:responseObj];
-//            if (model.needCaptcha) { //需要验证码
-//                if (model.captchaType == 1) {
-//                    self.needImageCode = YES;
-//                    self.needHanImageCode = NO;
-//                } else {
-//                    self.needHanImageCode = YES;
-//                    self.needImageCode = NO;
-//                }
-//            }
-//        } else {
-//            self.needImageCode = NO;
-//            self.needHanImageCode = NO;
-//        }
-//    }];
-    self.needHanImageCode = YES;
+    [CNLoginRequest accountPreLoginCompletionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+            PreLoginModel *model = [PreLoginModel cn_parse:responseObj];
+            if (model.needCaptcha) { //需要验证码
+                if (model.captchaType == 1) {
+                    self.needImageCode = YES;
+                    self.needHanImageCode = NO;
+                } else {
+                    self.needHanImageCode = YES;
+                    self.needImageCode = NO;
+                }
+            }
+        } else {
+            self.needImageCode = NO;
+            self.needHanImageCode = NO;
+        }
+    }];
 }
 
 - (IBAction)loginAction:(UIButton *)sender {
