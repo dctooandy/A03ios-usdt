@@ -43,6 +43,10 @@
 #define config_bindMobileNoV2 @"customer/bindMobileNoV2" //绑定手机号v2
 #define config_SendCodePhone @"phone/sendCode"  //请求手机号验证码  1.注册 2.登录 3.手机绑定 4.找回密码 5.手机修改 7.资料修改 9.常规验证 11.找回账号
 #define config_generateCaptcha   @"captcha/generate"   //生成图片验证码
+
+#define config_generateHanCaptcha   @"captcha/generateCaptcha"   //生成汉字图片验证码
+#define config_validateHanCaptcha   @"captcha/validateCaptcha"   //校验汉字图片验证码
+
 #define config_LoginEx @"customer/loginEx"  //模糊登录
 #define config_sendCodeByLoginName  @"sms/sendCodeByLoginName"  // 通过用户名发送验证码
 #define config_modifyPwdBySmsCode   @"customer/modifyPwdBySmsCode"  //确认修改密码
@@ -96,13 +100,13 @@
 #define config_createBank      @"account/createBank"    //添加银行卡号
 #define config_createBitCoin   @"account/createBtc"   //添加比特币账户
 #define config_create          @"account/create"    //添加币付宝账户
-//#define config_createBitollAccount @"account/createBitollAccount" //创建币付宝账户
 #define config_createGoldAccount @"account/createGoldAccount" //创建币付宝账户
 #define config_getQueryCard    @"account/query" //查询有多少卡绑定， 银行卡管理界面
 #define config_deleteAccount   @"account/delete"  //删除银行卡
 #define config_verifySmsCode   @"phone/verifySmsCode" //获取validateId
 #define config_modifyUserInfo  @"customer/modify" //绑定真实姓名
 #define config_getByCardBin    @"getByCardBin" //获取银行名称
+#define config_preLogin        @"customer/preLogin" //登录/注册前判断是否需要图形验证码
 
 #pragma mark 积分:deprecapted
 #define config_new_queryMyScore @"a03/integral/queryInfo" //查询我的积分

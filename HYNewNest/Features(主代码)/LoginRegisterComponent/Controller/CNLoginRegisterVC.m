@@ -17,6 +17,7 @@
 #import "CNLoginSuccChooseAccountVC.h"
 #import "UILabel+Gradient.h"
 #import "ApiErrorCodeConst.h"
+#import "HYTapHanImageCodeView.h"
 
 #import "CNLoginRequest.h"
 #import "SmsCodeModel.h"
@@ -25,7 +26,7 @@
 /// 最大允许登录错误次数
 NSInteger AllowTotalWrongCount = 3;
 
-@interface CNLoginRegisterVC () <CNAccountInputViewDelegate, CNCodeInputViewDelegate>
+@interface CNLoginRegisterVC () <CNAccountInputViewDelegate, CNCodeInputViewDelegate, HYTapHanImgCodeViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *switchSV;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentWidth;
@@ -37,13 +38,20 @@ NSInteger AllowTotalWrongCount = 3;
 @property (weak, nonatomic) IBOutlet CNCodeInputView *loginCodeView;
 /// 登录按钮
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *loginBtn;
+
 /// 登录图形验证码视图
 @property (weak, nonatomic) IBOutlet CNImageCodeInputView *loginImageCodeView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginImageCodeViewH;
 /// 登录是否需要图形验证码
 @property (assign, nonatomic) BOOL needImageCode;
 
-@property (nonatomic, assign) NSInteger wrongCount;
+/// 登录文字验证码
+@property (weak, nonatomic) IBOutlet HYTapHanImageCodeView *hanImgCodeView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *hanImgCodeViewH;
+/// 登录是否需要汉字图形验证码
+@property (assign, nonatomic) BOOL needHanImageCode;
+
+//@property (nonatomic, assign) NSInteger wrongCount;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topMarginConst0;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topMarginConst;
 
@@ -79,13 +87,15 @@ NSInteger AllowTotalWrongCount = 3;
     self.makeTranslucent = YES;
     self.navBarTransparent = YES;
     
-    self.wrongCount = 0;
+//    self.wrongCount = 0;
     self.topMarginConst0.constant = self.topMarginConst.constant = kNavPlusStaBarHeight + 35;
         
     [self configUI];
     [self setDelegate];
     self.needImageCode = NO;
-    
+    self.needHanImageCode = NO;
+    self.hanImgCodeView.delegate = self;
+    [self preLoginAction];
 }
 
 - (void)configUI {
@@ -167,6 +177,27 @@ NSInteger AllowTotalWrongCount = 3;
 
 #pragma mark - Login Action
 
+- (void)preLoginAction {
+//    [CNLoginRequest accountPreLoginCompletionHandler:^(id responseObj, NSString *errorMsg) {
+//        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+//            PreLoginModel *model = [PreLoginModel cn_parse:responseObj];
+//            if (model.needCaptcha) { //需要验证码
+//                if (model.captchaType == 1) {
+//                    self.needImageCode = YES;
+//                    self.needHanImageCode = NO;
+//                } else {
+//                    self.needHanImageCode = YES;
+//                    self.needImageCode = NO;
+//                }
+//            }
+//        } else {
+//            self.needImageCode = NO;
+//            self.needHanImageCode = NO;
+//        }
+//    }];
+    self.needHanImageCode = YES;
+}
+
 - (IBAction)loginAction:(UIButton *)sender {
  
     NSLog(@"account=%@,code=%@,imgCode=%@", self.loginAccountView.account, self.loginCodeView.code, self.loginImageCodeView.imageCode);
@@ -213,12 +244,31 @@ NSInteger AllowTotalWrongCount = 3;
         }
     }
     
+    // 校验码
+    NSString *captcha = @""; //or ticket
+    NSString *captchaId = @"";
+    if (self.needImageCode) {
+        if (!self.loginImageCodeView.correct) {
+            [CNHUB showError:@"请输入图片中的数字验证码"];
+            return;
+        }
+        captcha = self.loginImageCodeView.imageCode;
+        captchaId = self.loginImageCodeView.imageCodeId;
+    } else if (self.needHanImageCode) {
+        if (!self.hanImgCodeView.correct) {
+            [CNHUB showError:@"请按正确顺序点击图片中的文字"];
+            return;
+        }
+        captcha = self.hanImgCodeView.ticket;
+        captchaId = self.hanImgCodeView.imageCodeId;
+    }
+    
     WEAKSELF_DEFINE
     [CNLoginRequest accountLogin:account
                         password:code
                        messageId:self.smsModel.messageId
-                       imageCode:self.loginImageCodeView.imageCode.length>0?self.loginImageCodeView.imageCode:@""
-                     imageCodeId:self.loginImageCodeView.imageCodeId.length>0?self.loginImageCodeView.imageCodeId:@""
+                       imageCode:captcha
+                     imageCodeId:captchaId
                completionHandler:^(id responseObj, NSString *errorMsg) {
         STRONGSELF_DEFINE
         if (!errorMsg) {
@@ -241,15 +291,23 @@ NSInteger AllowTotalWrongCount = 3;
                     vc.bindType = CNSMSCodeTypeForgotPassword;
                     [self.navigationController pushViewController:vc animated:YES];
                 }];
-            } else if ([responseObj isEqualToString:ImageCodeNULL_ErrorCode]) {
-                strongSelf.wrongCount = 3;
             } else {
-                strongSelf.wrongCount += 1;
+                [self preLoginAction];
             }
+//            else if ([responseObj isEqualToString:ImageCodeNULL_ErrorCode]) {
+//                strongSelf.wrongCount = 3;
+//            } else {
+//                strongSelf.wrongCount += 1;
+//            }
         }
     }];
 }
 
+/// 汉字验证码成功
+- (void)validationDidSuccess {
+    self.hanImgCodeViewH.constant = 47;
+    [self.hanImgCodeView showSuccess];
+}
 
 
 #pragma mark - Register Action
@@ -282,9 +340,18 @@ NSInteger AllowTotalWrongCount = 3;
     }
 }
 
-- (void)setWrongCount:(NSInteger)wrongCount {
-    _wrongCount = wrongCount;
-    self.needImageCode = (wrongCount >= AllowTotalWrongCount);
+- (void)setNeedHanImageCode:(BOOL)needHanImageCode {
+    _needHanImageCode = needHanImageCode;
+    if (needHanImageCode) {
+        self.hanImgCodeView.hidden = NO;
+        self.hanImgCodeViewH.constant = 95;
+        [self.hanImgCodeView getImageCode];
+    }
 }
+
+//- (void)setWrongCount:(NSInteger)wrongCount {
+//    _wrongCount = wrongCount;
+//    self.needImageCode = (wrongCount >= AllowTotalWrongCount);
+//}
 
 @end

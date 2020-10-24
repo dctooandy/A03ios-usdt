@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)showRightTopImageName:(NSString *)imgName size:(CGSize)size offsetX:(float)offsetX offsetYMultiple:(float)offsetYM;
 
+
+- (void)showRedPoint:(CGPoint)point value:(NSInteger )value;
+
 @end
 
 NS_ASSUME_NONNULL_END

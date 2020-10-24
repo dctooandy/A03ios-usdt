@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 短信验证码模型
 @interface SmsCodeModel : CNBaseModel
 
 @property(nonatomic,copy) NSString *expire;

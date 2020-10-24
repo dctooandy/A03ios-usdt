@@ -8,6 +8,8 @@
 
 #import "CNBaseNetworking.h"
 #import "SmsCodeModel.h"
+#import "CNImageCodeModel.h"
+#import "PreLoginModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -40,6 +42,12 @@ typedef NS_ENUM(NSUInteger, CNSMSCodeType) {
 + (void)getImageCodeWithType:(CNImageCodeType)type
            completionHandler:(HandlerBlock)completionHandler;
 
+/// 获取汉字图形验证码
++ (void)getHanImageCodeHandler:(HandlerBlock)completionHandler;
+/// 校验
++ (void)verifyHanImageCodeCaptcha:(NSString *)captcha
+                        captchaId:(NSString *)captchaId
+                          handler:(HandlerBlock)completionHandler;
 
 /// 通过手机号码获取短信验证码
 /// @param type CNSMSCodeType 类型
@@ -69,10 +77,8 @@ typedef NS_ENUM(NSUInteger, CNSMSCodeType) {
 
 
 /// 账号预登录，判断是否需要图形验证码
-/// @param account 账户名
 /// @param completionHandler 完成回调
-//+ (void)accountPreLogin:(NSString *)account
-//      completionHandler:(HandlerBlock)completionHandler;
++ (void)accountPreLoginCompletionHandler:(HandlerBlock)completionHandler;
 
 
 /// 账户登录

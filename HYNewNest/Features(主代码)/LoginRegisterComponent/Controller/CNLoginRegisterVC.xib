@@ -10,6 +10,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CNLoginRegisterVC">
             <connections>
                 <outlet property="contentWidth" destination="5qn-JH-aVN" id="MgC-UD-W5m"/>
+                <outlet property="hanImgCodeView" destination="aIr-X8-Kxf" id="8fg-1n-dtq"/>
+                <outlet property="hanImgCodeViewH" destination="b6B-bA-oYf" id="qd2-Fl-JhW"/>
                 <outlet property="loginAccountView" destination="lfD-sj-tlg" id="XjK-C5-Ob5"/>
                 <outlet property="loginBtn" destination="1yO-hQ-dcT" id="qyh-ze-aTp"/>
                 <outlet property="loginCodeView" destination="vK6-gf-yzO" id="63k-wO-Gyd"/>
@@ -102,7 +104,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1yO-hQ-dcT" customClass="CNTwoStatusBtn">
-                                    <rect key="frame" x="30" y="419" width="322.5" height="48"/>
+                                    <rect key="frame" x="30" y="409" width="322.5" height="48"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="48" id="ikL-dy-avB"/>
                                     </constraints>
@@ -118,7 +120,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWK-GS-vFt" customClass="CNOneStatusBtn">
-                                    <rect key="frame" x="30" y="497" width="322.5" height="48"/>
+                                    <rect key="frame" x="30" y="487" width="322.5" height="48"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="48" id="B31-wY-pRf"/>
                                     </constraints>
@@ -131,7 +133,7 @@
                                     </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xVJ-hQ-hM5">
-                                    <rect key="frame" x="80.5" y="585" width="221.5" height="20"/>
+                                    <rect key="frame" x="80.5" y="575" width="221.5" height="20"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录即代表您已阅读并同意" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v82-oI-Esc">
                                             <rect key="frame" x="0.0" y="0.0" width="147.5" height="20"/>
@@ -162,6 +164,14 @@
                                         <constraint firstAttribute="bottom" secondItem="cBP-Kz-yrK" secondAttribute="bottom" id="fSw-q2-OzI"/>
                                     </constraints>
                                 </view>
+                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aIr-X8-Kxf" customClass="HYTapHanImageCodeView">
+                                    <rect key="frame" x="41.5" y="389" width="300" height="0.0"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" id="b6B-bA-oYf"/>
+                                        <constraint firstAttribute="width" constant="300" id="pzV-8v-3vD"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -178,11 +188,13 @@
                                 <constraint firstItem="1yO-hQ-dcT" firstAttribute="leading" secondItem="ZzA-Aa-cAB" secondAttribute="leading" constant="30" id="Rfq-rN-9WV"/>
                                 <constraint firstAttribute="trailing" secondItem="2Ax-fe-kPs" secondAttribute="trailing" constant="30" id="Uiw-fg-9wF"/>
                                 <constraint firstItem="2Ax-fe-kPs" firstAttribute="top" secondItem="SfY-3I-9jV" secondAttribute="bottom" constant="20" id="W5W-f4-Qse"/>
-                                <constraint firstItem="1yO-hQ-dcT" firstAttribute="top" secondItem="2Ax-fe-kPs" secondAttribute="bottom" constant="40" id="ckD-W4-E3C"/>
+                                <constraint firstItem="aIr-X8-Kxf" firstAttribute="centerX" secondItem="ZzA-Aa-cAB" secondAttribute="centerX" id="WPP-3e-yMN"/>
                                 <constraint firstItem="DWK-GS-vFt" firstAttribute="top" secondItem="1yO-hQ-dcT" secondAttribute="bottom" constant="30" id="d2d-l6-SD0"/>
                                 <constraint firstAttribute="trailing" secondItem="vK6-gf-yzO" secondAttribute="trailing" constant="30" id="gHL-2U-Nkl"/>
                                 <constraint firstItem="lfD-sj-tlg" firstAttribute="leading" secondItem="ZzA-Aa-cAB" secondAttribute="leading" constant="30" id="hSU-E7-m12"/>
                                 <constraint firstItem="SfY-3I-9jV" firstAttribute="top" secondItem="vK6-gf-yzO" secondAttribute="bottom" id="nAx-8v-zJc"/>
+                                <constraint firstItem="1yO-hQ-dcT" firstAttribute="top" secondItem="aIr-X8-Kxf" secondAttribute="bottom" constant="20" id="nV0-Be-baT"/>
+                                <constraint firstItem="aIr-X8-Kxf" firstAttribute="top" secondItem="2Ax-fe-kPs" secondAttribute="bottom" constant="10" id="p8b-p7-oRM"/>
                                 <constraint firstAttribute="trailing" secondItem="lfD-sj-tlg" secondAttribute="trailing" constant="30" id="qvw-er-c9u"/>
                                 <constraint firstItem="SfY-3I-9jV" firstAttribute="leading" secondItem="ZzA-Aa-cAB" secondAttribute="leading" constant="30" id="zgn-Au-WmI"/>
                                 <constraint firstItem="FU8-Ow-S83" firstAttribute="centerX" secondItem="ZzA-Aa-cAB" secondAttribute="centerX" id="zk1-Ny-SdT"/>
@@ -336,7 +348,7 @@
                 <constraint firstItem="Mfr-Rv-odZ" firstAttribute="leading" secondItem="AQP-nK-WZJ" secondAttribute="leading" id="y3k-ul-i8F"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-49" y="722"/>
+            <point key="canvasLocation" x="-50.399999999999999" y="721.43928035982015"/>
         </scrollView>
         <tapGestureRecognizer numberOfTapsRequired="3" id="2hd-fn-Epo">
             <connections>

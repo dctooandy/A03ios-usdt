@@ -23,6 +23,20 @@
     [self POST:kGatewayPath(config_generateCaptcha) parameters:paras completionHandler:completionHandler];
 }
 
++ (void)getHanImageCodeHandler:(HandlerBlock)completionHandler {
+    NSMutableDictionary *paras = [kNetworkMgr baseParam];
+    [self POST:kGatewayPath(config_generateHanCaptcha) parameters:paras completionHandler:completionHandler];
+}
+
++ (void)verifyHanImageCodeCaptcha:(NSString *)captcha
+                        captchaId:(NSString *)captchaId
+                          handler:(HandlerBlock)completionHandler{
+    NSMutableDictionary *paras = [kNetworkMgr baseParam];
+    paras[@"captcha"] = captcha;
+    paras[@"captchaId"] = captchaId;
+    [self POST:kGatewayPath(config_validateHanCaptcha) parameters:paras completionHandler:completionHandler];
+}
+
 + (void)getSMSCodeWithType:(CNSMSCodeType)type
                      phone:(NSString *)phone
          completionHandler:(HandlerBlock)completionHandler {
@@ -56,14 +70,10 @@
     [self POST:kGatewayPath(config_verifySmsCode) parameters:paras completionHandler:completionHandler];
 }
 
-//+ (void)accountPreLogin:(NSString *)account
-//      completionHandler:(HandlerBlock)completionHandler {
-//
-//    NSMutableDictionary *paras = [NSMutableDictionary dictionary];
-//    paras[@"loginName"] = account;
-//
-//    [self POST:LCAccountPreLoginPath parameters:paras completionHandler:completionHandler];
-//}
++ (void)accountPreLoginCompletionHandler:(HandlerBlock)completionHandler {
+
+    [self POST:kGatewayPath(config_preLogin) parameters:[kNetworkMgr baseParam] completionHandler:completionHandler];
+}
 
 + (void)accountLogin:(NSString *)account
             password:(NSString *)password

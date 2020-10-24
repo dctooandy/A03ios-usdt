@@ -176,6 +176,9 @@
 		3D31B955253D8801005275BD /* WithdrawCalculateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B954253D8801005275BD /* WithdrawCalculateModel.m */; };
 		3D31B958253DBBBD005275BD /* HYWithdrawCalculatorComView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B957253DBBBD005275BD /* HYWithdrawCalculatorComView.m */; };
 		3D31B95B253DEE81005275BD /* HYWithdrawChooseWallectComView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B95A253DEE81005275BD /* HYWithdrawChooseWallectComView.m */; };
+		3D31B95E2542D4BF005275BD /* PreLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B95D2542D4BF005275BD /* PreLoginModel.m */; };
+		3D31B9612542E97D005275BD /* HYTapHanImageCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B9602542E97D005275BD /* HYTapHanImageCodeView.m */; };
+		3D31B9632542EA64005275BD /* HYTapHanImageCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D31B9622542EA64005275BD /* HYTapHanImageCodeView.xib */; };
 		3D3A9B6424F90666003FB33C /* UIWindow+Motion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B6324F90666003FB33C /* UIWindow+Motion.m */; };
 		3D3A9B6A24FA3696003FB33C /* DXRadianLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B6824FA3696003FB33C /* DXRadianLayerView.m */; };
 		3D3A9B7324FA7DA5003FB33C /* CNVIPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B7224FA7DA5003FB33C /* CNVIPRequest.m */; };
@@ -1200,6 +1203,11 @@
 		3D31B957253DBBBD005275BD /* HYWithdrawCalculatorComView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYWithdrawCalculatorComView.m; sourceTree = "<group>"; };
 		3D31B959253DEE81005275BD /* HYWithdrawChooseWallectComView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYWithdrawChooseWallectComView.h; sourceTree = "<group>"; };
 		3D31B95A253DEE81005275BD /* HYWithdrawChooseWallectComView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYWithdrawChooseWallectComView.m; sourceTree = "<group>"; };
+		3D31B95C2542D4BF005275BD /* PreLoginModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreLoginModel.h; sourceTree = "<group>"; };
+		3D31B95D2542D4BF005275BD /* PreLoginModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreLoginModel.m; sourceTree = "<group>"; };
+		3D31B95F2542E97D005275BD /* HYTapHanImageCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYTapHanImageCodeView.h; sourceTree = "<group>"; };
+		3D31B9602542E97D005275BD /* HYTapHanImageCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYTapHanImageCodeView.m; sourceTree = "<group>"; };
+		3D31B9622542EA64005275BD /* HYTapHanImageCodeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYTapHanImageCodeView.xib; sourceTree = "<group>"; };
 		3D3A9B6224F90666003FB33C /* UIWindow+Motion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Motion.h"; sourceTree = "<group>"; };
 		3D3A9B6324F90666003FB33C /* UIWindow+Motion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Motion.m"; sourceTree = "<group>"; };
 		3D3A9B6824FA3696003FB33C /* DXRadianLayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXRadianLayerView.m; sourceTree = "<group>"; };
@@ -3863,6 +3871,9 @@
 				E986A1AC24CBCEE1000F9CFF /* CNAccountSelectView.h */,
 				E986A1AD24CBCEE1000F9CFF /* CNAccountSelectView.m */,
 				E986A1AF24CBCEFF000F9CFF /* CNAccountSelectView.xib */,
+				3D31B95F2542E97D005275BD /* HYTapHanImageCodeView.h */,
+				3D31B9602542E97D005275BD /* HYTapHanImageCodeView.m */,
+				3D31B9622542EA64005275BD /* HYTapHanImageCodeView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3958,6 +3969,8 @@
 				E986A0F924C6CBB6000F9CFF /* SmsCodeModel.m */,
 				E97054AB24DC4C0E0007F845 /* CNImageCodeModel.h */,
 				E97054AC24DC4C0E0007F845 /* CNImageCodeModel.m */,
+				3D31B95C2542D4BF005275BD /* PreLoginModel.h */,
+				3D31B95D2542D4BF005275BD /* PreLoginModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5110,6 +5123,7 @@
 				D5A4457424F393AD00014DC6 /* 棋牌_00044.png in Resources */,
 				D5A4447324F3932400014DC6 /* 数字7_00048.png in Resources */,
 				D5A446C624F3941400014DC6 /* 合成 1_00073.png in Resources */,
+				3D31B9632542EA64005275BD /* HYTapHanImageCodeView.xib in Resources */,
 				D5A4438F24F378CD00014DC6 /* 彩票_00092.png in Resources */,
 				D5A4471524F3941400014DC6 /* 合成 1_00083.png in Resources */,
 				D5A4470524F3941400014DC6 /* 合成 1_00047.png in Resources */,
@@ -5474,6 +5488,7 @@
 				3D41DE9F251A0F59000CA1D6 /* HYVIPRuleAlertView.m in Sources */,
 				0487C9BC24D01DDE0013715A /* CNTradeRecodeVC.m in Sources */,
 				3D41DE7625199DEE000CA1D6 /* VIPGuideModel.m in Sources */,
+				3D31B95E2542D4BF005275BD /* PreLoginModel.m in Sources */,
 				E9B5495324CDB646002CE6EF /* UUMarqueeView.m in Sources */,
 				E986A18C24C9D39B000F9CFF /* XmCalcAmountModel.m in Sources */,
 				3D41DE8325199DEE000CA1D6 /* VIPChartDJTQCell.m in Sources */,
@@ -5611,6 +5626,7 @@
 				3D41DEA5251AF662000CA1D6 /* VIPCumulateIdButton.m in Sources */,
 				3D41DE9A2519F996000CA1D6 /* VIPCumulateIdHeader.m in Sources */,
 				3D41DE7325199DEE000CA1D6 /* VIPDSBUsrModel.m in Sources */,
+				3D31B9612542E97D005275BD /* HYTapHanImageCodeView.m in Sources */,
 				3D41DEBD251F1B47000CA1D6 /* UIImageView+GIF.m in Sources */,
 				E986A1C724CC7F2B000F9CFF /* TAAbstractDotView.m in Sources */,
 				3D31B95B253DEE81005275BD /* HYWithdrawChooseWallectComView.m in Sources */,

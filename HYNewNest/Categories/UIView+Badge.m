@@ -77,4 +77,19 @@
         }
     }
 }
+
+
+- (void)showRedPoint:(CGPoint)point value:(NSInteger )value {
+    CGFloat viewWidth = 18;
+    UILabel *valueLbl = [[UILabel alloc]initWithFrame:CGRectMake(point.x-viewWidth*0.5, point.y-viewWidth*0.5, viewWidth, viewWidth)];
+    valueLbl.text = [NSString stringWithFormat:@"%ld", value];
+    valueLbl.font = [UIFont fontPFR12];
+    valueLbl.textColor = [UIColor whiteColor];
+    valueLbl.textAlignment = NSTextAlignmentCenter;
+    valueLbl.backgroundColor = [UIColor redColor];
+    valueLbl.clipsToBounds = YES;
+    valueLbl.layer.cornerRadius = viewWidth*0.5;
+    [self addSubview:valueLbl];
+}
+
 @end
