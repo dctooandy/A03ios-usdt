@@ -119,8 +119,8 @@
         case IVNEnvironmentPublish:
         {
             envName = @"运营环境";
-            [IVHttpManager shareManager].gateway = @"https://www.hygame03.com";
-            [IVHttpManager shareManager].gateways = @[@"https://www.hygame03.com", @"https://hygame01.com",@"https://hygame02.com",@"https://hygame04.com",@"https://hygame05.com",@"https://hygame06.com"];
+            [IVHttpManager shareManager].gateway = @"https://by88.app";
+            [IVHttpManager shareManager].gateways = @[@"https://by88.app", @"https://127bi.com",@"https://128bi.com",@"https://129bi.com",@"https://130bi.com"];
             break;
         }
         default:

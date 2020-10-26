@@ -10,6 +10,8 @@
 #import "HYHTMLViewController.h"
 #import "HYInGameHelper.h"
 
+#import "CNInviteFriendVC.h"
+
 @interface TopTabAGUltimateView()<WKNavigationDelegate, WKUIDelegate> //WKScriptMessageHandler  要加协议
 
 @property (strong, nonatomic) WKWebViewConfiguration *webConfig;
@@ -164,13 +166,9 @@
         [self kefu];
     }else if ([url hasPrefix:@"hy://main"]){
         //主页
-//        if ([UIViewController topViewController]) {
-//            UIViewController *vc = [UIViewController topViewController];
-//            [vc.navigationController popToRootViewControllerAnimated:NO];
-//        }
-//        if([UIViewController currentTtabarController]){
-//            [UIViewController currentTtabarController].selectedIndex = 0;
-//        }
+        [kCurNavVC popToRootViewControllerAnimated:YES];
+        [NNControllerHelper currentTabBarController].selectedIndex = 0;
+        decisionHandler(WKNavigationActionPolicyCancel);
     }else if ([url hasPrefix:@"hy://withdraw"]){
         //提现
         [self wdrawClick];
@@ -197,8 +195,22 @@
 //        DYViewController *vc = [[DYViewController alloc] init];
 //        UIViewController *topVC = [UIViewController topViewController];
 //        [topVC.navigationController pushViewController:vc animated:YES];
+    }else if ([url containsString:@"/share?"]) {
+        //好友推荐
+        decisionHandler(WKNavigationActionPolicyCancel);
+        [kCurNavVC popToRootViewControllerAnimated:NO];
+        [kCurNavVC pushViewController:[CNInviteFriendVC new] animated:YES];
+    }else if ([url containsString:@"/vip?"]) {
+        //vip
+        decisionHandler(WKNavigationActionPolicyCancel);
+        [kCurNavVC popToRootViewControllerAnimated:NO];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [NNControllerHelper currentTabBarController].selectedIndex = 1;
+        });
+        
+    }else {
+        decisionHandler(WKNavigationActionPolicyAllow);
     }
-    decisionHandler(WKNavigationActionPolicyAllow);
 }
 
 /**

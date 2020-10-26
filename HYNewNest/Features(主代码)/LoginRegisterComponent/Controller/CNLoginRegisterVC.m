@@ -23,9 +23,6 @@
 #import "SmsCodeModel.h"
 
 
-/// 最大允许登录错误次数
-NSInteger AllowTotalWrongCount = 3;
-
 @interface CNLoginRegisterVC () <CNAccountInputViewDelegate, CNCodeInputViewDelegate, HYTapHanImgCodeViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *switchSV;
@@ -51,7 +48,6 @@ NSInteger AllowTotalWrongCount = 3;
 /// 登录是否需要汉字图形验证码
 @property (assign, nonatomic) BOOL needHanImageCode;
 
-//@property (nonatomic, assign) NSInteger wrongCount;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topMarginConst0;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topMarginConst;
 
@@ -87,7 +83,6 @@ NSInteger AllowTotalWrongCount = 3;
     self.makeTranslucent = YES;
     self.navBarTransparent = YES;
     
-//    self.wrongCount = 0;
     self.topMarginConst0.constant = self.topMarginConst.constant = kNavPlusStaBarHeight + 35;
         
     [self configUI];
@@ -293,11 +288,6 @@ NSInteger AllowTotalWrongCount = 3;
             } else {
                 [self preLoginAction];
             }
-//            else if ([responseObj isEqualToString:ImageCodeNULL_ErrorCode]) {
-//                strongSelf.wrongCount = 3;
-//            } else {
-//                strongSelf.wrongCount += 1;
-//            }
         }
     }];
 }
@@ -348,9 +338,5 @@ NSInteger AllowTotalWrongCount = 3;
     }
 }
 
-//- (void)setWrongCount:(NSInteger)wrongCount {
-//    _wrongCount = wrongCount;
-//    self.needImageCode = (wrongCount >= AllowTotalWrongCount);
-//}
 
 @end

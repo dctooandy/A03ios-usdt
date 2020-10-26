@@ -144,14 +144,7 @@
 }
 
 - (void)tapBanner:(UITouch *)touch {
-//    CGPoint p = [touch locationInView:self.imgvBanner];
-//    if (p.y >= AD(75)) {
-//        if (p.x >= AD(186) && p.x <= AD(254)) { //立即了解
-            [NNPageRouter jump2HTMLWithStrURL:@"/pub_site/tutorialReference" title:@"请稍等.."];
-//        } else if (p.x > AD(254)) { //一键买币
-//            [NNPageRouter openExchangeElecCurrencyPageIsSell:NO];
-//        }
-//    }
+    [NNPageRouter jump2HTMLWithStrURL:@"/pub_site/tutorialReference" title:@"请稍等.."];
 }
 
 - (void)setupMainEditView {

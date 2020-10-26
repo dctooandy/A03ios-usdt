@@ -179,6 +179,7 @@
 		3D31B95E2542D4BF005275BD /* PreLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B95D2542D4BF005275BD /* PreLoginModel.m */; };
 		3D31B9612542E97D005275BD /* HYTapHanImageCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B9602542E97D005275BD /* HYTapHanImageCodeView.m */; };
 		3D31B9632542EA64005275BD /* HYTapHanImageCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D31B9622542EA64005275BD /* HYTapHanImageCodeView.xib */; };
+		3D31B96525467131005275BD /* tingyunApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D31B96425467131005275BD /* tingyunApp.framework */; };
 		3D3A9B6424F90666003FB33C /* UIWindow+Motion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B6324F90666003FB33C /* UIWindow+Motion.m */; };
 		3D3A9B6A24FA3696003FB33C /* DXRadianLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B6824FA3696003FB33C /* DXRadianLayerView.m */; };
 		3D3A9B7324FA7DA5003FB33C /* CNVIPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B7224FA7DA5003FB33C /* CNVIPRequest.m */; };
@@ -1208,6 +1209,7 @@
 		3D31B95F2542E97D005275BD /* HYTapHanImageCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYTapHanImageCodeView.h; sourceTree = "<group>"; };
 		3D31B9602542E97D005275BD /* HYTapHanImageCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYTapHanImageCodeView.m; sourceTree = "<group>"; };
 		3D31B9622542EA64005275BD /* HYTapHanImageCodeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYTapHanImageCodeView.xib; sourceTree = "<group>"; };
+		3D31B96425467131005275BD /* tingyunApp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = tingyunApp.framework; sourceTree = "<group>"; };
 		3D3A9B6224F90666003FB33C /* UIWindow+Motion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Motion.h"; sourceTree = "<group>"; };
 		3D3A9B6324F90666003FB33C /* UIWindow+Motion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Motion.m"; sourceTree = "<group>"; };
 		3D3A9B6824FA3696003FB33C /* DXRadianLayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXRadianLayerView.m; sourceTree = "<group>"; };
@@ -2134,6 +2136,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				017D1772491556C809C97BCD /* Pods_HYNewNest.framework in Frameworks */,
+				3D31B96525467131005275BD /* tingyunApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2832,6 +2835,7 @@
 		3D1338A624AF2E7D00B29783 /* Vendors(第三方库) */ = {
 			isa = PBXGroup;
 			children = (
+				3D31B96425467131005275BD /* tingyunApp.framework */,
 				3D41DEB4251F1A20000CA1D6 /* WSLPictureBrowserView */,
 				3DCFEA8625009D010071F356 /* SlideCard */,
 				E9B5496424CECE23002CE6EF /* LTSegmentedBar */,
@@ -5910,6 +5914,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HYNewNest/Vendors(第三方库)/IN3SAnalytics",
+					"$(PROJECT_DIR)/HYNewNest/Vendors(第三方库)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = HYNewNest/Config/PrefixHeader.pch;
@@ -5938,6 +5943,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HYNewNest/Vendors(第三方库)/IN3SAnalytics",
+					"$(PROJECT_DIR)/HYNewNest/Vendors(第三方库)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = HYNewNest/Config/PrefixHeader.pch;
