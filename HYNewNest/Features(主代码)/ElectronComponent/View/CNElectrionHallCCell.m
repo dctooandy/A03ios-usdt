@@ -16,6 +16,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *descLb;
 @property (weak, nonatomic) IBOutlet UIButton *favoBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *hotIV;
+
+@property (weak, nonatomic) IBOutlet UILabel *platformLb;
+@property (weak, nonatomic) IBOutlet UILabel *lineLb;
+@property (weak, nonatomic) IBOutlet UILabel *discountLb;
+
 @end
 
 @implementation CNElectrionHallCCell
@@ -28,11 +33,27 @@
     self.descLb.text = [NSString stringWithFormat:@"热度%@",model.popularity];
     self.favoBtn.selected = model.isFavorite;
     self.hotIV.hidden = !model.isUpHot;
+    
+    self.platformLb.text = [NSString stringWithFormat:@" %@ ", model.platformName];
+    self.lineLb.text = [NSString stringWithFormat:@" %@线 ", model.payLine];
+    self.discountLb.hidden = !model.hotFlag;
+    [self setNeedsLayout];
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    self.platformLb.layer.cornerRadius = 5;
+    self.platformLb.layer.masksToBounds = YES;
+    self.lineLb.layer.cornerRadius = 5;
+    self.lineLb.layer.masksToBounds = YES;
+    self.discountLb.layer.cornerRadius = 5;
+    self.discountLb.layer.masksToBounds = YES;
 }
 
 - (IBAction)collection:(UIButton *)sender {
