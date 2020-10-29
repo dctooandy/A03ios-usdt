@@ -32,6 +32,9 @@
 
 /// 卡列表
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) UILabel *btmBFBTipLb;
+
 /// 区分当前是小金库地址还是其他地址
 @property (nonatomic, assign) HYAddressType addrType;
 /// 数据源
@@ -41,6 +44,23 @@
 @end
 
 @implementation CNAddressManagerVC
+
+- (UILabel *)btmBFBTipLb {
+    if (!_btmBFBTipLb) {
+        
+        UILabel *btmBFBTipLb = [UILabel new];
+        btmBFBTipLb.numberOfLines = 0;
+        btmBFBTipLb.textColor = kHexColor(0x656565);
+        btmBFBTipLb.font = [UIFont systemFontOfSize:AD(12)];
+        btmBFBTipLb.textAlignment = NSTextAlignmentCenter;
+        btmBFBTipLb.frame = CGRectMake(0, 0, kScreenWidth, 50);
+        btmBFBTipLb.text = @"  温馨提示：币付宝钱包地址不支持取款,请删除绑定其他钱包地址  ";
+        btmBFBTipLb.backgroundColor = [UIColor clearColor];
+        
+        _btmBFBTipLb = btmBFBTipLb;
+    }
+    return _btmBFBTipLb;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -69,7 +89,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:kCNAddressAddTCellID bundle:nil] forCellReuseIdentifier:kCNAddressAddTCellID];
     [self.tableView registerNib:[UINib nibWithNibName:kCNAddressInfoTCellID bundle:nil] forCellReuseIdentifier:kCNAddressInfoTCellID];
     [self.tableView registerNib:[UINib nibWithNibName:kCNAddressDownloadTCellID bundle:nil] forCellReuseIdentifier:kCNAddressDownloadTCellID];
-    
+    self.tableView.tableFooterView = self.btmBFBTipLb;
 }
  
 // 小金库地址
@@ -192,6 +212,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.btmBFBTipLb.hidden = YES;
     
     switch (_addrType) {
         case HYAddressTypeBANKCARD:
@@ -234,6 +255,7 @@
             
             
         case HYAddressTypeUSDT:
+            self.btmBFBTipLb.hidden = NO;
             if (indexPath.row == self.usdtAccounts.count) {
                 CNAddressAddTCell *addCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressAddTCellID forIndexPath:indexPath];
                 addCell.titleLb.text = @"添加USDT钱包";

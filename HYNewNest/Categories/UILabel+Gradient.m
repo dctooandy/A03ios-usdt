@@ -20,6 +20,8 @@
                                                            NULL);
     CGPoint startPoint = CGPointZero;
     CGPoint endPoint = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds));
+//    CGPoint startPoint = CGPointMake(0, self.bounds.size.height*0.5);
+//    CGPoint endPoint = CGPointMake(CGRectGetMaxY(self.bounds), self.bounds.size.height*0.5);
     CGContextDrawLinearGradient(context, gradientRef, startPoint, endPoint,  kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
     //取到渐变图片
     UIImage *gradientImage = UIGraphicsGetImageFromCurrentImageContext();

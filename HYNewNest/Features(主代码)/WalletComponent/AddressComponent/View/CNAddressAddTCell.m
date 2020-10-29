@@ -7,11 +7,17 @@
 //
 
 #import "CNAddressAddTCell.h"
+#import "UILabel+Gradient.h"
+
+@interface CNAddressAddTCell ()
+@end
 
 @implementation CNAddressAddTCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    [self.titleLb setupGradientColorFrom:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE)];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
