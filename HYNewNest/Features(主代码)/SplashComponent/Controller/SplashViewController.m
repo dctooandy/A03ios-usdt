@@ -23,9 +23,24 @@
 @property (nonatomic,strong) UIImageView *adImgView;
 
 @property (nonatomic,strong) AVPlayer *player;
+
+@property (nonatomic, strong) UILabel *lblVersion;
 @end
 
 @implementation SplashViewController
+
+- (UILabel *)lblVersion {
+    if (!_lblVersion) {
+        UILabel *lbl = [UILabel new];
+        lbl.text = [NSString stringWithFormat:@"当前版本: V%@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+        [lbl sizeToFit];
+        lbl.bottom = kScreenHeight - 30 -kSafeAreaHeight;
+        lbl.centerX = kScreenWidth * 0.5;
+        lbl.textColor = kHexColor(0x868686);
+        _lblVersion = lbl;
+    }
+    return _lblVersion;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -58,7 +73,8 @@
     layer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     [self.view.layer addSublayer:layer];
     
-    
+    // 版本号
+    [self.view addSubview:self.lblVersion];
     
     // 基本废弃
 //    [CNSplashRequest welcome:^(id responseObj, NSString *errorMsg) {

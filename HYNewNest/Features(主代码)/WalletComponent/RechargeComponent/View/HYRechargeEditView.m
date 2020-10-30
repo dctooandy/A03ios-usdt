@@ -160,7 +160,7 @@
     if ([model.bankname caseInsensitiveCompare:@"dcbox"] == NSOrderedSame) {
         _lblPayWayName.text = @"小金库";
     } else if ([HYRechargeHelper isUSDTOtherBankModel:model]){
-        _lblPayWayName.text = @"钱包扫码";
+        _lblPayWayName.text = @"币所";
     } else {
         _lblPayWayName.text = model.bankname;
     }

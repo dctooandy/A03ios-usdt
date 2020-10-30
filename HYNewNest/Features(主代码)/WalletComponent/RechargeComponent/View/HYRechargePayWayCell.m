@@ -29,12 +29,12 @@
     if ([deposModel.bankname caseInsensitiveCompare:@"dcbox"] == NSOrderedSame) {
         _lblTitle.text = @"小金库";
     } else if ([HYRechargeHelper isUSDTOtherBankModel:deposModel]){
-        _lblTitle.text = @"钱包扫码";
+        _lblTitle.text = @"币所";
     } else {
         _lblTitle.text = deposModel.bankname;
     }
     _lblAmountRange.text = [NSString stringWithFormat:@"(%@)", [HYRechargeHelper amountTipUSDT:deposModel]];
-    _lblContent.text = @"";
+
 }
 
 - (void)setPaywayModel:(PayWayV3PayTypeItem *)paywayModel {
@@ -43,8 +43,7 @@
     [_imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:paywayModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
     _lblTitle.text = paywayModel.payTypeName;
     _lblAmountRange.text = [NSString stringWithFormat:@"(%@)", [HYRechargeHelper amountTip:paywayModel]];
-    _lblContent.hidden = YES;
-    _lblTitleTopMargin.constant = 28;
+    
 }
 
 - (void)setBqBank:(BQBankModel *)bqBank {
@@ -53,8 +52,7 @@
     [_imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:bqBank.bankIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
     _lblTitle.text = bqBank.bankName;
     _lblAmountRange.text = @"";
-    _lblContent.hidden = YES;
-    _lblTitleTopMargin.constant = 28;
+
 }
 
 - (void)awakeFromNib {
@@ -62,6 +60,8 @@
     // Initialization code
     
     self.backgroundColor = kHexColor(0x10101C);
+    _lblContent.hidden = YES;
+    _lblTitleTopMargin.constant = 28;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
