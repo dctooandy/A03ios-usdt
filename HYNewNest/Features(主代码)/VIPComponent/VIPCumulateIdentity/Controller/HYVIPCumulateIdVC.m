@@ -267,26 +267,27 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
     if (scrollView == self.tableView){ // 子tableview
-//        MyLog(@"2----%@", NSStringFromCGPoint(scrollView.contentOffset));
+        MyLog(@"2----%@", NSStringFromCGPoint(scrollView.contentOffset));
         CGFloat y = AD(228)+35;
         if (scrollView.contentOffset.y > _lastOffsetY) {
             // 下滑
             if (self.superScrollView.contentOffset.y <= y) {
-                scrollView.contentOffset = CGPointZero; //这里如果用动画效果很奇怪
+                [self.superScrollView setContentOffset:CGPointMake(0, y) animated:YES];
                 [self.navigationController setNavigationBarHidden:YES animated:YES];
-                [UIView animateWithDuration:0.25 animations:^{
+                [UIView animateWithDuration:0.2 animations:^{
                     self.statusBgView.alpha = 1.0;
                 }];
-                
+                self.tableView.isSimultaneousGesture = NO;
             }
         } else if  (scrollView.contentOffset.y < _lastOffsetY) {
             // 上滑
-            if (scrollView.contentOffset.y <= 0) {
+            if (scrollView.contentOffset.y <= -50) {
                 [self.superScrollView setContentOffset:CGPointZero animated:YES];
                 [self.navigationController setNavigationBarHidden:NO animated:YES];
-                [UIView animateWithDuration:0.25 animations:^{
+                [UIView animateWithDuration:0.2 animations:^{
                     self.statusBgView.alpha = 0.0;
                 }];
+                self.tableView.isSimultaneousGesture = YES;
             }
         }
     }

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VIPGiftTableView : UITableView
-
+@property (nonatomic, assign) BOOL isSimultaneousGesture;
 @end
 
 NS_ASSUME_NONNULL_END

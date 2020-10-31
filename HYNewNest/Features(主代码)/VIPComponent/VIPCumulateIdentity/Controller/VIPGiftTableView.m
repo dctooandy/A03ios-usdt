@@ -15,8 +15,16 @@
 
 @implementation VIPGiftTableView
 
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    
+    self.isSimultaneousGesture = YES;
+    
+    return self;
+}
+
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
+    return self.isSimultaneousGesture;
 }
 
 /*
