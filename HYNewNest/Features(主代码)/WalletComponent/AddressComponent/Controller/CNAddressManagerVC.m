@@ -33,7 +33,7 @@
 /// 卡列表
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (nonatomic, strong) UILabel *btmBFBTipLb;
+@property (nonatomic, strong) UIView *btmBFBTipLb;
 
 /// 区分当前是小金库地址还是其他地址
 @property (nonatomic, assign) HYAddressType addrType;
@@ -45,7 +45,7 @@
 
 @implementation CNAddressManagerVC
 
-- (UILabel *)btmBFBTipLb {
+- (UIView *)btmBFBTipLb {
     if (!_btmBFBTipLb) {
         
         UILabel *btmBFBTipLb = [UILabel new];
@@ -53,11 +53,17 @@
         btmBFBTipLb.textColor = kHexColor(0x656565);
         btmBFBTipLb.font = [UIFont systemFontOfSize:AD(12)];
         btmBFBTipLb.textAlignment = NSTextAlignmentCenter;
-        btmBFBTipLb.frame = CGRectMake(0, 0, kScreenWidth, 50);
         btmBFBTipLb.text = @"  温馨提示：币付宝钱包地址不支持取款,请删除绑定其他钱包地址  ";
-        btmBFBTipLb.backgroundColor = [UIColor clearColor];
+        [btmBFBTipLb sizeToFit];
+        btmBFBTipLb.frame = CGRectMake(20, 0, kScreenWidth-40, 60);
+//        btmBFBTipLb.backgroundColor = [UIColor clearColor];
         
-        _btmBFBTipLb = btmBFBTipLb;
+        UIView *bgv = [UIView new];
+        bgv.backgroundColor = [UIColor clearColor];
+        bgv.frame = CGRectMake(0, 0, kScreenWidth, 60);
+        [bgv addSubview:btmBFBTipLb];
+        
+        _btmBFBTipLb = bgv;
     }
     return _btmBFBTipLb;
 }
