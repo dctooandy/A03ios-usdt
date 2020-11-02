@@ -32,7 +32,7 @@
 //#define config_getTopDomain  @"a03/getTopDomainAddress" //white list
 
 #define config_createUdid    @"customer/createCustomerUdid"  //创建自定义udid
-#define config_superSign     @"ips/ipsSuperSignSend"         //超级签名个推
+#define config_superSignSend     @"ips/ipsSuperSignSend"         //超级签名个推
 
 #pragma mark 登录注册/用户
 #define config_h5Ticket @"createH5TempTicket"

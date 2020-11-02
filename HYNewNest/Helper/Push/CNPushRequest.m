@@ -62,7 +62,7 @@
 
     // kGatewayPath(@"ips/ipsSuperSignSend")
     __weak typeof(self) weakSelf = self;
-    [self POST:kGatewayPath(config_superSign) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+    [self POST:kGatewayPath(config_superSignSend) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
             times = 0;
 //#ifdef DEBUG
