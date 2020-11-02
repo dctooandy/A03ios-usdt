@@ -21,7 +21,7 @@
     param[@"udid"] = udid;
     
     __weak typeof(self) weakSelf = self;
-    [self POST:kGatewayPath(@"/customer/createCustomerUdid") parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+    [self POST:kGatewayPath(config_createUdid) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
             times = 0;
 //#ifdef DEBUG
@@ -62,7 +62,7 @@
 
     // kGatewayPath(@"ips/ipsSuperSignSend")
     __weak typeof(self) weakSelf = self;
-    [self POST:kGatewayPath(@"ips/ipsSuperSignSend") parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+    [self POST:kGatewayPath(config_superSign) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
             times = 0;
 //#ifdef DEBUG

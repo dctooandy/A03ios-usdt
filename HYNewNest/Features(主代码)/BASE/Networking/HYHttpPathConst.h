@@ -10,20 +10,13 @@
 #define HYHttpPathConst_h
 
 
-#pragma mark - 转账记录 类型 code
-#define TransferTypeOutVault @"111602" //转出小金库
-#define TransferTypeInVault @"111601" //转入小金库
-#define TransferTypeOutVipClient @"111515" //贵宾厅转网投
-#define TransferTypeInVipClient @"111514"  //网投转贵宾厅
-
-
 #pragma mark - H5
 #define H5_URL_GET_VIPRECORD @"/pub_site/vip_record" //兑换记录
 
 
 #pragma mark - API PATH
 
-// 拼接path
+/// 拼接path
 #define kGatewayPath(api)       [NSString stringWithFormat:@"/_glaxy_a03_/%@", api]
 #define kGatewayExtraPath(api)  [NSString stringWithFormat:@"/_glaxy_a03_/_extra_/%@", api]
 
@@ -36,14 +29,17 @@
 //#define config_liveChatAddress @"liveChatAddress" //live800 客服
 #define config_dynamicQuery @"dynamic/query" //获取动态表单数据 （live800客服，充提指南...）
 #define config_switchAccount @"customer/switchAccount"    //切换子账号 USDT<-->人民币
-#define config_getTopDomain  @"a03/getTopDomainAddress" //white list
+//#define config_getTopDomain  @"a03/getTopDomainAddress" //white list
+
+#define config_createUdid    @"customer/createCustomerUdid"  //创建自定义udid
+#define config_superSign     @"ips/ipsSuperSignSend"         //超级签名个推
 
 #pragma mark 登录注册/用户
 #define config_h5Ticket @"createH5TempTicket"
 #define config_bindMobileNoV2 @"customer/bindMobileNoV2" //绑定手机号v2
 #define config_SendCodePhone @"phone/sendCode"  //请求手机号验证码  1.注册 2.登录 3.手机绑定 4.找回密码 5.手机修改 7.资料修改 9.常规验证 11.找回账号
+#define config_preLogin  @"customer/preLogin"   //登录前查询是否需要图形验证码
 #define config_generateCaptcha   @"captcha/generate"   //生成图片验证码
-
 #define config_generateHanCaptcha   @"captcha/generateCaptcha"   //生成汉字图片验证码
 #define config_validateHanCaptcha   @"captcha/validateCaptcha"   //校验汉字图片验证码
 
@@ -62,7 +58,6 @@
 
 #define config_createTryAccount   @"customer/createTryAccount"  //试玩登录
 //#define config_autoLoginByToken  @"customer/getByToken"   //自动登录
-//#define config_prelogin  @"customer/preLogin"   //登录前查询是否需要图形验证码
 
 #define config_new_requestAvatars @"a03/queryAvatars" //修改头像时 请求头像列表
 
@@ -93,8 +88,6 @@
 #define config_changeLimitBonus  @"limitRed/modify" //修改限红
 #define config_new_queryByKeyList  @"a03/queryByKeyList" //获取体育竞猜广告图片  查询游戏平台platform AG TTG
 
-#define config_VIPPromotion  @"promo/a03/exclusive/privilege" //获取VIP私享会等级 deprecated
-
 #pragma mark 提现地址管理
 #define config_getRealNamePhone @"customer/modifyCustomerRealNamePhone" //修改手机和姓名
 #define config_createBank      @"account/createBank"    //添加银行卡号
@@ -106,18 +99,13 @@
 #define config_verifySmsCode   @"phone/verifySmsCode" //获取validateId
 #define config_modifyUserInfo  @"customer/modify" //绑定真实姓名
 #define config_getByCardBin    @"getByCardBin" //获取银行名称
-#define config_preLogin        @"customer/preLogin" //登录/注册前判断是否需要图形验证码
-
-#pragma mark 积分:deprecapted
-#define config_new_queryMyScore @"a03/integral/queryInfo" //查询我的积分
-#define config_new_exchangeScore @"a03/integral/exchange"  //兑换积分
 
 #pragma mark 洗码
 #define config_xmQueryXmpPlatform @"xm/queryXmpPlatformRequest"   //最新的查询洗码类型对应的厅列表
-#define config_xmCalcAmountV3     @"xm/calcAmountV3"   //查询洗码平台类型额度列表
-#define config_xmcreateRequest     @"xm/createRequest"//  创建洗码提案
+#define config_xmCalcAmountV3     @"xm/calcAmountV3"   // 查询洗码平台类型额度列表
+#define config_xmcreateRequest     @"xm/createRequest" // 创建洗码提案
 #define config_xmdeleteRequest     @"xm/deleteRequest" // 删除洗码记录
-#define config_xmCheckIsCanXm      @"a03/szsc/isxm"
+#define config_xmCheckIsCanXm      @"a03/szsc/isxm"    // 查询是否可以洗码
 
 #pragma mark 取款
 #define config_drawCreateRequest  @"withdraw/createRequest"   //取款 提现接口
@@ -126,11 +114,6 @@
 #define config_drawCancelRequest  @"withdraw/cancelRequest" // 取款 “等待状态”取消订单
 #define config_calculateSeparate  @"withdraw/calculator"   //计算CNY取款返利拆分
 #define config_getBalances       @"getBalances" //主账号查询子账号额度
-
-#pragma mark 小金库:deprecapted
-#define config_vault_yebInterestStatis @"yeb/yebInterestStatis" //小金库 过夜利息利息统计
-#define confit_vault_transferIn @"yeb/transferIn" //转入小金库 从本地余额
-#define config_vault_transferOut @"yeb/transferOut" //转出小金库 到本地余额
 
 #pragma mark 风采
 #define config_getArticels  @"a03/getArticles" //查询投注详情  电游投注详情用
