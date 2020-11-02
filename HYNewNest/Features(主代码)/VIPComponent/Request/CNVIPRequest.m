@@ -106,10 +106,14 @@
     param[@"flags"] = @1;
     param[@"defineFlag"] = @(type); // 至尊转盘3 累计身份4
     param[@"pageSize"] = @(200);
-    param[@"endDate"] = [[NSDate date] jk_formatYMD];
-    param[@"beginDate"] = [[NSDate jk_dateWithDaysBeforeNow:days] jk_formatYMD];
+    param[@"endDate"] = [self jk_formatYMD:[NSDate date]];
+    param[@"beginDate"] = [self jk_formatYMD:[NSDate jk_dateWithDaysBeforeNow:days]];
     
     [self POST:kGatewayExtraPath(activity_vipSxhReceiveAward) parameters:param completionHandler:handler];
+}
+
++ (NSString *)jk_formatYMD:(NSDate *)date {
+    return [NSString stringWithFormat:@"%02zd-%02zd-%02zd",[date jk_year],[date jk_month], [date jk_day]];
 }
 
 

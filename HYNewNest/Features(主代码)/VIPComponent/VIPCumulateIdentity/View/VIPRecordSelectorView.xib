@@ -91,7 +91,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="6BO-ZX-pHr">
                                                     <rect key="frame" x="0.0" y="0.0" width="354" height="40"/>
                                                     <subviews>
-                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Cp-NA-xA4" customClass="CNSelectBtn">
+                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Cp-NA-xA4" customClass="HYRechProcButton">
                                                             <rect key="frame" x="0.0" y="0.0" width="108" height="40"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <state key="normal" title="今天"/>
@@ -99,7 +99,7 @@
                                                                 <action selector="dayAction:" destination="-1" eventType="touchUpInside" id="Tym-hf-WXa"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wtk-tw-fOw" customClass="CNSelectBtn">
+                                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wtk-tw-fOw" customClass="HYRechProcButton">
                                                             <rect key="frame" x="123" y="0.0" width="108" height="40"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <state key="normal" title="3天"/>
@@ -107,7 +107,7 @@
                                                                 <action selector="dayAction:" destination="-1" eventType="touchUpInside" id="war-eB-dvC"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="psL-Nu-rkq" customClass="CNSelectBtn">
+                                                        <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="psL-Nu-rkq" customClass="HYRechProcButton">
                                                             <rect key="frame" x="246" y="0.0" width="108" height="40"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <state key="normal" title="7天"/>
@@ -123,7 +123,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="3dE-mb-wWt">
                                                     <rect key="frame" x="0.0" y="55" width="354" height="40"/>
                                                     <subviews>
-                                                        <button opaque="NO" tag="30" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S50-Lh-I2T" customClass="CNSelectBtn">
+                                                        <button opaque="NO" tag="30" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S50-Lh-I2T" customClass="HYRechProcButton">
                                                             <rect key="frame" x="0.0" y="0.0" width="108" height="40"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <state key="normal" title="1个月"/>
@@ -131,7 +131,7 @@
                                                                 <action selector="dayAction:" destination="-1" eventType="touchUpInside" id="YuT-ir-JWb"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" tag="90" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AL5-OE-z2Z" customClass="CNSelectBtn">
+                                                        <button opaque="NO" tag="90" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AL5-OE-z2Z" customClass="HYRechProcButton">
                                                             <rect key="frame" x="123" y="0.0" width="108" height="40"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <state key="normal" title="3个月"/>
@@ -139,7 +139,7 @@
                                                                 <action selector="dayAction:" destination="-1" eventType="touchUpInside" id="uze-Me-QQF"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" tag="180" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XpV-fz-u0p" customClass="CNSelectBtn">
+                                                        <button opaque="NO" tag="180" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XpV-fz-u0p" customClass="HYRechProcButton">
                                                             <rect key="frame" x="246" y="0.0" width="108" height="40"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <state key="normal" title="6个月"/>
@@ -161,7 +161,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="3dE-mb-wWt" secondAttribute="trailing" id="xiE-cD-hQu"/>
                                             </constraints>
                                         </stackView>
-                                        <button opaque="NO" tag="365" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLd-46-Eey" customClass="CNSelectBtn">
+                                        <button opaque="NO" tag="365" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLd-46-Eey" customClass="HYRechProcButton">
                                             <rect key="frame" x="0.0" y="144.5" width="106" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="3Wd-7k-Ija"/>
@@ -198,7 +198,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="FdW-I1-NzN">
                                             <rect key="frame" x="0.0" y="35.5" width="354" height="40"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B2R-7d-hBr" customClass="CNSelectBtn">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B2R-7d-hBr" customClass="HYRechProcButton">
                                                     <rect key="frame" x="0.0" y="0.0" width="169.5" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <state key="normal" title="至尊转盘"/>
@@ -206,7 +206,7 @@
                                                         <action selector="typeAction:" destination="-1" eventType="touchUpInside" id="Yfy-iQ-8hX"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2iv-c9-Flu" customClass="CNSelectBtn">
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2iv-c9-Flu" customClass="HYRechProcButton">
                                                     <rect key="frame" x="184.5" y="0.0" width="169.5" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <state key="normal" title="累计身份"/>

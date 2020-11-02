@@ -74,7 +74,6 @@
                                            day:_preDays
                                        handler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-            //TODO: 没数据
             self.awards = [VIPRewardAnocModel cn_parse:responseObj[@"result"]];
             [self.tableView reloadData];
         }

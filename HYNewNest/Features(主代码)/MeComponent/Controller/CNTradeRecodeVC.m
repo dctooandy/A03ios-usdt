@@ -90,7 +90,9 @@
 #pragma mark - ACTION
 
 - (IBAction)choseRecordType:(UIButton *)sender {
-    [CNRecordTypeSelectorView showSelectorWithSelcType:self.recoType dayParm:self.dayParm callBack:^(NSString * _Nonnull type, NSString * _Nonnull day) {
+    [CNRecordTypeSelectorView showSelectorWithSelcType:self.recoType
+                                               dayParm:self.dayParm
+                                              callBack:^(NSString * _Nonnull type, NSString * _Nonnull day) {
         self.typeLb.text = type;
         self.dayLb.text = day;
         if ([day isEqualToString:@"近3天"]) {

@@ -64,9 +64,8 @@
 }
 
 - (instancetype)commonInit {
-//    self = [super init];
     
-    self.backgroundColor = kHexColor(0x212137);
+//    self.backgroundColor = kHexColor(0x212137);
     self.titleLabel.font = [UIFont fontPFR15];
     
     UIColor *gcolor = [UIColor jk_gradientFromColor:kHexColor(0x19CECE) toColor:kHexColor(0x10B4DD) withHeight:40];

@@ -7,7 +7,6 @@
 //
 
 #import "CNBaseXibView.h"
-#import "CNSelectBtn.h"
 typedef NS_ENUM(NSInteger, VIPReceiveRecordType) {
     VIPReceiveRecordTypeZZZP = 0,
     VIPReceiveRecordTypeLJSF
@@ -15,9 +14,6 @@ typedef NS_ENUM(NSInteger, VIPReceiveRecordType) {
 
 NS_ASSUME_NONNULL_BEGIN
 @interface VIPRecordSelectorView : CNBaseXibView
-
-//@property (weak, nonatomic) IBOutlet CNSelectBtn *depostiBtn;
-//@property (weak, nonatomic) IBOutlet CNSelectBtn *withdrawBtn;
 
 + (void)showSelectorWithSelcType:(VIPReceiveRecordType)type
                          dayParm:(NSInteger)day

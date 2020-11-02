@@ -8,10 +8,11 @@
 
 #import "CNRecordTypeSelectorView.h"
 #import "CNTwoStatusBtn.h"
+#import "HYRechProcButton.h"
 
 @interface CNRecordTypeSelectorView ()
-@property (strong, nonatomic) IBOutletCollection(CNSelectBtn) NSArray *typeBtnArray;
-@property (strong, nonatomic) IBOutletCollection(CNSelectBtn) NSArray *dayBtnArray;
+@property (strong, nonatomic) IBOutletCollection(HYRechProcButton) NSArray *typeBtnArray;
+@property (strong, nonatomic) IBOutletCollection(HYRechProcButton) NSArray *dayBtnArray;
 
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *submitBtn;
 @property (nonatomic, copy) NSString *selectType;
