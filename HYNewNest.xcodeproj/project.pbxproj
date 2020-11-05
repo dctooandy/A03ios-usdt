@@ -180,6 +180,7 @@
 		3D31B9612542E97D005275BD /* HYTapHanImageCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B9602542E97D005275BD /* HYTapHanImageCodeView.m */; };
 		3D31B9632542EA64005275BD /* HYTapHanImageCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D31B9622542EA64005275BD /* HYTapHanImageCodeView.xib */; };
 		3D31B96525467131005275BD /* tingyunApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D31B96425467131005275BD /* tingyunApp.framework */; };
+		3D31B96A2553B65C005275BD /* HYBuyECoinCheckboxTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B9692553B65C005275BD /* HYBuyECoinCheckboxTag.m */; };
 		3D3A9B6424F90666003FB33C /* UIWindow+Motion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B6324F90666003FB33C /* UIWindow+Motion.m */; };
 		3D3A9B6A24FA3696003FB33C /* DXRadianLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B6824FA3696003FB33C /* DXRadianLayerView.m */; };
 		3D3A9B7324FA7DA5003FB33C /* CNVIPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B7224FA7DA5003FB33C /* CNVIPRequest.m */; };
@@ -1210,6 +1211,8 @@
 		3D31B9602542E97D005275BD /* HYTapHanImageCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYTapHanImageCodeView.m; sourceTree = "<group>"; };
 		3D31B9622542EA64005275BD /* HYTapHanImageCodeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYTapHanImageCodeView.xib; sourceTree = "<group>"; };
 		3D31B96425467131005275BD /* tingyunApp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = tingyunApp.framework; sourceTree = "<group>"; };
+		3D31B9682553B65C005275BD /* HYBuyECoinCheckboxTag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYBuyECoinCheckboxTag.h; sourceTree = "<group>"; };
+		3D31B9692553B65C005275BD /* HYBuyECoinCheckboxTag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYBuyECoinCheckboxTag.m; sourceTree = "<group>"; };
 		3D3A9B6224F90666003FB33C /* UIWindow+Motion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Motion.h"; sourceTree = "<group>"; };
 		3D3A9B6324F90666003FB33C /* UIWindow+Motion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Motion.m"; sourceTree = "<group>"; };
 		3D3A9B6824FA3696003FB33C /* DXRadianLayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXRadianLayerView.m; sourceTree = "<group>"; };
@@ -2911,6 +2914,8 @@
 			children = (
 				3D31B94225399CB7005275BD /* HYBuyECoinComfirmView.h */,
 				3D31B94325399CB7005275BD /* HYBuyECoinComfirmView.m */,
+				3D31B9682553B65C005275BD /* HYBuyECoinCheckboxTag.h */,
+				3D31B9692553B65C005275BD /* HYBuyECoinCheckboxTag.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5537,6 +5542,7 @@
 				E97054A424DBB5030007F845 /* SuspendBall.m in Sources */,
 				0487C96F24CE9A630013715A /* BRBaseView.m in Sources */,
 				E9B5497924CF1174002CE6EF /* VideoThumbnailManage.m in Sources */,
+				3D31B96A2553B65C005275BD /* HYBuyECoinCheckboxTag.m in Sources */,
 				048A168A24CA712700411819 /* CNServerView.m in Sources */,
 				3DA4F15124B30A090039123F /* UIImage+SGImageSize.m in Sources */,
 				040A08D924E114A900FBD534 /* OCBarrageGradientBackgroundColorDescriptor.m in Sources */,

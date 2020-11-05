@@ -17,9 +17,12 @@
 #import "ChargeManualMessgeView.h"
 #import "HYBuyECoinComfirmView.h"
 #import "CNTradeRecodeVC.h"
+#import "HYBuyECoinCheckboxTag.h"
 
-@interface HYBuyECoinGuideVC ()<LTSegmentedBarDelegate>
-
+@interface HYBuyECoinGuideVC ()<LTSegmentedBarDelegate, UIScrollViewDelegate>
+{
+    CGFloat _topTagsContainerHeight;
+}
 @property (nonatomic, assign) NSInteger curIdx;
 @property (weak, nonatomic) IBOutlet UIView *topBtnsBgView;
 @property (nonatomic, strong) LTSegmentedBar *segmentedBar;
@@ -146,14 +149,8 @@
     CGFloat maxX = leftSpace;
     CGFloat maxY = AD(5);
     for (NSString *tag in tags) {
-        UIButton *tagBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        HYBuyECoinCheckboxTag *tagBtn = [HYBuyECoinCheckboxTag buttonWithType:UIButtonTypeCustom];
         [tagBtn setTitle:tag forState:UIControlStateNormal];
-        [tagBtn setImage:[UIImage imageNamed:@"checked"] forState:UIControlStateNormal];
-        tagBtn.titleLabel.font = [UIFont fontPFR12];
-        [tagBtn setTitleColor:kHexColor(0xFFFFFF) forState:UIControlStateNormal];
-        tagBtn.userInteractionEnabled = NO;
-        tagBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 3, 0, -3);
-        tagBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -3, 0, 3);
         [tagBtn sizeToFit];
         //tagBtn.width + 30 -- 按钮宽
         if (maxX + tagBtn.width + 30 > (kScreenWidth - AD(12))) {
@@ -162,12 +159,10 @@
         }
         tagBtn.frame = CGRectMake(maxX, maxY, tagBtn.width + 30, 30);
         maxX = CGRectGetMaxX(tagBtn.frame) + btnSpace;
-        tagBtn.backgroundColor = kHexColor(0x161627);
-        tagBtn.layer.masksToBounds = YES;
-        tagBtn.layer.cornerRadius = 15;
         [_topTagsContainer addSubview:tagBtn];
     }
-    _topTagsContainHeightCons.constant = maxY + 30 + 15;
+    _topTagsContainerHeight = maxY + 30 + 15;
+    _topTagsContainHeightCons.constant = _topTagsContainerHeight;
 }
 
 - (void)setupContent {
@@ -233,9 +228,7 @@
     } failure:^{
         [CNHUB showError:@"下载指南失败 获取图片出错"];
     }];
-    
 
-    
 }
 
 //递归按序下载图片
@@ -337,9 +330,51 @@
 
 - (void)segmentBar:(LTSegmentedBar *)segmentedBar didSelectIndex:(NSInteger)toIndex fromIndex:(NSInteger)fromIndex
 {
+    [self.contentScrollView setContentOffset:CGPointZero animated:YES];
+    [self handleTopTagsContainerStatusHide:NO];
     self.curIdx = toIndex;
 }
 
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    if (scrollView.jk_ScrollDirection == JKScrollDirectionUp) {
+        MyLog(@"UP UP UP");
+        if (scrollView.contentOffset.y < 300) {
+            [self handleTopTagsContainerStatusHide:NO];
+        }
+    } else {
+        MyLog(@"DOWN DOWN");
+        [self handleTopTagsContainerStatusHide:YES];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if (scrollView.contentOffset.y < 300) {
+        [self handleTopTagsContainerStatusHide:NO];
+    } else {
+        [self handleTopTagsContainerStatusHide:YES];
+    }
+    
+}
+
+- (void)handleTopTagsContainerStatusHide:(BOOL)isHide {
+    if (isHide) {
+        self.topTagsContainHeightCons.constant = 0;
+        [UIView animateWithDuration:0.25 animations:^{
+            [self.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            self.topTagsContainer.hidden = YES;
+        }];
+    } else {
+        self.topTagsContainHeightCons.constant = _topTagsContainerHeight;
+        self.topTagsContainer.hidden = NO;
+        [UIView animateWithDuration:0.25 animations:^{
+            [self.view layoutIfNeeded];
+        }];
+    }
+}
 
 #pragma mark - Request
 

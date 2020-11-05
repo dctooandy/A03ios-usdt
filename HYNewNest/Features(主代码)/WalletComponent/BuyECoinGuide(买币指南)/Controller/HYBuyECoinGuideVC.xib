@@ -40,6 +40,9 @@
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWm-j0-Qfp">
                     <rect key="frame" x="10" y="192" width="394" height="704"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="1ZL-xo-a8e"/>
+                    </connections>
                 </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ofa-O1-gGc" customClass="CNTwoStatusBtn">
                     <rect key="frame" x="15" y="782" width="167" height="50"/>
