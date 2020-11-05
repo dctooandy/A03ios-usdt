@@ -28,10 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /// 查询USDT收银台 （买卖币跳转）
-/// @param transferType 0：买币 ，1：卖币，不传默认买
-/// @param handler 回调
-+ (void)queryUSDTCounterTransferType:(NSInteger)transferType
-                             Handler:(HandlerBlock)handler;
++ (void)queryUSDTCounterHandler:(HandlerBlock)handler;
 
 
 #pragma mark - 查询充值渠道信息（选中充值渠道后调用）

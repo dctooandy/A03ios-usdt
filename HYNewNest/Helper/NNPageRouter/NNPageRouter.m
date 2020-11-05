@@ -42,7 +42,7 @@
     NSInteger depositLevel = [CNUserManager shareManager].userDetail.depositLevel;
     MyLog(@"****** 当前用户信用等级 == %ld", depositLevel);
     if (depositLevel > 1 || depositLevel == -15 || depositLevel == -13) {
-        [NNPageRouter openExchangeElecCurrencyPageIsSell:NO];
+        [NNPageRouter openExchangeElecCurrencyPage];
     } else {
         BOOL notshowBitBaseFlag = NO;
         if (depositLevel == -1 || depositLevel == -11) {
@@ -96,8 +96,8 @@
     }
 }
 
-+ (void)openExchangeElecCurrencyPageIsSell:(BOOL)isSell {
-    [CNRechargeRequest queryUSDTCounterTransferType:isSell?1:0 Handler:^(id responseObj, NSString *errorMsg) {
++ (void)openExchangeElecCurrencyPage {
+    [CNRechargeRequest queryUSDTCounterHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             NSString *urlStr = responseObj[@"payUrl"];
             if (!KIsEmptyString(urlStr)) {
@@ -107,7 +107,7 @@
                         [CNHUB showSuccess:@"请在外部浏览器查看"];
                     }];
                 } else {
-                    [CNHUB showError:@"PayURL错误 打开失败"];
+                    [CNHUB showError:@"PayURL错误 请联系客服"];
                 }
             }
         }

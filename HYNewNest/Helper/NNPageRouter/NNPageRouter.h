@@ -41,10 +41,8 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 /// 去【买】币 (包含了一键买币)
 + (void)jump2BuyECoin;
 
-
 /// 外部跳转Bitbase ：一键【买】【卖】币
-/// @param isSell 是否卖币
-+ (void)openExchangeElecCurrencyPageIsSell:(BOOL)isSell;
++ (void)openExchangeElecCurrencyPage;
 
 
 /// 跳转到客服

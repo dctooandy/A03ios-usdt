@@ -159,7 +159,7 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
             
         } else if ([type isEqualToString:@"买币"]) {
             [self dismissSelf:^{
-                [NNPageRouter openExchangeElecCurrencyPageIsSell:NO];
+                [NNPageRouter openExchangeElecCurrencyPage];
             }];
             
         } else if ([type isEqualToString:@"提币"]) {
@@ -171,7 +171,7 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
             [HYWideOneBtnAlertView showWithTitle:@"卖币跳转" content:@"在交易所卖出数字货币，买家会将金额支付到您的银行卡，方便快捷。" comfirmText:@"我知道了，帮我跳转" comfirmHandler:^{
                 
                 [self dismissSelf:^{
-                    [NNPageRouter openExchangeElecCurrencyPageIsSell:YES];
+                    [NNPageRouter openExchangeElecCurrencyPage];
                 }];
             }];
         }
@@ -179,17 +179,5 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
     return cell;
 }
 
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

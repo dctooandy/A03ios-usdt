@@ -50,11 +50,9 @@
     [self POST:kGatewayPath(config_queryDepositBankInfos) parameters:param completionHandler:handler];
 }
 
-+ (void)queryUSDTCounterTransferType:(NSInteger)transferType
-                             Handler:(HandlerBlock)handler {
++ (void)queryUSDTCounterHandler:(HandlerBlock)handler {
     
     NSMutableDictionary *parm = [kNetworkMgr baseParam];
-//    parm[@"transferType"] = @(transferType);
     parm[@"transferType"] = @2;
     
     [self POST:kGatewayPath(config_queryDepositCounter) parameters:parm completionHandler:handler];

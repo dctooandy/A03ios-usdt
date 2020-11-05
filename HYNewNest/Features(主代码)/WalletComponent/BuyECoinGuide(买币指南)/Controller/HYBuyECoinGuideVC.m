@@ -201,8 +201,9 @@
     NSMutableArray *imgFullURLs = @[].mutableCopy;
     for (NSString *imgPath in imgURLs) {
         NSString *imgFullPath = [model.imgRootPath_h5 stringByAppendingPathComponent:imgPath];
-        NSString *URLStr = [imgFullPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        [imgFullURLs addObject:URLStr];
+//        NSString *encodePath = [imgFullPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *encodePath = [imgFullPath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"`#%^{}\"[]|\\<> "].invertedSet];
+        [imgFullURLs addObject:encodePath];
     }
     
     [self downloadImage:imgFullURLs arrayImages:imgs currentIndex:0 success:^(NSArray<NSData *> *resultImages) {
@@ -317,11 +318,17 @@
 
 - (IBAction)didTapRegisterBtn:(id)sender {
     BuyECoinModel *model = self.datas[_curIdx];
-    NSURL *url = [NSURL URLWithString:model.registerUrl];
-    if ([[UIApplication sharedApplication] canOpenURL:url]) {
-        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
-            [CNHUB showSuccess:@"请在外部浏览器查看"];
-        }];
+    // bitbase + 去注册 == 就走外部跳转
+    if ([model.name caseInsensitiveCompare:@"bitbase"] == NSOrderedSame && [model.registerText isEqualToString:@"去注册"]) {
+        [CNHUB showSuccess:@"请在外部浏览器查看"];
+        [NNPageRouter openExchangeElecCurrencyPage];
+    } else {
+        NSURL *url = [NSURL URLWithString:model.registerUrl];
+        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+            [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+                [CNHUB showSuccess:@"请在外部浏览器查看"];
+            }];
+        }
     }
 }
 
