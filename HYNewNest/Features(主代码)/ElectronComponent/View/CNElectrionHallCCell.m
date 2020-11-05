@@ -36,7 +36,7 @@
     
     self.platformLb.text = [NSString stringWithFormat:@" %@ ", model.platformName];
     self.lineLb.text = [NSString stringWithFormat:@" %@线 ", model.payLine];
-    self.discountLb.hidden = !model.hotFlag;
+    self.discountLb.hidden = !model.preferenceFlag;
     [self setNeedsLayout];
 }
 

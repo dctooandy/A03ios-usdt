@@ -26,7 +26,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gamepic-1" translatesAutoresizingMaskIntoConstraints="NO" id="zZq-DV-Jxq">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="zZq-DV-Jxq">
                                 <rect key="frame" x="0.0" y="0.0" width="207" height="116"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zZq-DV-Jxq" secondAttribute="height" multiplier="150:84" id="1HR-Hc-aT2"/>
@@ -160,7 +160,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="gamepic-1" width="165" height="92"/>
+        <image name="1" width="150" height="84"/>
         <image name="rd" width="16" height="16"/>
         <image name="sc" width="22" height="22"/>
         <image name="sc_s" width="22" height="22"/>

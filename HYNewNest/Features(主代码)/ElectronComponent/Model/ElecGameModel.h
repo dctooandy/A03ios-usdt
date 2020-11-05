@@ -49,7 +49,7 @@
 @property(nonatomic,assign) BOOL tryFlag;
 @property(nonatomic,copy) NSString *gameHotValue; //旧热度
 @property(nonatomic,copy) NSString *popularity; //热度
-@property(nonatomic,assign) BOOL hotFlag;//特惠?
+@property(nonatomic,assign) BOOL preferenceFlag;//特惠
 @end
 
 
