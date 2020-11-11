@@ -122,6 +122,8 @@ typedef NS_ENUM(NSUInteger, CNSMSCodeType) {
 /// 账号注册
 + (void)accountRegisterUserName:(NSString *)loginName
                        password:(NSString *)password
+                        captcha:(NSString *)captcha
+                      captchaId:(NSString *)captchaId
               completionHandler:(HandlerBlock)completionHandler;
 
 

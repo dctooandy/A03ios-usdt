@@ -6,12 +6,12 @@
 //  Copyright © 2019 kunlun. All rights reserved.
 //
 
-#import "BaseModel.h"
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 #define PublicKey  @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDSu2AZPdT2Fqpqxctx3EbnRuuYdBxFZDYG7MASIgw/DFl3P9FAp7S9WaQjdM1NmgBDgvfUWx1xj72LNz4EP4Euh9EESKceNCeoE4M8ZP4ENUQX0nDMbpmIG3/JCI8B5Iv2FKj2q0gGbE0WsLdrYDzFXTYbZKRJSbMMjHT3HtKD/wIDAQAB"
-@interface HYEncryptor : BaseModel
+@interface HYEncryptor : NSObject
 
 // return base64 encoded string
 + (NSString *)encryptString:(NSString *)str publicKey:(NSString *)pubKey;

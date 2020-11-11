@@ -48,6 +48,10 @@
 /// 登录是否需要汉字图形验证码
 @property (assign, nonatomic) BOOL needHanImageCode;
 
+/// 注册文字验证码
+@property (weak, nonatomic) IBOutlet HYTapHanImageCodeView *regHanImgCodeView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *regHanImgCodeViewH;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topMarginConst0;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topMarginConst;
 
@@ -90,6 +94,7 @@
     self.needImageCode = NO;
     self.needHanImageCode = NO;
     self.hanImgCodeView.delegate = self;
+    self.regHanImgCodeView.delegate = self;
     [self preLoginAction];
 }
 
@@ -149,11 +154,17 @@
 
 /// 去登录页面
 - (IBAction)goToLogin:(UIButton *)sender {
+    if (self.needHanImageCode) {
+        self.hanImgCodeViewH.constant = 95;
+        [self.hanImgCodeView getImageCode];
+    }
     [self.switchSV setContentOffset:CGPointMake(0, 0)];
 }
 
 /// 去注册页面
 - (IBAction)gotoRegister:(UIButton *)sender {
+    self.regHanImgCodeViewH.constant = 95;
+    [self.regHanImgCodeView getImageCode];
     [self.switchSV setContentOffset:CGPointMake(kScreenWidth, 0)];
 }
 
@@ -294,8 +305,14 @@
 
 /// 汉字验证码成功
 - (void)validationDidSuccess {
-    self.hanImgCodeViewH.constant = 47;
-    [self.hanImgCodeView showSuccess];
+    if (self.switchSV.contentOffset.x > 0) {
+        self.regHanImgCodeViewH.constant = 47;
+        [self.regHanImgCodeView showSuccess];
+    } else {
+        self.hanImgCodeViewH.constant = 47;
+        [self.hanImgCodeView showSuccess];
+    }
+
 }
 
 
@@ -307,7 +324,18 @@
         return;
     }
     
-    [CNLoginRequest accountRegisterUserName:self.registerAccountView.account password:self.registerCodeView.code completionHandler:^(id responseObj, NSString *errorMsg) {
+    if (!self.regHanImgCodeView.correct) {
+        [CNHUB showError:@"请按正确顺序点击图片中的文字"];
+        return;
+    }
+    NSString * captcha = self.regHanImgCodeView.ticket;
+    NSString * captchaId = self.regHanImgCodeView.imageCodeId;
+    
+    [CNLoginRequest accountRegisterUserName:self.registerAccountView.account
+                                   password:self.registerCodeView.code
+                                    captcha:captcha
+                                  captchaId:captchaId
+                          completionHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
             [CNHUB showSuccess:@"注册成功"];
             CNBindPhoneVC *vc = [CNBindPhoneVC new];

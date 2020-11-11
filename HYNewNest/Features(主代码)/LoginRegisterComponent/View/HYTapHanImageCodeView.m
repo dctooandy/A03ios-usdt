@@ -27,7 +27,7 @@
     self = [super initWithCoder:coder];
     
     self.layer.masksToBounds = YES;
-    self.layer.cornerRadius = AD(10);;
+    self.layer.cornerRadius = AD(10);
     
     return self;
 }
@@ -126,6 +126,9 @@
     whiteView.frame = CGRectMake(0, 0, 300, 47);
     whiteView.tag = 999;
     whiteView.backgroundColor = [UIColor whiteColor];
+    whiteView.layer.cornerRadius = AD(10);
+    whiteView.layer.borderWidth = 1;
+    whiteView.layer.borderColor = kHexColor(0x5ACFBD).CGColor;
     
     UILabel *lblSuc = [UILabel new];
     lblSuc.text = @"验证成功";

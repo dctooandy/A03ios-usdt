@@ -159,11 +159,15 @@
 
 + (void)accountRegisterUserName:(NSString *)loginName
                        password:(NSString *)password
+                        captcha:(NSString *)captcha
+                      captchaId:(NSString *)captchaId
                completionHandler:(HandlerBlock)completionHandler {
     
     NSMutableDictionary *paras = [kNetworkMgr baseParam];
     paras[@"loginName"] = loginName;
     paras[@"password"] = [CNEncrypt encryptString:password];
+    paras[@"captchaId"] = captchaId;
+    paras[@"captcha"] = captcha;
 
     [self POST:kGatewayPath(config_registUserName) parameters:paras completionHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
