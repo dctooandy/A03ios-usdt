@@ -341,6 +341,9 @@
             CNBindPhoneVC *vc = [CNBindPhoneVC new];
             vc.bindType = CNSMSCodeTypeRegister;
             [self.navigationController pushViewController:vc animated:YES];
+        } else {
+            [self.regHanImgCodeView getImageCode];
+            self.regHanImgCodeViewH.constant = 95;
         }
     }];
 }

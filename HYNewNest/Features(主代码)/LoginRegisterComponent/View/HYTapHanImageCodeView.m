@@ -112,7 +112,7 @@
             } else {
                 self.correct = NO;
                 [self getImageCode];
-                [CNHUB showError:@"校验失败 您不是机器人吧?"];
+                [CNHUB showError:@"请点击正确的汉字"];
             }
         }
     }];
