@@ -45,15 +45,15 @@
             </constraints>
             <point key="canvasLocation" x="139" y="153"/>
         </view>
-        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="AQP-nK-WZJ">
+        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" showsHorizontalScrollIndicator="NO" id="AQP-nK-WZJ">
             <rect key="frame" x="0.0" y="0.0" width="765" height="720"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mfr-Rv-odZ">
-                    <rect key="frame" x="0.0" y="0.0" width="765" height="700"/>
+                    <rect key="frame" x="0.0" y="0.0" width="765" height="800"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZzA-Aa-cAB" userLabel="Login">
-                            <rect key="frame" x="0.0" y="0.0" width="382.5" height="700"/>
+                            <rect key="frame" x="0.0" y="0.0" width="382.5" height="800"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FU8-Ow-S83">
                                     <rect key="frame" x="141.5" y="35" width="100" height="130"/>
@@ -203,7 +203,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2C-Tp-I0L" userLabel="Register">
-                            <rect key="frame" x="382.5" y="0.0" width="382.5" height="700"/>
+                            <rect key="frame" x="382.5" y="0.0" width="382.5" height="800"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAo-ez-34N">
                                     <rect key="frame" x="30" y="52" width="61" height="36"/>
@@ -324,6 +324,7 @@
                                 <constraint firstAttribute="trailing" secondItem="T7e-vY-Z5E" secondAttribute="trailing" constant="26" id="PXp-Vk-JAQ"/>
                                 <constraint firstItem="B9t-YC-g4T" firstAttribute="top" secondItem="TKc-Xy-59y" secondAttribute="bottom" constant="40" id="PZq-hK-oY8"/>
                                 <constraint firstItem="h6o-d8-huP" firstAttribute="centerX" secondItem="v2C-Tp-I0L" secondAttribute="centerX" id="RyG-wB-fAW"/>
+                                <constraint firstAttribute="height" constant="800" id="S6e-fj-ZcB"/>
                                 <constraint firstItem="B9t-YC-g4T" firstAttribute="leading" secondItem="v2C-Tp-I0L" secondAttribute="leading" constant="30" id="aJW-W9-uGf"/>
                                 <constraint firstAttribute="trailing" secondItem="z3O-uN-pkb" secondAttribute="trailing" constant="30" id="bKz-7X-kCr"/>
                                 <constraint firstItem="TKc-Xy-59y" firstAttribute="top" secondItem="z3O-uN-pkb" secondAttribute="bottom" constant="25" id="cNV-Aj-AZv"/>
@@ -349,7 +350,6 @@
                         <constraint firstItem="ZzA-Aa-cAB" firstAttribute="leading" secondItem="Mfr-Rv-odZ" secondAttribute="leading" id="QSv-se-Zil"/>
                         <constraint firstAttribute="bottom" secondItem="v2C-Tp-I0L" secondAttribute="bottom" id="ZAO-Io-rdM"/>
                         <constraint firstAttribute="trailing" secondItem="v2C-Tp-I0L" secondAttribute="trailing" id="ezA-La-9hi"/>
-                        <constraint firstAttribute="height" constant="700" id="jjJ-DN-oSf"/>
                     </constraints>
                 </view>
             </subviews>

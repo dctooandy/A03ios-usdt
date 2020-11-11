@@ -23,8 +23,10 @@
 #import "SmsCodeModel.h"
 
 
-@interface CNLoginRegisterVC () <CNAccountInputViewDelegate, CNCodeInputViewDelegate, HYTapHanImgCodeViewDelegate>
+@interface CNLoginRegisterVC () <CNAccountInputViewDelegate, CNCodeInputViewDelegate, HYTapHanImgCodeViewDelegate, UIScrollViewDelegate>
 
+@property (nonatomic, assign) BOOL isLeftRightScroll;
+@property (nonatomic, assign) CGPoint oldContentOffset;
 @property (strong, nonatomic) IBOutlet UIScrollView *switchSV;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentWidth;
 
@@ -108,9 +110,13 @@
     self.reRegisterCodeView.codeType = CNCodeTypeAccountRegister;
     [self.reRegisterCodeView setPlaceholder:@"再次输入密码"];
     self.switchSV.frame = UIScreen.mainScreen.bounds;
+    // 限制单次滚动只能在一个方向
+    self.switchSV.directionalLockEnabled = YES;
+    self.switchSV.delegate = self;
     self.contentWidth.constant = kScreenWidth * 2;
     if (_isRegister) {
         [self gotoRegister:nil];
+        [self.regHanImgCodeView getImageCode];//direct push into register page need this
     }
 }
 
@@ -154,18 +160,12 @@
 
 /// 去登录页面
 - (IBAction)goToLogin:(UIButton *)sender {
-    if (self.needHanImageCode) {
-        self.hanImgCodeViewH.constant = 95;
-        [self.hanImgCodeView getImageCode];
-    }
-    [self.switchSV setContentOffset:CGPointMake(0, 0)];
+    [self.switchSV setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 /// 去注册页面
 - (IBAction)gotoRegister:(UIButton *)sender {
-    self.regHanImgCodeViewH.constant = 95;
-    [self.regHanImgCodeView getImageCode];
-    [self.switchSV setContentOffset:CGPointMake(kScreenWidth, 0)];
+    [self.switchSV setContentOffset:CGPointMake(kScreenWidth, 0) animated:YES];
 }
 
 
@@ -345,7 +345,65 @@
     }];
 }
 
- 
+/// 限制只能垂直滚动不能左右滚动
+#pragma mark - UIScrollViewDelegate
+- (void) scrollViewWillBeginDragging: (UIScrollView *) scrollView
+{
+    self.oldContentOffset = scrollView.contentOffset;
+}
+
+- (void) scrollViewDidScroll: (UIScrollView *) scrollView
+{
+    // 此时是左右滑动
+    if (scrollView.contentOffset.x != self.oldContentOffset.x) {
+        self.isLeftRightScroll = YES; // 标记是左右滑动 -》刷新对应验证码
+        scrollView.pagingEnabled = YES;
+        scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x,
+        0);
+    }
+    // 此时是上下滑动
+    else {
+        scrollView.pagingEnabled = NO;
+    }
+}
+
+- (void) scrollViewDidEndDecelerating: (UIScrollView *) scrollView
+{
+    self.oldContentOffset = scrollView.contentOffset;
+    
+    if (self.isLeftRightScroll) {
+        [self updateHanCodesStatus];
+    }
+    
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    self.oldContentOffset = scrollView.contentOffset;
+    
+    if (self.isLeftRightScroll) {
+         [self updateHanCodesStatus];
+    }
+}
+
+- (void)updateHanCodesStatus {
+    self.isLeftRightScroll = NO;
+    if (self.switchSV.contentOffset.x > 200) { // zhuceye
+        self.regHanImgCodeViewH.constant = 95;
+        [self.regHanImgCodeView getImageCode];
+    } else {
+        if (self.needHanImageCode) {
+            self.hanImgCodeViewH.constant = 95;
+            [self.hanImgCodeView getImageCode];
+        } else if (self.needImageCode) {
+            self.loginImageCodeView.hidden = NO;
+            self.loginImageCodeViewH.constant = 75;
+            [self.loginImageCodeView getImageCode];
+        }
+    }
+    
+}
+
+
 #pragma mark - Setter & Getter
 
 - (void)setNeedImageCode:(BOOL)needImageCode {
