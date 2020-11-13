@@ -11,24 +11,13 @@
 #import <IQKeyboardManager/IQKeyboardManager.h>
 #import <IVLoganAnalysis/IVLAManager.h>
 
-#import <GTSDK/GeTuiSdk.h>
-#import "PushNotificationCenter.h"
-#import "HeartSocketManager.h"
 #import "CNPushRequest.h"
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 #import <UserNotifications/UserNotifications.h>
 #endif
-/// 个推开发者网站中申请App时，注册的AppId、AppKey、AppSecret iOS集成文档 http://docs.getui.com/getui/mobile/ios/xcode/
-#define kGtAppId           @"TmoECTk0VCAPkK9XzZldf5"
-#define kGtAppKey          @"ddJKfPIuo59eh9OTZZuod3"
-#define kGtAppSecret       @"w1ZtcruT6F8B3iSiKTYEg4"
 
-@interface AppDelegate () <GeTuiSdkDelegate, UNUserNotificationCenterDelegate>
-/** YES 点击通知栏启动app的推送消息, NO 相反 */
-@property(nonatomic,assign) BOOL isLaunchPush;
-/** 推送的消息 */
-@property(nonatomic,strong) NSDictionary *pushUserInfo;
+@interface AppDelegate () <UNUserNotificationCenterDelegate>
 
 @end
 
@@ -63,8 +52,6 @@
     
     [self setupKeyboard];
     
-    //通过个推平台分配的appId、 appKey 、appSecret 启动SDK，注：该方法需要在主线程中调用
-    [GeTuiSdk startSdkWithAppId:kGtAppId appKey:kGtAppKey appSecret:kGtAppSecret delegate:self];
     // 注册 APNs
     [self registerRemoteNotification];
     
@@ -88,12 +75,10 @@
         self.token = token;
     }
 
-//#ifdef DEBUG
-//    [kKeywindow jk_makeToast:[NSString stringWithFormat:@"===didRegisterRemoteNotifications===\ncustomerId:%@\ndeviceToken:%@",[CNUserManager shareManager].userInfo.customerId, self.token] duration:5 position:JKToastPositionBottom];
-//#endif
-    
-    [GeTuiSdk registerDeviceTokenData:deviceToken];
-    
+#ifdef DEBUG
+    [kKeywindow jk_makeToast:[NSString stringWithFormat:@"===didRegisterRemoteNotifications===\ncustomerId:%@\ndeviceToken:%@",[CNUserManager shareManager].userInfo.customerId, self.token] duration:10 position:JKToastPositionBottom];
+#endif
+        
     // 推送相关
     [CNPushRequest GetUDIDHandler:nil];
     [CNPushRequest GTInterfaceHandler:nil];
@@ -102,13 +87,11 @@
 
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    if (!self.isLaunchPush) {
-        [RecivePushInfoCenter receivedNotificationUserInfoWithUserInfo:userInfo isLaunching:self.isLaunchPush];
-    }
     
+#ifdef DEBUG
+    [kKeywindow jk_makeToast:[NSString stringWithFormat:@">>>[Receive RemoteNotification - Background Fetch]:\n%@", userInfo] duration:10 position:JKToastPositionCenter];
+#endif
     NSLog(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n",userInfo);
-    // 将收到的APNs信息传给个推统计
-    [GeTuiSdk handleRemoteNotification:userInfo];
     
     completionHandler(UIBackgroundFetchResultNewData);
 }
@@ -118,39 +101,6 @@
 }
 
 
-#pragma mark - GeTuiSdkDelegate
-
-/** SDK启动成功返回cid */
-- (void)GeTuiSdkDidRegisterClient:(NSString *)clientId {
-    //个推SDK已注册，返回clientId
-    NSLog(@"\n>>>[GeTuiSdk RegisterClient]:%@\n\n", clientId);
-}
-
-/** SDK收到透传消息回调 */
-- (void)GeTuiSdkDidReceivePayloadData:(NSData *)payloadData andTaskId:(NSString *)taskId andMsgId:(NSString *)msgId andOffLine:(BOOL)offLine fromGtAppId:(NSString *)appId {
-    //收到个推消息
-    NSString *payloadMsg = nil;
-    if (payloadData) {
-        payloadMsg = [[NSString alloc] initWithBytes:payloadData.bytes length:payloadData.length encoding:NSUTF8StringEncoding];
-    }
-    
-    NSString *msg = [NSString stringWithFormat:@"taskId=%@,messageId:%@,payloadMsg:%@%@",taskId,msgId, payloadMsg,offLine ? @"<离线消息>" : @""];
-    NSLog(@"\n>>>[GeTuiSdk ReceivePayload]:%@\n\n", msg);
-}
-
-- (void)GeTuiSdkDidAliasAction:(NSString *)action result:(BOOL)isSuccess sequenceNum:(NSString *)aSn error:(NSError *)aError{
-    NSLog(@"--zq--function- %s,isSuccess :%@ ,sequenceNum is :%@",__func__,isSuccess?@"yes":@"no",aSn);
-}
-
-
-- (void)checkNeedLaunchPush {
-    // 如果通知栏点击消息启动app，切换到主tabbar后再跳转到推送的页面
-    if (self.isLaunchPush && self.pushUserInfo) {
-        [RecivePushInfoCenter receivedNotificationUserInfoWithUserInfo:self.pushUserInfo isLaunching:YES];
-        self.isLaunchPush = NO;
-        self.pushUserInfo = nil;
-    }
-}
 
 
 #pragma mark - Customer

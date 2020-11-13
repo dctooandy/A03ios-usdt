@@ -21,9 +21,8 @@ target 'HYNewNest' do
   pod 'SJVideoPlayer'
   pod 'JKCategories'
   # 个推
-  pod 'GTSDK'
+#  pod 'GTSDK'
   pod 'CocoaAsyncSocket'
-  # pod 'Bugly'
   
   # 网络模块
   pod 'IVNetworkLibrary2.0',:git =>'http://10.66.72.115/mobile-iOS-Library/IVNetworkLibrary2.0.git'
