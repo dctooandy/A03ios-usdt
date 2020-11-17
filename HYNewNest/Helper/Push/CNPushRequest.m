@@ -25,7 +25,7 @@
         if (KIsEmptyString(errorMsg)) {
             times = 0;
 #ifdef DEBUG
-        [kKeywindow jk_makeToast:[NSString stringWithFormat:@"UDID接口参数:%@\nresponseObject==%@\nerror==%@",param ,responseObj, errorMsg] duration:5 position:JKToastPositionTop];
+        [kKeywindow jk_makeToast:[NSString stringWithFormat:@"UDID接口参数:%@\nresponseObject==%@\nerror==%@",param ,responseObj, errorMsg] duration:8 position:JKToastPositionTop];
 #endif
             if (completionHandler) {
                 completionHandler(responseObj, errorMsg);
@@ -51,13 +51,25 @@
     __block NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"appId"] = [IVHttpManager shareManager].appId;//A03DS02
     param[@"bundleId"] = [[NSBundle mainBundle] bundleIdentifier];//传从签名后的
-    param[@"deviceToken"] = [kAppDelegate token];//deviceToken
     param[@"customerId"] = [CNUserManager shareManager].userInfo.customerId;
+    if ([kAppDelegate token].length > 0) {
+        param[@"deviceToken"] = [kAppDelegate token];//deviceToken
+    } else {
+#ifdef DEBUG
+        [kKeywindow jk_makeToast:[NSString stringWithFormat:@"【超签参数校验失败】缺少参数：“deviceToken”：%@",[kAppDelegate token]] duration:5 position:JKToastPositionCenter];
+#endif
+        return;
+    }
     
     IVOtherInfoModel *model = [[IVOtherInfoModel alloc]init];
     //[GTMBase64 encodeBase64String:@"ozog74@163.com"]
     if (model.developer.length > 0) {  // !!!:  otherInfo.json
        [param setObject:model.developer forKey:@"apnsAccount"];
+    } else {
+#ifdef DEBUG
+        [kKeywindow jk_makeToast:@"【超签参数校验失败】缺少参数：“apnsAccount”, 检查超级签名流程是否正确 或者 “otherInfo.json”文件是否完整" duration:5 position:JKToastPositionCenter];
+        return;
+#endif
     }
 
     // kGatewayPath(@"ips/ipsSuperSignSend")
@@ -66,7 +78,7 @@
         if (KIsEmptyString(errorMsg)) {
             times = 0;
 #ifdef DEBUG
-        [kKeywindow jk_makeToast:[NSString stringWithFormat:@"超签参数:%@\n超签responseObject==%@\n超签error==%@",param ,responseObj, errorMsg] duration:5 position:JKToastPositionCenter];
+        [kKeywindow jk_makeToast:[NSString stringWithFormat:@"超签参数:%@\n超签responseObject==%@\n超签error==%@",param ,responseObj, errorMsg] duration:8 position:JKToastPositionCenter];
 #endif
             if (completionHandler) {
                 completionHandler(responseObj, errorMsg);

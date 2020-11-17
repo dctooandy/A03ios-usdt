@@ -55,11 +55,20 @@
     // 注册 APNs
     [self registerRemoteNotification];
     
+    //这个是应用未启动但是通过点击通知的横幅来启动应用的时候
+    NSDictionary *userInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (userInfo != nil) {
+        //如果有值，说明是通过远程推送来启动的
+        [self handleRemoteNotification:userInfo];
+    }
+    
     return YES;
 }
 
 
 #pragma mark - 推送回调
+
+/// 推送注册成功
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     if (@available(iOS 13, *)){
@@ -76,28 +85,34 @@
     }
 
 #ifdef DEBUG
-    [kKeywindow jk_makeToast:[NSString stringWithFormat:@"===didRegisterRemoteNotifications===\ncustomerId:%@\ndeviceToken:%@",[CNUserManager shareManager].userInfo.customerId, self.token] duration:10 position:JKToastPositionBottom];
+    [kKeywindow jk_makeToast:[NSString stringWithFormat:@"===didRegisterRemoteNotifications===\ndeviceToken:%@", self.token] duration:8 position:JKToastPositionBottom];
 #endif
         
-    // 推送相关
-    [CNPushRequest GetUDIDHandler:nil];
+    // ips透传
     [CNPushRequest GTInterfaceHandler:nil];
+    
     
 }
 
-
+// 接收到推送
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    
 #ifdef DEBUG
-    [kKeywindow jk_makeToast:[NSString stringWithFormat:@">>>[Receive RemoteNotification - Background Fetch]:\n%@", userInfo] duration:10 position:JKToastPositionCenter];
+    [kKeywindow jk_makeToast:[NSString stringWithFormat:@">>>[Receive RemoteNotification - Background Fetch]:\n%@", userInfo] duration:8 position:JKToastPositionCenter];
 #endif
     NSLog(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n",userInfo);
+    if (userInfo != nil) {
+        [self handleRemoteNotification:userInfo];
+    }
     
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
+// 推送注册失败
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     MyLog(@"didFailToRegisterForRemoteNotificationsWithError error:%@",error);
+#ifdef DEBUG
+    [kKeywindow jk_makeToast:[NSString stringWithFormat:@"===didFailToRegisterForRemoteNotifications===\nError:%@", error] duration:8 position:JKToastPositionBottom];
+#endif
 }
 
 
@@ -142,13 +157,34 @@
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     center.delegate = self;
     [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionCarPlay) completionHandler:^(BOOL granted, NSError *_Nullable error) {
-        if (!error) {
-            NSLog(@"request authorization succeeded!");
+        if (granted && !error) {
+            [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+                if (settings.authorizationStatus == UNAuthorizationStatusAuthorized){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [[UIApplication sharedApplication] registerForRemoteNotifications];
+#ifdef DEBUG
+                        [kKeywindow jk_makeToast:@"Request authorization succeeded!" duration:5 position:JKToastPositionCenter];
+#endif
+                    });
+                }
+            }];
         }
     }];
     
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
+}
 
+- (void)handleRemoteNotification:(NSDictionary *)userInfo {
+    if (userInfo) {
+        if ([userInfo.allKeys containsObject:@"payload"] && [userInfo.allKeys containsObject:@"aps"]) {
+            NSString *payload = userInfo[@"payload"];
+            NSDictionary *dict = [payload jk_dictionaryValue];
+            NSString *pageTitle = userInfo[@"aps"][@"alert"][@"title"];
+            if (dict) {
+                NSString *url = dict[@"jumpUrl"];
+                [NNPageRouter jump2HTMLWithStrURL:url title:pageTitle];
+            }
+        }
+    }
 }
 
 

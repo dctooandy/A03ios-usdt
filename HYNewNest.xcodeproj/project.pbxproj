@@ -1912,6 +1912,7 @@
 		E9063B9024D6F3470000273A /* HYNewCTZNCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYNewCTZNCell.h; sourceTree = "<group>"; };
 		E9063B9124D6F3470000273A /* HYNewCTZNCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYNewCTZNCell.m; sourceTree = "<group>"; };
 		E9063B9224D6F3470000273A /* HYNewCTZNCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYNewCTZNCell.xib; sourceTree = "<group>"; };
+		E946734425637A1900536DBE /* 币游_devDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "币游_devDebug.entitlements"; sourceTree = "<group>"; };
 		E969EB3324E14B4B00D58FE9 /* MineBindView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineBindView.h; sourceTree = "<group>"; };
 		E969EB3424E14B4B00D58FE9 /* MineBindView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineBindView.m; sourceTree = "<group>"; };
 		E969EB3624E2427900D58FE9 /* HYRechargeCNYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYRechargeCNYViewController.h; sourceTree = "<group>"; };
@@ -2682,6 +2683,7 @@
 		3D13385324AD8F9B00B29783 /* HYNewNest */ = {
 			isa = PBXGroup;
 			children = (
+				E946734425637A1900536DBE /* 币游_devDebug.entitlements */,
 				3D643F7824F264E100B9AAA7 /* 币游_devRelease.entitlements */,
 				3D1338A724AF2EDF00B29783 /* Resources */,
 				3D1338A624AF2E7D00B29783 /* Vendors(第三方库) */,
@@ -5907,8 +5909,9 @@
 			baseConfigurationReference = 9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devDebug.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = PTALWADUNN;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5923,7 +5926,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.14;
+				MARKETING_VERSION = 3.6.17;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hy.HYNewNest;
 				PRODUCT_NAME = "币游_dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5937,7 +5940,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = PTALWADUNN;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5952,7 +5955,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.14;
+				MARKETING_VERSION = 3.6.17;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hy.HYNewNest;
 				PRODUCT_NAME = "币游";
 				TARGETED_DEVICE_FAMILY = "1,2";
