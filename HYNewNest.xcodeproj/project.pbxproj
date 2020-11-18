@@ -1292,7 +1292,6 @@
 		3D564E1F24F3C02C006846DD /* MessageBoxModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageBoxModel.m; sourceTree = "<group>"; };
 		3D643F7524F253E200B9AAA7 /* HYEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYEncryptor.m; sourceTree = "<group>"; };
 		3D643F7624F253E200B9AAA7 /* HYEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYEncryptor.h; sourceTree = "<group>"; };
-		3D643F7824F264E100B9AAA7 /* 币游_devRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "币游_devRelease.entitlements"; sourceTree = "<group>"; };
 		3D643F7A24F29F3600B9AAA7 /* PushNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationCenter.h; sourceTree = "<group>"; };
 		3D643F7B24F29F3600B9AAA7 /* IVOtherInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVOtherInfoModel.h; sourceTree = "<group>"; };
 		3D643F7C24F29F3600B9AAA7 /* SocketTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketTool.h; sourceTree = "<group>"; };
@@ -1313,6 +1312,8 @@
 		3D643F9A24F396BC00B9AAA7 /* GameLineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameLineModel.m; sourceTree = "<group>"; };
 		3D643F9C24F39BA600B9AAA7 /* HYInGameHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYInGameHelper.h; sourceTree = "<group>"; };
 		3D643F9D24F39BA600B9AAA7 /* HYInGameHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYInGameHelper.m; sourceTree = "<group>"; };
+		3D65D10F2564D51D00917E1B /* 币游Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "币游Release.entitlements"; sourceTree = "<group>"; };
+		3D65D11025651F3000917E1B /* 币游_devDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "币游_devDebug.entitlements"; sourceTree = "<group>"; };
 		3DA4F13A24B30A080039123F /* SGQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCode.h; sourceTree = "<group>"; };
 		3DA4F13B24B30A080039123F /* SGQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SGQRCode.bundle; sourceTree = "<group>"; };
 		3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SGImageSize.m"; sourceTree = "<group>"; };
@@ -1912,7 +1913,6 @@
 		E9063B9024D6F3470000273A /* HYNewCTZNCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYNewCTZNCell.h; sourceTree = "<group>"; };
 		E9063B9124D6F3470000273A /* HYNewCTZNCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYNewCTZNCell.m; sourceTree = "<group>"; };
 		E9063B9224D6F3470000273A /* HYNewCTZNCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYNewCTZNCell.xib; sourceTree = "<group>"; };
-		E946734425637A1900536DBE /* 币游_devDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "币游_devDebug.entitlements"; sourceTree = "<group>"; };
 		E969EB3324E14B4B00D58FE9 /* MineBindView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineBindView.h; sourceTree = "<group>"; };
 		E969EB3424E14B4B00D58FE9 /* MineBindView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineBindView.m; sourceTree = "<group>"; };
 		E969EB3624E2427900D58FE9 /* HYRechargeCNYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYRechargeCNYViewController.h; sourceTree = "<group>"; };
@@ -2683,8 +2683,8 @@
 		3D13385324AD8F9B00B29783 /* HYNewNest */ = {
 			isa = PBXGroup;
 			children = (
-				E946734425637A1900536DBE /* 币游_devDebug.entitlements */,
-				3D643F7824F264E100B9AAA7 /* 币游_devRelease.entitlements */,
+				3D65D11025651F3000917E1B /* 币游_devDebug.entitlements */,
+				3D65D10F2564D51D00917E1B /* 币游Release.entitlements */,
 				3D1338A724AF2EDF00B29783 /* Resources */,
 				3D1338A624AF2E7D00B29783 /* Vendors(第三方库) */,
 				3D13389E24AF2E5200B29783 /* AppEntry */,
@@ -5910,8 +5910,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devDebug.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 42;
+				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_TEAM = PTALWADUNN;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5926,9 +5927,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.17;
+				MARKETING_VERSION = 3.6.20;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hy.HYNewNest;
 				PRODUCT_NAME = "币游_dev";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -5938,9 +5940,10 @@
 			baseConfigurationReference = F7369947BD28FDAEFDBB6399 /* Pods-HYNewNest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devRelease.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游Release.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 42;
+				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_TEAM = PTALWADUNN;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5955,9 +5958,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.17;
+				MARKETING_VERSION = 3.6.20;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hy.HYNewNest;
 				PRODUCT_NAME = "币游";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
