@@ -113,7 +113,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
     
     [_tableView registerNib:[UINib nibWithNibName:CUMIDCELL bundle:nil] forCellReuseIdentifier:CUMIDCELL];
     [_tableView registerNib:[UINib nibWithNibName:CUMIDHEADER bundle:nil] forHeaderFooterViewReuseIdentifier:CUMIDHEADER];
-    _tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
+    _tableView.contentInset = UIEdgeInsetsMake(0, 0, 40, 0);
     
     // 自动布局高度 cell必须有距离底部约束
 //    _tableView.estimatedRowHeight = 258;
@@ -272,7 +272,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
         if (scrollView.contentOffset.y > _lastOffsetY) {
             // 下滑
             if (self.superScrollView.contentOffset.y <= y) {
-                [self.superScrollView setContentOffset:CGPointMake(0, y) animated:YES];
+                [self.superScrollView setContentOffset:CGPointMake(0, y) animated:NO];
                 [self.navigationController setNavigationBarHidden:YES animated:YES];
                 [UIView animateWithDuration:0.2 animations:^{
                     self.statusBgView.alpha = 1.0;
@@ -281,8 +281,8 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
             }
         } else if  (scrollView.contentOffset.y < _lastOffsetY) {
             // 上滑
-            if (scrollView.contentOffset.y <= -50) {
-                [self.superScrollView setContentOffset:CGPointZero animated:YES];
+            if (scrollView.contentOffset.y <= -40) {
+                [self.superScrollView setContentOffset:CGPointZero animated:NO];
                 [self.navigationController setNavigationBarHidden:NO animated:YES];
                 [UIView animateWithDuration:0.2 animations:^{
                     self.statusBgView.alpha = 0.0;
