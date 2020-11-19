@@ -35,6 +35,8 @@
 	</dict>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>小游需要您的允许才能为您保存图片</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>小游需要您的允许才能为您提供更快速的服务</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>方正兰亭大黑_GBK.ttf</string>
