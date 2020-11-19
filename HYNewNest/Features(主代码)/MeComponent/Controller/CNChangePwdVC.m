@@ -62,10 +62,12 @@
                        newPassword:self.codeView.code
                  completionHandler:^(id responseObj, NSString *errorMsg) {
         
-        [CNHUB showSuccess:@"密码修改成功"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [NNControllerHelper pop2ViewControllerClassString:@"CNSecurityCenterVC"];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[CNLoginRegisterVC loginVC] animated:YES];
+            [CNHUB showSuccess:@"密码修改成功 请重新登录"];
         });
+
     }];
     
 }
