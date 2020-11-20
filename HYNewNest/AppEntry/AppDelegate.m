@@ -10,7 +10,6 @@
 #import "SplashViewController.h"
 #import <IQKeyboardManager/IQKeyboardManager.h>
 #import <IVLoganAnalysis/IVLAManager.h>
-
 #import "CNPushRequest.h"
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
@@ -84,21 +83,20 @@
         self.token = token;
     }
 
-#ifdef DEBUG
-    [kKeywindow jk_makeToast:[NSString stringWithFormat:@"===didRegisterRemoteNotifications===\ndeviceToken:%@", self.token] duration:8 position:JKToastPositionBottom];
-#endif
+//#ifdef DEBUG
+//    [kKeywindow jk_makeToast:[NSString stringWithFormat:@"===didRegisterRemoteNotifications===\ndeviceToken:%@", self.token] duration:8 position:JKToastPositionBottom];
+//#endif
         
     // ips透传
     [CNPushRequest GTInterfaceHandler:nil];
-    
     
 }
 
 // 接收到推送
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-#ifdef DEBUG
-    [kKeywindow jk_makeToast:[NSString stringWithFormat:@">>>[Receive RemoteNotification - Background Fetch]:\n%@", userInfo] duration:8 position:JKToastPositionCenter];
-#endif
+//#ifdef DEBUG
+//    [kKeywindow jk_makeToast:[NSString stringWithFormat:@">>>[Receive RemoteNotification - Background Fetch]:\n%@", userInfo] duration:8 position:JKToastPositionCenter];
+//#endif
     NSLog(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n",userInfo);
     if (userInfo != nil) {
         [self handleRemoteNotification:userInfo];
@@ -109,13 +107,12 @@
 
 // 推送注册失败
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    [CNHUB showError:@"推送服务注册失败 请检查推送证书"];
     MyLog(@"didFailToRegisterForRemoteNotificationsWithError error:%@",error);
-#ifdef DEBUG
-    [kKeywindow jk_makeToast:[NSString stringWithFormat:@"===didFailToRegisterForRemoteNotifications===\nError:%@", error] duration:8 position:JKToastPositionBottom];
-#endif
+//#ifdef DEBUG
+//    [kKeywindow jk_makeToast:[NSString stringWithFormat:@"===didFailToRegisterForRemoteNotifications===\nError:%@", error] duration:8 position:JKToastPositionBottom];
+//#endif
 }
-
-
 
 
 #pragma mark - Customer
@@ -162,9 +159,9 @@
                 if (settings.authorizationStatus == UNAuthorizationStatusAuthorized){
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [[UIApplication sharedApplication] registerForRemoteNotifications];
-#ifdef DEBUG
-                        [kKeywindow jk_makeToast:@"Request authorization succeeded!" duration:5 position:JKToastPositionCenter];
-#endif
+//#ifdef DEBUG
+//                        [kKeywindow jk_makeToast:@"Request authorization succeeded!" duration:5 position:JKToastPositionCenter];
+//#endif
                     });
                 }
             }];

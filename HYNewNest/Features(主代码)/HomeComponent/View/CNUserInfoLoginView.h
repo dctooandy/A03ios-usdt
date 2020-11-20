@@ -20,9 +20,7 @@ typedef enum : NSUInteger {
 /// 按钮代理事件
 @protocol CNUserInfoLoginViewDelegate <NSObject>
 
-- (void)messageAction;
 - (void)switchAccountAction;
-- (void)showHideAction:(BOOL)hide;
 - (void)buttonArrayAction:(CNActionType)type;
 - (void)loginAction;
 - (void)registerAction;

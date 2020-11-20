@@ -104,11 +104,11 @@
 
 - (void)userDidLogin {
     [self.infoView updateLoginStatusUI];
-    self.infoViewH.constant = 135;
     
     [self requestHomeBanner];
     
     if ([CNUserManager shareManager].isLogin) {
+        self.infoViewH.constant = 110;
         // 弹窗盒子
          [self requestNewsBox];
         // 游戏线路
@@ -119,12 +119,14 @@
                 [(CNElectronicVC *)vc queryRecentGames];
             }
         }
+    } else {
+        self.infoViewH.constant = 140;
     }
 }
 
 - (void)userDidLogout {
     [self.infoView updateLoginStatusUI];
-    self.infoViewH.constant = 135;
+    self.infoViewH.constant = 140;
 }
 
 - (void)configUI {
@@ -373,14 +375,6 @@
             [self.infoView switchAccountUIChange];
         }
     }];
-}
-
-- (void)messageAction {
-    [self.navigationController pushViewController:[CNMessageCenterVC new] animated:YES];
-}
-
-- (void)showHideAction:(BOOL)hide {
-    self.infoViewH.constant = hide ? (135-44): 135;
 }
 
 - (void)loginAction {

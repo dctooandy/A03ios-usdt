@@ -27,10 +27,10 @@
                     </connections>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加载中.." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yv2-wd-nyh">
-                    <rect key="frame" x="0.0" y="74" width="300" height="21"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80450563200000003" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <rect key="frame" x="0.0" y="67" width="300" height="28"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69812265327659573" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="21" id="h3P-Ts-T0e"/>
+                        <constraint firstAttribute="height" constant="28" id="h3P-Ts-T0e"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

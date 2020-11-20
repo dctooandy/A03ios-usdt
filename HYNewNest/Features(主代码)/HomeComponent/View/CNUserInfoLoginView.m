@@ -15,14 +15,10 @@
 
 @interface CNUserInfoLoginView ()
 @property (weak, nonatomic) IBOutlet UIImageView *headerIcon;
-@property (weak, nonatomic) IBOutlet UILabel *nameLb;
-@property (weak, nonatomic) IBOutlet CNVIPLabel *vipLb;
+@property (weak, nonatomic) IBOutlet UIImageView *vipImgv;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLb;
 @property (weak, nonatomic) IBOutlet UILabel *currencyLb;
-@property (weak, nonatomic) IBOutlet UIButton *showHideBtn;
-@property (weak, nonatomic) IBOutlet UIButton *messageBtn;
 @property (weak, nonatomic) IBOutlet UIButton *switchModeBtn;
-@property (weak, nonatomic) IBOutlet UIButton *registerBtn;
 @property (weak, nonatomic) IBOutlet UIButton *withdrawCNYBtn;
 
 
@@ -40,9 +36,6 @@
 - (void)loadViewFromXib {
     [super loadViewFromXib];
 
-    // 按钮边框颜色
-    self.registerBtn.layer.borderColor = kHexColor(0x19CECE).CGColor;
-    self.registerBtn.layer.borderWidth = 1;
     // 提现右上角NEW
     [self.withdrawCNYBtn showRightTopImageName:@"new_txgb" size:CGSizeMake(30, 14) offsetX:-30 offsetYMultiple:0];
 }
@@ -54,9 +47,11 @@
 //        if (![CNUserManager shareManager].userDetail.newAccountFlag) {
         if ([CNUserManager shareManager].isUiModeHasOptions) {
             self.switchModeBtn.hidden = NO;
+            self.vipImgv.hidden = YES;
             [self switchAccountUIChange];
         } else {
             self.switchModeBtn.hidden = YES;
+            self.vipImgv.hidden = NO;
         }
     } else {
         [self configLogoutUI];
@@ -71,12 +66,14 @@
 - (void)configLogInUI {
     self.loginView.hidden = YES;
 
-    [self.headerIcon sd_setImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userInfo.avatar] placeholderImage:[UIImage imageNamed:@"2"]];
-    self.nameLb.text = [CNUserManager shareManager].printedloginName;
-    self.vipLb.text = [NSString stringWithFormat:@"VIP%ld", [CNUserManager shareManager].userInfo.starLevel];
-    // 默认展示底部视图
-    self.showHideBtn.selected = YES;
-    [self showHide:self.showHideBtn];
+    [self.headerIcon sd_setImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userInfo.avatar] placeholderImage:[UIImage imageNamed:@"icon"]];
+
+    if ([CNUserManager shareManager].userInfo.starLevel > 0) {
+        self.vipImgv.image = [UIImage imageNamed:[NSString stringWithFormat:@"VIP%ld", [CNUserManager shareManager].userInfo.starLevel]];
+    } else {
+        self.vipImgv.image = [UIImage new];
+    }
+
 }
 
 - (void)reloadBalance {
@@ -91,17 +88,19 @@
                 return;
             }
     //        strongSelf.moneyLb.text = [model.balance jk_toDisplayNumberWithDigit:2];
-            [strongSelf.moneyLb hideIndicatorWithText: [model.balance jk_toDisplayNumberWithDigit:2]];
+            if (model.balance.integerValue == 0) {
+                [strongSelf.moneyLb hideIndicatorWithText:@"000.00"];
+            } else {
+                [strongSelf.moneyLb hideIndicatorWithText: [model.balance jk_toDisplayNumberWithDigit:2]];
+            }
             strongSelf.currencyLb.text = model.currency;
             
         }];
     }
 }
 
+// 修改买充提买按钮
 - (void)switchAccountUIChange {
-    if (self.bottomView.hidden) {
-        [self showHide:self.showHideBtn]; //切换时展开 不然会有消失不见的奇怪的问题
-    }
     if ([CNUserManager shareManager].isUsdtMode) {
         self.switchModeBtn.selected = NO;
         self.bottomViewH.constant = 88;
@@ -113,29 +112,11 @@
     }
 }
 
-// 消息
-- (IBAction)massge:(UIButton *)sender {
-    if (_delegate && [_delegate respondsToSelector:@selector(messageAction)]) {
-        [_delegate messageAction];
-    }
-}
-
 // 切换账户货币
 - (IBAction)switchAccount:(UIButton *)sender {
     if (_delegate && [_delegate respondsToSelector:@selector(switchAccountAction)]) {
         [_delegate switchAccountAction];
     }
-}
-
-- (IBAction)showHide:(UIButton *)sender {
-    sender.selected = !sender.selected;
-    self.bottomView.hidden = sender.selected;
-    self.bottomViewH.constant = sender.selected ? 0: [CNUserManager shareManager].isUsdtMode?88:44;
-    self.bottomViewSpacing.constant = sender.selected ? -44: [CNUserManager shareManager].isUsdtMode?-44:0;
-    if (_delegate && [_delegate respondsToSelector:@selector(showHideAction:)]) {
-        [_delegate showHideAction:sender.selected];
-    }
-    
 }
 
 - (IBAction)bottomBtnAction:(UIButton *)sender {
@@ -150,8 +131,7 @@
     }
 }
 
-
-- (IBAction)register:(id)sender {
+- (IBAction)regist:(id)sender {
     if (_delegate && [_delegate respondsToSelector:@selector(registerAction)]) {
         [_delegate registerAction];
     }
