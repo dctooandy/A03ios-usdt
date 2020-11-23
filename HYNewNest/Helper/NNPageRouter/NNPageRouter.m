@@ -178,7 +178,7 @@
 
 + (void)jump2ArticalWithArticalId:(NSString *)articleId title:(NSString *)title {
     NSString *url = [NSURL getFCH5StrUrlWithID:articleId];
-    HYHTMLViewController *vc = [[HYHTMLViewController alloc] initWithTitle:title strUrl:url];
+    HYHTMLViewController *vc = [[HYHTMLViewController alloc] initWithTitle:@"风采详情" strUrl:url];
     vc.hidesBottomBarWhenPushed = YES;
     [kCurNavVC pushViewController:vc animated:YES];
     

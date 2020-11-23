@@ -103,7 +103,7 @@
 //        }
         case IVNEnvironmentTest:
         {
-            envName = @"开发环境"; //同运测
+            envName = @"运测环境"; 
             [IVHttpManager shareManager].gateway = @"https://usdtm.hwx22.com";
             [IVHttpManager shareManager].gateways = @[@"https://usdtm.hwx22.com"];
 //            [IVHttpManager shareManager].gateways = @[@"https://usdtm.hwx22.com", @"https://usdtw.hwx22.com", @"https://usdtmp.hwx22.com", @"https://usdtwp.hwx22.com"];
@@ -111,7 +111,7 @@
         }
         case IVNEnvironmentPublishTest:
         {
-            envName = @"运测环境"; //稳定的运测环境
+            envName = @"旧运测环境";
             [IVHttpManager shareManager].gateway = @"http://oldm.hwx22.com";
             [IVHttpManager shareManager].gateways = @[@"http://oldm.hwx22.com"];
             break;
