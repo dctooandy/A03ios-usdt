@@ -50,7 +50,6 @@
                             </constraints>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" backgroundImage="btn_change"/>
-                            <state key="selected" image="USDT"/>
                             <connections>
                                 <action selector="switchAccount:" destination="-1" eventType="touchUpInside" id="yRB-U7-Pvy"/>
                             </connections>
@@ -304,7 +303,6 @@
     </objects>
     <resources>
         <image name="Shape" width="84" height="81"/>
-        <image name="USDT" width="57" height="39"/>
         <image name="btn_change" width="66" height="20"/>
         <image name="btn_login" width="141" height="38"/>
         <image name="btn_regsiter" width="141" height="38"/>

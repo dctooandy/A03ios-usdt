@@ -8,7 +8,6 @@
 
 #import "CNLoginRequest.h"
 #import "CNEncrypt.h"
-#import "HYEncryptor.h"
 #import "HYNetworkConfigManager.h"
 #import "CNPushRequest.h"
 

@@ -15,8 +15,6 @@
 #import "CNChessVC.h"
 #import "CNMessageCenterVC.h"
 #import "HYXiMaViewController.h"
-#import <MJRefresh/MJRefresh.h>
-#import "NSURL+HYLink.h"
 
 #import "CNUserInfoLoginView.h"
 #import "SDCycleScrollView.h"
@@ -28,6 +26,11 @@
 #import "CNUserCenterRequest.h"
 #import "CNLoginRequest.h"
 #import "HYInGameHelper.h"
+#import "SocketRocketUtility.h"
+
+#import <MJRefresh/MJRefresh.h>
+#import "NSURL+HYLink.h"
+
 
 @interface CNHomeVC () <CNUserInfoLoginViewDelegate,  SDCycleScrollViewDelegate, UUMarqueeViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -93,6 +96,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:HYLogoutSuccessNotification object:nil];
     
+//    NSString *wsURL = @"wss://roadmap.9mbv.com:7070/socket.io/?EIO=4&transport=websocket"; //https
+//    NSString *wsURL = @"ws://roadmap.9mbv.com:8080/socket.io/?EIO=4&transport=websocket";
+//    [[SocketRocketUtility instance] SRWebSocketOpenWithURLString:wsURL];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -439,7 +445,7 @@
 
 - (UUMarqueeView *)marqueeView{
     if (!_marqueeView) {
-        _marqueeView = [[UUMarqueeView alloc] initWithFrame:CGRectMake(20, 0, self.adBgView.width-20, self.adBgView.height)];
+        _marqueeView = [[UUMarqueeView alloc] initWithFrame:CGRectMake(20, 0, kScreenWidth-15*2-20, self.adBgView.height)];
         _marqueeView.delegate = self;
         _marqueeView.timeIntervalPerScroll = 1.0f;
         _marqueeView.timeDurationPerScroll = 1.0f;

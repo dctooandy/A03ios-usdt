@@ -226,17 +226,16 @@
 		3D41DEC92521CDE7000CA1D6 /* VIPRecordSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D41DEC62521CDE6000CA1D6 /* VIPRecordSelectorView.xib */; };
 		3D41DECA2521CDE7000CA1D6 /* VIPRecordSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEC82521CDE7000CA1D6 /* VIPRecordSelectorView.m */; };
 		3D564E2024F3C02C006846DD /* MessageBoxModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D564E1F24F3C02C006846DD /* MessageBoxModel.m */; };
-		3D643F7724F253E300B9AAA7 /* HYEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F7524F253E200B9AAA7 /* HYEncryptor.m */; };
 		3D643F8824F29F3600B9AAA7 /* AlertViewHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F7D24F29F3600B9AAA7 /* AlertViewHelp.m */; };
 		3D643F8924F29F3600B9AAA7 /* IVOtherInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F8124F29F3600B9AAA7 /* IVOtherInfoModel.m */; };
 		3D643F8A24F29F3600B9AAA7 /* PushNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F8224F29F3600B9AAA7 /* PushNotificationCenter.m */; };
 		3D643F8B24F29F3600B9AAA7 /* SocketTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F8324F29F3600B9AAA7 /* SocketTool.m */; };
 		3D643F8C24F29F3600B9AAA7 /* KeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F8524F29F3600B9AAA7 /* KeyChain.m */; };
-		3D643F8D24F29F3600B9AAA7 /* HeartSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F8624F29F3600B9AAA7 /* HeartSocketManager.m */; };
 		3D643F8E24F29F3600B9AAA7 /* HeartPacketData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F8724F29F3600B9AAA7 /* HeartPacketData.m */; };
 		3D643F9124F2A91B00B9AAA7 /* CNPushRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F9024F2A91B00B9AAA7 /* CNPushRequest.m */; };
 		3D643F9B24F396BC00B9AAA7 /* GameLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F9A24F396BC00B9AAA7 /* GameLineModel.m */; };
 		3D643F9E24F39BA600B9AAA7 /* HYInGameHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F9D24F39BA600B9AAA7 /* HYInGameHelper.m */; };
+		3D65D1162568E35300917E1B /* SocketRocketUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D65D1152568E35300917E1B /* SocketRocketUtility.m */; };
 		3DA4F15024B30A090039123F /* SGQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DA4F13B24B30A080039123F /* SGQRCode.bundle */; };
 		3DA4F15124B30A090039123F /* UIImage+SGImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */; };
 		3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F14024B30A080039123F /* UIButton+Indicator.m */; };
@@ -1290,21 +1289,17 @@
 		3D41DEC82521CDE7000CA1D6 /* VIPRecordSelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPRecordSelectorView.m; sourceTree = "<group>"; };
 		3D564E1E24F3C02C006846DD /* MessageBoxModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageBoxModel.h; sourceTree = "<group>"; };
 		3D564E1F24F3C02C006846DD /* MessageBoxModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageBoxModel.m; sourceTree = "<group>"; };
-		3D643F7524F253E200B9AAA7 /* HYEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYEncryptor.m; sourceTree = "<group>"; };
-		3D643F7624F253E200B9AAA7 /* HYEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYEncryptor.h; sourceTree = "<group>"; };
 		3D643F7A24F29F3600B9AAA7 /* PushNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationCenter.h; sourceTree = "<group>"; };
 		3D643F7B24F29F3600B9AAA7 /* IVOtherInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVOtherInfoModel.h; sourceTree = "<group>"; };
 		3D643F7C24F29F3600B9AAA7 /* SocketTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketTool.h; sourceTree = "<group>"; };
 		3D643F7D24F29F3600B9AAA7 /* AlertViewHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertViewHelp.m; sourceTree = "<group>"; };
 		3D643F7E24F29F3600B9AAA7 /* HeartPacketData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeartPacketData.h; sourceTree = "<group>"; };
 		3D643F7F24F29F3600B9AAA7 /* KeyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChain.h; sourceTree = "<group>"; };
-		3D643F8024F29F3600B9AAA7 /* HeartSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeartSocketManager.h; sourceTree = "<group>"; };
 		3D643F8124F29F3600B9AAA7 /* IVOtherInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVOtherInfoModel.m; sourceTree = "<group>"; };
 		3D643F8224F29F3600B9AAA7 /* PushNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationCenter.m; sourceTree = "<group>"; };
 		3D643F8324F29F3600B9AAA7 /* SocketTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketTool.m; sourceTree = "<group>"; };
 		3D643F8424F29F3600B9AAA7 /* AlertViewHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewHelp.h; sourceTree = "<group>"; };
 		3D643F8524F29F3600B9AAA7 /* KeyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChain.m; sourceTree = "<group>"; };
-		3D643F8624F29F3600B9AAA7 /* HeartSocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeartSocketManager.m; sourceTree = "<group>"; };
 		3D643F8724F29F3600B9AAA7 /* HeartPacketData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeartPacketData.m; sourceTree = "<group>"; };
 		3D643F8F24F2A91B00B9AAA7 /* CNPushRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNPushRequest.h; sourceTree = "<group>"; };
 		3D643F9024F2A91B00B9AAA7 /* CNPushRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNPushRequest.m; sourceTree = "<group>"; };
@@ -1314,6 +1309,8 @@
 		3D643F9D24F39BA600B9AAA7 /* HYInGameHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYInGameHelper.m; sourceTree = "<group>"; };
 		3D65D10F2564D51D00917E1B /* 币游Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "币游Release.entitlements"; sourceTree = "<group>"; };
 		3D65D11025651F3000917E1B /* 币游_devDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "币游_devDebug.entitlements"; sourceTree = "<group>"; };
+		3D65D1142568E35300917E1B /* SocketRocketUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketRocketUtility.h; sourceTree = "<group>"; };
+		3D65D1152568E35300917E1B /* SocketRocketUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketRocketUtility.m; sourceTree = "<group>"; };
 		3DA4F13A24B30A080039123F /* SGQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCode.h; sourceTree = "<group>"; };
 		3DA4F13B24B30A080039123F /* SGQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SGQRCode.bundle; sourceTree = "<group>"; };
 		3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SGImageSize.m"; sourceTree = "<group>"; };
@@ -2813,9 +2810,10 @@
 		3D13389D24AF2D1900B29783 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				3D65D1132568E1EC00917E1B /* WebSocket */,
 				3D643F7924F29F3600B9AAA7 /* Push */,
 				D5FBFDC524B4661D00BBCAD8 /* Skin */,
-				3DA4F18124B317490039123F /* HYEncryptor */,
+				3DA4F18124B317490039123F /* Encryptor */,
 				3DA4F15B24B30D610039123F /* GTMBase64 */,
 				E986A19324CA9A82000F9CFF /* HYRechargeHelper */,
 				3D1338B624AF3A5200B29783 /* NNPageRouter */,
@@ -3109,8 +3107,6 @@
 				3D643F8724F29F3600B9AAA7 /* HeartPacketData.m */,
 				3D643F7F24F29F3600B9AAA7 /* KeyChain.h */,
 				3D643F8524F29F3600B9AAA7 /* KeyChain.m */,
-				3D643F8024F29F3600B9AAA7 /* HeartSocketManager.h */,
-				3D643F8624F29F3600B9AAA7 /* HeartSocketManager.m */,
 				3D643F8F24F2A91B00B9AAA7 /* CNPushRequest.h */,
 				3D643F9024F2A91B00B9AAA7 /* CNPushRequest.m */,
 			);
@@ -3125,6 +3121,15 @@
 				3D3A9B7024FA7D7F003FB33C /* Request */,
 			);
 			path = VIPComponent;
+			sourceTree = "<group>";
+		};
+		3D65D1132568E1EC00917E1B /* WebSocket */ = {
+			isa = PBXGroup;
+			children = (
+				3D65D1142568E35300917E1B /* SocketRocketUtility.h */,
+				3D65D1152568E35300917E1B /* SocketRocketUtility.m */,
+			);
+			path = WebSocket;
 			sourceTree = "<group>";
 		};
 		3DA4F13924B30A080039123F /* SGQRCode */ = {
@@ -3177,15 +3182,13 @@
 			path = LoadingView;
 			sourceTree = "<group>";
 		};
-		3DA4F18124B317490039123F /* HYEncryptor */ = {
+		3DA4F18124B317490039123F /* Encryptor */ = {
 			isa = PBXGroup;
 			children = (
-				3D643F7624F253E200B9AAA7 /* HYEncryptor.h */,
-				3D643F7524F253E200B9AAA7 /* HYEncryptor.m */,
 				04C0F11524C59956007F1420 /* CNEncrypt.h */,
 				04C0F11424C59956007F1420 /* CNEncrypt.m */,
 			);
-			path = HYEncryptor;
+			path = Encryptor;
 			sourceTree = "<group>";
 		};
 		3DA4F18624B317E40039123F /* WMDragView */ = {
@@ -5535,7 +5538,6 @@
 				E9D9449724C5734400252222 /* WelcomeModel.m in Sources */,
 				E986A12224C7E802000F9CFF /* CNUserCenterRequest.m in Sources */,
 				E986A1AE24CBCEE1000F9CFF /* CNAccountSelectView.m in Sources */,
-				3D643F8D24F29F3600B9AAA7 /* HeartSocketManager.m in Sources */,
 				E97054A424DBB5030007F845 /* SuspendBall.m in Sources */,
 				0487C96F24CE9A630013715A /* BRBaseView.m in Sources */,
 				E9B5497924CF1174002CE6EF /* VideoThumbnailManage.m in Sources */,
@@ -5709,6 +5711,7 @@
 				E98BEF2D24D2D35800E6B0C8 /* NSAttributedString+Selectable.m in Sources */,
 				E986A13D24C93460000F9CFF /* CNBonusRequest.m in Sources */,
 				E9063B8C24D6BE870000273A /* HYWideOneBtnAlertView.m in Sources */,
+				3D65D1162568E35300917E1B /* SocketRocketUtility.m in Sources */,
 				E986A17724C979F6000F9CFF /* CNRechargeRequest.m in Sources */,
 				0430AB2924E26E5300C873DC /* CNAddBankCardVC.m in Sources */,
 				E9063B8924D6B0AA0000273A /* HYOneBtnAlertView.m in Sources */,
@@ -5733,7 +5736,6 @@
 				E986A1A324CB37C3000F9CFF /* HYBaseAlertView.m in Sources */,
 				040A08D624E114A900FBD534 /* OCBarrageTrackInfo.m in Sources */,
 				E9D9446C24C1EC1300252222 /* HYTabBarViewController.m in Sources */,
-				3D643F7724F253E300B9AAA7 /* HYEncryptor.m in Sources */,
 				3D41DE7F25199DEE000CA1D6 /* VIPMonlyAlertCell.m in Sources */,
 				E986A12624C7EAA6000F9CFF /* OtherAppModel.m in Sources */,
 				E986A12D24C7F5D7000F9CFF /* CNGloryRequest.m in Sources */,
@@ -5927,7 +5929,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.22;
+				MARKETING_VERSION = 3.6.23;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hy.HYNewNest;
 				PRODUCT_NAME = "币游_dev";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5958,7 +5960,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.22;
+				MARKETING_VERSION = 3.6.23;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hy.HYNewNest;
 				PRODUCT_NAME = "币游";
 				PROVISIONING_PROFILE_SPECIFIER = "";

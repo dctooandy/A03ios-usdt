@@ -69,7 +69,7 @@
     [self.headerIcon sd_setImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userInfo.avatar] placeholderImage:[UIImage imageNamed:@"icon"]];
 
     if ([CNUserManager shareManager].userInfo.starLevel > 0) {
-        self.vipImgv.image = [UIImage imageNamed:[NSString stringWithFormat:@"VIP%ld", [CNUserManager shareManager].userInfo.starLevel]];
+        self.vipImgv.image = [UIImage imageNamed:[NSString stringWithFormat:@"VIP%ld", (long)[CNUserManager shareManager].userInfo.starLevel]];
     } else {
         self.vipImgv.image = [UIImage new];
     }
@@ -93,7 +93,7 @@
             } else {
                 [strongSelf.moneyLb hideIndicatorWithText: [model.balance jk_toDisplayNumberWithDigit:2]];
             }
-            strongSelf.currencyLb.text = model.currency;
+//            strongSelf.currencyLb.text = model.currency;
             
         }];
     }
@@ -105,10 +105,12 @@
         self.switchModeBtn.selected = NO;
         self.bottomViewH.constant = 88;
         self.bottomViewSpacing.constant = -44;
+        self.currencyLb.text = @"USDT";
     } else {
         self.switchModeBtn.selected = YES;
         self.bottomViewH.constant = 44;
         self.bottomViewSpacing.constant = 0;
+        self.currencyLb.text = @"CNY";
     }
 }
 
