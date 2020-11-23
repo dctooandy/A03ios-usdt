@@ -75,7 +75,12 @@ static NSString *const kHYVideoCell = @"StrengthVideoTableViewCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ArticalModel *model = self.articals[indexPath.row];
-    [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"风采详情"];
+    if (!KIsEmptyString(model.linkUrl)) {
+        [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:model.titleName];
+    } else {
+        [NNPageRouter jump2ArticalWithArticalId:model.articleId title:model.titleName];
+    }
+    
 }
 
 
