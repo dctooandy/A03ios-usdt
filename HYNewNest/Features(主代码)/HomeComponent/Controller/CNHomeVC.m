@@ -235,7 +235,7 @@
                 }
                 [CNMessageBoxView showMessageBoxWithImages:imgs onView:self.view tapBlock:^(int idx) {
                     MessageBoxModel *m = self.msgBoxModels[idx];
-                    [NNPageRouter jump2HTMLWithStrURL:m.link title:@"活动"];
+                    [NNPageRouter jump2HTMLWithStrURL:m.link title:@"活动" needPubSite:NO];
                 }];
                 [[NSUserDefaults standardUserDefaults] setObject:nowDateStr forKey:HYHomeMessageBoxLastimeDate];
                 [[NSUserDefaults standardUserDefaults] synchronize];
@@ -294,7 +294,7 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     if (self.bannModels.count > 0 && self.bannModels.count-1 >= index) {
         AdBannerModel *model = self.bannModels[index];
-        [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"活动"];
+        [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"活动" needPubSite:NO];
     }
 }
 

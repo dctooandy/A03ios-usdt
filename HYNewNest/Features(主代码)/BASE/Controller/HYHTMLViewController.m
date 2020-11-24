@@ -86,13 +86,14 @@
         [CNHomeRequest requestH5TicketHandler:^(NSString * ticket, NSString *errorMsg) {
             STRONGSELF_DEFINE
             NSString *strUrl = [NSURL getH5StrUrlWithString:H5_URL_GET_VIPRECORD
-                                                     ticket:KIsEmptyString(errorMsg)?ticket:@""];
+                                                     ticket:KIsEmptyString(errorMsg)?ticket:@""
+                                                needPubSite:NO];
             HYHTMLViewController *vc = [[HYHTMLViewController alloc] initWithTitle:@"兑换记录" strUrl:strUrl];
             vc.hidesBottomBarWhenPushed = YES;
             [strongSelf.navigationController pushViewController:vc animated:YES];
         }];
     }else{
-        NSString *strUrl = [NSURL getH5StrUrlWithString:H5_URL_GET_VIPRECORD ticket:@""];
+        NSString *strUrl = [NSURL getH5StrUrlWithString:H5_URL_GET_VIPRECORD ticket:@"" needPubSite:NO];
         HYHTMLViewController *vc = [[HYHTMLViewController alloc] initWithTitle:@"兑换记录" strUrl:strUrl];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];

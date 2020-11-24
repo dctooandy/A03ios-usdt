@@ -270,7 +270,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 }
 
 - (IBAction)didTapZZZP:(id)sender {
-    [NNPageRouter jump2HTMLWithStrURL:@"/sudoku" title:@"至尊转盘"];
+    [NNPageRouter jump2HTMLWithStrURL:@"/sudoku" title:@"至尊转盘" needPubSite:NO];
 }
 
 - (IBAction)didTapLJSF:(id)sender {

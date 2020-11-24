@@ -178,7 +178,7 @@
             NSString *pageTitle = userInfo[@"aps"][@"alert"][@"title"];
             if (dict) {
                 NSString *url = dict[@"jumpUrl"];
-                [NNPageRouter jump2HTMLWithStrURL:url title:pageTitle];
+                [NNPageRouter jump2HTMLWithStrURL:url title:pageTitle needPubSite:NO];
             }
         }
     }

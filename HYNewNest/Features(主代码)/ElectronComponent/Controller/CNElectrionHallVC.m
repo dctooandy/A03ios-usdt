@@ -483,7 +483,7 @@ typedef enum : NSUInteger {
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     if (self.bannModels.count > 0 && self.bannModels.count-1 >= index) {
         AdBannerModel *model = self.bannModels[index];
-        [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"活动"];
+        [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"活动" needPubSite:NO];
     }
 }
 

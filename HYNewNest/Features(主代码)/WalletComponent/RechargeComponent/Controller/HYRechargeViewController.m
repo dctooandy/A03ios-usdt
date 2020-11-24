@@ -144,7 +144,8 @@
 }
 
 - (void)tapBanner:(UITouch *)touch {
-    [NNPageRouter jump2HTMLWithStrURL:@"/pub_site/tutorialReference" title:@"请稍等.."];
+    ///pub_site/
+    [NNPageRouter jump2HTMLWithStrURL:@"/tutorialReference" title:@"请稍等.." needPubSite:YES];
 }
 
 - (void)setupMainEditView {

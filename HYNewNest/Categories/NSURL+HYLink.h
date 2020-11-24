@@ -16,7 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)getStrUrlWithString:(NSString *)strUrl;
 
-+ (NSString *)getH5StrUrlWithString:(NSString *)strUrl ticket:(NSString *)ticket;
+/// /pub_site/   风采跳H5需要拼接这部分
++ (NSString *)getH5StrUrlWithString:(NSString *)strUrl ticket:(NSString *)ticket needPubSite:(BOOL)needPubSite;
 
 //风采
 + (NSString *)getFCH5StrUrlWithID:(NSString *)ID;

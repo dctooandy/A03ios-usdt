@@ -74,7 +74,8 @@ static NSString *const KBonusCell = @"HYBonusCell";
     MyPromoItem *item = self.promos[indexPath.row];
     if (!KIsEmptyString(item.linkUrl)) {
         [NNPageRouter jump2HTMLWithStrURL:item.linkUrl
-                                    title:item.title.length>0?item.title:@"优惠"];
+                                    title:item.title.length>0?item.title:@"优惠"
+                              needPubSite:NO];
     }
 }
 

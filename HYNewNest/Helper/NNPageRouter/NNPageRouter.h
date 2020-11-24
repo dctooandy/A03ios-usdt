@@ -51,7 +51,7 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 
 
 /// 跳转到H5
-+(void)jump2HTMLWithStrURL: (NSString *)strURL title:(NSString *)title;
++(void)jump2HTMLWithStrURL: (NSString *)strURL title:(NSString *)title needPubSite:(BOOL)needPubSite;
 
 /// 跳转到(风采)文章详情
 + (void)jump2ArticalWithArticalId:(NSString *)articleId title:(NSString *)title;

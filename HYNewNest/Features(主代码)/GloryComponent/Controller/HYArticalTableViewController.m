@@ -76,7 +76,7 @@ static NSString *const kHYVideoCell = @"StrengthVideoTableViewCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ArticalModel *model = self.articals[indexPath.row];
     if (!KIsEmptyString(model.linkUrl)) {
-        [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:model.titleName];
+        [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:model.titleName needPubSite:YES];
     } else {
         [NNPageRouter jump2ArticalWithArticalId:model.articleId title:model.titleName];
     }

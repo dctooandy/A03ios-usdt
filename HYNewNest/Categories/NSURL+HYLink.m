@@ -45,7 +45,7 @@
     return strUrl;
 }
 
-+ (NSString *)getH5StrUrlWithString:(NSString *)strUrl ticket:(NSString *)ticket{
++ (NSString *)getH5StrUrlWithString:(NSString *)strUrl ticket:(NSString *)ticket needPubSite:(BOOL)needPubSite{
     
     if (strUrl.length == 0) {
         return @"";
@@ -54,7 +54,11 @@
     strUrl = [strUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
     if (![strUrl hasPrefix:@"http"]) {
-        strUrl = [NSString stringWithFormat:@"%@%@",[IVHttpManager shareManager].domain,strUrl];
+        if (needPubSite && ![strUrl containsString:@"pub_site"]) {
+            strUrl = [NSString stringWithFormat:@"%@/pub_site%@",[IVHttpManager shareManager].domain,strUrl];
+        } else {
+            strUrl = [NSString stringWithFormat:@"%@%@",[IVHttpManager shareManager].domain,strUrl];
+        }
     }
     
     if ([strUrl containsString:@"?"]) {

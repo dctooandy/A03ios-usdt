@@ -153,7 +153,7 @@
 }
 
 
-+ (void)jump2HTMLWithStrURL:(NSString *)strURL title:(NSString *)title {
++ (void)jump2HTMLWithStrURL:(NSString *)strURL title:(NSString *)title needPubSite:(BOOL)needPubSite{
     void(^jumpHTMLBlock)(NSString*, NSString*) = ^(NSString * url, NSString * title) {
         HYHTMLViewController *vc = [[HYHTMLViewController alloc] initWithTitle:title strUrl:url];
         vc.hidesBottomBarWhenPushed = YES;
@@ -164,13 +164,13 @@
     if ([CNUserManager shareManager].isLogin) {
         [CNHomeRequest requestH5TicketHandler:^(NSString * ticket, NSString *errorMsg) {
             if (KIsEmptyString(errorMsg)) {
-                NSString *strUrl = [NSURL getH5StrUrlWithString:strURL ticket:ticket];
+                NSString *strUrl = [NSURL getH5StrUrlWithString:strURL ticket:ticket needPubSite:needPubSite];
                 jumpHTMLBlock(strUrl, title);
             }
         }];
         
     }else{
-        NSString *strUrl = [NSURL getH5StrUrlWithString:strURL ticket:@""];
+        NSString *strUrl = [NSURL getH5StrUrlWithString:strURL ticket:@"" needPubSite:needPubSite];
         jumpHTMLBlock(strUrl, title);
     }
     
