@@ -8,7 +8,7 @@
 
 #import "CNUserInfoLoginView.h"
 #import "CNVIPLabel.h"
-#import "CNUserCenterRequest.h"
+#import "BalanceManager.h"
 #import "CNUserModel.h"
 #import <UIImageView+WebCache.h>
 #import "UIView+Badge.h"
@@ -76,28 +76,24 @@
 
 }
 
-- (void)reloadBalance {
+- (void)reloadBalance{
     if ([CNUserManager shareManager].isLogin) {
         [self.moneyLb showIndicatorIsBig:NO];
         //金额
-        WEAKSELF_DEFINE
-        [CNUserCenterRequest requestAccountBalanceHandler:^(id responseObj, NSString *errorMsg) {
-            STRONGSELF_DEFINE
-            AccountMoneyDetailModel *model = [AccountMoneyDetailModel cn_parse:responseObj];
-            if (!model) {
-                return;
-            }
-    //        strongSelf.moneyLb.text = [model.balance jk_toDisplayNumberWithDigit:2];
-            if (model.balance.integerValue == 0) {
-                [strongSelf.moneyLb hideIndicatorWithText:@"000.00"];
-            } else {
-                [strongSelf.moneyLb hideIndicatorWithText: [model.balance jk_toDisplayNumberWithDigit:2]];
-            }
-//            strongSelf.currencyLb.text = model.currency;
-            
+        [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
+            [self setupAmount:model.balance];
         }];
     }
 }
+
+- (void)setupAmount:(NSNumber *)amount {
+    if (amount.integerValue == 0) {
+        [self.moneyLb hideIndicatorWithText:@"000.00"];
+    } else {
+        [self.moneyLb hideIndicatorWithText:[amount jk_toDisplayNumberWithDigit:2]];
+    }
+}
+
 
 // 修改买充提买按钮
 - (void)switchAccountUIChange {

@@ -26,6 +26,7 @@
 #import <UIImageView+WebCache.h>
 #import "NSURL+HYLink.h"
 #import <MJRefresh/MJRefresh.h>
+#import "BalanceManager.h"
 
 @interface CNMineVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -99,6 +100,7 @@
         [wSelf requestOtherAppData];
     }];
    
+    [self switchCurrencyUI];
     [self requestOtherAppData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchCurrencyUI) name:HYLoginSuccessNotification object:nil];
@@ -108,8 +110,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    kPreventRepeatTime(60);
-    [self switchCurrencyUI];
+    [self requestAccountBalances:NO];
 
 }
 
@@ -226,7 +227,7 @@
 // 下载APP
 - (IBAction)doloadApp:(id)sender {
     if (!_otherApps || _otherApps.count == 0) {
-        [kKeywindow jk_makeToast:@"正在请求下载数据 请稍后.." duration:3 position:JKToastPositionCenter];
+        [kKeywindow jk_makeToast:@"正在请求更多APP数据 请稍后.." duration:3 position:JKToastPositionCenter];
         [self requestOtherAppData];
         return;
     }
@@ -243,7 +244,7 @@
 // 更多下载
 - (IBAction)moreDoload:(id)sender {
     if (!_otherApps || _otherApps.count == 0) {
-        [kKeywindow jk_makeToast:@"正在请求下载数据 请稍后.." duration:3 position:JKToastPositionCenter];
+        [kKeywindow jk_makeToast:@"正在请求更多APP数据 请稍后.." duration:3 position:JKToastPositionCenter];
         [self requestOtherAppData];
         return;
     }
@@ -251,6 +252,7 @@
     downVc.otherApps = self.otherApps;
     [self.navigationController pushViewController:downVc animated:YES];
 }
+
 
 #pragma mark - 货币界面业务切换
 
@@ -284,18 +286,20 @@
     self.shareBgView.hidden = !isUsdtMode;
     self.shareBgViewH.constant = isUsdtMode?AD(90):0;
     
-    // 2.用户信息
+    [self setUpUserInfoAndBalaces];
+    
+}
+
+- (void)setUpUserInfoAndBalaces {
     if ([CNUserManager shareManager].isLogin) {
-        self.VIPLb.text = [NSString stringWithFormat:@"VIP%ld", [CNUserManager shareManager].userInfo.starLevel];
+        // 2.用户信息
+        self.VIPLb.text = [NSString stringWithFormat:@"VIP%ld", (long)[CNUserManager shareManager].userInfo.starLevel];
         self.nickNameLb.text = [CNUserManager shareManager].printedloginName;
         [self.headerIV sd_setBackgroundImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userDetail.avatar] forState:UIControlStateNormal];
         
-        // 3.加载相关金额
-        [self requestAccountBalance];
-        [self requestBetAmount];
-        [self requestMonthPromoteAndXima];
+        // 3.加载相关金额 YES
+        [self requestAccountBalances:YES];
     }
-    
 }
 
 #pragma mark - REQUEST
@@ -317,46 +321,45 @@
     }];
 }
 
-- (void)requestMonthPromoteAndXima {
+- (void)requestAccountBalances:(BOOL)isRefreshing {
+    [self.amountLb showIndicatorIsBig:NO];
+    [self.weekAmountLb showIndicatorIsBig:NO];
     [self.monthPromoLb showIndicatorIsBig:NO];
     [self.monthXiMaLb showIndicatorIsBig:NO];
+    
     WEAKSELF_DEFINE
-    [CNUserCenterRequest requestMonthPromoteAndXimaHandler:^(id responseObj, NSString *errorMsg) {
-        STRONGSELF_DEFINE
+    if (isRefreshing) {
+        [[BalanceManager shareManager] requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
+            STRONGSELF_DEFINE
+            [strongSelf.amountLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
+            strongSelf.currencyLb.text = model.currency;
+        }];
+        [[BalanceManager shareManager] requestBetAmountHandler:^(BetAmountModel * _Nonnull model) {
+            STRONGSELF_DEFINE
+            [strongSelf.weekAmountLb hideIndicatorWithText:[model.weekBetAmount jk_toDisplayNumberWithDigit:2]];
+        }];
+        [[BalanceManager shareManager] requestMonthPromoteAndXimaHandler:^(PromoteXimaModel * _Nonnull model) {
+            STRONGSELF_DEFINE
+            [strongSelf.monthPromoLb hideIndicatorWithText:[model.promoAmountByMonth jk_toDisplayNumberWithDigit:2]];
+            [strongSelf.monthXiMaLb hideIndicatorWithText:[model.rebatedAmountByMonth jk_toDisplayNumberWithDigit:2]];
+        }];
         
-        PromoteXimaModel *pxModel = [PromoteXimaModel cn_parse:responseObj];
-        
-//        strongSelf.monthPromoLb.originText = [pxModel.promoAmountByMonth jk_toDisplayNumberWithDigit:2];
-//        strongSelf.monthXiMaLb.originText = [pxModel.rebatedAmountByMonth jk_toDisplayNumberWithDigit:2];
-        [strongSelf.monthPromoLb hideIndicatorWithText:[pxModel.promoAmountByMonth jk_toDisplayNumberWithDigit:2]];
-        [strongSelf.monthXiMaLb hideIndicatorWithText:[pxModel.rebatedAmountByMonth jk_toDisplayNumberWithDigit:2]];
-    }];
-}
-
-- (void)requestAccountBalance {
-    [self.amountLb showIndicatorIsBig:NO];
-    WEAKSELF_DEFINE
-    [CNUserCenterRequest requestAccountBalanceHandler:^(id responseObj, NSString *errorMsg) {
-        
-        STRONGSELF_DEFINE
-        AccountMoneyDetailModel *model = [AccountMoneyDetailModel cn_parse:responseObj];
-        
-//        strongSelf.amountLb.originText = [model.balance jk_toDisplayNumberWithDigit:2];
-        [strongSelf.amountLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
-        strongSelf.currencyLb.text = model.currency;
-    }];
-}
-
-- (void)requestBetAmount {
-    [self.weekAmountLb showIndicatorIsBig:NO];
-    WEAKSELF_DEFINE
-    [CNUserCenterRequest requestBetAmountHandler:^(id responseObj, NSString *errorMsg) {
-        STRONGSELF_DEFINE
-        BetAmountModel *model = [BetAmountModel cn_parse:responseObj];
-        
-//        strongSelf.weekAmountLb.originText = [model.weekBetAmount jk_toDisplayNumberWithDigit:2];
-        [strongSelf.weekAmountLb hideIndicatorWithText:[model.weekBetAmount jk_toDisplayNumberWithDigit:2]];
-    }];
+    } else {
+        [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
+            STRONGSELF_DEFINE
+            [strongSelf.amountLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
+            strongSelf.currencyLb.text = model.currency;
+        }];
+        [[BalanceManager shareManager] getWeeklyBetAmountHandler:^(BetAmountModel * _Nonnull betModel) {
+            STRONGSELF_DEFINE
+            [strongSelf.weekAmountLb hideIndicatorWithText:[betModel.weekBetAmount jk_toDisplayNumberWithDigit:2]];
+        }];
+        [[BalanceManager shareManager] getPromoteXimaHandler:^(PromoteXimaModel * _Nonnull pxModel) {
+            STRONGSELF_DEFINE
+            [strongSelf.monthPromoLb hideIndicatorWithText:[pxModel.promoAmountByMonth jk_toDisplayNumberWithDigit:2]];
+            [strongSelf.monthXiMaLb hideIndicatorWithText:[pxModel.rebatedAmountByMonth jk_toDisplayNumberWithDigit:2]];
+        }];
+    }
 }
 
 

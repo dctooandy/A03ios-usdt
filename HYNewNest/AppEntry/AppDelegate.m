@@ -114,6 +114,14 @@
 //#endif
 }
 
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+    MyLog(@"userNotificationCenter:willPresentNotification:\n%@", notification);
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
+    MyLog(@"userNotificationCenter:didReceiveNotificationResponse:\n%@", response);
+}
+
 
 #pragma mark - Customer
 - (void)changeRootViewController:(UIViewController*)viewController {

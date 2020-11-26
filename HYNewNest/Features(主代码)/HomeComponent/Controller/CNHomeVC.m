@@ -104,7 +104,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    kPreventRepeatTime(60);
     [self.infoView reloadBalance];
 }
 

@@ -74,7 +74,6 @@
 		0487C9C924D11F460013715A /* CNNoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0487C9C824D11F460013715A /* CNNoDataView.xib */; };
 		0487C9CD24D133270013715A /* CNRecordTypeSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487C9CA24D133270013715A /* CNRecordTypeSelectorView.m */; };
 		0487C9CE24D133270013715A /* CNRecordTypeSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0487C9CB24D133270013715A /* CNRecordTypeSelectorView.xib */; };
-		0487C9D124D144E60013715A /* CNSelectBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487C9D024D144E60013715A /* CNSelectBtn.m */; };
 		0487C9D524D164460013715A /* CNRecordDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487C9D324D164460013715A /* CNRecordDetailVC.m */; };
 		0487C9D624D164460013715A /* CNRecordDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0487C9D424D164460013715A /* CNRecordDetailVC.xib */; };
 		0487C9DA24D2627D0013715A /* CNXimaRecordTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487C9D824D2627D0013715A /* CNXimaRecordTCell.m */; };
@@ -85,7 +84,6 @@
 		0487C9E824D27BDD0013715A /* CNNotifySettingTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0487C9E624D27BDD0013715A /* CNNotifySettingTCell.xib */; };
 		0487C9EC24D297CA0013715A /* CNMessageCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487C9EA24D297CA0013715A /* CNMessageCenterVC.m */; };
 		0487C9ED24D297CA0013715A /* CNMessageCenterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0487C9EB24D297CA0013715A /* CNMessageCenterVC.xib */; };
-		0487C9F024D2A0620013715A /* CNTextSaleBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487C9EF24D2A0620013715A /* CNTextSaleBtn.m */; };
 		0487C9F424D2AADC0013715A /* CNMessageTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487C9F224D2AADC0013715A /* CNMessageTCell.m */; };
 		0487C9F524D2AADC0013715A /* CNMessageTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0487C9F324D2AADC0013715A /* CNMessageTCell.xib */; };
 		0487C9F924D2CCED0013715A /* CNDownloadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487C9F724D2CCED0013715A /* CNDownloadVC.m */; };
@@ -113,8 +111,6 @@
 		048A169824CBD44700411819 /* CNVIPLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A169724CBD44700411819 /* CNVIPLabel.m */; };
 		04935BC724D56793007A33EF /* CNAddAddressVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04935BC424D56793007A33EF /* CNAddAddressVC.xib */; };
 		04935BC824D56793007A33EF /* CNAddAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935BC624D56793007A33EF /* CNAddAddressVC.m */; };
-		04935BCC24D68C84007A33EF /* CNNormalInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935BC924D68C84007A33EF /* CNNormalInputView.m */; };
-		04935BCD24D68C84007A33EF /* CNNormalInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04935BCA24D68C84007A33EF /* CNNormalInputView.xib */; };
 		04935BD124D7B662007A33EF /* CNAddressDownloadTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935BCF24D7B662007A33EF /* CNAddressDownloadTCell.m */; };
 		04935BD224D7B662007A33EF /* CNAddressDownloadTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04935BD024D7B662007A33EF /* CNAddressDownloadTCell.xib */; };
 		04935BD924D7D45E007A33EF /* CNElectrionHallVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935BD724D7D45E007A33EF /* CNElectrionHallVC.m */; };
@@ -256,6 +252,14 @@
 		3DA4F19D24B3195F0039123F /* HYRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F19B24B3195F0039123F /* HYRefreshHeader.m */; };
 		3DA4F1A124B3199A0039123F /* HYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F19F24B3199A0039123F /* HYNavigationController.m */; };
 		3DA4F1A424B31A110039123F /* NSString+Font.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F1A324B31A110039123F /* NSString+Font.m */; };
+		3DBA55CE256FA6D3009A2B71 /* CNNormalInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55C1256FA6D3009A2B71 /* CNNormalInputView.m */; };
+		3DBA55CF256FA6D3009A2B71 /* CNNormalInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA55C2256FA6D3009A2B71 /* CNNormalInputView.xib */; };
+		3DBA55D0256FA6D3009A2B71 /* CNBaseTF.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55C4256FA6D3009A2B71 /* CNBaseTF.m */; };
+		3DBA55D1256FA6D3009A2B71 /* CNOneStatusBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55C7256FA6D3009A2B71 /* CNOneStatusBtn.m */; };
+		3DBA55D2256FA6D3009A2B71 /* CNTextSaleBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55CB256FA6D3009A2B71 /* CNTextSaleBtn.m */; };
+		3DBA55D3256FA6D3009A2B71 /* CNTwoStatusBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55CC256FA6D3009A2B71 /* CNTwoStatusBtn.m */; };
+		3DBA55D4256FA6D3009A2B71 /* CNSelectBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55CD256FA6D3009A2B71 /* CNSelectBtn.m */; };
+		3DBA55D8256FA793009A2B71 /* BalanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55D7256FA793009A2B71 /* BalanceManager.m */; };
 		3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC87A50253967DC0032ED1B /* BuyECoinModel.m */; };
 		3DCFEA8B25009D020071F356 /* V_SlideCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8825009D010071F356 /* V_SlideCard.m */; };
 		3DCFEA8C25009D020071F356 /* V_SlideCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8925009D010071F356 /* V_SlideCardCell.m */; };
@@ -267,9 +271,6 @@
 		3DE3CA9624ED6AEC00D591C4 /* UILabel+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3CA9524ED6AEC00D591C4 /* UILabel+Indicator.m */; };
 		5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */; };
 		D571B19624BE9F120087B5EC /* CNLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19524BE9F120087B5EC /* CNLineView.m */; };
-		D571B19924BEA4620087B5EC /* CNTwoStatusBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19724BEA4620087B5EC /* CNTwoStatusBtn.m */; };
-		D571B19D24BFF2B10087B5EC /* CNOneStatusBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19C24BFF2B10087B5EC /* CNOneStatusBtn.m */; };
-		D571B1A124BFFD510087B5EC /* CNBaseTF.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B1A024BFFD510087B5EC /* CNBaseTF.m */; };
 		D571B1AA24C03D790087B5EC /* CNStatementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D571B1A724C03D790087B5EC /* CNStatementView.xib */; };
 		D571B1AB24C03D790087B5EC /* CNStatementView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B1A924C03D790087B5EC /* CNStatementView.m */; };
 		D5A4438D24F378CD00014DC6 /* 彩票_00031.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A4432A24F378C400014DC6 /* 彩票_00031.png */; };
@@ -1034,8 +1035,6 @@
 		0487C9CA24D133270013715A /* CNRecordTypeSelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNRecordTypeSelectorView.m; sourceTree = "<group>"; };
 		0487C9CB24D133270013715A /* CNRecordTypeSelectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNRecordTypeSelectorView.xib; sourceTree = "<group>"; };
 		0487C9CC24D133270013715A /* CNRecordTypeSelectorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNRecordTypeSelectorView.h; sourceTree = "<group>"; };
-		0487C9CF24D144E60013715A /* CNSelectBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNSelectBtn.h; sourceTree = "<group>"; };
-		0487C9D024D144E60013715A /* CNSelectBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNSelectBtn.m; sourceTree = "<group>"; };
 		0487C9D224D164460013715A /* CNRecordDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNRecordDetailVC.h; sourceTree = "<group>"; };
 		0487C9D324D164460013715A /* CNRecordDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNRecordDetailVC.m; sourceTree = "<group>"; };
 		0487C9D424D164460013715A /* CNRecordDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CNRecordDetailVC.xib; sourceTree = "<group>"; };
@@ -1051,8 +1050,6 @@
 		0487C9E924D297CA0013715A /* CNMessageCenterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNMessageCenterVC.h; sourceTree = "<group>"; };
 		0487C9EA24D297CA0013715A /* CNMessageCenterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNMessageCenterVC.m; sourceTree = "<group>"; };
 		0487C9EB24D297CA0013715A /* CNMessageCenterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CNMessageCenterVC.xib; sourceTree = "<group>"; };
-		0487C9EE24D2A0620013715A /* CNTextSaleBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNTextSaleBtn.h; sourceTree = "<group>"; };
-		0487C9EF24D2A0620013715A /* CNTextSaleBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNTextSaleBtn.m; sourceTree = "<group>"; };
 		0487C9F124D2AADC0013715A /* CNMessageTCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNMessageTCell.h; sourceTree = "<group>"; };
 		0487C9F224D2AADC0013715A /* CNMessageTCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNMessageTCell.m; sourceTree = "<group>"; };
 		0487C9F324D2AADC0013715A /* CNMessageTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CNMessageTCell.xib; sourceTree = "<group>"; };
@@ -1094,9 +1091,6 @@
 		04935BC424D56793007A33EF /* CNAddAddressVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNAddAddressVC.xib; sourceTree = "<group>"; };
 		04935BC524D56793007A33EF /* CNAddAddressVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNAddAddressVC.h; sourceTree = "<group>"; };
 		04935BC624D56793007A33EF /* CNAddAddressVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNAddAddressVC.m; sourceTree = "<group>"; };
-		04935BC924D68C84007A33EF /* CNNormalInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNNormalInputView.m; sourceTree = "<group>"; };
-		04935BCA24D68C84007A33EF /* CNNormalInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNNormalInputView.xib; sourceTree = "<group>"; };
-		04935BCB24D68C84007A33EF /* CNNormalInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNNormalInputView.h; sourceTree = "<group>"; };
 		04935BCE24D7B662007A33EF /* CNAddressDownloadTCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNAddressDownloadTCell.h; sourceTree = "<group>"; };
 		04935BCF24D7B662007A33EF /* CNAddressDownloadTCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNAddressDownloadTCell.m; sourceTree = "<group>"; };
 		04935BD024D7B662007A33EF /* CNAddressDownloadTCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNAddressDownloadTCell.xib; sourceTree = "<group>"; };
@@ -1352,6 +1346,21 @@
 		3DA4F1A024B3199A0039123F /* HYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYNavigationController.h; sourceTree = "<group>"; };
 		3DA4F1A224B31A110039123F /* NSString+Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Font.h"; sourceTree = "<group>"; };
 		3DA4F1A324B31A110039123F /* NSString+Font.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Font.m"; sourceTree = "<group>"; };
+		3DBA55C0256FA6D3009A2B71 /* CNBaseTF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNBaseTF.h; sourceTree = "<group>"; };
+		3DBA55C1256FA6D3009A2B71 /* CNNormalInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNNormalInputView.m; sourceTree = "<group>"; };
+		3DBA55C2256FA6D3009A2B71 /* CNNormalInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNNormalInputView.xib; sourceTree = "<group>"; };
+		3DBA55C3256FA6D3009A2B71 /* CNNormalInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNNormalInputView.h; sourceTree = "<group>"; };
+		3DBA55C4256FA6D3009A2B71 /* CNBaseTF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNBaseTF.m; sourceTree = "<group>"; };
+		3DBA55C6256FA6D3009A2B71 /* CNTextSaleBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNTextSaleBtn.h; sourceTree = "<group>"; };
+		3DBA55C7256FA6D3009A2B71 /* CNOneStatusBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNOneStatusBtn.m; sourceTree = "<group>"; };
+		3DBA55C8256FA6D3009A2B71 /* CNSelectBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNSelectBtn.h; sourceTree = "<group>"; };
+		3DBA55C9256FA6D3009A2B71 /* CNTwoStatusBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNTwoStatusBtn.h; sourceTree = "<group>"; };
+		3DBA55CA256FA6D3009A2B71 /* CNOneStatusBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNOneStatusBtn.h; sourceTree = "<group>"; };
+		3DBA55CB256FA6D3009A2B71 /* CNTextSaleBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNTextSaleBtn.m; sourceTree = "<group>"; };
+		3DBA55CC256FA6D3009A2B71 /* CNTwoStatusBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNTwoStatusBtn.m; sourceTree = "<group>"; };
+		3DBA55CD256FA6D3009A2B71 /* CNSelectBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNSelectBtn.m; sourceTree = "<group>"; };
+		3DBA55D6256FA793009A2B71 /* BalanceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BalanceManager.h; sourceTree = "<group>"; };
+		3DBA55D7256FA793009A2B71 /* BalanceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BalanceManager.m; sourceTree = "<group>"; };
 		3DC87A4F253967DC0032ED1B /* BuyECoinModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyECoinModel.h; sourceTree = "<group>"; };
 		3DC87A50253967DC0032ED1B /* BuyECoinModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyECoinModel.m; sourceTree = "<group>"; };
 		3DCFEA8725009D010071F356 /* V_SlideCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_SlideCardCell.h; sourceTree = "<group>"; };
@@ -1376,12 +1385,6 @@
 		C2D62AAB840E46D1A6C31D05 /* Pods-HYNewNestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNestTests.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNestTests/Pods-HYNewNestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D571B19424BE9F120087B5EC /* CNLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNLineView.h; sourceTree = "<group>"; };
 		D571B19524BE9F120087B5EC /* CNLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNLineView.m; sourceTree = "<group>"; };
-		D571B19724BEA4620087B5EC /* CNTwoStatusBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNTwoStatusBtn.m; sourceTree = "<group>"; };
-		D571B19824BEA4620087B5EC /* CNTwoStatusBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNTwoStatusBtn.h; sourceTree = "<group>"; };
-		D571B19B24BFF2B10087B5EC /* CNOneStatusBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNOneStatusBtn.h; sourceTree = "<group>"; };
-		D571B19C24BFF2B10087B5EC /* CNOneStatusBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNOneStatusBtn.m; sourceTree = "<group>"; };
-		D571B19F24BFFD510087B5EC /* CNBaseTF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNBaseTF.h; sourceTree = "<group>"; };
-		D571B1A024BFFD510087B5EC /* CNBaseTF.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNBaseTF.m; sourceTree = "<group>"; };
 		D571B1A724C03D790087B5EC /* CNStatementView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNStatementView.xib; sourceTree = "<group>"; };
 		D571B1A824C03D790087B5EC /* CNStatementView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNStatementView.h; sourceTree = "<group>"; };
 		D571B1A924C03D790087B5EC /* CNStatementView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNStatementView.m; sourceTree = "<group>"; };
@@ -2724,6 +2727,8 @@
 		3D13389924AF2D1900B29783 /* Utility(工具类) */ = {
 			isa = PBXGroup;
 			children = (
+				3DBA55C5256FA6D3009A2B71 /* Button */,
+				3DBA55BF256FA6D3009A2B71 /* TextFeild */,
 				3D31B94B253D691A005275BD /* HYSlideUpComfirmView */,
 				3D3A9B6724FA3696003FB33C /* DXRadianLayerView */,
 				E98BEF3424D3D23100E6B0C8 /* HYDownloadLinkView */,
@@ -3212,16 +3217,51 @@
 		3DA4F19E24B3199A0039123F /* BASE */ = {
 			isa = PBXGroup;
 			children = (
+				3DBA55D5256FA720009A2B71 /* BalanceManager */,
 				04C0F10D24C59298007F1420 /* Networking */,
 				04C0F10024C58A52007F1420 /* Parse */,
 				04C0F0F924C58967007F1420 /* UserManager */,
-				D571B19E24BFFD290087B5EC /* TextFeild */,
-				D571B19A24BFF1F00087B5EC /* Button */,
 				D5FBFE7224BC28B100BBCAD8 /* Model */,
 				D5FBFE7524BC28B200BBCAD8 /* Controller */,
 				D5FBFE5924BC28B100BBCAD8 /* View */,
 			);
 			path = BASE;
+			sourceTree = "<group>";
+		};
+		3DBA55BF256FA6D3009A2B71 /* TextFeild */ = {
+			isa = PBXGroup;
+			children = (
+				3DBA55C0256FA6D3009A2B71 /* CNBaseTF.h */,
+				3DBA55C1256FA6D3009A2B71 /* CNNormalInputView.m */,
+				3DBA55C2256FA6D3009A2B71 /* CNNormalInputView.xib */,
+				3DBA55C3256FA6D3009A2B71 /* CNNormalInputView.h */,
+				3DBA55C4256FA6D3009A2B71 /* CNBaseTF.m */,
+			);
+			path = TextFeild;
+			sourceTree = "<group>";
+		};
+		3DBA55C5256FA6D3009A2B71 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				3DBA55C6256FA6D3009A2B71 /* CNTextSaleBtn.h */,
+				3DBA55C7256FA6D3009A2B71 /* CNOneStatusBtn.m */,
+				3DBA55C8256FA6D3009A2B71 /* CNSelectBtn.h */,
+				3DBA55C9256FA6D3009A2B71 /* CNTwoStatusBtn.h */,
+				3DBA55CA256FA6D3009A2B71 /* CNOneStatusBtn.h */,
+				3DBA55CB256FA6D3009A2B71 /* CNTextSaleBtn.m */,
+				3DBA55CC256FA6D3009A2B71 /* CNTwoStatusBtn.m */,
+				3DBA55CD256FA6D3009A2B71 /* CNSelectBtn.m */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		3DBA55D5256FA720009A2B71 /* BalanceManager */ = {
+			isa = PBXGroup;
+			children = (
+				3DBA55D6256FA793009A2B71 /* BalanceManager.h */,
+				3DBA55D7256FA793009A2B71 /* BalanceManager.m */,
+			);
+			path = BalanceManager;
 			sourceTree = "<group>";
 		};
 		3DCFEA8625009D010071F356 /* SlideCard */ = {
@@ -3245,33 +3285,6 @@
 				A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D571B19A24BFF1F00087B5EC /* Button */ = {
-			isa = PBXGroup;
-			children = (
-				D571B19B24BFF2B10087B5EC /* CNOneStatusBtn.h */,
-				D571B19C24BFF2B10087B5EC /* CNOneStatusBtn.m */,
-				D571B19824BEA4620087B5EC /* CNTwoStatusBtn.h */,
-				D571B19724BEA4620087B5EC /* CNTwoStatusBtn.m */,
-				0487C9CF24D144E60013715A /* CNSelectBtn.h */,
-				0487C9D024D144E60013715A /* CNSelectBtn.m */,
-				0487C9EE24D2A0620013715A /* CNTextSaleBtn.h */,
-				0487C9EF24D2A0620013715A /* CNTextSaleBtn.m */,
-			);
-			path = Button;
-			sourceTree = "<group>";
-		};
-		D571B19E24BFFD290087B5EC /* TextFeild */ = {
-			isa = PBXGroup;
-			children = (
-				D571B19F24BFFD510087B5EC /* CNBaseTF.h */,
-				D571B1A024BFFD510087B5EC /* CNBaseTF.m */,
-				04935BCB24D68C84007A33EF /* CNNormalInputView.h */,
-				04935BC924D68C84007A33EF /* CNNormalInputView.m */,
-				04935BCA24D68C84007A33EF /* CNNormalInputView.xib */,
-			);
-			path = TextFeild;
 			sourceTree = "<group>";
 		};
 		D5A4425724F36F4200014DC6 /* Gif */ = {
@@ -4952,7 +4965,6 @@
 				D5A4449F24F3932400014DC6 /* 数字7_0005.png in Resources */,
 				D5A443D424F378CD00014DC6 /* 彩票_00042.png in Resources */,
 				D5A4457D24F393AD00014DC6 /* 棋牌_00053.png in Resources */,
-				04935BCD24D68C84007A33EF /* CNNormalInputView.xib in Resources */,
 				0487C9C924D11F460013715A /* CNNoDataView.xib in Resources */,
 				D5A4457024F393AC00014DC6 /* 棋牌_00079.png in Resources */,
 				0430AB3224E38F8300C873DC /* CNBankVerifySmsView.xib in Resources */,
@@ -5155,6 +5167,7 @@
 				D5A4465124F393E500014DC6 /* 足球_00038.png in Resources */,
 				D5A4458C24F393AD00014DC6 /* 棋牌_00019.png in Resources */,
 				D5A443FF24F37A9E00014DC6 /* 彩票_0005.png in Resources */,
+				3DBA55CF256FA6D3009A2B71 /* CNNormalInputView.xib in Resources */,
 				D5A446D824F3941400014DC6 /* 合成 1_00012.png in Resources */,
 				D5A4456924F393AC00014DC6 /* 棋牌_00069.png in Resources */,
 				D5A4448E24F3932400014DC6 /* 数字7_00020.png in Resources */,
@@ -5461,7 +5474,6 @@
 				04C0F11B24C68715007F1420 /* CNUserInfoLoginView.m in Sources */,
 				0405FF6B24D3DAE400AC46D2 /* CNFeedBackRightTCell.m in Sources */,
 				3D643F8E24F29F3600B9AAA7 /* HeartPacketData.m in Sources */,
-				0487C9D124D144E60013715A /* CNSelectBtn.m in Sources */,
 				3D41DE902519ADDF000CA1D6 /* HYVIPCumulateIdVC.m in Sources */,
 				0487C97224CE9A630013715A /* BRAddressPickerView.m in Sources */,
 				E986A19924CAC47B000F9CFF /* HYRechargeHelper.m in Sources */,
@@ -5523,17 +5535,16 @@
 				3D643F8924F29F3600B9AAA7 /* IVOtherInfoModel.m in Sources */,
 				E97054AD24DC4C0E0007F845 /* CNImageCodeModel.m in Sources */,
 				3DA4F1A124B3199A0039123F /* HYNavigationController.m in Sources */,
-				D571B19924BEA4620087B5EC /* CNTwoStatusBtn.m in Sources */,
 				D5FBFE8B24BC28B200BBCAD8 /* CNBaseModel.m in Sources */,
 				0487C9F424D2AADC0013715A /* CNMessageTCell.m in Sources */,
 				3D41DECA2521CDE7000CA1D6 /* VIPRecordSelectorView.m in Sources */,
-				0487C9F024D2A0620013715A /* CNTextSaleBtn.m in Sources */,
 				E986A1A624CB3C18000F9CFF /* HYTextAlertView.m in Sources */,
 				E9D9449024C5454F00252222 /* HYNetworkConfigManager.m in Sources */,
 				040A08D424E114A900FBD534 /* CALayer+OCBarrage.m in Sources */,
 				048A0EF324C9401100411819 /* CNGameLineView.m in Sources */,
 				3D31B94A253D3E42005275BD /* UIView+Badge.m in Sources */,
 				E986A1C224CC7F2B000F9CFF /* UIView+SDExtension.m in Sources */,
+				3DBA55D1256FA6D3009A2B71 /* CNOneStatusBtn.m in Sources */,
 				E98BEEEA24D023B200E6B0C8 /* UIView+LYExtension.m in Sources */,
 				E9D9449724C5734400252222 /* WelcomeModel.m in Sources */,
 				E986A12224C7E802000F9CFF /* CNUserCenterRequest.m in Sources */,
@@ -5565,7 +5576,6 @@
 				3D41DE8125199DEE000CA1D6 /* VIPNewVersionView.m in Sources */,
 				3D41DE7725199DEE000CA1D6 /* VIPMonthlyModel.m in Sources */,
 				E9A269DC24D80FCC00B512FF /* HYRechargePayWayCell.m in Sources */,
-				04935BCC24D68C84007A33EF /* CNNormalInputView.m in Sources */,
 				E98BEF0224D1AF4300E6B0C8 /* HYXiMaTopView.m in Sources */,
 				0487C9AA24CFBA6A0013715A /* JJCollectionViewRoundFlowLayout+Alignment.m in Sources */,
 				04C0F0FF24C589EC007F1420 /* CNUserManager.m in Sources */,
@@ -5577,6 +5587,7 @@
 				3D1338A424AF2E5200B29783 /* AppDelegate.m in Sources */,
 				E986A18924C9CF36000F9CFF /* XmPlatformModel.m in Sources */,
 				3DA4F17C24B315940039123F /* NSURL+HYLink.m in Sources */,
+				3DBA55D0256FA6D3009A2B71 /* CNBaseTF.m in Sources */,
 				E986A0FA24C6CBB6000F9CFF /* SmsCodeModel.m in Sources */,
 				04C0F11624C59956007F1420 /* CNEncrypt.m in Sources */,
 				3D41DE962519E9D0000CA1D6 /* VIPCumulateIdCell.m in Sources */,
@@ -5595,6 +5606,7 @@
 				E986A19C24CADCA3000F9CFF /* UserSubscribItem.m in Sources */,
 				04C0F11324C594D5007F1420 /* CNLoginRequest.m in Sources */,
 				3D31B94E253D6934005275BD /* HYSlideUpComfirmBaseView.m in Sources */,
+				3DBA55CE256FA6D3009A2B71 /* CNNormalInputView.m in Sources */,
 				E986A10F24C73604000F9CFF /* AdBannerGroupModel.m in Sources */,
 				E986A11E24C7E08F000F9CFF /* GameStartPlayViewController.m in Sources */,
 				04C6E1F324D4180D006F4DAC /* CNImaginaryLine.m in Sources */,
@@ -5626,6 +5638,7 @@
 				E986A15624C95F4F000F9CFF /* UIButton+Indicator.m in Sources */,
 				040A08D024E114A900FBD534 /* OCBarrageTextCell.m in Sources */,
 				0487C9EC24D297CA0013715A /* CNMessageCenterVC.m in Sources */,
+				3DBA55D2256FA6D3009A2B71 /* CNTextSaleBtn.m in Sources */,
 				D5FBFE3D24BC05E400BBCAD8 /* CNImageCodeInputView.m in Sources */,
 				E986A10B24C6F5E7000F9CFF /* TopTabAGUltimateView.m in Sources */,
 				3D643F8824F29F3600B9AAA7 /* AlertViewHelp.m in Sources */,
@@ -5635,6 +5648,7 @@
 				3D41DEA5251AF662000CA1D6 /* VIPCumulateIdButton.m in Sources */,
 				3D41DE9A2519F996000CA1D6 /* VIPCumulateIdHeader.m in Sources */,
 				3D41DE7325199DEE000CA1D6 /* VIPDSBUsrModel.m in Sources */,
+				3DBA55D4256FA6D3009A2B71 /* CNSelectBtn.m in Sources */,
 				3D31B9612542E97D005275BD /* HYTapHanImageCodeView.m in Sources */,
 				3D41DEBD251F1B47000CA1D6 /* UIImageView+GIF.m in Sources */,
 				E986A1C724CC7F2B000F9CFF /* TAAbstractDotView.m in Sources */,
@@ -5692,6 +5706,7 @@
 				3DA4F16B24B312BE0039123F /* UIViewController+Extension.m in Sources */,
 				E98BEEFE24D1815200E6B0C8 /* HYXiMaViewController.m in Sources */,
 				E986A13124C7FC0E000F9CFF /* ArticalModel.m in Sources */,
+				3DBA55D8256FA793009A2B71 /* BalanceManager.m in Sources */,
 				04C0F0FC24C589DD007F1420 /* CNUserModel.m in Sources */,
 				E986A1C124CC7F2B000F9CFF /* SDCycleScrollView.m in Sources */,
 				E986A19224CA93D3000F9CFF /* BQPaymentModel.m in Sources */,
@@ -5718,14 +5733,12 @@
 				0487C9D524D164460013715A /* CNRecordDetailVC.m in Sources */,
 				04935BD124D7B662007A33EF /* CNAddressDownloadTCell.m in Sources */,
 				E98BEF2A24D2D34400E6B0C8 /* UIView+DottedLine.m in Sources */,
-				D571B19D24BFF2B10087B5EC /* CNOneStatusBtn.m in Sources */,
 				040A08D824E114A900FBD534 /* OCBarrageGradientBackgroundColorCell.m in Sources */,
 				E98BEF1724D2AF9B00E6B0C8 /* HYWithdrawViewController.m in Sources */,
 				0487C96E24CE9A630013715A /* BRDatePickerView.m in Sources */,
 				E9063B9324D6F3480000273A /* HYNewCTZNCell.m in Sources */,
 				3D643F9B24F396BC00B9AAA7 /* GameLineModel.m in Sources */,
 				3D41DEAB251C82F6000CA1D6 /* VIPIdentityModel.m in Sources */,
-				D571B1A124BFFD510087B5EC /* CNBaseTF.m in Sources */,
 				04C0F0E824C2E250007F1420 /* JHVerificationCodeView.m in Sources */,
 				3D31B958253DBBBD005275BD /* HYWithdrawCalculatorComView.m in Sources */,
 				0487C9E724D27BDD0013715A /* CNNotifySettingTCell.m in Sources */,
@@ -5740,6 +5753,7 @@
 				E986A12624C7EAA6000F9CFF /* OtherAppModel.m in Sources */,
 				E986A12D24C7F5D7000F9CFF /* CNGloryRequest.m in Sources */,
 				3D41DE6E25199DEE000CA1D6 /* JLXUICollectionViewFlowLayout.m in Sources */,
+				3DBA55D3256FA6D3009A2B71 /* CNTwoStatusBtn.m in Sources */,
 				E986A14024C936FF000F9CFF /* MyPromoItem.m in Sources */,
 				0487C9B724D005D20013715A /* CNChangePwdVC.m in Sources */,
 				E97054AA24DC10040007F845 /* AgentRecordModel.m in Sources */,
@@ -5929,7 +5943,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.23;
+				MARKETING_VERSION = 3.6.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hy.HYNewNest;
 				PRODUCT_NAME = "币游_dev";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5960,7 +5974,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.23;
+				MARKETING_VERSION = 3.6.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hy.HYNewNest;
 				PRODUCT_NAME = "币游";
 				PROVISIONING_PROFILE_SPECIFIER = "";
