@@ -8,13 +8,13 @@
 
 #import "BalanceManager.h"
 #import "CNBaseNetworking.h"
-//#import <BGFMDB/BGFMDB.h>
 
 @interface BalanceManager()
 {
     NSUInteger balancesSec;
     NSUInteger promoteSec;
     NSUInteger betAmountSec;
+    AccountMoneyDetailModel *_balanceDetailModel;
 }
 @property (nonatomic, strong) AccountMoneyDetailModel *balanceDetailModel;
 @property (nonatomic, strong) PromoteXimaModel        *promoteXimaModel;
@@ -24,15 +24,41 @@
 @end
 
 @implementation BalanceManager
+@dynamic balanceDetailModel;
+
+#pragma mark - setter & getter
+
+- (void)setBalanceDetailModel:(AccountMoneyDetailModel *)balanceDetailModel {
+    _balanceDetailModel = balanceDetailModel;
+    _balanceDetailModel.primaryKey = [CNUserManager shareManager].userInfo.customerId;
+    [_balanceDetailModel bg_saveOrUpdate];
+}
+
+- (AccountMoneyDetailModel *)balanceDetailModel {
+    if (_balanceDetailModel) {
+        return _balanceDetailModel;
+    } else {
+        MyLog(@"XXXX 返回余额数据库的数据 XXXX");
+        NSString* where = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"primaryKey"),[CNUserManager shareManager].userInfo.customerId];
+        NSArray* arr = [AccountMoneyDetailModel bg_find:DBName_AccountBalance where:where];
+        if (arr.count > 0) {
+            return arr.firstObject;
+        }
+        
+    }
+    return nil;
+}
+
+#pragma mark - View Life Cycle
 
 + (instancetype)shareManager {
     static BalanceManager * _manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _manager = [[BalanceManager alloc] init];
-        _manager->balancesSec = 60;
-        _manager->promoteSec = 60;
-        _manager->betAmountSec = 60;
+        _manager->balancesSec = 3; //刚启动三秒内不请求
+        _manager->promoteSec = 0;
+        _manager->betAmountSec = 0;
         [_manager setupTimers];
     });
     return _manager;
@@ -52,7 +78,7 @@
 }
 
 - (void)resumeTimer {
-    MyLog(@"@@@@@@@@@@@@ 倒计时恢复60，余额定时器开始");
+//    MyLog(@"@@@@@@@@@@@@ 倒计时恢复60，余额定时器开始");
     [_balanceTimer setFireDate:[NSDate distantPast]];
 }
 
@@ -80,8 +106,8 @@
 }
 
 - (void)getBalanceDetailHandler:(void(^)(AccountMoneyDetailModel * _Nonnull))handler {
-    if (_balanceDetailModel && balancesSec > 0) {
-        handler(_balanceDetailModel);
+    if (self.balanceDetailModel && balancesSec > 0) {
+        handler(self.balanceDetailModel);
     } else {
         [self requestBalaceHandler:^(AccountMoneyDetailModel *model) {
             handler(model);
@@ -154,7 +180,7 @@
                 @synchronized (self) {
                     MyLog(@"XXXX 网络请求失败!!! XXXX");
                     for (AccountBalancesBlock eachSuccess in successBlocks) {//遍历回调数组，把结果发给每个调用者
-                        eachSuccess(self->_balanceDetailModel);
+                        eachSuccess(self.balanceDetailModel);
                     }
                     [successBlocks removeAllObjects];
                     

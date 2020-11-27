@@ -23,8 +23,20 @@
 @end
 
 
+NSString * DBName_AccountBalance = @"UserBalances";
+
 @implementation AccountMoneyDetailModel
+
 + (NSDictionary<NSString *,id> *)modelContainerPropertyGenericClass {
     return @{@"platformBalances" : [platformBalancesItem class]};
 }
+
+- (NSString *)bg_tableName {
+    return DBName_AccountBalance;
+}
+
++ (NSArray *)bg_uniqueKeys {
+    return @[@"primaryKey"];
+}
+
 @end

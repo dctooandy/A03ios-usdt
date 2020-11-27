@@ -44,13 +44,12 @@
     if ([CNUserManager shareManager].isLogin) {
         [self configLogInUI];
         [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-            [self setupAmount:model.balance];
+            [self setupAmount:model?model.balance:@0];
         }];
 //        if (![CNUserManager shareManager].userDetail.newAccountFlag) {
         if ([CNUserManager shareManager].isUiModeHasOptions) {
             self.switchModeBtn.hidden = NO;
             self.vipImgv.hidden = YES;
-            [self switchAccountUIChange];
         } else {
             self.switchModeBtn.hidden = YES;
             self.vipImgv.hidden = NO;

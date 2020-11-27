@@ -57,7 +57,7 @@
                                                 <constraint firstAttribute="width" secondItem="L6F-j7-MKh" secondAttribute="height" multiplier="1:1" id="1Yx-o8-xlg"/>
                                                 <constraint firstAttribute="width" constant="45" id="rwt-4A-RAW"/>
                                             </constraints>
-                                            <state key="normal" backgroundImage="live-1"/>
+                                            <state key="normal" backgroundImage="icon"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                     <real key="value" value="22.5"/>
@@ -943,10 +943,10 @@
         <image name="aq" width="24" height="24"/>
         <image name="cz" width="40" height="40"/>
         <image name="g" width="22" height="22"/>
+        <image name="icon" width="42" height="42"/>
         <image name="jl" width="24" height="24"/>
         <image name="k" width="22" height="22"/>
         <image name="l_btn_line" width="315" height="48"/>
-        <image name="live-1" width="165" height="130"/>
         <image name="mb" width="40" height="40"/>
         <image name="sz" width="22" height="22"/>
         <image name="tx" width="40" height="40"/>

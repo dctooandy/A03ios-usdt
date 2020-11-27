@@ -7,6 +7,7 @@
 //
 
 #import "CNBaseModel.h"
+#import <BGFMDB/BGFMDB.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -46,6 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
+UIKIT_EXTERN NSString * DBName_AccountBalance;
 /// 账户余额
 @interface AccountMoneyDetailModel : CNBaseModel
 
@@ -59,6 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic) NSNumber *yebInterest;
 @property (strong,nonatomic) NSNumber *yebAmount;
 
+@property (nonatomic, strong) NSString *primaryKey;
 @end
 
 NS_ASSUME_NONNULL_END
