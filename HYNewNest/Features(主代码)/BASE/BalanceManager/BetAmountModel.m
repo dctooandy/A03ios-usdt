@@ -10,14 +10,21 @@
 
 @implementation PromoteXimaModel
 
-
 @end
+
 
 @implementation BetAmountModel
 
 @end
 
 
-@implementation AccountMoneyDetailModel
+@implementation platformBalancesItem
 
+@end
+
+
+@implementation AccountMoneyDetailModel
++ (NSDictionary<NSString *,id> *)modelContainerPropertyGenericClass {
+    return @{@"platformBalances" : [platformBalancesItem class]};
+}
 @end

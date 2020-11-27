@@ -32,6 +32,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
+
+/// 平台余额
+@interface platformBalancesItem : CNBaseModel
+@property (strong,nonatomic) NSNumber *balance;
+@property (nonatomic, assign) NSUInteger gameKind;
+@property (nonatomic, strong) NSString *platformCode;
+@property (nonatomic, strong) NSString *platformCurrency;
+@property (nonatomic, strong) NSString *platformName;
+@property (nonatomic, assign) NSUInteger sortNo;
+
+@end
+
+
+
 /// 账户余额
 @interface AccountMoneyDetailModel : CNBaseModel
 
@@ -39,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic) NSNumber *localBalance;
 @property (strong,nonatomic) NSString *currency;
 @property (assign,nonatomic) NSNumber *minWithdrawAmount;
-@property (strong,nonatomic) NSArray *platformBalances;
+@property (strong,nonatomic) NSArray<platformBalancesItem *> *platformBalances;
 @property (strong,nonatomic) NSNumber *platformTotalBalance;
 @property (strong,nonatomic) NSNumber *withdrawBal;
 @property (strong,nonatomic) NSNumber *yebInterest;

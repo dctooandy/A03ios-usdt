@@ -7,7 +7,8 @@
 //
 
 #import "BalanceManager.h"
-#import "CNUserCenterRequest.h"
+#import "CNBaseNetworking.h"
+//#import <BGFMDB/BGFMDB.h>
 
 @interface BalanceManager()
 {
@@ -71,7 +72,7 @@
     if (betAmountSec > 0) {
         betAmountSec --;
     }
-    if (balancesSec == 0 && promoteSec == 0 && betAmountSec == 0) {
+    if (balancesSec <= 0 && promoteSec <= 0 && betAmountSec <= 0) {
         MyLog(@"@@@@@@@@@@@@ 倒计时全为0，余额定时器停止");
         [self pauseTimer];
     }
@@ -113,20 +114,75 @@
 
 /// 详细余额数据
 - (void)requestBalaceHandler:(nullable void(^)(AccountMoneyDetailModel *))handler {
-    [CNUserCenterRequest requestAccountBalanceHandler:^(id responseObj, NSString *errorMsg) {
-        AccountMoneyDetailModel *model = [AccountMoneyDetailModel cn_parse:responseObj];
-        self.balanceDetailModel = model;
-        self->balancesSec = 60;
-        [self resumeTimer];
+    
+//    [CNUserCenterRequest requestAccountBalanceHandler:^(id responseObj, NSString *errorMsg) {
+//        AccountMoneyDetailModel *model = [AccountMoneyDetailModel cn_parse:responseObj];
+//        self.balanceDetailModel = model;
+//        self->balancesSec = 60;
+//        [self resumeTimer];
+//        if (handler) {
+//            handler(model);
+//        }
+//    }];
+    
+    // 当多个重复请求的时候 保存回调，只等待一个网络请求返回
+    @synchronized (self) {
+        MyLog(@"XXXX 加锁，避免数组重复创建添加等问题, %@ XXXX", [NSThread currentThread]);
+        static NSMutableArray * successBlocks;//用数组保存回调
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{//仅创建一次数组
+            successBlocks = [NSMutableArray new];
+        });
         if (handler) {
-            handler(model);
+            [successBlocks addObject:handler];
+            MyLog(@"XXXX 每调用一次此函数，就把回调加进数组中:%@\n 添加回调block 已存在%ld个 XXXX",successBlocks, successBlocks.count);
         }
-    }];
+
+        static BOOL isProcessing = NO;
+        if (isProcessing == YES) {
+            MyLog(@"XXXX 如果已经在请求了，就不再发出新的请求 XXXX");
+            return;
+        }
+        isProcessing = YES;
+        
+        
+        [BalanceManager requestAccountBalanceHandler:^(id responseObj, NSString *errorMsg) {
+            isProcessing = NO;
+            
+            if (errorMsg) {
+                self->balancesSec = 0;
+                @synchronized (self) {
+                    MyLog(@"XXXX 网络请求失败!!! XXXX");
+                    for (AccountBalancesBlock eachSuccess in successBlocks) {//遍历回调数组，把结果发给每个调用者
+                        eachSuccess(self->_balanceDetailModel);
+                    }
+                    [successBlocks removeAllObjects];
+                    
+                }
+                return;
+            }
+            
+            AccountMoneyDetailModel *model = [AccountMoneyDetailModel cn_parse:responseObj];
+            self.balanceDetailModel = model;
+            self->balancesSec = 60;
+            [self resumeTimer];
+
+            @synchronized (self) {
+                MyLog(@"XXXX 网络请求的回调也要加锁，可能是另一个线程%@ XXXX, SucBlock:%@ XXXX", [NSThread currentThread], successBlocks);
+                for (AccountBalancesBlock eachSuccess in successBlocks) {//遍历回调数组，把结果发给每个调用者
+                    eachSuccess(model);
+                }
+                [successBlocks removeAllObjects];
+            }
+        }];
+        
+    }
+
 }
 
 /// 月优惠和洗码
 - (void)requestMonthPromoteAndXimaHandler:(nullable void(^)(PromoteXimaModel *))handler {
-    [CNUserCenterRequest requestMonthPromoteAndXimaHandler:^(id responseObj, NSString *errorMsg) {
+    [BalanceManager requestMonthPromoteAndXimaHandler:^(id responseObj, NSString *errorMsg) {
         PromoteXimaModel *pxModel = [PromoteXimaModel cn_parse:responseObj];
         self.promoteXimaModel = pxModel;
         self->promoteSec = 60;
@@ -139,7 +195,7 @@
 
 /// 周有效投注额
 - (void)requestBetAmountHandler:(nullable void(^)(BetAmountModel *))handler {
-    [CNUserCenterRequest requestBetAmountHandler:^(id responseObj, NSString *errorMsg) {
+    [BalanceManager requestBetAmountHandler:^(id responseObj, NSString *errorMsg) {
         BetAmountModel *betModel = [BetAmountModel cn_parse:responseObj];
         self.betAmountModel = betModel;
         self->betAmountSec = 60;
@@ -148,6 +204,32 @@
             handler(betModel);
         }
     }];
+}
+
+
+#pragma mark - Raw Request
+
++ (void)requestBetAmountHandler:(HandlerBlock)handler {
+    
+    [CNBaseNetworking POST:kGatewayExtraPath(config_betAmountLevel) parameters:[kNetworkMgr baseParam] completionHandler:handler];
+}
+
++ (void)requestAccountBalanceHandler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    [param setObject:@"1" forKey:@"flag"];  //1 缓存15秒 9不缓存 不传默认缓存2分钟
+    [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"]; //1usdt账户余额  0人民币账户余额
+    
+    [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:handler];
+}
+
++ (void)requestMonthPromoteAndXimaHandler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    [param setObject:@(1) forKey:@"inclPromoAmountByMonth"];
+    [param setObject:@(1) forKey:@"inclRebatedAmountByMonth"];
+    
+    [CNBaseNetworking POST:kGatewayPath(config_getByLoginNameEx) parameters:param completionHandler:handler];
 }
 
 @end

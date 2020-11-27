@@ -43,7 +43,9 @@
 - (void)updateLoginStatusUI {
     if ([CNUserManager shareManager].isLogin) {
         [self configLogInUI];
-        [self reloadBalance];
+        [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
+            [self setupAmount:model.balance];
+        }];
 //        if (![CNUserManager shareManager].userDetail.newAccountFlag) {
         if ([CNUserManager shareManager].isUiModeHasOptions) {
             self.switchModeBtn.hidden = NO;
@@ -80,7 +82,7 @@
     if ([CNUserManager shareManager].isLogin) {
         [self.moneyLb showIndicatorIsBig:NO];
         //金额
-        [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
+        [[BalanceManager shareManager] requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
             [self setupAmount:model.balance];
         }];
     }
@@ -95,7 +97,7 @@
 }
 
 
-// 修改买充提买按钮
+// 切换币种 修改买充提买按钮 必须重新加载数据
 - (void)switchAccountUIChange {
     if ([CNUserManager shareManager].isUsdtMode) {
         self.switchModeBtn.selected = NO;
@@ -108,6 +110,7 @@
         self.bottomViewSpacing.constant = 0;
         self.currencyLb.text = @"CNY";
     }
+    [self reloadBalance];
 }
 
 // 切换账户货币

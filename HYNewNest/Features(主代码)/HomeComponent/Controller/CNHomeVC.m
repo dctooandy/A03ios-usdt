@@ -101,12 +101,6 @@
 //    [[SocketRocketUtility instance] SRWebSocketOpenWithURLString:wsURL];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [self.infoView reloadBalance];
-}
-
 - (void)userDidLogin {
     [self.infoView updateLoginStatusUI];
     

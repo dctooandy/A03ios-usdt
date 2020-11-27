@@ -50,29 +50,6 @@
     [self POST:kGatewayExtraPath(config_new_requestAvatars) parameters:[kNetworkMgr baseParam] completionHandler:handler];
 }
 
-+ (void)requestBetAmountHandler:(HandlerBlock)handler {
-    
-    [self POST:kGatewayExtraPath(config_betAmountLevel) parameters:[kNetworkMgr baseParam] completionHandler:handler];
-}
-
-+ (void)requestAccountBalanceHandler:(HandlerBlock)handler {
-    
-    NSMutableDictionary *param = [kNetworkMgr baseParam];
-//    [param setObject:@"9" forKey:@"flag"];  //1 缓存15秒 9不缓存 不传默认缓存2分钟
-    [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"]; //1usdt账户余额  0人民币账户余额
-    
-    [self POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:handler];
-}
-
-+ (void)requestMonthPromoteAndXimaHandler:(HandlerBlock)handler {
-    
-    NSMutableDictionary *param = [kNetworkMgr baseParam];
-    [param setObject:@(1) forKey:@"inclPromoAmountByMonth"];
-    [param setObject:@(1) forKey:@"inclRebatedAmountByMonth"];
-    
-    [self POST:kGatewayPath(config_getByLoginNameEx) parameters:param completionHandler:handler];
-}
-
 + (void)requestOtherGameAppListHandler:(HandlerBlock)handler {
     
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];

@@ -42,18 +42,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)getAllAvatarsHanlder:(HandlerBlock)handler;
 
 
-/// 获取投注额
-+ (void)requestBetAmountHandler:(HandlerBlock)handler;
-
-
-/// 获取本月优惠和本月洗码
-+ (void)requestMonthPromoteAndXimaHandler:(HandlerBlock)handler;
-
-
-///获取用户账户余额
-+(void)requestAccountBalanceHandler:(HandlerBlock)handler;
-
-
 /// 获取其它游戏app
 + (void)requestOtherGameAppListHandler:(HandlerBlock)handler;
 

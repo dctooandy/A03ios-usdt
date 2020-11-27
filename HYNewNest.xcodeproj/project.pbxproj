@@ -260,6 +260,7 @@
 		3DBA55D3256FA6D3009A2B71 /* CNTwoStatusBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55CC256FA6D3009A2B71 /* CNTwoStatusBtn.m */; };
 		3DBA55D4256FA6D3009A2B71 /* CNSelectBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55CD256FA6D3009A2B71 /* CNSelectBtn.m */; };
 		3DBA55D8256FA793009A2B71 /* BalanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55D7256FA793009A2B71 /* BalanceManager.m */; };
+		3DBA55DB2570D188009A2B71 /* BetAmountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55DA2570D188009A2B71 /* BetAmountModel.m */; };
 		3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC87A50253967DC0032ED1B /* BuyECoinModel.m */; };
 		3DCFEA8B25009D020071F356 /* V_SlideCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8825009D010071F356 /* V_SlideCard.m */; };
 		3DCFEA8C25009D020071F356 /* V_SlideCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8925009D010071F356 /* V_SlideCardCell.m */; };
@@ -802,7 +803,6 @@
 		E986A10B24C6F5E7000F9CFF /* TopTabAGUltimateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E986A10924C6F5E7000F9CFF /* TopTabAGUltimateView.m */; };
 		E986A10F24C73604000F9CFF /* AdBannerGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E986A10E24C73604000F9CFF /* AdBannerGroupModel.m */; };
 		E986A11524C73DB8000F9CFF /* AnnounceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E986A11424C73DB8000F9CFF /* AnnounceModel.m */; };
-		E986A11824C73FE9000F9CFF /* BetAmountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E986A11724C73FE9000F9CFF /* BetAmountModel.m */; };
 		E986A11B24C7DFE7000F9CFF /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E986A11924C7DFE7000F9CFF /* GameModel.m */; };
 		E986A11E24C7E08F000F9CFF /* GameStartPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E986A11D24C7E08F000F9CFF /* GameStartPlayViewController.m */; };
 		E986A12224C7E802000F9CFF /* CNUserCenterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E986A12124C7E802000F9CFF /* CNUserCenterRequest.m */; };
@@ -1361,6 +1361,8 @@
 		3DBA55CD256FA6D3009A2B71 /* CNSelectBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNSelectBtn.m; sourceTree = "<group>"; };
 		3DBA55D6256FA793009A2B71 /* BalanceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BalanceManager.h; sourceTree = "<group>"; };
 		3DBA55D7256FA793009A2B71 /* BalanceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BalanceManager.m; sourceTree = "<group>"; };
+		3DBA55D92570D188009A2B71 /* BetAmountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetAmountModel.h; sourceTree = "<group>"; };
+		3DBA55DA2570D188009A2B71 /* BetAmountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BetAmountModel.m; sourceTree = "<group>"; };
 		3DC87A4F253967DC0032ED1B /* BuyECoinModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyECoinModel.h; sourceTree = "<group>"; };
 		3DC87A50253967DC0032ED1B /* BuyECoinModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyECoinModel.m; sourceTree = "<group>"; };
 		3DCFEA8725009D010071F356 /* V_SlideCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_SlideCardCell.h; sourceTree = "<group>"; };
@@ -1944,8 +1946,6 @@
 		E986A10E24C73604000F9CFF /* AdBannerGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdBannerGroupModel.m; sourceTree = "<group>"; };
 		E986A11324C73DB8000F9CFF /* AnnounceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnnounceModel.h; sourceTree = "<group>"; };
 		E986A11424C73DB8000F9CFF /* AnnounceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnnounceModel.m; sourceTree = "<group>"; };
-		E986A11624C73FE9000F9CFF /* BetAmountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetAmountModel.h; sourceTree = "<group>"; };
-		E986A11724C73FE9000F9CFF /* BetAmountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BetAmountModel.m; sourceTree = "<group>"; };
 		E986A11924C7DFE7000F9CFF /* GameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameModel.m; sourceTree = "<group>"; };
 		E986A11A24C7DFE7000F9CFF /* GameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
 		E986A11C24C7E08F000F9CFF /* GameStartPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStartPlayViewController.h; sourceTree = "<group>"; };
@@ -3258,6 +3258,8 @@
 		3DBA55D5256FA720009A2B71 /* BalanceManager */ = {
 			isa = PBXGroup;
 			children = (
+				3DBA55D92570D188009A2B71 /* BetAmountModel.h */,
+				3DBA55DA2570D188009A2B71 /* BetAmountModel.m */,
 				3DBA55D6256FA793009A2B71 /* BalanceManager.h */,
 				3DBA55D7256FA793009A2B71 /* BalanceManager.m */,
 			);
@@ -4050,8 +4052,6 @@
 				E9E9590024D41BC400E866B6 /* CreditQueryResultModel.m */,
 				E986A18E24CA8DB9000F9CFF /* ChooseAvatarsModel.h */,
 				E986A18D24CA8DB9000F9CFF /* ChooseAvatarsModel.m */,
-				E986A11624C73FE9000F9CFF /* BetAmountModel.h */,
-				E986A11724C73FE9000F9CFF /* BetAmountModel.m */,
 				E986A12424C7EAA6000F9CFF /* OtherAppModel.h */,
 				E986A12524C7EAA6000F9CFF /* OtherAppModel.m */,
 			);
@@ -5659,7 +5659,6 @@
 				3D31B947253ACEF8005275BD /* HYWithdrawActivityAlertView.m in Sources */,
 				3D16F10025381EEC00FE0212 /* HYBuyECoinGuideVC.m in Sources */,
 				3D16F0F825369CE100FE0212 /* VIPGiftTableView.m in Sources */,
-				E986A11824C73FE9000F9CFF /* BetAmountModel.m in Sources */,
 				E9D9449D24C5735B00252222 /* HY403ViewController.m in Sources */,
 				E98BEEFA24D0341A00E6B0C8 /* CTZNModel.m in Sources */,
 				0487C9FE24D2CDB40013715A /* CNDownloadTCell.m in Sources */,
@@ -5682,6 +5681,7 @@
 				D5FBFE3F24BC05E400BBCAD8 /* CNAccountInputView.m in Sources */,
 				044DC69524DD1A35005CB550 /* CNShareCopyView.m in Sources */,
 				0487CA0D24D3CC380013715A /* CNFeedBackVC.m in Sources */,
+				3DBA55DB2570D188009A2B71 /* BetAmountModel.m in Sources */,
 				048A0EE024C832F800411819 /* CNElectronicVC.m in Sources */,
 				042372A324CE65A000D37B9C /* CNSettingVC.m in Sources */,
 				0487CA0624D3BAB90013715A /* CNInviteFriendVC.m in Sources */,

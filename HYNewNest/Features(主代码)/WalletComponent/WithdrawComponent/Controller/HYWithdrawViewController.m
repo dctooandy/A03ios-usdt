@@ -24,7 +24,7 @@
 
 #import "CNWithdrawRequest.h"
 #import "CNWDAccountRequest.h"
-#import "CNUserCenterRequest.h"
+#import "BalanceManager.h"
 #import <IVLoganAnalysis/IVLAManager.h>
 
 @interface HYWithdrawViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -64,7 +64,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self bunchRequest];
+    [self getBalance];
+    [self requestWithdrawAddress];;
     
     if ((![CNUserManager shareManager].isUsdtMode)
         && (![CNUserManager shareManager].userDetail.mobileNoBind || ![CNUserManager shareManager].userDetail.realName)) {
@@ -142,18 +143,22 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     }
 }
 
+- (void)getBalance {
+    [self.topView.lblAmount showIndicatorIsBig:YES];
+    [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
+        self.moneyModel = model;
+        [self.topView.lblAmount hideIndicatorWithText:[model.withdrawBal jk_toDisplayNumberWithDigit:2]];
+        self.sumitBtn.enabled = YES;
+    }];
+}
+
 #pragma mark - REQUEST
 - (void)requestBalance {
     [self.topView.lblAmount showIndicatorIsBig:YES];
-    [CNUserCenterRequest requestAccountBalanceHandler:^(id responseObj, NSString *errorMsg) {
-        if (KIsEmptyString(errorMsg)) {
-            AccountMoneyDetailModel *moneyModel = [AccountMoneyDetailModel cn_parse:responseObj];
-            self.moneyModel = moneyModel;
-//            self.topView.lblAmount.text = [moneyModel.withdrawBal jk_toDisplayNumberWithDigit:2];
-            [self.topView.lblAmount hideIndicatorWithText:[moneyModel.withdrawBal jk_toDisplayNumberWithDigit:2]];
-            
-            self.sumitBtn.enabled = YES;
-        }
+    [[BalanceManager shareManager] requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
+        self.moneyModel = model;
+        [self.topView.lblAmount hideIndicatorWithText:[model.withdrawBal jk_toDisplayNumberWithDigit:2]];
+        self.sumitBtn.enabled = YES;
     }];
 }
 
@@ -216,6 +221,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     WEAKSELF_DEFINE
     AccountModel *model = self.elecCardsArr[self.selectedIdx];
     NSNumber *amount = [NSNumber numberWithDouble:[amout doubleValue]];
+    
+    /// ------ USDT提现
     if ([CNUserManager shareManager].isUsdtMode) {
         [CNWithdrawRequest submitWithdrawRequestAmount:amount
                                              accountId:model.accountId
@@ -232,11 +239,11 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
             }
         }];
         
-    //CNY提现
+    /// ------ CNY提现
     } else {
         __block NSString *giftAmount;
-        
-        if (self.calculatorModel && self.calculatorModel.creditExchangeFlag) { //判断该用户是否需要拆分
+        //判断该用户是否需要拆分
+        if (self.calculatorModel && self.calculatorModel.creditExchangeFlag) {
             [self.comfirmView hideView];
             
             // 计算接口 保存数据 -> 提现明细 -> 选择钱包/转USDT余额 -> 弹窗。。
