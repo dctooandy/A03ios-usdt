@@ -58,7 +58,9 @@
     NSDictionary *userInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     if (userInfo != nil) {
         //如果有值，说明是通过远程推送来启动的
-        [self handleRemoteNotification:userInfo];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self handleRemoteNotification:userInfo];
+        });
     }
     
     return YES;
@@ -184,7 +186,7 @@
             NSString *payload = userInfo[@"payload"];
             NSDictionary *dict = [payload jk_dictionaryValue];
             NSString *pageTitle = userInfo[@"aps"][@"alert"][@"title"];
-            if (dict) {
+            if (dict && [dict.allKeys containsObject:@"jumpUrl"]) {
                 NSString *url = dict[@"jumpUrl"];
                 [NNPageRouter jump2HTMLWithStrURL:url title:pageTitle needPubSite:NO];
             }

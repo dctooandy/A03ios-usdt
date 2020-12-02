@@ -19,7 +19,7 @@ static NSString *kIndicatorKey = @"IndicatorKey";
 }
 
 - (BOOL)isIndicating {
-    return objc_getAssociatedObject(self, &kIndicatorKey);
+    return [objc_getAssociatedObject(self, &kIndicatorKey) boolValue];
 }
 
 /** 显示菊花 */
@@ -43,9 +43,10 @@ static NSString *kIndicatorKey = @"IndicatorKey";
 }
 
 - (void)hideIndicator {
+    self.isIndicating = NO;
     for (UIView *subView in self.subviews) {
         if ([subView isKindOfClass:[UIActivityIndicatorView class]] && subView.tag == 8888) {
-            subView.hidden = YES;
+            [subView performSelector:@selector(removeFromSuperview)];
         }
     }
 }
@@ -53,14 +54,8 @@ static NSString *kIndicatorKey = @"IndicatorKey";
 
 /** 隐藏菊花 */
 - (void)hideIndicatorWithText:(NSString *)text{
-    
-    for (UIView *subView in self.subviews) {
-        if ([subView isKindOfClass:[UIActivityIndicatorView class]] && subView.tag == 8888) {
-            [subView removeFromSuperview];
-        }
-    }
-    
-    self.isIndicating = NO;
+    [self hideIndicator];
+
     self.originText = text;
 }
 
