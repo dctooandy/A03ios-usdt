@@ -7,10 +7,6 @@
 //
 
 #import "CNMineVC.h"
-#import "CNVIPLabel.h"
-#import "CNUserCenterRequest.h"
-#import <UIButton+WebCache.h>
-#import "UILabel+hiddenText.h"
 #import "CNSettingVC.h"
 #import "CNSecurityCenterVC.h"
 #import "CNTradeRecodeVC.h"
@@ -21,11 +17,19 @@
 #import "CNInviteFriendVC.h"
 #import "CNFeedBackVC.h"
 #import "CNAddressManagerVC.h"
-#import "HYWideOneBtnAlertView.h"
-#import "CNLoginRequest.h"
+
+#import <UIButton+WebCache.h>
 #import <UIImageView+WebCache.h>
-#import "NSURL+HYLink.h"
 #import <MJRefresh/MJRefresh.h>
+#import "UILabel+hiddenText.h"
+#import "NSURL+HYLink.h"
+
+#import "CNVIPLabel.h"
+#import "HYWideOneBtnAlertView.h"
+#import "HYBalancesDetailView.h"
+
+#import "CNUserCenterRequest.h"
+#import "CNLoginRequest.h"
 #import "BalanceManager.h"
 
 @interface CNMineVC ()
@@ -132,7 +136,17 @@
 
 #pragma mark - 按钮事件
 
-// 显示和隐藏
+/// 显示账户详情
+- (IBAction)click2ShowAccountBalncesDetail:(id)sender {
+    BOOL isIndi = self.amountLb.isIndicating;
+    if (isIndi) {
+        [CNHUB showWaiting:@"余额详情正在加载中..请稍等"];
+        return;
+    }
+    [HYBalancesDetailView showBalancesDetailView];
+}
+
+/// 显示和隐藏金额
 - (IBAction)seeAndHide:(UIButton *)sender {
     sender.selected = !sender.selected;
     if (sender.selected) {
@@ -158,27 +172,20 @@
 
 /// 买充提卖
 - (IBAction)didClickMCTMBtns:(UIButton *)sender {
-    //usdt模式下 未选择“不再提醒”充提指南 => 进充提指南
-//    if ([CNUserManager shareManager].isUsdtMode && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
-//        [self presentViewController:[HYNewCTZNViewController new] animated:YES completion:^{
-//        }];
-//
-//    } else {
-        if (sender.tag == 0) { // 买币
-            [NNPageRouter jump2BuyECoin];
-            
-        } else if (sender.tag == 1) { // 充值
-            [NNPageRouter jump2Deposit];
-            
-        } else if (sender.tag == 2) { // 提现
-            [NNPageRouter jump2Withdraw];
-            
-        } else { //卖币
-            [HYWideOneBtnAlertView showWithTitle:@"卖币跳转" content:@"正在为您跳转..请稍后。\n在交易所卖币数字货币，买家会将金额支付到您的银行卡，方便快捷。" comfirmText:@"我知道了，帮我跳转" comfirmHandler:^{
-                [NNPageRouter openExchangeElecCurrencyPage];
-            }];
-        }
-//    }
+    if (sender.tag == 0) { // 买币
+        [NNPageRouter jump2BuyECoin];
+        
+    } else if (sender.tag == 1) { // 充值
+        [NNPageRouter jump2Deposit];
+        
+    } else if (sender.tag == 2) { // 提现
+        [NNPageRouter jump2Withdraw];
+        
+    } else { //卖币
+        [HYWideOneBtnAlertView showWithTitle:@"卖币跳转" content:@"正在为您跳转..请稍后。\n在交易所卖币数字货币，买家会将金额支付到您的银行卡，方便快捷。" comfirmText:@"我知道了，帮我跳转" comfirmHandler:^{
+            [NNPageRouter openExchangeElecCurrencyPage];
+        }];
+    }
 }
 
 

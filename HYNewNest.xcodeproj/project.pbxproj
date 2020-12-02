@@ -261,6 +261,8 @@
 		3DBA55D4256FA6D3009A2B71 /* CNSelectBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55CD256FA6D3009A2B71 /* CNSelectBtn.m */; };
 		3DBA55D8256FA793009A2B71 /* BalanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55D7256FA793009A2B71 /* BalanceManager.m */; };
 		3DBA55DB2570D188009A2B71 /* BetAmountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55DA2570D188009A2B71 /* BetAmountModel.m */; };
+		3DBA55DE25763516009A2B71 /* HYBalancesDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55DD25763516009A2B71 /* HYBalancesDetailView.m */; };
+		3DBA55E025763C19009A2B71 /* HYBalancesDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA55DF25763C18009A2B71 /* HYBalancesDetailView.xib */; };
 		3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC87A50253967DC0032ED1B /* BuyECoinModel.m */; };
 		3DCFEA8B25009D020071F356 /* V_SlideCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8825009D010071F356 /* V_SlideCard.m */; };
 		3DCFEA8C25009D020071F356 /* V_SlideCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8925009D010071F356 /* V_SlideCardCell.m */; };
@@ -1363,6 +1365,9 @@
 		3DBA55D7256FA793009A2B71 /* BalanceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BalanceManager.m; sourceTree = "<group>"; };
 		3DBA55D92570D188009A2B71 /* BetAmountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetAmountModel.h; sourceTree = "<group>"; };
 		3DBA55DA2570D188009A2B71 /* BetAmountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BetAmountModel.m; sourceTree = "<group>"; };
+		3DBA55DC25763516009A2B71 /* HYBalancesDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYBalancesDetailView.h; sourceTree = "<group>"; };
+		3DBA55DD25763516009A2B71 /* HYBalancesDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYBalancesDetailView.m; sourceTree = "<group>"; };
+		3DBA55DF25763C18009A2B71 /* HYBalancesDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYBalancesDetailView.xib; sourceTree = "<group>"; };
 		3DC87A4F253967DC0032ED1B /* BuyECoinModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyECoinModel.h; sourceTree = "<group>"; };
 		3DC87A50253967DC0032ED1B /* BuyECoinModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyECoinModel.m; sourceTree = "<group>"; };
 		3DCFEA8725009D010071F356 /* V_SlideCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_SlideCardCell.h; sourceTree = "<group>"; };
@@ -2477,6 +2482,9 @@
 				0487C9FD24D2CDB40013715A /* CNDownloadTCell.xib */,
 				E969EB3324E14B4B00D58FE9 /* MineBindView.h */,
 				E969EB3424E14B4B00D58FE9 /* MineBindView.m */,
+				3DBA55DC25763516009A2B71 /* HYBalancesDetailView.h */,
+				3DBA55DD25763516009A2B71 /* HYBalancesDetailView.m */,
+				3DBA55DF25763C18009A2B71 /* HYBalancesDetailView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4886,6 +4894,7 @@
 				D5A443BE24F378CD00014DC6 /* 彩票_00058.png in Resources */,
 				D5A446EC24F3941400014DC6 /* 合成 1_00018.png in Resources */,
 				D5A443AE24F378CD00014DC6 /* 彩票_00082.png in Resources */,
+				3DBA55E025763C19009A2B71 /* HYBalancesDetailView.xib in Resources */,
 				04C0F0E424C2B282007F1420 /* CNHUB.xib in Resources */,
 				D5A4453724F393AC00014DC6 /* 棋牌_00038.png in Resources */,
 				D5A4447224F3932400014DC6 /* 数字7_00074.png in Resources */,
@@ -5544,6 +5553,7 @@
 				048A0EF324C9401100411819 /* CNGameLineView.m in Sources */,
 				3D31B94A253D3E42005275BD /* UIView+Badge.m in Sources */,
 				E986A1C224CC7F2B000F9CFF /* UIView+SDExtension.m in Sources */,
+				3DBA55DE25763516009A2B71 /* HYBalancesDetailView.m in Sources */,
 				3DBA55D1256FA6D3009A2B71 /* CNOneStatusBtn.m in Sources */,
 				E98BEEEA24D023B200E6B0C8 /* UIView+LYExtension.m in Sources */,
 				E9D9449724C5734400252222 /* WelcomeModel.m in Sources */,
