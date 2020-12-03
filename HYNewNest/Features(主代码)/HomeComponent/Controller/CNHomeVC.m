@@ -21,6 +21,7 @@
 #import "UUMarqueeView.h"
 #import "CNMessageBoxView.h"
 #import "HYWideOneBtnAlertView.h"
+#import "CNGameBtnsStackView.h"
 
 #import "CNHomeRequest.h"
 #import "CNUserCenterRequest.h"
@@ -32,7 +33,7 @@
 #import "NSURL+HYLink.h"
 
 
-@interface CNHomeVC () <CNUserInfoLoginViewDelegate,  SDCycleScrollViewDelegate, UUMarqueeViewDelegate>
+@interface CNHomeVC () <CNUserInfoLoginViewDelegate,  SDCycleScrollViewDelegate, UUMarqueeViewDelegate, GameBtnsStackViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 /// 滚动视图
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -53,16 +54,16 @@
 @property (nonatomic, strong) NSArray<AnnounceModel *> *annoModels;
 @property (nonatomic, strong) NSArray<MessageBoxModel *> *msgBoxModels;
 
-#pragma - mark 游戏切换属性
+#pragma mark 游戏切换属性
 /// 游戏内容视图
 @property (weak, nonatomic) IBOutlet UIView *pageView;
 /// 游戏内容视图高
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pageViewH;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *switchBtnArr;
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *gameTypeLbArr;
-@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *gameImageVArr;
-
+/// 当前选中
 @property (nonatomic, assign) NSInteger currPage;
+
+#pragma mark 大神榜
+@property (weak, nonatomic) IBOutlet UIView *dashenView;
 
 @end
 
@@ -134,52 +135,17 @@
     self.pageView.backgroundColor = self.scrollContentView.backgroundColor = self.view.backgroundColor;
     self.scrollContentW.constant = kScreenWidth;
     
-    // 切换按钮边框颜色
-    for (int i = 0; i < self.gameTypeLbArr.count; i++) {
-        UIButton *btn = self.switchBtnArr[i];
-        UILabel *lb = self.gameTypeLbArr[i];
-        btn.layer.borderColor = lb.textColor.CGColor;
-    }
-    
     // 配置游戏切换内容
     [self initGameVC];
     
-    [self loadGig];
     // 默认选择第一个
-    [self switchGame:self.switchBtnArr.firstObject];
+    [self didTapGameBtnsIndex:0];
 
     __weak typeof(self) wSelf = self;
     self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [wSelf userDidLogin];
         [wSelf requestAnnouncement];
     }];
-}
-
-// 加载动图和图片
-- (void)loadGig {
-    // 动图名称
-    NSArray *imageNames = @[@"合成 1_000", @"数字7_000", @"足球_000", @"彩票_000", @"棋牌_000"];
-    
-    // 按钮高亮动图
-    for (int i = 0; i < self.gameImageVArr.count; i++) {
-        UIImageView *iv = self.gameImageVArr[i];
-        UIImage *gifImage = [UIImage animatedImageNamed:imageNames[i] duration:3];
-        iv.highlightedImage = gifImage;
-        iv.image = [UIImage imageNamed:imageNames[i]];
-        iv.highlighted = NO;
-    }
-}
-
-// 选择加载gif图
-- (void)selectGif:(NSInteger)index {
-    if (index >= self.gameImageVArr.count) {
-        return;
-    }
-    // 按钮高亮动图
-    for (int i = 0; i < self.gameImageVArr.count; i++) {
-        UIImageView *iv = self.gameImageVArr[i];
-        iv.highlighted = (i == index);
-    }
 }
 
 
@@ -396,24 +362,9 @@
 }
 
 
-#pragma mark - 游戏切换业务
+#pragma mark - GameBtnsStackViewDelegate 游戏切换业务
 
-- (IBAction)switchGame:(UIButton *)sender {
-    // 过滤重复点击
-    if (sender.selected) {
-        return;
-    }
-    // 还原UI
-    for (UIButton *btn in self.switchBtnArr) {
-        btn.selected = NO;
-        btn.layer.borderWidth = 0;
-    }
-    sender.selected = YES;
-    sender.layer.borderWidth = 1;
-    [self selectGif:sender.tag];
-    
-    // 点击按钮下标
-    NSInteger index = [self.switchBtnArr indexOfObject:sender];
+- (void)didTapGameBtnsIndex:(NSUInteger)index {
     self.currPage = index;
     CNBaseVC *vc = [self.childViewControllers objectAtIndex:index];
     self.pageViewH.constant = vc.totalHeight;
