@@ -42,13 +42,17 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
+    // 不加这下面两句，获得的尺寸会是xib里的未完成autolayout适配时的尺寸
+    // storyboard同理（把这两句写在viewDidLoad:方法中，将contentView换成控制器的view）
+    [self.bgView setNeedsLayout];
+    [self.bgView layoutIfNeeded];
     [self.bgView jk_setRoundedCorners:UIRectCornerTopLeft|UIRectCornerTopRight radius:AD(12)];
 }
 
 - (void)loadViewFromXib {
     [super loadViewFromXib];
     
+    self.bgView.backgroundColor = kHexColor(0x212137);
 }
 
 
@@ -107,7 +111,7 @@
     // Platform View
     [self.balsScrollView removeAllSubViews];
     CGFloat kMargin = AD(15);
-    CGFloat kItem_W = (self.bgView.width - kMargin*3) * 0.5;
+    CGFloat kItem_W = (kScreenWidth - 30 - kMargin*3) * 0.5;
     CGFloat kItem_H = 58.0;
     [model.platformBalances enumerateObjectsUsingBlock:^(platformBalancesItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIView *squareView = [UIView new];
