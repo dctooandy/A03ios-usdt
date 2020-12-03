@@ -36,10 +36,10 @@
         _configManager.environment = IVNEnvironmentPublish;
 #endif
         [IVHttpManager shareManager].environment = _configManager.environment;
-        [IVHttpManager shareManager].appId = @"A03DS02";
-        [IVHttpManager shareManager].productId = @"A03";
-        [IVHttpManager shareManager].parentId = @"";//TODO: 渠道号
-        [IVHttpManager shareManager].globalHeaders = @{@"pid": @"A03",
+        [IVHttpManager shareManager].appId = @"ffb53e87cc3b433e91ad9e71qsi45d12";//A03DS02
+        [IVHttpManager shareManager].productId = @"bb1f67de91gf74e54b31c96e8h5ft0c3";//A03
+        [IVHttpManager shareManager].parentId = @"";//???: 渠道号
+        [IVHttpManager shareManager].globalHeaders = @{@"pid": @"bb1f67de91gf74e54b31c96e8h5ft0c3",
                                                        @"Authorization": @"Bearer"};
         [IVHttpManager shareManager].userToken = [CNUserManager shareManager].userInfo.token;
         [IVHttpManager shareManager].loginName = [CNUserManager shareManager].userInfo.loginName;
@@ -53,8 +53,8 @@
 #ifdef DEBUG
     // 切换环境 保存
     self.environment += 1;
-    if (self.environment > IVNEnvironmentPublish) {
-        self.environment = IVNEnvironmentTest;
+    if (self.environment > 2) {
+        self.environment = 0;
     }
     [[NSUserDefaults standardUserDefaults] setInteger:self.environment forKey:@"IVNEnvironment"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -141,9 +141,9 @@
 
 - (NSMutableDictionary *)baseParam {
     NSMutableDictionary *param = [NSMutableDictionary new];
-    [param setObject:@"A03" forKey:@"productId"];
+    param[@"productId"] = [IVHttpManager shareManager].productId;
     if (!KIsEmptyString([IVHttpManager shareManager].loginName)) { //非空
-        [param setObject:[IVHttpManager shareManager].loginName forKey:@"loginName"];
+        param[@"loginName"] = [IVHttpManager shareManager].loginName;
     }
     return param;
 }

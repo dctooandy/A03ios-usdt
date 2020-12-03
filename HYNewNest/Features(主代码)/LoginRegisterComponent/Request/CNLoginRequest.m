@@ -40,8 +40,7 @@
                      phone:(NSString *)phone
          completionHandler:(HandlerBlock)completionHandler {
     
-    NSMutableDictionary *paras = [NSMutableDictionary new];
-    paras[@"productId"] = @"A03";
+    NSMutableDictionary *paras = [kNetworkMgr baseParam];
     paras[@"use"] = @(type);
     paras[@"mobileNo"] = [CNEncrypt encryptString:phone];
     
@@ -81,8 +80,7 @@
          imageCodeId:(NSString *)imageCodeId
    completionHandler:(HandlerBlock)completionHandler {
     
-    NSMutableDictionary *paras = [NSMutableDictionary new];
-    paras[@"productId"] = @"A03";
+    NSMutableDictionary *paras = [kNetworkMgr baseParam];
     paras[@"messageId"] = messageId;
     paras[@"loginName"] = [CNEncrypt encryptString:account];
     paras[@"verifyStr"] = [CNEncrypt encryptString:password];
@@ -250,9 +248,9 @@
             completionHandler:(HandlerBlock)completionHandler{
     
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
+    paramDic[@"loginName"] = loginName;
     paramDic[@"type"] = @2;
     paramDic[@"use"] = @2;
-    paramDic[@"loginName"] = loginName;
     paramDic[@"newPassword"] = [CNEncrypt encryptString:newPassword];
     paramDic[@"smsCode"] = smsCode;
     paramDic[@"validateId"] = validateId;
