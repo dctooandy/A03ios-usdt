@@ -55,7 +55,7 @@
 
 /// 选择性别
 - (IBAction)choseSex:(id)sender {
-    [BRStringPickerView showStringPickerWithTitle:@"性别选择" dataSource:@[@"男", @"女"] defaultSelValue:self.sexTF.text resultBlock:^(id selectValue, NSInteger index) {
+    [BRStringPickerView showStringPickerWithTitle:@"性别选择" dataSource:@[@"男", @"女"] defaultSelValue:self.sexTF.text?:@"男" resultBlock:^(id selectValue, NSInteger index) {
         // 选择一样不处理
         if ([self.sexTF.text isEqualToString:selectValue]) {
             return;

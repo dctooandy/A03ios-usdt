@@ -69,11 +69,7 @@
 
     [self.headerIcon sd_setImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userInfo.avatar] placeholderImage:[UIImage imageNamed:@"icon"]];
 
-    if ([CNUserManager shareManager].userInfo.starLevel > 0) {
-        self.vipImgv.image = [UIImage imageNamed:[NSString stringWithFormat:@"VIP%ld", (long)[CNUserManager shareManager].userInfo.starLevel]];
-    } else {
-        self.vipImgv.image = [UIImage new];
-    }
+    self.vipImgv.image = [UIImage imageNamed:[NSString stringWithFormat:@"VIP%ld", (long)[CNUserManager shareManager].userInfo.starLevel]];
 
 }
 

@@ -236,7 +236,7 @@
 /// 催单 & 跳客服
 - (void)clickSpecialBtn:(UIButton *)btn {
     if (btn.tag == 111) {
-        [CNUserCenterRequest reminderBillReferenceId:self.detailType == CNRecordTypeDeposit?self.model.referenceId:self.model.requestId
+        [CNUserCenterRequest reminderBillReferenceId:self.model.requestId
                                                 type:self.detailType == CNRecordTypeDeposit?1:2
                                              handler:^(id responseObj, NSString *errorMsg) {
             if (KIsEmptyString(errorMsg)) {
