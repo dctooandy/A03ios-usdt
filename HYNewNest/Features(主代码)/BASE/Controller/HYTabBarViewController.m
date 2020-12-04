@@ -43,24 +43,24 @@
     
 }
 
-- (void)didSwitchAcount{
-    NSMutableArray *childVcs = [self.viewControllers mutableCopy];
-    if (![CNUserManager shareManager].isUsdtMode) { //rmb 去掉“优惠”&"vip"
-        if (childVcs.count == 5) {
-            [childVcs removeObjectAtIndex:1];
-            [childVcs removeObjectAtIndex:1];
-            [childVcs removeObjectAtIndex:1];
-        }
-        self.viewControllers = childVcs.copy;
-    } else {
-        if (childVcs.count == 2) {
-            [childVcs insertObject:self.gloryNavVC atIndex:1];
-            [childVcs insertObject:self.bonusNavVC atIndex:1];
-            [childVcs insertObject:self.vipNavVC atIndex:1];
-        }
-        self.viewControllers = childVcs.copy;
-    }
-}
+//- (void)didSwitchAcount{
+//    NSMutableArray *childVcs = [self.viewControllers mutableCopy];
+//    if (![CNUserManager shareManager].isUsdtMode) { //rmb 去掉“优惠”&"vip"
+//        if (childVcs.count == 5) {
+//            [childVcs removeObjectAtIndex:1];
+//            [childVcs removeObjectAtIndex:1];
+//            [childVcs removeObjectAtIndex:1];
+//        }
+//        self.viewControllers = childVcs.copy;
+//    } else {
+//        if (childVcs.count == 2) {
+//            [childVcs insertObject:self.gloryNavVC atIndex:1];
+//            [childVcs insertObject:self.bonusNavVC atIndex:1];
+//            [childVcs insertObject:self.vipNavVC atIndex:1];
+//        }
+//        self.viewControllers = childVcs.copy;
+//    }
+//}
 
 - (void)setupAppearance{
     

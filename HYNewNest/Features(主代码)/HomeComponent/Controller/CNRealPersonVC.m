@@ -7,7 +7,6 @@
 //
 
 #import "CNRealPersonVC.h"
-#import "CNGameLineView.h"
 #import "HYInGameHelper.h"
 
 @interface CNRealPersonVC ()
