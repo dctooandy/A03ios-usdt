@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="adBgView" destination="A7T-hK-3in" id="YDB-Us-fRM"/>
                 <outlet property="bannerBgView" destination="zyr-R6-wLq" id="RS5-nC-t8A"/>
+                <outlet property="boredViewH" destination="dns-aQ-He2" id="uHA-J7-b8N"/>
                 <outlet property="dashenView" destination="4tY-xW-Ug1" id="8Vk-k7-X0M"/>
                 <outlet property="infoView" destination="TdK-gk-EZH" id="A8I-g1-8DP"/>
                 <outlet property="infoViewH" destination="WRO-gK-e4O" id="1FW-a2-PYw"/>
@@ -433,7 +434,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="218.84057971014494" y="467.74553571428567"/>
+            <point key="canvasLocation" x="235" y="466"/>
         </view>
     </objects>
     <resources>

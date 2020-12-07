@@ -15,6 +15,7 @@
 #import "CNChessVC.h"
 #import "CNMessageCenterVC.h"
 #import "HYXiMaViewController.h"
+#import "CNDashenBoardVC.h"
 
 #import "CNUserInfoLoginView.h"
 #import "SDCycleScrollView.h"
@@ -64,7 +65,8 @@
 
 #pragma mark 大神榜
 @property (weak, nonatomic) IBOutlet UIView *dashenView;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *boredViewH;
+@property (nonatomic, assign) NSInteger currBordPage;
 @end
 
 @implementation CNHomeVC
@@ -83,6 +85,9 @@
     
     CNBaseVC *vc = [self.childViewControllers objectAtIndex:self.currPage];
     self.pageViewH.constant = vc.totalHeight;
+    
+    CNBaseVC *boredVc = [self.childViewControllers objectAtIndex:5];
+    self.boredViewH.constant = boredVc.totalHeight;
 }
 
 - (void)viewDidLoad {
@@ -102,6 +107,7 @@
 //    [[SocketRocketUtility instance] SRWebSocketOpenWithURLString:wsURL];
 }
 
+/// 用户登录后的UI变化和网络请求
 - (void)userDidLogin {
     [self.infoView updateLoginStatusUI];
     
@@ -132,12 +138,11 @@
 - (void)configUI {
     self.infoView.delegate = self;
     
-    self.pageView.backgroundColor = self.scrollContentView.backgroundColor = self.view.backgroundColor;
+    self.dashenView.backgroundColor = self.pageView.backgroundColor = self.scrollContentView.backgroundColor = self.view.backgroundColor;
     self.scrollContentW.constant = kScreenWidth;
     
-    // 配置游戏切换内容
-    [self initGameVC];
-    
+    // 配置游戏和大神榜子控制器内容
+    [self initSubVcAndAddSubVcViews];
     // 默认选择第一个
     [self didTapGameBtnsIndex:0];
 
@@ -148,8 +153,7 @@
     }];
 }
 
-
-- (void)initGameVC {
+- (void)initSubVcAndAddSubVcViews {
     // 按顺序添加 真人，电子，体育，彩票，棋牌
     NSArray *childVCs = @[
         [CNRealPersonVC new],
@@ -162,6 +166,11 @@
         [self addChildViewController:vc];
         [self.pageView addSubview:vc.view];
     }
+    
+    // 大神榜
+    CNDashenBoardVC *vc = [CNDashenBoardVC new];
+    [self addChildViewController:vc];
+    [self.dashenView addSubview:vc.view];
 }
 
 
@@ -202,8 +211,6 @@
         }
     }
 }
-
-
 
 - (void)requestHomeBanner {
     WEAKSELF_DEFINE
@@ -351,17 +358,6 @@
 }
 
 
-#pragma mark - CNServerViewDelegate
-
-- (void)questionAction {
-    [NNPageRouter jump2Live800Type:CNLive800TypeNormal];
-}
-
-- (void)depositAction {
-    [NNPageRouter jump2Live800Type:CNLive800TypeDeposit];
-}
-
-
 #pragma mark - GameBtnsStackViewDelegate 游戏切换业务
 
 - (void)didTapGameBtnsIndex:(NSUInteger)index {
@@ -373,6 +369,7 @@
 
 
 #pragma mark - LAZY LOAD
+
 - (SDCycleScrollView *)bannerView {
     if (!_bannerView) {
         SDCycleScrollView *cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth - 30, 115) delegate:self placeholderImage:[UIImage imageNamed:@"3"]];

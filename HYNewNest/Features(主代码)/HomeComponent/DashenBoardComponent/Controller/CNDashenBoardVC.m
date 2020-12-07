@@ -19,6 +19,10 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+- (CGFloat)totalHeight {
+    return 600;
+}
+
 /*
 #pragma mark - Navigation
 
