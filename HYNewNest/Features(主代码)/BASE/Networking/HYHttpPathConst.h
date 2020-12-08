@@ -29,7 +29,8 @@
 //#define config_liveChatAddress @"liveChatAddress" //live800 客服
 #define config_dynamicQuery @"dynamic/query" //获取动态表单数据 （live800客服，充提指南...）
 #define config_switchAccount @"customer/switchAccount"    //切换子账号 USDT<-->人民币
-//#define config_getTopDomain  @"83e6dy/getTopDomainAddress" //white list
+//#define config_getTopDomain  @"a03/getTopDomainAddress" //white list
+#define config_queryDSBRank @"83e6dy/activity/queryBaijialeRank" //首页大神榜
 
 #define config_createUdid    @"customer/createCustomerUdid"  //创建自定义udid
 #define config_superSignSend     @"ips/ipsSuperSignSend"         //超级签名个推

@@ -73,6 +73,9 @@
     [self POST:kGatewayPath(config_queryAnnoumces) parameters:[kNetworkMgr baseParam] completionHandler:handler];
 }
 
+
+#pragma mark - 游戏
+
 + (void)requestInGameUrlGameType:(NSString *)gameType
                           gameId:(NSString *)gameId
                         gameCode:(NSString *)gameCode
@@ -96,7 +99,7 @@
 }
 
 
-#pragma mark 电游
+#pragma mark - 电游
 
 + (void)queryElecGamePlayLogHandler:(HandlerBlock)handler {
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];

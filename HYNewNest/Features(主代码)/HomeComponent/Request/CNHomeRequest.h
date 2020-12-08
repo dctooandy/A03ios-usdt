@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)requestH5TicketHandler:(HandlerBlock)handler;
 
 
-typedef NS_ENUM(NSInteger, BannerWhere) {
+typedef NS_ENUM(NSUInteger, BannerWhere) {
     BannerWhereHome, //首页
     BannerWhereGame, //电游
     BannerWhereFriend //好友推荐
@@ -50,6 +50,9 @@ typedef NS_ENUM(NSInteger, BannerWhere) {
 
 ///获取公告
 + (void)requestGetAnnouncesHandler:(HandlerBlock)handler;
+
+
+#pragma mark - 游戏
 
 /// 进游戏
 +(void)requestInGameUrlGameType:(NSString *)gameType
@@ -62,7 +65,7 @@ typedef NS_ENUM(NSInteger, BannerWhere) {
 + (void)queryGamesHandler:(HandlerBlock)handler;
 
  
-#pragma mark 电游
+#pragma mark - 电游
 
 ///电游--获取最近玩过的游戏
 + (void)queryElecGamePlayLogHandler:(HandlerBlock)handler;

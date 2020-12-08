@@ -267,6 +267,8 @@
 		3DBA55E52578EFCC009A2B71 /* CNDashenBoardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA55E32578EFCC009A2B71 /* CNDashenBoardVC.xib */; };
 		3DBA55EC2578F23E009A2B71 /* CNGameBtnsStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55EB2578F23E009A2B71 /* CNGameBtnsStackView.m */; };
 		3DBA55EE2578F252009A2B71 /* CNGameBtnsStackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA55ED2578F252009A2B71 /* CNGameBtnsStackView.xib */; };
+		3DBA55F5257F67F5009A2B71 /* DSBRecharWithdrwUsrModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55F4257F67F5009A2B71 /* DSBRecharWithdrwUsrModel.m */; };
+		3DBA55F9257F6882009A2B71 /* DashenBoardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55F8257F6882009A2B71 /* DashenBoardRequest.m */; };
 		3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC87A50253967DC0032ED1B /* BuyECoinModel.m */; };
 		3DCFEA8B25009D020071F356 /* V_SlideCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8825009D010071F356 /* V_SlideCard.m */; };
 		3DCFEA8C25009D020071F356 /* V_SlideCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8925009D010071F356 /* V_SlideCardCell.m */; };
@@ -1378,6 +1380,10 @@
 		3DBA55EA2578F23E009A2B71 /* CNGameBtnsStackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNGameBtnsStackView.h; sourceTree = "<group>"; };
 		3DBA55EB2578F23E009A2B71 /* CNGameBtnsStackView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNGameBtnsStackView.m; sourceTree = "<group>"; };
 		3DBA55ED2578F252009A2B71 /* CNGameBtnsStackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CNGameBtnsStackView.xib; sourceTree = "<group>"; };
+		3DBA55F3257F67F5009A2B71 /* DSBRecharWithdrwUsrModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRecharWithdrwUsrModel.h; sourceTree = "<group>"; };
+		3DBA55F4257F67F5009A2B71 /* DSBRecharWithdrwUsrModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBRecharWithdrwUsrModel.m; sourceTree = "<group>"; };
+		3DBA55F7257F6882009A2B71 /* DashenBoardRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DashenBoardRequest.h; sourceTree = "<group>"; };
+		3DBA55F8257F6882009A2B71 /* DashenBoardRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DashenBoardRequest.m; sourceTree = "<group>"; };
 		3DC87A4F253967DC0032ED1B /* BuyECoinModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyECoinModel.h; sourceTree = "<group>"; };
 		3DC87A50253967DC0032ED1B /* BuyECoinModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyECoinModel.m; sourceTree = "<group>"; };
 		3DCFEA8725009D010071F356 /* V_SlideCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_SlideCardCell.h; sourceTree = "<group>"; };
@@ -3290,6 +3296,7 @@
 		3DBA55E62578EFE4009A2B71 /* DashenBoardComponent */ = {
 			isa = PBXGroup;
 			children = (
+				3DBA55F6257F6835009A2B71 /* Request */,
 				3DBA55E82578F02D009A2B71 /* Controller */,
 				3DBA55E92578F02D009A2B71 /* Model */,
 				3DBA55E72578F02D009A2B71 /* View */,
@@ -3317,8 +3324,19 @@
 		3DBA55E92578F02D009A2B71 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3DBA55F3257F67F5009A2B71 /* DSBRecharWithdrwUsrModel.h */,
+				3DBA55F4257F67F5009A2B71 /* DSBRecharWithdrwUsrModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		3DBA55F6257F6835009A2B71 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				3DBA55F7257F6882009A2B71 /* DashenBoardRequest.h */,
+				3DBA55F8257F6882009A2B71 /* DashenBoardRequest.m */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 		3DCFEA8625009D010071F356 /* SlideCard */ = {
@@ -5590,6 +5608,7 @@
 				0487C97B24CEB2710013715A /* CNChoseImageVC.m in Sources */,
 				D5FBFE2D24BC05E400BBCAD8 /* CNLoginRegisterVC.m in Sources */,
 				04C0F12D24C7D20C007F1420 /* CNRealPersonVC.m in Sources */,
+				3DBA55F5257F67F5009A2B71 /* DSBRecharWithdrwUsrModel.m in Sources */,
 				3DA4F19D24B3195F0039123F /* HYRefreshHeader.m in Sources */,
 				3DA4F15624B30A090039123F /* SGQRCodeGenerateManager.m in Sources */,
 				3D643F8924F29F3600B9AAA7 /* IVOtherInfoModel.m in Sources */,
@@ -5660,6 +5679,7 @@
 				E98BEF3024D2F35600E6B0C8 /* HYWithdrawComfirmView.m in Sources */,
 				3D643F8B24F29F3600B9AAA7 /* SocketTool.m in Sources */,
 				04010BB624DA569C0043C608 /* CNMessageBoxView.m in Sources */,
+				3DBA55F9257F6882009A2B71 /* DashenBoardRequest.m in Sources */,
 				E986A10124C6E0CD000F9CFF /* CNHomeRequest.m in Sources */,
 				0487C96C24CE9A630013715A /* BRStringPickerView.m in Sources */,
 				E993095424D7F3CD00E0843B /* HYRechProcButton.m in Sources */,
