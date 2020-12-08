@@ -24,12 +24,12 @@
 #define config_welcome  @"welcome"
 #define config_upgradeApp      @"upgrade"   //检测版本更新
 #define config_callBackPhone   @"callback"  //消息中心电话回访
-#define config_home_otherGame @"a03/home/other" //获取其他游戏列表
+#define config_home_otherGame @"83e6dy/home/other" //获取其他游戏列表
 #define config_areaLimit @"areaLimit" // 地区限制
 //#define config_liveChatAddress @"liveChatAddress" //live800 客服
 #define config_dynamicQuery @"dynamic/query" //获取动态表单数据 （live800客服，充提指南...）
 #define config_switchAccount @"customer/switchAccount"    //切换子账号 USDT<-->人民币
-//#define config_getTopDomain  @"a03/getTopDomainAddress" //white list
+//#define config_getTopDomain  @"83e6dy/getTopDomainAddress" //white list
 
 #define config_createUdid    @"customer/createCustomerUdid"  //创建自定义udid
 #define config_superSignSend     @"ips/ipsSuperSignSend"         //超级签名个推
@@ -59,18 +59,18 @@
 #define config_createTryAccount   @"customer/createTryAccount"  //试玩登录
 //#define config_autoLoginByToken  @"customer/getByToken"   //自动登录
 
-#define config_new_requestAvatars @"a03/queryAvatars" //修改头像时 请求头像列表
+#define config_new_requestAvatars @"83e6dy/queryAvatars" //修改头像时 请求头像列表
 
-#define config_new_queryMyBonus @"a03/promo/a03MyPromo"  //获取我的红利列表
+#define config_new_queryMyBonus @"83e6dy/promo/a03MyPromo"  //获取我的红利列表
 
-#define config_new_queryImageList @"a03/queryImageList" //通用查询接口 用于查询图片组及每个图片的附属信息
+#define config_new_queryImageList @"83e6dy/queryImageList" //通用查询接口 用于查询图片组及每个图片的附属信息
 
-#define config_betAmountLevel @"a03/getBetAmountLevelConfig" //获取投注额
+#define config_betAmountLevel @"83e6dy/getBetAmountLevelConfig" //获取投注额
 #define config_getBalanceInfo @"customer/getBalance" //获取用户额度信息
 #define config_getByLoginNameEx @"customer/getByLoginNameEx"  //获取本月优惠和本月洗码
 
 #pragma mark 好友推荐
-#define config_queryAgentRecord  @"a03/agentRecodTotalSum"  //获取好友推荐所有消息
+#define config_queryAgentRecord  @"83e6dy/agentRecodTotalSum"  //获取好友推荐所有消息
 
 #pragma mark 站内信
 #define config_queryAnnoumces  @"message/queryAnnounces"  //获取公告
@@ -86,7 +86,7 @@
 #define config_sugestion  @"createSuggest" //用户意见反馈
 #define config_querySugestion  @"querySuggests" //查询意见反馈
 #define config_changeLimitBonus  @"limitRed/modify" //修改限红
-#define config_new_queryByKeyList  @"a03/queryByKeyList" //获取体育竞猜广告图片  查询游戏平台platform AG TTG
+#define config_new_queryByKeyList  @"83e6dy/queryByKeyList" //获取体育竞猜广告图片  查询游戏平台platform AG TTG
 
 #pragma mark 提现地址管理
 #define config_getRealNamePhone @"customer/modifyCustomerRealNamePhone" //修改手机和姓名
@@ -105,7 +105,7 @@
 #define config_xmCalcAmountV3     @"xm/calcAmountV3"   // 查询洗码平台类型额度列表
 #define config_xmcreateRequest     @"xm/createRequest" // 创建洗码提案
 #define config_xmdeleteRequest     @"xm/deleteRequest" // 删除洗码记录
-#define config_xmCheckIsCanXm      @"a03/szsc/isxm"    // 查询是否可以洗码
+#define config_xmCheckIsCanXm      @"83e6dy/szsc/isxm"    // 查询是否可以洗码
 
 #pragma mark 取款
 #define config_drawCreateRequest  @"withdraw/createRequest"   //取款 提现接口
@@ -116,7 +116,7 @@
 #define config_getBalances       @"getBalances" //主账号查询子账号额度
 
 #pragma mark 风采
-#define config_getArticels  @"a03/getArticles" //查询投注详情  电游投注详情用
+#define config_getArticels  @"83e6dy/getArticles" //查询投注详情  电游投注详情用
 
 #pragma mark 交易记录
 //#define config_queryTransWithCheck @"deposit/queryTransWithCheck" //查询交易记录中的 充值 一项
@@ -153,14 +153,14 @@
 #define config_queryFavoriteGame  @"game/queryFavorite"  //查询游戏收藏
 
 #pragma mark VIP私享会
-#define activity_vipSxhReport   @"a03/activity/vipsxh/war/report" //月报-个人战报
-#define activity_vipSxhHome     @"a03/activity/vipsxh/home" //私享会首页
-#define activity_vipSxhRank     @"a03/activity/vipsxh/rank" //大神榜
-#define activity_vipSxhDraw     @"promo/a03/draw" //领取入会礼金
-#define activity_vipSxhFrame    @"a03/activity/vipsxh/frame" //是否弹窗月报
-#define activity_vipSxhIdentity @"a03/activity/vipsxh/identity" //累计身份
-#define activity_vipSxhApply    @"a03/activity/vipsxh/apply" //领取礼物 （累计身份和大转盘）
-#define activity_vipSxhReceiveAward     @"promo/a03/common/receive/award" //领取记录
-#define activity_vipSxhAwardDetail      @"a03/activity/vipsxh/detail" //礼物详情
+#define activity_vipSxhReport   @"83e6dy/activity/vipsxh/war/report" //月报-个人战报
+#define activity_vipSxhHome     @"83e6dy/activity/vipsxh/home" //私享会首页
+#define activity_vipSxhRank     @"83e6dy/activity/vipsxh/rank" //大神榜
+#define activity_vipSxhDraw     @"promo/83e6dy/draw" //领取入会礼金
+#define activity_vipSxhFrame    @"83e6dy/activity/vipsxh/frame" //是否弹窗月报
+#define activity_vipSxhIdentity @"83e6dy/activity/vipsxh/identity" //累计身份
+#define activity_vipSxhApply    @"83e6dy/activity/vipsxh/apply" //领取礼物 （累计身份和大转盘）
+#define activity_vipSxhReceiveAward     @"promo/83e6dy/common/receive/award" //领取记录
+#define activity_vipSxhAwardDetail      @"83e6dy/activity/vipsxh/detail" //礼物详情
 
 #endif /* HYHttpPathConst_h */
