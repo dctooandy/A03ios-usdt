@@ -2397,14 +2397,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		0487CA0124D3B6580013715A /* FriendComponent */ = {
+		0487CA0124D3B6580013715A /* FriendComponent(deprecated) */ = {
 			isa = PBXGroup;
 			children = (
 				E969EB3124DD56F000D58FE9 /* Model */,
 				044DC68C24DD0188005CB550 /* View */,
 				0487CA0224D3B6870013715A /* Controller */,
 			);
-			path = FriendComponent;
+			path = "FriendComponent(deprecated)";
 			sourceTree = "<group>";
 		};
 		0487CA0224D3B6870013715A /* Controller */ = {
@@ -2420,6 +2420,7 @@
 		0487CA0824D3CB240013715A /* FeedBackComponent */ = {
 			isa = PBXGroup;
 			children = (
+				3DBA56042580AF91009A2B71 /* Model */,
 				0405FF6724D3DAC400AC46D2 /* View */,
 				0487CA0924D3CB4A0013715A /* Controller */,
 			);
@@ -2811,7 +2812,7 @@
 				E9D9447124C1F35700252222 /* MeComponent */,
 				04935BD324D7D3A6007A33EF /* ElectronComponent */,
 				0487C9DC24D27B3C0013715A /* MessageCenterComponent */,
-				0487CA0124D3B6580013715A /* FriendComponent */,
+				0487CA0124D3B6580013715A /* FriendComponent(deprecated) */,
 				0487CA0824D3CB240013715A /* FeedBackComponent */,
 				E9D9446324C1954200252222 /* SplashComponent */,
 				D5FBFDF924BC05E400BBCAD8 /* LoginRegisterComponent */,
@@ -3272,6 +3273,15 @@
 				3DBA55D7256FA793009A2B71 /* BalanceManager.m */,
 			);
 			path = BalanceManager;
+			sourceTree = "<group>";
+		};
+		3DBA56042580AF91009A2B71 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E97054A524DBD0E40007F845 /* UserSuggestionModel.h */,
+				E97054A624DBD0E40007F845 /* UserSuggestionModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		3DCFEA8625009D010071F356 /* SlideCard */ = {
@@ -3968,8 +3978,6 @@
 		E969EB3124DD56F000D58FE9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E97054A524DBD0E40007F845 /* UserSuggestionModel.h */,
-				E97054A624DBD0E40007F845 /* UserSuggestionModel.m */,
 				E97054A824DC10040007F845 /* AgentRecordModel.h */,
 				E97054A924DC10040007F845 /* AgentRecordModel.m */,
 			);
