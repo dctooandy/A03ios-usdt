@@ -263,6 +263,9 @@
 		3DBA55DB2570D188009A2B71 /* BetAmountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55DA2570D188009A2B71 /* BetAmountModel.m */; };
 		3DBA55DE25763516009A2B71 /* HYBalancesDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55DD25763516009A2B71 /* HYBalancesDetailView.m */; };
 		3DBA55E025763C19009A2B71 /* HYBalancesDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA55DF25763C18009A2B71 /* HYBalancesDetailView.xib */; };
+		3DBA560D2580B5E4009A2B71 /* BYSuperCopartnerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA560B2580B5E4009A2B71 /* BYSuperCopartnerVC.m */; };
+		3DBA560E2580B5E4009A2B71 /* BYSuperCopartnerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA560C2580B5E4009A2B71 /* BYSuperCopartnerVC.xib */; };
+		3DBA56112580D9B3009A2B71 /* CALayer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA56102580D9B3009A2B71 /* CALayer+Additions.m */; };
 		3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC87A50253967DC0032ED1B /* BuyECoinModel.m */; };
 		3DCFEA8B25009D020071F356 /* V_SlideCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8825009D010071F356 /* V_SlideCard.m */; };
 		3DCFEA8C25009D020071F356 /* V_SlideCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8925009D010071F356 /* V_SlideCardCell.m */; };
@@ -1368,6 +1371,11 @@
 		3DBA55DC25763516009A2B71 /* HYBalancesDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYBalancesDetailView.h; sourceTree = "<group>"; };
 		3DBA55DD25763516009A2B71 /* HYBalancesDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYBalancesDetailView.m; sourceTree = "<group>"; };
 		3DBA55DF25763C18009A2B71 /* HYBalancesDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYBalancesDetailView.xib; sourceTree = "<group>"; };
+		3DBA560A2580B5E4009A2B71 /* BYSuperCopartnerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYSuperCopartnerVC.h; sourceTree = "<group>"; };
+		3DBA560B2580B5E4009A2B71 /* BYSuperCopartnerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYSuperCopartnerVC.m; sourceTree = "<group>"; };
+		3DBA560C2580B5E4009A2B71 /* BYSuperCopartnerVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYSuperCopartnerVC.xib; sourceTree = "<group>"; };
+		3DBA560F2580D9B3009A2B71 /* CALayer+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+Additions.h"; sourceTree = "<group>"; };
+		3DBA56102580D9B3009A2B71 /* CALayer+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Additions.m"; sourceTree = "<group>"; };
 		3DC87A4F253967DC0032ED1B /* BuyECoinModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyECoinModel.h; sourceTree = "<group>"; };
 		3DC87A50253967DC0032ED1B /* BuyECoinModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyECoinModel.m; sourceTree = "<group>"; };
 		3DCFEA8725009D010071F356 /* V_SlideCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_SlideCardCell.h; sourceTree = "<group>"; };
@@ -2796,6 +2804,8 @@
 				3D41DEAD251CC6FD000CA1D6 /* UIColor+Gradient.m */,
 				3D31B948253D3E42005275BD /* UIView+Badge.h */,
 				3D31B949253D3E42005275BD /* UIView+Badge.m */,
+				3DBA560F2580D9B3009A2B71 /* CALayer+Additions.h */,
+				3DBA56102580D9B3009A2B71 /* CALayer+Additions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -3282,6 +3292,48 @@
 				E97054A624DBD0E40007F845 /* UserSuggestionModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		3DBA56052580B467009A2B71 /* CopartnerComponent */ = {
+			isa = PBXGroup;
+			children = (
+				3DBA56062580B467009A2B71 /* Controller */,
+				3DBA56072580B467009A2B71 /* Model */,
+				3DBA56082580B467009A2B71 /* View */,
+				3DBA56092580B467009A2B71 /* Request */,
+			);
+			path = CopartnerComponent;
+			sourceTree = "<group>";
+		};
+		3DBA56062580B467009A2B71 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3DBA560A2580B5E4009A2B71 /* BYSuperCopartnerVC.h */,
+				3DBA560B2580B5E4009A2B71 /* BYSuperCopartnerVC.m */,
+				3DBA560C2580B5E4009A2B71 /* BYSuperCopartnerVC.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3DBA56072580B467009A2B71 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3DBA56082580B467009A2B71 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3DBA56092580B467009A2B71 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 		3DCFEA8625009D010071F356 /* SlideCard */ = {
@@ -4555,6 +4607,7 @@
 		E9D9447124C1F35700252222 /* MeComponent */ = {
 			isa = PBXGroup;
 			children = (
+				3DBA56052580B467009A2B71 /* CopartnerComponent */,
 				048A169524CBD3B600411819 /* View */,
 				E986A12324C7E9E1000F9CFF /* Model */,
 				E986A11F24C7E7AE000F9CFF /* Request */,
@@ -5357,6 +5410,7 @@
 				E98BEEDD24CFF17500E6B0C8 /* HYBonusCell.xib in Resources */,
 				D5A4454A24F393AC00014DC6 /* 棋牌_00060.png in Resources */,
 				D5A443EF24F378CD00014DC6 /* 彩票_00086.png in Resources */,
+				3DBA560E2580B5E4009A2B71 /* BYSuperCopartnerVC.xib in Resources */,
 				D5A443BD24F378CD00014DC6 /* 彩票_00048.png in Resources */,
 				D5A4459024F393AD00014DC6 /* 棋牌_00030.png in Resources */,
 				D5A4454F24F393AC00014DC6 /* 棋牌_0006.png in Resources */,
@@ -5595,6 +5649,7 @@
 				3D41DE7725199DEE000CA1D6 /* VIPMonthlyModel.m in Sources */,
 				E9A269DC24D80FCC00B512FF /* HYRechargePayWayCell.m in Sources */,
 				E98BEF0224D1AF4300E6B0C8 /* HYXiMaTopView.m in Sources */,
+				3DBA56112580D9B3009A2B71 /* CALayer+Additions.m in Sources */,
 				0487C9AA24CFBA6A0013715A /* JJCollectionViewRoundFlowLayout+Alignment.m in Sources */,
 				04C0F0FF24C589EC007F1420 /* CNUserManager.m in Sources */,
 				0487C97024CE9A630013715A /* BRAddressModel.m in Sources */,
@@ -5608,6 +5663,7 @@
 				3DBA55D0256FA6D3009A2B71 /* CNBaseTF.m in Sources */,
 				E986A0FA24C6CBB6000F9CFF /* SmsCodeModel.m in Sources */,
 				04C0F11624C59956007F1420 /* CNEncrypt.m in Sources */,
+				3DBA560D2580B5E4009A2B71 /* BYSuperCopartnerVC.m in Sources */,
 				3D41DE962519E9D0000CA1D6 /* VIPCumulateIdCell.m in Sources */,
 				04935BDF24D7EE2B007A33EF /* CNElectionTypeSelectorView.m in Sources */,
 				048A169824CBD44700411819 /* CNVIPLabel.m in Sources */,
