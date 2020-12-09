@@ -269,6 +269,10 @@
 		3DBA55EE2578F252009A2B71 /* CNGameBtnsStackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA55ED2578F252009A2B71 /* CNGameBtnsStackView.xib */; };
 		3DBA55F5257F67F5009A2B71 /* DSBRecharWithdrwUsrModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55F4257F67F5009A2B71 /* DSBRecharWithdrwUsrModel.m */; };
 		3DBA55F9257F6882009A2B71 /* DashenBoardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55F8257F6882009A2B71 /* DashenBoardRequest.m */; };
+		3DBA55FC257FC151009A2B71 /* DSBHeaderSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55FB257FC151009A2B71 /* DSBHeaderSelectionView.m */; };
+		3DBA55FE257FC207009A2B71 /* DSBHeaderSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA55FD257FC207009A2B71 /* DSBHeaderSelectionView.xib */; };
+		3DBA5601257FCF86009A2B71 /* DSBRecharWithdrwRankView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5600257FCF86009A2B71 /* DSBRecharWithdrwRankView.m */; };
+		3DBA5603257FCF93009A2B71 /* DSBRecharWithdrwRankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA5602257FCF93009A2B71 /* DSBRecharWithdrwRankView.xib */; };
 		3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC87A50253967DC0032ED1B /* BuyECoinModel.m */; };
 		3DCFEA8B25009D020071F356 /* V_SlideCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8825009D010071F356 /* V_SlideCard.m */; };
 		3DCFEA8C25009D020071F356 /* V_SlideCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8925009D010071F356 /* V_SlideCardCell.m */; };
@@ -1384,6 +1388,12 @@
 		3DBA55F4257F67F5009A2B71 /* DSBRecharWithdrwUsrModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBRecharWithdrwUsrModel.m; sourceTree = "<group>"; };
 		3DBA55F7257F6882009A2B71 /* DashenBoardRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DashenBoardRequest.h; sourceTree = "<group>"; };
 		3DBA55F8257F6882009A2B71 /* DashenBoardRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DashenBoardRequest.m; sourceTree = "<group>"; };
+		3DBA55FA257FC151009A2B71 /* DSBHeaderSelectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBHeaderSelectionView.h; sourceTree = "<group>"; };
+		3DBA55FB257FC151009A2B71 /* DSBHeaderSelectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBHeaderSelectionView.m; sourceTree = "<group>"; };
+		3DBA55FD257FC207009A2B71 /* DSBHeaderSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBHeaderSelectionView.xib; sourceTree = "<group>"; };
+		3DBA55FF257FCF86009A2B71 /* DSBRecharWithdrwRankView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRecharWithdrwRankView.h; sourceTree = "<group>"; };
+		3DBA5600257FCF86009A2B71 /* DSBRecharWithdrwRankView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBRecharWithdrwRankView.m; sourceTree = "<group>"; };
+		3DBA5602257FCF93009A2B71 /* DSBRecharWithdrwRankView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBRecharWithdrwRankView.xib; sourceTree = "<group>"; };
 		3DC87A4F253967DC0032ED1B /* BuyECoinModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyECoinModel.h; sourceTree = "<group>"; };
 		3DC87A50253967DC0032ED1B /* BuyECoinModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyECoinModel.m; sourceTree = "<group>"; };
 		3DCFEA8725009D010071F356 /* V_SlideCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_SlideCardCell.h; sourceTree = "<group>"; };
@@ -3307,6 +3317,12 @@
 		3DBA55E72578F02D009A2B71 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3DBA55FA257FC151009A2B71 /* DSBHeaderSelectionView.h */,
+				3DBA55FB257FC151009A2B71 /* DSBHeaderSelectionView.m */,
+				3DBA55FD257FC207009A2B71 /* DSBHeaderSelectionView.xib */,
+				3DBA55FF257FCF86009A2B71 /* DSBRecharWithdrwRankView.h */,
+				3DBA5600257FCF86009A2B71 /* DSBRecharWithdrwRankView.m */,
+				3DBA5602257FCF93009A2B71 /* DSBRecharWithdrwRankView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4913,6 +4929,7 @@
 				D5A4461A24F393E500014DC6 /* 足球_00081.png in Resources */,
 				D5A4461424F393E500014DC6 /* 足球_00094.png in Resources */,
 				D5A443FD24F37A9E00014DC6 /* 彩票_0001.png in Resources */,
+				3DBA55FE257FC207009A2B71 /* DSBHeaderSelectionView.xib in Resources */,
 				D5A444C124F3932400014DC6 /* 数字7_00087.png in Resources */,
 				D5A443A724F378CD00014DC6 /* 彩票_00053.png in Resources */,
 				D5A4453D24F393AC00014DC6 /* 棋牌_00062.png in Resources */,
@@ -5113,6 +5130,7 @@
 				D5A446CD24F3941400014DC6 /* 合成 1_00062.png in Resources */,
 				D5A4439524F378CD00014DC6 /* 彩票_00019.png in Resources */,
 				D5A446BE24F3941400014DC6 /* 合成 1_00058.png in Resources */,
+				3DBA5603257FCF93009A2B71 /* DSBRecharWithdrwRankView.xib in Resources */,
 				D5A444A524F3932400014DC6 /* 数字7_00024.png in Resources */,
 				3DBA55EE2578F252009A2B71 /* CNGameBtnsStackView.xib in Resources */,
 				D5A4463524F393E500014DC6 /* 足球_00076.png in Resources */,
@@ -5727,6 +5745,7 @@
 				E986A17524C979F6000F9CFF /* PayWayV3Model.m in Sources */,
 				D5FBFE8D24BC28B200BBCAD8 /* CNBaseVC.m in Sources */,
 				3D41DEA5251AF662000CA1D6 /* VIPCumulateIdButton.m in Sources */,
+				3DBA5601257FCF86009A2B71 /* DSBRecharWithdrwRankView.m in Sources */,
 				3D41DE9A2519F996000CA1D6 /* VIPCumulateIdHeader.m in Sources */,
 				3D41DE7325199DEE000CA1D6 /* VIPDSBUsrModel.m in Sources */,
 				3DBA55D4256FA6D3009A2B71 /* CNSelectBtn.m in Sources */,
@@ -5779,6 +5798,7 @@
 				3D41DE8425199DEE000CA1D6 /* VIPChartHeaderView.m in Sources */,
 				3D643F8A24F29F3600B9AAA7 /* PushNotificationCenter.m in Sources */,
 				E986A18624C9CD4C000F9CFF /* CNXiMaRequest.m in Sources */,
+				3DBA55FC257FC151009A2B71 /* DSBHeaderSelectionView.m in Sources */,
 				D5FBFDC824B4672200BBCAD8 /* CNSkinManager.m in Sources */,
 				04935BC824D56793007A33EF /* CNAddAddressVC.m in Sources */,
 				3DA4F16A24B312BE0039123F /* UIView+Extension.m in Sources */,

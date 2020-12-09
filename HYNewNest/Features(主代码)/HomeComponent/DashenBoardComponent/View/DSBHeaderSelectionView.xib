@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DSBHeaderSelectionView">
+            <connections>
+                <outlet property="titleLbl" destination="c9Y-ub-xkD" id="mZP-xz-SCA"/>
+                <outletCollection property="selectionBtns" destination="sNt-Us-bmq" id="f0v-LS-4Kg"/>
+                <outletCollection property="selectionBtns" destination="Xdp-sr-UnD" id="c4U-fK-b4b"/>
+                <outletCollection property="selectionBtns" destination="shf-dS-ItW" id="G9J-oi-cPK"/>
+                <outletCollection property="selectionBtns" destination="Lut-aX-mxH" id="5sc-Uu-ab7"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="6ze-8f-irF">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="39"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大神盈利榜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9Y-ub-xkD">
+                    <rect key="frame" x="25" y="9" width="92" height="21"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lut-aX-mxH">
+                    <rect key="frame" x="346" y="5" width="43" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="月总榜">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapSwitchRankBtn:" destination="-1" eventType="touchUpInside" id="soi-RS-uSU"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shf-dS-ItW">
+                    <rect key="frame" x="293" y="5" width="43" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="周总榜">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapSwitchRankBtn:" destination="-1" eventType="touchUpInside" id="OIf-JT-9yT"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xdp-sr-UnD">
+                    <rect key="frame" x="240" y="5" width="43" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="提现榜">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapSwitchRankBtn:" destination="-1" eventType="touchUpInside" id="PaD-gA-P3N"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNt-Us-bmq">
+                    <rect key="frame" x="187" y="5" width="43" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="充值榜">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapSwitchRankBtn:" destination="-1" eventType="touchUpInside" id="ijP-ht-hpW"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="sNt-Us-bmq" firstAttribute="centerY" secondItem="6ze-8f-irF" secondAttribute="centerY" id="0FA-kA-ftt"/>
+                <constraint firstItem="Xdp-sr-UnD" firstAttribute="leading" secondItem="sNt-Us-bmq" secondAttribute="trailing" constant="10" id="3AO-6t-fDB"/>
+                <constraint firstAttribute="trailing" secondItem="Lut-aX-mxH" secondAttribute="trailing" constant="25" id="7xp-8q-Rje"/>
+                <constraint firstItem="c9Y-ub-xkD" firstAttribute="leading" secondItem="6ze-8f-irF" secondAttribute="leading" constant="25" id="8za-nX-n4M"/>
+                <constraint firstItem="c9Y-ub-xkD" firstAttribute="centerY" secondItem="6ze-8f-irF" secondAttribute="centerY" id="J2c-9U-50W"/>
+                <constraint firstItem="Lut-aX-mxH" firstAttribute="leading" secondItem="shf-dS-ItW" secondAttribute="trailing" constant="10" id="U1h-sc-4XK"/>
+                <constraint firstItem="shf-dS-ItW" firstAttribute="centerY" secondItem="6ze-8f-irF" secondAttribute="centerY" id="n8s-4L-TMC"/>
+                <constraint firstItem="Lut-aX-mxH" firstAttribute="centerY" secondItem="6ze-8f-irF" secondAttribute="centerY" id="r1u-ga-W42"/>
+                <constraint firstItem="Xdp-sr-UnD" firstAttribute="centerY" secondItem="6ze-8f-irF" secondAttribute="centerY" id="wkK-ON-S6y"/>
+                <constraint firstItem="shf-dS-ItW" firstAttribute="leading" secondItem="Xdp-sr-UnD" secondAttribute="trailing" constant="10" id="yH6-PB-EKW"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="16C-U1-f9s"/>
+            <point key="canvasLocation" x="372" y="-6"/>
+        </view>
+    </objects>
+</document>

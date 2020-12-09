@@ -18,18 +18,30 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hy8-kS-Vae">
-                    <rect key="frame" x="93" y="144" width="49" height="31"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </switch>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Csz-nU-Ru6">
-                    <rect key="frame" x="274" y="133" width="20" height="20"/>
+                    <rect key="frame" x="263" y="407" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </activityIndicatorView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7i-Fs-Nzc" customClass="DSBHeaderSelectionView">
+                    <rect key="frame" x="0.0" y="44" width="414" height="45"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="QRg-XI-oPf"/>
+                    </constraints>
+                </view>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hy8-kS-Vae">
+                    <rect key="frame" x="123" y="291" width="49" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </switch>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="D7i-Fs-Nzc" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="5sr-TX-vzh"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="D7i-Fs-Nzc" secondAttribute="trailing" id="71D-cU-Uik"/>
+                <constraint firstItem="D7i-Fs-Nzc" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="lhE-X5-PY0"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="239" y="149"/>
+            <point key="canvasLocation" x="237.68115942028987" y="148.66071428571428"/>
         </view>
     </objects>
 </document>
