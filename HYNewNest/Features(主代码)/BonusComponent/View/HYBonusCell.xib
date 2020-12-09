@@ -42,7 +42,7 @@
                             <constraint firstItem="nsh-lS-MfQ" firstAttribute="centerY" secondItem="AIe-YU-HIr" secondAttribute="centerY" id="txO-wd-NyX"/>
                         </constraints>
                     </view>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bannerdefault" translatesAutoresizingMaskIntoConstraints="NO" id="UfR-rC-aDj">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UfR-rC-aDj">
                         <rect key="frame" x="15" y="7.5" width="345" height="115"/>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D6B-pA-jtf">
@@ -96,7 +96,4 @@
             <point key="canvasLocation" x="-362" y="46"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="bannerdefault" width="230" height="93.333335876464844"/>
-    </resources>
 </document>

@@ -65,7 +65,7 @@
         self.toprightTagImgv.image = [UIImage imageNamed:@"zd"];
     }
     // 结束
-    else if ([model.imgTip isEqualToString:@"结束"]) {
+    else if (model.flag == 2) {
         self.toprightTagImgv.image = [UIImage imageNamed:@"end"];
         self.toprightTag2Imgv.image = nil;
         self.shadowView.hidden = NO;
@@ -74,7 +74,7 @@
     
     // 长期活动
     if (model.endDate.length == 0) {
-        if (model.isTop == 1) {
+        if (model.isTop == 1) { //有置顶，长期放在下面，同限时
             self.toprightTag2Imgv.image = [UIImage imageNamed:@"cq"];
         } else {
             self.toprightTagImgv.image = [UIImage imageNamed:@"cq"];
