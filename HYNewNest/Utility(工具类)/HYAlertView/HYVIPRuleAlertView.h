@@ -10,10 +10,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// 累计身份规则
+typedef NS_ENUM(NSUInteger, RuleAlertKind) {
+    RuleAlertKindVIPCumulateIdentity,
+    RuleAlertKindSuperCopartner,
+};
+
+/// 累计身份/好友分享2.0 规则
 @interface HYVIPRuleAlertView : HYBaseAlertView
 
 + (void)showCumulateIdentityRule;
+
++ (void)showFriendShareV2Rule;
 
 @end
 
