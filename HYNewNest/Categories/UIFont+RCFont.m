@@ -64,6 +64,17 @@
     return [@"高度" boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:0 attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:fontSize]} context:nil].size.height;
 }
 
++(UIFont *)fontPFThin:(CGFloat)size {
+    return [UIFont fontWithName:@"PingFangSC-Thin" size:size];
+}
+
++(UIFont *)fontPFLight:(CGFloat)size {
+    return [UIFont fontWithName:@"PingFangSC-Light" size:size];
+}
+
++(UIFont *)fontPFRegular:(CGFloat)size {
+    return [UIFont fontWithName:@"PingFangSC-Regular" size:size];
+}
 
 +(UIFont *)fontPFR11{ return [UIFont fontWithName:@"PingFangSC-Regular" size:11]; }
 +(UIFont *)fontPFR12{ return [UIFont fontWithName:@"PingFangSC-Regular" size:12]; }

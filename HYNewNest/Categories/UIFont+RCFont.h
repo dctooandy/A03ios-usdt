@@ -10,6 +10,10 @@
 
 @interface UIFont (RCFont)
 
++(UIFont *)fontPFThin:(CGFloat)size;
++(UIFont *)fontPFLight:(CGFloat)size;
++(UIFont *)fontPFRegular:(CGFloat)size;
+
 + (UIFont *)fontOfXLLSize;//24sp
 + (UIFont *)fontOfXMLSize;//22sp
 + (UIFont *)fontOfXLSize; //18sp

@@ -34,12 +34,14 @@
     [self removeAllSubViews];
     
     //TODO: 假数据
+    UIColor *textColor = kHexColor(0x000000);
+    CGFloat lineHeight = 26.0;
     switch (type) {
         case SuperCopartnerTypeMyBonus:
             strArr = @[@"fxxx12", @"VIP2", @"2020.20.20", @"128", @"30天"];
             break;
         case SuperCopartnerTypeMyRecommen:
-            strArr = @[@"fxxx12", @"VIP2", @"私享会", @"2020.20.20"];
+            strArr = @[@"fxxx12", @"VIP2", @"赌爸", @"2020.20.20"];
             break;
         case SuperCopartnerTypeSXHBonus:
             strArr = @[@"赌神", @"28,571,000", @"5588"];
@@ -47,9 +49,21 @@
         case SuperCopartnerTypeStarGifts:
             strArr = @[@"VIP2", @"571,000", @"238"];
             break;
-        case SuperCopartnerTypeCumuBetRank:
+        case SuperCopartnerTypeCumuBetRank: // 颜色改变
+        {
+            lineHeight = 20.0;
+            
             strArr = @[@"冠军", @"fxxx12", @"28,571,000", @"35"];
+            NSString *rank = strArr.firstObject;
+            if ([rank isEqualToString:@"冠军"]) {
+                textColor = kHexColor(0xD69F5A);
+            } else if ([rank isEqualToString:@"亚军"]) {
+                textColor = kHexColor(0xD83783);
+            } else if ([rank isEqualToString:@"季军"]) {
+                textColor = kHexColor(0x6132D4);
+            }
             break;
+        }
         case SuperCopartnerTypeMyGifts:
             strArr = @[@"2020.20.20", @"Macbook pro 13.3英寸", @"30天"];
             break;
@@ -63,10 +77,10 @@
         UILabel *lb = [UILabel new];
         lb.text = obj;
         lb.font = [UIFont fontPFR12];
-        lb.textColor = kHexColor(0x000000);
+        lb.textColor = textColor;
         lb.textAlignment = NSTextAlignmentCenter;
         lb.adjustsFontSizeToFitWidth = YES;
-        lb.frame = CGRectMake(lbWidth * idx, 0, lbWidth, self.bounds.size.height);
+        lb.frame = CGRectMake(lbWidth * idx, 0, lbWidth, lineHeight);
         [self addSubview:lb];
     }];
 }

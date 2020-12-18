@@ -236,6 +236,10 @@
 		3D8A707E258B0B110058D50F /* SuperCopartnerTbDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A707D258B0B110058D50F /* SuperCopartnerTbDataSource.m */; };
 		3D8A7082258B3CBA0058D50F /* SuperCopartnerTbHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7081258B3CBA0058D50F /* SuperCopartnerTbHeader.m */; };
 		3D8A7086258B568E0058D50F /* SuperCopartnerTbCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7084258B568E0058D50F /* SuperCopartnerTbCell.m */; };
+		3D8A708A258C5C1A0058D50F /* SuperCopartnerTbFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7089258C5C1A0058D50F /* SuperCopartnerTbFooter.m */; };
+		3D8A708C258C5D570058D50F /* SuperCopartnerTbFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D8A708B258C5D570058D50F /* SuperCopartnerTbFooter.xib */; };
+		3D8A708F258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A708E258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m */; };
+		3D8A7092258CAF200058D50F /* HYSuperCopartnerSlideUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7091258CAF200058D50F /* HYSuperCopartnerSlideUpView.m */; };
 		3DA4F15024B30A090039123F /* SGQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DA4F13B24B30A080039123F /* SGQRCode.bundle */; };
 		3DA4F15124B30A090039123F /* UIImage+SGImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */; };
 		3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F14024B30A080039123F /* UIButton+Indicator.m */; };
@@ -1323,6 +1327,13 @@
 		3D8A7081258B3CBA0058D50F /* SuperCopartnerTbHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperCopartnerTbHeader.m; sourceTree = "<group>"; };
 		3D8A7083258B568E0058D50F /* SuperCopartnerTbCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuperCopartnerTbCell.h; sourceTree = "<group>"; };
 		3D8A7084258B568E0058D50F /* SuperCopartnerTbCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperCopartnerTbCell.m; sourceTree = "<group>"; };
+		3D8A7088258C5C1A0058D50F /* SuperCopartnerTbFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuperCopartnerTbFooter.h; sourceTree = "<group>"; };
+		3D8A7089258C5C1A0058D50F /* SuperCopartnerTbFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperCopartnerTbFooter.m; sourceTree = "<group>"; };
+		3D8A708B258C5D570058D50F /* SuperCopartnerTbFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuperCopartnerTbFooter.xib; sourceTree = "<group>"; };
+		3D8A708D258C8A210058D50F /* HYSuperCopartnerReciveAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSuperCopartnerReciveAlertView.h; sourceTree = "<group>"; };
+		3D8A708E258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSuperCopartnerReciveAlertView.m; sourceTree = "<group>"; };
+		3D8A7090258CAF200058D50F /* HYSuperCopartnerSlideUpView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSuperCopartnerSlideUpView.h; sourceTree = "<group>"; };
+		3D8A7091258CAF200058D50F /* HYSuperCopartnerSlideUpView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSuperCopartnerSlideUpView.m; sourceTree = "<group>"; };
 		3DA4F13A24B30A080039123F /* SGQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCode.h; sourceTree = "<group>"; };
 		3DA4F13B24B30A080039123F /* SGQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SGQRCode.bundle; sourceTree = "<group>"; };
 		3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SGImageSize.m"; sourceTree = "<group>"; };
@@ -2963,6 +2974,8 @@
 				3D31B957253DBBBD005275BD /* HYWithdrawCalculatorComView.m */,
 				3D31B959253DEE81005275BD /* HYWithdrawChooseWallectComView.h */,
 				3D31B95A253DEE81005275BD /* HYWithdrawChooseWallectComView.m */,
+				3D8A7090258CAF200058D50F /* HYSuperCopartnerSlideUpView.h */,
+				3D8A7091258CAF200058D50F /* HYSuperCopartnerSlideUpView.m */,
 			);
 			path = HYSlideUpComfirmView;
 			sourceTree = "<group>";
@@ -3347,6 +3360,9 @@
 				3D8A7081258B3CBA0058D50F /* SuperCopartnerTbHeader.m */,
 				3D8A7083258B568E0058D50F /* SuperCopartnerTbCell.h */,
 				3D8A7084258B568E0058D50F /* SuperCopartnerTbCell.m */,
+				3D8A7088258C5C1A0058D50F /* SuperCopartnerTbFooter.h */,
+				3D8A7089258C5C1A0058D50F /* SuperCopartnerTbFooter.m */,
+				3D8A708B258C5D570058D50F /* SuperCopartnerTbFooter.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4410,6 +4426,8 @@
 				3D41DEA7251B4A45000CA1D6 /* HYVIPReceiveAlertView.m */,
 				3D31B945253ACEF8005275BD /* HYWithdrawActivityAlertView.h */,
 				3D31B946253ACEF8005275BD /* HYWithdrawActivityAlertView.m */,
+				3D8A708D258C8A210058D50F /* HYSuperCopartnerReciveAlertView.h */,
+				3D8A708E258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m */,
 			);
 			path = HYAlertView;
 			sourceTree = "<group>";
@@ -5085,6 +5103,7 @@
 				D5A446D524F3941400014DC6 /* 合成 1_00074.png in Resources */,
 				E9A269DD24D80FCC00B512FF /* HYRechargePayWayCell.xib in Resources */,
 				D5A444AC24F3932400014DC6 /* 数字7_00042.png in Resources */,
+				3D8A708C258C5D570058D50F /* SuperCopartnerTbFooter.xib in Resources */,
 				D5A443AD24F378CD00014DC6 /* 彩票_00027.png in Resources */,
 				3D41DE7D25199DEE000CA1D6 /* VIPCardCCell.xib in Resources */,
 				D5A444C524F3932500014DC6 /* 数字7_00046.png in Resources */,
@@ -5631,6 +5650,7 @@
 				D5FBFE8B24BC28B200BBCAD8 /* CNBaseModel.m in Sources */,
 				0487C9F424D2AADC0013715A /* CNMessageTCell.m in Sources */,
 				3D41DECA2521CDE7000CA1D6 /* VIPRecordSelectorView.m in Sources */,
+				3D8A708A258C5C1A0058D50F /* SuperCopartnerTbFooter.m in Sources */,
 				E986A1A624CB3C18000F9CFF /* HYTextAlertView.m in Sources */,
 				E9D9449024C5454F00252222 /* HYNetworkConfigManager.m in Sources */,
 				040A08D424E114A900FBD534 /* CALayer+OCBarrage.m in Sources */,
@@ -5656,6 +5676,7 @@
 				3DCFEA8B25009D020071F356 /* V_SlideCard.m in Sources */,
 				E98BEEE924D023B200E6B0C8 /* UIView+Empty.m in Sources */,
 				D5FBFE8A24BC28B200BBCAD8 /* CNBaseXibView.m in Sources */,
+				3D8A708F258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m in Sources */,
 				04C0F10624C58CF4007F1420 /* CNNotificationName.m in Sources */,
 				0487C9A924CFBA6A0013715A /* JJCollectionViewRoundConfigModel.m in Sources */,
 				E9B5497624CF110B002CE6EF /* StrengthVideoTableViewCell.m in Sources */,
@@ -5669,6 +5690,7 @@
 				04C6E1F724D41C3C006F4DAC /* CNAddressInfoTCell.m in Sources */,
 				3D41DE8125199DEE000CA1D6 /* VIPNewVersionView.m in Sources */,
 				3D41DE7725199DEE000CA1D6 /* VIPMonthlyModel.m in Sources */,
+				3D8A7092258CAF200058D50F /* HYSuperCopartnerSlideUpView.m in Sources */,
 				E9A269DC24D80FCC00B512FF /* HYRechargePayWayCell.m in Sources */,
 				E98BEF0224D1AF4300E6B0C8 /* HYXiMaTopView.m in Sources */,
 				3DBA56112580D9B3009A2B71 /* CALayer+Additions.m in Sources */,

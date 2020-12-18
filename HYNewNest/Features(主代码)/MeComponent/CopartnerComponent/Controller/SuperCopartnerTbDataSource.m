@@ -8,35 +8,43 @@
 
 #import "SuperCopartnerTbDataSource.h"
 #import "SuperCopartnerTbHeader.h"
+#import "SuperCopartnerTbFooter.h"
 #import "SuperCopartnerTbCell.h"
 
 NSString * const SCTbHeader = @"SuperCopartnerTbHeader";
-NSString * const SCTbCellID = @"SuperCopartnerTbCell"; //0
+NSString * const SCTbFooter = @"SuperCopartnerTbFooter";
+NSString * const SCTbCellID = @"SuperCopartnerTbCell";
 
 @interface SuperCopartnerTbDataSource()
 
 @property (nonatomic, weak) UITableView *tableView;
 @property (assign,nonatomic) SuperCopartnerType formType;
+@property (assign,nonatomic) BOOL isHome; //!<是否首页 限制数量
 @end
 
 @implementation SuperCopartnerTbDataSource
 
-- (instancetype)initWithTableView:(UITableView *)tableView type:(SuperCopartnerType)type {
+- (instancetype)initWithTableView:(UITableView *)tableView type:(SuperCopartnerType)type isHomePage:(BOOL)isHome {
     self = [super init];
-    self.formType = type;
-    self.tableView = tableView;
     tableView.dataSource = self;
     tableView.delegate = self;
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [tableView registerClass:[SuperCopartnerTbHeader class] forHeaderFooterViewReuseIdentifier:SCTbHeader];
+    [tableView registerNib:[UINib nibWithNibName:SCTbFooter bundle:nil] forHeaderFooterViewReuseIdentifier:SCTbFooter];
     [tableView registerClass:[SuperCopartnerTbCell class] forCellReuseIdentifier:SCTbCellID];
+    
+    self.tableView = tableView;
+    self.isHome = isHome;
+    self.formType = type;
     
     return self;
 }
 
 - (void)changeType:(SuperCopartnerType)type {
-    _formType = type;
-    
+    self.formType = type;
+}
+
+- (void)setFormType:(SuperCopartnerType)formType {
+    _formType = formType;
     //TODO: 刷新数据源
     [self.tableView reloadData];
 }
@@ -51,26 +59,43 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell"; //0
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if (self.formType == SuperCopartnerTypeCumuBetRank) {
-        return [UIView new];
+    if (self.isHome) {
+        if (self.formType == SuperCopartnerTypeCumuBetRank) {
+            UILabel *lb = [UILabel new];
+            lb.text = @"(数据每天凌晨刷新)";
+            lb.textColor = kHexColor(0xA6A6A6);
+            lb.font = [UIFont fontPFR11];
+            lb.textAlignment = NSTextAlignmentCenter;
+            lb.frame = CGRectMake(0, 0, kScreenWidth - 25, 26);
+            return lb;
+        } else {
+            SuperCopartnerTbFooter *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:SCTbFooter];
+            //TODO: 假数据
+            [view setupFootType:self.formType strArr:@[@1579, @14388]];
+            return view;
+        }
     } else {
-        //TODO:
         return [UIView new];
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 6;
+    if (self.isHome) {
+        if (self.formType == SuperCopartnerTypeCumuBetRank) {
+            return 6;
+        } else {
+            return 5;
+        }
+    } else {
+        return 10;//
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     SuperCopartnerTbCell *cell = (SuperCopartnerTbCell *)[tableView dequeueReusableCellWithIdentifier:SCTbCellID];
-//    cell.backgroundColor = KRandomColor;
-    
-    //TODO:=
+    //TODO: 假数据
     [cell setupType:self.formType strArr:@[]];
-    
     return cell;
 }
 

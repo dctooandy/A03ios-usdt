@@ -12,6 +12,8 @@
 #import "HYOneBtnAlertView.h"
 #import "CNShareView.h"
 #import "HYVIPRuleAlertView.h"
+#import "HYSuperCopartnerReciveAlertView.h"
+#import "HYSuperCopartnerSlideUpView.h"
 
 #import "SuperCopartnerTbDataSource.h"
 #import "SGQRCodeGenerateManager.h"
@@ -55,22 +57,18 @@
     [self setupUIViews];
 
     [self queryShareLinks];
+    
+    [HYSuperCopartnerReciveAlertView showReceiveAlert];
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-    [self drawUI];
+    [_monthCumulateBetBoard drawDottedLineBeginPoint:CGPointMake(0, _monthCumulateBetBoard.height-45) endPoint:CGPointMake(kScreenWidth-25, _monthCumulateBetBoard.height-45) lineWidth:0.5 lineColor:kHexColor(0x6020DB)];
 }
 
 
 #pragma mark - UI
-
-- (void)drawUI {
-    [_myAllkindsBonusBoard drawNormalLineBeginPoint:CGPointMake(0, _myAllkindsBonusBoard.height-41) endPoint:CGPointMake(_myAllkindsBonusBoard.width, _myAllkindsBonusBoard.height-41) lineWidth:0.5 lineColor:kHexColor(0xEEEEEE)];
-    
-    [_monthCumulateBetBoard drawDottedLineBeginPoint:CGPointMake(0, _monthCumulateBetBoard.height-45) endPoint:CGPointMake(kScreenWidth-25, _monthCumulateBetBoard.height-45) lineWidth:0.5 lineColor:kHexColor(0x6020DB)];
-}
 
 - (void)setupUIViews {
     self.scrollViewWidthCons.constant = kScreenWidth;
@@ -78,11 +76,10 @@
     _topBtnsBgView.backgroundColor = [UIColor gradientFromColor:kHexColor(0x8241FF) toColor:kHexColor(0x6020DB) withWidth:kScreenWidth-25];
     
     // 第一部分tableview
-    _firstTablesDataSource = [[SuperCopartnerTbDataSource alloc] initWithTableView:_makTableView type:SuperCopartnerTypeMyBonus];
+    _firstTablesDataSource = [[SuperCopartnerTbDataSource alloc] initWithTableView:_makTableView type:SuperCopartnerTypeMyBonus isHomePage:YES];
     
     // 第二部分tableView
-    _cumulateBetDataSource = [[SuperCopartnerTbDataSource alloc] initWithTableView:_mcbTableView type:SuperCopartnerTypeCumuBetRank];
-    
+    _cumulateBetDataSource = [[SuperCopartnerTbDataSource alloc] initWithTableView:_mcbTableView type:SuperCopartnerTypeCumuBetRank isHomePage:YES];
     
     [_myAllKindBonusBtns enumerateObjectsUsingBlock:^(CNTextSaleBtn * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.selFont = [UIFont fontPFSB16];
@@ -120,9 +117,9 @@
     
     CGFloat spacex = (_selTag - lastTag) * sender.width;
     self.slideLineCenterCons.constant += spacex;
-    [UIView animateWithDuration:0.2 animations:^{
-        [self.topBtnsBgView setNeedsLayout];
-    }];
+//    [UIView animateWithDuration:0.2 animations:^{
+//        [self.topBtnsBgView setNeedsLayout];
+//    }];
     
 }
 
@@ -141,6 +138,19 @@
     [CNHUB showSuccess:@"已复制到剪贴板"];
 }
 
+- (IBAction)didTapSeeMoreBtn:(id)sender {
+    //TODO: 弹窗
+    [HYSuperCopartnerSlideUpView showSlideupViewType:self.selTag];
+}
+
+- (IBAction)didTapCustomerServerBtn:(id)sender {
+    [NNPageRouter jump2Live800Type:CNLive800TypeNormal];
+}
+
+- (IBAction)didTapMyGiftBtn:(id)sender {
+    //TODO: 弹窗
+    [HYSuperCopartnerSlideUpView showSlideupViewType:SuperCopartnerTypeMyGifts];
+}
 
 #pragma mark - SAVE IMG
 

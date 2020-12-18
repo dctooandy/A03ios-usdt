@@ -12,12 +12,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SuperCopartnerTbDataSource : NSObject <UITableViewDelegate, UITableViewDataSource>
-@property (assign,nonatomic) NSInteger itemCount;
-
 
 //@property (nonatomic, copy) SCBlock scSuccesBlock;
 
-- (instancetype)initWithTableView:(UITableView *)tableView type:(SuperCopartnerType)type;
+- (instancetype)initWithTableView:(UITableView *)tableView type:(SuperCopartnerType)type isHomePage:(BOOL)isHome;
 - (void)changeType:(SuperCopartnerType)type;
 
 @end

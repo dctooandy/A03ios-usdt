@@ -49,7 +49,7 @@
         lblTit.textAlignment = NSTextAlignmentCenter;
         lblTit.font = [UIFont fontPFM16];
         lblTit.textColor = [UIColor whiteColor];
-        [lblTit addLineDirection:LineDirectionBottom color:kHexColorAlpha(0xFFFFFF, 0.3) width:0.5];
+        self.topLine = [lblTit addLineDirection:LineDirectionBottom color:kHexColorAlpha(0xFFFFFF, 0.3) width:0.5];
         _titleLbl = lblTit;
     }
     return _titleLbl;;
