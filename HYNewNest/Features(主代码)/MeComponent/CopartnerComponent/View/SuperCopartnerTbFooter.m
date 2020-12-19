@@ -42,6 +42,8 @@
             NSNumber *recedNum = strArr[1];
             _lbReceivedAmount.text = [NSString stringWithFormat:@"%@usdt", [recNum jk_toDisplayNumberWithDigit:0]];
             _lbNotReceivedAmount.text = [NSString stringWithFormat:@"%@usdt", [recedNum jk_toDisplayNumberWithDigit:0]];
+            BOOL isHas = [strArr[2] boolValue];
+            _onlyBtn.hidden = !isHas;
             
         } else {
             [_onlyBtn setTitle:@"请登录" forState:UIControlStateNormal];

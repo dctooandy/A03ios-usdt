@@ -49,7 +49,7 @@
     
     NSArray *lbTextArr = [self topLbTextArrayWithType:headType];
     __block NSInteger line = lbTextArr.count;
-    CGFloat lbWidth = (kScreenWidth - 25) / (line * 1.0);
+    CGFloat lbWidth = (kScreenWidth - 25 - 20) / (line * 1.0);
     [lbTextArr enumerateObjectsUsingBlock:^(NSString   * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UILabel *lb = [UILabel new];
         lb.text = obj;
@@ -57,7 +57,7 @@
         lb.textColor = kHexColor(0x000000);
         lb.textAlignment = NSTextAlignmentCenter;
         lb.adjustsFontSizeToFitWidth = YES;
-        lb.frame = CGRectMake(lbWidth * idx, 0, lbWidth, 26);
+        lb.frame = CGRectMake(10 + lbWidth * idx, 0, lbWidth, 26);
         [self.contentView addSubview:lb];
     }];
 }

@@ -32,55 +32,52 @@
 - (void)setupType:(SuperCopartnerType)type strArr:(NSArray<NSString *> *)strArr {
     
     [self removeAllSubViews];
-    
+    NSMutableArray *arr = strArr.mutableCopy;
     //TODO: 假数据
     UIColor *textColor = kHexColor(0x000000);
-    CGFloat lineHeight = 26.0;
     switch (type) {
         case SuperCopartnerTypeMyBonus:
-            strArr = @[@"fxxx12", @"VIP2", @"2020.20.20", @"128", @"30天"];
+            if (strArr.count == 0) {
+                arr = @[@"--", @"--", @"--", @"--", @"--"].mutableCopy;
+            }
             break;
         case SuperCopartnerTypeMyRecommen:
-            strArr = @[@"fxxx12", @"VIP2", @"赌爸", @"2020.20.20"];
-            break;
-        case SuperCopartnerTypeSXHBonus:
-            strArr = @[@"赌神", @"28,571,000", @"5588"];
-            break;
-        case SuperCopartnerTypeStarGifts:
-            strArr = @[@"VIP2", @"571,000", @"238"];
+            if (strArr.count == 0) {
+                arr = @[@"--", @"--", @"--", @"--"].mutableCopy;
+            }
             break;
         case SuperCopartnerTypeCumuBetRank: // 颜色改变
         {
-            lineHeight = 20.0;
-            
-            strArr = @[@"冠军", @"fxxx12", @"28,571,000", @"35"];
-            NSString *rank = strArr.firstObject;
-            if ([rank isEqualToString:@"冠军"]) {
+            NSString *rank = arr.firstObject;
+            if ([rank isEqualToString:@"1"]) {
                 textColor = kHexColor(0xD69F5A);
-            } else if ([rank isEqualToString:@"亚军"]) {
+                [arr replaceObjectAtIndex:0 withObject:@"冠军"];
+            } else if ([rank isEqualToString:@"2"]) {
                 textColor = kHexColor(0xD83783);
-            } else if ([rank isEqualToString:@"季军"]) {
+                [arr replaceObjectAtIndex:0 withObject:@"亚军"];
+            } else if ([rank isEqualToString:@"3"]) {
                 textColor = kHexColor(0x6132D4);
+                [arr replaceObjectAtIndex:0 withObject:@"季军"];
             }
             break;
         }
         case SuperCopartnerTypeMyGifts:
-            strArr = @[@"2020.20.20", @"Macbook pro 13.3英寸", @"30天"];
+            arr = @[@"2020.20.20", @"Macbook pro 13.3英寸", @"30天"].mutableCopy;
             break;
         default:
             break;
     }
     
-    __block NSInteger line = strArr.count;
-    CGFloat lbWidth = (kScreenWidth - 25) / (line * 1.0);
-    [strArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    __block NSInteger line = arr.count;
+    CGFloat lbWidth = (kScreenWidth - 25 - 20) / (line * 1.0);
+    [arr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UILabel *lb = [UILabel new];
         lb.text = obj;
         lb.font = [UIFont fontPFR12];
         lb.textColor = textColor;
         lb.textAlignment = NSTextAlignmentCenter;
         lb.adjustsFontSizeToFitWidth = YES;
-        lb.frame = CGRectMake(lbWidth * idx, 0, lbWidth, lineHeight);
+        lb.frame = CGRectMake(10 + lbWidth * idx, 0, lbWidth, 26);
         [self addSubview:lb];
     }];
 }

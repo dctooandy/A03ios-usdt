@@ -18,8 +18,9 @@
 #import "SuperCopartnerTbDataSource.h"
 #import "SGQRCodeGenerateManager.h"
 #import "CNHomeRequest.h"
+#import "CNSuperCopartnerRequest.h"
 
-@interface BYSuperCopartnerVC ()
+@interface BYSuperCopartnerVC () <SuperCopartnerDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewWidthCons;
 
 /// 我的奖金
@@ -31,11 +32,13 @@
 @property (strong, nonatomic) IBOutletCollection(CNTextSaleBtn) NSArray *myAllKindBonusBtns;
 @property (nonatomic, assign) NSInteger selTag;
 @property (strong,nonatomic) SuperCopartnerTbDataSource *firstTablesDataSource;
+@property (weak, nonatomic) IBOutlet UIButton *seeMoreBtn;
 
 /// 本月累投排行榜
 @property (weak, nonatomic) IBOutlet UIView *monthCumulateBetBoard;
 @property (weak, nonatomic) IBOutlet UITableView *mcbTableView;
 @property (strong,nonatomic) SuperCopartnerTbDataSource *cumulateBetDataSource;
+@property (weak, nonatomic) IBOutlet UILabel *cumulateBetAmountLb;
 
 // 推荐流程
 @property (weak, nonatomic) IBOutlet UILabel *linkLb;
@@ -80,6 +83,7 @@
     
     // 第二部分tableView
     _cumulateBetDataSource = [[SuperCopartnerTbDataSource alloc] initWithTableView:_mcbTableView type:SuperCopartnerTypeCumuBetRank isHomePage:YES];
+    _cumulateBetDataSource.delegate = self;
     
     [_myAllKindBonusBtns enumerateObjectsUsingBlock:^(CNTextSaleBtn * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.selFont = [UIFont fontPFSB16];
@@ -98,6 +102,10 @@
     
     UIImage *img = [SGQRCodeGenerateManager generateWithDefaultQRCodeData:shareLink imageViewWidth:101];
     self.linkImv.image = img;
+}
+
+- (void)didReceiveCumulateBetAmount:(NSNumber *)betAmount {
+    _cumulateBetAmountLb.text = [NSString stringWithFormat:@"%@ USDT", [betAmount jk_toDisplayNumberWithDigit:0]];
 }
 
 
@@ -147,10 +155,10 @@
     [NNPageRouter jump2Live800Type:CNLive800TypeNormal];
 }
 
-- (IBAction)didTapMyGiftBtn:(id)sender {
-    //TODO: 弹窗
-    [HYSuperCopartnerSlideUpView showSlideupViewType:SuperCopartnerTypeMyGifts];
-}
+//- (IBAction)didTapMyGiftBtn:(id)sender {
+//    //TODO: 弹窗
+//    [HYSuperCopartnerSlideUpView showSlideupViewType:SuperCopartnerTypeMyGifts];
+//}
 
 #pragma mark - SAVE IMG
 

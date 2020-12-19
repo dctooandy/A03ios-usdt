@@ -283,6 +283,10 @@
 		3DE3CA9024ECF6E300D591C4 /* CIRCULAR.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */; };
 		3DE3CA9324ED5CFC00D591C4 /* HYUpdateAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3CA9224ED5CFC00D591C4 /* HYUpdateAlertView.m */; };
 		3DE3CA9624ED6AEC00D591C4 /* UILabel+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3CA9524ED6AEC00D591C4 /* UILabel+Indicator.m */; };
+		3DF031FE258DA36A00AF7A36 /* CNSuperCopartnerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF031FD258DA36A00AF7A36 /* CNSuperCopartnerRequest.m */; };
+		3DF03201258DD16900AF7A36 /* SCBetRankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF03200258DD16900AF7A36 /* SCBetRankModel.m */; };
+		3DF03204258DE61400AF7A36 /* SCMyRecommenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF03203258DE61400AF7A36 /* SCMyRecommenModel.m */; };
+		3DF03207258DF6E500AF7A36 /* SCMyBonusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF03206258DF6E500AF7A36 /* SCMyBonusModel.m */; };
 		5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */; };
 		D571B19624BE9F120087B5EC /* CNLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19524BE9F120087B5EC /* CNLineView.m */; };
 		D571B1AA24C03D790087B5EC /* CNStatementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D571B1A724C03D790087B5EC /* CNStatementView.xib */; };
@@ -1416,6 +1420,15 @@
 		3DE3CA9224ED5CFC00D591C4 /* HYUpdateAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYUpdateAlertView.m; sourceTree = "<group>"; };
 		3DE3CA9424ED6AEC00D591C4 /* UILabel+Indicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Indicator.h"; sourceTree = "<group>"; };
 		3DE3CA9524ED6AEC00D591C4 /* UILabel+Indicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Indicator.m"; sourceTree = "<group>"; };
+		3DF031FB258DA03900AF7A36 /* VIPRankConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPRankConst.h; sourceTree = "<group>"; };
+		3DF031FC258DA36A00AF7A36 /* CNSuperCopartnerRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNSuperCopartnerRequest.h; sourceTree = "<group>"; };
+		3DF031FD258DA36A00AF7A36 /* CNSuperCopartnerRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNSuperCopartnerRequest.m; sourceTree = "<group>"; };
+		3DF031FF258DD16900AF7A36 /* SCBetRankModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCBetRankModel.h; sourceTree = "<group>"; };
+		3DF03200258DD16900AF7A36 /* SCBetRankModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCBetRankModel.m; sourceTree = "<group>"; };
+		3DF03202258DE61400AF7A36 /* SCMyRecommenModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCMyRecommenModel.h; sourceTree = "<group>"; };
+		3DF03203258DE61400AF7A36 /* SCMyRecommenModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCMyRecommenModel.m; sourceTree = "<group>"; };
+		3DF03205258DF6E500AF7A36 /* SCMyBonusModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCMyBonusModel.h; sourceTree = "<group>"; };
+		3DF03206258DF6E500AF7A36 /* SCMyBonusModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCMyBonusModel.m; sourceTree = "<group>"; };
 		62DF1724D3A54A4E27D4B55B /* Pods-HYNewNest-HYNewNestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; path = "Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.debug.xcconfig"; sourceTree = "<group>"; };
 		A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3003,6 +3016,7 @@
 			children = (
 				3D3A9B7124FA7DA5003FB33C /* CNVIPRequest.h */,
 				3D3A9B7224FA7DA5003FB33C /* CNVIPRequest.m */,
+				3DF031FB258DA03900AF7A36 /* VIPRankConst.h */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -3349,6 +3363,12 @@
 		3DBA56072580B467009A2B71 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3DF031FF258DD16900AF7A36 /* SCBetRankModel.h */,
+				3DF03200258DD16900AF7A36 /* SCBetRankModel.m */,
+				3DF03202258DE61400AF7A36 /* SCMyRecommenModel.h */,
+				3DF03203258DE61400AF7A36 /* SCMyRecommenModel.m */,
+				3DF03205258DF6E500AF7A36 /* SCMyBonusModel.h */,
+				3DF03206258DF6E500AF7A36 /* SCMyBonusModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3370,6 +3390,8 @@
 		3DBA56092580B467009A2B71 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				3DF031FC258DA36A00AF7A36 /* CNSuperCopartnerRequest.h */,
+				3DF031FD258DA36A00AF7A36 /* CNSuperCopartnerRequest.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -5730,6 +5752,7 @@
 				04C6E1F324D4180D006F4DAC /* CNImaginaryLine.m in Sources */,
 				3DA4F1A424B31A110039123F /* NSString+Font.m in Sources */,
 				E98BEEDC24CFF17500E6B0C8 /* HYBonusCell.m in Sources */,
+				3DF03207258DF6E500AF7A36 /* SCMyBonusModel.m in Sources */,
 				04C0F10324C58A52007F1420 /* NSObject+CNParse.m in Sources */,
 				E98BEEEB24D023B200E6B0C8 /* LYEmptyView.m in Sources */,
 				04935BE324D8FC5B007A33EF /* CNElectrionHallCCell.m in Sources */,
@@ -5744,6 +5767,7 @@
 				04C6E1E624D4029D006F4DAC /* CNAddressManagerVC.m in Sources */,
 				3D41DE7525199DEE000CA1D6 /* VIPRewardAnocModel.m in Sources */,
 				E986A17B24C97A42000F9CFF /* CNWithdrawRequest.m in Sources */,
+				3DF03204258DE61400AF7A36 /* SCMyRecommenModel.m in Sources */,
 				040A08D324E114A900FBD534 /* OCBarrageTextDescriptor.m in Sources */,
 				E9D944A124C5759400252222 /* UpdateVersionModel.m in Sources */,
 				3DA4F17D24B315940039123F /* UIFont+RCFont.m in Sources */,
@@ -5844,6 +5868,7 @@
 				E98BEF3F24D3E99000E6B0C8 /* CNAmountInputView.m in Sources */,
 				E98BEF2D24D2D35800E6B0C8 /* NSAttributedString+Selectable.m in Sources */,
 				E986A13D24C93460000F9CFF /* CNBonusRequest.m in Sources */,
+				3DF031FE258DA36A00AF7A36 /* CNSuperCopartnerRequest.m in Sources */,
 				E9063B8C24D6BE870000273A /* HYWideOneBtnAlertView.m in Sources */,
 				3D65D1162568E35300917E1B /* SocketRocketUtility.m in Sources */,
 				E986A17724C979F6000F9CFF /* CNRechargeRequest.m in Sources */,
@@ -5881,6 +5906,7 @@
 				3D8A7086258B568E0058D50F /* SuperCopartnerTbCell.m in Sources */,
 				3D643F9124F2A91B00B9AAA7 /* CNPushRequest.m in Sources */,
 				3D643F9E24F39BA600B9AAA7 /* HYInGameHelper.m in Sources */,
+				3DF03201258DD16900AF7A36 /* SCBetRankModel.m in Sources */,
 				3D8A7082258B3CBA0058D50F /* SuperCopartnerTbHeader.m in Sources */,
 				E986A11B24C7DFE7000F9CFF /* GameModel.m in Sources */,
 				E986A18224C97C0E000F9CFF /* AccountModel.m in Sources */,
