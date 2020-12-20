@@ -25,6 +25,9 @@
                         <constraint firstAttribute="height" constant="26" id="hS2-nG-ehM"/>
                     </constraints>
                     <state key="normal" title="一键领取"/>
+                    <connections>
+                        <action selector="didTapOnekeyRecive:" destination="-1" eventType="touchUpInside" id="I62-q5-Wws"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已领取：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7c-kL-Tnv">
                     <rect key="frame" x="9" y="13.5" width="49.5" height="14"/>

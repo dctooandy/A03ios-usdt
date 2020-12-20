@@ -106,11 +106,21 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
             
         } else if (self.formType == SuperCopartnerTypeMyRecommen) {
             SuperCopartnerTbFooter *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:SCTbFooter];
-            if (self.myRecommenModels) {
+            if (self.myRecommenModels) { // 有推荐人数
                 [view setupFootType:self.formType strArr:@[@(self.myRecommenModels.count)]];
             } else {
                 [view setupFootType:self.formType strArr:@[@0]];
             }
+            return view;
+            
+        } else if (self.formType == SuperCopartnerTypeSXHBonus) {
+            SuperCopartnerTbFooter *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:SCTbFooter];
+            [view setupFootType:self.formType strArr:@[]];
+            return view;
+            
+        } else if (self.formType == SuperCopartnerTypeStarGifts) {
+            SuperCopartnerTbFooter *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:SCTbFooter];
+            [view setupFootType:self.formType strArr:@[]];
             return view;
         }
     }
@@ -119,19 +129,31 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.isHome) {
-        if (self.formType == SuperCopartnerTypeSXHBonus || self.formType == SuperCopartnerTypeStarGifts) {
+        if (self.formType == SuperCopartnerTypeSXHBonus) {
             return 6;
+            
+        } else if (self.formType == SuperCopartnerTypeStarGifts) {
+            return 9;
+            
         } else if (self.formType == SuperCopartnerTypeCumuBetRank) {
             return self.betRankModel.result.count;
+            
         } else if (self.formType == SuperCopartnerTypeMyRecommen) {
             return self.myRecommenModels.count>0?self.myRecommenModels.count:5;
+            
         } else if (self.formType == SuperCopartnerTypeMyBonus) {
             return self.myBonusModel.result.count>0?self.myBonusModel.result.count:5;
         } else {
-            return 5;
+            return 0;
         }
     } else {
-        return 10; // 弹窗出来的 根据数据源
+        if (self.formType == SuperCopartnerTypeMyBonus) {
+            return self.myBonusModel.result.count;
+        }
+        if (self.formType == SuperCopartnerTypeMyRecommen) {
+            return self.myRecommenModels.count;
+        }
+        return 0;
     }
 }
 
@@ -144,11 +166,14 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
         {
             if (self.myBonusModel.result.count > 0) {
                 MyBonusResultItem *item = self.myBonusModel.result[indexPath.row];
-                NSString *rank = [NSString stringWithFormat:@"VIP%ld", (long)item.upLevel];
                 NSDate *matuDate = [NSDate jk_dateWithString:item.maturityDate format:@"yyyy-MM-dd HH:mm:ss"];
                 NSInteger day = [matuDate jk_distanceDaysToDate:[NSDate date]];
                 NSString *dayStr = [NSString stringWithFormat:@"%ld天", day];
-                NSArray *arr = @[item.loginName, rank, item.createdDate, item.amount, item.flag==2?dayStr:@"已领取"];
+                NSArray *arr = @[item.loginName,
+                                 item.upLevelStr,
+                                 item.createdDate,
+                                 item.amount,
+                                 item.flag==2?dayStr:@"已领取"];
                 [cell setupType:self.formType strArr:arr];
             } else {
                 [cell setupType:_formType strArr:@[@"--", @"--", @"--", @"--", @"--"]];
@@ -208,6 +233,12 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
                 [cell setupType:self.formType strArr:@[@"VIP6", @"710,000", @"116"]];
             } else if (indexPath.row == 5) {
                 [cell setupType:self.formType strArr:@[@"VIP5", @"420,000", @"98"]];
+            } else if (indexPath.row == 6) {
+                [cell setupType:self.formType strArr:@[@"VIP4", @"140,000", @"56"]];
+            } else if (indexPath.row == 7) {
+                [cell setupType:self.formType strArr:@[@"VIP3", @"71,000", @"38"]];
+            } else if (indexPath.row == 8) {
+                [cell setupType:self.formType strArr:@[@"VIP2", @"14,000", @"13"]];
             }
             break;
         }
@@ -225,7 +256,13 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
     } else {
         [CNSuperCopartnerRequest requestSuperCopartnerListType:SuperCopartnerTypeMyBonus pageNo:_pageNoMyBonus handler:^(id responseObj, NSString *errorMsg) {
             if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-                self.myBonusModel = [SCMyBonusModel cn_parse:responseObj];
+                
+                self->_pageNoMyBonus += 1;
+                SCMyBonusModel *newModel = [SCMyBonusModel cn_parse:responseObj];
+                NSMutableArray *oldResult = self.myBonusModel.result.mutableCopy;
+                [oldResult addObjectsFromArray:newModel.result];
+                self.myBonusModel.result = oldResult.copy;
+                
                 self.isHasBonus = self.myBonusModel.receivedAmount.integerValue > 0;
                 [self.tableView reloadData];
             }
@@ -234,12 +271,16 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
 }
 
 - (void)queryMyRecommen {
-    if (_isHome && self.myBonusModel) { //一页
+    if (_isHome && self.myRecommenModels) { //一页
         [self.tableView reloadData];
     } else {
         [CNSuperCopartnerRequest requestSuperCopartnerListType:SuperCopartnerTypeMyRecommen pageNo:_pageNoMyRecommen handler:^(id responseObj, NSString *errorMsg) {
             if (!errorMsg && [responseObj isKindOfClass:[NSArray class]]) {
-                self.myRecommenModels = [SCMyRecommenModel cn_parse:responseObj];
+                
+                self->_pageNoMyRecommen += 1;
+                NSMutableArray *arr = self.myRecommenModels.mutableCopy;
+                [arr addObjectsFromArray:[SCMyRecommenModel cn_parse:responseObj]];
+                self.myRecommenModels = arr.copy;
                 [self.tableView reloadData];
             }
         }];

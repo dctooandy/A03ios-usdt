@@ -25,6 +25,7 @@
 
 /// 我的奖金
 @property (weak, nonatomic) IBOutlet UIView *myAllkindsBonusBoard;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bonusBoardHeightCons;
 @property (weak, nonatomic) IBOutlet UIView *topBtnsBgView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *slideLineCenterCons;
 //@property (weak, nonatomic) IBOutlet UIView *slideLine;
@@ -61,7 +62,7 @@
 
     [self queryShareLinks];
     
-    [HYSuperCopartnerReciveAlertView showReceiveAlert];
+//    [HYSuperCopartnerReciveAlertView showReceiveAlert];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -147,8 +148,24 @@
 }
 
 - (IBAction)didTapSeeMoreBtn:(id)sender {
-    //TODO: 弹窗
-    [HYSuperCopartnerSlideUpView showSlideupViewType:self.selTag];
+    switch (_selTag) {
+        case SuperCopartnerTypeMyBonus:
+        case SuperCopartnerTypeMyRecommen:
+            //弹窗
+            [HYSuperCopartnerSlideUpView showSlideupViewType:_selTag];
+            break;
+        case SuperCopartnerTypeSXHBonus:
+            [kCurNavVC popToRootViewControllerAnimated:NO];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [NNControllerHelper currentTabBarController].selectedIndex = 1;
+            });
+            break;
+        case SuperCopartnerTypeStarGifts:
+            [NNPageRouter jump2HTMLWithStrURL:@"/starall" title:@"星特权新体验" needPubSite:YES];
+            break;
+        default:
+            break;
+    }
 }
 
 - (IBAction)didTapCustomerServerBtn:(id)sender {
@@ -199,6 +216,23 @@
 - (void)setSelTag:(NSInteger)selTag {
     _selTag = selTag;
     [self.firstTablesDataSource changeType:selTag];
+    switch (selTag) {
+        case SuperCopartnerTypeMyBonus:
+        case SuperCopartnerTypeMyRecommen:
+            _bonusBoardHeightCons.constant = 245;
+            [_seeMoreBtn setTitle:@"查看更多" forState:UIControlStateNormal];
+            break;
+        case SuperCopartnerTypeSXHBonus:
+            _bonusBoardHeightCons.constant = 271;
+            [_seeMoreBtn setTitle:@"了解私享会" forState:UIControlStateNormal];
+            break;
+        case SuperCopartnerTypeStarGifts:
+            _bonusBoardHeightCons.constant = 349;
+            [_seeMoreBtn setTitle:@"了解更多星级" forState:UIControlStateNormal];
+            break;
+        default:
+            break;
+    }
 }
 
 

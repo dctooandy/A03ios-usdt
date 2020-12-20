@@ -7,9 +7,16 @@
 //
 
 #import "SCMyBonusModel.h"
+#import "VIPRankConst.h"
 
 @implementation MyBonusResultItem
-
+- (NSString *)upLevelStr {
+    if ([self.upType isEqualToString:@"CLUB_LEVEL"]) {
+        return VIPRankString[self.upLevel];
+    } else {
+        return [NSString stringWithFormat:@"VIP%ld", (long)self.upLevel];
+    }
+}
 @end
 
 @implementation SCMyBonusModel

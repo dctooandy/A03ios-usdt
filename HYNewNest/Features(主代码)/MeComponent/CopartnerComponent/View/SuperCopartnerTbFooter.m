@@ -8,6 +8,8 @@
 
 #import "SuperCopartnerTbFooter.h"
 #import "CNBorderBtn.h"
+#import "CNSuperCopartnerRequest.h"
+
 @interface SuperCopartnerTbFooter ()
 @property (weak, nonatomic) IBOutlet CNBorderBtn *onlyBtn;
 @property (assign, nonatomic) SuperCopartnerType footType;
@@ -69,6 +71,15 @@
             _lbMiddle.text = @"一次晋级，终生有效";
         }
     }
+}
+
+- (IBAction)didTapOnekeyRecive:(id)sender {
+    [CNSuperCopartnerRequest applyMyGiftBonusHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+            NSString *amount = responseObj[@"amount"];
+            [CNHUB showSuccess:[NSString stringWithFormat:@"成功领取 %@usdt", amount]];
+        }
+    }];
 }
 
 

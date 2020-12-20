@@ -33,7 +33,6 @@
     
     [self removeAllSubViews];
     NSMutableArray *arr = strArr.mutableCopy;
-    //TODO: 假数据
     UIColor *textColor = kHexColor(0x000000);
     switch (type) {
         case SuperCopartnerTypeMyBonus:
@@ -61,9 +60,9 @@
             }
             break;
         }
-        case SuperCopartnerTypeMyGifts:
-            arr = @[@"2020.20.20", @"Macbook pro 13.3英寸", @"30天"].mutableCopy;
-            break;
+//        case SuperCopartnerTypeMyGifts:
+//            arr = @[@"2020.20.20", @"Macbook pro 13.3英寸", @"30天"].mutableCopy;
+//            break;
         default:
             break;
     }

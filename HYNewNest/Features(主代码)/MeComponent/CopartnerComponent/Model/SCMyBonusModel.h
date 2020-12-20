@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * loginName;
 @property (nonatomic , assign) NSInteger           upLevel;
 @property (nonatomic , copy) NSString              * upType;
+@property (copy , nonatomic) NSString              * upLevelStr; 
 @property (nonatomic , copy) NSString              * amount;
 @property (nonatomic , copy) NSString              * createdDate;
 @property (nonatomic , copy) NSString              * maturityDate;
