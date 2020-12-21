@@ -12,7 +12,8 @@
 UIKIT_EXTERN NSNotificationName const HYLoginSuccessNotification;
 UIKIT_EXTERN NSNotificationName const HYLogoutSuccessNotification;
 UIKIT_EXTERN NSNotificationName const HYSwitchAcoutSuccNotification;
-UIKIT_EXTERN NSNotificationName const HYWebSocketDidOpenNote;
+UIKIT_EXTERN NSNotificationName const HYWebSocketDidOpenNoti;
+UIKIT_EXTERN NSNotificationName const BYDidEnterHomePageNoti;
 
 #pragma mark - UserDefaultKey
 /// 充提指南

@@ -166,13 +166,6 @@
 #pragma mark - 跳转
 
 - (void)goTo403{
-    if (!_videoDidEnd) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self goTo403];
-        });
-        return;
-    }
-    
     HY403ViewController *vc = [[HY403ViewController alloc] init];
     HYNavigationController *nav = [[HYNavigationController alloc] initWithRootViewController:vc];
     [NNControllerHelper changeRootVc:nav];
@@ -181,7 +174,7 @@
 
 - (void)goToLoginStart{
     if (!_videoDidEnd) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self goToLoginStart];
         });
         return;

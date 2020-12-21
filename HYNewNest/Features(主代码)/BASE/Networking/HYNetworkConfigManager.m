@@ -53,7 +53,7 @@
 #ifdef DEBUG
     // 切换环境 保存
     self.environment += 1;
-    if (self.environment > 2) {
+    if (self.environment > 1) {
         self.environment = 0;
     }
     [[NSUserDefaults standardUserDefaults] setInteger:self.environment forKey:@"IVNEnvironment"];
@@ -109,13 +109,13 @@
 //            [IVHttpManager shareManager].gateways = @[@"https://usdtm.hwx22.com", @"https://usdtw.hwx22.com", @"https://usdtmp.hwx22.com", @"https://usdtwp.hwx22.com"];
             break;
         }
-        case IVNEnvironmentPublishTest:
-        {
-            envName = @"旧运测环境";
-            [IVHttpManager shareManager].gateway = @"http://oldm.hwx22.com";
-            [IVHttpManager shareManager].gateways = @[@"http://oldm.hwx22.com"];
-            break;
-        }
+//        case IVNEnvironmentPublishTest:
+//        {
+//            envName = @"旧运测环境";
+//            [IVHttpManager shareManager].gateway = @"http://oldm.hwx22.com";
+//            [IVHttpManager shareManager].gateways = @[@"http://oldm.hwx22.com"];
+//            break;
+//        }
         case IVNEnvironmentPublish:
         {
             envName = @"运营环境";
