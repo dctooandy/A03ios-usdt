@@ -53,8 +53,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
-//    self.makeTranslucent = YES;
-//    self.navBarTransparent = YES;
+    self.hideNavgation = YES;
     
     self.title = @"超级合伙人";
     self.selTag = 0;
@@ -111,6 +110,10 @@
 
 
 #pragma mark - Action
+
+- (IBAction)didTapBackBtn:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (IBAction)didTapRuleBtn:(id)sender {
     [HYVIPRuleAlertView showFriendShareV2Rule];

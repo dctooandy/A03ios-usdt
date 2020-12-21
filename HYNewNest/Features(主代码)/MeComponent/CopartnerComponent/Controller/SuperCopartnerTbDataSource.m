@@ -12,6 +12,7 @@
 #import "SuperCopartnerTbCell.h"
 #import "CNSuperCopartnerRequest.h"
 #import "VIPRankConst.h"
+#import <MJRefresh.h>
 
 NSString * const SCTbHeader = @"SuperCopartnerTbHeader";
 NSString * const SCTbFooter = @"SuperCopartnerTbFooter";
@@ -58,7 +59,6 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
 - (void)setFormType:(SuperCopartnerType)formType {
     _formType = formType;
     
-    //TODO: 刷新数据源
     switch (formType) {
         case SuperCopartnerTypeMyBonus:
             [self queryMyBonus];
@@ -139,19 +139,22 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
             return self.betRankModel.result.count;
             
         } else if (self.formType == SuperCopartnerTypeMyRecommen) {
-            return self.myRecommenModels.count>0?self.myRecommenModels.count:5;
+            return self.myRecommenModels.count?:5;
             
         } else if (self.formType == SuperCopartnerTypeMyBonus) {
-            return self.myBonusModel.result.count>0?self.myBonusModel.result.count:5;
+            return self.myBonusModel.result.count?:5;
+            
         } else {
             return 0;
         }
+        
+    // 弹窗出来的
     } else {
         if (self.formType == SuperCopartnerTypeMyBonus) {
-            return self.myBonusModel.result.count;
+            return self.myBonusModel.result.count?:10;
         }
         if (self.formType == SuperCopartnerTypeMyRecommen) {
-            return self.myRecommenModels.count;
+            return self.myRecommenModels.count?:10;
         }
         return 0;
     }
@@ -259,9 +262,10 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
                 
                 self->_pageNoMyBonus += 1;
                 SCMyBonusModel *newModel = [SCMyBonusModel cn_parse:responseObj];
-                NSMutableArray *oldResult = self.myBonusModel.result.mutableCopy;
+                NSMutableArray *oldResult = self.myBonusModel?self.myBonusModel.result.mutableCopy:@[].mutableCopy;
                 [oldResult addObjectsFromArray:newModel.result];
-                self.myBonusModel.result = oldResult.copy;
+                newModel.result = oldResult.copy;
+                self.myBonusModel = newModel;
                 
                 self.isHasBonus = self.myBonusModel.receivedAmount.integerValue > 0;
                 [self.tableView reloadData];
@@ -278,11 +282,12 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
             if (!errorMsg && [responseObj isKindOfClass:[NSArray class]]) {
                 
                 self->_pageNoMyRecommen += 1;
-                NSMutableArray *arr = self.myRecommenModels.mutableCopy;
+                NSMutableArray *arr = self.myRecommenModels.count?self.myRecommenModels.mutableCopy:@[].mutableCopy;
                 [arr addObjectsFromArray:[SCMyRecommenModel cn_parse:responseObj]];
                 self.myRecommenModels = arr.copy;
                 [self.tableView reloadData];
             }
+            [self.tableView.mj_footer endRefreshing];
         }];
     }
 }
@@ -303,6 +308,7 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
             }
             [self.tableView reloadData];
         }
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 

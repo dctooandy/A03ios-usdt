@@ -96,7 +96,7 @@
         lbContent.jk_origin = CGPointMake(AD(26), AD(49));
         lbContent.size = CGSizeMake(AD(298), AD(327));
         lbContent.font = [UIFont systemFontOfSize:AD(13)];
-        lbContent.userInteractionEnabled = NO;
+        lbContent.editable = NO;
 
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         paragraphStyle.lineSpacing = 7;  //设置行间距
