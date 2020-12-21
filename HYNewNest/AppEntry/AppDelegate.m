@@ -189,6 +189,7 @@
             if (dict && [dict.allKeys containsObject:@"jumpUrl"]) {
                 NSString *url = dict[@"jumpUrl"];
                 [NNPageRouter jump2HTMLWithStrURL:url title:pageTitle needPubSite:NO];
+                _pushNotiUserInfo = nil;
             }
         }
     }
