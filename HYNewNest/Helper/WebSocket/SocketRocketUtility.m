@@ -80,7 +80,7 @@ NSString * const kNeedPayOrderNote = @"kNeedPayOrderNote";//发送的通知名�
     reConnectTime = 0;
     //开启心跳 心跳是发送pong的消息 我这里根据后台的要求发送data给后台
     [self initHeartBeat];
-    [[NSNotificationCenter defaultCenter] postNotificationName:HYWebSocketDidOpenNote object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:HYWebSocketDidOpenNoti object:nil];
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {

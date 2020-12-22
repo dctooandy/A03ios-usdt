@@ -6077,7 +6077,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 45;
-				DEVELOPMENT_TEAM = PTALWADUNN;
+				DEVELOPMENT_TEAM = JW7F38ZMYT;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6092,7 +6092,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 3.6.25;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hy.HYNewNest;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
 				PRODUCT_NAME = "币游_dev";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -6108,7 +6108,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 45;
-				DEVELOPMENT_TEAM = PTALWADUNN;
+				DEVELOPMENT_TEAM = JW7F38ZMYT;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6123,7 +6123,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 3.6.25;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hy.HYNewNest;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
 				PRODUCT_NAME = "币游";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
