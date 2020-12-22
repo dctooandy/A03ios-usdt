@@ -26,7 +26,7 @@
     
     self.bgView.layer.cornerRadius = AD(10);
     [self.addBtn setTitle:[CNUserManager shareManager].isUsdtMode?@"添加地址":@"添加银行卡" forState:UIControlStateNormal];
-    [self addDottedLineWithView:self.bgView borderColor:kHexColor(0x6D778B) fillColor:kHexColor(0x212137)];
+    [self dottedLineBorderWithView:self.bgView borderColor:kHexColor(0x6D778B) fillColor:kHexColor(0x212137)];
 }
 
 - (IBAction)addAddrClick:(id)sender {

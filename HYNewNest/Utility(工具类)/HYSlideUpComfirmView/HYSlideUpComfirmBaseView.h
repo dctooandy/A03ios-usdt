@@ -16,6 +16,7 @@ typedef void(^SubmitComfirmArgsBlock)(BOOL isComfirm, id args, ...);
 
 
 @interface HYSlideUpComfirmBaseView : UIView
+@property (strong, nonatomic) UIView *topLine; 
 // 半透明黑色背景
 @property (nonatomic, strong) UIView *bgView;
 // 滑出内容块

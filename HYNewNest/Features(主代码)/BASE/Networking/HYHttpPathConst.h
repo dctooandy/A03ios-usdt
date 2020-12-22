@@ -72,6 +72,8 @@
 #pragma mark 好友推荐
 #define config_queryAgentRecord  @"83e6dy/agentRecodTotalSum"  //获取好友推荐所有消息
 
+#define config_superCopartnerActy @"83e6dy/activity/newapi/tjhy"
+
 #pragma mark 站内信
 #define config_queryAnnoumces  @"message/queryAnnounces"  //获取公告
 #define config_subscrib_query   @"subscribe/query" //查询会员通知设置

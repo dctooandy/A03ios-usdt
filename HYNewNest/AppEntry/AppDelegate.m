@@ -185,10 +185,10 @@
         if ([userInfo.allKeys containsObject:@"payload"] && [userInfo.allKeys containsObject:@"aps"]) {
             NSString *payload = userInfo[@"payload"];
             NSDictionary *dict = [payload jk_dictionaryValue];
-            NSString *pageTitle = userInfo[@"aps"][@"alert"][@"title"];
+//            NSString *pageTitle = userInfo[@"aps"][@"alert"][@"title"];
             if (dict && [dict.allKeys containsObject:@"jumpUrl"]) {
                 NSString *url = dict[@"jumpUrl"];
-                [NNPageRouter jump2HTMLWithStrURL:url title:pageTitle needPubSite:NO];
+                [NNPageRouter jump2HTMLWithStrURL:url title:@"" needPubSite:NO];
                 _pushNotiUserInfo = nil;
             }
         }
