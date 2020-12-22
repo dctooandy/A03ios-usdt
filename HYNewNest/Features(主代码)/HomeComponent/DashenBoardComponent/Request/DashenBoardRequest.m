@@ -10,7 +10,7 @@
 
 @implementation DashenBoardRequest
 
-+ (void)requestDashenBoredType:(DashenBoredType)type
++ (void)requestDashenBoredType:(DashenBoredReqType)type
                        handler:(HandlerBlock)handler {
     
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
@@ -20,20 +20,20 @@
     paramDic[@"endDate"] = [[[NSDate date] jk_endOfMonth] jk_stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
     
     switch (type) {
-        case DashenBoredTypeRecharge:
+        case DashenBoredReqTypeRecharge:
             paramDic[@"action"] = @"recharge";
             break;
-        case DashenBoredTypeWithdraw:
+        case DashenBoredReqTypeWithdraw:
             paramDic[@"action"] = @"withdraw";
             break;
-        case DashenBoredTypeTotalWeek:
+        case DashenBoredReqTypeTotalWeek:
             paramDic[@"action"] = @"totalWeek";
             paramDic[@"pageNo"] = @1;
             paramDic[@"pageSize"] = @6;
             paramDic[@"beginDate"] = [[[NSDate date] jk_startOfWeek] jk_stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
             paramDic[@"endDate"] = [[[NSDate date] jk_endOfWeek] jk_stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
             break;
-        case DashenBoredTypeTotalMonth:
+        case DashenBoredReqTypeTotalMonth:
             paramDic[@"action"] = @"totalMonth";
             paramDic[@"pageNo"] = @1;
             paramDic[@"pageSize"] = @6;

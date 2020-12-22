@@ -50,7 +50,7 @@
     _selTit = sender.titleLabel.text;
         
     double xMargin = sender.left - self.titleLbl.left;
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:0.0013 * xMargin animations:^{
         
         self.titleLbl.transform = CGAffineTransformConcat(CGAffineTransformMakeTranslation(xMargin*1.4, 0),
                                                          CGAffineTransformMakeScale(0.7, 0.7));
@@ -70,10 +70,12 @@
             [btn setTitle:obj forState:UIControlStateNormal];
         }];
         
-        if (self.didTapBtnBlock) {
-            self.didTapBtnBlock(self.selTit);
-        }
     }];
+    
+    if (self.didTapBtnBlock) {
+        self.didTapBtnBlock(_selTit);
+    }
+    
 }
 
 @end

@@ -34,7 +34,7 @@
 #import "NSURL+HYLink.h"
 
 
-@interface CNHomeVC () <CNUserInfoLoginViewDelegate,  SDCycleScrollViewDelegate, UUMarqueeViewDelegate, GameBtnsStackViewDelegate>
+@interface CNHomeVC () <CNUserInfoLoginViewDelegate,  SDCycleScrollViewDelegate, UUMarqueeViewDelegate, GameBtnsStackViewDelegate, DashenBoardAutoHeightDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 /// 滚动视图
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -86,8 +86,9 @@
     CNBaseVC *vc = [self.childViewControllers objectAtIndex:self.currPage];
     self.pageViewH.constant = vc.totalHeight;
     
-    CNBaseVC *boredVc = [self.childViewControllers objectAtIndex:5];
-    self.boredViewH.constant = boredVc.totalHeight;
+//    CNDashenBoardVC *boredVc = (CNDashenBoardVC *)[self.childViewControllers objectAtIndex:5];
+//    boredVc.delegate = self;
+//    self.boredViewH.constant = boredVc.totalHeight;
 }
 
 - (void)viewDidLoad {
@@ -169,6 +170,7 @@
     
     // 大神榜
     CNDashenBoardVC *vc = [CNDashenBoardVC new];
+    vc.delegate = self;
     [self addChildViewController:vc];
     [self.dashenView addSubview:vc.view];
 }
@@ -253,6 +255,12 @@
         strongSelf.annoModels = arr;
         [strongSelf.marqueeView reloadData];
     }];
+}
+
+
+#pragma mark - DashenBoredDelegte
+- (void)didSetupDataGetTableHeight:(CGFloat)tableHeight {
+    self.boredViewH.constant = tableHeight;
 }
 
 

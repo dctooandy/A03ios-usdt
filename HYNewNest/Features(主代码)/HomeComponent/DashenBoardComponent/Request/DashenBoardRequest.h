@@ -14,14 +14,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DashenBoardRequest : CNBaseNetworking
 
 
-typedef NS_ENUM(NSUInteger, DashenBoredType) {
-    DashenBoredTypeRecharge,
-    DashenBoredTypeWithdraw,
-    DashenBoredTypeTotalWeek,
-    DashenBoredTypeTotalMonth,
+typedef NS_ENUM(NSUInteger, DashenBoredReqType) {
+    DashenBoredReqTypeRecharge,
+    DashenBoredReqTypeWithdraw,
+    DashenBoredReqTypeTotalWeek,
+    DashenBoredReqTypeTotalMonth,
 };
 /// 大神榜
-+ (void)requestDashenBoredType:(DashenBoredType)type
++ (void)requestDashenBoredType:(DashenBoredReqType)type
                        handler:(HandlerBlock)handler;
 
 /// 盈利榜

@@ -7,11 +7,12 @@
 //
 
 #import "CNBaseVC.h"
+#import "BYDashenBoardConst.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CNDashenBoardVC : CNBaseVC
-
+@property (nonatomic, weak) id <DashenBoardAutoHeightDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

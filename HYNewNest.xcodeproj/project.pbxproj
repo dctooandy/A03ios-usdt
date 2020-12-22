@@ -232,6 +232,14 @@
 		3D643F9B24F396BC00B9AAA7 /* GameLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F9A24F396BC00B9AAA7 /* GameLineModel.m */; };
 		3D643F9E24F39BA600B9AAA7 /* HYInGameHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F9D24F39BA600B9AAA7 /* HYInGameHelper.m */; };
 		3D65D1162568E35300917E1B /* SocketRocketUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D65D1152568E35300917E1B /* SocketRocketUtility.m */; };
+		3D9DA66125908327003C3F28 /* DSBWeekMonthListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */; };
+		3D9DA669259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA668259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m */; };
+		3D9DA66E25918DF0003C3F28 /* DSBWeekMonthListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66C25918DF0003C3F28 /* DSBWeekMonthListCell.m */; };
+		3D9DA66F25918DF0003C3F28 /* DSBWeekMonthListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9DA66D25918DF0003C3F28 /* DSBWeekMonthListCell.xib */; };
+		3D9DA6742591D659003C3F28 /* DSBRchrWthdrwRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA6722591D659003C3F28 /* DSBRchrWthdrwRankCell.m */; };
+		3D9DA6752591D659003C3F28 /* DSBRchrWthdrwRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9DA6732591D659003C3F28 /* DSBRchrWthdrwRankCell.xib */; };
+		3D9DA6792591E1B6003C3F28 /* DSBRchrWthdrwHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA6782591E1B6003C3F28 /* DSBRchrWthdrwHeader.m */; };
+		3D9DA67B2591E1C9003C3F28 /* DSBRchrWthdrwHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9DA67A2591E1C9003C3F28 /* DSBRchrWthdrwHeader.xib */; };
 		3DA4F15024B30A090039123F /* SGQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DA4F13B24B30A080039123F /* SGQRCode.bundle */; };
 		3DA4F15124B30A090039123F /* UIImage+SGImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */; };
 		3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F14024B30A080039123F /* UIButton+Indicator.m */; };
@@ -271,8 +279,6 @@
 		3DBA55F9257F6882009A2B71 /* DashenBoardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55F8257F6882009A2B71 /* DashenBoardRequest.m */; };
 		3DBA55FC257FC151009A2B71 /* DSBHeaderSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55FB257FC151009A2B71 /* DSBHeaderSelectionView.m */; };
 		3DBA55FE257FC207009A2B71 /* DSBHeaderSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA55FD257FC207009A2B71 /* DSBHeaderSelectionView.xib */; };
-		3DBA5601257FCF86009A2B71 /* DSBRecharWithdrwRankView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5600257FCF86009A2B71 /* DSBRecharWithdrwRankView.m */; };
-		3DBA5603257FCF93009A2B71 /* DSBRecharWithdrwRankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA5602257FCF93009A2B71 /* DSBRecharWithdrwRankView.xib */; };
 		3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC87A50253967DC0032ED1B /* BuyECoinModel.m */; };
 		3DCFEA8B25009D020071F356 /* V_SlideCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8825009D010071F356 /* V_SlideCard.m */; };
 		3DCFEA8C25009D020071F356 /* V_SlideCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA8925009D010071F356 /* V_SlideCardCell.m */; };
@@ -1317,6 +1323,20 @@
 		3D65D11025651F3000917E1B /* 币游_devDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "币游_devDebug.entitlements"; sourceTree = "<group>"; };
 		3D65D1142568E35300917E1B /* SocketRocketUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketRocketUtility.h; sourceTree = "<group>"; };
 		3D65D1152568E35300917E1B /* SocketRocketUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketRocketUtility.m; sourceTree = "<group>"; };
+		3D9DA65F25908327003C3F28 /* DSBWeekMonthListDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBWeekMonthListDataSource.h; sourceTree = "<group>"; };
+		3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBWeekMonthListDataSource.m; sourceTree = "<group>"; };
+		3D9DA667259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRecharWithdrwRankDataSource.h; sourceTree = "<group>"; };
+		3D9DA668259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBRecharWithdrwRankDataSource.m; sourceTree = "<group>"; };
+		3D9DA66A259091C1003C3F28 /* BYDashenBoardConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYDashenBoardConst.h; sourceTree = "<group>"; };
+		3D9DA66B25918DF0003C3F28 /* DSBWeekMonthListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBWeekMonthListCell.h; sourceTree = "<group>"; };
+		3D9DA66C25918DF0003C3F28 /* DSBWeekMonthListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBWeekMonthListCell.m; sourceTree = "<group>"; };
+		3D9DA66D25918DF0003C3F28 /* DSBWeekMonthListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBWeekMonthListCell.xib; sourceTree = "<group>"; };
+		3D9DA6712591D659003C3F28 /* DSBRchrWthdrwRankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRchrWthdrwRankCell.h; sourceTree = "<group>"; };
+		3D9DA6722591D659003C3F28 /* DSBRchrWthdrwRankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBRchrWthdrwRankCell.m; sourceTree = "<group>"; };
+		3D9DA6732591D659003C3F28 /* DSBRchrWthdrwRankCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBRchrWthdrwRankCell.xib; sourceTree = "<group>"; };
+		3D9DA6772591E1B6003C3F28 /* DSBRchrWthdrwHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRchrWthdrwHeader.h; sourceTree = "<group>"; };
+		3D9DA6782591E1B6003C3F28 /* DSBRchrWthdrwHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBRchrWthdrwHeader.m; sourceTree = "<group>"; };
+		3D9DA67A2591E1C9003C3F28 /* DSBRchrWthdrwHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBRchrWthdrwHeader.xib; sourceTree = "<group>"; };
 		3DA4F13A24B30A080039123F /* SGQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCode.h; sourceTree = "<group>"; };
 		3DA4F13B24B30A080039123F /* SGQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SGQRCode.bundle; sourceTree = "<group>"; };
 		3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SGImageSize.m"; sourceTree = "<group>"; };
@@ -1391,9 +1411,6 @@
 		3DBA55FA257FC151009A2B71 /* DSBHeaderSelectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBHeaderSelectionView.h; sourceTree = "<group>"; };
 		3DBA55FB257FC151009A2B71 /* DSBHeaderSelectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBHeaderSelectionView.m; sourceTree = "<group>"; };
 		3DBA55FD257FC207009A2B71 /* DSBHeaderSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBHeaderSelectionView.xib; sourceTree = "<group>"; };
-		3DBA55FF257FCF86009A2B71 /* DSBRecharWithdrwRankView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRecharWithdrwRankView.h; sourceTree = "<group>"; };
-		3DBA5600257FCF86009A2B71 /* DSBRecharWithdrwRankView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBRecharWithdrwRankView.m; sourceTree = "<group>"; };
-		3DBA5602257FCF93009A2B71 /* DSBRecharWithdrwRankView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBRecharWithdrwRankView.xib; sourceTree = "<group>"; };
 		3DC87A4F253967DC0032ED1B /* BuyECoinModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyECoinModel.h; sourceTree = "<group>"; };
 		3DC87A50253967DC0032ED1B /* BuyECoinModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyECoinModel.m; sourceTree = "<group>"; };
 		3DCFEA8725009D010071F356 /* V_SlideCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_SlideCardCell.h; sourceTree = "<group>"; };
@@ -3174,6 +3191,18 @@
 			path = WebSocket;
 			sourceTree = "<group>";
 		};
+		3D9DA6762591DAC0003C3F28 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				3D9DA65F25908327003C3F28 /* DSBWeekMonthListDataSource.h */,
+				3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */,
+				3D9DA667259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.h */,
+				3D9DA668259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m */,
+				3D9DA66A259091C1003C3F28 /* BYDashenBoardConst.h */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
 		3DA4F13924B30A080039123F /* SGQRCode */ = {
 			isa = PBXGroup;
 			children = (
@@ -3306,6 +3335,7 @@
 		3DBA55E62578EFE4009A2B71 /* DashenBoardComponent */ = {
 			isa = PBXGroup;
 			children = (
+				3D9DA6762591DAC0003C3F28 /* DataSource */,
 				3DBA55F6257F6835009A2B71 /* Request */,
 				3DBA55E82578F02D009A2B71 /* Controller */,
 				3DBA55E92578F02D009A2B71 /* Model */,
@@ -3320,9 +3350,15 @@
 				3DBA55FA257FC151009A2B71 /* DSBHeaderSelectionView.h */,
 				3DBA55FB257FC151009A2B71 /* DSBHeaderSelectionView.m */,
 				3DBA55FD257FC207009A2B71 /* DSBHeaderSelectionView.xib */,
-				3DBA55FF257FCF86009A2B71 /* DSBRecharWithdrwRankView.h */,
-				3DBA5600257FCF86009A2B71 /* DSBRecharWithdrwRankView.m */,
-				3DBA5602257FCF93009A2B71 /* DSBRecharWithdrwRankView.xib */,
+				3D9DA66B25918DF0003C3F28 /* DSBWeekMonthListCell.h */,
+				3D9DA66C25918DF0003C3F28 /* DSBWeekMonthListCell.m */,
+				3D9DA66D25918DF0003C3F28 /* DSBWeekMonthListCell.xib */,
+				3D9DA6712591D659003C3F28 /* DSBRchrWthdrwRankCell.h */,
+				3D9DA6722591D659003C3F28 /* DSBRchrWthdrwRankCell.m */,
+				3D9DA6732591D659003C3F28 /* DSBRchrWthdrwRankCell.xib */,
+				3D9DA6772591E1B6003C3F28 /* DSBRchrWthdrwHeader.h */,
+				3D9DA6782591E1B6003C3F28 /* DSBRchrWthdrwHeader.m */,
+				3D9DA67A2591E1C9003C3F28 /* DSBRchrWthdrwHeader.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5039,6 +5075,7 @@
 				0430AB3C24E3CCD000C873DC /* CNRechargeChosePayTypeVC.xib in Resources */,
 				048A168E24CACABF00411819 /* CNAlertPickerView.xib in Resources */,
 				D5A443A624F378CD00014DC6 /* 彩票_00024.png in Resources */,
+				3D9DA66F25918DF0003C3F28 /* DSBWeekMonthListCell.xib in Resources */,
 				D5A444A324F3932400014DC6 /* 数字7_00018.png in Resources */,
 				D5A4470624F3941400014DC6 /* 合成 1_00053.png in Resources */,
 				D5A446D324F3941400014DC6 /* 合成 1_00049.png in Resources */,
@@ -5097,6 +5134,7 @@
 				D5A444A624F3932400014DC6 /* 数字7_0004.png in Resources */,
 				D5A444C224F3932400014DC6 /* 数字7_00093.png in Resources */,
 				D5A446C524F3941400014DC6 /* 合成 1_00098.png in Resources */,
+				3D9DA6752591D659003C3F28 /* DSBRchrWthdrwRankCell.xib in Resources */,
 				D5A4454724F393AC00014DC6 /* 棋牌_0003.png in Resources */,
 				D5A444A124F3932400014DC6 /* 数字7_00031.png in Resources */,
 				D5A4464D24F393E500014DC6 /* 足球_00028.png in Resources */,
@@ -5130,7 +5168,6 @@
 				D5A446CD24F3941400014DC6 /* 合成 1_00062.png in Resources */,
 				D5A4439524F378CD00014DC6 /* 彩票_00019.png in Resources */,
 				D5A446BE24F3941400014DC6 /* 合成 1_00058.png in Resources */,
-				3DBA5603257FCF93009A2B71 /* DSBRecharWithdrwRankView.xib in Resources */,
 				D5A444A524F3932400014DC6 /* 数字7_00024.png in Resources */,
 				3DBA55EE2578F252009A2B71 /* CNGameBtnsStackView.xib in Resources */,
 				D5A4463524F393E500014DC6 /* 足球_00076.png in Resources */,
@@ -5183,6 +5220,7 @@
 				D5A445FB24F393E500014DC6 /* 足球_00020.png in Resources */,
 				D5A4452F24F393AC00014DC6 /* 棋牌_00015.png in Resources */,
 				3D13389324AF28D700B29783 /* LaunchScreen.storyboard in Resources */,
+				3D9DA67B2591E1C9003C3F28 /* DSBRchrWthdrwHeader.xib in Resources */,
 				D5A4455B24F393AC00014DC6 /* 棋牌_00080.png in Resources */,
 				D5A444BD24F3932400014DC6 /* 数字7_00079.png in Resources */,
 				D5A446F224F3941400014DC6 /* 合成 1_00037.png in Resources */,
@@ -5577,6 +5615,7 @@
 				3D41DE7E25199DEE000CA1D6 /* VIPCardCCell.m in Sources */,
 				3DA4F16924B312BE0039123F /* NSString+Validation.m in Sources */,
 				04C0F0EC24C43ADA007F1420 /* CNForgotCodeVC.m in Sources */,
+				3D9DA6742591D659003C3F28 /* DSBRchrWthdrwRankCell.m in Sources */,
 				0487C98F24CEC8040013715A /* segmentHeaderView.m in Sources */,
 				04C6E1EC24D40728006F4DAC /* CNAddressAddTCell.m in Sources */,
 				E97054A724DBD0E40007F845 /* UserSuggestionModel.m in Sources */,
@@ -5630,6 +5669,7 @@
 				3DA4F19D24B3195F0039123F /* HYRefreshHeader.m in Sources */,
 				3DA4F15624B30A090039123F /* SGQRCodeGenerateManager.m in Sources */,
 				3D643F8924F29F3600B9AAA7 /* IVOtherInfoModel.m in Sources */,
+				3D9DA66E25918DF0003C3F28 /* DSBWeekMonthListCell.m in Sources */,
 				E97054AD24DC4C0E0007F845 /* CNImageCodeModel.m in Sources */,
 				3DA4F1A124B3199A0039123F /* HYNavigationController.m in Sources */,
 				D5FBFE8B24BC28B200BBCAD8 /* CNBaseModel.m in Sources */,
@@ -5654,6 +5694,7 @@
 				048A168A24CA712700411819 /* CNServerView.m in Sources */,
 				3DA4F15124B30A090039123F /* UIImage+SGImageSize.m in Sources */,
 				040A08D924E114A900FBD534 /* OCBarrageGradientBackgroundColorDescriptor.m in Sources */,
+				3D9DA669259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m in Sources */,
 				0487C9C124D113C90013715A /* CNTradeRecordTCell.m in Sources */,
 				04C0F11024C59298007F1420 /* CNBaseNetworking.m in Sources */,
 				E9A269D724D80D8700B512FF /* HYRechargePayWayController.m in Sources */,
@@ -5745,7 +5786,6 @@
 				E986A17524C979F6000F9CFF /* PayWayV3Model.m in Sources */,
 				D5FBFE8D24BC28B200BBCAD8 /* CNBaseVC.m in Sources */,
 				3D41DEA5251AF662000CA1D6 /* VIPCumulateIdButton.m in Sources */,
-				3DBA5601257FCF86009A2B71 /* DSBRecharWithdrwRankView.m in Sources */,
 				3D41DE9A2519F996000CA1D6 /* VIPCumulateIdHeader.m in Sources */,
 				3D41DE7325199DEE000CA1D6 /* VIPDSBUsrModel.m in Sources */,
 				3DBA55D4256FA6D3009A2B71 /* CNSelectBtn.m in Sources */,
@@ -5793,6 +5833,7 @@
 				E986A1AA24CBCD39000F9CFF /* CNLoginSuccChooseAccountVC.m in Sources */,
 				0487C9F924D2CCED0013715A /* CNDownloadVC.m in Sources */,
 				E986A11524C73DB8000F9CFF /* AnnounceModel.m in Sources */,
+				3D9DA66125908327003C3F28 /* DSBWeekMonthListDataSource.m in Sources */,
 				0487C9AB24CFBA6A0013715A /* JJCollectionViewFlowLayoutUtils.m in Sources */,
 				E9B5496A24CECE23002CE6EF /* LTSegmentedBarViewController.m in Sources */,
 				3D41DE8425199DEE000CA1D6 /* VIPChartHeaderView.m in Sources */,
@@ -5830,6 +5871,7 @@
 				3D65D1162568E35300917E1B /* SocketRocketUtility.m in Sources */,
 				E986A17724C979F6000F9CFF /* CNRechargeRequest.m in Sources */,
 				0430AB2924E26E5300C873DC /* CNAddBankCardVC.m in Sources */,
+				3D9DA6792591E1B6003C3F28 /* DSBRchrWthdrwHeader.m in Sources */,
 				E9063B8924D6B0AA0000273A /* HYOneBtnAlertView.m in Sources */,
 				0487C9D524D164460013715A /* CNRecordDetailVC.m in Sources */,
 				04935BD124D7B662007A33EF /* CNAddressDownloadTCell.m in Sources */,

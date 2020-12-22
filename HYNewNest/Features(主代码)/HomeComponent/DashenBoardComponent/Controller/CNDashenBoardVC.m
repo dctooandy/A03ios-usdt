@@ -7,32 +7,81 @@
 //
 
 #import "CNDashenBoardVC.h"
-#import "DashenBoardRequest.h"
+#import "DSBHeaderSelectionView.h"
 
-@interface CNDashenBoardVC ()
+#import "DashenBoardRequest.h"
+#import "DSBWeekMonthListDataSource.h"
+#import "DSBRecharWithdrwRankDataSource.h"
+
+@interface CNDashenBoardVC () <DashenBoardAutoHeightDelegate>
+@property (weak, nonatomic) IBOutlet DSBHeaderSelectionView *headerSelecView;
+
+@property (nonatomic, strong) DSBWeekMonthListDataSource *mlTbDataSource;
+@property (strong,nonatomic) DSBRecharWithdrwRankDataSource *rwTbDataSource;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHCons;
+@property (assign, readwrite, nonatomic) CGFloat totalHeight;
 
 @end
 
 @implementation CNDashenBoardVC
+@synthesize totalHeight = _totalHeight;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [self requestRankRecharge];
+//    [self requestRankRecharge];
 //    [self requestRankWithdraw];
     
 //    [self requestChampionRankWeekly];
 //    [self requestChampionRankMonthly];
+    
 //    [self requestYinliRank];
     
+    // 周榜月榜
+    _mlTbDataSource = [[DSBWeekMonthListDataSource alloc] initWithDelegate:self TableView:_tableView type:DashenBoardTypeWeekBoard];
+    // 充值提现
+    _rwTbDataSource = [[DSBRecharWithdrwRankDataSource alloc] initWithDelegate:self TableView:_tableView type:DashenBoardTypeRechargeBoard];
+    
+    WEAKSELF_DEFINE
+    _headerSelecView.didTapBtnBlock = ^(NSString * _Nonnull rankName) {
+        STRONGSELF_DEFINE
+        if ([rankName containsString:@"大神"]) {
+            
+        } else if ([rankName containsString:@"充值"]) {
+            [strongSelf.rwTbDataSource setType:DashenBoardTypeRechargeBoard];
+        } else if ([rankName containsString:@"提现"]) {
+            [strongSelf.rwTbDataSource setType:DashenBoardTypeWithdrawBoard];
+        } else if ([rankName containsString:@"周总"]) {
+            [strongSelf.mlTbDataSource setType:DashenBoardTypeWeekBoard];
+        } else {
+            [strongSelf.mlTbDataSource setType:DashenBoardTypeMonthBoard];
+        }
+    };
+    
+    // 默认调用一个数据源 来设定_tableViewHCons高度并触发代理回调
+    [self.rwTbDataSource setType:DashenBoardTypeRechargeBoard];
+    
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    [_tableView jk_setRoundedCorners:UIRectCornerAllCorners radius:AD(10)];
+    _tableView.layer.masksToBounds = YES;
 }
 
 
 #pragma mark - UI
 
-- (CGFloat)totalHeight {
-    return 600;
+- (void)didSetupDataGetTableHeight:(CGFloat)tableHeight {
+    
+    _tableViewHCons.constant = tableHeight;
+    
+    if (self.delegate) {
+        [self.delegate didSetupDataGetTableHeight:(tableHeight + 100.0)];
+    }
 }
 
 
@@ -40,7 +89,7 @@
 
 /// 充值榜数据
 - (void)requestRankRecharge {
-    [DashenBoardRequest requestDashenBoredType:DashenBoredTypeRecharge handler:^(id responseObj, NSString *errorMsg) {
+    [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeRecharge handler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             NSArray *orgData = responseObj[@"data"];
             NSArray *usrArr = [DSBRecharWithdrwUsrModel cn_parse:orgData];
@@ -51,7 +100,7 @@
 
 /// 提现榜数据
 - (void)requestRankWithdraw {
-    [DashenBoardRequest requestDashenBoredType:DashenBoredTypeWithdraw handler:^(id responseObj, NSString *errorMsg) {
+    [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeWithdraw handler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             NSArray *orgData = responseObj[@"data"];
             NSArray *usrArr = [DSBRecharWithdrwUsrModel cn_parse:orgData];
@@ -62,7 +111,7 @@
 
 /// 周冠军数据
 - (void)requestChampionRankWeekly {
-    [DashenBoardRequest requestDashenBoredType:DashenBoredTypeTotalWeek handler:^(id responseObj, NSString *errorMsg) {
+    [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeTotalWeek handler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             NSArray *orgData = responseObj[@"data"];
             //TODO:
@@ -72,7 +121,7 @@
 
 /// 月冠军数据
 - (void)requestChampionRankMonthly {
-    [DashenBoardRequest requestDashenBoredType:DashenBoredTypeTotalMonth handler:^(id responseObj, NSString *errorMsg) {
+    [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeTotalMonth handler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             NSArray *orgData = responseObj[@"data"];
             //TODO:
