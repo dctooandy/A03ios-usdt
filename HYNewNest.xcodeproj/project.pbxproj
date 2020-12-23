@@ -311,6 +311,7 @@
 		3DF43D342592F3020087F26A /* tingyunApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D31B96425467131005275BD /* tingyunApp.framework */; };
 		3DF43D352592F4740087F26A /* SignCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF43CE02592EA6A0087F26A /* SignCore.framework */; };
 		3DF43D382592F5630087F26A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF43D372592F5620087F26A /* libc++.tbd */; };
+		3DF43D3A2593184A0087F26A /* Preview.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DF43D392593184A0087F26A /* Preview.xcassets */; };
 		5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */; };
 		D571B19624BE9F120087B5EC /* CNLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19524BE9F120087B5EC /* CNLineView.m */; };
 		D571B1AA24C03D790087B5EC /* CNStatementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D571B1A724C03D790087B5EC /* CNStatementView.xib */; };
@@ -1500,6 +1501,7 @@
 		3DF43D2E2592EE8B0087F26A /* V_SlideCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V_SlideCardCell.m; sourceTree = "<group>"; };
 		3DF43D2F2592EE8B0087F26A /* V_SlideCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_SlideCard.h; sourceTree = "<group>"; };
 		3DF43D372592F5620087F26A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		3DF43D392593184A0087F26A /* Preview.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Preview.xcassets; sourceTree = "<group>"; };
 		62DF1724D3A54A4E27D4B55B /* Pods-HYNewNest-HYNewNestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; path = "Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.debug.xcconfig"; sourceTree = "<group>"; };
 		A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2999,6 +3001,7 @@
 				3D13388A24AF28D600B29783 /* Assets.xcassets */,
 				3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */,
 				3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */,
+				3DF43D392593184A0087F26A /* Preview.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -5661,6 +5664,7 @@
 				D5A446FB24F3941400014DC6 /* 合成 1_00044.png in Resources */,
 				D5A4458024F393AD00014DC6 /* 棋牌_00034.png in Resources */,
 				D5A4439824F378CD00014DC6 /* 彩票_00072.png in Resources */,
+				3DF43D3A2593184A0087F26A /* Preview.xcassets in Resources */,
 				04935BDA24D7D45E007A33EF /* CNElectrionHallVC.xib in Resources */,
 				D5A4447924F3932400014DC6 /* 数字7_00071.png in Resources */,
 				D5A446E824F3941400014DC6 /* 合成 1_00031.png in Resources */,
@@ -6346,6 +6350,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 45;
+				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = JW7F38ZMYT;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6383,7 +6388,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.25;
+				MARKETING_VERSION = 3.6.26;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
 				PRODUCT_NAME = "币游_dev";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -6400,6 +6405,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 45;
+				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = JW7F38ZMYT;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6437,7 +6443,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.25;
+				MARKETING_VERSION = 3.6.26;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
 				PRODUCT_NAME = "币游";
 				PROVISIONING_PROFILE_SPECIFIER = "";
