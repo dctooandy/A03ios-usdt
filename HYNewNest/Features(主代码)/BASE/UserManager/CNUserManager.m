@@ -7,7 +7,7 @@
 //
 
 #import "CNUserManager.h"
-#import <IVHttpManager.h>
+#import "IVHttpManager.h"
 #import <WebKit/WebKit.h>
 
 @interface CNUserManager ()

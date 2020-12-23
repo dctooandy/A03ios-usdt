@@ -353,7 +353,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
         
     VIPRewardAnocModel *model = [self.sxhModel.prizeList objectAtIndex:index];
     UILabel *content = [itemView viewWithTag:1001];
-    content.text = [NSString stringWithFormat:@"%@ 抽中 %@, %@",model.loginname, model.prizeName, model.prizedesc];
+    content.text = [NSString stringWithFormat:@"%@ 抽中 %@",model.loginname, model.prizeName];
 }
 
 

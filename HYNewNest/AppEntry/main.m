@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-#import <tingyunApp/NBSAppAgent.h>
+#import "tingyunApp/NBSAppAgent.h"
 
 int main(int argc, char * argv[]) {
     NSString * appDelegateClassName;

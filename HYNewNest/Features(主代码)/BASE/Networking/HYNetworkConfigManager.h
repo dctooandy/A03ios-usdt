@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <IVHttpManager.h>
-#import <IVHTTPBaseRequest.h>
+#import "IVHttpManager.h"
+#import "IVHTTPBaseRequest.h"
 #import "HYHttpPathConst.h"
 
 #define kNetworkMgr [HYNetworkConfigManager shareManager]
