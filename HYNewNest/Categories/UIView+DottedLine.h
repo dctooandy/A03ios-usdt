@@ -12,7 +12,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (DottedLine)
 
-- (void)addDottedLineWithView:(UIView *)view borderColor:(UIColor *)borderColor fillColor:(UIColor *)fillColor;
+- (void)dottedLineBorderWithView:(UIView *)view
+                     borderColor:(UIColor *)borderColor
+                       fillColor:(UIColor *)fillColor;
+
+- (void)drawDottedLineBeginPoint:(CGPoint)bPoint
+                        endPoint:(CGPoint)ePoint
+                       lineWidth:(CGFloat)lWidth
+                       lineColor:(UIColor *)lColor;
+
+- (void)drawNormalLineBeginPoint:(CGPoint)bPoint
+                        endPoint:(CGPoint)ePoint
+                       lineWidth:(CGFloat)lWidth
+                       lineColor:(UIColor *)lColor;
 
 @end
 

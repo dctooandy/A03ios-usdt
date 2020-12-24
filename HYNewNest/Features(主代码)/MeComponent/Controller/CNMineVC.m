@@ -17,6 +17,7 @@
 #import "CNInviteFriendVC.h"
 #import "CNFeedBackVC.h"
 #import "CNAddressManagerVC.h"
+#import "BYSuperCopartnerVC.h"
 
 #import <UIButton+WebCache.h>
 #import <UIImageView+WebCache.h>
@@ -228,7 +229,8 @@
 
 // 邀请
 - (IBAction)invite:(id)sender {
-    [self.navigationController pushViewController:[CNInviteFriendVC new] animated:YES];
+//    [self.navigationController pushViewController:[CNInviteFriendVC new] animated:YES];
+    [self.navigationController pushViewController:[BYSuperCopartnerVC new] animated:YES];
 }
 
 // 下载APP

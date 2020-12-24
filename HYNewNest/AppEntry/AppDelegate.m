@@ -17,13 +17,15 @@
 #endif
 
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
-
+@property (strong,nonatomic) NSDictionary *pushNotiUserInfo; // 远程推送 冷启动收到的数据
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRemoteNotification) name:BYDidEnterHomePageNoti object:nil];
     
     // 天网埋点
     [IVLAManager setLogEnabled:YES];
@@ -58,9 +60,7 @@
     NSDictionary *userInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     if (userInfo != nil) {
         //如果有值，说明是通过远程推送来启动的
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self handleRemoteNotification:userInfo];
-        });
+        self.pushNotiUserInfo = userInfo;
     }
     
     return YES;
@@ -101,7 +101,7 @@
 //#endif
     NSLog(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n",userInfo);
     if (userInfo != nil) {
-        [self handleRemoteNotification:userInfo];
+        [self handleRemoteNotification];
     }
     
     completionHandler(UIBackgroundFetchResultNewData);
@@ -180,15 +180,17 @@
     
 }
 
-- (void)handleRemoteNotification:(NSDictionary *)userInfo {
+- (void)handleRemoteNotification {
+    NSDictionary *userInfo = self.pushNotiUserInfo;
     if (userInfo) {
         if ([userInfo.allKeys containsObject:@"payload"] && [userInfo.allKeys containsObject:@"aps"]) {
             NSString *payload = userInfo[@"payload"];
             NSDictionary *dict = [payload jk_dictionaryValue];
-            NSString *pageTitle = userInfo[@"aps"][@"alert"][@"title"];
+//            NSString *pageTitle = userInfo[@"aps"][@"alert"][@"title"];
             if (dict && [dict.allKeys containsObject:@"jumpUrl"]) {
                 NSString *url = dict[@"jumpUrl"];
-                [NNPageRouter jump2HTMLWithStrURL:url title:pageTitle needPubSite:NO];
+                [NNPageRouter jump2HTMLWithStrURL:url title:@"" needPubSite:NO];
+                _pushNotiUserInfo = nil;
             }
         }
     }

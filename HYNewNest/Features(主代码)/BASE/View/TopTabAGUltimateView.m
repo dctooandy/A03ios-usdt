@@ -10,7 +10,7 @@
 #import "HYHTMLViewController.h"
 #import "HYInGameHelper.h"
 
-#import "CNInviteFriendVC.h"
+#import "BYSuperCopartnerVC.h"
 
 @interface TopTabAGUltimateView()<WKNavigationDelegate, WKUIDelegate> //WKScriptMessageHandler  要加协议
 
@@ -195,11 +195,13 @@
 //        DYViewController *vc = [[DYViewController alloc] init];
 //        UIViewController *topVC = [UIViewController topViewController];
 //        [topVC.navigationController pushViewController:vc animated:YES];
-    }else if ([url containsString:@"/share?"]) {
+        
+    }else if ([url containsString:@"/pub_site/share?"]) {
         //好友推荐
         decisionHandler(WKNavigationActionPolicyCancel);
         [kCurNavVC popToRootViewControllerAnimated:NO];
-        [kCurNavVC pushViewController:[CNInviteFriendVC new] animated:YES];
+        [kCurNavVC pushViewController:[BYSuperCopartnerVC new] animated:YES];
+        
     }else if ([url containsString:@"/vip?"]) {
         //vip
         decisionHandler(WKNavigationActionPolicyCancel);

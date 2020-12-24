@@ -49,8 +49,28 @@ static NSString *const KBonusCell = @"HYBonusCell";
 
 
 - (void)setPromos:(NSArray<MyPromoItem *> *)promos {
-    _promos = promos;
     
+    NSMutableArray *sortPromos = promos.mutableCopy;
+    NSMutableArray *topPromos = @[].mutableCopy;
+    NSMutableArray *btmPromos = @[].mutableCopy;
+    [sortPromos enumerateObjectsUsingBlock:^(MyPromoItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        // 置顶
+        if (obj.isTop) {
+            [sortPromos removeObject:obj];
+            [topPromos addObject:obj];
+        }
+        // 结束de置底
+        if (obj.flag == 2) {
+            [sortPromos removeObject:obj];
+            [btmPromos addObject:obj];
+        }
+    }];
+    [sortPromos addObjectsFromArray:btmPromos];
+    [topPromos enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [sortPromos insertObject:obj atIndex:0];
+    }];
+    
+    _promos = sortPromos;
     
     [self.tableView.mj_header endRefreshing];
 }

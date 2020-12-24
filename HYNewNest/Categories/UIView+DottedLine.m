@@ -10,7 +10,9 @@
 
 @implementation UIView (DottedLine)
 
-- (void)addDottedLineWithView:(UIView *)view borderColor:(UIColor *)borderColor fillColor:(UIColor *)fillColor{
+- (void)dottedLineBorderWithView:(UIView *)view
+                     borderColor:(UIColor *)borderColor
+                       fillColor:(UIColor *)fillColor{
     
     CAShapeLayer *border = [CAShapeLayer layer];
     //虚线的颜色
@@ -31,6 +33,44 @@
     border.lineDashPattern = @[@4, @3];
     [view.layer addSublayer:border];
  }
+
+- (void)drawDottedLineBeginPoint:(CGPoint)bPoint
+                        endPoint:(CGPoint)ePoint
+                       lineWidth:(CGFloat)lWidth
+                       lineColor:(UIColor *)lColor {
+    // 线的路径
+    UIBezierPath *linePath = [UIBezierPath bezierPath];
+    // 起点
+    [linePath moveToPoint:bPoint];
+    // 其他点
+    [linePath addLineToPoint:ePoint];
+    
+    CAShapeLayer *lineLayer = [CAShapeLayer layer];
+    lineLayer.lineWidth = lWidth;
+    lineLayer.strokeColor = lColor.CGColor;
+    lineLayer.path = linePath.CGPath;
+    lineLayer.fillColor = nil; // 默认为blackColor
+    lineLayer.lineDashPattern = @[@4, @3];
+    
+    [self.layer addSublayer:lineLayer];
+}
+
+- (void)drawNormalLineBeginPoint:(CGPoint)bPoint
+                        endPoint:(CGPoint)ePoint
+                       lineWidth:(CGFloat)lWidth
+                       lineColor:(UIColor *)lColor {
+    UIBezierPath *linePath = [UIBezierPath bezierPath];
+    [linePath moveToPoint:bPoint];
+    [linePath addLineToPoint:ePoint];
+    
+    CAShapeLayer *lineLayer = [CAShapeLayer layer];
+    lineLayer.lineWidth = lWidth;
+    lineLayer.strokeColor = lColor.CGColor;
+    lineLayer.path = linePath.CGPath;
+    lineLayer.fillColor = nil;
+    
+    [self.layer addSublayer:lineLayer];
+}
 
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "CNUserManager.h"
-#import <IVHttpManager.h>
+#import "IVHttpManager.h"
 #import <WebKit/WebKit.h>
 
 @interface CNUserManager ()
@@ -81,9 +81,9 @@
 
 /// 清偏好设置
 - (void)clearUserDefault {
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:HYNotShowCTZNEUserDefaultKey];
+//    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:HYNotShowCTZNEUserDefaultKey];
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:HYHomeMessageBoxLastimeDate];
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:HYVIPIsAlreadyShowV2Alert];
+//    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:HYVIPIsAlreadyShowV2Alert];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

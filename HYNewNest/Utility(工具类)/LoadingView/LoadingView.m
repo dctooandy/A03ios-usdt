@@ -128,6 +128,16 @@
     }];
 }
 
+- (void)addCornerNShadow:(UIView *)view {
+    view.clipsToBounds = NO;
+    view.layer.masksToBounds = NO;
+    view.layer.cornerRadius = AD(10);
+    view.layer.shadowColor = [UIColor blackColor].CGColor;
+//    view.layer.shadowOffset = CGSizeMake(2.0, 2.0f);
+    view.layer.shadowRadius = 10;
+    view.layer.shadowOpacity = 0.33f; //透明度
+}
+
 #pragma mark GET SET
 - (UIView *)maskView {
     if (!_maskView) {
@@ -143,7 +153,7 @@
     if (!_contentView) {
         _contentView = [[UIView alloc] initWithFrame:CGRectZero];
         _contentView.layer.masksToBounds = YES;
-        [_contentView addCornerAndShadow];
+        [self addCornerNShadow:_contentView];
         _contentView.backgroundColor = kHexColor(0x343452);
         _contentView.alpha = 0.1;
     }
