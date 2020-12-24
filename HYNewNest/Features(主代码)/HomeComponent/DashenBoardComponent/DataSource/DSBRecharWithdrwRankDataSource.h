@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DSBRecharWithdrwRankDataSource : NSObject
+
 - (instancetype)initWithDelegate:(id)delegate TableView:(UITableView *)tableView type:(DashenBoardType)type;
 
 // settype之后就会刷新tableview 这里多个数据源公用一个tableView

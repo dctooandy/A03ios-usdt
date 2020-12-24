@@ -180,7 +180,7 @@
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nc6-FT-aq1">
                                             <rect key="frame" x="33.666666666666671" y="40" width="20" height="3"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="20" id="L9x-NS-PAv"/>
                                                 <constraint firstAttribute="height" constant="3" id="PTg-rA-fQd"/>
@@ -225,9 +225,10 @@
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="26" estimatedRowHeight="-1" sectionHeaderHeight="26" sectionFooterHeight="41" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PPe-X7-c2R">
                                     <rect key="frame" x="0.0" y="48" width="350" height="197"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </tableView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="JCk-Vg-Clq" secondAttribute="trailing" id="Nrv-Dp-Gk6"/>
                                 <constraint firstAttribute="bottom" secondItem="PPe-X7-c2R" secondAttribute="bottom" id="RFk-l2-2bE"/>

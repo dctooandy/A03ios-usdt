@@ -8,17 +8,20 @@
 
 #import "CNDashenBoardVC.h"
 #import "DSBHeaderSelectionView.h"
+#import "BYMultiDataSourceTableView.h"
 
 #import "DashenBoardRequest.h"
 #import "DSBWeekMonthListDataSource.h"
 #import "DSBRecharWithdrwRankDataSource.h"
+#import "DSBProfitBoardDataSource.h"
 
 @interface CNDashenBoardVC () <DashenBoardAutoHeightDelegate>
 @property (weak, nonatomic) IBOutlet DSBHeaderSelectionView *headerSelecView;
 
 @property (nonatomic, strong) DSBWeekMonthListDataSource *mlTbDataSource;
 @property (strong,nonatomic) DSBRecharWithdrwRankDataSource *rwTbDataSource;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong,nonatomic) DSBProfitBoardDataSource *proTbDataSource;
+@property (weak, nonatomic) IBOutlet BYMultiDataSourceTableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHCons;
 @property (assign, readwrite, nonatomic) CGFloat totalHeight;
 
@@ -43,25 +46,27 @@
     _mlTbDataSource = [[DSBWeekMonthListDataSource alloc] initWithDelegate:self TableView:_tableView type:DashenBoardTypeWeekBoard];
     // 充值提现
     _rwTbDataSource = [[DSBRecharWithdrwRankDataSource alloc] initWithDelegate:self TableView:_tableView type:DashenBoardTypeRechargeBoard];
+    // 盈利榜
+    _proTbDataSource = [[DSBProfitBoardDataSource alloc] initWithDelegate:self TableView:_tableView];
     
     WEAKSELF_DEFINE
     _headerSelecView.didTapBtnBlock = ^(NSString * _Nonnull rankName) {
         STRONGSELF_DEFINE
         if ([rankName containsString:@"大神"]) {
-            
+            [strongSelf.tableView changeDataSourceDelegate:strongSelf.proTbDataSource type:DashenBoardTypeProfitBoard];
         } else if ([rankName containsString:@"充值"]) {
-            [strongSelf.rwTbDataSource setType:DashenBoardTypeRechargeBoard];
+            [strongSelf.tableView changeDataSourceDelegate:strongSelf.rwTbDataSource type:DashenBoardTypeRechargeBoard];
         } else if ([rankName containsString:@"提现"]) {
-            [strongSelf.rwTbDataSource setType:DashenBoardTypeWithdrawBoard];
+            [strongSelf.tableView changeDataSourceDelegate:strongSelf.rwTbDataSource type:DashenBoardTypeWithdrawBoard];
         } else if ([rankName containsString:@"周总"]) {
-            [strongSelf.mlTbDataSource setType:DashenBoardTypeWeekBoard];
+            [strongSelf.tableView changeDataSourceDelegate:strongSelf.mlTbDataSource type:DashenBoardTypeWeekBoard];
         } else {
-            [strongSelf.mlTbDataSource setType:DashenBoardTypeMonthBoard];
+            [strongSelf.tableView changeDataSourceDelegate:strongSelf.mlTbDataSource type:DashenBoardTypeMonthBoard];
         }
     };
     
-    // 默认调用一个数据源 来设定_tableViewHCons高度并触发代理回调
-    [self.rwTbDataSource setType:DashenBoardTypeRechargeBoard];
+    //TODO: 默认调用一个数据源 来设定_tableViewHCons高度并触发代理回调
+    [self.tableView changeDataSourceDelegate:self.proTbDataSource type:DashenBoardTypeProfitBoard];
     
 }
 

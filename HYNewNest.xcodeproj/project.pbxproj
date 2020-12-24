@@ -232,6 +232,13 @@
 		3D643F9B24F396BC00B9AAA7 /* GameLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F9A24F396BC00B9AAA7 /* GameLineModel.m */; };
 		3D643F9E24F39BA600B9AAA7 /* HYInGameHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F9D24F39BA600B9AAA7 /* HYInGameHelper.m */; };
 		3D65D1162568E35300917E1B /* SocketRocketUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D65D1152568E35300917E1B /* SocketRocketUtility.m */; };
+		3D8A707E258B0B110058D50F /* SuperCopartnerTbDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A707D258B0B110058D50F /* SuperCopartnerTbDataSource.m */; };
+		3D8A7082258B3CBA0058D50F /* SuperCopartnerTbHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7081258B3CBA0058D50F /* SuperCopartnerTbHeader.m */; };
+		3D8A7086258B568E0058D50F /* SuperCopartnerTbCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7084258B568E0058D50F /* SuperCopartnerTbCell.m */; };
+		3D8A708A258C5C1A0058D50F /* SuperCopartnerTbFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7089258C5C1A0058D50F /* SuperCopartnerTbFooter.m */; };
+		3D8A708C258C5D570058D50F /* SuperCopartnerTbFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D8A708B258C5D570058D50F /* SuperCopartnerTbFooter.xib */; };
+		3D8A708F258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A708E258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m */; };
+		3D8A7092258CAF200058D50F /* HYSuperCopartnerSlideUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7091258CAF200058D50F /* HYSuperCopartnerSlideUpView.m */; };
 		3D9DA66125908327003C3F28 /* DSBWeekMonthListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */; };
 		3D9DA669259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA668259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m */; };
 		3D9DA66E25918DF0003C3F28 /* DSBWeekMonthListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66C25918DF0003C3F28 /* DSBWeekMonthListCell.m */; };
@@ -240,13 +247,6 @@
 		3D9DA6752591D659003C3F28 /* DSBRchrWthdrwRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9DA6732591D659003C3F28 /* DSBRchrWthdrwRankCell.xib */; };
 		3D9DA6792591E1B6003C3F28 /* DSBRchrWthdrwHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA6782591E1B6003C3F28 /* DSBRchrWthdrwHeader.m */; };
 		3D9DA67B2591E1C9003C3F28 /* DSBRchrWthdrwHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9DA67A2591E1C9003C3F28 /* DSBRchrWthdrwHeader.xib */; };
-		3D8A707E258B0B110058D50F /* SuperCopartnerTbDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A707D258B0B110058D50F /* SuperCopartnerTbDataSource.m */; };
-		3D8A7082258B3CBA0058D50F /* SuperCopartnerTbHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7081258B3CBA0058D50F /* SuperCopartnerTbHeader.m */; };
-		3D8A7086258B568E0058D50F /* SuperCopartnerTbCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7084258B568E0058D50F /* SuperCopartnerTbCell.m */; };
-		3D8A708A258C5C1A0058D50F /* SuperCopartnerTbFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7089258C5C1A0058D50F /* SuperCopartnerTbFooter.m */; };
-		3D8A708C258C5D570058D50F /* SuperCopartnerTbFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D8A708B258C5D570058D50F /* SuperCopartnerTbFooter.xib */; };
-		3D8A708F258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A708E258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m */; };
-		3D8A7092258CAF200058D50F /* HYSuperCopartnerSlideUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7091258CAF200058D50F /* HYSuperCopartnerSlideUpView.m */; };
 		3DA4F15024B30A090039123F /* SGQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DA4F13B24B30A080039123F /* SGQRCode.bundle */; };
 		3DA4F15124B30A090039123F /* UIImage+SGImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */; };
 		3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F14024B30A080039123F /* UIButton+Indicator.m */; };
@@ -267,6 +267,10 @@
 		3DA4F19D24B3195F0039123F /* HYRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F19B24B3195F0039123F /* HYRefreshHeader.m */; };
 		3DA4F1A124B3199A0039123F /* HYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F19F24B3199A0039123F /* HYNavigationController.m */; };
 		3DA4F1A424B31A110039123F /* NSString+Font.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F1A324B31A110039123F /* NSString+Font.m */; };
+		3DB6A03E2594A127004A391B /* DSBProfitHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6A03D2594A127004A391B /* DSBProfitHeader.m */; };
+		3DB6A0402594A137004A391B /* DSBProfitHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB6A03F2594A137004A391B /* DSBProfitHeader.xib */; };
+		3DB6A0432594A1B5004A391B /* DSBProfitFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6A0422594A1B5004A391B /* DSBProfitFooter.m */; };
+		3DB6A0452594A1C5004A391B /* DSBProfitFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB6A0442594A1C5004A391B /* DSBProfitFooter.xib */; };
 		3DBA55CE256FA6D3009A2B71 /* CNNormalInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55C1256FA6D3009A2B71 /* CNNormalInputView.m */; };
 		3DBA55CF256FA6D3009A2B71 /* CNNormalInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA55C2256FA6D3009A2B71 /* CNNormalInputView.xib */; };
 		3DBA55D0256FA6D3009A2B71 /* CNBaseTF.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55C4256FA6D3009A2B71 /* CNBaseTF.m */; };
@@ -328,6 +332,10 @@
 		3DF43D352592F4740087F26A /* SignCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF43CE02592EA6A0087F26A /* SignCore.framework */; };
 		3DF43D382592F5630087F26A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF43D372592F5620087F26A /* libc++.tbd */; };
 		3DF43D3A2593184A0087F26A /* Preview.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DF43D392593184A0087F26A /* Preview.xcassets */; };
+		3DF43D4525943D1F0087F26A /* BYMultiDataSourceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D4425943D1E0087F26A /* BYMultiDataSourceTableView.m */; };
+		3DF43D482594614D0087F26A /* DSBProfitBoardDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D472594614D0087F26A /* DSBProfitBoardDataSource.m */; };
+		3DF43D4C25946AED0087F26A /* DSBProfitBoardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D4A25946AED0087F26A /* DSBProfitBoardCell.m */; };
+		3DF43D4D25946AED0087F26A /* DSBProfitBoardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF43D4B25946AED0087F26A /* DSBProfitBoardCell.xib */; };
 		5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */; };
 		D571B19624BE9F120087B5EC /* CNLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19524BE9F120087B5EC /* CNLineView.m */; };
 		D571B1AA24C03D790087B5EC /* CNStatementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D571B1A724C03D790087B5EC /* CNStatementView.xib */; };
@@ -1365,20 +1373,6 @@
 		3D65D11025651F3000917E1B /* 币游_devDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "币游_devDebug.entitlements"; sourceTree = "<group>"; };
 		3D65D1142568E35300917E1B /* SocketRocketUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketRocketUtility.h; sourceTree = "<group>"; };
 		3D65D1152568E35300917E1B /* SocketRocketUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketRocketUtility.m; sourceTree = "<group>"; };
-		3D9DA65F25908327003C3F28 /* DSBWeekMonthListDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBWeekMonthListDataSource.h; sourceTree = "<group>"; };
-		3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBWeekMonthListDataSource.m; sourceTree = "<group>"; };
-		3D9DA667259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRecharWithdrwRankDataSource.h; sourceTree = "<group>"; };
-		3D9DA668259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBRecharWithdrwRankDataSource.m; sourceTree = "<group>"; };
-		3D9DA66A259091C1003C3F28 /* BYDashenBoardConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYDashenBoardConst.h; sourceTree = "<group>"; };
-		3D9DA66B25918DF0003C3F28 /* DSBWeekMonthListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBWeekMonthListCell.h; sourceTree = "<group>"; };
-		3D9DA66C25918DF0003C3F28 /* DSBWeekMonthListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBWeekMonthListCell.m; sourceTree = "<group>"; };
-		3D9DA66D25918DF0003C3F28 /* DSBWeekMonthListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBWeekMonthListCell.xib; sourceTree = "<group>"; };
-		3D9DA6712591D659003C3F28 /* DSBRchrWthdrwRankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRchrWthdrwRankCell.h; sourceTree = "<group>"; };
-		3D9DA6722591D659003C3F28 /* DSBRchrWthdrwRankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBRchrWthdrwRankCell.m; sourceTree = "<group>"; };
-		3D9DA6732591D659003C3F28 /* DSBRchrWthdrwRankCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBRchrWthdrwRankCell.xib; sourceTree = "<group>"; };
-		3D9DA6772591E1B6003C3F28 /* DSBRchrWthdrwHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRchrWthdrwHeader.h; sourceTree = "<group>"; };
-		3D9DA6782591E1B6003C3F28 /* DSBRchrWthdrwHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBRchrWthdrwHeader.m; sourceTree = "<group>"; };
-		3D9DA67A2591E1C9003C3F28 /* DSBRchrWthdrwHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBRchrWthdrwHeader.xib; sourceTree = "<group>"; };
 		3D8A707C258B0B110058D50F /* SuperCopartnerTbDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuperCopartnerTbDataSource.h; sourceTree = "<group>"; };
 		3D8A707D258B0B110058D50F /* SuperCopartnerTbDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperCopartnerTbDataSource.m; sourceTree = "<group>"; };
 		3D8A707F258B0DA20058D50F /* SuperCopartnerTbConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuperCopartnerTbConst.h; sourceTree = "<group>"; };
@@ -1393,6 +1387,20 @@
 		3D8A708E258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSuperCopartnerReciveAlertView.m; sourceTree = "<group>"; };
 		3D8A7090258CAF200058D50F /* HYSuperCopartnerSlideUpView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSuperCopartnerSlideUpView.h; sourceTree = "<group>"; };
 		3D8A7091258CAF200058D50F /* HYSuperCopartnerSlideUpView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSuperCopartnerSlideUpView.m; sourceTree = "<group>"; };
+		3D9DA65F25908327003C3F28 /* DSBWeekMonthListDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBWeekMonthListDataSource.h; sourceTree = "<group>"; };
+		3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBWeekMonthListDataSource.m; sourceTree = "<group>"; };
+		3D9DA667259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRecharWithdrwRankDataSource.h; sourceTree = "<group>"; };
+		3D9DA668259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBRecharWithdrwRankDataSource.m; sourceTree = "<group>"; };
+		3D9DA66A259091C1003C3F28 /* BYDashenBoardConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYDashenBoardConst.h; sourceTree = "<group>"; };
+		3D9DA66B25918DF0003C3F28 /* DSBWeekMonthListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBWeekMonthListCell.h; sourceTree = "<group>"; };
+		3D9DA66C25918DF0003C3F28 /* DSBWeekMonthListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBWeekMonthListCell.m; sourceTree = "<group>"; };
+		3D9DA66D25918DF0003C3F28 /* DSBWeekMonthListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBWeekMonthListCell.xib; sourceTree = "<group>"; };
+		3D9DA6712591D659003C3F28 /* DSBRchrWthdrwRankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRchrWthdrwRankCell.h; sourceTree = "<group>"; };
+		3D9DA6722591D659003C3F28 /* DSBRchrWthdrwRankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBRchrWthdrwRankCell.m; sourceTree = "<group>"; };
+		3D9DA6732591D659003C3F28 /* DSBRchrWthdrwRankCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBRchrWthdrwRankCell.xib; sourceTree = "<group>"; };
+		3D9DA6772591E1B6003C3F28 /* DSBRchrWthdrwHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRchrWthdrwHeader.h; sourceTree = "<group>"; };
+		3D9DA6782591E1B6003C3F28 /* DSBRchrWthdrwHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBRchrWthdrwHeader.m; sourceTree = "<group>"; };
+		3D9DA67A2591E1C9003C3F28 /* DSBRchrWthdrwHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBRchrWthdrwHeader.xib; sourceTree = "<group>"; };
 		3DA4F13A24B30A080039123F /* SGQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCode.h; sourceTree = "<group>"; };
 		3DA4F13B24B30A080039123F /* SGQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SGQRCode.bundle; sourceTree = "<group>"; };
 		3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SGImageSize.m"; sourceTree = "<group>"; };
@@ -1434,6 +1442,12 @@
 		3DA4F1A024B3199A0039123F /* HYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYNavigationController.h; sourceTree = "<group>"; };
 		3DA4F1A224B31A110039123F /* NSString+Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Font.h"; sourceTree = "<group>"; };
 		3DA4F1A324B31A110039123F /* NSString+Font.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Font.m"; sourceTree = "<group>"; };
+		3DB6A03C2594A127004A391B /* DSBProfitHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBProfitHeader.h; sourceTree = "<group>"; };
+		3DB6A03D2594A127004A391B /* DSBProfitHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBProfitHeader.m; sourceTree = "<group>"; };
+		3DB6A03F2594A137004A391B /* DSBProfitHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBProfitHeader.xib; sourceTree = "<group>"; };
+		3DB6A0412594A1B5004A391B /* DSBProfitFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBProfitFooter.h; sourceTree = "<group>"; };
+		3DB6A0422594A1B5004A391B /* DSBProfitFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBProfitFooter.m; sourceTree = "<group>"; };
+		3DB6A0442594A1C5004A391B /* DSBProfitFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBProfitFooter.xib; sourceTree = "<group>"; };
 		3DBA55C0256FA6D3009A2B71 /* CNBaseTF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNBaseTF.h; sourceTree = "<group>"; };
 		3DBA55C1256FA6D3009A2B71 /* CNNormalInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNNormalInputView.m; sourceTree = "<group>"; };
 		3DBA55C2256FA6D3009A2B71 /* CNNormalInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNNormalInputView.xib; sourceTree = "<group>"; };
@@ -1545,6 +1559,13 @@
 		3DF43D2F2592EE8B0087F26A /* V_SlideCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_SlideCard.h; sourceTree = "<group>"; };
 		3DF43D372592F5620087F26A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		3DF43D392593184A0087F26A /* Preview.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Preview.xcassets; sourceTree = "<group>"; };
+		3DF43D4325943D1E0087F26A /* BYMultiDataSourceTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYMultiDataSourceTableView.h; sourceTree = "<group>"; };
+		3DF43D4425943D1E0087F26A /* BYMultiDataSourceTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYMultiDataSourceTableView.m; sourceTree = "<group>"; };
+		3DF43D462594614D0087F26A /* DSBProfitBoardDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBProfitBoardDataSource.h; sourceTree = "<group>"; };
+		3DF43D472594614D0087F26A /* DSBProfitBoardDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBProfitBoardDataSource.m; sourceTree = "<group>"; };
+		3DF43D4925946AED0087F26A /* DSBProfitBoardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBProfitBoardCell.h; sourceTree = "<group>"; };
+		3DF43D4A25946AED0087F26A /* DSBProfitBoardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBProfitBoardCell.m; sourceTree = "<group>"; };
+		3DF43D4B25946AED0087F26A /* DSBProfitBoardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBProfitBoardCell.xib; sourceTree = "<group>"; };
 		62DF1724D3A54A4E27D4B55B /* Pods-HYNewNest-HYNewNestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; path = "Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.debug.xcconfig"; sourceTree = "<group>"; };
 		A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3324,6 +3345,8 @@
 		3D9DA6762591DAC0003C3F28 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
+				3DF43D462594614D0087F26A /* DSBProfitBoardDataSource.h */,
+				3DF43D472594614D0087F26A /* DSBProfitBoardDataSource.m */,
 				3D9DA65F25908327003C3F28 /* DSBWeekMonthListDataSource.h */,
 				3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */,
 				3D9DA667259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.h */,
@@ -3491,6 +3514,15 @@
 				3D9DA6772591E1B6003C3F28 /* DSBRchrWthdrwHeader.h */,
 				3D9DA6782591E1B6003C3F28 /* DSBRchrWthdrwHeader.m */,
 				3D9DA67A2591E1C9003C3F28 /* DSBRchrWthdrwHeader.xib */,
+				3DF43D4925946AED0087F26A /* DSBProfitBoardCell.h */,
+				3DF43D4A25946AED0087F26A /* DSBProfitBoardCell.m */,
+				3DF43D4B25946AED0087F26A /* DSBProfitBoardCell.xib */,
+				3DB6A03C2594A127004A391B /* DSBProfitHeader.h */,
+				3DB6A03D2594A127004A391B /* DSBProfitHeader.m */,
+				3DB6A03F2594A137004A391B /* DSBProfitHeader.xib */,
+				3DB6A0412594A1B5004A391B /* DSBProfitFooter.h */,
+				3DB6A0422594A1B5004A391B /* DSBProfitFooter.m */,
+				3DB6A0442594A1C5004A391B /* DSBProfitFooter.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3501,6 +3533,8 @@
 				3DBA55E12578EFCC009A2B71 /* CNDashenBoardVC.h */,
 				3DBA55E22578EFCC009A2B71 /* CNDashenBoardVC.m */,
 				3DBA55E32578EFCC009A2B71 /* CNDashenBoardVC.xib */,
+				3DF43D4325943D1E0087F26A /* BYMultiDataSourceTableView.h */,
+				3DF43D4425943D1E0087F26A /* BYMultiDataSourceTableView.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5444,6 +5478,7 @@
 				D5A4471A24F3941400014DC6 /* 合成 1_00069.png in Resources */,
 				D5A443D024F378CD00014DC6 /* 彩票_00075.png in Resources */,
 				D5A444B924F3932400014DC6 /* 数字7_00092.png in Resources */,
+				3DF43D4D25946AED0087F26A /* DSBProfitBoardCell.xib in Resources */,
 				D5A4464024F393E500014DC6 /* 足球_00070.png in Resources */,
 				0430AB3C24E3CCD000C873DC /* CNRechargeChosePayTypeVC.xib in Resources */,
 				048A168E24CACABF00411819 /* CNAlertPickerView.xib in Resources */,
@@ -5497,6 +5532,7 @@
 				E9A269DD24D80FCC00B512FF /* HYRechargePayWayCell.xib in Resources */,
 				D5A444AC24F3932400014DC6 /* 数字7_00042.png in Resources */,
 				3D8A708C258C5D570058D50F /* SuperCopartnerTbFooter.xib in Resources */,
+				3DB6A0402594A137004A391B /* DSBProfitHeader.xib in Resources */,
 				D5A443AD24F378CD00014DC6 /* 彩票_00027.png in Resources */,
 				3D41DE7D25199DEE000CA1D6 /* VIPCardCCell.xib in Resources */,
 				D5A444C524F3932500014DC6 /* 数字7_00046.png in Resources */,
@@ -5840,6 +5876,7 @@
 				D5FBFE3424BC05E400BBCAD8 /* CNLoginRegisterVC.xib in Resources */,
 				D5A4462124F393E500014DC6 /* 足球_00053.png in Resources */,
 				D5A443B124F378CD00014DC6 /* 彩票_00063.png in Resources */,
+				3DB6A0452594A1C5004A391B /* DSBProfitFooter.xib in Resources */,
 				D5A446D724F3941400014DC6 /* 合成 1_00013.png in Resources */,
 				D5A443CF24F378CD00014DC6 /* 彩票_00081.png in Resources */,
 				D5A443EA24F378CD00014DC6 /* 彩票_00050.png in Resources */,
@@ -5981,6 +6018,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DF43D4C25946AED0087F26A /* DSBProfitBoardCell.m in Sources */,
 				04C0F11B24C68715007F1420 /* CNUserInfoLoginView.m in Sources */,
 				0405FF6B24D3DAE400AC46D2 /* CNFeedBackRightTCell.m in Sources */,
 				3D643F8E24F29F3600B9AAA7 /* HeartPacketData.m in Sources */,
@@ -6062,6 +6100,7 @@
 				048A0EF324C9401100411819 /* CNGameLineView.m in Sources */,
 				3D31B94A253D3E42005275BD /* UIView+Badge.m in Sources */,
 				E986A1C224CC7F2B000F9CFF /* UIView+SDExtension.m in Sources */,
+				3DB6A03E2594A127004A391B /* DSBProfitHeader.m in Sources */,
 				3DBA55DE25763516009A2B71 /* HYBalancesDetailView.m in Sources */,
 				3DBA55D1256FA6D3009A2B71 /* CNOneStatusBtn.m in Sources */,
 				E98BEEEA24D023B200E6B0C8 /* UIView+LYExtension.m in Sources */,
@@ -6142,6 +6181,7 @@
 				3DF43D302592EE8B0087F26A /* V_SlideCard.m in Sources */,
 				04C6E1F324D4180D006F4DAC /* CNImaginaryLine.m in Sources */,
 				3DA4F1A424B31A110039123F /* NSString+Font.m in Sources */,
+				3DF43D4525943D1F0087F26A /* BYMultiDataSourceTableView.m in Sources */,
 				E98BEEDC24CFF17500E6B0C8 /* HYBonusCell.m in Sources */,
 				3DF03207258DF6E500AF7A36 /* SCMyBonusModel.m in Sources */,
 				04C0F10324C58A52007F1420 /* NSObject+CNParse.m in Sources */,
@@ -6245,6 +6285,7 @@
 				D5FBFDC824B4672200BBCAD8 /* CNSkinManager.m in Sources */,
 				3DF43CF72592EA6A0087F26A /* IVHTTPBaseRequest.m in Sources */,
 				04935BC824D56793007A33EF /* CNAddAddressVC.m in Sources */,
+				3DF43D482594614D0087F26A /* DSBProfitBoardDataSource.m in Sources */,
 				3DA4F16A24B312BE0039123F /* UIView+Extension.m in Sources */,
 				E9063B8F24D6ED6E0000273A /* HYNewCTZNViewController.m in Sources */,
 				E98BEF0E24D274F700E6B0C8 /* UILabel+Gradient.m in Sources */,
@@ -6274,6 +6315,7 @@
 				E986A13D24C93460000F9CFF /* CNBonusRequest.m in Sources */,
 				3DF031FE258DA36A00AF7A36 /* CNSuperCopartnerRequest.m in Sources */,
 				E9063B8C24D6BE870000273A /* HYWideOneBtnAlertView.m in Sources */,
+				3DB6A0432594A1B5004A391B /* DSBProfitFooter.m in Sources */,
 				3D65D1162568E35300917E1B /* SocketRocketUtility.m in Sources */,
 				E986A17724C979F6000F9CFF /* CNRechargeRequest.m in Sources */,
 				3D8A707E258B0B110058D50F /* SuperCopartnerTbDataSource.m in Sources */,

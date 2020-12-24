@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DSBProfitFooter">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cnd-91-D9u">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                    <color key="backgroundColor" red="0.21176470588235294" green="0.21176470588235294" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="MXF-52-AaK"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GH4-lW-Lwh" customClass="CNTwoStatusBtn">
+                    <rect key="frame" x="22" y="11" width="370" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="dua-jp-HAY"/>
+                    </constraints>
+                    <state key="normal" title="去推荐桌台"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⬅️左右滑动看更多大神➡️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6o-Mc-Yft">
+                    <rect key="frame" x="147" y="56" width="120" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" red="0.10980392156862745" green="0.10588235294117647" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="GH4-lW-Lwh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="22" id="1Ow-KE-3Wa"/>
+                <constraint firstItem="v6o-Mc-Yft" firstAttribute="top" secondItem="GH4-lW-Lwh" secondAttribute="bottom" constant="5" id="HC5-uC-h3t"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Cnd-91-D9u" secondAttribute="trailing" id="QtM-hJ-e6i"/>
+                <constraint firstItem="v6o-Mc-Yft" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="RYl-YQ-cVp"/>
+                <constraint firstItem="Cnd-91-D9u" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="SXM-IA-XmD"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="GH4-lW-Lwh" secondAttribute="trailing" constant="22" id="c7p-g6-W98"/>
+                <constraint firstItem="Cnd-91-D9u" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dec-zL-7rk"/>
+                <constraint firstItem="GH4-lW-Lwh" firstAttribute="top" secondItem="Cnd-91-D9u" secondAttribute="bottom" constant="10" id="fte-GH-8ep"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="go2RemDeskBtn" destination="GH4-lW-Lwh" id="yo3-1j-YeM"/>
+            </connections>
+            <point key="canvasLocation" x="-43" y="149"/>
+        </view>
+    </objects>
+</document>
