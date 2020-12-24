@@ -288,7 +288,12 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     if (self.bannModels.count > 0 && self.bannModels.count-1 >= index) {
         AdBannerModel *model = self.bannModels[index];
-        [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"活动" needPubSite:NO];
+        if ([model.linkUrl containsString:@"detailsPage?id="]) {
+            NSString *articalId = [model.linkUrl componentsSeparatedByString:@"="].lastObject;
+            [NNPageRouter jump2ArticalWithArticalId:articalId title:@"文章"];
+        } else {
+            [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"活动" needPubSite:NO];
+        }
     }
 }
 

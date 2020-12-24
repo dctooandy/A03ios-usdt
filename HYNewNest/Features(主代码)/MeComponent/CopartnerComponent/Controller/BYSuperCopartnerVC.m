@@ -59,7 +59,6 @@
     self.selTag = 0;
     [self setupUIViews];
 
-    [self queryShareLinks];
     
 //    [HYSuperCopartnerReciveAlertView showReceiveAlert];
 }
@@ -68,6 +67,12 @@
     [super viewDidLayoutSubviews];
     
     [_monthCumulateBetBoard drawDottedLineBeginPoint:CGPointMake(0, _monthCumulateBetBoard.height-45) endPoint:CGPointMake(kScreenWidth-25, _monthCumulateBetBoard.height-45) lineWidth:0.5 lineColor:kHexColor(0x6020DB)];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self queryShareLinks];
 }
 
 
@@ -204,12 +209,14 @@
 
 /// 分享链接
 - (void)queryShareLinks {
-    [CNHomeRequest requestBannerWhere:BannerWhereFriend Handler:^(id responseObj, NSString *errorMsg) {
-        if (KIsEmptyString(errorMsg)) {
-            self.shareModel = [FriendShareGroupModel cn_parse:responseObj];
-            [self updateShare];
-        }
-    }];
+    if ([CNUserManager shareManager].isLogin) {
+        [CNHomeRequest requestBannerWhere:BannerWhereFriend Handler:^(id responseObj, NSString *errorMsg) {
+            if (KIsEmptyString(errorMsg)) {
+                self.shareModel = [FriendShareGroupModel cn_parse:responseObj];
+                [self updateShare];
+            }
+        }];
+    }
 }
 
 

@@ -486,7 +486,7 @@
                                                 <action selector="didTapShareBtn:" destination="-1" eventType="touchUpInside" id="bWM-XC-XY2"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bP-Fe-TEg">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请登录获取您的专属推广链接" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bP-Fe-TEg">
                                             <rect key="frame" x="10" y="5" width="104" height="85"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" red="0.4941176471" green="0.23921568630000001" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>

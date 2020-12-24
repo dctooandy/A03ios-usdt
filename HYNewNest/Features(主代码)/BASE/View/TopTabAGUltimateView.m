@@ -196,7 +196,7 @@
 //        UIViewController *topVC = [UIViewController topViewController];
 //        [topVC.navigationController pushViewController:vc animated:YES];
         
-    }else if ([url containsString:@"/pub_site/share?"]) {
+    }else if ([url containsString:@"/share?"]) {
         //好友推荐
         decisionHandler(WKNavigationActionPolicyCancel);
         [kCurNavVC popToRootViewControllerAnimated:NO];

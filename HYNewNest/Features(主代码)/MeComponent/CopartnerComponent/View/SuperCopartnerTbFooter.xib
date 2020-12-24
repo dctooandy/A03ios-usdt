@@ -26,7 +26,7 @@
                     </constraints>
                     <state key="normal" title="一键领取"/>
                     <connections>
-                        <action selector="didTapOnekeyRecive:" destination="-1" eventType="touchUpInside" id="I62-q5-Wws"/>
+                        <action selector="didTapOnekeyRecive:" destination="iN0-l3-epB" eventType="touchUpInside" id="GUl-IM-1WE"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已领取：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7c-kL-Tnv">
