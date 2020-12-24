@@ -25,7 +25,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRemoteNotification:) name:BYDidEnterHomePageNoti object:_pushNotiUserInfo];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRemoteNotification) name:BYDidEnterHomePageNoti object:nil];
     
     // 天网埋点
     [IVLAManager setLogEnabled:YES];
@@ -101,7 +101,7 @@
 //#endif
     NSLog(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n",userInfo);
     if (userInfo != nil) {
-        [self handleRemoteNotification:userInfo];
+        [self handleRemoteNotification];
     }
     
     completionHandler(UIBackgroundFetchResultNewData);
@@ -180,7 +180,8 @@
     
 }
 
-- (void)handleRemoteNotification:(NSDictionary *)userInfo {
+- (void)handleRemoteNotification {
+    NSDictionary *userInfo = self.pushNotiUserInfo;
     if (userInfo) {
         if ([userInfo.allKeys containsObject:@"payload"] && [userInfo.allKeys containsObject:@"aps"]) {
             NSString *payload = userInfo[@"payload"];
