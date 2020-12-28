@@ -7,13 +7,14 @@
 //
 
 #import "DSBRchrWthdrwRankCell.h"
+#import "VIPRankGradientTxtLabel.h"
 
 @interface DSBRchrWthdrwRankCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *rankLb;
 @property (weak, nonatomic) IBOutlet UIImageView *headImv;
 @property (weak, nonatomic) IBOutlet UILabel *nameLb;
-@property (weak, nonatomic) IBOutlet UILabel *clubRankLb;
+@property (weak, nonatomic) IBOutlet VIPRankGradientTxtLabel *clubRankLb;
 @property (weak, nonatomic) IBOutlet UILabel *timeLb;
 @property (weak, nonatomic) IBOutlet UILabel *amountLb;
 

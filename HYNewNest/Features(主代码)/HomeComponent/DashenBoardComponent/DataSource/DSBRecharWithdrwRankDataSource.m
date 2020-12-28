@@ -91,7 +91,7 @@ NSString *const HeaderID = @"DSBRchrWthdrwHeader";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DSBRchrWthdrwRankCell *cell = (DSBRchrWthdrwRankCell*)[tableView dequeueReusableCellWithIdentifier:RankCellID];
-    [cell setupIndexRow:indexPath.row dataArr:self.fakeData[indexPath.row]];
+    [cell setupIndexRow:indexPath.row dataArr:self.fakeData[indexPath.row+3]];
     return cell;
 }
 

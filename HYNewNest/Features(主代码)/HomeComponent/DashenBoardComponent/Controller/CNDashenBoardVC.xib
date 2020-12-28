@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CNDashenBoardVC">
             <connections>
+                <outlet property="btmLabel" destination="i5j-gH-I0z" id="jbD-1Y-rZf"/>
                 <outlet property="headerSelecView" destination="D7i-Fs-Nzc" id="gmr-fg-87y"/>
                 <outlet property="tableView" destination="UzS-Ar-ppS" id="g3P-qc-1yH"/>
                 <outlet property="tableViewHCons" destination="hpT-Go-7rE" id="brm-Cp-Xg6"/>
@@ -38,16 +39,23 @@
                     <color key="textColor" red="0.26666666666666666" green="0.29803921568627451" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UzS-Ar-ppS" customClass="BYMultiDataSourceTableView">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" delaysContentTouches="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UzS-Ar-ppS" customClass="BYMultiDataSourceTableView">
                     <rect key="frame" x="15" y="99" width="384" height="321"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="321" id="hpT-Go-7rE"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="i5j-gH-I0z" firstAttribute="top" secondItem="UzS-Ar-ppS" secondAttribute="bottom" constant="15" id="03B-rQ-i9j"/>
                 <constraint firstItem="D7i-Fs-Nzc" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="5sr-TX-vzh"/>

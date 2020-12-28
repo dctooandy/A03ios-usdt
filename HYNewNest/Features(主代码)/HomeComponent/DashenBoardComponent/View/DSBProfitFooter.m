@@ -12,7 +12,8 @@
 @interface DSBProfitFooter()
 
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *go2RemDeskBtn;
-
+@property (weak, nonatomic) IBOutlet CNTwoStatusBtn *followBtn;
+@property (weak, nonatomic) IBOutlet CNTwoStatusBtn *circuseeBtn;
 
 @end
 
@@ -21,14 +22,21 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     _go2RemDeskBtn.enabled = YES;
+    _followBtn.enabled = YES;
+    _circuseeBtn.enabled = YES;
+    
+    self.backgroundView = ({
+        UIView *bg = [[UIView alloc] initWithFrame:self.bounds];
+        bg.backgroundColor = kHexColor(0x1C1B34);
+        bg;
+    });
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+//    [self.backgroundView jk_setRoundedCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight radius:10];
+//    self.backgroundView.layer.masksToBounds = YES;
 }
-*/
 
 @end

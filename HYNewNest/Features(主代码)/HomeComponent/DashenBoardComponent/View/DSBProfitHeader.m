@@ -7,15 +7,60 @@
 //
 
 #import "DSBProfitHeader.h"
+#import "UILabel+Gradient.h"
+#import "BYDashenBoardConst.h"
+
+@interface DSBProfitHeader()
+@property (weak, nonatomic) IBOutlet UIView *dewdropBoard;
+
+
+@end
 
 @implementation DSBProfitHeader
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+//    self.backgroundView = ({
+//        UIView *bg = [[UIView alloc] initWithFrame:self.bounds];
+//        bg.backgroundColor = [UIColor clearColor];
+//        bg;
+//    });
+    [self drawLines];
 }
-*/
+
+- (void)drawLines {
+    // 线的路径 横线
+    CGFloat ballWH = 32;
+    for (int i=0; i<6; i++) {
+        UIBezierPath *linePath = [UIBezierPath bezierPath];
+        [linePath moveToPoint:CGPointMake(0, ballWH + ballWH*i)];
+        [linePath addLineToPoint:CGPointMake(self.dewdropBoard.width, ballWH + ballWH*i)];
+        CAShapeLayer *lineLayer = [CAShapeLayer layer];
+        lineLayer.lineWidth = 1;
+        lineLayer.strokeColor = kSepaLineColor.CGColor;
+        lineLayer.path = linePath.CGPath;
+        lineLayer.fillColor = nil;
+        [self.dewdropBoard.layer addSublayer:lineLayer];
+    }
+    // 线的路径 竖线
+    for (int i=0; i<11; i++) {
+        UIBezierPath *linePath = [UIBezierPath bezierPath];
+        [linePath moveToPoint:CGPointMake(ballWH+i*ballWH, 0)];
+        [linePath addLineToPoint:CGPointMake(ballWH+i*ballWH, self.dewdropBoard.height)];
+        CAShapeLayer *lineLayer = [CAShapeLayer layer];
+        lineLayer.lineWidth = 1;
+        lineLayer.strokeColor = kSepaLineColor.CGColor;
+        lineLayer.path = linePath.CGPath;
+        lineLayer.fillColor = nil;
+        [self.dewdropBoard.layer addSublayer:lineLayer];
+    }
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+
+}
 
 @end

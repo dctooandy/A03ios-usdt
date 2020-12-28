@@ -1,29 +1,20 @@
 //
-//  DSBProfitBoardCell.m
+//  HYDSBSlideUpViewCell.m
 //  HYNewNest
 //
-//  Created by zaky on 12/24/20.
+//  Created by zaky on 12/28/20.
 //  Copyright © 2020 BYGJ. All rights reserved.
 //
 
-#import "DSBProfitBoardCell.h"
-#import "BYDashenBoardConst.h"
+#import "HYDSBSlideUpViewCell.h"
 
-
-@interface DSBProfitBoardCell()
-
-@property (weak, nonatomic) IBOutlet UILabel *gameStatusColrLbl;
-
-
-@end
-
-@implementation DSBProfitBoardCell
+@implementation HYDSBSlideUpViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
     
-    _gameStatusColrLbl.layer.backgroundColor = [kHeColor CGColor];
+    self.backgroundColor = kHexColor(0x202238);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

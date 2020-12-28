@@ -9,20 +9,19 @@
 #import "BYMultiDataSourceTableView.h"
 //#import "DSBWeekMonthListDataSource.h"
 //#import "DSBRecharWithdrwRankDataSource.h"
+//#import "DSBProfitBoardDataSource.h"
+
+@interface BYMultiDataSourceTableView ()
+@property (nonatomic, assign, readwrite) DashenBoardType type;
+@end
 
 @implementation BYMultiDataSourceTableView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 - (void)changeDataSourceDelegate:(id)dd type:(DashenBoardType)type {
     self.dataSource = dd;
     self.delegate = dd;
+    self.type = type;
     [dd setValue:@(type) forKey:@"type"];
 }
 

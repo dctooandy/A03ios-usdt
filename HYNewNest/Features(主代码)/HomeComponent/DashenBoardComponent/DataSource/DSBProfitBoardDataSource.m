@@ -9,9 +9,11 @@
 #import "DSBProfitBoardDataSource.h"
 #import "DSBProfitBoardCell.h"
 #import "DSBProfitFooter.h"
+#import "DSBProfitHeader.h"
 
 NSString *const ProfitCellId = @"DSBProfitBoardCell";
 NSString *const ProfitFooterId = @"DSBProfitFooter";
+NSString *const ProfitHeaderId = @"DSBProfitHeader";
 
 @interface DSBProfitBoardDataSource () <UITableViewDelegate, UITableViewDataSource>
 @property (weak,nonatomic) id<DashenBoardAutoHeightDelegate> delegate; // 高度代理
@@ -32,6 +34,7 @@ NSString *const ProfitFooterId = @"DSBProfitFooter";
     tableView.backgroundColor = kHexColor(0x1C1B34);
     [tableView registerNib:[UINib nibWithNibName:ProfitCellId bundle:nil] forCellReuseIdentifier:ProfitCellId];
     [tableView registerNib:[UINib nibWithNibName:ProfitFooterId bundle:nil] forHeaderFooterViewReuseIdentifier:ProfitFooterId];
+    [tableView registerNib:[UINib nibWithNibName:ProfitHeaderId bundle:nil] forHeaderFooterViewReuseIdentifier:ProfitHeaderId];
     tableView.dataSource = self;
     tableView.delegate = self;
     _tableView = tableView;
@@ -77,7 +80,7 @@ NSString *const ProfitFooterId = @"DSBProfitFooter";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 114;
+    return 115;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -86,13 +89,13 @@ NSString *const ProfitFooterId = @"DSBProfitFooter";
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-//    DSBRchrWthdrwHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderID];
-    UIView *header = [UIView new];
+    DSBProfitHeader *header = (DSBProfitHeader *)[tableView dequeueReusableHeaderFooterViewWithIdentifier:ProfitHeaderId];
+    //TODO: =
     return header;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 268;
+    return 309;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {

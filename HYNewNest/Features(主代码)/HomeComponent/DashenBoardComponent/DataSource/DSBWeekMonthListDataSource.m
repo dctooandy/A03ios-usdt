@@ -8,6 +8,7 @@
 
 #import "DSBWeekMonthListDataSource.h"
 #import "DSBWeekMonthListCell.h"
+#import "HYDSBSlideUpView.h"
 
 NSString *const listCellID = @"DSBWeekMonthListCell";
 
@@ -63,13 +64,6 @@ NSString *const listCellID = @"DSBWeekMonthListCell";
                       @[@"提现冠军", @"fxxx55", @"23,235,234"]];
     }
     
-//    if (!_fakeData) {
-//        _fakeData = @[@[@"累计盈利冠军", @"fxxx23", @"3,123,123"],
-//                      @[@"单比盈利冠军", @"fxxx23", @"23,235,234"],
-//                      @[@"充值冠军", @"fxxx23", @"23,235,234"],
-//                      @[@"提现冠军", @"fxxx23", @"23,235,234"],
-//                      @[@"提现冠军", @"fxxx23", @"23,235,234"]];
-//    }
     return _fakeData;
 }
 
@@ -94,6 +88,8 @@ NSString *const listCellID = @"DSBWeekMonthListCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MyLog(@"点了%@", indexPath);
+    
+    [HYDSBSlideUpView showSlideupView];
 }
 
 @end

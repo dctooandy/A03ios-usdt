@@ -10,12 +10,21 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, BYLblGrdtColorDirection) {
+    BYLblGrdtColorDirectionTopLeftBtmRight = 0,
+    BYLblGrdtColorDirectionTopBottom,
+    BYLblGrdtColorDirectionTopRightBtmLeft,
+    BYLblGrdtColorDirectionLeftRight,
+};
+
 @interface UILabel (Gradient)
 
 /// 给label文字设置渐变色，该方法替代修改"textColor"属性
 /// @param fromColor 开始颜色
 /// @param toColor 结束颜色
 - (void)setupGradientColorFrom:(UIColor *)fromColor toColor:(UIColor *)toColor;
+
+- (void)setupGradientColorDirection:(BYLblGrdtColorDirection)direction From:(UIColor *)fromColor toColor:(UIColor *)toColor;
 
 @end
 

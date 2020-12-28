@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BYMultiDataSourceTableView : UITableView
 
+@property (nonatomic, assign, readonly) DashenBoardType type;
+
 - (void)changeDataSourceDelegate:(id)dd type:(DashenBoardType)type;
 
 @end

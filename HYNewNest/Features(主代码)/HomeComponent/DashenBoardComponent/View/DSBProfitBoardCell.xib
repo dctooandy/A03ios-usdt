@@ -95,7 +95,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="和" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9O9-Bn-hk5">
                         <rect key="frame" x="234" y="48" width="64" height="22"/>
-                        <color key="backgroundColor" red="0.13333333333333333" green="0.41568627450980389" blue="0.058823529411764705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="64" id="dUB-eT-Ab6"/>
                             <constraint firstAttribute="height" constant="22" id="nN3-P4-hVs"/>
@@ -173,7 +172,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <color key="backgroundColor" red="0.10980392156862745" green="0.10588235294117647" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
-            <point key="canvasLocation" x="60.869565217391312" y="125.55803571428571"/>
+            <connections>
+                <outlet property="gameStatusColrLbl" destination="9O9-Bn-hk5" id="gwV-4s-Xd3"/>
+            </connections>
+            <point key="canvasLocation" x="168" y="24"/>
         </tableViewCell>
     </objects>
     <resources>
