@@ -30,15 +30,15 @@
 }
 
 - (void)setupViews {
-    self.topLine.hidden = NO;
     self.comfirmBtn.hidden = YES;
     self.titleLbl.backgroundColor = kHexColor(0x202238);
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 55, kScreenWidth, 410-55)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 57, kScreenWidth, 410-57)];
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.backgroundColor = kHexColor(0x202238);
+    _tableView.scrollEnabled = NO;
     [_tableView registerNib:[UINib nibWithNibName:@"HYDSBSlideUpViewCell" bundle:nil] forCellReuseIdentifier:@"HYDSBSlideUpViewCell"];
     
     [self.contentView addSubview:_tableView];

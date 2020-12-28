@@ -14,7 +14,7 @@
     [super awakeFromNib];
     // Initialization code
     
-    self.backgroundColor = kHexColor(0x202238);
+    self.contentView.backgroundColor = kHexColor(0x202238);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
