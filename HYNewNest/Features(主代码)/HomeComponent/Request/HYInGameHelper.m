@@ -14,15 +14,15 @@
 
 /// gameCode对应表
 NSString *const InGameTypeString[] = {
-    [InGameTypeAGQJ]    = @"A03003",
-    [InGameTypeAGIN]    = @"A03026",
-    [InGameTypeAGBY]    = @"A03026",
-    [InGameTypeSHABA]   = @"A03031",
-    [InGameTypeYSB]     = @"A03068",
-    [InGameTypeHYTY]    = @"A03062",
-    [InGameTypeKENO]    = @"A03004",
-    [InGameTypeQG]      = @"A03080",
-    [InGameTypeAGSTAR]  = @"A03064"
+    [InGameTypeAGQJ]    = @"003",
+    [InGameTypeAGIN]    = @"026",
+    [InGameTypeAGBY]    = @"026",
+    [InGameTypeSHABA]   = @"031",
+    [InGameTypeYSB]     = @"068",
+    [InGameTypeHYTY]    = @"062",
+    [InGameTypeKENO]    = @"004",
+    [InGameTypeQG]      = @"080",
+    [InGameTypeAGSTAR]  = @"064"
 };
 
 @interface HYInGameHelper ()
@@ -112,7 +112,7 @@ NSString *const InGameTypeString[] = {
             break;
     }
 
-    MyLog(@"===> %@,%@,%@,%@", gameName, gameType, gameId, gameCode);
+    MyLog(@"===> name:%@, type:%@, gameId:%@, gameCode:%@", gameName, gameType, gameId, gameCode);
     
     // 游戏线路
     if ([self.inGameDict.allKeys containsObject:gameCode]) {
@@ -147,19 +147,19 @@ NSString *const InGameTypeString[] = {
                   gameCode:(NSString *)gameCode
    platformSupportCurrency:(nullable NSString *)platformSupportCurrency {
     
-    NSString *newGameCode;
-    if ([gameCode hasPrefix:@"A03"]) {
-        newGameCode = gameCode;
-    }else{
-        newGameCode = [NSString stringWithFormat:@"A03%@", gameCode];
-    }
+//    NSString *newGameCode;
+//    if ([gameCode hasPrefix:@"A03"]) {
+//        newGameCode = gameCode;
+//    }else{
+//        newGameCode = [NSString stringWithFormat:@"A03%@", gameCode];
+//    }
     
-    MyLog(@"===> %@,%@,%@,%@", gameName, gameType, gameId, newGameCode);
+    MyLog(@"===> name:%@, type:%@, gameId:%@, gameCode:%@", gameName, gameType, gameId, gameCode);
     
     // 游戏线路
-    if ([self.inGameDict.allKeys containsObject:newGameCode]) {
+    if ([self.inGameDict.allKeys containsObject:gameCode]) {
         
-        NSArray *gameLines = self.inGameDict[newGameCode];
+        NSArray *gameLines = self.inGameDict[gameCode];
         BOOL hasCNY = NO;
         BOOL hasUSDT = NO;
         for (NSDictionary *dict in gameLines) {
@@ -179,14 +179,14 @@ NSString *const InGameTypeString[] = {
             }
         }
         [CNGameLineView choseCnyLineHandler:hasCNY?^{
-            [HYInGameHelper jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:newGameCode platformCurrency:@"CNY"];
+            [HYInGameHelper jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:@"CNY"];
         }:nil choseUsdtLineHandler:hasUSDT?^{
-            [HYInGameHelper jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:newGameCode platformCurrency:@"USDT"];
+            [HYInGameHelper jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:@"USDT"];
         }:nil];
         
         // 容错
     } else {
-        [HYInGameHelper jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:newGameCode platformCurrency:nil];
+        [HYInGameHelper jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:nil];
     }
 }
 
