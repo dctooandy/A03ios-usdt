@@ -10,8 +10,8 @@
 #import "JHVerificationCodeView.h"
 #import "CNTwoStatusBtn.h"
 #import "CNBaseTF.h"
-
 #import "CNOneStatusBtn.h"
+#import "BYRegisterSuccADVC.h"
 
 @interface CNBindPhoneVC () <UITextFieldDelegate>
 @property (strong, nonatomic) JHVerificationCodeView *codeView;
@@ -63,8 +63,8 @@
             self.navBarTransparent = YES;
             self.makeTranslucent = YES;
             [self addNaviLeftItemNil];
-            // 注册过来也要变成bind类型
-            self.bindType = CNSMSCodeTypeBindPhone;
+//            // 注册过来也要变成bind类型
+//            self.bindType = CNSMSCodeTypeBindPhone;
             break;
         // 安全中心来的 未绑手机
         case CNSMSCodeTypeBindPhone:
@@ -168,6 +168,9 @@
     self.wrongAccout = !inputRight;
 }
 
+
+#pragma mark - Action
+
 /// 发送短信验证码
 - (IBAction)sendSmsCode:(UIButton *)sender {
 
@@ -212,12 +215,12 @@
     [self.secondTimer setFireDate:[NSDate distantPast]];
 }
 
-/// 校验短信验证码
+/// 校验短信验证码: 提交
 - (IBAction)verfiSmsCode:(UIButton *)sender {
     if (!self.smsModel) {
         return;
     }
-    if (self.bindType == CNSMSCodeTypeBindPhone) {
+    if (self.bindType == CNSMSCodeTypeBindPhone || self.bindType == CNSMSCodeTypeRegister) {
 
         [CNLoginRequest requestPhoneBind:self.smsModel.smsCode
                                messageId:self.smsModel.messageId
@@ -227,14 +230,21 @@
                 [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
                     [CNHUB showSuccess:@"绑定成功"];
                     
-                    // 如果返回安全中心失败 证明是从别处过来的
-                    if (![NNControllerHelper pop2ViewControllerClassString:@"CNSecurityCenterVC"]) {
-                        // 如果返回首页失败 证明不是注册 是从绑卡过来的
-                        if (![NNControllerHelper pop2ViewControllerClassString:@"CNHomeVC"]) {
-                            // 直接返回就好
-                            [self.navigationController popViewControllerAnimated:YES];
+                    if (self.bindType == CNSMSCodeTypeRegister) {
+                        [self.navigationController pushViewController:[BYRegisterSuccADVC new] animated:YES];
+                    } else {
+                    
+                        // 如果返回安全中心失败 证明是从别处过来的
+                        if (![NNControllerHelper pop2ViewControllerClassString:@"CNSecurityCenterVC"]) {
+                            // 如果返回首页失败 证明不是注册 是从绑卡过来的
+                            if (![NNControllerHelper pop2ViewControllerClassString:@"CNHomeVC"]) {
+                                // 直接返回就好
+                                [self.navigationController popViewControllerAnimated:YES];
+                            }
                         }
+                        
                     }
+                    
                 }];
             }
         }];
@@ -271,7 +281,11 @@
 /// 跳过
 - (IBAction)pass:(id)sender {
     // 跳过绑定，登录成功，回到首页
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    if (self.bindType == CNSMSCodeTypeRegister) {
+        [self.navigationController pushViewController:[BYRegisterSuccADVC new] animated:YES];
+    } else {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 #pragma - mark Timer
