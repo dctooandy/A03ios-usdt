@@ -69,7 +69,9 @@
 
     [self.headerIcon sd_setImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userInfo.avatar] placeholderImage:[UIImage imageNamed:@"icon"]];
 
-    self.vipImgv.image = [UIImage imageNamed:[NSString stringWithFormat:@"VIP%ld", (long)[CNUserManager shareManager].userInfo.starLevel]];
+    NSInteger level = [CNUserManager shareManager].userInfo.starLevel;
+    UIImage *img = [UIImage imageNamed:[NSString stringWithFormat:@"vip%ld", (long)level]];
+    self.vipImgv.image = img;
     
     self.currencyLb.text = [CNUserManager shareManager].isUsdtMode?@"USDT":@"CNY";
 
