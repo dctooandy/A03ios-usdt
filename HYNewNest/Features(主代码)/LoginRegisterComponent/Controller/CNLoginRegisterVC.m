@@ -29,6 +29,7 @@
 @property (nonatomic, assign) CGPoint oldContentOffset;
 @property (strong, nonatomic) IBOutlet UIScrollView *switchSV;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentWidth;
+@property (strong,nonatomic) UIButton *rightNavBtn;
 
 #pragma mark - Login Property
 /// 登录账户视图
@@ -62,7 +63,6 @@
 @property (weak, nonatomic) IBOutlet CNAccountInputView *registerAccountView;
 /// 注册密码视图
 @property (weak, nonatomic) IBOutlet CNCodeInputView *registerCodeView;
-@property (weak, nonatomic) IBOutlet CNCodeInputView *reRegisterCodeView;
 /// 注册按钮
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *registerBtn;
 /// 当前呈现是注册或登录
@@ -84,6 +84,9 @@
     return vc;
 }
 
+
+#pragma mark - View Life Cycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.makeTranslucent = YES;
@@ -103,19 +106,31 @@
 - (void)configUI {
     [self.view addSubview:self.switchSV];
     self.view.backgroundColor = kHexColor(0x212137);
+    
+    UIButton *rightTopBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    [rightTopBtn setImage:[UIImage imageNamed:@"next"] forState:UIControlStateNormal];
+    [rightTopBtn setTitle:@"去注册" forState:UIControlStateNormal];
+    rightTopBtn.titleLabel.font = [UIFont fontPFM16];
+    [rightTopBtn setTitleColor:kHexColorAlpha(0xFFFFFF, 0.6) forState:UIControlStateNormal];
+    [rightTopBtn jk_setImagePosition:LXMImagePositionRight spacing:5];
+    [rightTopBtn addTarget:self action:@selector(goToLogInOrRegister) forControlEvents:UIControlEventTouchUpInside];
+    self.rightNavBtn = rightTopBtn;
+    [self addNaviRightItemButton:rightTopBtn];
+    
     self.registerAccountView.isRegister = YES;
     [self.registerAccountView setPlaceholder:@"请输入用户名"];
     self.registerCodeView.codeType = CNCodeTypeAccountRegister;
     [self.registerCodeView setPlaceholder:@"请输入密码"];
-    self.reRegisterCodeView.codeType = CNCodeTypeAccountRegister;
-    [self.reRegisterCodeView setPlaceholder:@"再次输入密码"];
+    
     self.switchSV.frame = UIScreen.mainScreen.bounds;
     // 限制单次滚动只能在一个方向
     self.switchSV.directionalLockEnabled = YES;
     self.switchSV.delegate = self;
     self.contentWidth.constant = kScreenWidth * 2;
+    
+    // 如果是注册进来的去注册页
     if (_isRegister) {
-        [self gotoRegister:nil];
+        [self goToLogInOrRegister];
         [self.regHanImgCodeView getImageCode];//direct push into register page need this
     }
 }
@@ -127,7 +142,7 @@
     self.loginCodeView.delegate = self;
     self.registerAccountView.delegate = self;
     self.registerCodeView.delegate = self;
-    self.reRegisterCodeView.delegate = self;
+//    self.reRegisterCodeView.delegate = self;
 }
 
 - (void)accountInputViewTextChange:(CNAccountInputView *)view {
@@ -135,7 +150,7 @@
         self.loginBtn.enabled = view.correct && self.loginCodeView.correct;
         self.loginCodeView.account = view.account;
     } else {
-        self.registerBtn.enabled = self.registerAccountView.correct && self.registerCodeView.correct && self.reRegisterCodeView.correct;
+        self.registerBtn.enabled = self.registerAccountView.correct && self.registerCodeView.correct;
     }
 }
 
@@ -143,7 +158,7 @@
     if ([view isEqual:self.loginCodeView]) {
         self.loginBtn.enabled = view.correct && self.loginAccountView.correct;
     } else {
-        self.registerBtn.enabled = self.registerAccountView.correct && self.registerCodeView.correct && self.reRegisterCodeView.correct;
+        self.registerBtn.enabled = self.registerAccountView.correct && self.registerCodeView.correct;
     }
 }
 
@@ -158,14 +173,14 @@
     [[HYNetworkConfigManager shareManager] switchEnvirnment];
 }
 
-/// 去登录页面
-- (IBAction)goToLogin:(UIButton *)sender {
-    [self.switchSV setContentOffset:CGPointMake(0, 0) animated:YES];
-}
-
-/// 去注册页面
-- (IBAction)gotoRegister:(UIButton *)sender {
-    [self.switchSV setContentOffset:CGPointMake(kScreenWidth, 0) animated:YES];
+/// 切换页面
+- (void)goToLogInOrRegister {
+    // 去注册页面
+    if (self.switchSV.contentOffset.x <= 0) {
+        [self.switchSV setContentOffset:CGPointMake(kScreenWidth, 0) animated:YES];
+    } else {
+        [self.switchSV setContentOffset:CGPointMake(0, 0) animated:YES];
+    }
 }
 
 
@@ -306,10 +321,10 @@
 /// 汉字验证码成功
 - (void)validationDidSuccess {
     if (self.switchSV.contentOffset.x > 0) {
-        self.regHanImgCodeViewH.constant = 47;
+        self.regHanImgCodeViewH.constant = 0;//47
         [self.regHanImgCodeView showSuccess];
     } else {
-        self.hanImgCodeViewH.constant = 47;
+        self.hanImgCodeViewH.constant = 0;//47
         [self.hanImgCodeView showSuccess];
     }
 
@@ -319,10 +334,6 @@
 #pragma mark - Register Action
 
 - (IBAction)registerAction:(UIButton *)sender {
-    if (![self.registerCodeView.code isEqualToString:self.reRegisterCodeView.code]) {
-        [self.reRegisterCodeView showWrongMsg:@"两次输入密码不一致 请重新输入"];
-        return;
-    }
     
     if (!self.regHanImgCodeView.correct) {
         [CNHUB showError:@"请按正确顺序点击图片中的文字"];
@@ -370,6 +381,7 @@
     }
 }
 
+// 靠手动滑动会进入这里
 - (void) scrollViewDidEndDecelerating: (UIScrollView *) scrollView
 {
     self.oldContentOffset = scrollView.contentOffset;
@@ -380,6 +392,7 @@
     
 }
 
+// 靠代码移动会进入这里
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     self.oldContentOffset = scrollView.contentOffset;
     
@@ -393,6 +406,7 @@
     if (self.switchSV.contentOffset.x > 200) { // zhuceye
         self.regHanImgCodeViewH.constant = 95;
         [self.regHanImgCodeView getImageCode];
+        [self.rightNavBtn setTitle:@"去登录" forState:UIControlStateNormal];
     } else {
         if (self.needHanImageCode) {
             self.hanImgCodeViewH.constant = 95;
@@ -402,6 +416,7 @@
             self.loginImageCodeViewH.constant = 75;
             [self.loginImageCodeView getImageCode];
         }
+        [self.rightNavBtn setTitle:@"去注册" forState:UIControlStateNormal];
     }
     
 }
