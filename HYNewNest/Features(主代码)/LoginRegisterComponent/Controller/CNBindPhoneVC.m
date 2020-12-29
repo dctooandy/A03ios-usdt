@@ -188,7 +188,7 @@
         }];
         
     } else {
-        [CNLoginRequest getSMSCodeWithType:self.bindType
+        [CNLoginRequest getSMSCodeWithType:CNSMSCodeTypeBindPhone
                                      phone:self.inputTF.text
                          completionHandler:^(id responseObj, NSString *errorMsg) {
             STRONGSELF_DEFINE
