@@ -26,12 +26,10 @@
 }
 
 - (IBAction)didTapGo2BuyCoin:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:NO];
     [NNPageRouter jump2BuyECoin];
 }
 
 - (IBAction)didTapGo2SellCoin:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:NO];
     [NNPageRouter jump2Deposit];
 }
 
