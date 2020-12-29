@@ -62,13 +62,17 @@
 }
 
 - (IBAction)didTapReloadBtn:(id)sender {
-    [self getImageCode];
+    [self getImageCodeForceRefresh:YES];
 }
 
 
 #pragma mark - request
 
-- (void)getImageCode {
+- (void)getImageCodeForceRefresh:(BOOL)isForce {
+    if (!isForce && self.codeModel) { //非强制刷新并且已有模型
+        return;
+    }
+    
     _tapCounter = 0; // 清0
     [self.coordinates removeAllObjects];
     for (UIView *view in self.captchaImgv.subviews) {
@@ -111,7 +115,7 @@
                 }
             } else {
                 self.correct = NO;
-                [self getImageCode];
+                [self getImageCodeForceRefresh:YES];
                 [CNHUB showError:@"请点击正确的汉字"];
             }
         }

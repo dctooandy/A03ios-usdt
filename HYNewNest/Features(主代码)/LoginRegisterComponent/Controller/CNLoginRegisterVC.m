@@ -131,7 +131,7 @@
     // 如果是注册进来的去注册页
     if (_isRegister) {
         [self goToLogInOrRegister];
-        [self.regHanImgCodeView getImageCode];//direct push into register page need this
+        [self.regHanImgCodeView getImageCodeForceRefresh:YES];//direct push into register page need this
     }
 }
 
@@ -353,7 +353,7 @@
             vc.bindType = CNSMSCodeTypeRegister;
             [self.navigationController pushViewController:vc animated:YES];
         } else {
-            [self.regHanImgCodeView getImageCode];
+            [self.regHanImgCodeView getImageCodeForceRefresh:YES];
             self.regHanImgCodeViewH.constant = 95;
         }
     }];
@@ -405,12 +405,12 @@
     self.isLeftRightScroll = NO;
     if (self.switchSV.contentOffset.x > 200) { // zhuceye
         self.regHanImgCodeViewH.constant = 95;
-        [self.regHanImgCodeView getImageCode];
+        [self.regHanImgCodeView getImageCodeForceRefresh:NO];
         [self.rightNavBtn setTitle:@"去登录" forState:UIControlStateNormal];
     } else {
         if (self.needHanImageCode) {
             self.hanImgCodeViewH.constant = 95;
-            [self.hanImgCodeView getImageCode];
+            [self.hanImgCodeView getImageCodeForceRefresh:NO];
         } else if (self.needImageCode) {
             self.loginImageCodeView.hidden = NO;
             self.loginImageCodeViewH.constant = 75;
@@ -438,7 +438,7 @@
     if (needHanImageCode) {
         self.hanImgCodeView.hidden = NO;
         self.hanImgCodeViewH.constant = 95;
-        [self.hanImgCodeView getImageCode];
+        [self.hanImgCodeView getImageCodeForceRefresh:YES];
     }
 }
 
