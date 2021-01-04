@@ -190,7 +190,7 @@
             
             AccountMoneyDetailModel *model = [AccountMoneyDetailModel cn_parse:responseObj];
             self.balanceDetailModel = model;
-            self->balancesSec = 60;
+            self->balancesSec = 120;
             [self resumeTimer];
 
             @synchronized (self) {

@@ -121,6 +121,9 @@
                 lastItem.balance = @(mergeBalance);
                 [mergedPlatBalances removeObject:obj];
             }
+            if ([obj.platformName isEqualToString:@"环亚体育"]) {
+                obj.platformName = @"币游体育";
+            }
             lastItem = obj;
         }];
     }
