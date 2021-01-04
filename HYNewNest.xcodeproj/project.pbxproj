@@ -241,6 +241,21 @@
 		3D8A7092258CAF200058D50F /* HYSuperCopartnerSlideUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7091258CAF200058D50F /* HYSuperCopartnerSlideUpView.m */; };
 		3D97002B259B1CE1003238C4 /* BYRegisterSuccADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D970029259B1CE1003238C4 /* BYRegisterSuccADVC.m */; };
 		3D97002C259B1CE1003238C4 /* BYRegisterSuccADVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D97002A259B1CE1003238C4 /* BYRegisterSuccADVC.xib */; };
+		3D97004C25A2C3ED003238C4 /* IN3SResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3D97003025A2C3ED003238C4 /* IN3SResource.bundle */; };
+		3D97004D25A2C3ED003238C4 /* IN3SConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003125A2C3ED003238C4 /* IN3SConstants.m */; };
+		3D97004E25A2C3ED003238C4 /* IN3SAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003225A2C3ED003238C4 /* IN3SAnalytics.m */; };
+		3D97004F25A2C3ED003238C4 /* IN3SUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003325A2C3ED003238C4 /* IN3SUtility.m */; };
+		3D97005025A2C3ED003238C4 /* IN3SLaunchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003525A2C3ED003238C4 /* IN3SLaunchModel.m */; };
+		3D97005125A2C3ED003238C4 /* IN3SGlobalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003825A2C3ED003238C4 /* IN3SGlobalModel.m */; };
+		3D97005225A2C3ED003238C4 /* IN3SPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003925A2C3ED003238C4 /* IN3SPageModel.m */; };
+		3D97005325A2C3ED003238C4 /* IN3SExitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003A25A2C3ED003238C4 /* IN3SExitModel.m */; };
+		3D97005425A2C3ED003238C4 /* IN3SAGQJModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003C25A2C3ED003238C4 /* IN3SAGQJModel.m */; };
+		3D97005525A2C3ED003238C4 /* IN3SRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003D25A2C3ED003238C4 /* IN3SRequestModel.m */; };
+		3D97005625A2C3ED003238C4 /* IN3SBrowserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97004025A2C3ED003238C4 /* IN3SBrowserModel.m */; };
+		3D97005725A2C3ED003238C4 /* IN3SParamsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97004325A2C3ED003238C4 /* IN3SParamsModel.m */; };
+		3D97005825A2C3ED003238C4 /* IN3SWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97004625A2C3ED003238C4 /* IN3SWebViewController.m */; };
+		3D97005925A2C3ED003238C4 /* IN3SManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97004925A2C3ED003238C4 /* IN3SManager.m */; };
+		3D97005A25A2C3ED003238C4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D97004B25A2C3ED003238C4 /* Info.plist */; };
 		3DA4F15024B30A090039123F /* SGQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DA4F13B24B30A080039123F /* SGQRCode.bundle */; };
 		3DA4F15124B30A090039123F /* UIImage+SGImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */; };
 		3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F14024B30A080039123F /* UIButton+Indicator.m */; };
@@ -1368,6 +1383,34 @@
 		3D970028259B1CE1003238C4 /* BYRegisterSuccADVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYRegisterSuccADVC.h; sourceTree = "<group>"; };
 		3D970029259B1CE1003238C4 /* BYRegisterSuccADVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYRegisterSuccADVC.m; sourceTree = "<group>"; };
 		3D97002A259B1CE1003238C4 /* BYRegisterSuccADVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYRegisterSuccADVC.xib; sourceTree = "<group>"; };
+		3D97002E25A2C3ED003238C4 /* IN3SWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SWebViewController.h; sourceTree = "<group>"; };
+		3D97003025A2C3ED003238C4 /* IN3SResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IN3SResource.bundle; sourceTree = "<group>"; };
+		3D97003125A2C3ED003238C4 /* IN3SConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SConstants.m; sourceTree = "<group>"; };
+		3D97003225A2C3ED003238C4 /* IN3SAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SAnalytics.m; sourceTree = "<group>"; };
+		3D97003325A2C3ED003238C4 /* IN3SUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SUtility.m; sourceTree = "<group>"; };
+		3D97003525A2C3ED003238C4 /* IN3SLaunchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SLaunchModel.m; sourceTree = "<group>"; };
+		3D97003625A2C3ED003238C4 /* IN3SRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SRequestModel.h; sourceTree = "<group>"; };
+		3D97003725A2C3ED003238C4 /* IN3SBrowserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SBrowserModel.h; sourceTree = "<group>"; };
+		3D97003825A2C3ED003238C4 /* IN3SGlobalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SGlobalModel.m; sourceTree = "<group>"; };
+		3D97003925A2C3ED003238C4 /* IN3SPageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SPageModel.m; sourceTree = "<group>"; };
+		3D97003A25A2C3ED003238C4 /* IN3SExitModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SExitModel.m; sourceTree = "<group>"; };
+		3D97003B25A2C3ED003238C4 /* IN3SParamsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SParamsModel.h; sourceTree = "<group>"; };
+		3D97003C25A2C3ED003238C4 /* IN3SAGQJModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SAGQJModel.m; sourceTree = "<group>"; };
+		3D97003D25A2C3ED003238C4 /* IN3SRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SRequestModel.m; sourceTree = "<group>"; };
+		3D97003E25A2C3ED003238C4 /* IN3SLaunchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SLaunchModel.h; sourceTree = "<group>"; };
+		3D97003F25A2C3ED003238C4 /* IN3SGlobalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SGlobalModel.h; sourceTree = "<group>"; };
+		3D97004025A2C3ED003238C4 /* IN3SBrowserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SBrowserModel.m; sourceTree = "<group>"; };
+		3D97004125A2C3ED003238C4 /* IN3SPageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SPageModel.h; sourceTree = "<group>"; };
+		3D97004225A2C3ED003238C4 /* IN3SAGQJModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SAGQJModel.h; sourceTree = "<group>"; };
+		3D97004325A2C3ED003238C4 /* IN3SParamsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SParamsModel.m; sourceTree = "<group>"; };
+		3D97004425A2C3ED003238C4 /* IN3SExitModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SExitModel.h; sourceTree = "<group>"; };
+		3D97004525A2C3ED003238C4 /* IN3SManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SManager.h; sourceTree = "<group>"; };
+		3D97004625A2C3ED003238C4 /* IN3SWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SWebViewController.m; sourceTree = "<group>"; };
+		3D97004725A2C3ED003238C4 /* IN3SAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SAnalytics.h; sourceTree = "<group>"; };
+		3D97004825A2C3ED003238C4 /* IN3SConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SConstants.h; sourceTree = "<group>"; };
+		3D97004925A2C3ED003238C4 /* IN3SManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SManager.m; sourceTree = "<group>"; };
+		3D97004A25A2C3ED003238C4 /* IN3SUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SUtility.h; sourceTree = "<group>"; };
+		3D97004B25A2C3ED003238C4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DA4F13A24B30A080039123F /* SGQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCode.h; sourceTree = "<group>"; };
 		3DA4F13B24B30A080039123F /* SGQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SGQRCode.bundle; sourceTree = "<group>"; };
 		3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SGImageSize.m"; sourceTree = "<group>"; };
@@ -2976,6 +3019,7 @@
 		3D1338A624AF2E7D00B29783 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				3D97002D25A2C3ED003238C4 /* IN3SAnalytics */,
 				3DF43D2A2592EE8B0087F26A /* SlideCard */,
 				3DF43D092592EC020087F26A /* JSONModel */,
 				3DF43CED2592EA6A0087F26A /* IVCacheLibrary */,
@@ -3278,6 +3322,57 @@
 				3D65D1152568E35300917E1B /* SocketRocketUtility.m */,
 			);
 			path = WebSocket;
+			sourceTree = "<group>";
+		};
+		3D97002D25A2C3ED003238C4 /* IN3SAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				3D97002E25A2C3ED003238C4 /* IN3SWebViewController.h */,
+				3D97002F25A2C3ED003238C4 /* IN3SAnalyticsSDK */,
+				3D97003125A2C3ED003238C4 /* IN3SConstants.m */,
+				3D97003225A2C3ED003238C4 /* IN3SAnalytics.m */,
+				3D97003325A2C3ED003238C4 /* IN3SUtility.m */,
+				3D97003425A2C3ED003238C4 /* Models */,
+				3D97004525A2C3ED003238C4 /* IN3SManager.h */,
+				3D97004625A2C3ED003238C4 /* IN3SWebViewController.m */,
+				3D97004725A2C3ED003238C4 /* IN3SAnalytics.h */,
+				3D97004825A2C3ED003238C4 /* IN3SConstants.h */,
+				3D97004925A2C3ED003238C4 /* IN3SManager.m */,
+				3D97004A25A2C3ED003238C4 /* IN3SUtility.h */,
+				3D97004B25A2C3ED003238C4 /* Info.plist */,
+			);
+			path = IN3SAnalytics;
+			sourceTree = "<group>";
+		};
+		3D97002F25A2C3ED003238C4 /* IN3SAnalyticsSDK */ = {
+			isa = PBXGroup;
+			children = (
+				3D97003025A2C3ED003238C4 /* IN3SResource.bundle */,
+			);
+			path = IN3SAnalyticsSDK;
+			sourceTree = "<group>";
+		};
+		3D97003425A2C3ED003238C4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3D97003525A2C3ED003238C4 /* IN3SLaunchModel.m */,
+				3D97003625A2C3ED003238C4 /* IN3SRequestModel.h */,
+				3D97003725A2C3ED003238C4 /* IN3SBrowserModel.h */,
+				3D97003825A2C3ED003238C4 /* IN3SGlobalModel.m */,
+				3D97003925A2C3ED003238C4 /* IN3SPageModel.m */,
+				3D97003A25A2C3ED003238C4 /* IN3SExitModel.m */,
+				3D97003B25A2C3ED003238C4 /* IN3SParamsModel.h */,
+				3D97003C25A2C3ED003238C4 /* IN3SAGQJModel.m */,
+				3D97003D25A2C3ED003238C4 /* IN3SRequestModel.m */,
+				3D97003E25A2C3ED003238C4 /* IN3SLaunchModel.h */,
+				3D97003F25A2C3ED003238C4 /* IN3SGlobalModel.h */,
+				3D97004025A2C3ED003238C4 /* IN3SBrowserModel.m */,
+				3D97004125A2C3ED003238C4 /* IN3SPageModel.h */,
+				3D97004225A2C3ED003238C4 /* IN3SAGQJModel.h */,
+				3D97004325A2C3ED003238C4 /* IN3SParamsModel.m */,
+				3D97004425A2C3ED003238C4 /* IN3SExitModel.h */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		3DA4F13924B30A080039123F /* SGQRCode */ = {
@@ -5260,6 +5355,7 @@
 				D5A443A824F378CD00014DC6 /* 彩票_00039.png in Resources */,
 				D5A443A924F378CD00014DC6 /* 彩票_00020.png in Resources */,
 				D5A4440024F37A9E00014DC6 /* 彩票_0008.png in Resources */,
+				3D97004C25A2C3ED003238C4 /* IN3SResource.bundle in Resources */,
 				D5A4446924F3932400014DC6 /* 数字7_00062.png in Resources */,
 				D5A446E724F3941400014DC6 /* 合成 1_00019.png in Resources */,
 				D5A4453E24F393AC00014DC6 /* 棋牌_0001.png in Resources */,
@@ -5427,6 +5523,7 @@
 				D5A443E624F378CD00014DC6 /* 彩票_00096.png in Resources */,
 				D5A443AF24F378CD00014DC6 /* 彩票_00038.png in Resources */,
 				D5A446CD24F3941400014DC6 /* 合成 1_00062.png in Resources */,
+				3D97005A25A2C3ED003238C4 /* Info.plist in Resources */,
 				D5A4439524F378CD00014DC6 /* 彩票_00019.png in Resources */,
 				D5A446BE24F3941400014DC6 /* 合成 1_00058.png in Resources */,
 				D5A444A524F3932400014DC6 /* 数字7_00024.png in Resources */,
@@ -5882,6 +5979,7 @@
 				0487C98F24CEC8040013715A /* segmentHeaderView.m in Sources */,
 				04C6E1EC24D40728006F4DAC /* CNAddressAddTCell.m in Sources */,
 				E97054A724DBD0E40007F845 /* UserSuggestionModel.m in Sources */,
+				3D97005625A2C3ED003238C4 /* IN3SBrowserModel.m in Sources */,
 				E98BEED724CFD4F200E6B0C8 /* HYBonusTableViewController.m in Sources */,
 				0487C98E24CEC8040013715A /* UIView+HHLayout.m in Sources */,
 				3DA4F18424B317490039123F /* LoadingView.m in Sources */,
@@ -5896,6 +5994,7 @@
 				E986A10824C6F5C1000F9CFF /* HYHTMLViewController.m in Sources */,
 				3D41DE7025199DEE000CA1D6 /* VIPMonthlyAlertsVC.m in Sources */,
 				048A168F24CACABF00411819 /* CNAlertPickerView.m in Sources */,
+				3D97005225A2C3ED003238C4 /* IN3SPageModel.m in Sources */,
 				E986A1C524CC7F2B000F9CFF /* TAPageControl.m in Sources */,
 				3D41DEAE251CC6FD000CA1D6 /* UIColor+Gradient.m in Sources */,
 				3DA4F15524B30A090039123F /* SGQRCodeScanManager.m in Sources */,
@@ -5920,12 +6019,14 @@
 				048A0EEF24C921F100411819 /* CNElResentPlayCCell.m in Sources */,
 				E9B5496D24CEE34F002CE6EF /* HYArticalTableViewController.m in Sources */,
 				3D41DE7A25199DEE000CA1D6 /* VIPChartDSBCell.m in Sources */,
+				3D97005925A2C3ED003238C4 /* IN3SManager.m in Sources */,
 				E986A1C324CC7F2B000F9CFF /* SDCollectionViewCell.m in Sources */,
 				E98BEF0A24D25F6E00E6B0C8 /* HYXiMaCell.m in Sources */,
 				E986A1C424CC7F2B000F9CFF /* TADotView.m in Sources */,
 				E9D9447724C1F37900252222 /* HYBonusViewController.m in Sources */,
 				0487C9AD24CFBA6A0013715A /* JJCollectionViewRoundFlowLayout.m in Sources */,
 				0487C97B24CEB2710013715A /* CNChoseImageVC.m in Sources */,
+				3D97005025A2C3ED003238C4 /* IN3SLaunchModel.m in Sources */,
 				D5FBFE2D24BC05E400BBCAD8 /* CNLoginRegisterVC.m in Sources */,
 				04C0F12D24C7D20C007F1420 /* CNRealPersonVC.m in Sources */,
 				3DA4F19D24B3195F0039123F /* HYRefreshHeader.m in Sources */,
@@ -5936,6 +6037,7 @@
 				D5FBFE8B24BC28B200BBCAD8 /* CNBaseModel.m in Sources */,
 				0487C9F424D2AADC0013715A /* CNMessageTCell.m in Sources */,
 				3D41DECA2521CDE7000CA1D6 /* VIPRecordSelectorView.m in Sources */,
+				3D97005425A2C3ED003238C4 /* IN3SAGQJModel.m in Sources */,
 				3D8A708A258C5C1A0058D50F /* SuperCopartnerTbFooter.m in Sources */,
 				E986A1A624CB3C18000F9CFF /* HYTextAlertView.m in Sources */,
 				E9D9449024C5454F00252222 /* HYNetworkConfigManager.m in Sources */,
@@ -5972,6 +6074,7 @@
 				E98BEF3324D3B8BC00E6B0C8 /* ChargeManualMessgeView.m in Sources */,
 				3DF43D222592EC020087F26A /* JSONModel.m in Sources */,
 				0487C98D24CEC8040013715A /* UIView+SDAutoLayout.m in Sources */,
+				3D97005725A2C3ED003238C4 /* IN3SParamsModel.m in Sources */,
 				0430AB3124E38F8300C873DC /* CNBankVerifySmsView.m in Sources */,
 				3DF43D312592EE8B0087F26A /* V_SlideCardCell.m in Sources */,
 				04C6E1F724D41C3C006F4DAC /* CNAddressInfoTCell.m in Sources */,
@@ -6011,6 +6114,7 @@
 				E986A10124C6E0CD000F9CFF /* CNHomeRequest.m in Sources */,
 				0487C96C24CE9A630013715A /* BRStringPickerView.m in Sources */,
 				E993095424D7F3CD00E0843B /* HYRechProcButton.m in Sources */,
+				3D97004F25A2C3ED003238C4 /* IN3SUtility.m in Sources */,
 				04C0F12324C69738007F1420 /* CNHomeVC.m in Sources */,
 				E986A19C24CADCA3000F9CFF /* UserSubscribItem.m in Sources */,
 				04C0F11324C594D5007F1420 /* CNLoginRequest.m in Sources */,
@@ -6065,6 +6169,7 @@
 				3D41DE9A2519F996000CA1D6 /* VIPCumulateIdHeader.m in Sources */,
 				3DF43CF12592EA6A0087F26A /* NSDictionary+IVN.m in Sources */,
 				3D41DE7325199DEE000CA1D6 /* VIPDSBUsrModel.m in Sources */,
+				3D97004E25A2C3ED003238C4 /* IN3SAnalytics.m in Sources */,
 				3DBA55D4256FA6D3009A2B71 /* CNSelectBtn.m in Sources */,
 				3DF43CFA2592EA6A0087F26A /* KYHTTPManager.m in Sources */,
 				3D31B9612542E97D005275BD /* HYTapHanImageCodeView.m in Sources */,
@@ -6086,6 +6191,7 @@
 				3D41DEC025206AAE000CA1D6 /* VIPReceiveRecordVC.m in Sources */,
 				3D41DE7125199DEE000CA1D6 /* VIPTwoChartVC.m in Sources */,
 				3D1338B924AF3AB200B29783 /* NNPageRouter.m in Sources */,
+				3D97005325A2C3ED003238C4 /* IN3SExitModel.m in Sources */,
 				3D2FB6392589E171003EE5EA /* CNBorderBtn.m in Sources */,
 				3D31B955253D8801005275BD /* WithdrawCalculateModel.m in Sources */,
 				040A08D224E114A900FBD534 /* OCBarrageCell.m in Sources */,
@@ -6102,9 +6208,11 @@
 				044DC69524DD1A35005CB550 /* CNShareCopyView.m in Sources */,
 				0487CA0D24D3CC380013715A /* CNFeedBackVC.m in Sources */,
 				3DBA55DB2570D188009A2B71 /* BetAmountModel.m in Sources */,
+				3D97004D25A2C3ED003238C4 /* IN3SConstants.m in Sources */,
 				048A0EE024C832F800411819 /* CNElectronicVC.m in Sources */,
 				042372A324CE65A000D37B9C /* CNSettingVC.m in Sources */,
 				3DF43CFD2592EA6A0087F26A /* KYHttpResponseModel.m in Sources */,
+				3D97005125A2C3ED003238C4 /* IN3SGlobalModel.m in Sources */,
 				0487CA0624D3BAB90013715A /* CNInviteFriendVC.m in Sources */,
 				3D564E2024F3C02C006846DD /* MessageBoxModel.m in Sources */,
 				E98BEF1C24D2BCA400E6B0C8 /* HYWithdrawCardCell.m in Sources */,
@@ -6133,7 +6241,9 @@
 				E986A1C124CC7F2B000F9CFF /* SDCycleScrollView.m in Sources */,
 				E986A19224CA93D3000F9CFF /* BQPaymentModel.m in Sources */,
 				E969EB3524E14B4B00D58FE9 /* MineBindView.m in Sources */,
+				3D97005825A2C3ED003238C4 /* IN3SWebViewController.m in Sources */,
 				3DF43D282592EC020087F26A /* JSONModel+networking.m in Sources */,
+				3D97005525A2C3ED003238C4 /* IN3SRequestModel.m in Sources */,
 				E98BEF2524D2C40100E6B0C8 /* HYWithdrawAddCardFooter.m in Sources */,
 				3D41DEB9251F1A20000CA1D6 /* WSLPhotoZoom.m in Sources */,
 				040A08D124E114A900FBD534 /* OCBarrageDescriptor.m in Sources */,

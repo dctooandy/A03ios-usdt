@@ -36,6 +36,7 @@
 - (void)loadViewFromXib {
     [super loadViewFromXib];
 
+    [self refreshBottomBtnsStatus];
     // 提现右上角NEW
     [self.withdrawCNYBtn showRightTopImageName:@"new_txgb" size:CGSizeMake(30, 14) offsetX:-30 offsetYMultiple:0];
 }
@@ -98,6 +99,11 @@
 
 // 切换币种 修改买充提买按钮 必须重新加载数据
 - (void)switchAccountUIChange {
+    [self refreshBottomBtnsStatus];
+    [self reloadBalance];
+}
+
+- (void)refreshBottomBtnsStatus {
     if ([CNUserManager shareManager].isUsdtMode) {
         self.switchModeBtn.selected = NO;
         self.bottomViewH.constant = 88;
@@ -109,7 +115,6 @@
         self.bottomViewSpacing.constant = 0;
         self.currencyLb.text = @"CNY";
     }
-    [self reloadBalance];
 }
 
 // 切换账户货币

@@ -173,12 +173,13 @@
 }
 
 - (void)goToLoginStart{
-    if (!_videoDidEnd) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self goToLoginStart];
-        });
-        return;
-    }
+//    // 动画演完才进入
+//    if (!_videoDidEnd) {
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [self goToLoginStart];
+//        });
+//        return;
+//    }
     
     [NNPageRouter changeRootVc2MainPage];
 
@@ -186,7 +187,7 @@
 
 
 - (void)videoPlayEnd {
-    _videoDidEnd = YES;
+//    _videoDidEnd = YES;
     [_player seekToTime:CMTimeMake(0, 1)];
     [_player play];
 }

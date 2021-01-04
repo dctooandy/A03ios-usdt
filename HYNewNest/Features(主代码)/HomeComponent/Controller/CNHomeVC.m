@@ -27,12 +27,15 @@
 #import "CNLoginRequest.h"
 #import "HYInGameHelper.h"
 #import "SocketRocketUtility.h"
+#import "IN3SAnalytics.h"
 
 #import <MJRefresh/MJRefresh.h>
 #import "NSURL+HYLink.h"
 
-
 @interface CNHomeVC () <CNUserInfoLoginViewDelegate,  SDCycleScrollViewDelegate, UUMarqueeViewDelegate>
+{
+    BOOL _didAppear;
+}
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 /// 滚动视图
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -100,6 +103,17 @@
 //    NSString *wsURL = @"wss://roadmap.9mbv.com:7070/socket.io/?EIO=4&transport=websocket"; //https
 //    NSString *wsURL = @"ws://roadmap.9mbv.com:8080/socket.io/?EIO=4&transport=websocket";
 //    [[SocketRocketUtility instance] SRWebSocketOpenWithURLString:wsURL];
+}
+
+//可以在首页的该方法中调用
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    //启动完成, 只调一次
+    if (!_didAppear) {
+        [IN3SAnalytics launchFinished];
+        _didAppear = YES;
+    }
 }
 
 - (void)userDidLogin {

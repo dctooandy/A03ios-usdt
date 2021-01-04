@@ -17,6 +17,7 @@
 #import "HYTabBarViewController.h"
 #import "LYEmptyView.h"
 #import "UIView+Empty.h"
+#import "IN3SAnalytics.h"
 
 @interface HYRechargeViewController () <HYRechargeEditViewDelegate>
 @property (nonatomic, strong) UILabel *lblTip;
@@ -37,6 +38,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"充币";
+    
+    _launchDate = [NSDate date];
     
     [self setupViews];
     [self queryDepositBankPayWays];
@@ -229,6 +232,12 @@ USDT支付渠道
             [self.view ly_hideEmptyView];
             [self queryOnlineBankAmount];
         }
+        
+        // 耗时间隔毫秒
+        NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:self->_launchDate] * 1000;
+        NSLog(@" ======> 进USDT支付 耗时：%f毫秒", duration);
+        NSString *timeString = [NSString stringWithFormat:@"%f", [self->_launchDate timeIntervalSince1970]];
+        [IN3SAnalytics enterPageWithName:@"PaymentPageLoad" responseTime:duration timestamp:timeString];
     }];
 }
 
