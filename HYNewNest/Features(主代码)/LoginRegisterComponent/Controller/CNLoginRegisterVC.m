@@ -156,6 +156,9 @@
 
 - (void)codeInputViewTextChange:(CNCodeInputView *)view {
     if ([view isEqual:self.loginCodeView]) {
+        if (view.code.length > 6) {
+            view.codeType = CNCodeTypeAccountLogin;
+        }
         self.loginBtn.enabled = view.correct && self.loginAccountView.correct;
     } else {
         self.registerBtn.enabled = self.registerAccountView.correct && self.registerCodeView.correct;

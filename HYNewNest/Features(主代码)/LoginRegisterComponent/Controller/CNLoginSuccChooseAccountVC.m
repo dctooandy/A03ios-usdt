@@ -24,7 +24,7 @@
     NSArray <SamePhoneLoginNameItem *> *items = self.samePhoneLogNameModel.samePhoneLoginNames;
     NSMutableArray *names = @[].mutableCopy;
     for (SamePhoneLoginNameItem *item in items) {
-        [names addObject:item.loginName];
+        [names addObject:[item.loginName copy]];
     }
     
     WEAKSELF_DEFINE

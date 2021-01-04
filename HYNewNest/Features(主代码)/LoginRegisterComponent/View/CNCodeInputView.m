@@ -240,17 +240,21 @@ int TotalSecond = 60;
 - (void)setCodeType:(CNCodeType)codeType {
     _codeType = codeType;
     self.eyeBtn.hidden = NO;
+    self.codeBtn.hidden = YES;
     switch (codeType) {
         case CNCodeTypeAccountRegister:
             self.inputTrailing.constant = 50;
             break;
         case CNCodeTypeBindPhone:
         case CNCodeTypePhoneLogin:
+            self.inputTrailing.constant = 100;
             self.inputTF.placeholder = @"请输入验证码";
             self.eyeBtn.hidden = YES;
             self.inputTF.secureTextEntry = NO;
+            self.codeBtn.hidden = NO;
             break;
         case CNCodeTypeAccountLogin:
+            self.inputTrailing.constant = 50;
             self.inputTF.placeholder = @"请输入密码";
             self.inputTF.secureTextEntry = self.eyeBtn.selected;
             break;
@@ -267,9 +271,11 @@ int TotalSecond = 60;
             self.tipLb.hidden = YES;
             break;
         case CNCodeTypeBankCard:
+            self.inputTrailing.constant = 100;
             self.inputTF.placeholder = @"请输入验证码";
             self.eyeBtn.hidden = YES;
             self.inputTF.secureTextEntry = NO;
+            self.codeBtn.hidden = NO;
             break;
         default:
             break;
