@@ -11,6 +11,7 @@
 #import "UILabel+Gradient.h"
 #import "BYDashenBoardConst.h"
 #import "VIPRankGradientTxtLabel.h"
+#import <UIImageView+WebCache.h>
 
 @interface DSBRchrWthdrwHeader()
 
@@ -56,11 +57,36 @@
     [self.silverAmoLb setupGradientColorDirection:BYLblGrdtColorDirectionTopRightBtmLeft From:kVIPColor1 toColor:kVIPColor2];
     [self.copperAmoLb setupGradientColorDirection:BYLblGrdtColorDirectionTopRightBtmLeft From:kVIPColor1 toColor:kVIPColor2];
     
-    self.championRankLb.text = @"赌尊";
-    self.silverRankLb.text = @"赌神";
-    self.copperRankLb.text = @"赌圣";
 }
 
+
+- (void)setup123DataArr:(NSArray<DSBRecharWithdrwUsrModel *> *)arr {
+    if (arr.count < 3) {
+        return;
+    }
+    DSBRecharWithdrwUsrModel *firstmodel = arr[0];
+    [_championImv sd_setImageWithURL:[NSURL URLWithString:firstmodel.headshot] placeholderImage:[UIImage imageNamed:@"icon"]];
+    _championAmoLb.text = [firstmodel.totalAmount jk_toDisplayNumberWithDigit:0];
+    _championUsrLb.text = firstmodel.loginName;
+    _championRankLb.text = firstmodel.writtenLevel;
+    _championTimeLb.text = firstmodel.writtenTime;
+    
+    DSBRecharWithdrwUsrModel *secondmodel = arr[1];
+    [_silverImv sd_setImageWithURL:[NSURL URLWithString:secondmodel.headshot] placeholderImage:[UIImage imageNamed:@"icon"]];
+    _silverAmoLb.text = [secondmodel.totalAmount jk_toDisplayNumberWithDigit:0];
+    _silverUsrLb.text = secondmodel.loginName;
+    _silverRankLb.text = secondmodel.writtenLevel;
+    _silverTimeLb.text = secondmodel.writtenTime;
+    
+    DSBRecharWithdrwUsrModel *thirdmodel = arr[2];
+    [_copperImv sd_setImageWithURL:[NSURL URLWithString:thirdmodel.headshot] placeholderImage:[UIImage imageNamed:@"icon"]];
+    _copperAmoLb.text = [thirdmodel.totalAmount jk_toDisplayNumberWithDigit:0];
+    _copperUsrLb.text = thirdmodel.loginName;
+    _copperRankLb.text = thirdmodel.writtenLevel;
+    _copperTimeLb.text = thirdmodel.writtenTime;
+    
+    
+}
 
 
 

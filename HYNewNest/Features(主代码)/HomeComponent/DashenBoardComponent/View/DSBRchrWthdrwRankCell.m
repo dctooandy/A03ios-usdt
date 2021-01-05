@@ -8,6 +8,7 @@
 
 #import "DSBRchrWthdrwRankCell.h"
 #import "VIPRankGradientTxtLabel.h"
+#import <UIImageView+WebCache.h>
 
 @interface DSBRchrWthdrwRankCell()
 
@@ -36,7 +37,7 @@
 }
 
 - (void)setupIndexRow:(NSInteger)row dataArr:(NSArray *)arr {
-    if (arr.count == 4) {
+    if (arr.count == 5) {
         _rankLb.text = [NSString stringWithFormat:@"%ld", row + 4];
         _nameLb.text = arr[0];
         _clubRankLb.text = arr[1];
@@ -44,7 +45,7 @@
         _timeLb.text = arr[3];
         
         // 上下文裁图片圆角
-        _headImv.image = [UIImage imageNamed:@"icon"];
+        [_headImv sd_setImageWithURL:[NSURL URLWithString:arr[4]] placeholderImage:[UIImage imageNamed:@"icon"]];
     }
 }
 

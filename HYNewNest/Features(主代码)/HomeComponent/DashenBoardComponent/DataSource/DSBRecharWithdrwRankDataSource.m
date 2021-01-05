@@ -10,17 +10,22 @@
 #import "DSBRchrWthdrwRankCell.h"
 #import "DSBRchrWthdrwHeader.h"
 #import "BYDashenBoardConst.h"
+#import "DashenBoardRequest.h"
+#import "VIPRankConst.h"
 
 NSString *const RankCellID = @"DSBRchrWthdrwRankCell";
 NSString *const HeaderID = @"DSBRchrWthdrwHeader";
 
 @interface DSBRecharWithdrwRankDataSource()<UITableViewDelegate, UITableViewDataSource>
+{
+    NSTimeInterval _lastReqTimeRecharge;
+    NSTimeInterval _lastReqtimeWithdraw;
+}
 @property (weak,nonatomic) id<DashenBoardAutoHeightDelegate> delegate; // 高度代理
 @property (weak,nonatomic) UITableView *tableView;
 
-//TODO:=
-@property (strong,nonatomic) NSArray *fakeData;
-
+@property (strong,nonatomic) NSArray<DSBRecharWithdrwUsrModel *> *recharList;
+@property (strong,nonatomic) NSArray<DSBRecharWithdrwUsrModel *> *wthdrwList;
 @end
 
 @implementation DSBRecharWithdrwRankDataSource
@@ -43,55 +48,52 @@ NSString *const HeaderID = @"DSBRchrWthdrwHeader";
     return self;
 }
 
-
-//TODO: 修改数据源 修改高度
 - (void)setType:(DashenBoardType)type {
     _type = type;
     
-    [self.tableView reloadData];
+    if (type == DashenBoardTypeRechargeBoard) {
+        [self requestRankRecharge];
+    } else {
+        [self requestRankWithdraw];
+    }
+    
     if (self.delegate) {
         [self.delegate didSetupDataGetTableHeight:(636.0)];
     }
-}
-
-- (NSArray *)fakeData {
-    if (self.type == DashenBoardTypeRechargeBoard) {
-        _fakeData = @[@[@"fxxx23", @"赌尊", @"3,123,123", @"12:30:42"],
-                      @[@"fxxx23", @"赌神", @"3,123,123", @"12:30:42"],
-                      @[@"fxxx23", @"赌圣", @"3,123,123", @"12:30:42"],
-                      @[@"fxxx23", @"赌王", @"3,123,123", @"12:30:42"],
-                      @[@"fxxx23", @"赌霸", @"3,123,123", @"12:30:42"],
-                      @[@"fxxx23", @"赌侠", @"3,123,123", @"12:30:42"],
-                      @[@"fxxx23", @"VIP1", @"123,123", @"12:30:42"],
-                      @[@"fxxx23", @"VIP1", @"123,123", @"12:30:42"],
-                      @[@"fxxx23", @"VIP1", @"123,123", @"12:30:42"],
-                      @[@"fxxx23", @"VIP1", @"123,123", @"12:30:42"]];
-    } else {
-        _fakeData = @[@[@"fxxx23r", @"赌尊", @"3,123,123", @"12:30:42"],
-                      @[@"fxxx23r", @"赌神", @"3,123,123", @"12:30:42"],
-                      @[@"fxxx23r", @"赌圣", @"3,123,123", @"12:30:42"],
-                      @[@"fxxx23r", @"赌王", @"3,123,123", @"12:30:42"],
-                      @[@"fxxx23r", @"赌霸", @"3,123,123", @"12:30:42"],
-                      @[@"fxxx23r", @"赌侠", @"3,123,123", @"12:30:42"],
-                      @[@"fxxx23r", @"VIP1", @"123,123", @"12:30:42"],
-                      @[@"fxxx23r", @"VIP1", @"123,123", @"12:30:42"],
-                      @[@"fxxx23r", @"VIP1", @"123,123", @"12:30:42"],
-                      @[@"fxxx23r", @"VIP1", @"123,123", @"12:30:42"]];
-    }
-    
-    return _fakeData;
 }
 
 
 #pragma mark - UITableView
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.fakeData.count - 3;
+    if (self.type == DashenBoardTypeRechargeBoard) {
+        return self.recharList.count - 3;
+    } else {
+        return self.wthdrwList.count - 3;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DSBRchrWthdrwRankCell *cell = (DSBRchrWthdrwRankCell*)[tableView dequeueReusableCellWithIdentifier:RankCellID];
-    [cell setupIndexRow:indexPath.row dataArr:self.fakeData[indexPath.row+3]];
+    NSMutableArray *strArr;
+    DSBRecharWithdrwUsrModel *model;
+    NSString *time;
+    if (self.type == DashenBoardTypeRechargeBoard) {
+        model = self.recharList[indexPath.row + 3];
+        time = [model.lastDepositDate componentsSeparatedByString:@" "].lastObject;
+    } else {
+        model = self.wthdrwList[indexPath.row + 3];
+        time = [model.lastWithdrawalDate componentsSeparatedByString:@" "].lastObject;
+    }
+    NSString *rank;
+    if (model.clubLevel > 1) {
+        rank = VIPRankString[model.clubLevel];
+    } else {
+        rank = [NSString stringWithFormat:@"VIP%ld", model.customerLevel];
+    }
+    NSString *amount = [model.totalAmount jk_toDisplayNumberWithDigit:0];
+    strArr = @[model.loginName, rank, amount, time, model.headshot].mutableCopy;
+    [cell setupIndexRow:indexPath.row dataArr:strArr];
     return cell;
 }
 
@@ -105,13 +107,66 @@ NSString *const HeaderID = @"DSBRchrWthdrwHeader";
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
     DSBRchrWthdrwHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderID];
-    //TODO: =
+    if (self.recharList.count || self.wthdrwList.count) {
+        NSArray *models;
+        if (self.type == DashenBoardTypeRechargeBoard) {
+            models = @[self.recharList[0], self.recharList[1], self.recharList[2]];
+        } else {
+            models = @[self.wthdrwList[0], self.wthdrwList[1], self.wthdrwList[2]];
+        }
+        [header setup123DataArr:models];
+    }
     return header;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 215;
 }
+
+
+#pragma mark - Request
+
+/// 充值榜数据
+- (void)requestRankRecharge {
+    NSTimeInterval spaceTime = [[NSDate date] timeIntervalSince1970] - _lastReqTimeRecharge;
+    // 已有数据 && 在一小时内
+    if (self.recharList.count && spaceTime < 60*60) {
+        [self.tableView reloadData];
+    } else {
+        [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeRecharge handler:^(id responseObj, NSString *errorMsg) {
+            if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+                NSArray *orgData = responseObj[@"data"];
+                self.recharList = [DSBRecharWithdrwUsrModel cn_parse:orgData];
+                if (self.recharList.count > 3) {
+                    [self.tableView reloadData];
+                    self->_lastReqTimeRecharge = [[NSDate date] timeIntervalSince1970];
+                }
+            }
+        }];
+    }
+}
+
+/// 提现榜数据
+- (void)requestRankWithdraw {
+    NSTimeInterval spaceTime = [[NSDate date] timeIntervalSince1970] - _lastReqtimeWithdraw;
+    // 已有数据 && 在一小时内
+    if (self.wthdrwList.count && spaceTime < 60*60) {
+        [self.tableView reloadData];
+    } else {
+        [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeWithdraw handler:^(id responseObj, NSString *errorMsg) {
+            if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+                NSArray *orgData = responseObj[@"data"];
+                self.wthdrwList = [DSBRecharWithdrwUsrModel cn_parse:orgData];
+                if (self.wthdrwList.count > 3) {
+                    [self.tableView reloadData];
+                    self->_lastReqtimeWithdraw = [[NSDate date] timeIntervalSince1970];
+                }
+            }
+        }];
+    }
+}
+
 
 @end

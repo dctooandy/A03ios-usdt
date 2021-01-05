@@ -71,8 +71,8 @@
                     <constraint firstItem="aLN-YZ-Ikb" firstAttribute="leading" secondItem="C9g-PG-oTB" secondAttribute="leading" id="JYw-rM-yLM"/>
                     <constraint firstItem="Lbb-dW-6J3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Jjz-oX-H9h"/>
                     <constraint firstAttribute="trailing" secondItem="cHk-YC-qup" secondAttribute="trailing" constant="12" id="Ryr-EK-fzF"/>
+                    <constraint firstItem="qkT-JM-ueJ" firstAttribute="leading" secondItem="Lbb-dW-6J3" secondAttribute="trailing" constant="11" id="ZC2-Qw-CTh"/>
                     <constraint firstItem="qkT-JM-ueJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="45" id="Zt5-NI-3gk"/>
-                    <constraint firstItem="Lbb-dW-6J3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="bOe-Wk-R11"/>
                     <constraint firstItem="kpJ-cJ-XCc" firstAttribute="leading" secondItem="sVE-pb-Yvh" secondAttribute="trailing" constant="5" id="br6-FY-5hC"/>
                     <constraint firstItem="cHk-YC-qup" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fdY-O6-SdM"/>
                     <constraint firstItem="sVE-pb-Yvh" firstAttribute="leading" secondItem="qkT-JM-ueJ" secondAttribute="trailing" constant="85" id="gLi-9R-ymL"/>
@@ -89,7 +89,7 @@
                 <outlet property="rankLb" destination="Lbb-dW-6J3" id="VGA-UF-nLR"/>
                 <outlet property="timeLb" destination="cHk-YC-qup" id="BU9-s1-qbP"/>
             </connections>
-            <point key="canvasLocation" x="161.59420289855075" y="136.60714285714286"/>
+            <point key="canvasLocation" x="-47" y="118"/>
         </tableViewCell>
     </objects>
     <resources>

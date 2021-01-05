@@ -19,9 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign) NSInteger              customerLevel;
 @property (nonatomic , copy) NSString              * headshot;
 @property (nonatomic , copy) NSString              * lastDepositDate;
+@property (nonatomic , copy) NSString              * lastWithdrawalDate;
 @property (nonatomic , copy) NSString              * loginName;
-@property (nonatomic , copy) NSString              * totalAmount;
+@property (nonatomic , strong) NSNumber              * totalAmount;
 
+@property (copy,nonatomic,readonly) NSString *writtenLevel; 
+@property (copy,nonatomic,readonly) NSString *writtenTime; 
 @end
 
 NS_ASSUME_NONNULL_END

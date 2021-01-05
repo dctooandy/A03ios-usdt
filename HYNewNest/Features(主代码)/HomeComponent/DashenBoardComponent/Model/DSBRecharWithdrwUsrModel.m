@@ -7,7 +7,26 @@
 //
 
 #import "DSBRecharWithdrwUsrModel.h"
+#import "VIPRankConst.h"
 
 @implementation DSBRecharWithdrwUsrModel
+
+- (NSString *)writtenLevel {
+    if (self.clubLevel > 1) {
+        // 返回 私享会等级
+        return VIPRankString[self.clubLevel];
+    } else {
+        // 返回 VIPN
+        return [NSString stringWithFormat:@"VIP%ld", self.customerLevel];
+    }
+}
+
+- (NSString *)writtenTime {
+    if (self.lastDepositDate) {
+        return [self.lastDepositDate componentsSeparatedByString:@" "].lastObject;
+    } else {
+        return [self.lastWithdrawalDate componentsSeparatedByString:@" "].lastObject;
+    }
+}
 
 @end

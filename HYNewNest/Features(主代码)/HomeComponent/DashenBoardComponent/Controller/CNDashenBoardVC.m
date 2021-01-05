@@ -10,7 +10,6 @@
 #import "DSBHeaderSelectionView.h"
 #import "BYMultiDataSourceTableView.h"
 
-#import "DashenBoardRequest.h"
 #import "DSBWeekMonthListDataSource.h"
 #import "DSBRecharWithdrwRankDataSource.h"
 #import "DSBProfitBoardDataSource.h"
@@ -34,9 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
-//    [self requestRankRecharge];
-//    [self requestRankWithdraw];
+
     
 //    [self requestChampionRankWeekly];
 //    [self requestChampionRankMonthly];
@@ -115,61 +112,39 @@
 
 #pragma mark - Request
 
-/// 充值榜数据
-- (void)requestRankRecharge {
-    [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeRecharge handler:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-            NSArray *orgData = responseObj[@"data"];
-            NSArray *usrArr = [DSBRecharWithdrwUsrModel cn_parse:orgData];
-            //TODO:
-        }
-    }];
-}
-
-/// 提现榜数据
-- (void)requestRankWithdraw {
-    [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeWithdraw handler:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-            NSArray *orgData = responseObj[@"data"];
-            NSArray *usrArr = [DSBRecharWithdrwUsrModel cn_parse:orgData];
-            //TODO:
-        }
-    }];
-}
-
-/// 周冠军数据
-- (void)requestChampionRankWeekly {
-    [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeTotalWeek handler:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-            NSArray *orgData = responseObj[@"data"];
-            //TODO:
-        }
-    }];
-}
-
-/// 月冠军数据
-- (void)requestChampionRankMonthly {
-    [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeTotalMonth handler:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-            NSArray *orgData = responseObj[@"data"];
-            //TODO:
-        }
-    }];
-}
-
-/// 盈利榜
-- (void)requestYinliRank {
-    
-    // 1小时内?
-    NSString *beginDate = [[[NSDate date] jk_dateBySubtractingHours:1] jk_dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString *endDate = [[NSDate date] jk_dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
-    
-    [DashenBoardRequest requestProfitPageNo:1 beginDate:beginDate endDate:endDate handler:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-            NSArray *orgData = responseObj[@"data"];
-            //TODO:
-        }
-    }];
-}
+///// 周冠军数据
+//- (void)requestChampionRankWeekly {
+//    [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeTotalWeek handler:^(id responseObj, NSString *errorMsg) {
+//        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+//            NSArray *orgData = responseObj[@"data"];
+//            //TODO:
+//        }
+//    }];
+//}
+//
+///// 月冠军数据
+//- (void)requestChampionRankMonthly {
+//    [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeTotalMonth handler:^(id responseObj, NSString *errorMsg) {
+//        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+//            NSArray *orgData = responseObj[@"data"];
+//            //TODO:
+//        }
+//    }];
+//}
+//
+///// 盈利榜
+//- (void)requestYinliRank {
+//    
+//    // 1小时内?
+//    NSString *beginDate = [[[NSDate date] jk_dateBySubtractingHours:1] jk_dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    NSString *endDate = [[NSDate date] jk_dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    
+//    [DashenBoardRequest requestProfitPageNo:1 beginDate:beginDate endDate:endDate handler:^(id responseObj, NSString *errorMsg) {
+//        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+//            NSArray *orgData = responseObj[@"data"];
+//            //TODO:
+//        }
+//    }];
+//}
 
 @end
