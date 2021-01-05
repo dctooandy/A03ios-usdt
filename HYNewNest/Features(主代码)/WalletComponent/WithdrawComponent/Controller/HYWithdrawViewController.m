@@ -65,7 +65,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self getBalance];
-    [self requestWithdrawAddress];;
+    [self requestWithdrawAddress];
     
     if ((![CNUserManager shareManager].isUsdtMode)
         && (![CNUserManager shareManager].userDetail.mobileNoBind || ![CNUserManager shareManager].userDetail.realName)) {
@@ -126,6 +126,9 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 
 #pragma mark - ACTION
 - (IBAction)didTapWithdrawBtn:(id)sender {
+    if (!self.moneyModel) {
+        return;
+    }
     WEAKSELF_DEFINE
     HYWithdrawComfirmView *view = [[HYWithdrawComfirmView alloc] initWithAmountModel:self.moneyModel sumbitBlock:^(NSString * withdrawAmout) {
         STRONGSELF_DEFINE
