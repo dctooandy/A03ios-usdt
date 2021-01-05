@@ -14,15 +14,15 @@
 
 /// gameCode对应表
 NSString *const InGameTypeString[] = {
-    [InGameTypeAGQJ]    = @"003",
-    [InGameTypeAGIN]    = @"026",
-    [InGameTypeAGBY]    = @"026",
-    [InGameTypeSHABA]   = @"031",
-    [InGameTypeYSB]     = @"068",
-    [InGameTypeHYTY]    = @"062",
-    [InGameTypeKENO]    = @"004",
-    [InGameTypeQG]      = @"080",
-    [InGameTypeAGSTAR]  = @"064"
+    [InGameTypeAGQJ]    = @"A03003",
+    [InGameTypeAGIN]    = @"A03026",
+    [InGameTypeAGBY]    = @"A03026",
+    [InGameTypeSHABA]   = @"A03031",
+    [InGameTypeYSB]     = @"A03068",
+    [InGameTypeHYTY]    = @"A03062",
+    [InGameTypeKENO]    = @"A03004",
+    [InGameTypeQG]      = @"A03080",
+    [InGameTypeAGSTAR]  = @"A03064"
 };
 
 @interface HYInGameHelper ()
