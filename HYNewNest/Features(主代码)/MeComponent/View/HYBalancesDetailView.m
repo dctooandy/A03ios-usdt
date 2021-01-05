@@ -110,10 +110,28 @@
     
     // Platform View
     [self.balsScrollView removeAllSubViews];
+    
+    NSMutableArray *mergedPlatBalances = model.platformBalances.mutableCopy;
+    // USDT模式下有可能返回重复的平台 将余额合并后去重
+    if ([CNUserManager shareManager].isUsdtMode) {
+        __block platformBalancesItem *lastItem;
+        [mergedPlatBalances enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(platformBalancesItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (lastItem && [lastItem.platformCode isEqualToString:obj.platformCode]) { //有重复值
+                CGFloat mergeBalance = lastItem.balance.floatValue + obj.balance.floatValue;
+                lastItem.balance = @(mergeBalance);
+                [mergedPlatBalances removeObject:obj];
+            }
+            if ([obj.platformName isEqualToString:@"环亚体育"]) {
+                obj.platformName = @"币游体育";
+            }
+            lastItem = obj;
+        }];
+    }
+    
     CGFloat kMargin = AD(15);
     CGFloat kItem_W = (kScreenWidth - 30 - kMargin*3) * 0.5;
     CGFloat kItem_H = 58.0;
-    [model.platformBalances enumerateObjectsUsingBlock:^(platformBalancesItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [mergedPlatBalances enumerateObjectsUsingBlock:^(platformBalancesItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIView *squareView = [UIView new];
         squareView.frame = CGRectMake(kMargin + idx%2 * (kMargin + kItem_W), idx/2 * (kItem_H + kMargin), kItem_W, kItem_H);
         squareView.backgroundColor = kHexColor(0x343452);

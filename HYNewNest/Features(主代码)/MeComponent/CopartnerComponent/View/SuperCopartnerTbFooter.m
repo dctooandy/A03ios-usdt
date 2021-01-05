@@ -74,12 +74,16 @@
 }
 
 - (IBAction)didTapOnekeyRecive:(id)sender {
-    [CNSuperCopartnerRequest applyMyGiftBonusHandler:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-            NSString *amount = responseObj[@"amount"];
-            [CNHUB showSuccess:[NSString stringWithFormat:@"成功领取 %@usdt", amount]];
-        }
-    }];
+    if ([CNUserManager shareManager].isLogin) { // 一键领取
+        [CNSuperCopartnerRequest applyMyGiftBonusHandler:^(id responseObj, NSString *errorMsg) {
+            if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+                NSString *amount = responseObj[@"amount"];
+                [CNHUB showSuccess:[NSString stringWithFormat:@"成功领取 %@usdt", amount]];
+            }
+        }];
+    } else { // 登录
+        [NNPageRouter jump2Login];
+    }
 }
 
 

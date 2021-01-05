@@ -21,6 +21,7 @@
 #import "LYEmptyView.h"
 #import "UIView+Empty.h"
 #import "HYTabBarViewController.h"
+#import "IN3SAnalytics.h"
 
 @interface HYRechargeCNYViewController () <HYRechargeCNYEditViewDelegate>
 @property (nonatomic, assign) NSInteger selcPayWayIdx;
@@ -69,6 +70,7 @@
     [super viewDidLoad];
     self.title = @"充值";
     _selcPayWayIdx = 0;
+    _launchDate = [NSDate date];
     
     LYEmptyView *empView = [LYEmptyView emptyActionViewWithImage:[UIImage imageNamed:@"kongduixiang"] titleStr:@"" detailStr:@"暂无充值方式提供" btnTitleStr:@"刷新试试" btnClickBlock:^{
         [self queryCNYPayways];
@@ -175,6 +177,12 @@
         } else {
             [self.view ly_showEmptyView];
         }
+        
+        // 耗时间隔毫秒
+        NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:self->_launchDate] * 1000;
+        NSLog(@" ======> 进CNY支付 耗时：%f毫秒", duration);
+        NSString *timeString = [NSString stringWithFormat:@"%f", [self->_launchDate timeIntervalSince1970]];
+        [IN3SAnalytics enterPageWithName:@"PaymentPageLoad" responseTime:duration timestamp:timeString];
     }];
 }
 

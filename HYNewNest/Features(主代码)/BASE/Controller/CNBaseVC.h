@@ -11,6 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CNBaseVC : UIViewController
+{
+    NSDate *_launchDate; //刚进入页面时间 手动赋值  用于计时
+}
 -(void)addNaviLeftItemNil;
 /// 导航栏右边按钮图片和事件，事件需重写
 - (void)addNaviRightItemWithTitle:(NSString *)title;

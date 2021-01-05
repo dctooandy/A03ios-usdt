@@ -11,6 +11,7 @@
 #import <IQKeyboardManager/IQKeyboardManager.h>
 #import <IVLoganAnalysis/IVLAManager.h>
 #import "CNPushRequest.h"
+#import "IN3SAnalytics.h"
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 #import <UserNotifications/UserNotifications.h>
@@ -26,6 +27,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRemoteNotification) name:BYDidEnterHomePageNoti object:nil];
+    
+    // 3S 统计
+#if DEBUG
+    [IN3SAnalytics debugEnable:YES];
+#endif
+    //SDK初始配置，切记一定要在该方法中调用
+    [IN3SAnalytics configureSDKWithProduct:@"A03"];
     
     // 天网埋点
     [IVLAManager setLogEnabled:YES];
@@ -47,10 +55,12 @@
         [IVLAManager setPayegisSDKDomain:@"http://115.84.241.53/did/"];
     });
     
+    // pages
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = [[SplashViewController alloc] init];
     [self.window makeKeyAndVisible];
     
+    // Keyboard
     [self setupKeyboard];
     
     // 注册 APNs
@@ -64,6 +74,10 @@
     }
     
     return YES;
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    [IN3SAnalytics exitApp];
 }
 
 

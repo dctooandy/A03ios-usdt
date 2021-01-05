@@ -29,12 +29,16 @@
 #import "CNLoginRequest.h"
 #import "HYInGameHelper.h"
 #import "SocketRocketUtility.h"
+#import "IN3SAnalytics.h"
 
 #import <MJRefresh/MJRefresh.h>
 #import "NSURL+HYLink.h"
 
 
 @interface CNHomeVC () <CNUserInfoLoginViewDelegate,  SDCycleScrollViewDelegate, UUMarqueeViewDelegate, GameBtnsStackViewDelegate, DashenBoardAutoHeightDelegate>
+{
+    BOOL _didAppear;
+}
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 /// 滚动视图
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -109,7 +113,17 @@
 //    [[SocketRocketUtility instance] SRWebSocketOpenWithURLString:wsURL];
 }
 
-/// 用户登录后的UI变化和网络请求
+//可以在首页的该方法中调用
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    //启动完成, 只调一次
+    if (!_didAppear) {
+        [IN3SAnalytics launchFinished];
+        _didAppear = YES;
+    }
+}
+
 - (void)userDidLogin {
     [self.infoView updateLoginStatusUI];
     
@@ -269,7 +283,12 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     if (self.bannModels.count > 0 && self.bannModels.count-1 >= index) {
         AdBannerModel *model = self.bannModels[index];
-        [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"活动" needPubSite:NO];
+        if ([model.linkUrl containsString:@"detailsPage?id="]) {
+            NSString *articalId = [model.linkUrl componentsSeparatedByString:@"="].lastObject;
+            [NNPageRouter jump2ArticalWithArticalId:articalId title:@"文章"];
+        } else {
+            [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"活动" needPubSite:NO];
+        }
     }
 }
 

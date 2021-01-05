@@ -45,6 +45,8 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
     [tableView registerNib:[UINib nibWithNibName:SCTbFooter bundle:nil] forHeaderFooterViewReuseIdentifier:SCTbFooter];
     [tableView registerClass:[SuperCopartnerTbCell class] forCellReuseIdentifier:SCTbCellID];
     
+    _pageNoMyBonus = 1;
+    _pageNoMyRecommen = 1;
     _tableView = tableView;
     _isHome = isHome;
     self.formType = type;
@@ -254,14 +256,15 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
 
 #pragma mark - REQUEST
 - (void)queryMyBonus {
-    if (_isHome && self.myBonusModel) { //一页
+    if (![CNUserManager shareManager].isLogin || (_isHome && self.myBonusModel.result.count)) { //一页
         [self.tableView reloadData];
     } else {
         [CNSuperCopartnerRequest requestSuperCopartnerListType:SuperCopartnerTypeMyBonus pageNo:_pageNoMyBonus handler:^(id responseObj, NSString *errorMsg) {
             if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-                
-                self->_pageNoMyBonus += 1;
                 SCMyBonusModel *newModel = [SCMyBonusModel cn_parse:responseObj];
+                if (newModel.result.count) {
+                    self->_pageNoMyBonus += 1;
+                }
                 NSMutableArray *oldResult = self.myBonusModel?self.myBonusModel.result.mutableCopy:@[].mutableCopy;
                 [oldResult addObjectsFromArray:newModel.result];
                 newModel.result = oldResult.copy;
@@ -275,14 +278,15 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
 }
 
 - (void)queryMyRecommen {
-    if (_isHome && self.myRecommenModels) { //一页
+    if (![CNUserManager shareManager].isLogin || (_isHome && self.myRecommenModels.count)) { //一页
         [self.tableView reloadData];
     } else {
         [CNSuperCopartnerRequest requestSuperCopartnerListType:SuperCopartnerTypeMyRecommen pageNo:_pageNoMyRecommen handler:^(id responseObj, NSString *errorMsg) {
             if (!errorMsg && [responseObj isKindOfClass:[NSArray class]]) {
-                
-                self->_pageNoMyRecommen += 1;
                 NSMutableArray *arr = self.myRecommenModels.count?self.myRecommenModels.mutableCopy:@[].mutableCopy;
+                if (arr.count) {
+                    self->_pageNoMyRecommen += 1;
+                }
                 [arr addObjectsFromArray:[SCMyRecommenModel cn_parse:responseObj]];
                 self.myRecommenModels = arr.copy;
                 [self.tableView reloadData];

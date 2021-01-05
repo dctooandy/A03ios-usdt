@@ -36,6 +36,7 @@
 - (void)loadViewFromXib {
     [super loadViewFromXib];
 
+    [self refreshBottomBtnsStatus];
     // 提现右上角NEW
     [self.withdrawCNYBtn showRightTopImageName:@"new_txgb" size:CGSizeMake(30, 14) offsetX:-30 offsetYMultiple:0];
 }
@@ -69,7 +70,11 @@
 
     [self.headerIcon sd_setImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userInfo.avatar] placeholderImage:[UIImage imageNamed:@"icon"]];
 
-    self.vipImgv.image = [UIImage imageNamed:[NSString stringWithFormat:@"VIP%ld", (long)[CNUserManager shareManager].userInfo.starLevel]];
+    NSInteger level = [CNUserManager shareManager].userInfo.starLevel;
+    UIImage *img = [UIImage imageNamed:[NSString stringWithFormat:@"vip%ld", (long)level]];
+    self.vipImgv.image = img;
+    
+    self.currencyLb.text = [CNUserManager shareManager].isUsdtMode?@"USDT":@"CNY";
 
 }
 
@@ -94,6 +99,11 @@
 
 // 切换币种 修改买充提买按钮 必须重新加载数据
 - (void)switchAccountUIChange {
+    [self refreshBottomBtnsStatus];
+    [self reloadBalance];
+}
+
+- (void)refreshBottomBtnsStatus {
     if ([CNUserManager shareManager].isUsdtMode) {
         self.switchModeBtn.selected = NO;
         self.bottomViewH.constant = 88;
@@ -105,7 +115,6 @@
         self.bottomViewSpacing.constant = 0;
         self.currencyLb.text = @"CNY";
     }
-    [self reloadBalance];
 }
 
 // 切换账户货币

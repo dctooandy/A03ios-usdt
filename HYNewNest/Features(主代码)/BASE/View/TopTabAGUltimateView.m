@@ -9,7 +9,6 @@
 #import "TopTabAGUltimateView.h"
 #import "HYHTMLViewController.h"
 #import "HYInGameHelper.h"
-
 #import "BYSuperCopartnerVC.h"
 
 @interface TopTabAGUltimateView()<WKNavigationDelegate, WKUIDelegate> //WKScriptMessageHandler  要加协议
@@ -131,14 +130,14 @@
             self.landScapeStateChange(YES);
         }
     }
-    if ([absoluteString containsString:@"portrait.html"]) {
-        //说明进AG旗舰大厅了
-        self.isLandScape = NO;
-        if (self.landScapeStateChange) {
-            self.landScapeStateChange(NO);
-        }
+//    if ([absoluteString containsString:@"portrait.html"]) {
+//        //说明进AG旗舰大厅了
+//        self.isLandScape = NO;
+//        if (self.landScapeStateChange) {
+//            self.landScapeStateChange(NO);
+//        }
 //        [[CNTimeLog shareInstance] endRecordTime:CNEventAGQJLaunch];
-    }
+//    }
     
     if ([absoluteString containsString:@"disconnect.html"]) {
         //说明失去连接了
@@ -152,51 +151,66 @@
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(nonnull WKNavigationAction *)navigationAction decisionHandler:(nonnull void (^)(WKNavigationActionPolicy))decisionHandler{
     
     NSString *url = navigationAction.request.URL.absoluteString;
+    MyLog(@"decidePolicyForNavigationAction ===> \n%@", url);
+    
     if ([url hasPrefix:@"hy://login"]){
         //登录
+        decisionHandler(WKNavigationActionPolicyCancel);
         [self loginClick];
+        
     }else if ([url hasPrefix:@"hy://regist"]){
         //注册
+        decisionHandler(WKNavigationActionPolicyCancel);
         [self registerClick];
-    }else if ([url hasPrefix:@"hy://share"]){
+        
+//    }else if ([url hasPrefix:@"hy://share"]){
         //分享
 //        [ShareListPopView show];
+        
     }else if ([url hasPrefix:@"hy://kefu"]){
         //客服
+        decisionHandler(WKNavigationActionPolicyCancel);
         [self kefu];
+        
     }else if ([url hasPrefix:@"hy://main"]){
         //主页
+        decisionHandler(WKNavigationActionPolicyCancel);
         [kCurNavVC popToRootViewControllerAnimated:YES];
         [NNControllerHelper currentTabBarController].selectedIndex = 0;
-        decisionHandler(WKNavigationActionPolicyCancel);
+        
     }else if ([url hasPrefix:@"hy://withdraw"]){
         //提现
+        decisionHandler(WKNavigationActionPolicyCancel);
         [self wdrawClick];
+        
     }else if ([url hasPrefix:@"hy://deposit"]){
         //充值
-//        RechargeViewController *vc = [[RechargeViewController alloc] init];
-//        UIViewController *topVC = [UIViewController topViewController];
-//        [topVC.navigationController pushViewController:vc animated:YES];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        [self rechargeClick];
+        
     }else if ([url hasPrefix:@"hy://agqj"]){
         //AG旗舰
         [self btnAGqjClick];
-    }else if ([url hasPrefix:@"hy://score"]){
+        
+//    }else if ([url hasPrefix:@"hy://score"]){
         //积分兑换
 //        IntegralViewController *vc = [[IntegralViewController alloc] init];
 //        UIViewController *topVC = [UIViewController topViewController];
 //        [topVC.navigationController pushViewController:vc animated:YES];
-    }else if ([url hasPrefix:@"hy://settings/info"]){
+        
+//    }else if ([url hasPrefix:@"hy://settings/info"]){
         //个人资料
 //        PersonInfoViewController *vc = [[PersonInfoViewController alloc] init];
 //        UIViewController *topVC = [UIViewController topViewController];
 //        [topVC.navigationController pushViewController:vc animated:YES];
-    }else if ([url hasPrefix:@"hy://videogame"]){
+        
+//    }else if ([url hasPrefix:@"hy://videogame"]){
         //电子游戏
 //        DYViewController *vc = [[DYViewController alloc] init];
 //        UIViewController *topVC = [UIViewController topViewController];
 //        [topVC.navigationController pushViewController:vc animated:YES];
         
-    }else if ([url containsString:@"/pub_site/share?"]) {
+    }else if ([url containsString:@"/share?"]) {
         //好友推荐
         decisionHandler(WKNavigationActionPolicyCancel);
         [kCurNavVC popToRootViewControllerAnimated:NO];
@@ -348,18 +362,16 @@
 
 //提现
 - (void)wdrawClick{
-//    [HYGPageRouter jump2WithdrawPage];
+    [NNPageRouter jump2Withdraw];
 }
 
+- (void)rechargeClick {
+    [NNPageRouter jump2Deposit];
+}
 
 //AG游戏
 - (void)btnAGqjClick{
-    //点击AG旗舰
-//    UIViewController *currentShowController = [UIViewController topViewController];
-//    AGFlagViewController *vc = [AGFlagViewController sharedInstance];
-//    vc.view.frame = CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT);
-//    vc.hidesBottomBarWhenPushed = YES;
-//    [currentShowController.navigationController pushViewController:vc animated:YES];
+    [[HYInGameHelper sharedInstance] inGame:InGameTypeAGQJ];
 }
 
 //联系客服

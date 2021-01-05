@@ -11,6 +11,7 @@
 #import <WebKit/WebKit.h>
 #import "LoadingView.h"
 #import "GameModel.h"
+#import "IN3SAnalytics.h"
 
 #define POST_JS @"function my_post(path, params) {\
 var method = \"GET\";\
@@ -83,6 +84,8 @@ form.submit();\
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _launchDate = [NSDate date];
     
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     [storage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways ];
@@ -223,8 +226,13 @@ form.submit();\
           [absoluteString containsString:@"sensor.html"]) {
           
       }
-      if ([absoluteString containsString:@"portrait.html"]) {
-          
+      if ([absoluteString containsString:@"aggameh5/game.html"]) { //进入AGQJ
+          // 耗时间隔毫秒
+          NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:_launchDate] * 1000;
+          NSLog(@" ======>  进AG旗舰 耗时：%f毫秒", duration);
+          NSString *timeString = [NSString stringWithFormat:@"%f", [_launchDate timeIntervalSince1970]];
+          //仅预加载完成后，再次进入才会到这里 isPreload: 已经加载完成（参数意思有差异）
+          [IN3SAnalytics loadAGQJWithResponseTime:duration loadFinish:YES msg:@"" timestamp:timeString];
       }
       if ([absoluteString containsString:@"disconnect.html"]) {
           [webView reload];

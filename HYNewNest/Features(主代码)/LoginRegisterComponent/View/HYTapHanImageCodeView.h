@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<HYTapHanImgCodeViewDelegate> delegate;
 
 /// 获取验证码
-- (void)getImageCode;
+- (void)getImageCodeForceRefresh:(BOOL)isForce;
 - (void)showSuccess;
 @end
 

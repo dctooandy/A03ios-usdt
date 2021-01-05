@@ -298,6 +298,13 @@
 
 #pragma mark - Action
 - (IBAction)didTapRechargeECoin:(id)sender {
+    kPreventRepeatTime(5);
+    if (self.depositModels.count == 0) {
+        [CNHUB showWaiting:@"正在为你请求充币渠道..请稍等几秒"];
+        [self queryOnlineBankAmount];
+        return;
+    }
+    
     HYBuyECoinComfirmView *view = [[HYBuyECoinComfirmView alloc] initWithDepositModels:self.depositModels switchHandler:^(NSInteger idx) {
         self.selcPayWayIdx = idx;
         [self queryOnlineBankAmount];
@@ -439,7 +446,6 @@ USDT支付渠道
 
 - (void)submitUSDTRequest:(NSString *)amount {
     DepositsBankModel *model = self.depositModels[_selcPayWayIdx];
-    
     if ([HYRechargeHelper isUSDTOtherBankModel:model]) {
         [CNRechargeRequest submitOnlinePayOrderV2Amount:amount
                                                currency:model.currency

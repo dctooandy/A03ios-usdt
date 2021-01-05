@@ -56,7 +56,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _manager = [[BalanceManager alloc] init];
-        _manager->balancesSec = 3; //刚启动三秒内不请求
+        _manager->balancesSec = 3; //刚启动三秒内不请求 接口太慢
         _manager->promoteSec = 0;
         _manager->betAmountSec = 0;
         [_manager setupTimers];
@@ -190,7 +190,7 @@
             
             AccountMoneyDetailModel *model = [AccountMoneyDetailModel cn_parse:responseObj];
             self.balanceDetailModel = model;
-            self->balancesSec = 60;
+            self->balancesSec = 120;
             [self resumeTimer];
 
             @synchronized (self) {
@@ -211,7 +211,7 @@
     [BalanceManager requestMonthPromoteAndXimaHandler:^(id responseObj, NSString *errorMsg) {
         PromoteXimaModel *pxModel = [PromoteXimaModel cn_parse:responseObj];
         self.promoteXimaModel = pxModel;
-        self->promoteSec = 60;
+        self->promoteSec = 120;
         [self resumeTimer];
         if (handler) {
             handler(pxModel);
@@ -224,7 +224,7 @@
     [BalanceManager requestBetAmountHandler:^(id responseObj, NSString *errorMsg) {
         BetAmountModel *betModel = [BetAmountModel cn_parse:responseObj];
         self.betAmountModel = betModel;
-        self->betAmountSec = 60;
+        self->betAmountSec = 120;
         [self resumeTimer];
         if (handler) {
             handler(betModel);

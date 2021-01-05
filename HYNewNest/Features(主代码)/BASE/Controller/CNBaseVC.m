@@ -16,6 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (@available(iOS 13.0, *)) {
+        // 禁用暗黑模式
+        self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+    } else {
+        // Fallback on earlier versions
+    }
     self.view.backgroundColor = kHexColor(0x10101C); //主暗蓝色背景色
 }
 

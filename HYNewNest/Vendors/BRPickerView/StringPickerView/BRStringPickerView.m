@@ -117,15 +117,15 @@ typedef NS_ENUM(NSInteger, BRStringPickerMode) {
         isDataSourceValid = NO;
     }
     // 判断数组是否合法（即数组的所有元素是否是同一种数据类型）
-    if (isDataSourceValid) {
-        Class itemClass = [[dataArr firstObject] class];
-        for (id obj in dataArr) {
-            if (![obj isKindOfClass:itemClass]) {
-                isDataSourceValid = NO;
-                break;
-            }
-        }
-    }
+//    if (isDataSourceValid) {
+//        Class itemClass = [[dataArr firstObject] class];
+//        for (id obj in dataArr) {
+//            if (![obj isKindOfClass:itemClass]) {
+//                isDataSourceValid = NO;
+//                break;
+//            }
+//        }
+//    }
     if (!isDataSourceValid) {
         return;
     }
@@ -268,8 +268,15 @@ typedef NS_ENUM(NSInteger, BRStringPickerMode) {
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view {
     
     //设置分割线的颜色
-    ((UIView *)[pickerView.subviews objectAtIndex:1]).backgroundColor = kBRLineColor;
-    ((UIView *)[pickerView.subviews objectAtIndex:2]).backgroundColor = kBRLineColor;
+//    ((UIView *)[pickerView.subviews objectAtIndex:1]).backgroundColor = kBRLineColor;
+//    ((UIView *)[pickerView.subviews objectAtIndex:2]).backgroundColor = kBRLineColor;
+    for(UIView *singleLine in pickerView.subviews)
+    {
+        if (singleLine.frame.size.height < 1)
+        {
+            singleLine.backgroundColor = kBRLineColor;
+        }
+    }
     
     UILabel *label = [[UILabel alloc]init];
     label.backgroundColor = [UIColor clearColor];
