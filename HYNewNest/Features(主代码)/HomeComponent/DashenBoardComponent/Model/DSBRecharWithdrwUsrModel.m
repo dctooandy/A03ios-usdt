@@ -30,3 +30,16 @@
 }
 
 @end
+
+
+@implementation DSBWeekMonthModel
++ (NSDictionary<NSString *,id> *)modelContainerPropertyGenericClass {
+    return @{
+        @"xm" : [DSBRecharWithdrwUsrModel class],
+         @"dbyl" : [DSBRecharWithdrwUsrModel class],
+         @"cz" : [DSBRecharWithdrwUsrModel class],
+         @"ljyl" : [DSBRecharWithdrwUsrModel class],
+         @"tx" : [DSBRecharWithdrwUsrModel class]
+    };
+}
+@end

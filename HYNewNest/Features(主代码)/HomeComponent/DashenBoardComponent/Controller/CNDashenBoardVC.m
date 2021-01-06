@@ -112,26 +112,6 @@
 
 #pragma mark - Request
 
-///// 周冠军数据
-//- (void)requestChampionRankWeekly {
-//    [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeTotalWeek handler:^(id responseObj, NSString *errorMsg) {
-//        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-//            NSArray *orgData = responseObj[@"data"];
-//            //TODO:
-//        }
-//    }];
-//}
-//
-///// 月冠军数据
-//- (void)requestChampionRankMonthly {
-//    [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeTotalMonth handler:^(id responseObj, NSString *errorMsg) {
-//        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-//            NSArray *orgData = responseObj[@"data"];
-//            //TODO:
-//        }
-//    }];
-//}
-//
 ///// 盈利榜
 //- (void)requestYinliRank {
 //    

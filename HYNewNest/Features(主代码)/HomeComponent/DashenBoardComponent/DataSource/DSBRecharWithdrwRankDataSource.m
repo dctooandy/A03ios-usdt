@@ -101,23 +101,23 @@ NSString *const HeaderID = @"DSBRchrWthdrwHeader";
     return 60;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    MyLog(@"点了%@", indexPath);
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    MyLog(@"点了%@", indexPath);
+//}
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     DSBRchrWthdrwHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderID];
-    if (self.recharList.count || self.wthdrwList.count) {
-        NSArray *models;
-        if (self.type == DashenBoardTypeRechargeBoard) {
-            models = @[self.recharList[0], self.recharList[1], self.recharList[2]];
-        } else {
-            models = @[self.wthdrwList[0], self.wthdrwList[1], self.wthdrwList[2]];
-        }
+    NSArray *models;
+    if (self.type == DashenBoardTypeRechargeBoard && self.recharList.count) {
+        models = @[self.recharList[0], self.recharList[1], self.recharList[2]];
+        [header setup123DataArr:models];
+    } else if (self.type == DashenBoardTypeWithdrawBoard && self.wthdrwList.count) {
+        models = @[self.wthdrwList[0], self.wthdrwList[1], self.wthdrwList[2]];
         [header setup123DataArr:models];
     }
+        
     return header;
 }
 

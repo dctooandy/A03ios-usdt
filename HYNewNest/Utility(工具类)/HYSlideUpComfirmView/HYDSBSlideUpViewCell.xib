@@ -82,6 +82,14 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="amountLb" destination="BjY-WM-IIP" id="L2U-lT-CMw"/>
+                <outlet property="crownImgv" destination="VJH-wz-zOI" id="oGZ-u4-kY1"/>
+                <outlet property="headShotImgv" destination="fJl-aH-zxn" id="1kJ-Qe-rg6"/>
+                <outlet property="levelLb" destination="K2e-Xp-VjW" id="aWs-Tf-njF"/>
+                <outlet property="nameLb" destination="haM-33-Pc0" id="p53-Mk-vk6"/>
+                <outlet property="rankLb" destination="761-hX-3xB" id="VYO-zk-Uah"/>
+            </connections>
             <point key="canvasLocation" x="350.72463768115944" y="155.02232142857142"/>
         </tableViewCell>
     </objects>

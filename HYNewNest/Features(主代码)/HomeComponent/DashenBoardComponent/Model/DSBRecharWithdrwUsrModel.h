@@ -18,13 +18,27 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign) NSInteger              customerId;
 @property (nonatomic , assign) NSInteger              customerLevel;
 @property (nonatomic , copy) NSString              * headshot;
+//deposit
 @property (nonatomic , copy) NSString              * lastDepositDate;
+//withdraw
 @property (nonatomic , copy) NSString              * lastWithdrawalDate;
 @property (nonatomic , copy) NSString              * loginName;
 @property (nonatomic , strong) NSNumber              * totalAmount;
+//Xima
+@property (nonatomic , strong) NSNumber              * totalAmount1;
+@property (nonatomic , strong) NSNumber              * totalAmount2;
 
 @property (copy,nonatomic,readonly) NSString *writtenLevel; 
 @property (copy,nonatomic,readonly) NSString *writtenTime; 
+@end
+
+
+@interface DSBWeekMonthModel : CNBaseModel
+@property (strong,nonatomic) NSArray <DSBRecharWithdrwUsrModel *>*xm;
+@property (strong,nonatomic) NSArray <DSBRecharWithdrwUsrModel *>*dbyl;
+@property (strong,nonatomic) NSArray <DSBRecharWithdrwUsrModel *>*cz;
+@property (strong,nonatomic) NSArray <DSBRecharWithdrwUsrModel *>*ljyl;
+@property (strong,nonatomic) NSArray <DSBRecharWithdrwUsrModel *>*tx;
 @end
 
 NS_ASSUME_NONNULL_END

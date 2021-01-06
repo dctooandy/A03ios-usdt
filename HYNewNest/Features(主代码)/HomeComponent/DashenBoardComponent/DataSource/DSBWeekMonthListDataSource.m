@@ -9,15 +9,21 @@
 #import "DSBWeekMonthListDataSource.h"
 #import "DSBWeekMonthListCell.h"
 #import "HYDSBSlideUpView.h"
+#import "DashenBoardRequest.h"
+#import "DSBRecharWithdrwUsrModel.h"
 
 NSString *const listCellID = @"DSBWeekMonthListCell";
 
 @interface DSBWeekMonthListDataSource () <UITableViewDelegate, UITableViewDataSource>
+//{
+//    NSTimeInterval _lastReqTimeWeekly;
+//    NSTimeInterval _lastReqtimeMonthly;
+//}
 @property (weak,nonatomic) id<DashenBoardAutoHeightDelegate> delegate; // 高度代理
 @property (weak,nonatomic) UITableView *tableView;
 
-//TODO:=
-@property (strong,nonatomic) NSArray *fakeData;
+@property (strong,nonatomic) DSBWeekMonthModel *weekRank;
+@property (strong,nonatomic) DSBWeekMonthModel *monthRank;
 @end
 
 @implementation DSBWeekMonthListDataSource
@@ -39,45 +45,79 @@ NSString *const listCellID = @"DSBWeekMonthListCell";
     return self;
 }
 
-//TODO: 修改数据源 修改高度
 - (void)setType:(DashenBoardType)type {
     _type = type;
     
-    [self.tableView reloadData];
+    if (type == DashenBoardTypeWeekBoard) {
+        [self requestChampionRankWeekly];
+    } else {
+        [self requestChampionRankMonthly];
+    }
+    
     if (self.delegate) {
         [self.delegate didSetupDataGetTableHeight:(250.0)];
     }
-}
-
-- (NSArray *)fakeData {
-    if (self.type == DashenBoardTypeWeekBoard) {
-        _fakeData = @[@[@"累计盈利冠军", @"fxxx23", @"33,123,123"],
-                      @[@"单比盈利冠军", @"fxxx23", @"235,234"],
-                      @[@"充值冠军", @"fxxx23", @"775,234"],
-                      @[@"提现冠军", @"fxxx23", @"235,234"],
-                      @[@"提现冠军", @"fxxx23", @"23,235,234"]];
-    } else {
-        _fakeData = @[@[@"累计盈利冠军", @"fxxx55", @"3,123,123"],
-                      @[@"单比盈利冠军", @"fxxx55", @"23,235,234"],
-                      @[@"充值冠军", @"fxxx55", @"235,234"],
-                      @[@"提现冠军", @"fxxx55", @"23,235,234"],
-                      @[@"提现冠军", @"fxxx55", @"23,235,234"]];
-    }
-    
-    return _fakeData;
 }
 
 
 #pragma mark - UITableView
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.fakeData.count;
+    return  5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DSBWeekMonthListCell *cell = [tableView dequeueReusableCellWithIdentifier:listCellID];
-    [cell setupDataArr:self.fakeData[indexPath.row]];
-    cell.btmLine.hidden = indexPath.row == self.fakeData.count - 1;
+    DSBWeekMonthModel *main;
+    if (self.type == DashenBoardTypeWeekBoard) {
+        main = self.weekRank;
+    }else{
+        main = self.monthRank;
+    }
+    
+    if (indexPath.row == 0) {
+        NSArray *models = main.ljyl;
+        if (models.count) {
+            DSBRecharWithdrwUsrModel *usr = models[0];
+            [cell setupDataArr:@[@"累计盈利冠军", usr.loginName, [usr.totalAmount jk_toDisplayNumberWithDigit:2]]];
+        } else {
+            [cell setupDataArr:@[@"累计盈利冠军", @"--", @"--"]];
+        }
+    } else if (indexPath.row == 1) {
+        NSArray *models = main.dbyl;
+        if (models.count) {
+            DSBRecharWithdrwUsrModel *usr = models[0];
+            [cell setupDataArr:@[@"单笔盈利冠军", usr.loginName, [usr.totalAmount jk_toDisplayNumberWithDigit:2]]];
+        } else {
+            [cell setupDataArr:@[@"单笔盈利冠军", @"--", @"--"]];
+        }
+    } else if (indexPath.row == 2) {
+        NSArray *models = main.cz;
+        if (models.count) {
+            DSBRecharWithdrwUsrModel *usr = models[0];
+            [cell setupDataArr:@[@"充值冠军", usr.loginName, [usr.totalAmount jk_toDisplayNumberWithDigit:2]]];
+        } else {
+            [cell setupDataArr:@[@"充值冠军", @"--", @"--"]];
+        }
+    } else if (indexPath.row == 3) {
+        NSArray *models = main.tx;
+        if (models.count) {
+            DSBRecharWithdrwUsrModel *usr = models[0];
+            [cell setupDataArr:@[@"提现冠军", usr.loginName, [usr.totalAmount jk_toDisplayNumberWithDigit:2]]];
+        } else {
+            [cell setupDataArr:@[@"提现冠军", @"--", @"--"]];
+        }
+    } else {
+        NSArray *models = main.xm;
+        if (models.count) {
+            DSBRecharWithdrwUsrModel *usr = models[0];
+            [cell setupDataArr:@[@"洗码冠军", usr.loginName, [usr.totalAmount1 jk_toDisplayNumberWithDigit:2]]];
+        } else {
+            [cell setupDataArr:@[@"洗码冠军", @"--", @"--"]];
+        }
+    }
+    cell.btmLine.hidden = indexPath.row == 4;
+    
     return cell;
 }
 
@@ -88,8 +128,60 @@ NSString *const listCellID = @"DSBWeekMonthListCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MyLog(@"点了%@", indexPath);
-    
-    [HYDSBSlideUpView showSlideupView];
+    DSBWeekMonthModel *main;
+    NSString *front;
+    if (self.type == DashenBoardTypeWeekBoard) {
+        main = self.weekRank;
+        front = @"周";
+    } else {
+        main = self.monthRank;
+        front = @"月";
+    }
+    if (indexPath.row == 0) {
+        [HYDSBSlideUpView showSlideupView:main.ljyl title:[front stringByAppendingString:@"累计盈利"]];
+    } else if (indexPath.row == 1) {
+        [HYDSBSlideUpView showSlideupView:main.dbyl title:[front stringByAppendingString:@"单笔盈利"]];
+    } else if (indexPath.row == 2) {
+        [HYDSBSlideUpView showSlideupView:main.cz title:[front stringByAppendingString:@"充值"]];
+    } else if (indexPath.row == 3) {
+        [HYDSBSlideUpView showSlideupView:main.tx title:[front stringByAppendingString:@"提现"]];
+    } else if (indexPath.row == 4) {
+        [HYDSBSlideUpView showSlideupView:main.xm title:[front stringByAppendingString:@"洗码"]];
+    }
 }
+
+
+#pragma mark - Request
+
+/// 周冠军数据
+- (void)requestChampionRankWeekly {
+    if (self.weekRank) {
+        [self.tableView reloadData];
+    } else {
+        [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeTotalWeek handler:^(id responseObj, NSString *errorMsg) {
+            if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+                DSBWeekMonthModel *model = [DSBWeekMonthModel cn_parse:responseObj];
+                self.weekRank = model;
+                [self.tableView reloadData];
+            }
+        }];
+    }
+}
+
+/// 月冠军数据
+- (void)requestChampionRankMonthly {
+    if (self.monthRank) {
+        [self.tableView reloadData];
+    } else {
+        [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeTotalMonth handler:^(id responseObj, NSString *errorMsg) {
+            if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+                DSBWeekMonthModel *model = [DSBWeekMonthModel cn_parse:responseObj];
+                self.monthRank = model;
+                [self.tableView reloadData];
+            }
+        }];
+    }
+}
+
 
 @end
