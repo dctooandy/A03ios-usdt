@@ -32,13 +32,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-
-    
-//    [self requestChampionRankWeekly];
-//    [self requestChampionRankMonthly];
-    
-//    [self requestYinliRank];
     
     // 滑动手势
     UISwipeGestureRecognizer *swipGes = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipeLeftRight:)];
@@ -109,22 +102,5 @@
 }
 
 
-
-#pragma mark - Request
-
-///// 盈利榜
-//- (void)requestYinliRank {
-//    
-//    // 1小时内?
-//    NSString *beginDate = [[[NSDate date] jk_dateBySubtractingHours:1] jk_dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
-//    NSString *endDate = [[NSDate date] jk_dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
-//    
-//    [DashenBoardRequest requestProfitPageNo:1 beginDate:beginDate endDate:endDate handler:^(id responseObj, NSString *errorMsg) {
-//        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-//            NSArray *orgData = responseObj[@"data"];
-//            //TODO:
-//        }
-//    }];
-//}
 
 @end

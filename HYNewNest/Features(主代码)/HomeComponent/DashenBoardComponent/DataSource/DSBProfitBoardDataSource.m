@@ -10,6 +10,7 @@
 #import "DSBProfitBoardCell.h"
 #import "DSBProfitFooter.h"
 #import "DSBProfitHeader.h"
+#import "DashenBoardRequest.h"
 
 NSString *const ProfitCellId = @"DSBProfitBoardCell";
 NSString *const ProfitFooterId = @"DSBProfitFooter";
@@ -45,7 +46,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 - (void)setType:(DashenBoardType)type {
     _type = type;
     
-    [self.tableView reloadData];
+    [self requestYinliRank];
     if (self.delegate) {
         [self.delegate didSetupDataGetTableHeight:(618.0)];
     }
@@ -107,6 +108,25 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 80;
+}
+
+
+#pragma mark - Request
+
+/// 盈利榜
+- (void)requestYinliRank {
+
+    // 1小时内?
+//    NSString *beginDate = [[[NSDate date] jk_dateBySubtractingHours:1] jk_dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    NSString *endDate = [[NSDate date] jk_dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *beginDate = [[[NSDate date] jk_startOfMonth] jk_stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *endDate = [[[NSDate date] jk_endOfMonth] jk_stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [DashenBoardRequest requestProfitPageNo:1 beginDate:beginDate endDate:endDate handler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+            NSArray *orgData = responseObj[@"data"];
+            //TODO:
+        }
+    }];
 }
 
 @end
