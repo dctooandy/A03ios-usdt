@@ -8,6 +8,7 @@
 
 #import "CNBaseNetworking.h"
 #import "DSBRecharWithdrwUsrModel.h"
+#import "DSBProfitBoardUsrModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -26,8 +27,6 @@ typedef NS_ENUM(NSUInteger, DashenBoredReqType) {
 
 /// 盈利榜
 + (void)requestProfitPageNo:(NSInteger)pageNo
-                  beginDate:(NSString *)beginDate
-                    endDate:(NSString *)endDate
                     handler:(HandlerBlock)handler;
 
 @end

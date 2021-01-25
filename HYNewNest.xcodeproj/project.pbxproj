@@ -222,6 +222,7 @@
 		3D41DEC92521CDE7000CA1D6 /* VIPRecordSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D41DEC62521CDE6000CA1D6 /* VIPRecordSelectorView.xib */; };
 		3D41DECA2521CDE7000CA1D6 /* VIPRecordSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEC82521CDE7000CA1D6 /* VIPRecordSelectorView.m */; };
 		3D564E2024F3C02C006846DD /* MessageBoxModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D564E1F24F3C02C006846DD /* MessageBoxModel.m */; };
+		3D5B259625BE70FD00FD23F0 /* DSBProfitBoardUsrModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B259525BE70FD00FD23F0 /* DSBProfitBoardUsrModel.m */; };
 		3D643F8824F29F3600B9AAA7 /* AlertViewHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F7D24F29F3600B9AAA7 /* AlertViewHelp.m */; };
 		3D643F8924F29F3600B9AAA7 /* IVOtherInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F8124F29F3600B9AAA7 /* IVOtherInfoModel.m */; };
 		3D643F8A24F29F3600B9AAA7 /* PushNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F8224F29F3600B9AAA7 /* PushNotificationCenter.m */; };
@@ -243,14 +244,6 @@
 		3D9700222599D8D4003238C4 /* HYDSBSlideUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9700212599D8D4003238C4 /* HYDSBSlideUpView.m */; };
 		3D9700262599DB2A003238C4 /* HYDSBSlideUpViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9700242599DB2A003238C4 /* HYDSBSlideUpViewCell.m */; };
 		3D9700272599DB2A003238C4 /* HYDSBSlideUpViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9700252599DB2A003238C4 /* HYDSBSlideUpViewCell.xib */; };
-		3D9DA66125908327003C3F28 /* DSBWeekMonthListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */; };
-		3D9DA669259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA668259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m */; };
-		3D9DA66E25918DF0003C3F28 /* DSBWeekMonthListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66C25918DF0003C3F28 /* DSBWeekMonthListCell.m */; };
-		3D9DA66F25918DF0003C3F28 /* DSBWeekMonthListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9DA66D25918DF0003C3F28 /* DSBWeekMonthListCell.xib */; };
-		3D9DA6742591D659003C3F28 /* DSBRchrWthdrwRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA6722591D659003C3F28 /* DSBRchrWthdrwRankCell.m */; };
-		3D9DA6752591D659003C3F28 /* DSBRchrWthdrwRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9DA6732591D659003C3F28 /* DSBRchrWthdrwRankCell.xib */; };
-		3D9DA6792591E1B6003C3F28 /* DSBRchrWthdrwHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA6782591E1B6003C3F28 /* DSBRchrWthdrwHeader.m */; };
-		3D9DA67B2591E1C9003C3F28 /* DSBRchrWthdrwHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9DA67A2591E1C9003C3F28 /* DSBRchrWthdrwHeader.xib */; };
 		3D97002B259B1CE1003238C4 /* BYRegisterSuccADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D970029259B1CE1003238C4 /* BYRegisterSuccADVC.m */; };
 		3D97002C259B1CE1003238C4 /* BYRegisterSuccADVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D97002A259B1CE1003238C4 /* BYRegisterSuccADVC.xib */; };
 		3D97004C25A2C3ED003238C4 /* IN3SResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3D97003025A2C3ED003238C4 /* IN3SResource.bundle */; };
@@ -268,6 +261,14 @@
 		3D97005825A2C3ED003238C4 /* IN3SWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97004625A2C3ED003238C4 /* IN3SWebViewController.m */; };
 		3D97005925A2C3ED003238C4 /* IN3SManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97004925A2C3ED003238C4 /* IN3SManager.m */; };
 		3D97005A25A2C3ED003238C4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D97004B25A2C3ED003238C4 /* Info.plist */; };
+		3D9DA66125908327003C3F28 /* DSBWeekMonthListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */; };
+		3D9DA669259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA668259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m */; };
+		3D9DA66E25918DF0003C3F28 /* DSBWeekMonthListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66C25918DF0003C3F28 /* DSBWeekMonthListCell.m */; };
+		3D9DA66F25918DF0003C3F28 /* DSBWeekMonthListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9DA66D25918DF0003C3F28 /* DSBWeekMonthListCell.xib */; };
+		3D9DA6742591D659003C3F28 /* DSBRchrWthdrwRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA6722591D659003C3F28 /* DSBRchrWthdrwRankCell.m */; };
+		3D9DA6752591D659003C3F28 /* DSBRchrWthdrwRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9DA6732591D659003C3F28 /* DSBRchrWthdrwRankCell.xib */; };
+		3D9DA6792591E1B6003C3F28 /* DSBRchrWthdrwHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA6782591E1B6003C3F28 /* DSBRchrWthdrwHeader.m */; };
+		3D9DA67B2591E1C9003C3F28 /* DSBRchrWthdrwHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9DA67A2591E1C9003C3F28 /* DSBRchrWthdrwHeader.xib */; };
 		3DA4F15024B30A090039123F /* SGQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DA4F13B24B30A080039123F /* SGQRCode.bundle */; };
 		3DA4F15124B30A090039123F /* UIImage+SGImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */; };
 		3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F14024B30A080039123F /* UIButton+Indicator.m */; };
@@ -1372,6 +1373,8 @@
 		3D41DEC82521CDE7000CA1D6 /* VIPRecordSelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPRecordSelectorView.m; sourceTree = "<group>"; };
 		3D564E1E24F3C02C006846DD /* MessageBoxModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageBoxModel.h; sourceTree = "<group>"; };
 		3D564E1F24F3C02C006846DD /* MessageBoxModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageBoxModel.m; sourceTree = "<group>"; };
+		3D5B259425BE70FD00FD23F0 /* DSBProfitBoardUsrModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBProfitBoardUsrModel.h; sourceTree = "<group>"; };
+		3D5B259525BE70FD00FD23F0 /* DSBProfitBoardUsrModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBProfitBoardUsrModel.m; sourceTree = "<group>"; };
 		3D643F7A24F29F3600B9AAA7 /* PushNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationCenter.h; sourceTree = "<group>"; };
 		3D643F7B24F29F3600B9AAA7 /* IVOtherInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVOtherInfoModel.h; sourceTree = "<group>"; };
 		3D643F7C24F29F3600B9AAA7 /* SocketTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketTool.h; sourceTree = "<group>"; };
@@ -1415,20 +1418,6 @@
 		3D9700232599DB2A003238C4 /* HYDSBSlideUpViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYDSBSlideUpViewCell.h; sourceTree = "<group>"; };
 		3D9700242599DB2A003238C4 /* HYDSBSlideUpViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYDSBSlideUpViewCell.m; sourceTree = "<group>"; };
 		3D9700252599DB2A003238C4 /* HYDSBSlideUpViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYDSBSlideUpViewCell.xib; sourceTree = "<group>"; };
-		3D9DA65F25908327003C3F28 /* DSBWeekMonthListDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBWeekMonthListDataSource.h; sourceTree = "<group>"; };
-		3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBWeekMonthListDataSource.m; sourceTree = "<group>"; };
-		3D9DA667259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRecharWithdrwRankDataSource.h; sourceTree = "<group>"; };
-		3D9DA668259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBRecharWithdrwRankDataSource.m; sourceTree = "<group>"; };
-		3D9DA66A259091C1003C3F28 /* BYDashenBoardConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYDashenBoardConst.h; sourceTree = "<group>"; };
-		3D9DA66B25918DF0003C3F28 /* DSBWeekMonthListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBWeekMonthListCell.h; sourceTree = "<group>"; };
-		3D9DA66C25918DF0003C3F28 /* DSBWeekMonthListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBWeekMonthListCell.m; sourceTree = "<group>"; };
-		3D9DA66D25918DF0003C3F28 /* DSBWeekMonthListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBWeekMonthListCell.xib; sourceTree = "<group>"; };
-		3D9DA6712591D659003C3F28 /* DSBRchrWthdrwRankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRchrWthdrwRankCell.h; sourceTree = "<group>"; };
-		3D9DA6722591D659003C3F28 /* DSBRchrWthdrwRankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBRchrWthdrwRankCell.m; sourceTree = "<group>"; };
-		3D9DA6732591D659003C3F28 /* DSBRchrWthdrwRankCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBRchrWthdrwRankCell.xib; sourceTree = "<group>"; };
-		3D9DA6772591E1B6003C3F28 /* DSBRchrWthdrwHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRchrWthdrwHeader.h; sourceTree = "<group>"; };
-		3D9DA6782591E1B6003C3F28 /* DSBRchrWthdrwHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBRchrWthdrwHeader.m; sourceTree = "<group>"; };
-		3D9DA67A2591E1C9003C3F28 /* DSBRchrWthdrwHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBRchrWthdrwHeader.xib; sourceTree = "<group>"; };
 		3D970028259B1CE1003238C4 /* BYRegisterSuccADVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYRegisterSuccADVC.h; sourceTree = "<group>"; };
 		3D970029259B1CE1003238C4 /* BYRegisterSuccADVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYRegisterSuccADVC.m; sourceTree = "<group>"; };
 		3D97002A259B1CE1003238C4 /* BYRegisterSuccADVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYRegisterSuccADVC.xib; sourceTree = "<group>"; };
@@ -1460,6 +1449,20 @@
 		3D97004925A2C3ED003238C4 /* IN3SManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SManager.m; sourceTree = "<group>"; };
 		3D97004A25A2C3ED003238C4 /* IN3SUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SUtility.h; sourceTree = "<group>"; };
 		3D97004B25A2C3ED003238C4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D9DA65F25908327003C3F28 /* DSBWeekMonthListDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBWeekMonthListDataSource.h; sourceTree = "<group>"; };
+		3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBWeekMonthListDataSource.m; sourceTree = "<group>"; };
+		3D9DA667259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRecharWithdrwRankDataSource.h; sourceTree = "<group>"; };
+		3D9DA668259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBRecharWithdrwRankDataSource.m; sourceTree = "<group>"; };
+		3D9DA66A259091C1003C3F28 /* BYDashenBoardConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYDashenBoardConst.h; sourceTree = "<group>"; };
+		3D9DA66B25918DF0003C3F28 /* DSBWeekMonthListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBWeekMonthListCell.h; sourceTree = "<group>"; };
+		3D9DA66C25918DF0003C3F28 /* DSBWeekMonthListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBWeekMonthListCell.m; sourceTree = "<group>"; };
+		3D9DA66D25918DF0003C3F28 /* DSBWeekMonthListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBWeekMonthListCell.xib; sourceTree = "<group>"; };
+		3D9DA6712591D659003C3F28 /* DSBRchrWthdrwRankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRchrWthdrwRankCell.h; sourceTree = "<group>"; };
+		3D9DA6722591D659003C3F28 /* DSBRchrWthdrwRankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBRchrWthdrwRankCell.m; sourceTree = "<group>"; };
+		3D9DA6732591D659003C3F28 /* DSBRchrWthdrwRankCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBRchrWthdrwRankCell.xib; sourceTree = "<group>"; };
+		3D9DA6772591E1B6003C3F28 /* DSBRchrWthdrwHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRchrWthdrwHeader.h; sourceTree = "<group>"; };
+		3D9DA6782591E1B6003C3F28 /* DSBRchrWthdrwHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBRchrWthdrwHeader.m; sourceTree = "<group>"; };
+		3D9DA67A2591E1C9003C3F28 /* DSBRchrWthdrwHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBRchrWthdrwHeader.xib; sourceTree = "<group>"; };
 		3DA4F13A24B30A080039123F /* SGQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCode.h; sourceTree = "<group>"; };
 		3DA4F13B24B30A080039123F /* SGQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SGQRCode.bundle; sourceTree = "<group>"; };
 		3DA4F13D24B30A080039123F /* UIImage+SGImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SGImageSize.m"; sourceTree = "<group>"; };
@@ -3407,20 +3410,6 @@
 			path = WebSocket;
 			sourceTree = "<group>";
 		};
-		3D9DA6762591DAC0003C3F28 /* DataSource */ = {
-			isa = PBXGroup;
-			children = (
-				3DF43D462594614D0087F26A /* DSBProfitBoardDataSource.h */,
-				3DF43D472594614D0087F26A /* DSBProfitBoardDataSource.m */,
-				3D9DA65F25908327003C3F28 /* DSBWeekMonthListDataSource.h */,
-				3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */,
-				3D9DA667259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.h */,
-				3D9DA668259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m */,
-				3D9DA66A259091C1003C3F28 /* BYDashenBoardConst.h */,
-			);
-			path = DataSource;
-            sourceTree = "<group>";
-        };
 		3D97002D25A2C3ED003238C4 /* IN3SAnalytics */ = {
 			isa = PBXGroup;
 			children = (
@@ -3470,6 +3459,20 @@
 				3D97004425A2C3ED003238C4 /* IN3SExitModel.h */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		3D9DA6762591DAC0003C3F28 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				3DF43D462594614D0087F26A /* DSBProfitBoardDataSource.h */,
+				3DF43D472594614D0087F26A /* DSBProfitBoardDataSource.m */,
+				3D9DA65F25908327003C3F28 /* DSBWeekMonthListDataSource.h */,
+				3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */,
+				3D9DA667259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.h */,
+				3D9DA668259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m */,
+				3D9DA66A259091C1003C3F28 /* BYDashenBoardConst.h */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 		3DA4F13924B30A080039123F /* SGQRCode */ = {
@@ -3662,6 +3665,8 @@
 			children = (
 				3DBA55F3257F67F5009A2B71 /* DSBRecharWithdrwUsrModel.h */,
 				3DBA55F4257F67F5009A2B71 /* DSBRecharWithdrwUsrModel.m */,
+				3D5B259425BE70FD00FD23F0 /* DSBProfitBoardUsrModel.h */,
+				3D5B259525BE70FD00FD23F0 /* DSBProfitBoardUsrModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6341,6 +6346,7 @@
 				3DF43D232592EC020087F26A /* JSONModelError.m in Sources */,
 				0487C97724CEAE1B0013715A /* CNMineVC.m in Sources */,
 				3DF43CF22592EA6A0087F26A /* UIDevice+IVInfo.m in Sources */,
+				3D5B259625BE70FD00FD23F0 /* DSBProfitBoardUsrModel.m in Sources */,
 				E98BEF1224D2A32700E6B0C8 /* HYXiMaSuccViewController.m in Sources */,
 				3DF43D262592EC020087F26A /* JSONHTTPClient.m in Sources */,
 				E986A17F24C97B21000F9CFF /* CNWDAccountRequest.m in Sources */,

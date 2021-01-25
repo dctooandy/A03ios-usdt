@@ -21,56 +21,39 @@
                         <constraint firstAttribute="height" constant="1" id="MXF-52-AaK"/>
                     </constraints>
                 </view>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GH4-lW-Lwh" customClass="CNTwoStatusBtn">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GH4-lW-Lwh" customClass="CNTwoStatusBtn">
                     <rect key="frame" x="22" y="11" width="370" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="dua-jp-HAY"/>
                     </constraints>
                     <state key="normal" title="去推荐桌台"/>
+                    <connections>
+                        <action selector="didTapBtmButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="umT-Ha-F7S"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="←左右滑动看更多大神→" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6o-Mc-Yft">
-                    <rect key="frame" x="152" y="57" width="110.5" height="12"/>
+                    <rect key="frame" x="152" y="59" width="110.5" height="12"/>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <color key="textColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pxi-n8-jt0" customClass="CNTwoStatusBtn">
-                    <rect key="frame" x="22" y="11" width="174" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="UKq-ah-umC"/>
-                    </constraints>
-                    <state key="normal" title="跟注"/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wvR-0Y-BEh" customClass="CNTwoStatusBtn">
-                    <rect key="frame" x="218" y="11" width="174" height="40"/>
-                    <state key="normal" title="围观"/>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="GH4-lW-Lwh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="22" id="1Ow-KE-3Wa"/>
-                <constraint firstItem="Pxi-n8-jt0" firstAttribute="width" secondItem="wvR-0Y-BEh" secondAttribute="width" id="7Mx-WH-3T8"/>
-                <constraint firstItem="Pxi-n8-jt0" firstAttribute="top" secondItem="Cnd-91-D9u" secondAttribute="bottom" constant="10" id="8B3-1M-4Tk"/>
-                <constraint firstItem="Pxi-n8-jt0" firstAttribute="height" secondItem="wvR-0Y-BEh" secondAttribute="height" id="CGp-vO-QCl"/>
-                <constraint firstItem="v6o-Mc-Yft" firstAttribute="top" secondItem="GH4-lW-Lwh" secondAttribute="bottom" constant="6" id="HC5-uC-h3t"/>
+                <constraint firstItem="v6o-Mc-Yft" firstAttribute="top" secondItem="GH4-lW-Lwh" secondAttribute="bottom" constant="8" id="HC5-uC-h3t"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Cnd-91-D9u" secondAttribute="trailing" id="QtM-hJ-e6i"/>
                 <constraint firstItem="v6o-Mc-Yft" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="RYl-YQ-cVp"/>
-                <constraint firstItem="wvR-0Y-BEh" firstAttribute="top" secondItem="Pxi-n8-jt0" secondAttribute="top" id="Rcq-UT-CTr"/>
                 <constraint firstItem="Cnd-91-D9u" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="SXM-IA-XmD"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="GH4-lW-Lwh" secondAttribute="trailing" constant="22" id="c7p-g6-W98"/>
                 <constraint firstItem="Cnd-91-D9u" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dec-zL-7rk"/>
                 <constraint firstItem="GH4-lW-Lwh" firstAttribute="top" secondItem="Cnd-91-D9u" secondAttribute="bottom" constant="10" id="fte-GH-8ep"/>
-                <constraint firstItem="Pxi-n8-jt0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="22" id="mZ6-DL-df9"/>
-                <constraint firstItem="wvR-0Y-BEh" firstAttribute="leading" secondItem="Pxi-n8-jt0" secondAttribute="trailing" constant="22" id="mko-Bv-Iz7"/>
-                <constraint firstAttribute="trailing" secondItem="wvR-0Y-BEh" secondAttribute="trailing" constant="22" id="u9U-x6-ptI"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="circuseeBtn" destination="wvR-0Y-BEh" id="JiL-an-sLr"/>
-                <outlet property="followBtn" destination="Pxi-n8-jt0" id="cRa-yL-GNY"/>
                 <outlet property="go2RemDeskBtn" destination="GH4-lW-Lwh" id="yo3-1j-YeM"/>
             </connections>
             <point key="canvasLocation" x="-43" y="149"/>

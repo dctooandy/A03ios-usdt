@@ -10,8 +10,17 @@
 #import "UILabel+Gradient.h"
 #import "BYDashenBoardConst.h"
 
+
 @interface DSBProfitHeader()
+
+// socket
 @property (weak, nonatomic) IBOutlet UIView *dewdropBoard;
+@property (weak, nonatomic) IBOutlet UILabel *totalNum;
+@property (weak, nonatomic) IBOutlet UILabel *zhuangNum;
+@property (weak, nonatomic) IBOutlet UILabel *xianNum;
+@property (weak, nonatomic) IBOutlet UILabel *heNum;
+@property (weak, nonatomic) IBOutlet UILabel *zhuangduiNum;
+@property (weak, nonatomic) IBOutlet UILabel *xianduiNum;
 
 
 @end

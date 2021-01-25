@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DSBProfitBoardUsrModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DSBProfitBoardCell : UITableViewCell
+
+- (void)setupPrListItem:(PrListItem *)item;
 
 @end
 

@@ -12,8 +12,6 @@
 @interface DSBProfitFooter()
 
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *go2RemDeskBtn;
-@property (weak, nonatomic) IBOutlet CNTwoStatusBtn *followBtn;
-@property (weak, nonatomic) IBOutlet CNTwoStatusBtn *circuseeBtn;
 
 @end
 
@@ -22,14 +20,25 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     _go2RemDeskBtn.enabled = YES;
-    _followBtn.enabled = YES;
-    _circuseeBtn.enabled = YES;
     
     self.backgroundView = ({
         UIView *bg = [[UIView alloc] initWithFrame:self.bounds];
         bg.backgroundColor = kHexColor(0x1C1B34);
         bg;
     });
+}
+
+- (void)setIsUsrOnline:(BOOL)isUsrOnline {
+    _isUsrOnline = isUsrOnline;
+    if (isUsrOnline) {
+        [_go2RemDeskBtn setTitle:@"去围观" forState:UIControlStateNormal];
+    } else {
+        [_go2RemDeskBtn setTitle:@"去推荐桌台" forState:UIControlStateNormal];
+    }
+}
+
+- (IBAction)didTapBtmButton:(id)sender {
+    !_btmBtnClikBlock?:_btmBtnClikBlock();
 }
 
 - (void)layoutSubviews {

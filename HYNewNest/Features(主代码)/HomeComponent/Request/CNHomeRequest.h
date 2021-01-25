@@ -61,6 +61,9 @@ typedef NS_ENUM(NSUInteger, BannerWhere) {
                platformCurrency:(nullable NSString *)platformCurrency
                         handler:(HandlerBlock)handler;
 
+/// 根据桌台直接进旗舰厅
++ (void)requestBACInGameUrlTableCode:(NSString *)tableCode handler:(HandlerBlock)handler;
+
 /// 查询游戏线路
 + (void)queryGamesHandler:(HandlerBlock)handler;
 

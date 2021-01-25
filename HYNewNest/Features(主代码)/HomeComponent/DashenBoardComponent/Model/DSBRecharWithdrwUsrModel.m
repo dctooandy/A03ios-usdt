@@ -16,7 +16,7 @@
         // 返回 私享会等级
         return VIPRankString[self.clubLevel];
     } else {
-        // 返回 VIPN
+        // 返回 VIPn
         return [NSString stringWithFormat:@"VIP%ld", self.customerLevel];
     }
 }

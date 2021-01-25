@@ -91,6 +91,17 @@
     [self POST:kGatewayPath(config_inGame) parameters:param completionHandler:handler];
 }
 
++ (void)requestBACInGameUrlTableCode:(NSString *)tableCode handler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"gameCode"] = @"003";
+    param[@"gameType"] = @"BAC";
+    param[@"gameId"] = @"";
+    param[@"additionalParams"] = [NSString stringWithFormat:@"videoID=%@",tableCode];//additionalParams: "videoID=D051"
+    
+    [self POST:kGatewayPath(config_inGame) parameters:param completionHandler:handler];
+}
+
 + (void)queryGamesHandler:(HandlerBlock)handler {
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"currency"] = [CNUserManager shareManager].userInfo.currency;

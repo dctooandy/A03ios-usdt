@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DSBProfitBoardDataSource : NSObject
 
 @property (assign,nonatomic) DashenBoardType type;
-
+@property (assign,nonatomic) NSInteger curPage; //!<用户左右滑动的页数
 - (instancetype)initWithDelegate:(id)delegate TableView:(UITableView *)tableView;
 
 //- (void)didChooseProfitBoard;

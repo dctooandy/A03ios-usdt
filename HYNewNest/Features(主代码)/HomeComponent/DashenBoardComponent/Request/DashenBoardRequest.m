@@ -44,13 +44,13 @@
     [self POST:kGatewayExtraPath(config_queryDSBRank) parameters:paramDic completionHandler:handler];
 }
 
-+ (void)requestProfitPageNo:(NSInteger)pageNo beginDate:(NSString *)beginDate endDate:(NSString *)endDate handler:(HandlerBlock)handler {
++ (void)requestProfitPageNo:(NSInteger)pageNo handler:(HandlerBlock)handler {
     
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
     paramDic[@"pageNo"] = @(pageNo);
     paramDic[@"pageSize"] = @10;
-    paramDic[@"beginDate"] = beginDate;
-    paramDic[@"endDate"] = endDate;
+//    paramDic[@"beginDate"] = beginDate;
+//    paramDic[@"endDate"] = endDate;
     paramDic[@"action"] = @"profit";
     [self POST:kGatewayExtraPath(config_queryDSBRank) parameters:paramDic completionHandler:handler];
 }
