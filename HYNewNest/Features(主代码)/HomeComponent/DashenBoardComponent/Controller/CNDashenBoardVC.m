@@ -72,7 +72,7 @@
         }
     };
     
-    //TODO: 默认调用一个数据源 来设定_tableViewHCons高度并触发代理回调
+    // 默认调用一个数据源 来设定_tableViewHCons高度并触发代理回调
     [self.tableView changeDataSourceDelegate:self.proTbDataSource type:DashenBoardTypeProfitBoard];
     
 }
@@ -84,7 +84,7 @@
     _tableViewHCons.constant = tableHeight;
     
     if (self.delegate) {
-        [self.delegate didSetupDataGetTableHeight:(tableHeight + 100.0)];
+        [self.delegate didSetupDataGetTableHeight:(tableHeight + 100.0)]; //100是头部点击按钮们高度
     }
 }
 
@@ -92,11 +92,14 @@
 #pragma mark - UISwipeGesture
 
 - (void)didSwipeLeftRight:(UISwipeGestureRecognizer *)swipe {
-    if (_tableView.type == DashenBoardTypeProfitBoard) {
+    if (self.tableView.type == DashenBoardTypeProfitBoard) {
+        [LoadingView showLoadingViewWithToView:self.tableView needMask:NO];
         if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
             NSLog(@"大神榜 从左往右");
-        }else{
+            self.proTbDataSource.curPage += 1;
+        }else if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
             NSLog(@"大神榜 从右往左");
+            self.proTbDataSource.curPage -= 1;
         }
     }
 }

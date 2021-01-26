@@ -18,6 +18,7 @@ NSString *const ProfitFooterId = @"DSBProfitFooter";
 NSString *const ProfitHeaderId = @"DSBProfitHeader";
 
 @interface DSBProfitBoardDataSource () <UITableViewDelegate, UITableViewDataSource>
+
 @property (weak,nonatomic) id<DashenBoardAutoHeightDelegate> delegate; // 高度代理
 @property (weak,nonatomic) UITableView *tableView;
 
@@ -34,6 +35,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     _delegate = delegate;
     _curPage = 0;
     
+    // setup tableview
     tableView.backgroundColor = kHexColor(0x1C1B34);
     [tableView registerNib:[UINib nibWithNibName:ProfitCellId bundle:nil] forCellReuseIdentifier:ProfitCellId];
     [tableView registerNib:[UINib nibWithNibName:ProfitFooterId bundle:nil] forHeaderFooterViewReuseIdentifier:ProfitFooterId];
@@ -41,6 +43,24 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     tableView.dataSource = self;
     tableView.delegate = self;
     _tableView = tableView;
+    
+    // setup timer
+    // GCD定时器
+    static dispatch_source_t _timer;
+    //设置时间间隔 30 分钟
+    NSTimeInterval period = 60*5.0;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), period * NSEC_PER_SEC, 0);
+    // 事件回调
+    dispatch_source_set_event_handler(_timer, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self requestYinliRank];
+        });
+    });
+    // 开启定时器
+    dispatch_resume(_timer);
+
         
     return self;
 }
@@ -48,9 +68,9 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 - (void)setType:(DashenBoardType)type {
     _type = type;
     
-    [self requestYinliRank];
+//    [self requestYinliRank];
     if (self.delegate) {
-        [self.delegate didSetupDataGetTableHeight:(618.0)];
+        [self.delegate didSetupDataGetTableHeight:(626.0)];
     }
 }
 
@@ -118,7 +138,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 80;//固定
+    return 88;//固定
 }
 
 
@@ -127,11 +147,6 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 /// 盈利榜
 - (void)requestYinliRank {
 
-    // 1小时内?
-//    NSString *beginDate = [[[NSDate date] jk_dateBySubtractingHours:1] jk_dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
-//    NSString *endDate = [[NSDate date] jk_dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
-//    NSString *beginDate = [[[NSDate date] jk_startOfMonth] jk_stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
-//    NSString *endDate = [[[NSDate date] jk_endOfMonth] jk_stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
     [DashenBoardRequest requestProfitPageNo:1 handler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             NSArray *orgData = responseObj[@"data"];
@@ -139,6 +154,27 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
             [self.tableView reloadData];
         }
     }];
+        
 }
+
+
+#pragma mark - Setter
+- (void)setCurPage:(NSInteger)curPage {
+    if (!self.usrModels.count) {
+        return;
+    }
+    
+    if (curPage < 0) {
+        curPage = self.usrModels.count - 1;
+    } else if (curPage > self.usrModels.count) {
+        curPage = 0;
+    }
+    MyLog(@"CURPAGE:%ld", curPage);
+    _curPage = curPage;
+    
+    [self.tableView reloadData];
+    [LoadingView hideLoadingViewForView:self.tableView];
+}
+
 
 @end

@@ -79,7 +79,7 @@ NSString *const listCellID = @"DSBWeekMonthListCell";
         NSArray *models = main.ljyl;
         if (models.count) {
             DSBRecharWithdrwUsrModel *usr = models[0];
-            [cell setupDataArr:@[@"累计盈利冠军", usr.loginName, [usr.totalAmount jk_toDisplayNumberWithDigit:2]]];
+            [cell setupDataArr:@[@"累计盈利冠军", usr.loginName, [usr.totalAmount?:@0 jk_toDisplayNumberWithDigit:2]]];
         } else {
             [cell setupDataArr:@[@"累计盈利冠军", @"--", @"--"]];
         }
@@ -87,7 +87,7 @@ NSString *const listCellID = @"DSBWeekMonthListCell";
         NSArray *models = main.dbyl;
         if (models.count) {
             DSBRecharWithdrwUsrModel *usr = models[0];
-            [cell setupDataArr:@[@"单笔盈利冠军", usr.loginName, [usr.totalAmount jk_toDisplayNumberWithDigit:2]]];
+            [cell setupDataArr:@[@"单笔盈利冠军", usr.loginName, [usr.totalAmount?:@0 jk_toDisplayNumberWithDigit:2]]];
         } else {
             [cell setupDataArr:@[@"单笔盈利冠军", @"--", @"--"]];
         }
@@ -95,7 +95,7 @@ NSString *const listCellID = @"DSBWeekMonthListCell";
         NSArray *models = main.cz;
         if (models.count) {
             DSBRecharWithdrwUsrModel *usr = models[0];
-            [cell setupDataArr:@[@"充值冠军", usr.loginName, [usr.totalAmount jk_toDisplayNumberWithDigit:2]]];
+            [cell setupDataArr:@[@"充值冠军", usr.loginName, [usr.totalAmount?:@0 jk_toDisplayNumberWithDigit:2]]];
         } else {
             [cell setupDataArr:@[@"充值冠军", @"--", @"--"]];
         }
@@ -103,7 +103,7 @@ NSString *const listCellID = @"DSBWeekMonthListCell";
         NSArray *models = main.tx;
         if (models.count) {
             DSBRecharWithdrwUsrModel *usr = models[0];
-            [cell setupDataArr:@[@"提现冠军", usr.loginName, [usr.totalAmount jk_toDisplayNumberWithDigit:2]]];
+            [cell setupDataArr:@[@"提现冠军", usr.loginName, [usr.totalAmount?:@0 jk_toDisplayNumberWithDigit:2]]];
         } else {
             [cell setupDataArr:@[@"提现冠军", @"--", @"--"]];
         }
@@ -111,7 +111,7 @@ NSString *const listCellID = @"DSBWeekMonthListCell";
         NSArray *models = main.xm;
         if (models.count) {
             DSBRecharWithdrwUsrModel *usr = models[0];
-            [cell setupDataArr:@[@"洗码冠军", usr.loginName, [usr.totalAmount1 jk_toDisplayNumberWithDigit:2]]];
+            [cell setupDataArr:@[@"洗码冠军", usr.loginName, [usr.totalAmount1?:@0 jk_toDisplayNumberWithDigit:2]]];
         } else {
             [cell setupDataArr:@[@"洗码冠军", @"--", @"--"]];
         }

@@ -11,7 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DSBProfitFooter">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cnd-91-D9u">
@@ -22,9 +22,9 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GH4-lW-Lwh" customClass="CNTwoStatusBtn">
-                    <rect key="frame" x="22" y="11" width="370" height="40"/>
+                    <rect key="frame" x="22" y="11" width="370" height="48"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="dua-jp-HAY"/>
+                        <constraint firstAttribute="height" constant="48" id="dua-jp-HAY"/>
                     </constraints>
                     <state key="normal" title="去推荐桌台"/>
                     <connections>
@@ -32,8 +32,8 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="←左右滑动看更多大神→" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6o-Mc-Yft">
-                    <rect key="frame" x="152" y="59" width="110.5" height="12"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <rect key="frame" x="141" y="67" width="132.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -56,7 +56,7 @@
             <connections>
                 <outlet property="go2RemDeskBtn" destination="GH4-lW-Lwh" id="yo3-1j-YeM"/>
             </connections>
-            <point key="canvasLocation" x="-43" y="149"/>
+            <point key="canvasLocation" x="307" y="149"/>
         </view>
     </objects>
 </document>
