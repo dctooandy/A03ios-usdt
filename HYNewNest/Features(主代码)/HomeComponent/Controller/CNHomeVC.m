@@ -28,7 +28,6 @@
 #import "CNUserCenterRequest.h"
 #import "CNLoginRequest.h"
 #import "HYInGameHelper.h"
-#import "SocketRocketUtility.h"
 #import "IN3SAnalytics.h"
 
 #import <MJRefresh/MJRefresh.h>
@@ -90,9 +89,6 @@
     CNBaseVC *vc = [self.childViewControllers objectAtIndex:self.currPage];
     self.pageViewH.constant = vc.totalHeight;
     
-//    CNDashenBoardVC *boredVc = (CNDashenBoardVC *)[self.childViewControllers objectAtIndex:5];
-//    boredVc.delegate = self;
-//    self.boredViewH.constant = boredVc.totalHeight;
 }
 
 - (void)viewDidLoad {
@@ -108,9 +104,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:HYLogoutSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:BYDidEnterHomePageNoti object:nil];
     
-//    NSString *wsURL = @"wss://roadmap.9mbv.com:7070/socket.io/?EIO=4&transport=websocket"; //https
-//    NSString *wsURL = @"ws://roadmap.9mbv.com:8080/socket.io/?EIO=4&transport=websocket";
-//    [[SocketRocketUtility instance] SRWebSocketOpenWithURLString:wsURL];
 }
 
 //可以在首页的该方法中调用

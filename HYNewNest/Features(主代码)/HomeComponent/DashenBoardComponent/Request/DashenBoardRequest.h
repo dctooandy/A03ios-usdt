@@ -29,6 +29,9 @@ typedef NS_ENUM(NSUInteger, DashenBoredReqType) {
 + (void)requestProfitPageNo:(NSInteger)pageNo
                     handler:(HandlerBlock)handler;
 
+/// 动态表单
++ (void)requestRecommendTableHandler:(HandlerBlock)handler;
+
 @end
 
 NS_ASSUME_NONNULL_END

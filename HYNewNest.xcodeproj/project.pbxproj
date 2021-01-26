@@ -223,6 +223,8 @@
 		3D41DECA2521CDE7000CA1D6 /* VIPRecordSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DEC82521CDE7000CA1D6 /* VIPRecordSelectorView.m */; };
 		3D564E2024F3C02C006846DD /* MessageBoxModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D564E1F24F3C02C006846DD /* MessageBoxModel.m */; };
 		3D5B259625BE70FD00FD23F0 /* DSBProfitBoardUsrModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B259525BE70FD00FD23F0 /* DSBProfitBoardUsrModel.m */; };
+		3D5B259925C019C600FD23F0 /* DSBGameRoundResModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B259825C019C600FD23F0 /* DSBGameRoundResModel.m */; };
+		3D5B259D25C01E9200FD23F0 /* BYJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B259C25C01E9200FD23F0 /* BYJSONHelper.m */; };
 		3D643F8824F29F3600B9AAA7 /* AlertViewHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F7D24F29F3600B9AAA7 /* AlertViewHelp.m */; };
 		3D643F8924F29F3600B9AAA7 /* IVOtherInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F8124F29F3600B9AAA7 /* IVOtherInfoModel.m */; };
 		3D643F8A24F29F3600B9AAA7 /* PushNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F8224F29F3600B9AAA7 /* PushNotificationCenter.m */; };
@@ -1375,6 +1377,10 @@
 		3D564E1F24F3C02C006846DD /* MessageBoxModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageBoxModel.m; sourceTree = "<group>"; };
 		3D5B259425BE70FD00FD23F0 /* DSBProfitBoardUsrModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBProfitBoardUsrModel.h; sourceTree = "<group>"; };
 		3D5B259525BE70FD00FD23F0 /* DSBProfitBoardUsrModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBProfitBoardUsrModel.m; sourceTree = "<group>"; };
+		3D5B259725C019C600FD23F0 /* DSBGameRoundResModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBGameRoundResModel.h; sourceTree = "<group>"; };
+		3D5B259825C019C600FD23F0 /* DSBGameRoundResModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBGameRoundResModel.m; sourceTree = "<group>"; };
+		3D5B259B25C01E9200FD23F0 /* BYJSONHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYJSONHelper.h; sourceTree = "<group>"; };
+		3D5B259C25C01E9200FD23F0 /* BYJSONHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYJSONHelper.m; sourceTree = "<group>"; };
 		3D643F7A24F29F3600B9AAA7 /* PushNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationCenter.h; sourceTree = "<group>"; };
 		3D643F7B24F29F3600B9AAA7 /* IVOtherInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVOtherInfoModel.h; sourceTree = "<group>"; };
 		3D643F7C24F29F3600B9AAA7 /* SocketTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketTool.h; sourceTree = "<group>"; };
@@ -3075,6 +3081,7 @@
 		3D13389D24AF2D1900B29783 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				3D5B259A25C01E7A00FD23F0 /* JSONHelper */,
 				3D65D1132568E1EC00917E1B /* WebSocket */,
 				3D643F7924F29F3600B9AAA7 /* Push */,
 				D5FBFDC524B4661D00BBCAD8 /* Skin */,
@@ -3368,6 +3375,15 @@
 				3D41DEB8251F1A20000CA1D6 /* WSLPictureBrowseView.m */,
 			);
 			path = WSLPictureBrowserView;
+			sourceTree = "<group>";
+		};
+		3D5B259A25C01E7A00FD23F0 /* JSONHelper */ = {
+			isa = PBXGroup;
+			children = (
+				3D5B259B25C01E9200FD23F0 /* BYJSONHelper.h */,
+				3D5B259C25C01E9200FD23F0 /* BYJSONHelper.m */,
+			);
+			path = JSONHelper;
 			sourceTree = "<group>";
 		};
 		3D643F7924F29F3600B9AAA7 /* Push */ = {
@@ -3667,6 +3683,8 @@
 				3DBA55F4257F67F5009A2B71 /* DSBRecharWithdrwUsrModel.m */,
 				3D5B259425BE70FD00FD23F0 /* DSBProfitBoardUsrModel.h */,
 				3D5B259525BE70FD00FD23F0 /* DSBProfitBoardUsrModel.m */,
+				3D5B259725C019C600FD23F0 /* DSBGameRoundResModel.h */,
+				3D5B259825C019C600FD23F0 /* DSBGameRoundResModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6227,6 +6245,7 @@
 				D5FBFE8B24BC28B200BBCAD8 /* CNBaseModel.m in Sources */,
 				0487C9F424D2AADC0013715A /* CNMessageTCell.m in Sources */,
 				3D41DECA2521CDE7000CA1D6 /* VIPRecordSelectorView.m in Sources */,
+				3D5B259925C019C600FD23F0 /* DSBGameRoundResModel.m in Sources */,
 				3D97005425A2C3ED003238C4 /* IN3SAGQJModel.m in Sources */,
 				3D8A708A258C5C1A0058D50F /* SuperCopartnerTbFooter.m in Sources */,
 				E986A1A624CB3C18000F9CFF /* HYTextAlertView.m in Sources */,
@@ -6479,6 +6498,7 @@
 				3D643F9B24F396BC00B9AAA7 /* GameLineModel.m in Sources */,
 				3DBA55E42578EFCC009A2B71 /* CNDashenBoardVC.m in Sources */,
 				3D41DEAB251C82F6000CA1D6 /* VIPIdentityModel.m in Sources */,
+				3D5B259D25C01E9200FD23F0 /* BYJSONHelper.m in Sources */,
 				04C0F0E824C2E250007F1420 /* JHVerificationCodeView.m in Sources */,
 				3D31B958253DBBBD005275BD /* HYWithdrawCalculatorComView.m in Sources */,
 				0487C9E724D27BDD0013715A /* CNNotifySettingTCell.m in Sources */,

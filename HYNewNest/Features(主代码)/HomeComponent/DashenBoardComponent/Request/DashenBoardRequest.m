@@ -55,4 +55,16 @@
     [self POST:kGatewayExtraPath(config_queryDSBRank) parameters:paramDic completionHandler:handler];
 }
 
++ (void)requestRecommendTableHandler:(HandlerBlock)handler {
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"bizCode"] = @"RECOMMEND_TABLE";
+    
+    [self POST:kGatewayPath(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+            NSString *tableid = responseObj[@"data"][0][@"tableid"];
+            handler(tableid, errorMsg);
+        }
+    }];
+}
+
 @end

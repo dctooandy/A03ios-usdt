@@ -10,8 +10,12 @@
 #import "DSBProfitBoardCell.h"
 #import "DSBProfitFooter.h"
 #import "DSBProfitHeader.h"
+#import "DSBGameRoundResModel.h"
+
 #import "DashenBoardRequest.h"
 #import "HYInGameHelper.h"
+#import "SocketRocketUtility.h"
+#import "BYJSONHelper.h"
 
 NSString *const ProfitCellId = @"DSBProfitBoardCell";
 NSString *const ProfitFooterId = @"DSBProfitFooter";
@@ -24,7 +28,8 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 
 // 请求一次就好了
 @property (strong,nonatomic) NSArray <DSBProfitBoardUsrModel *> *usrModels;
-
+// 推荐桌台
+@property (copy,nonatomic) NSString *recomTableId;
 @end
 
 @implementation DSBProfitBoardDataSource
@@ -48,7 +53,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     // GCD定时器
     static dispatch_source_t _timer;
     //设置时间间隔 30 分钟
-    NSTimeInterval period = 60*5.0;
+    NSTimeInterval period = 60*10.0;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
     dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), period * NSEC_PER_SEC, 0);
@@ -60,20 +65,43 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     });
     // 开启定时器
     dispatch_resume(_timer);
-
         
     return self;
 }
 
-- (void)setType:(DashenBoardType)type {
-    _type = type;
-    
-//    [self requestYinliRank];
-    if (self.delegate) {
-        [self.delegate didSetupDataGetTableHeight:(626.0)];
-    }
+- (void)setupWebSocket {
+//    NSString *wsURL = @"wss://roadmap.9mbv.com:7070/socket.io/?EIO=4&transport=websocket"; //https
+    NSString *wsURL = @"ws://roadmap.9mbv.com:8080/socket.io/?EIO=4&transport=websocket";
+    [[SocketRocketUtility instance] SRWebSocketOpenWithURLString:wsURL];
+    __weak typeof(self) weakSelf = self;
+    [[NSNotificationCenter defaultCenter] addObserverForName:BYWebSocketDidReceivedNoti object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        NSString *dictStr = note.object;
+        if (dictStr.length < 10) {
+            return;
+        }
+        NSRange startRng = [dictStr rangeOfString:@"["];
+        NSString *jsonStr = [dictStr substringFromIndex:startRng.location];
+        id fullArr = [BYJSONHelper dictOrArrayWithJsonString:jsonStr];
+        // 如果是字典 无用数据
+        if ([fullArr isKindOfClass:[NSDictionary class]]) {
+            return;
+        }
+        // 数组只有两个参数 第二个是主要数据
+        if ([fullArr[0] isEqualToString:@"result list"]) { // 所有游戏数据
+            //TODO: 只保存推荐桌台数据
+            MyLog(@"------------------------ save to DB");
+            
+        } else if ([fullArr[0] containsString:@"close round"]){ // 更新游戏数据
+            //TODO: 只处理推荐桌台数据
+            RoundPushModel *round = [RoundPushModel cn_parse:fullArr[1]];
+            if ([self.recomTableId isEqualToString:round.vid]) {
+                MyLog(@"------------------------ update DB and RefreshView");
+            } else {
+                MyLog(@"------------------------ drop data");
+            }
+        }
+    }];
 }
-
 
 #pragma mark - UITableView
 
@@ -106,7 +134,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     //user
     DSBProfitBoardUsrModel *usr = self.usrModels[_curPage];
     header.nameLbl.text = usr.loginName;
-    header.tableCodeLbl.text = [NSString stringWithFormat:@"经典百家乐 D051桌"];//动态表单取
+    header.tableCodeLbl.text = [NSString stringWithFormat:@"经典百家乐 %@桌", self.recomTableId];
     header.rankLbl.text = usr.writtenLevel;
     header.profitCucLbl.text = [NSString stringWithFormat:@"%@%@",
                                 [usr.cusAmountSum jk_toDisplayNumberWithDigit:2],
@@ -129,8 +157,11 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     } else {
         footer.isUsrOnline = usr.prList[0].isOnline;
         footer.btmBtnClikBlock = ^{
-            NSString *tuij = @"D051";//动态表单取
-            [[HYInGameHelper sharedInstance] inBACGameTableCode:tuij];
+            if (!self.recomTableId) {
+                [CNHUB showWaiting:@"正在获取推荐桌台号.."];
+                return;
+            }
+            [[HYInGameHelper sharedInstance] inBACGameTableCode:self.recomTableId];
         };
     }
     return footer;
@@ -146,12 +177,22 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 
 /// 盈利榜
 - (void)requestYinliRank {
-
-    [DashenBoardRequest requestProfitPageNo:1 handler:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-            NSArray *orgData = responseObj[@"data"];
-            self.usrModels = [DSBProfitBoardUsrModel cn_parse:orgData];
-            [self.tableView reloadData];
+    
+    [DashenBoardRequest requestRecommendTableHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSString class]]) {
+            /// 推荐桌台号
+            self.recomTableId = responseObj;
+            
+            [DashenBoardRequest requestProfitPageNo:1 handler:^(id responseObj, NSString *errorMsg) {
+                if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+                    NSArray *orgData = responseObj[@"data"];
+                    self.usrModels = [DSBProfitBoardUsrModel cn_parse:orgData];
+                    [self.tableView reloadData];
+                    
+                    // setup webSocket
+                    [self setupWebSocket];
+                }
+            }];
         }
     }];
         
@@ -159,8 +200,19 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 
 
 #pragma mark - Setter
+
+- (void)setType:(DashenBoardType)type {
+    _type = type;
+    
+    if (self.delegate) {
+        [self.delegate didSetupDataGetTableHeight:(626.0)];
+    }
+}
+
 - (void)setCurPage:(NSInteger)curPage {
+    [LoadingView hideLoadingViewForView:self.tableView];
     if (!self.usrModels.count) {
+        _curPage = 0;
         return;
     }
     
@@ -173,7 +225,6 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     _curPage = curPage;
     
     [self.tableView reloadData];
-    [LoadingView hideLoadingViewForView:self.tableView];
 }
 
 
