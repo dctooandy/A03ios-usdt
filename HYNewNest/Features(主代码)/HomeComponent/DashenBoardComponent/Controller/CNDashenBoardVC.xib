@@ -30,8 +30,8 @@
                         <constraint firstAttribute="height" constant="45" id="QRg-XI-oPf"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="数据每小时刷新" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5j-gH-I0z">
-                    <rect key="frame" x="164" y="435" width="86" height="15"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大神榜为当天百家乐数据，每5分钟刷新一次" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5j-gH-I0z">
+                    <rect key="frame" x="87" y="435" width="240.5" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="ZdT-AF-6Y0"/>
                     </constraints>

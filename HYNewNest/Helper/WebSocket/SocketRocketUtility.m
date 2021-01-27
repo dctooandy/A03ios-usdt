@@ -112,7 +112,7 @@
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message  {
     //收到服务器发过来的数据 这里的数据可以和后台约定一个格式 我约定的就是一个字符串 收到以后发送通知到外层 根据类型 实现不同的操作
-    NSLog(@"\n\n>>>>>>>>>>>>>>>>didReceiveMessage:\n%@\n\n",message);
+//    NSLog(@"\n\n>>>>>>>>>>>>>>>>didReceiveMessage:\n%@\n\n",message);
     
     [[NSNotificationCenter defaultCenter] postNotificationName:BYWebSocketDidReceivedNoti object:message];
 }

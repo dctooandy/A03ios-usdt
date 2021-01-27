@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "VIPRankGradientTxtLabel.h"
+#import "DSBGameRoundResModel.h"
+
+#define kDewBall_WH ((kScreenWidth-30)/11.0)
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet VIPRankGradientTxtLabel *rankLbl;
 @property (weak, nonatomic) IBOutlet UILabel *nameLbl;
 @property (weak, nonatomic) IBOutlet UILabel *profitCucLbl;
+
+- (void)setupDrewsWith:(NSDictionary<NSString *,RoundResItem *> *)allDicts;
 @end
 
 NS_ASSUME_NONNULL_END

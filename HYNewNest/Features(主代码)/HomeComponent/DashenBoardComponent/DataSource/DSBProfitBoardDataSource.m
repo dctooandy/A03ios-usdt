@@ -54,12 +54,11 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     // setup timer
     // GCD定时器
     static dispatch_source_t _timer;
-    //设置时间间隔 30 分钟
+    //设置刷新间隔 10 分钟
     NSTimeInterval period = 60*10.0;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
     dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), period * NSEC_PER_SEC, 0);
-    // 事件回调
     dispatch_source_set_event_handler(_timer, ^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [self requestYinliRank];
@@ -96,6 +95,9 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
                 DSBGameRoundResModel *vModel = [DSBGameRoundResModel cn_parse:allDict[vid]];
                 [vModel bg_saveOrUpdate];
             }
+            dispatch_async(dispatch_get_main_queue(), ^{ @autoreleasepool {
+                [weakSelf.tableView reloadData];
+            }});
             
         } else if ([fullArr[0] containsString:@"close round"]){ // 更新游戏数据
             RoundPushModel *nround = [RoundPushModel cn_parse:fullArr[1]];
@@ -109,7 +111,11 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
                 model.roundRes = roundReses.copy;
                 [model bg_saveOrUpdateAsync:^(BOOL isSuccess) {
                     if([nround.vid isEqualToString:weakSelf.showTableId]) {
-                        [weakSelf.tableView reloadData];
+                        //返回主线程
+                        dispatch_async(dispatch_get_main_queue(), ^{ @autoreleasepool {
+                            [weakSelf.tableView reloadData];
+                        }});
+
                     }
                 }];
             }
@@ -146,12 +152,21 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     DSBProfitHeader *header = (DSBProfitHeader *)[tableView dequeueReusableHeaderFooterViewWithIdentifier:ProfitHeaderId];
-    //TODO: =
+    
+    //db
+    if (self.showTableId) {
+        NSString* where = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"vid"), bg_sqlValue(self.showTableId)];
+        NSArray* arr = [DSBGameRoundResModel bg_find:DBName_DSBGameRoundResults where:where];
+        if (arr.count) {
+            DSBGameRoundResModel *m = arr[0];
+            [header setupDrewsWith:m.roundRes];
+        }
+    }
     
     //user
     DSBProfitBoardUsrModel *usr = self.usrModels[_curPage];
     header.nameLbl.text = usr.loginName;
-    header.tableCodeLbl.text = [NSString stringWithFormat:@"经典百家乐 %@桌", self.showTableId];
+    header.tableCodeLbl.text = [NSString stringWithFormat:@"经典百家乐 %@桌", self.showTableId?:@"D000"];
     header.rankLbl.text = usr.writtenLevel;
     header.profitCucLbl.text = [NSString stringWithFormat:@"%@%@",
                                 [usr.cusAmountSum jk_toDisplayNumberWithDigit:2],
@@ -160,7 +175,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 309;//固定
+    return kDewBall_WH*6+110;//固定
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
