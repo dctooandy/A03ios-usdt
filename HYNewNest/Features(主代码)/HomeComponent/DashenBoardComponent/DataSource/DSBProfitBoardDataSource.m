@@ -28,8 +28,10 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 
 // 请求一次就好了
 @property (strong,nonatomic) NSArray <DSBProfitBoardUsrModel *> *usrModels;
-// 推荐桌台
+// 动态表单推荐桌台
 @property (copy,nonatomic) NSString *recomTableId;
+// 当前露珠展示桌台
+@property (copy,nonatomic) NSString *showTableId;
 @end
 
 @implementation DSBProfitBoardDataSource
@@ -76,28 +78,43 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     __weak typeof(self) weakSelf = self;
     [[NSNotificationCenter defaultCenter] addObserverForName:BYWebSocketDidReceivedNoti object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         NSString *dictStr = note.object;
-        if (dictStr.length < 10) {
+        if (dictStr.length < 5 || [dictStr hasPrefix:@"0{\"sid\":"]) { //无用数据
             return;
         }
         NSRange startRng = [dictStr rangeOfString:@"["];
         NSString *jsonStr = [dictStr substringFromIndex:startRng.location];
         id fullArr = [BYJSONHelper dictOrArrayWithJsonString:jsonStr];
-        // 如果是字典 无用数据
-        if ([fullArr isKindOfClass:[NSDictionary class]]) {
+        if ([fullArr isKindOfClass:[NSDictionary class]]) { // 如果是字典 无用数据
             return;
         }
-        // 数组只有两个参数 第二个是主要数据
+        // 数组只有两个参数 第二个是主要数据  我们主要处理 @"result list" & @"close round"
         if ([fullArr[0] isEqualToString:@"result list"]) { // 所有游戏数据
-            //TODO: 只保存推荐桌台数据
-            MyLog(@"------------------------ save to DB");
+            MyLog(@"------------------------ allDict save to DB");
+            NSString *allDictStr = fullArr[1];
+            NSDictionary *allDict = [BYJSONHelper dictOrArrayWithJsonString:allDictStr];
+            for (NSString *vid in allDict.allKeys) {
+                DSBGameRoundResModel *vModel = [DSBGameRoundResModel cn_parse:allDict[vid]];
+                [vModel bg_saveOrUpdate];
+            }
             
         } else if ([fullArr[0] containsString:@"close round"]){ // 更新游戏数据
-            //TODO: 只处理推荐桌台数据
-            RoundPushModel *round = [RoundPushModel cn_parse:fullArr[1]];
-            if ([self.recomTableId isEqualToString:round.vid]) {
-                MyLog(@"------------------------ update DB and RefreshView");
-            } else {
-                MyLog(@"------------------------ drop data");
+            RoundPushModel *nround = [RoundPushModel cn_parse:fullArr[1]];
+            NSString* where = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"vid"), bg_sqlValue(nround.vid)];
+            NSArray* arr = [DSBGameRoundResModel bg_find:DBName_DSBGameRoundResults where:where];
+            if (arr.count) {
+                MyLog(@"------------------------ Found %@, update DB & RefreshView", nround.vid);
+                DSBGameRoundResModel *model = arr.firstObject;
+                NSMutableDictionary *roundReses = model.roundRes.mutableCopy;
+                roundReses[nround.gmcode] = [nround makeRoundResItem]; //添加一条
+                model.roundRes = roundReses.copy;
+                [model bg_saveOrUpdateAsync:^(BOOL isSuccess) {
+                    if([nround.vid isEqualToString:weakSelf.showTableId]) {
+                        [weakSelf.tableView reloadData];
+                    }
+                }];
+            }
+            else {
+                MyLog(@"------------------------ Not found, drop data");
             }
         }
     }];
@@ -134,7 +151,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     //user
     DSBProfitBoardUsrModel *usr = self.usrModels[_curPage];
     header.nameLbl.text = usr.loginName;
-    header.tableCodeLbl.text = [NSString stringWithFormat:@"经典百家乐 %@桌", self.recomTableId];
+    header.tableCodeLbl.text = [NSString stringWithFormat:@"经典百家乐 %@桌", self.showTableId];
     header.rankLbl.text = usr.writtenLevel;
     header.profitCucLbl.text = [NSString stringWithFormat:@"%@%@",
                                 [usr.cusAmountSum jk_toDisplayNumberWithDigit:2],
@@ -157,11 +174,11 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     } else {
         footer.isUsrOnline = usr.prList[0].isOnline;
         footer.btmBtnClikBlock = ^{
-            if (!self.recomTableId) {
+            if (!self.showTableId) {
                 [CNHUB showWaiting:@"正在获取推荐桌台号.."];
                 return;
             }
-            [[HYInGameHelper sharedInstance] inBACGameTableCode:self.recomTableId];
+            [[HYInGameHelper sharedInstance] inBACGameTableCode:self.showTableId];
         };
     }
     return footer;
@@ -181,7 +198,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     [DashenBoardRequest requestRecommendTableHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg && [responseObj isKindOfClass:[NSString class]]) {
             /// 推荐桌台号
-            self.recomTableId = responseObj;
+            self.recomTableId = self.showTableId = responseObj;
             
             [DashenBoardRequest requestProfitPageNo:1 handler:^(id responseObj, NSString *errorMsg) {
                 if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
@@ -189,6 +206,8 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
                     self.usrModels = [DSBProfitBoardUsrModel cn_parse:orgData];
                     [self.tableView reloadData];
                     
+                    // clear data
+                    [DSBGameRoundResModel bg_drop:DBName_DSBGameRoundResults];
                     // setup webSocket
                     [self setupWebSocket];
                 }
@@ -215,13 +234,22 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
         _curPage = 0;
         return;
     }
-    
+    // 处理益出
     if (curPage < 0) {
         curPage = self.usrModels.count - 1;
     } else if (curPage > self.usrModels.count) {
         curPage = 0;
     }
-    MyLog(@"CURPAGE:%ld", curPage);
+    
+    // 如果当前用户在线 绘制他的桌台
+    DSBProfitBoardUsrModel *usr = self.usrModels[curPage];
+    PrListItem *nearItem = usr.prList[0];
+    if (nearItem.isOnline) {
+        self.showTableId = nearItem.tableCode;
+    } else {
+        self.showTableId = self.recomTableId;
+    }
+    MyLog(@"CURPAGE:%ld, usrName:%@, isOnlie:%ld", curPage, usr.loginName, nearItem.isOnline);
     _curPage = curPage;
     
     [self.tableView reloadData];
