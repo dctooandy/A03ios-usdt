@@ -65,8 +65,8 @@
     _previosAmountLbl.text = [[item.previosAmount jk_toDisplayNumberWithDigit:2] stringByAppendingString:currency];
     
     _cusAccountLbl.text = [NSString stringWithFormat:@"盈利 %@ %@" , [item.cusAccount jk_toDisplayNumberWithDigit:2], currency];
-    _bankerPointLbl.text = [NSString stringWithFormat:@"%ld点", item.bankerPoint];
-    _playerPointLbl.text = [NSString stringWithFormat:@"%ld点", item.playerPoint];
+    _bankerPointLbl.text = [NSString stringWithFormat:@"%ld点", (long)item.bankerPoint];
+    _playerPointLbl.text = [NSString stringWithFormat:@"%ld点", (long)item.playerPoint];
 }
 
 @end
