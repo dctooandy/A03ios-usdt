@@ -161,7 +161,7 @@
         });
         if (handler) {
             [successBlocks addObject:handler];
-            MyLog(@"XXXX 每调用一次此函数，就把回调加进数组中:%@\n 添加回调block 已存在%ld个 XXXX",successBlocks, successBlocks.count);
+            MyLog(@"XXXX 每调用一次此函数，就把回调加进数组中:%@\n 添加回调block 已存在%lu个 XXXX",successBlocks, (unsigned long)successBlocks.count);
         }
 
         static BOOL isProcessing = NO;

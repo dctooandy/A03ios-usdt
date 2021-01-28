@@ -38,8 +38,9 @@
 - (void)setupViews {
     self.comfirmBtn.hidden = YES;
     self.titleLbl.backgroundColor = kHexColor(0x202238);
+    self.contentView.backgroundColor = kHexColor(0x202238);
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 57, kScreenWidth, 479-57)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, AD(50), kScreenWidth, 479-AD(50))];
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -73,7 +74,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HYDSBSlideUpViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HYDSBSlideUpViewCell"];
-    cell.rankLb.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
+    cell.rankLb.text = [NSString stringWithFormat:@"%ld", (indexPath.row + 1)];
     DSBRecharWithdrwUsrModel *model = self.rankList[indexPath.row];
     cell.crownImgv.hidden = YES;
     cell.rankLb.hidden = NO;

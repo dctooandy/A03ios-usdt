@@ -93,7 +93,7 @@
 
 - (void)didSwipeLeftRight:(UISwipeGestureRecognizer *)swipe {
     if (self.tableView.type == DashenBoardTypeProfitBoard) {
-//        [LoadingView showLoadingViewWithToView:self.tableView needMask:NO];
+        [LoadingView showLoadingViewWithToView:self.tableView needMask:YES];
         
         if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
             NSLog(@"大神榜 从右往左");

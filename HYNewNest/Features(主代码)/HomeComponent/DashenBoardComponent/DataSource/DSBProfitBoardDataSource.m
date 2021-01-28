@@ -251,20 +251,20 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 }
 
 - (void)setCurPage:(NSInteger)curPage {
-    // animation
-//    [LoadingView hideLoadingViewForView:self.tableView];
-    CATransition *animation = [CATransition animation];
-    animation.duration = 0.3;
-    animation.type = @"rippleEffect";
-    animation.timingFunction = UIViewAnimationCurveEaseInOut;
-//    animation.type = kCATransitionFade;
-//    animation.subtype = kCATransitionFromLeft;
-    [self.tableView.layer addAnimation:animation forKey:nil];
-    
     if (!self.usrModels.count) {
         _curPage = 0;
+        [LoadingView hideLoadingViewForView:self.tableView];
         return;
     }
+    
+    // animation
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.3;
+    animation.type = kCATransitionFade;//@"rippleEffect";
+    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+    //    animation.type = kCATransitionFade;
+    //    animation.subtype = kCATransitionFromLeft;
+    [self.tableView.layer addAnimation:animation forKey:nil];
     
     // 处理益出
     if (curPage < 0) {
@@ -285,6 +285,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     _curPage = curPage;
     
     [self.tableView reloadData];
+    [LoadingView hideLoadingViewForView:self.tableView];
 }
 
 

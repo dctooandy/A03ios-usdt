@@ -154,7 +154,7 @@
     // 滑入
     [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.bgView.alpha = 0.1;
-        self.contentView.alpha = 0.1;
+        self.contentView.alpha = 0.5;
         self.contentView.y = self.superview.height;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
