@@ -104,13 +104,13 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
             NSString* where = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"vid"), bg_sqlValue(nround.vid)];
             NSArray* arr = [DSBGameRoundResModel bg_find:DBName_DSBGameRoundResults where:where];
             if (arr.count) {
-                MyLog(@"------------------------ Found %@, update DB & RefreshView", nround.vid);
                 DSBGameRoundResModel *model = arr.firstObject;
                 NSMutableDictionary *roundReses = model.roundRes.mutableCopy;
                 roundReses[nround.gmcode] = [nround makeRoundResItem]; //添加一条
                 model.roundRes = roundReses.copy;
                 [model bg_saveOrUpdateAsync:^(BOOL isSuccess) {
                     if([nround.vid isEqualToString:weakSelf.showTableId]) {
+                        MyLog(@"------------------------ Found:%@, update DB & RefreshView", nround.vid);
                         //返回主线程
                         dispatch_async(dispatch_get_main_queue(), ^{ @autoreleasepool {
                             [weakSelf.tableView reloadData];
@@ -120,7 +120,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
                 }];
             }
             else {
-                MyLog(@"------------------------ Not found, drop data");
+                MyLog(@"------------------------ Not found:%@, drop data", nround.vid);
             }
         }
     }];
@@ -171,11 +171,12 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     header.profitCucLbl.text = [NSString stringWithFormat:@"%@%@",
                                 [usr.cusAmountSum jk_toDisplayNumberWithDigit:2],
                                 usr.prList[0].currency.lowercaseString];
+    
     return header;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return kDewBall_WH*6+110;//固定
+    return kDewBall_WH*6+117;//固定
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -225,8 +226,14 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
                     [DSBGameRoundResModel bg_drop:DBName_DSBGameRoundResults];
                     // setup webSocket
                     [self setupWebSocket];
+                    
+                } else {
+                    [self performSelector:@selector(requestYinliRank) withObject:nil afterDelay:5];
                 }
             }];
+            
+        } else {
+            [self performSelector:@selector(requestYinliRank) withObject:nil afterDelay:5];
         }
     }];
         
@@ -239,20 +246,30 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     _type = type;
     
     if (self.delegate) {
-        [self.delegate didSetupDataGetTableHeight:(626.0)];
+        [self.delegate didSetupDataGetTableHeight:(kDewBall_WH*6+118 + 88 + 114*2)]; //tableview height
     }
 }
 
 - (void)setCurPage:(NSInteger)curPage {
-    [LoadingView hideLoadingViewForView:self.tableView];
+    // animation
+//    [LoadingView hideLoadingViewForView:self.tableView];
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.3;
+    animation.type = @"rippleEffect";
+    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+//    animation.type = kCATransitionFade;
+//    animation.subtype = kCATransitionFromLeft;
+    [self.tableView.layer addAnimation:animation forKey:nil];
+    
     if (!self.usrModels.count) {
         _curPage = 0;
         return;
     }
+    
     // 处理益出
     if (curPage < 0) {
         curPage = self.usrModels.count - 1;
-    } else if (curPage > self.usrModels.count) {
+    } else if (curPage > self.usrModels.count - 1) {
         curPage = 0;
     }
     

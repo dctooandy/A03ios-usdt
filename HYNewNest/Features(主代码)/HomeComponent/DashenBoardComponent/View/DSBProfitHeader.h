@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *profitCucLbl;
 
 - (void)setupDrewsWith:(NSDictionary<NSString *,RoundResItem *> *)allDicts;
+
 @end
 
 NS_ASSUME_NONNULL_END

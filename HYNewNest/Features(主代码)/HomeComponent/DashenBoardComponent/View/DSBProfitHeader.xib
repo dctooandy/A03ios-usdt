@@ -151,6 +151,7 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="1hM-Wb-ySv" firstAttribute="top" secondItem="lhI-eD-gDA" secondAttribute="bottom" id="0Bq-F5-3HG"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="M6b-0k-nsZ" secondAttribute="trailing" id="85c-Qv-PqP"/>
@@ -182,7 +183,7 @@
                 <outlet property="zhuangNum" destination="A5m-Kc-Tts" id="bB4-sD-yYR"/>
                 <outlet property="zhuangduiNum" destination="WeO-3t-Ruc" id="vBg-XD-9ae"/>
             </connections>
-            <point key="canvasLocation" x="-57" y="198"/>
+            <point key="canvasLocation" x="425" y="194"/>
         </view>
     </objects>
     <resources>

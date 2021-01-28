@@ -84,7 +84,7 @@
     _tableViewHCons.constant = tableHeight;
     
     if (self.delegate) {
-        [self.delegate didSetupDataGetTableHeight:(tableHeight + 100.0)]; //100是头部点击按钮们高度
+        [self.delegate didSetupDataGetTableHeight:(tableHeight + 100.0)]; //100是头部点击按钮们高度&bottom
     }
 }
 
@@ -94,12 +94,13 @@
 - (void)didSwipeLeftRight:(UISwipeGestureRecognizer *)swipe {
     if (self.tableView.type == DashenBoardTypeProfitBoard) {
 //        [LoadingView showLoadingViewWithToView:self.tableView needMask:NO];
-        if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
-            NSLog(@"大神榜 从左往右");
-            self.proTbDataSource.curPage += 1;
-        }else if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
+        
+        if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
             NSLog(@"大神榜 从右往左");
             self.proTbDataSource.curPage -= 1;
+        } else {
+            NSLog(@"大神榜 从左往右");
+            self.proTbDataSource.curPage += 1;
         }
     }
 }

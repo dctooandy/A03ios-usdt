@@ -37,12 +37,26 @@
     });
     
     [self drawLines];
+    
+    // 点击头部滚到 盈利榜
+    [self jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+
+        id vc = [NNControllerHelper currentRootVcOfNavController];
+        if ([NSStringFromClass([vc class]) isEqualToString:@"CNHomeVC"]) {
+            for (UIView *view in [vc view].subviews) {
+                if ([view isKindOfClass:[UIScrollView class]] && view.height > 500) {
+                    UIScrollView *scroll = (UIScrollView *)view;
+                    [scroll setContentOffset:CGPointMake(0, 674) animated:YES];
+                    break;
+                }
+            }
+        }
+    }];
 }
 
 - (void)drawLines {
 
     // 线的路径 横线
-//    CGFloat ballWH = AD(31.36);
     for (int i=0; i<6; i++) {
         UIBezierPath *linePath = [UIBezierPath bezierPath];
         [linePath moveToPoint:CGPointMake(0, kDewBall_WH + kDewBall_WH*i)];
@@ -137,7 +151,7 @@
 
 
 
-
+// 露珠
 - (void)setupDrewsWith:(NSDictionary<NSString *,RoundResItem *> *)allDicts {
     
     NSInteger zong = 0;
@@ -155,7 +169,6 @@
     
     // 时间戳 排序
     NSArray *allVal = [allDicts allValues];
-//    NSArray *sortedArray = allVal;
     NSArray *sortedArray = [allVal sortedArrayUsingComparator:^NSComparisonResult(RoundResItem *obj1, RoundResItem *obj2){
         if (obj1.timestamp > obj2.timestamp) {
             return NSOrderedDescending;
@@ -167,7 +180,6 @@
     
     // 6韩 12列
     CGFloat ballWH = AD(25.0);
-//    CGFloat blockWH = AD(31.36);
     CGFloat centerSpace = (kDewBall_WH-ballWH) * 0.5;
     for (RoundResItem *item in sortedArray) {
         
