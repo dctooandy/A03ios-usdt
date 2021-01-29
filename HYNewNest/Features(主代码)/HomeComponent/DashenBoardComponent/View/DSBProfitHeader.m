@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *xianduiNum;
 
 
+
 @end
 
 @implementation DSBProfitHeader
@@ -167,7 +168,7 @@
         }
     }
     
-    // 时间戳 排序
+    // 时间戳 升序排序
     NSArray *allVal = [allDicts allValues];
     NSArray *sortedArray = [allVal sortedArrayUsingComparator:^NSComparisonResult(RoundResItem *obj1, RoundResItem *obj2){
         if (obj1.timestamp > obj2.timestamp) {

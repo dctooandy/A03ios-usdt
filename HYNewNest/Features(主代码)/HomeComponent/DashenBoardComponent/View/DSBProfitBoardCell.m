@@ -42,9 +42,7 @@
     NSString *currency = item.currency.lowercaseString;
     _timeLbl.text = [item.billTime componentsSeparatedByString:@" "].lastObject;
     
-    NSDate *billTime = [NSDate jk_dateWithString:item.billTime format:@"yyyy-MM-dd HH:mm:ss"];
-    NSTimeInterval interval = [billTime timeIntervalSinceNow];
-    _isOnTableFlag.hidden = fabs(interval) > 60*5; //5分钟内在桌
+    _isOnTableFlag.hidden = !item.isOnTable; //5分钟内在桌
     
     _hallTableNumLbl.text = [item.tableCode stringByAppendingString:@"桌"];
     

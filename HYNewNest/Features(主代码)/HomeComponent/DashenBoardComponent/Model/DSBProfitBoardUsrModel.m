@@ -10,6 +10,11 @@
 #import "VIPRankConst.h"
 
 @implementation PrListItem
+- (BOOL)isOnTable {
+    NSDate *billTime = [NSDate jk_dateWithString:self.billTime format:@"yyyy-MM-dd HH:mm:ss"];
+    NSTimeInterval interval = [billTime timeIntervalSinceNow];
+    return fabs(interval) < 60*5; //5分钟内在桌
+}
 @end
 
 
@@ -26,5 +31,15 @@
 
 + (NSDictionary<NSString *,id> *)modelContainerPropertyGenericClass {
     return @{@"prList": [PrListItem class]};
+}
+
+- (BOOL)isOnTable {
+    if (!self.prList.count) {
+        return NO;
+    }
+    PrListItem *item = self.prList[0];
+    NSDate *billTime = [NSDate jk_dateWithString:item.billTime format:@"yyyy-MM-dd HH:mm:ss"];
+    NSTimeInterval interval = [billTime timeIntervalSinceNow];
+    return fabs(interval) < 60*5; //5分钟内在桌
 }
 @end

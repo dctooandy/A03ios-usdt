@@ -35,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * tableCode;
 @property (nonatomic , strong) NSNumber              * validAccount; //下注
 
+@property (nonatomic , assign, readonly) BOOL              isOnTable;
+
 @end
 
 
@@ -47,7 +49,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * loginName;
 @property (nonatomic , strong) NSArray <PrListItem *>              * prList;
 
-@property (copy,nonatomic,readonly) NSString *writtenLevel; 
+@property (copy,nonatomic,readonly) NSString *writtenLevel;
+@property (nonatomic , assign, readonly) BOOL              isOnTable;
 @end
 
 NS_ASSUME_NONNULL_END

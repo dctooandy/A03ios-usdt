@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet VIPRankGradientTxtLabel *rankLbl;
 @property (weak, nonatomic) IBOutlet UILabel *nameLbl;
 @property (weak, nonatomic) IBOutlet UILabel *profitCucLbl;
+@property (weak, nonatomic) IBOutlet UIImageView *toprightTapImgv;
 
 - (void)setupDrewsWith:(NSDictionary<NSString *,RoundResItem *> *)allDicts;
 

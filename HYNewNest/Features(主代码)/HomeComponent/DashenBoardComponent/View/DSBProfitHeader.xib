@@ -23,18 +23,18 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="_recommend" translatesAutoresizingMaskIntoConstraints="NO" id="gOF-Je-qWZ">
-                            <rect key="frame" x="378" y="-11" width="47" height="47"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zaizhuo" translatesAutoresizingMaskIntoConstraints="NO" id="gOF-Je-qWZ">
+                            <rect key="frame" x="378" y="0.0" width="36" height="36"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="47" id="Pn5-bI-AbA"/>
-                                <constraint firstAttribute="height" constant="47" id="v2V-dm-TZh"/>
+                                <constraint firstAttribute="width" constant="36" id="Pn5-bI-AbA"/>
+                                <constraint firstAttribute="height" constant="36" id="v2V-dm-TZh"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.20784313725490194" green="0.20784313725490194" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="912-is-wPn" firstAttribute="centerY" secondItem="Ts6-5x-Szb" secondAttribute="centerY" id="PJP-In-TF7"/>
-                        <constraint firstAttribute="trailing" secondItem="gOF-Je-qWZ" secondAttribute="trailing" constant="-11" id="cXo-CR-rjg"/>
+                        <constraint firstAttribute="trailing" secondItem="gOF-Je-qWZ" secondAttribute="trailing" id="cXo-CR-rjg"/>
                         <constraint firstAttribute="bottom" secondItem="gOF-Je-qWZ" secondAttribute="bottom" id="gBV-JS-PCd"/>
                         <constraint firstAttribute="height" constant="36" id="rJ5-Em-9tB"/>
                         <constraint firstItem="912-is-wPn" firstAttribute="leading" secondItem="Ts6-5x-Szb" secondAttribute="leading" constant="10" id="tbX-JC-cpU"/>
@@ -177,16 +177,17 @@
                 <outlet property="profitCucLbl" destination="t2g-Yn-kv8" id="myQ-HT-shr"/>
                 <outlet property="rankLbl" destination="fRa-GW-Nix" id="C6M-dB-PCh"/>
                 <outlet property="tableCodeLbl" destination="912-is-wPn" id="aeP-5b-6iV"/>
+                <outlet property="toprightTapImgv" destination="gOF-Je-qWZ" id="tVp-YI-qeY"/>
                 <outlet property="totalNum" destination="5GX-RA-cUS" id="y6O-Fg-G3Q"/>
                 <outlet property="xianNum" destination="0ts-z4-sMe" id="eGV-2X-G0y"/>
                 <outlet property="xianduiNum" destination="Uug-LQ-z7W" id="wE3-UV-A6v"/>
                 <outlet property="zhuangNum" destination="A5m-Kc-Tts" id="bB4-sD-yYR"/>
                 <outlet property="zhuangduiNum" destination="WeO-3t-Ruc" id="vBg-XD-9ae"/>
             </connections>
-            <point key="canvasLocation" x="425" y="194"/>
+            <point key="canvasLocation" x="67" y="58"/>
         </view>
     </objects>
     <resources>
-        <image name="_recommend" width="40" height="40"/>
+        <image name="zaizhuo" width="58" height="59"/>
     </resources>
 </document>

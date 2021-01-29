@@ -181,7 +181,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     header.profitCucLbl.text = [NSString stringWithFormat:@"%@%@",
                                 [usr.cusAmountSum jk_toDisplayNumberWithDigit:2],
                                 usr.prList[0].currency.lowercaseString];
-    
+    header.toprightTapImgv.image = usr.isOnTable?[UIImage imageNamed:@"zaizhuo"]:[UIImage imageNamed:@"tuijian"];
     return header;
 }
 
