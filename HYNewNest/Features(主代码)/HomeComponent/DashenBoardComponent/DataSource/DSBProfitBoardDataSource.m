@@ -74,6 +74,16 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 //    NSString *wsURL = @"wss://roadmap.9mbv.com:7070/socket.io/?EIO=4&transport=websocket"; //https
     NSString *wsURL = @"ws://roadmap.9mbv.com:8080/socket.io/?EIO=4&transport=websocket";
     [[SocketRocketUtility instance] SRWebSocketOpenWithURLString:wsURL];
+    
+    // 防止重复添加监听者
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self addObserverAndHandleData];
+    });
+    
+}
+
+- (void)addObserverAndHandleData {
     __weak typeof(self) weakSelf = self;
     [[NSNotificationCenter defaultCenter] addObserverForName:BYWebSocketDidReceivedNoti object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         NSString *dictStr = note.object;
@@ -88,7 +98,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
         }
         // 数组只有两个参数 第二个是主要数据  我们主要处理 @"result list" & @"close round"
         if ([fullArr[0] isEqualToString:@"result list"]) { // 所有游戏数据
-            MyLog(@"------------------------ allDict save to DB");
+            NSLog(@"------------------------ allDict save to DB");
             NSString *allDictStr = fullArr[1];
             NSDictionary *allDict = [BYJSONHelper dictOrArrayWithJsonString:allDictStr];
             for (NSString *vid in allDict.allKeys) {
@@ -110,7 +120,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
                 model.roundRes = roundReses.copy;
                 [model bg_saveOrUpdateAsync:^(BOOL isSuccess) {
                     if([nround.vid isEqualToString:weakSelf.showTableId]) {
-                        MyLog(@"------------------------ Found:%@, update DB & RefreshView", nround.vid);
+                        NSLog(@"------------------------ Found:%@, update DB & RefreshView", nround.vid);
                         //返回主线程
                         dispatch_async(dispatch_get_main_queue(), ^{ @autoreleasepool {
                             [weakSelf.tableView reloadData];

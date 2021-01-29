@@ -94,8 +94,8 @@
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
     NSLog(@"\n\n>>>>>>>>>>>>>>>>被关闭连接，code:\n%ld,reason:%@,wasClean:%d",code,reason,wasClean);
     //断开连接 同时销毁心跳
-//    [self SRWebSocketClose];
-    [self reConnect];
+    [self SRWebSocketClose];
+    [self performSelector:@selector(reConnect) withObject:nil afterDelay:3];
 }
 
 /*

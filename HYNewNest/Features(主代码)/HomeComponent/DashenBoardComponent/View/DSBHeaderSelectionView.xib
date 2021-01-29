@@ -10,11 +10,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DSBHeaderSelectionView">
             <connections>
-                <outlet property="titleLbl" destination="c9Y-ub-xkD" id="mZP-xz-SCA"/>
-                <outletCollection property="selectionBtns" destination="sNt-Us-bmq" id="f0v-LS-4Kg"/>
-                <outletCollection property="selectionBtns" destination="Xdp-sr-UnD" id="c4U-fK-b4b"/>
-                <outletCollection property="selectionBtns" destination="shf-dS-ItW" id="G9J-oi-cPK"/>
-                <outletCollection property="selectionBtns" destination="Lut-aX-mxH" id="5sc-Uu-ab7"/>
+                <outletCollection property="selectionBtns" destination="WBt-EZ-Roi" id="Nq3-76-iS5"/>
+                <outletCollection property="selectionBtns" destination="sNt-Us-bmq" id="919-Ae-0mi"/>
+                <outletCollection property="selectionBtns" destination="Xdp-sr-UnD" id="NDm-yY-o6c"/>
+                <outletCollection property="selectionBtns" destination="shf-dS-ItW" id="Ty6-o7-WJf"/>
+                <outletCollection property="selectionBtns" destination="Lut-aX-mxH" id="UtP-vv-oDf"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -22,14 +22,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="39"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大神盈利榜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9Y-ub-xkD">
-                    <rect key="frame" x="25" y="9" width="92" height="21"/>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lut-aX-mxH">
-                    <rect key="frame" x="346" y="5" width="43" height="29"/>
+                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lut-aX-mxH" customClass="CNTextSaleBtn">
+                    <rect key="frame" x="299" y="5" width="43" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="月总榜">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -38,8 +32,8 @@
                         <action selector="didTapSwitchRankBtn:" destination="-1" eventType="touchUpInside" id="soi-RS-uSU"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shf-dS-ItW">
-                    <rect key="frame" x="293" y="5" width="43" height="29"/>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shf-dS-ItW" customClass="CNTextSaleBtn">
+                    <rect key="frame" x="236" y="5" width="43" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="周总榜">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -48,8 +42,8 @@
                         <action selector="didTapSwitchRankBtn:" destination="-1" eventType="touchUpInside" id="OIf-JT-9yT"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xdp-sr-UnD">
-                    <rect key="frame" x="240" y="5" width="43" height="29"/>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xdp-sr-UnD" customClass="CNTextSaleBtn">
+                    <rect key="frame" x="173" y="5" width="43" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="提现榜">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -58,8 +52,8 @@
                         <action selector="didTapSwitchRankBtn:" destination="-1" eventType="touchUpInside" id="PaD-gA-P3N"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNt-Us-bmq">
-                    <rect key="frame" x="187" y="5" width="43" height="29"/>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNt-Us-bmq" customClass="CNTextSaleBtn">
+                    <rect key="frame" x="110" y="5" width="43" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="充值榜">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -68,24 +62,34 @@
                         <action selector="didTapSwitchRankBtn:" destination="-1" eventType="touchUpInside" id="ijP-ht-hpW"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WBt-EZ-Roi" customClass="CNTextSaleBtn">
+                    <rect key="frame" x="18" y="5" width="72" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="大神盈利榜">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapSwitchRankBtn:" destination="-1" eventType="touchUpInside" id="kKW-kA-2hu"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="16C-U1-f9s"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="sNt-Us-bmq" firstAttribute="centerY" secondItem="6ze-8f-irF" secondAttribute="centerY" id="0FA-kA-ftt"/>
-                <constraint firstItem="Xdp-sr-UnD" firstAttribute="leading" secondItem="sNt-Us-bmq" secondAttribute="trailing" constant="10" id="3AO-6t-fDB"/>
-                <constraint firstAttribute="trailing" secondItem="Lut-aX-mxH" secondAttribute="trailing" constant="25" id="7xp-8q-Rje"/>
-                <constraint firstItem="c9Y-ub-xkD" firstAttribute="leading" secondItem="6ze-8f-irF" secondAttribute="leading" constant="25" id="8za-nX-n4M"/>
-                <constraint firstItem="c9Y-ub-xkD" firstAttribute="centerY" secondItem="6ze-8f-irF" secondAttribute="centerY" id="J2c-9U-50W"/>
-                <constraint firstItem="Lut-aX-mxH" firstAttribute="leading" secondItem="shf-dS-ItW" secondAttribute="trailing" constant="10" id="U1h-sc-4XK"/>
+                <constraint firstItem="Xdp-sr-UnD" firstAttribute="leading" secondItem="sNt-Us-bmq" secondAttribute="trailing" constant="20" id="3AO-6t-fDB"/>
+                <constraint firstItem="Lut-aX-mxH" firstAttribute="leading" secondItem="shf-dS-ItW" secondAttribute="trailing" constant="20" id="U1h-sc-4XK"/>
+                <constraint firstItem="sNt-Us-bmq" firstAttribute="leading" secondItem="WBt-EZ-Roi" secondAttribute="trailing" constant="20" id="bFs-2Q-d9M"/>
                 <constraint firstItem="shf-dS-ItW" firstAttribute="centerY" secondItem="6ze-8f-irF" secondAttribute="centerY" id="n8s-4L-TMC"/>
                 <constraint firstItem="Lut-aX-mxH" firstAttribute="centerY" secondItem="6ze-8f-irF" secondAttribute="centerY" id="r1u-ga-W42"/>
+                <constraint firstItem="WBt-EZ-Roi" firstAttribute="leading" secondItem="6ze-8f-irF" secondAttribute="leading" constant="18" id="rXh-Kc-j6H"/>
+                <constraint firstItem="WBt-EZ-Roi" firstAttribute="centerY" secondItem="6ze-8f-irF" secondAttribute="centerY" id="sS3-Vi-Xej"/>
                 <constraint firstItem="Xdp-sr-UnD" firstAttribute="centerY" secondItem="6ze-8f-irF" secondAttribute="centerY" id="wkK-ON-S6y"/>
-                <constraint firstItem="shf-dS-ItW" firstAttribute="leading" secondItem="Xdp-sr-UnD" secondAttribute="trailing" constant="10" id="yH6-PB-EKW"/>
+                <constraint firstItem="shf-dS-ItW" firstAttribute="leading" secondItem="Xdp-sr-UnD" secondAttribute="trailing" constant="20" id="yH6-PB-EKW"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-33" y="32"/>
+            <point key="canvasLocation" x="67" y="40"/>
         </view>
     </objects>
 </document>

@@ -53,7 +53,7 @@
     _headerSelecView.didTapBtnBlock = ^(NSString * _Nonnull rankName) {
         STRONGSELF_DEFINE
         
-        if ([rankName containsString:@"大神"]) {
+        if ([rankName containsString:@"盈利"]) {
             [strongSelf.tableView changeDataSourceDelegate:strongSelf.proTbDataSource type:DashenBoardTypeProfitBoard];
             strongSelf.btmLabel.text = @"大神榜为当天百家乐数据，每5分钟刷新一次";
             
