@@ -34,9 +34,12 @@
     [super viewDidLoad];
     
     // 滑动手势
-    UISwipeGestureRecognizer *swipGes = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipeLeftRight:)];
-    swipGes.direction = UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight;
-    [_tableView addGestureRecognizer:swipGes];
+    UISwipeGestureRecognizer *swipGesLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipeLeftRight:)];
+    swipGesLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+    [_tableView addGestureRecognizer:swipGesLeft];
+    UISwipeGestureRecognizer *swipGesRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipeLeftRight:)];
+    swipGesRight.direction = UISwipeGestureRecognizerDirectionRight;
+    [_tableView addGestureRecognizer:swipGesRight];
     
     // 周榜月榜
     _mlTbDataSource = [[DSBWeekMonthListDataSource alloc] initWithDelegate:self TableView:_tableView type:DashenBoardTypeWeekBoard];
@@ -93,13 +96,12 @@
 
 - (void)didSwipeLeftRight:(UISwipeGestureRecognizer *)swipe {
     if (self.tableView.type == DashenBoardTypeProfitBoard) {
-        [LoadingView showLoadingViewWithToView:self.tableView needMask:YES];
         
         if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
-            NSLog(@"大神榜 从右往左");
+            NSLog(@"大神榜 从左往右");
             self.proTbDataSource.curPage -= 1;
         } else {
-            NSLog(@"大神榜 从左往右");
+            NSLog(@"大神榜 从右往左");
             self.proTbDataSource.curPage += 1;
         }
     }

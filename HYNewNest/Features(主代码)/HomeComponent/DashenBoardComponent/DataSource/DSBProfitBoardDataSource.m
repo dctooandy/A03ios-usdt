@@ -54,8 +54,8 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     // setup timer
     // GCD定时器
     static dispatch_source_t _timer;
-    //设置刷新间隔 10 分钟
-    NSTimeInterval period = 60*10.0;
+    //设置刷新间隔 5 分钟
+    NSTimeInterval period = 60*5.0;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
     dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), period * NSEC_PER_SEC, 0);
@@ -129,8 +129,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 #pragma mark - UITableView
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    DSBProfitBoardUsrModel *usr = self.usrModels[_curPage];
-    return usr.prList.count;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -228,12 +227,12 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
                     [self setupWebSocket];
                     
                 } else {
-                    [self performSelector:@selector(requestYinliRank) withObject:nil afterDelay:5];
+                    [self performSelector:@selector(requestYinliRank) withObject:nil afterDelay:3];
                 }
             }];
             
         } else {
-            [self performSelector:@selector(requestYinliRank) withObject:nil afterDelay:5];
+            [self performSelector:@selector(requestYinliRank) withObject:nil afterDelay:3];
         }
     }];
         
@@ -253,17 +252,21 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 - (void)setCurPage:(NSInteger)curPage {
     if (!self.usrModels.count) {
         _curPage = 0;
-        [LoadingView hideLoadingViewForView:self.tableView];
         return;
     }
     
     // animation
     CATransition *animation = [CATransition animation];
     animation.duration = 0.3;
-    animation.type = kCATransitionFade;//@"rippleEffect";
     animation.timingFunction = UIViewAnimationCurveEaseInOut;
     //    animation.type = kCATransitionFade;
-    //    animation.subtype = kCATransitionFromLeft;
+    if (curPage < _curPage) {
+        animation.type = kCATransitionReveal;
+        animation.subtype = kCATransitionFromLeft;
+    } else {
+        animation.type = kCATransitionMoveIn;
+        animation.subtype = kCATransitionFromRight;
+    }
     [self.tableView.layer addAnimation:animation forKey:nil];
     
     // 处理益出
@@ -285,7 +288,6 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     _curPage = curPage;
     
     [self.tableView reloadData];
-    [LoadingView hideLoadingViewForView:self.tableView];
 }
 
 

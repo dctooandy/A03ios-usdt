@@ -27,6 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 //Xima
 @property (nonatomic , strong) NSNumber              * totalAmount1;
 @property (nonatomic , strong) NSNumber              * totalAmount2;
+//累计盈利
+@property (strong,nonatomic) NSNumber                *cusAmountSum;
+//单笔盈利
+@property (strong,nonatomic) NSNumber                *cusAmount;
 
 @property (copy,nonatomic,readonly) NSString *writtenLevel; 
 @property (copy,nonatomic,readonly) NSString *writtenTime; 

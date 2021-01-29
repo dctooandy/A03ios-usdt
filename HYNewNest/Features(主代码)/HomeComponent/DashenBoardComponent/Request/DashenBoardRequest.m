@@ -16,8 +16,8 @@
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
     paramDic[@"pageNo"] = @1;
     paramDic[@"pageSize"] = @10;
-    paramDic[@"beginDate"] = [[[NSDate date] jk_startOfMonth] jk_stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
-    paramDic[@"endDate"] = [[[NSDate date] jk_endOfMonth] jk_stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    paramDic[@"beginDate"] = [[[NSDate date] jk_startOfMonth] jk_stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    paramDic[@"endDate"] = [[[NSDate date] jk_endOfMonth] jk_stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
     
     switch (type) {
         case DashenBoredReqTypeRecharge:
@@ -30,8 +30,8 @@
             paramDic[@"action"] = @"totalWeek";
             paramDic[@"pageNo"] = @1;
             paramDic[@"pageSize"] = @6;
-            paramDic[@"beginDate"] = [[[NSDate date] jk_startOfWeek] jk_stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
-            paramDic[@"endDate"] = [[[NSDate date] jk_endOfWeek] jk_stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+//            paramDic[@"beginDate"] = [[[NSDate date] jk_startOfWeek] jk_stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+//            paramDic[@"endDate"] = [[[NSDate date] jk_endOfWeek] jk_stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
             break;
         case DashenBoredReqTypeTotalMonth:
             paramDic[@"action"] = @"totalMonth";

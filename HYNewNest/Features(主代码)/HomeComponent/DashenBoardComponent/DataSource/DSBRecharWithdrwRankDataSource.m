@@ -143,6 +143,8 @@ NSString *const HeaderID = @"DSBRchrWthdrwHeader";
                     [self.tableView reloadData];
                     self->_lastReqTimeRecharge = [[NSDate date] timeIntervalSince1970];
                 }
+            } else {
+                [self performSelector:@selector(requestRankRecharge) withObject:nil afterDelay:3];
             }
         }];
     }
@@ -163,6 +165,8 @@ NSString *const HeaderID = @"DSBRchrWthdrwHeader";
                     [self.tableView reloadData];
                     self->_lastReqtimeWithdraw = [[NSDate date] timeIntervalSince1970];
                 }
+            } else {
+                [self performSelector:@selector(requestRankWithdraw) withObject:nil afterDelay:3];
             }
         }];
     }

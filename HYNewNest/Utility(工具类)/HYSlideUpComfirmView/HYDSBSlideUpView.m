@@ -94,7 +94,13 @@
     [cell.headShotImgv sd_setImageWithURL:[NSURL URLWithString:model.headshot] placeholderImage:[UIImage imageNamed:@"icon"]];
     cell.levelLb.text = model.writtenLevel;
     cell.nameLb.text = model.loginName;
-    cell.amountLb.text = model.totalAmount?([model.totalAmount jk_toDisplayNumberWithDigit:2]):([model.totalAmount1 jk_toDisplayNumberWithDigit:2]);
+    if (model.cusAmount) {
+        cell.amountLb.text = [model.cusAmount jk_toDisplayNumberWithDigit:0];
+    } else if (model.cusAmountSum) {
+        cell.amountLb.text = [model.cusAmountSum jk_toDisplayNumberWithDigit:0];
+    } else {
+        cell.amountLb.text = model.totalAmount?([model.totalAmount jk_toDisplayNumberWithDigit:0]):([model.totalAmount1 jk_toDisplayNumberWithDigit:0]);
+    }
     return cell;
 }
 

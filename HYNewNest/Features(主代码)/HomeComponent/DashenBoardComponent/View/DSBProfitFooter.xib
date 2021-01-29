@@ -14,15 +14,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cnd-91-D9u">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
-                    <color key="backgroundColor" red="0.21176470588235294" green="0.21176470588235294" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="1" id="MXF-52-AaK"/>
-                    </constraints>
-                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GH4-lW-Lwh" customClass="CNTwoStatusBtn">
-                    <rect key="frame" x="22" y="11" width="370" height="48"/>
+                    <rect key="frame" x="22" y="10" width="370" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="dua-jp-HAY"/>
                     </constraints>
@@ -32,7 +25,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="←左右滑动看更多大神→" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6o-Mc-Yft">
-                    <rect key="frame" x="141" y="67" width="132.5" height="14.5"/>
+                    <rect key="frame" x="141" y="66" width="132.5" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -43,12 +36,9 @@
             <constraints>
                 <constraint firstItem="GH4-lW-Lwh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="22" id="1Ow-KE-3Wa"/>
                 <constraint firstItem="v6o-Mc-Yft" firstAttribute="top" secondItem="GH4-lW-Lwh" secondAttribute="bottom" constant="8" id="HC5-uC-h3t"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Cnd-91-D9u" secondAttribute="trailing" id="QtM-hJ-e6i"/>
                 <constraint firstItem="v6o-Mc-Yft" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="RYl-YQ-cVp"/>
-                <constraint firstItem="Cnd-91-D9u" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="SXM-IA-XmD"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="GH4-lW-Lwh" secondAttribute="trailing" constant="22" id="c7p-g6-W98"/>
-                <constraint firstItem="Cnd-91-D9u" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dec-zL-7rk"/>
-                <constraint firstItem="GH4-lW-Lwh" firstAttribute="top" secondItem="Cnd-91-D9u" secondAttribute="bottom" constant="10" id="fte-GH-8ep"/>
+                <constraint firstItem="GH4-lW-Lwh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="tzg-pt-Uzt"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
