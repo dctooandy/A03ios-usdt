@@ -37,6 +37,10 @@
     }
 }
 
+- (IBAction)didTapMoreHistoryBtn:(id)sender {
+    !_btmBtnClikHistoryBlock?:_btmBtnClikHistoryBlock();
+}
+
 - (IBAction)didTapBtmButton:(id)sender {
     !_btmBtnClikBlock?:_btmBtnClikBlock();
 }

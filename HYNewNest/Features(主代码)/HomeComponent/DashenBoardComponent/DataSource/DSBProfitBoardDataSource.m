@@ -11,6 +11,7 @@
 #import "DSBProfitFooter.h"
 #import "DSBProfitHeader.h"
 #import "DSBGameRoundResModel.h"
+#import "HYDSBSlideUpView.h"
 
 #import "DashenBoardRequest.h"
 #import "HYInGameHelper.h"
@@ -194,16 +195,15 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     DSBProfitFooter *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:ProfitFooterId];
     if (usr.prList.count == 0) {
         footer.isUsrOnline = NO;
-        footer.btmBtnClikBlock = ^{
-        };
+        footer.btmBtnClikBlock = nil;
+        footer.btmBtnClikHistoryBlock = nil;
     } else {
         footer.isUsrOnline = usr.prList[0].isOnline;
         footer.btmBtnClikBlock = ^{
-            if (!self.showTableId) {
-                [CNHUB showWaiting:@"正在获取推荐桌台号.."];
-                return;
-            }
             [[HYInGameHelper sharedInstance] inBACGameTableCode:self.showTableId];
+        };
+        footer.btmBtnClikHistoryBlock = ^{
+            [HYDSBSlideUpView showSlideupYLBView:usr.prList];
         };
     }
     return footer;
@@ -211,7 +211,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 88;//固定
+    return 128;//固定
 }
 
 
@@ -255,7 +255,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     _type = type;
     
     if (self.delegate) {
-        [self.delegate didSetupDataGetTableHeight:(kDewBall_WH*6+118 + 88 + 114*2)]; //tableview height
+        [self.delegate didSetupDataGetTableHeight:(kDewBall_WH*6+118 + 129 + 114*2)]; //tableview height
     }
 }
 

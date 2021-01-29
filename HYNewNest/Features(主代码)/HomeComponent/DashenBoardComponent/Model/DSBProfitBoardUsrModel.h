@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * currency;
 @property (nonatomic , assign) NSInteger              currencyType;
 @property (nonatomic , copy) NSString              * currentAmount;
-@property (nonatomic , strong) NSNumber              * cusAccount;
+@property (nonatomic , strong) NSNumber              * cusAccount; //盈利
 @property (nonatomic , assign) NSInteger              flag;
 @property (nonatomic , copy) NSString              * gameType;
 @property (nonatomic , copy) NSString              * gmCode;
@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * reckonTime;
 @property (nonatomic , assign) NSInteger              score;
 @property (nonatomic , copy) NSString              * tableCode;
-@property (nonatomic , copy) NSString              * validAccount;
+@property (nonatomic , strong) NSNumber              * validAccount; //下注
 
 @end
 

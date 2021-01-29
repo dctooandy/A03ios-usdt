@@ -62,7 +62,7 @@
         _gameStatusColrLbl.text = @"闲赢";
     }
     
-    _previosAmountLbl.text = [[item.previosAmount jk_toDisplayNumberWithDigit:2] stringByAppendingString:currency];
+    _previosAmountLbl.text = [[item.validAccount jk_toDisplayNumberWithDigit:2] stringByAppendingString:currency];
     
     _cusAccountLbl.text = [NSString stringWithFormat:@"盈利 %@ %@" , [item.cusAccount jk_toDisplayNumberWithDigit:2], currency];
     _bankerPointLbl.text = [NSString stringWithFormat:@"%ld点", (long)item.bankerPoint];
