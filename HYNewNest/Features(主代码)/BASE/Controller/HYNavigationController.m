@@ -26,7 +26,7 @@
     
     [self setupAppearance];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupAppearance) name:CNSkinChangeNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupAppearance) name:CNSkinChangeNotification object:nil];
 }
 
 - (void)dealloc{
@@ -39,6 +39,7 @@
     
     [self.navigationBar setShadowImage:[[UIImage alloc]init]];
 //    if ([CNSkinManager currSkinType] == SKinTypeBlack) {
+        
         [self.navigationBar setBackgroundImage:[UIImage jk_imageWithColor:kHexColor(0x1A1A2C)] forBarMetrics:UIBarMetricsDefault];
         [self.navigationBar setBarTintColor:[UIColor whiteColor]];
         [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName: [UIFont fontPFSB18]}];
@@ -136,12 +137,21 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
      } else {
          self.navigationBar.translucent = NO;
      }
-    UIView *barBackgroundView = [[self.navigationBar subviews] objectAtIndex:0];// _UIBarBackground
+    // 导航栏背景透明 但是不隐藏导航栏(保留按钮&功能)
     if (viewController.navBarTransparent) {
-        barBackgroundView.alpha = 0;
+        [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     } else {
-        barBackgroundView.alpha = 1;
+        [self.navigationBar setBackgroundImage:[UIImage jk_imageWithColor:kHexColor(0x1A1A2C)] forBarMetrics:UIBarMetricsDefault];
     }
+//    if (@available(iOS 13.0, *)) {
+//        UIView *barBackgroundView = [[self.navigationBar subviews] objectAtIndex:0];// _UIBarBackground iOS13work
+//        if (viewController.navBarTransparent) {
+//            barBackgroundView.alpha = 0;
+//        } else {
+//            barBackgroundView.alpha = 1;
+//        }
+//    }
+
 }
 
 #pragma mark - CUSTOM

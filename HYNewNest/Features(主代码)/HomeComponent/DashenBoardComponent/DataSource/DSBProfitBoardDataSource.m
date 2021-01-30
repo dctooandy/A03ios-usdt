@@ -145,9 +145,11 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DSBProfitBoardCell *cell = (DSBProfitBoardCell*)[tableView dequeueReusableCellWithIdentifier:ProfitCellId];
-    DSBProfitBoardUsrModel *usr = self.usrModels[_curPage];
-    PrListItem *item = usr.prList[indexPath.row];
-    [cell setupPrListItem:item];
+    if (self.usrModels.count) {
+        DSBProfitBoardUsrModel *usr = self.usrModels[_curPage];
+        PrListItem *item = usr.prList[indexPath.row];
+        [cell setupPrListItem:item];
+    }
     return cell;
 }
 
@@ -174,14 +176,16 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     }
     
     //user
-    DSBProfitBoardUsrModel *usr = self.usrModels[_curPage];
-    header.nameLbl.text = usr.loginName;
-    header.tableCodeLbl.text = [NSString stringWithFormat:@"经典百家乐 %@桌", self.showTableId?:@"D000"];
-    header.rankLbl.text = usr.writtenLevel;
-    header.profitCucLbl.text = [NSString stringWithFormat:@"%@%@",
-                                [usr.cusAmountSum jk_toDisplayNumberWithDigit:2],
-                                usr.prList[0].currency.lowercaseString];
-    header.toprightTapImgv.image = usr.isOnTable?[UIImage imageNamed:@"zaizhuo"]:[UIImage imageNamed:@"tuijian"];
+    if (self.usrModels.count) {
+        DSBProfitBoardUsrModel *usr = self.usrModels[_curPage];
+        header.nameLbl.text = usr.loginName;
+        header.tableCodeLbl.text = [NSString stringWithFormat:@"经典百家乐 %@桌", self.showTableId?:@"D000"];
+        header.rankLbl.text = usr.writtenLevel;
+        header.profitCucLbl.text = [NSString stringWithFormat:@"%@%@",
+                                    [usr.cusAmountSum jk_toDisplayNumberWithDigit:2],
+                                    usr.prList[0].currency.lowercaseString];
+        header.toprightTapImgv.image = usr.isOnTable?[UIImage imageNamed:@"zaizhuo"]:[UIImage imageNamed:@"tuijian"];
+    }
     return header;
 }
 
@@ -190,21 +194,23 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    DSBProfitBoardUsrModel *usr = self.usrModels[_curPage];
-    
     DSBProfitFooter *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:ProfitFooterId];
-    if (usr.prList.count == 0) {
-        footer.isUsrOnline = NO;
-        footer.btmBtnClikBlock = nil;
-        footer.btmBtnClikHistoryBlock = nil;
-    } else {
-        footer.isUsrOnline = usr.prList[0].isOnline;
-        footer.btmBtnClikBlock = ^{
-            [[HYInGameHelper sharedInstance] inBACGameTableCode:self.showTableId];
-        };
-        footer.btmBtnClikHistoryBlock = ^{
-            [HYDSBSlideUpView showSlideupYLBView:usr.prList];
-        };
+    
+    DSBProfitBoardUsrModel *usr = self.usrModels[_curPage];
+    if (self.usrModels.count) {
+        if (usr.prList.count == 0) {
+            footer.isUsrOnline = NO;
+            footer.btmBtnClikBlock = nil;
+            footer.btmBtnClikHistoryBlock = nil;
+        } else {
+            footer.isUsrOnline = usr.prList[0].isOnline;
+            footer.btmBtnClikBlock = ^{
+                [[HYInGameHelper sharedInstance] inBACGameTableCode:self.showTableId];
+            };
+            footer.btmBtnClikHistoryBlock = ^{
+                [HYDSBSlideUpView showSlideupYLBView:usr.prList];
+            };
+        }
     }
     return footer;
 }
