@@ -14,6 +14,9 @@
 @property (nonatomic, strong) NSArray <NSString *>* titles;// 所有标题
 @property (assign,nonatomic) NSInteger selIdx;
 @property (nonatomic, strong) NSString *selTit; // 选中标题
+
+@property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray *leadingCons;
+
 @end
 
 @implementation DSBHeaderSelectionView
@@ -41,14 +44,27 @@
 
 - (void)loadViewFromXib {
     [super loadViewFromXib];
-    
     self.backgroundColor = [UIColor clearColor];
-    for (CNTextSaleBtn *btn in _selectionBtns) {
-        btn.selFont = [UIFont fontPFSB18];
-        btn.norFont = [UIFont fontPFR14];
-        btn.selColor = [UIColor whiteColor];
-        btn.norColor = [UIColor whiteColor];
+    
+    if (kScreenWidth < 375) {
+        for (NSLayoutConstraint *leading in _leadingCons) {
+            leading.constant = 15;
+        }
+        for (CNTextSaleBtn *btn in _selectionBtns) {
+            btn.selFont = [UIFont fontPFSB16];
+            btn.norFont = [UIFont fontPFR12];
+            btn.selColor = [UIColor whiteColor];
+            btn.norColor = [UIColor whiteColor];
+        }
+    } else {
+        for (CNTextSaleBtn *btn in _selectionBtns) {
+            btn.selFont = [UIFont fontPFSB18];
+            btn.norFont = [UIFont fontPFR14];
+            btn.selColor = [UIColor whiteColor];
+            btn.norColor = [UIColor whiteColor];
+        }
     }
+    
     _selIdx = 0;
     _selTit = self.titles[0];
     CNTextSaleBtn *firBtn = _selectionBtns[0];

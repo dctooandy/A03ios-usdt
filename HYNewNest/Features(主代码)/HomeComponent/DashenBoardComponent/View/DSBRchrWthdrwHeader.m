@@ -34,13 +34,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *copperAmoLb;
 @property (weak, nonatomic) IBOutlet UILabel *copperTimeLb;
 
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *copperIconLeadingCons;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *silverIconTrailingCons;
 @end
 
 @implementation DSBRchrWthdrwHeader
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    _silverIconTrailingCons.constant = AD(65);
+    _copperIconLeadingCons.constant = AD(65);
     
     self.backgroundView = ({
         UIView *bg = [[UIView alloc] initWithFrame:self.bounds];

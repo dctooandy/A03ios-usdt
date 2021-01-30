@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -222,7 +222,7 @@
                                 <constraint firstAttribute="height" constant="113" id="ed8-GX-7F0"/>
                             </constraints>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTb-7Q-XWA">
+                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTb-7Q-XWA">
                             <rect key="frame" x="33" y="82" width="141" height="38"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="141" id="9dC-VJ-nV0"/>
@@ -239,7 +239,7 @@
                                 <action selector="regist:" destination="-1" eventType="touchUpInside" id="sIc-tb-Nax"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ua-jq-xoI">
+                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ua-jq-xoI">
                             <rect key="frame" x="189" y="82" width="141" height="38"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="38" id="h5N-7C-t29"/>
@@ -269,6 +269,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
+                    <viewLayoutGuide key="safeArea" id="0Qw-xn-dyU"/>
                     <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="tSp-Jm-n9v" firstAttribute="centerX" secondItem="bWe-Js-K1F" secondAttribute="centerX" constant="26" id="3C9-ea-1Zj"/>
@@ -284,7 +285,6 @@
                         <constraint firstItem="7ua-jq-xoI" firstAttribute="height" secondItem="MTb-7Q-XWA" secondAttribute="height" id="dyd-oa-jOE"/>
                         <constraint firstItem="Sim-dp-tCw" firstAttribute="top" secondItem="bWe-Js-K1F" secondAttribute="top" id="zIc-Yz-SxG"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="0Qw-xn-dyU"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
