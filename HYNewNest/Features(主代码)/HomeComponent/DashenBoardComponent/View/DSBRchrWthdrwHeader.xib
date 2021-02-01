@@ -95,14 +95,14 @@
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rank3" translatesAutoresizingMaskIntoConstraints="NO" id="y6I-vI-hkw">
                             <rect key="frame" x="308.5" y="36" width="25" height="23"/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPu-vJ-rlr">
-                            <rect key="frame" x="289" y="120" width="34" height="16"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPu-vJ-rlr">
+                            <rect key="frame" x="300" y="120" width="12.5" height="16"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                             <color key="textColor" red="0.7725490196" green="0.7725490196" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赌圣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IrL-LE-zHQ" customClass="VIPRankGradientTxtLabel">
-                            <rect key="frame" x="331" y="121.5" width="22.5" height="13.5"/>
+                            <rect key="frame" x="320.5" y="121.5" width="22.5" height="13.5"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -191,7 +191,7 @@
                 <outlet property="silverTimeLb" destination="1No-9Q-Kwh" id="wsI-mf-fxT"/>
                 <outlet property="silverUsrLb" destination="cbE-Bs-eQY" id="FZb-63-c6F"/>
             </connections>
-            <point key="canvasLocation" x="321.73913043478262" y="-53.236607142857139"/>
+            <point key="canvasLocation" x="-342" y="-154"/>
         </view>
     </objects>
     <resources>

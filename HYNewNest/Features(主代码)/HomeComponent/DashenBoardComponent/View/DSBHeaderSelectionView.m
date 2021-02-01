@@ -56,6 +56,16 @@
             btn.selColor = [UIColor whiteColor];
             btn.norColor = [UIColor whiteColor];
         }
+    } else if (kScreenWidth > 414) {
+        for (NSLayoutConstraint *leading in _leadingCons) {
+            leading.constant = 30;
+        }
+        for (CNTextSaleBtn *btn in _selectionBtns) {
+            btn.selFont = [UIFont fontPFSB18];
+            btn.norFont = [UIFont fontPFR14];
+            btn.selColor = [UIColor whiteColor];
+            btn.norColor = [UIColor whiteColor];
+        }
     } else {
         for (CNTextSaleBtn *btn in _selectionBtns) {
             btn.selFont = [UIFont fontPFSB18];

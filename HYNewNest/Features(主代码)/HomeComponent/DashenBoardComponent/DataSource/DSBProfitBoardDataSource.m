@@ -23,6 +23,9 @@ NSString *const ProfitFooterId = @"DSBProfitFooter";
 NSString *const ProfitHeaderId = @"DSBProfitHeader";
 
 @interface DSBProfitBoardDataSource () <UITableViewDelegate, UITableViewDataSource>
+{
+    BOOL _isAsking;
+}
 
 @property (weak,nonatomic) id<DashenBoardAutoHeightDelegate> delegate; // 高度代理
 @property (weak,nonatomic) UITableView *tableView;
@@ -40,6 +43,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 - (instancetype)initWithDelegate:(id)delegate TableView:(UITableView *)tableView{
     
     self = [super init];
+    _isAsking = NO;
     _delegate = delegate;
     _curPage = 0;
     
@@ -225,6 +229,10 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 
 /// 盈利榜
 - (void)requestYinliRank {
+    if (_isAsking) {
+        return;
+    }
+    _isAsking = YES; //正在请求
     
     [DashenBoardRequest requestRecommendTableHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg && [responseObj isKindOfClass:[NSString class]]) {
@@ -242,13 +250,17 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
                     // setup webSocket
                     [self setupWebSocket];
                     
+                    self->_isAsking = NO;
+                    
                 } else {
                     [self performSelector:@selector(requestYinliRank) withObject:nil afterDelay:3];
+                    self->_isAsking = NO;
                 }
             }];
             
         } else {
             [self performSelector:@selector(requestYinliRank) withObject:nil afterDelay:3];
+            self->_isAsking = NO;
         }
     }];
         
@@ -259,6 +271,9 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 
 - (void)setType:(DashenBoardType)type {
     _type = type;
+    if (!self.usrModels.count) {
+        [self requestYinliRank];
+    }
     
     if (self.delegate) {
         [self.delegate didSetupDataGetTableHeight:(kDewBall_WH*6+118 + 129 + 114*2)]; //tableview height
