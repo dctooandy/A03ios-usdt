@@ -53,8 +53,13 @@ NSString *const InGameTypeString[] = {
 
 - (void)inBACGameTableCode:(NSString *)tableCode {
     if (!self.inGameDict) {
-        [CNHUB showError:@"游戏数据为空 正在为您重新加载.."];
+        [CNHUB showWaiting:@"游戏数据为空 正在为您重新加载.."];
         [self queryHomeInGamesStatus];
+        return;
+    }
+    if (![CNUserManager shareManager].isLogin) {
+        [CNHUB showError:@"请先登录后再进入该游戏"];
+        [NNPageRouter jump2Login];
         return;
     }
 
@@ -73,8 +78,13 @@ NSString *const InGameTypeString[] = {
 
 - (void)inGame:(InGameType)gType {
     if (!self.inGameDict) {
-        [CNHUB showError:@"游戏数据为空 正在为您重新加载.."];
+        [CNHUB showWaiting:@"游戏数据为空 正在为您重新加载.."];
         [self queryHomeInGamesStatus];
+        return;
+    }
+    if (![CNUserManager shareManager].isLogin) {
+        [CNHUB showError:@"请先登录后再进入该游戏"];
+        [NNPageRouter jump2Login];
         return;
     }
     
@@ -172,6 +182,17 @@ NSString *const InGameTypeString[] = {
                     gameId:(NSString *)gameId
                   gameCode:(NSString *)gameCode
    platformSupportCurrency:(nullable NSString *)platformSupportCurrency {
+    
+    if (!self.inGameDict) {
+        [CNHUB showWaiting:@"游戏数据为空 正在为您重新加载.."];
+        [self queryHomeInGamesStatus];
+        return;
+    }
+    if (![CNUserManager shareManager].isLogin) {
+        [CNHUB showError:@"请先登录后再进入该游戏"];
+        [NNPageRouter jump2Login];
+        return;
+    }
     
     // 手动拼接A03 用于匹配查询而已
     NSString *fullGameCode;

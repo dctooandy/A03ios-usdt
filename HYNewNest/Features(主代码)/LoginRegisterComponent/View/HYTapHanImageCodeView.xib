@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HYTapHanImageCodeView">
             <connections>
                 <outlet property="captchaImgv" destination="EEL-eR-5Gd" id="qCI-Uj-MIg"/>
-                <outlet property="lblText" destination="Yv2-wd-nyh" id="AWF-Dc-vFN"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -26,16 +26,6 @@
                         <outletCollection property="gestureRecognizers" destination="dnk-It-9wn" appends="YES" id="yiT-VA-9e3"/>
                     </connections>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加载中.." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yv2-wd-nyh">
-                    <rect key="frame" x="0.0" y="67" width="300" height="28"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69812265327659573" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="28" id="h3P-Ts-T0e"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vqC-ol-3gn">
                     <rect key="frame" x="270" y="0.0" width="30" height="30"/>
                     <constraints>
@@ -48,14 +38,12 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="Yv2-wd-nyh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Aqj-Iq-r6n"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Yv2-wd-nyh" secondAttribute="bottom" id="FqG-St-SAm"/>
                 <constraint firstAttribute="bottom" secondItem="EEL-eR-5Gd" secondAttribute="bottom" id="GDC-QH-mEP"/>
                 <constraint firstItem="EEL-eR-5Gd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="UmW-3u-s0d"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="EEL-eR-5Gd" secondAttribute="trailing" id="dYI-sW-p2M"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Yv2-wd-nyh" secondAttribute="trailing" id="iIV-8Y-mDL"/>
                 <constraint firstAttribute="trailing" secondItem="vqC-ol-3gn" secondAttribute="trailing" id="ro2-JC-UsG"/>
                 <constraint firstItem="vqC-ol-3gn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="w7t-FS-V8M"/>
                 <constraint firstItem="EEL-eR-5Gd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zFz-pa-K3m"/>
@@ -63,7 +51,6 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="-42" y="247"/>
         </view>
         <tapGestureRecognizer id="dnk-It-9wn">
@@ -76,5 +63,8 @@
     <resources>
         <image name="3" width="345" height="115"/>
         <image name="reload" width="23" height="22"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

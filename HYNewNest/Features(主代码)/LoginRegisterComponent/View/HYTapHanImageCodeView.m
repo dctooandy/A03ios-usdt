@@ -14,7 +14,6 @@
 {
     NSUInteger _tapCounter;
 }
-@property (weak, nonatomic) IBOutlet UILabel *lblText;
 @property (weak, nonatomic) IBOutlet UIImageView *captchaImgv;
 @property (strong, nonatomic) CNImageCodeModel *codeModel;
 @property (nonatomic, strong) NSMutableArray *coordinates;
@@ -92,11 +91,11 @@
             self.codeModel = [CNImageCodeModel cn_parse:responseObj];
             UIImage *img = self.codeModel.decodeImage;
             [self.captchaImgv setImage:img];
-            NSMutableString *str = @"请依次点击".mutableCopy;
-            for (NSString *s in self.codeModel.specifyWord) {
-                [str appendFormat:@"【%@】",s];
-            }
-            self.lblText.text = str.copy;
+//            NSMutableString *str = @"请依次点击".mutableCopy;
+//            for (NSString *s in self.codeModel.specifyWord) {
+//                [str appendFormat:@"【%@】",s];
+//            }
+//            self.lblText.text = str.copy;
         }
     }];
 }
