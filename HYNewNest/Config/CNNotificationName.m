@@ -11,7 +11,8 @@
 NSNotificationName const HYLoginSuccessNotification           = @"HYLoginSuccessNotification";
 NSNotificationName const HYLogoutSuccessNotification          = @"HYLogoutSuccessNotification";
 NSNotificationName const HYSwitchAcoutSuccNotification        = @"HYSwitchAcoutSuccNotification";
-NSNotificationName const HYWebSocketDidOpenNoti               = @"HYkWebSocketDidOpenNoti";
+NSNotificationName const BYWebSocketDidOpenNoti               = @"BYWebSocketDidOpenNoti";
+NSNotificationName const BYWebSocketDidReceivedNoti           = @"BYWebSocketDidReceivedNoti";
 NSNotificationName const BYDidEnterHomePageNoti               = @"BYDidEnterHomePageNoti";;
 
 

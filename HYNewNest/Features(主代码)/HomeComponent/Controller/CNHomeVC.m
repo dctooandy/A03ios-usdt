@@ -15,24 +15,26 @@
 #import "CNChessVC.h"
 #import "CNMessageCenterVC.h"
 #import "HYXiMaViewController.h"
+#import "CNDashenBoardVC.h"
 
 #import "CNUserInfoLoginView.h"
 #import "SDCycleScrollView.h"
 #import "UUMarqueeView.h"
 #import "CNMessageBoxView.h"
 #import "HYWideOneBtnAlertView.h"
+#import "CNGameBtnsStackView.h"
 
 #import "CNHomeRequest.h"
 #import "CNUserCenterRequest.h"
 #import "CNLoginRequest.h"
 #import "HYInGameHelper.h"
-#import "SocketRocketUtility.h"
 #import "IN3SAnalytics.h"
 
 #import <MJRefresh/MJRefresh.h>
 #import "NSURL+HYLink.h"
 
-@interface CNHomeVC () <CNUserInfoLoginViewDelegate,  SDCycleScrollViewDelegate, UUMarqueeViewDelegate>
+
+@interface CNHomeVC () <CNUserInfoLoginViewDelegate,  SDCycleScrollViewDelegate, UUMarqueeViewDelegate, GameBtnsStackViewDelegate, DashenBoardAutoHeightDelegate>
 {
     BOOL _didAppear;
 }
@@ -56,17 +58,18 @@
 @property (nonatomic, strong) NSArray<AnnounceModel *> *annoModels;
 @property (nonatomic, strong) NSArray<MessageBoxModel *> *msgBoxModels;
 
-#pragma - mark 游戏切换属性
+#pragma mark 游戏切换属性
 /// 游戏内容视图
 @property (weak, nonatomic) IBOutlet UIView *pageView;
 /// 游戏内容视图高
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pageViewH;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *switchBtnArr;
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *gameTypeLbArr;
-@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *gameImageVArr;
-
+/// 当前选中
 @property (nonatomic, assign) NSInteger currPage;
 
+#pragma mark 大神榜
+@property (weak, nonatomic) IBOutlet UIView *dashenView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *boredViewH;
+@property (nonatomic, assign) NSInteger currBordPage;
 @end
 
 @implementation CNHomeVC
@@ -85,6 +88,7 @@
     
     CNBaseVC *vc = [self.childViewControllers objectAtIndex:self.currPage];
     self.pageViewH.constant = vc.totalHeight;
+    
 }
 
 - (void)viewDidLoad {
@@ -100,9 +104,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:HYLogoutSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:BYDidEnterHomePageNoti object:nil];
     
-//    NSString *wsURL = @"wss://roadmap.9mbv.com:7070/socket.io/?EIO=4&transport=websocket"; //https
-//    NSString *wsURL = @"ws://roadmap.9mbv.com:8080/socket.io/?EIO=4&transport=websocket";
-//    [[SocketRocketUtility instance] SRWebSocketOpenWithURLString:wsURL];
 }
 
 //可以在首页的该方法中调用
@@ -146,22 +147,13 @@
 - (void)configUI {
     self.infoView.delegate = self;
     
-    self.pageView.backgroundColor = self.scrollContentView.backgroundColor = self.view.backgroundColor;
+    self.dashenView.backgroundColor = self.pageView.backgroundColor = self.scrollContentView.backgroundColor = self.view.backgroundColor;
     self.scrollContentW.constant = kScreenWidth;
     
-    // 切换按钮边框颜色
-    for (int i = 0; i < self.gameTypeLbArr.count; i++) {
-        UIButton *btn = self.switchBtnArr[i];
-        UILabel *lb = self.gameTypeLbArr[i];
-        btn.layer.borderColor = lb.textColor.CGColor;
-    }
-    
-    // 配置游戏切换内容
-    [self initGameVC];
-    
-    [self loadGig];
+    // 配置游戏和大神榜子控制器内容
+    [self initSubVcAndAddSubVcViews];
     // 默认选择第一个
-    [self switchGame:self.switchBtnArr.firstObject];
+    [self didTapGameBtnsIndex:0];
 
     __weak typeof(self) wSelf = self;
     self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -170,35 +162,7 @@
     }];
 }
 
-// 加载动图和图片
-- (void)loadGig {
-    // 动图名称
-    NSArray *imageNames = @[@"合成 1_000", @"数字7_000", @"足球_000", @"彩票_000", @"棋牌_000"];
-    
-    // 按钮高亮动图
-    for (int i = 0; i < self.gameImageVArr.count; i++) {
-        UIImageView *iv = self.gameImageVArr[i];
-        UIImage *gifImage = [UIImage animatedImageNamed:imageNames[i] duration:3];
-        iv.highlightedImage = gifImage;
-        iv.image = [UIImage imageNamed:imageNames[i]];
-        iv.highlighted = NO;
-    }
-}
-
-// 选择加载gif图
-- (void)selectGif:(NSInteger)index {
-    if (index >= self.gameImageVArr.count) {
-        return;
-    }
-    // 按钮高亮动图
-    for (int i = 0; i < self.gameImageVArr.count; i++) {
-        UIImageView *iv = self.gameImageVArr[i];
-        iv.highlighted = (i == index);
-    }
-}
-
-
-- (void)initGameVC {
+- (void)initSubVcAndAddSubVcViews {
     // 按顺序添加 真人，电子，体育，彩票，棋牌
     NSArray *childVCs = @[
         [CNRealPersonVC new],
@@ -211,6 +175,12 @@
         [self addChildViewController:vc];
         [self.pageView addSubview:vc.view];
     }
+    
+    // 大神榜
+    CNDashenBoardVC *vc = [CNDashenBoardVC new];
+    vc.delegate = self;
+    [self addChildViewController:vc];
+    [self.dashenView addSubview:vc.view];
 }
 
 
@@ -251,8 +221,6 @@
         }
     }
 }
-
-
 
 - (void)requestHomeBanner {
     WEAKSELF_DEFINE
@@ -295,6 +263,12 @@
         strongSelf.annoModels = arr;
         [strongSelf.marqueeView reloadData];
     }];
+}
+
+
+#pragma mark - DashenBoredDelegte
+- (void)didSetupDataGetTableHeight:(CGFloat)tableHeight {
+    self.boredViewH.constant = tableHeight;
 }
 
 
@@ -405,35 +379,9 @@
 }
 
 
-#pragma mark - CNServerViewDelegate
+#pragma mark - GameBtnsStackViewDelegate 游戏切换业务
 
-- (void)questionAction {
-    [NNPageRouter jump2Live800Type:CNLive800TypeNormal];
-}
-
-- (void)depositAction {
-    [NNPageRouter jump2Live800Type:CNLive800TypeDeposit];
-}
-
-
-#pragma mark - 游戏切换业务
-
-- (IBAction)switchGame:(UIButton *)sender {
-    // 过滤重复点击
-    if (sender.selected) {
-        return;
-    }
-    // 还原UI
-    for (UIButton *btn in self.switchBtnArr) {
-        btn.selected = NO;
-        btn.layer.borderWidth = 0;
-    }
-    sender.selected = YES;
-    sender.layer.borderWidth = 1;
-    [self selectGif:sender.tag];
-    
-    // 点击按钮下标
-    NSInteger index = [self.switchBtnArr indexOfObject:sender];
+- (void)didTapGameBtnsIndex:(NSUInteger)index {
     self.currPage = index;
     CNBaseVC *vc = [self.childViewControllers objectAtIndex:index];
     self.pageViewH.constant = vc.totalHeight;
@@ -442,6 +390,7 @@
 
 
 #pragma mark - LAZY LOAD
+
 - (SDCycleScrollView *)bannerView {
     if (!_bannerView) {
         SDCycleScrollView *cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth - 30, 115) delegate:self placeholderImage:[UIImage imageNamed:@"3"]];

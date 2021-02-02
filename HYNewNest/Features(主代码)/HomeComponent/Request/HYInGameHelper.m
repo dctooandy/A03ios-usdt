@@ -51,6 +51,26 @@ NSString *const InGameTypeString[] = {
     }];
 }
 
+- (void)inBACGameTableCode:(NSString *)tableCode {
+    if (!self.inGameDict) {
+        [CNHUB showError:@"游戏数据为空 正在为您重新加载.."];
+        [self queryHomeInGamesStatus];
+        return;
+    }
+
+    [CNHomeRequest requestBACInGameUrlTableCode:tableCode handler:^(id responseObj, NSString *errorMsg) {
+        
+        GameModel *gameModel = [GameModel cn_parse:responseObj];
+        NSString *gameUrl = gameModel.url;
+        if ([gameUrl containsString:@"&callbackUrl="]) {
+            gameUrl = [gameUrl stringByReplacingOccurrencesOfString:@"&callbackUrl=" withString:@"&callbackUrl=https://localhost/exit.html"];
+        }
+        GameStartPlayViewController *vc = [[GameStartPlayViewController alloc] initGameWithGameUrl:gameUrl title:@"百家乐-旗舰厅"];
+        [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:vc animated:YES];
+    }];
+    
+}
+
 - (void)inGame:(InGameType)gType {
     if (!self.inGameDict) {
         [CNHUB showError:@"游戏数据为空 正在为您重新加载.."];
@@ -128,6 +148,12 @@ NSString *const InGameTypeString[] = {
                 hasUSDT = YES;
             }
         }
+        
+        // 手动去掉A03
+        if ([gameCode hasPrefix:@"A03"]) {
+            gameCode = [gameCode stringByReplacingOccurrencesOfString:@"A03" withString:@""];
+        }
+        
         [CNGameLineView choseCnyLineHandler:hasCNY?^{
             [HYInGameHelper jump2GameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:@"CNY"];
         }:nil choseUsdtLineHandler:hasUSDT?^{
@@ -147,19 +173,20 @@ NSString *const InGameTypeString[] = {
                   gameCode:(NSString *)gameCode
    platformSupportCurrency:(nullable NSString *)platformSupportCurrency {
     
-//    NSString *newGameCode;
-//    if ([gameCode hasPrefix:@"A03"]) {
-//        newGameCode = gameCode;
-//    }else{
-//        newGameCode = [NSString stringWithFormat:@"A03%@", gameCode];
-//    }
+    // 手动拼接A03 用于匹配查询而已
+    NSString *fullGameCode;
+    if ([gameCode hasPrefix:@"A03"]) {
+        fullGameCode = gameCode;
+    }else{
+        fullGameCode = [NSString stringWithFormat:@"A03%@", gameCode];
+    }
     
-    MyLog(@"===> name:%@, type:%@, gameId:%@, gameCode:%@", gameName, gameType, gameId, gameCode);
+    MyLog(@"===> name:%@, type:%@, gameId:%@, gameCode:%@", gameName, gameType, gameId, fullGameCode);
     
     // 游戏线路
-    if ([self.inGameDict.allKeys containsObject:gameCode]) {
+    if ([self.inGameDict.allKeys containsObject:fullGameCode]) {
         
-        NSArray *gameLines = self.inGameDict[gameCode];
+        NSArray *gameLines = self.inGameDict[fullGameCode];
         BOOL hasCNY = NO;
         BOOL hasUSDT = NO;
         for (NSDictionary *dict in gameLines) {
@@ -178,6 +205,12 @@ NSString *const InGameTypeString[] = {
                 }
             }
         }
+        
+        // 手动去掉A03
+        if ([gameCode hasPrefix:@"A03"]) {
+            gameCode = [gameCode stringByReplacingOccurrencesOfString:@"A03" withString:@""];
+        }
+        
         [CNGameLineView choseCnyLineHandler:hasCNY?^{
             [HYInGameHelper jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:@"CNY"];
         }:nil choseUsdtLineHandler:hasUSDT?^{

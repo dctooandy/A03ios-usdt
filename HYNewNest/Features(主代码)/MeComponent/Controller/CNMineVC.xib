@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -67,7 +68,7 @@
                                         </button>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bbn-ee-Rg1" customClass="CNVIPLabel">
                                             <rect key="frame" x="58" y="0.0" width="46" height="18"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="18" id="MpX-fr-Qfb"/>
                                                 <constraint firstAttribute="width" constant="46" id="Nu4-NE-Up9"/>
@@ -128,7 +129,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SeO-Z5-aNM">
-                                            <rect key="frame" x="142.66666666666666" y="26.666666666666657" width="15" height="15"/>
+                                            <rect key="frame" x="162.66666666666666" y="26.666666666666657" width="15" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="15" id="EBF-KA-ugS"/>
                                                 <constraint firstAttribute="height" constant="15" id="fDy-H3-kSe"/>
@@ -141,7 +142,7 @@
                                         </button>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sU0-kL-5lA" customClass="CNLineView">
                                             <rect key="frame" x="0.0" y="67.666666666666657" width="384" height="0.6666666666666714"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="0.5" id="af4-XO-6I4"/>
                                             </constraints>
@@ -251,7 +252,7 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s45-3z-PwO" customClass="CNLineView">
                                                     <rect key="frame" x="0.0" y="0.0" width="384" height="0.33333333333333331"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="0.5" id="jgh-CI-ZEm"/>
                                                     </constraints>
@@ -303,21 +304,25 @@
                                                 <constraint firstAttribute="height" constant="80" id="ycW-7k-4Mc"/>
                                             </constraints>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kwn-ZC-g2E">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kwn-ZC-g2E">
                                             <rect key="frame" x="18.000000000000007" y="0.0" width="104.66666666666669" height="67.666666666666671"/>
                                             <connections>
                                                 <action selector="click2ShowAccountBalncesDetail:" destination="-1" eventType="touchUpInside" id="gj3-GM-PBX"/>
                                             </connections>
                                         </button>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="white_disclosure" translatesAutoresizingMaskIntoConstraints="NO" id="x8O-U5-5jP">
+                                            <rect key="frame" x="122.66666666666666" y="22" width="24" height="24"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
+                                        <constraint firstItem="x8O-U5-5jP" firstAttribute="centerY" secondItem="kwn-ZC-g2E" secondAttribute="centerY" id="4Bj-Q2-fal"/>
                                         <constraint firstItem="45Y-0z-vZY" firstAttribute="centerY" secondItem="DLT-m7-QuK" secondAttribute="centerY" id="4Eq-gH-2N4"/>
                                         <constraint firstItem="kwn-ZC-g2E" firstAttribute="top" secondItem="eZN-cq-pbU" secondAttribute="top" id="Edh-Lr-Jtx"/>
                                         <constraint firstItem="azr-XC-vKd" firstAttribute="top" secondItem="sU0-kL-5lA" secondAttribute="bottom" id="FT2-sL-Zhm"/>
                                         <constraint firstItem="azr-XC-vKd" firstAttribute="leading" secondItem="eZN-cq-pbU" secondAttribute="leading" id="Fme-nm-cQ2"/>
                                         <constraint firstItem="Wy9-zr-RK2" firstAttribute="leading" secondItem="DLT-m7-QuK" secondAttribute="trailing" constant="10" id="H91-9y-xXA"/>
-                                        <constraint firstItem="SeO-Z5-aNM" firstAttribute="leading" secondItem="45Y-0z-vZY" secondAttribute="trailing" constant="20" id="I07-VS-7VP"/>
+                                        <constraint firstItem="SeO-Z5-aNM" firstAttribute="leading" secondItem="45Y-0z-vZY" secondAttribute="trailing" constant="40" id="I07-VS-7VP"/>
                                         <constraint firstItem="DLT-m7-QuK" firstAttribute="top" secondItem="eZN-cq-pbU" secondAttribute="top" constant="25" id="Iyh-bd-mMJ"/>
                                         <constraint firstItem="kwn-ZC-g2E" firstAttribute="leading" secondItem="DLT-m7-QuK" secondAttribute="leading" id="JHe-ZD-tiY"/>
                                         <constraint firstItem="Wy9-zr-RK2" firstAttribute="centerY" secondItem="DLT-m7-QuK" secondAttribute="centerY" id="P9C-Jb-9vv"/>
@@ -332,6 +337,7 @@
                                         <constraint firstItem="45Y-0z-vZY" firstAttribute="leading" secondItem="Wy9-zr-RK2" secondAttribute="trailing" constant="10" id="jY4-Jf-CzB"/>
                                         <constraint firstItem="sU0-kL-5lA" firstAttribute="leading" secondItem="eZN-cq-pbU" secondAttribute="leading" id="kn5-Fd-Awr"/>
                                         <constraint firstItem="sU0-kL-5lA" firstAttribute="top" secondItem="Wy9-zr-RK2" secondAttribute="bottom" constant="22" id="oJF-wa-89y"/>
+                                        <constraint firstItem="x8O-U5-5jP" firstAttribute="leading" secondItem="kwn-ZC-g2E" secondAttribute="trailing" id="rya-8b-qeW"/>
                                         <constraint firstAttribute="trailing" secondItem="Fm6-UV-UE2" secondAttribute="trailing" constant="15" id="t82-7b-gbm"/>
                                         <constraint firstItem="SeO-Z5-aNM" firstAttribute="centerY" secondItem="DLT-m7-QuK" secondAttribute="centerY" id="wB4-WW-IP8"/>
                                         <constraint firstAttribute="trailing" secondItem="sU0-kL-5lA" secondAttribute="trailing" id="ynm-IS-vEk"/>
@@ -937,6 +943,7 @@
                     </constraints>
                 </scrollView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="9b1-FJ-wgg" secondAttribute="trailing" id="Fsn-bZ-fcr"/>
@@ -944,7 +951,6 @@
                 <constraint firstItem="9b1-FJ-wgg" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="QsY-fg-Wh7"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="9b1-FJ-wgg" secondAttribute="bottom" id="U2X-Xf-AIn"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="15.942028985507248" y="64.955357142857139"/>
         </view>
     </objects>
@@ -961,12 +967,16 @@
         <image name="sz" width="22" height="22"/>
         <image name="tx" width="40" height="40"/>
         <image name="wallet" width="18" height="18"/>
+        <image name="white_disclosure" width="24" height="24"/>
         <image name="xm" width="24" height="24"/>
         <image name="xx" width="24" height="24"/>
         <image name="xz" width="345" height="100"/>
-        <image name="yaoqing" width="345" height="90"/>
+        <image name="yaoqing" width="192" height="50"/>
         <image name="yhk" width="24" height="24"/>
         <image name="yjfk" width="24" height="24"/>
         <image name="zb" width="40" height="40"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

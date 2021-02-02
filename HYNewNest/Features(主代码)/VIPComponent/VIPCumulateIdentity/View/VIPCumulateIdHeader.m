@@ -43,7 +43,7 @@
     self.selRank = sender.titleLabel.text;
         
     double xMargin = sender.left - self.lblLeft.left;
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:0.0013 * xMargin animations:^{
         //        self.lblLeft.transform = CGAffineTransformMakeTranslation(xMargin, 0);
         //        sender.transform = CGAffineTransformMakeTranslation(-xMargin, 0);
         

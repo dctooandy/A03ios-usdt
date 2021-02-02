@@ -98,7 +98,7 @@
                 <outlet property="btnRight3" destination="Xr8-F4-8Cu" id="nnl-7R-HsT"/>
                 <outlet property="lblLeft" destination="4A1-xx-yfy" id="sHf-vZ-ap3"/>
             </connections>
-            <point key="canvasLocation" x="336" y="248"/>
+            <point key="canvasLocation" x="-6" y="40"/>
         </view>
     </objects>
 </document>

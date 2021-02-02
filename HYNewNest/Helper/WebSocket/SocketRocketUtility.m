@@ -9,8 +9,6 @@
 #import "SocketRocketUtility.h"
 #import <SocketRocket/SocketRocket.h>
 
-NSString * const kNeedPayOrderNote = @"kNeedPayOrderNote";//发送的通知名称
-
 @interface SocketRocketUtility()<SRWebSocketDelegate>
 {
     int _index;
@@ -80,7 +78,7 @@ NSString * const kNeedPayOrderNote = @"kNeedPayOrderNote";//发送的通知名�
     reConnectTime = 0;
     //开启心跳 心跳是发送pong的消息 我这里根据后台的要求发送data给后台
     [self initHeartBeat];
-    [[NSNotificationCenter defaultCenter] postNotificationName:HYWebSocketDidOpenNoti object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:BYWebSocketDidOpenNoti object:nil];
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
@@ -97,6 +95,7 @@ NSString * const kNeedPayOrderNote = @"kNeedPayOrderNote";//发送的通知名�
     NSLog(@"\n\n>>>>>>>>>>>>>>>>被关闭连接，code:\n%ld,reason:%@,wasClean:%d",code,reason,wasClean);
     //断开连接 同时销毁心跳
     [self SRWebSocketClose];
+    [self performSelector:@selector(reConnect) withObject:nil afterDelay:3];
 }
 
 /*
@@ -113,9 +112,9 @@ NSString * const kNeedPayOrderNote = @"kNeedPayOrderNote";//发送的通知名�
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message  {
     //收到服务器发过来的数据 这里的数据可以和后台约定一个格式 我约定的就是一个字符串 收到以后发送通知到外层 根据类型 实现不同的操作
-    NSLog(@"\n\n>>>>>>>>>>>>>>>>didReceiveMessage:\n%@\n\n",message);
+//    NSLog(@"\n\n>>>>>>>>>>>>>>>>didReceiveMessage:\n%@\n\n",message);
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNeedPayOrderNote object:message];
+    [[NSNotificationCenter defaultCenter] postNotificationName:BYWebSocketDidReceivedNoti object:message];
 }
 
 #pragma mark - methods
