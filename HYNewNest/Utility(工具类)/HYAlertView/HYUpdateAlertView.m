@@ -9,6 +9,12 @@
 #import "HYUpdateAlertView.h"
 #import "CNTwoStatusBtn.h"
 
+@interface HYUpdateAlertView()
+{
+    BOOL _isForceUpdate;
+}
+@end
+
 @implementation HYUpdateAlertView
 
 + (void)showWithVersionString:(NSString *)string isForceUpdate:(BOOL)isForce handler:(void (^)(BOOL isComfirm))handler {
@@ -28,6 +34,7 @@
         make.height.mas_equalTo(308);
     }];
     
+    _isForceUpdate = isForce;
     if (!isForce) {
         UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         [closeBtn setImage:[UIImage imageNamed:@"l_close"] forState:UIControlStateNormal];
@@ -108,7 +115,9 @@
     if (self.comfirmBlock) {
         self.comfirmBlock(YES);
     }
-    [self dismiss];
+    if (!_isForceUpdate) {
+        [self dismiss];
+    }
 }
 
 @end

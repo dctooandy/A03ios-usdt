@@ -29,6 +29,7 @@
 #import "CNLoginRequest.h"
 #import "HYInGameHelper.h"
 #import "IN3SAnalytics.h"
+#import "CNSplashRequest.h"
 
 #import <MJRefresh/MJRefresh.h>
 #import "NSURL+HYLink.h"
@@ -115,6 +116,11 @@
         [IN3SAnalytics launchFinished];
         _didAppear = YES;
     }
+    
+    // 检查新版本
+    [CNSplashRequest queryNewVersion:^(BOOL isHardUpdate) {
+        
+    }];
 }
 
 - (void)userDidLogin {

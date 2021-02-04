@@ -39,19 +39,19 @@
 }
 
 + (void)jump2BuyECoin {
-    NSInteger depositLevel = [CNUserManager shareManager].userDetail.depositLevel;
-    MyLog(@"****** 当前用户信用等级 == %ld", depositLevel);
-    if (depositLevel > 1 || depositLevel == -15 || depositLevel == -13) {
+//    NSInteger depositLevel = [CNUserManager shareManager].userDetail.depositLevel;
+//    MyLog(@"****** 当前用户信用等级 == %ld", depositLevel);
+//    if (depositLevel > 1 || depositLevel == -15 || depositLevel == -13) {
         [NNPageRouter openExchangeElecCurrencyPage];
-    } else {
-        BOOL notshowBitBaseFlag = NO;
-        if (depositLevel == -1 || depositLevel == -11) {
-            notshowBitBaseFlag = YES;
-        }
-        HYBuyECoinGuideVC *vc = [HYBuyECoinGuideVC new];
-        vc.needNotShowBitbase = notshowBitBaseFlag;
-        [kCurNavVC pushViewController:vc animated:YES];
-    }
+//    } else {
+//        BOOL notshowBitBaseFlag = NO;
+//        if (depositLevel == -1 || depositLevel == -11) {
+//            notshowBitBaseFlag = YES;
+//        }
+//        HYBuyECoinGuideVC *vc = [HYBuyECoinGuideVC new];
+//        vc.needNotShowBitbase = notshowBitBaseFlag;
+//        [kCurNavVC pushViewController:vc animated:YES];
+//    }
     
 }
 

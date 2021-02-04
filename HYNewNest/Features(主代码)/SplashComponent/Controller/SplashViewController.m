@@ -99,12 +99,9 @@
         [IVHttpManager shareManager].domain = h5Addr;
     }];
     
-    // 检查新版本 -> 检查区域限制 -> 进入首页
-    [CNSplashRequest queryNewVersion:^(BOOL isHardUpdate) {
-        if (!isHardUpdate) {
-            [self requestAreaLimit];
-        }
-    }];
+    // 检查区域限制 -> 进入首页
+    [self requestAreaLimit];
+
     
 }
 
