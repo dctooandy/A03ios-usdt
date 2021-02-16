@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CNBindPhoneVC">
             <connections>
+                <outlet property="bgImgv" destination="Pon-Hk-f86" id="hXO-9d-PKv"/>
                 <outlet property="codeTip" destination="0a1-Y0-di7" id="Xcy-1J-3TI"/>
                 <outlet property="inputTF" destination="YoX-SH-X4k" id="bFh-bW-LIN"/>
                 <outlet property="jumbBtn" destination="4Vw-J1-oP9" id="ph3-e3-e6t"/>
@@ -18,6 +19,7 @@
                 <outlet property="sendCodeBtn" destination="02n-zQ-LAZ" id="Gst-N8-5Lx"/>
                 <outlet property="sendTipLb" destination="uQU-51-wMD" id="wUb-sa-XN0"/>
                 <outlet property="shakingView" destination="zlC-Sk-kCd" id="G9a-nb-DMD"/>
+                <outlet property="subTitLb" destination="9AE-xw-xq0" id="Ej3-Ej-NLb"/>
                 <outlet property="submitBtn" destination="TTB-nh-bU5" id="V3O-ae-ydu"/>
                 <outlet property="titleLb" destination="G1O-it-Bhq" id="KC1-aD-7PU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -28,10 +30,13 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机绑定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1O-it-Bhq">
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-1" translatesAutoresizingMaskIntoConstraints="NO" id="Pon-Hk-f86">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                </imageView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机绑定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1O-it-Bhq">
                     <rect key="frame" x="30" y="96" width="122" height="36"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
-                    <color key="textColor" white="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzz-LH-BwM">
@@ -145,7 +150,7 @@
                         <action selector="verfiSmsCode:" destination="-1" eventType="touchUpInside" id="Zdp-3P-SKE"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Vw-J1-oP9" customClass="CNOneStatusBtn">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Vw-J1-oP9" customClass="CNOneStatusBtn">
                     <rect key="frame" x="30" y="503" width="354" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="AmJ-BF-AuY"/>
@@ -158,6 +163,12 @@
                         <action selector="pass:" destination="-1" eventType="touchUpInside" id="B1I-5X-w3D"/>
                     </connections>
                 </button>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="绑定手机号 充提秒到账 资金更安全" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9AE-xw-xq0">
+                    <rect key="frame" x="30" y="152" width="269" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -165,13 +176,18 @@
                 <constraint firstItem="TTB-nh-bU5" firstAttribute="top" secondItem="zlC-Sk-kCd" secondAttribute="bottom" constant="43" id="1SH-Fr-yOq"/>
                 <constraint firstItem="4Vw-J1-oP9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="4P2-N5-L1f"/>
                 <constraint firstItem="uQU-51-wMD" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="4gc-N5-Fa5"/>
+                <constraint firstItem="9AE-xw-xq0" firstAttribute="top" secondItem="G1O-it-Bhq" secondAttribute="bottom" constant="20" id="5nH-A8-k3I"/>
+                <constraint firstItem="Pon-Hk-f86" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="6K9-1O-F1j"/>
+                <constraint firstAttribute="bottom" secondItem="Pon-Hk-f86" secondAttribute="bottom" id="8GX-t6-EQm"/>
                 <constraint firstItem="G1O-it-Bhq" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="BYf-Ye-M2u"/>
                 <constraint firstItem="TTB-nh-bU5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="E8H-86-hcv"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="TTB-nh-bU5" secondAttribute="trailing" constant="30" id="EYM-mW-aIP"/>
                 <constraint firstItem="uQU-51-wMD" firstAttribute="top" secondItem="fzz-LH-BwM" secondAttribute="bottom" constant="35" id="FeA-1X-lZO"/>
                 <constraint firstItem="0a1-Y0-di7" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="Q55-SR-exx"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="fzz-LH-BwM" secondAttribute="trailing" constant="30" id="Sf7-WH-dcw"/>
+                <constraint firstItem="9AE-xw-xq0" firstAttribute="leading" secondItem="G1O-it-Bhq" secondAttribute="leading" id="W53-au-ivW"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="zlC-Sk-kCd" secondAttribute="trailing" constant="30" id="Z8T-D2-RsK"/>
+                <constraint firstItem="Pon-Hk-f86" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="dtf-4C-Ify"/>
                 <constraint firstItem="fzz-LH-BwM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="gKg-Xu-gFk"/>
                 <constraint firstItem="4Vw-J1-oP9" firstAttribute="top" secondItem="TTB-nh-bU5" secondAttribute="bottom" constant="30" id="gce-uO-JM8"/>
                 <constraint firstItem="0a1-Y0-di7" firstAttribute="top" secondItem="fzz-LH-BwM" secondAttribute="bottom" constant="40" id="jXt-o5-YAP"/>
@@ -179,9 +195,13 @@
                 <constraint firstItem="G1O-it-Bhq" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="52" id="n0u-mG-gl4"/>
                 <constraint firstItem="zlC-Sk-kCd" firstAttribute="top" secondItem="uQU-51-wMD" secondAttribute="bottom" constant="10" id="nMb-Ts-iJF"/>
                 <constraint firstItem="zlC-Sk-kCd" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="nta-7V-gjT"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Pon-Hk-f86" secondAttribute="trailing" id="qsY-oo-BUF"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="4Vw-J1-oP9" secondAttribute="trailing" constant="30" id="tF6-Dy-QZo"/>
             </constraints>
-            <point key="canvasLocation" x="-30" y="42"/>
+            <point key="canvasLocation" x="-30.434782608695656" y="41.517857142857139"/>
         </view>
     </objects>
+    <resources>
+        <image name="bg-1" width="375" height="609"/>
+    </resources>
 </document>

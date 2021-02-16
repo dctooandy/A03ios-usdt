@@ -54,7 +54,7 @@
 }
 
 + (id)POST:(NSString *)path parameters:(NSDictionary *)parameters completionHandler:(HandlerBlock)completionHandler {
-    if (!([path containsString:config_getByLoginName] || [path containsString:config_betAmountLevel] || [path containsString:config_getBalanceInfo] || [path containsString:config_getByLoginNameEx] || [path containsString:config_getByCardBin] || [path containsString:config_createUdid] || [path containsString:config_superSignSend] || [path isEqualToString:config_upgradeApp])) { //加载一些信息不要loading
+    if (!([path containsString:config_getByLoginName] || [path containsString:config_betAmountLevel] || [path containsString:config_getBalanceInfo] || [path containsString:config_getByLoginNameEx] || [path containsString:config_getByCardBin] || [path containsString:config_createUdid] || [path containsString:config_superSignSend] || [path containsString:config_upgradeApp])) { //加载一些信息不要loading
         [LoadingView show];
     }
     

@@ -16,6 +16,9 @@
 @interface CNBindPhoneVC () <UITextFieldDelegate>
 @property (strong, nonatomic) JHVerificationCodeView *codeView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLb;
+@property (weak, nonatomic) IBOutlet UILabel *subTitLb;
+@property (weak, nonatomic) IBOutlet UIImageView *bgImgv;
+
 @property (weak, nonatomic) IBOutlet UIView *shakingView;
 @property (weak, nonatomic) IBOutlet CNBaseTF *inputTF;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
@@ -63,14 +66,19 @@
             self.navBarTransparent = YES;
             self.makeTranslucent = YES;
             [self addNaviLeftItemNil];
+            
+            self.bgImgv.hidden = NO;
+            self.titleLb.hidden = NO;
+            self.subTitLb.hidden = NO;
+            self.jumbBtn.hidden = NO;
+            
 //            // 注册过来也要变成bind类型
 //            self.bindType = CNSMSCodeTypeBindPhone;
             break;
+            
         // 安全中心来的 未绑手机
         case CNSMSCodeTypeBindPhone:
-            self.titleLb.hidden = YES;
             self.navigationItem.title = @"绑定新手机";
-            self.jumbBtn.hidden = YES;
             break;
         // 安全中心来的 解绑
         case CNSMSCodeTypeUnbind:
@@ -78,15 +86,11 @@
             self.inputTF.text = [CNUserManager shareManager].userDetail.mobileNo;
             self.inputTF.userInteractionEnabled = NO;
             self.sendCodeBtn.hidden = NO;
-            self.titleLb.hidden = YES;
             self.navigationItem.title = @"手机号修改";
-            self.jumbBtn.hidden = YES;
             break;
         // 解绑来的 绑新手机
         case CNSMSCodeTypeChangePhone:
-            self.titleLb.hidden = YES;
             self.navigationItem.title = @"绑定新手机";
-            self.jumbBtn.hidden = YES;
             break;
         default:
             break;
