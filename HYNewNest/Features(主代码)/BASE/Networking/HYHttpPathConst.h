@@ -50,6 +50,7 @@
 #define config_modifyPwdBySmsCode   @"customer/modifyPwdBySmsCode"  //确认修改密码
 #define config_modifyPwd   @"customer/modifyPwd"  //修改密码
 #define config_reBindMobileNoV2 @"customer/reBindMobileNoV2"  //重新绑定手机号v2
+#define config_loginWith2FA @"customer/loginWith2FA" //异地登陆验证
 
 #define config_registUserName   @"customer/createRealAccount"  //用户名注册
 #define config_loginMessageIdAndLoginName     @"customer/loginByValidateId" //用户名登录

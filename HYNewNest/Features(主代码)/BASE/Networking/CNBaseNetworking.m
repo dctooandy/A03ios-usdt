@@ -72,6 +72,11 @@
             [[CNUserManager shareManager] cleanUserInfo];
             [[NNControllerHelper currentTabBarController] setSelectedIndex:0];
             
+        } else if ([response.head.errCode isEqualToString:LoginRegionRisk_ErroCode]) { //异地登录
+            [LoadingView hide];
+            [CNHUB showAlert:response.head.errMsg];
+            !completionHandler ?: completionHandler(response.body, response.head.errCode);
+            
         } else {
             [LoadingView hide];
             if (error) {

@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)showError:(NSString *)error;
 + (void)showSuccess:(NSString *)success;
 + (void)showWaiting:(NSString *)wait;
-
++ (void)showAlert:(NSString *)alert;
 @end
 
 NS_ASSUME_NONNULL_END

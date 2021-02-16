@@ -113,4 +113,7 @@
 // 超时
 #define Network_TimeOut_ErroCode @"-1001"
 
+// 异地登录
+#define LoginRegionRisk_ErroCode @"GW_100002"
+
 #endif /* ApiErrorCodeConst_h */

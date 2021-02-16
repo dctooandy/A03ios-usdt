@@ -48,6 +48,16 @@
     });
 }
 
++ (void)showAlert:(NSString *)alert {
+    if (alert.length == 0) {
+        return;
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        CNHUB *view = [self creatTipViewWithMsg:alert];
+        view.tipIV.image = [UIImage imageNamed:@"l_prob"];
+    });
+}
+
 + (instancetype)creatTipViewWithMsg:(NSString *)msg {
     CGFloat fontSize = 14, left = 30, otherLength = 76, y = 60;
     CGFloat textLength = msg.length * fontSize;

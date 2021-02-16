@@ -11,6 +11,10 @@
 #import "JHVerificationCodeView.h"
 
 @interface CNVerifyMsgAlertView ()
+@property (weak, nonatomic) IBOutlet UILabel *titleLb;
+@property (weak, nonatomic) IBOutlet UIButton *rightBtn;
+@property (weak, nonatomic) IBOutlet UIButton *customerBtn;
+
 @property (weak, nonatomic) IBOutlet UIView *shakingView;
 @property (weak, nonatomic) IBOutlet UIButton *codeBtn;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLb;
@@ -44,7 +48,29 @@
     alert.phone = phone;
     alert.sendCodeBlock = sendCodeBlock;
     alert.finishBlock = finishBlock;
-    [alert sendCode:alert.codeBtn];
+    [alert sendCodeIsSendAlready:YES];
+    
+    [alert initCodeView];
+    
+    return alert;
+}
+
++ (CNVerifyMsgAlertView *)showRegionPhone:(NSString *)phone reSendCode:(dispatch_block_t)sendCodeBlock finish:(void (^)(NSString * _Nonnull))finishBlock {
+    
+    CNVerifyMsgAlertView *alert = [[CNVerifyMsgAlertView alloc] init];
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [window endEditing:YES];
+    alert.frame = window.bounds;
+    [window addSubview:alert];
+    
+    alert.titleLb.text = @"安全验证";
+    [alert.rightBtn setTitle:@"验证" forState:UIControlStateNormal];
+    alert.customerBtn.hidden = NO;
+    
+    alert.phone = phone;
+    alert.sendCodeBlock = sendCodeBlock;
+    alert.finishBlock = finishBlock;
+    [alert sendCodeIsSendAlready:NO];
     
     [alert initCodeView];
     
@@ -107,13 +133,24 @@
 
 #pragma mark - button Action
 
+- (IBAction)customerServer:(id)sender {
+    [self removeFromSuperview];
+    [NNPageRouter jump2Live800Type:CNLive800TypeNormal];
+}
+
 // 发送验证码
-- (IBAction)sendCode:(UIButton *)sender {
+- (IBAction)sendCode:(UIButton *)sender{
+    [self sendCodeIsSendAlready:YES];
+}
+
+- (void)sendCodeIsSendAlready:(BOOL)isSended {
     _second = 60;
     self.codeBtn.enabled = NO;
     [self.secondTimer setFireDate:[NSDate distantPast]];
     // 发送验证码
-    !_sendCodeBlock ?: _sendCodeBlock();
+    if (isSended) {
+        !_sendCodeBlock ?: _sendCodeBlock();
+    }
     
     [self.codeView clear];
     [self.codeView becomeFirstResponder];
@@ -132,7 +169,7 @@
 - (void)setPhone:(NSString *)phone {
     _phone = phone;
     NSString *tem = [phone stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
-    self.phoneLb.text = [NSString stringWithFormat:@"我们向手机%@发送了一条验证码", tem];
+    self.phoneLb.text = [NSString stringWithFormat:@"我们向手机 %@ 发送了一条验证码", tem];
 }
 
 #pragma - mark Timer

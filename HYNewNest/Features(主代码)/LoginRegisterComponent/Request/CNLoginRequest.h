@@ -92,7 +92,7 @@ typedef NS_ENUM(NSUInteger, CNSMSCodeType) {
            messageId:(NSString *)messageId
            imageCode:(NSString *)imageCode
          imageCodeId:(NSString *)imageCodeId
-   completionHandler:(HandlerBlock)completionHandler ;
+   completionHandler:(HandlerBlock)completionHandler;
 
 
 /// 多账户登录
@@ -102,6 +102,15 @@ typedef NS_ENUM(NSUInteger, CNSMSCodeType) {
                         messageId:(NSString *)messageId
                        validateId:(NSString *)validateId
                 completionHandler:(HandlerBlock)completionHandler;
+
+/// 异地登录 重新发送验证码
++ (void)getSMSCodeByLoginName:(NSString *)loginName     completionHandler:(HandlerBlock)completionHandler;
+
+/// 异地登录校验
++ (void)verifyLoginWith2FALoginName:(NSString *)loginName
+                            smsCode:(NSString *)smsCode
+                          messageId:(NSString *)messageId
+                  completionHandler:(HandlerBlock)completionHandler;
 
 
 /// 创建试玩账号

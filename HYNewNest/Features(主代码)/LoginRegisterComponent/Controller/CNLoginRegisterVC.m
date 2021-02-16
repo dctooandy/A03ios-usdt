@@ -7,21 +7,23 @@
 //  
 
 #import "CNLoginRegisterVC.h"
+#import "CNBindPhoneVC.h"
+#import "CNForgotCodeVC.h"
+#import "CNLoginSuccChooseAccountVC.h"
+
 #import "CNTwoStatusBtn.h"
 #import "CNImageCodeInputView.h"
 #import "CNAccountInputView.h"
 #import "CNCodeInputView.h"
 #import "CNStatementView.h"
-#import "CNBindPhoneVC.h"
-#import "CNForgotCodeVC.h"
-#import "CNLoginSuccChooseAccountVC.h"
-#import "UILabel+Gradient.h"
-#import "ApiErrorCodeConst.h"
 #import "HYTapHanImageCodeView.h"
+#import "CNVerifyMsgAlertView.h"
 
 #import "CNLoginRequest.h"
 #import "SmsCodeModel.h"
 
+#import "ApiErrorCodeConst.h"
+#import "UILabel+Gradient.h"
 
 @interface CNLoginRegisterVC () <CNAccountInputViewDelegate, CNCodeInputViewDelegate, HYTapHanImgCodeViewDelegate, UIScrollViewDelegate>
 
@@ -69,6 +71,7 @@
 @property (assign, nonatomic) BOOL isRegister;
 
 @property (nonatomic, strong) SmsCodeModel *smsModel;
+@property (nonatomic, strong) SmsCodeModel *diffRgonSmsModel;
 
 @end
 
@@ -135,6 +138,7 @@
     }
 }
 
+
 #pragma mark - InputViewDelegate
 
 - (void)setDelegate {
@@ -169,6 +173,7 @@
     self.smsModel = model;
 }
 
+
 #pragma mark - ButtonAction
 
 /// DEBUG 环境 点击三次切换Domain
@@ -186,7 +191,6 @@
     }
 }
 
-
 /// 忘记密码
 - (IBAction)forgotPassword:(id)sender {
     CNForgotCodeVC *vc = [CNForgotCodeVC new];
@@ -198,6 +202,7 @@
 - (IBAction)statementRule:(id)sender {
     [CNStatementView show];
 }
+
 
 #pragma mark - Login Action
 
@@ -296,7 +301,7 @@
         STRONGSELF_DEFINE
         if (!errorMsg) {
             // 判断多账号调用多账号登录
-            if ([responseObj objectForKey:@"samePhoneLoginNames"]) {
+            if (responseObj[@"samePhoneLoginNames"]) {
                 CNLoginSuccChooseAccountVC *vc = [CNLoginSuccChooseAccountVC new];
                 vc.samePhoneLogNameModel = [SamePhoneLoginNameModel cn_parse:responseObj];
                 [strongSelf.navigationController pushViewController:vc animated:YES];
@@ -307,13 +312,26 @@
                     [strongSelf.navigationController popViewControllerAnimated:YES];
                 }
             }
+            
         } else {
-            if ([responseObj isEqualToString:LoginPassExpired_ErrorCode]) {
+            if ([errorMsg isEqualToString:LoginRegionRisk_ErroCode]) {
+               self.diffRgonSmsModel = [SmsCodeModel cn_parse:responseObj]; //异地登录验证码
+               
+               [CNVerifyMsgAlertView showRegionPhone:self.diffRgonSmsModel.mobileNo
+                                          reSendCode:^{
+                   [self sendDiffRegionVerifyCode]; // 重新发送
+               } finish:^(NSString * _Nonnull smsCode) {
+                   self.diffRgonSmsModel.smsCode = smsCode;
+                   [self verifyRegionCode]; //校验验证码
+               }];
+               
+           } else if ([responseObj isEqualToString:LoginPassExpired_ErrorCode]) {
                 [HYTextAlertView showWithTitle:@"账号激活" content:@"由于我们检测到您的该账号长时间没有登录，请您修改密码。" comfirmText:@"修改密码" cancelText:nil comfirmHandler:^(BOOL isComfirm) {
                     CNForgotCodeVC *vc = [CNForgotCodeVC new];
                     vc.bindType = CNSMSCodeTypeForgotPassword;
                     [self.navigationController pushViewController:vc animated:YES];
                 }];
+               
             } else {
                 [self preLoginAction];
             }
@@ -331,6 +349,30 @@
         [self.hanImgCodeView showSuccess];
     }
 
+}
+
+/// 发送异地登陆验证码
+- (void)sendDiffRegionVerifyCode {
+    [CNLoginRequest getSMSCodeByLoginName:self.diffRgonSmsModel.loginName completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            self.diffRgonSmsModel = [SmsCodeModel cn_parse:responseObj]; //异地登录验证码
+        }
+    }];
+}
+
+- (void)verifyRegionCode {
+    [CNLoginRequest verifyLoginWith2FALoginName:self.diffRgonSmsModel.loginName
+                                        smsCode:self.diffRgonSmsModel.smsCode
+                                      messageId:self.diffRgonSmsModel.messageId
+                              completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            [CNVerifyMsgAlertView removeAlertView];
+            [CNHUB showSuccess:@"登录成功"];
+            if (![NNControllerHelper pop2ViewControllerClassString:@"CNHomeVC"]) { // 如果无法pop回homepage 则直接pop回上一级
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+    }];
 }
 
 
@@ -361,6 +403,7 @@
         }
     }];
 }
+
 
 /// 限制只能垂直滚动不能左右滚动
 #pragma mark - UIScrollViewDelegate

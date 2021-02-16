@@ -133,6 +133,41 @@
     }];
 }
 
++ (void)getSMSCodeByLoginName:(NSString *)loginName     completionHandler:(HandlerBlock)completionHandler {
+    
+    NSMutableDictionary *paras = [kNetworkMgr baseParam];
+    paras[@"use"] = @2;
+    paras[@"loginName"] = loginName;
+    
+    [self POST:kGatewayPath(config_sendCodeByLoginName) parameters:paras completionHandler:completionHandler];
+}
+
++ (void)verifyLoginWith2FALoginName:(NSString *)loginName
+                            smsCode:(NSString *)smsCode
+                          messageId:(NSString *)messageId
+                  completionHandler:(HandlerBlock)completionHandler {
+    
+    NSMutableDictionary *param = @{}.mutableCopy;
+    param[@"loginName"] = loginName;
+    param[@"smsCode"] = smsCode;
+    param[@"messageId"] = messageId;
+    param[@"phase"] = @2; // 登录后追加双因子认证
+    param[@"type"] = @1; //双因子登录类型：1.sms
+    
+    [self POST:kGatewayPath(config_loginWith2FA) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
+            [CNLoginRequest getUserInfoByTokenCompletionHandler:nil]; // 请求详细信息
+            // 推送相关    (登录后才能获取到udid)
+            [CNPushRequest GetUDIDHandler:^(id responseObj, NSString *errorMsg) {
+                [CNPushRequest GTInterfaceHandler:nil];
+            }];
+        }
+        completionHandler(responseObj, errorMsg);
+    }];
+    
+}
+
 //+ (void)phoneLoginSmsCode:(NSString *)smsCode
 //                smsCodeId:(NSString *)smsCodeId
 //               validateId:(NSString *)validateId

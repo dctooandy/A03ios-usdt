@@ -18,7 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString *validateId;
 @property(nonatomic,copy) NSString *mobileNo;
 
-@property(nonatomic,copy) NSString *smsCode; //自己填 验证码
+@property(copy,nonatomic) NSString *loginName; //异地登陆model会回传
+
+@property(nonatomic,copy) NSString *smsCode; //自己填 验证码 用于传递模型
 
 @end
 
