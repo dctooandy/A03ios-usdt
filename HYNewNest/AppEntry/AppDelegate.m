@@ -80,6 +80,10 @@
     [IN3SAnalytics exitApp];
 }
 
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    application.applicationIconBadgeNumber = 0;
+}
+
 
 #pragma mark - 推送回调
 
@@ -116,6 +120,8 @@
     NSLog(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n",userInfo);
     if (userInfo != nil) {
         [self handleRemoteNotification];
+        application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1;
+        AudioServicesPlaySystemSound(1007);
     }
     
     completionHandler(UIBackgroundFetchResultNewData);
