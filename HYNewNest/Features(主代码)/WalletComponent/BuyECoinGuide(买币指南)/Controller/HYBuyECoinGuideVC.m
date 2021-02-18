@@ -213,9 +213,9 @@
             for (int i=0; i<resultImages.count; i++) {
                 UIImage *img = [UIImage imageWithData:resultImages[i]];
                 UIImageView *imgv = [UIImageView new];
-                imgv.frame = CGRectMake(0, maxY, kScreenWidth-20, img.size.height*(kScreenWidth-20)/img.size.width);
+                imgv.frame = CGRectMake(0, maxY, kScreenWidth-30, img.size.height*(kScreenWidth-30)/img.size.width);
                 imgv.image = img;
-                maxY = CGRectGetMaxY(imgv.frame) + AD(20);
+                maxY = CGRectGetMaxY(imgv.frame) + AD(30);
                 [self.contentScrollView addSubview:imgv];
                 
             }
@@ -393,19 +393,22 @@
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             NSArray *data = [responseObj objectForKey:@"data"];
             
-            if (self.needNotShowBitbase) {
-                NSMutableArray *rawDatas = [BuyECoinModel cn_parse:data];
-                for (BuyECoinModel *model in rawDatas.reverseObjectEnumerator) {
-                    if ([model.name caseInsensitiveCompare:@"Bitbase"] == NSOrderedSame) {
-                        [rawDatas removeObject:model];
-                    }
-                }
-                self.datas = rawDatas.copy;
-            } else {
+//            if (self.notshowDexchangeFlag) {
+//                NSMutableArray *rawDatas = [BuyECoinModel cn_parse:data];
+//                for (BuyECoinModel *model in rawDatas.reverseObjectEnumerator) {
+//                    if ([model.name caseInsensitiveCompare:@"dexchange"] == NSOrderedSame) {
+//                        [rawDatas removeObject:model];
+//                    }
+//                }
+//                self.datas = rawDatas.copy;
+//            } else {
                 self.datas = [BuyECoinModel cn_parse:data];
-            }
+//            }
             
             [self setupViewDatas];
+            
+        } else {
+            [CNHUB showError:@"数据有误 请重新进入买币指南或者联系客服"];
         }
     }];
     

@@ -325,7 +325,7 @@
                    [self verifyRegionCode]; //校验验证码
                }];
                
-           } else if ([responseObj isEqualToString:LoginPassExpired_ErrorCode]) {
+            } else if ([responseObj isEqualToString:LoginPassExpired_ErrorCode]) {
                 [HYTextAlertView showWithTitle:@"账号激活" content:@"由于我们检测到您的该账号长时间没有登录，请您修改密码。" comfirmText:@"修改密码" cancelText:nil comfirmHandler:^(BOOL isComfirm) {
                     CNForgotCodeVC *vc = [CNForgotCodeVC new];
                     vc.bindType = CNSMSCodeTypeForgotPassword;
