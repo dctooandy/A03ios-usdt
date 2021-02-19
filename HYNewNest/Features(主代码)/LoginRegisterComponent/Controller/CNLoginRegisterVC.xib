@@ -163,11 +163,20 @@
                                         <constraint firstAttribute="width" constant="300" id="pzV-8v-3vD"/>
                                     </constraints>
                                 </view>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R1f-Xm-9vb">
+                                    <rect key="frame" x="164.5" y="772" width="54" height="28"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <state key="normal" title="检查网络"/>
+                                    <connections>
+                                        <action selector="checkNetworking:" destination="-1" eventType="touchUpInside" id="8Vn-wk-DAC"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="1yO-hQ-dcT" secondAttribute="trailing" constant="30" id="0p2-pc-Czy"/>
                                 <constraint firstItem="vK6-gf-yzO" firstAttribute="top" secondItem="lfD-sj-tlg" secondAttribute="bottom" id="1Sb-OF-nz4"/>
+                                <constraint firstItem="R1f-Xm-9vb" firstAttribute="centerX" secondItem="ZzA-Aa-cAB" secondAttribute="centerX" id="4Bc-bF-lM0"/>
                                 <constraint firstItem="vK6-gf-yzO" firstAttribute="leading" secondItem="ZzA-Aa-cAB" secondAttribute="leading" constant="30" id="AXT-Uq-Hsh"/>
                                 <constraint firstItem="FU8-Ow-S83" firstAttribute="top" secondItem="ZzA-Aa-cAB" secondAttribute="top" constant="35" id="BxO-zd-H3B"/>
                                 <constraint firstAttribute="trailing" secondItem="SfY-3I-9jV" secondAttribute="trailing" constant="30" id="Egb-rP-Emq"/>
@@ -182,6 +191,7 @@
                                 <constraint firstItem="lfD-sj-tlg" firstAttribute="leading" secondItem="ZzA-Aa-cAB" secondAttribute="leading" constant="30" id="hSU-E7-m12"/>
                                 <constraint firstItem="SfY-3I-9jV" firstAttribute="top" secondItem="vK6-gf-yzO" secondAttribute="bottom" id="nAx-8v-zJc"/>
                                 <constraint firstItem="1yO-hQ-dcT" firstAttribute="top" secondItem="aIr-X8-Kxf" secondAttribute="bottom" constant="30" id="nV0-Be-baT"/>
+                                <constraint firstAttribute="bottom" secondItem="R1f-Xm-9vb" secondAttribute="bottom" id="nfz-kB-PgI"/>
                                 <constraint firstItem="aIr-X8-Kxf" firstAttribute="top" secondItem="2Ax-fe-kPs" secondAttribute="bottom" constant="40" id="p8b-p7-oRM"/>
                                 <constraint firstAttribute="trailing" secondItem="lfD-sj-tlg" secondAttribute="trailing" constant="30" id="qvw-er-c9u"/>
                                 <constraint firstItem="SfY-3I-9jV" firstAttribute="leading" secondItem="ZzA-Aa-cAB" secondAttribute="leading" constant="30" id="zgn-Au-WmI"/>

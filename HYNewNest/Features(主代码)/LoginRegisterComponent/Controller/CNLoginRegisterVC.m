@@ -10,6 +10,7 @@
 #import "CNBindPhoneVC.h"
 #import "CNForgotCodeVC.h"
 #import "CNLoginSuccChooseAccountVC.h"
+#import "StatusDetailViewController.h"
 
 #import "CNTwoStatusBtn.h"
 #import "CNImageCodeInputView.h"
@@ -19,6 +20,8 @@
 #import "HYTapHanImageCodeView.h"
 #import "CNVerifyMsgAlertView.h"
 
+#import "IVCheckNetworkWrapper.h"
+#import "IVCNetworkStatusView.h"
 #import "CNLoginRequest.h"
 #import "SmsCodeModel.h"
 
@@ -201,6 +204,17 @@
 /// 声明规则
 - (IBAction)statementRule:(id)sender {
     [CNStatementView show];
+}
+
+/// 检查网络
+- (IBAction)checkNetworking:(id)sender {
+    IVCNetworkStatusView *statusView = [[IVCNetworkStatusView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    statusView.detailBtnClickedBlock = ^{
+        StatusDetailViewController *vc = [[StatusDetailViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    };
+    [kKeywindow addSubview:statusView];
+    [statusView startCheck];
 }
 
 

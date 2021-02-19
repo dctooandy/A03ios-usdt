@@ -26,6 +26,8 @@ target 'HYNewNest' do
   # webSocket
   pod 'SocketRocket'
   
+  pod 'CocoaAsyncSocket'
+  
   # 网络模块
 #  pod 'IVNetworkLibrary2.0',:git =>'http://10.66.72.115/mobile-iOS-Library/IVNetworkLibrary2.0.git'
   # 缓存模块
