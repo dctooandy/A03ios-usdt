@@ -177,13 +177,13 @@
     NSMutableArray *imgs = @[].mutableCopy;
     if ([self.groupImgsDict[@(_curIdx)] count] > 0) {
         imgs = self.groupImgsDict[@(_curIdx)];
-        CGFloat maxY = AD(20);
+        CGFloat maxY = AD(10);
         for (int i=0; i<imgs.count; i++) {
             UIImage *img = [UIImage imageWithData:imgs[i]];
             UIImageView *imgv = [UIImageView new];
-            imgv.frame = CGRectMake(0, maxY, kScreenWidth-20, img.size.height*(kScreenWidth-20)/img.size.width);
+            imgv.frame = CGRectMake(0, maxY, kScreenWidth-30, img.size.height*(kScreenWidth-30)/img.size.width);
             imgv.image = img;
-            maxY = CGRectGetMaxY(imgv.frame) + AD(20);
+            maxY = CGRectGetMaxY(imgv.frame) + AD(40);
             [self.contentScrollView addSubview:imgv];
             
         }
@@ -209,13 +209,13 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             // Update the UI
-            CGFloat maxY = AD(20);
+            CGFloat maxY = AD(10);
             for (int i=0; i<resultImages.count; i++) {
                 UIImage *img = [UIImage imageWithData:resultImages[i]];
                 UIImageView *imgv = [UIImageView new];
                 imgv.frame = CGRectMake(0, maxY, kScreenWidth-30, img.size.height*(kScreenWidth-30)/img.size.width);
                 imgv.image = img;
-                maxY = CGRectGetMaxY(imgv.frame) + AD(30);
+                maxY = CGRectGetMaxY(imgv.frame) + AD(40);
                 [self.contentScrollView addSubview:imgv];
                 
             }
@@ -319,7 +319,7 @@
 - (IBAction)didTapRegisterBtn:(id)sender {
     BuyECoinModel *model = self.datas[_curIdx];
     // bitbase + 去注册 == 就走外部跳转
-    if ([model.name caseInsensitiveCompare:@"bitbase"] == NSOrderedSame && [model.registerText isEqualToString:@"去注册"]) {
+    if ([model.name caseInsensitiveCompare:@"dexchange"] == NSOrderedSame) {
         [CNHUB showSuccess:@"请在外部浏览器查看"];
         [NNPageRouter openExchangeElecCurrencyPage];
     } else {

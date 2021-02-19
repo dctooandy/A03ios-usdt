@@ -116,10 +116,9 @@
         [IN3SAnalytics launchFinished];
         _didAppear = YES;
     }
-    
+    kPreventRepeatTime(60*10); //十分钟
     // 检查新版本
     [CNSplashRequest queryNewVersion:^(BOOL isHardUpdate) {
-        
     }];
 }
 
