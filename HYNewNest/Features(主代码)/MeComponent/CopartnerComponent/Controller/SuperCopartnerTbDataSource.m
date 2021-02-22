@@ -227,23 +227,23 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
         case SuperCopartnerTypeStarGifts:
         {
             if (indexPath.row == 0) {
-                [cell setupType:self.formType strArr:@[@"VIP10", @"7,100,000", @"858"]];
+                [cell setupType:self.formType strArr:@[@"VIP10", @"7,100,000", @"5,888"]];
             } else if (indexPath.row == 1) {
-                [cell setupType:self.formType strArr:@[@"VIP9", @"2,800,00", @"418"]];
+                [cell setupType:self.formType strArr:@[@"VIP9", @"2,800,00", @"1,888"]];
             } else if (indexPath.row == 2) {
-                [cell setupType:self.formType strArr:@[@"VIP8", @"1,400,000", @"268"]];
+                [cell setupType:self.formType strArr:@[@"VIP8", @"1,400,000", @"1,288"]];
             } else if (indexPath.row == 3) {
-                [cell setupType:self.formType strArr:@[@"VIP7", @"1,000,000", @"128"]];
+                [cell setupType:self.formType strArr:@[@"VIP7", @"1,000,000", @"888"]];
             } else if (indexPath.row == 4) {
-                [cell setupType:self.formType strArr:@[@"VIP6", @"710,000", @"116"]];
+                [cell setupType:self.formType strArr:@[@"VIP6", @"710,000", @"688"]];
             } else if (indexPath.row == 5) {
-                [cell setupType:self.formType strArr:@[@"VIP5", @"420,000", @"98"]];
+                [cell setupType:self.formType strArr:@[@"VIP5", @"420,000", @"388"]];
             } else if (indexPath.row == 6) {
-                [cell setupType:self.formType strArr:@[@"VIP4", @"140,000", @"56"]];
+                [cell setupType:self.formType strArr:@[@"VIP4", @"140,000", @"188"]];
             } else if (indexPath.row == 7) {
-                [cell setupType:self.formType strArr:@[@"VIP3", @"71,000", @"38"]];
+                [cell setupType:self.formType strArr:@[@"VIP3", @"71,000", @"88"]];
             } else if (indexPath.row == 8) {
-                [cell setupType:self.formType strArr:@[@"VIP2", @"14,000", @"13"]];
+                [cell setupType:self.formType strArr:@[@"VIP2", @"14,000", @"38"]];
             }
             break;
         }

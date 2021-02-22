@@ -38,10 +38,10 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 /// 去【充】值(双模式统一入口)
 + (void)jump2Deposit;
 
-/// 去【买】币 (包含了一键买币)
+/// 去【买】币（买币指南，包含了“一键【买/卖】币”）
 + (void)jump2BuyECoin;
 
-/// 外部跳转Bitbase ：一键【买】【卖】币
+/// 一键【买/卖】币（外部跳转dexchange）
 + (void)openExchangeElecCurrencyPage;
 
 

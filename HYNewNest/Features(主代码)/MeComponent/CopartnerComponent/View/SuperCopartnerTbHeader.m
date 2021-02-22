@@ -21,7 +21,7 @@
 - (NSArray *)topLbTextArrayWithType:(SuperCopartnerType)type {
     switch (type) {
         case SuperCopartnerTypeMyBonus:
-            return @[@"用户", @"晋级为", @"生效时间", @"晋级礼金(usdt)", @"有效期"];
+            return @[@"用户", @"晋级为", @"生效时间", @"推荐礼金(usdt)", @"有效期"];
             break;
         case SuperCopartnerTypeMyRecommen:
             return @[@"用户", @"星级", @"私享会", @"注册时间"];

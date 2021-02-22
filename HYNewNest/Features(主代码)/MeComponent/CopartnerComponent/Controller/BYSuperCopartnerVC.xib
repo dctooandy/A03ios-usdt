@@ -72,7 +72,7 @@
                                 <constraint firstAttribute="width" constant="320" id="NMe-Q5-zGZ"/>
                             </constraints>
                             <string key="text">你推荐的任意好友,晋级为2星以上等级或是私享会等级
-您获得晋级礼金</string>
+您获得推荐礼金</string>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="0.49411764705882355" green="0.23921568627450979" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>

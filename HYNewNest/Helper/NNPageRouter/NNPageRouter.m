@@ -146,6 +146,7 @@
             [newUrl appendString:enterurl];
         }
         [newUrl appendFormat:@"&loginname=%@&name=%@&timestamp=%ld", [CNUserManager shareManager].userInfo.loginName,  [CNUserManager shareManager].userInfo.loginName, (NSInteger)[[NSDate date] timeIntervalSince1970]*1000];
+        
         HYHTMLViewController *vc = [[HYHTMLViewController alloc] initWithTitle:@"客服" strUrl:newUrl];
         vc.hidesBottomBarWhenPushed = YES;
         [kCurNavVC pushViewController:vc animated:YES];

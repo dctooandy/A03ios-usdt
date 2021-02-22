@@ -101,7 +101,7 @@
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         paragraphStyle.lineSpacing = 7;  //设置行间距
             
-        NSString * text = @"1. 本活动推荐人需达到2星级及以上才能获得奖励；星级推荐奖金将在被推荐人晋级次日24小时内产生；\n2. 推荐礼金有效期为30天，有3倍流水可提现；\n3. 若被推荐人跳级晋升，推荐人可获得被推荐人已达成星级的所有推荐礼金奖励；举例：被推荐人从3星级升级到5星级，则推荐人可获得56+98推荐礼金；\n4. 系统会根据用户的IP、电话、支付方式等判定是否为同一人；\n5. 一个用户只能被推荐一次，且推荐人和被推荐人不能被系统判定为同一人；\n6. 不同被推荐人用户被系统判定为同一人，会触发系统套利风控，可能会被取消奖励；\n7. 合作代理发展的下线不适用此优惠；\n8. 实物奖品可按照全国参考零售价八折折现为账户余额，折现额度3倍流水可提现；\n9. 为避免文字理解差异，币游国际保留对本活动的最终解释权。";
+        NSString * text = @"1. 本活动推荐人需达到2星级及以上才能获得奖励；星级推荐奖金将在被推荐人晋级次日24小时内产生；\n2. 推荐礼金有效期为30天，有3倍流水可提现；\n3. 若被推荐人跳级晋升，推荐人可获得被推荐人已达成星级的所有推荐礼金奖励；举例：被推荐人从3星级升级到5星级，则推荐人可获得188+388推荐礼金；\n4. 系统会根据用户的IP、电话、支付方式等判定是否为同一人；\n5. 一个用户只能被推荐一次，且推荐人和被推荐人不能被系统判定为同一人；\n6. 不同被推荐人用户被系统判定为同一人，会触发系统套利风控，可能会被取消奖励；\n7. 合作代理发展的下线不适用此优惠；\n8. 实物奖品可按照全国参考零售价八折折现为账户余额，折现额度3倍流水可提现；\n9. 为避免文字理解差异，币游国际保留对本活动的最终解释权。";
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
         [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [text length])];
         lbContent.attributedText = attributedString;
