@@ -188,6 +188,11 @@
         decisionHandler(WKNavigationActionPolicyCancel);
         [self rechargeClick];
         
+    }else if ([url hasPrefix:@"hy://depositInfo"]) {
+        // 买币指南
+        decisionHandler(WKNavigationActionPolicyCancel);
+        [NNPageRouter jump2BuyECoin];
+    
     }else if ([url hasPrefix:@"hy://agqj"]){
         //AG旗舰
         [self btnAGqjClick];
@@ -336,28 +341,12 @@
 
 //注册
 - (void)registerClick{
-//    [NNPageRouter jump2RegisterPage];
+    [NNPageRouter jump2Register];
 }
-
 
 //登录
 - (void)loginClick{
-    
-//   WEAKSELF_DEFINE
-//   UIViewController *currentShowController = [UIViewController topViewController];
-//    __weak typeof(currentShowController)weakVC = currentShowController;
-//   LoginViewController *vc = [[LoginViewController alloc] initWithLoginSuccessBlock:^{
-//
-//       [weakVC.navigationController popToRootViewControllerAnimated:YES];
-//   }];
-//
-//   vc.registerClickBlock = ^{
-//       STRONGSELF_DEFINE
-//       [weakVC.navigationController popToViewController:currentShowController animated:NO];
-//       [strongSelf registerClick];
-//   };
-//   vc.hidesBottomBarWhenPushed = YES;
-//   [currentShowController.navigationController pushViewController:vc animated:NO];
+    [NNPageRouter jump2Login];
 }
 
 //提现
