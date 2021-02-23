@@ -183,16 +183,16 @@
         decisionHandler(WKNavigationActionPolicyCancel);
         [self wdrawClick];
         
-    }else if ([url hasPrefix:@"hy://deposit"]){
-        //充值
-        decisionHandler(WKNavigationActionPolicyCancel);
-        [self rechargeClick];
-        
     }else if ([url hasPrefix:@"hy://depositInfo"]) {
         // 买币指南
         decisionHandler(WKNavigationActionPolicyCancel);
         [NNPageRouter jump2BuyECoin];
     
+    }else if ([url hasPrefix:@"hy://deposit"]){
+        //充值
+        decisionHandler(WKNavigationActionPolicyCancel);
+        [self rechargeClick];
+        
     }else if ([url hasPrefix:@"hy://agqj"]){
         //AG旗舰
         [self btnAGqjClick];
