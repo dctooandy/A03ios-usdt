@@ -110,10 +110,10 @@ NSString *const HeaderID = @"DSBRchrWthdrwHeader";
     
     DSBRchrWthdrwHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderID];
     NSArray *models;
-    if (self.type == DashenBoardTypeRechargeBoard && self.recharList.count) {
+    if (self.type == DashenBoardTypeRechargeBoard && self.recharList.count > 2) {
         models = @[self.recharList[0], self.recharList[1], self.recharList[2]];
         [header setup123DataArr:models];
-    } else if (self.type == DashenBoardTypeWithdrawBoard && self.wthdrwList.count) {
+    } else if (self.type == DashenBoardTypeWithdrawBoard && self.wthdrwList.count > 2) {
         models = @[self.wthdrwList[0], self.wthdrwList[1], self.wthdrwList[2]];
         [header setup123DataArr:models];
     }

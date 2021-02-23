@@ -125,7 +125,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
                 model.roundRes = roundReses.copy;
                 [model bg_saveOrUpdateAsync:^(BOOL isSuccess) {
                     if([nround.vid isEqualToString:weakSelf.showTableId]) {
-                        NSLog(@"------------------------ Found:%@, update DB & RefreshView", nround.vid);
+//                        NSLog(@"------------------------ Found:%@, update DB & RefreshView", nround.vid);
                         //返回主线程
                         dispatch_async(dispatch_get_main_queue(), ^{ @autoreleasepool {
                             [weakSelf.tableView reloadData];
@@ -135,7 +135,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
                 }];
             }
             else {
-                MyLog(@"------------------------ Not found:%@, drop data", nround.vid);
+//                MyLog(@"------------------------ Not found:%@, drop data", nround.vid);
             }
         }
     }];
@@ -185,9 +185,11 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
         header.nameLbl.text = usr.loginName;
         header.tableCodeLbl.text = [NSString stringWithFormat:@"经典百家乐 %@桌", self.showTableId?:@"D000"];
         header.rankLbl.text = usr.writtenLevel;
-        header.profitCucLbl.text = [NSString stringWithFormat:@"%@%@",
-                                    [usr.cusAmountSum jk_toDisplayNumberWithDigit:2],
-                                    usr.prList[0].currency.lowercaseString];
+        if (usr.prList.count) {
+            header.profitCucLbl.text = [NSString stringWithFormat:@"%@%@",
+                                        [usr.cusAmountSum jk_toDisplayNumberWithDigit:2],
+                                        usr.prList[0].currency.lowercaseString];
+        }
         header.toprightTapImgv.image = usr.isOnTable?[UIImage imageNamed:@"zaizhuo"]:[UIImage imageNamed:@"tuijian"];
     }
     return header;
@@ -309,13 +311,19 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     
     // 如果当前用户在线 绘制他的桌台
     DSBProfitBoardUsrModel *usr = self.usrModels[curPage];
-    PrListItem *nearItem = usr.prList[0];
-    if (nearItem.isOnline) {
-        self.showTableId = nearItem.tableCode;
+    if (usr.prList.count) {
+        PrListItem *nearItem = usr.prList[0];
+        if (nearItem.isOnline) {
+            self.showTableId = nearItem.tableCode;
+        } else {
+            self.showTableId = self.recomTableId;
+        }
+        MyLog(@"CURPAGE:%ld, usrName:%@, isOnlie:%ld", curPage, usr.loginName, nearItem.isOnline);
     } else {
         self.showTableId = self.recomTableId;
+        MyLog(@"CURPAGE:%ld, usrName:%@, 盈利列表无数据！？", curPage, usr.loginName);
     }
-    MyLog(@"CURPAGE:%ld, usrName:%@, isOnlie:%ld", curPage, usr.loginName, nearItem.isOnline);
+    
     _curPage = curPage;
     
     [self.tableView reloadData];
