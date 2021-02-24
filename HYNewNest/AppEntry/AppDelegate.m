@@ -87,7 +87,9 @@
 
 #pragma mark - 推送回调
 
-/// 推送注册成功
+/**
+ *  推送注册成功
+ */
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     if (@available(iOS 13, *)){
@@ -114,34 +116,67 @@
 
 // 接收到推送
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
 //#ifdef DEBUG
 //    [kKeywindow jk_makeToast:[NSString stringWithFormat:@">>>[Receive RemoteNotification - Background Fetch]:\n%@", userInfo] duration:8 position:JKToastPositionCenter];
 //#endif
     NSLog(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n",userInfo);
-    if (userInfo != nil) {
+    
+    if (!userInfo) {
+        completionHandler(UIBackgroundFetchResultNoData);
+        return;
+    }
+    
+    self.pushNotiUserInfo = userInfo;
+    application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1;
+    AudioServicesPlaySystemSound(1007);
+    
+    UIApplicationState state = [application applicationState];
+    if (state == UIApplicationStateActive) {
+        //应用在前台，接收远程推送，会进入这个状态
+    }
+    else if (state == UIApplicationStateInactive) {
+        //应用在后台，通过点击远程推送通知，进入这个状态
         [self handleRemoteNotification];
-        application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1;
-        AudioServicesPlaySystemSound(1007);
+    }
+    else if (state == UIApplicationStateBackground) {
+        //应用在后台，收到静默推送，进入这个状态
     }
     
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
-// 推送注册失败
+/**
+ * 推送注册失败
+ */
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     [CNHUB showError:@"推送服务注册失败 请检查推送证书"];
-    MyLog(@"didFailToRegisterForRemoteNotificationsWithError error:%@",error);
+    
 //#ifdef DEBUG
 //    [kKeywindow jk_makeToast:[NSString stringWithFormat:@"===didFailToRegisterForRemoteNotifications===\nError:%@", error] duration:8 position:JKToastPositionBottom];
 //#endif
+    MyLog(@"didFailToRegisterForRemoteNotificationsWithError error:%@",error);
 }
 
+
+#pragma mark - UNUserNotificationCenterDelegate
+/**
+ *  App处于前台时收到通知(iOS 10+)
+ */
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
-    MyLog(@"userNotificationCenter:willPresentNotification:\n%@", notification);
+    MyLog(@"Receive a notification in foregound --- userNotificationCenter:willPresentNotification:\n%@", notification);
+    // 通知不弹出
+//    completionHandler(UNNotificationPresentationOptionNone);
+    // 通知弹出，且带有声音、内容和角标（App处于前台时不建议弹出通知）
+    completionHandler(UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionBadge);
 }
 
+/**
+ *  触发通知动作时回调，比如点击、删除通知和点击自定义action(iOS 10+)
+ */
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
     MyLog(@"userNotificationCenter:didReceiveNotificationResponse:\n%@", response);
+    completionHandler();
 }
 
 
@@ -176,7 +211,9 @@
     [IQKeyboardManager sharedManager].toolbarDoneBarButtonItemText = @"完成";
 }
 
-/** 注册 APNs */
+/**
+ * 注册 APNs
+ */
 - (void)registerRemoteNotification {
     /*
      警告：Xcode8 需要手动开启"TARGETS -> Capabilities -> Push Notifications"
@@ -200,16 +237,19 @@
     
 }
 
+/**
+ * 处理推送点击
+ */
 - (void)handleRemoteNotification {
     NSDictionary *userInfo = self.pushNotiUserInfo;
     if (userInfo) {
         if ([userInfo.allKeys containsObject:@"payload"] && [userInfo.allKeys containsObject:@"aps"]) {
             NSString *payload = userInfo[@"payload"];
             NSDictionary *dict = [payload jk_dictionaryValue];
-//            NSString *pageTitle = userInfo[@"aps"][@"alert"][@"title"];
+            NSString *pageTitle = userInfo[@"aps"][@"alert"][@"title"] ?: @"";
             if (dict && [dict.allKeys containsObject:@"jumpUrl"]) {
                 NSString *url = dict[@"jumpUrl"];
-                [NNPageRouter jump2HTMLWithStrURL:url title:@"" needPubSite:NO];
+                [NNPageRouter jump2HTMLWithStrURL:url title:pageTitle needPubSite:NO];
                 _pushNotiUserInfo = nil;
             }
         }
@@ -217,18 +257,5 @@
 }
 
 
-#pragma mark - UISceneSession lifecycle
-//- (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options {
-//    // Called when a new scene session is being created.
-//    // Use this method to select a configuration to create the new scene with.
-//    return [[UISceneConfiguration alloc] initWithName:@"Default Configuration" sessionRole:connectingSceneSession.role];
-//}
-//
-//
-//- (void)application:(UIApplication *)application didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
-//    // Called when the user discards a scene session.
-//    // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-//    // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-//}
 
 @end
