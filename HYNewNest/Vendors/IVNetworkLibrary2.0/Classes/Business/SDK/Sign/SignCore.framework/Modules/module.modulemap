@@ -1,6 +1,0 @@
-framework module SignCore {
-  umbrella header "SignCore.h"
-
-  export *
-  module * { export * }
-}

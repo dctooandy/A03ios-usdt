@@ -317,22 +317,6 @@
 		3DBA560D2580B5E4009A2B71 /* BYSuperCopartnerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA560B2580B5E4009A2B71 /* BYSuperCopartnerVC.m */; };
 		3DBA560E2580B5E4009A2B71 /* BYSuperCopartnerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA560C2580B5E4009A2B71 /* BYSuperCopartnerVC.xib */; };
 		3DBA56112580D9B3009A2B71 /* CALayer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA56102580D9B3009A2B71 /* CALayer+Additions.m */; };
-		3DC516BC25DE56DC00A238D4 /* IVCTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC5169825DE56DC00A238D4 /* IVCTextView.m */; };
-		3DC516BD25DE56DC00A238D4 /* IVCNetworkStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC5169925DE56DC00A238D4 /* IVCNetworkStatusView.m */; };
-		3DC516BE25DE56DC00A238D4 /* IVCProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC5169C25DE56DC00A238D4 /* IVCProgressView.m */; };
-		3DC516BF25DE56DC00A238D4 /* IVCDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC5169E25DE56DC00A238D4 /* IVCDetailViewController.m */; };
-		3DC516C025DE56DC00A238D4 /* IVCheckDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC516A025DE56DC00A238D4 /* IVCheckDetailModel.m */; };
-		3DC516C125DE56DC00A238D4 /* IVCheckNetworkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC516A125DE56DC00A238D4 /* IVCheckNetworkModel.m */; };
-		3DC516C225DE56DC00A238D4 /* IVCheckGatewayRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC516A625DE56DC00A238D4 /* IVCheckGatewayRequest.m */; };
-		3DC516C325DE56DC00A238D4 /* IVCheckNetworkWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC516A825DE56DC00A238D4 /* IVCheckNetworkWrapper.m */; };
-		3DC516C425DE56DC00A238D4 /* IVCheckRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC516A925DE56DC00A238D4 /* IVCheckRequest.m */; };
-		3DC516C525DE56DC00A238D4 /* KLDNetDiagnoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC516AD25DE56DC00A238D4 /* KLDNetDiagnoService.m */; };
-		3DC516C625DE56DC00A238D4 /* KLDNetGetAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC516AE25DE56DC00A238D4 /* KLDNetGetAddress.m */; };
-		3DC516C725DE56DC00A238D4 /* KLDSimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC516B025DE56DC00A238D4 /* KLDSimplePing.m */; };
-		3DC516C825DE56DC00A238D4 /* KLDNetTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC516B125DE56DC00A238D4 /* KLDNetTimer.m */; };
-		3DC516C925DE56DC00A238D4 /* KLDNetPing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC516B225DE56DC00A238D4 /* KLDNetPing.m */; };
-		3DC516CA25DE56DC00A238D4 /* KLDNetTraceRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC516B625DE56DC00A238D4 /* KLDNetTraceRoute.m */; };
-		3DC516CB25DE56DC00A238D4 /* KLDNetConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC516B925DE56DC00A238D4 /* KLDNetConnect.m */; };
 		3DC516CD25DE5AD800A238D4 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC516CC25DE5AD800A238D4 /* libresolv.9.tbd */; };
 		3DC516D025DE6EB000A238D4 /* StatusDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC516CE25DE6EB000A238D4 /* StatusDetailViewController.m */; };
 		3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC87A50253967DC0032ED1B /* BuyECoinModel.m */; };
@@ -346,32 +330,9 @@
 		3DF03201258DD16900AF7A36 /* SCBetRankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF03200258DD16900AF7A36 /* SCBetRankModel.m */; };
 		3DF03204258DE61400AF7A36 /* SCMyRecommenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF03203258DE61400AF7A36 /* SCMyRecommenModel.m */; };
 		3DF03207258DF6E500AF7A36 /* SCMyBonusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF03206258DF6E500AF7A36 /* SCMyBonusModel.m */; };
-		3DF43CF12592EA6A0087F26A /* NSDictionary+IVN.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43CCE2592EA6A0087F26A /* NSDictionary+IVN.m */; };
-		3DF43CF22592EA6A0087F26A /* UIDevice+IVInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43CD02592EA6A0087F26A /* UIDevice+IVInfo.m */; };
-		3DF43CF32592EA6A0087F26A /* IVNUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43CD52592EA6A0087F26A /* IVNUtility.m */; };
-		3DF43CF42592EA6A0087F26A /* IVRsaEncryptWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43CD62592EA6A0087F26A /* IVRsaEncryptWrapper.m */; };
-		3DF43CF52592EA6A0087F26A /* IVNConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43CD72592EA6A0087F26A /* IVNConstant.m */; };
-		3DF43CF62592EA6A0087F26A /* IVHttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43CDA2592EA6A0087F26A /* IVHttpManager.m */; };
-		3DF43CF72592EA6A0087F26A /* IVHTTPBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43CDB2592EA6A0087F26A /* IVHTTPBaseRequest.m */; };
-		3DF43CF92592EA6A0087F26A /* IVJResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43CE22592EA6A0087F26A /* IVJResponseObject.m */; };
-		3DF43CFA2592EA6A0087F26A /* KYHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43CE72592EA6A0087F26A /* KYHTTPManager.m */; };
-		3DF43CFB2592EA6A0087F26A /* NSString+KYNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43CE92592EA6A0087F26A /* NSString+KYNetworking.m */; };
-		3DF43CFC2592EA6A0087F26A /* KYHTTPGlobalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43CEB2592EA6A0087F26A /* KYHTTPGlobalManager.m */; };
-		3DF43CFD2592EA6A0087F26A /* KYHttpResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43CEC2592EA6A0087F26A /* KYHttpResponseModel.m */; };
-		3DF43CFE2592EA6A0087F26A /* IVCacheWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43CEF2592EA6A0087F26A /* IVCacheWrapper.m */; };
-		3DF43D202592EC020087F26A /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D0B2592EC020087F26A /* JSONValueTransformer.m */; };
-		3DF43D212592EC020087F26A /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D0E2592EC020087F26A /* JSONKeyMapper.m */; };
-		3DF43D222592EC020087F26A /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D102592EC020087F26A /* JSONModel.m */; };
-		3DF43D232592EC020087F26A /* JSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D112592EC020087F26A /* JSONModelError.m */; };
-		3DF43D242592EC020087F26A /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D142592EC020087F26A /* JSONModelClassProperty.m */; };
-		3DF43D252592EC020087F26A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DF43D172592EC020087F26A /* Info.plist */; };
-		3DF43D262592EC020087F26A /* JSONHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D1A2592EC020087F26A /* JSONHTTPClient.m */; };
-		3DF43D272592EC020087F26A /* JSONAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D1B2592EC020087F26A /* JSONAPI.m */; };
-		3DF43D282592EC020087F26A /* JSONModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D1F2592EC020087F26A /* JSONModel+networking.m */; };
 		3DF43D302592EE8B0087F26A /* V_SlideCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D2D2592EE8B0087F26A /* V_SlideCard.m */; };
 		3DF43D312592EE8B0087F26A /* V_SlideCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D2E2592EE8B0087F26A /* V_SlideCardCell.m */; };
 		3DF43D342592F3020087F26A /* tingyunApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D31B96425467131005275BD /* tingyunApp.framework */; };
-		3DF43D352592F4740087F26A /* SignCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF43CE02592EA6A0087F26A /* SignCore.framework */; };
 		3DF43D382592F5630087F26A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF43D372592F5620087F26A /* libc++.tbd */; };
 		3DF43D3A2593184A0087F26A /* Preview.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DF43D392593184A0087F26A /* Preview.xcassets */; };
 		3DF43D4525943D1F0087F26A /* BYMultiDataSourceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D4425943D1E0087F26A /* BYMultiDataSourceTableView.m */; };
@@ -1572,39 +1533,6 @@
 		3DBA560C2580B5E4009A2B71 /* BYSuperCopartnerVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYSuperCopartnerVC.xib; sourceTree = "<group>"; };
 		3DBA560F2580D9B3009A2B71 /* CALayer+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+Additions.h"; sourceTree = "<group>"; };
 		3DBA56102580D9B3009A2B71 /* CALayer+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Additions.m"; sourceTree = "<group>"; };
-		3DC5169725DE56DC00A238D4 /* IVCProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVCProgressView.h; sourceTree = "<group>"; };
-		3DC5169825DE56DC00A238D4 /* IVCTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVCTextView.m; sourceTree = "<group>"; };
-		3DC5169925DE56DC00A238D4 /* IVCNetworkStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVCNetworkStatusView.m; sourceTree = "<group>"; };
-		3DC5169A25DE56DC00A238D4 /* IVCDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVCDetailViewController.h; sourceTree = "<group>"; };
-		3DC5169B25DE56DC00A238D4 /* IVCTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVCTextView.h; sourceTree = "<group>"; };
-		3DC5169C25DE56DC00A238D4 /* IVCProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVCProgressView.m; sourceTree = "<group>"; };
-		3DC5169D25DE56DC00A238D4 /* IVCNetworkStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVCNetworkStatusView.h; sourceTree = "<group>"; };
-		3DC5169E25DE56DC00A238D4 /* IVCDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVCDetailViewController.m; sourceTree = "<group>"; };
-		3DC516A025DE56DC00A238D4 /* IVCheckDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVCheckDetailModel.m; sourceTree = "<group>"; };
-		3DC516A125DE56DC00A238D4 /* IVCheckNetworkModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVCheckNetworkModel.m; sourceTree = "<group>"; };
-		3DC516A225DE56DC00A238D4 /* IVCheckDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVCheckDetailModel.h; sourceTree = "<group>"; };
-		3DC516A325DE56DC00A238D4 /* IVCheckNetworkModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVCheckNetworkModel.h; sourceTree = "<group>"; };
-		3DC516A525DE56DC00A238D4 /* IVCheckNetworkWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVCheckNetworkWrapper.h; sourceTree = "<group>"; };
-		3DC516A625DE56DC00A238D4 /* IVCheckGatewayRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVCheckGatewayRequest.m; sourceTree = "<group>"; };
-		3DC516A725DE56DC00A238D4 /* IVCheckRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVCheckRequest.h; sourceTree = "<group>"; };
-		3DC516A825DE56DC00A238D4 /* IVCheckNetworkWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVCheckNetworkWrapper.m; sourceTree = "<group>"; };
-		3DC516A925DE56DC00A238D4 /* IVCheckRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVCheckRequest.m; sourceTree = "<group>"; };
-		3DC516AA25DE56DC00A238D4 /* IVCheckGatewayRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVCheckGatewayRequest.h; sourceTree = "<group>"; };
-		3DC516AD25DE56DC00A238D4 /* KLDNetDiagnoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLDNetDiagnoService.m; sourceTree = "<group>"; };
-		3DC516AE25DE56DC00A238D4 /* KLDNetGetAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLDNetGetAddress.m; sourceTree = "<group>"; };
-		3DC516AF25DE56DC00A238D4 /* KLDNetTraceRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLDNetTraceRoute.h; sourceTree = "<group>"; };
-		3DC516B025DE56DC00A238D4 /* KLDSimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLDSimplePing.m; sourceTree = "<group>"; };
-		3DC516B125DE56DC00A238D4 /* KLDNetTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLDNetTimer.m; sourceTree = "<group>"; };
-		3DC516B225DE56DC00A238D4 /* KLDNetPing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLDNetPing.m; sourceTree = "<group>"; };
-		3DC516B325DE56DC00A238D4 /* KLDNetConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLDNetConnect.h; sourceTree = "<group>"; };
-		3DC516B425DE56DC00A238D4 /* KLDNetDiagnoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLDNetDiagnoService.h; sourceTree = "<group>"; };
-		3DC516B525DE56DC00A238D4 /* KLDSimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLDSimplePing.h; sourceTree = "<group>"; };
-		3DC516B625DE56DC00A238D4 /* KLDNetTraceRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLDNetTraceRoute.m; sourceTree = "<group>"; };
-		3DC516B725DE56DC00A238D4 /* KRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRoute.h; sourceTree = "<group>"; };
-		3DC516B825DE56DC00A238D4 /* KLDNetGetAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLDNetGetAddress.h; sourceTree = "<group>"; };
-		3DC516B925DE56DC00A238D4 /* KLDNetConnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLDNetConnect.m; sourceTree = "<group>"; };
-		3DC516BA25DE56DC00A238D4 /* KLDNetPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLDNetPing.h; sourceTree = "<group>"; };
-		3DC516BB25DE56DC00A238D4 /* KLDNetTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLDNetTimer.h; sourceTree = "<group>"; };
 		3DC516CC25DE5AD800A238D4 /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
 		3DC516CE25DE6EB000A238D4 /* StatusDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusDetailViewController.m; sourceTree = "<group>"; };
 		3DC516CF25DE6EB000A238D4 /* StatusDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusDetailViewController.h; sourceTree = "<group>"; };
@@ -1628,52 +1556,6 @@
 		3DF03203258DE61400AF7A36 /* SCMyRecommenModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCMyRecommenModel.m; sourceTree = "<group>"; };
 		3DF03205258DF6E500AF7A36 /* SCMyBonusModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCMyBonusModel.h; sourceTree = "<group>"; };
 		3DF03206258DF6E500AF7A36 /* SCMyBonusModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCMyBonusModel.m; sourceTree = "<group>"; };
-		3DF43CCE2592EA6A0087F26A /* NSDictionary+IVN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+IVN.m"; sourceTree = "<group>"; };
-		3DF43CCF2592EA6A0087F26A /* UIDevice+IVInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IVInfo.h"; sourceTree = "<group>"; };
-		3DF43CD02592EA6A0087F26A /* UIDevice+IVInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IVInfo.m"; sourceTree = "<group>"; };
-		3DF43CD12592EA6A0087F26A /* NSDictionary+IVN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+IVN.h"; sourceTree = "<group>"; };
-		3DF43CD32592EA6A0087F26A /* IVRsaEncryptWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVRsaEncryptWrapper.h; sourceTree = "<group>"; };
-		3DF43CD42592EA6A0087F26A /* IVNConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVNConstant.h; sourceTree = "<group>"; };
-		3DF43CD52592EA6A0087F26A /* IVNUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVNUtility.m; sourceTree = "<group>"; };
-		3DF43CD62592EA6A0087F26A /* IVRsaEncryptWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVRsaEncryptWrapper.m; sourceTree = "<group>"; };
-		3DF43CD72592EA6A0087F26A /* IVNConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVNConstant.m; sourceTree = "<group>"; };
-		3DF43CD82592EA6A0087F26A /* IVNUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVNUtility.h; sourceTree = "<group>"; };
-		3DF43CDA2592EA6A0087F26A /* IVHttpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVHttpManager.m; sourceTree = "<group>"; };
-		3DF43CDB2592EA6A0087F26A /* IVHTTPBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVHTTPBaseRequest.m; sourceTree = "<group>"; };
-		3DF43CDC2592EA6A0087F26A /* IVHttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVHttpManager.h; sourceTree = "<group>"; };
-		3DF43CDD2592EA6A0087F26A /* IVHTTPBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVHTTPBaseRequest.h; sourceTree = "<group>"; };
-		3DF43CE02592EA6A0087F26A /* SignCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SignCore.framework; sourceTree = "<group>"; };
-		3DF43CE22592EA6A0087F26A /* IVJResponseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVJResponseObject.m; sourceTree = "<group>"; };
-		3DF43CE32592EA6A0087F26A /* IVJResponseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVJResponseObject.h; sourceTree = "<group>"; };
-		3DF43CE52592EA6A0087F26A /* NSString+KYNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+KYNetworking.h"; sourceTree = "<group>"; };
-		3DF43CE62592EA6A0087F26A /* KYHTTPGlobalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYHTTPGlobalManager.h; sourceTree = "<group>"; };
-		3DF43CE72592EA6A0087F26A /* KYHTTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYHTTPManager.m; sourceTree = "<group>"; };
-		3DF43CE82592EA6A0087F26A /* KYHttpResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYHttpResponseModel.h; sourceTree = "<group>"; };
-		3DF43CE92592EA6A0087F26A /* NSString+KYNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+KYNetworking.m"; sourceTree = "<group>"; };
-		3DF43CEA2592EA6A0087F26A /* KYHTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYHTTPManager.h; sourceTree = "<group>"; };
-		3DF43CEB2592EA6A0087F26A /* KYHTTPGlobalManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYHTTPGlobalManager.m; sourceTree = "<group>"; };
-		3DF43CEC2592EA6A0087F26A /* KYHttpResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYHttpResponseModel.m; sourceTree = "<group>"; };
-		3DF43CEF2592EA6A0087F26A /* IVCacheWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVCacheWrapper.m; sourceTree = "<group>"; };
-		3DF43CF02592EA6A0087F26A /* IVCacheWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVCacheWrapper.h; sourceTree = "<group>"; };
-		3DF43D0B2592EC020087F26A /* JSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONValueTransformer.m; sourceTree = "<group>"; };
-		3DF43D0C2592EC020087F26A /* JSONKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKeyMapper.h; sourceTree = "<group>"; };
-		3DF43D0D2592EC020087F26A /* JSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONValueTransformer.h; sourceTree = "<group>"; };
-		3DF43D0E2592EC020087F26A /* JSONKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKeyMapper.m; sourceTree = "<group>"; };
-		3DF43D102592EC020087F26A /* JSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModel.m; sourceTree = "<group>"; };
-		3DF43D112592EC020087F26A /* JSONModelError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModelError.m; sourceTree = "<group>"; };
-		3DF43D122592EC020087F26A /* JSONModelClassProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelClassProperty.h; sourceTree = "<group>"; };
-		3DF43D132592EC020087F26A /* JSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModel.h; sourceTree = "<group>"; };
-		3DF43D142592EC020087F26A /* JSONModelClassProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModelClassProperty.m; sourceTree = "<group>"; };
-		3DF43D152592EC020087F26A /* JSONModelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelError.h; sourceTree = "<group>"; };
-		3DF43D162592EC020087F26A /* JSONModel.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = JSONModel.modulemap; sourceTree = "<group>"; };
-		3DF43D172592EC020087F26A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3DF43D182592EC020087F26A /* JSONModelLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelLib.h; sourceTree = "<group>"; };
-		3DF43D1A2592EC020087F26A /* JSONHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONHTTPClient.m; sourceTree = "<group>"; };
-		3DF43D1B2592EC020087F26A /* JSONAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONAPI.m; sourceTree = "<group>"; };
-		3DF43D1C2592EC020087F26A /* JSONModel+networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSONModel+networking.h"; sourceTree = "<group>"; };
-		3DF43D1D2592EC020087F26A /* JSONHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONHTTPClient.h; sourceTree = "<group>"; };
-		3DF43D1E2592EC020087F26A /* JSONAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONAPI.h; sourceTree = "<group>"; };
-		3DF43D1F2592EC020087F26A /* JSONModel+networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSONModel+networking.m"; sourceTree = "<group>"; };
 		3DF43D2B2592EE8B0087F26A /* V_SlideCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_SlideCardCell.h; sourceTree = "<group>"; };
 		3DF43D2C2592EE8B0087F26A /* SlideCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideCard.h; sourceTree = "<group>"; };
 		3DF43D2D2592EE8B0087F26A /* V_SlideCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V_SlideCard.m; sourceTree = "<group>"; };
@@ -2447,7 +2329,6 @@
 			files = (
 				3DC516CD25DE5AD800A238D4 /* libresolv.9.tbd in Frameworks */,
 				3DF43D382592F5630087F26A /* libc++.tbd in Frameworks */,
-				3DF43D352592F4740087F26A /* SignCore.framework in Frameworks */,
 				3DF43D342592F3020087F26A /* tingyunApp.framework in Frameworks */,
 				017D1772491556C809C97BCD /* Pods_HYNewNest.framework in Frameworks */,
 			);
@@ -3162,12 +3043,8 @@
 		3D1338A624AF2E7D00B29783 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
-				3DC5169525DE56DC00A238D4 /* IVCheckNetworkLibrary */,
 				3D97002D25A2C3ED003238C4 /* IN3SAnalytics */,
 				3DF43D2A2592EE8B0087F26A /* SlideCard */,
-				3DF43D092592EC020087F26A /* JSONModel */,
-				3DF43CED2592EA6A0087F26A /* IVCacheLibrary */,
-				3DF43CCA2592EA6A0087F26A /* IVNetworkLibrary2.0 */,
 				3D31B96425467131005275BD /* tingyunApp.framework */,
 				3D41DEB4251F1A20000CA1D6 /* WSLPictureBrowserView */,
 				E9B5496424CECE23002CE6EF /* LTSegmentedBar */,
@@ -3821,257 +3698,6 @@
 				3DF031FD258DA36A00AF7A36 /* CNSuperCopartnerRequest.m */,
 			);
 			path = Request;
-			sourceTree = "<group>";
-		};
-		3DC5169525DE56DC00A238D4 /* IVCheckNetworkLibrary */ = {
-			isa = PBXGroup;
-			children = (
-				3DC5169625DE56DC00A238D4 /* UI */,
-				3DC5169F25DE56DC00A238D4 /* Models */,
-				3DC516A425DE56DC00A238D4 /* Http */,
-				3DC516AB25DE56DC00A238D4 /* SDK */,
-			);
-			path = IVCheckNetworkLibrary;
-			sourceTree = "<group>";
-		};
-		3DC5169625DE56DC00A238D4 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				3DC5169725DE56DC00A238D4 /* IVCProgressView.h */,
-				3DC5169825DE56DC00A238D4 /* IVCTextView.m */,
-				3DC5169925DE56DC00A238D4 /* IVCNetworkStatusView.m */,
-				3DC5169A25DE56DC00A238D4 /* IVCDetailViewController.h */,
-				3DC5169B25DE56DC00A238D4 /* IVCTextView.h */,
-				3DC5169C25DE56DC00A238D4 /* IVCProgressView.m */,
-				3DC5169D25DE56DC00A238D4 /* IVCNetworkStatusView.h */,
-				3DC5169E25DE56DC00A238D4 /* IVCDetailViewController.m */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
-		3DC5169F25DE56DC00A238D4 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				3DC516A025DE56DC00A238D4 /* IVCheckDetailModel.m */,
-				3DC516A125DE56DC00A238D4 /* IVCheckNetworkModel.m */,
-				3DC516A225DE56DC00A238D4 /* IVCheckDetailModel.h */,
-				3DC516A325DE56DC00A238D4 /* IVCheckNetworkModel.h */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		3DC516A425DE56DC00A238D4 /* Http */ = {
-			isa = PBXGroup;
-			children = (
-				3DC516A525DE56DC00A238D4 /* IVCheckNetworkWrapper.h */,
-				3DC516A625DE56DC00A238D4 /* IVCheckGatewayRequest.m */,
-				3DC516A725DE56DC00A238D4 /* IVCheckRequest.h */,
-				3DC516A825DE56DC00A238D4 /* IVCheckNetworkWrapper.m */,
-				3DC516A925DE56DC00A238D4 /* IVCheckRequest.m */,
-				3DC516AA25DE56DC00A238D4 /* IVCheckGatewayRequest.h */,
-			);
-			path = Http;
-			sourceTree = "<group>";
-		};
-		3DC516AB25DE56DC00A238D4 /* SDK */ = {
-			isa = PBXGroup;
-			children = (
-				3DC516AC25DE56DC00A238D4 /* Ping */,
-			);
-			path = SDK;
-			sourceTree = "<group>";
-		};
-		3DC516AC25DE56DC00A238D4 /* Ping */ = {
-			isa = PBXGroup;
-			children = (
-				3DC516AD25DE56DC00A238D4 /* KLDNetDiagnoService.m */,
-				3DC516AE25DE56DC00A238D4 /* KLDNetGetAddress.m */,
-				3DC516AF25DE56DC00A238D4 /* KLDNetTraceRoute.h */,
-				3DC516B025DE56DC00A238D4 /* KLDSimplePing.m */,
-				3DC516B125DE56DC00A238D4 /* KLDNetTimer.m */,
-				3DC516B225DE56DC00A238D4 /* KLDNetPing.m */,
-				3DC516B325DE56DC00A238D4 /* KLDNetConnect.h */,
-				3DC516B425DE56DC00A238D4 /* KLDNetDiagnoService.h */,
-				3DC516B525DE56DC00A238D4 /* KLDSimplePing.h */,
-				3DC516B625DE56DC00A238D4 /* KLDNetTraceRoute.m */,
-				3DC516B725DE56DC00A238D4 /* KRoute.h */,
-				3DC516B825DE56DC00A238D4 /* KLDNetGetAddress.h */,
-				3DC516B925DE56DC00A238D4 /* KLDNetConnect.m */,
-				3DC516BA25DE56DC00A238D4 /* KLDNetPing.h */,
-				3DC516BB25DE56DC00A238D4 /* KLDNetTimer.h */,
-			);
-			path = Ping;
-			sourceTree = "<group>";
-		};
-		3DF43CCA2592EA6A0087F26A /* IVNetworkLibrary2.0 */ = {
-			isa = PBXGroup;
-			children = (
-				3DF43CCB2592EA6A0087F26A /* Classes */,
-			);
-			path = IVNetworkLibrary2.0;
-			sourceTree = "<group>";
-		};
-		3DF43CCB2592EA6A0087F26A /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				3DF43CCC2592EA6A0087F26A /* Business */,
-				3DF43CE42592EA6A0087F26A /* Base */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		3DF43CCC2592EA6A0087F26A /* Business */ = {
-			isa = PBXGroup;
-			children = (
-				3DF43CCD2592EA6A0087F26A /* Category */,
-				3DF43CD22592EA6A0087F26A /* Common */,
-				3DF43CD92592EA6A0087F26A /* Http */,
-				3DF43CDE2592EA6A0087F26A /* SDK */,
-				3DF43CE12592EA6A0087F26A /* Model */,
-			);
-			path = Business;
-			sourceTree = "<group>";
-		};
-		3DF43CCD2592EA6A0087F26A /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				3DF43CCE2592EA6A0087F26A /* NSDictionary+IVN.m */,
-				3DF43CCF2592EA6A0087F26A /* UIDevice+IVInfo.h */,
-				3DF43CD02592EA6A0087F26A /* UIDevice+IVInfo.m */,
-				3DF43CD12592EA6A0087F26A /* NSDictionary+IVN.h */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
-		3DF43CD22592EA6A0087F26A /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				3DF43CD32592EA6A0087F26A /* IVRsaEncryptWrapper.h */,
-				3DF43CD42592EA6A0087F26A /* IVNConstant.h */,
-				3DF43CD52592EA6A0087F26A /* IVNUtility.m */,
-				3DF43CD62592EA6A0087F26A /* IVRsaEncryptWrapper.m */,
-				3DF43CD72592EA6A0087F26A /* IVNConstant.m */,
-				3DF43CD82592EA6A0087F26A /* IVNUtility.h */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		3DF43CD92592EA6A0087F26A /* Http */ = {
-			isa = PBXGroup;
-			children = (
-				3DF43CDA2592EA6A0087F26A /* IVHttpManager.m */,
-				3DF43CDB2592EA6A0087F26A /* IVHTTPBaseRequest.m */,
-				3DF43CDC2592EA6A0087F26A /* IVHttpManager.h */,
-				3DF43CDD2592EA6A0087F26A /* IVHTTPBaseRequest.h */,
-			);
-			path = Http;
-			sourceTree = "<group>";
-		};
-		3DF43CDE2592EA6A0087F26A /* SDK */ = {
-			isa = PBXGroup;
-			children = (
-				3DF43CDF2592EA6A0087F26A /* Sign */,
-			);
-			path = SDK;
-			sourceTree = "<group>";
-		};
-		3DF43CDF2592EA6A0087F26A /* Sign */ = {
-			isa = PBXGroup;
-			children = (
-				3DF43CE02592EA6A0087F26A /* SignCore.framework */,
-			);
-			path = Sign;
-			sourceTree = "<group>";
-		};
-		3DF43CE12592EA6A0087F26A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				3DF43CE22592EA6A0087F26A /* IVJResponseObject.m */,
-				3DF43CE32592EA6A0087F26A /* IVJResponseObject.h */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		3DF43CE42592EA6A0087F26A /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				3DF43CE52592EA6A0087F26A /* NSString+KYNetworking.h */,
-				3DF43CE62592EA6A0087F26A /* KYHTTPGlobalManager.h */,
-				3DF43CE72592EA6A0087F26A /* KYHTTPManager.m */,
-				3DF43CE82592EA6A0087F26A /* KYHttpResponseModel.h */,
-				3DF43CE92592EA6A0087F26A /* NSString+KYNetworking.m */,
-				3DF43CEA2592EA6A0087F26A /* KYHTTPManager.h */,
-				3DF43CEB2592EA6A0087F26A /* KYHTTPGlobalManager.m */,
-				3DF43CEC2592EA6A0087F26A /* KYHttpResponseModel.m */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
-		3DF43CED2592EA6A0087F26A /* IVCacheLibrary */ = {
-			isa = PBXGroup;
-			children = (
-				3DF43CEE2592EA6A0087F26A /* Classes */,
-			);
-			path = IVCacheLibrary;
-			sourceTree = "<group>";
-		};
-		3DF43CEE2592EA6A0087F26A /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				3DF43CEF2592EA6A0087F26A /* IVCacheWrapper.m */,
-				3DF43CF02592EA6A0087F26A /* IVCacheWrapper.h */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		3DF43D092592EC020087F26A /* JSONModel */ = {
-			isa = PBXGroup;
-			children = (
-				3DF43D0A2592EC020087F26A /* JSONModelTransformations */,
-				3DF43D0F2592EC020087F26A /* JSONModel */,
-				3DF43D162592EC020087F26A /* JSONModel.modulemap */,
-				3DF43D172592EC020087F26A /* Info.plist */,
-				3DF43D182592EC020087F26A /* JSONModelLib.h */,
-				3DF43D192592EC020087F26A /* JSONModelNetworking */,
-			);
-			path = JSONModel;
-			sourceTree = "<group>";
-		};
-		3DF43D0A2592EC020087F26A /* JSONModelTransformations */ = {
-			isa = PBXGroup;
-			children = (
-				3DF43D0B2592EC020087F26A /* JSONValueTransformer.m */,
-				3DF43D0C2592EC020087F26A /* JSONKeyMapper.h */,
-				3DF43D0D2592EC020087F26A /* JSONValueTransformer.h */,
-				3DF43D0E2592EC020087F26A /* JSONKeyMapper.m */,
-			);
-			path = JSONModelTransformations;
-			sourceTree = "<group>";
-		};
-		3DF43D0F2592EC020087F26A /* JSONModel */ = {
-			isa = PBXGroup;
-			children = (
-				3DF43D102592EC020087F26A /* JSONModel.m */,
-				3DF43D112592EC020087F26A /* JSONModelError.m */,
-				3DF43D122592EC020087F26A /* JSONModelClassProperty.h */,
-				3DF43D132592EC020087F26A /* JSONModel.h */,
-				3DF43D142592EC020087F26A /* JSONModelClassProperty.m */,
-				3DF43D152592EC020087F26A /* JSONModelError.h */,
-			);
-			path = JSONModel;
-			sourceTree = "<group>";
-		};
-		3DF43D192592EC020087F26A /* JSONModelNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				3DF43D1A2592EC020087F26A /* JSONHTTPClient.m */,
-				3DF43D1B2592EC020087F26A /* JSONAPI.m */,
-				3DF43D1C2592EC020087F26A /* JSONModel+networking.h */,
-				3DF43D1D2592EC020087F26A /* JSONHTTPClient.h */,
-				3DF43D1E2592EC020087F26A /* JSONAPI.h */,
-				3DF43D1F2592EC020087F26A /* JSONModel+networking.m */,
-			);
-			path = JSONModelNetworking;
 			sourceTree = "<group>";
 		};
 		3DF43D2A2592EE8B0087F26A /* SlideCard */ = {
@@ -6170,7 +5796,6 @@
 				3D41DE7B25199DEE000CA1D6 /* VIPChartDJTQCell.xib in Resources */,
 				D5A4449A24F3932400014DC6 /* 数字7_00032.png in Resources */,
 				E98BEEDD24CFF17500E6B0C8 /* HYBonusCell.xib in Resources */,
-				3DF43D252592EC020087F26A /* Info.plist in Resources */,
 				D5A4454A24F393AC00014DC6 /* 棋牌_00060.png in Resources */,
 				D5A443EF24F378CD00014DC6 /* 彩票_00086.png in Resources */,
 				3DBA560E2580B5E4009A2B71 /* BYSuperCopartnerVC.xib in Resources */,
@@ -6314,8 +5939,6 @@
 				0487C97224CE9A630013715A /* BRAddressPickerView.m in Sources */,
 				E986A19924CAC47B000F9CFF /* HYRechargeHelper.m in Sources */,
 				0487C9E124D27B960013715A /* CNNotifySettingVC.m in Sources */,
-				3DF43CFB2592EA6A0087F26A /* NSString+KYNetworking.m in Sources */,
-				3DF43CFC2592EA6A0087F26A /* KYHTTPGlobalManager.m in Sources */,
 				3D41DEBA251F1A20000CA1D6 /* WSLPictureBrowseView.m in Sources */,
 				3D41DE7E25199DEE000CA1D6 /* VIPCardCCell.m in Sources */,
 				3DA4F16924B312BE0039123F /* NSString+Validation.m in Sources */,
@@ -6327,13 +5950,10 @@
 				3D97005625A2C3ED003238C4 /* IN3SBrowserModel.m in Sources */,
 				E98BEED724CFD4F200E6B0C8 /* HYBonusTableViewController.m in Sources */,
 				0487C98E24CEC8040013715A /* UIView+HHLayout.m in Sources */,
-				3DC516CA25DE56DC00A238D4 /* KLDNetTraceRoute.m in Sources */,
 				3DA4F18424B317490039123F /* LoadingView.m in Sources */,
 				04C0F0F124C54AE8007F1420 /* CNResetPwdVC.m in Sources */,
 				3DA4F15724B30A090039123F /* SGQRCodeAlbumManager.m in Sources */,
 				04C0F13224C7D2A6007F1420 /* CNSportVC.m in Sources */,
-				3DC516C425DE56DC00A238D4 /* IVCheckRequest.m in Sources */,
-				3DF43CF32592EA6A0087F26A /* IVNUtility.m in Sources */,
 				E986A1C624CC7F2B000F9CFF /* TAAnimatedDotView.m in Sources */,
 				0487C96D24CE9A630013715A /* NSDate+BRPickerView.m in Sources */,
 				0487C9DA24D2627D0013715A /* CNXimaRecordTCell.m in Sources */,
@@ -6418,7 +6038,6 @@
 				D5FBFE8A24BC28B200BBCAD8 /* CNBaseXibView.m in Sources */,
 				3D8A708F258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m in Sources */,
 				04C0F10624C58CF4007F1420 /* CNNotificationName.m in Sources */,
-				3DC516C825DE56DC00A238D4 /* KLDNetTimer.m in Sources */,
 				0487C9A924CFBA6A0013715A /* JJCollectionViewRoundConfigModel.m in Sources */,
 				E9B5497624CF110B002CE6EF /* StrengthVideoTableViewCell.m in Sources */,
 				04935BEB24D93E87007A33EF /* CNELSearchVC.m in Sources */,
@@ -6427,7 +6046,6 @@
 				E9B5495924CE92BA002CE6EF /* UILabel+hiddenText.m in Sources */,
 				0487C9B224CFF3170013715A /* CNSecurityCenterVC.m in Sources */,
 				E98BEF3324D3B8BC00E6B0C8 /* ChargeManualMessgeView.m in Sources */,
-				3DF43D222592EC020087F26A /* JSONModel.m in Sources */,
 				0487C98D24CEC8040013715A /* UIView+SDAutoLayout.m in Sources */,
 				3D97005725A2C3ED003238C4 /* IN3SParamsModel.m in Sources */,
 				0430AB3124E38F8300C873DC /* CNBankVerifySmsView.m in Sources */,
@@ -6439,7 +6057,6 @@
 				E9A269DC24D80FCC00B512FF /* HYRechargePayWayCell.m in Sources */,
 				E98BEF0224D1AF4300E6B0C8 /* HYXiMaTopView.m in Sources */,
 				3DBA56112580D9B3009A2B71 /* CALayer+Additions.m in Sources */,
-				3DF43D212592EC020087F26A /* JSONKeyMapper.m in Sources */,
 				0487C9AA24CFBA6A0013715A /* JJCollectionViewRoundFlowLayout+Alignment.m in Sources */,
 				04C0F0FF24C589EC007F1420 /* CNUserManager.m in Sources */,
 				0487C97024CE9A630013715A /* BRAddressModel.m in Sources */,
@@ -6451,17 +6068,13 @@
 				E986A18924C9CF36000F9CFF /* XmPlatformModel.m in Sources */,
 				3DA4F17C24B315940039123F /* NSURL+HYLink.m in Sources */,
 				3DBA55D0256FA6D3009A2B71 /* CNBaseTF.m in Sources */,
-				3DF43CF52592EA6A0087F26A /* IVNConstant.m in Sources */,
 				E986A0FA24C6CBB6000F9CFF /* SmsCodeModel.m in Sources */,
 				04C0F11624C59956007F1420 /* CNEncrypt.m in Sources */,
 				3DBA560D2580B5E4009A2B71 /* BYSuperCopartnerVC.m in Sources */,
 				3D41DE962519E9D0000CA1D6 /* VIPCumulateIdCell.m in Sources */,
 				04935BDF24D7EE2B007A33EF /* CNElectionTypeSelectorView.m in Sources */,
-				3DF43CFE2592EA6A0087F26A /* IVCacheWrapper.m in Sources */,
 				048A169824CBD44700411819 /* CNVIPLabel.m in Sources */,
-				3DF43CF92592EA6A0087F26A /* IVJResponseObject.m in Sources */,
 				04C0F0DC24C29FFD007F1420 /* CNBindPhoneVC.m in Sources */,
-				3DC516C925DE56DC00A238D4 /* KLDNetPing.m in Sources */,
 				E98BEF3A24D3D27100E6B0C8 /* HYDownloadLinkView.m in Sources */,
 				E9D9447A24C1F39C00252222 /* HYGloryViewController.m in Sources */,
 				E98BEF3024D2F35600E6B0C8 /* HYWithdrawComfirmView.m in Sources */,
@@ -6472,7 +6085,6 @@
 				0487C96C24CE9A630013715A /* BRStringPickerView.m in Sources */,
 				E993095424D7F3CD00E0843B /* HYRechProcButton.m in Sources */,
 				3D97004F25A2C3ED003238C4 /* IN3SUtility.m in Sources */,
-				3DC516BF25DE56DC00A238D4 /* IVCDetailViewController.m in Sources */,
 				04C0F12324C69738007F1420 /* CNHomeVC.m in Sources */,
 				E986A19C24CADCA3000F9CFF /* UserSubscribItem.m in Sources */,
 				04C0F11324C594D5007F1420 /* CNLoginRequest.m in Sources */,
@@ -6488,15 +6100,11 @@
 				3DF03207258DF6E500AF7A36 /* SCMyBonusModel.m in Sources */,
 				04C0F10324C58A52007F1420 /* NSObject+CNParse.m in Sources */,
 				E98BEEEB24D023B200E6B0C8 /* LYEmptyView.m in Sources */,
-				3DC516C525DE56DC00A238D4 /* KLDNetDiagnoService.m in Sources */,
 				04935BE324D8FC5B007A33EF /* CNElectrionHallCCell.m in Sources */,
-				3DC516C125DE56DC00A238D4 /* IVCheckNetworkModel.m in Sources */,
 				3DA4F15424B30A090039123F /* SGQRCodeScanningView.m in Sources */,
 				3DA4F16E24B314F30039123F /* UIImage+ESUtilities.m in Sources */,
 				3D9700262599DB2A003238C4 /* HYDSBSlideUpViewCell.m in Sources */,
-				3DC516C625DE56DC00A238D4 /* KLDNetGetAddress.m in Sources */,
 				3D3A9B6A24FA3696003FB33C /* DXRadianLayerView.m in Sources */,
-				3DF43D202592EC020087F26A /* JSONValueTransformer.m in Sources */,
 				0487C9CD24D133270013715A /* CNRecordTypeSelectorView.m in Sources */,
 				3DE3CA9324ED5CFC00D591C4 /* HYUpdateAlertView.m in Sources */,
 				3D41DEA8251B4A45000CA1D6 /* HYVIPReceiveAlertView.m in Sources */,
@@ -6510,18 +6118,14 @@
 				E9D944A124C5759400252222 /* UpdateVersionModel.m in Sources */,
 				3DA4F17D24B315940039123F /* UIFont+RCFont.m in Sources */,
 				E986A17624C979F6000F9CFF /* PayOnlinePaymentModel.m in Sources */,
-				3DF43D232592EC020087F26A /* JSONModelError.m in Sources */,
 				0487C97724CEAE1B0013715A /* CNMineVC.m in Sources */,
-				3DF43CF22592EA6A0087F26A /* UIDevice+IVInfo.m in Sources */,
 				3D5B259625BE70FD00FD23F0 /* DSBProfitBoardUsrModel.m in Sources */,
 				E98BEF1224D2A32700E6B0C8 /* HYXiMaSuccViewController.m in Sources */,
-				3DF43D262592EC020087F26A /* JSONHTTPClient.m in Sources */,
 				E986A17F24C97B21000F9CFF /* CNWDAccountRequest.m in Sources */,
 				D5FBFE4224BC05E400BBCAD8 /* CNCodeInputView.m in Sources */,
 				E986A0FD24C6D1F9000F9CFF /* CNUserDetailModel.m in Sources */,
 				E986A15624C95F4F000F9CFF /* UIButton+Indicator.m in Sources */,
 				040A08D024E114A900FBD534 /* OCBarrageTextCell.m in Sources */,
-				3DC516C725DE56DC00A238D4 /* KLDSimplePing.m in Sources */,
 				0487C9EC24D297CA0013715A /* CNMessageCenterVC.m in Sources */,
 				3DBA55D2256FA6D3009A2B71 /* CNTextSaleBtn.m in Sources */,
 				D5FBFE3D24BC05E400BBCAD8 /* CNImageCodeInputView.m in Sources */,
@@ -6532,12 +6136,9 @@
 				D5FBFE8D24BC28B200BBCAD8 /* CNBaseVC.m in Sources */,
 				3D41DEA5251AF662000CA1D6 /* VIPCumulateIdButton.m in Sources */,
 				3D41DE9A2519F996000CA1D6 /* VIPCumulateIdHeader.m in Sources */,
-				3DF43CF12592EA6A0087F26A /* NSDictionary+IVN.m in Sources */,
 				3D41DE7325199DEE000CA1D6 /* VIPDSBUsrModel.m in Sources */,
 				3D97004E25A2C3ED003238C4 /* IN3SAnalytics.m in Sources */,
 				3DBA55D4256FA6D3009A2B71 /* CNSelectBtn.m in Sources */,
-				3DF43CFA2592EA6A0087F26A /* KYHTTPManager.m in Sources */,
-				3DC516BC25DE56DC00A238D4 /* IVCTextView.m in Sources */,
 				3D31B9612542E97D005275BD /* HYTapHanImageCodeView.m in Sources */,
 				3D41DEBD251F1B47000CA1D6 /* UIImageView+GIF.m in Sources */,
 				E986A1C724CC7F2B000F9CFF /* TAAbstractDotView.m in Sources */,
@@ -6563,22 +6164,18 @@
 				040A08D224E114A900FBD534 /* OCBarrageCell.m in Sources */,
 				3D3A9B6424F90666003FB33C /* UIWindow+Motion.m in Sources */,
 				0487C9C524D11F0D0013715A /* CNNoDataView.m in Sources */,
-				3DC516C225DE56DC00A238D4 /* IVCheckGatewayRequest.m in Sources */,
 				04935BD924D7D45E007A33EF /* CNElectrionHallVC.m in Sources */,
 				E9E9590124D41BC400E866B6 /* CreditQueryResultModel.m in Sources */,
 				3DCFEAA1250624CD0071F356 /* TAExampleDotView.m in Sources */,
 				3D41DE6F25199DEE000CA1D6 /* HYVIPViewController.m in Sources */,
-				3DF43D272592EC020087F26A /* JSONAPI.m in Sources */,
 				E969EB3B24E2755F00D58FE9 /* HYRechargeCNYEditView.m in Sources */,
 				D5FBFE3F24BC05E400BBCAD8 /* CNAccountInputView.m in Sources */,
-				3DF43D242592EC020087F26A /* JSONModelClassProperty.m in Sources */,
 				044DC69524DD1A35005CB550 /* CNShareCopyView.m in Sources */,
 				0487CA0D24D3CC380013715A /* CNFeedBackVC.m in Sources */,
 				3DBA55DB2570D188009A2B71 /* BetAmountModel.m in Sources */,
 				3D97004D25A2C3ED003238C4 /* IN3SConstants.m in Sources */,
 				048A0EE024C832F800411819 /* CNElectronicVC.m in Sources */,
 				042372A324CE65A000D37B9C /* CNSettingVC.m in Sources */,
-				3DF43CFD2592EA6A0087F26A /* KYHttpResponseModel.m in Sources */,
 				3D97005125A2C3ED003238C4 /* IN3SGlobalModel.m in Sources */,
 				0487CA0624D3BAB90013715A /* CNInviteFriendVC.m in Sources */,
 				3D564E2024F3C02C006846DD /* MessageBoxModel.m in Sources */,
@@ -6590,7 +6187,6 @@
 				0487C9F924D2CCED0013715A /* CNDownloadVC.m in Sources */,
 				E986A11524C73DB8000F9CFF /* AnnounceModel.m in Sources */,
 				3D9DA66125908327003C3F28 /* DSBWeekMonthListDataSource.m in Sources */,
-				3DC516BE25DE56DC00A238D4 /* IVCProgressView.m in Sources */,
 				0487C9AB24CFBA6A0013715A /* JJCollectionViewFlowLayoutUtils.m in Sources */,
 				E9B5496A24CECE23002CE6EF /* LTSegmentedBarViewController.m in Sources */,
 				3D41DE8425199DEE000CA1D6 /* VIPChartHeaderView.m in Sources */,
@@ -6598,7 +6194,6 @@
 				E986A18624C9CD4C000F9CFF /* CNXiMaRequest.m in Sources */,
 				3DBA55FC257FC151009A2B71 /* DSBHeaderSelectionView.m in Sources */,
 				D5FBFDC824B4672200BBCAD8 /* CNSkinManager.m in Sources */,
-				3DF43CF72592EA6A0087F26A /* IVHTTPBaseRequest.m in Sources */,
 				04935BC824D56793007A33EF /* CNAddAddressVC.m in Sources */,
 				3DF43D482594614D0087F26A /* DSBProfitBoardDataSource.m in Sources */,
 				3DA4F16A24B312BE0039123F /* UIView+Extension.m in Sources */,
@@ -6608,14 +6203,11 @@
 				E98BEEFE24D1815200E6B0C8 /* HYXiMaViewController.m in Sources */,
 				E986A13124C7FC0E000F9CFF /* ArticalModel.m in Sources */,
 				3DBA55D8256FA793009A2B71 /* BalanceManager.m in Sources */,
-				3DC516BD25DE56DC00A238D4 /* IVCNetworkStatusView.m in Sources */,
 				04C0F0FC24C589DD007F1420 /* CNUserModel.m in Sources */,
 				E986A1C124CC7F2B000F9CFF /* SDCycleScrollView.m in Sources */,
 				E986A19224CA93D3000F9CFF /* BQPaymentModel.m in Sources */,
-				3DC516C325DE56DC00A238D4 /* IVCheckNetworkWrapper.m in Sources */,
 				E969EB3524E14B4B00D58FE9 /* MineBindView.m in Sources */,
 				3D97005825A2C3ED003238C4 /* IN3SWebViewController.m in Sources */,
-				3DF43D282592EC020087F26A /* JSONModel+networking.m in Sources */,
 				3D97005525A2C3ED003238C4 /* IN3SRequestModel.m in Sources */,
 				E98BEF2524D2C40100E6B0C8 /* HYWithdrawAddCardFooter.m in Sources */,
 				3D41DEB9251F1A20000CA1D6 /* WSLPhotoZoom.m in Sources */,
@@ -6626,7 +6218,6 @@
 				D571B1AB24C03D790087B5EC /* CNStatementView.m in Sources */,
 				04C6E1DF24D3E995006F4DAC /* CNFeedBackLeftTCell.m in Sources */,
 				3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */,
-				3DF43CF42592EA6A0087F26A /* IVRsaEncryptWrapper.m in Sources */,
 				3D41DE7825199DEE000CA1D6 /* VIPChartDSBHeaderView.m in Sources */,
 				3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */,
 				E98BEF3F24D3E99000E6B0C8 /* CNAmountInputView.m in Sources */,
@@ -6638,7 +6229,6 @@
 				3D65D1162568E35300917E1B /* SocketRocketUtility.m in Sources */,
 				E986A17724C979F6000F9CFF /* CNRechargeRequest.m in Sources */,
 				3D8A707E258B0B110058D50F /* SuperCopartnerTbDataSource.m in Sources */,
-				3DC516CB25DE56DC00A238D4 /* KLDNetConnect.m in Sources */,
 				0430AB2924E26E5300C873DC /* CNAddBankCardVC.m in Sources */,
 				3D9DA6792591E1B6003C3F28 /* DSBRchrWthdrwHeader.m in Sources */,
 				E9063B8924D6B0AA0000273A /* HYOneBtnAlertView.m in Sources */,
@@ -6663,7 +6253,6 @@
 				E986A18F24CA8DB9000F9CFF /* ChooseAvatarsModel.m in Sources */,
 				3DA4F18924B317E40039123F /* WMDragView.m in Sources */,
 				E986A1A324CB37C3000F9CFF /* HYBaseAlertView.m in Sources */,
-				3DC516C025DE56DC00A238D4 /* IVCheckDetailModel.m in Sources */,
 				040A08D624E114A900FBD534 /* OCBarrageTrackInfo.m in Sources */,
 				E9D9446C24C1EC1300252222 /* HYTabBarViewController.m in Sources */,
 				3D41DE7F25199DEE000CA1D6 /* VIPMonlyAlertCell.m in Sources */,
@@ -6671,7 +6260,6 @@
 				E986A12D24C7F5D7000F9CFF /* CNGloryRequest.m in Sources */,
 				3D41DE6E25199DEE000CA1D6 /* JLXUICollectionViewFlowLayout.m in Sources */,
 				3DBA55D3256FA6D3009A2B71 /* CNTwoStatusBtn.m in Sources */,
-				3DF43CF62592EA6A0087F26A /* IVHttpManager.m in Sources */,
 				E986A14024C936FF000F9CFF /* MyPromoItem.m in Sources */,
 				0487C9B724D005D20013715A /* CNChangePwdVC.m in Sources */,
 				E97054AA24DC10040007F845 /* AgentRecordModel.m in Sources */,

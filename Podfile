@@ -29,11 +29,12 @@ target 'HYNewNest' do
   pod 'CocoaAsyncSocket'
   
   # 网络模块
-#  pod 'IVNetworkLibrary2.0',:git =>'http://10.66.72.115/mobile-iOS-Library/IVNetworkLibrary2.0.git'
+  pod 'IVNetworkLibrary2.0',:git =>'http://10.66.72.115/mobile-iOS-Library/IVNetworkLibrary2.0.git'
   # 缓存模块
-#  pod 'IVCacheLibrary',:git =>'http://10.66.72.115/mobile-iOS-Library/IVCacheLibrary.git'
-  
-  # 天网
+  pod 'IVCacheLibrary',:git =>'http://10.66.72.115/mobile-iOS-Library/IVCacheLibrary.git'
+  # 网络检测
+  pod 'IVCheckNetworkLibrary',:git =>'http://10.66.72.115/mobile-iOS-library/IVCheckNetworkLibrary.git'
+  # 天网埋点
   pod 'IVLoganAnalysis',:git =>'http://10.66.72.115/mobile-iOS-library/IVLoganAnalysis.git'
   
   pod 'LookinServer', :configurations => ['Debug']
