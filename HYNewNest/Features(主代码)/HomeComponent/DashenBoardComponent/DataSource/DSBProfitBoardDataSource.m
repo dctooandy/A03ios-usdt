@@ -144,7 +144,10 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 #pragma mark - UITableView
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    if (self.usrModels.count && [self.usrModels[0] prList].count) {
+        return 2;
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

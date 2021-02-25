@@ -6847,6 +6847,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -6860,6 +6861,7 @@
 					"$(PROJECT_DIR)/HYNewNest/Vendors/IVNetworkLibrary2.0/Classes/Business/SDK/Sign",
 					"$(PROJECT_DIR)/HYNewNest/Vendors/IN3SAnalytics",
 				);
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = HYNewNest/Config/PrefixHeader.pch;
 				HEADER_SEARCH_PATHS = (
@@ -6903,6 +6905,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_OPTIMIZATION = space;
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游Release.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -6916,6 +6919,7 @@
 					"$(PROJECT_DIR)/HYNewNest/Vendors/IVNetworkLibrary2.0/Classes/Business/SDK/Sign",
 					"$(PROJECT_DIR)/HYNewNest/Vendors/IN3SAnalytics",
 				);
+				GCC_OPTIMIZATION_LEVEL = z;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = HYNewNest/Config/PrefixHeader.pch;
 				HEADER_SEARCH_PATHS = (
