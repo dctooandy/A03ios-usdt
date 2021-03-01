@@ -7,9 +7,13 @@
 //
 
 #import "CNSettingVC.h"
-#import "BRPickerView.h"
 #import "CNChoseImageVC.h"
 #import "CNFeedBackVC.h"
+#import "StatusDetailViewController.h"
+
+#import "BRPickerView.h"
+#import "IVCNetworkStatusView.h"
+
 #import <UIImageView+WebCache.h>
 #import "CNUserCenterRequest.h"
 #import "CNLoginRequest.h"
@@ -107,5 +111,15 @@
     }];
 }
 
+/// 检查网络
+- (IBAction)checkNetwork:(id)sender {
+    IVCNetworkStatusView *statusView = [[IVCNetworkStatusView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    statusView.detailBtnClickedBlock = ^{
+        StatusDetailViewController *vc = [[StatusDetailViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    };
+    [kKeywindow addSubview:statusView];
+    [statusView startCheck];
+}
 
 @end
