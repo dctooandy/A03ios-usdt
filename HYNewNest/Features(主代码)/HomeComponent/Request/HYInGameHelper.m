@@ -67,6 +67,7 @@ NSString *const InGameTypeString[] = {
         
         GameModel *gameModel = [GameModel cn_parse:responseObj];
         NSString *gameUrl = gameModel.url;
+        [IVHttpManager shareManager].gameDomain = gameUrl; //保存一下游戏URL 用于网络检测
         if ([gameUrl containsString:@"&callbackUrl="]) {
             gameUrl = [gameUrl stringByReplacingOccurrencesOfString:@"&callbackUrl=" withString:@"&callbackUrl=https://localhost/exit.html"];
         }
@@ -266,6 +267,9 @@ NSString *const InGameTypeString[] = {
         
         GameModel *gameModel = [GameModel cn_parse:responseObj];
         NSString *gameUrl = gameModel.url;
+        if ([gameCode isEqualToString:@"003"]) {
+            [IVHttpManager shareManager].gameDomain = gameUrl; //保存一下游戏URL 用于网络检测
+        }
         if ([gameUrl containsString:@"&callbackUrl="]) {
             gameUrl = [gameUrl stringByReplacingOccurrencesOfString:@"&callbackUrl=" withString:@"&callbackUrl=https://localhost/exit.html"];
         }

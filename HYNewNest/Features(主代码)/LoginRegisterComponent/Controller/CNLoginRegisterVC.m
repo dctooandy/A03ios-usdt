@@ -20,7 +20,6 @@
 #import "HYTapHanImageCodeView.h"
 #import "CNVerifyMsgAlertView.h"
 
-#import "IVCheckNetworkWrapper.h"
 #import "IVCNetworkStatusView.h"
 #import "CNLoginRequest.h"
 #import "SmsCodeModel.h"
