@@ -28,6 +28,8 @@ target 'HYNewNest' do
   
   pod 'CocoaAsyncSocket'
   
+  # 注意：【IVNetworkLibrary2.0】文件：IVHTTPBaseRequest.h & .m 有自定义内容；【IVCheckNetworkLibrary】文件：IVCheckNetworkWrapper.m (aggameh5) 有自定义内容。。。。严禁使用pod update
+  
   # 网络模块
   pod 'IVNetworkLibrary2.0',:git =>'http://10.66.72.115/mobile-iOS-Library/IVNetworkLibrary2.0.git'
   # 缓存模块
