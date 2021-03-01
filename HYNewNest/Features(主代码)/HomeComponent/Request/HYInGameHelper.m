@@ -67,8 +67,14 @@ NSString *const InGameTypeString[] = {
         
         GameModel *gameModel = [GameModel cn_parse:responseObj];
         NSString *gameUrl = gameModel.url;
+        
+        //保存一下游戏URL 用于网络检测
         NSString *gc = [gameUrl componentsSeparatedByString:@"?"].firstObject;
-        [IVHttpManager shareManager].gameDomain = gc; //保存一下游戏URL 用于网络检测
+        NSString *gcNeed2Remove = [gc componentsSeparatedByString:@"/"].lastObject;
+        gcNeed2Remove = [NSString stringWithFormat:@"/%@", gcNeed2Remove];
+        gc = [gc stringByReplacingOccurrencesOfString:gcNeed2Remove withString:@""];
+        [IVHttpManager shareManager].gameDomain = gc;
+        
         if ([gameUrl containsString:@"&callbackUrl="]) {
             gameUrl = [gameUrl stringByReplacingOccurrencesOfString:@"&callbackUrl=" withString:@"&callbackUrl=https://localhost/exit.html"];
         }
@@ -268,10 +274,16 @@ NSString *const InGameTypeString[] = {
         
         GameModel *gameModel = [GameModel cn_parse:responseObj];
         NSString *gameUrl = gameModel.url;
+        
         if ([gameCode isEqualToString:@"003"]) {
+            //保存一下游戏URL 用于网络检测
             NSString *gc = [gameUrl componentsSeparatedByString:@"?"].firstObject;
-            [IVHttpManager shareManager].gameDomain = gc; //保存一下游戏URL 用于网络检测
+            NSString *gcNeed2Remove = [gc componentsSeparatedByString:@"/"].lastObject;
+            gcNeed2Remove = [NSString stringWithFormat:@"/%@", gcNeed2Remove];
+            gc = [gc stringByReplacingOccurrencesOfString:gcNeed2Remove withString:@""];
+            [IVHttpManager shareManager].gameDomain = gc;
         }
+        
         if ([gameUrl containsString:@"&callbackUrl="]) {
             gameUrl = [gameUrl stringByReplacingOccurrencesOfString:@"&callbackUrl=" withString:@"&callbackUrl=https://localhost/exit.html"];
         }
