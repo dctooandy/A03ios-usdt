@@ -164,9 +164,11 @@
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R1f-Xm-9vb">
-                                    <rect key="frame" x="164.5" y="505" width="54" height="28"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <state key="normal" title="检查网络"/>
+                                    <rect key="frame" x="166.5" y="500" width="50" height="27"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <state key="normal" title="网络检测">
+                                        <color key="titleColor" red="0.062745098040000002" green="0.70588235290000001" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="checkNetworking:" destination="-1" eventType="touchUpInside" id="8Vn-wk-DAC"/>
                                     </connections>
@@ -187,7 +189,7 @@
                                 <constraint firstItem="2Ax-fe-kPs" firstAttribute="top" secondItem="SfY-3I-9jV" secondAttribute="bottom" constant="10" id="W5W-f4-Qse"/>
                                 <constraint firstItem="aIr-X8-Kxf" firstAttribute="centerX" secondItem="ZzA-Aa-cAB" secondAttribute="centerX" id="WPP-3e-yMN"/>
                                 <constraint firstItem="xVJ-hQ-hM5" firstAttribute="top" secondItem="1yO-hQ-dcT" secondAttribute="bottom" constant="20" id="YCg-9B-cq7"/>
-                                <constraint firstItem="R1f-Xm-9vb" firstAttribute="top" secondItem="xVJ-hQ-hM5" secondAttribute="bottom" constant="15" id="dXW-lE-nkr"/>
+                                <constraint firstItem="R1f-Xm-9vb" firstAttribute="top" secondItem="xVJ-hQ-hM5" secondAttribute="bottom" constant="10" id="dXW-lE-nkr"/>
                                 <constraint firstAttribute="trailing" secondItem="vK6-gf-yzO" secondAttribute="trailing" constant="30" id="gHL-2U-Nkl"/>
                                 <constraint firstItem="lfD-sj-tlg" firstAttribute="leading" secondItem="ZzA-Aa-cAB" secondAttribute="leading" constant="30" id="hSU-E7-m12"/>
                                 <constraint firstItem="SfY-3I-9jV" firstAttribute="top" secondItem="vK6-gf-yzO" secondAttribute="bottom" id="nAx-8v-zJc"/>

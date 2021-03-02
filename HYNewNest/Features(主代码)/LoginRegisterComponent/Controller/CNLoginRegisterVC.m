@@ -205,7 +205,7 @@
     [CNStatementView show];
 }
 
-/// 检查网络
+/// 网络检测
 - (IBAction)checkNetworking:(id)sender {
     IVCNetworkStatusView *statusView = [[IVCNetworkStatusView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     statusView.detailBtnClickedBlock = ^{
