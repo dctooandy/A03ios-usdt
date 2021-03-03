@@ -68,7 +68,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     [self requestWithdrawAddress];
     
     if ((![CNUserManager shareManager].isUsdtMode)
-        && (![CNUserManager shareManager].userDetail.mobileNoBind || ![CNUserManager shareManager].userDetail.realName)) {
+        && (![CNUserManager shareManager].userDetail.mobileNoBind || KIsEmptyString([CNUserManager shareManager].userDetail.realName))) {
         [HYTextAlertView showWithTitle:@"完善信息" content:@"对不起！系统发现您还没有完成实名认证，请先完成实名认证，再进行提现操作。" comfirmText:@"去认证" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm){
             if (isComfirm) {
                 [self.navigationController pushViewController:[CNCompleteInfoVC new] animated:YES];
