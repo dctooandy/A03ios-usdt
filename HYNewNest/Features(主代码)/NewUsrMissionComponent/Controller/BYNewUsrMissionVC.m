@@ -8,6 +8,9 @@
 
 #import "BYNewUsrMissionVC.h"
 
+#import "HYWideOneBtnAlertView.h"
+#import "HYUpdateAlertView.h"
+
 #import "CNTwoStatusBtn.h"
 #import "UIView+DottedLine.h"
 
@@ -36,6 +39,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        // 首充弹窗
+        [HYUpdateAlertView showFirstDepositHandler:^(BOOL isComfm) {
+            [NNPageRouter jump2BuyECoin];
+        }];
+    });
     
     self.title = @"新手任务";
     self.cumulate7Btn.enabled = NO; //状态
@@ -93,6 +104,13 @@
         
     }
     
+}
+
+
+#pragma mark - Action
+
+- (IBAction)didTapRuleBanner:(id)sender {
+    [HYWideOneBtnAlertView showWithTitle:@"活动规则" content:@"1.此活动与其他活动共享；\n2.限时任务：新用户在活动期间注册后，有30天可以完成限时任务，超出完成时限，则新手任务无法完成；\n3.其他任务：活动期间内完成即可；\n4.所有奖励需手动领取，过期未领取奖励自动失效；\n5.所有奖励需3倍流水方可提现；\n6.此优惠只用于币游真钱账号玩家，如发现个人或团体套利行为，币游国际有权扣除套利所得；\n7.为避免文字差异造成的理解偏差，本活动解释权归币游所有。" comfirmText:@"" comfirmHandler:nil];
 }
 
 
