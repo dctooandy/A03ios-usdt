@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CNTwoStatusBtn : UIButton
-
+@property (assign,nonatomic) BOOL isThirdStatusEnable; // 按钮样式不同
+@property (assign,nonatomic) IBInspectable CGFloat txtSize;
 @end
 
 NS_ASSUME_NONNULL_END

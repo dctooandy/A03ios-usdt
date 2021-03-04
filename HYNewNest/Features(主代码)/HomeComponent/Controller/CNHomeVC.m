@@ -17,6 +17,8 @@
 #import "HYXiMaViewController.h"
 #import "CNDashenBoardVC.h"
 
+#import "BYNewUsrMissionVC.h"
+
 #import "CNUserInfoLoginView.h"
 #import "SDCycleScrollView.h"
 #import "UUMarqueeView.h"
@@ -105,6 +107,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:HYLogoutSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:BYDidEnterHomePageNoti object:nil];
     
+    BYNewUsrMissionVC *vc = [BYNewUsrMissionVC new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //可以在首页的该方法中调用

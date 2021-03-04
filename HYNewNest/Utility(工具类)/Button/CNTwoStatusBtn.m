@@ -48,4 +48,25 @@
     }
 }
 
+- (void)setIsThirdStatusEnable:(BOOL)isThirdStatusEnable {
+    if (isThirdStatusEnable) {
+        self.enabled = YES;
+        [self setTitleColor:kHexColor(0x19CECE) forState:UIControlStateNormal];
+        [self setBackgroundImage:[UIImage new] forState:UIControlStateNormal];
+        UIColor *gradColor = [UIColor gradientFromColor:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE) withWidth:90];
+        self.layer.borderColor = gradColor.CGColor;
+        self.layer.borderWidth = 1.0;
+    } else {
+        [self setTitleColor:kHexColorAlpha(0xFFFFFF, 1.0) forState:UIControlStateNormal];
+        [self setBackgroundImage:[UIImage imageNamed:@"l_btn_select"] forState:UIControlStateNormal];
+//        self.layer.borderColor = kHexColor(0x19CECE).CGColor;
+        self.layer.borderWidth = 0.0;
+        self.enabled = NO;
+    }
+}
+
+- (void)setTxtSize:(CGFloat)txtSize {
+    self.titleLabel.font = [UIFont systemFontOfSize:txtSize weight:UIFontWeightMedium];
+}
+
 @end
