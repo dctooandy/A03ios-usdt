@@ -116,26 +116,15 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 
 #pragma mark - ACTION
 - (IBAction)didTapWithdrawBtn:(id)sender {
-    if (![CNUserManager shareManager].isUsdtMode) {
-        if (![CNUserManager shareManager].userDetail.mobileNoBind || KIsEmptyString([CNUserManager shareManager].userDetail.realName)) {
-            [HYTextAlertView showWithTitle:@"完善信息" content:@"对不起！系统发现您还没有完成实名认证，请先完成实名认证，再进行提现操作。" comfirmText:@"去认证" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm){
-                if (isComfirm) {
-                    [self.navigationController pushViewController:[CNCompleteInfoVC new] animated:YES];
-                }
-            }];
-            return;
-        }
-    } else {
-        if (![CNUserManager shareManager].userDetail.mobileNoBind) {
-            [HYTextAlertView showWithTitle:@"手机绑定" content:@"对不起！系统发现您还没有绑定手机，请先完成手机绑定流程，再进行提现操作。" comfirmText:@"去绑定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
-                if (isComfirm) {
-                    CNBindPhoneVC *vc = [CNBindPhoneVC new];
-                    vc.bindType = CNSMSCodeTypeBindPhone;
-                    [self.navigationController pushViewController:vc animated:YES];
-                }
-            }];
-            return;
-        }
+    if (![CNUserManager shareManager].userDetail.mobileNoBind) {
+        [HYTextAlertView showWithTitle:@"手机绑定" content:@"对不起！系统发现您还没有绑定手机，请先完成手机绑定流程，再进行提现操作。" comfirmText:@"去绑定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
+            if (isComfirm) {
+                CNBindPhoneVC *vc = [CNBindPhoneVC new];
+                vc.bindType = CNSMSCodeTypeBindPhone;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        }];
+        return;
     }
     
     if (!self.moneyModel) {
