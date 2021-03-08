@@ -54,19 +54,18 @@
 }
 
 + (id)POST:(NSString *)path parameters:(NSDictionary *)parameters completionHandler:(HandlerBlock)completionHandler {
-    if (!([path containsString:config_getByLoginName] || [path containsString:config_betAmountLevel] || [path containsString:config_getBalanceInfo] || [path containsString:config_getByLoginNameEx] || [path containsString:config_getByCardBin] || [path containsString:config_createUdid] || [path containsString:config_superSignSend] || [path containsString:config_upgradeApp])) { //加载一些信息不要loading
+    if (!([path containsString:config_betAmountLevel] || [path containsString:config_getBalanceInfo] || [path containsString:config_getByLoginNameEx] || [path containsString:config_getByCardBin] || [path containsString:config_createUdid] || [path containsString:config_superSignSend] || [path containsString:config_upgradeApp])) { //加载一些信息不要loading
         [LoadingView show];
     }
     
     return [[IVHttpManager shareManager] sendRequestWithMethod:KYHTTPMethodPOST url:path parameters:parameters callBack:^(IVJResponseObject * _Nullable response, NSError * _Nullable error) {
         
-        if ([response.head.errCode isEqualToString:@"0000"]) {
+        if ([response.head.errCode isEqualToString:@"0000"]) { // 正常返回
             [LoadingView showSuccess];
             !completionHandler ?: completionHandler(response.body, nil);
             
-        } else if ([[self errorCodeOfTokenException] containsObject:response.head.errCode]) {
+        } else if ([[self errorCodeOfTokenException] containsObject:response.head.errCode]) { // token过期
             [LoadingView hide];
-            // token过期
             [CNHUB showError:@"登录失效，请重新登录"];
             !completionHandler ?: completionHandler(response.head.errCode, @"登录失效，请重新登录");
             [[CNUserManager shareManager] cleanUserInfo];
