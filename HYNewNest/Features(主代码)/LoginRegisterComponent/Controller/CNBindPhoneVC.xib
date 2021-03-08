@@ -19,7 +19,6 @@
                 <outlet property="sendCodeBtn" destination="02n-zQ-LAZ" id="Gst-N8-5Lx"/>
                 <outlet property="sendTipLb" destination="uQU-51-wMD" id="wUb-sa-XN0"/>
                 <outlet property="shakingView" destination="zlC-Sk-kCd" id="G9a-nb-DMD"/>
-                <outlet property="subTitLb" destination="9AE-xw-xq0" id="Ej3-Ej-NLb"/>
                 <outlet property="submitBtn" destination="TTB-nh-bU5" id="V3O-ae-ydu"/>
                 <outlet property="titleLb" destination="G1O-it-Bhq" id="KC1-aD-7PU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -134,49 +133,41 @@
                         <constraint firstAttribute="height" constant="80" id="gFa-z2-Ikk"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TTB-nh-bU5" customClass="CNTwoStatusBtn">
-                    <rect key="frame" x="30" y="425" width="354" height="48"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TTB-nh-bU5">
+                    <rect key="frame" x="30" y="704" width="354" height="54"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="48" id="bNk-3D-qWE"/>
+                        <constraint firstAttribute="height" constant="54" id="bNk-3D-qWE"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                    <state key="normal" title="提交">
+                    <state key="normal" backgroundImage="h5">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <state key="disabled">
                         <color key="titleColor" white="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
-                        <action selector="verfiSmsCode:" destination="-1" eventType="touchUpInside" id="Zdp-3P-SKE"/>
+                        <action selector="verfiSmsCode:" destination="-1" eventType="touchUpInside" id="hEh-bs-BgY"/>
                     </connections>
                 </button>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Vw-J1-oP9" customClass="CNOneStatusBtn">
-                    <rect key="frame" x="30" y="503" width="354" height="48"/>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Vw-J1-oP9">
+                    <rect key="frame" x="30" y="778" width="354" height="54"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="48" id="AmJ-BF-AuY"/>
+                        <constraint firstAttribute="height" constant="54" id="AmJ-BF-AuY"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                    <state key="normal" title="跳过">
-                        <color key="titleColor" red="0.074509803920000006" green="0.52156862749999999" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="跳过" backgroundImage="l_btn_hh">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
-                        <action selector="pass:" destination="-1" eventType="touchUpInside" id="B1I-5X-w3D"/>
+                        <action selector="pass:" destination="-1" eventType="touchUpInside" id="HFK-A7-Ldx"/>
                     </connections>
                 </button>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="绑定手机号 充提秒到账 资金更安全" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9AE-xw-xq0">
-                    <rect key="frame" x="30" y="152" width="269" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="TTB-nh-bU5" firstAttribute="top" secondItem="zlC-Sk-kCd" secondAttribute="bottom" constant="43" id="1SH-Fr-yOq"/>
                 <constraint firstItem="4Vw-J1-oP9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="4P2-N5-L1f"/>
                 <constraint firstItem="uQU-51-wMD" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="4gc-N5-Fa5"/>
-                <constraint firstItem="9AE-xw-xq0" firstAttribute="top" secondItem="G1O-it-Bhq" secondAttribute="bottom" constant="20" id="5nH-A8-k3I"/>
                 <constraint firstItem="Pon-Hk-f86" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="6K9-1O-F1j"/>
                 <constraint firstAttribute="bottom" secondItem="Pon-Hk-f86" secondAttribute="bottom" id="8GX-t6-EQm"/>
                 <constraint firstItem="G1O-it-Bhq" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="BYf-Ye-M2u"/>
@@ -184,12 +175,12 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="TTB-nh-bU5" secondAttribute="trailing" constant="30" id="EYM-mW-aIP"/>
                 <constraint firstItem="uQU-51-wMD" firstAttribute="top" secondItem="fzz-LH-BwM" secondAttribute="bottom" constant="35" id="FeA-1X-lZO"/>
                 <constraint firstItem="0a1-Y0-di7" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="Q55-SR-exx"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="4Vw-J1-oP9" secondAttribute="bottom" constant="30" id="RQk-2w-qTk"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="fzz-LH-BwM" secondAttribute="trailing" constant="30" id="Sf7-WH-dcw"/>
-                <constraint firstItem="9AE-xw-xq0" firstAttribute="leading" secondItem="G1O-it-Bhq" secondAttribute="leading" id="W53-au-ivW"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="zlC-Sk-kCd" secondAttribute="trailing" constant="30" id="Z8T-D2-RsK"/>
                 <constraint firstItem="Pon-Hk-f86" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="dtf-4C-Ify"/>
                 <constraint firstItem="fzz-LH-BwM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="gKg-Xu-gFk"/>
-                <constraint firstItem="4Vw-J1-oP9" firstAttribute="top" secondItem="TTB-nh-bU5" secondAttribute="bottom" constant="30" id="gce-uO-JM8"/>
+                <constraint firstItem="4Vw-J1-oP9" firstAttribute="top" secondItem="TTB-nh-bU5" secondAttribute="bottom" constant="20" id="gce-uO-JM8"/>
                 <constraint firstItem="0a1-Y0-di7" firstAttribute="top" secondItem="fzz-LH-BwM" secondAttribute="bottom" constant="40" id="jXt-o5-YAP"/>
                 <constraint firstItem="fzz-LH-BwM" firstAttribute="top" secondItem="G1O-it-Bhq" secondAttribute="bottom" constant="50" id="lju-8M-RhD"/>
                 <constraint firstItem="G1O-it-Bhq" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="52" id="n0u-mG-gl4"/>
@@ -203,5 +194,7 @@
     </objects>
     <resources>
         <image name="bg-1" width="375" height="609"/>
+        <image name="h5" width="315" height="48"/>
+        <image name="l_btn_hh" width="315" height="48"/>
     </resources>
 </document>
