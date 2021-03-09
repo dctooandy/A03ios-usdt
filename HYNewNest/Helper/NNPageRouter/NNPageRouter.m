@@ -39,11 +39,10 @@
 }
 
 + (void)jump2BuyECoin {
-//    NSInteger depositLevel = [CNUserManager shareManager].userDetail.depositLevel;
-//    MyLog(@"****** 当前用户信用等级 == %ld", depositLevel);
-//    if (depositLevel > 1 || depositLevel == -15 || depositLevel == -13) {
-//        [NNPageRouter openExchangeElecCurrencyPage];
-//    } else {
+    NSInteger depositLevel = [CNUserManager shareManager].userDetail.depositLevel;
+    if (depositLevel > 1) {
+        [NNPageRouter openExchangeElecCurrencyPage];
+    } else {
 //        BOOL notshowDexchangeFlag = NO;
 //        if (depositLevel == -1 || depositLevel == -11) {
 //            notshowDexchangeFlag = YES;
@@ -51,7 +50,7 @@
         HYBuyECoinGuideVC *vc = [HYBuyECoinGuideVC new];
 //        vc.notshowDexchangeFlag = notshowDexchangeFlag;
         [kCurNavVC pushViewController:vc animated:YES];
-//    }
+    }
     
 }
 
