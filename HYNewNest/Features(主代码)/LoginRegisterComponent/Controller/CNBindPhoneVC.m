@@ -10,20 +10,18 @@
 #import "JHVerificationCodeView.h"
 #import "CNTwoStatusBtn.h"
 #import "CNBaseTF.h"
-#import "CNOneStatusBtn.h"
 #import "BYRegisterSuccADVC.h"
 
 @interface CNBindPhoneVC () <UITextFieldDelegate>
 @property (strong, nonatomic) JHVerificationCodeView *codeView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLb;
-@property (weak, nonatomic) IBOutlet UILabel *subTitLb;
 @property (weak, nonatomic) IBOutlet UIImageView *bgImgv;
 
 @property (weak, nonatomic) IBOutlet UIView *shakingView;
 @property (weak, nonatomic) IBOutlet CNBaseTF *inputTF;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *submitBtn;
-@property (weak, nonatomic) IBOutlet CNOneStatusBtn *jumbBtn;
+@property (weak, nonatomic) IBOutlet UIButton *jumbBtn;
 /// 手机输入提示语
 @property (weak, nonatomic) IBOutlet UILabel *phoneInputTip;
 /// 验证码提示输入标签
@@ -53,6 +51,7 @@
     self.normalColor = kHexColorAlpha(0xFFFFFF, 0.15);
     self.hilghtColor = kHexColor(0x10B4DD);
     self.wrongColor = kHexColor(0xFF5860);
+    self.submitBtn.enabled = NO;
     
     // 不同来源UI差别
     [self configDifferentUI];
@@ -69,8 +68,11 @@
             
             self.bgImgv.hidden = NO;
             self.titleLb.hidden = NO;
-            self.subTitLb.hidden = NO;
             self.jumbBtn.hidden = NO;
+            
+            self.submitBtn.enabled = YES;
+            [self.submitBtn setTitle:@"" forState:UIControlStateNormal];
+            [self.submitBtn setBackgroundImage:[UIImage imageNamed:@"h5"] forState:UIControlStateNormal];
             
 //            // 注册过来也要变成bind类型
 //            self.bindType = CNSMSCodeTypeBindPhone;
@@ -213,7 +215,6 @@
     self.sendTipLb.text = [NSString stringWithFormat:@"我们已向您的尾号为%@的手机发送验证码，\n请在下方，输入6位短信验证码*", lastForth];
     [self.codeView clear];
     [self.codeView becomeFirstResponder];
-    self.submitBtn.enabled = NO;
     
     [self initCodeView];
     [self.secondTimer setFireDate:[NSDate distantPast]];
@@ -222,6 +223,7 @@
 /// 校验短信验证码: 提交
 - (IBAction)verfiSmsCode:(UIButton *)sender {
     if (!self.smsModel) {
+        [CNHUB showAlert:@"请输入手机号和验证码"];
         return;
     }
     if (self.bindType == CNSMSCodeTypeBindPhone || self.bindType == CNSMSCodeTypeRegister) {

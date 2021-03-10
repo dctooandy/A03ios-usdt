@@ -28,9 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 赌尊名
 @property (nonatomic , copy) NSString              * betZunName;
 /// 赌尊充值
-@property (nonatomic , copy) NSString              * depositAmount;
+@property (nonatomic , strong) NSNumber             * depositAmount;
 /// 赌尊流水
-@property (nonatomic , copy) NSString              * betAmount;
+@property (nonatomic , strong) NSNumber              * betAmount;
 
 @end
 
@@ -61,11 +61,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 2-7 依次从赌侠到赌尊
 @property (nonatomic , strong) NSNumber              * clubLevel;
 /// 上月存款
-@property (nonatomic , assign) CGFloat              totalDepositAmount;
+@property (nonatomic , strong) NSNumber             * totalDepositAmount;
 /// 上月月份
 @property (nonatomic , assign) NSInteger              lastMonth;
 /// 上月流水
-@property (nonatomic , assign) CGFloat              totalBetAmount;
+@property (nonatomic , strong) NSNumber             * totalBetAmount;
 /// 当前是什么等级
 @property (nonatomic , copy) NSString              * betName;
 

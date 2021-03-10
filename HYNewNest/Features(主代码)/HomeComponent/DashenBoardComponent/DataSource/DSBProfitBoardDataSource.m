@@ -145,7 +145,8 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.usrModels.count && [self.usrModels[0] prList].count) {
-        return 2;
+        DSBProfitBoardUsrModel *usr = self.usrModels[_curPage];
+        return usr.prList.count > 2 ? 2 : usr.prList.count;
     }
     return 0;
 }

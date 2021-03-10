@@ -90,7 +90,7 @@
 #define LoginWrongPswMultiTimes_ErroCode @"GW_800408"
 
 // 手机号未绑定
-#define LoginPhoneNumberNotBind_ErroCode @"GW_800501"
+#define PhoneNumberNotBind_ErroCode @"GW_800515"
 
 // 注册--登录名已存在
 #define RegistUsernameExits_ErroCode @"GW_890408"

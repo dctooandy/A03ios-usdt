@@ -38,7 +38,7 @@
     [self.bgView addSubview:topTitleBg];
     
     UILabel *topTitleLb = [[UILabel alloc] init];
-    topTitleLb.text = [NSString stringWithFormat:@"私享会%lu月报", (unsigned long)[NSDate jk_month:[NSDate date]]];
+    topTitleLb.text = [NSString stringWithFormat:@"私享会%lu月报", (unsigned long)[NSDate jk_month:[NSDate date]]-1];
     topTitleLb.textColor = kHexColor(0xB27F48);
     topTitleLb.font = [UIFont fontPFSB16];
     topTitleLb.textAlignment = NSTextAlignmentCenter;
@@ -46,7 +46,7 @@
     [self.bgView addSubview:topTitleLb];
     
     UILabel *topSubLb = [[UILabel alloc] init];
-    topSubLb.text = @"( 5月累计入会500名,祝贺他们! ) ";
+    topSubLb.text = @"( 上月累计入会0名,祝贺他们! ) ";
     topSubLb.textColor = kHexColor(0x000000);
     topSubLb.font = [UIFont fontPFR12];
     topSubLb.textAlignment = NSTextAlignmentCenter;
@@ -96,9 +96,11 @@
             self.bgView.height = AD(284);
             self.btmButton.hidden = YES;
             
-            self.topSubLb.text = [NSString stringWithFormat:@"( 5月累计入会%ld名,祝贺他们! ) ", (model.vipRhqk) ? model.vipRhqk.betCount : 0];
-            self.rankImgv.hidden = NO;
-            self.btmColorLb.text = [NSString stringWithFormat:@"%@会员荣膺“赌尊”\n(流水%@usdt-充值%@usdt)", (model.vipRhqk) ? model.vipRhqk.betZunName : @"", (model.vipRhqk) ? model.vipRhqk.depositAmount : @"0", (model.vipRhqk) ?  model.vipRhqk.betAmount : @"0"];
+            if (model.vipRhqk) {
+                self.topSubLb.text = [NSString stringWithFormat:@"( %ld月累计入会%ld名,祝贺他们! ) ",(long)model.lastMonth , model.vipRhqk.betCount];
+                self.rankImgv.hidden = NO;
+                self.btmColorLb.text = [NSString stringWithFormat:@"%@ 会员荣膺“赌尊”\n(流水%@usdt-充值%@usdt)", model.vipRhqk.betZunName,  [model.vipRhqk.betAmount jk_toDisplayNumberWithDigit:0], [model.vipRhqk.depositAmount jk_toDisplayNumberWithDigit:0]];
+            }
             
             UIView *framk = [UIView new];
             framk.backgroundColor = [UIColor clearColor];
@@ -218,7 +220,7 @@
             btmLb.font = [UIFont fontPFR14];
             btmLb.textColor = kHexColor(0x884C0C);
             btmLb.textAlignment = NSTextAlignmentCenter;
-            btmLb.text = @"播报结束,小游祝您月月赢大钱,次次中大奖";
+            btmLb.text = @"播报结束, 小游祝您月月赢大钱, 次次中大奖";
             [btmLb sizeToFit];
             btmLb.x = 0;
             btmLb.bottom = self.bgView.height - AD(11);
@@ -232,8 +234,7 @@
             self.bgView.height = AD(237);
             self.btmButton.hidden = NO;
             self.btmButton.y = self.bgView.bottom + AD(10);
-            
-            self.topSubLb.text = [NSString stringWithFormat:@"( 您的战绩：流水%.2lfusdt-充值%.2lfusdt )", model.totalBetAmount, model.totalDepositAmount];
+            self.topSubLb.text = [NSString stringWithFormat:@"( 您的战绩：流水%@usdt-充值%@usdt )", [model.totalBetAmount jk_toDisplayNumberWithDigit:0], [model.totalDepositAmount jk_toDisplayNumberWithDigit:0]];
             
             self.rankImgv.hidden = NO;
             self.rankImgv.contentMode = UIViewContentModeCenter;
