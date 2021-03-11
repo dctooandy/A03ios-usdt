@@ -17,6 +17,7 @@
 #import "NSURL+HYLink.h"
 #import <UIImageView+WebCache.h>
 #import <IVLoganAnalysis/IVLAManager.h>
+#import "CNWithdrawRequest.h"
 
 @interface CNAddBankCardVC () <CNNormalInputViewDelegate>
 /// 账户名
@@ -50,7 +51,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"添加银行卡";
-    
+    [CNWithdrawRequest getUserMobileStatusCompletionHandler:^(id responseObj, NSString *errorMsg) {
+    }];
     [self setDelegate];
     [self configUI];
 }

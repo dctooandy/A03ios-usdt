@@ -50,6 +50,16 @@
     return [self saveUerDetailToSandBox];
 }
 
+- (BOOL)saveUserMobileStatus:(NSDictionary *)mobileStatus {
+    if (![mobileStatus isKindOfClass:[NSDictionary class]]) {
+        return NO;
+    }
+    self.userDetail.realName = mobileStatus[@"realName"];
+    self.userDetail.mobileNo = mobileStatus[@"mobileNo"];
+    self.userDetail.mobileNoBind = [mobileStatus[@"mobileNoBind"] integerValue];
+    return [self saveUerDetailToSandBox];
+}
+
 - (BOOL)saveUerDetailToSandBox {
     return [NSKeyedArchiver archiveRootObject:self.userDetail toFile:self.modelFile2];
 }

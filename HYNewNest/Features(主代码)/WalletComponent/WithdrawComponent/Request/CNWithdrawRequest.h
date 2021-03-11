@@ -46,6 +46,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 查询所有钱包额度
 + (void)getBalancesHandler:(HandlerBlock)handler;
 
+/// 获取用户手机绑定状态
++ (void)getUserMobileStatusCompletionHandler:(nullable HandlerBlock)completionHandler;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -329,10 +329,9 @@
     paramDic[@"inclBankAccount"] = @(1);
     paramDic[@"inclOnlineMessenger2"] = @(1);
     paramDic[@"inclEmail"] = @(1);
-    paramDic[@"inclPromoAmountByMonth"] = @(1); // 本月优惠
-    paramDic[@"inclRebatedAmountByMonth"] = @(1); // 本月洗码
+//    paramDic[@"inclPromoAmountByMonth"] = @(1); // 本月优惠
+//    paramDic[@"inclRebatedAmountByMonth"] = @(1); // 本月洗码
 
-    
     [self POST:kGatewayPath(config_getByLoginName) parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
         [[CNUserManager shareManager] saveUserDetail:responseObj];
         if (completionHandler) {
