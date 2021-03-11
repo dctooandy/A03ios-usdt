@@ -114,7 +114,7 @@ NSString *const InGameTypeString[] = {
         case InGameTypeAGBY:
             gameName = @"捕鱼王";
             gameType = @"6";
-            gameId = @"";
+            gameId = @"AG_FISH_6";
             break;
         case InGameTypeSHABA:
             gameName = @"沙巴体育";
