@@ -317,6 +317,8 @@
 		3DBA560D2580B5E4009A2B71 /* BYSuperCopartnerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA560B2580B5E4009A2B71 /* BYSuperCopartnerVC.m */; };
 		3DBA560E2580B5E4009A2B71 /* BYSuperCopartnerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA560C2580B5E4009A2B71 /* BYSuperCopartnerVC.xib */; };
 		3DBA56112580D9B3009A2B71 /* CALayer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA56102580D9B3009A2B71 /* CALayer+Additions.m */; };
+		3DC14E3825F8D37500D6DB85 /* BYVocherCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E3625F8D37500D6DB85 /* BYVocherCenterVC.m */; };
+		3DC14E3F25F8DC0D00D6DB85 /* BYVocherTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E3E25F8DC0D00D6DB85 /* BYVocherTableVC.m */; };
 		3DC516CD25DE5AD800A238D4 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC516CC25DE5AD800A238D4 /* libresolv.9.tbd */; };
 		3DC516D025DE6EB000A238D4 /* StatusDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC516CE25DE6EB000A238D4 /* StatusDetailViewController.m */; };
 		3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC87A50253967DC0032ED1B /* BuyECoinModel.m */; };
@@ -1533,6 +1535,10 @@
 		3DBA560C2580B5E4009A2B71 /* BYSuperCopartnerVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYSuperCopartnerVC.xib; sourceTree = "<group>"; };
 		3DBA560F2580D9B3009A2B71 /* CALayer+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+Additions.h"; sourceTree = "<group>"; };
 		3DBA56102580D9B3009A2B71 /* CALayer+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Additions.m"; sourceTree = "<group>"; };
+		3DC14E3525F8D37500D6DB85 /* BYVocherCenterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYVocherCenterVC.h; sourceTree = "<group>"; };
+		3DC14E3625F8D37500D6DB85 /* BYVocherCenterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYVocherCenterVC.m; sourceTree = "<group>"; };
+		3DC14E3D25F8DC0D00D6DB85 /* BYVocherTableVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYVocherTableVC.h; sourceTree = "<group>"; };
+		3DC14E3E25F8DC0D00D6DB85 /* BYVocherTableVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYVocherTableVC.m; sourceTree = "<group>"; };
 		3DC516CC25DE5AD800A238D4 /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
 		3DC516CE25DE6EB000A238D4 /* StatusDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusDetailViewController.m; sourceTree = "<group>"; };
 		3DC516CF25DE6EB000A238D4 /* StatusDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusDetailViewController.h; sourceTree = "<group>"; };
@@ -3700,6 +3706,49 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
+		3DC14E3025F8D25700D6DB85 /* VoucherComponent */ = {
+			isa = PBXGroup;
+			children = (
+				3DC14E3125F8D25700D6DB85 /* Controller */,
+				3DC14E3225F8D25700D6DB85 /* Model */,
+				3DC14E3325F8D25700D6DB85 /* View */,
+				3DC14E3425F8D25700D6DB85 /* Request */,
+			);
+			path = VoucherComponent;
+			sourceTree = "<group>";
+		};
+		3DC14E3125F8D25700D6DB85 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3DC14E3525F8D37500D6DB85 /* BYVocherCenterVC.h */,
+				3DC14E3625F8D37500D6DB85 /* BYVocherCenterVC.m */,
+				3DC14E3D25F8DC0D00D6DB85 /* BYVocherTableVC.h */,
+				3DC14E3E25F8DC0D00D6DB85 /* BYVocherTableVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3DC14E3225F8D25700D6DB85 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3DC14E3325F8D25700D6DB85 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3DC14E3425F8D25700D6DB85 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 		3DF43D2A2592EE8B0087F26A /* SlideCard */ = {
 			isa = PBXGroup;
 			children = (
@@ -4979,6 +5028,7 @@
 		E9D9447124C1F35700252222 /* MeComponent */ = {
 			isa = PBXGroup;
 			children = (
+				3DC14E3025F8D25700D6DB85 /* VoucherComponent */,
 				3DBA56052580B467009A2B71 /* CopartnerComponent */,
 				048A169524CBD3B600411819 /* View */,
 				E986A12324C7E9E1000F9CFF /* Model */,
@@ -5939,6 +5989,7 @@
 				0487C97224CE9A630013715A /* BRAddressPickerView.m in Sources */,
 				E986A19924CAC47B000F9CFF /* HYRechargeHelper.m in Sources */,
 				0487C9E124D27B960013715A /* CNNotifySettingVC.m in Sources */,
+				3DC14E3825F8D37500D6DB85 /* BYVocherCenterVC.m in Sources */,
 				3D41DEBA251F1A20000CA1D6 /* WSLPictureBrowseView.m in Sources */,
 				3D41DE7E25199DEE000CA1D6 /* VIPCardCCell.m in Sources */,
 				3DA4F16924B312BE0039123F /* NSString+Validation.m in Sources */,
@@ -6250,6 +6301,7 @@
 				3D643F8C24F29F3600B9AAA7 /* KeyChain.m in Sources */,
 				3D97002B259B1CE1003238C4 /* BYRegisterSuccADVC.m in Sources */,
 				3D31B94425399CB7005275BD /* HYBuyECoinComfirmView.m in Sources */,
+				3DC14E3F25F8DC0D00D6DB85 /* BYVocherTableVC.m in Sources */,
 				E986A18F24CA8DB9000F9CFF /* ChooseAvatarsModel.m in Sources */,
 				3DA4F18924B317E40039123F /* WMDragView.m in Sources */,
 				E986A1A324CB37C3000F9CFF /* HYBaseAlertView.m in Sources */,
