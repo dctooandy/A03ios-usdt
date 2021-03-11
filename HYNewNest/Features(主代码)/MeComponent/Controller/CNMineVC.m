@@ -18,6 +18,7 @@
 #import "CNFeedBackVC.h"
 #import "CNAddressManagerVC.h"
 #import "BYSuperCopartnerVC.h"
+#import "BYVocherCenterVC.h"
 
 #import <UIButton+WebCache.h>
 #import <UIImageView+WebCache.h>
@@ -80,6 +81,7 @@
 /// 中间六个模块中第四个模块标签
 @property (weak, nonatomic) IBOutlet UILabel *forthTapLb;
 /// 中间六个模块中第六个模块标签
+@property (weak, nonatomic) IBOutlet UIButton *sixthTapBtn;
 @property (weak, nonatomic) IBOutlet UILabel *sixthTapLb;
 /// CNY
 @property (weak, nonatomic) IBOutlet UIView *CNYBusinessView;
@@ -125,7 +127,6 @@
 }
 
 - (void)configUI {
-    self.scrollContentView.backgroundColor = self.view.backgroundColor;
     self.scrollContentW.constant = kScreenWidth;
     // 按钮边框颜色
     self.downLoadBtn.layer.borderColor = kHexColor(0x19CECE).CGColor;
@@ -218,10 +219,12 @@
 // 充提指南/意见反馈
 - (IBAction)recharWithdrawGuide:(id)sender {
     if ([CNUserManager shareManager].isUsdtMode) {
-        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
-        [self presentViewController:vc animated:YES completion:^{
-            
-        }];
+//        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
+//        [self presentViewController:vc animated:YES completion:^{
+//        }];
+        // 优惠券中心
+        BYVocherCenterVC *vc = [BYVocherCenterVC new];
+        [self.navigationController pushViewController:vc animated:YES];
     } else {
         [self.navigationController pushViewController:[CNFeedBackVC new] animated:YES];
     }
@@ -290,7 +293,8 @@
     self.CNYBusinessViewH.constant = isUsdtMode ? 0: 80;
     
     self.forthTapLb.text = isUsdtMode ? @"提币地址": @"银行卡";
-    self.sixthTapLb.text = isUsdtMode ? @"充提指南": @"意见反馈";
+    self.sixthTapLb.text = isUsdtMode ? @"优惠券": @"意见反馈";
+    [self.sixthTapBtn setImage:[UIImage imageNamed:isUsdtMode?@"yhq":@"yjfk"] forState:UIControlStateNormal];
     
     self.shareBgView.hidden = !isUsdtMode;
     self.shareBgViewH.constant = isUsdtMode?AD(90):0;
