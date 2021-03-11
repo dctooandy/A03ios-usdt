@@ -319,6 +319,8 @@
 		3DBA56112580D9B3009A2B71 /* CALayer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA56102580D9B3009A2B71 /* CALayer+Additions.m */; };
 		3DC14E3825F8D37500D6DB85 /* BYVocherCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E3625F8D37500D6DB85 /* BYVocherCenterVC.m */; };
 		3DC14E3F25F8DC0D00D6DB85 /* BYVocherTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E3E25F8DC0D00D6DB85 /* BYVocherTableVC.m */; };
+		3DC14E4325F9DF0800D6DB85 /* BYVocherTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E4125F9DF0800D6DB85 /* BYVocherTVCell.m */; };
+		3DC14E4425F9DF0800D6DB85 /* BYVocherTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC14E4225F9DF0800D6DB85 /* BYVocherTVCell.xib */; };
 		3DC516CD25DE5AD800A238D4 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC516CC25DE5AD800A238D4 /* libresolv.9.tbd */; };
 		3DC516D025DE6EB000A238D4 /* StatusDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC516CE25DE6EB000A238D4 /* StatusDetailViewController.m */; };
 		3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC87A50253967DC0032ED1B /* BuyECoinModel.m */; };
@@ -1539,6 +1541,9 @@
 		3DC14E3625F8D37500D6DB85 /* BYVocherCenterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYVocherCenterVC.m; sourceTree = "<group>"; };
 		3DC14E3D25F8DC0D00D6DB85 /* BYVocherTableVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYVocherTableVC.h; sourceTree = "<group>"; };
 		3DC14E3E25F8DC0D00D6DB85 /* BYVocherTableVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYVocherTableVC.m; sourceTree = "<group>"; };
+		3DC14E4025F9DF0800D6DB85 /* BYVocherTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYVocherTVCell.h; sourceTree = "<group>"; };
+		3DC14E4125F9DF0800D6DB85 /* BYVocherTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYVocherTVCell.m; sourceTree = "<group>"; };
+		3DC14E4225F9DF0800D6DB85 /* BYVocherTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYVocherTVCell.xib; sourceTree = "<group>"; };
 		3DC516CC25DE5AD800A238D4 /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
 		3DC516CE25DE6EB000A238D4 /* StatusDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusDetailViewController.m; sourceTree = "<group>"; };
 		3DC516CF25DE6EB000A238D4 /* StatusDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusDetailViewController.h; sourceTree = "<group>"; };
@@ -3738,6 +3743,9 @@
 		3DC14E3325F8D25700D6DB85 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3DC14E4025F9DF0800D6DB85 /* BYVocherTVCell.h */,
+				3DC14E4125F9DF0800D6DB85 /* BYVocherTVCell.m */,
+				3DC14E4225F9DF0800D6DB85 /* BYVocherTVCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5526,6 +5534,7 @@
 				D5A4465024F393E500014DC6 /* 足球_00010.png in Resources */,
 				D5A4463724F393E500014DC6 /* 足球_00063.png in Resources */,
 				D5A446C124F3941400014DC6 /* 合成 1_00071.png in Resources */,
+				3DC14E4425F9DF0800D6DB85 /* BYVocherTVCell.xib in Resources */,
 				0487C9BD24D01DDE0013715A /* CNTradeRecodeVC.xib in Resources */,
 				D5A443BF24F378CD00014DC6 /* 彩票_00055.png in Resources */,
 				D5A4453124F393AC00014DC6 /* 棋牌_00028.png in Resources */,
@@ -6307,6 +6316,7 @@
 				E986A1A324CB37C3000F9CFF /* HYBaseAlertView.m in Sources */,
 				040A08D624E114A900FBD534 /* OCBarrageTrackInfo.m in Sources */,
 				E9D9446C24C1EC1300252222 /* HYTabBarViewController.m in Sources */,
+				3DC14E4325F9DF0800D6DB85 /* BYVocherTVCell.m in Sources */,
 				3D41DE7F25199DEE000CA1D6 /* VIPMonlyAlertCell.m in Sources */,
 				E986A12624C7EAA6000F9CFF /* OtherAppModel.m in Sources */,
 				E986A12D24C7F5D7000F9CFF /* CNGloryRequest.m in Sources */,

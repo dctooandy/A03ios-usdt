@@ -8,14 +8,22 @@
 
 #import "BYVocherTableVC.h"
 #import <MJRefresh/MJRefresh.h>
+#import "BYVocherTVCell.h"
 
-static NSString *const kBYVocherCell = @"HYArticalCell";
+static NSString *const kBYVocherCell = @"BYVocherTVCell";
 
 @interface BYVocherTableVC ()
-
+@property (strong,nonatomic) NSMutableArray* expandRows;
 @end
 
 @implementation BYVocherTableVC
+
+- (instancetype)initWithType:(BYVocherTagList)type {
+    self = [super init];
+    self.listType = type;
+    
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,15 +34,16 @@ static NSString *const kBYVocherCell = @"HYArticalCell";
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    self.expandRows = @[].mutableCopy;
     [self setupTableView];
     [self loadData];
 }
 
 - (void)setupTableView {
-//    self.tableView.backgroundColor = kHexColor(0x19182A);
-    self.tableView.estimatedRowHeight = 179+8;
-//    [self.tableView registerNib:[UINib nibWithNibName:kHYArticalCell bundle:nil] forCellReuseIdentifier:kHYArticalCell];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kBYVocherCell];
+    self.tableView.backgroundColor = kHexColor(0x10101C);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.estimatedRowHeight = 190;
+    [self.tableView registerNib:[UINib nibWithNibName:kBYVocherCell bundle:nil] forCellReuseIdentifier:kBYVocherCell];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
 }
 
@@ -48,12 +57,28 @@ static NSString *const kBYVocherCell = @"HYArticalCell";
     return 2;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.expandRows containsObject:@(indexPath.row)]) {
+        return 250;
+    }
+    return 179+8;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kBYVocherCell forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    BYVocherTVCell *cell = [tableView dequeueReusableCellWithIdentifier:kBYVocherCell forIndexPath:indexPath];
+    cell.isExpand = [self.expandRows containsObject:@(indexPath.row)];
+
+    WEAKSELF_DEFINE
+    cell.changeCellHeightBlock = ^(BOOL isExpand) {
+        if (isExpand) {
+            [weakSelf.expandRows addObject:@(indexPath.row)];
+        } else {
+            if ([weakSelf.expandRows containsObject:@(indexPath.row)]) {
+                [weakSelf.expandRows removeObject:@(indexPath.row)];
+            }
+        }
+        [weakSelf.tableView reloadData];
+    };
     return cell;
 }
 

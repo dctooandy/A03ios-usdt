@@ -8,6 +8,7 @@
 
 #import "BYVocherCenterVC.h"
 #import "LTSegmentedBarViewController.h"
+#import "BYVocherTableVC.h"
 
 @interface BYVocherCenterVC ()
 @property (nonatomic, weak) LTSegmentedBarViewController *segBarVC;
@@ -23,10 +24,9 @@
 }
 
 - (void)setupSegBarVC {
-    CNBaseVC *vc1 = [[CNBaseVC alloc] init];
-    CNBaseVC *vc3 = [[CNBaseVC alloc] init];
-    CNBaseVC *vc4 = [[CNBaseVC alloc] init];
-    vc1.view.backgroundColor = [UIColor redColor];
+    BYVocherTableVC *vc1 = [[BYVocherTableVC alloc] initWithType:BYVocherTagListInReview];
+    BYVocherTableVC *vc2 = [[BYVocherTableVC alloc] initWithType:BYVocherTagListUsing];
+    BYVocherTableVC *vc3 = [[BYVocherTableVC alloc] initWithType:BYVocherTagListEnded];
     
     // Setup SegmentedBar Configuration here
     [self.segBarVC.segmentedBar updateWithConfig:^(LTSegmentedBarConfig *config) {
@@ -44,7 +44,7 @@
 
     // Setup Title and VC here
     [self.segBarVC setUpWithItems:@[@"审核中", @"使用中", @"已结束"]
-             childViewControllers:@[vc1, vc3, vc4]];
+             childViewControllers:@[vc1, vc2, vc3]];
 }
 
 #pragma mark - LAZY
@@ -53,7 +53,7 @@
     {
         LTSegmentedBarViewController *segBarVC = [[LTSegmentedBarViewController alloc] init];
         segBarVC.segmentedBar.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 54);
-        [segBarVC.segmentedBar addLineDirection:LineDirectionTop color:kHexColor(0x6D778B) width:0.5];
+        [segBarVC.segmentedBar addLineDirection:LineDirectionTop color:kHexColorAlpha(0x6D778B, .5) width:0.5];
         [self.view addSubview:segBarVC.segmentedBar];
         
         segBarVC.view.frame = CGRectMake(0, 54, kScreenWidth, self.view.bounds.size.height-54);
