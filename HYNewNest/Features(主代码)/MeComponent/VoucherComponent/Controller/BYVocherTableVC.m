@@ -59,7 +59,7 @@ static NSString *const kBYVocherCell = @"BYVocherTVCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.expandRows containsObject:@(indexPath.row)]) {
-        return 250;
+        return 260;
     }
     return 179+8;
 }

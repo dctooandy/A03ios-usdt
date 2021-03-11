@@ -11,7 +11,7 @@
 
 @interface BYVocherTVCell()
 @property (weak, nonatomic) IBOutlet UIView *bgView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLb;
+@property (weak, nonatomic) IBOutlet UIButton *titleBtn;
 @property (weak, nonatomic) IBOutlet UILabel *statusLb;
 @property (weak, nonatomic) IBOutlet UILabel *totalAmountLb;
 @property (weak, nonatomic) IBOutlet UILabel *streamLb;
@@ -59,6 +59,7 @@
     [super awakeFromNib];
     // Initialization code
     
+    [self.titleBtn jk_setImagePosition:LXMImagePositionRight spacing:0];
     self.bgView.layer.cornerRadius = 12;
     self.bgView.layer.masksToBounds = YES;
 }
