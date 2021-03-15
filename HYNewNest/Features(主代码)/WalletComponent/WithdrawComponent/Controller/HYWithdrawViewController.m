@@ -52,6 +52,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 //    [self addNaviRightItemWithImageName:@"service"];
     
     [CNWithdrawRequest getUserMobileStatusCompletionHandler:^(id responseObj, NSString *errorMsg) {
+        
     }];
     self.selectedIdx = 0;
     [self setupTopView];
