@@ -321,6 +321,11 @@
 		3DC14E3F25F8DC0D00D6DB85 /* BYVocherTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E3E25F8DC0D00D6DB85 /* BYVocherTableVC.m */; };
 		3DC14E4325F9DF0800D6DB85 /* BYVocherTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E4125F9DF0800D6DB85 /* BYVocherTVCell.m */; };
 		3DC14E4425F9DF0800D6DB85 /* BYVocherTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC14E4225F9DF0800D6DB85 /* BYVocherTVCell.xib */; };
+		3DC14E4725FB52DE00D6DB85 /* BYMyWalletView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E4625FB52D700D6DB85 /* BYMyWalletView.m */; };
+		3DC14E4925FB530E00D6DB85 /* BYMyWalletView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC14E4825FB530E00D6DB85 /* BYMyWalletView.xib */; };
+		3DC14E4C25FB561000D6DB85 /* BYOldMyWalletView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E4B25FB561000D6DB85 /* BYOldMyWalletView.m */; };
+		3DC14E4E25FB562000D6DB85 /* BYOldMyWalletView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC14E4D25FB562000D6DB85 /* BYOldMyWalletView.xib */; };
+		3DC14E5125FB679800D6DB85 /* BYBaseWalletAbsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E5025FB679800D6DB85 /* BYBaseWalletAbsView.m */; };
 		3DC516CD25DE5AD800A238D4 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC516CC25DE5AD800A238D4 /* libresolv.9.tbd */; };
 		3DC516D025DE6EB000A238D4 /* StatusDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC516CE25DE6EB000A238D4 /* StatusDetailViewController.m */; };
 		3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC87A50253967DC0032ED1B /* BuyECoinModel.m */; };
@@ -1544,6 +1549,14 @@
 		3DC14E4025F9DF0800D6DB85 /* BYVocherTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYVocherTVCell.h; sourceTree = "<group>"; };
 		3DC14E4125F9DF0800D6DB85 /* BYVocherTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYVocherTVCell.m; sourceTree = "<group>"; };
 		3DC14E4225F9DF0800D6DB85 /* BYVocherTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYVocherTVCell.xib; sourceTree = "<group>"; };
+		3DC14E4525FB52D700D6DB85 /* BYMyWalletView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYMyWalletView.h; sourceTree = "<group>"; };
+		3DC14E4625FB52D700D6DB85 /* BYMyWalletView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYMyWalletView.m; sourceTree = "<group>"; };
+		3DC14E4825FB530E00D6DB85 /* BYMyWalletView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYMyWalletView.xib; sourceTree = "<group>"; };
+		3DC14E4A25FB561000D6DB85 /* BYOldMyWalletView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYOldMyWalletView.h; sourceTree = "<group>"; };
+		3DC14E4B25FB561000D6DB85 /* BYOldMyWalletView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYOldMyWalletView.m; sourceTree = "<group>"; };
+		3DC14E4D25FB562000D6DB85 /* BYOldMyWalletView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYOldMyWalletView.xib; sourceTree = "<group>"; };
+		3DC14E4F25FB679800D6DB85 /* BYBaseWalletAbsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYBaseWalletAbsView.h; sourceTree = "<group>"; };
+		3DC14E5025FB679800D6DB85 /* BYBaseWalletAbsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYBaseWalletAbsView.m; sourceTree = "<group>"; };
 		3DC516CC25DE5AD800A238D4 /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
 		3DC516CE25DE6EB000A238D4 /* StatusDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusDetailViewController.m; sourceTree = "<group>"; };
 		3DC516CF25DE6EB000A238D4 /* StatusDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusDetailViewController.h; sourceTree = "<group>"; };
@@ -2685,6 +2698,14 @@
 				3DBA55DC25763516009A2B71 /* HYBalancesDetailView.h */,
 				3DBA55DD25763516009A2B71 /* HYBalancesDetailView.m */,
 				3DBA55DF25763C18009A2B71 /* HYBalancesDetailView.xib */,
+				3DC14E4A25FB561000D6DB85 /* BYOldMyWalletView.h */,
+				3DC14E4B25FB561000D6DB85 /* BYOldMyWalletView.m */,
+				3DC14E4D25FB562000D6DB85 /* BYOldMyWalletView.xib */,
+				3DC14E4525FB52D700D6DB85 /* BYMyWalletView.h */,
+				3DC14E4625FB52D700D6DB85 /* BYMyWalletView.m */,
+				3DC14E4825FB530E00D6DB85 /* BYMyWalletView.xib */,
+				3DC14E4F25FB679800D6DB85 /* BYBaseWalletAbsView.h */,
+				3DC14E5025FB679800D6DB85 /* BYBaseWalletAbsView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5456,6 +5477,7 @@
 				D5A4470624F3941400014DC6 /* 合成 1_00053.png in Resources */,
 				D5A446D324F3941400014DC6 /* 合成 1_00049.png in Resources */,
 				D5A4471B24F3941400014DC6 /* 合成 1_00055.png in Resources */,
+				3DC14E4E25FB562000D6DB85 /* BYOldMyWalletView.xib in Resources */,
 				D5A4463424F393E500014DC6 /* 足球_00089.png in Resources */,
 				D5A4449824F3932400014DC6 /* 数字7_0002.png in Resources */,
 				D5A443A524F378CD00014DC6 /* 彩票_00011.png in Resources */,
@@ -5467,6 +5489,7 @@
 				D5A443AC24F378CD00014DC6 /* 彩票_00052.png in Resources */,
 				D5A4447624F3932400014DC6 /* 数字7_00058.png in Resources */,
 				D5A443B224F378CD00014DC6 /* 彩票_00054.png in Resources */,
+				3DC14E4925FB530E00D6DB85 /* BYMyWalletView.xib in Resources */,
 				D5A4449F24F3932400014DC6 /* 数字7_0005.png in Resources */,
 				D5A443D424F378CD00014DC6 /* 彩票_00042.png in Resources */,
 				D5A4457D24F393AD00014DC6 /* 棋牌_00053.png in Resources */,
@@ -6197,6 +6220,7 @@
 				3D41DEA5251AF662000CA1D6 /* VIPCumulateIdButton.m in Sources */,
 				3D41DE9A2519F996000CA1D6 /* VIPCumulateIdHeader.m in Sources */,
 				3D41DE7325199DEE000CA1D6 /* VIPDSBUsrModel.m in Sources */,
+				3DC14E4C25FB561000D6DB85 /* BYOldMyWalletView.m in Sources */,
 				3D97004E25A2C3ED003238C4 /* IN3SAnalytics.m in Sources */,
 				3DBA55D4256FA6D3009A2B71 /* CNSelectBtn.m in Sources */,
 				3D31B9612542E97D005275BD /* HYTapHanImageCodeView.m in Sources */,
@@ -6229,6 +6253,7 @@
 				3DCFEAA1250624CD0071F356 /* TAExampleDotView.m in Sources */,
 				3D41DE6F25199DEE000CA1D6 /* HYVIPViewController.m in Sources */,
 				E969EB3B24E2755F00D58FE9 /* HYRechargeCNYEditView.m in Sources */,
+				3DC14E5125FB679800D6DB85 /* BYBaseWalletAbsView.m in Sources */,
 				D5FBFE3F24BC05E400BBCAD8 /* CNAccountInputView.m in Sources */,
 				044DC69524DD1A35005CB550 /* CNShareCopyView.m in Sources */,
 				0487CA0D24D3CC380013715A /* CNFeedBackVC.m in Sources */,
@@ -6267,6 +6292,7 @@
 				E986A1C124CC7F2B000F9CFF /* SDCycleScrollView.m in Sources */,
 				E986A19224CA93D3000F9CFF /* BQPaymentModel.m in Sources */,
 				E969EB3524E14B4B00D58FE9 /* MineBindView.m in Sources */,
+				3DC14E4725FB52DE00D6DB85 /* BYMyWalletView.m in Sources */,
 				3D97005825A2C3ED003238C4 /* IN3SWebViewController.m in Sources */,
 				3D97005525A2C3ED003238C4 /* IN3SRequestModel.m in Sources */,
 				E98BEF2524D2C40100E6B0C8 /* HYWithdrawAddCardFooter.m in Sources */,
