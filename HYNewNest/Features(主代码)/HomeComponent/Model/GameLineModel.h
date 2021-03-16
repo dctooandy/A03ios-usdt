@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy)   NSString              * currency;
 @property (nonatomic , assign) NSInteger              flag;
 @property (nonatomic , copy)   NSString              * gameCode;
+@property (copy , nonatomic)   NSString              * gameKind; //游戏类型，真人=3，电游=5
 @property (nonatomic , copy)   NSString              * maintainBeginDate;
 @property (nonatomic , copy)   NSString              * maintainEndDate;
 @property (nonatomic , copy)   NSString              * platformCurrency;
