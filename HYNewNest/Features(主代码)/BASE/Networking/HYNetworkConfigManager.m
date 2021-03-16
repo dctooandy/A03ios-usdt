@@ -53,7 +53,7 @@
 #ifdef DEBUG
     // 切换环境 保存
     self.environment += 1;
-    if (self.environment > 1) {
+    if (self.environment > 2) {
         self.environment = 0;
     }
     [[NSUserDefaults standardUserDefaults] setInteger:self.environment forKey:@"IVNEnvironment"];
@@ -94,16 +94,18 @@
     [IVHttpManager shareManager].cdn = @"https://a03front.58baili.com"; //cdn
     
     switch (environment) {
-//        case IVNEnvironmentDevelop:
-//        {
-//            envName = @"本地环境";
+        case IVNEnvironmentDevelop:
+        {
+            envName = @"本地环境";
+            [IVHttpManager shareManager].gateway = @"http://m.a03musdt.com";
+            [IVHttpManager shareManager].gateways = @[@"http://m.a03musdt.com"];
 //            [IVHttpManager shareManager].gateway = @"http://www.pt-gateway-dev.com";
 //            [IVHttpManager shareManager].gateways = @[@"http://www.pt-gateway-dev.com"];
-//            break;
-//        }
+            break;
+        }
         case IVNEnvironmentTest:
         {
-            envName = @"运测环境"; 
+            envName = @"运测环境";
             [IVHttpManager shareManager].gateway = @"https://usdtm.hwx22.com";
             [IVHttpManager shareManager].gateways = @[@"https://usdtm.hwx22.com"];
 //            [IVHttpManager shareManager].gateways = @[@"https://usdtm.hwx22.com", @"https://usdtw.hwx22.com", @"https://usdtmp.hwx22.com", @"https://usdtwp.hwx22.com"];
