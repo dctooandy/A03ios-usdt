@@ -150,7 +150,7 @@ NSString *const InGameTypeString[] = {
         case InGameTypeAGEG:
             gameName = @"AG电游厅";
             gameType = @"500";
-            gameId = @" ";
+            gameId = @"500";
         default:
             break;
     }
@@ -167,7 +167,7 @@ NSString *const InGameTypeString[] = {
             GameLineModel *model = [GameLineModel cn_parse:dict];
             // 这里AGIN需要区分是真人还是电游
             if ([gameCode isEqualToString:@"A03026"]) {
-                if ((gameId.length>0 || [gameType isEqualToString:@"500"]) && [model.gameKind isEqualToString:@"5"]) { //捕鱼&电游
+                if (gameId.length>0 && [model.gameKind isEqualToString:@"5"]) { //捕鱼&电游
                     if ([model.platformCurrency isEqualToString:@"CNY"]) {
                         hasCNY = YES;
                         MyLog(@"捕鱼 - 有CNY");
