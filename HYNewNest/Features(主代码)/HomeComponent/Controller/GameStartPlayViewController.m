@@ -44,6 +44,15 @@ form.submit();\
 
 @implementation GameStartPlayViewController
 
+- (void)goBack {
+    if (self.webView.canGoBack) {
+        [self.webView goBack];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+
 - (instancetype)initGameWithGameUrl:(NSString *)gameUrl title:(NSString *)title{
     self = [super init];
     if(self) {

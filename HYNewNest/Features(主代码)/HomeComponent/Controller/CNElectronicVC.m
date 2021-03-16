@@ -59,6 +59,11 @@
     }];
 }
 
+// 进入AG电游大厅
+- (IBAction)entranceAGElecGameHall:(id)sender {
+    [[HYInGameHelper sharedInstance] inGame:InGameTypeAGEG];
+}
+
 - (IBAction)entryAGBuYu:(id)sender {
 //    [NNPageRouter jump2GameName:@"捕鱼王" gameType:@"6" gameId:@"" gameCode:@"A03026"];
     [[HYInGameHelper sharedInstance] inGame:InGameTypeAGBY];

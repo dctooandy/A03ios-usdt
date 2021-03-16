@@ -94,13 +94,13 @@
     [IVHttpManager shareManager].cdn = @"https://a03front.58baili.com"; //cdn
     
     switch (environment) {
-//        case IVNEnvironmentDevelop:
-//        {
-//            envName = @"本地环境";
-//            [IVHttpManager shareManager].gateway = @"http://www.pt-gateway-dev.com";
-//            [IVHttpManager shareManager].gateways = @[@"http://www.pt-gateway-dev.com"];
-//            break;
-//        }
+        case IVNEnvironmentDevelop:
+        {
+            envName = @"本地环境";
+            [IVHttpManager shareManager].gateway = @"http://m.a03musdt.com";
+            [IVHttpManager shareManager].gateways = @[@"http://m.a03musdt.com"];
+            break;
+        }
         case IVNEnvironmentTest:
         {
             envName = @"运测环境"; 
