@@ -7,14 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BYVoucherRequest.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef NS_ENUM(NSInteger, BYVocherTagList) {
-    BYVocherTagListInReview = 0,
-    BYVocherTagListUsing,
-    BYVocherTagListEnded
-};
 
 @interface BYVocherTableVC : UITableViewController
 @property (nonatomic, assign) BYVocherTagList listType;

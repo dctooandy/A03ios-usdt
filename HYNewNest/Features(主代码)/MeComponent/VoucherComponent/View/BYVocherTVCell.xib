@@ -49,8 +49,8 @@
                                     <action selector="didTapRuleBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xw2-cn-qXm"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="释放 88,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JRh-2s-TFH">
-                                <rect key="frame" x="239" y="51.5" width="91" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JRh-2s-TFH">
+                                <rect key="frame" x="275.5" y="51.5" width="54.5" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="c6z-9s-KQI"/>
                                 </constraints>
@@ -134,7 +134,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDd-TL-mmO">
                                 <rect key="frame" x="250" y="85" width="5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                <color key="textColor" red="0.082352941176470587" green="0.082352941176470587" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5b-Br-gWZ">
@@ -147,7 +147,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.1450980392" green="0.1450980392" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="fUw-U5-jxX" firstAttribute="leading" secondItem="zMI-5X-ygV" secondAttribute="trailing" constant="78" id="03m-jP-SIe"/>
                             <constraint firstAttribute="bottom" secondItem="E3y-VV-86r" secondAttribute="bottom" constant="5" id="0yf-uQ-d0g"/>

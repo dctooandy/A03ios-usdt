@@ -80,7 +80,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="YXE-Xl-4ul" firstAttribute="width" secondItem="9et-kg-GPI" secondAttribute="width" id="0gQ-1L-cIc"/>
                                 <constraint firstItem="YXE-Xl-4ul" firstAttribute="height" secondItem="9et-kg-GPI" secondAttribute="height" id="MN3-Kw-RgH"/>
@@ -120,7 +120,7 @@
                                     </constraints>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="HT0-P6-aPJ" firstAttribute="top" secondItem="eBY-bN-t5f" secondAttribute="top" constant="16.5" id="1uw-e9-kzQ"/>
                                 <constraint firstItem="AGm-ln-HHv" firstAttribute="centerX" secondItem="eBY-bN-t5f" secondAttribute="centerX" id="HDR-1J-IyO"/>
@@ -146,7 +146,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="Hvy-gU-ucp" firstAttribute="top" secondItem="0yo-kK-9Cp" secondAttribute="bottom" constant="5" id="7WB-Ts-vpJ"/>
                                 <constraint firstItem="0yo-kK-9Cp" firstAttribute="top" secondItem="DvJ-ZP-FuB" secondAttribute="top" constant="16.5" id="Jgg-VI-f6B"/>
@@ -183,7 +183,7 @@
                 </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Mxp-iV-Gwm"/>
-            <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.15294117647058825" green="0.15294117647058825" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="V8B-jl-zkd" secondAttribute="trailing" constant="15" id="1Ba-7p-Wgi"/>
                 <constraint firstAttribute="trailing" secondItem="FHt-vH-7pb" secondAttribute="trailing" constant="15" id="9ch-pL-5IH"/>

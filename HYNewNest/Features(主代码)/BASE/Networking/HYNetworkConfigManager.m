@@ -97,10 +97,8 @@
         case IVNEnvironmentDevelop:
         {
             envName = @"本地环境";
-            [IVHttpManager shareManager].gateway = @"http://m.a03musdt.com";
-            [IVHttpManager shareManager].gateways = @[@"http://m.a03musdt.com"];
-//            [IVHttpManager shareManager].gateway = @"http://www.pt-gateway-dev.com";
-//            [IVHttpManager shareManager].gateways = @[@"http://www.pt-gateway-dev.com"];
+            [IVHttpManager shareManager].gateway = @"http://10.66.72.156";//m.a03musdt.com
+            [IVHttpManager shareManager].gateways = @[@"http://10.66.72.156"];
             break;
         }
         case IVNEnvironmentTest:

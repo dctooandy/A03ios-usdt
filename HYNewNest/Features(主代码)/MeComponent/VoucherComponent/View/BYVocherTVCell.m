@@ -8,6 +8,7 @@
 
 #import "BYVocherTVCell.h"
 #import "NSString+Font.h"
+#import "BYVocherModel.h"
 
 @interface BYVocherTVCell()
 @property (weak, nonatomic) IBOutlet UIView *bgView;
@@ -30,6 +31,8 @@
 
 @implementation BYVocherTVCell
 
+
+#pragma mark - Setter
 - (void)setIsExpand:(BOOL)isExpand {
     _isExpand = isExpand;
     if (isExpand) {
@@ -55,19 +58,63 @@
     }
 }
 
+- (void)setModel:(BYVocherModel *)model {
+    _model = model;
+    
+    [_titleBtn setTitle:model.prizeName forState:UIControlStateNormal];
+    [_titleBtn sizeToFit];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.titleBtn jk_setImagePosition:LXMImagePositionRight spacing:0];
+    });
+    
+    _statusLb.text = model.remarks;
+    switch (model.status) {
+        case 0:
+        case 1:
+        case 9:
+            _statusLb.textColor = kHexColor(0xFFE090);
+            break;
+        case 2:
+        case 3:
+            _statusLb.textColor = kHexColor(0x40FEB3);
+            break;
+        case 8:
+            _statusLb.textColor = kHexColorAlpha(0x40FEB3, 0.3);
+            break;
+        case 4:
+        case 6:
+        case 7:
+            _statusLb.textColor = kHexColorAlpha(0xFFFFFF, 0.1);
+            break;
+        case 5:
+            _statusLb.textColor = kHexColorAlpha(0xFFFFFF, 0.5);
+            break;
+        default:
+            break;
+    }
+    
+    _totalAmountLb.text = [@(model.totalAmount) jk_toDisplayNumberWithDigit:0];
+    _streamLb.text = [@(model.finishedBetAmount) jk_toDisplayNumberWithDigit:0];
+    _totalStreamLb.text = [@(model.unlockBetAmount) jk_toDisplayNumberWithDigit:0];
+    float percent = (model.finishedBetAmount*1.0)/(model.unlockBetAmount*1.0);
+    _progsView.progress = percent;
+    if (model.platforms) {
+        _suportGameRightLb.text = model.platforms;
+        _suportGameDetailLb.text = model.platforms;
+    } else {
+        _suportGameRightLb.text = @"所有游戏";
+        _suportGameDetailLb.text = @"所有游戏";
+    }
+}
+
+
+#pragma mark - View
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
     
-    [self.titleBtn jk_setImagePosition:LXMImagePositionRight spacing:0];
     self.bgView.layer.cornerRadius = 12;
     self.bgView.layer.masksToBounds = YES;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 
@@ -80,13 +127,14 @@
 - (IBAction)didTapRuleBtn:(id)sender {
 }
 
-
+// 展开
 - (IBAction)didTapExpandBtn:(id)sender {
     if (self.changeCellHeightBlock) {
         self.changeCellHeightBlock(YES);
     }
 }
 
+// 收缩
 - (IBAction)didTapBtmBtn:(id)sender {
     if (self.changeCellHeightBlock) {
         self.changeCellHeightBlock(NO);

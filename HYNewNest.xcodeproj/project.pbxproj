@@ -326,6 +326,8 @@
 		3DC14E4C25FB561000D6DB85 /* BYOldMyWalletView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E4B25FB561000D6DB85 /* BYOldMyWalletView.m */; };
 		3DC14E4E25FB562000D6DB85 /* BYOldMyWalletView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC14E4D25FB562000D6DB85 /* BYOldMyWalletView.xib */; };
 		3DC14E5125FB679800D6DB85 /* BYBaseWalletAbsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E5025FB679800D6DB85 /* BYBaseWalletAbsView.m */; };
+		3DC14E5426007E3400D6DB85 /* BYVoucherRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E5326007E3100D6DB85 /* BYVoucherRequest.m */; };
+		3DC14E572601DDCD00D6DB85 /* BYVocherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E562601DDCD00D6DB85 /* BYVocherModel.m */; };
 		3DC516CD25DE5AD800A238D4 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC516CC25DE5AD800A238D4 /* libresolv.9.tbd */; };
 		3DC516D025DE6EB000A238D4 /* StatusDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC516CE25DE6EB000A238D4 /* StatusDetailViewController.m */; };
 		3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC87A50253967DC0032ED1B /* BuyECoinModel.m */; };
@@ -1557,6 +1559,10 @@
 		3DC14E4D25FB562000D6DB85 /* BYOldMyWalletView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYOldMyWalletView.xib; sourceTree = "<group>"; };
 		3DC14E4F25FB679800D6DB85 /* BYBaseWalletAbsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYBaseWalletAbsView.h; sourceTree = "<group>"; };
 		3DC14E5025FB679800D6DB85 /* BYBaseWalletAbsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYBaseWalletAbsView.m; sourceTree = "<group>"; };
+		3DC14E5226007E3100D6DB85 /* BYVoucherRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYVoucherRequest.h; sourceTree = "<group>"; };
+		3DC14E5326007E3100D6DB85 /* BYVoucherRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYVoucherRequest.m; sourceTree = "<group>"; };
+		3DC14E552601DDCD00D6DB85 /* BYVocherModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYVocherModel.h; sourceTree = "<group>"; };
+		3DC14E562601DDCD00D6DB85 /* BYVocherModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYVocherModel.m; sourceTree = "<group>"; };
 		3DC516CC25DE5AD800A238D4 /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
 		3DC516CE25DE6EB000A238D4 /* StatusDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusDetailViewController.m; sourceTree = "<group>"; };
 		3DC516CF25DE6EB000A238D4 /* StatusDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusDetailViewController.h; sourceTree = "<group>"; };
@@ -3757,6 +3763,8 @@
 		3DC14E3225F8D25700D6DB85 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3DC14E552601DDCD00D6DB85 /* BYVocherModel.h */,
+				3DC14E562601DDCD00D6DB85 /* BYVocherModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3774,6 +3782,8 @@
 		3DC14E3425F8D25700D6DB85 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				3DC14E5226007E3100D6DB85 /* BYVoucherRequest.h */,
+				3DC14E5326007E3100D6DB85 /* BYVoucherRequest.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -6105,6 +6115,7 @@
 				E98BEEEA24D023B200E6B0C8 /* UIView+LYExtension.m in Sources */,
 				E9D9449724C5734400252222 /* WelcomeModel.m in Sources */,
 				E986A12224C7E802000F9CFF /* CNUserCenterRequest.m in Sources */,
+				3DC14E5426007E3400D6DB85 /* BYVoucherRequest.m in Sources */,
 				E986A1AE24CBCEE1000F9CFF /* CNAccountSelectView.m in Sources */,
 				E97054A424DBB5030007F845 /* SuspendBall.m in Sources */,
 				0487C96F24CE9A630013715A /* BRBaseView.m in Sources */,
@@ -6144,6 +6155,7 @@
 				04C0F0FF24C589EC007F1420 /* CNUserManager.m in Sources */,
 				0487C97024CE9A630013715A /* BRAddressModel.m in Sources */,
 				0430AB2D24E2A3DC00C873DC /* BRImageStringPickerView.m in Sources */,
+				3DC14E572601DDCD00D6DB85 /* BYVocherModel.m in Sources */,
 				044DC68B24DBB420005CB550 /* CNVerifyMsgAlertView.m in Sources */,
 				D571B19624BE9F120087B5EC /* CNLineView.m in Sources */,
 				0487C99924CEDE6B0013715A /* CNChoseImageCCell.m in Sources */,

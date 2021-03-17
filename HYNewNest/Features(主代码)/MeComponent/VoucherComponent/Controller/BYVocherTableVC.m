@@ -9,11 +9,14 @@
 #import "BYVocherTableVC.h"
 #import <MJRefresh/MJRefresh.h>
 #import "BYVocherTVCell.h"
+#import "UIView+Empty.h"
+#import "LYEmptyView.h"
 
 static NSString *const kBYVocherCell = @"BYVocherTVCell";
 
 @interface BYVocherTableVC ()
 @property (strong,nonatomic) NSMutableArray* expandRows;
+@property (strong,nonatomic) NSArray *vouchers;
 @end
 
 @implementation BYVocherTableVC
@@ -28,12 +31,6 @@ static NSString *const kBYVocherCell = @"BYVocherTVCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     self.expandRows = @[].mutableCopy;
     [self setupTableView];
     [self loadData];
@@ -45,16 +42,27 @@ static NSString *const kBYVocherCell = @"BYVocherTVCell";
     self.tableView.estimatedRowHeight = 190;
     [self.tableView registerNib:[UINib nibWithNibName:kBYVocherCell bundle:nil] forCellReuseIdentifier:kBYVocherCell];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    self.tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"kongduixiang"
+                                                            titleStr:@"暂无优惠券"
+                                                           detailStr:@""];
 }
 
 - (void)loadData {
-    MyLog(@"加载数据");
+    WEAKSELF_DEFINE
+    [BYVoucherRequest getWalletCouponsList:self.listType handler:^(id responseObj, NSString *errorMsg) {
+        STRONGSELF_DEFINE
+        [strongSelf.tableView.mj_header endRefreshing];
+        if (!errorMsg) {
+            strongSelf.vouchers = [BYVocherModel cn_parse:responseObj];
+            [strongSelf.tableView reloadData];
+        }
+    }];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return self.vouchers.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -67,7 +75,10 @@ static NSString *const kBYVocherCell = @"BYVocherTVCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BYVocherTVCell *cell = [tableView dequeueReusableCellWithIdentifier:kBYVocherCell forIndexPath:indexPath];
     cell.isExpand = [self.expandRows containsObject:@(indexPath.row)];
-
+    if (self.vouchers.count) {
+        BYVocherModel *m = self.vouchers[indexPath.row];
+        cell.model = m;
+    }
     WEAKSELF_DEFINE
     cell.changeCellHeightBlock = ^(BOOL isExpand) {
         if (isExpand) {
@@ -81,50 +92,5 @@ static NSString *const kBYVocherCell = @"BYVocherTVCell";
     };
     return cell;
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
