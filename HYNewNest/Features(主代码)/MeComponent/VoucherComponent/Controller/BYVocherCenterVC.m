@@ -43,7 +43,7 @@
     }];
 
     // Setup Title and VC here
-    [self.segBarVC setUpWithItems:@[@"审核中", @"使用中", @"已结束"]
+    [self.segBarVC setUpWithItems:@[@"待使用", @"使用中", @"已结束"]
              childViewControllers:@[vc1, vc2, vc3]];
 }
 

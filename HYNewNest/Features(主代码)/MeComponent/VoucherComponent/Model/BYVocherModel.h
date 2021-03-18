@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BYVocherModel : CNBaseModel
-@property (nonatomic , copy) NSString              * activityId;
+@property (nonatomic , copy) NSString              * activityId; //!<优惠配置ID
 @property (nonatomic , copy) NSString              * amountDemand;
 @property (nonatomic , copy) NSString              * bonusAmount; //!<优惠券金额
 @property (nonatomic , copy) NSString              * createDate; //!<优惠券发放时间

@@ -9,6 +9,7 @@
 #import "BYVocherTVCell.h"
 #import "NSString+Font.h"
 #import "BYVocherModel.h"
+#import "HYWideOneBtnAlertView.h"
 
 @interface BYVocherTVCell()
 @property (weak, nonatomic) IBOutlet UIView *bgView;
@@ -125,6 +126,8 @@
 
 
 - (IBAction)didTapRuleBtn:(id)sender {
+    [HYWideOneBtnAlertView showWithTitle:@"优惠券说明" content:@"1，优惠券一旦激活，优惠券总额将锁定，直到完成流水要求或额度用光后，自动转入可提现金额；\n2，充值送礼金类的优惠，充值的金额也会被划入到优惠券总额里；\n3，当存在未完成流水要求的优惠券时，您的盈利也会被划入到优惠券总额里；\n4，优惠券总额、流水要求只针对支持的游戏生效，如您领取体育优惠券，不对在百家乐游戏数据生效；\n5，当存在多张优惠券时，系统会优先满足流水要求较小的优惠券；\n6，本优惠券解释权归币游国际所有，如有疑问详询客服。" comfirmText:@"我知道了" comfirmHandler:^{
+    }];
 }
 
 // 展开

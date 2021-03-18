@@ -12,15 +12,15 @@
 
 /// 获取优惠券列表
 /// status 优惠券状态（数组）[1.待激活... 8.锁定]
-/// status 入参状态对应：审核中（不传）；使用中（2，3，8）；已结束（4，5，7）
+/// status 入参状态对应：待激活（传1，2）；使用中（3，8）；已结束（4，5，7）
 + (void)getWalletCouponsList:(BYVocherTagList)list handler:(HandlerBlock)handler {
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     switch (list) {
         case BYVocherTagListInReview:
-            param[@"status"] = @[@(BYVocherStatusInReview), @(BYVocherStatusInReview2), @(BYVocherStatusToActivate)];
+            param[@"status"] = @[@(BYVocherStatusToActivate),@(BYVocherStatusActivated)];
             break;
         case BYVocherTagListUsing:
-            param[@"status"] = @[@(BYVocherStatusUsing),@(BYVocherStatusActivated),@(BYVocherStatusLock)];
+            param[@"status"] = @[@(BYVocherStatusUsing),@(BYVocherStatusLock)];
             break;
         case BYVocherTagListEnded:
             param[@"status"] = @[@(BYVocherStatusManualEnd),@(BYVocherStatusRelease),@(BYVocherStatusRunsUp)];
