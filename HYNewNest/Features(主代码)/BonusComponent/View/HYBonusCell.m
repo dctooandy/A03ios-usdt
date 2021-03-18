@@ -65,7 +65,7 @@
         self.toprightTagImgv.image = [UIImage imageNamed:@"zd"];
     }
     // 结束
-    else if (model.flag == 0) {
+    if (model.flag == 0) {
         self.toprightTagImgv.image = [UIImage imageNamed:@"end"];
         self.toprightTag2Imgv.image = nil;
         self.shadowView.hidden = NO;

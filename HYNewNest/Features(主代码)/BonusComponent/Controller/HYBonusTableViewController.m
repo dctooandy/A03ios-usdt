@@ -54,15 +54,13 @@ static NSString *const KBonusCell = @"HYBonusCell";
     NSMutableArray *topPromos = @[].mutableCopy;
     NSMutableArray *btmPromos = @[].mutableCopy;
     [sortPromos enumerateObjectsUsingBlock:^(MyPromoItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        // 置顶
-        if (obj.isTop) {
-            [sortPromos removeObject:obj];
-            [topPromos addObject:obj];
-        }
         // 结束de置底
-        if (obj.flag == 2) {
+        if (obj.flag == 0) {
             [sortPromos removeObject:obj];
             [btmPromos addObject:obj];
+        } else if (obj.isTop) { // 置顶
+            [sortPromos removeObject:obj];
+            [topPromos addObject:obj];
         }
     }];
     [sortPromos addObjectsFromArray:btmPromos];
