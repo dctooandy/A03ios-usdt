@@ -205,22 +205,27 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     DSBProfitFooter *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:ProfitFooterId];
-    
-    DSBProfitBoardUsrModel *usr = self.usrModels[_curPage];
     if (self.usrModels.count) {
-        if (usr.prList.count == 0) {
-            footer.isUsrOnline = NO;
-            footer.btmBtnClikBlock = nil;
-            footer.btmBtnClikHistoryBlock = nil;
-        } else {
-            footer.isUsrOnline = usr.prList[0].isOnline;
-            footer.btmBtnClikBlock = ^{
-                [[HYInGameHelper sharedInstance] inBACGameTableCode:self.showTableId];
-            };
-            footer.btmBtnClikHistoryBlock = ^{
-                [HYDSBSlideUpView showSlideupYLBView:usr.prList];
-            };
+        DSBProfitBoardUsrModel *usr = self.usrModels[_curPage];
+        if (self.usrModels.count) {
+            if (usr.prList.count == 0) {
+                footer.isUsrOnline = NO;
+                footer.btmBtnClikBlock = nil;
+                footer.btmBtnClikHistoryBlock = nil;
+            } else {
+                footer.isUsrOnline = usr.prList[0].isOnline;
+                footer.btmBtnClikBlock = ^{
+                    [[HYInGameHelper sharedInstance] inBACGameTableCode:self.showTableId];
+                };
+                footer.btmBtnClikHistoryBlock = ^{
+                    [HYDSBSlideUpView showSlideupYLBView:usr.prList];
+                };
+            }
         }
+    } else {
+        footer.isUsrOnline = NO;
+        footer.btmBtnClikBlock = nil;
+        footer.btmBtnClikHistoryBlock = nil;
     }
     return footer;
 }
