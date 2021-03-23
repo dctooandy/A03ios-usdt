@@ -53,7 +53,7 @@
 #ifdef DEBUG
     // 切换环境 保存
     self.environment += 1;
-    if (self.environment > 1) {
+    if (self.environment > 2) {
         self.environment = 0;
     }
     [[NSUserDefaults standardUserDefaults] setInteger:self.environment forKey:@"IVNEnvironment"];
