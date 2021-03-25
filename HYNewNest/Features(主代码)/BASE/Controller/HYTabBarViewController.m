@@ -213,7 +213,7 @@
     info.title = @"在线客服";//导航栏标题
     info.uuid = [KeyChain getKeychainIdentifierUUID];//用户uuid
     //    如果完整地址是 @"http://m3.wancity.net/_glaxy_a5b04c_/liveChatAddressOCSS"
-    info.baseUrl = @"http://m3.wancity.net/_glaxy_a5b04c_/";//客服后台配置的接口域名
+    info.baseUrl = [[IVHttpManager shareManager].gateway stringByAppendingString:kGatewayPath(@"")];//客服后台配置的接口域名
     [CSVisitChatmanager startservicewithsuperVC:self chatInfo:info];
 }
 
