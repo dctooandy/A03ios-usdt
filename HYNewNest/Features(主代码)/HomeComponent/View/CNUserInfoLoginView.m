@@ -38,7 +38,7 @@
 
     [self refreshBottomBtnsStatus];
     // 提现右上角NEW
-    [self.withdrawCNYBtn showRightTopImageName:@"new_txgb" size:CGSizeMake(30, 14) offsetX:-30 offsetYMultiple:0];
+//    [self.withdrawCNYBtn showRightTopImageName:@"new_txgb" size:CGSizeMake(30, 14) offsetX:-30 offsetYMultiple:0];
 }
 
 - (void)updateLoginStatusUI {
