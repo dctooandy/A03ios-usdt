@@ -113,10 +113,16 @@
         [IN3SAnalytics launchFinished];
         _hasRecord = YES;
     }
+    self.bannerView.autoScroll = YES; // 恢复滚动
     kPreventRepeatTime(60*10); //十分钟
     // 检查新版本
     [CNSplashRequest queryNewVersion:^(BOOL isHardUpdate) {
     }];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    self.bannerView.autoScroll = NO;
 }
 
 - (void)userDidLogin {

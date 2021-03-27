@@ -80,7 +80,8 @@
     CGFloat AGHeight = (kScreenWidth - 15*2) * 115/345.0;
 //    CGFloat monkeyH = (kScreenWidth - 15*3)/2.0 * 142/165.0;
 //    return (AGHeight+16)*2 + (monkeyH+16) + (48+32) + self.recentPlayViewHeight.constant;
-    return AGHeight + (30+48+32) + self.recentPlayViewHeight.constant;
+    
+    return (AGHeight+16)*2 + (30+48) + self.recentPlayViewHeight.constant;
 }
 
 - (void)configCollectionView {
