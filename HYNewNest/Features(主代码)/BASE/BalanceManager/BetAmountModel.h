@@ -13,10 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /// 本月优惠和洗码
-@interface PromoteXimaModel : CNBaseModel
+@interface PromoteRebateModel : CNBaseModel
 
-@property (nonatomic, strong) NSNumber *promoAmountByMonth; //月优惠
-@property (nonatomic, strong) NSNumber *rebatedAmountByMonth; //月洗码
+@property (nonatomic, strong) NSNumber *promoAmount; //月优惠
+@property (nonatomic, strong) NSNumber *rebateAmount; //月洗码
 
 @end
 
@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong) NSNumber *customerLevel;    //等级
 @property(nonatomic,strong) NSNumber *minNextBetAmount; //有效投注额
 @property(nonatomic,strong) NSNumber *weekBetAmount;    //周投注额
-
+@property (strong,nonatomic) PromoteRebateModel *statis; //!<本月优惠和洗码
 @end
 
 

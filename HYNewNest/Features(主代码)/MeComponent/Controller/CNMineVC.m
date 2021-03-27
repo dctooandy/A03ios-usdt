@@ -346,11 +346,9 @@
         [[BalanceManager shareManager] requestBetAmountHandler:^(BetAmountModel * _Nonnull model) {
             STRONGSELF_DEFINE
             [strongSelf.weekAmountLb hideIndicatorWithText:[model.weekBetAmount jk_toDisplayNumberWithDigit:2]];
-        }];
-        [[BalanceManager shareManager] requestMonthPromoteAndXimaHandler:^(PromoteXimaModel * _Nonnull model) {
-            STRONGSELF_DEFINE
-            [strongSelf.monthPromoLb hideIndicatorWithText:[model.promoAmountByMonth jk_toDisplayNumberWithDigit:2]];
-            [strongSelf.monthXiMaLb hideIndicatorWithText:[model.rebatedAmountByMonth jk_toDisplayNumberWithDigit:2]];
+            PromoteRebateModel *prModel = model.statis;
+            [strongSelf.monthPromoLb hideIndicatorWithText:[prModel.promoAmount jk_toDisplayNumberWithDigit:2]];
+            [strongSelf.monthXiMaLb hideIndicatorWithText:[prModel.rebateAmount jk_toDisplayNumberWithDigit:2]];
         }];
         
     } else {
@@ -359,14 +357,12 @@
             [strongSelf.amountLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
             strongSelf.currencyLb.text = model.currency;
         }];
-        [[BalanceManager shareManager] getWeeklyBetAmountHandler:^(BetAmountModel * _Nonnull betModel) {
+        [[BalanceManager shareManager] getWeeklyBetAmountHandler:^(BetAmountModel * _Nonnull model) {
             STRONGSELF_DEFINE
-            [strongSelf.weekAmountLb hideIndicatorWithText:[betModel.weekBetAmount jk_toDisplayNumberWithDigit:2]];
-        }];
-        [[BalanceManager shareManager] getPromoteXimaHandler:^(PromoteXimaModel * _Nonnull pxModel) {
-            STRONGSELF_DEFINE
-            [strongSelf.monthPromoLb hideIndicatorWithText:[pxModel.promoAmountByMonth jk_toDisplayNumberWithDigit:2]];
-            [strongSelf.monthXiMaLb hideIndicatorWithText:[pxModel.rebatedAmountByMonth jk_toDisplayNumberWithDigit:2]];
+            [strongSelf.weekAmountLb hideIndicatorWithText:[model.weekBetAmount jk_toDisplayNumberWithDigit:2]];
+            PromoteRebateModel *prModel = model.statis;
+            [strongSelf.monthPromoLb hideIndicatorWithText:[prModel.promoAmount jk_toDisplayNumberWithDigit:2]];
+            [strongSelf.monthXiMaLb hideIndicatorWithText:[prModel.rebateAmount jk_toDisplayNumberWithDigit:2]];
         }];
     }
 }

@@ -171,7 +171,7 @@ NSString * const ID = @"SDCycleScrollViewCell";
     
     if (!self.backgroundImageView) {
         UIImageView *bgImageView = [UIImageView new];
-        bgImageView.contentMode = UIViewContentModeScaleToFill;
+        bgImageView.contentMode = UIViewContentModeScaleAspectFill;
         [self insertSubview:bgImageView belowSubview:self.mainView];
         self.backgroundImageView = bgImageView;
     }
