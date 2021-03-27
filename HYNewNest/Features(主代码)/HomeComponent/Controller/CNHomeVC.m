@@ -36,9 +36,6 @@
 
 
 @interface CNHomeVC () <CNUserInfoLoginViewDelegate,  SDCycleScrollViewDelegate, UUMarqueeViewDelegate, GameBtnsStackViewDelegate, DashenBoardAutoHeightDelegate>
-{
-    BOOL _didAppear;
-}
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 /// 滚动视图
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -112,9 +109,9 @@
 {
     [super viewDidAppear:animated];
     //启动完成, 只调一次
-    if (!_didAppear) {
+    if (!_hasRecord) {
         [IN3SAnalytics launchFinished];
-        _didAppear = YES;
+        _hasRecord = YES;
     }
     kPreventRepeatTime(60*10); //十分钟
     // 检查新版本

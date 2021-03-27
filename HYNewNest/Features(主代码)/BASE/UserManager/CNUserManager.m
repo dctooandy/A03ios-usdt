@@ -9,6 +9,7 @@
 #import "CNUserManager.h"
 #import "IVHttpManager.h"
 #import <WebKit/WebKit.h>
+#import "IN3SAnalytics.h"
 
 @interface CNUserManager ()
 @property (nonatomic, copy) NSString *modelFile;
@@ -65,15 +66,19 @@
 }
 
 - (BOOL)cleanUserInfo {
+    // 清缓存
     [self deleteWebCache];
     [self clearUserDefault];
-    
-    if (self.userInfo == nil) {
-        return YES;
-    }
     self.userInfo = nil;
     self.userDetail = nil;
+    // 给网络框架赋值
+    [IVHttpManager shareManager].userToken = nil;
+    [IVHttpManager shareManager].loginName = nil;
+    // 给3S赋值
+    [IN3SAnalytics setUserName:nil];
+    // 发通知
     [[NSNotificationCenter defaultCenter] postNotificationName:HYLogoutSuccessNotification object:nil];
+    // 清文件
     [[NSFileManager defaultManager] removeItemAtPath:self.modelFile2 error:nil];
     return [[NSFileManager defaultManager] removeItemAtPath:self.modelFile error:nil];
 }
@@ -158,21 +163,11 @@
 
 - (void)setUserInfo:(CNUserModel *)userInfo {
     _userInfo = userInfo;
+    // 给网络框架赋值
     [IVHttpManager shareManager].userToken = userInfo.token;
     [IVHttpManager shareManager].loginName = userInfo.loginName;
-    //切换 Live800 用户信息
-//    if (userInfo == nil) {
-//        [IVLive800Wrapper switchUser:nil];
-//    } else {
-//        LIVUserInfo *livUserInfo = [[LIVUserInfo alloc] init];
-//        livUserInfo.userAccount = userInfo.customerId;
-//        livUserInfo.name = userInfo.loginName;
-//        livUserInfo.loginName = userInfo.loginName;
-//        livUserInfo.grade = [NSString stringWithFormat:@"%d", userInfo.starLevel];
-//        livUserInfo.gender = userInfo.gender;
-//        livUserInfo.mobileNo = userInfo.mobileNo;
-//        [IVLive800Wrapper switchUser:livUserInfo];
-//    }
+    // 给3S赋值
+    [IN3SAnalytics setUserName:userInfo.loginName];
 }
 
 @end

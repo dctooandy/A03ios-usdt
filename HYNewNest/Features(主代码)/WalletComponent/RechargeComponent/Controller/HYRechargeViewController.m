@@ -35,22 +35,34 @@
 
 #pragma mark - VIEW LIFE CYCLE
 
+- (instancetype)init {
+    _launchDate = [NSDate date];
+    if (self = [super init]) {
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"充币";
-    
-    _launchDate = [NSDate date];
-    
+        
     [self setupViews];
     [self queryDepositBankPayWays];
     // !!!:  没数据 先隐藏顶部tipsView
     [self didClickCloseTip];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
-    [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] showSuspendBall];
+    if (!_hasRecord) {
+        NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:self->_launchDate] * 1000;
+        NSLog(@" ======> 进USDT支付 耗时：%f毫秒", duration);
+        NSString *timeString = [NSString stringWithFormat:@"%f", [self->_launchDate timeIntervalSince1970]];
+        [IN3SAnalytics enterPageWithName:@"PaymentPageLoad" responseTime:duration timestamp:timeString];
+        
+        [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] showSuspendBall];
+    }
 }
 
 - (void)setSelcPayWayIdx:(NSInteger)selcPayWayIdx {
@@ -233,11 +245,6 @@ USDT支付渠道
             [self queryOnlineBankAmount];
         }
         
-        // 耗时间隔毫秒
-        NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:self->_launchDate] * 1000;
-        NSLog(@" ======> 进USDT支付 耗时：%f毫秒", duration);
-        NSString *timeString = [NSString stringWithFormat:@"%f", [self->_launchDate timeIntervalSince1970]];
-        [IN3SAnalytics enterPageWithName:@"PaymentPageLoad" responseTime:duration timestamp:timeString];
     }];
 }
 

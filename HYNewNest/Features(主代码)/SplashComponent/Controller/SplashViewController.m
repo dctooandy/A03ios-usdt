@@ -13,6 +13,7 @@
 #import <UIImageView+WebCache.h>
 #import "CNSplashRequest.h"
 #import <AVKit/AVKit.h>
+#import "IN3SAnalytics.h"
 
 @interface SplashViewController () {
     BOOL _videoDidEnd;
@@ -97,6 +98,7 @@
         }
         [IVHttpManager shareManager].cdn = cdnAddr;
         [IVHttpManager shareManager].domain = h5Addr;
+        [IN3SAnalytics setDomain:h5Addr];
     }];
     
     // 检查区域限制 -> 进入首页
