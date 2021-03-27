@@ -41,6 +41,8 @@
 	<string>小游需要您的允许为您保存图片</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>小游需要您的允许访问您的相册</string>
+	<key>NSCameraUsageDescription</key>
+	<string>小游需要您的允许调用您的相机</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>方正兰亭大黑_GBK.ttf</string>
