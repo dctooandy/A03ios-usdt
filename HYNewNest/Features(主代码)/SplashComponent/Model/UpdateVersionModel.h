@@ -15,8 +15,6 @@
 @property(nonatomic,strong) NSDictionary *upgradeDesc;
 @property(nonatomic,strong) NSString *versionId;
 @property(nonatomic,strong) NSString *flag;
-@property(nonatomic,copy) NSString *h5DownUrl;
-@property(nonatomic,copy) NSString *h5VersionId;
-@property(nonatomic,copy) NSString *h5Md5;
+@property (strong,nonatomic) NSArray *domains;
 
 @end

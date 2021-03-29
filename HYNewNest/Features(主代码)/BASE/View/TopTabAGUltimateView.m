@@ -317,11 +317,35 @@
         _webConfig.preferences.javaScriptEnabled = YES;
        //_webConfig.preferences.javaScriptCanOpenWindowsAutomatically = NO;
         _webConfig.allowsInlineMediaPlayback = YES;
-        _webConfig.requiresUserActionForMediaPlayback = YES;
+        _webConfig.mediaTypesRequiringUserActionForPlayback = YES;
         //在iOS上默认为NO，表示不能自动通过窗口打开
         _webConfig.preferences.javaScriptCanOpenWindowsAutomatically = YES;
         _webConfig.processPool = [[WKProcessPool alloc] init];
-        _webConfig.userContentController = [[WKUserContentController alloc] init];
+        
+        
+//        _webConfig.userContentController = [[WKUserContentController alloc] init];
+        //禁止长按弹出 UIMenuController 相关
+        //禁止选择 css 配置相关
+        NSString*css = @"body{-webkit-user-select:none;-webkit-user-drag:none;}";
+        //css 选中样式取消
+        NSMutableString*javascript = [NSMutableString string];
+        [javascript appendString:@"var style = document.createElement('style');"];
+        [javascript appendString:@"style.type = 'text/css';"];
+        [javascript appendFormat:@"var cssContent = document.createTextNode('%@');", css];
+        [javascript appendString:@"style.appendChild(cssContent);"];
+        [javascript appendString:@"document.body.appendChild(style);"];
+        [javascript appendString:@"document.documentElement.style.webkitUserSelect='none';"];//禁止选择
+        [javascript appendString:@"document.documentElement.style.webkitTouchCallout='none';"];//禁止长按
+        //javascript 注入
+        WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript
+                                                                injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
+                                                             forMainFrameOnly:YES];
+        WKUserContentController*userContentController = [[WKUserContentController alloc] init];
+        [userContentController addUserScript:noneSelectScript];
+        WKWebViewConfiguration*configuration = [[WKWebViewConfiguration alloc] init];
+        configuration.userContentController = userContentController;
+        _webConfig.userContentController = userContentController;
+
     }
     return _webConfig;
 }

@@ -12,6 +12,6 @@
 @interface GameStartPlayViewController : CNBaseVC
 
 - (instancetype)initGameWithGameUrl:(NSString *)gameUrl title:(NSString *)title;
-
+- (void)goBack;
 
 @end

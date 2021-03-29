@@ -21,6 +21,7 @@ typedef NS_ENUM(NSUInteger, InGameType) {
     InGameTypeKENO,     //彩票004
     InGameTypeQG,       //刮刮乐080
     InGameTypeAGSTAR,   //真人棋牌064
+    InGameTypeAGEG,     //国际厅026
 };
 
 @interface HYInGameHelper : NSObject

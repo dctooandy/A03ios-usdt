@@ -206,7 +206,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     DSBProfitFooter *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:ProfitFooterId];
     if (self.usrModels.count) {
-    DSBProfitBoardUsrModel *usr = self.usrModels[_curPage];
+        DSBProfitBoardUsrModel *usr = self.usrModels[_curPage];
         if (self.usrModels.count) {
             if (usr.prList.count == 0) {
                 footer.isUsrOnline = NO;
@@ -222,6 +222,10 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
                 };
             }
         }
+    } else {
+        footer.isUsrOnline = NO;
+        footer.btmBtnClikBlock = nil;
+        footer.btmBtnClikHistoryBlock = nil;
     }
     return footer;
 }

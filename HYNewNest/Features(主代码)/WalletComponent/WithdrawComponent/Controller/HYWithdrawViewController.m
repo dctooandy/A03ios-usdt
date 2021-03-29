@@ -51,6 +51,9 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     [self.sumitBtn setTitle:[CNUserManager shareManager].isUsdtMode ? @"提币" : @"提现" forState:UIControlStateNormal];
 //    [self addNaviRightItemWithImageName:@"service"];
     
+    [CNWithdrawRequest getUserMobileStatusCompletionHandler:^(id responseObj, NSString *errorMsg) {
+        
+    }];
     self.selectedIdx = 0;
     [self setupTopView];
     [self setupTableView];

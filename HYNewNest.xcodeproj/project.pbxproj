@@ -165,6 +165,9 @@
 		3D16F0F825369CE100FE0212 /* VIPGiftTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D16F0F725369CE100FE0212 /* VIPGiftTableView.m */; };
 		3D16F10025381EEC00FE0212 /* HYBuyECoinGuideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D16F0FE25381EEC00FE0212 /* HYBuyECoinGuideVC.m */; };
 		3D16F10125381EEC00FE0212 /* HYBuyECoinGuideVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D16F0FF25381EEC00FE0212 /* HYBuyECoinGuideVC.xib */; };
+		3D18CFB1260883C600E6642E /* NXPingServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D18CFAD260883C600E6642E /* NXPingServices.m */; };
+		3D18CFB2260883C600E6642E /* NXPingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D18CFAE260883C600E6642E /* NXPingManager.m */; };
+		3D18CFB3260883C600E6642E /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D18CFB0260883C600E6642E /* SimplePing.m */; };
 		3D2FB6392589E171003EE5EA /* CNBorderBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2FB6382589E171003EE5EA /* CNBorderBtn.m */; };
 		3D31B94425399CB7005275BD /* HYBuyECoinComfirmView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B94325399CB7005275BD /* HYBuyECoinComfirmView.m */; };
 		3D31B947253ACEF8005275BD /* HYWithdrawActivityAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B946253ACEF8005275BD /* HYWithdrawActivityAlertView.m */; };
@@ -1263,6 +1266,12 @@
 		3D16F0FD25381EEC00FE0212 /* HYBuyECoinGuideVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYBuyECoinGuideVC.h; sourceTree = "<group>"; };
 		3D16F0FE25381EEC00FE0212 /* HYBuyECoinGuideVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYBuyECoinGuideVC.m; sourceTree = "<group>"; };
 		3D16F0FF25381EEC00FE0212 /* HYBuyECoinGuideVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYBuyECoinGuideVC.xib; sourceTree = "<group>"; };
+		3D18CFAB260883C600E6642E /* NXPingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXPingManager.h; sourceTree = "<group>"; };
+		3D18CFAC260883C600E6642E /* SimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePing.h; sourceTree = "<group>"; };
+		3D18CFAD260883C600E6642E /* NXPingServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXPingServices.m; sourceTree = "<group>"; };
+		3D18CFAE260883C600E6642E /* NXPingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXPingManager.m; sourceTree = "<group>"; };
+		3D18CFAF260883C600E6642E /* NXPingServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXPingServices.h; sourceTree = "<group>"; };
+		3D18CFB0260883C600E6642E /* SimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePing.m; sourceTree = "<group>"; };
 		3D2FB6372589E171003EE5EA /* CNBorderBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNBorderBtn.h; sourceTree = "<group>"; };
 		3D2FB6382589E171003EE5EA /* CNBorderBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNBorderBtn.m; sourceTree = "<group>"; };
 		3D31B94225399CB7005275BD /* HYBuyECoinComfirmView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYBuyECoinComfirmView.h; sourceTree = "<group>"; };
@@ -3165,6 +3174,19 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		3D18CFAA260883C600E6642E /* NXPingManager */ = {
+			isa = PBXGroup;
+			children = (
+				3D18CFAB260883C600E6642E /* NXPingManager.h */,
+				3D18CFAC260883C600E6642E /* SimplePing.h */,
+				3D18CFAD260883C600E6642E /* NXPingServices.m */,
+				3D18CFAE260883C600E6642E /* NXPingManager.m */,
+				3D18CFAF260883C600E6642E /* NXPingServices.h */,
+				3D18CFB0260883C600E6642E /* SimplePing.m */,
+			);
+			path = NXPingManager;
+			sourceTree = "<group>";
+		};
 		3D31B94B253D691A005275BD /* HYSlideUpComfirmView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3542,6 +3564,7 @@
 		3DA4F19E24B3199A0039123F /* BASE */ = {
 			isa = PBXGroup;
 			children = (
+				3D18CFAA260883C600E6642E /* NXPingManager */,
 				3DBA55D5256FA720009A2B71 /* BalanceManager */,
 				04C0F10D24C59298007F1420 /* Networking */,
 				04C0F10024C58A52007F1420 /* Parse */,
@@ -5184,6 +5207,7 @@
 				3D13384E24AD8F9B00B29783 /* Frameworks */,
 				3D13384F24AD8F9B00B29783 /* Resources */,
 				C08FB099C221193B86170E0B /* [CP] Embed Pods Frameworks */,
+				E43DFAD908603B137855A1CE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5222,6 +5246,7 @@
 				3D13387424AD8F9C00B29783 /* Frameworks */,
 				3D13387524AD8F9C00B29783 /* Resources */,
 				28822A1001555599A37308F2 /* [CP] Embed Pods Frameworks */,
+				5DEC9F0E55F694C3750C9EA0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5954,6 +5979,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5DEC9F0E55F694C3750C9EA0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C08FB099C221193B86170E0B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -5991,6 +6033,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E43DFAD908603B137855A1CE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F9F6491387A6732DA715C6CA /* [CP] Check Pods Manifest.lock */ = {
@@ -6090,6 +6149,7 @@
 				3D97005025A2C3ED003238C4 /* IN3SLaunchModel.m in Sources */,
 				D5FBFE2D24BC05E400BBCAD8 /* CNLoginRegisterVC.m in Sources */,
 				04C0F12D24C7D20C007F1420 /* CNRealPersonVC.m in Sources */,
+				3D18CFB1260883C600E6642E /* NXPingServices.m in Sources */,
 				3DBA55F5257F67F5009A2B71 /* DSBRecharWithdrwUsrModel.m in Sources */,
 				3DA4F19D24B3195F0039123F /* HYRefreshHeader.m in Sources */,
 				3DA4F15624B30A090039123F /* SGQRCodeGenerateManager.m in Sources */,
@@ -6126,6 +6186,7 @@
 				040A08D924E114A900FBD534 /* OCBarrageGradientBackgroundColorDescriptor.m in Sources */,
 				3D9DA669259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m in Sources */,
 				0487C9C124D113C90013715A /* CNTradeRecordTCell.m in Sources */,
+				3D18CFB3260883C600E6642E /* SimplePing.m in Sources */,
 				04C0F11024C59298007F1420 /* CNBaseNetworking.m in Sources */,
 				E9A269D724D80D8700B512FF /* HYRechargePayWayController.m in Sources */,
 				E98BEEE924D023B200E6B0C8 /* UIView+Empty.m in Sources */,
@@ -6345,6 +6406,7 @@
 				04C0F0E824C2E250007F1420 /* JHVerificationCodeView.m in Sources */,
 				3D31B958253DBBBD005275BD /* HYWithdrawCalculatorComView.m in Sources */,
 				0487C9E724D27BDD0013715A /* CNNotifySettingTCell.m in Sources */,
+				3D18CFB2260883C600E6642E /* NXPingManager.m in Sources */,
 				3D643F8C24F29F3600B9AAA7 /* KeyChain.m in Sources */,
 				3D97002B259B1CE1003238C4 /* BYRegisterSuccADVC.m in Sources */,
 				3D31B94425399CB7005275BD /* HYBuyECoinComfirmView.m in Sources */,
@@ -6539,7 +6601,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
+				CURRENT_PROJECT_VERSION = 65;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = JW7F38ZMYT;
 				ENABLE_BITCODE = NO;
@@ -6579,7 +6641,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.45;
+				MARKETING_VERSION = 3.6.51;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
 				PRODUCT_NAME = "币游_dev";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -6597,7 +6659,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游Release.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
+				CURRENT_PROJECT_VERSION = 65;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = JW7F38ZMYT;
 				ENABLE_BITCODE = NO;
@@ -6637,7 +6699,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.45;
+				MARKETING_VERSION = 3.6.51;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
 				PRODUCT_NAME = "币游";
 				PROVISIONING_PROFILE_SPECIFIER = "";

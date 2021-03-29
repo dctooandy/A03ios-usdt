@@ -22,7 +22,8 @@ NSString *const InGameTypeString[] = {
     [InGameTypeHYTY]    = @"A03062",
     [InGameTypeKENO]    = @"A03004",
     [InGameTypeQG]      = @"A03080",
-    [InGameTypeAGSTAR]  = @"A03064"
+    [InGameTypeAGSTAR]  = @"A03064",
+    [InGameTypeAGEG]    = @"A03026"
 };
 
 @interface HYInGameHelper ()
@@ -114,7 +115,7 @@ NSString *const InGameTypeString[] = {
         case InGameTypeAGBY:
             gameName = @"捕鱼王";
             gameType = @"6";
-            gameId = @"";
+            gameId = @"AG_FISH_6";
             break;
         case InGameTypeSHABA:
             gameName = @"沙巴体育";
@@ -146,6 +147,10 @@ NSString *const InGameTypeString[] = {
             gameType = @"BAC";
             gameId = @"";
             break;
+        case InGameTypeAGEG:
+            gameName = @"AG电游厅";
+            gameType = @"500";
+            gameId = @"500";
         default:
             break;
     }
@@ -160,10 +165,34 @@ NSString *const InGameTypeString[] = {
         BOOL hasUSDT = NO;
         for (NSDictionary *dict in gameLines) {
             GameLineModel *model = [GameLineModel cn_parse:dict];
-            if ([model.platformCurrency isEqualToString:@"CNY"]) {
-                hasCNY = YES;
-            } else if ([model.platformCurrency isEqualToString:@"USDT"]) {
-                hasUSDT = YES;
+            // 这里AGIN需要区分是真人还是电游
+            if ([gameCode isEqualToString:@"A03026"]) {
+                if (gameId.length>0 && [model.gameKind isEqualToString:@"5"]) { //捕鱼&电游
+                    if ([model.platformCurrency isEqualToString:@"CNY"]) {
+                        hasCNY = YES;
+                        MyLog(@"捕鱼 - 有CNY");
+                    } else if ([model.platformCurrency isEqualToString:@"USDT"]) {
+                        hasUSDT = YES;
+                        MyLog(@"捕鱼 - 有USDT");
+                    }
+                } else if (gameId.length==0 && [model.gameKind isEqualToString:@"3"]) { // 真人
+                    if ([model.platformCurrency isEqualToString:@"CNY"]) {
+                        hasCNY = YES;
+                        MyLog(@"真人 - 有CNY");
+                    } else if ([model.platformCurrency isEqualToString:@"USDT"]) {
+                        hasUSDT = YES;
+                        MyLog(@"真人 - 有USDT");
+                    }
+                }
+            // 正常判断线路
+            } else {
+                if ([model.platformCurrency isEqualToString:@"CNY"]) {
+                    hasCNY = YES;
+                    MyLog(@"其他 - 有CNY");
+                } else if ([model.platformCurrency isEqualToString:@"USDT"]) {
+                    hasUSDT = YES;
+                    MyLog(@"其他 - 有USDT");
+                }
             }
         }
         
@@ -220,17 +249,24 @@ NSString *const InGameTypeString[] = {
         BOOL hasUSDT = NO;
         for (NSDictionary *dict in gameLines) {
             GameLineModel *model = [GameLineModel cn_parse:dict];
-            if ([model.platformCurrency isEqualToString:@"CNY"]) {
-                if (platformSupportCurrency.length > 0 && ![platformSupportCurrency containsString:@"CNY"]) { // 该游戏不支持CNY
-                    hasCNY = NO;
-                } else {
-                    hasCNY = YES;
+            if ([gameCode isEqualToString:@"026"]) { //进入的电游是捕鱼
+                if ([model.gameKind isEqualToString:@"5"]) { //模型是捕鱼
+                    if ([model.platformCurrency isEqualToString:@"CNY"]) {
+                        hasCNY = YES;
+                        MyLog(@"捕鱼 - 有CNY");
+                    } else if ([model.platformCurrency isEqualToString:@"USDT"]) {
+                        hasUSDT = YES;
+                        MyLog(@"捕鱼 - 有USDT");
+                    }
                 }
-            } else if ([model.platformCurrency isEqualToString:@"USDT"]) {
-                if (platformSupportCurrency.length > 0 && ![platformSupportCurrency containsString:@"USDT"]) { // 该游戏不支持CNY
-                    hasUSDT = NO;
-                } else {
+            // 进入的是其他电游
+            } else {
+                if ([model.platformCurrency isEqualToString:@"CNY"]) {
+                    hasCNY = YES;
+                    MyLog(@"其他 - 有CNY");
+                } else if ([model.platformCurrency isEqualToString:@"USDT"]) {
                     hasUSDT = YES;
+                    MyLog(@"其他 - 有USDT");
                 }
             }
         }

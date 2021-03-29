@@ -66,6 +66,13 @@
 
 #pragma mark - View life cycle
 
+- (instancetype)init {
+    _launchDate = [NSDate date];
+    if (self = [super init]) {
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"充值";
@@ -84,10 +91,17 @@
     [self setupSubmitBtn];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
-    [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] showSuspendBall];
+    if (!_hasRecord) {
+        NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:self->_launchDate] * 1000;
+        NSLog(@" ======> 进CNY支付 耗时：%f毫秒", duration);
+        NSString *timeString = [NSString stringWithFormat:@"%f", [self->_launchDate timeIntervalSince1970]];
+        [IN3SAnalytics enterPageWithName:@"PaymentPageLoad" responseTime:duration timestamp:timeString];
+        
+        [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] showSuspendBall];
+    }
 }
 
 - (void)setupMainEditView {
@@ -178,11 +192,6 @@
             [self.view ly_showEmptyView];
         }
         
-        // 耗时间隔毫秒
-        NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:self->_launchDate] * 1000;
-        NSLog(@" ======> 进CNY支付 耗时：%f毫秒", duration);
-        NSString *timeString = [NSString stringWithFormat:@"%f", [self->_launchDate timeIntervalSince1970]];
-        [IN3SAnalytics enterPageWithName:@"PaymentPageLoad" responseTime:duration timestamp:timeString];
     }];
 }
 

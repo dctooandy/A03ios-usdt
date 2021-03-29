@@ -15,7 +15,7 @@
         return kHexColor(0xAEA876);
     } else if ([self.flagDesc containsString:@"完成"] || [self.flagDesc containsString:@"已到账"] || [self.flagDesc containsString:@"批准"]) {
         return kHexColor(0x5A9F7C);
-    } else if ([self.flagDesc containsString:@"失效"] || [self.flagDesc containsString:@"取消"]) {
+    } else if ([self.flagDesc containsString:@"失效"] || [self.flagDesc containsString:@"取消"] || [self.flagDesc containsString:@"拒绝"]) {
         return kHexColor(0xBD4848);
     } else {
         return kHexColor(0xADBACD);

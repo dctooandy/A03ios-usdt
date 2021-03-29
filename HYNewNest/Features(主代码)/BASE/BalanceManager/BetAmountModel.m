@@ -8,7 +8,7 @@
 
 #import "BetAmountModel.h"
 
-@implementation PromoteXimaModel
+@implementation PromoteRebateModel
 
 @end
 

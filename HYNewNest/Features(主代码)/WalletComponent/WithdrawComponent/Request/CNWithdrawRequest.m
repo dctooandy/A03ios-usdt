@@ -60,4 +60,19 @@
     [self POST:kGatewayPath(config_getBalances) parameters:param completionHandler:handler];
 }
 
++ (void)getUserMobileStatusCompletionHandler:(nullable HandlerBlock)completionHandler {
+    
+    NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
+    paramDic[@"inclMobileNo"] = @(1);
+    paramDic[@"inclMobileNoBind"] = @(1);
+    paramDic[@"inclRealName"] = @(1);
+    
+    [self POST:kGatewayPath(config_getByLoginName) parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
+        [[CNUserManager shareManager] saveUserMobileStatus:responseObj];
+        if (completionHandler) {
+            completionHandler(responseObj, errorMsg);
+        }
+    }];
+}
+
 @end

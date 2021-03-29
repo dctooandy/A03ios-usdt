@@ -196,6 +196,20 @@
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             CreditQueryResultModel *resultModel = [CreditQueryResultModel cn_parse:responseObj];
             self.resultModel = resultModel;
+            
+            // 洗码不显示 等待&拒绝
+            if (self.recoType == transactionRecord_XMType) {
+                NSMutableArray *arr = [resultModel.data mutableCopy];
+                [arr enumerateObjectsUsingBlock:^(CreditQueryDataModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    NSString *flag = obj.flagDesc;
+                    if ([flag isEqualToString:@"等待"] || [flag containsString:@"拒绝"]) {
+                        [arr removeObject:obj];
+                    }
+                }];
+                resultModel.data = arr.copy;
+            }
+            
+            
             if (self.currentPage == 1) {
                 self.dataList = [resultModel.data mutableCopy];
             } else {
