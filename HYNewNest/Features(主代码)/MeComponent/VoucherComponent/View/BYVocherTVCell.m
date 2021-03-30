@@ -10,6 +10,7 @@
 #import "NSString+Font.h"
 #import "BYVocherModel.h"
 #import "HYWideOneBtnAlertView.h"
+#import "NSString+JKSize.h"
 
 @interface BYVocherTVCell()
 @property (weak, nonatomic) IBOutlet UIView *bgView;
@@ -17,11 +18,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusLb;
 @property (weak, nonatomic) IBOutlet UILabel *totalAmountLb;
 @property (weak, nonatomic) IBOutlet UILabel *streamLb;
+@property (weak, nonatomic) IBOutlet UILabel *mianeAmountLb;
+@property (weak, nonatomic) IBOutlet UILabel *depositAmountLb;
 @property (weak, nonatomic) IBOutlet UILabel *totalStreamLb;
+@property (weak, nonatomic) IBOutlet UILabel *percentLb;
 @property (weak, nonatomic) IBOutlet UIProgressView *progsView;
 
 @property (weak, nonatomic) IBOutlet UILabel *suportGameRightLb;
 @property (weak, nonatomic) IBOutlet UIImageView *suportGameRightArr;
+@property (weak, nonatomic) IBOutlet UIButton *suportGameRightBtn;
 
 @property (weak, nonatomic) IBOutlet UILabel *suportGameDetailLb;
 
@@ -42,7 +47,7 @@
         _btmDetailBtn.hidden = NO;
         _btmDetailBtnHCons.constant = 30;
         _suportGameDetailLb.hidden = NO;
-        _suportGameDetailLb.text = @"AG旗舰  AG国际  AG彩票AG旗舰  AG国际  AG彩票AG旗舰  AG国际  AG彩票AG旗舰  AG国际  AG彩票";
+        _suportGameDetailLb.text = self.model.platforms;
 //        [_suportGameDetailLb sizeToFit];
         [self setNeedsLayout];
         [self layoutIfNeeded];
@@ -73,38 +78,48 @@
         case 0:
         case 1:
         case 9:
-            _statusLb.textColor = kHexColor(0xFFE090);
+            _percentLb.textColor = _statusLb.textColor = kHexColor(0xFFE090);
             break;
         case 2:
         case 3:
-            _statusLb.textColor = kHexColor(0x40FEB3);
+            _percentLb.textColor = _statusLb.textColor = kHexColor(0x40FEB3);
             break;
         case 8:
-            _statusLb.textColor = kHexColorAlpha(0x40FEB3, 0.3);
+            _percentLb.textColor = _statusLb.textColor = kHexColorAlpha(0x40FEB3, 0.3);
             break;
         case 4:
         case 6:
         case 7:
-            _statusLb.textColor = kHexColorAlpha(0xFFFFFF, 0.1);
+            _percentLb.textColor = _statusLb.textColor = kHexColorAlpha(0xFFFFFF, 0.1);
             break;
         case 5:
-            _statusLb.textColor = kHexColorAlpha(0xFFFFFF, 0.5);
+            _percentLb.textColor = _statusLb.textColor = kHexColorAlpha(0xFFFFFF, 0.5);
             break;
         default:
             break;
     }
     
-    _totalAmountLb.text = [@(model.totalAmount) jk_toDisplayNumberWithDigit:0];
+    _mianeAmountLb.text = [@(model.bonusAmount) jk_toDisplayNumberWithDigit:2];
+    _depositAmountLb.text = [model.depositAmount jk_toDisplayNumberWithDigit:2];
+    _totalAmountLb.text = [@(model.totalAmount) jk_toDisplayNumberWithDigit:2];
     _streamLb.text = [@(model.finishedBetAmount) jk_toDisplayNumberWithDigit:0];
     _totalStreamLb.text = [@(model.unlockBetAmount) jk_toDisplayNumberWithDigit:0];
     float percent = (model.finishedBetAmount*1.0)/(model.unlockBetAmount*1.0);
     _progsView.progress = percent;
-    if (model.platforms) {
+    _percentLb.text = [NSString stringWithFormat:@"%.0f%%", percent*100];
+    
+    if ([model.platforms jk_widthWithFont:[UIFont systemFontOfSize:14.0 weight:UIFontWeightLight] constrainedToHeight:30] > 250) {
+        _suportGameRightArr.alpha = 1;
+        _suportGameRightBtn.enabled = YES;
         _suportGameRightLb.text = model.platforms;
         _suportGameDetailLb.text = model.platforms;
     } else {
-        _suportGameRightLb.text = @"所有游戏";
-        _suportGameDetailLb.text = @"所有游戏";
+        _suportGameRightArr.alpha = 0.1;
+        _suportGameRightBtn.enabled = NO;
+        if (KIsEmptyString(model.platforms)) {
+            _suportGameRightLb.text = @"所有游戏";
+            _suportGameDetailLb.text = @"所有游戏";
+        }
     }
 }
 
