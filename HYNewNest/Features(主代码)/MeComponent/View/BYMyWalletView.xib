@@ -13,10 +13,12 @@
                 <outlet property="effectiveBetAmountLb" destination="6rl-Gh-iEo" id="B87-kZ-HzZ"/>
                 <outlet property="gamesBalanceLb" destination="Vis-mo-iP5" id="c8u-jd-OrQ"/>
                 <outlet property="nonWithdrableAmountLb" destination="11x-5I-vLs" id="aKd-Oo-tf9"/>
+                <outlet property="nonWithdrableTxtLb" destination="1qK-AF-NWa" id="Czl-Km-j23"/>
                 <outlet property="totalBalance" destination="fbl-BL-54O" id="n9X-Iq-Ebm"/>
                 <outlet property="voucherAmountLb" destination="KgK-H3-vZy" id="Hkf-3O-it0"/>
                 <outlet property="wenhaoImgv" destination="lzm-Bp-dPg" id="MIs-G8-bux"/>
                 <outlet property="withdrableAmountLb" destination="CS5-qe-j3N" id="gBQ-9E-KPW"/>
+                <outlet property="withdrableTxtLb" destination="Gn6-LC-O7x" id="3hY-6l-SjF"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -308,7 +310,7 @@
                 <constraint firstItem="1AI-F3-gMh" firstAttribute="leading" secondItem="Mxp-iV-Gwm" secondAttribute="leading" id="z1A-Jn-ppV"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="124.6376811594203" y="66.294642857142861"/>
+            <point key="canvasLocation" x="175" y="48"/>
         </view>
     </objects>
     <resources>

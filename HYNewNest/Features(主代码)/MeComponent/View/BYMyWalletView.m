@@ -16,13 +16,14 @@
 @property (weak, nonatomic) IBOutlet UIImageView *wenhaoImgv;
 @property (weak, nonatomic) IBOutlet UILabel *totalBalance; //!>总余额
 @property (weak, nonatomic) IBOutlet UILabel *effectiveBetAmountLb; //!>本周有效投注额
-//@property (weak, nonatomic) IBOutlet UILabel *currencyLb;
-//@property (weak, nonatomic) IBOutlet UILabel *localBalanceLb;
-//@property (weak, nonatomic) IBOutlet UILabel *promoteAmountLb;
 @property (weak, nonatomic) IBOutlet UILabel *nonWithdrableAmountLb; //!>不可提额度
 @property (weak, nonatomic) IBOutlet UILabel *withdrableAmountLb; //!>可提额度
 @property (weak, nonatomic) IBOutlet UILabel *voucherAmountLb; //!>优惠券额度
 @property (weak, nonatomic) IBOutlet UILabel *gamesBalanceLb; //!>厅内额度
+
+@property (weak, nonatomic) IBOutlet UILabel *nonWithdrableTxtLb;
+@property (weak, nonatomic) IBOutlet UILabel *withdrableTxtLb;
+
 
 @end
 
@@ -62,12 +63,16 @@
 
 #pragma mark - Data
 - (void)requestAccountBalances:(BOOL)isRefreshing {
-//    self.currencyLb.text = [CNUserManager shareManager].userInfo.currency;
+    if ([CNUserManager shareManager].isUsdtMode) {
+        _nonWithdrableTxtLb.text = @"不可提币额度";
+        _withdrableTxtLb.text = @"可提币额度";
+    } else {
+        _nonWithdrableTxtLb.text = @"不可提现额度";
+        _withdrableTxtLb.text = @"可提现额度";
+    }
 
     [self.totalBalance showIndicatorIsBig:NO];
     [self.effectiveBetAmountLb showIndicatorIsBig:NO];
-//    [self.localBalanceLb showIndicatorIsBig:NO];
-//    [self.promoteAmountLb showIndicatorIsBig:NO];
     [self.nonWithdrableAmountLb showIndicatorIsBig:NO];
     [self.withdrableAmountLb showIndicatorIsBig:NO];
     [self.voucherAmountLb showIndicatorIsBig:NO];
@@ -82,8 +87,6 @@
         }];
         [[BalanceManager shareManager] requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
             STRONGSELF_DEFINE
-//            [strongSelf.localBalanceLb hideIndicatorWithText:[model.walletBalance.nonWithDrawable jk_toDisplayNumberWithDigit:2]];
-//            [strongSelf.promoteAmountLb hideIndicatorWithText:[model.walletBalance.promotion jk_toDisplayNumberWithDigit:2]];
             
             [strongSelf setupDataWithModel:model];
         }];
@@ -96,8 +99,6 @@
         }];
         [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
             STRONGSELF_DEFINE
-//            [strongSelf.localBalanceLb hideIndicatorWithText:[model.walletBalance.nonWithDrawable jk_toDisplayNumberWithDigit:2]];
-//            [strongSelf.promoteAmountLb hideIndicatorWithText:[model.walletBalance.promotion jk_toDisplayNumberWithDigit:2]];
             
             [strongSelf setupDataWithModel:model];
         }];
