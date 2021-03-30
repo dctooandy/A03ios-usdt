@@ -20,7 +20,7 @@
                 <outlet property="appImageV" destination="CLs-5Q-0PD" id="Bl7-FR-Vbv"/>
                 <outlet property="appNameLb" destination="1ec-1z-w9j" id="zWf-Ll-MDU"/>
                 <outlet property="downLoadBtn" destination="YWN-ak-Fsx" id="k07-Sm-fT6"/>
-                <outlet property="forthTapLb" destination="dvq-mf-fJb" id="ZbZ-BM-Mxn"/>
+                <outlet property="fifthTapLb" destination="1Ef-f9-gwx" id="2Aa-zd-WGO"/>
                 <outlet property="headerIV" destination="L6F-j7-MKh" id="uK4-96-f0z"/>
                 <outlet property="nickNameLb" destination="tmG-wz-MyA" id="FTr-ZY-OBC"/>
                 <outlet property="scrollContentView" destination="z1O-DJ-YiD" id="F61-Sd-Lfz"/>
@@ -28,8 +28,6 @@
                 <outlet property="scrollView" destination="9b1-FJ-wgg" id="ZWZ-2P-1Go"/>
                 <outlet property="shareBgView" destination="BpC-IV-WtY" id="iaB-Fa-ItY"/>
                 <outlet property="shareBgViewH" destination="pbd-Ke-6gA" id="Y4D-Ey-Wfi"/>
-                <outlet property="sixthTapBtn" destination="FZO-U6-913" id="8x3-Zs-Sio"/>
-                <outlet property="sixthTapLb" destination="MxN-37-T5p" id="XJ2-rC-WX3"/>
                 <outlet property="switchBtn" destination="Fm6-UV-UE2" id="Nzv-B3-6dh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="walletContainerHeightCons" destination="asK-DL-nJz" id="SCb-1W-TGy"/>
@@ -321,7 +319,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DeT-Cl-v4A">
                                                             <rect key="frame" x="0.0" y="0.0" width="118" height="75"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="-15" maxX="0.0" maxY="0.0"/>
-                                                            <state key="normal" image="xm"/>
+                                                            <state key="normal" image="yhq"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                     <integer key="value" value="10"/>
@@ -329,11 +327,11 @@
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="xima:" destination="-1" eventType="touchUpInside" id="Ycl-OS-eM9"/>
+                                                                <action selector="vourcher:" destination="-1" eventType="touchUpInside" id="YlP-p2-t89"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="洗码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ywL-WL-CNM">
-                                                            <rect key="frame" x="46.666666666666664" y="49.666666666666686" width="24.666666666666664" height="14.333333333333329"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="优惠券" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ywL-WL-CNM">
+                                                            <rect key="frame" x="40.666666666666664" y="49.666666666666686" width="36.999999999999993" height="14.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -361,7 +359,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="re8-2F-WOs">
                                                             <rect key="frame" x="0.0" y="0.0" width="118" height="75"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="-15" maxX="0.0" maxY="0.0"/>
-                                                            <state key="normal" image="jl"/>
+                                                            <state key="normal" image="xm"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                     <integer key="value" value="8"/>
@@ -369,11 +367,11 @@
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="tradeRecord:" destination="-1" eventType="touchUpInside" id="0ge-k4-mOk"/>
+                                                                <action selector="xima:" destination="-1" eventType="touchUpInside" id="mjn-77-VNc"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交易记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGS-C0-Pec">
-                                                            <rect key="frame" x="34.333333333333343" y="49.666666666666686" width="49.333333333333343" height="14.333333333333329"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="洗码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGS-C0-Pec">
+                                                            <rect key="frame" x="46.666666666666657" y="49.666666666666686" width="24.666666666666671" height="14.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -401,7 +399,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWo-ZM-syj">
                                                             <rect key="frame" x="0.0" y="0.0" width="118" height="75"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="-15" maxX="0.0" maxY="0.0"/>
-                                                            <state key="normal" image="xx"/>
+                                                            <state key="normal" image="jl"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                     <integer key="value" value="8"/>
@@ -409,10 +407,10 @@
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="messageCenter:" destination="-1" eventType="touchUpInside" id="M7K-0d-557"/>
+                                                                <action selector="tradeRecord:" destination="-1" eventType="touchUpInside" id="Tpr-bU-ITu"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消息中心" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJO-je-LUM">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交易记录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJO-je-LUM">
                                                             <rect key="frame" x="34.333333333333314" y="49.666666666666686" width="49.333333333333343" height="14.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -446,7 +444,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1a-OY-McS">
                                                             <rect key="frame" x="0.0" y="0.0" width="118" height="75"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="-15" maxX="0.0" maxY="0.0"/>
-                                                            <state key="normal" image="yhk"/>
+                                                            <state key="normal" image="xx"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                     <integer key="value" value="10"/>
@@ -454,10 +452,10 @@
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="withdrawAddress:" destination="-1" eventType="touchUpInside" id="xZm-N8-lXr"/>
+                                                                <action selector="messageCenter:" destination="-1" eventType="touchUpInside" id="z2N-x9-EdL"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提现地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvq-mf-fJb">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消息中心" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvq-mf-fJb">
                                                             <rect key="frame" x="34.333333333333329" y="49.666666666666629" width="49.333333333333329" height="14.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -486,7 +484,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYf-VO-JfI">
                                                             <rect key="frame" x="0.0" y="0.0" width="118" height="75"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="-15" maxX="0.0" maxY="0.0"/>
-                                                            <state key="normal" image="aq"/>
+                                                            <state key="normal" image="yhk"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                     <integer key="value" value="8"/>
@@ -494,10 +492,10 @@
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="securityCenter:" destination="-1" eventType="touchUpInside" id="6bH-JE-J9U"/>
+                                                                <action selector="withdrawAddress:" destination="-1" eventType="touchUpInside" id="HOo-cC-PvP"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="安全中心" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ef-f9-gwx">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提现地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ef-f9-gwx">
                                                             <rect key="frame" x="34.333333333333343" y="49.666666666666629" width="49.333333333333343" height="14.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -526,7 +524,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZO-U6-913">
                                                             <rect key="frame" x="0.0" y="0.0" width="118" height="75"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="-15" maxX="0.0" maxY="0.0"/>
-                                                            <state key="normal" image="yjfk"/>
+                                                            <state key="normal" image="aq"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                     <integer key="value" value="8"/>
@@ -534,10 +532,10 @@
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="recharWithdrawGuide:" destination="-1" eventType="touchUpInside" id="Aca-0f-C4o"/>
+                                                                <action selector="securityCenter:" destination="-1" eventType="touchUpInside" id="6s3-ZP-oJ4"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="充提指南" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MxN-37-T5p">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="安全中心" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MxN-37-T5p">
                                                             <rect key="frame" x="34.333333333333314" y="49.666666666666629" width="49.333333333333343" height="14.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -813,7 +811,7 @@
         <image name="xz" width="345" height="100"/>
         <image name="yaoqing" width="192" height="50"/>
         <image name="yhk" width="24" height="24"/>
-        <image name="yjfk" width="24" height="24"/>
+        <image name="yhq" width="23" height="21"/>
         <image name="zb" width="40" height="40"/>
         <image name="路径" width="375" height="179"/>
         <systemColor name="systemBackgroundColor">

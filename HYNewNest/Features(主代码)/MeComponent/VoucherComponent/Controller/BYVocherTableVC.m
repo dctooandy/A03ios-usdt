@@ -66,10 +66,13 @@ static NSString *const kBYVocherCell = @"BYVocherTVCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    BYVocherModel *m = self.vouchers[indexPath.row];
     if ([self.expandRows containsObject:@(indexPath.row)]) {
-        return 324;
+        CGFloat h = 260 + 32 + (m.depositPromotion?32:0);
+        return h;
     }
-    return 250;
+    CGFloat h = 186 + 32 + (m.depositPromotion?32:0);
+    return h;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

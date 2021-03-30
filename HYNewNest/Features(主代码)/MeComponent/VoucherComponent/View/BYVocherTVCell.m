@@ -19,7 +19,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalAmountLb;
 @property (weak, nonatomic) IBOutlet UILabel *streamLb;
 @property (weak, nonatomic) IBOutlet UILabel *mianeAmountLb;
+
+@property (weak, nonatomic) IBOutlet UILabel *depositAmountTxtLb; //存款金额
 @property (weak, nonatomic) IBOutlet UILabel *depositAmountLb;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *depositAmountLbTopConst;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *depositAmountLbHeightCOnst;
+
 @property (weak, nonatomic) IBOutlet UILabel *totalStreamLb;
 @property (weak, nonatomic) IBOutlet UILabel *percentLb;
 @property (weak, nonatomic) IBOutlet UIProgressView *progsView;
@@ -58,7 +63,7 @@
         _btmDetailBtnHCons.constant = 0;
         _suportGameDetailLb.hidden = YES;
         _suportGameDetailLb.text = @"";
-        [_suportGameDetailLb sizeToFit];
+//        [_suportGameDetailLb sizeToFit];
         [self setNeedsLayout];
         [self layoutIfNeeded];
     }
@@ -99,9 +104,23 @@
             break;
     }
     
-    _mianeAmountLb.text = [@(model.bonusAmount) jk_toDisplayNumberWithDigit:2];
+    _mianeAmountLb.text = [model.bonusAmount jk_toDisplayNumberWithDigit:2];
+    
     _depositAmountLb.text = [model.depositAmount jk_toDisplayNumberWithDigit:2];
-    _totalAmountLb.text = [@(model.totalAmount) jk_toDisplayNumberWithDigit:2];
+    if (model.depositPromotion) {
+        _depositAmountLb.hidden = NO;
+        _depositAmountTxtLb.hidden = NO;
+        _depositAmountLbTopConst.constant = 0;
+        _depositAmountLbHeightCOnst.constant = 0;
+        
+    } else {
+        _depositAmountLb.hidden = YES;
+        _depositAmountTxtLb.hidden = YES;
+        _depositAmountLbTopConst.constant = 10;
+        _depositAmountLbHeightCOnst.constant = 22;
+    }
+    
+    _totalAmountLb.text = [model.releaseAmount jk_toDisplayNumberWithDigit:2];
     _streamLb.text = [@(model.finishedBetAmount) jk_toDisplayNumberWithDigit:0];
     _totalStreamLb.text = [@(model.unlockBetAmount) jk_toDisplayNumberWithDigit:0];
     float percent = (model.finishedBetAmount*1.0)/(model.unlockBetAmount*1.0);
