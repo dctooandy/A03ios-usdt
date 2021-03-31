@@ -131,7 +131,7 @@
     [subBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(30);
         make.right.equalTo(self.view).offset(-30);
-        make.bottom.equalTo(self.view).offset(-24-kSafeAreaHeight);
+        make.bottom.equalTo(self.view).offset(-60);
         make.height.mas_equalTo(48);
     }];
     self.btnSubmit = subBtn;

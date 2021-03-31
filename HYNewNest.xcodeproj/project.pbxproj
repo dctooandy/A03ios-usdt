@@ -300,6 +300,7 @@
 		3DB6A0402594A137004A391B /* DSBProfitHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB6A03F2594A137004A391B /* DSBProfitHeader.xib */; };
 		3DB6A0432594A1B5004A391B /* DSBProfitFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6A0422594A1B5004A391B /* DSBProfitFooter.m */; };
 		3DB6A0452594A1C5004A391B /* DSBProfitFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB6A0442594A1C5004A391B /* DSBProfitFooter.xib */; };
+		3DB72DC32614334D00386B6B /* BYCTZNBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB72DC22614334D00386B6B /* BYCTZNBannerView.m */; };
 		3DBA55CE256FA6D3009A2B71 /* CNNormalInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55C1256FA6D3009A2B71 /* CNNormalInputView.m */; };
 		3DBA55CF256FA6D3009A2B71 /* CNNormalInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA55C2256FA6D3009A2B71 /* CNNormalInputView.xib */; };
 		3DBA55D0256FA6D3009A2B71 /* CNBaseTF.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA55C4256FA6D3009A2B71 /* CNBaseTF.m */; };
@@ -1509,6 +1510,8 @@
 		3DB6A0412594A1B5004A391B /* DSBProfitFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBProfitFooter.h; sourceTree = "<group>"; };
 		3DB6A0422594A1B5004A391B /* DSBProfitFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBProfitFooter.m; sourceTree = "<group>"; };
 		3DB6A0442594A1C5004A391B /* DSBProfitFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBProfitFooter.xib; sourceTree = "<group>"; };
+		3DB72DC12614334D00386B6B /* BYCTZNBannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYCTZNBannerView.h; sourceTree = "<group>"; };
+		3DB72DC22614334D00386B6B /* BYCTZNBannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYCTZNBannerView.m; sourceTree = "<group>"; };
 		3DBA55C0256FA6D3009A2B71 /* CNBaseTF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNBaseTF.h; sourceTree = "<group>"; };
 		3DBA55C1256FA6D3009A2B71 /* CNNormalInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNNormalInputView.m; sourceTree = "<group>"; };
 		3DBA55C2256FA6D3009A2B71 /* CNNormalInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNNormalInputView.xib; sourceTree = "<group>"; };
@@ -4671,6 +4674,8 @@
 				3D6B72EA2613371900B441D2 /* BYRechargeUSDTTopView.h */,
 				3D6B72EB2613371900B441D2 /* BYRechargeUSDTTopView.m */,
 				3D6B72ED2613374300B441D2 /* BYRechargeUSDTTopView.xib */,
+				3DB72DC12614334D00386B6B /* BYCTZNBannerView.h */,
+				3DB72DC22614334D00386B6B /* BYCTZNBannerView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6042,6 +6047,7 @@
 				0487C9BC24D01DDE0013715A /* CNTradeRecodeVC.m in Sources */,
 				3D41DE7625199DEE000CA1D6 /* VIPGuideModel.m in Sources */,
 				3D31B95E2542D4BF005275BD /* PreLoginModel.m in Sources */,
+				3DB72DC32614334D00386B6B /* BYCTZNBannerView.m in Sources */,
 				E9B5495324CDB646002CE6EF /* UUMarqueeView.m in Sources */,
 				E986A18C24C9D39B000F9CFF /* XmCalcAmountModel.m in Sources */,
 				3D41DE8325199DEE000CA1D6 /* VIPChartDJTQCell.m in Sources */,

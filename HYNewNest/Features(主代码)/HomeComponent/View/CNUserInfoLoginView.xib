@@ -93,13 +93,21 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="买币">
-                                <color key="titleColor" red="0.92549019607843142" green="0.96862745098039216" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="买币" image="买币">
+                                <color key="titleColor" white="1" alpha="0.60147015665479275" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
                                 <action selector="bottomBtnAction:" destination="-1" eventType="touchUpInside" id="9yg-0J-sJb"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTB-Gh-OlL">
+                            <rect key="frame" x="90" y="12" width="1" height="20"/>
+                            <color key="backgroundColor" white="1" alpha="0.10262697842454663" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" id="ct2-hc-KUV"/>
+                                <constraint firstAttribute="height" constant="20" id="sr7-yO-IOG"/>
+                            </constraints>
+                        </view>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WKq-aj-Tau">
                             <rect key="frame" x="91" y="0.0" width="90.5" height="44"/>
                             <constraints>
@@ -107,13 +115,21 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="充币">
-                                <color key="titleColor" red="0.090196078431372548" green="0.88627450980392153" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="充币" image="充币">
+                                <color key="titleColor" white="1" alpha="0.60147015670000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
                                 <action selector="bottomBtnAction:" destination="-1" eventType="touchUpInside" id="89F-ry-T1U"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RNy-N7-NBA">
+                            <rect key="frame" x="180.5" y="12" width="1" height="20"/>
+                            <color key="backgroundColor" white="1" alpha="0.1026269784" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="B7Z-Zv-3dh"/>
+                                <constraint firstAttribute="width" constant="1" id="M5g-nz-J2Z"/>
+                            </constraints>
+                        </view>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tl-TT-CjY">
                             <rect key="frame" x="0.0" y="44" width="121" height="44"/>
                             <constraints>
@@ -121,13 +137,21 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="充值">
-                                <color key="titleColor" red="0.090196078431372548" green="0.88627450980392153" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="充值" image="充币">
+                                <color key="titleColor" white="1" alpha="0.60147015670000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
                                 <action selector="bottomBtnAction:" destination="-1" eventType="touchUpInside" id="Aqd-oX-Irb"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SoV-Gc-31B">
+                            <rect key="frame" x="120" y="56" width="1" height="20"/>
+                            <color key="backgroundColor" white="1" alpha="0.1026269784" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" id="5s6-cH-wig"/>
+                                <constraint firstAttribute="height" constant="20" id="ZRi-dr-0sw"/>
+                            </constraints>
+                        </view>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYU-oC-yFS">
                             <rect key="frame" x="181.5" y="0.0" width="91" height="44"/>
                             <constraints>
@@ -135,13 +159,21 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="提币">
-                                <color key="titleColor" red="1" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="提币" image="提币">
+                                <color key="titleColor" white="1" alpha="0.60147015670000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
                                 <action selector="bottomBtnAction:" destination="-1" eventType="touchUpInside" id="6vU-ax-2gF"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qo1-bg-Xjh">
+                            <rect key="frame" x="271.5" y="12" width="1" height="20"/>
+                            <color key="backgroundColor" white="1" alpha="0.1026269784" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" id="LG9-Rp-Wbf"/>
+                                <constraint firstAttribute="height" constant="20" id="eIb-iz-vRS"/>
+                            </constraints>
+                        </view>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2cK-kw-z7Y">
                             <rect key="frame" x="121" y="44" width="121" height="44"/>
                             <constraints>
@@ -149,13 +181,21 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="提现">
-                                <color key="titleColor" red="1" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="提现" image="提币">
+                                <color key="titleColor" white="1" alpha="0.60147015670000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
                                 <action selector="bottomBtnAction:" destination="-1" eventType="touchUpInside" id="fDX-fe-J1m"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i5p-tW-cfg">
+                            <rect key="frame" x="241" y="56" width="1" height="20"/>
+                            <color key="backgroundColor" white="1" alpha="0.1026269784" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" id="qMo-J6-hXC"/>
+                                <constraint firstAttribute="height" constant="20" id="zif-EH-fl4"/>
+                            </constraints>
+                        </view>
                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqY-ny-0fM">
                             <rect key="frame" x="272.5" y="0.0" width="90.5" height="44"/>
                             <constraints>
@@ -163,8 +203,8 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="卖币">
-                                <color key="titleColor" red="1" green="0.17254901960784313" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="卖币" image="卖币">
+                                <color key="titleColor" white="1" alpha="0.60147015670000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
                                 <action selector="bottomBtnAction:" destination="-1" eventType="touchUpInside" id="MWg-XU-ypg"/>
@@ -178,7 +218,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="洗码">
-                                <color key="titleColor" red="1" green="0.17254901960784313" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" white="1" alpha="0.60147015670000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
                                 <action selector="bottomBtnAction:" destination="-1" eventType="touchUpInside" id="iVk-oc-aje"/>
@@ -189,14 +229,22 @@
                     <constraints>
                         <constraint firstItem="6tl-TT-CjY" firstAttribute="width" secondItem="2fa-qD-uFl" secondAttribute="width" id="8u3-qx-Mpq"/>
                         <constraint firstItem="2cK-kw-z7Y" firstAttribute="top" secondItem="OYU-oC-yFS" secondAttribute="bottom" id="AQx-ZW-ecF"/>
+                        <constraint firstItem="Qo1-bg-Xjh" firstAttribute="centerY" secondItem="OYU-oC-yFS" secondAttribute="centerY" id="C1q-nj-GiN"/>
+                        <constraint firstItem="SoV-Gc-31B" firstAttribute="trailing" secondItem="6tl-TT-CjY" secondAttribute="trailing" id="Ck0-x2-FZZ"/>
                         <constraint firstItem="2cK-kw-z7Y" firstAttribute="width" secondItem="2fa-qD-uFl" secondAttribute="width" id="Clx-Cx-sHj"/>
                         <constraint firstItem="6tl-TT-CjY" firstAttribute="top" secondItem="PiC-Ka-wmH" secondAttribute="bottom" id="Cu3-I9-M7r"/>
+                        <constraint firstItem="i5p-tW-cfg" firstAttribute="trailing" secondItem="2cK-kw-z7Y" secondAttribute="trailing" id="CzL-HW-Oyv"/>
                         <constraint firstItem="oqY-ny-0fM" firstAttribute="leading" secondItem="OYU-oC-yFS" secondAttribute="trailing" id="D88-z3-MgK"/>
                         <constraint firstItem="oqY-ny-0fM" firstAttribute="width" secondItem="PiC-Ka-wmH" secondAttribute="width" id="ED7-os-Sgt"/>
                         <constraint firstAttribute="bottom" secondItem="2fa-qD-uFl" secondAttribute="bottom" id="G7u-CV-9RD"/>
+                        <constraint firstItem="GTB-Gh-OlL" firstAttribute="trailing" secondItem="PiC-Ka-wmH" secondAttribute="trailing" id="IFx-Wc-K7J"/>
                         <constraint firstItem="2cK-kw-z7Y" firstAttribute="leading" secondItem="6tl-TT-CjY" secondAttribute="trailing" id="Isg-hr-1Tu"/>
                         <constraint firstItem="WKq-aj-Tau" firstAttribute="leading" secondItem="PiC-Ka-wmH" secondAttribute="trailing" id="MhC-O5-bmI"/>
+                        <constraint firstItem="i5p-tW-cfg" firstAttribute="centerY" secondItem="2cK-kw-z7Y" secondAttribute="centerY" id="NUn-Ty-6Bf"/>
+                        <constraint firstItem="GTB-Gh-OlL" firstAttribute="centerY" secondItem="PiC-Ka-wmH" secondAttribute="centerY" id="O0f-3X-O7d"/>
+                        <constraint firstItem="SoV-Gc-31B" firstAttribute="centerY" secondItem="6tl-TT-CjY" secondAttribute="centerY" id="UVG-Id-KMc"/>
                         <constraint firstItem="6tl-TT-CjY" firstAttribute="leading" secondItem="GBy-vV-Zaw" secondAttribute="leading" id="VWy-wO-f5w"/>
+                        <constraint firstItem="Qo1-bg-Xjh" firstAttribute="trailing" secondItem="OYU-oC-yFS" secondAttribute="trailing" id="X4Q-rX-VeN"/>
                         <constraint firstItem="PiC-Ka-wmH" firstAttribute="leading" secondItem="GBy-vV-Zaw" secondAttribute="leading" id="bkD-Lu-ja4"/>
                         <constraint firstAttribute="bottom" secondItem="2cK-kw-z7Y" secondAttribute="bottom" id="cmB-2G-C0T"/>
                         <constraint firstAttribute="height" constant="88" id="etQ-u6-6eu"/>
@@ -207,6 +255,8 @@
                         <constraint firstAttribute="bottom" secondItem="6tl-TT-CjY" secondAttribute="bottom" id="nrQ-3V-jyh"/>
                         <constraint firstItem="OYU-oC-yFS" firstAttribute="width" secondItem="PiC-Ka-wmH" secondAttribute="width" id="nws-uh-4AZ"/>
                         <constraint firstItem="OYU-oC-yFS" firstAttribute="leading" secondItem="WKq-aj-Tau" secondAttribute="trailing" id="r3R-bg-Kl1"/>
+                        <constraint firstItem="RNy-N7-NBA" firstAttribute="trailing" secondItem="WKq-aj-Tau" secondAttribute="trailing" id="tna-ae-y8e"/>
+                        <constraint firstItem="RNy-N7-NBA" firstAttribute="centerY" secondItem="WKq-aj-Tau" secondAttribute="centerY" id="v1p-8e-JGn"/>
                         <constraint firstAttribute="trailing" secondItem="oqY-ny-0fM" secondAttribute="trailing" id="wdn-VX-gaU"/>
                         <constraint firstItem="6tl-TT-CjY" firstAttribute="top" secondItem="WKq-aj-Tau" secondAttribute="bottom" id="xNm-pe-v1Y"/>
                     </constraints>
@@ -308,5 +358,9 @@
         <image name="btn_regsiter" width="141" height="38"/>
         <image name="icon" width="42" height="42"/>
         <image name="vip1" width="42" height="18"/>
+        <image name="买币" width="18" height="16"/>
+        <image name="充币" width="20" height="21"/>
+        <image name="卖币" width="18" height="17"/>
+        <image name="提币" width="20" height="20"/>
     </resources>
 </document>

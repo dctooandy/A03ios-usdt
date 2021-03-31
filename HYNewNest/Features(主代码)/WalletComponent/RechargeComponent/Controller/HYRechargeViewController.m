@@ -17,6 +17,7 @@
 #import "ChargeManualMessgeView.h"
 #import "LYEmptyView.h"
 #import "UIView+Empty.h"
+#import "BYCTZNBannerView.h"
 
 #import "HYRechargeHelper.h"
 #import "IN3SAnalytics.h"
@@ -24,7 +25,6 @@
 
 @interface HYRechargeViewController () <HYRechargeEditViewDelegate>
 @property (nonatomic, strong) UILabel *lblTip;
-@property (nonatomic, strong) UIImageView *imgvBanner;
 @property (nonatomic, strong) CNTwoStatusBtn *btnSubmit;
 @property (strong,nonatomic) BYRechargeUSDTTopView *topView;
 
@@ -117,54 +117,13 @@
 }
 
 - (void)setupBanner {
-    UIImageView *imgv = [[UIImageView alloc] init];
-    imgv.image = [UIImage imageNamed:@"ctzn-banner"];
-    imgv.userInteractionEnabled = YES;
-    imgv.layer.cornerRadius = 10;
-    imgv.layer.masksToBounds = YES;
+    BYCTZNBannerView *imgv = [[BYCTZNBannerView alloc] init];
     [self.view addSubview:imgv];
     [imgv mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(15);
         make.right.equalTo(self.view).offset(-15);
         make.height.equalTo(imgv.mas_width).multipliedBy(115/345.0);
-        make.bottom.equalTo(self.view).offset(-60);
-    }];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBanner:)];
-    [imgv addGestureRecognizer:tap];
-    self.imgvBanner = imgv;
-    
-    UILabel *titLb = [UILabel new];
-    titLb.text = @"充提指南";
-    titLb.font = [UIFont fontPFSB18];
-    titLb.textColor = kHexColorAlpha(0xFFFFFF, 0.9);
-    [imgv addSubview:titLb];
-    [titLb sizeToFit];
-    [titLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(imgv.mas_right).offset(-59);
-        make.top.equalTo(imgv).offset(34);
-    }];
-    
-    UILabel *detalLb = [UILabel new];
-    detalLb.text = @"安全简单，了解一下";
-    detalLb.font = [UIFont fontPFSB12];
-    detalLb.textColor = kHexColorAlpha(0xFFFFFF, 0.7);
-    [imgv addSubview:detalLb];
-    [detalLb sizeToFit];
-    [detalLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(titLb).offset(-10);
-        make.top.equalTo(titLb.mas_bottom).offset(7);
-    }];
-    
-    UIImageView *imgIcon = [[UIImageView alloc] init];
-    UIImage *img = [UIImage imageNamed:@"right1"];
-    img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    imgIcon.image = img;
-    imgIcon.tintColor = kHexColorAlpha(0xFFFFFF, 0.8);
-    [imgv addSubview:imgIcon];
-    [imgIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(detalLb);
-        make.left.equalTo(detalLb.mas_right).offset(4);
-        make.height.width.mas_equalTo(18);
+        make.bottom.equalTo(self.view).offset(-40);
     }];
 }
 
@@ -197,12 +156,6 @@
 
 
 #pragma mark - ACTION
-
-- (void)tapBanner:(UITouch *)touch {
-//    [NNPageRouter jump2HTMLWithStrURL:@"/tutorialReference" title:@"请稍等.." needPubSite:YES];
-    [self presentViewController:[HYNewCTZNViewController new] animated:YES completion:^{
-    }];
-}
 
 - (void)didClickCloseTip {
     self.lblTip.hidden = YES;
