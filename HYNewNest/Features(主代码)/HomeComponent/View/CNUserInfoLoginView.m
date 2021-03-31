@@ -67,7 +67,7 @@
 
 - (void)configLogInUI {
     self.loginView.hidden = YES;
-
+    [self refreshBottomBtnsStatus];
     [self.headerIcon sd_setImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userDetail.avatar] placeholderImage:[UIImage imageNamed:@"icon"]];
 
     NSInteger level = [CNUserManager shareManager].userInfo.starLevel;
