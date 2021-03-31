@@ -33,26 +33,32 @@
     [imgv addGestureRecognizer:tap];
     
     UILabel *titLb = [UILabel new];
-    titLb.text = @"充提指南";
+    titLb.text = @"充提指南 安全简单";
     titLb.font = [UIFont fontPFSB18];
     titLb.textColor = kHexColorAlpha(0xFFFFFF, 0.9);
     [imgv addSubview:titLb];
     [titLb sizeToFit];
     [titLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(imgv.mas_right).offset(-59);
+        make.right.equalTo(imgv.mas_right).offset(-20);
         make.top.equalTo(imgv).offset(34);
     }];
     
     UILabel *detalLb = [UILabel new];
-    detalLb.text = @"安全简单，了解一下";
+    detalLb.text = @"了解一下　　";
     detalLb.font = [UIFont fontPFSB12];
     detalLb.textColor = kHexColorAlpha(0xFFFFFF, 0.7);
+    detalLb.backgroundColor = kHexColor(0x19CECE);
+    detalLb.textAlignment = NSTextAlignmentCenter;
     [imgv addSubview:detalLb];
-    [detalLb sizeToFit];
+//    [detalLb sizeToFit];
     [detalLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(titLb).offset(-10);
-        make.top.equalTo(titLb.mas_bottom).offset(7);
+        make.centerX.equalTo(titLb);
+        make.top.equalTo(titLb.mas_bottom).offset(10);
+        make.width.mas_equalTo(92);
+        make.height.mas_equalTo(25);
     }];
+    detalLb.layer.cornerRadius = 12.5;
+    detalLb.layer.masksToBounds = YES;
     
     UIImageView *imgIcon = [[UIImageView alloc] init];
     UIImage *img = [UIImage imageNamed:@"right1"];
@@ -62,7 +68,7 @@
     [imgv addSubview:imgIcon];
     [imgIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(detalLb);
-        make.left.equalTo(detalLb.mas_right).offset(4);
+        make.left.equalTo(detalLb.mas_right).offset(-25);
         make.height.width.mas_equalTo(18);
     }];
 }
