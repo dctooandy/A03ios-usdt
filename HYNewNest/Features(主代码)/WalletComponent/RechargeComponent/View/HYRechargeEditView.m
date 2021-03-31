@@ -84,12 +84,14 @@
     if ([HYRechargeHelper isOnlinePayWayDCBox:self.deposModel]) {
         self.protocolBgView.hidden = YES;
         self.amountTfViewTopMargin.constant = 22;
+        // 自内而外改变高度
         [self mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(249-62);
         }];
     } else {
         self.protocolBgView.hidden = NO;
         self.amountTfViewTopMargin.constant = 86;
+        // 自内而外改变高度
         [self mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(249);
         }];

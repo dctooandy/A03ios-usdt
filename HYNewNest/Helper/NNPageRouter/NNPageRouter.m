@@ -39,18 +39,13 @@
 }
 
 + (void)jump2BuyECoin {
-    NSInteger depositLevel = [CNUserManager shareManager].userDetail.depositLevel;
-    if (depositLevel > 1) {
+//    NSInteger depositLevel = [CNUserManager shareManager].userDetail.depositLevel;
+//    if (depositLevel > 1) {
         [NNPageRouter openExchangeElecCurrencyPage];
-    } else {
-//        BOOL notshowDexchangeFlag = NO;
-//        if (depositLevel == -1 || depositLevel == -11) {
-//            notshowDexchangeFlag = YES;
-//        }
-        HYBuyECoinGuideVC *vc = [HYBuyECoinGuideVC new];
-//        vc.notshowDexchangeFlag = notshowDexchangeFlag;
-        [kCurNavVC pushViewController:vc animated:YES];
-    }
+//    } else { // 小于一星级
+//        HYBuyECoinGuideVC *vc = [HYBuyECoinGuideVC new];
+//        [kCurNavVC pushViewController:vc animated:YES];
+//    }
     
 }
 

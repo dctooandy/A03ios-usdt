@@ -45,7 +45,7 @@
     if ([CNUserManager shareManager].isLogin) {
         [self configLogInUI];
         [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-            [self setupAmount:model?model.balance:@0];
+            [self.moneyLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
         }];
 //        if (![CNUserManager shareManager].userDetail.newAccountFlag) {
         if ([CNUserManager shareManager].isUiModeHasOptions) {
@@ -83,16 +83,8 @@
         [self.moneyLb showIndicatorIsBig:NO];
         //金额
         [[BalanceManager shareManager] requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-            [self setupAmount:model.balance];
+            [self.moneyLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
         }];
-    }
-}
-
-- (void)setupAmount:(NSNumber *)amount {
-    if (amount.integerValue == 0) {
-        [self.moneyLb hideIndicatorWithText:@"000.00"];
-    } else {
-        [self.moneyLb hideIndicatorWithText:[amount jk_toDisplayNumberWithDigit:2]];
     }
 }
 

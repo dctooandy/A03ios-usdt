@@ -173,6 +173,13 @@
 
 /// 买充提卖
 - (IBAction)didClickMCTMBtns:(UIButton *)sender {
+    if ([CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userInfo.starLevel == 0 && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
+        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
+        vc.type = sender.tag;
+        [self presentViewController:vc animated:YES completion:nil];
+        return;
+    }
+    
     if (sender.tag == 0) { // 买币
         [NNPageRouter jump2BuyECoin];
         

@@ -9,8 +9,8 @@
 #import "CNBaseXibView.h"
 
 
-typedef enum : NSUInteger {
-    CNActionTypeBuy,        //买
+typedef enum : NSInteger {
+    CNActionTypeBuy = 0,        //买
     CNActionTypeDeposit,    //充
     CNActionTypeWithdraw,   //提
     CNActionTypeSell,       //卖
