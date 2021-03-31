@@ -11,6 +11,7 @@
 #import "HYRechProcButton.h"
 #import "HYRechargeHelper.h"
 #import <UIImageView+WebCache.h>
+#import "NSURL+HYLink.h"
 
 @interface HYRechargeEditView ()
 @property (strong, nonatomic) IBOutlet UIView *contentView;
@@ -157,7 +158,7 @@
 - (void)setupDepositModel:(DepositsBankModel *)model {
     _deposModel = model;
     
-    [_imgvIcon sd_setImageWithURL:[NSURL URLWithString:model.bankIcon]];
+    [_imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:model.bankIcon] placeholderImage:[UIImage imageNamed:@"Exchanges-logo-1"]];
     _tfAmount.placeholder = [NSString stringWithFormat:@"请输入≥%ld%@的数额", model.minAmount, model.currency];
     if ([model.bankname caseInsensitiveCompare:@"dcbox"] == NSOrderedSame) {
         _lblPayWayName.text = @"小金库";
