@@ -283,7 +283,7 @@
         // 3.加载WalletView YES
         // 判断用户是新钱包还是旧钱包
         if ([CNUserManager shareManager].userDetail.newWalletFlag) {
-            if (!self.walletContainerView.subviews.count || [self.walletView isKindOfClass:[BYOldMyWalletView class]]) {
+            if (!self.walletContainerView.subviews.count || [self.walletView isMemberOfClass:[BYOldMyWalletView class]]) {
                 [self.walletView removeFromSuperview];
                 self.walletView = [[BYMyWalletView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-30, 217)];
                 self.walletContainerHeightCons.constant = 217;
@@ -292,7 +292,7 @@
                 [self.walletView requestAccountBalances:YES];
             }
         } else {
-            if (!self.walletContainerView.subviews.count || [self.walletView isKindOfClass:[BYMyWalletView class]]) {
+            if (!self.walletContainerView.subviews.count || [self.walletView isMemberOfClass:[BYMyWalletView class]]) {
                 [self.walletView removeFromSuperview];
                 self.walletView = [[BYOldMyWalletView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-30, 148)];
                 self.walletContainerHeightCons.constant = 148;

@@ -14,7 +14,7 @@ target 'HYNewNest' do
   pod 'SDWebImage'
   pod 'SDWebImage/GIF'
   pod 'Masonry'
-  pod 'MBProgressHUD'
+  pod 'MBProgressHUD', '~> 1.1.0'
   pod 'UITableView+FDTemplateLayoutCell'
   pod 'IQKeyboardManager'
   pod 'FCUUID'
