@@ -57,8 +57,12 @@ form.submit();\
     self = [super init];
     if(self) {
         self.gameName = title;
-        self.gameUrl = gameUrl;
-        
+        if ([gameUrl containsString:@"http"]) {
+            NSString *agwebUrl = [NSString stringWithFormat:@"%@&webApp=%@",gameUrl,@"true"];
+            self.gameUrl = [agwebUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        } else {
+            self.gameUrl = gameUrl;
+        }
     }
     return self;
 }
