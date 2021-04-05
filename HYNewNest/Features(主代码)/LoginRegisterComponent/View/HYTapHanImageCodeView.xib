@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HYTapHanImageCodeView">
             <connections>
                 <outlet property="captchaImgv" destination="EEL-eR-5Gd" id="qCI-Uj-MIg"/>
+                <outlet property="lblText" destination="rpw-vU-oAB" id="Fs6-tP-Wko"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -37,11 +38,24 @@
                         <action selector="didTapReloadBtn:" destination="-1" eventType="touchUpInside" id="Dbl-bq-Bc3"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请稍等..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rpw-vU-oAB">
+                    <rect key="frame" x="0.0" y="65" width="300" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="xaw-FX-ari"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="EEL-eR-5Gd" secondAttribute="bottom" id="GDC-QH-mEP"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="rpw-vU-oAB" secondAttribute="bottom" id="Jbr-Xu-2eL"/>
+                <constraint firstItem="rpw-vU-oAB" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="K0g-G4-VFq"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rpw-vU-oAB" secondAttribute="trailing" id="Nf7-2V-eKx"/>
                 <constraint firstItem="EEL-eR-5Gd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="UmW-3u-s0d"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="EEL-eR-5Gd" secondAttribute="trailing" id="dYI-sW-p2M"/>
                 <constraint firstAttribute="trailing" secondItem="vqC-ol-3gn" secondAttribute="trailing" id="ro2-JC-UsG"/>
