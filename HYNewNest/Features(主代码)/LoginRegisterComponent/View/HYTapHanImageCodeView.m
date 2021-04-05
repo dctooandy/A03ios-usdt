@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *captchaImgv;
 @property (strong, nonatomic) CNImageCodeModel *codeModel;
 @property (nonatomic, strong) NSMutableArray *coordinates;
+@property (weak, nonatomic) IBOutlet UILabel *lblText;
 @property (nonatomic, readwrite) NSString *ticket;
 @end
 
@@ -91,11 +92,16 @@
             self.codeModel = [CNImageCodeModel cn_parse:responseObj];
             UIImage *img = self.codeModel.decodeImage;
             [self.captchaImgv setImage:img];
-//            NSMutableString *str = @"请依次点击".mutableCopy;
-//            for (NSString *s in self.codeModel.specifyWord) {
-//                [str appendFormat:@"【%@】",s];
-//            }
-//            self.lblText.text = str.copy;
+            if (self.codeModel.specifyWord.count) {
+                NSMutableString *str = @"请“依次”点击".mutableCopy;
+                for (NSString *s in self.codeModel.specifyWord) {
+                    [str appendFormat:@"【%@】",s];
+                }
+                self.lblText.text = str.copy;
+                self.lblText.hidden = NO;
+            } else {
+                self.lblText.hidden = YES;
+            }
         }
     }];
 }
