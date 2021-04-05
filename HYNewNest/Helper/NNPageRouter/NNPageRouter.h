@@ -48,7 +48,7 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 /// 跳转到客服
 /// @param type 客服类型
 +(void)jump2Live800Type:(CNLive800Type)type;
-
++ (void)presentOCSS_VC:(CNLive800Type)type;
 
 /// 跳转到H5
 +(void)jump2HTMLWithStrURL: (NSString *)strURL title:(NSString *)title needPubSite:(BOOL)needPubSite;

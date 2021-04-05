@@ -177,7 +177,7 @@
 }
 
 - (IBAction)didTapCustomerServerBtn:(id)sender {
-    [NNPageRouter jump2Live800Type:CNLive800TypeNormal];
+    [NNPageRouter presentOCSS_VC:CNLive800TypeNormal];
 }
 
 //- (IBAction)didTapMyGiftBtn:(id)sender {

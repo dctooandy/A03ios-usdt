@@ -19,8 +19,7 @@
 #import "SuspendBall.h"
 #import "CNServerView.h"
 #import "CNHomeRequest.h"
-#import <CSCustomSerVice/CSCustomSerVice.h>
-#import "KeyChain.h"
+
 
 @interface HYTabBarViewController ()<UITabBarControllerDelegate, SuspendBallDelegte, CNServerViewDelegate>
 @property (nonatomic, strong) SuspendBall *suspendBall;
@@ -188,12 +187,10 @@
     
     if(tag == 0){
         //客服 存取款问题
-//        [NNPageRouter jump2Live800Type:CNLive800TypeDeposit];
-        [self openNew800];
+        [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
     }else if (tag == 1){
         //客服 其他问题
-//        [NNPageRouter jump2Live800Type:CNLive800TypeNormal];
-        [self openNew800];
+        [NNPageRouter presentOCSS_VC:CNLive800TypeNormal];
     }else if (tag == 2){
         //电话回拨
         [CNServerView showServerWithDelegate:self];
@@ -201,21 +198,6 @@
         //400
         [self call400];
     }
-}
-
-- (void)openNew800{
-    CSChatInfo *info = [[CSChatInfo alloc]init];
-    info.productId = [IVHttpManager shareManager].productId;//产品ID，你们app的产品id
-    info.loginName = [IVHttpManager shareManager].loginName?:@"";//网站用户名，你们app的用户名
-    info.token = [IVHttpManager shareManager].userToken?:@"";//网站登陆后的token,你们app的token
-    info.domainName = [IVHttpManager shareManager].domain;//网站域名，你们app的网站域名
-    info.appid = [IVHttpManager shareManager].appId;//AppID，你们app的appid
-    info.title = @"在线客服";//导航栏标题
-    info.uuid = [KeyChain getKeychainIdentifierUUID];//用户uuid
-    //    如果完整地址是 @"http://m3.wancity.net/_glaxy_a5b04c_/liveChatAddressOCSS"
-    info.baseUrl = [[IVHttpManager shareManager].gateway stringByAppendingString:kGatewayPath(@"")];//客服后台配置的接口域名
-    [CSVisitChatmanager startservicewithsuperVC:self chatInfo:info finish:^(CSServiceCode errCode) {
-    }];
 }
 
 - (void)call400{

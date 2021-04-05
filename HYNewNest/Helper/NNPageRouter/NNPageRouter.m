@@ -14,6 +14,9 @@
 #import "GameStartPlayViewController.h"
 #import "CNLoginRegisterVC.h"
 
+#import <CSCustomSerVice/CSCustomSerVice.h>
+#import "KeyChain.h"
+
 #import "CNHomeRequest.h"
 #import "CNRechargeRequest.h"
 #import "CNWithdrawRequest.h"
@@ -103,6 +106,40 @@
                 } else {
                     [CNHUB showError:@"PayURL错误 请联系客服"];
                 }
+            }
+        }
+    }];
+}
+
++ (void)presentOCSS_VC:(CNLive800Type)type {
+    CSChatInfo *info = [[CSChatInfo alloc]init];
+    info.productId = [IVHttpManager shareManager].productId;//产品ID，你们app的产品id
+    info.loginName = [IVHttpManager shareManager].loginName?:@"";//网站用户名，你们app的用户名
+    info.token = [IVHttpManager shareManager].userToken?:@"";//网站登陆后的token,你们app的token
+    info.domainName = [IVHttpManager shareManager].domain;//网站域名，你们app的网站域名
+    info.appid = [IVHttpManager shareManager].appId;//AppID，你们app的appid
+    info.title = @"在线客服";//导航栏标题
+    info.uuid = [KeyChain getKeychainIdentifierUUID];//用户uuid
+    //    如果完整地址是 @"http://m3.wancity.net/_glaxy_a5b04c_/liveChatAddressOCSS"
+    info.baseUrl = [[IVHttpManager shareManager].gateway stringByAppendingString:kGatewayPath(@"")];//客服后台配置的接口域名
+    
+    [CSVisitChatmanager startservicewithsuperVC:[NNControllerHelper currentTabBarController]
+                                       chatInfo:info
+                                         finish:^(CSServiceCode errCode) {
+        
+        if (errCode != CSServiceCode_Request_Suc) {
+            if (type == CNLive800TypeDeposit) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [NNPageRouter jump2Live800Type:CNLive800TypeDeposit];
+                });
+            } else if (type == CNLive800TypeNormal) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [NNPageRouter jump2Live800Type:CNLive800TypeNormal];
+                });
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [NNPageRouter jump2Live800Type:CNLive800TypeForgot];
+                });
             }
         }
     }];
