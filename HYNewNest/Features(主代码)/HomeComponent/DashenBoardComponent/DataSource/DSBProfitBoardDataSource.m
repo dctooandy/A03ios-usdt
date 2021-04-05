@@ -92,7 +92,10 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     __weak typeof(self) weakSelf = self;
     [[NSNotificationCenter defaultCenter] addObserverForName:BYWebSocketDidReceivedNoti object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         NSString *dictStr = note.object;
-        if (dictStr.length < 5 || [dictStr hasPrefix:@"0{\"sid\":"]) { //无用数据
+        
+        if (dictStr.length < 5 || [dictStr hasPrefix:@"0{\"sid\":"] ||
+            ([[SocketRocketUtility instance] socketReadyState] == SR_CLOSING ||
+             [[SocketRocketUtility instance] socketReadyState] == SR_CLOSED)) { //无用数据 或 无socket连接
             return;
         }
         NSRange startRng = [dictStr rangeOfString:@"["];
@@ -104,15 +107,17 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
         // 数组只有两个参数 第二个是主要数据  我们主要处理 @"result list" & @"close round"
         if ([fullArr[0] isEqualToString:@"result list"]) { // 所有游戏数据
             NSLog(@"------------------------ allDict save to DB");
+            kPreventRepeatTime(5);
             NSString *allDictStr = fullArr[1];
             NSDictionary *allDict = [BYJSONHelper dictOrArrayWithJsonString:allDictStr];
             for (NSString *vid in allDict.allKeys) {
                 DSBGameRoundResModel *vModel = [DSBGameRoundResModel cn_parse:allDict[vid]];
-                [vModel bg_saveOrUpdate];
+                [vModel bg_saveOrUpdateAsync:^(BOOL isSuccess) {
+                    dispatch_async(dispatch_get_main_queue(), ^{ @autoreleasepool {
+                        [weakSelf.tableView reloadData];
+                    }});
+                }];
             }
-            dispatch_async(dispatch_get_main_queue(), ^{ @autoreleasepool {
-                [weakSelf.tableView reloadData];
-            }});
             
         } else if ([fullArr[0] containsString:@"close round"]){ // 更新游戏数据
             RoundPushModel *nround = [RoundPushModel cn_parse:fullArr[1]];
