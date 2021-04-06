@@ -47,6 +47,19 @@
     [self POST:kGatewayPath(config_SendCodePhone) parameters:paras completionHandler:completionHandler];
 }
 
++ (void)getSMSCodeWithType:(CNSMSCodeType)type
+                     phone:(NSString *)phone
+                validateId:(NSString *)vId
+         completionHandler:(HandlerBlock)completionHandler {
+    
+    NSMutableDictionary *paras = [kNetworkMgr baseParam];
+    paras[@"use"] = @(type);
+    paras[@"mobileNo"] = [CNEncrypt encryptString:phone];
+    paras[@"validateId"] = vId;
+    
+    [self POST:kGatewayPath(config_SendCodePhone) parameters:paras completionHandler:completionHandler];
+}
+
 + (void)getSMSCodeByLoginNameType:(CNSMSCodeType)type   completionHandler:(HandlerBlock)completionHandler {
     
     NSMutableDictionary *paras = [kNetworkMgr baseParam];
@@ -313,8 +326,8 @@
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
     [paramDic setObject:messageId forKey:@"messageId"];
     [paramDic setObject:smsCode forKey:@"smsCode"];
-    [paramDic setObject:@"2" forKey:@"bindType"];
-    [paramDic setObject:@"0" forKey:@"use"];
+//    [paramDic setObject:@"2" forKey:@"bindType"];
+//    [paramDic setObject:@"0" forKey:@"use"];
     
     [self POST:kGatewayPath(config_reBindMobileNoV2) parameters:paramDic completionHandler:completionHandler];
 }

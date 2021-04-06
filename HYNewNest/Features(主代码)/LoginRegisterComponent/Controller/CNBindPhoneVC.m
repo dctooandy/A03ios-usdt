@@ -89,6 +89,7 @@
             self.inputTF.userInteractionEnabled = NO;
             self.sendCodeBtn.hidden = NO;
             self.navigationItem.title = @"手机号修改";
+            [self.submitBtn setTitle:@"确认" forState:UIControlStateNormal];
             break;
         // 解绑来的 绑新手机
         case CNSMSCodeTypeChangePhone:
@@ -194,8 +195,9 @@
         }];
         
     } else {
-        [CNLoginRequest getSMSCodeWithType:CNSMSCodeTypeBindPhone
+        [CNLoginRequest getSMSCodeWithType:self.validateId?CNSMSCodeTypeChangePhone:CNSMSCodeTypeBindPhone
                                      phone:self.inputTF.text
+                                validateId:self.validateId?:@""
                          completionHandler:^(id responseObj, NSString *errorMsg) {
             STRONGSELF_DEFINE
             SmsCodeModel *smsModel = [SmsCodeModel cn_parse: responseObj];
@@ -265,6 +267,9 @@
                 [CNHUB showSuccess:@"验证成功"];
                 CNBindPhoneVC *bindVc = [CNBindPhoneVC new];
                 bindVc.bindType = CNSMSCodeTypeChangePhone;
+                if (responseObj && [responseObj isKindOfClass:[NSDictionary class]]) {
+                    bindVc.validateId = responseObj[@"validateId"];
+                }
                 [self.navigationController pushViewController:bindVc animated:YES];
             }
         }];
