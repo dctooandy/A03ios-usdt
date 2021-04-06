@@ -71,6 +71,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = [CNUserManager shareManager].isUsdtMode ? @"提币地址管理" : @"银行卡管理";
+    [self addNaviRightItemWithImageName:@"service"];
     
     [self configUI];
     
@@ -83,6 +84,10 @@
         self.segmentView.hidden = YES;
         self.segmentViewH.constant = 0;
     }
+}
+
+- (void)rightItemAction {
+    [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

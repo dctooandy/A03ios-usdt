@@ -113,6 +113,10 @@
 
 + (void)presentOCSS_VC:(CNLive800Type)type {
     CSChatInfo *info = [[CSChatInfo alloc]init];
+    info.backColor = [UIColor lightGrayColor];
+    info.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontPFSB18]};
+    info.barTintColor = kHexColor(0x1A1A2C);
+
     info.productId = [IVHttpManager shareManager].productId;//产品ID，你们app的产品id
     info.loginName = [IVHttpManager shareManager].loginName?:@"";//网站用户名，你们app的用户名
     info.token = [IVHttpManager shareManager].userToken?:@"";//网站登陆后的token,你们app的token
