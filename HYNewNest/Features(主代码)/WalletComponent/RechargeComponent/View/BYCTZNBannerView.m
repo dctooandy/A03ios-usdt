@@ -43,41 +43,30 @@
         make.top.equalTo(imgv).offset(34);
     }];
     
-    UILabel *detalLb = [UILabel new];
-    detalLb.text = @"了解一下　　";
-    detalLb.font = [UIFont fontPFSB12];
-    detalLb.textColor = kHexColorAlpha(0xFFFFFF, 0.7);
-    detalLb.backgroundColor = kHexColor(0x19CECE);
-    detalLb.textAlignment = NSTextAlignmentCenter;
-    [imgv addSubview:detalLb];
-//    [detalLb sizeToFit];
-    [detalLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(titLb);
-        make.top.equalTo(titLb.mas_bottom).offset(10);
-        make.width.mas_equalTo(92);
-        make.height.mas_equalTo(25);
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
+    [btn setTitle:@"了解一下" forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont fontPFSB12];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn setTintColor:[UIColor whiteColor]];
+    [btn setBackgroundColor:kHexColor(0x19CECE)];
+    [btn setImage:[UIImage imageNamed:@"right1"] forState:UIControlStateNormal];
+    [imgv addSubview:btn];
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(titLb);
+            make.top.equalTo(titLb.mas_bottom).offset(10);
+            make.width.mas_equalTo(92);
+            make.height.mas_equalTo(25);
     }];
-    detalLb.layer.cornerRadius = 12.5;
-    detalLb.layer.masksToBounds = YES;
-    
-    UIImageView *imgIcon = [[UIImageView alloc] init];
-    UIImage *img = [UIImage imageNamed:@"right1"];
-    img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    imgIcon.image = img;
-    imgIcon.tintColor = kHexColorAlpha(0xFFFFFF, 0.8);
-    [imgv addSubview:imgIcon];
-    [imgIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(detalLb);
-        make.left.equalTo(detalLb.mas_right).offset(-25);
-        make.height.width.mas_equalTo(18);
-    }];
+    btn.layer.cornerRadius = 12.5;
+    btn.layer.masksToBounds = YES;
+    [btn jk_setImagePosition:LXMImagePositionRight spacing:2];
 }
 
 - (void)tapBanner:(UITouch *)touch {
-    [NNPageRouter jump2HTMLWithStrURL:@"/tutorialReference" title:@"请稍等.." needPubSite:YES];
-//    UIViewController *vc = [NNControllerHelper getCurrentViewController];
-//    [vc presentViewController:[HYNewCTZNViewController new] animated:YES completion:^{
-//    }];
+//    [NNPageRouter jump2HTMLWithStrURL:@"/tutorialReference" title:@"请稍等.." needPubSite:YES];
+    UIViewController *vc = [NNControllerHelper getCurrentViewController];
+    [vc presentViewController:[HYNewCTZNViewController new] animated:YES completion:^{
+    }];
 }
 
 @end

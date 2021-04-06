@@ -112,12 +112,21 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
             strongSelf.models = aaa;
             [strongSelf.tableView reloadData];
             if (strongSelf.type != -1) {
-                CTZNModel *model = self.models[strongSelf.type];
-                HYCTZNPlayerViewController *playVC = [[HYCTZNPlayerViewController alloc] init];
-                playVC.sourceUrl = model.video;
-                playVC.tit = model.title;
-                playVC.modalPresentationStyle = UIModalPresentationFullScreen;
-                [self presentViewController:playVC animated:YES completion:nil];
+                // 自动播放
+//                CTZNModel *model = self.models[strongSelf.type];
+//                HYCTZNPlayerViewController *playVC = [[HYCTZNPlayerViewController alloc] init];
+//                playVC.sourceUrl = model.video;
+//                playVC.tit = model.title;
+//                playVC.modalPresentationStyle = UIModalPresentationFullScreen;
+//                [self presentViewController:playVC animated:YES completion:nil];
+                
+                // 滚动&高亮
+                NSIndexPath *idxPath = [NSIndexPath indexPathForRow:strongSelf.type inSection:0];
+                [strongSelf.tableView scrollToRowAtIndexPath:idxPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+                [strongSelf.tableView selectRowAtIndexPath:idxPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [strongSelf.tableView deselectRowAtIndexPath:idxPath animated:YES];
+                });
             }
         }
     }];
@@ -198,5 +207,8 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 @end
