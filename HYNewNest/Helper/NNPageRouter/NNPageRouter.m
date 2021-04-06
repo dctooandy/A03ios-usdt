@@ -22,6 +22,7 @@
 #import "HYRechargeViewController.h"
 #import "HYRechargeCNYViewController.h"
 #import "HYBuyECoinGuideVC.h"
+#import "CNBindPhoneVC.h"
 
 @implementation NNPageRouter
 
@@ -58,36 +59,48 @@
 }
 
 + (void)jump2Withdraw {
-    if ([CNUserManager shareManager].isUsdtMode) {
-        [kCurNavVC pushViewController:[HYWithdrawViewController new] animated:YES];
-        
-    } else {
-        
-        __block void(^jumpWithdrawBlock)(WithdrawCalculateModel* ) = ^(WithdrawCalculateModel * model) {
-            HYWithdrawViewController *vc = [HYWithdrawViewController new];
-            vc.calculatorModel = model;
+    
+    [CNWithdrawRequest getUserMobileStatusCompletionHandler:^(id responseObj, NSString *errorMsg) {
+        CNUserDetailModel *model = [CNUserDetailModel cn_parse:responseObj];
+        if (!model.mobileNoBind) { // 没有绑定手机 -> 跳到手机绑定
+            CNBindPhoneVC *vc = [CNBindPhoneVC new];
+            vc.bindType = CNSMSCodeTypeBindPhone;
             [kCurNavVC pushViewController:vc animated:YES];
-        };
+            return;
+        }
         
-        [CNWithdrawRequest withdrawCalculatorMode:@1 amount:nil accountId:nil handler:^(id responseObj, NSString *errorMsg) {
+        if ([CNUserManager shareManager].isUsdtMode) {
+            [kCurNavVC pushViewController:[HYWithdrawViewController new] animated:YES];
             
-            if (!errorMsg && responseObj ) {
-                WithdrawCalculateModel *model = [WithdrawCalculateModel cn_parse:responseObj];
+        } else {
+            
+            __block void(^jumpWithdrawBlock)(WithdrawCalculateModel* ) = ^(WithdrawCalculateModel * model) {
+                HYWithdrawViewController *vc = [HYWithdrawViewController new];
+                vc.calculatorModel = model;
+                [kCurNavVC pushViewController:vc animated:YES];
+            };
+            
+            [CNWithdrawRequest withdrawCalculatorMode:@1 amount:nil accountId:nil handler:^(id responseObj, NSString *errorMsg) {
                 
-                if (![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowQKFLUserDefaultKey] && model.creditExchangeFlag) {
+                if (!errorMsg && responseObj ) {
+                    WithdrawCalculateModel *model = [WithdrawCalculateModel cn_parse:responseObj];
                     
-                    [HYWithdrawActivityAlertView showWithAmountPercent:model.creditExchangeRatio
-                                                           giftPercent:model.promoInfo.promoRatio
-                                                            mostAmount:model.promoInfo.maxAmount handler:^{
-                        jumpWithdrawBlock(model);
+                    if (![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowQKFLUserDefaultKey] && model.creditExchangeFlag) {
                         
-                    }];
-                } else {
-                    jumpWithdrawBlock(model);
+                        [HYWithdrawActivityAlertView showWithAmountPercent:model.creditExchangeRatio
+                                                               giftPercent:model.promoInfo.promoRatio
+                                                                mostAmount:model.promoInfo.maxAmount handler:^{
+                            jumpWithdrawBlock(model);
+                            
+                        }];
+                    } else {
+                        jumpWithdrawBlock(model);
+                    }
                 }
-            }
-        }];
-    }
+            }];
+        }
+    }];
+    
 }
 
 + (void)openExchangeElecCurrencyPage {
