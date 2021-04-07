@@ -194,12 +194,12 @@
 // 充提指南/意见反馈
 - (IBAction)recharWithdrawGuide:(id)sender {
     if ([CNUserManager shareManager].isUsdtMode) {
-//        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
-//        [self presentViewController:vc animated:YES completion:^{
-//        }];
+        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
+        [self presentViewController:vc animated:YES completion:^{
+        }];
         // 优惠券中心
-        BYVocherCenterVC *vc = [BYVocherCenterVC new];
-        [self.navigationController pushViewController:vc animated:YES];
+//        BYVocherCenterVC *vc = [BYVocherCenterVC new];
+//        [self.navigationController pushViewController:vc animated:YES];
     } else {
         [self.navigationController pushViewController:[CNFeedBackVC new] animated:YES];
     }

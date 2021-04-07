@@ -30,6 +30,7 @@
                 <outlet property="shareBgViewH" destination="pbd-Ke-6gA" id="Y4D-Ey-Wfi"/>
                 <outlet property="sixthTapBtn" destination="FZO-U6-913" id="4y1-Ob-TZ9"/>
                 <outlet property="sixthTapLb" destination="MxN-37-T5p" id="XJ2-rC-WX3"/>
+                <outlet property="switchBtn" destination="xde-m6-GFP" id="4oL-MF-tNP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="walletContainerHeightCons" destination="qhM-8i-Fbk" id="Wdd-5N-mLm"/>
                 <outlet property="walletContainerView" destination="eZN-cq-pbU" id="8wr-uI-gkN"/>
@@ -83,7 +84,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ld2-C6-ZZl">
-                                            <rect key="frame" x="351" y="7.6666666666666643" width="30" height="30"/>
+                                            <rect key="frame" x="110.66666666666667" y="18.333333333333329" width="30.000000000000014" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="M5q-uc-fjt"/>
                                                 <constraint firstAttribute="width" constant="30" id="gl3-rz-7bd"/>
@@ -93,18 +94,41 @@
                                                 <action selector="setting:" destination="-1" eventType="touchUpInside" id="JCk-Im-ReS"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xde-m6-GFP">
+                                            <rect key="frame" x="269" y="6.6666666666666643" width="110" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="32" id="Cus-fe-Hdf"/>
+                                                <constraint firstAttribute="width" constant="110" id="aIX-oQ-plp"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                            <state key="normal" title="  切换CNY钱包  ">
+                                                <color key="titleColor" red="0.062745098040000002" green="0.70588235290000001" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <state key="selected" title="  切换USDT钱包  "/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="16"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="switchCurrency:" destination="-1" eventType="touchUpInside" id="xVD-Ut-U9M"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="Bbn-ee-Rg1" firstAttribute="leading" secondItem="L6F-j7-MKh" secondAttribute="trailing" constant="8" id="4mR-P0-bej"/>
-                                        <constraint firstAttribute="trailing" secondItem="ld2-C6-ZZl" secondAttribute="trailing" constant="3" id="AbR-4m-UJe"/>
                                         <constraint firstItem="L6F-j7-MKh" firstAttribute="top" secondItem="WnY-VM-pN0" secondAttribute="top" id="GJ1-gd-YoF"/>
+                                        <constraint firstItem="ld2-C6-ZZl" firstAttribute="centerY" secondItem="tmG-wz-MyA" secondAttribute="centerY" id="Gib-be-GE1"/>
                                         <constraint firstAttribute="bottom" secondItem="tmG-wz-MyA" secondAttribute="bottom" id="OAY-Pe-MiN"/>
+                                        <constraint firstAttribute="trailing" secondItem="xde-m6-GFP" secondAttribute="trailing" constant="5" id="QoL-ff-Oid"/>
                                         <constraint firstItem="Bbn-ee-Rg1" firstAttribute="top" secondItem="WnY-VM-pN0" secondAttribute="top" id="aJz-ld-l9U"/>
                                         <constraint firstAttribute="bottom" secondItem="L6F-j7-MKh" secondAttribute="bottom" id="ap4-xC-sB8"/>
+                                        <constraint firstItem="xde-m6-GFP" firstAttribute="centerY" secondItem="WnY-VM-pN0" secondAttribute="centerY" id="bKm-KS-m80"/>
+                                        <constraint firstItem="ld2-C6-ZZl" firstAttribute="leading" secondItem="tmG-wz-MyA" secondAttribute="trailing" constant="6" id="h87-yR-1bd"/>
                                         <constraint firstItem="tmG-wz-MyA" firstAttribute="leading" secondItem="Bbn-ee-Rg1" secondAttribute="leading" id="suv-GP-qYM"/>
                                         <constraint firstItem="L6F-j7-MKh" firstAttribute="leading" secondItem="WnY-VM-pN0" secondAttribute="leading" constant="5" id="t61-5P-bVq"/>
-                                        <constraint firstItem="ld2-C6-ZZl" firstAttribute="centerY" secondItem="WnY-VM-pN0" secondAttribute="centerY" id="x3E-el-W0p"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eZN-cq-pbU" userLabel="AccountView">
