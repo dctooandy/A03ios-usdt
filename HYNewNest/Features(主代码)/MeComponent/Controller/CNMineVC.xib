@@ -743,6 +743,7 @@
                                 <constraint firstItem="DJk-mb-UDh" firstAttribute="leading" secondItem="z1O-DJ-YiD" secondAttribute="leading" constant="15" id="Zbs-Cr-liN"/>
                                 <constraint firstAttribute="trailing" secondItem="WnY-VM-pN0" secondAttribute="trailing" constant="15" id="aWg-Gh-dAb"/>
                                 <constraint firstItem="vnq-7g-V51" firstAttribute="top" secondItem="Ghz-oV-Km8" secondAttribute="bottom" id="dc6-MO-boN"/>
+                                <constraint firstItem="Ghz-oV-Km8" firstAttribute="top" secondItem="eZN-cq-pbU" secondAttribute="bottom" id="grt-no-6b5"/>
                                 <constraint firstItem="Ghz-oV-Km8" firstAttribute="top" secondItem="eZN-cq-pbU" secondAttribute="bottom" id="hgf-0S-ilD"/>
                                 <constraint firstItem="0zX-Xz-mSg" firstAttribute="leading" secondItem="z1O-DJ-YiD" secondAttribute="leading" constant="15" id="kMb-21-w75"/>
                                 <constraint firstAttribute="trailing" secondItem="BpC-IV-WtY" secondAttribute="trailing" constant="15" id="kMt-Vb-tZj"/>
@@ -751,7 +752,6 @@
                                 <constraint firstItem="eZN-cq-pbU" firstAttribute="leading" secondItem="z1O-DJ-YiD" secondAttribute="leading" constant="15" id="oGm-VA-UAe"/>
                                 <constraint firstAttribute="trailing" secondItem="vnq-7g-V51" secondAttribute="trailing" constant="15" id="qBf-Wl-KJE"/>
                                 <constraint firstItem="DJk-mb-UDh" firstAttribute="width" secondItem="DJk-mb-UDh" secondAttribute="height" multiplier="345:100" id="vA8-P8-9gq"/>
-                                <constraint firstItem="vnq-7g-V51" firstAttribute="top" secondItem="eZN-cq-pbU" secondAttribute="bottom" constant="80" id="zvd-pT-G6k"/>
                             </constraints>
                         </view>
                     </subviews>
