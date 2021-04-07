@@ -87,8 +87,8 @@
     empView.actionBtnTitleColor = [UIColor lightGrayColor];
     self.view.ly_emptyView = empView;
     
-    [self queryCNYPayways];
     [self setupSubmitBtn];
+    [self queryCNYPayways];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -107,7 +107,8 @@
 - (void)setupMainEditView {
     [self.scrollContainer mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.view);
-        make.height.mas_equalTo(kScreenHeight-kNavPlusStaBarHeight-48-24-kSafeAreaHeight);
+//        make.height.mas_equalTo(kScreenHeight-kNavPlusStaBarHeight-48-24-kSafeAreaHeight);
+        make.bottom.equalTo(self.btnSubmit.mas_top).offset(-30);
     }];
     
     [self.editView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -131,7 +132,7 @@
     [subBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(30);
         make.right.equalTo(self.view).offset(-30);
-        make.bottom.equalTo(self.view).offset(-24-kSafeAreaHeight);
+        make.bottom.equalTo(self.view).offset(-60);
         make.height.mas_equalTo(48);
     }];
     self.btnSubmit = subBtn;

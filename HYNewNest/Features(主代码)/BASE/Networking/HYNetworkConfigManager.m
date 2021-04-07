@@ -135,7 +135,7 @@
     [kKeywindow jk_makeToast:[IVHttpManager shareManager].gateway
                     duration:4
                     position:JKToastPositionCenter
-                       title:[NSString stringWithFormat:@"😄当前是%ld --【%@】",environment ,envName]];
+                       title:[NSString stringWithFormat:@"😄当前是%ld --【%@】",(long)environment ,envName]];
 #endif
 }
 

@@ -80,7 +80,13 @@
             
         // 安全中心来的 未绑手机
         case CNSMSCodeTypeBindPhone:
-            self.navigationItem.title = @"绑定新手机";
+               self.navigationItem.title = @"绑定新手机";
+            // 如果有已有手机号则设置
+            if ([CNUserManager shareManager].userDetail.mobileNo.length) {
+                self.inputTF.text = [CNUserManager shareManager].userDetail.mobileNo;
+                self.inputTF.userInteractionEnabled = NO;
+                self.sendCodeBtn.hidden = NO;
+            }
             break;
         // 安全中心来的 解绑
         case CNSMSCodeTypeUnbind:

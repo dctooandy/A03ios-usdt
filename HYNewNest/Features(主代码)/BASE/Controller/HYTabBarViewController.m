@@ -203,19 +203,20 @@
     }
 }
 
-//- (void)openNew800{
-//    CSChatInfo *info = [[CSChatInfo alloc]init];
-//    info.productId = [IVHttpManager shareManager].productId;//产品ID，你们app的产品id
-//    info.loginName = [IVHttpManager shareManager].loginName?:@"";//网站用户名，你们app的用户名
-//    info.token = [IVHttpManager shareManager].userToken?:@"";//网站登陆后的token,你们app的token
-//    info.domainName = [IVHttpManager shareManager].domain;//网站域名，你们app的网站域名
-//    info.appid = [IVHttpManager shareManager].appId;//AppID，你们app的appid
-//    info.title = @"在线客服";//导航栏标题
-//    info.uuid = [KeyChain getKeychainIdentifierUUID];//用户uuid
-//    //    如果完整地址是 @"http://m3.wancity.net/_glaxy_a5b04c_/liveChatAddressOCSS"
-//    info.baseUrl = [[IVHttpManager shareManager].gateway stringByAppendingString:kGatewayPath(@"")];//客服后台配置的接口域名
-//    [CSVisitChatmanager startservicewithsuperVC:self chatInfo:info];
-//}
+- (void)openNew800{
+    CSChatInfo *info = [[CSChatInfo alloc]init];
+    info.productId = [IVHttpManager shareManager].productId;//产品ID，你们app的产品id
+    info.loginName = [IVHttpManager shareManager].loginName?:@"";//网站用户名，你们app的用户名
+    info.token = [IVHttpManager shareManager].userToken?:@"";//网站登陆后的token,你们app的token
+    info.domainName = [IVHttpManager shareManager].domain;//网站域名，你们app的网站域名
+    info.appid = [IVHttpManager shareManager].appId;//AppID，你们app的appid
+    info.title = @"在线客服";//导航栏标题
+    info.uuid = [KeyChain getKeychainIdentifierUUID];//用户uuid
+    //    如果完整地址是 @"http://m3.wancity.net/_glaxy_a5b04c_/liveChatAddressOCSS"
+    info.baseUrl = [[IVHttpManager shareManager].gateway stringByAppendingString:kGatewayPath(@"")];//客服后台配置的接口域名
+    [CSVisitChatmanager startServiceWithSuperVC:self chatInfo:info finish:^(CSServiceCode errCode) {
+    }];
+}
 
 - (void)call400{
     
