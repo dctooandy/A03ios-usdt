@@ -80,7 +80,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *sixthTapBtn;
 @property (weak, nonatomic) IBOutlet UILabel *sixthTapLb;
 /// CNY
-@property (weak, nonatomic) IBOutlet UIView *CNYBusinessView;
+@property (weak, nonatomic) IBOutlet UIStackView *CNYBusinessView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CNYBusinessViewH;
 /// USDT
 @property (weak, nonatomic) IBOutlet UIStackView *USDTBusinessView;
@@ -268,8 +268,8 @@
     self.CNYBusinessViewH.constant = isUsdtMode ? 0: 80;
     
     self.forthTapLb.text = isUsdtMode ? @"提币地址": @"银行卡";
-    self.sixthTapLb.text = isUsdtMode ? @"优惠券": @"意见反馈";
-    [self.sixthTapBtn setImage:[UIImage imageNamed:isUsdtMode?@"yhq":@"yjfk"] forState:UIControlStateNormal];
+    self.sixthTapLb.text = isUsdtMode ? @"充提指南": @"意见反馈";
+    [self.sixthTapBtn setImage:[UIImage imageNamed:@"yjfk"] forState:UIControlStateNormal];
     
     self.shareBgView.hidden = !isUsdtMode;
     self.shareBgViewH.constant = isUsdtMode?AD(90):0;
@@ -291,16 +291,16 @@
         
         // 3.加载WalletView YES
         // 判断用户是新钱包还是旧钱包
-        if ([CNUserManager shareManager].userDetail.newWalletFlag) {
-            if (!self.walletContainerView.subviews.count || [self.walletView isKindOfClass:[BYOldMyWalletView class]]) {
-                [self.walletView removeFromSuperview];
-                self.walletView = [[BYMyWalletView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-30, 217)];
-                self.walletContainerHeightCons.constant = 217;
-                [self.walletContainerView addSubview:self.walletView];
-            } else {
-                [self.walletView requestAccountBalances:YES];
-            }
-        } else {
+//        if ([CNUserManager shareManager].userDetail.newWalletFlag) {
+//            if (!self.walletContainerView.subviews.count || [self.walletView isKindOfClass:[BYOldMyWalletView class]]) {
+//                [self.walletView removeFromSuperview];
+//                self.walletView = [[BYMyWalletView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-30, 217)];
+//                self.walletContainerHeightCons.constant = 217;
+//                [self.walletContainerView addSubview:self.walletView];
+//            } else {
+//                [self.walletView requestAccountBalances:YES];
+//            }
+//        } else {
             if (!self.walletContainerView.subviews.count || [self.walletView isKindOfClass:[BYMyWalletView class]]) {
                 [self.walletView removeFromSuperview];
                 self.walletView = [[BYOldMyWalletView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-30, 148)];
@@ -309,7 +309,7 @@
             } else {
                 [self.walletView requestAccountBalances:YES];
             }
-        }
+//        }
     }
 }
 

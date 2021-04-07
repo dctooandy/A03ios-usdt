@@ -7,6 +7,7 @@
 //
 
 #import "BYRegisterSuccADVC.h"
+#import "HYNewCTZNViewController.h"
 
 @interface BYRegisterSuccADVC ()
 
@@ -26,10 +27,22 @@
 }
 
 - (IBAction)didTapGo2BuyCoin:(id)sender {
+    if ([CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userInfo.starLevel == 0 && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
+        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
+        vc.type = 0;
+        [self presentViewController:vc animated:YES completion:nil];
+        return;
+    }
     [NNPageRouter jump2BuyECoin];
 }
 
 - (IBAction)didTapGo2SellCoin:(id)sender {
+    if ([CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userInfo.starLevel == 0 && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
+        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
+        vc.type = 1;
+        [self presentViewController:vc animated:YES completion:nil];
+        return;
+    }
     [NNPageRouter jump2Deposit];
 }
 
