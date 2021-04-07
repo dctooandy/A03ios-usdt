@@ -223,21 +223,15 @@
 }
 
 + (void)requestAccountBalanceHandler:(HandlerBlock)handler {
-    if ([CNUserManager shareManager].userDetail.newWalletFlag) {
-        NSMutableDictionary *param = [kNetworkMgr baseParam];
-        param[@"flag"] = @1; //1 缓存15秒 9不缓存 不传默认缓存2分钟
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"flag"] = @1; //1 缓存15秒 9不缓存 不传默认缓存2分钟
+    if ([CNUserManager shareManager].userInfo.newWalletFlag) {
         param[@"walletCreditForPlatformFlag"] = @1; //需要游戏平台数据 ，如不需要则传0
-        [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"];
-        
-        [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:handler];
-        
-    } else {
-        NSMutableDictionary *param = [kNetworkMgr baseParam];
-        [param setObject:@"1" forKey:@"flag"];  //1 缓存15秒 9不缓存 不传默认缓存2分钟
-        [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"]; //1usdt账户余额  0人民币账户余额
-        
-        [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:handler];
     }
+    [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"];
+    
+    [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:handler];
+
 }
 
 @end

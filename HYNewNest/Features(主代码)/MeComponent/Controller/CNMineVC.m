@@ -282,7 +282,7 @@
         
         // 3.加载WalletView YES
         // 判断用户是新钱包还是旧钱包
-        if ([CNUserManager shareManager].userDetail.newWalletFlag) {
+        if ([CNUserManager shareManager].userInfo.newWalletFlag) {
             if (!self.walletContainerView.subviews.count || [self.walletView isMemberOfClass:[BYOldMyWalletView class]]) {
                 [self.walletView removeFromSuperview];
                 self.walletView = [[BYMyWalletView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-30, 217)];
