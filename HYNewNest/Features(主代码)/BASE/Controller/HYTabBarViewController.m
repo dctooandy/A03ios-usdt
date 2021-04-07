@@ -188,12 +188,12 @@
     
     if(tag == 0){
         //客服 存取款问题
-//        [NNPageRouter jump2Live800Type:CNLive800TypeDeposit];
-        [self openNew800];
+        [NNPageRouter jump2Live800Type:CNLive800TypeDeposit];
+//        [self openNew800];
     }else if (tag == 1){
         //客服 其他问题
-//        [NNPageRouter jump2Live800Type:CNLive800TypeNormal];
-        [self openNew800];
+        [NNPageRouter jump2Live800Type:CNLive800TypeNormal];
+//        [self openNew800];
     }else if (tag == 2){
         //电话回拨
         [CNServerView showServerWithDelegate:self];
