@@ -16,7 +16,7 @@
 #define kAppDelegate        (AppDelegate *)[UIApplication sharedApplication].delegate
 #define kKeywindow          [[[UIApplication sharedApplication] windows] objectAtIndex:0]
   
-#define kDownload_XJK_Address @"https://www.dcbox.com/downloadapp.php"
+#define kDownload_XJK_Address @"https://www.dcusdt.com/downloadapp.php"
 
 //屏幕宽高
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
