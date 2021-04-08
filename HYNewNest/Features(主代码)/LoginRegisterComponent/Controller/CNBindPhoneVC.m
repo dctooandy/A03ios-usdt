@@ -138,6 +138,10 @@
     [[JHVerificationCodeView alloc] initWithFrame:frame config:config];
     __weak typeof(self) weakSelf = self;
     view.finishBlock = ^(NSString *code) {
+        weakSelf.submitBtn.enabled = YES;
+        if (weakSelf.bindType == CNSMSCodeTypeRegister) {
+            [weakSelf.submitBtn setBackgroundImage:[UIImage imageNamed:@"h5"] forState:UIControlStateNormal];
+        }
         weakSelf.smsModel.smsCode = code;
     };
     [self.shakingView addSubview:view];
