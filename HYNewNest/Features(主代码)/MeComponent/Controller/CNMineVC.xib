@@ -321,6 +321,9 @@
                                             <state key="normal" title=" 充值" image="充值3">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <connections>
+                                                <action selector="didClickMCTMBtns:" destination="-1" eventType="touchUpInside" id="dUu-Au-ACY"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6S-ed-2ap">
                                             <rect key="frame" x="197" y="0.0" width="187" height="80"/>
@@ -328,6 +331,9 @@
                                             <state key="normal" title=" 提现" image="提现3">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <connections>
+                                                <action selector="didClickMCTMBtns:" destination="-1" eventType="touchUpInside" id="zVE-OP-wKU"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
