@@ -138,7 +138,6 @@
     [[JHVerificationCodeView alloc] initWithFrame:frame config:config];
     __weak typeof(self) weakSelf = self;
     view.finishBlock = ^(NSString *code) {
-        weakSelf.submitBtn.enabled = YES;
         weakSelf.smsModel.smsCode = code;
     };
     [self.shakingView addSubview:view];

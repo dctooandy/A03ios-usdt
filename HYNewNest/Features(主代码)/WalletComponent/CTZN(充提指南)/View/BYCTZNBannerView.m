@@ -44,6 +44,7 @@
     }];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
+    btn.userInteractionEnabled = NO;
     [btn setTitle:@"了解一下" forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont fontPFSB12];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
