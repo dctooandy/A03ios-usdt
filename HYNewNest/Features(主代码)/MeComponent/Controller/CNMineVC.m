@@ -18,20 +18,22 @@
 #import "CNFeedBackVC.h"
 #import "CNAddressManagerVC.h"
 #import "BYSuperCopartnerVC.h"
+#import "BYVocherCenterVC.h"
 
 #import <UIButton+WebCache.h>
 #import <UIImageView+WebCache.h>
 #import <MJRefresh/MJRefresh.h>
 #import "UILabel+hiddenText.h"
 #import "NSURL+HYLink.h"
+#import "UILabel+Gradient.h"
 
 #import "CNVIPLabel.h"
 #import "HYWideOneBtnAlertView.h"
-#import "HYBalancesDetailView.h"
+#import "BYOldMyWalletView.h"
+#import "BYMyWalletView.h"
 
 #import "CNUserCenterRequest.h"
 #import "CNLoginRequest.h"
-#import "BalanceManager.h"
 
 @interface CNMineVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -40,29 +42,24 @@
 /// 滚动视图宽
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollContentW;
 
-#pragma mark - 顶部信息
+#pragma mark 顶部信息
 /// 头像
 @property (weak, nonatomic) IBOutlet UIButton *headerIV;
 /// VIP
 @property (weak, nonatomic) IBOutlet CNVIPLabel *VIPLb;
 /// 昵称
 @property (weak, nonatomic) IBOutlet UILabel *nickNameLb;
-/// 金额
-@property (weak, nonatomic) IBOutlet UILabel *amountLb;
-/// 货币
-@property (weak, nonatomic) IBOutlet UILabel *currencyLb;
-/// 本周投注额
-@property (weak, nonatomic) IBOutlet UILabel *weekAmountLb;
-/// 本月优惠
-@property (weak, nonatomic) IBOutlet UILabel *monthPromoLb;
-/// 本月戏码
-@property (weak, nonatomic) IBOutlet UILabel *monthXiMaLb;
 
-#pragma mark - 好友邀请
+#pragma mark 钱包部分
+@property (weak, nonatomic) IBOutlet UIView *walletContainerView;
+@property (strong,nonatomic) BYBaseWalletAbsView *walletView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *walletContainerHeightCons;
+
+#pragma mark 好友邀请
 @property (weak, nonatomic) IBOutlet UIView *shareBgView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *shareBgViewH;
 
-#pragma mark - 底部单个下载
+#pragma mark 底部单个下载
 /// App图片
 @property (weak, nonatomic) IBOutlet UIImageView *appImageV;
 /// App名称
@@ -74,15 +71,16 @@
 
 @property (nonatomic, strong) NSArray<OtherAppModel *> *otherApps;
 
-#pragma mark - CNY和USDT区别
+#pragma mark CNY和USDT区别
 /// CNY和USDT 切换按钮
 @property (weak, nonatomic) IBOutlet UIButton *switchBtn;
 /// 中间六个模块中第四个模块标签
 @property (weak, nonatomic) IBOutlet UILabel *forthTapLb;
 /// 中间六个模块中第六个模块标签
+@property (weak, nonatomic) IBOutlet UIButton *sixthTapBtn;
 @property (weak, nonatomic) IBOutlet UILabel *sixthTapLb;
 /// CNY
-@property (weak, nonatomic) IBOutlet UIView *CNYBusinessView;
+@property (weak, nonatomic) IBOutlet UIStackView *CNYBusinessView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CNYBusinessViewH;
 /// USDT
 @property (weak, nonatomic) IBOutlet UIStackView *USDTBusinessView;
@@ -90,6 +88,8 @@
 @end
 
 @implementation CNMineVC
+
+#pragma mark - ViewLifeCycle
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -115,8 +115,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self requestAccountBalances:NO];
-
+//    [self requestAccountBalances:NO];
+    [self.walletView requestAccountBalances:NO];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -125,7 +125,6 @@
 }
 
 - (void)configUI {
-    self.scrollContentView.backgroundColor = self.view.backgroundColor;
     self.scrollContentW.constant = kScreenWidth;
     // 按钮边框颜色
     self.downLoadBtn.layer.borderColor = kHexColor(0x19CECE).CGColor;
@@ -137,39 +136,10 @@
 
 #pragma mark - 按钮事件
 
-/// 显示账户详情
-- (IBAction)click2ShowAccountBalncesDetail:(id)sender {
-    BOOL isIndi = self.amountLb.isIndicating;
-    if (isIndi) {
-        [CNHUB showWaiting:@"余额详情正在加载中..请稍等"];
-        return;
-    }
-    [HYBalancesDetailView showBalancesDetailView];
-}
-
-/// 显示和隐藏金额
-- (IBAction)seeAndHide:(UIButton *)sender {
-    sender.selected = !sender.selected;
-    if (sender.selected) {
-        // 隐藏
-        [self.amountLb hideOriginText];
-        [self.weekAmountLb hideOriginText];
-        [self.monthPromoLb hideOriginText];
-        [self.monthXiMaLb hideOriginText];
-    } else {
-        // 显示
-        [self.amountLb showOriginText];
-        [self.weekAmountLb showOriginText];
-        [self.monthPromoLb showOriginText];
-        [self.monthXiMaLb showOriginText];
-    }
-}
-
 // 设置
 - (IBAction)setting:(id)sender {
     [self.navigationController pushViewController:[CNSettingVC new] animated:YES];
 }
-
 
 /// 买充提卖
 - (IBAction)didClickMCTMBtns:(UIButton *)sender {
@@ -195,7 +165,6 @@
         }];
     }
 }
-
 
 // 洗码
 - (IBAction)xima:(id)sender {
@@ -227,8 +196,10 @@
     if ([CNUserManager shareManager].isUsdtMode) {
         HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
         [self presentViewController:vc animated:YES completion:^{
-            
         }];
+        // 优惠券中心
+//        BYVocherCenterVC *vc = [BYVocherCenterVC new];
+//        [self.navigationController pushViewController:vc animated:YES];
     } else {
         [self.navigationController pushViewController:[CNFeedBackVC new] animated:YES];
     }
@@ -290,7 +261,7 @@
     
     BOOL isUsdtMode = [CNUserManager shareManager].isUsdtMode;
     self.switchBtn.selected = !isUsdtMode;
-    self.currencyLb.text = [CNUserManager shareManager].userInfo.uiMode;
+    
     self.USDTBusinessView.hidden = !isUsdtMode;
     self.USDTBusinessViewH.constant = isUsdtMode ? 80: 0;
     self.CNYBusinessView.hidden = isUsdtMode;
@@ -298,6 +269,7 @@
     
     self.forthTapLb.text = isUsdtMode ? @"提币地址": @"银行卡";
     self.sixthTapLb.text = isUsdtMode ? @"充提指南": @"意见反馈";
+    [self.sixthTapBtn setImage:[UIImage imageNamed:@"yjfk"] forState:UIControlStateNormal];
     
     self.shareBgView.hidden = !isUsdtMode;
     self.shareBgViewH.constant = isUsdtMode?AD(90):0;
@@ -310,11 +282,34 @@
     if ([CNUserManager shareManager].isLogin) {
         // 2.用户信息
         self.VIPLb.text = [NSString stringWithFormat:@"VIP%ld", (long)[CNUserManager shareManager].userInfo.starLevel];
+        
         self.nickNameLb.text = [CNUserManager shareManager].printedloginName;
+        [self.nickNameLb sizeToFit];
+        [self.nickNameLb setupGradientColorFrom:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE)];
+        
         [self.headerIV sd_setBackgroundImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userDetail.avatar] forState:UIControlStateNormal];
         
-        // 3.加载相关金额 YES
-        [self requestAccountBalances:YES];
+        // 3.加载WalletView YES
+        // 判断用户是新钱包还是旧钱包
+//        if ([CNUserManager shareManager].userDetail.newWalletFlag) {
+//            if (!self.walletContainerView.subviews.count || [self.walletView isKindOfClass:[BYOldMyWalletView class]]) {
+//                [self.walletView removeFromSuperview];
+//                self.walletView = [[BYMyWalletView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-30, 217)];
+//                self.walletContainerHeightCons.constant = 217;
+//                [self.walletContainerView addSubview:self.walletView];
+//            } else {
+//                [self.walletView requestAccountBalances:YES];
+//            }
+//        } else {
+            if (!self.walletContainerView.subviews.count || [self.walletView isKindOfClass:[BYMyWalletView class]]) {
+                [self.walletView removeFromSuperview];
+                self.walletView = [[BYOldMyWalletView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-30, 148)];
+                self.walletContainerHeightCons.constant = 148;
+                [self.walletContainerView addSubview:self.walletView];
+            } else {
+                [self.walletView requestAccountBalances:YES];
+            }
+//        }
     }
 }
 
@@ -337,42 +332,6 @@
     }];
 }
 
-- (void)requestAccountBalances:(BOOL)isRefreshing {
-    [self.amountLb showIndicatorIsBig:NO];
-    [self.weekAmountLb showIndicatorIsBig:NO];
-    [self.monthPromoLb showIndicatorIsBig:NO];
-    [self.monthXiMaLb showIndicatorIsBig:NO];
-    
-    WEAKSELF_DEFINE
-    if (isRefreshing) {
-        [[BalanceManager shareManager] requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-            STRONGSELF_DEFINE
-            [strongSelf.amountLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
-            strongSelf.currencyLb.text = model.currency;
-        }];
-        [[BalanceManager shareManager] requestBetAmountHandler:^(BetAmountModel * _Nonnull model) {
-            STRONGSELF_DEFINE
-            [strongSelf.weekAmountLb hideIndicatorWithText:[model.weekBetAmount jk_toDisplayNumberWithDigit:2]];
-            PromoteRebateModel *prModel = model.statis;
-            [strongSelf.monthPromoLb hideIndicatorWithText:[prModel.promoAmount jk_toDisplayNumberWithDigit:2]];
-            [strongSelf.monthXiMaLb hideIndicatorWithText:[prModel.rebateAmount jk_toDisplayNumberWithDigit:2]];
-        }];
-        
-    } else {
-        [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-            STRONGSELF_DEFINE
-            [strongSelf.amountLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
-            strongSelf.currencyLb.text = model.currency;
-        }];
-        [[BalanceManager shareManager] getWeeklyBetAmountHandler:^(BetAmountModel * _Nonnull model) {
-            STRONGSELF_DEFINE
-            [strongSelf.weekAmountLb hideIndicatorWithText:[model.weekBetAmount jk_toDisplayNumberWithDigit:2]];
-            PromoteRebateModel *prModel = model.statis;
-            [strongSelf.monthPromoLb hideIndicatorWithText:[prModel.promoAmount jk_toDisplayNumberWithDigit:2]];
-            [strongSelf.monthXiMaLb hideIndicatorWithText:[prModel.rebateAmount jk_toDisplayNumberWithDigit:2]];
-        }];
-    }
-}
 
 
 @end

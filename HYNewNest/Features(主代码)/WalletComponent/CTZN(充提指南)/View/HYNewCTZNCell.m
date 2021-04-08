@@ -34,6 +34,24 @@
     
 }
 
+- (void)setIsCusSelc:(BOOL)isCusSelc {
+    _isCusSelc = isCusSelc;
+    
+    if (isCusSelc) {
+        UIColor *color = [UIColor jk_gradientFromColor:kHexColor(0x19CECE) toColor:kHexColor(0x10B4DD) withHeight:228];
+        self.contentView.layer.cornerRadius = 20;
+        self.contentView.layer.borderWidth = 1;
+        self.contentView.layer.borderColor = color.CGColor;
+        self.backgroundColor = kHexColorAlpha(0xFFFFFF, 0.2);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.backgroundColor = [UIColor clearColor];
+        });
+        
+    } else {
+        self.contentView.layer.borderColor = [UIColor clearColor].CGColor;
+    }
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

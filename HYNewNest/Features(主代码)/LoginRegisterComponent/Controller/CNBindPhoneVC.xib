@@ -48,7 +48,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入11位手机号码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="YoX-SH-X4k" customClass="CNBaseTF">
-                            <rect key="frame" x="55" y="34" width="199" height="30"/>
+                            <rect key="frame" x="0.0" y="34" width="254" height="30"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
@@ -76,7 +76,7 @@
                                 <constraint firstAttribute="height" constant="1" id="gkk-Kt-y7i"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5Y-1N-8cB">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5Y-1N-8cB">
                             <rect key="frame" x="0.0" y="32" width="34" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="34" id="yh1-69-ldx"/>
@@ -85,7 +85,7 @@
                                 <color key="titleColor" white="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FbG-va-ALb">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FbG-va-ALb">
                             <rect key="frame" x="42" y="41.5" width="1" height="15"/>
                             <color key="backgroundColor" white="1" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -107,7 +107,8 @@
                         <constraint firstItem="FbG-va-ALb" firstAttribute="leading" secondItem="Z5Y-1N-8cB" secondAttribute="trailing" constant="8" id="UJ8-WP-Fgv"/>
                         <constraint firstAttribute="trailing" secondItem="git-c7-zpE" secondAttribute="trailing" id="bos-nA-AKP"/>
                         <constraint firstItem="FbG-va-ALb" firstAttribute="centerY" secondItem="Z5Y-1N-8cB" secondAttribute="centerY" id="fwe-ZD-JyE"/>
-                        <constraint firstItem="YoX-SH-X4k" firstAttribute="leading" secondItem="FbG-va-ALb" secondAttribute="trailing" constant="12" id="g3m-o1-DRA"/>
+                        <constraint firstItem="YoX-SH-X4k" firstAttribute="leading" secondItem="FbG-va-ALb" secondAttribute="trailing" priority="250" constant="12" id="g3m-o1-DRA"/>
+                        <constraint firstItem="YoX-SH-X4k" firstAttribute="leading" secondItem="Z5Y-1N-8cB" secondAttribute="leading" id="hDM-ni-l4h"/>
                         <constraint firstItem="git-c7-zpE" firstAttribute="leading" secondItem="fzz-LH-BwM" secondAttribute="leading" id="m5e-0e-e16"/>
                         <constraint firstItem="Z5Y-1N-8cB" firstAttribute="leading" secondItem="fzz-LH-BwM" secondAttribute="leading" id="s4e-pL-M5P"/>
                         <constraint firstAttribute="trailing" secondItem="02n-zQ-LAZ" secondAttribute="trailing" id="tel-Ff-hNE"/>

@@ -323,6 +323,17 @@
 		3DBA560D2580B5E4009A2B71 /* BYSuperCopartnerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA560B2580B5E4009A2B71 /* BYSuperCopartnerVC.m */; };
 		3DBA560E2580B5E4009A2B71 /* BYSuperCopartnerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA560C2580B5E4009A2B71 /* BYSuperCopartnerVC.xib */; };
 		3DBA56112580D9B3009A2B71 /* CALayer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA56102580D9B3009A2B71 /* CALayer+Additions.m */; };
+		3DC14E3825F8D37500D6DB85 /* BYVocherCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E3625F8D37500D6DB85 /* BYVocherCenterVC.m */; };
+		3DC14E3F25F8DC0D00D6DB85 /* BYVocherTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E3E25F8DC0D00D6DB85 /* BYVocherTableVC.m */; };
+		3DC14E4325F9DF0800D6DB85 /* BYVocherTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E4125F9DF0800D6DB85 /* BYVocherTVCell.m */; };
+		3DC14E4425F9DF0800D6DB85 /* BYVocherTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC14E4225F9DF0800D6DB85 /* BYVocherTVCell.xib */; };
+		3DC14E4725FB52DE00D6DB85 /* BYMyWalletView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E4625FB52D700D6DB85 /* BYMyWalletView.m */; };
+		3DC14E4925FB530E00D6DB85 /* BYMyWalletView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC14E4825FB530E00D6DB85 /* BYMyWalletView.xib */; };
+		3DC14E4C25FB561000D6DB85 /* BYOldMyWalletView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E4B25FB561000D6DB85 /* BYOldMyWalletView.m */; };
+		3DC14E4E25FB562000D6DB85 /* BYOldMyWalletView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC14E4D25FB562000D6DB85 /* BYOldMyWalletView.xib */; };
+		3DC14E5125FB679800D6DB85 /* BYBaseWalletAbsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E5025FB679800D6DB85 /* BYBaseWalletAbsView.m */; };
+		3DC14E5426007E3400D6DB85 /* BYVoucherRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E5326007E3100D6DB85 /* BYVoucherRequest.m */; };
+		3DC14E572601DDCD00D6DB85 /* BYVocherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E562601DDCD00D6DB85 /* BYVocherModel.m */; };
 		3DC516CD25DE5AD800A238D4 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC516CC25DE5AD800A238D4 /* libresolv.9.tbd */; };
 		3DC516D025DE6EB000A238D4 /* StatusDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC516CE25DE6EB000A238D4 /* StatusDetailViewController.m */; };
 		3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC87A50253967DC0032ED1B /* BuyECoinModel.m */; };
@@ -1550,6 +1561,25 @@
 		3DBA560C2580B5E4009A2B71 /* BYSuperCopartnerVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYSuperCopartnerVC.xib; sourceTree = "<group>"; };
 		3DBA560F2580D9B3009A2B71 /* CALayer+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+Additions.h"; sourceTree = "<group>"; };
 		3DBA56102580D9B3009A2B71 /* CALayer+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Additions.m"; sourceTree = "<group>"; };
+		3DC14E3525F8D37500D6DB85 /* BYVocherCenterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYVocherCenterVC.h; sourceTree = "<group>"; };
+		3DC14E3625F8D37500D6DB85 /* BYVocherCenterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYVocherCenterVC.m; sourceTree = "<group>"; };
+		3DC14E3D25F8DC0D00D6DB85 /* BYVocherTableVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYVocherTableVC.h; sourceTree = "<group>"; };
+		3DC14E3E25F8DC0D00D6DB85 /* BYVocherTableVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYVocherTableVC.m; sourceTree = "<group>"; };
+		3DC14E4025F9DF0800D6DB85 /* BYVocherTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYVocherTVCell.h; sourceTree = "<group>"; };
+		3DC14E4125F9DF0800D6DB85 /* BYVocherTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYVocherTVCell.m; sourceTree = "<group>"; };
+		3DC14E4225F9DF0800D6DB85 /* BYVocherTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYVocherTVCell.xib; sourceTree = "<group>"; };
+		3DC14E4525FB52D700D6DB85 /* BYMyWalletView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYMyWalletView.h; sourceTree = "<group>"; };
+		3DC14E4625FB52D700D6DB85 /* BYMyWalletView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYMyWalletView.m; sourceTree = "<group>"; };
+		3DC14E4825FB530E00D6DB85 /* BYMyWalletView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYMyWalletView.xib; sourceTree = "<group>"; };
+		3DC14E4A25FB561000D6DB85 /* BYOldMyWalletView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYOldMyWalletView.h; sourceTree = "<group>"; };
+		3DC14E4B25FB561000D6DB85 /* BYOldMyWalletView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYOldMyWalletView.m; sourceTree = "<group>"; };
+		3DC14E4D25FB562000D6DB85 /* BYOldMyWalletView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYOldMyWalletView.xib; sourceTree = "<group>"; };
+		3DC14E4F25FB679800D6DB85 /* BYBaseWalletAbsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYBaseWalletAbsView.h; sourceTree = "<group>"; };
+		3DC14E5025FB679800D6DB85 /* BYBaseWalletAbsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYBaseWalletAbsView.m; sourceTree = "<group>"; };
+		3DC14E5226007E3100D6DB85 /* BYVoucherRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYVoucherRequest.h; sourceTree = "<group>"; };
+		3DC14E5326007E3100D6DB85 /* BYVoucherRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYVoucherRequest.m; sourceTree = "<group>"; };
+		3DC14E552601DDCD00D6DB85 /* BYVocherModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYVocherModel.h; sourceTree = "<group>"; };
+		3DC14E562601DDCD00D6DB85 /* BYVocherModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYVocherModel.m; sourceTree = "<group>"; };
 		3DC516CC25DE5AD800A238D4 /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
 		3DC516CE25DE6EB000A238D4 /* StatusDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusDetailViewController.m; sourceTree = "<group>"; };
 		3DC516CF25DE6EB000A238D4 /* StatusDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusDetailViewController.h; sourceTree = "<group>"; };
@@ -2691,6 +2721,14 @@
 				3DBA55DC25763516009A2B71 /* HYBalancesDetailView.h */,
 				3DBA55DD25763516009A2B71 /* HYBalancesDetailView.m */,
 				3DBA55DF25763C18009A2B71 /* HYBalancesDetailView.xib */,
+				3DC14E4A25FB561000D6DB85 /* BYOldMyWalletView.h */,
+				3DC14E4B25FB561000D6DB85 /* BYOldMyWalletView.m */,
+				3DC14E4D25FB562000D6DB85 /* BYOldMyWalletView.xib */,
+				3DC14E4525FB52D700D6DB85 /* BYMyWalletView.h */,
+				3DC14E4625FB52D700D6DB85 /* BYMyWalletView.m */,
+				3DC14E4825FB530E00D6DB85 /* BYMyWalletView.xib */,
+				3DC14E4F25FB679800D6DB85 /* BYBaseWalletAbsView.h */,
+				3DC14E5025FB679800D6DB85 /* BYBaseWalletAbsView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3731,6 +3769,56 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
+		3DC14E3025F8D25700D6DB85 /* VoucherComponent */ = {
+			isa = PBXGroup;
+			children = (
+				3DC14E3125F8D25700D6DB85 /* Controller */,
+				3DC14E3225F8D25700D6DB85 /* Model */,
+				3DC14E3325F8D25700D6DB85 /* View */,
+				3DC14E3425F8D25700D6DB85 /* Request */,
+			);
+			path = VoucherComponent;
+			sourceTree = "<group>";
+		};
+		3DC14E3125F8D25700D6DB85 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3DC14E3525F8D37500D6DB85 /* BYVocherCenterVC.h */,
+				3DC14E3625F8D37500D6DB85 /* BYVocherCenterVC.m */,
+				3DC14E3D25F8DC0D00D6DB85 /* BYVocherTableVC.h */,
+				3DC14E3E25F8DC0D00D6DB85 /* BYVocherTableVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3DC14E3225F8D25700D6DB85 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3DC14E552601DDCD00D6DB85 /* BYVocherModel.h */,
+				3DC14E562601DDCD00D6DB85 /* BYVocherModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3DC14E3325F8D25700D6DB85 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3DC14E4025F9DF0800D6DB85 /* BYVocherTVCell.h */,
+				3DC14E4125F9DF0800D6DB85 /* BYVocherTVCell.m */,
+				3DC14E4225F9DF0800D6DB85 /* BYVocherTVCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3DC14E3425F8D25700D6DB85 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				3DC14E5226007E3100D6DB85 /* BYVoucherRequest.h */,
+				3DC14E5326007E3100D6DB85 /* BYVoucherRequest.m */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 		3DF43D2A2592EE8B0087F26A /* SlideCard */ = {
 			isa = PBXGroup;
 			children = (
@@ -4674,8 +4762,6 @@
 				3D6B72EA2613371900B441D2 /* BYRechargeUSDTTopView.h */,
 				3D6B72EB2613371900B441D2 /* BYRechargeUSDTTopView.m */,
 				3D6B72ED2613374300B441D2 /* BYRechargeUSDTTopView.xib */,
-				3DB72DC12614334D00386B6B /* BYCTZNBannerView.h */,
-				3DB72DC22614334D00386B6B /* BYCTZNBannerView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4888,6 +4974,8 @@
 		E98BEEF524D0341A00E6B0C8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3DB72DC12614334D00386B6B /* BYCTZNBannerView.h */,
+				3DB72DC22614334D00386B6B /* BYCTZNBannerView.m */,
 				E9063B9024D6F3470000273A /* HYNewCTZNCell.h */,
 				E9063B9124D6F3470000273A /* HYNewCTZNCell.m */,
 				E9063B9224D6F3470000273A /* HYNewCTZNCell.xib */,
@@ -5015,6 +5103,7 @@
 		E9D9447124C1F35700252222 /* MeComponent */ = {
 			isa = PBXGroup;
 			children = (
+				3DC14E3025F8D25700D6DB85 /* VoucherComponent */,
 				3DBA56052580B467009A2B71 /* CopartnerComponent */,
 				048A169524CBD3B600411819 /* View */,
 				E986A12324C7E9E1000F9CFF /* Model */,
@@ -5436,6 +5525,7 @@
 				D5A4470624F3941400014DC6 /* 合成 1_00053.png in Resources */,
 				D5A446D324F3941400014DC6 /* 合成 1_00049.png in Resources */,
 				D5A4471B24F3941400014DC6 /* 合成 1_00055.png in Resources */,
+				3DC14E4E25FB562000D6DB85 /* BYOldMyWalletView.xib in Resources */,
 				D5A4463424F393E500014DC6 /* 足球_00089.png in Resources */,
 				D5A4449824F3932400014DC6 /* 数字7_0002.png in Resources */,
 				D5A443A524F378CD00014DC6 /* 彩票_00011.png in Resources */,
@@ -5447,6 +5537,7 @@
 				D5A443AC24F378CD00014DC6 /* 彩票_00052.png in Resources */,
 				D5A4447624F3932400014DC6 /* 数字7_00058.png in Resources */,
 				D5A443B224F378CD00014DC6 /* 彩票_00054.png in Resources */,
+				3DC14E4925FB530E00D6DB85 /* BYMyWalletView.xib in Resources */,
 				D5A4449F24F3932400014DC6 /* 数字7_0005.png in Resources */,
 				D5A443D424F378CD00014DC6 /* 彩票_00042.png in Resources */,
 				D5A4457D24F393AD00014DC6 /* 棋牌_00053.png in Resources */,
@@ -5514,6 +5605,7 @@
 				D5A4465024F393E500014DC6 /* 足球_00010.png in Resources */,
 				D5A4463724F393E500014DC6 /* 足球_00063.png in Resources */,
 				D5A446C124F3941400014DC6 /* 合成 1_00071.png in Resources */,
+				3DC14E4425F9DF0800D6DB85 /* BYVocherTVCell.xib in Resources */,
 				0487C9BD24D01DDE0013715A /* CNTradeRecodeVC.xib in Resources */,
 				D5A443BF24F378CD00014DC6 /* 彩票_00055.png in Resources */,
 				D5A4453124F393AC00014DC6 /* 棋牌_00028.png in Resources */,
@@ -6012,6 +6104,7 @@
 				0487C97224CE9A630013715A /* BRAddressPickerView.m in Sources */,
 				E986A19924CAC47B000F9CFF /* HYRechargeHelper.m in Sources */,
 				0487C9E124D27B960013715A /* CNNotifySettingVC.m in Sources */,
+				3DC14E3825F8D37500D6DB85 /* BYVocherCenterVC.m in Sources */,
 				3D41DEBA251F1A20000CA1D6 /* WSLPictureBrowseView.m in Sources */,
 				3D41DE7E25199DEE000CA1D6 /* VIPCardCCell.m in Sources */,
 				3DA4F16924B312BE0039123F /* NSString+Validation.m in Sources */,
@@ -6097,6 +6190,7 @@
 				E98BEEEA24D023B200E6B0C8 /* UIView+LYExtension.m in Sources */,
 				E9D9449724C5734400252222 /* WelcomeModel.m in Sources */,
 				E986A12224C7E802000F9CFF /* CNUserCenterRequest.m in Sources */,
+				3DC14E5426007E3400D6DB85 /* BYVoucherRequest.m in Sources */,
 				E986A1AE24CBCEE1000F9CFF /* CNAccountSelectView.m in Sources */,
 				E97054A424DBB5030007F845 /* SuspendBall.m in Sources */,
 				0487C96F24CE9A630013715A /* BRBaseView.m in Sources */,
@@ -6137,6 +6231,7 @@
 				04C0F0FF24C589EC007F1420 /* CNUserManager.m in Sources */,
 				0487C97024CE9A630013715A /* BRAddressModel.m in Sources */,
 				0430AB2D24E2A3DC00C873DC /* BRImageStringPickerView.m in Sources */,
+				3DC14E572601DDCD00D6DB85 /* BYVocherModel.m in Sources */,
 				044DC68B24DBB420005CB550 /* CNVerifyMsgAlertView.m in Sources */,
 				D571B19624BE9F120087B5EC /* CNLineView.m in Sources */,
 				0487C99924CEDE6B0013715A /* CNChoseImageCCell.m in Sources */,
@@ -6214,6 +6309,7 @@
 				3D41DE9A2519F996000CA1D6 /* VIPCumulateIdHeader.m in Sources */,
 				3D6B72EC2613371900B441D2 /* BYRechargeUSDTTopView.m in Sources */,
 				3D41DE7325199DEE000CA1D6 /* VIPDSBUsrModel.m in Sources */,
+				3DC14E4C25FB561000D6DB85 /* BYOldMyWalletView.m in Sources */,
 				3D97004E25A2C3ED003238C4 /* IN3SAnalytics.m in Sources */,
 				3DBA55D4256FA6D3009A2B71 /* CNSelectBtn.m in Sources */,
 				3D31B9612542E97D005275BD /* HYTapHanImageCodeView.m in Sources */,
@@ -6246,6 +6342,7 @@
 				3DCFEAA1250624CD0071F356 /* TAExampleDotView.m in Sources */,
 				3D41DE6F25199DEE000CA1D6 /* HYVIPViewController.m in Sources */,
 				E969EB3B24E2755F00D58FE9 /* HYRechargeCNYEditView.m in Sources */,
+				3DC14E5125FB679800D6DB85 /* BYBaseWalletAbsView.m in Sources */,
 				D5FBFE3F24BC05E400BBCAD8 /* CNAccountInputView.m in Sources */,
 				044DC69524DD1A35005CB550 /* CNShareCopyView.m in Sources */,
 				0487CA0D24D3CC380013715A /* CNFeedBackVC.m in Sources */,
@@ -6284,6 +6381,7 @@
 				E986A1C124CC7F2B000F9CFF /* SDCycleScrollView.m in Sources */,
 				E986A19224CA93D3000F9CFF /* BQPaymentModel.m in Sources */,
 				E969EB3524E14B4B00D58FE9 /* MineBindView.m in Sources */,
+				3DC14E4725FB52DE00D6DB85 /* BYMyWalletView.m in Sources */,
 				3D97005825A2C3ED003238C4 /* IN3SWebViewController.m in Sources */,
 				3D97005525A2C3ED003238C4 /* IN3SRequestModel.m in Sources */,
 				E98BEF2524D2C40100E6B0C8 /* HYWithdrawAddCardFooter.m in Sources */,
@@ -6328,11 +6426,13 @@
 				3D643F8C24F29F3600B9AAA7 /* KeyChain.m in Sources */,
 				3D97002B259B1CE1003238C4 /* BYRegisterSuccADVC.m in Sources */,
 				3D31B94425399CB7005275BD /* HYBuyECoinComfirmView.m in Sources */,
+				3DC14E3F25F8DC0D00D6DB85 /* BYVocherTableVC.m in Sources */,
 				E986A18F24CA8DB9000F9CFF /* ChooseAvatarsModel.m in Sources */,
 				3DA4F18924B317E40039123F /* WMDragView.m in Sources */,
 				E986A1A324CB37C3000F9CFF /* HYBaseAlertView.m in Sources */,
 				040A08D624E114A900FBD534 /* OCBarrageTrackInfo.m in Sources */,
 				E9D9446C24C1EC1300252222 /* HYTabBarViewController.m in Sources */,
+				3DC14E4325F9DF0800D6DB85 /* BYVocherTVCell.m in Sources */,
 				3D41DE7F25199DEE000CA1D6 /* VIPMonlyAlertCell.m in Sources */,
 				E986A12624C7EAA6000F9CFF /* OtherAppModel.m in Sources */,
 				E986A12D24C7F5D7000F9CFF /* CNGloryRequest.m in Sources */,
@@ -6517,7 +6617,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 67;
+				CURRENT_PROJECT_VERSION = 70;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = JW7F38ZMYT;
 				ENABLE_BITCODE = NO;
@@ -6557,7 +6657,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.53;
+				MARKETING_VERSION = 3.6.58;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
 				PRODUCT_NAME = "币游_dev";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -6575,7 +6675,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游Release.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 67;
+				CURRENT_PROJECT_VERSION = 70;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = JW7F38ZMYT;
 				ENABLE_BITCODE = NO;
@@ -6615,7 +6715,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.53;
+				MARKETING_VERSION = 3.6.58;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
 				PRODUCT_NAME = "币游";
 				PROVISIONING_PROFILE_SPECIFIER = "";

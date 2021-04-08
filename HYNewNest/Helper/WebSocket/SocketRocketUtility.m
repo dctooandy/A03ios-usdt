@@ -7,7 +7,7 @@
 //
 
 #import "SocketRocketUtility.h"
-#import <SocketRocket/SocketRocket.h>
+
 
 @interface SocketRocketUtility()<SRWebSocketDelegate>
 {
@@ -30,6 +30,13 @@
         Instance = [[SocketRocketUtility alloc] init];
     });
     return Instance;
+}
+
+- (SRReadyState)socketReadyState {
+    if (self.socket) {
+        return self.socket.readyState;
+    }
+    return SR_CLOSED;
 }
 
 //开启连接

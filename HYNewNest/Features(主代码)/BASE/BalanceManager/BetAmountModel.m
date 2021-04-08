@@ -39,4 +39,16 @@ NSString * DBName_AccountBalance = @"UserBalances";
     return @[@"primaryKey"];
 }
 
+- (NSNumber *)withdrawBal {
+    if (!_withdrawBal && _walletBalance) {
+        return _walletBalance.withdrawable;
+    }
+    return _withdrawBal;
+}
+
+@end
+
+
+@implementation NewWalletBalance
+
 @end

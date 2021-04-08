@@ -17,8 +17,8 @@
 #pragma mark - API PATH
 
 /// 拼接path部分    glaxy_a03 -> glaxy_83e6dy
-#define kGatewayPath(api)       [NSString stringWithFormat:@"/_glaxy_83e6dy_/%@", api]
-#define kGatewayExtraPath(api)  [NSString stringWithFormat:@"/_glaxy_83e6dy_/_extra_/%@", api]
+#define kGatewayPath(api)       [NSString stringWithFormat:@"/_glaxy_83e6dy_/%@", api]  //基础网关
+#define kGatewayExtraPath(api)  [NSString stringWithFormat:@"/_glaxy_83e6dy_/_extra_/%@", api]  //产品网关
 
 #pragma mark 公共
 #define config_welcome  @"welcome"
@@ -117,7 +117,10 @@
 #define config_transfer_to_local @"game/transferToLocal" //账户明细 转至本地
 #define config_drawCancelRequest  @"withdraw/cancelRequest" // 取款 “等待状态”取消订单
 #define config_calculateSeparate  @"withdraw/calculator"   //计算CNY取款返利拆分
+
+#pragma mark 新钱包
 #define config_getBalances       @"getBalances" //主账号查询子账号额度
+#define config_walletCoupon      @"proxy/wallet/coupon" // 获取优惠券列表
 
 #pragma mark 风采
 #define config_getArticels  @"83e6dy/getArticles" //查询投注详情  电游投注详情用

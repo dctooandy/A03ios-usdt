@@ -158,12 +158,18 @@
     }];
     
     // TEXT
-    self.danweiLbl.text = [NSString stringWithFormat:@"（单位：%@）", model.currency.lowercaseString];
+//    self.danweiLbl.text = [NSString stringWithFormat:@"（单位：%@）", model.currency.lowercaseString];
+    NSString *curcy = [CNUserManager shareManager].userInfo.currency;
+    self.danweiLbl.text = [NSString stringWithFormat:@"（单位：%@）", curcy];
     self.platformTotalBalLbl.text = [model.platformTotalBalance jk_toDisplayNumberWithDigit:2];
-    self.byTotalBalLbl.text = [model.localBalance jk_toDisplayNumberWithDigit:2];
+    
+//    self.byTotalBalLbl.text = [model.localBalance jk_toDisplayNumberWithDigit:2];
+    float websiteBal = model.balance.floatValue - model.platformTotalBalance.floatValue;
+    self.byTotalBalLbl.text = [@(websiteBal) jk_toDisplayNumberWithDigit:2];
+    
     self.sumupTotBalLbl.text = [NSString stringWithFormat:@"总余额 : %@", [model.balance jk_toDisplayNumberWithDigit:2]];
     [self.sumupTotBalLbl setupGradientColorFrom:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE)];
-    self.minimalWithdrawBalLbl.text = [NSString stringWithFormat:@"厅内余额少于%@%@无法转出到网站", model.minWithdrawAmount, model.currency.lowercaseString];
+    self.minimalWithdrawBalLbl.text = [NSString stringWithFormat:@"厅内余额少于%@%@无法转出到网站", model.minWithdrawAmount, curcy.lowercaseString];
 }
 
 

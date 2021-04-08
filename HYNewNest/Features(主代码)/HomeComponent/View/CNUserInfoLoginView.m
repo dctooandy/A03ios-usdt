@@ -88,7 +88,6 @@
     }
 }
 
-
 // 切换币种 修改买充提买按钮 必须重新加载数据
 - (void)switchAccountUIChange {
     [self refreshBottomBtnsStatus];
