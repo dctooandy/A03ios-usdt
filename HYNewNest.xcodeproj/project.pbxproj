@@ -356,6 +356,7 @@
 		3DF43D482594614D0087F26A /* DSBProfitBoardDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D472594614D0087F26A /* DSBProfitBoardDataSource.m */; };
 		3DF43D4C25946AED0087F26A /* DSBProfitBoardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D4A25946AED0087F26A /* DSBProfitBoardCell.m */; };
 		3DF43D4D25946AED0087F26A /* DSBProfitBoardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF43D4B25946AED0087F26A /* DSBProfitBoardCell.xib */; };
+		3DFF702E261EF92E00801654 /* LLIconVersioning.sh in Resources */ = {isa = PBXBuildFile; fileRef = 3DFF702D261EF92E00801654 /* LLIconVersioning.sh */; };
 		5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */; };
 		D571B19624BE9F120087B5EC /* CNLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19524BE9F120087B5EC /* CNLineView.m */; };
 		D571B1AA24C03D790087B5EC /* CNStatementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D571B1A724C03D790087B5EC /* CNStatementView.xib */; };
@@ -1617,6 +1618,7 @@
 		3DF43D4925946AED0087F26A /* DSBProfitBoardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBProfitBoardCell.h; sourceTree = "<group>"; };
 		3DF43D4A25946AED0087F26A /* DSBProfitBoardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBProfitBoardCell.m; sourceTree = "<group>"; };
 		3DF43D4B25946AED0087F26A /* DSBProfitBoardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBProfitBoardCell.xib; sourceTree = "<group>"; };
+		3DFF702D261EF92E00801654 /* LLIconVersioning.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = LLIconVersioning.sh; sourceTree = "<group>"; };
 		62DF1724D3A54A4E27D4B55B /* Pods-HYNewNest-HYNewNestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; path = "Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.debug.xcconfig"; sourceTree = "<group>"; };
 		A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2974,6 +2976,7 @@
 		3D13388924AF28D600B29783 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				3DFF702D261EF92E00801654 /* LLIconVersioning.sh */,
 				3D13388B24AF28D600B29783 /* LaunchScreen.storyboard */,
 			);
 			path = Other;
@@ -5221,6 +5224,7 @@
 				3D13384F24AD8F9B00B29783 /* Resources */,
 				C08FB099C221193B86170E0B /* [CP] Embed Pods Frameworks */,
 				E43DFAD908603B137855A1CE /* [CP] Copy Pods Resources */,
+				3DFF702F261EF93900801654 /* IconVersioning Script */,
 			);
 			buildRules = (
 			);
@@ -5832,6 +5836,7 @@
 				D5A446CA24F3941400014DC6 /* 合成 1_0000.png in Resources */,
 				048A0EEB24C834B200411819 /* CNChessVC.xib in Resources */,
 				D5A4462A24F393E500014DC6 /* 足球_00050.png in Resources */,
+				3DFF702E261EF92E00801654 /* LLIconVersioning.sh in Resources */,
 				D5A444B024F3932400014DC6 /* 数字7_00083.png in Resources */,
 				D5A4449124F3932400014DC6 /* 数字7_00021.png in Resources */,
 				D5A4463224F393E500014DC6 /* 足球_00060.png in Resources */,
@@ -5992,6 +5997,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		3DFF702F261EF93900801654 /* IconVersioning Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "IconVersioning Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n$SRCROOT/HYNewNest/Other/LLIconVersioning.sh\n";
 		};
 		5DEC9F0E55F694C3750C9EA0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -6612,12 +6635,12 @@
 			baseConfigurationReference = 9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Debug";
 				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 70;
+				CURRENT_PROJECT_VERSION = 71;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = JW7F38ZMYT;
 				ENABLE_BITCODE = NO;
@@ -6657,9 +6680,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.58;
+				MARKETING_VERSION = 3.6.59;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
-				PRODUCT_NAME = "币游_dev";
+				PRODUCT_NAME = "币游";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -6675,7 +6698,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游Release.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 70;
+				CURRENT_PROJECT_VERSION = 71;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = JW7F38ZMYT;
 				ENABLE_BITCODE = NO;
@@ -6715,7 +6738,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.58;
+				MARKETING_VERSION = 3.6.59;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
 				PRODUCT_NAME = "币游";
 				PROVISIONING_PROFILE_SPECIFIER = "";
