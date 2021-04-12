@@ -10,6 +10,7 @@
 #
 ######################################################
 # 1. 脚本集成到Xcode工程的Target
+# --- 在打包前build一次以更新图标
 ######################################################
 #
 # --- Copy the SCRIPT to the Run Script of Build Phases in the Xcode project ---
@@ -53,8 +54,8 @@ ICON_BADGE_HEIGHT=20
 # # 底部app信息参数
 # # Bottom app information parameters
 ICON_INFO_TEXT_COLOR="rgba(255,255,255,1.0)"
-ICON_INFO_FONT_SIZE=13
-ICON_INFO_HEIGHT=35
+ICON_INFO_FONT_SIZE=14
+ICON_INFO_HEIGHT=32
 #
 # #
 # source LLIconVersioning.sh
@@ -87,8 +88,7 @@ CAPTION="$APP_VERSION\n($APP_BUILD_NUM)"
 #
 # # Badge文字 不改成debug archive后变成release
 # # Badge caption
-#BADGE_CAPTION="$CONFIGURATION"
-BADGE_CAPTION="DEBUG"
+BADGE_CAPTION="$CONFIGURATION"
 #
 #
 echo "APP_VERSION=$APP_VERSION"
