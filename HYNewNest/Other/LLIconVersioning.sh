@@ -85,9 +85,10 @@ APP_BUILD_NUM=$CURRENT_PROJECT_VERSION
 # # The caption displayed on the Icon, you can change the caption format here
 CAPTION="$APP_VERSION\n($APP_BUILD_NUM)"
 #
-# # Badge文字
+# # Badge文字 不改成debug archive后变成release
 # # Badge caption
-BADGE_CAPTION="$CONFIGURATION"
+#BADGE_CAPTION="$CONFIGURATION"
+BADGE_CAPTION="DEBUG"
 #
 #
 echo "APP_VERSION=$APP_VERSION"
