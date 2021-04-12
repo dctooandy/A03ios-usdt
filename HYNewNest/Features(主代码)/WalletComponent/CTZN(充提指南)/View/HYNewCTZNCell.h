@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic) CTZNModel *model;
 @property (copy,nonatomic) void (^actionBlock)(NSString *type); //!<点了主按钮
 @property (copy,nonatomic) void (^playBlock)(void); //!<点了播放视频
+@property (assign, nonatomic) BOOL isCusSelc; //!< 选中边框
 @end
 
 NS_ASSUME_NONNULL_END

@@ -148,7 +148,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9z-Bs-aAP">
                                                     <rect key="frame" x="0.0" y="0.0" width="88.666666666666671" height="80"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="-10" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" image="zb"/>
+                                                    <state key="normal" image="买币3"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                             <integer key="value" value="10"/>
@@ -188,7 +188,7 @@
                                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUR-FN-Cxt">
                                                     <rect key="frame" x="0.0" y="0.0" width="88.333333333333329" height="80"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="-10" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" image="cz"/>
+                                                    <state key="normal" image="充币3"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                             <integer key="value" value="10"/>
@@ -228,7 +228,7 @@
                                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFG-eW-rDs">
                                                     <rect key="frame" x="0.0" y="0.0" width="88.666666666666671" height="80"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="-10" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" image="tx"/>
+                                                    <state key="normal" image="提币3"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                             <integer key="value" value="10"/>
@@ -268,7 +268,7 @@
                                                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ddt-Xe-AyM">
                                                     <rect key="frame" x="0.0" y="0.0" width="88.333333333333329" height="80"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="-10" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" image="mb"/>
+                                                    <state key="normal" image="卖币3"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                             <integer key="value" value="10"/>
@@ -701,7 +701,7 @@
                                             <rect key="frame" x="192" y="15" width="192" height="65"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                             <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" title="提现" image="tx"/>
+                                            <state key="normal" title="提现" image="提现3"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                     <integer key="value" value="10"/>
@@ -716,7 +716,7 @@
                                             <rect key="frame" x="0.0" y="15" width="192" height="65"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                             <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" title="充值" image="zb"/>
+                                            <state key="normal" title="充值" image="充值3"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                     <integer key="value" value="10"/>
@@ -799,20 +799,22 @@
     <resources>
         <image name="2" width="114" height="106"/>
         <image name="aq" width="24" height="24"/>
-        <image name="cz" width="40" height="40"/>
         <image name="icon" width="42" height="42"/>
         <image name="jl" width="24" height="24"/>
         <image name="l_btn_line" width="315" height="48"/>
-        <image name="mb" width="40" height="40"/>
         <image name="sz" width="22" height="22"/>
-        <image name="tx" width="40" height="40"/>
         <image name="xm" width="24" height="24"/>
         <image name="xx" width="24" height="24"/>
         <image name="xz" width="345" height="100"/>
         <image name="yaoqing" width="192" height="50"/>
         <image name="yhk" width="24" height="24"/>
         <image name="yhq" width="23" height="21"/>
-        <image name="zb" width="40" height="40"/>
+        <image name="买币3" width="34" height="30.5"/>
+        <image name="充值3" width="34" height="34"/>
+        <image name="充币3" width="34" height="34"/>
+        <image name="卖币3" width="34" height="32.5"/>
+        <image name="提币3" width="34" height="34"/>
+        <image name="提现3" width="34" height="34"/>
         <image name="路径" width="375" height="179"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

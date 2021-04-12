@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *titleBtn;
 @property (weak, nonatomic) IBOutlet UILabel *statusLb;
 @property (weak, nonatomic) IBOutlet UILabel *totalAmountLb;
-@property (weak, nonatomic) IBOutlet UILabel *streamLb;
 @property (weak, nonatomic) IBOutlet UILabel *mianeAmountLb;
 
 @property (weak, nonatomic) IBOutlet UILabel *depositAmountTxtLb; //存款金额
@@ -26,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *depositAmountLbTopConst;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *depositAmountLbHeightCOnst;
 
+@property (weak, nonatomic) IBOutlet UILabel *streamLb;
 @property (weak, nonatomic) IBOutlet UILabel *totalStreamLb;
 @property (weak, nonatomic) IBOutlet UIProgressView *progsView;
 
@@ -121,24 +121,26 @@
     }
     
     _totalAmountLb.text = [model.totalAmount jk_toDisplayNumberWithDigit:2];
-    _streamLb.text = [@(model.finishedBetAmount) jk_toDisplayNumberWithDigit:0];
-    _totalStreamLb.text = [@(model.unlockBetAmount) jk_toDisplayNumberWithDigit:0];
-    float percent = (model.finishedBetAmount*1.0)/(model.unlockBetAmount*1.0);
+    _streamLb.text = [model.finishedBetAmount jk_toDisplayNumberWithDigit:2];
+    _totalStreamLb.text = [model.unlockBetAmount jk_toDisplayNumberWithDigit:2];
+    float percent = model.finishedBetAmount.floatValue / model.unlockBetAmount.floatValue;
     _progsView.progress = percent;
     
-    // 支持游戏
+    // 是否有支持游戏
+    if (KIsEmptyString(model.platforms)) {
+        _suportGameRightLb.text = @"不限游戏类型";
+        _suportGameDetailLb.text = @"不限游戏类型";
+    } else {
+        _suportGameRightLb.text = model.platforms;
+        _suportGameDetailLb.text = model.platforms;
+    }
+    // 支持游戏字符串长度是否大于250
     if ([model.platforms jk_widthWithFont:[UIFont systemFontOfSize:14.0 weight:UIFontWeightLight] constrainedToHeight:30] > 250) {
         _suportGameRightArr.alpha = 1;
         _suportGameRightBtn.enabled = YES;
-        _suportGameRightLb.text = model.platforms;
-        _suportGameDetailLb.text = model.platforms;
     } else {
         _suportGameRightArr.alpha = 0.3;
         _suportGameRightBtn.enabled = NO;
-        if (KIsEmptyString(model.platforms)) {
-            _suportGameRightLb.text = @"不限游戏类型";
-            _suportGameDetailLb.text = @"不限游戏类型";
-        }
     }
 }
 
@@ -156,7 +158,8 @@
 #pragma mark - Action
 
 - (IBAction)didTapDetailBtn:(id)sender {
-    
+    //TODO: 增加url路径
+    [NNPageRouter jump2HTMLWithStrURL:@"" title:self.model.prizeName needPubSite:NO];
 }
 
 

@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 //extern NSString * const KNotShowCTZNEveTime;
 
 @interface HYNewCTZNViewController : CNBaseVC
-
+@property (assign,nonatomic) NSInteger type; //0买1充2提3卖
 @end
 
 NS_ASSUME_NONNULL_END

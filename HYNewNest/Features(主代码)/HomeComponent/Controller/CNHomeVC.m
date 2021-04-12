@@ -16,6 +16,7 @@
 #import "CNMessageCenterVC.h"
 #import "HYXiMaViewController.h"
 #import "CNDashenBoardVC.h"
+#import "HYNewCTZNViewController.h"
 
 #import "CNUserInfoLoginView.h"
 #import "SDCycleScrollView.h"
@@ -337,12 +338,13 @@
 #pragma mark - CNUserInfoLoginViewDelegate
 
 - (void)buttonArrayAction:(CNActionType)type {
-    //usdt模式下 未选择“不再提醒”充提指南 => 进充提指南
-//    if ([CNUserManager shareManager].isUsdtMode && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
-//        [self presentViewController:[HYNewCTZNViewController new] animated:YES completion:^{
-//        }];
-//
-//    } else {
+    //usdt模式下 未选择“不再提醒”充提指南 的0星级别用户 => 进充提指南
+    if ([CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userInfo.starLevel == 0 && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
+        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
+        vc.type = (NSInteger)type;
+        [self presentViewController:vc animated:YES completion:nil];
+
+    } else {
         switch (type) {
             case CNActionTypeBuy: //买
                 [NNPageRouter jump2BuyECoin];
@@ -366,7 +368,7 @@
                 [self.navigationController pushViewController:[HYXiMaViewController new] animated:YES];
                 break;
         }
-//    }
+    }
     
 }
 

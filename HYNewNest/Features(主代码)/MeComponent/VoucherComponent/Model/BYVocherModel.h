@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSNumber              * depositAmount; //!<存款本金
 @property (nonatomic , assign) BOOL              depositPromotion; //!<是否存送券
 @property (nonatomic , copy) NSString              * enableDate; //!<有效期
-@property (nonatomic , assign) NSInteger              finishedBetAmount; //!<已打流水
+@property (nonatomic , strong) NSNumber            * finishedBetAmount; //!<已打流水
 @property (nonatomic , assign) NSInteger              isDepositPromotion;
 @property (nonatomic , assign) NSInteger              level;
 @property (nonatomic , assign) NSInteger              lockSurplusAmount;
@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign) NSInteger              status; //!<优惠券状态
 @property (nonatomic , assign) NSInteger              surplusAmount;
 @property (nonatomic , strong) NSNumber            * totalAmount; //!<优惠券总额 不需要多个字段加起来
-@property (nonatomic , assign) NSInteger              unlockBetAmount; //!<流水要求
+@property (nonatomic , strong) NSNumber            * unlockBetAmount; //!<流水要求
 @property (nonatomic , assign) NSInteger              unlockBetMultiple;
 @property (copy,nonatomic) NSString                * platforms; //!<支持平台
 @end

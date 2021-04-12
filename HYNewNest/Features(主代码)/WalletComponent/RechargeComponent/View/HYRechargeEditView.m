@@ -11,6 +11,7 @@
 #import "HYRechProcButton.h"
 #import "HYRechargeHelper.h"
 #import <UIImageView+WebCache.h>
+#import "NSURL+HYLink.h"
 
 @interface HYRechargeEditView ()
 @property (strong, nonatomic) IBOutlet UIView *contentView;
@@ -84,12 +85,14 @@
     if ([HYRechargeHelper isOnlinePayWayDCBox:self.deposModel]) {
         self.protocolBgView.hidden = YES;
         self.amountTfViewTopMargin.constant = 22;
+        // 自内而外改变高度
         [self mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(249-62);
         }];
     } else {
         self.protocolBgView.hidden = NO;
         self.amountTfViewTopMargin.constant = 86;
+        // 自内而外改变高度
         [self mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(249);
         }];
@@ -155,7 +158,7 @@
 - (void)setupDepositModel:(DepositsBankModel *)model {
     _deposModel = model;
     
-    [_imgvIcon sd_setImageWithURL:[NSURL URLWithString:model.bankIcon]];
+    [_imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:model.bankIcon] placeholderImage:[UIImage imageNamed:@"Exchanges-logo-1"]];
     _tfAmount.placeholder = [NSString stringWithFormat:@"请输入≥%ld%@的数额", model.minAmount, model.currency];
     if ([model.bankname caseInsensitiveCompare:@"dcbox"] == NSOrderedSame) {
         _lblPayWayName.text = @"小金库";

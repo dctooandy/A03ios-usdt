@@ -57,6 +57,10 @@ typedef NS_ENUM(NSUInteger, CNSMSCodeType) {
                      phone:(NSString *)phone
          completionHandler:(HandlerBlock)completionHandler;
 
++ (void)getSMSCodeWithType:(CNSMSCodeType)type
+                     phone:(NSString *)phone
+                validateId:(NSString *)vId
+         completionHandler:(HandlerBlock)completionHandler;
 
 /// 通过用户名获取短信验证码
 /// @param type 类型

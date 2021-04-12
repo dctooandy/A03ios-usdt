@@ -80,7 +80,13 @@
             
         // 安全中心来的 未绑手机
         case CNSMSCodeTypeBindPhone:
-            self.navigationItem.title = @"绑定新手机";
+               self.navigationItem.title = @"绑定新手机";
+            // 如果有已有手机号则设置
+            if ([CNUserManager shareManager].userDetail.mobileNo.length) {
+                self.inputTF.text = [CNUserManager shareManager].userDetail.mobileNo;
+                self.inputTF.userInteractionEnabled = NO;
+                self.sendCodeBtn.hidden = NO;
+            }
             break;
         // 安全中心来的 解绑
         case CNSMSCodeTypeUnbind:
@@ -89,6 +95,7 @@
             self.inputTF.userInteractionEnabled = NO;
             self.sendCodeBtn.hidden = NO;
             self.navigationItem.title = @"手机号修改";
+            [self.submitBtn setTitle:@"确认" forState:UIControlStateNormal];
             break;
         // 解绑来的 绑新手机
         case CNSMSCodeTypeChangePhone:
@@ -132,6 +139,9 @@
     __weak typeof(self) weakSelf = self;
     view.finishBlock = ^(NSString *code) {
         weakSelf.submitBtn.enabled = YES;
+        if (weakSelf.bindType == CNSMSCodeTypeRegister) {
+            [weakSelf.submitBtn setBackgroundImage:[UIImage imageNamed:@"h5"] forState:UIControlStateNormal];
+        }
         weakSelf.smsModel.smsCode = code;
     };
     [self.shakingView addSubview:view];
@@ -194,8 +204,9 @@
         }];
         
     } else {
-        [CNLoginRequest getSMSCodeWithType:CNSMSCodeTypeBindPhone
+        [CNLoginRequest getSMSCodeWithType:self.validateId?CNSMSCodeTypeChangePhone:CNSMSCodeTypeBindPhone
                                      phone:self.inputTF.text
+                                validateId:self.validateId?:@""
                          completionHandler:^(id responseObj, NSString *errorMsg) {
             STRONGSELF_DEFINE
             SmsCodeModel *smsModel = [SmsCodeModel cn_parse: responseObj];
@@ -265,6 +276,9 @@
                 [CNHUB showSuccess:@"验证成功"];
                 CNBindPhoneVC *bindVc = [CNBindPhoneVC new];
                 bindVc.bindType = CNSMSCodeTypeChangePhone;
+                if (responseObj && [responseObj isKindOfClass:[NSDictionary class]]) {
+                    bindVc.validateId = responseObj[@"validateId"];
+                }
                 [self.navigationController pushViewController:bindVc animated:YES];
             }
         }];

@@ -140,6 +140,13 @@
 
 /// 买充提卖
 - (IBAction)didClickMCTMBtns:(UIButton *)sender {
+    if ([CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userInfo.starLevel == 0 && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
+        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
+        vc.type = sender.tag;
+        [self presentViewController:vc animated:YES completion:nil];
+        return;
+    }
+    
     if (sender.tag == 0) { // 买币
         [NNPageRouter jump2BuyECoin];
         
@@ -188,15 +195,15 @@
 }
 
 // 充提指南/意见反馈
-- (IBAction)recharWithdrawGuide:(id)sender {
-    if ([CNUserManager shareManager].isUsdtMode) {
-        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
-        [self presentViewController:vc animated:YES completion:^{
-        }];
-    } else {
-        [self.navigationController pushViewController:[CNFeedBackVC new] animated:YES];
-    }
-}
+//- (IBAction)recharWithdrawGuide:(id)sender {
+//    if ([CNUserManager shareManager].isUsdtMode) {
+//        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
+//        [self presentViewController:vc animated:YES completion:^{
+//        }];
+//    } else {
+//        [self.navigationController pushViewController:[CNFeedBackVC new] animated:YES];
+//    }
+//}
 
 // 邀请
 - (IBAction)invite:(id)sender {

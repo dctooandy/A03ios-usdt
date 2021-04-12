@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <SocketRocket/SocketRocket.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (SocketRocketUtility *)instance;
 -(void)SRWebSocketOpenWithURLString:(NSString *)urlString;
-
+- (SRReadyState)socketReadyState;
 @end
 
 NS_ASSUME_NONNULL_END
