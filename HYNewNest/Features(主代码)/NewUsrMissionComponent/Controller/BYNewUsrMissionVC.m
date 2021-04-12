@@ -40,13 +40,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        // 首充弹窗
-        [HYUpdateAlertView showFirstDepositHandler:^(BOOL isComfm) {
-            [NNPageRouter jump2BuyECoin];
-        }];
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        
+//        // 首充弹窗
+//        [HYUpdateAlertView showFirstDepositHandler:^(BOOL isComfm) {
+//            [NNPageRouter jump2Deposit];
+//        }];
+//    });
     
     self.title = @"新手任务";
     self.cumulate7Btn.enabled = NO; //状态
