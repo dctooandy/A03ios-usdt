@@ -10,28 +10,42 @@
 
 #import "HYWideOneBtnAlertView.h"
 #import "HYUpdateAlertView.h"
+#import "BYNewUsrMissionCell.h"
 
 #import "CNTwoStatusBtn.h"
 #import "UIView+DottedLine.h"
 
-@interface BYNewUsrMissionVC ()
+#import "CNTaskRequest.h"
+
+static NSString * const kMissionCell = @"BYNewUsrMissionCell";
+
+@interface BYNewUsrMissionVC () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *oneViewWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cumulate4dayIconLeadingCons;
+
 @property (weak, nonatomic) IBOutlet UIView *cumulate3daysBg;
 @property (weak, nonatomic) IBOutlet UIView *cumulate7daysBg;
 // 累计登录3天按钮
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *cumulate3Btn;
 // 累计登录7天按钮
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *cumulate7Btn;
+
 // 累计登录天进度按钮
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cumulate3daysIcons;
 // 所有天数Label状态
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *daysLbCollect;
+
 // 所有待领取按钮状态
 @property (strong, nonatomic) IBOutletCollection(CNTwoStatusBtn) NSArray *missionBtns;
+
 // 倒计时文字
 @property (weak, nonatomic) IBOutlet UILabel *limtTimeCuntDwnLb;
 @property (weak, nonatomic) IBOutlet UILabel *progressCuntDwnLb;
+
+// 两个列表
+@property (weak, nonatomic) IBOutlet UITableView *limitTimeTableView;
+@property (weak, nonatomic) IBOutlet UITableView *upgradeTableView;
+
 
 @end
 
@@ -49,12 +63,21 @@
 //    });
     
     self.title = @"新手任务";
-    self.cumulate7Btn.enabled = NO; //状态
+    self.cumulate7Btn.enabled = NO; //TODO: 状态
+    // tableView
+    [self.limitTimeTableView registerNib:[UINib nibWithNibName:kMissionCell bundle:nil] forCellReuseIdentifier:kMissionCell];
+    [self.upgradeTableView registerNib:[UINib nibWithNibName:kMissionCell bundle:nil] forCellReuseIdentifier:kMissionCell];
     
+    // 更新约束
     _oneViewWidth.constant = kScreenWidth;
     _cumulate4dayIconLeadingCons.constant = (kScreenWidth-15*2-50*3-32*4)*0.5;
     [self.view setNeedsLayout];
     [self.view layoutIfNeeded];
+    
+    
+    // 请求
+    [self requestData];
+    
     
     // 边框
     _cumulate3daysBg.backgroundColor = _cumulate7daysBg.backgroundColor = self.view.backgroundColor;
@@ -114,15 +137,32 @@
 }
 
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - Data
+- (void)requestData {
+    [CNTaskRequest getNewUsrTask:^(id responseObj, NSString *errorMsg) {
+        
+    }];
 }
-*/
+
+
+#pragma mark - UITableView
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if ([tableView isEqual:self.limitTimeTableView]) {
+        return 3;
+    } else {
+        return 7;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    BYNewUsrMissionCell *cell = (BYNewUsrMissionCell *)[tableView dequeueReusableCellWithIdentifier:kMissionCell];
+    if ([tableView isEqual:self.limitTimeTableView]) {
+        cell.isUpgradeTask = NO;
+    } else {
+        cell.isUpgradeTask = YES;
+    }
+    return cell;
+}
+
 
 @end

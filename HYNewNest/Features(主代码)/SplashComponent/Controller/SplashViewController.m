@@ -179,11 +179,12 @@
 //        });
 //        return;
 //    }
-#ifdef DEBUG
-    [NNPageRouter changeRootVc2DevPage];
-#else
+    
+//#ifdef DEBUG
+//    [NNPageRouter changeRootVc2DevPage];
+//#else
     [NNPageRouter changeRootVc2MainPage];
-#endif
+//#endif
 }
 
 

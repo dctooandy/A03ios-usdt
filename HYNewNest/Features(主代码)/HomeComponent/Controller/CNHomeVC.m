@@ -17,6 +17,7 @@
 #import "HYXiMaViewController.h"
 #import "CNDashenBoardVC.h"
 #import "HYNewCTZNViewController.h"
+#import "BYNewUsrMissionVC.h"
 
 #import "CNUserInfoLoginView.h"
 #import "SDCycleScrollView.h"

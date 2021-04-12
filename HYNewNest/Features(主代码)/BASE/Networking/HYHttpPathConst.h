@@ -170,4 +170,7 @@
 #define activity_vipSxhReceiveAward     @"promo/83e6dy/common/receive/award" //领取记录
 #define activity_vipSxhAwardDetail      @"83e6dy/activity/vipsxh/detail" //礼物详情
 
+#pragma mark VIP私享会
+#define config_newapiTask       @"83e6dy/activity/newapi/task" //新手任务
+
 #endif /* HYHttpPathConst_h */
