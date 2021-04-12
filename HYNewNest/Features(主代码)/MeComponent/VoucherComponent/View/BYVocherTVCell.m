@@ -158,8 +158,12 @@
 #pragma mark - Action
 
 - (IBAction)didTapDetailBtn:(id)sender {
-    //TODO: 增加url路径
-    [NNPageRouter jump2HTMLWithStrURL:@"" title:self.model.prizeName needPubSite:NO];
+    // 跳转活动
+    if (self.model.linkUrl) {
+        [NNPageRouter jump2HTMLWithStrURL:self.model.linkUrl title:self.model.prizeName needPubSite:NO];
+    } else {
+        [CNHUB showError:@"优惠券未配置活动链接"];
+    }
 }
 
 

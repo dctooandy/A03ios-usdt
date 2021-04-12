@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSNumber            * unlockBetAmount; //!<流水要求
 @property (nonatomic , assign) NSInteger              unlockBetMultiple;
 @property (copy,nonatomic) NSString                * platforms; //!<支持平台
+@property (copy,nonatomic) NSString                * linkUrl; //!<活动链接
 @end
 
 NS_ASSUME_NONNULL_END
