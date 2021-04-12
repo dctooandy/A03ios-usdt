@@ -44,12 +44,25 @@ form.submit();\
 
 @implementation GameStartPlayViewController
 
+- (void)goBack {
+    if (self.webView.canGoBack) {
+        [self.webView goBack];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+
 - (instancetype)initGameWithGameUrl:(NSString *)gameUrl title:(NSString *)title{
     self = [super init];
     if(self) {
         self.gameName = title;
-        self.gameUrl = gameUrl;
-        
+        if ([gameUrl containsString:@"http"]) {
+            NSString *agwebUrl = [NSString stringWithFormat:@"%@&webApp=%@",gameUrl,@"true"];
+            self.gameUrl = [agwebUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        } else {
+            self.gameUrl = gameUrl;
+        }
     }
     return self;
 }
@@ -116,11 +129,7 @@ form.submit();\
     [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
         STRONGSELF_DEFINE
         if ([strongSelf.gameUrl containsString:@"callbackUrl"]) {
-            if ([strongSelf.gameName isEqualToString:@"AS真人棋牌"]) {
-                make.top.equalTo(strongSelf.view);
-            } else {
-                make.top.equalTo(strongSelf.view).mas_offset(kStatusBarHeight);
-            }
+            make.top.equalTo(strongSelf.view).mas_offset(kStatusBarHeight);
         } else {
             make.top.equalTo(strongSelf.view);
         }
@@ -371,7 +380,7 @@ form.submit();\
 
 //必须返回YES
 - (BOOL)shouldAutorotate{
-    if ([self.gameName isEqualToString:@"百家乐-旗舰厅"] || [self.gameName isEqualToString:@"AS真人棋牌"] || [self.gameName isEqualToString:@"彩票"]) {
+    if ([self.gameName isEqualToString:@"百家乐-旗舰厅"] || [self.gameName isEqualToString:@"彩票"]) {
         return NO;
     } else {
         return YES;
@@ -380,7 +389,7 @@ form.submit();\
 
 
  - (BOOL)onDYDeviceOrientationDidChange{
-     if ([self.gameName isEqualToString:@"百家乐-旗舰厅"] || [self.gameName isEqualToString:@"AS真人棋牌"] || [self.gameName isEqualToString:@"彩票"]) {
+     if ([self.gameName isEqualToString:@"百家乐-旗舰厅"] || [self.gameName isEqualToString:@"彩票"]) {
          return NO;
      }
      
@@ -417,11 +426,7 @@ form.submit();\
          [self.webView mas_updateConstraints:^(MASConstraintMaker *make) {
              STRONGSELF_DEFINE
              if ([strongSelf.gameUrl containsString:@"callbackUrl"]) {
-                 if ([strongSelf.gameName isEqualToString:@"AS真人棋牌"]) {
-                     make.top.equalTo(strongSelf.view);
-                 } else {
-                     make.top.equalTo(strongSelf.view).mas_offset(kStatusBarHeight);
-                 }
+                 make.top.equalTo(strongSelf.view).mas_offset(kStatusBarHeight);
              } else {
                  make.top.equalTo(strongSelf.view);
              }

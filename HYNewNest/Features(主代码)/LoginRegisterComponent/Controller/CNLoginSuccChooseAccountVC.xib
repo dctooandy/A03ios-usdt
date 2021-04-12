@@ -27,11 +27,11 @@
                         <constraint firstAttribute="height" constant="227" id="rKe-eA-OJ3"/>
                     </constraints>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="S4T-Cp-UGs">
-                    <rect key="frame" x="157" y="79" width="100" height="130"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="log_logo" translatesAutoresizingMaskIntoConstraints="NO" id="S4T-Cp-UGs">
+                    <rect key="frame" x="163" y="79" width="88" height="93"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zxV-e7-HT4" customClass="CNAccountSelectView">
-                    <rect key="frame" x="30" y="224" width="354" height="75"/>
+                    <rect key="frame" x="30" y="187" width="354" height="75"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <gestureRecognizers/>
                     <constraints>
@@ -42,7 +42,7 @@
                     </connections>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNn-OH-OZR" customClass="CNTwoStatusBtn">
-                    <rect key="frame" x="30" y="456" width="354" height="48"/>
+                    <rect key="frame" x="30" y="419" width="354" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="nI2-xw-1XR"/>
                     </constraints>
@@ -82,6 +82,6 @@
     </objects>
     <resources>
         <image name="l_USDT" width="375" height="330"/>
-        <image name="logo" width="100" height="130"/>
+        <image name="log_logo" width="88" height="93"/>
     </resources>
 </document>

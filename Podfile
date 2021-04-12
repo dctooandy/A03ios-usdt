@@ -38,6 +38,8 @@ target 'HYNewNest' do
   pod 'IVCheckNetworkLibrary',:git =>'http://10.66.72.115/mobile-iOS-library/IVCheckNetworkLibrary.git'
   # 天网埋点
   pod 'IVLoganAnalysis',:git =>'http://10.66.72.115/mobile-iOS-library/IVLoganAnalysis.git'
+  # OCSS客服
+  pod 'CSSerVice',:git =>'http://10.66.72.115/mobile-iOS-library/ocss-webview-sdk-demo-ios.git'
   
   pod 'LookinServer', :configurations => ['Debug']
 

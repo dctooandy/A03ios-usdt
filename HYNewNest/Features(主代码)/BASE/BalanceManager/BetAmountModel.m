@@ -8,7 +8,7 @@
 
 #import "BetAmountModel.h"
 
-@implementation PromoteXimaModel
+@implementation PromoteRebateModel
 
 @end
 
@@ -38,5 +38,17 @@ NSString * DBName_AccountBalance = @"UserBalances";
 + (NSArray *)bg_uniqueKeys {
     return @[@"primaryKey"];
 }
+
+- (NSNumber *)withdrawBal {
+    if (!_withdrawBal && _walletBalance) {
+        return _walletBalance.withdrawable;
+    }
+    return _withdrawBal;
+}
+
+@end
+
+
+@implementation NewWalletBalance
 
 @end

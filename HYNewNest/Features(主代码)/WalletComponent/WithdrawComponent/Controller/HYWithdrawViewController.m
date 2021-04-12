@@ -22,6 +22,7 @@
 #import "HYWithdrawCalculatorComView.h"
 #import "HYWithdrawChooseWallectComView.h"
 #import "HYWithdrawActivityAlertView.h"
+#import "BYCTZNBannerView.h"
 
 #import "CNWithdrawRequest.h"
 #import "CNWDAccountRequest.h"
@@ -33,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *sumitBtn;
 @property (nonatomic, strong) HYWithdrawComfirmView *comfirmView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *withdrawBtnBtmConst;
 
 @property (nonatomic, assign) NSInteger selectedIdx;
 @property (nonatomic, strong) NSMutableArray<AccountModel *> *elecCardsArr;//所有卡 根据当前模式只会是银行卡 或者 子账户钱包账户
@@ -49,18 +51,18 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     [super viewDidLoad];
     self.title = [CNUserManager shareManager].isUsdtMode ? @"提币" : @"提现";
     [self.sumitBtn setTitle:[CNUserManager shareManager].isUsdtMode ? @"提币" : @"提现" forState:UIControlStateNormal];
-//    [self addNaviRightItemWithImageName:@"service"];
+    [self addNaviRightItemWithImageName:@"service"];
     
     self.selectedIdx = 0;
+    if ([CNUserManager shareManager].isUsdtMode) {
+        _withdrawBtnBtmConst.constant = 175;
+        [self setupBanner];
+    } else {
+        _withdrawBtnBtmConst.constant = 30;
+    }
     [self setupTopView];
     [self setupTableView];
     
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] showSuspendBall];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -74,10 +76,20 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     [self requestWithdrawAddress];
 }
 
-//- (void)rightItemAction {
-//    [NNPageRouter jump2Live800Type:CNLive800TypeDeposit];
-//}
+- (void)rightItemAction {
+    [NNPageRouter jump2Live800Type:CNLive800TypeDeposit];
+}
 
+- (void)setupBanner {
+    BYCTZNBannerView *imgv = [[BYCTZNBannerView alloc] init];
+    [self.view addSubview:imgv];
+    [imgv mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(15);
+        make.right.equalTo(self.view).offset(-15);
+        make.height.equalTo(imgv.mas_width).multipliedBy(115/345.0);
+        make.bottom.equalTo(self.view).offset(-40);
+    }];
+}
 
 - (void)setupTopView {
     NSString *tx = [CNUserManager shareManager].isUsdtMode?@"提币USDT":@"提现金额";

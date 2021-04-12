@@ -17,7 +17,7 @@
     AccountMoneyDetailModel *_balanceDetailModel;
 }
 @property (nonatomic, strong) AccountMoneyDetailModel *balanceDetailModel;
-@property (nonatomic, strong) PromoteXimaModel        *promoteXimaModel;
+//@property (nonatomic, strong) PromoteXimaModel        *promoteXimaModel;
 @property (nonatomic, strong) BetAmountModel          *betAmountModel;
 @property (nonatomic, weak) NSTimer *balanceTimer;
 
@@ -115,16 +115,6 @@
     }
 }
 
-- (void)getPromoteXimaHandler:(void(^)(PromoteXimaModel * _Nonnull))handler {
-    if (_promoteXimaModel && promoteSec > 0) {
-        handler(_promoteXimaModel);
-    } else {
-        [self requestMonthPromoteAndXimaHandler:^(PromoteXimaModel *model) {
-            handler(model);
-        }];
-    }
-}
-
 - (void)getWeeklyBetAmountHandler:(void(^)(BetAmountModel * _Nonnull))handler {
     if (_betAmountModel && betAmountSec > 0) {
         handler(_betAmountModel);
@@ -206,20 +196,7 @@
 
 }
 
-/// 月优惠和洗码
-- (void)requestMonthPromoteAndXimaHandler:(nullable void(^)(PromoteXimaModel *))handler {
-    [BalanceManager requestMonthPromoteAndXimaHandler:^(id responseObj, NSString *errorMsg) {
-        PromoteXimaModel *pxModel = [PromoteXimaModel cn_parse:responseObj];
-        self.promoteXimaModel = pxModel;
-        self->promoteSec = 120;
-        [self resumeTimer];
-        if (handler) {
-            handler(pxModel);
-        }
-    }];
-}
-
-/// 周有效投注额
+/// 周有效投注额 + 月优惠和洗码
 - (void)requestBetAmountHandler:(nullable void(^)(BetAmountModel *))handler {
     [BalanceManager requestBetAmountHandler:^(id responseObj, NSString *errorMsg) {
         BetAmountModel *betModel = [BetAmountModel cn_parse:responseObj];
@@ -236,26 +213,31 @@
 #pragma mark - Raw Request
 
 + (void)requestBetAmountHandler:(HandlerBlock)handler {
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"currency"] = [CNUserManager shareManager].isUsdtMode?@"USDT":@"CNY";
+    param[@"inclPromoAmount"] = @1;
+    param[@"inclRebateAmount"] = @1;
+    param[@"thisMonth"] = @1;
     
-    [CNBaseNetworking POST:kGatewayExtraPath(config_betAmountLevel) parameters:[kNetworkMgr baseParam] completionHandler:handler];
+    [CNBaseNetworking POST:kGatewayExtraPath(config_betAmountLevel) parameters:param completionHandler:handler];
 }
 
 + (void)requestAccountBalanceHandler:(HandlerBlock)handler {
-    
-    NSMutableDictionary *param = [kNetworkMgr baseParam];
-    [param setObject:@"1" forKey:@"flag"];  //1 缓存15秒 9不缓存 不传默认缓存2分钟
-    [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"]; //1usdt账户余额  0人民币账户余额
-    
-    [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:handler];
-}
-
-+ (void)requestMonthPromoteAndXimaHandler:(HandlerBlock)handler {
-    
-    NSMutableDictionary *param = [kNetworkMgr baseParam];
-    [param setObject:@(1) forKey:@"inclPromoAmountByMonth"];
-    [param setObject:@(1) forKey:@"inclRebatedAmountByMonth"];
-    
-    [CNBaseNetworking POST:kGatewayPath(config_getByLoginNameEx) parameters:param completionHandler:handler];
+    if ([CNUserManager shareManager].userDetail.newWalletFlag) {
+        NSMutableDictionary *param = [kNetworkMgr baseParam];
+        param[@"flag"] = @1; //1 缓存15秒 9不缓存 不传默认缓存2分钟
+        param[@"walletCreditForPlatformFlag"] = @1; //需要游戏平台数据 ，如不需要则传0
+        [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"];
+        
+        [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:handler];
+        
+    } else {
+        NSMutableDictionary *param = [kNetworkMgr baseParam];
+        [param setObject:@"1" forKey:@"flag"];  //1 缓存15秒 9不缓存 不传默认缓存2分钟
+        [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"]; //1usdt账户余额  0人民币账户余额
+        
+        [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:handler];
+    }
 }
 
 @end

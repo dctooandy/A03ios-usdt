@@ -96,7 +96,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
 }
 
 - (void)back {
-    [self popViewControllerAnimated:YES];
+//    if ([[NNControllerHelper getCurrentViewController] isKindOfClass:NSClassFromString(@"GameStartPlayViewController")]) {
+//        [[NNControllerHelper getCurrentViewController] performSelector:@selector(goBack)];
+//    } else {
+        [self popViewControllerAnimated:YES];
+//    }
 }
 
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated{

@@ -38,14 +38,14 @@
 
     [self refreshBottomBtnsStatus];
     // 提现右上角NEW
-    [self.withdrawCNYBtn showRightTopImageName:@"new_txgb" size:CGSizeMake(30, 14) offsetX:-30 offsetYMultiple:0];
+//    [self.withdrawCNYBtn showRightTopImageName:@"new_txgb" size:CGSizeMake(30, 14) offsetX:-30 offsetYMultiple:0];
 }
 
 - (void)updateLoginStatusUI {
     if ([CNUserManager shareManager].isLogin) {
         [self configLogInUI];
         [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-            [self setupAmount:model?model.balance:@0];
+            [self.moneyLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
         }];
 //        if (![CNUserManager shareManager].userDetail.newAccountFlag) {
         if ([CNUserManager shareManager].isUiModeHasOptions) {
@@ -67,8 +67,8 @@
 
 - (void)configLogInUI {
     self.loginView.hidden = YES;
-
-    [self.headerIcon sd_setImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userInfo.avatar] placeholderImage:[UIImage imageNamed:@"icon"]];
+    [self refreshBottomBtnsStatus];
+    [self.headerIcon sd_setImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userDetail.avatar] placeholderImage:[UIImage imageNamed:@"icon"]];
 
     NSInteger level = [CNUserManager shareManager].userInfo.starLevel;
     UIImage *img = [UIImage imageNamed:[NSString stringWithFormat:@"vip%ld", (long)level]];
@@ -83,19 +83,10 @@
         [self.moneyLb showIndicatorIsBig:NO];
         //金额
         [[BalanceManager shareManager] requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-            [self setupAmount:model.balance];
+            [self.moneyLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
         }];
     }
 }
-
-- (void)setupAmount:(NSNumber *)amount {
-    if (amount.integerValue == 0) {
-        [self.moneyLb hideIndicatorWithText:@"000.00"];
-    } else {
-        [self.moneyLb hideIndicatorWithText:[amount jk_toDisplayNumberWithDigit:2]];
-    }
-}
-
 
 // 切换币种 修改买充提买按钮 必须重新加载数据
 - (void)switchAccountUIChange {

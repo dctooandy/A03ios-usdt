@@ -209,18 +209,22 @@
             [topBtn addTarget:self action:@selector(topBtnAction:) forControlEvents:UIControlEventTouchUpInside];
             topBtn.enabled = YES;
             [mainView addSubview:topBtn];
-              
+            
             UIButton *botoomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [botoomBtn setTitle:@"遇到问题？联系客服" forState:UIControlStateNormal];
+            [botoomBtn setTitle:(chargeType == ChargeMsgTypeDCBOX)?@"唤醒APP异常，前往H5支付":@"遇到问题？联系客服" forState:UIControlStateNormal];
             [botoomBtn.titleLabel setFont: [UIFont fontPFM16]];
             UIColor *gColor = [UIColor jk_gradientFromColor:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE) withHeight:AD(48)];
             [botoomBtn setTitleColor:gColor forState:UIControlStateNormal];
-            botoomBtn.layer.cornerRadius = 24;
+            botoomBtn.layer.cornerRadius = AD(24);
             botoomBtn.layer.borderWidth = 1;
             botoomBtn.layer.borderColor = gColor.CGColor;
-            botoomBtn.frame = CGRectMake(topBtn.x, topBtn.bottom+AD(30), topBtn.width, topBtn.height);
+            botoomBtn.frame = CGRectMake(topBtn.x, topBtn.bottom+AD(26), topBtn.width, topBtn.height);
             botoomBtn.tag = 0;
-            [botoomBtn addTarget:self action:@selector(jump2Kefu) forControlEvents:UIControlEventTouchUpInside];
+            if (chargeType == ChargeMsgTypeDCBOX) {
+                [botoomBtn addTarget:self action:@selector(jump2H5Pay) forControlEvents:UIControlEventTouchUpInside];
+            } else {
+                [botoomBtn addTarget:self action:@selector(jump2Kefu) forControlEvents:UIControlEventTouchUpInside];
+            }
             [mainView addSubview:botoomBtn];
             
             maxY = CGRectGetMaxY(botoomBtn.frame);
@@ -241,6 +245,23 @@
         self.clickBlock(YES);
     }
     [self removeView];
+}
+
+- (void)jump2H5Pay {
+    NSString *urlStr = self.addressText;
+    if ([urlStr hasPrefix:@"dcbox://pay"]) {
+        urlStr = [urlStr stringByReplacingOccurrencesOfString:@"dcbox://pay" withString:@"https://www.dcusdt.com/payment.html"];
+    } else if ([urlStr hasPrefix:@"dcusdt://pay"]) {
+        urlStr = [urlStr stringByReplacingOccurrencesOfString:@"dcusdt://pay" withString:@"https://www.dcusdt.com/payment.html"];
+    }
+    NSURL *url = [NSURL URLWithString:urlStr];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+            [CNHUB showSuccess:@"请在外部浏览器查看"];
+        }];
+    } else {
+        [CNHUB showError:@"小金库PayURL错误 请联系客服"];
+    }
 }
 
 - (void)jump2Kefu {

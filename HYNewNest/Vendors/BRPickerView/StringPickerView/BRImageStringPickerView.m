@@ -261,10 +261,6 @@ typedef NS_ENUM(NSInteger, BRStringPickerMode) {
 // 自定义 pickerView 的 label
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view {
     
-    //设置分割线的颜色
-    ((UIView *)[pickerView.subviews objectAtIndex:1]).backgroundColor = kBRLineColor;
-    ((UIView *)[pickerView.subviews objectAtIndex:2]).backgroundColor = kBRLineColor;
-    
     if (!view) {
         CGFloat height = 35.0f * kScaleFit;
         view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.alertView.frame.size.width, height)];

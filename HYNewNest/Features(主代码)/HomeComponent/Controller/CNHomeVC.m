@@ -16,6 +16,7 @@
 #import "CNMessageCenterVC.h"
 #import "HYXiMaViewController.h"
 #import "CNDashenBoardVC.h"
+#import "HYNewCTZNViewController.h"
 
 #import "CNUserInfoLoginView.h"
 #import "SDCycleScrollView.h"
@@ -36,9 +37,6 @@
 
 
 @interface CNHomeVC () <CNUserInfoLoginViewDelegate,  SDCycleScrollViewDelegate, UUMarqueeViewDelegate, GameBtnsStackViewDelegate, DashenBoardAutoHeightDelegate>
-{
-    BOOL _didAppear;
-}
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 /// 滚动视图
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -112,14 +110,20 @@
 {
     [super viewDidAppear:animated];
     //启动完成, 只调一次
-    if (!_didAppear) {
+    if (!_hasRecord) {
         [IN3SAnalytics launchFinished];
-        _didAppear = YES;
+        _hasRecord = YES;
     }
+    self.bannerView.autoScroll = YES; // 恢复滚动
     kPreventRepeatTime(60*10); //十分钟
     // 检查新版本
     [CNSplashRequest queryNewVersion:^(BOOL isHardUpdate) {
     }];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    self.bannerView.autoScroll = NO;
 }
 
 - (void)userDidLogin {
@@ -334,12 +338,13 @@
 #pragma mark - CNUserInfoLoginViewDelegate
 
 - (void)buttonArrayAction:(CNActionType)type {
-    //usdt模式下 未选择“不再提醒”充提指南 => 进充提指南
-//    if ([CNUserManager shareManager].isUsdtMode && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
-//        [self presentViewController:[HYNewCTZNViewController new] animated:YES completion:^{
-//        }];
-//
-//    } else {
+    //usdt模式下 未选择“不再提醒”充提指南 的0星级别用户 => 进充提指南
+    if ([CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userInfo.starLevel == 0 && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
+        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
+        vc.type = (NSInteger)type;
+        [self presentViewController:vc animated:YES completion:nil];
+
+    } else {
         switch (type) {
             case CNActionTypeBuy: //买
                 [NNPageRouter jump2BuyECoin];
@@ -363,7 +368,7 @@
                 [self.navigationController pushViewController:[HYXiMaViewController new] animated:YES];
                 break;
         }
-//    }
+    }
     
 }
 

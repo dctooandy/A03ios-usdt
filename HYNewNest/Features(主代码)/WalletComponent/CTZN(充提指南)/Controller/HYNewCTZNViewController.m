@@ -31,7 +31,7 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
     if (!_tableView) {
         _tableView = [[UITableView alloc] init];
         _tableView.frame = CGRectMake(0, 62, kScreenWidth, self.view.height-62);
-        _tableView.contentInset = UIEdgeInsetsMake(0, 0, kSafeAreaHeight+30, 0);
+        _tableView.contentInset = UIEdgeInsetsMake(15, 0, kSafeAreaHeight+62, 0);
         _tableView.rowHeight = 228;
         _tableView.dataSource = self;
         _tableView.delegate = self;
@@ -40,6 +40,12 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
         [_tableView registerNib:[UINib nibWithNibName:KCTZNCELL bundle:nil] forCellReuseIdentifier:KCTZNCELL];
     }
     return _tableView;
+}
+
+- (instancetype)init {
+    self = [super init];
+    _type = -1;
+    return self;
 }
 
 - (void)viewDidLoad {
@@ -84,11 +90,16 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
     [self.view addSubview:self.tableView];
 }
 
+- (void)setType:(NSInteger)type {
+    _type = type;
+}
 
 - (void)getDynamicData {
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     [param setObject:@"DEPOSIT_GUIDE" forKey:@"bizCode"];
+    WEAKSELF_DEFINE
     [CNBaseNetworking POST:kGatewayPath(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+        STRONGSELF_DEFINE
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             NSArray *data = [responseObj objectForKey:@"data"];
             NSArray *models = [CTZNModel cn_parse:data];
@@ -98,8 +109,24 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
                     [aaa addObject:model];
                 }
             }
-            self.models = aaa;
-            [self.tableView reloadData];
+            strongSelf.models = aaa;
+            [strongSelf.tableView reloadData];
+            if (strongSelf.type != -1) {
+                // 自动播放
+//                CTZNModel *model = self.models[strongSelf.type];
+//                HYCTZNPlayerViewController *playVC = [[HYCTZNPlayerViewController alloc] init];
+//                playVC.sourceUrl = model.video;
+//                playVC.tit = model.title;
+//                playVC.modalPresentationStyle = UIModalPresentationFullScreen;
+//                [self presentViewController:playVC animated:YES completion:nil];
+                
+                // 滚动&高亮
+                NSIndexPath *idxPath = [NSIndexPath indexPathForRow:strongSelf.type inSection:0];
+                [strongSelf.tableView scrollToRowAtIndexPath:idxPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+
+                HYNewCTZNCell *cell = [strongSelf.tableView cellForRowAtIndexPath:idxPath];
+                cell.isCusSelc = YES;
+            }
         }
     }];
     
@@ -179,5 +206,16 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSArray *cells = [tableView visibleCells];
+    [cells enumerateObjectsUsingBlock:^(HYNewCTZNCell * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.isCusSelc = NO;
+    }];
+    
+    HYNewCTZNCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.isCusSelc = YES;
+}
 
 @end

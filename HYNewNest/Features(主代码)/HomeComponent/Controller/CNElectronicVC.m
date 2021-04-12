@@ -59,6 +59,11 @@
     }];
 }
 
+// 进入AG电游大厅
+- (IBAction)entranceAGElecGameHall:(id)sender {
+    [[HYInGameHelper sharedInstance] inGame:InGameTypeAGEG];
+}
+
 - (IBAction)entryAGBuYu:(id)sender {
 //    [NNPageRouter jump2GameName:@"捕鱼王" gameType:@"6" gameId:@"" gameCode:@"A03026"];
     [[HYInGameHelper sharedInstance] inGame:InGameTypeAGBY];
@@ -75,7 +80,8 @@
     CGFloat AGHeight = (kScreenWidth - 15*2) * 115/345.0;
 //    CGFloat monkeyH = (kScreenWidth - 15*3)/2.0 * 142/165.0;
 //    return (AGHeight+16)*2 + (monkeyH+16) + (48+32) + self.recentPlayViewHeight.constant;
-    return AGHeight + (30+48+32) + self.recentPlayViewHeight.constant;
+    
+    return (AGHeight+16)*2 + (30+48) + self.recentPlayViewHeight.constant;
 }
 
 - (void)configCollectionView {

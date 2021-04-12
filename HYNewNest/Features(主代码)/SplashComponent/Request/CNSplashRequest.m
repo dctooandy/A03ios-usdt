@@ -11,6 +11,7 @@
 #import "FCUUID.h"
 #import "HYUpdateAlertView.h"
 #import "AppDelegate.h"
+#import "NXPingManager.h"
 
 @implementation CNSplashRequest
 
@@ -18,61 +19,76 @@
     [self POST:kGatewayPath(config_upgradeApp) parameters:[kNetworkMgr baseParam] completionHandler:^(id responseObj, NSString *errorMsg) {
         
         UpdateVersionModel *updateVersion = [UpdateVersionModel cn_parse:responseObj];
-        __block NSURL *downURL = [NSURL URLWithString:updateVersion.appDownUrl];
-
-        
         if ([updateVersion.flag integerValue] == 0 || updateVersion.appDownUrl.length < 1) {
             // 不更新 或 没有配置下载链接
             handler(NO);
-           return;
-        }
-        
-        if([updateVersion.flag integerValue] >= 1){
             
-            NSString *content = updateVersion.upgradeDesc[@"des"] ?: updateVersion.versionCode;
-            
-            if ([updateVersion.flag integerValue] == 1) {
-                
-                [HYUpdateAlertView showWithVersionString:content isForceUpdate:NO handler:^(BOOL isComfirm) {
-                    if (isComfirm && [[UIApplication sharedApplication] canOpenURL:downURL]) {
-                        [[UIApplication sharedApplication] openURL:downURL options:@{} completionHandler:^(BOOL success) {
-                            [CNHUB showSuccess:@"正在为您打开下载链接.."];
-                        }];
-                    }
-                    // 弱更 不管怎样都往下走
-                    handler(NO);
-                }];
-                
-            }else if([updateVersion.flag integerValue ] == 2){
-                
-                // 手动校验版本号
-                NSString *curV = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-                NSArray *curVArr = [curV componentsSeparatedByString:@"."];
-                NSArray *newVArr = [updateVersion.versionCode componentsSeparatedByString:@"."];
-                for (int i=0; i<newVArr.count; i++) {
-                    if (i != 2 && [newVArr[i] intValue] > [curVArr[i] intValue]) {
-                        break; // 前面版本大，升级
-                    }
-                    if (i == 2 && [newVArr[i] intValue] <= [curVArr[i] intValue]) {
-                        handler(NO);
-                        return; // 不升级
-                    }
+        } else {
+            // ping 域名获取最快的
+            NSArray *domains = updateVersion.domains;
+            [NXPingManager pingFastestHost:domains progress:^(CGFloat progress) {
+
+            } handler:^(NSString * _Nonnull host) {
+                if (host) {
+                    [self downloadWithModel:updateVersion fastHost:host handler:handler];
+                } else {
+                    [self downloadWithModel:updateVersion fastHost:nil handler:handler];
                 }
-                
-                [HYUpdateAlertView showWithVersionString:content isForceUpdate:YES handler:^(BOOL isComfirm) {
-                    if (isComfirm && [[UIApplication sharedApplication] canOpenURL:downURL]) {
-                        [[UIApplication sharedApplication] openURL:downURL options:@{} completionHandler:^(BOOL success) {
-                            [CNHUB showSuccess:@"正在为您打开下载链接.."];
-                            handler(YES);
-                        }];
-                    } else {
-                        [self exitAapplication];
-                    }
-                }];
-                
-            }
+            }];
         }
     }];
+}
+
++ (void)downloadWithModel:(UpdateVersionModel *)updateVersion fastHost:(nullable NSString *)host handler:(void(^)(BOOL isHardUpdate))handler{
+    NSString *content = updateVersion.upgradeDesc[@"des"] ?: updateVersion.versionCode;
+    NSString *downURLStr = updateVersion.appDownUrl; // 原下载链接
+    NSURL *downURL = [NSURL URLWithString:downURLStr];
+    if (host) {
+        NSString *orgHost = downURL.host; // 原host
+        NSString *path = [downURLStr componentsSeparatedByString:orgHost].lastObject;
+        downURLStr = host ? [host stringByAppendingString:path] : updateVersion.appDownUrl; // 如果host有值则替换掉host并拼接
+        downURL = [NSURL URLWithString:downURLStr];
+    }
+    
+    if ([updateVersion.flag integerValue] == 1) {
+        [HYUpdateAlertView showWithVersionString:content isForceUpdate:NO handler:^(BOOL isComfirm) {
+            if (isComfirm && [[UIApplication sharedApplication] canOpenURL:downURL]) {
+                [[UIApplication sharedApplication] openURL:downURL options:@{} completionHandler:^(BOOL success) {
+                    [CNHUB showSuccess:@"正在为您打开下载链接.."];
+                }];
+            }
+            // 弱更 不管怎样都往下走
+            handler(NO);
+        }];
+        
+    }else if([updateVersion.flag integerValue ] == 2){
+        
+        // 手动校验版本号
+        NSString *curV = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+        NSArray *curVArr = [curV componentsSeparatedByString:@"."];
+        NSArray *newVArr = [updateVersion.versionCode componentsSeparatedByString:@"."];
+        for (int i=0; i<newVArr.count; i++) {
+            if (i != 2 && [newVArr[i] intValue] > [curVArr[i] intValue]) {
+                break; // 前面版本大，升级
+            }
+            if (i == 2 && [newVArr[i] intValue] <= [curVArr[i] intValue]) {
+                handler(NO);
+                return; // 不升级
+            }
+        }
+        
+        [HYUpdateAlertView showWithVersionString:content isForceUpdate:YES handler:^(BOOL isComfirm) {
+            if (isComfirm && [[UIApplication sharedApplication] canOpenURL:downURL]) {
+                [[UIApplication sharedApplication] openURL:downURL options:@{} completionHandler:^(BOOL success) {
+                    [CNHUB showSuccess:@"正在为您打开下载链接.."];
+                    handler(YES);
+                }];
+            } else {
+                [self exitAapplication];
+            }
+        }];
+        
+    }
 }
 
 + (void)welcome:(HandlerBlock)handler {

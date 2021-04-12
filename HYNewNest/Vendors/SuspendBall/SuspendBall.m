@@ -279,9 +279,7 @@ static CGFloat btnSmallImageWidth = 60;
         _showFunction = NO;
         
         // 移除
-        [self.bgView removeFromSuperview];
-        
-        [self.functionMenu removeFromSuperview];
+        [self dismissMenuShow];
         
         if (weakSelf.close) {
             weakSelf.close(_showFunction);
@@ -292,18 +290,19 @@ static CGFloat btnSmallImageWidth = 60;
     
 }
 
-//添加动画
+// 主按钮添加动画
 - (void)addAnimate:(BOOL)showFunction
 {
     if (showFunction == YES) {
         //scale
         CAKeyframeAnimation *scaleAnim = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
-        scaleAnim.values = @[@0.1, @1, @1.2, @1];
-        scaleAnim.duration = 0.25;
-        scaleAnim.repeatCount = 1;
+        scaleAnim.values = @[@1, @1.2, @1, @0.1];
+        scaleAnim.duration = 0.2f;
         scaleAnim.fillMode = kCAFillModeForwards;
-        scaleAnim.removedOnCompletion = NO;
+        scaleAnim.autoreverses = YES;
+        scaleAnim.removedOnCompletion = YES;
         [self.imageView.layer addAnimation:scaleAnim forKey:@"btn_scale"];
+        
     } else {
         //rotation 360°
         CABasicAnimation *rotationAnim = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
@@ -314,14 +313,33 @@ static CGFloat btnSmallImageWidth = 60;
         scaleAnim.values = @[@0.1, @1,@1.2,@1.0];
         CAAnimationGroup *animaGroup = [CAAnimationGroup animation];
         // 动画时长
-        animaGroup.duration = 0.6f;
+        animaGroup.duration = 0.4f;
         // 防止回到最初状态
         animaGroup.fillMode = kCAFillModeForwards;
         animaGroup.animations = @[rotationAnim,scaleAnim];
-        rotationAnim.repeatCount = 1;
-        animaGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+        animaGroup.autoreverses = NO;
+        animaGroup.removedOnCompletion = YES;
+        animaGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
         [self.imageView.layer  addAnimation:animaGroup forKey:@"btn_rotation"];
     }
+}
+
+// 隐藏菜单栏
+- (void)dismissMenuShow {
+    // 先做动画
+    [self.functionMenu.subviews enumerateObjectsUsingBlock:^(__kindof UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        CAKeyframeAnimation *scaleAnim = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
+        scaleAnim.values = @[@1, @1.2, @1, @0.1];
+        scaleAnim.duration = 0.4f;
+        scaleAnim.fillMode = kCAFillModeForwards;
+        scaleAnim.removedOnCompletion = NO;
+        scaleAnim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+        [obj.layer addAnimation:scaleAnim forKey:@"Animation"];
+    }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.41 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.functionMenu removeFromSuperview];
+        [self.bgView removeFromSuperview];
+    });
 }
 
 //展示菜单栏
@@ -394,13 +412,13 @@ static CGFloat btnSmallImageWidth = 60;
         
         CAAnimationGroup *animaGroup = [CAAnimationGroup animation];
         // 动画时长
-        animaGroup.duration = 0.6f;
+        animaGroup.duration = 0.4f;
         // 防止回到最初状态
         animaGroup.fillMode = kCAFillModeForwards;
-        animaGroup.removedOnCompletion = NO;
+        animaGroup.removedOnCompletion = YES;
         animaGroup.animations = @[scaleAnim,rotationAnim,scalePosition];
         rotationAnim.repeatCount = 1;
-        animaGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+        animaGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
         [functionBtn.layer addAnimation:animaGroup forKey:@"Animation"];
         
 //        [UIView animateWithDuration:0.6 animations:^{

@@ -7,7 +7,7 @@
 //
 
 #import "SocketRocketUtility.h"
-#import <SocketRocket/SocketRocket.h>
+
 
 @interface SocketRocketUtility()<SRWebSocketDelegate>
 {
@@ -30,6 +30,13 @@
         Instance = [[SocketRocketUtility alloc] init];
     });
     return Instance;
+}
+
+- (SRReadyState)socketReadyState {
+    if (self.socket) {
+        return self.socket.readyState;
+    }
+    return SR_CLOSED;
 }
 
 //开启连接
@@ -77,7 +84,7 @@
     //每次正常连接的时候清零重连时间
     reConnectTime = 0;
     //开启心跳 心跳是发送pong的消息 我这里根据后台的要求发送data给后台
-    [self initHeartBeat];
+//    [self initHeartBeat];
     [[NSNotificationCenter defaultCenter] postNotificationName:BYWebSocketDidOpenNoti object:nil];
 }
 

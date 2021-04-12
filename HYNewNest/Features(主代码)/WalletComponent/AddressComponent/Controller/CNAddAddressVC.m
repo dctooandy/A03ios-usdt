@@ -15,6 +15,7 @@
 #import "CNBindPhoneVC.h"
 #import "HYDownloadLinkView.h"
 #import "ABCOneKeyRegisterBFBHelper.h"
+#import "CNWithdrawRequest.h"
 
 @interface CNAddAddressVC () <CNNormalInputViewDelegate, CNCodeInputViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *goldBtn;
@@ -57,8 +58,9 @@
         [self goldAddress:self.goldBtn];
     }
     
+    [CNWithdrawRequest getUserMobileStatusCompletionHandler:^(id responseObj, NSString *errorMsg) {
+    }];
     [self setDelegate];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
