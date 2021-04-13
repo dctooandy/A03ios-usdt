@@ -49,7 +49,7 @@
                         environment:IVLA_Dis        //环境: 线上
 #endif
                           loginName:^NSString *{     //获取登录名
-        return [CNUserManager shareManager].printedloginName;
+        return [CNUserManager shareManager].userInfo.loginName;
     }];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1), dispatch_get_main_queue(), ^{
         [IVLAManager setPayegisSDKDomain:@"http://115.84.241.53/did/"];
