@@ -20,6 +20,10 @@
 static NSString * const kMissionCell = @"BYNewUsrMissionCell";
 
 @interface BYNewUsrMissionVC () <UITableViewDelegate, UITableViewDataSource>
+{
+    NSInteger cdSec1;
+    NSInteger cdSec2;
+}
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *oneViewWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cumulate4dayIconLeadingCons;
 
@@ -35,12 +39,10 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
 // 所有天数Label状态
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *daysLbCollect;
 
-// 所有待领取按钮状态
-@property (strong, nonatomic) IBOutletCollection(CNTwoStatusBtn) NSArray *missionBtns;
-
 // 倒计时文字
 @property (weak, nonatomic) IBOutlet UILabel *limtTimeCuntDwnLb;
 @property (weak, nonatomic) IBOutlet UILabel *progressCuntDwnLb;
+@property (weak,nonatomic) NSTimer *timer; //!<分钟计时器
 
 // 两个列表
 @property (weak, nonatomic) IBOutlet UITableView *limitTimeTableView;
@@ -50,6 +52,21 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
 @end
 
 @implementation BYNewUsrMissionVC
+
+- (NSTimer *)timer {
+    if (!_timer) {
+        NSTimer *timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
+        _timer = timer;
+        [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+    }
+    return _timer;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.timer invalidate];
+    self.timer = nil;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -121,12 +138,6 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
         }
     }];
     
-    //TODO: 修改按钮状态
-    for (int i = 0; i < self.missionBtns.count; i++) {
-        __block CNTwoStatusBtn *btn = self.missionBtns[i];
-        
-    }
-    
 }
 
 
@@ -136,11 +147,27 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
     [HYWideOneBtnAlertView showWithTitle:@"活动规则" content:@"1.此活动与其他活动共享；\n2.限时任务：新用户在活动期间注册后，有30天可以完成限时任务，超出完成时限，则新手任务无法完成；\n3.其他任务：活动期间内完成即可；\n4.所有奖励需手动领取，过期未领取奖励自动失效；\n5.所有奖励需3倍流水方可提现；\n6.此优惠只用于币游真钱账号玩家，如发现个人或团体套利行为，币游国际有权扣除套利所得；\n7.为避免文字差异造成的理解偏差，本活动解释权归币游所有。" comfirmText:@"" comfirmHandler:nil];
 }
 
+- (void)countDown {
+    MyLog(@"2342234234");
+    self.limtTimeCuntDwnLb.text = [NSString stringWithFormat:@"%ld天%ld小时%ld分", cdSec1/86400, (cdSec1%86400)/3600, (cdSec1%3600)/60];
+    self.progressCuntDwnLb.text = [NSString stringWithFormat:@"%ld天%ld小时%ld分", cdSec2/86400, (cdSec2%86400)/3600, (cdSec2%3600)/60];
+    cdSec1 -= 60;
+    cdSec2 -= 60;
+    if (cdSec1 < 0) {
+        self.limtTimeCuntDwnLb.text = @"已结束";
+    }
+    if (cdSec2 < 0) {
+        self.progressCuntDwnLb.text = @"已结束";
+    }
+}
 
 #pragma mark - Data
 - (void)requestData {
     [CNTaskRequest getNewUsrTask:^(id responseObj, NSString *errorMsg) {
-        
+        //TODO: setup progres
+        self->cdSec1 = 90060;
+        self->cdSec2 = 180120;
+        [self.timer setFireDate:[NSDate distantPast]];
     }];
 }
 
@@ -156,11 +183,13 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BYNewUsrMissionCell *cell = (BYNewUsrMissionCell *)[tableView dequeueReusableCellWithIdentifier:kMissionCell];
+    // 右上角标签
     if ([tableView isEqual:self.limitTimeTableView]) {
         cell.isUpgradeTask = NO;
     } else {
         cell.isUpgradeTask = YES;
     }
+    //TODO: SetupModel
     return cell;
 }
 
