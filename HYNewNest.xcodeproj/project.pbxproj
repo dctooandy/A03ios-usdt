@@ -301,6 +301,8 @@
 		3DB600A526242F4C002278F8 /* CNTaskRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB600A426242F4C002278F8 /* CNTaskRequest.m */; };
 		3DB600A926243696002278F8 /* BYNewUsrMissionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB600A726243696002278F8 /* BYNewUsrMissionCell.m */; };
 		3DB600AA26243696002278F8 /* BYNewUsrMissionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB600A826243696002278F8 /* BYNewUsrMissionCell.xib */; };
+		3DB600AD262572A8002278F8 /* BYThreeStatusBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB600AC262572A8002278F8 /* BYThreeStatusBtn.m */; };
+		3DB600B02625816B002278F8 /* CNTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB600AF2625816B002278F8 /* CNTaskModel.m */; };
 		3DB6A03E2594A127004A391B /* DSBProfitHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6A03D2594A127004A391B /* DSBProfitHeader.m */; };
 		3DB6A0402594A137004A391B /* DSBProfitHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB6A03F2594A137004A391B /* DSBProfitHeader.xib */; };
 		3DB6A0432594A1B5004A391B /* DSBProfitFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6A0422594A1B5004A391B /* DSBProfitFooter.m */; };
@@ -1528,6 +1530,10 @@
 		3DB600A626243696002278F8 /* BYNewUsrMissionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYNewUsrMissionCell.h; sourceTree = "<group>"; };
 		3DB600A726243696002278F8 /* BYNewUsrMissionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYNewUsrMissionCell.m; sourceTree = "<group>"; };
 		3DB600A826243696002278F8 /* BYNewUsrMissionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYNewUsrMissionCell.xib; sourceTree = "<group>"; };
+		3DB600AB262572A8002278F8 /* BYThreeStatusBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYThreeStatusBtn.h; sourceTree = "<group>"; };
+		3DB600AC262572A8002278F8 /* BYThreeStatusBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYThreeStatusBtn.m; sourceTree = "<group>"; };
+		3DB600AE2625816B002278F8 /* CNTaskModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNTaskModel.h; sourceTree = "<group>"; };
+		3DB600AF2625816B002278F8 /* CNTaskModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNTaskModel.m; sourceTree = "<group>"; };
 		3DB6A03C2594A127004A391B /* DSBProfitHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBProfitHeader.h; sourceTree = "<group>"; };
 		3DB6A03D2594A127004A391B /* DSBProfitHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBProfitHeader.m; sourceTree = "<group>"; };
 		3DB6A03F2594A137004A391B /* DSBProfitHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBProfitHeader.xib; sourceTree = "<group>"; };
@@ -3416,6 +3422,8 @@
 		3D5693B225EF5B99004077F8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3DB600AE2625816B002278F8 /* CNTaskModel.h */,
+				3DB600AF2625816B002278F8 /* CNTaskModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3670,6 +3678,8 @@
 				3DBA55CD256FA6D3009A2B71 /* CNSelectBtn.m */,
 				3D2FB6372589E171003EE5EA /* CNBorderBtn.h */,
 				3D2FB6382589E171003EE5EA /* CNBorderBtn.m */,
+				3DB600AB262572A8002278F8 /* BYThreeStatusBtn.h */,
+				3DB600AC262572A8002278F8 /* BYThreeStatusBtn.m */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -6187,6 +6197,7 @@
 				E986A1C624CC7F2B000F9CFF /* TAAnimatedDotView.m in Sources */,
 				0487C96D24CE9A630013715A /* NSDate+BRPickerView.m in Sources */,
 				0487C9DA24D2627D0013715A /* CNXimaRecordTCell.m in Sources */,
+				3DB600B02625816B002278F8 /* CNTaskModel.m in Sources */,
 				3D1338A324AF2E5200B29783 /* main.m in Sources */,
 				E986A10824C6F5C1000F9CFF /* HYHTMLViewController.m in Sources */,
 				3D41DE7025199DEE000CA1D6 /* VIPMonthlyAlertsVC.m in Sources */,
@@ -6437,6 +6448,7 @@
 				D5FBFDC824B4672200BBCAD8 /* CNSkinManager.m in Sources */,
 				04935BC824D56793007A33EF /* CNAddAddressVC.m in Sources */,
 				3DF43D482594614D0087F26A /* DSBProfitBoardDataSource.m in Sources */,
+				3DB600AD262572A8002278F8 /* BYThreeStatusBtn.m in Sources */,
 				3DA4F16A24B312BE0039123F /* UIView+Extension.m in Sources */,
 				E9063B8F24D6ED6E0000273A /* HYNewCTZNViewController.m in Sources */,
 				E98BEF0E24D274F700E6B0C8 /* UILabel+Gradient.m in Sources */,

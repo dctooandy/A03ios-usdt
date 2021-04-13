@@ -7,14 +7,14 @@
 //
 
 #import "BYNewUsrMissionCell.h"
-#import "CNTwoStatusBtn.h"
+#import "BYThreeStatusBtn.h"
 
 @interface BYNewUsrMissionCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLb;
 @property (weak, nonatomic) IBOutlet UILabel *subTitleLb;
 @property (weak, nonatomic) IBOutlet UILabel *amountLb;
-@property (weak, nonatomic) IBOutlet CNTwoStatusBtn *aBtn;
+@property (weak, nonatomic) IBOutlet BYThreeStatusBtn *aBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *tagImgv;
 
 @end
@@ -35,10 +35,31 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setResModel:(Result *)resModel {
+    _resModel = resModel;
+    _titleLb.text = resModel.title;
+    _subTitleLb.text = resModel.subtitle;
+    _amountLb.text = [NSString stringWithFormat:@"+%@",resModel.amount];
+    
+    _aBtn.status = (CNThreeStaBtnStatus)resModel.fetchResultFlag;
+    switch (resModel.fetchResultFlag) {
+        case -1:
+            [_aBtn setTitle:@"去完成" forState:UIControlStateNormal];
+            break;
+        case 0:
+            [_aBtn setTitle:@"待领取" forState:UIControlStateNormal];
+            break;
+        case 1:
+            [_aBtn setTitle:@"已领取" forState:UIControlStateNormal];
+            break;
+        default:
+            break;
+    }
 }
+
+- (IBAction)didTapBtn:(id)sender {
+    MyLog(@"%@", _aBtn.titleLabel.text);
+}
+
 
 @end

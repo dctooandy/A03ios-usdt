@@ -12,30 +12,34 @@
 #import "HYUpdateAlertView.h"
 #import "BYNewUsrMissionCell.h"
 
-#import "CNTwoStatusBtn.h"
+#import "BYThreeStatusBtn.h"
 #import "UIView+DottedLine.h"
 
 #import "CNTaskRequest.h"
+#import "CNTaskModel.h"
 
 static NSString * const kMissionCell = @"BYNewUsrMissionCell";
 
 @interface BYNewUsrMissionVC () <UITableViewDelegate, UITableViewDataSource>
 {
-    NSInteger cdSec1;
-    NSInteger cdSec2;
+    NSInteger _cdSec1;
+    NSInteger _cdSec2;
+    NSInteger _cumulateLoginCount;
 }
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *oneViewWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cumulate4dayIconLeadingCons;
 
 @property (weak, nonatomic) IBOutlet UIView *cumulate3daysBg;
 @property (weak, nonatomic) IBOutlet UIView *cumulate7daysBg;
+@property (weak, nonatomic) IBOutlet UILabel *cumulateAmount3;
+@property (weak, nonatomic) IBOutlet UILabel *cumulateAmount7;
 // 累计登录3天按钮
-@property (weak, nonatomic) IBOutlet CNTwoStatusBtn *cumulate3Btn;
+@property (weak, nonatomic) IBOutlet BYThreeStatusBtn *cumulate3Btn;
 // 累计登录7天按钮
-@property (weak, nonatomic) IBOutlet CNTwoStatusBtn *cumulate7Btn;
-
+@property (weak, nonatomic) IBOutlet BYThreeStatusBtn *cumulate7Btn;
 // 累计登录天进度按钮
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cumulate3daysIcons;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cumulate7daysIcons;
 // 所有天数Label状态
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *daysLbCollect;
 
@@ -48,6 +52,8 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
 @property (weak, nonatomic) IBOutlet UITableView *limitTimeTableView;
 @property (weak, nonatomic) IBOutlet UITableView *upgradeTableView;
 
+// 数据
+@property (strong,nonatomic) CNTaskModel *model; 
 
 @end
 
@@ -80,7 +86,8 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
 //    });
     
     self.title = @"新手任务";
-    self.cumulate7Btn.enabled = NO; //TODO: 状态
+    _cumulateLoginCount = 0;
+    
     // tableView
     [self.limitTimeTableView registerNib:[UINib nibWithNibName:kMissionCell bundle:nil] forCellReuseIdentifier:kMissionCell];
     [self.upgradeTableView registerNib:[UINib nibWithNibName:kMissionCell bundle:nil] forCellReuseIdentifier:kMissionCell];
@@ -91,52 +98,13 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
     [self.view setNeedsLayout];
     [self.view layoutIfNeeded];
     
-    
-    // 请求
-    [self requestData];
-    
-    
     // 边框
     _cumulate3daysBg.backgroundColor = _cumulate7daysBg.backgroundColor = self.view.backgroundColor;
     [_cumulate3daysBg dottedLineBorderColor:kHexColor(0x494960) fillColor:kHexColor(0x181829)];
     [_cumulate7daysBg dottedLineBorderColor:kHexColor(0x494960) fillColor:kHexColor(0x181829)];
     
-    //TODO: 画线
-    [_cumulate3daysIcons enumerateObjectsUsingBlock:^(UIButton *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-
-        if (idx < 3) { //3天
-            obj.selected = YES;
-            UILabel *lb = self.daysLbCollect[idx];
-            lb.textColor = [UIColor whiteColor];
-            
-            if (idx != 2) {
-                UIBezierPath *path = [UIBezierPath bezierPath];
-                CGPoint startP = CGPointMake(obj.right, obj.top+obj.height*0.5);
-                [path moveToPoint:startP];
-                CGPoint endP = CGPointMake(obj.right+50, obj.top+obj.height*0.5);
-                [path addLineToPoint:endP];
-                CAShapeLayer *layer = [CAShapeLayer layer];
-                layer.lineWidth = 1.0;
-                layer.strokeColor = kHexColor(0x13B7D4).CGColor;
-                layer.path = path.CGPath;
-                [self.cumulate3daysBg.layer addSublayer:layer];
-            }
-            
-        } else { // 另外4天
-            if (idx != 6) {
-                UIBezierPath *path = [UIBezierPath bezierPath];
-                CGPoint startP = CGPointMake(obj.right, obj.top+obj.height*0.5);
-                [path moveToPoint:startP];
-                CGPoint endP = CGPointMake(obj.right+50, obj.top+obj.height*0.5);
-                [path addLineToPoint:endP];
-                CAShapeLayer *layer = [CAShapeLayer layer];
-                layer.lineWidth = 1.0;
-                layer.strokeColor = kHexColorAlpha(0xFFFFFF, .3).CGColor;
-                layer.path = path.CGPath;
-                [self.cumulate7daysBg.layer addSublayer:layer];
-            }
-        }
-    }];
+    // 请求
+    [self requestData];
     
 }
 
@@ -147,27 +115,139 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
     [HYWideOneBtnAlertView showWithTitle:@"活动规则" content:@"1.此活动与其他活动共享；\n2.限时任务：新用户在活动期间注册后，有30天可以完成限时任务，超出完成时限，则新手任务无法完成；\n3.其他任务：活动期间内完成即可；\n4.所有奖励需手动领取，过期未领取奖励自动失效；\n5.所有奖励需3倍流水方可提现；\n6.此优惠只用于币游真钱账号玩家，如发现个人或团体套利行为，币游国际有权扣除套利所得；\n7.为避免文字差异造成的理解偏差，本活动解释权归币游所有。" comfirmText:@"" comfirmHandler:nil];
 }
 
+
+#pragma mark - Custom
 - (void)countDown {
-    MyLog(@"2342234234");
-    self.limtTimeCuntDwnLb.text = [NSString stringWithFormat:@"%ld天%ld小时%ld分", cdSec1/86400, (cdSec1%86400)/3600, (cdSec1%3600)/60];
-    self.progressCuntDwnLb.text = [NSString stringWithFormat:@"%ld天%ld小时%ld分", cdSec2/86400, (cdSec2%86400)/3600, (cdSec2%3600)/60];
-    cdSec1 -= 60;
-    cdSec2 -= 60;
-    if (cdSec1 < 0) {
+    self.limtTimeCuntDwnLb.text = [NSString stringWithFormat:@"%ld天%ld小时%ld分", _cdSec1/86400, (_cdSec1%86400)/3600, (_cdSec1%3600)/60];
+    self.progressCuntDwnLb.text = [NSString stringWithFormat:@"%ld天%ld小时%ld分", _cdSec2/86400, (_cdSec2%86400)/3600, (_cdSec2%3600)/60];
+    _cdSec1 -= 60;
+    _cdSec2 -= 60;
+    if (_cdSec1 <= 0) {
         self.limtTimeCuntDwnLb.text = @"已结束";
     }
-    if (cdSec2 < 0) {
+    if (_cdSec2 <= 0) {
         self.progressCuntDwnLb.text = @"已结束";
     }
+    if (_cdSec1 <= 0 && _cdSec2 <= 0) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
+}
+
+- (void)prepareCountDown {
+    LimiteTask *limitT = self.model.limiteTask;
+    self->_cdSec1 = limitT.endTime?:0;
+    UpgradeTask *upgradeT = self.model.upgradeTask;
+    self->_cdSec2 = upgradeT.endTime?:0;
+    [self.timer setFireDate:[NSDate distantPast]];
+}
+
+- (void)drawLoginTaskZone {
+    LoginTask *loginT = self.model.loginTask;
+    if (!loginT) { return; }
+    
+    _cumulateLoginCount = loginT.count; //累计登录天
+    
+    Result *res3 = loginT.result.firstObject;
+    _cumulateAmount3.text = res3.amount;
+    switch (res3.fetchResultFlag) {
+        case -1:
+            _cumulate3Btn.status = CNThreeStaBtnStatusDark;
+            break;
+        case 0:
+            _cumulate3Btn.status = CNThreeStaBtnStatusGradientBorder;
+            break;
+        case 1:
+            _cumulate3Btn.status = CNThreeStaBtnStatusDark;
+            [_cumulate3Btn setTitle:@"已领取" forState:UIControlStateNormal];
+            break;
+        default:
+            break;
+    }
+    // 画线
+    [_cumulate3daysIcons enumerateObjectsUsingBlock:^(UIButton *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (self->_cumulateLoginCount > idx) { // 点亮
+            obj.selected = YES;
+            UILabel *lb = self.daysLbCollect[idx];
+            lb.textColor = [UIColor whiteColor];
+            if (idx != 2) {
+                // 亮的按钮右边的那条不需要亮线
+                if (self->_cumulateLoginCount > (idx+1)) {
+                    [self drawLineOnLayer:self.cumulate3daysBg.layer withObj:obj isLight:YES];
+                } else {
+                    [self drawLineOnLayer:self.cumulate3daysBg.layer withObj:obj isLight:NO];
+                }
+            }
+        } else {
+            if (idx != 2) {
+                [self drawLineOnLayer:self.cumulate3daysBg.layer withObj:obj isLight:NO];
+            }
+        }
+    }];
+    
+    Result *res7 = loginT.result.lastObject;
+    _cumulateAmount7.text = res7.amount;
+    switch (res7.fetchResultFlag) {
+        case -1:
+            _cumulate7Btn.status = CNThreeStaBtnStatusDark;
+            break;
+        case 0:
+            _cumulate7Btn.status = CNThreeStaBtnStatusGradientBorder;
+            break;
+        case 1:
+            _cumulate7Btn.status = CNThreeStaBtnStatusDark;
+            [_cumulate7Btn setTitle:@"已领取" forState:UIControlStateNormal];
+            break;
+        default:
+            break;
+    }
+    // 画线
+    [_cumulate7daysIcons enumerateObjectsUsingBlock:^(UIButton *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (self->_cumulateLoginCount > (idx+3)) {
+            obj.selected = YES;
+            UILabel *lb = self.daysLbCollect[idx];
+            lb.textColor = [UIColor whiteColor];
+            if (idx != 3) {
+                if (self->_cumulateLoginCount > (idx+4)) {
+                    [self drawLineOnLayer:self.cumulate7daysBg.layer withObj:obj isLight:YES];
+                } else {
+                    [self drawLineOnLayer:self.cumulate7daysBg.layer withObj:obj isLight:NO];
+                }
+            }
+        } else {
+            if (idx != 3) {
+                [self drawLineOnLayer:self.cumulate7daysBg.layer withObj:obj isLight:NO];
+            }
+        }
+    }];
+}
+
+- (void)drawLineOnLayer:(CALayer *)fLayer withObj:(UIButton *)obj isLight:(BOOL)isLight {
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    CGPoint startP = CGPointMake(obj.right, obj.top+obj.height*0.5);
+    [path moveToPoint:startP];
+    CGPoint endP = CGPointMake(obj.right+50, obj.top+obj.height*0.5);
+    [path addLineToPoint:endP];
+    CAShapeLayer *layer = [CAShapeLayer layer];
+    layer.lineWidth = 1.0;
+    layer.strokeColor = isLight ? kHexColor(0x13B7D4).CGColor : kHexColorAlpha(0xFFFFFF, .3).CGColor;
+    layer.path = path.CGPath;
+    [fLayer addSublayer:layer];
+
 }
 
 #pragma mark - Data
 - (void)requestData {
     [CNTaskRequest getNewUsrTask:^(id responseObj, NSString *errorMsg) {
-        //TODO: setup progres
-        self->cdSec1 = 90060;
-        self->cdSec2 = 180120;
-        [self.timer setFireDate:[NSDate distantPast]];
+        if (!errorMsg) {
+            self.model = [CNTaskModel cn_parse:responseObj];
+            if (self.model) {
+                [self drawLoginTaskZone];
+                [self prepareCountDown];
+                [self.limitTimeTableView reloadData];
+                [self.upgradeTableView reloadData];
+            }
+        }
     }];
 }
 
@@ -175,21 +255,27 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
 #pragma mark - UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if ([tableView isEqual:self.limitTimeTableView]) {
-        return 3;
+        LimiteTask *lTask = self.model.limiteTask;
+        return lTask.result.count;
     } else {
-        return 7;
+        UpgradeTask *uTask = self.model.upgradeTask;
+        return uTask.result.count;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BYNewUsrMissionCell *cell = (BYNewUsrMissionCell *)[tableView dequeueReusableCellWithIdentifier:kMissionCell];
-    // 右上角标签
+    Result *res;
     if ([tableView isEqual:self.limitTimeTableView]) {
         cell.isUpgradeTask = NO;
+        NSArray *resArr = self.model.limiteTask.result;
+        res = resArr[indexPath.row];
     } else {
         cell.isUpgradeTask = YES;
+        NSArray *resArr = self.model.upgradeTask.result;
+        res = resArr[indexPath.row];
     }
-    //TODO: SetupModel
+    cell.resModel = res;
     return cell;
 }
 
