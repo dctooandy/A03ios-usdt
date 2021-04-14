@@ -195,8 +195,9 @@
         
     }else if ([url hasPrefix:@"hy://agqj"]){
         //AG旗舰
+        decisionHandler(WKNavigationActionPolicyCancel);
         [self btnAGqjClick];
-        
+
 //    }else if ([url hasPrefix:@"hy://score"]){
         //积分兑换
 //        IntegralViewController *vc = [[IntegralViewController alloc] init];
