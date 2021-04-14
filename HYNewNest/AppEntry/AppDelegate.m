@@ -26,13 +26,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    // URLCache
+    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
+                                                         diskCapacity:20 * 1024 * 1024
+                                                             diskPath:nil];
+    [NSURLCache setSharedURLCache:URLCache];
+    
+    // 监听通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRemoteNotification) name:BYDidEnterHomePageNoti object:nil];
     
     // 3S 统计
 #if DEBUG
     [IN3SAnalytics debugEnable:YES];
 #endif
-    //SDK初始配置，切记一定要在该方法中调用
     [IN3SAnalytics configureSDKWithProduct:@"A03"];
     
     // 天网埋点
