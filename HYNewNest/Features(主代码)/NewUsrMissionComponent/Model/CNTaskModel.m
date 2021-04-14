@@ -37,4 +37,11 @@
 
 
 @implementation CNTaskModel
+- (BOOL)isBeyondClaimTime {
+    // 倒计时结束失效
+    NSString *endDate = self.end_date;
+    NSDate *eDate = [NSDate jk_dateWithString:endDate format:@"yyyy-MM-dd HH:mm:ss"];
+    NSTimeInterval sec = [eDate timeIntervalSinceNow];
+    return sec <= 0;
+}
 @end

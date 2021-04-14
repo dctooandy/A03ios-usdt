@@ -37,7 +37,7 @@
     return self;
 }
 
-- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction
 {
     //在这里是可以做一些判定什么的，用来确定对应的操作。
     if ([[UIApplication sharedApplication] canOpenURL:URL]) {

@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @interface LimiteTask :CNBaseModel
-@property (nonatomic , assign) NSInteger              endTime; //!< 时间结束 下面任务全失效
+@property (nonatomic , assign) NSInteger              endTime; //!< 限时任务时间结束 下面任务全失效
 @property (nonatomic , strong) NSArray<Result*>     * result;
 
 @end
@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @interface UpgradeTask :CNBaseModel
-@property (nonatomic , assign) NSInteger              endTime;
+@property (nonatomic , assign) NSInteger              endTime; //!<进阶任务结束时间
 @property (nonatomic , strong) NSArray<Result*>     * result;
 
 @end
@@ -47,6 +47,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) LimiteTask              * limiteTask;
 @property (nonatomic , strong) LoginTask              * loginTask;
 @property (nonatomic , strong) UpgradeTask              * upgradeTask;
+@property (assign,nonatomic) NSInteger               beginFlag; //!<1进行中 0未开始 2已结束
+
+@property (assign,nonatomic) BOOL isBeyondClaimTime; //!<所有奖品超过领取时间
 
 @end
 

@@ -17,4 +17,13 @@
     [self POST:kGatewayExtraPath(config_newapiTask) parameters:param completionHandler:handler];
 }
 
++ (void)applyTaskRewardIds:(NSString *)prizeIds code:(NSString *)prizeCode handler:(HandlerBlock)handler {
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"action"] = @"apply";
+    param[@"prizeIds"] = prizeIds;
+    param[@"prizeCode"] = prizeCode;
+    
+    [self POST:kGatewayExtraPath(config_newapiTask) parameters:param completionHandler:handler];
+}
+
 @end

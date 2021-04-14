@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BYNewUsrMissionCell : UITableViewCell
 @property (assign,nonatomic) BOOL isUpgradeTask;
+@property (assign,nonatomic) BOOL isTimeout; //!<已失效
+@property (assign,nonatomic) BOOL isBeyondClaim; //!<已超过领取时间
 @property (strong,nonatomic) Result *resModel;
 @end
 

@@ -10,13 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// 更新弹窗, 首充弹窗
+/// 更新弹窗, 新手任务弹窗
 @interface HYUpdateAlertView : HYBaseAlertView
 
-
+// 更新提示
 + (void)showWithVersionString:(NSString *)string isForceUpdate:(BOOL)isForce handler:(void(^)(BOOL isComfirm))handler;
 
-+ (void)showFirstDepositHandler:(void(^)(BOOL isComfm))handler;
+// 新手任务
++ (void)showFirstDepositOrTaskEndIsEnd:(BOOL)isTaskEnd handler:(void(^)(BOOL isComfm))handler;
 @end
 
 NS_ASSUME_NONNULL_END

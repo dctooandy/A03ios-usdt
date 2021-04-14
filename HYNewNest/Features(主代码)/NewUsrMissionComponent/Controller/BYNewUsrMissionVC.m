@@ -22,8 +22,10 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
 
 @interface BYNewUsrMissionVC () <UITableViewDelegate, UITableViewDataSource>
 {
+    //倒计时秒数
     NSInteger _cdSec1;
     NSInteger _cdSec2;
+    //累计登录天数
     NSInteger _cumulateLoginCount;
 }
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *oneViewWidth;
@@ -74,16 +76,13 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
     self.timer = nil;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self requestData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        
-//        // 首充弹窗
-//        [HYUpdateAlertView showFirstDepositHandler:^(BOOL isComfm) {
-//            [NNPageRouter jump2Deposit];
-//        }];
-//    });
     
     self.title = @"新手任务";
     _cumulateLoginCount = 0;
@@ -103,9 +102,6 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
     [_cumulate3daysBg dottedLineBorderColor:kHexColor(0x494960) fillColor:kHexColor(0x181829)];
     [_cumulate7daysBg dottedLineBorderColor:kHexColor(0x494960) fillColor:kHexColor(0x181829)];
     
-    // 请求
-    [self requestData];
-    
 }
 
 
@@ -113,6 +109,42 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
 
 - (IBAction)didTapRuleBanner:(id)sender {
     [HYWideOneBtnAlertView showWithTitle:@"活动规则" content:@"1.此活动与其他活动共享；\n2.限时任务：新用户在活动期间注册后，有30天可以完成限时任务，超出完成时限，则新手任务无法完成；\n3.其他任务：活动期间内完成即可；\n4.所有奖励需手动领取，过期未领取奖励自动失效；\n5.所有奖励需3倍流水方可提现；\n6.此优惠只用于币游真钱账号玩家，如发现个人或团体套利行为，币游国际有权扣除套利所得；\n7.为避免文字差异造成的理解偏差，本活动解释权归币游所有。" comfirmText:@"" comfirmHandler:nil];
+}
+
+- (IBAction)didTapApplyLoginRewardBtn:(BYThreeStatusBtn *)sender {
+    if (!self.model) {
+        [CNHUB showError:@"出错了 请刷新页面"];
+        return;
+    }
+    
+    // 任务结束弹窗
+    if (self.model.isBeyondClaimTime) {
+        [HYUpdateAlertView showFirstDepositOrTaskEndIsEnd:YES handler:^(BOOL isComfm) {
+            if (isComfm) {
+                [self.navigationController popToRootViewControllerAnimated:NO];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [NNControllerHelper currentTabBarController].selectedIndex = 2;
+                });
+            }
+        }];
+        return;
+    }
+    
+    // 非可领取状态
+    if (sender.status != CNThreeStaBtnStatusGradientBackground) {
+        return;
+    }
+    
+    //领取
+    NSInteger idx = sender.tag;
+    LoginTask *loginTask = self.model.loginTask;
+    Result *result = loginTask.result[idx];
+    [CNTaskRequest applyTaskRewardIds:result.ID code:result.prizeCode handler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            sender.status = CNThreeStaBtnStatusDark;
+            [sender setTitle:@"已领取" forState:UIControlStateNormal];
+        }
+    }];
 }
 
 
@@ -148,6 +180,7 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
     
     _cumulateLoginCount = loginT.count; //累计登录天
     
+    // 登录任务 第一个块
     Result *res3 = loginT.result.firstObject;
     _cumulateAmount3.text = res3.amount;
     switch (res3.fetchResultFlag) {
@@ -185,6 +218,7 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
         }
     }];
     
+    // 登录任务第二个块
     Result *res7 = loginT.result.lastObject;
     _cumulateAmount7.text = res7.amount;
     switch (res7.fetchResultFlag) {
@@ -270,11 +304,14 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
         cell.isUpgradeTask = NO;
         NSArray *resArr = self.model.limiteTask.result;
         res = resArr[indexPath.row];
+        cell.isTimeout = self->_cdSec1 <= 0;
     } else {
         cell.isUpgradeTask = YES;
         NSArray *resArr = self.model.upgradeTask.result;
         res = resArr[indexPath.row];
+        cell.isTimeout = self->_cdSec2 <= 0;
     }
+    cell.isBeyondClaim = self.model.beginFlag > 1;
     cell.resModel = res;
     return cell;
 }

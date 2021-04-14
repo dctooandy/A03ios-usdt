@@ -39,10 +39,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="绑定手机号" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="51K-dy-dPp">
-                                <rect key="frame" x="15" y="38" width="110" height="14.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="110" id="7FO-du-97c"/>
-                                </constraints>
+                                <rect key="frame" x="15" y="41" width="122" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.49888073220000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -77,8 +74,9 @@
                             <constraint firstItem="sJN-Kw-Ye6" firstAttribute="centerX" secondItem="Zia-5A-v0h" secondAttribute="centerX" constant="-20" id="Pq4-sT-9Ct"/>
                             <constraint firstItem="bEz-pR-68g" firstAttribute="leading" secondItem="Zia-5A-v0h" secondAttribute="leading" constant="15" id="RNo-d7-abW"/>
                             <constraint firstAttribute="trailing" secondItem="iU4-qB-S2G" secondAttribute="trailing" constant="20" id="ZhU-zN-SoR"/>
+                            <constraint firstItem="sJN-Kw-Ye6" firstAttribute="leading" secondItem="51K-dy-dPp" secondAttribute="trailing" constant="20" id="aQp-mQ-Wvf"/>
                             <constraint firstAttribute="height" constant="72" id="aaV-6x-BOL"/>
-                            <constraint firstItem="51K-dy-dPp" firstAttribute="top" secondItem="bEz-pR-68g" secondAttribute="bottom" constant="5" id="fJd-zb-T0L"/>
+                            <constraint firstItem="51K-dy-dPp" firstAttribute="top" secondItem="bEz-pR-68g" secondAttribute="bottom" constant="8" id="fJd-zb-T0L"/>
                             <constraint firstItem="lEI-gq-pYg" firstAttribute="top" secondItem="Zia-5A-v0h" secondAttribute="top" constant="-21" id="jJv-cE-xXe"/>
                             <constraint firstItem="iU4-qB-S2G" firstAttribute="centerY" secondItem="Zia-5A-v0h" secondAttribute="centerY" id="oR9-xU-EOD"/>
                         </constraints>
@@ -104,8 +102,9 @@
                 <outlet property="subTitleLb" destination="51K-dy-dPp" id="fAU-bt-hNt"/>
                 <outlet property="tagImgv" destination="lEI-gq-pYg" id="K2h-p5-LMV"/>
                 <outlet property="titleLb" destination="bEz-pR-68g" id="oKe-PT-gic"/>
+                <outlet property="titleLbTopSpacingCons" destination="NaN-7x-98c" id="7Zc-gq-X7Z"/>
             </connections>
-            <point key="canvasLocation" x="-20" y="61"/>
+            <point key="canvasLocation" x="88" y="67"/>
         </tableViewCell>
     </objects>
     <resources>
