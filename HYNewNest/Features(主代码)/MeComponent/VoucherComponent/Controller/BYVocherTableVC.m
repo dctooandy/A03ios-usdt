@@ -37,6 +37,7 @@ static NSString *const kBYVocherCell = @"BYVocherTVCell";
 }
 
 - (void)setupTableView {
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     self.tableView.backgroundColor = kHexColor(0x10101C);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.estimatedRowHeight = 190;
