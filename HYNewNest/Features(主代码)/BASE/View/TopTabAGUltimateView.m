@@ -10,6 +10,7 @@
 #import "HYHTMLViewController.h"
 #import "HYInGameHelper.h"
 #import "BYSuperCopartnerVC.h"
+#import "BYNewUsrMissionVC.h"
 
 @interface TopTabAGUltimateView()<WKNavigationDelegate, WKUIDelegate> //WKScriptMessageHandler  要加协议
 
@@ -229,6 +230,12 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [NNControllerHelper currentTabBarController].selectedIndex = 1;
         });
+        
+    }else if ([url containsString:@"/noviceTask?"]) {
+        //新手任务
+        decisionHandler(WKNavigationActionPolicyCancel);
+        [kCurNavVC popToRootViewControllerAnimated:NO];
+        [kCurNavVC pushViewController:[BYNewUsrMissionVC new] animated:YES];
         
     }else {
         decisionHandler(WKNavigationActionPolicyAllow);
