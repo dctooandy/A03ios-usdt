@@ -33,7 +33,7 @@
     UIViewController *vc = [NNControllerHelper getCurrentViewController];
     [vc dismissViewControllerAnimated:YES completion:^{
         
-        [NNPageRouter jump2Live800Type:CNLive800TypeNormal];
+        [NNPageRouter presentOCSS_VC:CNLive800TypeNormal];
     }];
 }
 

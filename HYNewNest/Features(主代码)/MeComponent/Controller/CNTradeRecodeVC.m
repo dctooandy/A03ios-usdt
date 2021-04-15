@@ -317,7 +317,7 @@
             [cell.icon sd_setImageWithURL:[NSURL getUrlWithString:model.itemIcon] placeholderImage:[UIImage imageNamed:@"chouma1"]];
             break;
         case transactionRecord_activityType:
-            [cell.icon sd_setImageWithURL:[NSURL getUrlWithString:model.itemIcon] placeholderImage:[UIImage imageNamed:@"youhui"]];
+            [cell.icon sd_setImageWithURL:[NSURL getUrlWithString:model.itemIcon] placeholderImage:[UIImage imageNamed:@"youhui_g"]];
             break;
         case transactionRecord_betRecordType:
             switch ([model.gameKind integerValue]) {

@@ -321,7 +321,9 @@
                 
             } else {
                 [CNHUB showSuccess:@"登录成功"];
-                if (![NNControllerHelper pop2ViewControllerClassString:@"CNHomeVC"]) { // 如果无法pop回homepage 则直接pop回上一级
+                if ([NNControllerHelper pop2ViewControllerClassString:@"CNHomeVC"]) { // 如果无法pop回homepage 则直接pop回上一级
+                    [[NNControllerHelper currentTabBarController] performSelector:@selector(showSuspendBall)];
+                } else {
                     [strongSelf.navigationController popViewControllerAnimated:YES];
                 }
             }

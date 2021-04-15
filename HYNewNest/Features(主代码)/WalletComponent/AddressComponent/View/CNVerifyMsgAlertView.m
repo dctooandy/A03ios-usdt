@@ -135,7 +135,7 @@
 
 - (IBAction)customerServer:(id)sender {
     [self removeFromSuperview];
-    [NNPageRouter jump2Live800Type:CNLive800TypeNormal];
+    [NNPageRouter presentOCSS_VC:CNLive800TypeNormal];
 }
 
 // 发送验证码

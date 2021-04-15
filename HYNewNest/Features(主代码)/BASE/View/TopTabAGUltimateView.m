@@ -397,7 +397,7 @@
 
 //联系客服
 - (void)kefu{
-    [NNPageRouter jump2Live800Type:CNLive800TypeNormal];
+    [NNPageRouter presentOCSS_VC:CNLive800TypeNormal];
 }
 
 - (void)reloadFirstPage {

@@ -265,7 +265,7 @@
 }
 
 - (void)jump2Kefu {
-    [NNPageRouter jump2Live800Type:CNLive800TypeDeposit];
+    [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
     [self removeView];
 }
 

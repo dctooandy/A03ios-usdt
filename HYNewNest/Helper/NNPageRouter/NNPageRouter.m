@@ -11,23 +11,25 @@
 #import "HYTabBarViewController.h"
 #import "HYNavigationController.h"
 #import "HYHTMLViewController.h"
-#import "GameStartPlayViewController.h"
 
-#import "CNLoginRegisterVC.h"
+#import "GameStartPlayViewController.h"
 #import "HYWithdrawViewController.h"
 #import "HYRechargeViewController.h"
 #import "HYRechargeCNYViewController.h"
-#import "HYBuyECoinGuideVC.h"
-#import "BYNewUsrMissionVC.h"
+#import "CNLoginRegisterVC.h"
+#import "CNBindPhoneVC.h"
 
 #import "HYWithdrawActivityAlertView.h"
+#import "HYBuyECoinGuideVC.h"
+#import "BYNewUsrMissionVC.h"
 
 #import "CNHomeRequest.h"
 #import "CNRechargeRequest.h"
 #import "CNWithdrawRequest.h"
 #import "NSURL+HYLink.h"
+#import <CSCustomSerVice/CSCustomSerVice.h>
+#import "KeyChain.h"
 
-#import "CNBindPhoneVC.h"
 
 @implementation NNPageRouter
 
@@ -130,6 +132,35 @@
             }
         }
     }];
+}
+
++ (void)presentOCSS_VC:(CNLive800Type)type {
+    // TODO: 暂时注释
+//    CSChatInfo *info = [[CSChatInfo alloc]init];
+//    info.backColor = [UIColor lightGrayColor];
+//    info.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontPFSB18]};
+//    info.barTintColor = kHexColor(0x1A1A2C);
+//
+//    info.productId = [IVHttpManager shareManager].productId;//产品ID，你们app的产品id
+//    info.loginName = [IVHttpManager shareManager].loginName?:@"";//网站用户名，你们app的用户名
+//    info.token = [IVHttpManager shareManager].userToken?:@"";//网站登陆后的token,你们app的token
+//    info.domainName = [IVHttpManager shareManager].domain;//网站域名，你们app的网站域名
+//    info.appid = [IVHttpManager shareManager].appId;//AppID，你们app的appid
+//    info.title = @"在线客服";//导航栏标题
+//    info.uuid = [KeyChain getKeychainIdentifierUUID];//用户uuid
+//    //    如果完整地址是 @"http://m3.wancity.net/_glaxy_a5b04c_/liveChatAddressOCSS"
+//    info.baseUrl = [[IVHttpManager shareManager].gateway stringByAppendingString:@"/_glaxy_83e6dy_"];//客服后台配置的接口域名
+//
+//    [CSVisitChatmanager startServiceWithSuperVC:[NNControllerHelper currentTabBarController]
+//                                       chatInfo:info
+//                                         finish:^(CSServiceCode errCode) {
+//
+//        if (errCode != CSServiceCode_Request_Suc) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [NNPageRouter jump2Live800Type:type];
+            });
+//        }
+//    }];
 }
 
 + (void)jump2Live800Type:(CNLive800Type)type {
