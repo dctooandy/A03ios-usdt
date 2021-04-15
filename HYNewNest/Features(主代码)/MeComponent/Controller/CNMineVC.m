@@ -19,6 +19,7 @@
 #import "CNAddressManagerVC.h"
 #import "BYSuperCopartnerVC.h"
 #import "BYVocherCenterVC.h"
+#import "BYNewUsrMissionVC.h"
 
 #import <UIButton+WebCache.h>
 #import <UIImageView+WebCache.h>
@@ -213,19 +214,23 @@
 
 // 下载APP
 - (IBAction)doloadApp:(id)sender {
-    if (!_otherApps || _otherApps.count == 0) {
-        [kKeywindow jk_makeToast:@"正在请求更多APP数据 请稍后.." duration:3 position:JKToastPositionCenter];
-        [self requestOtherAppData];
-        return;
-    }
-    OtherAppModel *model = self.otherApps[0];
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:model.appDownUrl]]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.appDownUrl] options:@{} completionHandler:^(BOOL success) {
-            [CNHUB showSuccess:@"正在为您跳转..."];
-        }];
-    } else {
-        [CNHUB showError:@"未知错误 无法下载"];
-    }
+    // !!!: 调试入口
+//    if (!_otherApps || _otherApps.count == 0) {
+//        [kKeywindow jk_makeToast:@"正在请求更多APP数据 请稍后.." duration:3 position:JKToastPositionCenter];
+//        [self requestOtherAppData];
+//        return;
+//    }
+//    OtherAppModel *model = self.otherApps[0];
+//    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:model.appDownUrl]]) {
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.appDownUrl] options:@{} completionHandler:^(BOOL success) {
+//            [CNHUB showSuccess:@"正在为您跳转..."];
+//        }];
+//    } else {
+//        [CNHUB showError:@"未知错误 无法下载"];
+//    }
+    
+    BYNewUsrMissionVC *vc = [BYNewUsrMissionVC new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 // 更多下载
