@@ -9,7 +9,7 @@
 #import "BYNewUsrMissionVC.h"
 
 #import "HYWideOneBtnAlertView.h"
-#import "HYUpdateAlertView.h"
+#import "HYNewUsrMissonAlertView.h"
 #import "BYNewUsrMissionCell.h"
 
 #import "BYThreeStatusBtn.h"
@@ -119,7 +119,7 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
     
     // 任务结束弹窗
     if (self.model.isBeyondClaimTime) {
-        [HYUpdateAlertView showFirstDepositOrTaskEndIsEnd:YES handler:^(BOOL isComfm) {
+        [HYNewUsrMissonAlertView showFirstDepositOrTaskEndIsEnd:YES handler:^(BOOL isComfm) {
             if (isComfm) {
                 [self.navigationController popToRootViewControllerAnimated:NO];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

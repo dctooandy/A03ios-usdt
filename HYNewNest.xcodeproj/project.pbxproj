@@ -303,6 +303,8 @@
 		3DB600AA26243696002278F8 /* BYNewUsrMissionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB600A826243696002278F8 /* BYNewUsrMissionCell.xib */; };
 		3DB600AD262572A8002278F8 /* BYThreeStatusBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB600AC262572A8002278F8 /* BYThreeStatusBtn.m */; };
 		3DB600B02625816B002278F8 /* CNTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB600AF2625816B002278F8 /* CNTaskModel.m */; };
+		3DB600B32627E7C9002278F8 /* HYOneImgBtnAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB600B22627E7C9002278F8 /* HYOneImgBtnAlertView.m */; };
+		3DB600B62627FB5C002278F8 /* HYNewUsrMissonAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB600B52627FB5C002278F8 /* HYNewUsrMissonAlertView.m */; };
 		3DB6A03E2594A127004A391B /* DSBProfitHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6A03D2594A127004A391B /* DSBProfitHeader.m */; };
 		3DB6A0402594A137004A391B /* DSBProfitHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB6A03F2594A137004A391B /* DSBProfitHeader.xib */; };
 		3DB6A0432594A1B5004A391B /* DSBProfitFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6A0422594A1B5004A391B /* DSBProfitFooter.m */; };
@@ -1534,6 +1536,10 @@
 		3DB600AC262572A8002278F8 /* BYThreeStatusBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYThreeStatusBtn.m; sourceTree = "<group>"; };
 		3DB600AE2625816B002278F8 /* CNTaskModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNTaskModel.h; sourceTree = "<group>"; };
 		3DB600AF2625816B002278F8 /* CNTaskModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNTaskModel.m; sourceTree = "<group>"; };
+		3DB600B12627E7C9002278F8 /* HYOneImgBtnAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYOneImgBtnAlertView.h; sourceTree = "<group>"; };
+		3DB600B22627E7C9002278F8 /* HYOneImgBtnAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYOneImgBtnAlertView.m; sourceTree = "<group>"; };
+		3DB600B42627FB5C002278F8 /* HYNewUsrMissonAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYNewUsrMissonAlertView.h; sourceTree = "<group>"; };
+		3DB600B52627FB5C002278F8 /* HYNewUsrMissonAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYNewUsrMissonAlertView.m; sourceTree = "<group>"; };
 		3DB6A03C2594A127004A391B /* DSBProfitHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBProfitHeader.h; sourceTree = "<group>"; };
 		3DB6A03D2594A127004A391B /* DSBProfitHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBProfitHeader.m; sourceTree = "<group>"; };
 		3DB6A03F2594A137004A391B /* DSBProfitHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBProfitHeader.xib; sourceTree = "<group>"; };
@@ -4953,6 +4959,10 @@
 				3D31B946253ACEF8005275BD /* HYWithdrawActivityAlertView.m */,
 				3D8A708D258C8A210058D50F /* HYSuperCopartnerReciveAlertView.h */,
 				3D8A708E258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m */,
+				3DB600B12627E7C9002278F8 /* HYOneImgBtnAlertView.h */,
+				3DB600B22627E7C9002278F8 /* HYOneImgBtnAlertView.m */,
+				3DB600B42627FB5C002278F8 /* HYNewUsrMissonAlertView.h */,
+				3DB600B52627FB5C002278F8 /* HYNewUsrMissonAlertView.m */,
 			);
 			path = HYAlertView;
 			sourceTree = "<group>";
@@ -6385,6 +6395,7 @@
 				3D41DEA5251AF662000CA1D6 /* VIPCumulateIdButton.m in Sources */,
 				3D41DE9A2519F996000CA1D6 /* VIPCumulateIdHeader.m in Sources */,
 				3D6B72EC2613371900B441D2 /* BYRechargeUSDTTopView.m in Sources */,
+				3DB600B32627E7C9002278F8 /* HYOneImgBtnAlertView.m in Sources */,
 				3D41DE7325199DEE000CA1D6 /* VIPDSBUsrModel.m in Sources */,
 				3DC14E4C25FB561000D6DB85 /* BYOldMyWalletView.m in Sources */,
 				3D97004E25A2C3ED003238C4 /* IN3SAnalytics.m in Sources */,
@@ -6493,6 +6504,7 @@
 				3D9700222599D8D4003238C4 /* HYDSBSlideUpView.m in Sources */,
 				E98BEF1724D2AF9B00E6B0C8 /* HYWithdrawViewController.m in Sources */,
 				0487C96E24CE9A630013715A /* BRDatePickerView.m in Sources */,
+				3DB600B62627FB5C002278F8 /* HYNewUsrMissonAlertView.m in Sources */,
 				E9063B9324D6F3480000273A /* HYNewCTZNCell.m in Sources */,
 				3D643F9B24F396BC00B9AAA7 /* GameLineModel.m in Sources */,
 				3DBA55E42578EFCC009A2B71 /* CNDashenBoardVC.m in Sources */,

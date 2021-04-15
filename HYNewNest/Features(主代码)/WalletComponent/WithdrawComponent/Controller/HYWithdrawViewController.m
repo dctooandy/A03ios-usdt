@@ -23,6 +23,7 @@
 #import "HYWithdrawChooseWallectComView.h"
 #import "HYWithdrawActivityAlertView.h"
 #import "BYCTZNBannerView.h"
+#import "HYOneImgBtnAlertView.h"
 
 #import "CNWithdrawRequest.h"
 #import "CNWDAccountRequest.h"
@@ -63,6 +64,15 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     [self setupTopView];
     [self setupTableView];
     
+    // 负信用等级不能取rmb
+    if (![CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userDetail.depositLevel < 0) {
+        [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"由于您的存取款行为存在资金风险，\n请联系客服了解" btnText:@"联系客服" handler:^(BOOL isComfirm) {
+            [self.navigationController popViewControllerAnimated:YES];
+            if (isComfirm) {
+                [NNPageRouter jump2Live800Type:CNLive800TypeDeposit];
+            }
+        }];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {

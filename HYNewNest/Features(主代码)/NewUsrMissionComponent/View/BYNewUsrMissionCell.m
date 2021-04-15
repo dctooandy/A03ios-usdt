@@ -15,7 +15,7 @@
 #import "HYInGameHelper.h"
 #import "CNTaskRequest.h"
 #import "CNSplashRequest.h"
-#import "HYUpdateAlertView.h"
+#import "HYNewUsrMissonAlertView.h"
 
 @interface BYNewUsrMissionCell()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLbTopSpacingCons;
@@ -100,7 +100,7 @@
     UINavigationController *nav = [NNControllerHelper currentTabbarSelectedNavigationController];
     // 结束弹窗
     if (_isTimeout) {
-        [HYUpdateAlertView showFirstDepositOrTaskEndIsEnd:YES handler:^(BOOL isComfm) {
+        [HYNewUsrMissonAlertView showFirstDepositOrTaskEndIsEnd:YES handler:^(BOOL isComfm) {
             if (isComfm) {
                 [nav popToRootViewControllerAnimated:NO];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -116,7 +116,7 @@
             vc.bindType = CNSMSCodeTypeBindPhone;
             [nav pushViewController:vc animated:YES];
         } else if ([_resModel.title isEqualToString:@"首次充值"]) {
-            [HYUpdateAlertView showFirstDepositOrTaskEndIsEnd:NO handler:^(BOOL isComfm) {
+            [HYNewUsrMissonAlertView showFirstDepositOrTaskEndIsEnd:NO handler:^(BOOL isComfm) {
                 if (isComfm) {
                     [NNPageRouter jump2Deposit];
                 }
