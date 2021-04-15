@@ -63,7 +63,7 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
 
 - (NSTimer *)timer {
     if (!_timer) {
-        NSTimer *timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
+        NSTimer *timer = [NSTimer timerWithTimeInterval:60 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
         _timer = timer;
         [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
     }
@@ -150,8 +150,8 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
 
 #pragma mark - Custom
 - (void)countDown {
-    self.limtTimeCuntDwnLb.text = [NSString stringWithFormat:@"%d天%d小时%d分", _cdSec1/86400, (_cdSec1%86400)/3600, (_cdSec1%3600)/60];
-    self.progressCuntDwnLb.text = [NSString stringWithFormat:@"%d天%d小时%d分", _cdSec2/86400, (_cdSec2%86400)/3600, (_cdSec2%3600)/60];
+    self.limtTimeCuntDwnLb.text = [NSString stringWithFormat:@"%ld天%ld小时%ld分", _cdSec1/86400, (_cdSec1%86400)/3600, (_cdSec1%3600)/60];
+    self.progressCuntDwnLb.text = [NSString stringWithFormat:@"%ld天%ld小时%ld分", _cdSec2/86400, (_cdSec2%86400)/3600, (_cdSec2%3600)/60];
     _cdSec1 -= 60;
     _cdSec2 -= 60;
     if (_cdSec1 <= 0) {
