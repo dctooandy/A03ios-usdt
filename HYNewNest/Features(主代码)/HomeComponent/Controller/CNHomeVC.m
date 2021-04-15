@@ -220,7 +220,6 @@
                     // 筛选等级：固定
                     if (obj.fixedLevel) {
                         NSArray *levs = [obj.fixedLevel componentsSeparatedByString:@","];
-                        levs = @[@"1", @"10"];
                         if (![levs containsObject:[NSString stringWithFormat:@"%ld", [CNUserManager shareManager].userInfo.starLevel]]) {
                             [models removeObject:obj];
                             flag = NO;
