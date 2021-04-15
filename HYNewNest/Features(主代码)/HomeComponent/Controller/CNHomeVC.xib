@@ -52,9 +52,13 @@
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <gestureRecognizers/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="22" id="k6d-cK-Fn5"/>
                                     </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="y3K-Ea-MZP" appends="YES" id="xpl-fP-Qff"/>
+                                    </connections>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TdK-gk-EZH" customClass="CNUserInfoLoginView">
                                     <rect key="frame" x="15" y="167" width="384" height="140"/>
@@ -427,6 +431,11 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="235" y="466"/>
         </view>
+        <tapGestureRecognizer id="y3K-Ea-MZP">
+            <connections>
+                <action selector="didTapAnnounceView:" destination="-1" id="GyT-Dz-yoR"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="news" width="13" height="12"/>

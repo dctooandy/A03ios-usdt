@@ -346,8 +346,9 @@
     content.text = model.content;
 }
 
-- (void)didTouchItemViewAtIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView *)marqueeView{
-    
+//- (void)didTouchItemViewAtIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView *)marqueeView{
+//}
+- (IBAction)didTapAnnounceView:(id)sender {
     if ([CNUserManager shareManager].isLogin) {
         [self.navigationController pushViewController:[CNMessageCenterVC new] animated:YES];
     }else{
