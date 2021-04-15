@@ -203,29 +203,50 @@
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         __block NSString *nowDateStr = [dateFormatter stringFromDate:nowDate];
 
+        //TODO: 筛选等级
         if ([agoDateStr isEqualToString:nowDateStr]) {
             MyLog(@"弹窗盒子一天就显示一次");
         }else{
             // 需要执行的方法写在这里
             [CNHomeRequest queryMessageBoxHandler:^(id responseObj, NSString *errorMsg) {
                 
-                NSArray<MessageBoxModel *> *models = [MessageBoxModel cn_parse:responseObj];
-                if (models.count == 0) {
-                    return;
-                }
+                NSMutableArray<MessageBoxModel *> *models = [[MessageBoxModel cn_parse:responseObj] mutableCopy];
+                if (models.count == 0) { return; }
                 
-                self.msgBoxModels = models;
                 NSMutableArray *imgs = @[].mutableCopy;
-                for (MessageBoxModel *m in models) {
-                    NSString *url = [NSURL getStrUrlWithString: m.imgUrl];
-                    [imgs addObject:url];
-                }
-                [CNMessageBoxView showMessageBoxWithImages:imgs onView:self.view tapBlock:^(int idx) {
-                    MessageBoxModel *m = self.msgBoxModels[idx];
-                    [NNPageRouter jump2HTMLWithStrURL:m.link title:@"活动" needPubSite:NO];
+                [models enumerateObjectsUsingBlock:^(MessageBoxModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    BOOL flag = YES; // 用来判定是否 没有被筛出
+                    // 筛选等级：固定
+                    if (obj.fixedLevel) {
+                        NSArray *levs = [obj.fixedLevel componentsSeparatedByString:@","];
+                        levs = @[@"1", @"10"];
+                        if (![levs containsObject:[NSString stringWithFormat:@"%ld", [CNUserManager shareManager].userInfo.starLevel]]) {
+                            [models removeObject:obj];
+                            flag = NO;
+                        }
+                    }
+                    // 筛选等级：大于等于
+                    if (obj.level) {
+                        if (obj.level.integerValue > [CNUserManager shareManager].userInfo.starLevel) {
+                            [models removeObject:obj];
+                            flag = NO;
+                        }
+                    }
+                    if (flag) {
+                        // 图片数组
+                        NSString *url = [NSURL getStrUrlWithString: obj.imgUrl];
+                        [imgs addObject:url];
+                    }
                 }];
-                [[NSUserDefaults standardUserDefaults] setObject:nowDateStr forKey:HYHomeMessageBoxLastimeDate];
-                [[NSUserDefaults standardUserDefaults] synchronize];
+                self.msgBoxModels = models;
+                if (imgs.count) {
+                    [CNMessageBoxView showMessageBoxWithImages:imgs onView:self.view tapBlock:^(int idx) {
+                        MessageBoxModel *m = self.msgBoxModels[idx];
+                        [NNPageRouter jump2HTMLWithStrURL:m.link title:@"活动" needPubSite:NO];
+                    }];
+                    [[NSUserDefaults standardUserDefaults] setObject:nowDateStr forKey:HYHomeMessageBoxLastimeDate];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                }
             }];
         }
     }
