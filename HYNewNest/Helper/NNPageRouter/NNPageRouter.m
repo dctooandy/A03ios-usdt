@@ -9,26 +9,37 @@
 #import "NNPageRouter.h"
 #import "AppDelegate.h"
 #import "HYTabBarViewController.h"
-#import "NSURL+HYLink.h"
+#import "HYNavigationController.h"
 #import "HYHTMLViewController.h"
 #import "GameStartPlayViewController.h"
-#import "CNLoginRegisterVC.h"
 
-#import "CNHomeRequest.h"
-#import "CNRechargeRequest.h"
-#import "CNWithdrawRequest.h"
-#import "HYWithdrawActivityAlertView.h"
+#import "CNLoginRegisterVC.h"
 #import "HYWithdrawViewController.h"
 #import "HYRechargeViewController.h"
 #import "HYRechargeCNYViewController.h"
 #import "HYBuyECoinGuideVC.h"
+#import "BYNewUsrMissionVC.h"
+
+#import "HYWithdrawActivityAlertView.h"
+
+#import "CNHomeRequest.h"
+#import "CNRechargeRequest.h"
+#import "CNWithdrawRequest.h"
+#import "NSURL+HYLink.h"
+
 #import "CNBindPhoneVC.h"
 
 @implementation NNPageRouter
 
 + (void)changeRootVc2MainPage {
     HYTabBarViewController *tabVC = [[HYTabBarViewController alloc] init];
-    [kAppDelegate changeRootViewController:tabVC];
+    [NNControllerHelper changeRootVc:tabVC];
+}
+
++ (void)changeRootVc2DevPage {
+    BYNewUsrMissionVC *vc = [BYNewUsrMissionVC new];
+    HYNavigationController *nav = [[HYNavigationController alloc] initWithRootViewController:vc];
+    [NNControllerHelper changeRootVc:nav];
 }
 
 + (void)jump2Login {

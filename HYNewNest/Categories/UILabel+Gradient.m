@@ -11,7 +11,7 @@
 @implementation UILabel (Gradient)
 
 // 左上角到右下角
-- (void)setupGradientColorFrom:(UIColor *)fromColor toColor:(UIColor *)toColor {
+- (UIColor *)setupGradientColorFrom:(UIColor *)fromColor toColor:(UIColor *)toColor {
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     //绘制渐变层
@@ -28,10 +28,12 @@
     CGColorSpaceRelease(colorSpaceRef);
     CGGradientRelease(gradientRef);
     UIGraphicsEndImageContext();
-    self.textColor = [UIColor colorWithPatternImage:gradientImage];
+    UIColor *color = [UIColor colorWithPatternImage:gradientImage];
+    self.textColor = color;
+    return color;
 }
 
-- (void)setupGradientColorDirection:(BYLblGrdtColorDirection)direction From:(UIColor *)fromColor toColor:(UIColor *)toColor {
+- (UIColor *)setupGradientColorDirection:(BYLblGrdtColorDirection)direction From:(UIColor *)fromColor toColor:(UIColor *)toColor {
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     //绘制渐变层
@@ -66,7 +68,9 @@
     CGColorSpaceRelease(colorSpaceRef);
     CGGradientRelease(gradientRef);
     UIGraphicsEndImageContext();
-    self.textColor = [UIColor colorWithPatternImage:gradientImage];
+    UIColor *color = [UIColor colorWithPatternImage:gradientImage];
+    self.textColor = color;
+    return color;
 }
 
 @end

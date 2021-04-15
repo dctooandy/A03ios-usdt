@@ -25,7 +25,8 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 
 /// 改变根控制器为首页
 + (void)changeRootVc2MainPage;
-
+/// 新页面开发阶段
++ (void)changeRootVc2DevPage;
 
 /// 跳到登录注册
 + (void)jump2Login;

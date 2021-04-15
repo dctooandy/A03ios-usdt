@@ -180,13 +180,16 @@
 //        return;
 //    }
     
+//#ifdef DEBUG
+//    [NNPageRouter changeRootVc2DevPage];
+//#else
     [NNPageRouter changeRootVc2MainPage];
-
+//#endif
 }
 
 
 - (void)videoPlayEnd {
-//    _videoDidEnd = YES;
+    _videoDidEnd = YES;
     [_player seekToTime:CMTimeMake(0, 1)];
     [_player play];
 }

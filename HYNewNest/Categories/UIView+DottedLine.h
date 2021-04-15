@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (DottedLine)
 
+- (void)dottedLineBorderColor:(UIColor *)borderColor
+                    fillColor:(UIColor *)fillColor;
+
 - (void)dottedLineBorderWithView:(UIView *)view
                      borderColor:(UIColor *)borderColor
                        fillColor:(UIColor *)fillColor;

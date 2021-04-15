@@ -26,13 +26,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    // URLCache
+    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
+                                                         diskCapacity:20 * 1024 * 1024
+                                                             diskPath:nil];
+    [NSURLCache setSharedURLCache:URLCache];
+    
+    // 监听通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRemoteNotification) name:BYDidEnterHomePageNoti object:nil];
     
     // 3S 统计
 #if DEBUG
     [IN3SAnalytics debugEnable:YES];
 #endif
-    //SDK初始配置，切记一定要在该方法中调用
     [IN3SAnalytics configureSDKWithProduct:@"A03"];
     
     // 天网埋点
@@ -49,7 +55,7 @@
                         environment:IVLA_Dis        //环境: 线上
 #endif
                           loginName:^NSString *{     //获取登录名
-        return [CNUserManager shareManager].printedloginName;
+        return [CNUserManager shareManager].userInfo.loginName;
     }];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1), dispatch_get_main_queue(), ^{
         [IVLAManager setPayegisSDKDomain:@"http://115.84.241.53/did/"];

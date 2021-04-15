@@ -88,7 +88,7 @@
         make.top.equalTo(lblContent.mas_bottom).offset(AD(32));
         make.centerX.equalTo(self.contentView);
         make.width.mas_equalTo(AD(232));
-        make.height.mas_equalTo(AD(48));
+        make.height.mas_equalTo(comfirmText.length?AD(48):0);
     }];
     
     //更新约束 适配文字高度

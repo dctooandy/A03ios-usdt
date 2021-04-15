@@ -22,9 +22,9 @@ typedef NS_ENUM(NSInteger, BYLblGrdtColorDirection) {
 /// 给label文字设置渐变色，该方法替代修改"textColor"属性
 /// @param fromColor 开始颜色
 /// @param toColor 结束颜色
-- (void)setupGradientColorFrom:(UIColor *)fromColor toColor:(UIColor *)toColor;
+- (UIColor *)setupGradientColorFrom:(UIColor *)fromColor toColor:(UIColor *)toColor;
 
-- (void)setupGradientColorDirection:(BYLblGrdtColorDirection)direction From:(UIColor *)fromColor toColor:(UIColor *)toColor;
+- (UIColor *)setupGradientColorDirection:(BYLblGrdtColorDirection)direction From:(UIColor *)fromColor toColor:(UIColor *)toColor;
 
 @end
 
