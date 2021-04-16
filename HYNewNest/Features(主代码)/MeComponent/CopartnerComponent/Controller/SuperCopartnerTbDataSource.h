@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol SuperCopartnerDelegate <NSObject>
 
-- (void)didReceiveCumulateBetAmount:(NSNumber *)betAmount;
+//- (void)didReceiveCumulateBetAmount:(NSNumber *)betAmount;
 
 @end
 

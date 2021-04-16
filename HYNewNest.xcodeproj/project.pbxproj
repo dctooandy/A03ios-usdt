@@ -247,7 +247,6 @@
 		3D8A7086258B568E0058D50F /* SuperCopartnerTbCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7084258B568E0058D50F /* SuperCopartnerTbCell.m */; };
 		3D8A708A258C5C1A0058D50F /* SuperCopartnerTbFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7089258C5C1A0058D50F /* SuperCopartnerTbFooter.m */; };
 		3D8A708C258C5D570058D50F /* SuperCopartnerTbFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D8A708B258C5D570058D50F /* SuperCopartnerTbFooter.xib */; };
-		3D8A708F258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A708E258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m */; };
 		3D8A7092258CAF200058D50F /* HYSuperCopartnerSlideUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7091258CAF200058D50F /* HYSuperCopartnerSlideUpView.m */; };
 		3D97001F2599D00A003238C4 /* VIPRankGradientTxtLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97001E2599D00A003238C4 /* VIPRankGradientTxtLabel.m */; };
 		3D9700222599D8D4003238C4 /* HYDSBSlideUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9700212599D8D4003238C4 /* HYDSBSlideUpView.m */; };
@@ -1431,8 +1430,6 @@
 		3D8A7088258C5C1A0058D50F /* SuperCopartnerTbFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuperCopartnerTbFooter.h; sourceTree = "<group>"; };
 		3D8A7089258C5C1A0058D50F /* SuperCopartnerTbFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperCopartnerTbFooter.m; sourceTree = "<group>"; };
 		3D8A708B258C5D570058D50F /* SuperCopartnerTbFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuperCopartnerTbFooter.xib; sourceTree = "<group>"; };
-		3D8A708D258C8A210058D50F /* HYSuperCopartnerReciveAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSuperCopartnerReciveAlertView.h; sourceTree = "<group>"; };
-		3D8A708E258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSuperCopartnerReciveAlertView.m; sourceTree = "<group>"; };
 		3D8A7090258CAF200058D50F /* HYSuperCopartnerSlideUpView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSuperCopartnerSlideUpView.h; sourceTree = "<group>"; };
 		3D8A7091258CAF200058D50F /* HYSuperCopartnerSlideUpView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSuperCopartnerSlideUpView.m; sourceTree = "<group>"; };
 		3D97001D2599D00A003238C4 /* VIPRankGradientTxtLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPRankGradientTxtLabel.h; sourceTree = "<group>"; };
@@ -4960,8 +4957,6 @@
 				3D41DEA7251B4A45000CA1D6 /* HYVIPReceiveAlertView.m */,
 				3D31B945253ACEF8005275BD /* HYWithdrawActivityAlertView.h */,
 				3D31B946253ACEF8005275BD /* HYWithdrawActivityAlertView.m */,
-				3D8A708D258C8A210058D50F /* HYSuperCopartnerReciveAlertView.h */,
-				3D8A708E258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m */,
 				3DB600B12627E7C9002278F8 /* HYOneImgBtnAlertView.h */,
 				3DB600B22627E7C9002278F8 /* HYOneImgBtnAlertView.m */,
 				3DB600B42627FB5C002278F8 /* HYNewUsrMissonAlertView.h */,
@@ -6084,7 +6079,7 @@
 		};
 		3DFF702F261EF93900801654 /* IconVersioning Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -6096,7 +6091,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n$SRCROOT/HYNewNest/Other/LLIconVersioning.sh\n";
 		};
@@ -6315,7 +6310,6 @@
 				E9A269D724D80D8700B512FF /* HYRechargePayWayController.m in Sources */,
 				E98BEEE924D023B200E6B0C8 /* UIView+Empty.m in Sources */,
 				D5FBFE8A24BC28B200BBCAD8 /* CNBaseXibView.m in Sources */,
-				3D8A708F258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m in Sources */,
 				04C0F10624C58CF4007F1420 /* CNNotificationName.m in Sources */,
 				0487C9A924CFBA6A0013715A /* JJCollectionViewRoundConfigModel.m in Sources */,
 				E9B5497624CF110B002CE6EF /* StrengthVideoTableViewCell.m in Sources */,

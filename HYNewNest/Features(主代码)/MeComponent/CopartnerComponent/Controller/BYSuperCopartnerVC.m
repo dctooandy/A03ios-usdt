@@ -10,15 +10,12 @@
 #import "UIView+DottedLine.h"
 #import "CNTextSaleBtn.h"
 #import "HYOneBtnAlertView.h"
-#import "CNShareView.h"
-#import "HYVIPRuleAlertView.h"
 #import "HYSuperCopartnerReciveAlertView.h"
 #import "HYSuperCopartnerSlideUpView.h"
 
 #import "SuperCopartnerTbDataSource.h"
 #import "SGQRCodeGenerateManager.h"
 #import "CNHomeRequest.h"
-#import "CNSuperCopartnerRequest.h"
 
 @interface BYSuperCopartnerVC () <SuperCopartnerDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewWidthCons;
@@ -33,13 +30,11 @@
 @property (strong, nonatomic) IBOutletCollection(CNTextSaleBtn) NSArray *myAllKindBonusBtns;
 @property (nonatomic, assign) NSInteger selTag;
 @property (strong,nonatomic) SuperCopartnerTbDataSource *firstTablesDataSource;
-@property (weak, nonatomic) IBOutlet UIButton *seeMoreBtn;
 
 /// 本月累投排行榜
 @property (weak, nonatomic) IBOutlet UIView *monthCumulateBetBoard;
 @property (weak, nonatomic) IBOutlet UITableView *mcbTableView;
 @property (strong,nonatomic) SuperCopartnerTbDataSource *cumulateBetDataSource;
-@property (weak, nonatomic) IBOutlet UILabel *cumulateBetAmountLb;
 
 // 推荐流程
 @property (weak, nonatomic) IBOutlet UILabel *linkLb;
@@ -59,15 +54,13 @@
     self.selTag = 0;
     [self setupUIViews];
 
-    
-//    [HYSuperCopartnerReciveAlertView showReceiveAlert];
 }
 
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
+//- (void)viewDidLayoutSubviews {
+//    [super viewDidLayoutSubviews];
     
-    [_monthCumulateBetBoard drawDottedLineBeginPoint:CGPointMake(0, _monthCumulateBetBoard.height-45) endPoint:CGPointMake(kScreenWidth-25, _monthCumulateBetBoard.height-45) lineWidth:0.5 lineColor:kHexColor(0x6020DB)];
-}
+//    [_monthCumulateBetBoard drawDottedLineBeginPoint:CGPointMake(0, _monthCumulateBetBoard.height-45) endPoint:CGPointMake(kScreenWidth-25, _monthCumulateBetBoard.height-45) lineWidth:0.5 lineColor:kHexColor(0x6020DB)];
+//}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -81,10 +74,11 @@
 - (void)setupUIViews {
     self.scrollViewWidthCons.constant = kScreenWidth;
     self.view.backgroundColor = kHexColor(0x190A39);
+    _monthCumulateBetBoard.layer.borderColor = kHexColorAlpha(0x6020DB, 0.7).CGColor;
     _topBtnsBgView.backgroundColor = [UIColor gradientFromColor:kHexColor(0x8241FF) toColor:kHexColor(0x6020DB) withWidth:kScreenWidth-25];
     
     // 第一部分tableview
-    _firstTablesDataSource = [[SuperCopartnerTbDataSource alloc] initWithTableView:_makTableView type:SuperCopartnerTypeMyBonus isHomePage:YES];
+    _firstTablesDataSource = [[SuperCopartnerTbDataSource alloc] initWithTableView:_makTableView type:SuperCopartnerTypeStarGifts isHomePage:YES];
     
     // 第二部分tableView
     _cumulateBetDataSource = [[SuperCopartnerTbDataSource alloc] initWithTableView:_mcbTableView type:SuperCopartnerTypeCumuBetRank isHomePage:YES];
@@ -92,15 +86,15 @@
     
     [_myAllKindBonusBtns enumerateObjectsUsingBlock:^(CNTextSaleBtn * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.selFont = [UIFont fontPFSB16];
-        obj.norFont = [UIFont fontPFR14];
+        obj.norFont = [UIFont fontPFR15];
         obj.selColor = [UIColor whiteColor];
         obj.norColor = [UIColor whiteColor];
     }];
 
 }
 
+// 链接和二维码
 - (void)updateShare {
-    // 链接和二维码
     AdBannerModel *model = self.shareModel.bannersModel.firstObject;
     NSString *shareLink = [NSString stringWithFormat:@"%@%@", model.linkUrl, [CNUserManager shareManager].userInfo.customerId];
     self.linkLb.text = shareLink;
@@ -109,19 +103,15 @@
     self.linkImv.image = img;
 }
 
-- (void)didReceiveCumulateBetAmount:(NSNumber *)betAmount {
-    _cumulateBetAmountLb.text = [NSString stringWithFormat:@"%@ USDT", [betAmount jk_toDisplayNumberWithDigit:0]];
-}
+//- (void)didReceiveCumulateBetAmount:(NSNumber *)betAmount {
+//    _cumulateBetAmountLb.text = [NSString stringWithFormat:@"%@ USDT", [betAmount jk_toDisplayNumberWithDigit:0]];
+//}
 
 
 #pragma mark - Action
 
 - (IBAction)didTapBackBtn:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (IBAction)didTapRuleBtn:(id)sender {
-    [HYVIPRuleAlertView showFriendShareV2Rule];
 }
 
 - (IBAction)didSelectedTag:(CNTextSaleBtn *)sender {
@@ -140,6 +130,16 @@
     
 }
 
+- (IBAction)didTapMyRecomBonusBtn:(id)sender {
+    //TODO: 
+    MyLog(@"查看我的推荐礼金");
+}
+
+- (IBAction)didTapMyXimaBonusBtn:(id)sender {
+    //TODO:
+    MyLog(@"查看洗码返佣");
+}
+
 - (IBAction)didTapShareBtn:(id)sender {
     [UIPasteboard generalPasteboard].string = self.linkLb.text;
     [CNHUB showSuccess:@"已复制到剪贴板"];
@@ -149,41 +149,6 @@
     [self saveQrCodeImg];
 }
 
-- (IBAction)didTapRecomonBtn:(id)sender {
-    [CNShareView showShareViewWithModel:self.shareModel];
-    [UIPasteboard generalPasteboard].string = self.linkLb.text;
-    [CNHUB showSuccess:@"已复制到剪贴板"];
-}
-
-- (IBAction)didTapSeeMoreBtn:(id)sender {
-    switch (_selTag) {
-        case SuperCopartnerTypeMyBonus:
-        case SuperCopartnerTypeMyRecommen:
-            //弹窗
-            [HYSuperCopartnerSlideUpView showSlideupViewType:_selTag];
-            break;
-        case SuperCopartnerTypeSXHBonus:
-            [kCurNavVC popToRootViewControllerAnimated:NO];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [NNControllerHelper currentTabBarController].selectedIndex = 1;
-            });
-            break;
-        case SuperCopartnerTypeStarGifts:
-            [NNPageRouter jump2HTMLWithStrURL:@"/starall" title:@"星特权新体验" needPubSite:YES];
-            break;
-        default:
-            break;
-    }
-}
-
-- (IBAction)didTapCustomerServerBtn:(id)sender {
-    [NNPageRouter presentOCSS_VC:CNLive800TypeNormal];
-}
-
-//- (IBAction)didTapMyGiftBtn:(id)sender {
-//    //TODO: 弹窗
-//    [HYSuperCopartnerSlideUpView showSlideupViewType:SuperCopartnerTypeMyGifts];
-//}
 
 #pragma mark - SAVE IMG
 
@@ -222,23 +187,17 @@
 
 #pragma mark - Setter
 
-// 改变数据源
+// 改变数据源 改变高度
 - (void)setSelTag:(NSInteger)selTag {
     _selTag = selTag;
     [self.firstTablesDataSource changeType:selTag];
+    
     switch (selTag) {
-        case SuperCopartnerTypeMyBonus:
-        case SuperCopartnerTypeMyRecommen:
-            _bonusBoardHeightCons.constant = 245;
-            [_seeMoreBtn setTitle:@"查看更多" forState:UIControlStateNormal];
-            break;
         case SuperCopartnerTypeSXHBonus:
-            _bonusBoardHeightCons.constant = 271;
-            [_seeMoreBtn setTitle:@"了解私享会" forState:UIControlStateNormal];
+            _bonusBoardHeightCons.constant = 287;
             break;
         case SuperCopartnerTypeStarGifts:
-            _bonusBoardHeightCons.constant = 349;
-            [_seeMoreBtn setTitle:@"了解更多星级" forState:UIControlStateNormal];
+            _bonusBoardHeightCons.constant = 365;
             break;
         default:
             break;

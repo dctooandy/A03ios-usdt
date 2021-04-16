@@ -7,82 +7,55 @@
 //
 
 #import "SuperCopartnerTbFooter.h"
-#import "CNBorderBtn.h"
 #import "CNSuperCopartnerRequest.h"
+#import "HYDownloadLinkView.h"
 
 @interface SuperCopartnerTbFooter ()
-@property (weak, nonatomic) IBOutlet CNBorderBtn *onlyBtn;
 @property (assign, nonatomic) SuperCopartnerType footType;
-
+// 我的本周预估佣金:  XXX USDT
+@property (weak, nonatomic) IBOutlet UILabel *weekRebateLb;
+@property (weak, nonatomic) IBOutlet UIButton *knowBtn;
 @end
 
 @implementation SuperCopartnerTbFooter
 
 - (void)drawRect:(CGRect)rect {
     // Drawing code
-    [self jk_addTopBorderWithColor:kHexColor(0xEEEEEE) width:0.5];
+
 }
 
-- (void)setupFootType:(SuperCopartnerType)type strArr:(NSArray<NSNumber *> *)strArr {
-    
-    _footType = type;
+// 只有星级礼金，VIP礼金，洗码返佣需要footer
+- (void)setupFootType:(SuperCopartnerType)type {
     
     [self.contentView removeAllSubViews];
     
-    if (type == SuperCopartnerTypeMyBonus) {
-        _lbMiddle.hidden = YES;
-        _lbYlq.hidden = NO;
-        _lbWlq.hidden = NO;
-        _lbReceivedAmount.hidden = NO;
-        _lbNotReceivedAmount.hidden = NO;
-        _onlyBtn.hidden = NO;
-        
-        if ([CNUserManager shareManager].isLogin) {
-            [_onlyBtn setTitle:@"一键领取" forState:UIControlStateNormal];
-            
-            NSNumber *recNum = strArr[0];
-            NSNumber *recedNum = strArr[1];
-            _lbReceivedAmount.text = [NSString stringWithFormat:@"%@usdt", [recNum jk_toDisplayNumberWithDigit:0]];
-            _lbNotReceivedAmount.text = [NSString stringWithFormat:@"%@usdt", [recedNum jk_toDisplayNumberWithDigit:0]];
-            BOOL isHas = [strArr[2] boolValue];
-            _onlyBtn.hidden = !isHas;
-            
-        } else {
-            [_onlyBtn setTitle:@"请登录" forState:UIControlStateNormal];
-            _lbReceivedAmount.text = @"__usdt";
-            _lbNotReceivedAmount.text = @"__usdt";
-        }
-        
-    } else {
-        _lbMiddle.hidden = NO;
-        _lbYlq.hidden = YES;
-        _lbWlq.hidden = YES;
-        _lbReceivedAmount.hidden = YES;
-        _lbNotReceivedAmount.hidden = YES;
-        _onlyBtn.hidden = YES;
-        
-        if (type == SuperCopartnerTypeMyRecommen) {
-            _lbMiddle.text = [NSString stringWithFormat:@"已推荐 %@ 人", strArr.firstObject];
-            
-        } else if (type == SuperCopartnerTypeSXHBonus) {
-            _lbMiddle.text = @"每月初重新评级，可重复入会";
-            
-        } else if (type == SuperCopartnerTypeStarGifts) {
-            _lbMiddle.text = @"一次晋级，终生有效";
-        }
+    _footType = type;
+    
+    switch (type) {
+        case SuperCopartnerTypeSXHBonus:
+        case SuperCopartnerTypeStarGifts:
+            self.backgroundView.backgroundColor = kHexColor(0x37127C);
+            _weekRebateLb.hidden = YES;
+            [_knowBtn setTitle:(type==SuperCopartnerTypeSXHBonus)?@"了解私享会":@"了解星级" forState:UIControlStateNormal];
+            break;
+        case SuperCopartnerTypeMyXimaRebate:
+            self.backgroundView.backgroundColor = [UIColor whiteColor];
+            _weekRebateLb.hidden = NO;
+            //TODO: 写入参数
+            break;
+        default:
+            break;
     }
 }
 
-- (IBAction)didTapOnekeyRecive:(id)sender {
-    if ([CNUserManager shareManager].isLogin) { // 一键领取
-        [CNSuperCopartnerRequest applyMyGiftBonusHandler:^(id responseObj, NSString *errorMsg) {
-            if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-                NSString *amount = responseObj[@"amount"];
-                [CNHUB showSuccess:[NSString stringWithFormat:@"成功领取 %@usdt", amount]];
-            }
-        }];
-    } else { // 登录
-        [NNPageRouter jump2Login];
+- (IBAction)didTapKnowBtn:(id)sender {
+    if (self->_footType == SuperCopartnerTypeSXHBonus) { //去私享会
+        [kCurNavVC popToRootViewControllerAnimated:NO];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [NNControllerHelper currentTabBarController].selectedIndex = 1;
+        });
+    } else { // 去星级H5
+        [NNPageRouter jump2HTMLWithStrURL:@"/starall" title:@"星特权新体验" needPubSite:YES];
     }
 }
 

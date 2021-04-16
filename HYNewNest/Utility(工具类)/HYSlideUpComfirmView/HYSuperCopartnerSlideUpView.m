@@ -36,9 +36,9 @@
     
     NSString *title = @"";
     switch (self.type) {
-        case SuperCopartnerTypeMyBonus:
-            title = @"奖金记录";
-            break;
+//        case SuperCopartnerTypeMyBonus:
+//            title = @"奖金记录";
+//            break;
 //        case SuperCopartnerTypeMyGifts:
 //            title = @"我的奖品";
 //            break;

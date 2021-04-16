@@ -9,12 +9,13 @@
 #import "CNSuperCopartnerRequest.h"
 
 static NSString *SupCopRequestActionStr[] = {
-    [SuperCopartnerTypeMyBonus] = @"myBonus",
+//    [SuperCopartnerTypeMyBonus] = @"myBonus",
     [SuperCopartnerTypeMyRecommen] = @"myDownline",
 //    [SuperCopartnerTypeSXHBonus] = @"赌王",
 //    [SuperCopartnerTypeStarGifts] = @"赌圣",
     [SuperCopartnerTypeCumuBetRank] = @"betRank",
-    [SuperCopartnerTypeMyGifts] = @"myPrize",
+//    [SuperCopartnerTypeMyGifts] = @"myPrize",
+    [SuperCopartnerTypeMyXimaRebate] = @"???",
 };
 
 @implementation CNSuperCopartnerRequest
@@ -31,7 +32,7 @@ static NSString *SupCopRequestActionStr[] = {
 
 + (void)requestSuperCopartnerListBetRankHandler:(HandlerBlock)handler {
     NSMutableDictionary *parm = [kNetworkMgr baseParam];
-    parm[@"pageSize"] = @5;
+    parm[@"pageSize"] = @10;
     parm[@"pageNo"] = @1;
     parm[@"action"] = SupCopRequestActionStr[SuperCopartnerTypeCumuBetRank];
     [self POST:kGatewayExtraPath(config_superCopartnerActy) parameters:parm completionHandler:handler];
