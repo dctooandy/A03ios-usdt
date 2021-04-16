@@ -120,7 +120,7 @@
 
 #pragma mark 新钱包
 #define config_getBalances       @"getBalances" //主账号查询子账号额度
-#define config_walletCoupon      @"proxy/wallet/coupon" // 获取优惠券列表
+#define config_walletCoupon      @"83e6dy/proxy/wallet/coupon" // 获取优惠券列表
 
 #pragma mark 风采
 #define config_getArticels  @"83e6dy/getArticles" //查询投注详情  电游投注详情用
