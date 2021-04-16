@@ -11,14 +11,14 @@
 @implementation CNTaskRequest
 
 + (void)getNewUsrTask:(HandlerBlock)handler {
-    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    NSMutableDictionary *param = @{}.mutableCopy;
     param[@"action"] = @"myTask";
     
     [self POST:kGatewayExtraPath(config_newapiTask) parameters:param completionHandler:handler];
 }
 
 + (void)applyTaskRewardIds:(NSString *)prizeIds code:(NSString *)prizeCode handler:(HandlerBlock)handler {
-    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    NSMutableDictionary *param = @{}.mutableCopy;
     param[@"action"] = @"apply";
     param[@"prizeIds"] = prizeIds;
     param[@"prizeCode"] = prizeCode;
