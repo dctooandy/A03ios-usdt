@@ -17,6 +17,7 @@
 
 #import "CNTaskRequest.h"
 #import "CNTaskModel.h"
+#import <MJRefresh.h>
 
 static NSString * const kMissionCell = @"BYNewUsrMissionCell";
 
@@ -28,6 +29,7 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
     //累计登录天数
     NSInteger _cumulateLoginCount;
 }
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *oneViewWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cumulate4dayIconLeadingCons;
 
@@ -87,6 +89,8 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
     self.title = @"新手任务";
     _cumulateLoginCount = 0;
     
+    _scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
+    
     // tableView
     [self.limitTimeTableView registerNib:[UINib nibWithNibName:kMissionCell bundle:nil] forCellReuseIdentifier:kMissionCell];
     [self.upgradeTableView registerNib:[UINib nibWithNibName:kMissionCell bundle:nil] forCellReuseIdentifier:kMissionCell];
@@ -118,7 +122,7 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
     }
     
     // 任务结束弹窗
-    if (self.model.isBeyondClaimTime) {
+    if (self.model.beginFlag != 1) {
         [HYNewUsrMissonAlertView showFirstDepositOrTaskEndIsEnd:YES handler:^(BOOL isComfm) {
             if (isComfm) {
                 [self.navigationController popToRootViewControllerAnimated:NO];
@@ -139,7 +143,9 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
     NSInteger idx = sender.tag;
     LoginTask *loginTask = self.model.loginTask;
     Result *result = loginTask.result[idx];
-    [CNTaskRequest applyTaskRewardIds:result.ID code:result.prizeCode handler:^(id responseObj, NSString *errorMsg) {
+    [CNTaskRequest applyTaskRewardIds:result.ID
+                                 code:result.prizeCode
+                              handler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
             sender.status = CNThreeStaBtnStatusDark;
             [sender setTitle:@"已领取" forState:UIControlStateNormal];
@@ -155,10 +161,10 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
     _cdSec1 -= 60;
     _cdSec2 -= 60;
     if (_cdSec1 <= 0) {
-        self.limtTimeCuntDwnLb.text = @"已结束";
+        self.limtTimeCuntDwnLb.text = @"已过期";
     }
     if (_cdSec2 <= 0) {
-        self.progressCuntDwnLb.text = @"已结束";
+        self.progressCuntDwnLb.text = @"已过期";
     }
     if (_cdSec1 <= 0 && _cdSec2 <= 0) {
         [self.timer invalidate];
@@ -186,9 +192,11 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
     switch (res3.fetchResultFlag) {
         case -1:
             _cumulate3Btn.status = CNThreeStaBtnStatusDark;
+            [_cumulate3Btn setTitle:@"待完成" forState:UIControlStateNormal];
             break;
         case 0:
-            _cumulate3Btn.status = CNThreeStaBtnStatusGradientBorder;
+            _cumulate3Btn.status = CNThreeStaBtnStatusGradientBackground;
+            [_cumulate3Btn setTitle:@"待领取" forState:UIControlStateNormal];
             break;
         case 1:
             _cumulate3Btn.status = CNThreeStaBtnStatusDark;
@@ -224,9 +232,11 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
     switch (res7.fetchResultFlag) {
         case -1:
             _cumulate7Btn.status = CNThreeStaBtnStatusDark;
+            [_cumulate7Btn setTitle:@"待完成" forState:UIControlStateNormal];
             break;
         case 0:
             _cumulate7Btn.status = CNThreeStaBtnStatusGradientBorder;
+            [_cumulate7Btn setTitle:@"待领取" forState:UIControlStateNormal];
             break;
         case 1:
             _cumulate7Btn.status = CNThreeStaBtnStatusDark;
@@ -273,6 +283,7 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
 #pragma mark - Data
 - (void)requestData {
     [CNTaskRequest getNewUsrTask:^(id responseObj, NSString *errorMsg) {
+        [self.scrollView.mj_header endRefreshing];
         if (!errorMsg) {
             self.model = [CNTaskModel cn_parse:responseObj];
             if (self.model) {
@@ -300,6 +311,7 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BYNewUsrMissionCell *cell = (BYNewUsrMissionCell *)[tableView dequeueReusableCellWithIdentifier:kMissionCell];
     Result *res;
+    //注意这里 timeout 属性放在 model 赋值前面
     if ([tableView isEqual:self.limitTimeTableView]) {
         cell.isUpgradeTask = NO;
         NSArray *resArr = self.model.limiteTask.result;

@@ -21,6 +21,7 @@
                 <outlet property="limtTimeCuntDwnLb" destination="JzB-i6-Qul" id="Xjn-ol-wYH"/>
                 <outlet property="oneViewWidth" destination="HDR-Zd-WPH" id="vAI-qK-7l8"/>
                 <outlet property="progressCuntDwnLb" destination="PNW-Au-EUS" id="abn-dy-7Y8"/>
+                <outlet property="scrollView" destination="zsO-9D-YGb" id="QHq-4W-e8a"/>
                 <outlet property="upgradeTableView" destination="ex0-cv-fJZ" id="vYS-EK-4j1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="cumulate3daysIcons" destination="6md-Fw-S2k" id="srx-jf-66q"/>
@@ -305,27 +306,27 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6天23小时50分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JzB-i6-Qul">
-                                    <rect key="frame" x="292" y="752.5" width="107" height="18"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0天0小时0分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JzB-i6-Qul">
+                                    <rect key="frame" x="310" y="752.5" width="89" height="18"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="0.49888073224477819" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="_alarm clock" translatesAutoresizingMaskIntoConstraints="NO" id="F07-CK-yMD">
-                                    <rect key="frame" x="269" y="752.5" width="18" height="18"/>
+                                    <rect key="frame" x="287" y="752.5" width="18" height="18"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="18" id="9LI-M5-TcL"/>
                                         <constraint firstAttribute="width" constant="18" id="S9Y-ey-I56"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="29天23小时50分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNW-Au-EUS">
-                                    <rect key="frame" x="283" y="1060" width="116" height="18"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0天0小时0分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNW-Au-EUS">
+                                    <rect key="frame" x="310" y="1060" width="89" height="18"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="0.49888073220000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="_alarm clock" translatesAutoresizingMaskIntoConstraints="NO" id="2Gq-Sq-5aF">
-                                    <rect key="frame" x="260" y="1060" width="18" height="18"/>
+                                    <rect key="frame" x="287" y="1060" width="18" height="18"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="18" id="19x-RT-di7"/>
                                         <constraint firstAttribute="height" constant="18" id="Gce-EW-9dK"/>

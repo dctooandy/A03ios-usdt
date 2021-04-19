@@ -41,7 +41,7 @@
 
 - (void)setIsTimeout:(BOOL)isTimeout {
     _isTimeout = isTimeout;
-    if (isTimeout) {
+    if (isTimeout && self.resModel.fetchResultFlag != 1) {
         [_aBtn setTitle:@"已失效" forState:UIControlStateNormal];
         _aBtn.status = CNThreeStaBtnStatusDark;
     }
@@ -50,9 +50,10 @@
 - (void)setResModel:(Result *)resModel {
     _resModel = resModel;
     _titleLb.text = resModel.title;
-    if (resModel.title.length > 10) {
-        //FIXME: 更新约束无效果
+    if (resModel.subtitle.length > 10) {
         _titleLbTopSpacingCons.constant = 11;
+    } else {
+        _titleLbTopSpacingCons.constant = 16;
     }
     _subTitleLb.text = resModel.subtitle;
     _amountLb.text = [NSString stringWithFormat:@"+%@",resModel.amount];
@@ -71,7 +72,7 @@
 //    _resModel.fetchResultFlag = 1;
     
     //4. 已结束
-    if (_isTimeout) {
+    if (_isTimeout && resModel.fetchResultFlag != 1) {
         return;
     }
     
@@ -96,10 +97,14 @@
         [CNHUB showError:@"出错了 请刷新页面"];
         return;
     }
+    if (_resModel.fetchResultFlag == 1) {
+        [CNHUB showError:@"您已领取过该奖励"];
+        return;
+    }
     
     UINavigationController *nav = [NNControllerHelper currentTabbarSelectedNavigationController];
-    // 结束弹窗
-    if (_isTimeout) {
+    
+    if ([_aBtn.titleLabel.text isEqualToString:@"已失效"]) {
         [HYNewUsrMissonAlertView showFirstDepositOrTaskEndIsEnd:YES handler:^(BOOL isComfm) {
             if (isComfm) {
                 [nav popToRootViewControllerAnimated:NO];
@@ -110,6 +115,7 @@
         }];
         return;
     }
+    
     if (_resModel.fetchResultFlag == -1) { // 去完成
         if ([_resModel.title isEqualToString:@"完善资料"]) {
             CNBindPhoneVC *vc = [CNBindPhoneVC new];
@@ -138,6 +144,7 @@
             [CNSplashRequest queryNewVersion:^(BOOL isHardUpdate) {
             }];
         }
+        
     } else if (_resModel.fetchResultFlag == 0) { // 待领取
         if (_isBeyondClaim) {
             [CNHUB showError:@"该奖品已过期"];
@@ -151,8 +158,6 @@
                 }
             }];
         }
-    } else { // 已领取
-        [CNHUB showError:@"您已领取过该奖励"];
     }
 }
 
