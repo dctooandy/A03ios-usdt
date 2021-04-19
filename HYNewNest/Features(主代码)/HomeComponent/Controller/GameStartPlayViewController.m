@@ -284,7 +284,7 @@ form.submit();\
     
     //ag 游戏的返回检测
     NSString *urlStr = navigationAction.request.URL.absoluteString;
-    if ([urlStr hasPrefix:@"https://localhost/exit.html"]) {
+    if ([urlStr hasPrefix:@"https://localhost/exit.html"] || [urlStr hasPrefix:@"https://localhost/disconnect.html"]) {
         decisionHandler(WKNavigationActionPolicyCancel);
         [self.navigationController popViewControllerAnimated:YES];
         
