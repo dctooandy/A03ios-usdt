@@ -241,6 +241,7 @@
             view.wrongAccout = NO;
         }
     }
+    [self checkEnableStatus];
 }
 
 - (void)inputViewDidEndEditing:(CNNormalInputView *)view {
@@ -264,9 +265,8 @@
 }
 
 - (void)checkEnableStatus {
-    
-    if ((self.depositor || self.depositorId)
-        && self.rechargeAmount) {
+
+    if ((self.depositorId.length > 0 || (self.depositor && !_depositorTfView.wrongAccout)) && !_amountTfView.wrongAccout){
         
         if (_delegate && [_delegate respondsToSelector:@selector(didChangeIsStatusRight:)]) {
             [_delegate didChangeIsStatusRight:YES];

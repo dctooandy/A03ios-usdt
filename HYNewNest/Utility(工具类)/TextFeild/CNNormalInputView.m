@@ -36,8 +36,10 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    self.tipLb.hidden = YES;
-    self.lineView.backgroundColor = self.normalColor;
+    if (!self.wrongAccout) {
+        self.tipLb.hidden = YES;
+        self.lineView.backgroundColor = self.normalColor;
+    }
     if (_delegate && [_delegate respondsToSelector:@selector(inputViewDidEndEditing:)]) {
         [_delegate inputViewDidEndEditing:self];
     }
@@ -45,7 +47,7 @@
 
 - (void)textFieldChange:(UITextField *)textField {
     // 只要已修改就去掉错误提示
-    self.wrongAccout = NO;
+//    self.wrongAccout = NO;
     self.lineView.backgroundColor = self.hilghtColor;
     self.tipLb.textColor = self.hilghtColor;
     self.tipLb.text = self.inputTF.placeholder;
