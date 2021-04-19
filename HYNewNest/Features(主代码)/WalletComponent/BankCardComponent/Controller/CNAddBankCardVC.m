@@ -67,6 +67,13 @@
     [self.cardView setKeyboardType:UIKeyboardTypeNumberPad];
     [self.subBankName setPlaceholder:@"请输入您开卡银行（支行）名称"];
     [self setBankLogo:nil];
+    
+    // 修改默认颜色
+    if ([self.bankNameTF respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+        self.bankNameTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入银行名称（自动识别）" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
+        self.cardTypeTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"借记卡/信用卡" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
+        self.areaTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请选择开户省市" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
+    }
 }
 
 // 设置银行卡logo

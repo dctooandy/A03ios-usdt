@@ -27,8 +27,8 @@
     self.comfirmBlock = handler;
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.bgView);
-        make.left.equalTo(self.bgView).offset(16);
-        make.right.equalTo(self.bgView).offset(-16);
+        make.left.equalTo(self.bgView).offset(30);
+        make.right.equalTo(self.bgView).offset(-30);
         make.height.mas_equalTo(345);
     }];
     

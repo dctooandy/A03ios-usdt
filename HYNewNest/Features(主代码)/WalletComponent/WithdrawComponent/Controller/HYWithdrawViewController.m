@@ -67,7 +67,6 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     // 负信用等级不能取rmb
     if (![CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userDetail.depositLevel < 0) {
         [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"由于您的存取款行为存在资金风险，\n请联系客服了解" btnText:@"联系客服" handler:^(BOOL isComfirm) {
-            [self.navigationController popViewControllerAnimated:YES];
             if (isComfirm) {
                 [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
             }
@@ -147,6 +146,21 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
             }
         }];
         return;
+    }
+    
+    // 负信用等级不能取rmb
+    if (![CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userDetail.depositLevel < 0) {
+        [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"由于您的存取款行为存在资金风险，\n请联系客服了解" btnText:@"联系客服" handler:^(BOOL isComfirm) {
+            if (isComfirm) {
+                [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
+            }
+        }];
+        return;
+    }
+    
+    // 判断卡
+    if (self.elecCardsArr.count == 0) {
+        [CNHUB showError:[NSString stringWithFormat:@"请先绑定至少%@",[CNUserManager shareManager].isUsdtMode?@"一个钱包地址":@"一张银行卡"]];
     }
     
     if (!self.moneyModel) {

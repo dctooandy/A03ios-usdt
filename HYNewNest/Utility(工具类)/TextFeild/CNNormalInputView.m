@@ -73,7 +73,12 @@
 }
 
 - (void)setPlaceholder:(NSString *)text {
-    self.inputTF.placeholder = text;
+    // 修改默认占位字符颜色
+    if ([self.inputTF respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+        self.inputTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:text attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
+    } else {
+        self.inputTF.placeholder = text;
+    }
     self.tipLb.text = text;
 }
 
