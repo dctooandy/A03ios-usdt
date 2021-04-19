@@ -375,72 +375,13 @@
                                 <constraint firstAttribute="height" constant="100" id="syH-fl-tFF"/>
                             </constraints>
                             <attributedString key="attributedText">
-                                <fragment content="活动时间：长期有效">
-                                    <attributes>
-                                        <color key="NSColor" red="0.70588235294117641" green="0.55294117647058827" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
                                 <fragment>
-                                    <string key="content" base64-UTF8="YES">
-Cg
-</string>
+                                    <string key="content">活动时间：长期有效
+活动内容：币游国际超级合伙人改版升级啦。即日起推荐好友注册成为币游国际新用户，您就可以享受双重好礼，人人送11881USDT礼金，周周领无上限洗码反水。
+活动对象：≥1星网站所有会员</string>
                                     <attributes>
                                         <color key="NSColor" red="0.70588235294117641" green="0.55294117647058827" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <font key="NSFont" metaFont="cellTitle"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment content="活动内容：币游国际超级合伙人改版升级啦。即日起推荐好友注册成为币游国际新用户，您就可以享受双重好礼，人人送">
-                                    <attributes>
-                                        <color key="NSColor" red="0.70588235294117641" green="0.55294117647058827" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment content="11881USDT">
-                                    <attributes>
-                                        <color key="NSColor" red="0.70588235294117641" green="0.55294117647058827" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <font key="NSFont" metaFont="cellTitle"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment content="礼金，周周领无上限洗码反水。">
-                                    <attributes>
-                                        <color key="NSColor" red="0.70588235294117641" green="0.55294117647058827" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment>
-                                    <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                    <attributes>
-                                        <color key="NSColor" red="0.70588235294117641" green="0.55294117647058827" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <font key="NSFont" metaFont="cellTitle"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment content="活动对象：">
-                                    <attributes>
-                                        <color key="NSColor" red="0.70588235294117641" green="0.55294117647058827" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment content="≥1">
-                                    <attributes>
-                                        <color key="NSColor" red="0.70588235294117641" green="0.55294117647058827" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <font key="NSFont" metaFont="cellTitle"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment content="星网站所有会员">
-                                    <attributes>
-                                        <color key="NSColor" red="0.70588235294117641" green="0.55294117647058827" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
                                     </attributes>
                                 </fragment>
@@ -459,14 +400,14 @@ Cg
 1.只要单周流水达标晋级为网站2星级及以上等级会员，您都可以领取</string>
                                     <attributes>
                                         <color key="NSColor" red="0.70588235294117641" green="0.55294117647058827" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                        <font key="NSFont" metaFont="cellTitle"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
                                     </attributes>
                                 </fragment>
                                 <fragment content="星级推荐礼金">
                                     <attributes>
                                         <color key="NSColor" red="1" green="0.90980392156862744" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
-                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                        <font key="NSFont" metaFont="cellTitle"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
                                     </attributes>
                                 </fragment>
@@ -475,14 +416,14 @@ Cg
 2.如果您的好友当月流水达标进入私享会，还可以领取</string>
                                     <attributes>
                                         <color key="NSColor" red="0.70588235294117641" green="0.55294117647058827" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                        <font key="NSFont" metaFont="cellTitle"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
                                     </attributes>
                                 </fragment>
                                 <fragment content="私享会推荐礼金">
                                     <attributes>
                                         <color key="NSColor" red="1" green="0.90980392156862744" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
-                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                        <font key="NSFont" metaFont="cellTitle"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
                                     </attributes>
                                 </fragment>
@@ -491,7 +432,7 @@ Cg
 *推荐礼金分为星级推荐礼金和私享会推荐礼金，两种礼金互不冲突可共享。</string>
                                     <attributes>
                                         <color key="NSColor" red="0.70588235294117641" green="0.55294117647058827" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                        <font key="NSFont" metaFont="cellTitle"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
                                     </attributes>
                                 </fragment>
@@ -518,7 +459,7 @@ Cg
                                 <fragment content="活动期间，您的所有推荐好友每周贡献的流水，您都将获得额外洗码返佣奖励，好友投注越多，您获得的佣金越多，洗码返佣奖励无上限。周流水更高，所获得的洗码返佣比例越高，最高0.12%返佣比例送给你。">
                                     <attributes>
                                         <color key="NSColor" red="0.70980392156862748" green="0.55686274509803924" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                        <font key="NSFont" metaFont="cellTitle"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
                                     </attributes>
                                 </fragment>

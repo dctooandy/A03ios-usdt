@@ -10,7 +10,6 @@
 #import "UIView+DottedLine.h"
 #import "CNTextSaleBtn.h"
 #import "HYOneBtnAlertView.h"
-#import "HYSuperCopartnerReciveAlertView.h"
 #import "HYSuperCopartnerSlideUpView.h"
 
 #import "SuperCopartnerTbDataSource.h"
