@@ -42,11 +42,16 @@
 //                arr = @[@"--", @"--", @"--", @"--", @"--"].mutableCopy;
 //            }
 //            break;
-//        case SuperCopartnerTypeMyRecommen:
-//            if (strArr.count == 0) {
-//                arr = @[@"--", @"--", @"--", @"--"].mutableCopy;
-//            }
-//            break;
+        case SuperCopartnerTypeMyXimaRebate:
+            if (strArr.count == 0) {
+                arr = @[@"--", @"--", @"--", @"--"].mutableCopy;
+            }
+            break;
+        case SuperCopartnerTypeMyRecommen:
+            if (strArr.count == 0) {
+                arr = @[@"--", @"--", @"--", @"--", @"--"].mutableCopy;
+            }
+            break;
         case SuperCopartnerTypeStarGifts:
         case SuperCopartnerTypeSXHBonus:
         {

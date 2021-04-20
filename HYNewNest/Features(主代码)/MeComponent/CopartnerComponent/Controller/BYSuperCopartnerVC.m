@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIView *myAllkindsBonusBoard;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bonusBoardHeightCons;
 @property (weak, nonatomic) IBOutlet UIView *topBtnsBgView;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *topBtnDownLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *slideLineCenterCons;
 //@property (weak, nonatomic) IBOutlet UIView *slideLine;
 @property (weak, nonatomic) IBOutlet UITableView *makTableView;
@@ -84,10 +85,10 @@
     _cumulateBetDataSource.delegate = self;
     
     [_myAllKindBonusBtns enumerateObjectsUsingBlock:^(CNTextSaleBtn * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        obj.selFont = [UIFont fontPFSB16];
-        obj.norFont = [UIFont fontPFR15];
+        obj.selFont = [UIFont fontPFSB18];
+        obj.norFont = [UIFont fontPFSB18];
         obj.selColor = [UIColor whiteColor];
-        obj.norColor = [UIColor whiteColor];
+        obj.norColor = kHexColorAlpha(0xFFFFFF, 0.6);
     }];
 
 }
@@ -115,11 +116,13 @@
 
 - (IBAction)didSelectedTag:(CNTextSaleBtn *)sender {
     NSInteger lastTag = self.selTag;
+    [_topBtnDownLabel[lastTag] setAlpha:0.6];
     [_myAllKindBonusBtns enumerateObjectsUsingBlock:^(CNTextSaleBtn *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             obj.selected = NO;
     }];
     sender.selected = YES;
     self.selTag = sender.tag;
+    [_topBtnDownLabel[self.selTag] setAlpha:1];
     
     CGFloat spacex = (_selTag - lastTag) * sender.width;
     self.slideLineCenterCons.constant += spacex;

@@ -34,14 +34,15 @@
     switch (type) {
         case SuperCopartnerTypeSXHBonus:
         case SuperCopartnerTypeStarGifts:
-            self.backgroundView.backgroundColor = kHexColor(0x37127C);
+            self.contentView.backgroundColor = kHexColor(0x37127C);
+            [self.contentView addLineDirection:LineDirectionTop color:kHexColor(0x190A39) width:1.5];
             _weekRebateLb.hidden = YES;
             [_knowBtn setTitle:(type==SuperCopartnerTypeSXHBonus)?@"了解私享会":@"了解星级" forState:UIControlStateNormal];
             break;
         case SuperCopartnerTypeMyXimaRebate:
-            self.backgroundView.backgroundColor = [UIColor whiteColor];
+            self.contentView.backgroundColor = [UIColor whiteColor];
             _weekRebateLb.hidden = NO;
-            //TODO: 写入参数
+            //TODO: 写入参数 我的本周预估佣金:  XXX USDT
             break;
         default:
             break;
