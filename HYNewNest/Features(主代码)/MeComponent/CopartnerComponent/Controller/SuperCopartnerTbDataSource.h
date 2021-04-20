@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "SuperCopartnerTbConst.h"
+#import "SCMyBonusModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol SuperCopartnerDelegate <NSObject>
 
 //- (void)didReceiveCumulateBetAmount:(NSNumber *)betAmount;
+- (void)dataSourceReceivedMyBonus:(SCMyBonusModel *)model;
 
 @end
 

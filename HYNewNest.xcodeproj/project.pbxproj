@@ -247,7 +247,6 @@
 		3D8A7086258B568E0058D50F /* SuperCopartnerTbCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7084258B568E0058D50F /* SuperCopartnerTbCell.m */; };
 		3D8A708A258C5C1A0058D50F /* SuperCopartnerTbFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7089258C5C1A0058D50F /* SuperCopartnerTbFooter.m */; };
 		3D8A708C258C5D570058D50F /* SuperCopartnerTbFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D8A708B258C5D570058D50F /* SuperCopartnerTbFooter.xib */; };
-		3D8A7092258CAF200058D50F /* HYSuperCopartnerSlideUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7091258CAF200058D50F /* HYSuperCopartnerSlideUpView.m */; };
 		3D97001F2599D00A003238C4 /* VIPRankGradientTxtLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97001E2599D00A003238C4 /* VIPRankGradientTxtLabel.m */; };
 		3D9700222599D8D4003238C4 /* HYDSBSlideUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9700212599D8D4003238C4 /* HYDSBSlideUpView.m */; };
 		3D9700262599DB2A003238C4 /* HYDSBSlideUpViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9700242599DB2A003238C4 /* HYDSBSlideUpViewCell.m */; };
@@ -269,6 +268,7 @@
 		3D97005825A2C3ED003238C4 /* IN3SWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97004625A2C3ED003238C4 /* IN3SWebViewController.m */; };
 		3D97005925A2C3ED003238C4 /* IN3SManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97004925A2C3ED003238C4 /* IN3SManager.m */; };
 		3D97005A25A2C3ED003238C4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D97004B25A2C3ED003238C4 /* Info.plist */; };
+		3D972436262E96B1005E930C /* HYSuperCopartnerAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D972435262E96B1005E930C /* HYSuperCopartnerAlertView.m */; };
 		3D9DA66125908327003C3F28 /* DSBWeekMonthListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */; };
 		3D9DA669259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA668259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m */; };
 		3D9DA66E25918DF0003C3F28 /* DSBWeekMonthListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66C25918DF0003C3F28 /* DSBWeekMonthListCell.m */; };
@@ -1430,8 +1430,6 @@
 		3D8A7088258C5C1A0058D50F /* SuperCopartnerTbFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuperCopartnerTbFooter.h; sourceTree = "<group>"; };
 		3D8A7089258C5C1A0058D50F /* SuperCopartnerTbFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperCopartnerTbFooter.m; sourceTree = "<group>"; };
 		3D8A708B258C5D570058D50F /* SuperCopartnerTbFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuperCopartnerTbFooter.xib; sourceTree = "<group>"; };
-		3D8A7090258CAF200058D50F /* HYSuperCopartnerSlideUpView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSuperCopartnerSlideUpView.h; sourceTree = "<group>"; };
-		3D8A7091258CAF200058D50F /* HYSuperCopartnerSlideUpView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSuperCopartnerSlideUpView.m; sourceTree = "<group>"; };
 		3D97001D2599D00A003238C4 /* VIPRankGradientTxtLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPRankGradientTxtLabel.h; sourceTree = "<group>"; };
 		3D97001E2599D00A003238C4 /* VIPRankGradientTxtLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPRankGradientTxtLabel.m; sourceTree = "<group>"; };
 		3D9700202599D8D4003238C4 /* HYDSBSlideUpView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYDSBSlideUpView.h; sourceTree = "<group>"; };
@@ -1470,6 +1468,8 @@
 		3D97004925A2C3ED003238C4 /* IN3SManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SManager.m; sourceTree = "<group>"; };
 		3D97004A25A2C3ED003238C4 /* IN3SUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SUtility.h; sourceTree = "<group>"; };
 		3D97004B25A2C3ED003238C4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D972434262E96B0005E930C /* HYSuperCopartnerAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSuperCopartnerAlertView.h; sourceTree = "<group>"; };
+		3D972435262E96B1005E930C /* HYSuperCopartnerAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSuperCopartnerAlertView.m; sourceTree = "<group>"; };
 		3D9DA65F25908327003C3F28 /* DSBWeekMonthListDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBWeekMonthListDataSource.h; sourceTree = "<group>"; };
 		3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBWeekMonthListDataSource.m; sourceTree = "<group>"; };
 		3D9DA667259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRecharWithdrwRankDataSource.h; sourceTree = "<group>"; };
@@ -3230,8 +3230,6 @@
 				3D31B957253DBBBD005275BD /* HYWithdrawCalculatorComView.m */,
 				3D31B959253DEE81005275BD /* HYWithdrawChooseWallectComView.h */,
 				3D31B95A253DEE81005275BD /* HYWithdrawChooseWallectComView.m */,
-				3D8A7090258CAF200058D50F /* HYSuperCopartnerSlideUpView.h */,
-				3D8A7091258CAF200058D50F /* HYSuperCopartnerSlideUpView.m */,
 				3D9700202599D8D4003238C4 /* HYDSBSlideUpView.h */,
 				3D9700212599D8D4003238C4 /* HYDSBSlideUpView.m */,
 				3D9700232599DB2A003238C4 /* HYDSBSlideUpViewCell.h */,
@@ -4961,6 +4959,8 @@
 				3DB600B22627E7C9002278F8 /* HYOneImgBtnAlertView.m */,
 				3DB600B42627FB5C002278F8 /* HYNewUsrMissonAlertView.h */,
 				3DB600B52627FB5C002278F8 /* HYNewUsrMissonAlertView.m */,
+				3D972434262E96B0005E930C /* HYSuperCopartnerAlertView.h */,
+				3D972435262E96B1005E930C /* HYSuperCopartnerAlertView.m */,
 			);
 			path = HYAlertView;
 			sourceTree = "<group>";
@@ -6079,7 +6079,7 @@
 		};
 		3DFF702F261EF93900801654 /* IconVersioning Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -6091,7 +6091,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n$SRCROOT/HYNewNest/Other/LLIconVersioning.sh\n";
 		};
@@ -6326,8 +6326,8 @@
 				04C6E1F724D41C3C006F4DAC /* CNAddressInfoTCell.m in Sources */,
 				3D41DE8125199DEE000CA1D6 /* VIPNewVersionView.m in Sources */,
 				3D41DE7725199DEE000CA1D6 /* VIPMonthlyModel.m in Sources */,
-				3D8A7092258CAF200058D50F /* HYSuperCopartnerSlideUpView.m in Sources */,
 				E9A269DC24D80FCC00B512FF /* HYRechargePayWayCell.m in Sources */,
+				3D972436262E96B1005E930C /* HYSuperCopartnerAlertView.m in Sources */,
 				E98BEF0224D1AF4300E6B0C8 /* HYXiMaTopView.m in Sources */,
 				3DBA56112580D9B3009A2B71 /* CALayer+Additions.m in Sources */,
 				0487C9AA24CFBA6A0013715A /* JJCollectionViewRoundFlowLayout+Alignment.m in Sources */,

@@ -9,10 +9,8 @@
 #import "CNSuperCopartnerRequest.h"
 
 static NSString *SupCopRequestActionStr[] = {
-//    [SuperCopartnerTypeMyBonus] = @"myBonus",
-    [SuperCopartnerTypeMyRecommen] = @"myDownline",
-//    [SuperCopartnerTypeSXHBonus] = @"赌王",
-//    [SuperCopartnerTypeStarGifts] = @"赌圣",
+    [SuperCopartnerTypeMyBonus] = @"myBonus",
+//    [SuperCopartnerTypeMyRecommen] = @"myDownline",
     [SuperCopartnerTypeCumuBetRank] = @"betRank",
 //    [SuperCopartnerTypeMyGifts] = @"myPrize",
     [SuperCopartnerTypeMyXimaRebate] = @"???",

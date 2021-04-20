@@ -20,12 +20,12 @@
 
 - (NSArray *)topLbTextArrayWithType:(SuperCopartnerType)type {
     switch (type) {
-//        case SuperCopartnerTypeMyBonus:
-//            return @[@"用户", @"晋级为", @"生效时间", @"推荐礼金(usdt)", @"有效期"];
-//            break;
-        case SuperCopartnerTypeMyRecommen:
-            return @[@"我的推荐好友", @"晋级为", @"生效时间", @"推荐礼金(usdt)", @"有效期"];
+        case SuperCopartnerTypeMyBonus:
+            return @[@"用户", @"晋级为", @"生效时间", @"推荐礼金(usdt)", @"有效期"];
             break;
+//        case SuperCopartnerTypeMyRecommen:
+//            return @[@"我的推荐好友", @"晋级为", @"生效时间", @"推荐礼金(usdt)", @"有效期"];
+//            break;
         case SuperCopartnerTypeSXHBonus:
             return @[@"好友身份", @"月流水(usdt)", @"入会礼金"];
             break;
@@ -63,7 +63,7 @@
     
     NSArray *lbTextArr = [self topLbTextArrayWithType:headType];
     __block NSInteger line = lbTextArr.count;
-    CGFloat lbWidth = (kScreenWidth - 50 - 20) / (line * 1.0);
+    CGFloat lbWidth = (kScreenWidth - 50) / (line * 1.0);
     [lbTextArr enumerateObjectsUsingBlock:^(NSString   * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UILabel *lb = [UILabel new];
         lb.text = obj;
@@ -71,7 +71,7 @@
         lb.textColor = textColor;
         lb.textAlignment = NSTextAlignmentCenter;
         lb.adjustsFontSizeToFitWidth = YES;
-        lb.frame = CGRectMake(10 + lbWidth * idx, 0, lbWidth, 35);
+        lb.frame = CGRectMake(lbWidth * idx, 0, lbWidth, 35);
         [self.contentView addSubview:lb];
     }];
 }
@@ -81,7 +81,7 @@
     
     self.backgroundView = ({
         UIView * view = [[UIView alloc] initWithFrame:self.bounds];
-        view.backgroundColor = [UIColor clearColor];
+        view.backgroundColor = [UIColor clearColor];//TODO:
         view;
     });
     

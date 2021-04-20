@@ -61,14 +61,14 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
 - (void)setFormType:(SuperCopartnerType)formType {
     _formType = formType;
     
-    //TODO: 其他数据
+    //TODO: 洗码数据
     switch (formType) {
-//        case SuperCopartnerTypeMyBonus:
-//            [self queryMyBonus];
-//            break;
-        case SuperCopartnerTypeMyRecommen:
-            [self queryMyRecommen];
+        case SuperCopartnerTypeMyBonus:
+            [self queryMyBonus];
             break;
+//        case SuperCopartnerTypeMyRecommen:
+//            [self queryMyRecommen];
+//            break;
         case SuperCopartnerTypeCumuBetRank:
             [self queryBetRankList];
             break;
@@ -157,11 +157,11 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
         } else if (self.formType == SuperCopartnerTypeCumuBetRank) {
             return self.betRankModel.result.count;
             
-        } else if (self.formType == SuperCopartnerTypeMyRecommen) {
-            return self.myRecommenModels.count?:5;
+//        } else if (self.formType == SuperCopartnerTypeMyRecommen) {
+//            return self.myRecommenModels.count;
             
-//        } else if (self.formType == SuperCopartnerTypeMyBonus) {
-//            return self.myBonusModel.result.count?:5;
+        } else if (self.formType == SuperCopartnerTypeMyBonus) {
+            return self.myBonusModel.result.count?:5;
             //TODO: 洗码返佣
             
         } else {
@@ -188,35 +188,35 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
     cell.backgroundColor = [UIColor clearColor];
     
     switch (self.formType) {
-//        case SuperCopartnerTypeMyBonus:
-//        {
-//            if (self.myBonusModel.result.count > 0) {
-//                MyBonusResultItem *item = self.myBonusModel.result[indexPath.row];
-//                NSDate *matuDate = [NSDate jk_dateWithString:item.maturityDate format:@"yyyy-MM-dd HH:mm:ss"];
-//                NSInteger day = [matuDate jk_distanceDaysToDate:[NSDate date]];
-//                NSString *dayStr = [NSString stringWithFormat:@"%ld天", day];
-//                NSArray *arr = @[item.loginName,
-//                                 item.upLevelStr,
-//                                 item.createdDate,
-//                                 item.amount,
-//                                 item.flag==2?dayStr:@"已领取"];
-//                [cell setupType:self.formType strArr:arr];
-//            } else {
-//                [cell setupType:_formType strArr:@[@"--", @"--", @"--", @"--", @"--"]];
-//            }
-//            break;
-//        }
-        case SuperCopartnerTypeMyRecommen:
+        case SuperCopartnerTypeMyBonus:
         {
-            if (self.myRecommenModels.count > 0) {
-                SCMyRecommenModel *model = self.myRecommenModels[indexPath.row];
-//                NSString *rankName = VIPRankString[model.clubLevel];
-                [cell setupType:self.formType strArr:@[model.loginName, model.customerLevel, model.createdDate, @"888", @"30天"]];
+            if (self.myBonusModel.result.count > 0) {
+                MyBonusResultItem *item = self.myBonusModel.result[indexPath.row];
+                NSDate *matuDate = [NSDate jk_dateWithString:item.maturityDate format:@"yyyy-MM-dd HH:mm:ss"];
+                NSInteger day = [matuDate jk_distanceDaysToDate:[NSDate date]];
+                NSString *dayStr = [NSString stringWithFormat:@"%ld天", day];
+                NSArray *arr = @[item.loginName,
+                                 item.upLevelStr,
+                                 item.createdDate,
+                                 item.amount,
+                                 item.flag==2?dayStr:@"已领取"];
+                [cell setupType:self.formType strArr:arr];
             } else {
                 [cell setupType:_formType strArr:@[@"--", @"--", @"--", @"--", @"--"]];
             }
             break;
         }
+//        case SuperCopartnerTypeMyRecommen:
+//        {
+//            if (self.myRecommenModels.count > 0) {
+//                SCMyRecommenModel *model = self.myRecommenModels[indexPath.row];
+////                NSString *rankName = VIPRankString[model.clubLevel];
+//                [cell setupType:self.formType strArr:@[model.loginName, model.customerLevel, model.createdDate, @"888", @"30天"]];
+//            } else {
+//                [cell setupType:_formType strArr:@[@"--", @"--", @"--", @"--", @"--"]];
+//            }
+//            break;
+//        }
         case SuperCopartnerTypeCumuBetRank:
         {
             if (self.betRankModel) {
@@ -276,46 +276,48 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
 
 
 #pragma mark - REQUEST
-//- (void)queryMyBonus {
-//    if (![CNUserManager shareManager].isLogin || (_isHome && self.myBonusModel.result.count)) { //一页
-//        [self.tableView reloadData];
-//    } else {
-//        [CNSuperCopartnerRequest requestSuperCopartnerListType:SuperCopartnerTypeMyBonus pageNo:_pageNoMyBonus handler:^(id responseObj, NSString *errorMsg) {
-//            if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-//                SCMyBonusModel *newModel = [SCMyBonusModel cn_parse:responseObj];
-//                if (newModel.result.count) {
-//                    self->_pageNoMyBonus += 1;
-//                }
-//                NSMutableArray *oldResult = self.myBonusModel?self.myBonusModel.result.mutableCopy:@[].mutableCopy;
-//                [oldResult addObjectsFromArray:newModel.result];
-//                newModel.result = oldResult.copy;
-//                self.myBonusModel = newModel;
-//
-//                self.isHasBonus = self.myBonusModel.receivedAmount.integerValue > 0;
-//                [self.tableView reloadData];
-//            }
-//        }];
-//    }
-//}
-
-- (void)queryMyRecommen {
-    if (![CNUserManager shareManager].isLogin || (_isHome && self.myRecommenModels.count)) { //一页
+- (void)queryMyBonus {
+    if (![CNUserManager shareManager].isLogin || (_isHome && self.myBonusModel.result.count)) { //一页
         [self.tableView reloadData];
     } else {
-        [CNSuperCopartnerRequest requestSuperCopartnerListType:SuperCopartnerTypeMyRecommen pageNo:_pageNoMyRecommen handler:^(id responseObj, NSString *errorMsg) {
-            if (!errorMsg && [responseObj isKindOfClass:[NSArray class]]) {
-                NSMutableArray *arr = self.myRecommenModels.count?self.myRecommenModels.mutableCopy:@[].mutableCopy;
-                if (arr.count) {
-                    self->_pageNoMyRecommen += 1;
+        [CNSuperCopartnerRequest requestSuperCopartnerListType:SuperCopartnerTypeMyBonus pageNo:_pageNoMyBonus handler:^(id responseObj, NSString *errorMsg) {
+            if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+                SCMyBonusModel *newModel = [SCMyBonusModel cn_parse:responseObj];
+                if (newModel.result.count) {
+                    self->_pageNoMyBonus += 1;
                 }
-                [arr addObjectsFromArray:[SCMyRecommenModel cn_parse:responseObj]];
-                self.myRecommenModels = arr.copy;
+                NSMutableArray *oldResult = self.myBonusModel?self.myBonusModel.result.mutableCopy:@[].mutableCopy;
+                [oldResult addObjectsFromArray:newModel.result];
+                newModel.result = oldResult.copy;
+                self.myBonusModel = newModel;
+
+                self.isHasBonus = self.myBonusModel.receivedAmount.integerValue > 0;
                 [self.tableView reloadData];
+                
+                if (self.delegate && [self.delegate respondsToSelector:@selector(dataSourceReceivedMyBonus:)]) {
+                    [self.delegate dataSourceReceivedMyBonus:newModel];
+                }
             }
-            [self.tableView.mj_footer endRefreshing];
         }];
     }
 }
+
+//- (void)queryMyRecommen {
+//
+//    [CNSuperCopartnerRequest requestSuperCopartnerListType:SuperCopartnerTypeMyRecommen pageNo:_pageNoMyRecommen handler:^(id responseObj, NSString *errorMsg) {
+//        if (!errorMsg && [responseObj isKindOfClass:[NSArray class]]) {
+//            NSMutableArray *arr = self.myRecommenModels.count?self.myRecommenModels.mutableCopy:@[].mutableCopy;
+//            if (arr.count) {
+//                self->_pageNoMyRecommen += 1;
+//            }
+//            NSArray *arrrr = [SCMyRecommenModel cn_parse:responseObj];
+//            [arr addObjectsFromArray:arrrr];
+//            self.myRecommenModels = arr.copy;
+//            [self.tableView reloadData];
+//        }
+//        [self.tableView.mj_footer endRefreshing];
+//    }];
+//}
 
 //- (void)queryMyPrize {
 //    [CNSuperCopartnerRequest requestSuperCopartnerListType:SuperCopartnerTypeMyGifts pageNo:_pageNoMyGifts handler:^(id responseObj, NSString *errorMsg) {

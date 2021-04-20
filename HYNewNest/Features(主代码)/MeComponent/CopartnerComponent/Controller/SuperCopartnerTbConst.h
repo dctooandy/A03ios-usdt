@@ -10,10 +10,10 @@
 #define SuperCopartnerTbConst_h
 
 typedef enum : NSInteger {
-//    SuperCopartnerTypeMyBonus = 0, // 我的奖金
     SuperCopartnerTypeStarGifts = 0,   // 星级礼金
     SuperCopartnerTypeSXHBonus,    // 私享会礼金
-    SuperCopartnerTypeMyRecommen,  // 我的推荐礼金
+    SuperCopartnerTypeMyBonus, // 我的奖金
+//    SuperCopartnerTypeMyRecommen,  // 我的推荐礼金
     SuperCopartnerTypeCumuBetRank, // 本月累投排行榜
     SuperCopartnerTypeMyXimaRebate // 我的洗码返佣
 //    SuperCopartnerTypeMyGifts // 我的奖品

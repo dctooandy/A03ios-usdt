@@ -10,13 +10,14 @@
 #import "UIView+DottedLine.h"
 #import "CNTextSaleBtn.h"
 #import "HYOneBtnAlertView.h"
-#import "HYSuperCopartnerSlideUpView.h"
+#import "HYSuperCopartnerAlertView.h"
 
 #import "SuperCopartnerTbDataSource.h"
 #import "SGQRCodeGenerateManager.h"
 #import "CNHomeRequest.h"
+#import "CNSuperCopartnerRequest.h"
 
-@interface BYSuperCopartnerVC () <SuperCopartnerDelegate>
+@interface BYSuperCopartnerVC ()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewWidthCons;
 
 /// 我的奖金
@@ -82,7 +83,6 @@
     
     // 第二部分tableView
     _cumulateBetDataSource = [[SuperCopartnerTbDataSource alloc] initWithTableView:_mcbTableView type:SuperCopartnerTypeCumuBetRank isHomePage:YES];
-    _cumulateBetDataSource.delegate = self;
     
     [_myAllKindBonusBtns enumerateObjectsUsingBlock:^(CNTextSaleBtn * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.selFont = [UIFont fontPFSB18];
@@ -103,10 +103,6 @@
     self.linkImv.image = img;
 }
 
-//- (void)didReceiveCumulateBetAmount:(NSNumber *)betAmount {
-//    _cumulateBetAmountLb.text = [NSString stringWithFormat:@"%@ USDT", [betAmount jk_toDisplayNumberWithDigit:0]];
-//}
-
 
 #pragma mark - Action
 
@@ -126,15 +122,19 @@
     
     CGFloat spacex = (_selTag - lastTag) * sender.width;
     self.slideLineCenterCons.constant += spacex;
-//    [UIView animateWithDuration:0.2 animations:^{
-//        [self.topBtnsBgView setNeedsLayout];
-//    }];
     
 }
 
 - (IBAction)didTapMyRecomBonusBtn:(id)sender {
-    //TODO: 
     MyLog(@"查看我的推荐礼金");
+    [HYSuperCopartnerAlertView showAlertViewType:SuperCopartnerTypeMyBonus
+                                         handler:^{
+        [CNSuperCopartnerRequest applyMyGiftBonusHandler:^(id responseObj, NSString *errorMsg) {
+            if (!errorMsg) {
+                [CNHUB showSuccess:@"一键领取成功！"];
+            }
+        }];
+    }];
 }
 
 - (IBAction)didTapMyXimaBonusBtn:(id)sender {

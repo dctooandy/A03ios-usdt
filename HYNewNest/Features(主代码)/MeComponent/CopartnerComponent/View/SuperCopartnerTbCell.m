@@ -37,21 +37,21 @@
     UIColor *textColor = kHexColor(0x000000);
     UIFont *textFont = [UIFont fontPFR12];
     switch (type) {
-//        case SuperCopartnerTypeMyBonus:
-//            if (strArr.count == 0) {
-//                arr = @[@"--", @"--", @"--", @"--", @"--"].mutableCopy;
-//            }
-//            break;
+        case SuperCopartnerTypeMyBonus:
+            if (strArr.count == 0) {
+                arr = @[@"--", @"--", @"--", @"--", @"--"].mutableCopy;
+            }
+            break;
         case SuperCopartnerTypeMyXimaRebate:
             if (strArr.count == 0) {
                 arr = @[@"--", @"--", @"--", @"--"].mutableCopy;
             }
             break;
-        case SuperCopartnerTypeMyRecommen:
-            if (strArr.count == 0) {
-                arr = @[@"--", @"--", @"--", @"--", @"--"].mutableCopy;
-            }
-            break;
+//        case SuperCopartnerTypeMyRecommen:
+//            if (strArr.count == 0) {
+//                arr = @[@"--", @"--", @"--", @"--", @"--"].mutableCopy;
+//            }
+//            break;
         case SuperCopartnerTypeStarGifts:
         case SuperCopartnerTypeSXHBonus:
         {
@@ -78,7 +78,7 @@
     }
     
     __block NSInteger line = arr.count;
-    CGFloat lbWidth = (kScreenWidth - 50 - 20) / (line * 1.0);
+    CGFloat lbWidth = (kScreenWidth - 50) / (line * 1.0);
     [arr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UILabel *lb = [UILabel new];
         lb.text = obj;
@@ -86,7 +86,7 @@
         lb.textColor = textColor;
         lb.textAlignment = NSTextAlignmentCenter;
         lb.adjustsFontSizeToFitWidth = YES;
-        lb.frame = CGRectMake(10 + lbWidth * idx, 0, lbWidth, 26);
+        lb.frame = CGRectMake(lbWidth * idx, 0, lbWidth, 26);
         [self addSubview:lb];
     }];
 }
