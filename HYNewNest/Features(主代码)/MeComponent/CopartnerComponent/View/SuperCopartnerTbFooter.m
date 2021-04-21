@@ -28,7 +28,6 @@
 }
 
 - (void)setupEstimateRebateAmount:(NSString *)amount {
-    // FIXME: not working
     _weekRebateLb.text = [NSString stringWithFormat:@"我的本周预估佣金: %@ USDT", amount];
 }
 

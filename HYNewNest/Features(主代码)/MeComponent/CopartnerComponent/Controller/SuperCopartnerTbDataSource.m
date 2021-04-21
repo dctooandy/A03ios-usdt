@@ -95,6 +95,9 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
     if (self.formType == SuperCopartnerTypeSXHBonus || self.formType == SuperCopartnerTypeStarGifts || self.formType == SuperCopartnerTypeMyXimaRebate) {
         SuperCopartnerTbFooter *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:SCTbFooter];
         [view setupFootType:self.formType];
+        if (self.formType == SuperCopartnerTypeMyXimaRebate) {
+            [view setupEstimateRebateAmount:self.myRebateModel.weekEstimate];
+        }
         return view;
     }
     return [UIView new];
@@ -293,9 +296,6 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
 
             [self.tableView reloadData];
 
-            if (self.delegate && [self.delegate respondsToSelector:@selector(dataSourceReceivedMyRebate:)]) {
-                [self.delegate dataSourceReceivedMyRebate:newModel.weekEstimate];
-            }
         }
     }];
 }
@@ -328,9 +328,6 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
     [CNSuperCopartnerRequest requestSuperCopartnerListBetRankHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             self.betRankModel = [SCBetRankModel cn_parse:responseObj];
-//            if (self.delegate) {
-//                [self.delegate didReceiveCumulateBetAmount:self.betRankModel.totalDownlineBet];
-//            }
             [self.tableView reloadData];
         }
         [self.tableView.mj_footer endRefreshing];

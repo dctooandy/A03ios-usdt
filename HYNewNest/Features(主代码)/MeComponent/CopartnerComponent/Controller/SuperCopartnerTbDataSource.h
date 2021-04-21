@@ -14,10 +14,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol SuperCopartnerDelegate <NSObject>
-
-//- (void)didReceiveCumulateBetAmount:(NSNumber *)betAmount;
 - (void)dataSourceReceivedMyBonus:(SCMyBonusModel *)model;
-- (void)dataSourceReceivedMyRebate:(NSString *)weekEstimate;
 @end
 
 @interface SuperCopartnerTbDataSource : NSObject <UITableViewDelegate, UITableViewDataSource>
