@@ -70,6 +70,8 @@
             } else if ([rank isEqualToString:@"3"]) {
                 textColor = kHexColor(0x6132D4);
                 [arr replaceObjectAtIndex:0 withObject:@"季军"];
+            } else {
+                [arr replaceObjectAtIndex:0 withObject:[NSString stringWithFormat:@"第%@名", rank]];
             }
             break;
         }

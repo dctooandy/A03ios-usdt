@@ -138,8 +138,9 @@
 }
 
 - (IBAction)didTapMyXimaBonusBtn:(id)sender {
-    //TODO:
     MyLog(@"查看洗码返佣");
+    [HYSuperCopartnerAlertView showAlertViewType:SuperCopartnerTypeMyXimaRebate
+                                         handler:^{}];
 }
 
 - (IBAction)didTapShareBtn:(id)sender {

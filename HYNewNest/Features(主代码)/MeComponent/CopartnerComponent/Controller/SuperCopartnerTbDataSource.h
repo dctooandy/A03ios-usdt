@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SuperCopartnerTbConst.h"
 #import "SCMyBonusModel.h"
+#import "SCMyRebateModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,12 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 //- (void)didReceiveCumulateBetAmount:(NSNumber *)betAmount;
 - (void)dataSourceReceivedMyBonus:(SCMyBonusModel *)model;
-
+- (void)dataSourceReceivedMyRebate:(NSString *)weekEstimate;
 @end
 
 @interface SuperCopartnerTbDataSource : NSObject <UITableViewDelegate, UITableViewDataSource>
-
-//@property (nonatomic, copy) SCBlock scSuccesBlock;
 
 @property (weak,nonatomic) id<SuperCopartnerDelegate> delegate;
 

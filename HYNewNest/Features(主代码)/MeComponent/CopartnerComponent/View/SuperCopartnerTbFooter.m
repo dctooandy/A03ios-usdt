@@ -14,7 +14,10 @@
 @property (assign, nonatomic) SuperCopartnerType footType;
 // 我的本周预估佣金:  XXX USDT
 @property (weak, nonatomic) IBOutlet UILabel *weekRebateLb;
+
 @property (weak, nonatomic) IBOutlet UIButton *knowBtn;
+@property (weak, nonatomic) IBOutlet UIView *line;
+
 @end
 
 @implementation SuperCopartnerTbFooter
@@ -22,6 +25,11 @@
 - (void)drawRect:(CGRect)rect {
     // Drawing code
 
+}
+
+- (void)setupEstimateRebateAmount:(NSString *)amount {
+    // FIXME: not working
+    _weekRebateLb.text = [NSString stringWithFormat:@"我的本周预估佣金: %@ USDT", amount];
 }
 
 // 只有星级礼金，VIP礼金，洗码返佣需要footer
@@ -37,12 +45,15 @@
             self.contentView.backgroundColor = kHexColor(0x37127C);
             [self.contentView addLineDirection:LineDirectionTop color:kHexColor(0x190A39) width:1.5];
             _weekRebateLb.hidden = YES;
+            _knowBtn.hidden = NO;
+            _line.hidden = NO;
             [_knowBtn setTitle:(type==SuperCopartnerTypeSXHBonus)?@"了解私享会":@"了解星级" forState:UIControlStateNormal];
             break;
         case SuperCopartnerTypeMyXimaRebate:
             self.contentView.backgroundColor = [UIColor whiteColor];
             _weekRebateLb.hidden = NO;
-            //TODO: 写入参数 我的本周预估佣金:  XXX USDT
+            _knowBtn.hidden = YES;
+            _line.hidden = YES;
             break;
         default:
             break;

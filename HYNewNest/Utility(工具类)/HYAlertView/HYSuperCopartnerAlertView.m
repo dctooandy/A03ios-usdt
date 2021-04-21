@@ -8,6 +8,7 @@
 
 #import "HYSuperCopartnerAlertView.h"
 #import "SuperCopartnerTbDataSource.h"
+#import "SuperCopartnerTbFooter.h"
 #import "SCMyBonusModel.h"
 #import <MJRefresh.h>
 
@@ -17,6 +18,7 @@
 @property (strong,nonatomic) SuperCopartnerTbDataSource *dataSource;
 
 @property (weak,nonatomic) UIView *btmBg;
+@property (weak,nonatomic) UITableView *tableView;
 
 @end
 
@@ -88,6 +90,7 @@
     self.dataSource = [[SuperCopartnerTbDataSource alloc] initWithTableView:tb type:type isHomePage:NO];
     self.dataSource.delegate = self;
     [self.contentView addSubview:tb];
+    self.tableView = tb;
     [tb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.contentView);
         make.top.equalTo(titleBg.mas_bottom);
@@ -119,7 +122,7 @@
 }
 
 - (void)dataSourceReceivedMyBonus:(SCMyBonusModel *)model {
-    //TODO: 增底部信息和点击按钮
+    //增底部信息和点击按钮
     
     // 洗码返佣规则
     if (self.type == SuperCopartnerTypeMyXimaRebate) {
@@ -167,6 +170,12 @@
         recBtn.layer.borderWidth = 1;
         
     }
+}
+
+- (void)dataSourceReceivedMyRebate:(NSString *)weekEstimate {
+    // 写入tableview footer 洗码预估佣金
+    SuperCopartnerTbFooter *view = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"SuperCopartnerTbFooter"];
+    [view setupEstimateRebateAmount:weekEstimate];
 }
 
 - (void)whattodo {

@@ -13,7 +13,7 @@ static NSString *SupCopRequestActionStr[] = {
 //    [SuperCopartnerTypeMyRecommen] = @"myDownline",
     [SuperCopartnerTypeCumuBetRank] = @"betRank",
 //    [SuperCopartnerTypeMyGifts] = @"myPrize",
-    [SuperCopartnerTypeMyXimaRebate] = @"???",
+    [SuperCopartnerTypeMyXimaRebate] = @"myRebate",
 };
 
 @implementation CNSuperCopartnerRequest

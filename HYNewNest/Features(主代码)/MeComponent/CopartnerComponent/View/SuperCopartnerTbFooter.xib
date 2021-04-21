@@ -66,6 +66,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="knowBtn" destination="W4Y-iw-UKB" id="E6c-oc-AoS"/>
+                <outlet property="line" destination="QZc-hK-oVA" id="7dv-3H-ci3"/>
                 <outlet property="weekRebateLb" destination="qtF-3y-pGe" id="oEk-xs-w4M"/>
             </connections>
             <point key="canvasLocation" x="176.81159420289856" y="123.88392857142857"/>

@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 每页10条
 + (void)requestSuperCopartnerListType:(SuperCopartnerType)type pageNo:(NSInteger)pageNo handler:(HandlerBlock)handler;
 
-// 只要五条 累计投注排行
+// 累计投注排行
 + (void)requestSuperCopartnerListBetRankHandler:(HandlerBlock)handler;
 
 // 一键领取我的礼金

@@ -269,6 +269,7 @@
 		3D97005925A2C3ED003238C4 /* IN3SManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97004925A2C3ED003238C4 /* IN3SManager.m */; };
 		3D97005A25A2C3ED003238C4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D97004B25A2C3ED003238C4 /* Info.plist */; };
 		3D972436262E96B1005E930C /* HYSuperCopartnerAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D972435262E96B1005E930C /* HYSuperCopartnerAlertView.m */; };
+		3D972439262EDF9D005E930C /* SCMyRebateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D972438262EDF9D005E930C /* SCMyRebateModel.m */; };
 		3D9DA66125908327003C3F28 /* DSBWeekMonthListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */; };
 		3D9DA669259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA668259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m */; };
 		3D9DA66E25918DF0003C3F28 /* DSBWeekMonthListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66C25918DF0003C3F28 /* DSBWeekMonthListCell.m */; };
@@ -1470,6 +1471,8 @@
 		3D97004B25A2C3ED003238C4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D972434262E96B0005E930C /* HYSuperCopartnerAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSuperCopartnerAlertView.h; sourceTree = "<group>"; };
 		3D972435262E96B1005E930C /* HYSuperCopartnerAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSuperCopartnerAlertView.m; sourceTree = "<group>"; };
+		3D972437262EDF9D005E930C /* SCMyRebateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCMyRebateModel.h; sourceTree = "<group>"; };
+		3D972438262EDF9D005E930C /* SCMyRebateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCMyRebateModel.m; sourceTree = "<group>"; };
 		3D9DA65F25908327003C3F28 /* DSBWeekMonthListDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBWeekMonthListDataSource.h; sourceTree = "<group>"; };
 		3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBWeekMonthListDataSource.m; sourceTree = "<group>"; };
 		3D9DA667259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRecharWithdrwRankDataSource.h; sourceTree = "<group>"; };
@@ -3817,6 +3820,8 @@
 				3DF03203258DE61400AF7A36 /* SCMyRecommenModel.m */,
 				3DF03205258DF6E500AF7A36 /* SCMyBonusModel.h */,
 				3DF03206258DF6E500AF7A36 /* SCMyBonusModel.m */,
+				3D972437262EDF9D005E930C /* SCMyRebateModel.h */,
+				3D972438262EDF9D005E930C /* SCMyRebateModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6504,6 +6509,7 @@
 				3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */,
 				E98BEF3F24D3E99000E6B0C8 /* CNAmountInputView.m in Sources */,
 				E98BEF2D24D2D35800E6B0C8 /* NSAttributedString+Selectable.m in Sources */,
+				3D972439262EDF9D005E930C /* SCMyRebateModel.m in Sources */,
 				E986A13D24C93460000F9CFF /* CNBonusRequest.m in Sources */,
 				3DF031FE258DA36A00AF7A36 /* CNSuperCopartnerRequest.m in Sources */,
 				E9063B8C24D6BE870000273A /* HYWideOneBtnAlertView.m in Sources */,

@@ -21,8 +21,8 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
 @interface SuperCopartnerTbDataSource()
 {
     NSInteger _pageNoMyBonus;
-    NSInteger _pageNoMyRecommen;
-//    NSInteger _pageNoMyGifts;
+//    NSInteger _pageNoMyRecommen;
+    NSInteger _pageNoMyRebate;
 }
 
 @property (nonatomic, weak) UITableView *tableView;
@@ -32,7 +32,8 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
 
 @property (nonatomic, strong) SCBetRankModel *betRankModel;
 @property (nonatomic, strong) SCMyBonusModel *myBonusModel;
-@property (strong,nonatomic) NSArray<SCMyRecommenModel *> *myRecommenModels;
+//@property (strong,nonatomic) NSArray<SCMyRecommenModel *> *myRecommenModels;
+@property (strong,nonatomic) SCMyRebateModel *myRebateModel;
 @end
 
 @implementation SuperCopartnerTbDataSource
@@ -46,7 +47,8 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
     [tableView registerClass:[SuperCopartnerTbCell class] forCellReuseIdentifier:SCTbCellID];
     
     _pageNoMyBonus = 1;
-    _pageNoMyRecommen = 1;
+//    _pageNoMyRecommen = 1;
+    _pageNoMyRebate = 1;
     _tableView = tableView;
     _isHome = isHome;
     self.formType = type;
@@ -61,7 +63,6 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
 - (void)setFormType:(SuperCopartnerType)formType {
     _formType = formType;
     
-    //TODO: 洗码数据
     switch (formType) {
         case SuperCopartnerTypeMyBonus:
             [self queryMyBonus];
@@ -71,6 +72,9 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
 //            break;
         case SuperCopartnerTypeCumuBetRank:
             [self queryBetRankList];
+            break;
+        case SuperCopartnerTypeMyXimaRebate:
+            [self queryMyRebate];
             break;
         default:
             [self.tableView reloadData];
@@ -88,49 +92,6 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-//    if (self.isHome) {
-//        if (self.formType == SuperCopartnerTypeCumuBetRank) {
-//            UILabel *lb = [UILabel new];
-//            lb.text = @"(数据每天凌晨刷新)";
-//            lb.textColor = kHexColor(0xA6A6A6);
-//            lb.font = [UIFont fontPFR11];
-//            lb.textAlignment = NSTextAlignmentCenter;
-//            lb.frame = CGRectMake(0, 0, kScreenWidth - 25, 26);
-//            return lb;
-//
-//        } else
-//        if (self.formType == SuperCopartnerTypeMyBonus) {
-//            SuperCopartnerTbFooter *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:SCTbFooter];
-//            if (self.myBonusModel) {
-//                [view setupFootType:self.formType strArr:@[self.myBonusModel.receivedAmount, self.myBonusModel.notReceivedAmount, @(self.isHasBonus)]];
-//            } else {
-//                [view setupFootType:_formType strArr:@[@0, @0, @(self.isHasBonus)]];
-//            }
-//            return view;
-//
-//        } else
-//        if (self.formType == SuperCopartnerTypeMyRecommen) {
-//            SuperCopartnerTbFooter *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:SCTbFooter];
-//            if (self.myRecommenModels) { // 有推荐人数
-//                [view setupFootType:self.formType strArr:@[@(self.myRecommenModels.count)]];
-//            } else {
-//                [view setupFootType:self.formType strArr:@[@0]];
-//            }
-//            return view;
-//
-//        } else
-//        if (self.formType == SuperCopartnerTypeSXHBonus) {
-//            SuperCopartnerTbFooter *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:SCTbFooter];
-//            [view setupFootType:self.formType strArr:@[]];
-//            return view;
-//
-//        } else if (self.formType == SuperCopartnerTypeStarGifts) {
-//            SuperCopartnerTbFooter *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:SCTbFooter];
-//            [view setupFootType:self.formType strArr:@[]];
-//            return view;
-//        }
-//    }
-//    return [UIView new];
     if (self.formType == SuperCopartnerTypeSXHBonus || self.formType == SuperCopartnerTypeStarGifts || self.formType == SuperCopartnerTypeMyXimaRebate) {
         SuperCopartnerTbFooter *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:SCTbFooter];
         [view setupFootType:self.formType];
@@ -155,14 +116,16 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
             return 9;
             
         } else if (self.formType == SuperCopartnerTypeCumuBetRank) {
-            return self.betRankModel.result.count;
+            return self.betRankModel.result.count?:10;
             
 //        } else if (self.formType == SuperCopartnerTypeMyRecommen) {
 //            return self.myRecommenModels.count;
             
         } else if (self.formType == SuperCopartnerTypeMyBonus) {
             return self.myBonusModel.result.count?:5;
-            //TODO: 洗码返佣
+         
+        } else if (self.formType == SuperCopartnerTypeMyXimaRebate) {
+            return self.myRebateModel.result.count?:5;
             
         } else {
             return 0;
@@ -188,6 +151,20 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
     cell.backgroundColor = [UIColor clearColor];
     
     switch (self.formType) {
+        case SuperCopartnerTypeMyXimaRebate:
+        {
+            if (self.myRebateModel.result.count > 0) {
+                MyRebateResultItem *item = self.myRebateModel.result[indexPath.row];
+                NSArray *arr = @[item.loginName,
+                                 item.upLevelStr,
+                                 [item.totalBet jk_toDisplayNumberWithDigit:0],
+                                 [item.commission jk_toDisplayNumberWithDigit:0]];
+                [cell setupType:_formType strArr:arr];
+            } else {
+                [cell setupType:_formType strArr:@[@"--", @"--", @"--", @"--"]];
+            }
+            break;
+        }
         case SuperCopartnerTypeMyBonus:
         {
             if (self.myBonusModel.result.count > 0) {
@@ -200,7 +177,7 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
                                  item.createdDate,
                                  item.amount,
                                  item.flag==2?dayStr:@"已领取"];
-                [cell setupType:self.formType strArr:arr];
+                [cell setupType:_formType strArr:arr];
             } else {
                 [cell setupType:_formType strArr:@[@"--", @"--", @"--", @"--", @"--"]];
             }
@@ -302,6 +279,27 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
     }
 }
 
+- (void)queryMyRebate {
+    [CNSuperCopartnerRequest requestSuperCopartnerListType:SuperCopartnerTypeMyXimaRebate pageNo:_pageNoMyRebate handler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+            SCMyRebateModel *newModel = [SCMyRebateModel cn_parse:responseObj];
+            if (newModel.result.count) {
+                self->_pageNoMyRebate += 1;
+            }
+            NSMutableArray *oldResult = self.myBonusModel?self.myBonusModel.result.mutableCopy:@[].mutableCopy;
+            [oldResult addObjectsFromArray:newModel.result];
+            newModel.result = oldResult.copy;
+            self.myRebateModel = newModel;
+
+            [self.tableView reloadData];
+
+            if (self.delegate && [self.delegate respondsToSelector:@selector(dataSourceReceivedMyRebate:)]) {
+                [self.delegate dataSourceReceivedMyRebate:newModel.weekEstimate];
+            }
+        }
+    }];
+}
+
 //- (void)queryMyRecommen {
 //
 //    [CNSuperCopartnerRequest requestSuperCopartnerListType:SuperCopartnerTypeMyRecommen pageNo:_pageNoMyRecommen handler:^(id responseObj, NSString *errorMsg) {
@@ -338,7 +336,6 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
         [self.tableView.mj_footer endRefreshing];
     }];
 }
-
 
 
 @end
