@@ -111,7 +111,6 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    if (self.isHome) {
         if (self.formType == SuperCopartnerTypeSXHBonus) {
             return 6;
             
@@ -119,10 +118,7 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
             return 9;
             
         } else if (self.formType == SuperCopartnerTypeCumuBetRank) {
-            return self.betRankModel.result.count?:10;
-            
-//        } else if (self.formType == SuperCopartnerTypeMyRecommen) {
-//            return self.myRecommenModels.count;
+            return self.betRankModel.result.count;
             
         } else if (self.formType == SuperCopartnerTypeMyBonus) {
             return self.myBonusModel.result.count?:5;
@@ -133,17 +129,6 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
         } else {
             return 0;
         }
-        
-    // 弹窗出来的
-//    } else {
-//        if (self.formType == SuperCopartnerTypeMyBonus) {
-//            return self.myBonusModel.result.count?:10;
-//        }
-//        if (self.formType == SuperCopartnerTypeMyRecommen) {
-//            return self.myRecommenModels.count?:10;
-//        }
-//        return 0;
-//    }
 }
 
 
@@ -289,7 +274,7 @@ NSString * const SCTbCellID = @"SuperCopartnerTbCell";
             if (newModel.result.count) {
                 self->_pageNoMyRebate += 1;
             }
-            NSMutableArray *oldResult = self.myBonusModel?self.myBonusModel.result.mutableCopy:@[].mutableCopy;
+            NSMutableArray *oldResult = self.myRebateModel?self.myRebateModel.result.mutableCopy:@[].mutableCopy;
             [oldResult addObjectsFromArray:newModel.result];
             newModel.result = oldResult.copy;
             self.myRebateModel = newModel;

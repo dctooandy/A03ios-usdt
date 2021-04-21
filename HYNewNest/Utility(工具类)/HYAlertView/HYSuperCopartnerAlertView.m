@@ -34,6 +34,7 @@
 
 - (instancetype)initWithType:(SuperCopartnerType)type {
     self = [super init];
+    _type = type;
     
     NSString * title = @"我的推荐礼金";
     if (type == SuperCopartnerTypeMyXimaRebate) {
@@ -84,9 +85,7 @@
     tb.separatorStyle = UITableViewCellSeparatorStyleNone;
     tb.allowsSelection = NO;
     tb.rowHeight = 25;
-    tb.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        [self.dataSource changeType:self.type];
-    }];
+    
     self.dataSource = [[SuperCopartnerTbDataSource alloc] initWithTableView:tb type:type isHomePage:NO];
     self.dataSource.delegate = self;
     [self.contentView addSubview:tb];
