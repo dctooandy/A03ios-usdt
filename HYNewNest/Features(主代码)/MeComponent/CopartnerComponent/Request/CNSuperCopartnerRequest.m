@@ -22,7 +22,7 @@ static NSString *SupCopRequestActionStr[] = {
                                pageNo:(NSInteger)pageNo
                               handler:(HandlerBlock)handler {
     NSMutableDictionary *parm = [kNetworkMgr baseParam];
-    parm[@"pageSize"] = @10;
+    parm[@"pageSize"] = @100;
     parm[@"pageNo"] = @(pageNo);
     parm[@"action"] = SupCopRequestActionStr[type];
     [self POST:kGatewayExtraPath(config_superCopartnerActy) parameters:parm completionHandler:handler];

@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CNSuperCopartnerRequest : CNBaseNetworking
 
-// 每页10条
+// 我的推荐礼金 我的洗码返佣
 + (void)requestSuperCopartnerListType:(SuperCopartnerType)type pageNo:(NSInteger)pageNo handler:(HandlerBlock)handler;
 
 // 累计投注排行
