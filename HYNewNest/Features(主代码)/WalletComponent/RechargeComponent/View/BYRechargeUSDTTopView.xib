@@ -4,17 +4,18 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="BYRechargeUSDTTopView">
-            <rect key="frame" x="0.0" y="0.0" width="445" height="110"/>
+            <rect key="frame" x="0.0" y="0.0" width="445" height="446"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fy4-Ko-xi0" userLabel="Content View">
-                    <rect key="frame" x="0.0" y="0.0" width="445" height="110"/>
+                    <rect key="frame" x="0.0" y="0.0" width="445" height="446"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RQh-dl-kHi">
                             <rect key="frame" x="15" y="0.0" width="415" height="100"/>
@@ -37,7 +38,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pmG-U0-Ac0">
                                     <rect key="frame" x="389" y="10" width="16" height="22"/>
                                     <state key="normal" image="unSelect"/>
-                                    <state key="selected" image="icon_newrecharge_sel"/>
+                                    <state key="selected" image="select"/>
                                 </button>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rmb" translatesAutoresizingMaskIntoConstraints="NO" id="eUw-gg-DJe">
                                     <rect key="frame" x="24" y="18" width="64" height="64"/>
@@ -75,12 +76,166 @@
                                 <constraint firstItem="vS8-1h-AYR" firstAttribute="leading" secondItem="5gW-AJ-vDT" secondAttribute="leading" id="dW5-dk-sl1"/>
                                 <constraint firstItem="vS8-1h-AYR" firstAttribute="top" secondItem="5gW-AJ-vDT" secondAttribute="bottom" constant="7" id="uGH-ZB-RMX"/>
                                 <constraint firstAttribute="trailing" secondItem="pmG-U0-Ac0" secondAttribute="trailing" constant="10" id="vs5-h4-MnZ"/>
+                                <constraint firstAttribute="height" constant="100" id="zdl-Fv-p0C"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="amu-CT-dba">
+                            <rect key="frame" x="15" y="115" width="415" height="313"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0EJ-Px-51M">
+                                    <rect key="frame" x="10" y="16" width="86" height="22"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="22" id="23k-ub-eEF"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                    <state key="normal" title=" 选择协议" image="疑问">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Srg-ZK-W49">
+                                    <rect key="frame" x="0.0" y="53" width="415" height="1"/>
+                                    <color key="backgroundColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="rop-lp-7d8"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WxF-Lk-kvD">
+                                    <rect key="frame" x="116" y="0.0" width="279" height="53"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ENB-vp-zB2">
+                                    <rect key="frame" x="28" y="80" width="359" height="90"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="oh3-4W-2YA">
+                                            <rect key="frame" x="0.0" y="0.0" width="359" height="40"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4V-9l-hMr" customClass="BYThreeStatusBtn">
+                                                    <rect key="frame" x="0.0" y="0.0" width="113" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="nSo-Bt-Yde"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
+                                                    <state key="normal" title="20"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="ibStatus">
+                                                            <integer key="value" value="-1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNo-ZA-mDA" customClass="BYThreeStatusBtn">
+                                                    <rect key="frame" x="123" y="0.0" width="113" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="owh-Sh-HHQ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
+                                                    <state key="normal" title="20"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="ibStatus">
+                                                            <integer key="value" value="-1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPN-BT-si5" customClass="BYThreeStatusBtn">
+                                                    <rect key="frame" x="246" y="0.0" width="113" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="wIQ-sn-NCt"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
+                                                    <state key="normal" title="20"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="ibStatus">
+                                                            <integer key="value" value="-1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wld-GQ-kWs">
+                                            <rect key="frame" x="0.0" y="50" width="359" height="40"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X92-Kw-5Dg" customClass="BYThreeStatusBtn">
+                                                    <rect key="frame" x="0.0" y="0.0" width="113" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="cZd-d7-eaO"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
+                                                    <state key="normal" title="20"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="ibStatus">
+                                                            <integer key="value" value="-1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kdi-s3-Fzg" customClass="BYThreeStatusBtn">
+                                                    <rect key="frame" x="123" y="0.0" width="113" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="1xk-bY-fmO"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
+                                                    <state key="normal" title="20"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="ibStatus">
+                                                            <integer key="value" value="-1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FoY-Ld-ct9" customClass="BYThreeStatusBtn">
+                                                    <rect key="frame" x="246" y="0.0" width="113" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="XwR-qK-MRk"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
+                                                    <state key="normal" title="20"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="ibStatus">
+                                                            <integer key="value" value="-1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="90" id="2DC-be-yhI"/>
+                                        <constraint firstAttribute="trailing" secondItem="Wld-GQ-kWs" secondAttribute="trailing" id="6Hn-mL-zGW"/>
+                                        <constraint firstItem="Wld-GQ-kWs" firstAttribute="top" secondItem="oh3-4W-2YA" secondAttribute="bottom" constant="10" id="9mt-Fn-vTg"/>
+                                        <constraint firstAttribute="trailing" secondItem="oh3-4W-2YA" secondAttribute="trailing" id="AIK-do-efc"/>
+                                        <constraint firstItem="oh3-4W-2YA" firstAttribute="leading" secondItem="ENB-vp-zB2" secondAttribute="leading" id="BbC-wx-OXT"/>
+                                        <constraint firstItem="oh3-4W-2YA" firstAttribute="top" secondItem="ENB-vp-zB2" secondAttribute="top" id="P4T-7r-Elp"/>
+                                        <constraint firstAttribute="bottom" secondItem="Wld-GQ-kWs" secondAttribute="bottom" id="Wpt-OW-XFC"/>
+                                        <constraint firstItem="Wld-GQ-kWs" firstAttribute="leading" secondItem="ENB-vp-zB2" secondAttribute="leading" id="euP-O6-uvv"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zuj-Jp-PSU">
+                                    <rect key="frame" x="28" y="185" width="240" height="128"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="Srg-ZK-W49" firstAttribute="top" secondItem="0EJ-Px-51M" secondAttribute="bottom" constant="15" id="5K9-hl-tjp"/>
+                                <constraint firstItem="Srg-ZK-W49" firstAttribute="top" secondItem="WxF-Lk-kvD" secondAttribute="bottom" id="6p6-kv-pmU"/>
+                                <constraint firstItem="0EJ-Px-51M" firstAttribute="leading" secondItem="amu-CT-dba" secondAttribute="leading" constant="10" id="8eQ-ZH-IWd"/>
+                                <constraint firstItem="0EJ-Px-51M" firstAttribute="top" secondItem="amu-CT-dba" secondAttribute="top" constant="16" id="Kcz-vN-8OY"/>
+                                <constraint firstItem="ENB-vp-zB2" firstAttribute="leading" secondItem="amu-CT-dba" secondAttribute="leading" constant="28" id="NfC-qO-OMD"/>
+                                <constraint firstAttribute="height" constant="313" id="OkB-bm-Y4L"/>
+                                <constraint firstItem="Srg-ZK-W49" firstAttribute="leading" secondItem="amu-CT-dba" secondAttribute="leading" id="SAl-eV-ARr"/>
+                                <constraint firstAttribute="trailing" secondItem="WxF-Lk-kvD" secondAttribute="trailing" constant="20" id="aer-r1-Iw9"/>
+                                <constraint firstItem="WxF-Lk-kvD" firstAttribute="leading" secondItem="0EJ-Px-51M" secondAttribute="trailing" constant="20" id="hSg-od-tTM"/>
+                                <constraint firstItem="ENB-vp-zB2" firstAttribute="top" secondItem="Srg-ZK-W49" secondAttribute="bottom" constant="26" id="ism-Xp-ksL"/>
+                                <constraint firstAttribute="trailing" secondItem="Srg-ZK-W49" secondAttribute="trailing" id="j3P-98-WnZ"/>
+                                <constraint firstItem="WxF-Lk-kvD" firstAttribute="top" secondItem="amu-CT-dba" secondAttribute="top" id="oNa-qm-S7P"/>
+                                <constraint firstAttribute="trailing" secondItem="ENB-vp-zB2" secondAttribute="trailing" constant="28" id="rGx-yy-nFS"/>
                             </constraints>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="RQh-dl-kHi" secondAttribute="bottom" constant="10" id="Wvr-If-fmp"/>
+                        <constraint firstAttribute="trailing" secondItem="amu-CT-dba" secondAttribute="trailing" constant="15" id="1Pz-qF-Irv"/>
+                        <constraint firstItem="amu-CT-dba" firstAttribute="leading" secondItem="Fy4-Ko-xi0" secondAttribute="leading" constant="15" id="5nN-fa-udw"/>
+                        <constraint firstItem="amu-CT-dba" firstAttribute="top" secondItem="RQh-dl-kHi" secondAttribute="bottom" constant="15" id="RRd-QF-iwk"/>
                         <constraint firstAttribute="trailing" secondItem="RQh-dl-kHi" secondAttribute="trailing" constant="15" id="hQE-cn-fV2"/>
                         <constraint firstItem="RQh-dl-kHi" firstAttribute="leading" secondItem="Fy4-Ko-xi0" secondAttribute="leading" constant="15" id="n5f-AT-1At"/>
                         <constraint firstItem="RQh-dl-kHi" firstAttribute="top" secondItem="Fy4-Ko-xi0" secondAttribute="top" id="vjt-qX-LWl"/>
@@ -100,19 +255,25 @@
             <connections>
                 <outlet property="bgView" destination="RQh-dl-kHi" id="Amg-Hl-PbJ"/>
                 <outlet property="contentLb" destination="vS8-1h-AYR" id="hKK-e7-Rja"/>
+                <outlet property="mainEditBgView" destination="amu-CT-dba" id="gs9-Na-Ajo"/>
+                <outlet property="protocolContainer" destination="WxF-Lk-kvD" id="Tro-JY-eEc"/>
                 <outlet property="selBtn" destination="pmG-U0-Ac0" id="Djb-YA-qHH"/>
                 <outlet property="titleLb" destination="5gW-AJ-vDT" id="vQh-kU-tRB"/>
                 <outletCollection property="rmbStaffImgv" destination="guA-9l-CoN" id="mPF-2O-jRV"/>
                 <outletCollection property="rmbStaffImgv" destination="R4S-V3-hBj" id="ctf-Va-otW"/>
             </connections>
-            <point key="canvasLocation" x="-378" y="-15"/>
+            <point key="canvasLocation" x="-378.98550724637687" y="97.098214285714278"/>
         </view>
     </objects>
     <resources>
         <image name="icon_newrecharge_recom" width="48" height="48"/>
-        <image name="icon_newrecharge_sel" width="15" height="14"/>
         <image name="rmb" width="31" height="28"/>
+        <image name="select" width="17" height="18"/>
         <image name="unSelect" width="16" height="16"/>
         <image name="zffs" width="70" height="17"/>
+        <image name="疑问" width="16" height="16"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

@@ -36,7 +36,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WGF-8w-zTJ">
-                    <rect key="frame" x="0.0" y="62.5" width="414" height="697.5"/>
+                    <rect key="frame" x="0.0" y="12.5" width="414" height="747.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="t92-nr-bJj"/>
@@ -88,7 +88,7 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Eq8-c9-ddn" secondAttribute="trailing" id="ZaQ-d7-NY5"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="WGF-8w-zTJ" secondAttribute="bottom" priority="250" constant="10" id="b7t-cP-Gj0"/>
                 <constraint firstItem="WGF-8w-zTJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" priority="250" constant="15" id="cNY-S0-s3g"/>
-                <constraint firstItem="WGF-8w-zTJ" firstAttribute="top" secondItem="yGy-Cr-D0Z" secondAttribute="bottom" priority="750" constant="-125" id="oOt-RS-E1O"/>
+                <constraint firstItem="WGF-8w-zTJ" firstAttribute="top" secondItem="yGy-Cr-D0Z" secondAttribute="bottom" priority="750" constant="-175" id="oOt-RS-E1O"/>
                 <constraint firstItem="yGy-Cr-D0Z" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="v4b-2A-Zy9"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="yGy-Cr-D0Z" secondAttribute="trailing" id="xoo-SU-T9T"/>
             </constraints>

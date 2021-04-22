@@ -8,13 +8,16 @@
 
 #import "BYRechargeUSDTTopView.h"
 #import "UILabel+Gradient.h"
+#import "BYThreeStatusBtn.h"
 
 @interface BYRechargeUSDTTopView()
 @property (weak, nonatomic) IBOutlet UILabel *titleLb;
 @property (weak, nonatomic) IBOutlet UILabel *contentLb;
 @property (strong, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet UIView *mainEditBgView;
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *rmbStaffImgv;
 @property (weak, nonatomic) IBOutlet UIButton *selBtn;
+@property (weak, nonatomic) IBOutlet UIView *protocolContainer;
 
 @end
 
@@ -37,9 +40,11 @@
     if (selected) {
         _bgView.layer.borderWidth = 1.0;
         _bgView.backgroundColor = kHexColor(0x3C3C6A);
+        _mainEditBgView.hidden = NO;
     } else {
         _bgView.layer.borderWidth = 0.0;
         _bgView.backgroundColor = kHexColor(0x272749);
+        _mainEditBgView.hidden = YES;
     }
 }
 

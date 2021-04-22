@@ -18,6 +18,7 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
 @property (weak, nonatomic) IBOutlet UIView *btmBannerBg;
 @property (weak, nonatomic) IBOutlet SDCycleScrollView *btmBanner;
 @property (weak, nonatomic) IBOutlet UIPageControl *btmBannerControl;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewBtm2BannerCons;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewBtm2SafeAreaCons;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTop2BannerInsetCons;
@@ -71,11 +72,12 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
 
             self.tableView.contentInset = UIEdgeInsetsZero;
         }];
+        NSIndexPath *idxPath = [NSIndexPath indexPathForRow:(selIdx>0)?selIdx:0 inSection:0];
+        [self.tableView scrollToRowAtIndexPath:idxPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     }
     
     [self.tableView reloadData];
-    NSIndexPath *idxPath = [NSIndexPath indexPathForRow:(selIdx>0)?selIdx:0 inSection:0];
-    [self.tableView scrollToRowAtIndexPath:idxPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    
 }
 
 
