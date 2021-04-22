@@ -7,9 +7,15 @@
 //
 
 #import "BYRechargeUsdtVC.h"
-#import "SDCycleScrollView.h"
 
+#import "HYRechargeHelper.h"
+#import "IN3SAnalytics.h"
+#import "CNRechargeRequest.h"
+
+#import "SDCycleScrollView.h"
 #import "BYRechargeUSDTTopView.h" //这是cell
+#import "LYEmptyView.h"
+#import "UIView+Empty.h"
 
 static NSString * const cellName = @"BYRechargeUSDTTopView";
 
@@ -26,10 +32,21 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (assign,nonatomic) NSInteger selIdx; //!<选中行 未选中设置为-1
+@property (nonatomic, strong) OnlineBanksModel *curOnliBankModel;
+@property (nonatomic, strong) NSArray<DepositsBankModel *> *depositModels;
 
 @end
 
 @implementation BYRechargeUsdtVC
+
+#pragma mark - VIEW LIFE CYCLE
+
+- (instancetype)init {
+    _launchDate = [NSDate date];
+    if (self = [super init]) {
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,9 +58,23 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
     
     _tableView.contentInset = UIEdgeInsetsMake(150, 0, 0, 0);// 顶部间隙
     [_tableView registerNib:[UINib nibWithNibName:cellName bundle:nil] forCellReuseIdentifier:cellName];
+    _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"kongduixiang" titleStr:@"暂无充值渠道" detailStr:@""];
     
     _topBanner.localizationImageNamesGroup = @[@"gg"];
     _topBanner.delegate = self;
+    
+    [self queryDepositBankPayWays];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (!_hasRecord) {
+        NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:self->_launchDate] * 1000;
+        NSLog(@" ======> 进USDT支付 耗时：%f毫秒", duration);
+        NSString *timeString = [NSString stringWithFormat:@"%f", [self->_launchDate timeIntervalSince1970]];
+        [IN3SAnalytics enterPageWithName:@"PaymentPageLoad" responseTime:duration timestamp:timeString];
+    }
 }
 
 - (void)rightItemAction {
@@ -51,9 +82,55 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
 }
 
 
+#pragma mark - REQUEST
+
+/**
+USDT支付渠道
+*/
+- (void)queryDepositBankPayWays {
+    [CNRechargeRequest queryUSDTPayWalletsHandler:^(id responseObj, NSString *errorMsg) {
+        NSArray *depositModels = [DepositsBankModel cn_parse:responseObj];
+        NSMutableArray *models = @[].mutableCopy;
+        for (DepositsBankModel *bank in depositModels) {
+            if (([bank.bankname isEqualToString:@"dcbox"] || [HYRechargeHelper isUSDTOtherBankModel:bank])) {
+                [models addObject:bank];
+            }
+        }
+        self.depositModels = models;
+        
+        if (models.count == 0) {
+            [self.view ly_showEmptyView];
+        } else {
+            [self.view ly_hideEmptyView];
+        }
+        
+    }];
+}
+
+/**
+在线类支付 需要
+*/
+- (void)queryOnlineBankAmount {
+    // !!!: @"ERC20"写死的
+    if (_selIdx < 1) { //0是直充
+        return;
+    }
+    DepositsBankModel *model = self.depositModels[_selIdx-1];
+    [CNRechargeRequest queryOnlineBanksPayType:model.payType
+                                  usdtProtocol:@"ERC20"
+                                       handler:^(id responseObj, NSString *errorMsg) {
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            OnlineBanksModel *oModel = [OnlineBanksModel cn_parse:responseObj];
+            self.curOnliBankModel = oModel;
+        }
+    }];
+}
+
+
 #pragma mark - SETTER
 - (void)setSelIdx:(NSInteger)selIdx {
     _selIdx = selIdx;
+    
     if (selIdx == -1) {
         [UIView animateWithDuration:0.35 animations:^{
             self.topBanner.alpha = 1.0;
@@ -64,6 +141,9 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
             self.tableView.contentInset = UIEdgeInsetsMake(150, 0, 0, 0);//150
         }];
     } else {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            [self queryOnlineBankAmount];
+        });
         [UIView animateWithDuration:0.35 animations:^{
             self.topBanner.alpha = 0.0;
             self.btmBannerBg.alpha = 0.0;
@@ -75,9 +155,7 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
         NSIndexPath *idxPath = [NSIndexPath indexPathForRow:(selIdx>0)?selIdx:0 inSection:0];
         [self.tableView scrollToRowAtIndexPath:idxPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     }
-    
     [self.tableView reloadData];
-    
 }
 
 
@@ -96,14 +174,27 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == _selIdx) {
-        return 428;
+        return 448;
     } else {
-        return 110;
+        return 120;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BYRechargeUSDTTopView *cell = [tableView dequeueReusableCellWithIdentifier:cellName];
+    cell.lineIdx = indexPath.row;
+//    WEAKSELF_DEFINE
+//    cell.didTapTopBgActionBlock = ^(NSInteger lineIdx) {
+//        if (weakSelf.selIdx == indexPath.row) { // 点击选中的cell
+//            weakSelf.selIdx = -1;
+//        } else { // 点击未选中的cell
+//            weakSelf.selIdx = indexPath.row;
+//        }
+//    };
+    if (_selIdx > 0) { //非人民币直充
+        DepositsBankModel *m = self.depositModels[_selIdx-1];
+        cell.model = m;
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self->_selIdx == indexPath.row) {
             [cell setSelected:YES animated:YES];
@@ -115,13 +206,13 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     if (_selIdx == indexPath.row) { // 点击选中的cell
         self.selIdx = -1;
     } else { // 点击未选中的cell
         self.selIdx = indexPath.row;
     }
-    
+
 }
 
 

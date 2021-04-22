@@ -63,6 +63,7 @@
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" red="0.15294117647058825" green="0.15294117647058825" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstItem="5gW-AJ-vDT" firstAttribute="leading" secondItem="eUw-gg-DJe" secondAttribute="trailing" constant="13" id="1mK-5c-kFZ"/>
                                 <constraint firstItem="guA-9l-CoN" firstAttribute="leading" secondItem="RQh-dl-kHi" secondAttribute="leading" id="33r-3d-Yhm"/>
@@ -122,7 +123,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNo-ZA-mDA" customClass="BYThreeStatusBtn">
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNo-ZA-mDA" customClass="BYThreeStatusBtn">
                                                     <rect key="frame" x="123" y="0.0" width="113" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="owh-Sh-HHQ"/>
@@ -135,7 +136,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPN-BT-si5" customClass="BYThreeStatusBtn">
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPN-BT-si5" customClass="BYThreeStatusBtn">
                                                     <rect key="frame" x="246" y="0.0" width="113" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="wIQ-sn-NCt"/>
@@ -153,7 +154,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wld-GQ-kWs">
                                             <rect key="frame" x="0.0" y="50" width="359" height="40"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X92-Kw-5Dg" customClass="BYThreeStatusBtn">
+                                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X92-Kw-5Dg" customClass="BYThreeStatusBtn">
                                                     <rect key="frame" x="0.0" y="0.0" width="113" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="cZd-d7-eaO"/>
@@ -166,7 +167,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kdi-s3-Fzg" customClass="BYThreeStatusBtn">
+                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kdi-s3-Fzg" customClass="BYThreeStatusBtn">
                                                     <rect key="frame" x="123" y="0.0" width="113" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="1xk-bY-fmO"/>
@@ -179,7 +180,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FoY-Ld-ct9" customClass="BYThreeStatusBtn">
+                                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FoY-Ld-ct9" customClass="BYThreeStatusBtn">
                                                     <rect key="frame" x="246" y="0.0" width="113" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="XwR-qK-MRk"/>
@@ -207,27 +208,72 @@
                                         <constraint firstItem="Wld-GQ-kWs" firstAttribute="leading" secondItem="ENB-vp-zB2" secondAttribute="leading" id="euP-O6-uvv"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zuj-Jp-PSU">
-                                    <rect key="frame" x="28" y="185" width="240" height="128"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zuj-Jp-PSU">
+                                    <rect key="frame" x="28" y="190" width="359" height="40"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="其他金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRc-7o-QmA">
+                                            <rect key="frame" x="13.5" y="10.5" width="65.5" height="19.5"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="1USDT起，最多1000万USDT" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FZJ-2n-fSw">
+                                            <rect key="frame" x="90" y="10" width="249.5" height="20.5"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.086274509803921567" green="0.086274509803921567" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="1Rg-Af-lDA"/>
+                                        <constraint firstItem="dRc-7o-QmA" firstAttribute="centerY" secondItem="Zuj-Jp-PSU" secondAttribute="centerY" id="Fb4-Bc-k6L"/>
+                                        <constraint firstItem="FZJ-2n-fSw" firstAttribute="leading" secondItem="dRc-7o-QmA" secondAttribute="trailing" constant="11" id="Jen-c9-Ydq"/>
+                                        <constraint firstItem="FZJ-2n-fSw" firstAttribute="centerY" secondItem="Zuj-Jp-PSU" secondAttribute="centerY" id="MPY-u4-Mzm"/>
+                                        <constraint firstAttribute="trailing" secondItem="FZJ-2n-fSw" secondAttribute="trailing" constant="19.5" id="wcj-Z3-47y"/>
+                                        <constraint firstItem="dRc-7o-QmA" firstAttribute="leading" secondItem="Zuj-Jp-PSU" secondAttribute="leading" constant="13.5" id="zGc-bA-rDD"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="20"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                 </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tue-EL-5h7">
+                                    <rect key="frame" x="0.0" y="257" width="415" height="56"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="56" id="46X-BD-3wL"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                    <state key="normal" title="提交订单+获取地址">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTapSubmitBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="ydO-If-Q8g"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
+                                <constraint firstAttribute="bottom" secondItem="tue-EL-5h7" secondAttribute="bottom" id="0Qm-KO-3zk"/>
+                                <constraint firstItem="tue-EL-5h7" firstAttribute="leading" secondItem="amu-CT-dba" secondAttribute="leading" id="42x-5u-M1m"/>
                                 <constraint firstItem="Srg-ZK-W49" firstAttribute="top" secondItem="0EJ-Px-51M" secondAttribute="bottom" constant="15" id="5K9-hl-tjp"/>
+                                <constraint firstItem="Zuj-Jp-PSU" firstAttribute="top" secondItem="ENB-vp-zB2" secondAttribute="bottom" constant="20" id="6hW-xU-mM9"/>
                                 <constraint firstItem="Srg-ZK-W49" firstAttribute="top" secondItem="WxF-Lk-kvD" secondAttribute="bottom" id="6p6-kv-pmU"/>
                                 <constraint firstItem="0EJ-Px-51M" firstAttribute="leading" secondItem="amu-CT-dba" secondAttribute="leading" constant="10" id="8eQ-ZH-IWd"/>
+                                <constraint firstItem="Zuj-Jp-PSU" firstAttribute="trailing" secondItem="ENB-vp-zB2" secondAttribute="trailing" id="CTZ-nz-yJx"/>
                                 <constraint firstItem="0EJ-Px-51M" firstAttribute="top" secondItem="amu-CT-dba" secondAttribute="top" constant="16" id="Kcz-vN-8OY"/>
                                 <constraint firstItem="ENB-vp-zB2" firstAttribute="leading" secondItem="amu-CT-dba" secondAttribute="leading" constant="28" id="NfC-qO-OMD"/>
                                 <constraint firstAttribute="height" constant="313" id="OkB-bm-Y4L"/>
                                 <constraint firstItem="Srg-ZK-W49" firstAttribute="leading" secondItem="amu-CT-dba" secondAttribute="leading" id="SAl-eV-ARr"/>
                                 <constraint firstAttribute="trailing" secondItem="WxF-Lk-kvD" secondAttribute="trailing" constant="20" id="aer-r1-Iw9"/>
+                                <constraint firstItem="Zuj-Jp-PSU" firstAttribute="leading" secondItem="ENB-vp-zB2" secondAttribute="leading" id="gBu-ZR-taB"/>
                                 <constraint firstItem="WxF-Lk-kvD" firstAttribute="leading" secondItem="0EJ-Px-51M" secondAttribute="trailing" constant="20" id="hSg-od-tTM"/>
                                 <constraint firstItem="ENB-vp-zB2" firstAttribute="top" secondItem="Srg-ZK-W49" secondAttribute="bottom" constant="26" id="ism-Xp-ksL"/>
                                 <constraint firstAttribute="trailing" secondItem="Srg-ZK-W49" secondAttribute="trailing" id="j3P-98-WnZ"/>
                                 <constraint firstItem="WxF-Lk-kvD" firstAttribute="top" secondItem="amu-CT-dba" secondAttribute="top" id="oNa-qm-S7P"/>
                                 <constraint firstAttribute="trailing" secondItem="ENB-vp-zB2" secondAttribute="trailing" constant="28" id="rGx-yy-nFS"/>
+                                <constraint firstAttribute="trailing" secondItem="tue-EL-5h7" secondAttribute="trailing" id="zgI-W7-UIr"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -256,13 +302,16 @@
                 <outlet property="bgView" destination="RQh-dl-kHi" id="Amg-Hl-PbJ"/>
                 <outlet property="contentLb" destination="vS8-1h-AYR" id="hKK-e7-Rja"/>
                 <outlet property="mainEditBgView" destination="amu-CT-dba" id="gs9-Na-Ajo"/>
+                <outlet property="payWayImgv" destination="eUw-gg-DJe" id="Lip-OY-GPP"/>
                 <outlet property="protocolContainer" destination="WxF-Lk-kvD" id="Tro-JY-eEc"/>
                 <outlet property="selBtn" destination="pmG-U0-Ac0" id="Djb-YA-qHH"/>
+                <outlet property="submitBtn" destination="tue-EL-5h7" id="SYX-6n-ZJU"/>
+                <outlet property="tfAmount" destination="FZJ-2n-fSw" id="bWS-QD-eqk"/>
                 <outlet property="titleLb" destination="5gW-AJ-vDT" id="vQh-kU-tRB"/>
                 <outletCollection property="rmbStaffImgv" destination="guA-9l-CoN" id="mPF-2O-jRV"/>
                 <outletCollection property="rmbStaffImgv" destination="R4S-V3-hBj" id="ctf-Va-otW"/>
             </connections>
-            <point key="canvasLocation" x="-378.98550724637687" y="97.098214285714278"/>
+            <point key="canvasLocation" x="-221" y="64"/>
         </view>
     </objects>
     <resources>
