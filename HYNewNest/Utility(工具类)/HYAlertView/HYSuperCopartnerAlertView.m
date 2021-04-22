@@ -85,6 +85,7 @@
     tb.separatorStyle = UITableViewCellSeparatorStyleNone;
     tb.allowsSelection = NO;
     tb.rowHeight = 25;
+    tb.backgroundColor = [UIColor whiteColor];
     
     self.dataSource = [[SuperCopartnerTbDataSource alloc] initWithTableView:tb type:type isHomePage:NO];
     self.dataSource.delegate = self;

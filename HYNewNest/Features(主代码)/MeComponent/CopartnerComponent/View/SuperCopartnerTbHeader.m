@@ -56,8 +56,18 @@
         case SuperCopartnerTypeStarGifts:
             textColor = kHexColor(0xFFFFFF);
             textFont = [UIFont fontPFSB14];
+            self.backgroundView = ({
+                UIView * view = [[UIView alloc] initWithFrame:self.bounds];
+                view.backgroundColor = [UIColor clearColor];
+                view;
+            });
             break;
         default:
+            self.backgroundView = ({
+                UIView * view = [[UIView alloc] initWithFrame:self.bounds];
+                view.backgroundColor = [UIColor whiteColor];
+                view;
+            });
             break;
     }
     
@@ -76,16 +86,16 @@
     }];
 }
 
-- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
-    self = [super initWithReuseIdentifier:reuseIdentifier];
-    
-    self.backgroundView = ({
-        UIView * view = [[UIView alloc] initWithFrame:self.bounds];
-        view.backgroundColor = [UIColor clearColor];//TODO:
-        view;
-    });
-    
-    return self;
-}
+//- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
+//    self = [super initWithReuseIdentifier:reuseIdentifier];
+//
+//    self.backgroundView = ({
+//        UIView * view = [[UIView alloc] initWithFrame:self.bounds];
+//        view.backgroundColor = [UIColor clearColor];//TODO:
+//        view;
+//    });
+//
+//    return self;
+//}
 
 @end

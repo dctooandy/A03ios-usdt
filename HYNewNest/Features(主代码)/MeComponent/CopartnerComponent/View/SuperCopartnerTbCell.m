@@ -57,6 +57,7 @@
         {
             textFont = [UIFont fontPFR13];
             textColor = kHexColor(0xFFFFFF);
+            break;
         }
         case SuperCopartnerTypeCumuBetRank: // 颜色改变
         {
