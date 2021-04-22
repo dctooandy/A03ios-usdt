@@ -1256,7 +1256,7 @@
 		04C6E1F424D41C3C006F4DAC /* CNAddressInfoTCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNAddressInfoTCell.h; sourceTree = "<group>"; };
 		04C6E1F524D41C3C006F4DAC /* CNAddressInfoTCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNAddressInfoTCell.m; sourceTree = "<group>"; };
 		04C6E1F624D41C3C006F4DAC /* CNAddressInfoTCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNAddressInfoTCell.xib; sourceTree = "<group>"; };
-		3D13385124AD8F9B00B29783 /* 币游.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "币游.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D13385124AD8F9B00B29783 /* 币游_dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "币游_dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D13386C24AD8F9C00B29783 /* HYNewNestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HYNewNestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D13387024AD8F9C00B29783 /* HYNewNestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYNewNestTests.m; sourceTree = "<group>"; };
 		3D13387224AD8F9C00B29783 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1415,7 +1415,7 @@
 		3D643F9C24F39BA600B9AAA7 /* HYInGameHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYInGameHelper.h; sourceTree = "<group>"; };
 		3D643F9D24F39BA600B9AAA7 /* HYInGameHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYInGameHelper.m; sourceTree = "<group>"; };
 		3D65D10F2564D51D00917E1B /* 币游Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "币游Release.entitlements"; sourceTree = "<group>"; };
-		3D65D11025651F3000917E1B /* 币游Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "币游Debug.entitlements"; sourceTree = "<group>"; };
+		3D65D11025651F3000917E1B /* 币游_devDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "币游_devDebug.entitlements"; sourceTree = "<group>"; };
 		3D65D1142568E35300917E1B /* SocketRocketUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketRocketUtility.h; sourceTree = "<group>"; };
 		3D65D1152568E35300917E1B /* SocketRocketUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketRocketUtility.m; sourceTree = "<group>"; };
 		3D6B72EA2613371900B441D2 /* BYRechargeUSDTTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYRechargeUSDTTopView.h; sourceTree = "<group>"; };
@@ -2955,7 +2955,7 @@
 		3D13385224AD8F9B00B29783 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3D13385124AD8F9B00B29783 /* 币游.app */,
+				3D13385124AD8F9B00B29783 /* 币游_dev.app */,
 				3D13386C24AD8F9C00B29783 /* HYNewNestTests.xctest */,
 				3D13387724AD8F9C00B29783 /* HYNewNestUITests.xctest */,
 			);
@@ -2965,7 +2965,7 @@
 		3D13385324AD8F9B00B29783 /* HYNewNest */ = {
 			isa = PBXGroup;
 			children = (
-				3D65D11025651F3000917E1B /* 币游Debug.entitlements */,
+				3D65D11025651F3000917E1B /* 币游_devDebug.entitlements */,
 				3D65D10F2564D51D00917E1B /* 币游Release.entitlements */,
 				3D1338A724AF2EDF00B29783 /* Resources */,
 				3D1338A624AF2E7D00B29783 /* Vendors */,
@@ -5313,7 +5313,7 @@
 			);
 			name = HYNewNest;
 			productName = HYNewNest;
-			productReference = 3D13385124AD8F9B00B29783 /* 币游.app */;
+			productReference = 3D13385124AD8F9B00B29783 /* 币游_dev.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3D13386B24AD8F9C00B29783 /* HYNewNestTests */ = {
@@ -6773,7 +6773,7 @@
 				);
 				MARKETING_VERSION = 3.6.66;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
-				PRODUCT_NAME = "币游";
+				PRODUCT_NAME = "币游_dev";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
