@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BYRechargeUSDTTopView : CNBaseXibView
+@interface BYRechargeUSDTTopView : UITableViewCell
 
 @end
 

@@ -86,7 +86,7 @@
 #pragma mark - VIEWS
 
 - (void)setupViews {
-    [self setupTopView];
+//    [self setupTopView];
     [self setupBanner];
     [self setupMainEditView];
     [self setupSubmitBtn];
@@ -109,7 +109,7 @@
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(15);
         make.right.equalTo(self.view).offset(-15);
-        make.height.mas_equalTo(115);
+        make.height.mas_equalTo(100);
         make.top.equalTo(self.view).offset(16);
     }];
     self.topView = view;

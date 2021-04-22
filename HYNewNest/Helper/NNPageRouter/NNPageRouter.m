@@ -15,6 +15,7 @@
 #import "GameStartPlayViewController.h"
 #import "HYWithdrawViewController.h"
 #import "HYRechargeViewController.h"
+#import "BYRechargeUsdtVC.h"
 #import "HYRechargeCNYViewController.h"
 #import "CNLoginRegisterVC.h"
 #import "CNBindPhoneVC.h"
@@ -65,7 +66,8 @@
 
 + (void)jump2Deposit {
     if ([CNUserManager shareManager].isUsdtMode) {
-        [kCurNavVC pushViewController:[HYRechargeViewController new] animated:YES];
+//        [kCurNavVC pushViewController:[HYRechargeViewController new] animated:YES];
+        [kCurNavVC pushViewController:[BYRechargeUsdtVC new] animated:YES];
     } else {
         [kCurNavVC pushViewController:[HYRechargeCNYViewController new] animated:YES];
     }

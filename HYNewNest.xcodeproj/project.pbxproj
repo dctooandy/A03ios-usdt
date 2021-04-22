@@ -270,6 +270,8 @@
 		3D97005825A2C3ED003238C4 /* IN3SWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97004625A2C3ED003238C4 /* IN3SWebViewController.m */; };
 		3D97005925A2C3ED003238C4 /* IN3SManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97004925A2C3ED003238C4 /* IN3SManager.m */; };
 		3D97005A25A2C3ED003238C4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D97004B25A2C3ED003238C4 /* Info.plist */; };
+		3D97243D26300D98005E930C /* BYRechargeUsdtVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97243B26300D98005E930C /* BYRechargeUsdtVC.m */; };
+		3D97243E26300D98005E930C /* BYRechargeUsdtVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D97243C26300D98005E930C /* BYRechargeUsdtVC.xib */; };
 		3D9DA66125908327003C3F28 /* DSBWeekMonthListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */; };
 		3D9DA669259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA668259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m */; };
 		3D9DA66E25918DF0003C3F28 /* DSBWeekMonthListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66C25918DF0003C3F28 /* DSBWeekMonthListCell.m */; };
@@ -1473,6 +1475,9 @@
 		3D97004925A2C3ED003238C4 /* IN3SManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SManager.m; sourceTree = "<group>"; };
 		3D97004A25A2C3ED003238C4 /* IN3SUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SUtility.h; sourceTree = "<group>"; };
 		3D97004B25A2C3ED003238C4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D97243A26300D98005E930C /* BYRechargeUsdtVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYRechargeUsdtVC.h; sourceTree = "<group>"; };
+		3D97243B26300D98005E930C /* BYRechargeUsdtVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYRechargeUsdtVC.m; sourceTree = "<group>"; };
+		3D97243C26300D98005E930C /* BYRechargeUsdtVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYRechargeUsdtVC.xib; sourceTree = "<group>"; };
 		3D9DA65F25908327003C3F28 /* DSBWeekMonthListDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBWeekMonthListDataSource.h; sourceTree = "<group>"; };
 		3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBWeekMonthListDataSource.m; sourceTree = "<group>"; };
 		3D9DA667259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRecharWithdrwRankDataSource.h; sourceTree = "<group>"; };
@@ -4806,6 +4811,9 @@
 				0430AB3824E3CCCF00C873DC /* CNRechargeChosePayTypeVC.h */,
 				0430AB3924E3CCD000C873DC /* CNRechargeChosePayTypeVC.m */,
 				0430AB3A24E3CCD000C873DC /* CNRechargeChosePayTypeVC.xib */,
+				3D97243A26300D98005E930C /* BYRechargeUsdtVC.h */,
+				3D97243B26300D98005E930C /* BYRechargeUsdtVC.m */,
+				3D97243C26300D98005E930C /* BYRechargeUsdtVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5698,6 +5706,7 @@
 				D5A443DC24F378CD00014DC6 /* 彩票_00017.png in Resources */,
 				0487C9DB24D2627D0013715A /* CNXimaRecordTCell.xib in Resources */,
 				D5A4456124F393AC00014DC6 /* 棋牌_00056.png in Resources */,
+				3D97243E26300D98005E930C /* BYRechargeUsdtVC.xib in Resources */,
 				D5A4458224F393AD00014DC6 /* 棋牌_00021.png in Resources */,
 				D5A4446B24F3932400014DC6 /* 数字7_00077.png in Resources */,
 				D5A4471024F3941400014DC6 /* 合成 1_00056.png in Resources */,
@@ -6460,6 +6469,7 @@
 				3DBA55DB2570D188009A2B71 /* BetAmountModel.m in Sources */,
 				3D97004D25A2C3ED003238C4 /* IN3SConstants.m in Sources */,
 				048A0EE024C832F800411819 /* CNElectronicVC.m in Sources */,
+				3D97243D26300D98005E930C /* BYRechargeUsdtVC.m in Sources */,
 				042372A324CE65A000D37B9C /* CNSettingVC.m in Sources */,
 				3D97005125A2C3ED003238C4 /* IN3SGlobalModel.m in Sources */,
 				0487CA0624D3BAB90013715A /* CNInviteFriendVC.m in Sources */,

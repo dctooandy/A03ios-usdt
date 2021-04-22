@@ -45,7 +45,7 @@ typedef NS_ENUM(NSUInteger, LineDirection) {
 
 /// 给view添加10px圆角和阴影
 - (void)addCornerAndShadow;
-
+- (void)addCornerAndShadow6px;
 @end
 
 CG_INLINE CGRect//注意：这里的代码要放在.m文件最下面的位置
