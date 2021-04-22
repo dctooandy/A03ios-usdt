@@ -75,13 +75,10 @@
 #pragma mark CNY和USDT区别
 /// CNY和USDT 切换按钮
 @property (weak, nonatomic) IBOutlet UIButton *switchBtn;
-/// 中间六个模块中第四个模块标签
-@property (weak, nonatomic) IBOutlet UILabel *forthTapLb;
-/// 中间六个模块中第六个模块标签
-@property (weak, nonatomic) IBOutlet UIButton *sixthTapBtn;
-@property (weak, nonatomic) IBOutlet UILabel *sixthTapLb;
+/// 提现地址
+@property (weak, nonatomic) IBOutlet UILabel *fifthTapLb;
 /// CNY
-@property (weak, nonatomic) IBOutlet UIStackView *CNYBusinessView;
+@property (weak, nonatomic) IBOutlet UIView *CNYBusinessView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CNYBusinessViewH;
 /// USDT
 @property (weak, nonatomic) IBOutlet UIStackView *USDTBusinessView;
@@ -167,6 +164,12 @@
     }
 }
 
+// 优惠券
+- (IBAction)vourcher:(id)sender {
+    BYVocherCenterVC *vc = [BYVocherCenterVC new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 // 洗码
 - (IBAction)xima:(id)sender {
     [self.navigationController pushViewController:[HYXiMaViewController new] animated:YES];
@@ -193,18 +196,15 @@
 }
 
 // 充提指南/意见反馈
-- (IBAction)recharWithdrawGuide:(id)sender {
-    if ([CNUserManager shareManager].isUsdtMode) {
-        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
-        [self presentViewController:vc animated:YES completion:^{
-        }];
-        // 优惠券中心
-//        BYVocherCenterVC *vc = [BYVocherCenterVC new];
-//        [self.navigationController pushViewController:vc animated:YES];
-    } else {
-        [self.navigationController pushViewController:[CNFeedBackVC new] animated:YES];
-    }
-}
+//- (IBAction)recharWithdrawGuide:(id)sender {
+//    if ([CNUserManager shareManager].isUsdtMode) {
+//        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
+//        [self presentViewController:vc animated:YES completion:^{
+//        }];
+//    } else {
+//        [self.navigationController pushViewController:[CNFeedBackVC new] animated:YES];
+//    }
+//}
 
 // 邀请
 - (IBAction)invite:(id)sender {
@@ -273,9 +273,7 @@
     self.CNYBusinessView.hidden = isUsdtMode;
     self.CNYBusinessViewH.constant = isUsdtMode ? 0: 80;
     
-    self.forthTapLb.text = isUsdtMode ? @"提币地址": @"银行卡";
-    self.sixthTapLb.text = isUsdtMode ? @"充提指南": @"意见反馈";
-    [self.sixthTapBtn setImage:[UIImage imageNamed:@"yjfk"] forState:UIControlStateNormal];
+    self.fifthTapLb.text = isUsdtMode ? @"提币地址": @"银行卡";
     
     self.shareBgView.hidden = !isUsdtMode;
     self.shareBgViewH.constant = isUsdtMode?AD(90):0;
@@ -297,17 +295,17 @@
         
         // 3.加载WalletView YES
         // 判断用户是新钱包还是旧钱包
-//        if ([CNUserManager shareManager].userDetail.newWalletFlag) {
-//            if (!self.walletContainerView.subviews.count || [self.walletView isKindOfClass:[BYOldMyWalletView class]]) {
-//                [self.walletView removeFromSuperview];
-//                self.walletView = [[BYMyWalletView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-30, 217)];
-//                self.walletContainerHeightCons.constant = 217;
-//                [self.walletContainerView addSubview:self.walletView];
-//            } else {
-//                [self.walletView requestAccountBalances:YES];
-//            }
-//        } else {
-            if (!self.walletContainerView.subviews.count || [self.walletView isKindOfClass:[BYMyWalletView class]]) {
+        if ([CNUserManager shareManager].userInfo.newWalletFlag) {
+            if (!self.walletContainerView.subviews.count || [self.walletView isMemberOfClass:[BYOldMyWalletView class]]) {
+                [self.walletView removeFromSuperview];
+                self.walletView = [[BYMyWalletView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-30, 217)];
+                self.walletContainerHeightCons.constant = 217;
+                [self.walletContainerView addSubview:self.walletView];
+            } else {
+                [self.walletView requestAccountBalances:YES];
+            }
+        } else {
+            if (!self.walletContainerView.subviews.count || [self.walletView isMemberOfClass:[BYMyWalletView class]]) {
                 [self.walletView removeFromSuperview];
                 self.walletView = [[BYOldMyWalletView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-30, 148)];
                 self.walletContainerHeightCons.constant = 148;
@@ -315,7 +313,7 @@
             } else {
                 [self.walletView requestAccountBalances:YES];
             }
-//        }
+        }
     }
 }
 

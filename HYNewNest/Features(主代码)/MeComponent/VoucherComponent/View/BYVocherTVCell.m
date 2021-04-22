@@ -11,17 +11,22 @@
 #import "BYVocherModel.h"
 #import "HYWideOneBtnAlertView.h"
 #import "NSString+JKSize.h"
+#import "BYVoucherRequest.h"
 
 @interface BYVocherTVCell()
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UIButton *titleBtn;
 @property (weak, nonatomic) IBOutlet UILabel *statusLb;
 @property (weak, nonatomic) IBOutlet UILabel *totalAmountLb;
-@property (weak, nonatomic) IBOutlet UILabel *streamLb;
 @property (weak, nonatomic) IBOutlet UILabel *mianeAmountLb;
+
+@property (weak, nonatomic) IBOutlet UILabel *depositAmountTxtLb; //存款金额
 @property (weak, nonatomic) IBOutlet UILabel *depositAmountLb;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *depositAmountLbTopConst;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *depositAmountLbHeightCOnst;
+
+@property (weak, nonatomic) IBOutlet UILabel *streamLb;
 @property (weak, nonatomic) IBOutlet UILabel *totalStreamLb;
-@property (weak, nonatomic) IBOutlet UILabel *percentLb;
 @property (weak, nonatomic) IBOutlet UIProgressView *progsView;
 
 @property (weak, nonatomic) IBOutlet UILabel *suportGameRightLb;
@@ -58,7 +63,7 @@
         _btmDetailBtnHCons.constant = 0;
         _suportGameDetailLb.hidden = YES;
         _suportGameDetailLb.text = @"";
-        [_suportGameDetailLb sizeToFit];
+//        [_suportGameDetailLb sizeToFit];
         [self setNeedsLayout];
         [self layoutIfNeeded];
     }
@@ -73,53 +78,69 @@
         [self.titleBtn jk_setImagePosition:LXMImagePositionRight spacing:0];
     });
     
-    _statusLb.text = model.remarks;
+    _statusLb.text = VocherStatusString[model.status];
     switch (model.status) {
-        case 0:
         case 1:
-        case 9:
-            _percentLb.textColor = _statusLb.textColor = kHexColor(0xFFE090);
-            break;
         case 2:
+            _statusLb.textColor = kHexColor(0xFFE090);
+            break;
         case 3:
-            _percentLb.textColor = _statusLb.textColor = kHexColor(0x40FEB3);
+            _statusLb.textColor = kHexColor(0x40FEB3);
             break;
         case 8:
-            _percentLb.textColor = _statusLb.textColor = kHexColorAlpha(0x40FEB3, 0.3);
+            _statusLb.textColor = kHexColorAlpha(0x40FEB3, 0.3);
             break;
         case 4:
-        case 6:
         case 7:
-            _percentLb.textColor = _statusLb.textColor = kHexColorAlpha(0xFFFFFF, 0.1);
+            _statusLb.textColor = kHexColorAlpha(0xFFFFFF, 0.1);
             break;
         case 5:
-            _percentLb.textColor = _statusLb.textColor = kHexColorAlpha(0xFFFFFF, 0.5);
+            _statusLb.textColor = kHexColorAlpha(0xFFFFFF, 0.5);
             break;
         default:
             break;
     }
     
-    _mianeAmountLb.text = [@(model.bonusAmount) jk_toDisplayNumberWithDigit:2];
-    _depositAmountLb.text = [model.depositAmount jk_toDisplayNumberWithDigit:2];
-    _totalAmountLb.text = [@(model.totalAmount) jk_toDisplayNumberWithDigit:2];
-    _streamLb.text = [@(model.finishedBetAmount) jk_toDisplayNumberWithDigit:0];
-    _totalStreamLb.text = [@(model.unlockBetAmount) jk_toDisplayNumberWithDigit:0];
-    float percent = (model.finishedBetAmount*1.0)/(model.unlockBetAmount*1.0);
-    _progsView.progress = percent;
-    _percentLb.text = [NSString stringWithFormat:@"%.0f%%", percent*100];
+    _mianeAmountLb.text = [model.bonusAmount jk_toDisplayNumberWithDigit:2];
     
+    _depositAmountLb.text = [model.depositAmount jk_toDisplayNumberWithDigit:2];
+    
+    // 是否首存优惠
+    if ([model.depositAmount integerValue]) {
+        _depositAmountLb.hidden = NO;
+        _depositAmountTxtLb.hidden = NO;
+        _depositAmountLb.text = [model.depositAmount jk_toDisplayNumberWithDigit:2];
+        _depositAmountLbTopConst.constant = 10;
+        _depositAmountLbHeightCOnst.constant = 22;
+        
+    } else {
+        _depositAmountLb.hidden = YES;
+        _depositAmountTxtLb.hidden = YES;
+        _depositAmountLbTopConst.constant = 0;
+        _depositAmountLbHeightCOnst.constant = 0;
+    }
+    
+    _totalAmountLb.text = [model.totalAmount jk_toDisplayNumberWithDigit:2];
+    _streamLb.text = [model.finishedBetAmount jk_toDisplayNumberWithDigit:2];
+    _totalStreamLb.text = [model.unlockBetAmount jk_toDisplayNumberWithDigit:2];
+    float percent = model.finishedBetAmount.floatValue / model.unlockBetAmount.floatValue;
+    _progsView.progress = percent;
+    
+    // 是否有支持游戏
+    if (KIsEmptyString(model.platforms)) {
+        _suportGameRightLb.text = @"不限游戏类型";
+        _suportGameDetailLb.text = @"不限游戏类型";
+    } else {
+        _suportGameRightLb.text = model.platforms;
+        _suportGameDetailLb.text = model.platforms;
+    }
+    // 支持游戏字符串长度是否大于250
     if ([model.platforms jk_widthWithFont:[UIFont systemFontOfSize:14.0 weight:UIFontWeightLight] constrainedToHeight:30] > 250) {
         _suportGameRightArr.alpha = 1;
         _suportGameRightBtn.enabled = YES;
-        _suportGameRightLb.text = model.platforms;
-        _suportGameDetailLb.text = model.platforms;
     } else {
-        _suportGameRightArr.alpha = 0.1;
+        _suportGameRightArr.alpha = 0.3;
         _suportGameRightBtn.enabled = NO;
-        if (KIsEmptyString(model.platforms)) {
-            _suportGameRightLb.text = @"所有游戏";
-            _suportGameDetailLb.text = @"所有游戏";
-        }
     }
 }
 
@@ -137,6 +158,12 @@
 #pragma mark - Action
 
 - (IBAction)didTapDetailBtn:(id)sender {
+    // 跳转活动
+    if (self.model.linkUrl) {
+        [NNPageRouter jump2HTMLWithStrURL:self.model.linkUrl title:self.model.prizeName needPubSite:NO];
+    } else {
+        [CNHUB showError:@"优惠券未配置活动链接"];
+    }
 }
 
 

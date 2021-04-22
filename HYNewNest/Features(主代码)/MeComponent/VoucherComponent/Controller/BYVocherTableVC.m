@@ -37,6 +37,7 @@ static NSString *const kBYVocherCell = @"BYVocherTVCell";
 }
 
 - (void)setupTableView {
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     self.tableView.backgroundColor = kHexColor(0x10101C);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.estimatedRowHeight = 190;
@@ -66,10 +67,13 @@ static NSString *const kBYVocherCell = @"BYVocherTVCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    BYVocherModel *m = self.vouchers[indexPath.row];
     if ([self.expandRows containsObject:@(indexPath.row)]) {
-        return 324;
+        CGFloat h = 250 + 32 + (m.depositAmount.integerValue?32:0);
+        return h;
     }
-    return 250;
+    CGFloat h = 185 + 32 + (m.depositAmount.integerValue?32:0);
+    return h;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

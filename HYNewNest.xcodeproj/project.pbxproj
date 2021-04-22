@@ -5344,7 +5344,7 @@
 				3D13387424AD8F9C00B29783 /* Frameworks */,
 				3D13387524AD8F9C00B29783 /* Resources */,
 				28822A1001555599A37308F2 /* [CP] Embed Pods Frameworks */,
-				5DEC9F0E55F694C3750C9EA0 /* [CP] Copy Pods Resources */,
+				5C899EC6EE1A36F4BAD99257 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -6117,6 +6117,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		68F16BDF48216931ECD0C2E8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C08FB099C221193B86170E0B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -6154,23 +6171,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E43DFAD908603B137855A1CE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F9F6491387A6732DA715C6CA /* [CP] Check Pods Manifest.lock */ = {
