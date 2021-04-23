@@ -10,13 +10,13 @@
 #define SuperCopartnerTbConst_h
 
 typedef enum : NSInteger {
-    SuperCopartnerTypeMyBonus = 0, // 我的奖金
-    SuperCopartnerTypeMyRecommen,  // 我的推荐
+    SuperCopartnerTypeStarGifts = 0,   // 星级礼金
     SuperCopartnerTypeSXHBonus,    // 私享会礼金
-    SuperCopartnerTypeStarGifts,   // 星级礼金
-    SuperCopartnerTypeCumuBetRank, // 本月累投
-    
-    SuperCopartnerTypeMyGifts // 我的奖品
+    SuperCopartnerTypeMyBonus, // 我的奖金
+//    SuperCopartnerTypeMyRecommen,  // 我的推荐礼金
+    SuperCopartnerTypeCumuBetRank, // 本月累投排行榜
+    SuperCopartnerTypeMyXimaRebate // 我的洗码返佣
+//    SuperCopartnerTypeMyGifts // 我的奖品
 } SuperCopartnerType;
 
 //typedef void(^SCBlock)(BOOL success, SuperCopartnerType currType);
