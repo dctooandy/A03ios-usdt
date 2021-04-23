@@ -200,10 +200,10 @@ USDT支付渠道
     // 赋值
     cell.lineIdx = indexPath.row;
     if (indexPath.row == 0) { //人民币直充
-        cell.model = nil;
+        cell.deposModel = nil;
     } else {
         DepositsBankModel *m = self.depositModels[indexPath.row-1];
-        cell.model = m;
+        cell.deposModel = m;
     }
     // 状态
     dispatch_async(dispatch_get_main_queue(), ^{

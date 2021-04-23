@@ -102,7 +102,7 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WxF-Lk-kvD">
                                     <rect key="frame" x="116" y="0.0" width="279" height="53"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ENB-vp-zB2">
                                     <rect key="frame" x="28" y="80" width="359" height="90"/>
