@@ -14,6 +14,7 @@
 @interface BYRechargeUSDTTopView()
 {
     BOOL _isAmountRight;
+    NSString *_tipText;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *payWayImgv;
 @property (weak, nonatomic) IBOutlet UILabel *titleLb;
@@ -39,7 +40,9 @@
     [super awakeFromNib];
     self.backgroundColor = [UIColor clearColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     _isAmountRight = NO;
+    _tipText = @"";
     [self setupSubViewsUI];
 
 }
@@ -63,6 +66,7 @@
     [self.tfAmount setValue:kHexColorAlpha(0xFFFFFF, 0.4) forKeyPath:@"placeholderLabel.textColor"];
     [self.tfAmount setValue:[UIFont fontPFR15] forKeyPath:@"placeholderLabel.font"];
     [self.tfAmount addTarget:self action:@selector(amountTfDidChange:) forControlEvents:UIControlEventEditingChanged];
+    [self.tfAmount addTarget:self action:@selector(amountTfDidResignFirstResponder:) forControlEvents:UIControlEventEditingDidEnd];
 }
 
 - (UIButton *)getPortocalBtn {
@@ -96,22 +100,6 @@
         }
     }
 
-    // tmd小金库要隐藏协议
-//    if ([HYRechargeHelper isOnlinePayWayDCBox:self.deposModel]) {
-//        self.protocolBgView.hidden = YES;
-//        self.amountTfViewTopMargin.constant = 22;
-//        // 自内而外改变高度
-//        [self mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.height.mas_equalTo(249-62);
-//        }];
-//    } else {
-//        self.protocolBgView.hidden = NO;
-//        self.amountTfViewTopMargin.constant = 86;
-//        // 自内而外改变高度
-//        [self mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.height.mas_equalTo(249);
-//        }];
-//    }
 }
 
 
@@ -150,7 +138,8 @@
     [_rmbStaffImgv enumerateObjectsUsingBlock:^(UIImageView  * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.hidden = YES;
     }];
-    _tfAmount.placeholder = [NSString stringWithFormat:@"%ld%@起，最多%ld%@", deposModel.minAmount, deposModel.currency, deposModel.maxAmount, deposModel.currency];
+    NSString *tipText = [HYRechargeHelper amountTipUSDT:deposModel];
+    _tfAmount.placeholder = tipText;
     if ([deposModel.bankname caseInsensitiveCompare:@"dcbox"] == NSOrderedSame) {
         _titleLb.text = @"小金库";
         _contentLb.text = @"官方合作 到账快";
@@ -196,32 +185,30 @@
 
 #pragma mark - TextField
 
+- (void)amountTfDidResignFirstResponder:(UITextField *)tf {
+    if (!_isAmountRight) {
+        [CNHUB showError:_tipText];
+    }
+}
+
 - (void)amountTfDidChange:(UITextField *)tf {
     NSString *text = tf.text;
-    NSString *tipText = @"";
     // 校验金额
-    if ([text floatValue] < (float)self.deposModel.minAmount) {
-        tipText = [NSString stringWithFormat:@"请输入≥%ld%@的数额", self.deposModel.minAmount, self.deposModel.currency];;
+    if (![text isPrueIntOrFloat]) {
+        _tipText = @"请输入正确的数额";
+        _isAmountRight = NO;
+        
+    } else if ([text floatValue] < (float)self.deposModel.minAmount) {
+        _tipText = [NSString stringWithFormat:@"请输入≥%ld%@的数额", self.deposModel.minAmount, self.deposModel.currency];;
         _isAmountRight = NO;
         
     } else if ([text floatValue] > (float)self.deposModel.maxAmount){
-        tipText = [NSString stringWithFormat:@"超过最大充币额度%ld%@", self.deposModel.maxAmount, self.deposModel.currency];
+        _tipText = [NSString stringWithFormat:@"超过最大充币额度%ld%@", self.deposModel.maxAmount, self.deposModel.currency];
         _isAmountRight = NO;
         
     } else {
         _isAmountRight = YES;
     }
-    // 改变UI
-//    if (!_isAmountRight) {
-//        self.lblUponAmoTf.text = tipText;
-//        self.lblUponAmoTf.textColor = kHexColor(0xFF5D5B);
-//        self.amountTfBgView.layer.borderColor = kHexColor(0xFF5D5B).CGColor;
-//
-//    } else {
-//        self.lblUponAmoTf.text = @"充币额度";
-//        self.lblUponAmoTf.textColor = kHexColorAlpha(0xFFFFFF, 0.8);
-//        self.amountTfBgView.layer.borderColor = kHexColorAlpha(0xFFFFFF, 0.3).CGColor;
-//    }
     
     _submitBtn.enabled = _isAmountRight;
 }
