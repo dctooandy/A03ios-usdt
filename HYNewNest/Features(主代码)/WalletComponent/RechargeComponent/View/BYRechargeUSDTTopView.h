@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BYRechargeUSDTTopView : UITableViewCell
-@property (strong,nonatomic) DepositsBankModel * model; 
+@property (strong,nonatomic,nullable) DepositsBankModel * model; 
 @property (assign,nonatomic) NSInteger lineIdx; // 行数 必须赋值
 @property (copy,nonatomic) void(^didTapTopBgActionBlock)(NSInteger lineIdx);
 @end

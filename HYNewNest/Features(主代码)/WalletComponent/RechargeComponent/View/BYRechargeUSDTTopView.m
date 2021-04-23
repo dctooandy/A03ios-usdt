@@ -38,15 +38,17 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     [_bgView addCornerAndShadow6px];
+    _bgView.layer.borderColor = kHexColor(0x10B4DD).CGColor;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTopBgView)];
+    [_bgView addGestureRecognizer:tap];
+    
     [_mainEditBgView addCornerAndShadow6px];
     _mainEditBgView.layer.masksToBounds = YES;
     
-    _bgView.layer.borderColor = kHexColor(0x10B4DD).CGColor;
     [_titleLb setupGradientColorDirection:BYLblGrdtColorDirectionLeftRight From:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE)];
     
     UIImage *gdBgImg = [UIColor gradientImageFromColors:@[kHexColor(0x19CECE),kHexColor(0x10B4DD)] gradientType:GradientTypeLeftToRight imgSize:CGSizeMake(_submitBtn.width, _submitBtn.height)];
     [_submitBtn setBackgroundImage:gdBgImg forState:UIControlStateNormal];
-    
     
     [self.tfAmount setValue:kHexColorAlpha(0xFFFFFF, 0.4) forKeyPath:@"placeholderLabel.textColor"];
     [self.tfAmount setValue:[UIFont fontPFR15] forKeyPath:@"placeholderLabel.font"];
@@ -59,29 +61,44 @@
     _selBtn.selected = selected;
     if (selected) {
         _bgView.layer.borderWidth = 1.0;
-//        _bgView.backgroundColor = kHexColor(0x3C3C6A);
-        _mainEditBgView.hidden = NO;
+        _mainEditBgView.hidden = _model?NO:YES;
     } else {
         _bgView.layer.borderWidth = 0.0;
-//        _bgView.backgroundColor = kHexColor(0x272749);
         _mainEditBgView.hidden = YES;
     }
 }
 
 - (void)setModel:(DepositsBankModel *)model {
     _model = model;
-//    [_imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:model.bankIcon] placeholderImage:[UIImage imageNamed:@"rmb"]];
+//    [_payWayImgv sd_setImageWithURL:[NSURL getUrlWithString:model.bankIcon] placeholderImage:[UIImage imageNamed:@"rmb"]];
+    
+    // RMB直冲方式
+    if (model == nil) {
+        _titleLb.text = @"人民币直充";
+        _contentLb.text = @"买币直接上分";
+        _payWayImgv.image = [UIImage imageNamed:@"rmb"];
+        [_rmbStaffImgv enumerateObjectsUsingBlock:^(UIImageView  * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.hidden = NO;
+        }];
+        return;
+    }
+    
+    // 其他支付方式
+    [_rmbStaffImgv enumerateObjectsUsingBlock:^(UIImageView  * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.hidden = YES;
+    }];
     _tfAmount.placeholder = [NSString stringWithFormat:@"%ld%@起，最多%ld%@", model.minAmount, model.currency, model.maxAmount, model.currency];
     if ([model.bankname caseInsensitiveCompare:@"dcbox"] == NSOrderedSame) {
         _titleLb.text = @"小金库";
+        _contentLb.text = @"官方合作 到账快";
         _payWayImgv.image = [UIImage imageNamed:@"xjk"];
     } else if ([HYRechargeHelper isUSDTOtherBankModel:model]){
         _titleLb.text = @"其他钱包";
+        _contentLb.text = @"任意钱包上分";
         _payWayImgv.image = [UIImage imageNamed:@"qtqb"];
     } else {
         _titleLb.text = model.bankname;
     }
-    
     
     //protocols
     NSString *pros = model.usdtProtocol;
@@ -187,12 +204,11 @@
 
 #pragma mark - ACTION
 
-//- (IBAction)didTapTopBgView:(id)sender {
-//    MyLog(@"点击伸缩");
-//    if (self.didTapTopBgActionBlock) {
-//        self.didTapTopBgActionBlock(self.lineIdx);
-//    }
-//}
+- (void)didTapTopBgView {
+    if (self.didTapTopBgActionBlock) {
+        self.didTapTopBgActionBlock(self.lineIdx);
+    }
+}
 
 - (IBAction)didTapSubmitBtn:(id)sender {
     MyLog(@"提交订单+获取地址");

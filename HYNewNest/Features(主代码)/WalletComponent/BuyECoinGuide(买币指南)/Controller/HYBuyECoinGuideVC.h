@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// deprecated
 @interface HYBuyECoinGuideVC : CNBaseVC
 //@property (nonatomic, assign) BOOL notshowDexchangeFlag;
 

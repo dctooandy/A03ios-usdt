@@ -31,7 +31,7 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTop2BgViewCons;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (assign,nonatomic) NSInteger selIdx; //!<选中行 未选中设置为-1
+@property (assign,nonatomic) NSInteger selIdx; //!<选中行 未选中行时设置为-1
 @property (nonatomic, strong) OnlineBanksModel *curOnliBankModel;
 @property (nonatomic, strong) NSArray<DepositsBankModel *> *depositModels;
 
@@ -91,11 +91,11 @@ USDT支付渠道
     [CNRechargeRequest queryUSDTPayWalletsHandler:^(id responseObj, NSString *errorMsg) {
         NSArray *depositModels = [DepositsBankModel cn_parse:responseObj];
         NSMutableArray *models = @[].mutableCopy;
-        for (DepositsBankModel *bank in depositModels) {
+        [depositModels enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(DepositsBankModel*  _Nonnull bank, NSUInteger idx, BOOL * _Nonnull stop) {
             if (([bank.bankname isEqualToString:@"dcbox"] || [HYRechargeHelper isUSDTOtherBankModel:bank])) {
                 [models addObject:bank];
             }
-        }
+        }];
         self.depositModels = models;
         
         if (models.count == 0) {
@@ -103,7 +103,7 @@ USDT支付渠道
         } else {
             [self.view ly_hideEmptyView];
         }
-        
+        [self.tableView reloadData];
     }];
 }
 
@@ -111,7 +111,7 @@ USDT支付渠道
 在线类支付 需要
 */
 - (void)queryOnlineBankAmount {
-    // !!!: @"ERC20"写死的
+    // !!!: @"ERC20"写死的 这里需要获取当前选中的默认协议
     if (_selIdx < 1) { //0是直充
         return;
     }
@@ -169,11 +169,11 @@ USDT支付渠道
 
 #pragma mark - UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return self.depositModels.count+1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == _selIdx) {
+    if (indexPath.row == _selIdx && _selIdx != 0) {
         return 448;
     } else {
         return 120;
@@ -182,19 +182,30 @@ USDT支付渠道
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BYRechargeUSDTTopView *cell = [tableView dequeueReusableCellWithIdentifier:cellName];
+    
+    // action
+    WEAKSELF_DEFINE
+    cell.didTapTopBgActionBlock = ^(NSInteger lineIdx) {
+        STRONGSELF_DEFINE
+        if (strongSelf.selIdx == lineIdx) { // 点击已选中的cell
+            strongSelf.selIdx = -1;
+        } else { // 点击未选中的cell
+            strongSelf.selIdx = lineIdx;
+            if (lineIdx == 0) {
+                [NNPageRouter jump2BuyECoin];
+            }
+        }
+    };
+    
+    // 赋值
     cell.lineIdx = indexPath.row;
-//    WEAKSELF_DEFINE
-//    cell.didTapTopBgActionBlock = ^(NSInteger lineIdx) {
-//        if (weakSelf.selIdx == indexPath.row) { // 点击选中的cell
-//            weakSelf.selIdx = -1;
-//        } else { // 点击未选中的cell
-//            weakSelf.selIdx = indexPath.row;
-//        }
-//    };
-    if (_selIdx > 0) { //非人民币直充
-        DepositsBankModel *m = self.depositModels[_selIdx-1];
+    if (indexPath.row == 0) { //人民币直充
+        cell.model = nil;
+    } else {
+        DepositsBankModel *m = self.depositModels[indexPath.row-1];
         cell.model = m;
     }
+    // 状态
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self->_selIdx == indexPath.row) {
             [cell setSelected:YES animated:YES];
@@ -202,18 +213,22 @@ USDT支付渠道
             [cell setSelected:NO animated:YES];
         }
     });
+    
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    if (_selIdx == indexPath.row) { // 点击选中的cell
-        self.selIdx = -1;
-    } else { // 点击未选中的cell
-        self.selIdx = indexPath.row;
-    }
-
-}
+//    if (_selIdx == indexPath.row) { // 点击选中的cell
+//        self.selIdx = -1;
+//    } else { // 点击未选中的cell
+//        self.selIdx = indexPath.row;
+//        if (lineIdx == 0) {
+//            [NNPageRouter jump2BuyECoin];
+//        }
+//    }
+//
+//}
 
 
 @end
