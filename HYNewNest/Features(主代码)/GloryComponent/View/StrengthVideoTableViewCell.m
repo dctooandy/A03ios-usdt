@@ -45,7 +45,7 @@
         _newsTitleLabel.frame = CGRectMake(15, 15, self.width - 30, 20);
 
         _player = [SJVideoPlayer player];
-        _player.defaultEdgeControlLayer.showResidentBackButton = NO;
+//        _player.defaultEdgeControlLayer.showResidentBackButton = NO;
         _player.autoplayWhenSetNewAsset = NO;
         _player.pauseWhenAppDidEnterBackground = YES;
         _player.pausedToKeepAppearState = YES;
