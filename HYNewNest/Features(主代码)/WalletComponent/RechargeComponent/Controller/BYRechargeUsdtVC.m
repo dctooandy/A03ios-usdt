@@ -64,19 +64,15 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
     self.title = @"充币";
     _selIdx = -1;
     [self addNaviRightItemWithImageName:@"kf"];
     
-    _tableView.contentInset = UIEdgeInsetsMake(150, 0, 0, 0);// 顶部间隙
+    _tableView.contentInset = UIEdgeInsetsMake(25, 0, 0, 0);// 顶部间隙
     [_tableView registerNib:[UINib nibWithNibName:cellName bundle:nil] forCellReuseIdentifier:cellName];
     _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"kongduixiang" titleStr:@"暂无充值渠道" detailStr:@""];
     
-    //TODO: banner
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTopBannerImgv:)];
-    [_topBanner addGestureRecognizer:tap];
+    _btmBanner.delegate = self;
     
     [self queryDepositBankPayWays];
 }
@@ -96,20 +92,39 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
     [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
 }
 
+- (void)setupBtmBanners {
+//    self.btmBanner.layer.cornerRadius = 10;
+//    self.btmBanner.layer.masksToBounds = YES;
+    self.btmBanner.autoScrollTimeInterval = 3;
+    self.btmBanner.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
+    self.btmBanner.pageControlBottomOffset = AD(120)+5;
+    self.btmBanner.pageControlRightOffset = -50;
+    
+    NSString *root = self.btmBannerDict[@"root"];
+    NSArray *h5_imgs = self.btmBannerDict[@"h5_img"];
+    NSMutableArray *h5_imgs_full = @[].mutableCopy;
+    [h5_imgs enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *full = [root stringByAppendingString:obj];
+        [h5_imgs_full addObject:full];
+    }];
+    [self.btmBanner setImageURLStringsGroup:h5_imgs_full.copy];
+}
 
 #pragma mark - REQUEST
 - (void)getPayAmountShortCuts {
     [CNRechargeRequest getShortCutsHandler:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-            self->amount_list = responseObj[@"amount_list"]; //快捷输入
+        if (!errorMsg && [responseObj isKindOfClass:[NSArray class]]) {
+            NSDictionary *dict = responseObj[0];
+            self->amount_list = dict[@"amount_list"]; //快捷输入
             
-            NSString *promo = responseObj[@"promo_info"]; // 顶部广告图
+            NSString *promo = dict[@"promo_info"]; // 顶部广告图
             self.topBannerDict = [promo jk_dictionaryValue];
             NSString *topUrl = [self.topBannerDict[@"root"] stringByAppendingString:self.topBannerDict[@"h5_img"]];
             [self.topBanner sd_setImageWithURL:[NSURL URLWithString:topUrl]];
             
-            NSString *teaching = responseObj[@"teaching"]; //TODO: 轮播图
+            NSString *teaching = dict[@"teaching"]; //轮播图
             self.btmBannerDict = [teaching jk_dictionaryValue];
+            [self setupBtmBanners];
         }
     }];
 }
@@ -121,7 +136,7 @@ USDT支付渠道
     [CNRechargeRequest queryUSDTPayWalletsHandler:^(id responseObj, NSString *errorMsg) {
         NSArray *depositModels = [DepositsBankModel cn_parse:responseObj];
         NSMutableArray *models = @[].mutableCopy;
-        [depositModels enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(DepositsBankModel*  _Nonnull bank, NSUInteger idx, BOOL * _Nonnull stop) {
+        [depositModels enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(DepositsBankModel*  _Nonnull bank, NSUInteger idx, BOOL * _Nonnull stop) {
             if (([bank.bankname isEqualToString:@"dcbox"] || [HYRechargeHelper isUSDTOtherBankModel:bank])) {
                 [models addObject:bank];
             }
@@ -213,7 +228,7 @@ USDT支付渠道
             self.tableViewBtm2SafeAreaCons.priority = UILayoutPriorityDefaultLow;
             self.tableViewTop2BgViewCons.priority = UILayoutPriorityDefaultLow;
 
-            self.tableView.contentInset = UIEdgeInsetsMake(150, 0, 0, 0);//150
+            self.tableView.contentInset = UIEdgeInsetsMake(25, 0, 0, 0);//150
         }];
     } else {
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -230,12 +245,14 @@ USDT支付渠道
         NSIndexPath *idxPath = [NSIndexPath indexPathForRow:(selIdx>0)?selIdx:0 inSection:0];
         [self.tableView scrollToRowAtIndexPath:idxPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     }
+    [self.view setNeedsLayout];
+    [self.view layoutIfNeeded];
     [self.tableView reloadData];
 }
 
 
 #pragma mark - Action
-- (void)didTapTopBannerImgv:(id)sender {
+- (IBAction)didTapTopBannerImage:(id)sender {
     if (_topBannerDict) {
         NSString *promo_url = _topBannerDict[@"promo_url"];
         [NNPageRouter jump2HTMLWithStrURL:promo_url title:@"充币活动" needPubSite:NO];
@@ -245,8 +262,10 @@ USDT支付渠道
 
 #pragma mark - SDCycleScrollViewDelegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-    if (cycleScrollView == _topBanner) {
-        MyLog(@"点击了顶部");
+    
+    if (_btmBannerDict) {
+//        NSString *promo_url = _btmBannerDict[@"promo_url"];
+        MyLog(@"点击了底部");
     }
 }
 

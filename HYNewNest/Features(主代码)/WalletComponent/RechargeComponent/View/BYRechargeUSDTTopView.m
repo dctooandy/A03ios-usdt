@@ -11,7 +11,7 @@
 #import "BYThreeStatusBtn.h"
 #import "HYRechargeHelper.h"
 
-@interface BYRechargeUSDTTopView()
+@interface BYRechargeUSDTTopView() <UIGestureRecognizerDelegate>
 {
     BOOL _isAmountRight;
     NSString *_tipText;
@@ -47,6 +47,13 @@
 
 }
 
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+//    if (touch.phase == UITouchPhaseEnded) {
+//        return NO;
+//    }
+//    return YES;
+//}
+
 
 #pragma mark - UI
 
@@ -54,6 +61,7 @@
     [_bgView addCornerAndShadow6px];
     _bgView.layer.borderColor = kHexColor(0x10B4DD).CGColor;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTopBgView)];
+    tap.delegate = self;
     [_bgView addGestureRecognizer:tap];
     
     [_mainEditBgView addCornerAndShadow6px];
@@ -249,5 +257,8 @@
     [self amountTfDidChange:_tfAmount];
 }
 
+- (IBAction)didTapQuestion:(id)sender {
+    
+}
 
 @end
