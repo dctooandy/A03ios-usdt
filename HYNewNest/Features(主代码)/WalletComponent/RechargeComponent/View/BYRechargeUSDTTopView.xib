@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -122,6 +121,9 @@
                                                             <integer key="value" value="-1"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="didTapShortCutAmountBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ol7-PY-1mr"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNo-ZA-mDA" customClass="BYThreeStatusBtn">
                                                     <rect key="frame" x="123" y="0.0" width="113" height="40"/>
@@ -129,12 +131,15 @@
                                                         <constraint firstAttribute="height" constant="40" id="owh-Sh-HHQ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
-                                                    <state key="normal" title="20"/>
+                                                    <state key="normal" title="100"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="ibStatus">
                                                             <integer key="value" value="-1"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="didTapShortCutAmountBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="99j-2o-yvz"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPN-BT-si5" customClass="BYThreeStatusBtn">
                                                     <rect key="frame" x="246" y="0.0" width="113" height="40"/>
@@ -142,12 +147,15 @@
                                                         <constraint firstAttribute="height" constant="40" id="wIQ-sn-NCt"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
-                                                    <state key="normal" title="20"/>
+                                                    <state key="normal" title="200"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="ibStatus">
                                                             <integer key="value" value="-1"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="didTapShortCutAmountBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="ShF-00-G9i"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -160,12 +168,15 @@
                                                         <constraint firstAttribute="height" constant="40" id="cZd-d7-eaO"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
-                                                    <state key="normal" title="20"/>
+                                                    <state key="normal" title="500"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="ibStatus">
                                                             <integer key="value" value="-1"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="didTapShortCutAmountBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="Vzx-DZ-uCZ"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kdi-s3-Fzg" customClass="BYThreeStatusBtn">
                                                     <rect key="frame" x="123" y="0.0" width="113" height="40"/>
@@ -173,12 +184,15 @@
                                                         <constraint firstAttribute="height" constant="40" id="1xk-bY-fmO"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
-                                                    <state key="normal" title="20"/>
+                                                    <state key="normal" title="1000"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="ibStatus">
                                                             <integer key="value" value="-1"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="didTapShortCutAmountBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="Swh-9G-aiZ"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FoY-Ld-ct9" customClass="BYThreeStatusBtn">
                                                     <rect key="frame" x="246" y="0.0" width="113" height="40"/>
@@ -186,17 +200,20 @@
                                                         <constraint firstAttribute="height" constant="40" id="XwR-qK-MRk"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
-                                                    <state key="normal" title="20"/>
+                                                    <state key="normal" title="2000"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="ibStatus">
                                                             <integer key="value" value="-1"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="didTapShortCutAmountBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="NEE-aD-Hgl"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="90" id="2DC-be-yhI"/>
                                         <constraint firstAttribute="trailing" secondItem="Wld-GQ-kWs" secondAttribute="trailing" id="6Hn-mL-zGW"/>
@@ -321,8 +338,5 @@
         <image name="unSelect" width="16" height="16"/>
         <image name="zffs" width="70" height="17"/>
         <image name="疑问" width="16" height="16"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

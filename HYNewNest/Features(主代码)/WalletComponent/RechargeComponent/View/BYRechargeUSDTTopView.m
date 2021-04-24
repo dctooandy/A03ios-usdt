@@ -232,9 +232,22 @@
 }
 
 - (IBAction)didTapSubmitBtn:(id)sender {
-    MyLog(@"提交订单+获取地址");
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didTapDepositBtnModel:amount:protocol:)]) {
+        [self.delegate didTapDepositBtnModel:self.deposModel
+                                      amount:self.tfAmount.text
+                                    protocol:self.selectedProtocol];
+    }
 }
 
+- (IBAction)didTapShortCutAmountBtn:(BYThreeStatusBtn *)sender {
+    sender.status = CNThreeStaBtnStatusGradientBackground;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        sender.status = CNThreeStaBtnStatusGradientBorder;
+    });
+    
+    _tfAmount.text = sender.titleLabel.text;
+    [self amountTfDidChange:_tfAmount];
+}
 
 
 @end

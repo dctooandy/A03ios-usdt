@@ -7,23 +7,37 @@
 //
 
 #import "BYRechargeUsdtVC.h"
+#import "CNTradeRecodeVC.h"
 
 #import "HYRechargeHelper.h"
 #import "IN3SAnalytics.h"
 #import "CNRechargeRequest.h"
+#import <UIImageView+WebCache.h>
 
 #import "SDCycleScrollView.h"
 #import "BYRechargeUSDTTopView.h" //这是cell
 #import "LYEmptyView.h"
 #import "UIView+Empty.h"
+#import "ChargeManualMessgeView.h"
 
 static NSString * const cellName = @"BYRechargeUSDTTopView";
 
-@interface BYRechargeUsdtVC () <UITableViewDelegate, UITableViewDataSource, SDCycleScrollViewDelegate>
-@property (weak, nonatomic) IBOutlet SDCycleScrollView *topBanner;
+@interface BYRechargeUsdtVC () <UITableViewDelegate, UITableViewDataSource, SDCycleScrollViewDelegate, BYRechargeUSDTViewDelegate>
+{
+    NSString *amount_list;
+}
+@property (weak, nonatomic) IBOutlet UIImageView *topBanner;
 @property (weak, nonatomic) IBOutlet UIView *btmBannerBg;
 @property (weak, nonatomic) IBOutlet SDCycleScrollView *btmBanner;
 @property (weak, nonatomic) IBOutlet UIPageControl *btmBannerControl;
+/**{
+ "amount_list" = "20;100;200;500;1000;2000";
+ id = 1738;
+ "promo_info" = "{ \"h5_img\": \"cbymtch5.png\",\"pc_img\": \"cbymtcpc.png\",\"promo_url\": \"/pub_site/coin\",  \"root\":\"https://83e6dyfront.58baili.com/cdn/83e6dyP/externals/img/_wms/banner-biyou/\"}";
+ teaching = "{ \"h5_img\": [\"cbymtch5.png\",\"cbymtch5.png\",\"cbymtch5.png\"], \"pc_img\": [\"cbymtch5.png\",\"cbymtch5.png\",\"cbymtch5.png\"], \"root\": \"https://83e6dyfront.58baili.com/cdn/83e6dyP/externals/img/_wms/banner-biyou/\" }";
+}*/
+@property (strong,nonatomic) NSDictionary *topBannerDict; //!<顶部banner数据
+@property (strong,nonatomic) NSDictionary *btmBannerDict; //!<底部轮播数据
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewBtm2BannerCons;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewBtm2SafeAreaCons;
@@ -60,8 +74,9 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
     [_tableView registerNib:[UINib nibWithNibName:cellName bundle:nil] forCellReuseIdentifier:cellName];
     _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"kongduixiang" titleStr:@"暂无充值渠道" detailStr:@""];
     
-    _topBanner.localizationImageNamesGroup = @[@"gg"];
-    _topBanner.delegate = self;
+    //TODO: banner
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTopBannerImgv:)];
+    [_topBanner addGestureRecognizer:tap];
     
     [self queryDepositBankPayWays];
 }
@@ -83,6 +98,21 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
 
 
 #pragma mark - REQUEST
+- (void)getPayAmountShortCuts {
+    [CNRechargeRequest getShortCutsHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+            self->amount_list = responseObj[@"amount_list"]; //快捷输入
+            
+            NSString *promo = responseObj[@"promo_info"]; // 顶部广告图
+            self.topBannerDict = [promo jk_dictionaryValue];
+            NSString *topUrl = [self.topBannerDict[@"root"] stringByAppendingString:self.topBannerDict[@"h5_img"]];
+            [self.topBanner sd_setImageWithURL:[NSURL URLWithString:topUrl]];
+            
+            NSString *teaching = responseObj[@"teaching"]; //TODO: 轮播图
+            self.btmBannerDict = [teaching jk_dictionaryValue];
+        }
+    }];
+}
 
 /**
 USDT支付渠道
@@ -103,7 +133,9 @@ USDT支付渠道
         } else {
             [self.view ly_hideEmptyView];
         }
+        
         [self.tableView reloadData];
+        [self getPayAmountShortCuts];
     }];
 }
 
@@ -124,6 +156,49 @@ USDT支付渠道
             self.curOnliBankModel = oModel;
         }
     }];
+}
+
+/**
+ 提交充值
+ */
+- (void)didTapDepositBtnModel:(DepositsBankModel *)model
+                       amount:(NSString *)amountStr
+                     protocol:(NSString *)protocolStr {
+    
+    if ([HYRechargeHelper isUSDTOtherBankModel:model]) {
+        [CNRechargeRequest submitOnlinePayOrderV2Amount:amountStr
+                                               currency:model.currency
+                                           usdtProtocol:protocolStr
+                                                payType:model.payType
+                                                handler:^(id responseObj, NSString *errorMsg) {
+            
+            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+                ChargeManualMessgeView *view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"address"] retelling:nil type:ChargeMsgTypeOTHERS];
+                view.clickBlock = ^(BOOL isSure) {
+                    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
+                };
+                [kKeywindow addSubview:view];
+            }
+        }];
+        
+    } else {
+        [CNRechargeRequest submitOnlinePayOrderAmount:amountStr
+                                             currency:model.currency
+                                         usdtProtocol:protocolStr
+                                              payType:model.payType
+                                                payid:self.curOnliBankModel.payid
+                                           showQRCode:1
+                                              handler:^(id responseObj, NSString *errorMsg) {
+            
+            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+                ChargeManualMessgeView *view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"payUrl"] retelling:nil type:[HYRechargeHelper isUSDTOtherBankModel:model]?ChargeMsgTypeOTHERS:ChargeMsgTypeDCBOX];
+                view.clickBlock = ^(BOOL isSure) {
+                    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
+                };
+                [kKeywindow addSubview:view];
+            }
+        }];
+    }
 }
 
 
@@ -156,6 +231,15 @@ USDT支付渠道
         [self.tableView scrollToRowAtIndexPath:idxPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     }
     [self.tableView reloadData];
+}
+
+
+#pragma mark - Action
+- (void)didTapTopBannerImgv:(id)sender {
+    if (_topBannerDict) {
+        NSString *promo_url = _topBannerDict[@"promo_url"];
+        [NNPageRouter jump2HTMLWithStrURL:promo_url title:@"充币活动" needPubSite:NO];
+    }
 }
 
 
@@ -198,6 +282,7 @@ USDT支付渠道
     };
     
     // 赋值
+    cell.delegate = self;
     cell.lineIdx = indexPath.row;
     if (indexPath.row == 0) { //人民币直充
         cell.deposModel = nil;
@@ -205,6 +290,7 @@ USDT支付渠道
         DepositsBankModel *m = self.depositModels[indexPath.row-1];
         cell.deposModel = m;
     }
+    
     // 状态
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self->_selIdx == indexPath.row) {

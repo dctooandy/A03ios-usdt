@@ -11,8 +11,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol BYRechargeUSDTViewDelegate <NSObject>
+/// 点了充值按钮
+- (void)didTapDepositBtnModel:(DepositsBankModel *)model amount:(NSString *)amountStr protocol:(NSString *)protocolStr;
+@end
+
 @interface BYRechargeUSDTTopView : UITableViewCell
 
+@property (weak,nonatomic) id<BYRechargeUSDTViewDelegate> delegate;
+
+@property (nonatomic, copy, readonly) NSString *rechargeAmount; //!< 用户写入的金额
 @property (nonatomic, copy, readonly) NSString *selectedProtocol; //!< 选中的协议
 
 @property (strong,nonatomic,nullable) DepositsBankModel * deposModel; //!< 模型

@@ -22,7 +22,7 @@
      self.edgesForExtendedLayout = UIRectEdgeNone;
     
     _player = [SJVideoPlayer player];
-    _player.defaultEdgeControlLayer.showResidentBackButton = YES;
+//    _player.defaultEdgeControlLayer.showResidentBackButton = YES;
     _player.pausedToKeepAppearState = YES;
     _player.controlLayerAppearManager.interval = 5; // 设置控制层隐藏间隔
     _player.resumePlaybackWhenAppDidEnterForeground = YES;
