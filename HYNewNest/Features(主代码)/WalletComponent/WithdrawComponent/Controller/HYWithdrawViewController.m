@@ -76,7 +76,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self getBalance];
+    [self requestBalance];
     [self requestWithdrawAddress];
 }
 
@@ -183,14 +183,14 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     }
 }
 
-- (void)getBalance {
-    [self.topView.lblAmount showIndicatorIsBig:YES];
-    [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-        self.moneyModel = model;
-        [self.topView.lblAmount hideIndicatorWithText:[model.withdrawBal jk_toDisplayNumberWithDigit:2]];
-        self.sumitBtn.enabled = YES;
-    }];
-}
+//- (void)getBalance {
+//    [self.topView.lblAmount showIndicatorIsBig:YES];
+//    [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
+//        self.moneyModel = model;
+//        [self.topView.lblAmount hideIndicatorWithText:[model.withdrawBal jk_toDisplayNumberWithDigit:2]];
+//        self.sumitBtn.enabled = YES;
+//    }];
+//}
 
 #pragma mark - REQUEST
 - (void)requestBalance {
