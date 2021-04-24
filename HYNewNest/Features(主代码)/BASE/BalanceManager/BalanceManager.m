@@ -239,32 +239,27 @@
 }
 
 + (void)requestWithdrawAbleBalanceHandler:(nullable  AccountBalancesBlock)handler {
+    
+    NSMutableDictionary *param = @{}.mutableCopy;
     if ([CNUserManager shareManager].userDetail.newWalletFlag) {
-        NSMutableDictionary *param = @{}.mutableCopy;
         param[@"flag"] = @9;
         param[@"walletCreditForPlatformFlag"] = @0;
         param[@"realTimeFlag"] = @"true";
         param[@"defineFlag"] = [CNUserManager shareManager].isUsdtMode?@1:@0;
         
-        [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
-            if (!errorMsg) {
-                AccountMoneyDetailModel *model = [AccountMoneyDetailModel cn_parse:responseObj];
-                handler(model);
-            }
-        }];
-        
     } else {
-        NSMutableDictionary *param = [kNetworkMgr baseParam];
         [param setObject:@"9" forKey:@"flag"];
         [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"];
         
-        [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
-            if (!errorMsg) {
-                AccountMoneyDetailModel *model = [AccountMoneyDetailModel cn_parse:responseObj];
-                handler(model);
-            }
-        }];
     }
+    
+    [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            AccountMoneyDetailModel *model = [AccountMoneyDetailModel cn_parse:responseObj];
+            handler(model);
+        }
+    }];
+    
 }
 
 @end
