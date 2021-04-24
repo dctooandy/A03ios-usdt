@@ -136,6 +136,7 @@
 
 + (void)presentOCSS_VC:(CNLive800Type)type {
     // 打开新客服入口
+    MyLog(@"新客服版本：%@",[CSVisitChatmanager getVersion]);
     CSChatInfo *info = [[CSChatInfo alloc]init];
     info.backColor = [UIColor lightGrayColor];
     info.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontPFSB18]};

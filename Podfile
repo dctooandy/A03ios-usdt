@@ -22,10 +22,8 @@ target 'HYNewNest' do
   pod 'JKCategories'
   # 个推
 #  pod 'GTSDK'
-
   # webSocket
   pod 'SocketRocket'
-  
   pod 'CocoaAsyncSocket'
   
   # 公共接口
@@ -39,12 +37,13 @@ target 'HYNewNest' do
   # 天网埋点
   pod 'IVLoganAnalysis',:git =>'http://10.66.72.115/mobile-iOS-library/IVLoganAnalysis.git'
   # OCSS客服
-  pod 'CSSerVice',:git =>'http://10.66.72.115/mobile-iOS-library/ocss-webview-sdk-demo-ios.git' ,:tag=>'0.1.0'
+  pod 'CSSerVice',:git =>'http://10.66.72.115/mobile-iOS-library/ocss-webview-sdk-demo-ios.git' ,:tag=>'0.1.1'
   
   pod 'LookinServer', :configurations => ['Debug']
   
   
-  # 注意：【IVNetworkLibrary2.0】文件：IVHTTPBaseRequest.h & .m 有自定义内容；【IVCheckNetworkLibrary】文件：IVCheckNetworkWrapper.m (aggameh5) 有自定义内容；且【SJVideoPlayer】的仓库地址被公司黑名单。。。因此严禁使用pod update
+  # 注意：【IVNetworkLibrary2.0】文件：IVHTTPBaseRequest.h & .m 有自定义内容；【IVCheckNetworkLibrary】文件：IVCheckNetworkWrapper.m (aggameh5) 有自定义内容；且【SJVideoPlayer】的仓库地址被公司黑名单。。。因此谨慎使用'pod install'。
+  # 使用'pod update CSSerVice'更新单个库，然后将'IVCheckNetworkLibrary'和'IVCheckNetworkLibrary'的bitcode配置改为NO (网络库埋下的坑)
   # 如果不慎更新了 请根据下面的代码查找后直接替换；请求AE临时开通权限
   
 #  typedef NS_ENUM(NSInteger,IVNEnvironment){
@@ -54,15 +53,15 @@ target 'HYNewNest' do
 #      IVNEnvironmentPublish = 2,// 运营
 #  };
 
-#switch (self.environment) {
-#//        case IVNEnvironmentTest:
-#    case IVNEnvironmentDevelop:
-#        keyEnum = @"1";
-#        break;
-#    default:
-#        keyEnum = @"0";
-#        break;
-#}
+#  switch (self.environment) {
+#  //        case IVNEnvironmentTest:
+#      case IVNEnvironmentDevelop:
+#          keyEnum = @"1";
+#          break;
+#      default:
+#          keyEnum = @"0";
+#          break;
+#  }
   
 #  switch (type) {
 #      case IVKCheckNetworkTypeGateway:

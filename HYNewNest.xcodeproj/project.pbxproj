@@ -5305,6 +5305,7 @@
 				3D13384F24AD8F9B00B29783 /* Resources */,
 				C08FB099C221193B86170E0B /* [CP] Embed Pods Frameworks */,
 				3DFF702F261EF93900801654 /* IconVersioning Script */,
+				AA25AB562724D3EA899EDB5E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5343,6 +5344,7 @@
 				3D13387424AD8F9C00B29783 /* Frameworks */,
 				3D13387524AD8F9C00B29783 /* Resources */,
 				28822A1001555599A37308F2 /* [CP] Embed Pods Frameworks */,
+				C581BB90000BAEAC19CD4D2B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -6098,6 +6100,23 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n$SRCROOT/HYNewNest/Other/LLIconVersioning.sh\n";
 		};
+		AA25AB562724D3EA899EDB5E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C08FB099C221193B86170E0B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -6113,6 +6132,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C581BB90000BAEAC19CD4D2B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E016B7A80FC4A5DA5714F36A /* [CP] Check Pods Manifest.lock */ = {
