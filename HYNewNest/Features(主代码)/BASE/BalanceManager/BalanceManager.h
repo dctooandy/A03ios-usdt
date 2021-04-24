@@ -20,9 +20,13 @@ typedef void(^AccountBalancesBlock)(AccountMoneyDetailModel *_Nonnull model);
 - (void)getBalanceDetailHandler:(AccountBalancesBlock)handler;
 - (void)getWeeklyBetAmountHandler:(void(^)(BetAmountModel * _Nonnull model))handler;
 
-/// 直接从接口获取数据 将倒计时重置为60s
+/// 直接从接口获取数据 将倒计时重置为120s
 - (void)requestBalaceHandler:(nullable AccountBalancesBlock)handler;
 - (void)requestBetAmountHandler:(nullable void(^)(BetAmountModel *))handler;
+
+/// 提币页面拿可提币金额：类方法
+/// 针对新钱包 取款时 模拟结算 不走缓存 不查厅内余额 本地不做缓存
++ (void)requestWithdrawAbleBalanceHandler:(nullable  AccountBalancesBlock)handler;
 
 @end
 
