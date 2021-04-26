@@ -14,7 +14,7 @@
 
 #import "GameStartPlayViewController.h"
 #import "HYWithdrawViewController.h"
-#import "HYRechargeViewController.h"
+//#import "HYRechargeViewController.h"
 #import "BYRechargeUsdtVC.h"
 #import "HYRechargeCNYViewController.h"
 #import "CNLoginRegisterVC.h"

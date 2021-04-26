@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="btmBanner" destination="kfu-ix-ppz" id="vKA-4I-Mnw"/>
                 <outlet property="btmBannerBg" destination="Eq8-c9-ddn" id="HL6-Au-PQq"/>
+                <outlet property="btmTitleLb" destination="UT0-id-DMz" id="A0q-Mi-kjn"/>
                 <outlet property="tableView" destination="WGF-8w-zTJ" id="Zft-X2-2bY"/>
                 <outlet property="tableViewBtm2BannerCons" destination="GEr-jH-3kb" id="9FX-vO-fQP"/>
                 <outlet property="tableViewBtm2SafeAreaCons" destination="b7t-cP-Gj0" id="FQ3-GY-AAN"/>
@@ -33,7 +34,7 @@
                         <action selector="didTapTopBannerImage:" destination="-1" eventType="touchUpInside" id="VEf-o6-KtK"/>
                     </connections>
                 </button>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gg" translatesAutoresizingMaskIntoConstraints="NO" id="a0g-92-eoF">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a0g-92-eoF">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="187.5"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
@@ -48,7 +49,7 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfu-ix-ppz" customClass="SDCycleScrollView">
                             <rect key="frame" x="15" y="38" width="384" height="133.5"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="kfu-ix-ppz" secondAttribute="height" multiplier="345:120" id="JnL-lc-gcO"/>
                             </constraints>
@@ -106,7 +107,6 @@
         </view>
     </objects>
     <resources>
-        <image name="gg" width="375" height="170"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

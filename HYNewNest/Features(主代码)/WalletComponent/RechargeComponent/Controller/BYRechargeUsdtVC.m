@@ -8,6 +8,7 @@
 
 #import "BYRechargeUsdtVC.h"
 #import "CNTradeRecodeVC.h"
+#import "HYNewCTZNViewController.h"
 
 #import "HYRechargeHelper.h"
 #import "IN3SAnalytics.h"
@@ -29,7 +30,8 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
 @property (weak, nonatomic) IBOutlet UIImageView *topBanner;
 @property (weak, nonatomic) IBOutlet UIView *btmBannerBg;
 @property (weak, nonatomic) IBOutlet SDCycleScrollView *btmBanner;
-@property (weak, nonatomic) IBOutlet UIPageControl *btmBannerControl;
+@property (weak, nonatomic) IBOutlet UILabel *btmTitleLb;
+
 /**{
  "amount_list" = "20;100;200;500;1000;2000";
  id = 1738;
@@ -93,8 +95,6 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
 }
 
 - (void)setupBtmBanners {
-//    self.btmBanner.layer.cornerRadius = 10;
-//    self.btmBanner.layer.masksToBounds = YES;
     self.btmBanner.autoScrollTimeInterval = 3;
     self.btmBanner.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
     self.btmBanner.pageControlBottomOffset = AD(120)+5;
@@ -116,6 +116,7 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
         if (!errorMsg && [responseObj isKindOfClass:[NSArray class]]) {
             NSDictionary *dict = responseObj[0];
             self->amount_list = dict[@"amount_list"]; //快捷输入
+            self.btmTitleLb.text = dict[@"title"];
             
             NSString *promo = dict[@"promo_info"]; // 顶部广告图
             self.topBannerDict = [promo jk_dictionaryValue];
@@ -277,8 +278,23 @@ USDT支付渠道
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     
     if (_btmBannerDict) {
-//        NSString *promo_url = _btmBannerDict[@"promo_url"];
-        MyLog(@"点击了底部");
+        NSArray *promo_urls = _btmBannerDict[@"url"];
+        NSString *url = promo_urls[index];
+        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
+        if ([url isEqualToString:@"买币"]) {
+            vc.type = 0;
+        } else if ([url isEqualToString:@"充币"]) {
+            vc.type = 1;
+        } else if ([url isEqualToString:@"提币"]) {
+            vc.type = 2;
+        } else if ([url isEqualToString:@"卖币"]) {
+            vc.type = 3;
+        } else {
+            [NNPageRouter jump2HTMLWithStrURL:url title:@"活动" needPubSite:NO];
+            return;
+        }
+        [self presentViewController:vc animated:YES completion:^{
+        }];
     }
 }
 

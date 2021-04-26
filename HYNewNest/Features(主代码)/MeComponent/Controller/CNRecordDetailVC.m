@@ -11,7 +11,8 @@
 #import "CNTwoStatusBtn.h"
 #import "CNUserCenterRequest.h"
 #import "UILabel+Gradient.h"
-#import "HYRechargeViewController.h"
+//#import "HYRechargeViewController.h"
+#import "BYRechargeUsdtVC.h"
 #import "HYRechargeCNYViewController.h"
 
 #define kCNXimaRecordTCellID  @"CNXimaRecordTCell"
@@ -214,7 +215,8 @@
 - (IBAction)btmButtonClick:(id)sender {
     if (self.detailType == CNRecordTypeDeposit) {
         if ([CNUserManager shareManager].isUsdtMode) {
-            [self.navigationController pushViewController:[HYRechargeViewController new] animated:YES];
+//            [self.navigationController pushViewController:[HYRechargeViewController new] animated:YES];
+            [self.navigationController pushViewController:[BYRechargeUsdtVC new] animated:YES];
         } else {
             [self.navigationController pushViewController:[HYRechargeCNYViewController new] animated:YES];
         }
