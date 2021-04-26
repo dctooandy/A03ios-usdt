@@ -9,6 +9,7 @@
 #import "BYProtocolExplainVC.h"
 
 @interface BYProtocolExplainVC ()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewWidthCons;
 
 @end
 
@@ -18,6 +19,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.view.backgroundColor = kHexColor(0x212137);
+    
+}
+
+- (void)viewWillLayoutSubviews {
+    
+    _viewWidthCons.constant = kScreenWidth;
+    [super viewWillLayoutSubviews];
+    
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.view.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(20, 20)];
     CAShapeLayer *layer = [[CAShapeLayer alloc] init];
     layer.path = path.CGPath;
@@ -25,14 +35,5 @@
     self.view.layer.mask = layer;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

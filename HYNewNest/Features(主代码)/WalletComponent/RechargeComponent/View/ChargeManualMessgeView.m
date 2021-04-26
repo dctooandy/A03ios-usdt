@@ -22,7 +22,7 @@
 @implementation ChargeManualMessgeView
 
 
-- (instancetype)initWithAddress:(NSString *)address retelling:(nullable NSString *)retelling type:(ChargeMsgType)chargeType;{
+- (instancetype)initWithAddress:(NSString *)address amount:(NSString *)amount retelling:(nullable NSString *)retelling type:(ChargeMsgType)chargeType{
     
     self = [super init];
     if (self) {
@@ -38,7 +38,7 @@
       [self addSubview:bgView];
         
         // 主背景
-    UIView *mainView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, AD(652))];
+    UIView *mainView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, AD(682))];
       mainView.tag = 150;
       mainView.backgroundColor = kHexColor(0x212137);
         [mainView jk_setRoundedCorners:UIRectCornerTopLeft | UIRectCornerTopRight radius:20];
@@ -130,14 +130,25 @@
             maxY = lblGrey.bottom + AD(60);
         }
         
+        UILabel *amountLb = [[UILabel alloc] initWithFrame:CGRectMake((kScreenWidth - AD(176))*0.5, maxY, AD(176), AD(30))];
+        NSString *txt = [amount stringByAppendingString:@"USDT"];
+        amountLb.textAlignment = NSTextAlignmentCenter;
+        amountLb.backgroundColor = [UIColor whiteColor];
+        NSMutableAttributedString *attrTxt = [[NSMutableAttributedString alloc] initWithString:txt attributes:@{NSForegroundColorAttributeName:kHexColor(0x11B5DD), NSFontAttributeName: [UIFont fontDBOf32Size]}];
+        NSRange rang = [txt rangeOfString:@"USDT"];
+        [attrTxt addAttribute:NSFontAttributeName value:[UIFont fontPFR18] range:rang];
+        amountLb.attributedText = attrTxt;
+        [mainView addSubview:amountLb];
+//        [amountLb jk_setRoundedCorners:UIRectCornerTopLeft|UIRectCornerTopRight radius:10];
+        maxY = CGRectGetMaxY(amountLb.frame);
         
         // 二维码处理
         UIImageView *qrCodeImgv = [[UIImageView alloc] initWithFrame:CGRectMake((kScreenWidth - AD(176))*0.5, maxY, AD(176), AD(176))];
         qrCodeImgv.backgroundColor = [UIColor redColor];
         [mainView addSubview:qrCodeImgv];
         qrCodeImgv.userInteractionEnabled = YES;
-        [qrCodeImgv jk_setRoundedCorners:UIRectCornerAllCorners radius:10];
-        qrCodeImgv.layer.masksToBounds = YES;
+//        [qrCodeImgv jk_setRoundedCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight radius:10];
+//        qrCodeImgv.layer.masksToBounds = YES;
         self.qrCodeImgv = qrCodeImgv;
         maxY = CGRectGetMaxY(qrCodeImgv.frame);
         
@@ -199,7 +210,7 @@
         // 俩按钮 非手动充值都需要
         if (chargeType != ChargeMsgTypeManual) {
             
-            CNTwoStatusBtn *topBtn = [[CNTwoStatusBtn alloc] initWithFrame:CGRectMake(AD(30), maxY+AD(50), kScreenWidth-AD(30)*2, AD(48))];
+            CNTwoStatusBtn *topBtn = [[CNTwoStatusBtn alloc] initWithFrame:CGRectMake(AD(30), maxY+AD(30), kScreenWidth-AD(30)*2, AD(48))];
         
             [topBtn setTitle:@"我已支付,查询订单" forState:UIControlStateNormal];
             topBtn.layer.cornerRadius = AD(24);

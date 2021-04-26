@@ -136,7 +136,7 @@ USDT支付渠道
     [CNRechargeRequest queryUSDTPayWalletsHandler:^(id responseObj, NSString *errorMsg) {
         NSArray *depositModels = [DepositsBankModel cn_parse:responseObj];
         NSMutableArray *models = @[].mutableCopy;
-        [depositModels enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(DepositsBankModel*  _Nonnull bank, NSUInteger idx, BOOL * _Nonnull stop) {
+        [depositModels enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(DepositsBankModel*  _Nonnull bank, NSUInteger idx, BOOL * _Nonnull stop) {
             if (([bank.bankname isEqualToString:@"dcbox"] || [HYRechargeHelper isUSDTOtherBankModel:bank])) {
                 [models addObject:bank];
             }
@@ -157,14 +157,30 @@ USDT支付渠道
 /**
 在线类支付 需要
 */
-- (void)queryOnlineBankAmount {
-    // !!!: @"ERC20"写死的 这里需要获取当前选中的默认协议
+//- (void)queryOnlineBankAmount {
+//    if (_selIdx < 1) { //0是直充
+//        return;
+//    }
+//    DepositsBankModel *model = self.depositModels[_selIdx-1];
+//    NSArray *cells = [self.tableView visibleCells];
+//    BYRechargeUSDTTopView *cell = cells[_selIdx];
+//
+//    [CNRechargeRequest queryOnlineBanksPayType:model.payType
+//                                  usdtProtocol:cell.selectedProtocol
+//                                       handler:^(id responseObj, NSString *errorMsg) {
+//        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+//            OnlineBanksModel *oModel = [OnlineBanksModel cn_parse:responseObj];
+//            self.curOnliBankModel = oModel;
+//        }
+//    }];
+//}
+- (void)didSelectOneProtocol:(NSString *)selectedProtocol {
     if (_selIdx < 1) { //0是直充
         return;
     }
     DepositsBankModel *model = self.depositModels[_selIdx-1];
     [CNRechargeRequest queryOnlineBanksPayType:model.payType
-                                  usdtProtocol:@"ERC20"
+                                  usdtProtocol:selectedProtocol
                                        handler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             OnlineBanksModel *oModel = [OnlineBanksModel cn_parse:responseObj];
@@ -188,7 +204,7 @@ USDT支付渠道
                                                 handler:^(id responseObj, NSString *errorMsg) {
             
             if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-                ChargeManualMessgeView *view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"address"] retelling:nil type:ChargeMsgTypeOTHERS];
+                ChargeManualMessgeView *view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"address"] amount:amountStr retelling:nil type:ChargeMsgTypeOTHERS];
                 view.clickBlock = ^(BOOL isSure) {
                     [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
                 };
@@ -206,7 +222,7 @@ USDT支付渠道
                                               handler:^(id responseObj, NSString *errorMsg) {
             
             if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-                ChargeManualMessgeView *view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"payUrl"] retelling:nil type:[HYRechargeHelper isUSDTOtherBankModel:model]?ChargeMsgTypeOTHERS:ChargeMsgTypeDCBOX];
+                ChargeManualMessgeView *view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"payUrl"] amount:amountStr retelling:nil type:[HYRechargeHelper isUSDTOtherBankModel:model]?ChargeMsgTypeOTHERS:ChargeMsgTypeDCBOX];
                 view.clickBlock = ^(BOOL isSure) {
                     [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
                 };
@@ -231,9 +247,6 @@ USDT支付渠道
             self.tableView.contentInset = UIEdgeInsetsMake(25, 0, 0, 0);//150
         }];
     } else {
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            [self queryOnlineBankAmount];
-        });
         [UIView animateWithDuration:0.35 animations:^{
             self.topBanner.alpha = 0.0;
             self.btmBannerBg.alpha = 0.0;

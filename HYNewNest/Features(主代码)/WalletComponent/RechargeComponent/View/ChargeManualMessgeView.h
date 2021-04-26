@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, ChargeMsgType) {
 @property (nonatomic, copy)void(^clickBlock)(BOOL isSure);
 
 /// 地址和附言
-- (instancetype)initWithAddress:(NSString *)address retelling:(nullable NSString *)retelling type:(ChargeMsgType)chargeType;
+- (instancetype)initWithAddress:(NSString *)address amount:(NSString *)amount retelling:(nullable NSString *)retelling type:(ChargeMsgType)chargeType;
 
 @end
 

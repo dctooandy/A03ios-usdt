@@ -10,6 +10,7 @@
 #import "UILabel+Gradient.h"
 #import "BYThreeStatusBtn.h"
 #import "HYRechargeHelper.h"
+#import "BYProtocolExplainVC.h"
 
 @interface BYRechargeUSDTTopView() <UIGestureRecognizerDelegate>
 {
@@ -231,6 +232,9 @@
     aBtn.selected = YES;
     self.selectedProtocol = _protocols[aBtn.tag];
 //    self.selectProtocolAddress = _protocolAddrs[aBtn.tag];
+    if (_delegate && [_delegate respondsToSelector:@selector(didSelectOneProtocol:)]) {
+        [_delegate didSelectOneProtocol:self.selectedProtocol];
+    }
 }
 
 - (void)didTapTopBgView {
@@ -240,10 +244,10 @@
 }
 
 - (IBAction)didTapSubmitBtn:(id)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didTapDepositBtnModel:amount:protocol:)]) {
-        [self.delegate didTapDepositBtnModel:self.deposModel
-                                      amount:self.tfAmount.text
-                                    protocol:self.selectedProtocol];
+    if (_delegate && [_delegate respondsToSelector:@selector(didTapDepositBtnModel:amount:protocol:)]) {
+        [_delegate didTapDepositBtnModel:self.deposModel
+                                  amount:self.tfAmount.text
+                                protocol:self.selectedProtocol];
     }
 }
 
@@ -258,7 +262,10 @@
 }
 
 - (IBAction)didTapQuestion:(id)sender {
-    
+    BYProtocolExplainVC *vc = [BYProtocolExplainVC new];
+    [[NNControllerHelper getCurrentViewController] presentViewController:vc animated:YES completion:^{
+            
+    }];
 }
 
 @end
