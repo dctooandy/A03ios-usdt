@@ -223,21 +223,43 @@
 }
 
 + (void)requestAccountBalanceHandler:(HandlerBlock)handler {
+
+    NSMutableDictionary *param = @{}.mutableCopy;
+    
     if ([CNUserManager shareManager].userDetail.newWalletFlag) {
-        NSMutableDictionary *param = [kNetworkMgr baseParam];
-        param[@"flag"] = @1; //1 缓存15秒 9不缓存 不传默认缓存2分钟
+//        param[@"flag"] = @1; //1 缓存15秒 9不缓存 不传默认缓存2分钟
         param[@"walletCreditForPlatformFlag"] = @1; //需要游戏平台数据 ，如不需要则传0
-        [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"];
+        param[@"realTimeFlag"] = @"false"; // 新钱包模拟结算 [默认模拟，true：模拟，false：不模拟]
         
-        [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:handler];
+    }
+    [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"];//1usdt账户余额  0人民币账户余额
+    
+    [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:handler];
+
+}
+
++ (void)requestWithdrawAbleBalanceHandler:(nullable  AccountBalancesBlock)handler {
+    
+    NSMutableDictionary *param = @{}.mutableCopy;
+    if ([CNUserManager shareManager].userDetail.newWalletFlag) {
+        param[@"flag"] = @9;
+        param[@"walletCreditForPlatformFlag"] = @0;
+        param[@"realTimeFlag"] = @"true";
+        param[@"defineFlag"] = [CNUserManager shareManager].isUsdtMode?@1:@0;
         
     } else {
-        NSMutableDictionary *param = [kNetworkMgr baseParam];
-        [param setObject:@"1" forKey:@"flag"];  //1 缓存15秒 9不缓存 不传默认缓存2分钟
-        [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"]; //1usdt账户余额  0人民币账户余额
+        [param setObject:@"9" forKey:@"flag"];
+        [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"];
         
-        [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:handler];
     }
+    
+    [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            AccountMoneyDetailModel *model = [AccountMoneyDetailModel cn_parse:responseObj];
+            handler(model);
+        }
+    }];
+    
 }
 
 @end

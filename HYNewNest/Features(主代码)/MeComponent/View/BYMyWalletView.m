@@ -56,7 +56,9 @@
 }
 
 - (IBAction)didTapDetailBtn:(id)sender {
-    [HYOneBtnAlertView showWithTitle:@"温馨提示" content:@"总余额 = 可提币额度 + 不可提币额度 + 优惠券总额 + 厅内额度" comfirmText:@"知道了" comfirmHandler:^{
+    NSString *tx = [CNUserManager shareManager].isUsdtMode?@"提币":@"提现";
+    NSString *content = [NSString stringWithFormat:@"总余额 = 可%@额度 + 不可%@额度 + 优惠券总额 + 厅内额度", tx, tx];
+    [HYOneBtnAlertView showWithTitle:@"温馨提示" content:content comfirmText:@"知道了" comfirmHandler:^{
     }];
 }
 

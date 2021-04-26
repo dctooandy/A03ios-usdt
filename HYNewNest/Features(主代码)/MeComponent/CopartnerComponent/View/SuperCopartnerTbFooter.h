@@ -18,7 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *lbWlq;
 @property (weak, nonatomic) IBOutlet UILabel *lbNotReceivedAmount;
 @property (weak, nonatomic) IBOutlet UILabel *lbMiddle;
-- (void)setupFootType:(SuperCopartnerType)type strArr:(NSArray<NSNumber *> *)strArr;
+- (void)setupFootType:(SuperCopartnerType)type;
+- (void)setupEstimateRebateAmount:(NSString *)amount;
 @end
 
 NS_ASSUME_NONNULL_END

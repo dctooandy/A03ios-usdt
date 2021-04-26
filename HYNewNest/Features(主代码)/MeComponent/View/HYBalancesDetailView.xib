@@ -51,7 +51,7 @@
                                 <action selector="didTapRefreshBtn:" destination="-1" eventType="touchUpInside" id="KK5-Jr-Uq0"/>
                             </connections>
                         </button>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="99s-5X-oA8">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="99s-5X-oA8">
                             <rect key="frame" x="0.0" y="360" width="384" height="152"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vfp-zg-uo0">
@@ -124,12 +124,12 @@
                             </constraints>
                         </view>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffo-JD-yfJ">
-                            <rect key="frame" x="0.0" y="60.5" width="384" height="284.5"/>
+                            <rect key="frame" x="0.0" y="60.5" width="384" height="431.5"/>
                         </scrollView>
                     </subviews>
                     <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="99s-5X-oA8" firstAttribute="top" secondItem="ffo-JD-yfJ" secondAttribute="bottom" constant="15" id="2r0-IQ-eAt"/>
+                        <constraint firstAttribute="bottom" secondItem="ffo-JD-yfJ" secondAttribute="bottom" constant="20" id="2kc-JP-fmY"/>
                         <constraint firstItem="ffo-JD-yfJ" firstAttribute="leading" secondItem="ihz-iv-tAY" secondAttribute="leading" id="4tn-si-xGs"/>
                         <constraint firstItem="v9G-Hv-gRu" firstAttribute="centerY" secondItem="NlK-Xd-JSa" secondAttribute="centerY" id="I2I-lF-s14"/>
                         <constraint firstAttribute="bottom" secondItem="99s-5X-oA8" secondAttribute="bottom" id="Ka8-v9-T88"/>

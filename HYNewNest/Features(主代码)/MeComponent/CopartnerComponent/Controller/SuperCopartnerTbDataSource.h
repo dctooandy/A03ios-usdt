@@ -8,18 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "SuperCopartnerTbConst.h"
+#import "SCMyBonusModel.h"
+#import "SCMyRebateModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol SuperCopartnerDelegate <NSObject>
-
-- (void)didReceiveCumulateBetAmount:(NSNumber *)betAmount;
-
+- (void)dataSourceReceivedMyBonus:(SCMyBonusModel *)model;
 @end
 
 @interface SuperCopartnerTbDataSource : NSObject <UITableViewDelegate, UITableViewDataSource>
-
-//@property (nonatomic, copy) SCBlock scSuccesBlock;
 
 @property (weak,nonatomic) id<SuperCopartnerDelegate> delegate;
 

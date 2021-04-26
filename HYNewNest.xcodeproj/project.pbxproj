@@ -247,8 +247,6 @@
 		3D8A7086258B568E0058D50F /* SuperCopartnerTbCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7084258B568E0058D50F /* SuperCopartnerTbCell.m */; };
 		3D8A708A258C5C1A0058D50F /* SuperCopartnerTbFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7089258C5C1A0058D50F /* SuperCopartnerTbFooter.m */; };
 		3D8A708C258C5D570058D50F /* SuperCopartnerTbFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D8A708B258C5D570058D50F /* SuperCopartnerTbFooter.xib */; };
-		3D8A708F258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A708E258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m */; };
-		3D8A7092258CAF200058D50F /* HYSuperCopartnerSlideUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7091258CAF200058D50F /* HYSuperCopartnerSlideUpView.m */; };
 		3D97001F2599D00A003238C4 /* VIPRankGradientTxtLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97001E2599D00A003238C4 /* VIPRankGradientTxtLabel.m */; };
 		3D9700222599D8D4003238C4 /* HYDSBSlideUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9700212599D8D4003238C4 /* HYDSBSlideUpView.m */; };
 		3D9700262599DB2A003238C4 /* HYDSBSlideUpViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9700242599DB2A003238C4 /* HYDSBSlideUpViewCell.m */; };
@@ -272,6 +270,8 @@
 		3D97005A25A2C3ED003238C4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D97004B25A2C3ED003238C4 /* Info.plist */; };
 		3D97243D26300D98005E930C /* BYRechargeUsdtVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97243B26300D98005E930C /* BYRechargeUsdtVC.m */; };
 		3D97243E26300D98005E930C /* BYRechargeUsdtVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D97243C26300D98005E930C /* BYRechargeUsdtVC.xib */; };
+		3D972436262E96B1005E930C /* HYSuperCopartnerAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D972435262E96B1005E930C /* HYSuperCopartnerAlertView.m */; };
+		3D972439262EDF9D005E930C /* SCMyRebateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D972438262EDF9D005E930C /* SCMyRebateModel.m */; };
 		3D9DA66125908327003C3F28 /* DSBWeekMonthListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */; };
 		3D9DA669259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA668259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m */; };
 		3D9DA66E25918DF0003C3F28 /* DSBWeekMonthListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66C25918DF0003C3F28 /* DSBWeekMonthListCell.m */; };
@@ -1260,7 +1260,7 @@
 		04C6E1F424D41C3C006F4DAC /* CNAddressInfoTCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNAddressInfoTCell.h; sourceTree = "<group>"; };
 		04C6E1F524D41C3C006F4DAC /* CNAddressInfoTCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNAddressInfoTCell.m; sourceTree = "<group>"; };
 		04C6E1F624D41C3C006F4DAC /* CNAddressInfoTCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNAddressInfoTCell.xib; sourceTree = "<group>"; };
-		3D13385124AD8F9B00B29783 /* 币游.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "币游.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D13385124AD8F9B00B29783 /* 币游_dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "币游_dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D13386C24AD8F9C00B29783 /* HYNewNestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HYNewNestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D13387024AD8F9C00B29783 /* HYNewNestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYNewNestTests.m; sourceTree = "<group>"; };
 		3D13387224AD8F9C00B29783 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1435,10 +1435,6 @@
 		3D8A7088258C5C1A0058D50F /* SuperCopartnerTbFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuperCopartnerTbFooter.h; sourceTree = "<group>"; };
 		3D8A7089258C5C1A0058D50F /* SuperCopartnerTbFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperCopartnerTbFooter.m; sourceTree = "<group>"; };
 		3D8A708B258C5D570058D50F /* SuperCopartnerTbFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuperCopartnerTbFooter.xib; sourceTree = "<group>"; };
-		3D8A708D258C8A210058D50F /* HYSuperCopartnerReciveAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSuperCopartnerReciveAlertView.h; sourceTree = "<group>"; };
-		3D8A708E258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSuperCopartnerReciveAlertView.m; sourceTree = "<group>"; };
-		3D8A7090258CAF200058D50F /* HYSuperCopartnerSlideUpView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSuperCopartnerSlideUpView.h; sourceTree = "<group>"; };
-		3D8A7091258CAF200058D50F /* HYSuperCopartnerSlideUpView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSuperCopartnerSlideUpView.m; sourceTree = "<group>"; };
 		3D97001D2599D00A003238C4 /* VIPRankGradientTxtLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPRankGradientTxtLabel.h; sourceTree = "<group>"; };
 		3D97001E2599D00A003238C4 /* VIPRankGradientTxtLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPRankGradientTxtLabel.m; sourceTree = "<group>"; };
 		3D9700202599D8D4003238C4 /* HYDSBSlideUpView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYDSBSlideUpView.h; sourceTree = "<group>"; };
@@ -1480,6 +1476,10 @@
 		3D97243A26300D98005E930C /* BYRechargeUsdtVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYRechargeUsdtVC.h; sourceTree = "<group>"; };
 		3D97243B26300D98005E930C /* BYRechargeUsdtVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYRechargeUsdtVC.m; sourceTree = "<group>"; };
 		3D97243C26300D98005E930C /* BYRechargeUsdtVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYRechargeUsdtVC.xib; sourceTree = "<group>"; };
+		3D972434262E96B0005E930C /* HYSuperCopartnerAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSuperCopartnerAlertView.h; sourceTree = "<group>"; };
+		3D972435262E96B1005E930C /* HYSuperCopartnerAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSuperCopartnerAlertView.m; sourceTree = "<group>"; };
+		3D972437262EDF9D005E930C /* SCMyRebateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCMyRebateModel.h; sourceTree = "<group>"; };
+		3D972438262EDF9D005E930C /* SCMyRebateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCMyRebateModel.m; sourceTree = "<group>"; };
 		3D9DA65F25908327003C3F28 /* DSBWeekMonthListDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBWeekMonthListDataSource.h; sourceTree = "<group>"; };
 		3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBWeekMonthListDataSource.m; sourceTree = "<group>"; };
 		3D9DA667259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRecharWithdrwRankDataSource.h; sourceTree = "<group>"; };
@@ -2965,7 +2965,7 @@
 		3D13385224AD8F9B00B29783 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3D13385124AD8F9B00B29783 /* 币游.app */,
+				3D13385124AD8F9B00B29783 /* 币游_dev.app */,
 				3D13386C24AD8F9C00B29783 /* HYNewNestTests.xctest */,
 				3D13387724AD8F9C00B29783 /* HYNewNestUITests.xctest */,
 			);
@@ -3243,8 +3243,6 @@
 				3D31B957253DBBBD005275BD /* HYWithdrawCalculatorComView.m */,
 				3D31B959253DEE81005275BD /* HYWithdrawChooseWallectComView.h */,
 				3D31B95A253DEE81005275BD /* HYWithdrawChooseWallectComView.m */,
-				3D8A7090258CAF200058D50F /* HYSuperCopartnerSlideUpView.h */,
-				3D8A7091258CAF200058D50F /* HYSuperCopartnerSlideUpView.m */,
 				3D9700202599D8D4003238C4 /* HYDSBSlideUpView.h */,
 				3D9700212599D8D4003238C4 /* HYDSBSlideUpView.m */,
 				3D9700232599DB2A003238C4 /* HYDSBSlideUpViewCell.h */,
@@ -3832,6 +3830,8 @@
 				3DF03203258DE61400AF7A36 /* SCMyRecommenModel.m */,
 				3DF03205258DF6E500AF7A36 /* SCMyBonusModel.h */,
 				3DF03206258DF6E500AF7A36 /* SCMyBonusModel.m */,
+				3D972437262EDF9D005E930C /* SCMyRebateModel.h */,
+				3D972438262EDF9D005E930C /* SCMyRebateModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4976,12 +4976,12 @@
 				3D41DEA7251B4A45000CA1D6 /* HYVIPReceiveAlertView.m */,
 				3D31B945253ACEF8005275BD /* HYWithdrawActivityAlertView.h */,
 				3D31B946253ACEF8005275BD /* HYWithdrawActivityAlertView.m */,
-				3D8A708D258C8A210058D50F /* HYSuperCopartnerReciveAlertView.h */,
-				3D8A708E258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m */,
 				3DB600B12627E7C9002278F8 /* HYOneImgBtnAlertView.h */,
 				3DB600B22627E7C9002278F8 /* HYOneImgBtnAlertView.m */,
 				3DB600B42627FB5C002278F8 /* HYNewUsrMissonAlertView.h */,
 				3DB600B52627FB5C002278F8 /* HYNewUsrMissonAlertView.m */,
+				3D972434262E96B0005E930C /* HYSuperCopartnerAlertView.h */,
+				3D972435262E96B1005E930C /* HYSuperCopartnerAlertView.m */,
 			);
 			path = HYAlertView;
 			sourceTree = "<group>";
@@ -5320,8 +5320,8 @@
 				3D13384E24AD8F9B00B29783 /* Frameworks */,
 				3D13384F24AD8F9B00B29783 /* Resources */,
 				C08FB099C221193B86170E0B /* [CP] Embed Pods Frameworks */,
-				E43DFAD908603B137855A1CE /* [CP] Copy Pods Resources */,
 				3DFF702F261EF93900801654 /* IconVersioning Script */,
+				AA25AB562724D3EA899EDB5E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5329,7 +5329,7 @@
 			);
 			name = HYNewNest;
 			productName = HYNewNest;
-			productReference = 3D13385124AD8F9B00B29783 /* 币游.app */;
+			productReference = 3D13385124AD8F9B00B29783 /* 币游_dev.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3D13386B24AD8F9C00B29783 /* HYNewNestTests */ = {
@@ -5360,7 +5360,7 @@
 				3D13387424AD8F9C00B29783 /* Frameworks */,
 				3D13387524AD8F9C00B29783 /* Resources */,
 				28822A1001555599A37308F2 /* [CP] Embed Pods Frameworks */,
-				5DEC9F0E55F694C3750C9EA0 /* [CP] Copy Pods Resources */,
+				C581BB90000BAEAC19CD4D2B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -6118,21 +6118,21 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n$SRCROOT/HYNewNest/Other/LLIconVersioning.sh\n";
 		};
-		5DEC9F0E55F694C3750C9EA0 /* [CP] Copy Pods Resources */ = {
+		AA25AB562724D3EA899EDB5E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C08FB099C221193B86170E0B /* [CP] Embed Pods Frameworks */ = {
@@ -6150,6 +6150,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C581BB90000BAEAC19CD4D2B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E016B7A80FC4A5DA5714F36A /* [CP] Check Pods Manifest.lock */ = {
@@ -6172,23 +6189,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E43DFAD908603B137855A1CE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F9F6491387A6732DA715C6CA /* [CP] Check Pods Manifest.lock */ = {
@@ -6333,7 +6333,6 @@
 				E9A269D724D80D8700B512FF /* HYRechargePayWayController.m in Sources */,
 				E98BEEE924D023B200E6B0C8 /* UIView+Empty.m in Sources */,
 				D5FBFE8A24BC28B200BBCAD8 /* CNBaseXibView.m in Sources */,
-				3D8A708F258C8A210058D50F /* HYSuperCopartnerReciveAlertView.m in Sources */,
 				04C0F10624C58CF4007F1420 /* CNNotificationName.m in Sources */,
 				0487C9A924CFBA6A0013715A /* JJCollectionViewRoundConfigModel.m in Sources */,
 				E9B5497624CF110B002CE6EF /* StrengthVideoTableViewCell.m in Sources */,
@@ -6350,8 +6349,8 @@
 				04C6E1F724D41C3C006F4DAC /* CNAddressInfoTCell.m in Sources */,
 				3D41DE8125199DEE000CA1D6 /* VIPNewVersionView.m in Sources */,
 				3D41DE7725199DEE000CA1D6 /* VIPMonthlyModel.m in Sources */,
-				3D8A7092258CAF200058D50F /* HYSuperCopartnerSlideUpView.m in Sources */,
 				E9A269DC24D80FCC00B512FF /* HYRechargePayWayCell.m in Sources */,
+				3D972436262E96B1005E930C /* HYSuperCopartnerAlertView.m in Sources */,
 				E98BEF0224D1AF4300E6B0C8 /* HYXiMaTopView.m in Sources */,
 				3DBA56112580D9B3009A2B71 /* CALayer+Additions.m in Sources */,
 				0487C9AA24CFBA6A0013715A /* JJCollectionViewRoundFlowLayout+Alignment.m in Sources */,
@@ -6529,6 +6528,7 @@
 				3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */,
 				E98BEF3F24D3E99000E6B0C8 /* CNAmountInputView.m in Sources */,
 				E98BEF2D24D2D35800E6B0C8 /* NSAttributedString+Selectable.m in Sources */,
+				3D972439262EDF9D005E930C /* SCMyRebateModel.m in Sources */,
 				E986A13D24C93460000F9CFF /* CNBonusRequest.m in Sources */,
 				3DF031FE258DA36A00AF7A36 /* CNSuperCopartnerRequest.m in Sources */,
 				E9063B8C24D6BE870000273A /* HYWideOneBtnAlertView.m in Sources */,
@@ -6751,7 +6751,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 77;
+				CURRENT_PROJECT_VERSION = 79;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = JW7F38ZMYT;
 				ENABLE_BITCODE = NO;
@@ -6793,7 +6793,7 @@
 				);
 				MARKETING_VERSION = 3.6.71;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
-				PRODUCT_NAME = "币游";
+				PRODUCT_NAME = "币游_dev";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -6809,7 +6809,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游Release.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 77;
+				CURRENT_PROJECT_VERSION = 79;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = JW7F38ZMYT;
 				ENABLE_BITCODE = NO;

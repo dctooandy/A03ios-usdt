@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *maxCustLevel; //？
 @property (nonatomic, copy)NSString *mobileNo;
 @property (nonatomic, assign)BOOL newAccountFlag;
-@property (nonatomic, assign)BOOL newwalletFlag;
+@property (nonatomic, assign)BOOL newWalletFlag;
 @property (nonatomic, copy)NSString *noLoginDays;
 @property (nonatomic, copy)NSString *subAccountFlag;
 @property (nonatomic, assign)NSInteger starLevel;// 等级
