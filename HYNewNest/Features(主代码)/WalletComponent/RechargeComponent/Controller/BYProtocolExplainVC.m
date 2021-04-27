@@ -35,5 +35,9 @@
     self.view.layer.mask = layer;
 }
 
+- (IBAction)didTapCloseBtn:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+    }];
+}
 
 @end

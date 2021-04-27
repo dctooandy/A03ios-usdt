@@ -73,7 +73,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WGF-8w-zTJ">
-                    <rect key="frame" x="0.0" y="137.5" width="414" height="559"/>
+                    <rect key="frame" x="0.0" y="162.5" width="414" height="534"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="t92-nr-bJj"/>
@@ -87,7 +87,7 @@
                 <constraint firstItem="WGF-8w-zTJ" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="024-GG-jQS"/>
                 <constraint firstItem="a0g-92-eoF" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="1qP-OP-jdp"/>
                 <constraint firstItem="a0g-92-eoF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="9nH-Uv-haU"/>
-                <constraint firstItem="WGF-8w-zTJ" firstAttribute="top" secondItem="a0g-92-eoF" secondAttribute="bottom" priority="750" constant="-50" id="Aff-LK-5hx"/>
+                <constraint firstItem="WGF-8w-zTJ" firstAttribute="top" secondItem="a0g-92-eoF" secondAttribute="bottom" priority="750" constant="-25" id="Aff-LK-5hx"/>
                 <constraint firstItem="Eq8-c9-ddn" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" constant="-10" id="F3r-Yn-TNL"/>
                 <constraint firstItem="Eq8-c9-ddn" firstAttribute="top" secondItem="WGF-8w-zTJ" secondAttribute="bottom" priority="750" id="GEr-jH-3kb"/>
                 <constraint firstItem="Eq8-c9-ddn" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="LKa-ia-axI"/>

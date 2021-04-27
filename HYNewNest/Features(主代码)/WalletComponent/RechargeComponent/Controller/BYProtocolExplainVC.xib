@@ -42,6 +42,9 @@
                         <constraint firstAttribute="width" constant="30" id="iyE-Fw-1r3"/>
                     </constraints>
                     <state key="normal" image="modal-close"/>
+                    <connections>
+                        <action selector="didTapCloseBtn:" destination="-1" eventType="touchUpInside" id="kTD-7O-bni"/>
+                    </connections>
                 </button>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dtq-lz-Sgz">
                     <rect key="frame" x="0.0" y="62.666666666666629" width="414" height="1451.3333333333335"/>
@@ -345,7 +348,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAm-tt-l3T">
-                                    <rect key="frame" x="152.66666666666669" y="636.33333333333337" width="241.66666666666669" height="60"/>
+                                    <rect key="frame" x="152.66666666666666" y="636.33333333333337" width="261.33333333333337" height="60"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="60" id="x0T-97-VZS"/>
                                     </constraints>
@@ -383,7 +386,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="经常拥堵" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WlI-fp-y9t">
-                                    <rect key="frame" x="152.66666666666666" y="547.33333333333337" width="101" height="44"/>
+                                    <rect key="frame" x="152.66666666666666" y="547.33333333333337" width="100" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="7ug-Th-YNX"/>
                                     </constraints>
@@ -484,7 +487,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂时基本不拥堵" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxX-U1-STQ">
-                                    <rect key="frame" x="153" y="939.33333333333337" width="100" height="44"/>
+                                    <rect key="frame" x="152.66666666666666" y="939.33333333333337" width="100" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="J97-Vq-8Jb"/>
                                     </constraints>
@@ -493,7 +496,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小额高频走波场网络" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4m-Ry-0f0">
-                                    <rect key="frame" x="153" y="1142" width="128.66666666666663" height="44"/>
+                                    <rect key="frame" x="152.66666666666669" y="1142" width="128.66666666666669" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="nfL-HG-qY1"/>
                                     </constraints>
@@ -502,7 +505,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="低于前两者" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLH-tm-OW1">
-                                    <rect key="frame" x="153" y="1098" width="71.666666666666686" height="44"/>
+                                    <rect key="frame" x="152.66666666666666" y="1098" width="71.666666666666657" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="N5q-Xo-3Yc"/>
                                     </constraints>
@@ -511,7 +514,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="快（几秒到几分钟）" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0I-60-EMm">
-                                    <rect key="frame" x="153" y="985.00000000000011" width="128.66666666666663" height="43.999999999999886"/>
+                                    <rect key="frame" x="152.66666666666669" y="985.00000000000011" width="128.66666666666669" height="43.999999999999886"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="G14-32-WdH"/>
                                     </constraints>
@@ -520,7 +523,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igC-Xs-Kq1">
-                                    <rect key="frame" x="153" y="835" width="100" height="60"/>
+                                    <rect key="frame" x="152.66666666666666" y="835" width="100" height="60"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="60" id="E3J-1m-TVW"/>
                                     </constraints>
@@ -538,7 +541,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="波场网络" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7wV-du-fuW">
-                                    <rect key="frame" x="152.66666666666666" y="895.33333333333337" width="261.33333333333337" height="44"/>
+                                    <rect key="frame" x="152" y="895.33333333333337" width="262" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="gwP-WR-Sso"/>
                                     </constraints>
@@ -607,11 +610,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rP6-OQ-PPx">
-                                    <rect key="frame" x="122" y="835" width="0.6666666666666714" height="344"/>
+                                    <rect key="frame" x="122" y="835" width="0.0" height="344"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.15193263239999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="344" id="Snq-0A-4ho"/>
-                                        <constraint firstAttribute="width" constant="0.5" id="pgD-YN-DoX"/>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRC20协议" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xf-ka-MjL">
@@ -665,7 +667,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRb-hY-DgH">
-                                    <rect key="frame" x="153" y="1037" width="240.66666666666663" height="60"/>
+                                    <rect key="frame" x="152.66666666666666" y="1037" width="261.33333333333337" height="60"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="60" id="uOY-rW-BqD"/>
                                     </constraints>
@@ -725,6 +727,7 @@
                                 <constraint firstItem="BOL-6Q-Ls5" firstAttribute="top" secondItem="E8V-WM-mxd" secondAttribute="bottom" id="EzN-8Q-aEK"/>
                                 <constraint firstItem="o6W-qa-HPE" firstAttribute="top" secondItem="EEn-33-GcW" secondAttribute="top" constant="1097" id="F5M-oU-goa"/>
                                 <constraint firstItem="rP6-OQ-PPx" firstAttribute="centerY" secondItem="6dZ-Jy-G1w" secondAttribute="centerY" id="FHP-Kv-8wv"/>
+                                <constraint firstAttribute="trailing" secondItem="VRb-hY-DgH" secondAttribute="trailing" id="FUf-gl-HSF"/>
                                 <constraint firstItem="sxX-U1-STQ" firstAttribute="top" secondItem="gJQ-Vl-OfM" secondAttribute="top" id="FkR-EP-s9p"/>
                                 <constraint firstItem="8xf-ka-MjL" firstAttribute="top" secondItem="Eje-b8-jgI" secondAttribute="bottom" id="H1Z-Mv-hEe"/>
                                 <constraint firstItem="PH1-fU-S68" firstAttribute="top" secondItem="uHC-Ql-2dX" secondAttribute="bottom" id="HUs-pf-2T2"/>
@@ -866,6 +869,7 @@
                                 <constraint firstItem="tSL-vl-7TI" firstAttribute="top" secondItem="9az-bv-lZs" secondAttribute="bottom" id="uar-Nb-gJk"/>
                                 <constraint firstAttribute="height" constant="1205.5" id="unj-IA-vHI"/>
                                 <constraint firstItem="mnQ-so-i5r" firstAttribute="top" secondItem="PH1-fU-S68" secondAttribute="bottom" id="uzf-Qb-eYs"/>
+                                <constraint firstAttribute="trailing" secondItem="gAm-tt-l3T" secondAttribute="trailing" id="v4s-Y6-yAX"/>
                                 <constraint firstItem="RkC-1O-wUF" firstAttribute="top" secondItem="c0B-IH-FsN" secondAttribute="bottom" id="wVx-HF-riW"/>
                                 <constraint firstItem="817-A1-OSX" firstAttribute="top" secondItem="tKO-IN-g8e" secondAttribute="bottom" constant="43.5" id="wn0-MR-9hK"/>
                                 <constraint firstItem="iv9-dq-1Dk" firstAttribute="leading" secondItem="EEn-33-GcW" secondAttribute="leading" id="wys-iH-UFX"/>

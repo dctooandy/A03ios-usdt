@@ -140,13 +140,27 @@ USDT支付渠道
 */
 - (void)queryDepositBankPayWays {
     [CNRechargeRequest queryUSDTPayWalletsHandler:^(id responseObj, NSString *errorMsg) {
+        
         NSArray *depositModels = [DepositsBankModel cn_parse:responseObj];
-        NSMutableArray *models = @[].mutableCopy;
-        [depositModels enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(DepositsBankModel*  _Nonnull bank, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (([bank.bankname isEqualToString:@"dcbox"] || [HYRechargeHelper isUSDTOtherBankModel:bank])) {
+        
+        __block NSMutableArray *models = @[].mutableCopy;
+        __block NSInteger xjkIdx = 0;
+        __block NSInteger otherWalletIdx = 0;
+        [depositModels enumerateObjectsUsingBlock:^(DepositsBankModel * _Nonnull bank, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([bank.bankname caseInsensitiveCompare:@"dcbox"] == NSOrderedSame) {
                 [models addObject:bank];
+                xjkIdx = models.count-1;
+            }
+            if ([HYRechargeHelper isUSDTOtherBankModel:bank]) {
+                [models addObject:bank];
+                otherWalletIdx = models.count-1;
             }
         }];
+        // 将小金库排到第一位
+        if (xjkIdx != 0) {
+            [models exchangeObjectAtIndex:0 withObjectAtIndex:xjkIdx];
+        }
+        
         self.depositModels = models;
         
         if (models.count == 0) {

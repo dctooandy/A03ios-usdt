@@ -177,7 +177,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 
 - (void)didTapNewCNYRule {
     if (self.calculatorModel) {
-        NSString *cont = [NSString stringWithFormat:@"1、需要最低取款%ld元，如不足则会按全额转入USDT账户；\n2、USDT账户如已绑定钱包，则会直接取款到数字钱包；如没有绑定，则转入USDT账户额度；", self.calculatorModel.exchangeAmountLimit];
+        NSString *cont = [NSString stringWithFormat:@"1、需要最低取款%ld元，如不足则会按全额转入USDT账户；\n2、USDT账户如已绑定钱包，则会直接取款到数字钱包；如没有绑定，则转入USDT账户额度；", (long)self.calculatorModel.exchangeAmountLimit];
         [HYWideOneBtnAlertView showWithTitle:@"提现说明" content:cont comfirmText:@"我知道了" comfirmHandler:^{
         }];
     }
