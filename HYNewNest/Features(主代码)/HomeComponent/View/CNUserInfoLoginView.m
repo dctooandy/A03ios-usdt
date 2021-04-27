@@ -42,12 +42,17 @@
 //    [self.withdrawCNYBtn showRightTopImageName:@"new_txgb" size:CGSizeMake(30, 14) offsetX:-30 offsetYMultiple:0];
 }
 
-- (void)updateLoginStatusUI {
+- (void)updateLoginStatusUIIsRefreshing:(BOOL)isRefreshing {
     if ([CNUserManager shareManager].isLogin) {
         [self configLogInUI];
-        [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-            [self.moneyLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
-        }];
+        if (isRefreshing) {
+            [self reloadBalance];
+        } else {
+            [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
+                [self.moneyLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
+            }];
+        }
+        
         if ([CNUserManager shareManager].isUiModeHasOptions) {
             self.switchModeBtn.hidden = NO;
             self.vipImgv.hidden = YES;
