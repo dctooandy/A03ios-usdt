@@ -116,6 +116,8 @@
         _hasRecord = YES;
     }
     self.bannerView.autoScroll = YES; // 恢复滚动
+    [self.infoView updateLoginStatusUI];
+    
     kPreventRepeatTime(60*10); //十分钟
     // 检查新版本
     [CNSplashRequest queryNewVersion:^(BOOL isHardUpdate) {

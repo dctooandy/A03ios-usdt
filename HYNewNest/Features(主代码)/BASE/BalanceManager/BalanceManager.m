@@ -60,8 +60,15 @@
         _manager->promoteSec = 0;
         _manager->betAmountSec = 0;
         [_manager setupTimers];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoginUser) name:HYLoginSuccessNotification object:nil];
     });
     return _manager;
+}
+
+- (void)didLoginUser {
+    balancesSec = 0;
+    promoteSec = 0;
+    betAmountSec = 0;
 }
 
 - (void)setupTimers

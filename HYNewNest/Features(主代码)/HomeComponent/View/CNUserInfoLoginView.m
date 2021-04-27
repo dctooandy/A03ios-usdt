@@ -48,7 +48,6 @@
         [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
             [self.moneyLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
         }];
-//        if (![CNUserManager shareManager].userDetail.newAccountFlag) {
         if ([CNUserManager shareManager].isUiModeHasOptions) {
             self.switchModeBtn.hidden = NO;
             self.vipImgv.hidden = YES;
