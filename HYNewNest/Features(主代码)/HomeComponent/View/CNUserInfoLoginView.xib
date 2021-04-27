@@ -358,7 +358,7 @@
                 <constraint firstItem="IOU-7R-sXT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="35" id="qbX-eg-GAZ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-98" y="63"/>
+            <point key="canvasLocation" x="44" y="110"/>
         </view>
     </objects>
     <resources>

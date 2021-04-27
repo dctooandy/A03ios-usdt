@@ -25,7 +25,8 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
 
 @interface BYRechargeUsdtVC () <UITableViewDelegate, UITableViewDataSource, SDCycleScrollViewDelegate, BYRechargeUSDTViewDelegate>
 {
-    NSString *amount_list;
+    NSString *amount_list; //快捷输入金额
+    NSString *h5_root; //图片根地址
 }
 @property (weak, nonatomic) IBOutlet UIImageView *topBanner;
 @property (weak, nonatomic) IBOutlet UIView *btmBannerBg;
@@ -70,11 +71,12 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
     _selIdx = -1;
     [self addNaviRightItemWithImageName:@"kf"];
     
+    if (kScreenWidth < 414) {
+        _tableViewTop2BannerInsetCons.constant = -75;
+    }
     _tableView.contentInset = UIEdgeInsetsMake(25, 0, 0, 0);// 顶部间隙
     [_tableView registerNib:[UINib nibWithNibName:cellName bundle:nil] forCellReuseIdentifier:cellName];
     _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"kongduixiang" titleStr:@"暂无充值渠道" detailStr:@""];
-    
-    _btmBanner.delegate = self;
     
     [self queryDepositBankPayWays];
 }
@@ -95,12 +97,14 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
 }
 
 - (void)setupBtmBanners {
+//    self.btmBanner.placeholderImage = [UIImage imageNamed:@"3"];
     self.btmBanner.autoScrollTimeInterval = 3;
     self.btmBanner.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
     self.btmBanner.pageControlBottomOffset = AD(120)+5;
     self.btmBanner.pageControlRightOffset = -50;
+    self.btmBanner.delegate = self;
     
-    NSString *root = self.btmBannerDict[@"root"];
+    NSString *root = self->h5_root;
     NSArray *h5_imgs = self.btmBannerDict[@"h5_img"];
     NSMutableArray *h5_imgs_full = @[].mutableCopy;
     [h5_imgs enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -115,15 +119,16 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
     [CNRechargeRequest getShortCutsHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg && [responseObj isKindOfClass:[NSArray class]]) {
             NSDictionary *dict = responseObj[0];
-            self->amount_list = dict[@"amount_list"]; //快捷输入
+            self->amount_list = dict[@"amount_list"];
+            self->h5_root = dict[@"h5_root"];
             self.btmTitleLb.text = dict[@"title"];
             
             NSString *promo = dict[@"promo_info"]; // 顶部广告图
             self.topBannerDict = [promo jk_dictionaryValue];
-            NSString *topUrl = [self.topBannerDict[@"root"] stringByAppendingString:self.topBannerDict[@"h5_img"]];
-            [self.topBanner sd_setImageWithURL:[NSURL URLWithString:topUrl]];
+            NSString *topUrl = [self->h5_root stringByAppendingString:self.topBannerDict[@"h5_img"]];
+            [self.topBanner sd_setImageWithURL:[NSURL URLWithString:topUrl] placeholderImage:[UIImage imageNamed:@"gg"]];
             
-            NSString *teaching = dict[@"teaching"]; //轮播图
+            NSString *teaching = dict[@"teaching"]; // 底部轮播图
             self.btmBannerDict = [teaching jk_dictionaryValue];
             [self setupBtmBanners];
         }
@@ -243,16 +248,19 @@ USDT支付渠道
             self.topBanner.alpha = 1.0;
             self.btmBannerBg.alpha = 1.0;
             self.tableViewBtm2SafeAreaCons.priority = UILayoutPriorityDefaultLow;
+            self.tableViewBtm2BannerCons.priority = UILayoutPriorityDefaultHigh;
             self.tableViewTop2BgViewCons.priority = UILayoutPriorityDefaultLow;
-
+            self.tableViewTop2BannerInsetCons.priority = UILayoutPriorityDefaultHigh;
             self.tableView.contentInset = UIEdgeInsetsMake(25, 0, 0, 0);//150
         }];
     } else {
         [UIView animateWithDuration:0.35 animations:^{
             self.topBanner.alpha = 0.0;
             self.btmBannerBg.alpha = 0.0;
-            self.tableViewBtm2SafeAreaCons.priority = UILayoutPriorityRequired;
-            self.tableViewTop2BgViewCons.priority = UILayoutPriorityRequired;
+            self.tableViewBtm2SafeAreaCons.priority = UILayoutPriorityDefaultHigh;
+            self.tableViewBtm2BannerCons.priority = UILayoutPriorityDefaultLow;
+            self.tableViewTop2BgViewCons.priority = UILayoutPriorityDefaultHigh;
+            self.tableViewTop2BannerInsetCons.priority = UILayoutPriorityDefaultLow;
 
             self.tableView.contentInset = UIEdgeInsetsZero;
         }];
@@ -280,21 +288,32 @@ USDT支付渠道
     if (_btmBannerDict) {
         NSArray *promo_urls = _btmBannerDict[@"url"];
         NSString *url = promo_urls[index];
+        
         HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
         if ([url isEqualToString:@"买币"]) {
             vc.type = 0;
+            [self presentViewController:vc animated:YES completion:^{}];
         } else if ([url isEqualToString:@"充币"]) {
             vc.type = 1;
+            [self presentViewController:vc animated:YES completion:^{}];
         } else if ([url isEqualToString:@"提币"]) {
             vc.type = 2;
+            [self presentViewController:vc animated:YES completion:^{}];
         } else if ([url isEqualToString:@"卖币"]) {
             vc.type = 3;
-        } else {
+            [self presentViewController:vc animated:YES completion:^{}];
+            
+        } else if ([url containsString:@"pub_site"]) {
             [NNPageRouter jump2HTMLWithStrURL:url title:@"活动" needPubSite:NO];
-            return;
+            
+        } else {
+            NSURL *URL = [NSURL URLWithString:url];
+            if ([[UIApplication sharedApplication] canOpenURL:URL]) {
+                [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:^(BOOL success) {
+                    [CNHUB showSuccess:@"请在外部浏览器查看"];
+                }];
+            }
         }
-        [self presentViewController:vc animated:YES completion:^{
-        }];
     }
 }
 
@@ -306,9 +325,9 @@ USDT支付渠道
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == _selIdx && _selIdx != 0) {
-        return 448;
+        return (kScreenWidth > 375)?448:438;
     } else {
-        return 120;
+        return (kScreenWidth > 375)?120:110;
     }
 }
 
