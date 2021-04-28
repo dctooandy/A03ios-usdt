@@ -69,6 +69,10 @@
     balancesSec = 0;
     promoteSec = 0;
     betAmountSec = 0;
+    [self requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
+    }];
+    [self requestBetAmountHandler:^(BetAmountModel * _Nonnull model) {
+    }];
 }
 
 - (void)setupTimers
@@ -233,14 +237,14 @@
 
     NSMutableDictionary *param = @{}.mutableCopy;
     
-    if ([CNUserManager shareManager].userDetail.newWalletFlag) {
+//    if ([CNUserManager shareManager].userDetail.newWalletFlag) {
         param[@"flag"] = @9; //1 缓存15秒 9不缓存 不传默认缓存2分钟
         param[@"walletCreditForPlatformFlag"] = @1; //需要游戏平台数据 ，如不需要则传0
         param[@"realtimeFlag"] = @"false"; // 新钱包模拟结算 [默认模拟，true：模拟，false：不模拟]
-    } else {
-        [param setObject:@"9" forKey:@"flag"];
-        [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"];//1usdt账户余额  0人民币账户余额
-    }
+//    } else {
+//        [param setObject:@"9" forKey:@"flag"];
+//        [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"];//1usdt账户余额  0人民币账户余额
+//    }
     
     [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:handler];
 
@@ -249,16 +253,14 @@
 + (void)requestWithdrawAbleBalanceHandler:(nullable  AccountBalancesBlock)handler {
     
     NSMutableDictionary *param = @{}.mutableCopy;
-    if ([CNUserManager shareManager].userDetail.newWalletFlag) {
+//    if ([CNUserManager shareManager].userDetail.newWalletFlag) {
         param[@"flag"] = @9;
         param[@"walletCreditForPlatformFlag"] = @0;
         param[@"realtimeFlag"] = @"true";
-        
-    } else {
-        [param setObject:@"9" forKey:@"flag"];
-        [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"];
-        
-    }
+//    } else {
+//        [param setObject:@"9" forKey:@"flag"];
+//        [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"];
+//    }
     
     [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
