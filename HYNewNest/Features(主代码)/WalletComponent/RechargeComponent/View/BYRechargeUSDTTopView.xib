@@ -20,19 +20,19 @@
                             <rect key="frame" x="15" y="0.0" width="415" height="100"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人民币直充" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5gW-AJ-vDT">
-                                    <rect key="frame" x="101" y="28.5" width="92" height="21.5"/>
+                                    <rect key="frame" x="101" y="26" width="92" height="21.5"/>
                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
                                     <color key="textColor" red="0.062745098040000002" green="0.70588235290000001" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="买币直接上分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vS8-1h-AYR">
-                                    <rect key="frame" x="101" y="57" width="86" height="17"/>
+                                    <rect key="frame" x="101" y="54.5" width="86" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zffs" translatesAutoresizingMaskIntoConstraints="NO" id="R4S-V3-hBj">
-                                    <rect key="frame" x="197" y="57" width="70" height="17"/>
+                                    <rect key="frame" x="197" y="54.5" width="70" height="17"/>
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pmG-U0-Ac0">
                                     <rect key="frame" x="389" y="10" width="16" height="22"/>
@@ -72,7 +72,7 @@
                                 <constraint firstItem="R4S-V3-hBj" firstAttribute="leading" secondItem="vS8-1h-AYR" secondAttribute="trailing" constant="10" id="MMo-uo-3UX"/>
                                 <constraint firstItem="eUw-gg-DJe" firstAttribute="leading" secondItem="RQh-dl-kHi" secondAttribute="leading" constant="24" id="N0j-7Y-8D8"/>
                                 <constraint firstItem="guA-9l-CoN" firstAttribute="top" secondItem="RQh-dl-kHi" secondAttribute="top" id="SRK-0q-Q9q"/>
-                                <constraint firstItem="5gW-AJ-vDT" firstAttribute="top" secondItem="RQh-dl-kHi" secondAttribute="top" constant="28.5" id="cGy-cf-gXg"/>
+                                <constraint firstItem="5gW-AJ-vDT" firstAttribute="top" secondItem="RQh-dl-kHi" secondAttribute="top" constant="26" id="cGy-cf-gXg"/>
                                 <constraint firstItem="vS8-1h-AYR" firstAttribute="leading" secondItem="5gW-AJ-vDT" secondAttribute="leading" id="dW5-dk-sl1"/>
                                 <constraint firstItem="vS8-1h-AYR" firstAttribute="top" secondItem="5gW-AJ-vDT" secondAttribute="bottom" constant="7" id="uGH-ZB-RMX"/>
                                 <constraint firstAttribute="trailing" secondItem="pmG-U0-Ac0" secondAttribute="trailing" constant="10" id="vs5-h4-MnZ"/>
@@ -331,7 +331,7 @@
                 <outletCollection property="rmbStaffImgv" destination="guA-9l-CoN" id="mPF-2O-jRV"/>
                 <outletCollection property="rmbStaffImgv" destination="R4S-V3-hBj" id="ctf-Va-otW"/>
             </connections>
-            <point key="canvasLocation" x="-221" y="64"/>
+            <point key="canvasLocation" x="-301" y="-18"/>
         </view>
     </objects>
     <resources>

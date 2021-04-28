@@ -197,7 +197,7 @@
             @synchronized (self) {
                 MyLog(@"XXXX 网络请求的回调也要加锁，可能是另一个线程%@ XXXX, SucBlock:%@ XXXX", [NSThread currentThread], successBlocks);
                 for (AccountBalancesBlock eachSuccess in successBlocks) {//遍历回调数组，把结果发给每个调用者
-                    eachSuccess(model);
+                    eachSuccess(self.balanceDetailModel);
                 }
                 [successBlocks removeAllObjects];
             }
