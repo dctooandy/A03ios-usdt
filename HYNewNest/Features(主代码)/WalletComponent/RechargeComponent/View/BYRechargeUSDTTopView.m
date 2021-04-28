@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIView *protocolContainer;
 @property (weak, nonatomic) IBOutlet UITextField *tfAmount;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
+@property (strong,nonatomic) CAShapeLayer* arrowLayer;
 
 /// 选中的协议
 @property (nonatomic, copy) NSString *selectedProtocol;
@@ -45,16 +46,13 @@
     _isAmountRight = NO;
     _tipText = @"";
     [self setupSubViewsUI];
-
+    
 }
 
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-//    if (touch.phase == UITouchPhaseEnded) {
-//        return NO;
-//    }
-//    return YES;
-//}
-
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self drawArrow];
+}
 
 #pragma mark - UI
 
@@ -76,6 +74,21 @@
     [self.tfAmount setValue:[UIFont fontPFR15] forKeyPath:@"placeholderLabel.font"];
     [self.tfAmount addTarget:self action:@selector(amountTfDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.tfAmount addTarget:self action:@selector(amountTfDidResignFirstResponder:) forControlEvents:UIControlEventEditingDidEnd];
+}
+
+- (void)drawArrow {
+    if (!_arrowLayer) {
+        CAShapeLayer *trangle = [CAShapeLayer layer];
+        UIBezierPath *path = [UIBezierPath bezierPath];
+        [path moveToPoint:CGPointMake(self.centerX, 103)];
+        [path addLineToPoint:CGPointMake(self.centerX - 15, 115)];
+        [path addLineToPoint:CGPointMake(self.centerX + 15, 115)];
+        [path addLineToPoint:CGPointMake(self.centerX, 103)];
+        trangle.path = path.CGPath;
+        trangle.fillColor = kHexColor(0x2C2D47).CGColor;
+        [self.layer addSublayer:trangle];
+        _arrowLayer = trangle;
+    }
 }
 
 - (UIButton *)getPortocalBtn {
@@ -121,9 +134,11 @@
     if (selected) {
         _bgView.layer.borderWidth = 1.0;
         _mainEditBgView.hidden = _deposModel?NO:YES;
+        _arrowLayer.hidden = _deposModel?NO:YES;
     } else {
         _bgView.layer.borderWidth = 0.0;
         _mainEditBgView.hidden = YES;
+        _arrowLayer.hidden = YES;
     }
 }
 
