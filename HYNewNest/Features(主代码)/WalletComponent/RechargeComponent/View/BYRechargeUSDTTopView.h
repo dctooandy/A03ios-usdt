@@ -26,7 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong,nonatomic,nullable) DepositsBankModel * deposModel; //!< 模型
 @property (assign,nonatomic) NSInteger lineIdx; //!< 行数 必须赋值
-@property (copy,nonatomic) void(^didTapTopBgActionBlock)(NSInteger lineIdx); //!< 点击头部回调, 可以代理方法改成
+
+//@property (copy,nonatomic) void(^didTapTopBgActionBlock)(NSInteger lineIdx); //!< 点击头部回调
 @end
 
 NS_ASSUME_NONNULL_END

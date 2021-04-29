@@ -101,7 +101,7 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
     self.btmBanner.autoScrollTimeInterval = 3;
     self.btmBanner.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
     self.btmBanner.pageControlBottomOffset = AD(120)+5;
-    self.btmBanner.pageControlRightOffset = -50;
+    self.btmBanner.pageControlRightOffset = -AD(50);
     self.btmBanner.delegate = self;
     
     NSString *root = self->h5_root;
@@ -349,18 +349,18 @@ USDT支付渠道
     BYRechargeUSDTTopView *cell = [tableView dequeueReusableCellWithIdentifier:cellName];
     
     // action
-    WEAKSELF_DEFINE
-    cell.didTapTopBgActionBlock = ^(NSInteger lineIdx) {
-        STRONGSELF_DEFINE
-        if (strongSelf.selIdx == lineIdx) { // 点击已选中的cell
-            strongSelf.selIdx = -1;
-        } else { // 点击未选中的cell
-            strongSelf.selIdx = lineIdx;
-            if (lineIdx == 0) {
-                [NNPageRouter jump2BuyECoin];
-            }
-        }
-    };
+//    WEAKSELF_DEFINE
+//    cell.didTapTopBgActionBlock = ^(NSInteger lineIdx) {
+//        STRONGSELF_DEFINE
+//        if (strongSelf.selIdx == lineIdx) { // 点击已选中的cell
+//            strongSelf.selIdx = -1;
+//        } else { // 点击未选中的cell
+//            strongSelf.selIdx = lineIdx;
+//            if (lineIdx == 0) {
+//                [NNPageRouter jump2BuyECoin];
+//            }
+//        }
+//    };
     
     // 赋值
     cell.delegate = self;
@@ -384,18 +384,18 @@ USDT支付渠道
     return cell;
 }
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-//    if (_selIdx == indexPath.row) { // 点击选中的cell
-//        self.selIdx = -1;
-//    } else { // 点击未选中的cell
-//        self.selIdx = indexPath.row;
-//        if (lineIdx == 0) {
-//            [NNPageRouter jump2BuyECoin];
-//        }
-//    }
-//
-//}
+    if (self.selIdx == indexPath.row) { // 点击已选中的cell
+        self.selIdx = -1;
+    } else { // 点击未选中的cell
+        self.selIdx = indexPath.row;
+        if (indexPath.row == 0) {
+            [NNPageRouter jump2BuyECoin];
+        }
+    }
+
+}
 
 
 @end

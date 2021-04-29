@@ -59,9 +59,9 @@
 - (void)setupSubViewsUI {
     [_bgView addCornerAndShadow6px];
     _bgView.layer.borderColor = kHexColor(0x10B4DD).CGColor;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTopBgView)];
-    tap.delegate = self;
-    [_bgView addGestureRecognizer:tap];
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTopBgView)];
+//    tap.delegate = self;
+//    [_bgView addGestureRecognizer:tap];
     
     [_mainEditBgView addCornerAndShadow6px];
     _mainEditBgView.layer.masksToBounds = YES;
@@ -252,11 +252,11 @@
     }
 }
 
-- (void)didTapTopBgView {
-    if (self.didTapTopBgActionBlock) {
-        self.didTapTopBgActionBlock(self.lineIdx);
-    }
-}
+//- (void)didTapTopBgView {
+//    if (self.didTapTopBgActionBlock) {
+//        self.didTapTopBgActionBlock(self.lineIdx);
+//    }
+//}
 
 - (IBAction)didTapSubmitBtn:(id)sender {
     if (_delegate && [_delegate respondsToSelector:@selector(didTapDepositBtnModel:amount:protocol:)]) {
