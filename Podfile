@@ -40,12 +40,26 @@ target 'HYNewNest' do
   pod 'CSSerVice',:git =>'http://10.66.72.115/mobile-iOS-library/ocss-webview-sdk-demo-ios.git' ,:tag=>'0.1.3'
   
   pod 'LookinServer', :configurations => ['Debug']
-  
-  
-  # 注意：【IVNetworkLibrary2.0】文件：IVHTTPBaseRequest.h & .m 有自定义内容；【IVCheckNetworkLibrary】文件：IVCheckNetworkWrapper.m (aggameh5) 有自定义内容；且【SJVideoPlayer】的仓库地址被公司黑名单。。。因此谨慎使用'pod install'。
-  # 使用'pod update CSSerVice'更新单个库，然后将'IVCheckNetworkLibrary'和'IVCheckNetworkLibrary'的bitcode配置改为NO (网络库埋下的坑)
-  # 如果不慎更新了 请根据下面的代码查找后直接替换；请求AE临时开通权限
-  
+
+  target 'HYNewNestTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'HYNewNestUITests' do
+    # Pods for testing
+  end
+
+end
+
+
+# 注意：【IVNetworkLibrary2.0】文件：IVHTTPBaseRequest.h & .m 有自定义内容；
+#      【IVCheckNetworkLibrary】文件：IVCheckNetworkWrapper.m (aggameh5) 有自定义内容；
+#      【SJVideoPlayer】的仓库地址被公司黑名单。。
+#       因此谨慎使用'pod install'，'pod update'。
+# 请使用'pod update XXX'更新单个库，然后将'IVCheckNetworkLibrary'和'IVCheckNetworkLibrary'的bitcode配置改为NO (网络库埋下的坑)
+# 如果不慎更新了，请根据下面的代码查找后直接替换；请求AE临时开通权限更新SJ库
+
 #  typedef NS_ENUM(NSInteger,IVNEnvironment){
 #      IVNEnvironmentTest = 0,// 测试
 #      IVNEnvironmentDevelop = 1,// 开发
@@ -62,12 +76,11 @@ target 'HYNewNest' do
 #          keyEnum = @"0";
 #          break;
 #  }
-  
+
 #  switch (type) {
 #      case IVKCheckNetworkTypeGateway:
 #          typeName = @"gateway";
-#//            subUrl = @"health";
-#          subUrl = @"/_glaxy_83e6dy_/health";
+#          subUrl = @"health";
 #          request = [IVCheckGatewayRequest manager];
 #          ((IVCheckGatewayRequest *)request).url = url;
 #          break;
@@ -97,14 +110,3 @@ target 'HYNewNest' do
 #     return result;
 #
 # }
-
-  target 'HYNewNestTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'HYNewNestUITests' do
-    # Pods for testing
-  end
-
-end
