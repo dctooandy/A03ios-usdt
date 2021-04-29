@@ -181,6 +181,7 @@
 - (void)setupBBSEntryBallView {
     WMDragView *bbsBall = [[WMDragView alloc] initWithFrame:CGRectMake(0, kScreenHeight *0.75, 40, 40)];
     bbsBall.backgroundColor = [UIColor clearColor];
+    bbsBall.freeRect = CGRectMake(0, kStatusBarHeight, kScreenWidth, kScreenHeight-kTabBarHeight-kStatusBarHeight);
     bbsBall.isKeepBounds = YES;
     [bbsBall.button setImage:[UIImage imageNamed:@"bbs_icon"] forState:UIControlStateNormal];
     bbsBall.clickDragViewBlock = ^(WMDragView *dragView) {
