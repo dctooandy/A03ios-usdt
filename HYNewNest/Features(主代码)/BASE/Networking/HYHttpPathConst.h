@@ -17,8 +17,8 @@
 #pragma mark - API PATH
 
 /// 拼接path部分    glaxy_a03 -> glaxy_83e6dy
-#define kGatewayPath(api)       [NSString stringWithFormat:@"/_glaxy_83e6dy_/%@", api]  //基础网关
-#define kGatewayExtraPath(api)  [NSString stringWithFormat:@"/_glaxy_83e6dy_/_extra_/%@", api]  //产品网关
+#define kGatewayPath(api)       [NSString stringWithFormat:@"%@", api]  //基础网关
+#define kGatewayExtraPath(api)  [NSString stringWithFormat:@"_extra_/%@", api]  //产品网关
 
 #pragma mark 公共
 #define config_welcome  @"welcome"
