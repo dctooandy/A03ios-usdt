@@ -11,7 +11,8 @@
 #import "CNTwoStatusBtn.h"
 #import "CNUserCenterRequest.h"
 #import "UILabel+Gradient.h"
-#import "HYRechargeViewController.h"
+//#import "HYRechargeViewController.h"
+#import "BYRechargeUsdtVC.h"
 #import "HYRechargeCNYViewController.h"
 
 #define kCNXimaRecordTCellID  @"CNXimaRecordTCell"
@@ -214,7 +215,8 @@
 - (IBAction)btmButtonClick:(id)sender {
     if (self.detailType == CNRecordTypeDeposit) {
         if ([CNUserManager shareManager].isUsdtMode) {
-            [self.navigationController pushViewController:[HYRechargeViewController new] animated:YES];
+//            [self.navigationController pushViewController:[HYRechargeViewController new] animated:YES];
+            [self.navigationController pushViewController:[BYRechargeUsdtVC new] animated:YES];
         } else {
             [self.navigationController pushViewController:[HYRechargeCNYViewController new] animated:YES];
         }
@@ -222,6 +224,7 @@
         [CNUserCenterRequest cancelWithdrawBillRequestId:self.model.requestId handler:^(id responseObj, NSString *errorMsg) {
             if (KIsEmptyString(errorMsg)) {
                 [CNHUB showSuccess:@"订单取消成功"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil]; // 让首页和我的余额刷新
                 self.btnBtm.enabled = NO;
                 self.navPopupBlock(@(1)); //需要刷新
             }

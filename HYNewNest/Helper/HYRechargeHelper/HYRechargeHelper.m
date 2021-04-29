@@ -54,7 +54,7 @@
     if (bank.minAmount > 0) {
         minStr = [self getAmountByStr: [NSString stringWithFormat:@"%ld", bank.minAmount]];
         maxStr = [self getAmountByStr: [NSString stringWithFormat:@"%ld", bank.maxAmount]];
-        amongStr = [NSString stringWithFormat:@"限额 %@~%@ USDT",minStr,maxStr];
+        amongStr = [NSString stringWithFormat:@"%@ USDT起，最多%@ USDT",minStr,maxStr];
     }else{
         amongStr = @"最少充值10USDT";
     }

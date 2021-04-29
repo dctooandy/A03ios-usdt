@@ -57,6 +57,9 @@
         if (needPubSite && ![strUrl containsString:@"pub_site"]) {
             strUrl = [NSString stringWithFormat:@"%@/pub_site%@",[IVHttpManager shareManager].domain,strUrl];
         } else {
+            if (![strUrl hasPrefix:@"/"]) {
+                strUrl = [NSString stringWithFormat:@"/%@", strUrl];
+            }
             strUrl = [NSString stringWithFormat:@"%@%@",[IVHttpManager shareManager].domain,strUrl];
         }
     }

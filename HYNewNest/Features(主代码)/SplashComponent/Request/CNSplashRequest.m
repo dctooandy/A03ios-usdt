@@ -29,7 +29,7 @@
             [NXPingManager pingFastestHost:domains progress:^(CGFloat progress) {
 
             } handler:^(NSString * _Nonnull host) {
-                if (host) {
+                if (!KIsEmptyString(host)) {
                     [self downloadWithModel:updateVersion fastHost:host handler:handler];
                 } else {
                     [self downloadWithModel:updateVersion fastHost:nil handler:handler];

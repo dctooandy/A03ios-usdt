@@ -40,6 +40,6 @@
     PrListItem *item = self.prList[0];
     NSDate *billTime = [NSDate jk_dateWithString:item.billTime format:@"yyyy-MM-dd HH:mm:ss"];
     NSTimeInterval interval = [billTime timeIntervalSinceNow];
-    return fabs(interval) < 60*5; //5分钟内在桌
+    return fabs(interval) < 60*10; //5分钟内在桌
 }
 @end

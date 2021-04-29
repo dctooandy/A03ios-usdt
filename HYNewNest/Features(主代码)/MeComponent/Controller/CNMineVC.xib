@@ -20,7 +20,6 @@
                 <outlet property="appImageV" destination="CLs-5Q-0PD" id="Bl7-FR-Vbv"/>
                 <outlet property="appNameLb" destination="1ec-1z-w9j" id="zWf-Ll-MDU"/>
                 <outlet property="downLoadBtn" destination="YWN-ak-Fsx" id="k07-Sm-fT6"/>
-                <outlet property="fifthTapLb" destination="1Ef-f9-gwx" id="2Aa-zd-WGO"/>
                 <outlet property="headerIV" destination="L6F-j7-MKh" id="uK4-96-f0z"/>
                 <outlet property="nickNameLb" destination="tmG-wz-MyA" id="FTr-ZY-OBC"/>
                 <outlet property="scrollContentView" destination="z1O-DJ-YiD" id="F61-Sd-Lfz"/>
@@ -32,6 +31,18 @@
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="walletContainerHeightCons" destination="asK-DL-nJz" id="SCb-1W-TGy"/>
                 <outlet property="walletContainerView" destination="eZN-cq-pbU" id="252-1K-ZZQ"/>
+                <outletCollection property="entryIconBtns" destination="DeT-Cl-v4A" id="Z4P-Hs-gZn"/>
+                <outletCollection property="entryIconBtns" destination="re8-2F-WOs" id="lQG-pg-qci"/>
+                <outletCollection property="entryIconBtns" destination="eWo-ZM-syj" id="ZOP-e6-1Wa"/>
+                <outletCollection property="entryIconBtns" destination="e1a-OY-McS" id="m2l-7J-z2Q"/>
+                <outletCollection property="entryIconBtns" destination="WYf-VO-JfI" id="A6X-vJ-yMm"/>
+                <outletCollection property="entryIconBtns" destination="FZO-U6-913" id="0YQ-II-U6j"/>
+                <outletCollection property="entryIconLbs" destination="ywL-WL-CNM" id="H4E-xi-lMz"/>
+                <outletCollection property="entryIconLbs" destination="GGS-C0-Pec" id="vVq-2i-hrN"/>
+                <outletCollection property="entryIconLbs" destination="fJO-je-LUM" id="K4s-hQ-g79"/>
+                <outletCollection property="entryIconLbs" destination="dvq-mf-fJb" id="gis-dl-4l6"/>
+                <outletCollection property="entryIconLbs" destination="1Ef-f9-gwx" id="OTP-XP-oFc"/>
+                <outletCollection property="entryIconLbs" destination="MxN-37-T5p" id="EZb-mu-s8w"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -327,11 +338,11 @@
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="vourcher:" destination="-1" eventType="touchUpInside" id="YlP-p2-t89"/>
+                                                                <action selector="didTapEntryBtns:" destination="-1" eventType="touchUpInside" id="F3R-vs-d7P"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="优惠券" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ywL-WL-CNM">
-                                                            <rect key="frame" x="40.666666666666664" y="49.666666666666686" width="36.999999999999993" height="14.333333333333329"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="----" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ywL-WL-CNM">
+                                                            <rect key="frame" x="47.666666666666664" y="49.666666666666686" width="22.666666666666664" height="14.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -356,7 +367,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTu-lx-exw">
                                                     <rect key="frame" x="133" y="0.0" width="118" height="75"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="re8-2F-WOs">
+                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="re8-2F-WOs">
                                                             <rect key="frame" x="0.0" y="0.0" width="118" height="75"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="-15" maxX="0.0" maxY="0.0"/>
                                                             <state key="normal" image="xm"/>
@@ -367,11 +378,11 @@
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="xima:" destination="-1" eventType="touchUpInside" id="mjn-77-VNc"/>
+                                                                <action selector="didTapEntryBtns:" destination="-1" eventType="touchUpInside" id="SiW-N1-RZf"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="洗码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGS-C0-Pec">
-                                                            <rect key="frame" x="46.666666666666657" y="49.666666666666686" width="24.666666666666671" height="14.333333333333329"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="----" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGS-C0-Pec">
+                                                            <rect key="frame" x="47.666666666666657" y="49.666666666666686" width="22.666666666666671" height="14.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -396,7 +407,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ku-IO-xzP">
                                                     <rect key="frame" x="266" y="0.0" width="118" height="75"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWo-ZM-syj">
+                                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWo-ZM-syj">
                                                             <rect key="frame" x="0.0" y="0.0" width="118" height="75"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="-15" maxX="0.0" maxY="0.0"/>
                                                             <state key="normal" image="jl"/>
@@ -407,11 +418,11 @@
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="tradeRecord:" destination="-1" eventType="touchUpInside" id="Tpr-bU-ITu"/>
+                                                                <action selector="didTapEntryBtns:" destination="-1" eventType="touchUpInside" id="aTB-Wg-jCB"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交易记录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJO-je-LUM">
-                                                            <rect key="frame" x="34.333333333333314" y="49.666666666666686" width="49.333333333333343" height="14.333333333333329"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="----" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJO-je-LUM">
+                                                            <rect key="frame" x="47.666666666666686" y="49.666666666666686" width="22.666666666666671" height="14.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -441,7 +452,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="whP-yB-r1s">
                                                     <rect key="frame" x="0.0" y="0.0" width="118" height="75"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1a-OY-McS">
+                                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1a-OY-McS">
                                                             <rect key="frame" x="0.0" y="0.0" width="118" height="75"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="-15" maxX="0.0" maxY="0.0"/>
                                                             <state key="normal" image="xx"/>
@@ -452,11 +463,11 @@
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="messageCenter:" destination="-1" eventType="touchUpInside" id="z2N-x9-EdL"/>
+                                                                <action selector="didTapEntryBtns:" destination="-1" eventType="touchUpInside" id="bml-Cz-hmP"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消息中心" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvq-mf-fJb">
-                                                            <rect key="frame" x="34.333333333333329" y="49.666666666666629" width="49.333333333333329" height="14.333333333333336"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="----" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvq-mf-fJb">
+                                                            <rect key="frame" x="47.666666666666664" y="49.666666666666629" width="22.666666666666664" height="14.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -481,7 +492,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yAJ-GF-u1k">
                                                     <rect key="frame" x="133" y="0.0" width="118" height="75"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYf-VO-JfI">
+                                                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYf-VO-JfI">
                                                             <rect key="frame" x="0.0" y="0.0" width="118" height="75"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="-15" maxX="0.0" maxY="0.0"/>
                                                             <state key="normal" image="yhk"/>
@@ -492,11 +503,11 @@
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="withdrawAddress:" destination="-1" eventType="touchUpInside" id="HOo-cC-PvP"/>
+                                                                <action selector="didTapEntryBtns:" destination="-1" eventType="touchUpInside" id="iPD-7S-LK4"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提现地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ef-f9-gwx">
-                                                            <rect key="frame" x="34.333333333333343" y="49.666666666666629" width="49.333333333333343" height="14.333333333333336"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="----" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ef-f9-gwx">
+                                                            <rect key="frame" x="47.666666666666657" y="49.666666666666629" width="22.666666666666671" height="14.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -521,7 +532,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U2j-wv-NmD">
                                                     <rect key="frame" x="266" y="0.0" width="118" height="75"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZO-U6-913">
+                                                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZO-U6-913">
                                                             <rect key="frame" x="0.0" y="0.0" width="118" height="75"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="-15" maxX="0.0" maxY="0.0"/>
                                                             <state key="normal" image="aq"/>
@@ -532,11 +543,11 @@
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="securityCenter:" destination="-1" eventType="touchUpInside" id="6s3-ZP-oJ4"/>
+                                                                <action selector="didTapEntryBtns:" destination="-1" eventType="touchUpInside" id="4MR-eU-OtQ"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="安全中心" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MxN-37-T5p">
-                                                            <rect key="frame" x="34.333333333333314" y="49.666666666666629" width="49.333333333333343" height="14.333333333333336"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="----" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MxN-37-T5p">
+                                                            <rect key="frame" x="47.666666666666686" y="49.666666666666629" width="22.666666666666671" height="14.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>

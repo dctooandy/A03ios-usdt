@@ -225,5 +225,9 @@
     self.layer.shadowOpacity = 0.23f; //透明度
 }
 
+- (void)addCornerAndShadow6px {
+    [self addCornerAndShadow];
+    self.layer.cornerRadius = 6;
+}
 
 @end

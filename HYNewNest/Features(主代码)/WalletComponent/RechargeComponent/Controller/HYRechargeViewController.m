@@ -86,7 +86,7 @@
 #pragma mark - VIEWS
 
 - (void)setupViews {
-    [self setupTopView];
+//    [self setupTopView];
     [self setupBanner];
     [self setupMainEditView];
     [self setupSubmitBtn];
@@ -109,7 +109,7 @@
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(15);
         make.right.equalTo(self.view).offset(-15);
-        make.height.mas_equalTo(115);
+        make.height.mas_equalTo(100);
         make.top.equalTo(self.view).offset(16);
     }];
     self.topView = view;
@@ -238,11 +238,11 @@ USDT支付渠道
                                                 handler:^(id responseObj, NSString *errorMsg) {
             
             if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-                ChargeManualMessgeView *view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"address"] retelling:nil type:ChargeMsgTypeOTHERS];
-                view.clickBlock = ^(BOOL isSure) {
-                    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
-                };
-                [kKeywindow addSubview:view];
+//                ChargeManualMessgeView *view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"address"] retelling:nil type:ChargeMsgTypeOTHERS];
+//                view.clickBlock = ^(BOOL isSure) {
+//                    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
+//                };
+//                [kKeywindow addSubview:view];
             }
         }];
         
@@ -256,11 +256,11 @@ USDT支付渠道
                                               handler:^(id responseObj, NSString *errorMsg) {
             
             if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-                ChargeManualMessgeView *view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"payUrl"] retelling:nil type:[HYRechargeHelper isUSDTOtherBankModel:model]?ChargeMsgTypeOTHERS:ChargeMsgTypeDCBOX];
-                view.clickBlock = ^(BOOL isSure) {
-                    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
-                };
-                [kKeywindow addSubview:view];
+//                ChargeManualMessgeView *view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"payUrl"] retelling:nil type:[HYRechargeHelper isUSDTOtherBankModel:model]?ChargeMsgTypeOTHERS:ChargeMsgTypeDCBOX];
+//                view.clickBlock = ^(BOOL isSure) {
+//                    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
+//                };
+//                [kKeywindow addSubview:view];
             }
         }];
     }

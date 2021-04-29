@@ -10,6 +10,15 @@
 
 @implementation CNRechargeRequest
 
++ (void)getShortCutsHandler:(HandlerBlock)handler {
+    NSDictionary *param = @{@"bizCode" : @"DEPOSIT_DATA"};
+    [self POST:kGatewayPath(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            handler(responseObj[@"data"], errorMsg);
+        }
+    }];
+}
+
 + (void)queryPayWaysV3Handler:(HandlerBlock)handler {
 
     [self POST:kGatewayPath(config_queryPayWaysV3) parameters:[kNetworkMgr baseParam] completionHandler:handler];

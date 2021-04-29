@@ -60,8 +60,19 @@
         _manager->promoteSec = 0;
         _manager->betAmountSec = 0;
         [_manager setupTimers];
+        [[NSNotificationCenter defaultCenter] addObserver:_manager selector:@selector(didLoginUser) name:HYLoginSuccessNotification object:nil];
     });
     return _manager;
+}
+
+- (void)didLoginUser {
+    balancesSec = 0;
+    promoteSec = 0;
+    betAmountSec = 0;
+    [self requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
+    }];
+    [self requestBetAmountHandler:^(BetAmountModel * _Nonnull model) {
+    }];
 }
 
 - (void)setupTimers
@@ -186,7 +197,7 @@
             @synchronized (self) {
                 MyLog(@"XXXX 网络请求的回调也要加锁，可能是另一个线程%@ XXXX, SucBlock:%@ XXXX", [NSThread currentThread], successBlocks);
                 for (AccountBalancesBlock eachSuccess in successBlocks) {//遍历回调数组，把结果发给每个调用者
-                    eachSuccess(model);
+                    eachSuccess(self.balanceDetailModel);
                 }
                 [successBlocks removeAllObjects];
             }
@@ -226,13 +237,14 @@
 
     NSMutableDictionary *param = @{}.mutableCopy;
     
-    if ([CNUserManager shareManager].userDetail.newWalletFlag) {
-//        param[@"flag"] = @1; //1 缓存15秒 9不缓存 不传默认缓存2分钟
+//    if ([CNUserManager shareManager].userDetail.newWalletFlag) {
+        param[@"flag"] = @9; //1 缓存15秒 9不缓存 不传默认缓存2分钟
         param[@"walletCreditForPlatformFlag"] = @1; //需要游戏平台数据 ，如不需要则传0
-        param[@"realTimeFlag"] = @"false"; // 新钱包模拟结算 [默认模拟，true：模拟，false：不模拟]
-        
-    }
-    [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"];//1usdt账户余额  0人民币账户余额
+        param[@"realtimeFlag"] = @"false"; // 新钱包模拟结算 [默认模拟，true：模拟，false：不模拟]
+//    } else {
+//        [param setObject:@"9" forKey:@"flag"];
+//        [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"];//1usdt账户余额  0人民币账户余额
+//    }
     
     [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:handler];
 
@@ -241,17 +253,14 @@
 + (void)requestWithdrawAbleBalanceHandler:(nullable  AccountBalancesBlock)handler {
     
     NSMutableDictionary *param = @{}.mutableCopy;
-    if ([CNUserManager shareManager].userDetail.newWalletFlag) {
+//    if ([CNUserManager shareManager].userDetail.newWalletFlag) {
         param[@"flag"] = @9;
         param[@"walletCreditForPlatformFlag"] = @0;
-        param[@"realTimeFlag"] = @"true";
-        param[@"defineFlag"] = [CNUserManager shareManager].isUsdtMode?@1:@0;
-        
-    } else {
-        [param setObject:@"9" forKey:@"flag"];
-        [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"];
-        
-    }
+        param[@"realtimeFlag"] = @"true";
+//    } else {
+//        [param setObject:@"9" forKey:@"flag"];
+//        [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"];
+//    }
     
     [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {

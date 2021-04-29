@@ -270,6 +270,8 @@
 		3D97005A25A2C3ED003238C4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D97004B25A2C3ED003238C4 /* Info.plist */; };
 		3D972436262E96B1005E930C /* HYSuperCopartnerAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D972435262E96B1005E930C /* HYSuperCopartnerAlertView.m */; };
 		3D972439262EDF9D005E930C /* SCMyRebateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D972438262EDF9D005E930C /* SCMyRebateModel.m */; };
+		3D97243D26300D98005E930C /* BYRechargeUsdtVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97243B26300D98005E930C /* BYRechargeUsdtVC.m */; };
+		3D97243E26300D98005E930C /* BYRechargeUsdtVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D97243C26300D98005E930C /* BYRechargeUsdtVC.xib */; };
 		3D9DA66125908327003C3F28 /* DSBWeekMonthListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */; };
 		3D9DA669259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA668259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m */; };
 		3D9DA66E25918DF0003C3F28 /* DSBWeekMonthListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66C25918DF0003C3F28 /* DSBWeekMonthListCell.m */; };
@@ -348,6 +350,8 @@
 		3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC87A50253967DC0032ED1B /* BuyECoinModel.m */; };
 		3DCFEA9A25050AD90071F356 /* 方正兰亭大黑_GBK.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEA9925050AD90071F356 /* 方正兰亭大黑_GBK.ttf */; };
 		3DCFEAA1250624CD0071F356 /* TAExampleDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA9F250624CD0071F356 /* TAExampleDotView.m */; };
+		3DDDF88426341424009ED0AC /* BYProtocolExplainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDDF88226341424009ED0AC /* BYProtocolExplainVC.m */; };
+		3DDDF88526341424009ED0AC /* BYProtocolExplainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DDDF88326341424009ED0AC /* BYProtocolExplainVC.xib */; };
 		3DE3CA8F24ECF6E300D591C4 /* CIRCULAR_06.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */; };
 		3DE3CA9024ECF6E300D591C4 /* CIRCULAR.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */; };
 		3DE3CA9324ED5CFC00D591C4 /* HYUpdateAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3CA9224ED5CFC00D591C4 /* HYUpdateAlertView.m */; };
@@ -1473,6 +1477,9 @@
 		3D972435262E96B1005E930C /* HYSuperCopartnerAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSuperCopartnerAlertView.m; sourceTree = "<group>"; };
 		3D972437262EDF9D005E930C /* SCMyRebateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCMyRebateModel.h; sourceTree = "<group>"; };
 		3D972438262EDF9D005E930C /* SCMyRebateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCMyRebateModel.m; sourceTree = "<group>"; };
+		3D97243A26300D98005E930C /* BYRechargeUsdtVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYRechargeUsdtVC.h; sourceTree = "<group>"; };
+		3D97243B26300D98005E930C /* BYRechargeUsdtVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYRechargeUsdtVC.m; sourceTree = "<group>"; };
+		3D97243C26300D98005E930C /* BYRechargeUsdtVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYRechargeUsdtVC.xib; sourceTree = "<group>"; };
 		3D9DA65F25908327003C3F28 /* DSBWeekMonthListDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBWeekMonthListDataSource.h; sourceTree = "<group>"; };
 		3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBWeekMonthListDataSource.m; sourceTree = "<group>"; };
 		3D9DA667259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRecharWithdrwRankDataSource.h; sourceTree = "<group>"; };
@@ -1614,6 +1621,9 @@
 		3DCFEA9925050AD90071F356 /* 方正兰亭大黑_GBK.ttf */ = {isa = PBXFileReference; lastKnownFileType = text; path = "方正兰亭大黑_GBK.ttf"; sourceTree = "<group>"; };
 		3DCFEA9F250624CD0071F356 /* TAExampleDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAExampleDotView.m; sourceTree = "<group>"; };
 		3DCFEAA0250624CD0071F356 /* TAExampleDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAExampleDotView.h; sourceTree = "<group>"; };
+		3DDDF88126341424009ED0AC /* BYProtocolExplainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYProtocolExplainVC.h; sourceTree = "<group>"; };
+		3DDDF88226341424009ED0AC /* BYProtocolExplainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYProtocolExplainVC.m; sourceTree = "<group>"; };
+		3DDDF88326341424009ED0AC /* BYProtocolExplainVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYProtocolExplainVC.xib; sourceTree = "<group>"; };
 		3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CIRCULAR_06.mp4; sourceTree = "<group>"; };
 		3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CIRCULAR.png; sourceTree = "<group>"; };
 		3DE3CA9124ED5CFC00D591C4 /* HYUpdateAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYUpdateAlertView.h; sourceTree = "<group>"; };
@@ -4806,6 +4816,12 @@
 				0430AB3824E3CCCF00C873DC /* CNRechargeChosePayTypeVC.h */,
 				0430AB3924E3CCD000C873DC /* CNRechargeChosePayTypeVC.m */,
 				0430AB3A24E3CCD000C873DC /* CNRechargeChosePayTypeVC.xib */,
+				3D97243A26300D98005E930C /* BYRechargeUsdtVC.h */,
+				3D97243B26300D98005E930C /* BYRechargeUsdtVC.m */,
+				3D97243C26300D98005E930C /* BYRechargeUsdtVC.xib */,
+				3DDDF88126341424009ED0AC /* BYProtocolExplainVC.h */,
+				3DDDF88226341424009ED0AC /* BYProtocolExplainVC.m */,
+				3DDDF88326341424009ED0AC /* BYProtocolExplainVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5698,6 +5714,7 @@
 				D5A443DC24F378CD00014DC6 /* 彩票_00017.png in Resources */,
 				0487C9DB24D2627D0013715A /* CNXimaRecordTCell.xib in Resources */,
 				D5A4456124F393AC00014DC6 /* 棋牌_00056.png in Resources */,
+				3D97243E26300D98005E930C /* BYRechargeUsdtVC.xib in Resources */,
 				D5A4458224F393AD00014DC6 /* 棋牌_00021.png in Resources */,
 				D5A4446B24F3932400014DC6 /* 数字7_00077.png in Resources */,
 				D5A4471024F3941400014DC6 /* 合成 1_00056.png in Resources */,
@@ -5739,6 +5756,7 @@
 				D5A4459124F393AD00014DC6 /* 棋牌_00018.png in Resources */,
 				D5A4460324F393E500014DC6 /* 足球_00024.png in Resources */,
 				D5A4456E24F393AC00014DC6 /* 棋牌_00086.png in Resources */,
+				3DDDF88526341424009ED0AC /* BYProtocolExplainVC.xib in Resources */,
 				3DE3CA8F24ECF6E300D591C4 /* CIRCULAR_06.mp4 in Resources */,
 				D5A443CC24F378CD00014DC6 /* 彩票_00047.png in Resources */,
 				D571B1AA24C03D790087B5EC /* CNStatementView.xib in Resources */,
@@ -6459,6 +6477,7 @@
 				3DBA55DB2570D188009A2B71 /* BetAmountModel.m in Sources */,
 				3D97004D25A2C3ED003238C4 /* IN3SConstants.m in Sources */,
 				048A0EE024C832F800411819 /* CNElectronicVC.m in Sources */,
+				3D97243D26300D98005E930C /* BYRechargeUsdtVC.m in Sources */,
 				042372A324CE65A000D37B9C /* CNSettingVC.m in Sources */,
 				3D97005125A2C3ED003238C4 /* IN3SGlobalModel.m in Sources */,
 				0487CA0624D3BAB90013715A /* CNInviteFriendVC.m in Sources */,
@@ -6523,6 +6542,7 @@
 				0487C9D524D164460013715A /* CNRecordDetailVC.m in Sources */,
 				04935BD124D7B662007A33EF /* CNAddressDownloadTCell.m in Sources */,
 				E98BEF2A24D2D34400E6B0C8 /* UIView+DottedLine.m in Sources */,
+				3DDDF88426341424009ED0AC /* BYProtocolExplainVC.m in Sources */,
 				040A08D824E114A900FBD534 /* OCBarrageGradientBackgroundColorCell.m in Sources */,
 				3D9700222599D8D4003238C4 /* HYDSBSlideUpView.m in Sources */,
 				E98BEF1724D2AF9B00E6B0C8 /* HYWithdrawViewController.m in Sources */,
@@ -6731,7 +6751,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 80;
+				CURRENT_PROJECT_VERSION = 85;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = JW7F38ZMYT;
 				ENABLE_BITCODE = NO;
@@ -6771,7 +6791,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.71;
+				MARKETING_VERSION = 3.6.78;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
 				PRODUCT_NAME = "币游_dev";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -6789,7 +6809,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游Release.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 80;
+				CURRENT_PROJECT_VERSION = 85;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = JW7F38ZMYT;
 				ENABLE_BITCODE = NO;
@@ -6829,7 +6849,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.71;
+				MARKETING_VERSION = 3.6.78;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
 				PRODUCT_NAME = "币游";
 				PROVISIONING_PROFILE_SPECIFIER = "";

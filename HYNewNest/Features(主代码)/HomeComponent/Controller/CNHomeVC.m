@@ -116,6 +116,8 @@
         _hasRecord = YES;
     }
     self.bannerView.autoScroll = YES; // 恢复滚动
+    [self.infoView updateLoginStatusUIIsRefreshing:NO];
+    
     kPreventRepeatTime(60*10); //十分钟
     // 检查新版本
     [CNSplashRequest queryNewVersion:^(BOOL isHardUpdate) {
@@ -128,7 +130,7 @@
 }
 
 - (void)userDidLogin {
-    [self.infoView updateLoginStatusUI];
+    [self.infoView updateLoginStatusUIIsRefreshing:YES];
     
     [self requestHomeBanner];
     
@@ -150,7 +152,7 @@
 }
 
 - (void)userDidLogout {
-    [self.infoView updateLoginStatusUI];
+    [self.infoView updateLoginStatusUIIsRefreshing:NO];
     self.infoViewH.constant = 140;
 }
 

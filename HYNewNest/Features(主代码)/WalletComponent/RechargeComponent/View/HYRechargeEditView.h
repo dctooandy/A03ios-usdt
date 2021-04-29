@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/// deprecated
 /*
  * 充值 选择协议 填写金额的View
  */

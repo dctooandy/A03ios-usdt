@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *switchModeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *withdrawCNYBtn;
 
+@property (weak, nonatomic) IBOutlet UIImageView *usdtADImgv;
 
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewH;
@@ -41,13 +42,17 @@
 //    [self.withdrawCNYBtn showRightTopImageName:@"new_txgb" size:CGSizeMake(30, 14) offsetX:-30 offsetYMultiple:0];
 }
 
-- (void)updateLoginStatusUI {
+- (void)updateLoginStatusUIIsRefreshing:(BOOL)isRefreshing {
     if ([CNUserManager shareManager].isLogin) {
         [self configLogInUI];
-        [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-            [self.moneyLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
-        }];
-//        if (![CNUserManager shareManager].userDetail.newAccountFlag) {
+        if (isRefreshing) {
+            [self reloadBalance];
+        } else {
+            [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
+                [self.moneyLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
+            }];
+        }
+        
         if ([CNUserManager shareManager].isUiModeHasOptions) {
             self.switchModeBtn.hidden = NO;
             self.vipImgv.hidden = YES;
@@ -63,6 +68,7 @@
 - (void)configLogoutUI {
     self.loginView.hidden = NO;
     self.headerIcon.image = nil;
+    self.usdtADImgv.hidden = YES;
 }
 
 - (void)configLogInUI {
@@ -100,11 +106,15 @@
         self.bottomViewH.constant = 88;
         self.bottomViewSpacing.constant = -44;
         self.currencyLb.text = @"USDT";
+        if ([CNUserManager shareManager].userInfo.starLevel == 0) {
+            self.usdtADImgv.hidden = NO;
+        }
     } else {
         self.switchModeBtn.selected = YES;
         self.bottomViewH.constant = 44;
         self.bottomViewSpacing.constant = 0;
         self.currencyLb.text = @"CNY";
+        self.usdtADImgv.hidden = YES;
     }
 }
 

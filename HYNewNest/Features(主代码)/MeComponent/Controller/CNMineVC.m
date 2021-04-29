@@ -60,6 +60,10 @@
 @property (weak, nonatomic) IBOutlet UIView *shareBgView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *shareBgViewH;
 
+#pragma mark 中间入口部分
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *entryIconBtns;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *entryIconLbs;
+
 #pragma mark 底部单个下载
 /// App图片
 @property (weak, nonatomic) IBOutlet UIImageView *appImageV;
@@ -75,17 +79,33 @@
 #pragma mark CNY和USDT区别
 /// CNY和USDT 切换按钮
 @property (weak, nonatomic) IBOutlet UIButton *switchBtn;
-/// 提现地址
-@property (weak, nonatomic) IBOutlet UILabel *fifthTapLb;
 /// CNY
 @property (weak, nonatomic) IBOutlet UIView *CNYBusinessView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CNYBusinessViewH;
 /// USDT
 @property (weak, nonatomic) IBOutlet UIStackView *USDTBusinessView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *USDTBusinessViewH;
+
 @end
 
 @implementation CNMineVC
+
+- (NSArray *)getCurrentFastEntryName {
+    if ([CNUserManager shareManager].userInfo.newWalletFlag) {
+        return @[@"优惠券", @"洗码", @"交易记录", @"消息中心", @"提币地址", @"安全中心"];
+    } else {
+        return @[@"洗码", @"交易记录", @"消息中心", [CNUserManager shareManager].isUsdtMode?@"提币地址":@"银行卡", @"安全中心", @"反馈意见"];
+    }
+}
+
+- (NSArray *)getCurrentFastEntryIconName {
+    if ([CNUserManager shareManager].userInfo.newWalletFlag) {
+        return @[@"yhq", @"xm", @"jl", @"xx", @"yhk", @"aq"];
+    } else {
+        return @[@"xm", @"jl", @"xx", @"yhk", @"aq", @"yjfk"];
+    }
+}
+
 
 #pragma mark - ViewLifeCycle
 
@@ -110,8 +130,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchCurrencyUI) name:HYSwitchAcoutSuccNotification object:nil];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
 //    [self requestAccountBalances:NO];
     [self.walletView requestAccountBalances:NO];
@@ -164,47 +184,25 @@
     }
 }
 
-// 优惠券
-- (IBAction)vourcher:(id)sender {
-    BYVocherCenterVC *vc = [BYVocherCenterVC new];
-    [self.navigationController pushViewController:vc animated:YES];
+- (IBAction)didTapEntryBtns:(UIButton *)sender {
+    NSString *name = [self getCurrentFastEntryName][sender.tag];
+    if ([name isEqualToString:@"优惠券"]) {
+        [self.navigationController pushViewController:[BYVocherCenterVC new] animated:YES];
+    } else if ([name isEqualToString:@"洗码"]) {
+        [self.navigationController pushViewController:[HYXiMaViewController new] animated:YES];
+    } else if ([name isEqualToString:@"交易记录"]) {
+        [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
+    } else if ([name isEqualToString:@"消息中心"]) {
+        [self.navigationController pushViewController:[CNMessageCenterVC new] animated:YES];
+    } else if ([name isEqualToString:@"提币地址"] || [name isEqualToString:@"银行卡"]) {
+        [self.navigationController pushViewController:[CNAddressManagerVC new] animated:YES];
+    } else if ([name isEqualToString:@"安全中心"]) {
+        [self.navigationController pushViewController:[CNSecurityCenterVC new] animated:YES];
+    } else if ([name isEqualToString:@"反馈意见"]) {
+        [self.navigationController pushViewController:[CNFeedBackVC new] animated:YES];
+    }
 }
 
-// 洗码
-- (IBAction)xima:(id)sender {
-    [self.navigationController pushViewController:[HYXiMaViewController new] animated:YES];
-}
-
-// 交易记录
-- (IBAction)tradeRecord:(id)sender {
-    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
-}
-
-// 消息中心
-- (IBAction)messageCenter:(id)sender {
-    [self.navigationController pushViewController:[CNMessageCenterVC new] animated:YES];
-}
-
-// 提现地址/银行卡
-- (IBAction)withdrawAddress:(id)sender {
-    [self.navigationController pushViewController:[CNAddressManagerVC new] animated:YES];
-}
-
-// 安全中心
-- (IBAction)securityCenter:(id)sender {
-    [self.navigationController pushViewController:[CNSecurityCenterVC new] animated:YES];
-}
-
-// 充提指南/意见反馈
-//- (IBAction)recharWithdrawGuide:(id)sender {
-//    if ([CNUserManager shareManager].isUsdtMode) {
-//        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
-//        [self presentViewController:vc animated:YES completion:^{
-//        }];
-//    } else {
-//        [self.navigationController pushViewController:[CNFeedBackVC new] animated:YES];
-//    }
-//}
 
 // 邀请
 - (IBAction)invite:(id)sender {
@@ -272,9 +270,7 @@
     self.USDTBusinessViewH.constant = isUsdtMode ? 80: 0;
     self.CNYBusinessView.hidden = isUsdtMode;
     self.CNYBusinessViewH.constant = isUsdtMode ? 0: 80;
-    
-    self.fifthTapLb.text = isUsdtMode ? @"提币地址": @"银行卡";
-    
+        
     self.shareBgView.hidden = !isUsdtMode;
     self.shareBgViewH.constant = isUsdtMode?AD(90):0;
     
@@ -284,6 +280,15 @@
 
 - (void)setUpUserInfoAndBalaces {
     if ([CNUserManager shareManager].isLogin) {
+        // 1.入口信息
+        [self.entryIconLbs enumerateObjectsUsingBlock:^(UILabel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.text = [self getCurrentFastEntryName][idx];
+        }];
+        [self.entryIconBtns enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString *img = [self getCurrentFastEntryIconName][idx];
+            [obj setImage:[UIImage imageNamed:img] forState:UIControlStateNormal];
+        }];
+        
         // 2.用户信息
         self.VIPLb.text = [NSString stringWithFormat:@"VIP%ld", (long)[CNUserManager shareManager].userInfo.starLevel];
         
@@ -301,18 +306,17 @@
                 self.walletView = [[BYMyWalletView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-30, 217)];
                 self.walletContainerHeightCons.constant = 217;
                 [self.walletContainerView addSubview:self.walletView];
-            } else {
-                [self.walletView requestAccountBalances:YES];
             }
+            [self.walletView requestAccountBalances:YES];
+            
         } else {
             if (!self.walletContainerView.subviews.count || [self.walletView isMemberOfClass:[BYMyWalletView class]]) {
                 [self.walletView removeFromSuperview];
                 self.walletView = [[BYOldMyWalletView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-30, 148)];
                 self.walletContainerHeightCons.constant = 148;
                 [self.walletContainerView addSubview:self.walletView];
-            } else {
-                [self.walletView requestAccountBalances:YES];
             }
+            [self.walletView requestAccountBalances:YES];
         }
     }
 }

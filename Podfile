@@ -83,6 +83,21 @@ target 'HYNewNest' do
 #          break;
 #  }
 
+# - (NSString*)jk_toDisplayNumberWithDigit:(NSInteger)digit
+# {
+#     NSString *result = nil;
+#     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+#     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+#     [formatter setRoundingMode:NSNumberFormatterRoundFloor];
+#     [formatter setMaximumFractionDigits:digit];
+#     [formatter setMinimumFractionDigits:digit];
+#     result = [formatter  stringFromNumber:self];
+#     if (result == nil)
+#         return @"";
+#     return result;
+#
+# }
+
   target 'HYNewNestTests' do
     inherit! :search_paths
     # Pods for testing

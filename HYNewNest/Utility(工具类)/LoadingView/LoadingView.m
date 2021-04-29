@@ -22,10 +22,13 @@
 @implementation LoadingView
 
 + (void)show {
+    dispatch_async(dispatch_get_main_queue(), ^{
     [self showLoadingViewWithToView:kKeywindow needMask:NO];
+    });
 }
 
 + (void)showSuccess {
+    dispatch_async(dispatch_get_main_queue(), ^{
     LoadingView *loadingView;
     for (UIView *view in kKeywindow.subviews) {
         if ([view isKindOfClass:[LoadingView class]]) {
@@ -43,24 +46,31 @@
     } completion:^(BOOL finished) {
         [self hideLoadingViewForView:kKeywindow];
     }];
+    });
 }
 
 + (void)hide {
+    dispatch_async(dispatch_get_main_queue(), ^{
     [self hideLoadingViewForView:kKeywindow];
+    });
 }
 
 + (void)showLoadingViewWithToView:(nullable UIView *)toView needMask:(BOOL)needMask {
-    if (!toView) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+    UIView *tv = toView;
+    if (!tv) {
         UIWindow *window = [UIApplication sharedApplication].keyWindow;
-        toView = window;
+        tv = window;
     }
     LoadingView *loadingView = [[LoadingView alloc] initWithFrame:toView.bounds needMask:needMask];
-    [toView addSubview:loadingView];
-    [toView bringSubviewToFront:loadingView];
+    [tv addSubview:loadingView];
+    [tv bringSubviewToFront:loadingView];
     [loadingView showup];
+    });
 }
 
 + (void)hideLoadingViewForView:(nullable UIView *)view {
+    dispatch_async(dispatch_get_main_queue(), ^{
     if (view) {
         for (UIView *subView in [view subviews] ) {
             if ([subView isKindOfClass:[LoadingView class]]) {
@@ -78,6 +88,7 @@
             }
         }
     }
+    });
 }
 
 #pragma mark 内部方法

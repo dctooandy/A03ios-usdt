@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CNRechargeRequest : CNBaseNetworking
 
++ (void)getShortCutsHandler:(HandlerBlock)handler;
+
 
 #pragma mark - 获取充值渠道
 

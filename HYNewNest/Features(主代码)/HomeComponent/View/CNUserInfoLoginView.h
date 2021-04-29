@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 加载金额
 - (void)reloadBalance;
 // 用户登录状态变化
-- (void)updateLoginStatusUI;
+- (void)updateLoginStatusUIIsRefreshing:(BOOL)isRefreshing;
 // 切换模式UI改
 - (void)switchAccountUIChange;
 @end

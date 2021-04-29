@@ -10,7 +10,7 @@
 #import "HYNewCTZNCell.h"
 #import "CNBaseNetworking.h"
 #import "CTZNModel.h"
-#import "HYRechargeViewController.h"
+#import "BYRechargeUsdtVC.h"
 #import "HYWithdrawViewController.h"
 #import "HYWideOneBtnAlertView.h"
 #import "HYCTZNPlayerViewController.h"
@@ -181,7 +181,7 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
     cell.actionBlock = ^(NSString * _Nonnull type) {
         if ([type isEqualToString:@"充币"]) {
             [self dismissSelf:^{
-                [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[HYRechargeViewController new] animated:YES];
+                [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[BYRechargeUsdtVC new] animated:YES];
             }];
             
         } else if ([type isEqualToString:@"买币"]) {

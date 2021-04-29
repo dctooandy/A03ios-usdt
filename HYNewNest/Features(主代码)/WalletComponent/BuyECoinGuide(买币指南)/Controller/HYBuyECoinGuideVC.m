@@ -457,11 +457,11 @@ USDT支付渠道
                                                 handler:^(id responseObj, NSString *errorMsg) {
             
             if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-                ChargeManualMessgeView *view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"address"] retelling:nil type:ChargeMsgTypeOTHERS];
-                view.clickBlock = ^(BOOL isSure) {
-                    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
-                };
-                [kKeywindow addSubview:view];
+//                ChargeManualMessgeView *view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"address"] retelling:nil type:ChargeMsgTypeOTHERS];
+//                view.clickBlock = ^(BOOL isSure) {
+//                    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
+//                };
+//                [kKeywindow addSubview:view];
             }
         }];
         
@@ -475,11 +475,11 @@ USDT支付渠道
                                               handler:^(id responseObj, NSString *errorMsg) {
             
             if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-                ChargeManualMessgeView *view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"payUrl"] retelling:nil type:[HYRechargeHelper isUSDTOtherBankModel:model]?ChargeMsgTypeOTHERS:ChargeMsgTypeDCBOX];
-                view.clickBlock = ^(BOOL isSure) {
-                    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
-                };
-                [kKeywindow addSubview:view];
+//                ChargeManualMessgeView *view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"payUrl"] retelling:nil type:[HYRechargeHelper isUSDTOtherBankModel:model]?ChargeMsgTypeOTHERS:ChargeMsgTypeDCBOX];
+//                view.clickBlock = ^(BOOL isSure) {
+//                    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
+//                };
+//                [kKeywindow addSubview:view];
             }
         }];
     }
