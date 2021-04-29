@@ -246,7 +246,7 @@
 //        [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"];//1usdt账户余额  0人民币账户余额
 //    }
     
-    [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:handler];
+    [CNBaseNetworking POST:(config_getBalanceInfo) parameters:param completionHandler:handler];
 
 }
 
@@ -262,7 +262,7 @@
 //        [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"];
 //    }
     
-    [CNBaseNetworking POST:kGatewayPath(config_getBalanceInfo) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+    [CNBaseNetworking POST:(config_getBalanceInfo) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
             AccountMoneyDetailModel *model = [AccountMoneyDetailModel cn_parse:responseObj];
             handler(model);

@@ -98,7 +98,7 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     [param setObject:@"DEPOSIT_GUIDE" forKey:@"bizCode"];
     WEAKSELF_DEFINE
-    [CNBaseNetworking POST:kGatewayPath(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+    [CNBaseNetworking POST:(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         STRONGSELF_DEFINE
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             NSArray *data = [responseObj objectForKey:@"data"];

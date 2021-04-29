@@ -191,7 +191,7 @@
             break;
     }
     
-    [CNBaseNetworking POST:kGatewayPath(path) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+    [CNBaseNetworking POST:path parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             CreditQueryResultModel *resultModel = [CreditQueryResultModel cn_parse:responseObj];
@@ -256,7 +256,7 @@
         URLPath = config_deleteWithdraw;
     }
     
-    [CNBaseNetworking POST:kGatewayPath(URLPath) parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
+    [CNBaseNetworking POST:URLPath parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
             [CNHUB showSuccess:@"记录已删除"];
             [self manualDeleteModelAndUpdateTableView:row];

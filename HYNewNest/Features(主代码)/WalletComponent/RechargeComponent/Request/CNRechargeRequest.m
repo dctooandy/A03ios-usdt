@@ -12,7 +12,7 @@
 
 + (void)getShortCutsHandler:(HandlerBlock)handler {
     NSDictionary *param = @{@"bizCode" : @"DEPOSIT_DATA"};
-    [self POST:kGatewayPath(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+    [self POST:(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             handler(responseObj[@"data"], errorMsg);
         }
@@ -21,7 +21,7 @@
 
 + (void)queryPayWaysV3Handler:(HandlerBlock)handler {
 
-    [self POST:kGatewayPath(config_queryPayWaysV3) parameters:[kNetworkMgr baseParam] completionHandler:handler];
+    [self POST:(config_queryPayWaysV3) parameters:[kNetworkMgr baseParam] completionHandler:handler];
 }
 
 + (void)queryAmountListPayType:(NSString *)payType
@@ -30,7 +30,7 @@
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"payType"] = payType;
 
-    [self POST:kGatewayPath(config_queryAmountList) parameters:param completionHandler:handler];
+    [self POST:(config_queryAmountList) parameters:param completionHandler:handler];
 }
 
 //+ (void)queryBQBanksPayType:(NSString *)payType
@@ -47,7 +47,7 @@
 //        param[@"depositorId"] = depositorId;
 //    }
 //    
-//    [self POST:kGatewayPath(config_queryBQBanks) parameters:param completionHandler:handler];
+//    [self POST:(config_queryBQBanks) parameters:param completionHandler:handler];
 //}
 
 + (void)queryUSDTPayWalletsHandler:(HandlerBlock)handler {
@@ -56,7 +56,7 @@
     param[@"bqpaytype"] = @(5); //0BQ 1微信BQ 2人工转账 3比特币 4微信人工 5USDT
     param[@"flag"] = @(1); //是否可用渠道 不传默认全部渠道
     
-    [self POST:kGatewayPath(config_queryDepositBankInfos) parameters:param completionHandler:handler];
+    [self POST:(config_queryDepositBankInfos) parameters:param completionHandler:handler];
 }
 
 + (void)queryUSDTCounterHandler:(HandlerBlock)handler {
@@ -64,7 +64,7 @@
     NSMutableDictionary *parm = [kNetworkMgr baseParam];
     parm[@"transferType"] = @2;
     
-    [self POST:kGatewayPath(config_queryDepositCounter) parameters:parm completionHandler:handler];
+    [self POST:(config_queryDepositCounter) parameters:parm completionHandler:handler];
 }
 
 + (void)queryOnlineBanksPayType:(NSString *)payType
@@ -81,7 +81,7 @@
         parm[@"currency"] = @"USDT";
     }
     
-    [self POST:kGatewayPath(config_queryOnlineBanks) parameters:parm completionHandler:handler];
+    [self POST:(config_queryOnlineBanks) parameters:parm completionHandler:handler];
 }
 
 + (void)submitOnlinePayOrderAmount:(NSString *)amount
@@ -100,7 +100,7 @@
     paramDic[@"payid"] = payid;
     paramDic[@"showQRCode"] = @(showQRCode);
     
-    [self POST:kGatewayPath(config_createOnlineOrder) parameters:paramDic completionHandler:handler];
+    [self POST:(config_createOnlineOrder) parameters:paramDic completionHandler:handler];
 }
 
 + (void)submitOnlinePayOrderRMBAmount:(NSString *)amount
@@ -113,7 +113,7 @@
     paramDic[@"payid"] = payid;
     paramDic[@"payType"] = payType;
     
-    [self POST:kGatewayPath(config_createOnlineOrder) parameters:paramDic completionHandler:handler];
+    [self POST:(config_createOnlineOrder) parameters:paramDic completionHandler:handler];
 }
 
 + (void)submitOnlinePayOrderV2Amount:(NSString *)amount
@@ -128,7 +128,7 @@
     paramDic[@"payType"] = payType;
     paramDic[@"protocol"] = usdtProtocol;
      
-    [self POST:kGatewayPath(config_createOnlineOrderV2) parameters:paramDic completionHandler:handler];
+    [self POST:(config_createOnlineOrderV2) parameters:paramDic completionHandler:handler];
     
 }
 
@@ -146,7 +146,7 @@
     paramDic[@"depositorType"] = @(depositorType);
 //    paramDic[@"bankCode"] = bankCode;
 
-    [self POST:kGatewayPath(config_BQPayment) parameters:paramDic completionHandler:handler];
+    [self POST:(config_BQPayment) parameters:paramDic completionHandler:handler];
 }
 
 @end

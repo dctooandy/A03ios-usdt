@@ -15,7 +15,7 @@
 }
 
 + (void)xmQueryXmpPlatformHandler:(HandlerBlock)handler {
-    [self POST:kGatewayPath(config_xmQueryXmpPlatform) parameters:[kNetworkMgr baseParam] completionHandler:handler];
+    [self POST:(config_xmQueryXmpPlatform) parameters:[kNetworkMgr baseParam] completionHandler:handler];
 }
 
 + (void)xmCalcAmountV3WithXmTypes:(NSArray *)xmTypes
@@ -23,7 +23,7 @@
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"xmTypes"] = xmTypes;
-    [self POST:kGatewayPath(config_xmCalcAmountV3) parameters:param completionHandler:handler];
+    [self POST:(config_xmCalcAmountV3) parameters:param completionHandler:handler];
 }
 
 + (void)xmCreateRequestXmBeginDate:(NSString *)xmBeginDate
@@ -44,7 +44,7 @@
     param[@"xmEndDate"] = xmEndDate;
     param[@"xmRequests"] = xmList;
     
-    [self POST:kGatewayPath(config_xmcreateRequest) parameters:param completionHandler:handler];
+    [self POST:(config_xmcreateRequest) parameters:param completionHandler:handler];
 }
 
 @end

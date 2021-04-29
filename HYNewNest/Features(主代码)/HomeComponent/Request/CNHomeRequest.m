@@ -15,7 +15,7 @@
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"bizCode"] = @"800_DEPLOY";
     
-    [self POST:kGatewayPath(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+    [self POST:(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             handler(responseObj[@"data"], errorMsg);
         }
@@ -27,7 +27,7 @@
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"bizCode"] = @"MESSAGE_BOX";
     
-    [self POST:kGatewayPath(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+    [self POST:(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             handler(responseObj[@"data"], errorMsg);
         }
@@ -45,12 +45,12 @@
     param[@"mobileNo"] = mobileNo;
     param[@"smsCode"] = smsCode;
   
-    [self POST:kGatewayPath(config_callBackPhone) parameters:param completionHandler:handler];
+    [self POST:(config_callBackPhone) parameters:param completionHandler:handler];
 }
 
 + (void)requestH5TicketHandler:(HandlerBlock)handler {
     
-    [self POST:kGatewayPath(config_h5Ticket) parameters:[kNetworkMgr baseParam] completionHandler:^(id responseObj, NSString *errorMsg) {
+    [self POST:(config_h5Ticket) parameters:[kNetworkMgr baseParam] completionHandler:^(id responseObj, NSString *errorMsg) {
         NSString *ticket = [responseObj objectForKey:@"ticket"];
         handler(ticket, errorMsg);
     }];
@@ -70,7 +70,7 @@
 }
 
 + (void)requestGetAnnouncesHandler:(HandlerBlock)handler {
-    [self POST:kGatewayPath(config_queryAnnoumces) parameters:[kNetworkMgr baseParam] completionHandler:handler];
+    [self POST:(config_queryAnnoumces) parameters:[kNetworkMgr baseParam] completionHandler:handler];
 }
 
 
@@ -88,7 +88,7 @@
     param[@"gameId"] = gameId.length > 0 ? gameId : @"";
     param[@"platformCurrency"] = platformCurrency;
     
-    [self POST:kGatewayPath(config_inGame) parameters:param completionHandler:handler];
+    [self POST:(config_inGame) parameters:param completionHandler:handler];
 }
 
 + (void)requestBACInGameUrlTableCode:(NSString *)tableCode handler:(HandlerBlock)handler {
@@ -99,14 +99,14 @@
     param[@"gameId"] = @"";
     param[@"additionalParams"] = [NSString stringWithFormat:@"videoID=%@",tableCode];//additionalParams: "videoID=D051"
     
-    [self POST:kGatewayPath(config_inGame) parameters:param completionHandler:handler];
+    [self POST:(config_inGame) parameters:param completionHandler:handler];
 }
 
 + (void)queryGamesHandler:(HandlerBlock)handler {
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"currency"] = [CNUserManager shareManager].userInfo.currency;
     
-    [self POST:kGatewayPath(config_queryGames) parameters:param completionHandler:handler];
+    [self POST:(config_queryGames) parameters:param completionHandler:handler];
 }
 
 
@@ -123,7 +123,7 @@
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
     [paramDic setObject:@"1" forKey:@"flag"];
     
-    [self POST:kGatewayPath(config_queryFavoriteGame) parameters:paramDic completionHandler:handler];
+    [self POST:(config_queryFavoriteGame) parameters:paramDic completionHandler:handler];
 }
 
 + (void)updateFavoriteElecGameId:(NSString *)gameId
@@ -136,7 +136,7 @@
     paramDic[@"platformCode"] = platformCode;
     paramDic[@"flag"] = @(flag);
     
-    [self POST:kGatewayPath(config_updateFavorite) parameters:paramDic completionHandler:handler];
+    [self POST:(config_updateFavorite) parameters:paramDic completionHandler:handler];
 }
 
 + (void)queryElecGamesOneOfThreeType:(ElecGame3Type)type
@@ -168,7 +168,7 @@
         default:
             break;
     }
-    [self POST:kGatewayPath(config_queryElecGame) parameters:paramDic completionHandler:handler];
+    [self POST:(config_queryElecGame) parameters:paramDic completionHandler:handler];
 }
 
 + (void)searchElecGameName:(NSString *)gameName
@@ -181,7 +181,7 @@
     paramDic[@"pageSize"] = @(100);
     paramDic[@"gameName"] = [gameName stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    [self POST:kGatewayPath(config_queryElecGame) parameters:paramDic completionHandler:handler];
+    [self POST:(config_queryElecGame) parameters:paramDic completionHandler:handler];
 }
 
 /**{
@@ -218,7 +218,7 @@
         paramDic[@"payLines"] = payLines;//赔付线
     }
     
-    [self POST:kGatewayPath(config_queryElecGame) parameters:paramDic completionHandler:handler];
+    [self POST:(config_queryElecGame) parameters:paramDic completionHandler:handler];
 }
 
 

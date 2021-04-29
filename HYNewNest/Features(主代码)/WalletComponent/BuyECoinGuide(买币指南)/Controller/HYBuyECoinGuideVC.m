@@ -388,7 +388,7 @@
 - (void)getDynamicData {
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     [param setObject:@"MAIBI_GUIDE" forKey:@"bizCode"];
-    [CNBaseNetworking POST:kGatewayPath(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+    [CNBaseNetworking POST:(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             NSArray *data = [responseObj objectForKey:@"data"];

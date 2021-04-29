@@ -15,7 +15,7 @@
     // 0 仅查询银行账户  1 查询当前账户和子账户(usdt)列表  2 仅查询子账户列表
     // subWalletAccounts
     param[@"queryType"] = @1;
-    [self POST:kGatewayPath(config_getQueryCard) parameters:param completionHandler:handler];
+    [self POST:(config_getQueryCard) parameters:param completionHandler:handler];
 }
 
 + (void)deleteAccountId:(NSString *)accountId
@@ -24,7 +24,7 @@
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"accountId"] = accountId;
     
-    [self POST:kGatewayPath(config_deleteAccount) parameters:param completionHandler:handler];
+    [self POST:(config_deleteAccount) parameters:param completionHandler:handler];
 }
 
 + (void)getBankCardBinByBankCardNo:(NSString *)bankCardNo   handler:(HandlerBlock)handler {
@@ -33,7 +33,7 @@
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"bankCardNo"] = bankCardNo;
     
-    [self POST:kGatewayPath(config_getByCardBin) parameters:param completionHandler:handler];
+    [self POST:(config_getByCardBin) parameters:param completionHandler:handler];
 }
 
 + (void)createAccountBankCardNo:(NSString *)accountNo
@@ -58,7 +58,7 @@
     param[@"validateId"] = validateId;
     param[@"expire"] = expire;
     
-    [self POST:kGatewayPath(config_createBank) parameters:param completionHandler:handler];
+    [self POST:(config_createBank) parameters:param completionHandler:handler];
     
 }
 
@@ -84,7 +84,7 @@
         param[@"messageId"] = messageId;
     }
     
-    [self POST:kGatewayPath(config_create) parameters:param completionHandler:handler];
+    [self POST:(config_create) parameters:param completionHandler:handler];
     
 }
 
@@ -110,7 +110,7 @@
         param[@"messageId"] = messageId;
     }
 
-    [self POST:kGatewayPath(config_create) parameters:param completionHandler:handler];
+    [self POST:(config_create) parameters:param completionHandler:handler];
 }
 
 + (NSString *)autoUsdtProtocolAccountNo:(NSString *)accountNo {
@@ -135,7 +135,7 @@
     param[@"smsCode"] = smsCode;
     param[@"messageId"] = messageId;
     
-    [self POST:kGatewayPath(config_createGoldAccount) parameters:param completionHandler:handler];
+    [self POST:(config_createGoldAccount) parameters:param completionHandler:handler];
 }
 
 

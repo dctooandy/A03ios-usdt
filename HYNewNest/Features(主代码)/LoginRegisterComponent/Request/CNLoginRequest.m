@@ -19,12 +19,12 @@
     NSMutableDictionary *paras = [kNetworkMgr baseParam];
     paras[@"use"] = @(type);
     
-    [self POST:kGatewayPath(config_generateCaptcha) parameters:paras completionHandler:completionHandler];
+    [self POST:(config_generateCaptcha) parameters:paras completionHandler:completionHandler];
 }
 
 + (void)getHanImageCodeHandler:(HandlerBlock)completionHandler {
     NSMutableDictionary *paras = [kNetworkMgr baseParam];
-    [self POST:kGatewayPath(config_generateHanCaptcha) parameters:paras completionHandler:completionHandler];
+    [self POST:(config_generateHanCaptcha) parameters:paras completionHandler:completionHandler];
 }
 
 + (void)verifyHanImageCodeCaptcha:(NSString *)captcha
@@ -33,7 +33,7 @@
     NSMutableDictionary *paras = [kNetworkMgr baseParam];
     paras[@"captcha"] = captcha;
     paras[@"captchaId"] = captchaId;
-    [self POST:kGatewayPath(config_validateHanCaptcha) parameters:paras completionHandler:completionHandler];
+    [self POST:(config_validateHanCaptcha) parameters:paras completionHandler:completionHandler];
 }
 
 + (void)getSMSCodeWithType:(CNSMSCodeType)type
@@ -44,7 +44,7 @@
     paras[@"use"] = @(type);
     paras[@"mobileNo"] = [CNEncrypt encryptString:phone];
     
-    [self POST:kGatewayPath(config_SendCodePhone) parameters:paras completionHandler:completionHandler];
+    [self POST:(config_SendCodePhone) parameters:paras completionHandler:completionHandler];
 }
 
 + (void)getSMSCodeWithType:(CNSMSCodeType)type
@@ -57,7 +57,7 @@
     paras[@"mobileNo"] = [CNEncrypt encryptString:phone];
     paras[@"validateId"] = vId;
     
-    [self POST:kGatewayPath(config_SendCodePhone) parameters:paras completionHandler:completionHandler];
+    [self POST:(config_SendCodePhone) parameters:paras completionHandler:completionHandler];
 }
 
 + (void)getSMSCodeByLoginNameType:(CNSMSCodeType)type   completionHandler:(HandlerBlock)completionHandler {
@@ -65,7 +65,7 @@
     NSMutableDictionary *paras = [kNetworkMgr baseParam];
     paras[@"use"] = @(type);
     
-    [self POST:kGatewayPath(config_sendCodeByLoginName) parameters:paras completionHandler:completionHandler];
+    [self POST:(config_sendCodeByLoginName) parameters:paras completionHandler:completionHandler];
 }
 
 + (void)verifySMSCodeWithType:(CNSMSCodeType)type
@@ -78,12 +78,12 @@
     paras[@"smsCode"] = smsCode;
     paras[@"messageId"] = smsCodeId;
     
-    [self POST:kGatewayPath(config_verifySmsCode) parameters:paras completionHandler:completionHandler];
+    [self POST:(config_verifySmsCode) parameters:paras completionHandler:completionHandler];
 }
 
 + (void)accountPreLoginCompletionHandler:(HandlerBlock)completionHandler {
 
-    [self POST:kGatewayPath(config_preLogin) parameters:[kNetworkMgr baseParam] completionHandler:completionHandler];
+    [self POST:(config_preLogin) parameters:[kNetworkMgr baseParam] completionHandler:completionHandler];
 }
 
 + (void)accountLogin:(NSString *)account
@@ -103,7 +103,7 @@
         paras[@"captchaId"] = imageCodeId;
     }
 
-    [self POST:kGatewayPath(config_LoginEx) parameters:paras completionHandler:^(NSDictionary *responseObj, NSString *errorMsg) {
+    [self POST:(config_LoginEx) parameters:paras completionHandler:^(NSDictionary *responseObj, NSString *errorMsg) {
         if ([responseObj isKindOfClass:[NSDictionary class]] && [responseObj.allKeys containsObject:@"samePhoneLoginNames"]) {
             completionHandler(responseObj, errorMsg);
         } else {
@@ -132,7 +132,7 @@
     param[@"messageId"] = messageId;
     param[@"validateId"] = validateId;
     
-    [self POST:kGatewayPath(config_loginMessageIdAndLoginName) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+    [self POST:(config_loginMessageIdAndLoginName) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
             [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
             [CNLoginRequest getUserInfoByTokenCompletionHandler:nil]; // 请求详细信息
@@ -152,7 +152,7 @@
     paras[@"use"] = @2;
     paras[@"loginName"] = loginName;
     
-    [self POST:kGatewayPath(config_sendCodeByLoginName) parameters:paras completionHandler:completionHandler];
+    [self POST:(config_sendCodeByLoginName) parameters:paras completionHandler:completionHandler];
 }
 
 + (void)verifyLoginWith2FALoginName:(NSString *)loginName
@@ -167,7 +167,7 @@
     param[@"phase"] = @2; // 登录后追加双因子认证
     param[@"type"] = @1; //双因子登录类型：1.sms
     
-    [self POST:kGatewayPath(config_loginWith2FA) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+    [self POST:(config_loginWith2FA) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
             [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
             [CNLoginRequest getUserInfoByTokenCompletionHandler:nil]; // 请求详细信息
@@ -197,7 +197,7 @@
 //+ (void)creatTryAcountCompletionHandler:(HandlerBlock)completionHandler {
 //    NSMutableDictionary *paras = [NSMutableDictionary new];
 //    paras[@"productId"] = @"A03";
-//    [self POST:kGatewayPath(config_createTryAccount) parameters:paras completionHandler:^(id responseObj, NSString *errorMsg) {
+//    [self POST:(config_createTryAccount) parameters:paras completionHandler:^(id responseObj, NSString *errorMsg) {
 //        [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
 //        [CNLoginRequest getUserInfoByTokenCompletionHandler:nil]; // 请求详细信息
 //        completionHandler(responseObj, errorMsg);
@@ -216,7 +216,7 @@
     paras[@"captchaId"] = captchaId;
     paras[@"captcha"] = captcha;
 
-    [self POST:kGatewayPath(config_registUserName) parameters:paras completionHandler:^(id responseObj, NSString *errorMsg) {
+    [self POST:(config_registUserName) parameters:paras completionHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
             [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
             [CNLoginRequest getUserInfoByTokenCompletionHandler:nil]; // 请求详细信息
@@ -270,7 +270,7 @@
     paras[@"newPassword"] = [CNEncrypt encryptString:newPassword];
     paras[@"type"] = @"1";
     
-    [self POST:kGatewayPath(config_modifyPwd) parameters:paras completionHandler:completionHandler];
+    [self POST:(config_modifyPwd) parameters:paras completionHandler:completionHandler];
 }
 
 
@@ -285,7 +285,7 @@
     param[@"messageId"] = messageId;
     param[@"phone"] = phone;
     
-    [self POST:kGatewayPath(config_forgetPassword_validate) parameters:param completionHandler:completionHandler];
+    [self POST:(config_forgetPassword_validate) parameters:param completionHandler:completionHandler];
 }
 
 + (void)modifyPasswordLoginName:(NSString *)loginName
@@ -304,7 +304,7 @@
     paramDic[@"validateId"] = validateId;
     paramDic[@"messageId"] = messageId;
     
-    [self POST:kGatewayPath(config_modifyPwdBySmsCode) parameters:paramDic completionHandler:completionHandler];
+    [self POST:(config_modifyPwdBySmsCode) parameters:paramDic completionHandler:completionHandler];
 }
 
 
@@ -316,7 +316,7 @@
     paras[@"messageId"] = messageId;
     paras[@"smsCode"] = smsCode;
     
-    [self POST:kGatewayPath(config_bindMobileNoV2) parameters:paras completionHandler:completionHandler];
+    [self POST:(config_bindMobileNoV2) parameters:paras completionHandler:completionHandler];
 }
 
 + (void)requestRebindPhone:(NSString *)smsCode
@@ -329,7 +329,7 @@
 //    [paramDic setObject:@"2" forKey:@"bindType"];
 //    [paramDic setObject:@"0" forKey:@"use"];
     
-    [self POST:kGatewayPath(config_reBindMobileNoV2) parameters:paramDic completionHandler:completionHandler];
+    [self POST:(config_reBindMobileNoV2) parameters:paramDic completionHandler:completionHandler];
 }
 
 + (void)getUserInfoByTokenCompletionHandler:(nullable HandlerBlock)completionHandler {
@@ -345,7 +345,7 @@
 //    paramDic[@"inclPromoAmountByMonth"] = @(1); // 本月优惠
 //    paramDic[@"inclRebatedAmountByMonth"] = @(1); // 本月洗码
 
-    [self POST:kGatewayPath(config_getByLoginName) parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
+    [self POST:(config_getByLoginName) parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
         [[CNUserManager shareManager] saveUserDetail:responseObj];
         if (completionHandler) {
             completionHandler(responseObj, errorMsg);
@@ -354,7 +354,7 @@
 }
 
 + (void)logoutHandler:(HandlerBlock)completionHandler{
-    [self POST:kGatewayPath(config_logout) parameters:[kNetworkMgr baseParam] completionHandler:^(id responseObj, NSString *errorMsg) {
+    [self POST:(config_logout) parameters:[kNetworkMgr baseParam] completionHandler:^(id responseObj, NSString *errorMsg) {
         [[CNUserManager shareManager] cleanUserInfo];
         if (completionHandler) {
             completionHandler(responseObj, errorMsg);
@@ -384,7 +384,7 @@
 //    [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@2 forKey:@"accountType"]; //废弃
     param[@"uiMode"] = [CNUserManager shareManager].isUsdtMode?@"CNY":@"USDT";
     
-    [self POST:kGatewayPath(config_switchAccount) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+    [self POST:(config_switchAccount) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             if (responseObj[@"loginName"]) {
                 CNUserModel *userInfo = [CNUserManager shareManager].userInfo;

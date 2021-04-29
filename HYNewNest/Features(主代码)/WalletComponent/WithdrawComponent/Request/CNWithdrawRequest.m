@@ -12,7 +12,7 @@
 @implementation CNWithdrawRequest
 
 + (void)transferBalanceToLocalHandler:(HandlerBlock)handler {
-    [self POST:kGatewayPath(config_transfer_to_local) parameters:[kNetworkMgr baseParam] completionHandler:handler];
+    [self POST:(config_transfer_to_local) parameters:[kNetworkMgr baseParam] completionHandler:handler];
 }
 
 + (void)withdrawCalculatorMode:(NSNumber *)mode
@@ -24,7 +24,7 @@
     param[@"amount"] = amount;
     param[@"accountId"] = accountId;
     
-    [self POST:kGatewayPath(config_calculateSeparate) parameters:param completionHandler:handler];
+    [self POST:(config_calculateSeparate) parameters:param completionHandler:handler];
 }
 
 + (void)submitWithdrawRequestAmount:(NSNumber *)amount
@@ -41,7 +41,7 @@
     param[@"remarks"] = remarks;
     param[@"subWallAccountId"] = subWallAccountId;
     
-    [self POST:kGatewayPath(config_drawCreateRequest) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+    [self POST:(config_drawCreateRequest) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             if ([[responseObj allKeys] containsObject:@"referenceId"]) {
@@ -57,7 +57,7 @@
 
 + (void)getBalancesHandler:(HandlerBlock)handler {
     NSMutableDictionary *param = [kNetworkMgr baseParam];
-    [self POST:kGatewayPath(config_getBalances) parameters:param completionHandler:handler];
+    [self POST:(config_getBalances) parameters:param completionHandler:handler];
 }
 
 + (void)getUserMobileStatusCompletionHandler:(nullable HandlerBlock)completionHandler {
@@ -67,7 +67,7 @@
     paramDic[@"inclMobileNoBind"] = @(1);
     paramDic[@"inclRealName"] = @(1);
     
-    [self POST:kGatewayPath(config_getByLoginName) parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
+    [self POST:(config_getByLoginName) parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
         [[CNUserManager shareManager] saveUserMobileStatus:responseObj];
         if (completionHandler) {
             completionHandler(responseObj, errorMsg);

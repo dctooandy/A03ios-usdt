@@ -39,7 +39,7 @@
         param[@"email"] = email;
     }
     
-    [self POST:kGatewayPath(config_modifyUserInfo) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+    [self POST:(config_modifyUserInfo) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         // 刷新信息
         [CNLoginRequest getUserInfoByTokenCompletionHandler:nil];
         handler(responseObj, errorMsg);
@@ -72,7 +72,7 @@
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"content"] = content;
     
-    [self POST:kGatewayPath(config_changeLimitBonus) parameters:param completionHandler:handler];
+    [self POST:(config_changeLimitBonus) parameters:param completionHandler:handler];
 }
 
 + (void)queryLetterPageNo:(NSInteger)pageNo
@@ -83,14 +83,14 @@
     param[@"pageNo"] = @(pageNo);
     param[@"pageSize"] = @(pageSize);
     
-    [self POST:kGatewayPath(config_letter_query) parameters:param completionHandler:handler];
+    [self POST:(config_letter_query) parameters:param completionHandler:handler];
 }
 
 + (void)queryUserSubscribHandler:(HandlerBlock)handler {
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"type"] = @(1); //订阅类型[1:短信; 2:邮件; 3:站内信][暂时只支持短信]
     
-    [self POST:kGatewayPath(config_subscrib_query) parameters:param completionHandler:handler];
+    [self POST:(config_subscrib_query) parameters:param completionHandler:handler];
 }
 
 + (void)modifyUserSubscribArray:(NSArray<UserSubscribItem *> *)subscribes
@@ -104,7 +104,7 @@
     }
     param[@"subscribes"] = subArr;
     
-    [self POST:kGatewayPath(config_subscrib_modify) parameters:param completionHandler:handler];
+    [self POST:(config_subscrib_modify) parameters:param completionHandler:handler];
 }
 
 + (void)cancelWithdrawBillRequestId:(NSString *)referenceId
@@ -113,7 +113,7 @@
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"referenceId"] = referenceId;
     
-    [self POST:kGatewayPath(config_drawCancelRequest) parameters:param completionHandler:handler];
+    [self POST:(config_drawCancelRequest) parameters:param completionHandler:handler];
 }
 
 + (void)reminderBillReferenceId:(NSString *)referenceId
@@ -124,21 +124,21 @@
     param[@"referenceId"] = referenceId;
     param[@"type"] = @(type);
     
-    [self POST:kGatewayPath(config_reminder) parameters:param completionHandler:handler];
+    [self POST:(config_reminder) parameters:param completionHandler:handler];
 }
 
 + (void)submitSugestionContent:(NSString *)content handler:(HandlerBlock)handler {
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"content"] = content;
     
-    [self POST:kGatewayPath(config_sugestion) parameters:param completionHandler:handler];
+    [self POST:(config_sugestion) parameters:param completionHandler:handler];
 }
 
 + (void)querySuggestionHandler:(HandlerBlock)handler {
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"pageSize"] = @100;
     
-    [self POST:kGatewayPath(config_querySugestion) parameters:param completionHandler:handler];
+    [self POST:(config_querySugestion) parameters:param completionHandler:handler];
 }
 
 + (void)queryAgentRecordsHandler:(HandlerBlock)handler {

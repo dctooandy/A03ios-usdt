@@ -16,7 +16,7 @@
 @implementation CNSplashRequest
 
 + (void)queryNewVersion:(void(^)(BOOL isHardUpdate))handler {
-    [self POST:kGatewayPath(config_upgradeApp) parameters:[kNetworkMgr baseParam] completionHandler:^(id responseObj, NSString *errorMsg) {
+    [self POST:(config_upgradeApp) parameters:[kNetworkMgr baseParam] completionHandler:^(id responseObj, NSString *errorMsg) {
         
         UpdateVersionModel *updateVersion = [UpdateVersionModel cn_parse:responseObj];
         if ([updateVersion.flag integerValue] == 0 || updateVersion.appDownUrl.length < 1) {
@@ -99,13 +99,13 @@
     [paramDic setObject:@"iOS" forKey:@"deviceType"];
     [paramDic setObject:@"Apple" forKey:@"deviceBrand"];
     
-    [self POST:kGatewayPath(config_welcome) parameters:paramDic completionHandler:handler];
+    [self POST:(config_welcome) parameters:paramDic completionHandler:handler];
 }
 
 + (void)queryCDNH5Domain:(HandlerBlock)handler {
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
     [paramDic setObject:@"APP_ADDRESS_MANAGER" forKey:@"bizCode"];
-    [self POST:kGatewayPath(config_dynamicQuery) parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
+    [self POST:(config_dynamicQuery) parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
             handler([responseObj[@"data"] firstObject], errorMsg);
         }
@@ -115,7 +115,7 @@
 + (void)checkAreaLimit:(void(^)(BOOL isAllowEntry))handler {
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
     paramDic[@"deviceId"] = [FCUUID uuidForDevice];
-    [self POST:kGatewayPath(config_areaLimit) parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
+    [self POST:(config_areaLimit) parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
         handler([responseObj boolValue]);
     }];
 }
