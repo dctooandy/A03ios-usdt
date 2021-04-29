@@ -25,6 +25,7 @@
 #import "CNMessageBoxView.h"
 #import "HYWideOneBtnAlertView.h"
 #import "CNGameBtnsStackView.h"
+#import "WMDragView.h"
 
 #import "CNHomeRequest.h"
 #import "CNUserCenterRequest.h"
@@ -93,7 +94,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.hideNavgation = YES;
     [self configUI];
     
     [self userDidLogin];
@@ -116,7 +116,7 @@
         _hasRecord = YES;
     }
     self.bannerView.autoScroll = YES; // 恢复滚动
-    [self.infoView updateLoginStatusUIIsRefreshing:NO];
+    [self.infoView updateLoginStatusUIIsRefreshing:NO]; // 获取余额
     
     kPreventRepeatTime(60*10); //十分钟
     // 检查新版本
@@ -157,10 +157,14 @@
 }
 
 - (void)configUI {
+    self.hideNavgation = YES;
+    
     self.infoView.delegate = self;
     
     self.dashenView.backgroundColor = self.pageView.backgroundColor = self.scrollContentView.backgroundColor = self.view.backgroundColor;
     self.scrollContentW.constant = kScreenWidth;
+    
+    [self setupBBSEntryBallView];
     
     // 配置游戏和大神榜子控制器内容
     [self initSubVcAndAddSubVcViews];
@@ -172,6 +176,17 @@
         [wSelf userDidLogin];
         [wSelf requestAnnouncement];
     }];
+}
+
+- (void)setupBBSEntryBallView {
+    WMDragView *bbsBall = [[WMDragView alloc] initWithFrame:CGRectMake(0, kScreenHeight *0.75, 40, 40)];
+    bbsBall.backgroundColor = [UIColor clearColor];
+    bbsBall.isKeepBounds = YES;
+    [bbsBall.button setImage:[UIImage imageNamed:@"bbs_icon"] forState:UIControlStateNormal];
+    bbsBall.clickDragViewBlock = ^(WMDragView *dragView) {
+        [NNPageRouter jump2HTMLWithStrURL:@"/bbs" title:@"币游论坛" needPubSite:NO];
+    };
+    [self.view addSubview:bbsBall];
 }
 
 - (void)initSubVcAndAddSubVcViews {
