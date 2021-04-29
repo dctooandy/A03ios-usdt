@@ -122,26 +122,25 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
         } else if ([fullArr[0] containsString:@"close round"]){ // 更新游戏数据
             RoundPushModel *nround = [RoundPushModel cn_parse:fullArr[1]];
             NSString* where = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"vid"), bg_sqlValue(nround.vid)];
-            NSArray* arr = [DSBGameRoundResModel bg_find:DBName_DSBGameRoundResults where:where];
-            if (arr.count) {
-                DSBGameRoundResModel *model = arr.firstObject;
-                NSMutableDictionary *roundReses = model.roundRes.mutableCopy;
-                roundReses[nround.gmcode] = [nround makeRoundResItem]; //添加一条
-                model.roundRes = roundReses.copy;
-                [model bg_saveOrUpdateAsync:^(BOOL isSuccess) {
-                    if([nround.vid isEqualToString:weakSelf.showTableId]) {
-//                        NSLog(@"------------------------ Found:%@, update DB & RefreshView", nround.vid);
-                        //返回主线程
-                        dispatch_async(dispatch_get_main_queue(), ^{ @autoreleasepool {
-                            [weakSelf.tableView reloadData];
-                        }});
+            [DSBGameRoundResModel bg_findAsync:DBName_DSBGameRoundResults where:where complete:^(NSArray * _Nullable array) {
+                if (array.count) {
+                    DSBGameRoundResModel *model = array.firstObject;
+                    NSMutableDictionary *roundReses = model.roundRes.mutableCopy;
+                    roundReses[nround.gmcode] = [nround makeRoundResItem]; //添加一条
+                    model.roundRes = roundReses.copy;
+                    [model bg_saveOrUpdateAsync:^(BOOL isSuccess) {
+                        if([nround.vid isEqualToString:weakSelf.showTableId]) {
+                            MyLog(@"------------------------ Found:%@, update DB & RefreshView", nround.vid);
+                            //返回主线程
+                            dispatch_async(dispatch_get_main_queue(), ^{ @autoreleasepool {
+                                [weakSelf.tableView reloadData];
+                            }});
 
-                    }
-                }];
-            }
-            else {
-//                MyLog(@"------------------------ Not found:%@, drop data", nround.vid);
-            }
+                        }
+                    }];
+                }
+            }];
+
         }
     }];
 }
@@ -181,11 +180,15 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     //db
     if (self.showTableId) {
         NSString* where = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"vid"), bg_sqlValue(self.showTableId)];
-        NSArray* arr = [DSBGameRoundResModel bg_find:DBName_DSBGameRoundResults where:where];
-        if (arr.count) {
-            DSBGameRoundResModel *m = arr[0];
-            [header setupDrewsWith:m.roundRes];
-        }
+        [DSBGameRoundResModel bg_findAsync:DBName_DSBGameRoundResults where:where complete:^(NSArray * _Nullable array) {
+            if (array.count) {
+                DSBGameRoundResModel *m = array[0];
+                //返回主线程
+                dispatch_async(dispatch_get_main_queue(), ^{ @autoreleasepool {
+                    [header setupDrewsWith:m.roundRes];
+                }});
+            }
+        }];
     }
     
     //user
