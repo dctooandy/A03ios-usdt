@@ -72,7 +72,7 @@ static dispatch_once_t onceToken;
 /// 发送验证码
 - (void)sendVerifyCode:(nullable void(^)(void))successHandler {
     [CNLoginRequest getSMSCodeByLoginNameType:CNSMSCodeTypeChangeBank completionHandler:^(id responseObj, NSString *errorMsg) {
-        if (KIsEmptyString(errorMsg)) {
+        if (!errorMsg) {
             [kKeywindow jk_makeToast:[NSString stringWithFormat:@"向手机%@发送了一条验证码", [CNUserManager shareManager].userDetail.mobileNo] duration:3 position:JKToastPositionCenter];
             SmsCodeModel *smsModel = [SmsCodeModel cn_parse:responseObj];
             self.phoneModel = smsModel;
@@ -92,7 +92,7 @@ static dispatch_once_t onceToken;
     [CNWDAccountRequest createGoldAccountSmsCode:smsCode
                                        messageId:self.phoneModel.messageId
                                          handler:^(id responseObj, NSString *errorMsg) {
-        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             NSString *b64AccountNo = responseObj[@"accountNo"];
             self.accountNo = [GTMBase64 decodeBase64String:b64AccountNo];
             if (successHandler) {
@@ -113,7 +113,7 @@ static dispatch_once_t onceToken;
 // 绑定创建的小金库账户
 - (void)bindBitollAccount:(NSString *)accountNo handler:(void(^)(void))successHandler {
     [CNWDAccountRequest createAccountDCBoxAccountNo:self.accountNo isOneKey:YES validateId:nil messageId:nil handler:^(id responseObj, NSString *errorMsg) {
-        if (KIsEmptyString(errorMsg)) {
+        if (!errorMsg) {
             // 绑定成功
             [CNLoginRequest getUserInfoByTokenCompletionHandler:nil];
             [CNHUB showSuccess:[NSString stringWithFormat:@"金库号 %@ 绑定成功", accountNo]];

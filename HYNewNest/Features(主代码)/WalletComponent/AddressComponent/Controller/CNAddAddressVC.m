@@ -214,7 +214,7 @@
                                                  validateId:self.codeInputView.smsModel.validateId
                                                   messageId:self.codeInputView.smsModel.messageId
                                                     handler:^(id responseObj, NSString *errorMsg) {
-                if (KIsEmptyString(errorMsg)) {
+                if (!errorMsg) {
                     [CNHUB showSuccess:@"小金库添加成功"];
                     [self.navigationController popViewControllerAnimated:YES];
                     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -231,7 +231,7 @@
                                                 validateId:self.codeInputView.smsModel.validateId
                                                  messageId:self.codeInputView.smsModel.messageId
                                                    handler:^(id responseObj, NSString *errorMsg) {
-                if (KIsEmptyString(errorMsg)) {
+                if (!errorMsg) {
                     [CNHUB showSuccess:@"地址添加成功"];
                     [self.navigationController popViewControllerAnimated:YES];
                     dispatch_async(dispatch_get_global_queue(0, 0), ^{

@@ -72,7 +72,7 @@ form.submit();\
     [super viewWillAppear:animated];
     [[IQKeyboardManager sharedManager] setEnable:NO];
     [self popGestureClose];
-    if ([self.gameUrl containsString:@"callbackUrl"]) {
+    if ([self.gameUrl containsString:@"callbackUrl"] && ![self.gameName isEqualToString:@"AS真人棋牌"]) {
         self.hideNavgation = YES;
     } else {
         self.hideNavgation = NO;
@@ -130,7 +130,7 @@ form.submit();\
     WEAKSELF_DEFINE
     [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
         STRONGSELF_DEFINE
-        if ([strongSelf.gameUrl containsString:@"callbackUrl"]) {
+        if ([strongSelf.gameUrl containsString:@"callbackUrl"] && ![self.gameName isEqualToString:@"AS真人棋牌"]) {
             make.top.equalTo(strongSelf.view).mas_offset(kStatusBarHeight);
         } else {
             make.top.equalTo(strongSelf.view);
@@ -369,7 +369,7 @@ form.submit();\
 
 //必须返回YES
 - (BOOL)shouldAutorotate{
-    if ([self.gameName isEqualToString:@"彩票"]) {
+    if ([self.gameName isEqualToString:@"彩票"] || [self.gameName isEqualToString:@"AS真人棋牌"]) {
         return NO;
     } else {
         return YES;
@@ -378,7 +378,7 @@ form.submit();\
 
 
  - (BOOL)onDYDeviceOrientationDidChange{
-     if ([self.gameName isEqualToString:@"彩票"]) {
+     if ([self.gameName isEqualToString:@"彩票"] || [self.gameName isEqualToString:@"AS真人棋牌"]) {
          return NO;
      }
      

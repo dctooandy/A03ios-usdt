@@ -129,7 +129,7 @@
 #pragma mark - REQUEST
 - (void)queryAccounts {
     [CNWDAccountRequest queryAccountHandler:^(id responseObj, NSString *errorMsg) {
-        if (!KIsEmptyString(errorMsg) || ![responseObj isKindOfClass:[NSDictionary class]]) {
+        if (errorMsg || ![responseObj isKindOfClass:[NSDictionary class]]) {
             return;
         }
         NSArray<AccountModel *> *accounts = [AccountModel cn_parse:responseObj[@"accounts"]];
@@ -179,7 +179,7 @@
                 break;
         }
         [CNWDAccountRequest deleteAccountId:model.accountId handler:^(id responseObj, NSString *errorMsg) {
-            if (KIsEmptyString(errorMsg)) {
+            if (!errorMsg) {
                 [CNHUB showSuccess:@"删除成功"];
                 [self queryAccounts];
                 dispatch_async(dispatch_get_global_queue(0, 0), ^{
