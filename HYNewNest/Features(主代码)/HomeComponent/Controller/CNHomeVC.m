@@ -185,7 +185,7 @@
     bbsBall.isKeepBounds = YES;
     [bbsBall.button setImage:[UIImage imageNamed:@"bbs_icon"] forState:UIControlStateNormal];
     bbsBall.clickDragViewBlock = ^(WMDragView *dragView) {
-        [NNPageRouter jump2HTMLWithStrURL:@"/bbs" title:@"币游论坛" needPubSite:NO];
+        [NNPageRouter jump2HTMLWithStrURL:H5URL_BBS title:@"币游论坛" needPubSite:NO];
     };
     [self.view addSubview:bbsBall];
 }

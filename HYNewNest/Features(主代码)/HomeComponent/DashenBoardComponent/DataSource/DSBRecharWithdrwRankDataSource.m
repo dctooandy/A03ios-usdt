@@ -135,7 +135,9 @@ NSString *const HeaderID = @"DSBRchrWthdrwHeader";
     if (self.recharList.count && spaceTime < 60*60) {
         [self.tableView reloadData];
     } else {
+        [LoadingView showLoadingViewWithToView:self.tableView needMask:YES];
         [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeRecharge handler:^(id responseObj, NSString *errorMsg) {
+            [LoadingView hideLoadingViewForView:self.tableView];
             if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
                 NSArray *orgData = responseObj[@"data"];
                 self.recharList = [DSBRecharWithdrwUsrModel cn_parse:orgData];
@@ -157,7 +159,9 @@ NSString *const HeaderID = @"DSBRchrWthdrwHeader";
     if (self.wthdrwList.count && spaceTime < 60*60) {
         [self.tableView reloadData];
     } else {
+        [LoadingView showLoadingViewWithToView:self.tableView needMask:YES];
         [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeWithdraw handler:^(id responseObj, NSString *errorMsg) {
+            [LoadingView hideLoadingViewForView:self.tableView];
             if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
                 NSArray *orgData = responseObj[@"data"];
                 self.wthdrwList = [DSBRecharWithdrwUsrModel cn_parse:orgData];

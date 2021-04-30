@@ -158,7 +158,9 @@ NSString *const listCellID = @"DSBWeekMonthListCell";
     if (self.weekRank) {
         [self.tableView reloadData];
     } else {
+        [LoadingView showLoadingViewWithToView:self.tableView needMask:YES];
         [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeTotalWeek handler:^(id responseObj, NSString *errorMsg) {
+            [LoadingView hideLoadingViewForView:self.tableView];
             if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
                 DSBWeekMonthModel *model = [DSBWeekMonthModel cn_parse:responseObj];
                 self.weekRank = model;
@@ -173,7 +175,9 @@ NSString *const listCellID = @"DSBWeekMonthListCell";
     if (self.monthRank) {
         [self.tableView reloadData];
     } else {
+        [LoadingView showLoadingViewWithToView:self.tableView needMask:YES];
         [DashenBoardRequest requestDashenBoredType:DashenBoredReqTypeTotalMonth handler:^(id responseObj, NSString *errorMsg) {
+            [LoadingView hideLoadingViewForView:self.tableView];
             if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
                 DSBWeekMonthModel *model = [DSBWeekMonthModel cn_parse:responseObj];
                 self.monthRank = model;

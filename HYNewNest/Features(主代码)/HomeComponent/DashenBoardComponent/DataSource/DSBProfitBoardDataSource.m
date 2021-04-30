@@ -252,6 +252,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
         return;
     }
     _isAsking = YES; //正在请求
+    [LoadingView showLoadingViewWithToView:self.tableView needMask:YES];
     
     [DashenBoardRequest requestRecommendTableHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg && [responseObj isKindOfClass:[NSString class]]) {
@@ -270,6 +271,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
                     [self setupWebSocket];
                     
                     self->_isAsking = NO;
+                    [LoadingView hideLoadingViewForView:self.tableView];
                     
                 } else {
                     [self performSelector:@selector(requestYinliRank) withObject:nil afterDelay:3];

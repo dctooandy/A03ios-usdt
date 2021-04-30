@@ -66,7 +66,7 @@
             [NNControllerHelper currentTabBarController].selectedIndex = 1;
         });
     } else { // 去星级H5
-        [NNPageRouter jump2HTMLWithStrURL:@"/starall" title:@"星特权新体验" needPubSite:YES];
+        [NNPageRouter jump2HTMLWithStrURL:H5URL_Pub_Starall title:@"星特权新体验" needPubSite:NO];
     }
 }
 

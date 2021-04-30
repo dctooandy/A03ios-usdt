@@ -64,7 +64,6 @@
 }
 
 - (void)tapBanner:(UITouch *)touch {
-//    [NNPageRouter jump2HTMLWithStrURL:@"/tutorialReference" title:@"请稍等.." needPubSite:YES];
     UIViewController *vc = [NNControllerHelper getCurrentViewController];
     [vc presentViewController:[HYNewCTZNViewController new] animated:YES completion:^{
     }];
