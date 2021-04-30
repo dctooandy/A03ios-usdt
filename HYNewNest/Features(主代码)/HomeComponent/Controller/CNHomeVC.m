@@ -164,7 +164,7 @@
     self.dashenView.backgroundColor = self.pageView.backgroundColor = self.scrollContentView.backgroundColor = self.view.backgroundColor;
     self.scrollContentW.constant = kScreenWidth;
     
-    [self setupBBSEntryBallView];
+//    [self setupBBSEntryBallView];
     
     // 配置游戏和大神榜子控制器内容
     [self initSubVcAndAddSubVcViews];
