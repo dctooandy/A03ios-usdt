@@ -32,7 +32,7 @@
     
     // 月报
     [CNVIPRequest vipsxhMonthReportHandler:^(id responseObj, NSString *errorMsg) {
-        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             self.model = [VIPMonthlyModel cn_parse:responseObj];
             if (self.model) {
                 [self.view addSubview:self.slideCard];//加入滑动组件
@@ -63,7 +63,7 @@
     // 领取礼金
     [CNVIPRequest vipsxhDrawGiftMoneyLevelStatus:[NSString stringWithFormat:@"%@",self.model.clubLevel]
                                          handler:^(id responseObj, NSString *errorMsg) {
-        if (KIsEmptyString(errorMsg)) {
+        if (!errorMsg) {
             self->_isDrawed = YES;
             [CNHUB showSuccess:@"领取成功"];
             [self.slideCard animateTopCardToDirection:PanDirectionLeft];
@@ -108,7 +108,7 @@
         // 领取礼金
         [CNVIPRequest vipsxhDrawGiftMoneyLevelStatus:[NSString stringWithFormat:@"%@",self.model.clubLevel]
                                              handler:^(id responseObj, NSString *errorMsg) {
-            if (KIsEmptyString(errorMsg)) {
+            if (!errorMsg) {
                 [CNHUB showSuccess:@"已为您自动领取入会礼金"];
             }
         }];

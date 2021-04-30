@@ -17,7 +17,7 @@
     param[@"conditions"] = @[@{@"name":@"currency",@"value":[CNUserManager shareManager].userInfo.currency?:@"USDT"}];
     
     [self POST:(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
-        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             handler(responseObj[@"data"], errorMsg);
         }
     }];

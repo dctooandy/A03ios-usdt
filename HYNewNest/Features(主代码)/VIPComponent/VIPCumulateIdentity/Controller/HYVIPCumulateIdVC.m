@@ -134,7 +134,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 - (void)vipIdentityData {
 
     [CNVIPRequest vipsxhCumulateIdentityHandler:^(id responseObj, NSString *errorMsg) {
-        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             
             if ([[responseObj allKeys] containsObject:@"identityList"]) {
                 NSDictionary *dict = responseObj[@"identityList"];
@@ -226,7 +226,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
         // 获取礼物详情
         [CNVIPRequest vipsxhAwardDetailPrizeids:model.prizeName handler:^(id responseObj, NSString *errorMsg) {
             // 处理数据
-            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]] && [responseObj[@"result"] count] > 0) {
+            if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]] && [responseObj[@"result"] count] > 0) {
                 NSMutableArray *contents = @[].mutableCopy;
                 NSMutableArray *picURLs = @[].mutableCopy;
                 for (NSDictionary *dict in responseObj[@"result"]) {
@@ -264,15 +264,30 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 
 
 #pragma mark - UIScrollView
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    // tableview 下滑则_lastOffsetY大于0
+    if (scrollView == self.tableView) {
+        _lastOffsetY = scrollView.contentOffset.y;
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    [self adjustViews:scrollView];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self adjustViews:scrollView];
+}
+
+- (void)adjustViews:(UIScrollView *)scrollView {
     if (scrollView == self.tableView){ // 子tableview
         MyLog(@"2----%@", NSStringFromCGPoint(scrollView.contentOffset));
         CGFloat y = AD(228)+35;
         if (scrollView.contentOffset.y > _lastOffsetY) {
             // 下滑
             if (self.superScrollView.contentOffset.y <= y) {
-                [self.superScrollView setContentOffset:CGPointMake(0, y) animated:NO];
+                [self.superScrollView setContentOffset:CGPointMake(0, y) animated:YES];
                 [self.navigationController setNavigationBarHidden:YES animated:YES];
                 [UIView animateWithDuration:0.2 animations:^{
                     self.statusBgView.alpha = 1.0;
@@ -281,8 +296,8 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
             }
         } else if  (scrollView.contentOffset.y < _lastOffsetY) {
             // 上滑
-            if (scrollView.contentOffset.y <= -40) {
-                [self.superScrollView setContentOffset:CGPointZero animated:NO];
+            if (scrollView.contentOffset.y <= 0) {
+                [self.superScrollView setContentOffset:CGPointZero animated:YES];
                 [self.navigationController setNavigationBarHidden:NO animated:YES];
                 [UIView animateWithDuration:0.2 animations:^{
                     self.statusBgView.alpha = 0.0;
@@ -291,14 +306,6 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
             }
         }
     }
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    // tableview 下滑则_lastOffsetY大于0
-    if (scrollView == self.tableView) {
-        _lastOffsetY = scrollView.contentOffset.y;
-    }
-    
 }
 
 

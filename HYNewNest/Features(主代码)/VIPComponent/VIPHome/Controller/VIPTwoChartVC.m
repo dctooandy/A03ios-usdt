@@ -39,7 +39,7 @@ static NSString * const VIPDSBChartHeader = @"VIPChartDSBHeaderView";//头部标
 
 - (void)requestBoard {
     [CNVIPRequest vipsxhBigGodBoardHandler:^(id responseObj, NSString *errorMsg) {
-        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             self.dsbModels = [VIPDSBUsrModel cn_parse:responseObj[@"rankData"]];
             [self.tableView reloadData];
         }
