@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)popGestureClose;
 - (void)popGestureOpen;
+//强制转屏
+- (void)setInterfaceOrientation:(UIInterfaceOrientation)orientation;
 
 /// 用于首页游戏页面内容高度
 @property (nonatomic, assign, readonly) CGFloat totalHeight;

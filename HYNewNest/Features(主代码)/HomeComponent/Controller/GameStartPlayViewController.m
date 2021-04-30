@@ -48,6 +48,7 @@ form.submit();\
     if (self.webView.canGoBack) {
         [self.webView goBack];
     } else {
+        [self setInterfaceOrientation:UIInterfaceOrientationPortrait];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -287,6 +288,7 @@ form.submit();\
     NSString *urlStr = navigationAction.request.URL.absoluteString;
     if ([urlStr hasPrefix:@"https://localhost/exit.html"] || [urlStr hasPrefix:@"https://localhost/disconnect.html"]) {
         decisionHandler(WKNavigationActionPolicyCancel);
+        [self setInterfaceOrientation:UIInterfaceOrientationPortrait];
         [self.navigationController popViewControllerAnimated:YES];
         
         NSArray *paths = [urlStr componentsSeparatedByString:@"?"];
@@ -361,20 +363,6 @@ form.submit();\
  
 }
 
-
-//强制转屏（这个方法最好放在BaseVController中）
-- (void)setInterfaceOrientation:(UIInterfaceOrientation)orientation{
-
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
-        SEL selector  = NSSelectorFromString(@"setOrientation:");
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
-        [invocation setSelector:selector];
-        [invocation setTarget:[UIDevice currentDevice]];
-        // 从2开始是因为前两个参数已经被selector和target占用
-        [invocation setArgument:&orientation atIndex:2];
-        [invocation invoke];
-    }
-}
 
 
 #pragma mark - 屏幕旋转
