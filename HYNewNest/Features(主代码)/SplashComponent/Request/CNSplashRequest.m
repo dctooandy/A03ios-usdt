@@ -25,16 +25,16 @@
             
         } else {
             // ping 域名获取最快的
-            NSArray *domains = updateVersion.domains;
-            [NXPingManager pingFastestHost:domains progress:^(CGFloat progress) {
-
-            } handler:^(NSString * _Nonnull host) {
-                if (!KIsEmptyString(host)) {
-                    [self downloadWithModel:updateVersion fastHost:host handler:handler];
-                } else {
+//            NSArray *domains = updateVersion.domains;
+//            [NXPingManager pingFastestHost:domains progress:^(CGFloat progress) {
+//
+//            } handler:^(NSString * _Nonnull host) {
+//                if (!KIsEmptyString(host)) {
+//                    [self downloadWithModel:updateVersion fastHost:host handler:handler];
+//                } else {
                     [self downloadWithModel:updateVersion fastHost:nil handler:handler];
-                }
-            }];
+//                }
+//            }];
         }
     }];
 }
