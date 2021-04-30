@@ -274,13 +274,13 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
                     [LoadingView hideLoadingViewForView:self.tableView];
                     
                 } else {
-                    [self performSelector:@selector(requestYinliRank) withObject:nil afterDelay:3];
+                    [self performSelector:@selector(requestYinliRank) withObject:nil afterDelay:5];
                     self->_isAsking = NO;
                 }
             }];
             
         } else {
-            [self performSelector:@selector(requestYinliRank) withObject:nil afterDelay:3];
+            [self performSelector:@selector(requestYinliRank) withObject:nil afterDelay:5];
             self->_isAsking = NO;
         }
     }];

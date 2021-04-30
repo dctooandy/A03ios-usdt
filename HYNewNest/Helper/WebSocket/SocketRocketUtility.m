@@ -82,7 +82,7 @@
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket {
     NSLog(@"\n\n>>>>>>>>>>>>>>>>连接成功，可以与服务器交流了,同时需要开启心跳");
     //每次正常连接的时候清零重连时间
-    reConnectTime = 0;
+//    reConnectTime = 2;
     //开启心跳 心跳是发送pong的消息 我这里根据后台的要求发送data给后台
 //    [self initHeartBeat];
     [[NSNotificationCenter defaultCenter] postNotificationName:BYWebSocketDidOpenNoti object:nil];
@@ -130,11 +130,11 @@
 {
     [self SRWebSocketClose];
     //超过一分钟就不再重连 所以只会重连5次 2^5 = 64
-    if (reConnectTime > 64) {
-        return;
-    }
+//    if (reConnectTime > 64) {
+//        return;
+//    }
   
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(reConnectTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(reConnectTime * NSEC_PER_SEC)), dispatch_get_global_queue(0, 0), ^{
         self.socket = nil;
         [self SRWebSocketOpen];
         NSLog(@"\n\n>>>>>>>>>>>>>>>>重连");
@@ -144,7 +144,7 @@
     if (reConnectTime == 0) {
         reConnectTime = 2;
     }else{
-        reConnectTime *= 2;
+         reConnectTime *= 2;
     }
 }
 
