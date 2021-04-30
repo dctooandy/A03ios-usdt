@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addNaviRightItemButton:(UIButton *)button;
 - (void)rightItemAction;
 
+- (void)popGestureClose;
+- (void)popGestureOpen;
+
 /// 用于首页游戏页面内容高度
 @property (nonatomic, assign, readonly) CGFloat totalHeight;
 @end

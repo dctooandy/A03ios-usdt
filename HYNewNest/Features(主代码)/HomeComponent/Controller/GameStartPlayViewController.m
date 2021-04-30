@@ -70,6 +70,7 @@ form.submit();\
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [[IQKeyboardManager sharedManager] setEnable:NO];
+    [self popGestureClose];
     if ([self.gameUrl containsString:@"callbackUrl"]) {
         self.hideNavgation = YES;
     } else {
@@ -90,7 +91,7 @@ form.submit();\
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[IQKeyboardManager sharedManager] setEnable:YES];
-    
+    [self popGestureOpen];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
