@@ -121,40 +121,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
 #pragma mark - DELEGATE
 // 屏幕已经渲染完成  即将显示出来
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-//    viewController.automaticallyAdjustsScrollViewInsets = false;//  防止状态栏向下偏移
-//    // 背景色
-//     if (viewController.bgColor)
-//     {
-//         viewController.view.backgroundColor = viewController.bgColor;
-//     }
-//    // 隐藏导航栏
-//     if (viewController.hideNavgation) {
-//         self.navigationBar.translucent = YES;
-//         [self setNavigationBarHidden:YES animated:NO];
-//     } else {
-//         self.navigationBar.translucent = NO;
-//         [self setNavigationBarHidden:NO animated:NO];
-//     }
-//    // vc的view去掉导航栏的边距，但是保留导航栏的NavBar
-//     if (viewController.makeTranslucent) {
-//         self.navigationBar.translucent = YES;
-//     } else {
-//         self.navigationBar.translucent = NO;
-//     }
-//    // 导航栏背景透明 但是不隐藏导航栏(保留按钮&功能)
-//    if (viewController.navBarTransparent) {
-//        [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-//    } else {
-//        [self.navigationBar setBackgroundImage:[UIImage jk_imageWithColor:kHexColor(0x1A1A2C)] forBarMetrics:UIBarMetricsDefault];
-//    }
-////    if (@available(iOS 13.0, *)) {
-////        UIView *barBackgroundView = [[self.navigationBar subviews] objectAtIndex:0];// _UIBarBackground iOS13work
-////        if (viewController.navBarTransparent) {
-////            barBackgroundView.alpha = 0;
-////        } else {
-////            barBackgroundView.alpha = 1;
-////        }
-////    }
 
 }
 
@@ -185,14 +151,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
     } else {
         [self.navigationBar setBackgroundImage:[UIImage jk_imageWithColor:kHexColor(0x1A1A2C)] forBarMetrics:UIBarMetricsDefault];
     }
-//    if (@available(iOS 13.0, *)) {
-//        UIView *barBackgroundView = [[self.navigationBar subviews] objectAtIndex:0];// _UIBarBackground iOS13work
-//        if (viewController.navBarTransparent) {
-//            barBackgroundView.alpha = 0;
-//        } else {
-//            barBackgroundView.alpha = 1;
-//        }
-//    }
+
     
 }
 
