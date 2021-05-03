@@ -164,7 +164,7 @@
     self.dashenView.backgroundColor = self.pageView.backgroundColor = self.scrollContentView.backgroundColor = self.view.backgroundColor;
     self.scrollContentW.constant = kScreenWidth;
     
-//    [self setupBBSEntryBallView];
+    [self setupBBSEntryBallView];
     
     // 配置游戏和大神榜子控制器内容
     [self initSubVcAndAddSubVcViews];
@@ -324,11 +324,18 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     if (self.bannModels.count > 0 && self.bannModels.count-1 >= index) {
         AdBannerModel *model = self.bannModels[index];
-        if ([model.linkUrl containsString:@"detailsPage?id="]) {
+        if ([model.linkUrl containsString:@"detailsPage?id="]) { // 跳文章
             NSString *articalId = [model.linkUrl componentsSeparatedByString:@"="].lastObject;
             [NNPageRouter jump2ArticalWithArticalId:articalId title:@"文章"];
-        } else {
-            [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"活动" needPubSite:NO];
+        } else if ([model.linkUrl hasPrefix:@"http"]) { // 跳外链
+            NSURL *URL = [NSURL URLWithString:model.linkUrl];
+            if ([[UIApplication sharedApplication] canOpenURL:URL]) {
+                [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:^(BOOL success) {
+                    [CNHUB showSuccess:@"请在外部浏览器查看"];
+                }];
+            }
+        } else { // 跳活动
+            [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"电游活动" needPubSite:NO];
         }
     }
 }

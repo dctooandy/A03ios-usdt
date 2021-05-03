@@ -122,7 +122,7 @@ typedef enum : NSUInteger {
     WEAKSELF_DEFINE
     [CNHomeRequest requestBannerWhere:BannerWhereGame Handler:^(id responseObj, NSString *errorMsg) {
         STRONGSELF_DEFINE
-        if (!KIsEmptyString(errorMsg)) {
+        if (errorMsg) {
             return;
         }
         DYAdBannerGroupModel *groupModel = [DYAdBannerGroupModel cn_parse:responseObj];
@@ -483,7 +483,21 @@ typedef enum : NSUInteger {
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     if (self.bannModels.count > 0 && self.bannModels.count-1 >= index) {
         AdBannerModel *model = self.bannModels[index];
-        [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"活动" needPubSite:NO];
+//        [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"活动" needPubSite:NO];
+        
+        if ([model.linkUrl containsString:@"detailsPage?id="]) { // 跳文章
+            NSString *articalId = [model.linkUrl componentsSeparatedByString:@"="].lastObject;
+            [NNPageRouter jump2ArticalWithArticalId:articalId title:@"文章"];
+        } else if ([model.linkUrl hasPrefix:@"http"]) { // 跳外链
+            NSURL *URL = [NSURL URLWithString:model.linkUrl];
+            if ([[UIApplication sharedApplication] canOpenURL:URL]) {
+                [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:^(BOOL success) {
+                    [CNHUB showSuccess:@"请在外部浏览器查看"];
+                }];
+            }
+        } else { // 跳活动
+            [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"电游活动" needPubSite:NO];
+        }
     }
 }
 
