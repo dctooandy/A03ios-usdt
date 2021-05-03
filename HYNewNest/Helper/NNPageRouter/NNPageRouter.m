@@ -216,7 +216,7 @@
 //    if ([CNUserManager shareManager].isLogin && ![CNUserManager shareManager].isTryUser) {
     if ([CNUserManager shareManager].isLogin) {
         [CNHomeRequest requestH5TicketHandler:^(NSString * ticket, NSString *errorMsg) {
-            if (KIsEmptyString(errorMsg)) {
+            if (!errorMsg) {
                 NSString *strUrl = [NSURL getH5StrUrlWithString:strURL ticket:ticket needPubSite:needPubSite];
                 jumpHTMLBlock(strUrl, title);
             }

@@ -51,8 +51,12 @@
 + (void)requestH5TicketHandler:(HandlerBlock)handler {
     
     [self POST:(config_h5Ticket) parameters:[kNetworkMgr baseParam] completionHandler:^(id responseObj, NSString *errorMsg) {
-        NSString *ticket = [responseObj objectForKey:@"ticket"];
-        handler(ticket, errorMsg);
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]] && [[responseObj allKeys] containsObject:@"ticket"]) {
+            NSString *ticket = responseObj[@"ticket"];
+            handler(ticket, errorMsg);
+        } else {
+            handler(nil, errorMsg);
+        }
     }];
 }
 

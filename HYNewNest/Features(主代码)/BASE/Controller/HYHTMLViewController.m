@@ -86,7 +86,7 @@
         [CNHomeRequest requestH5TicketHandler:^(NSString * ticket, NSString *errorMsg) {
             STRONGSELF_DEFINE
             NSString *strUrl = [NSURL getH5StrUrlWithString:H5URL_Pub_VipRecord
-                                                     ticket:KIsEmptyString(errorMsg)?ticket:@""
+                                                     ticket:ticket?:@""
                                                 needPubSite:NO];
             HYHTMLViewController *vc = [[HYHTMLViewController alloc] initWithTitle:@"兑换记录" strUrl:strUrl];
             vc.hidesBottomBarWhenPushed = YES;
