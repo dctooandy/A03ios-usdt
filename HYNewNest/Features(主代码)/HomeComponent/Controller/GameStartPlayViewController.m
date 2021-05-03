@@ -137,7 +137,7 @@ form.submit();\
         }
         
         make.left.right.equalTo(strongSelf.view);
-        make.bottom.equalTo(strongSelf.view);
+        make.bottom.equalTo(strongSelf.view).mas_offset(-kSafeAreaHeight);
     }];
     
     if (@available(iOS 11.0, *)){
@@ -402,7 +402,7 @@ form.submit();\
           [self setInterfaceOrientation:UIInterfaceOrientationPortrait];
          // 竖直复原约束
          WEAKSELF_DEFINE
-         if ([self.gameUrl containsString:@"callbackUrl"]) {
+         if ([self.gameUrl containsString:@"callbackUrl"] && ![self.gameName isEqualToString:@"AS真人棋牌"]) {
 //             self.hideNavgation = YES;
              [self.navigationController setNavigationBarHidden:YES animated:YES];
          } else {
@@ -414,13 +414,13 @@ form.submit();\
          
          [self.webView mas_updateConstraints:^(MASConstraintMaker *make) {
              STRONGSELF_DEFINE
-             if ([strongSelf.gameUrl containsString:@"callbackUrl"]) {
+             if ([strongSelf.gameUrl containsString:@"callbackUrl"] && ![self.gameName isEqualToString:@"AS真人棋牌"]) {
                  make.top.equalTo(strongSelf.view).mas_offset(kStatusBarHeight);
              } else {
                  make.top.equalTo(strongSelf.view);
              }
              make.left.right.equalTo(strongSelf.view);
-             make.bottom.equalTo(strongSelf.view);
+             make.bottom.equalTo(strongSelf.view).mas_offset(-kSafeAreaHeight);
          }];
       }
 

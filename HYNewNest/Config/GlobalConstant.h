@@ -28,7 +28,7 @@
 #define kIsiphone6Plus_5_5      ([UIScreen mainScreen].bounds.size.height==736.0f || [UIScreen mainScreen].bounds.size.height==414.0f)
 #define kIsPad                ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
 #define kIsiPhone5            ([[UIScreen mainScreen]bounds].size.height == 568)
-#define KIsIphoneXSeries  (([[UIApplication sharedApplication] statusBarFrame].size.height == 44.0f) ? (YES):(NO))
+#define KIsIphoneXSeries  (([[UIApplication sharedApplication] statusBarFrame].size.height >= 44.0f) ? (YES):(NO))
 //导航栏高度
 #define kNavBarHeight  44.f
 //底部Tabbar 高度
