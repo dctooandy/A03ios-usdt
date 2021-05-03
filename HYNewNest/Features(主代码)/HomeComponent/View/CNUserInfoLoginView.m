@@ -90,6 +90,9 @@
         //金额
         [[BalanceManager shareManager] requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
             [self.moneyLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.switchModeBtn setEnabled:YES];
+            });\
         }];
     }
 }
@@ -120,6 +123,7 @@
 
 // 切换账户货币
 - (IBAction)switchAccount:(UIButton *)sender {
+    [sender setEnabled:false];
     if (_delegate && [_delegate respondsToSelector:@selector(switchAccountAction)]) {
         [_delegate switchAccountAction];
     }
