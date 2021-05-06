@@ -72,7 +72,7 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
     [self addNaviRightItemWithImageName:@"kf"];
     
     if (kScreenHeight < 736) {
-        _tableViewTop2BannerInsetCons.constant = -75;
+        _tableViewTop2BannerInsetCons.constant = -50;
     }
     _tableView.contentInset = UIEdgeInsetsMake(25, 0, 0, 0);// 顶部间隙
     [_tableView registerNib:[UINib nibWithNibName:cellName bundle:nil] forCellReuseIdentifier:cellName];
@@ -101,7 +101,11 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
     self.btmBanner.autoScrollTimeInterval = 3;
     self.btmBanner.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
     self.btmBanner.pageControlBottomOffset = AD(120)+5;
-    self.btmBanner.pageControlRightOffset = -45;
+    if (kScreenHeight < 736) {
+        self.btmBanner.pageControlRightOffset = -10;
+    } else {
+        self.btmBanner.pageControlRightOffset = -45;
+    }
     self.btmBanner.delegate = self;
     
     NSString *root = self->h5_root;
