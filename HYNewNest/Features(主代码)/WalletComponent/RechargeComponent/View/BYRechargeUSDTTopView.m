@@ -267,10 +267,15 @@
 }
 
 - (IBAction)didTapShortCutAmountBtn:(BYThreeStatusBtn *)sender {
+    for (int tag = 100; tag < 106; tag++) {
+        BYThreeStatusBtn *btn = (BYThreeStatusBtn *)[self viewWithTag:tag];
+        btn.status = CNThreeStaBtnStatusGradientBorder;
+    }
+    
     sender.status = CNThreeStaBtnStatusGradientBackground;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        sender.status = CNThreeStaBtnStatusGradientBorder;
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        sender.status = CNThreeStaBtnStatusGradientBorder;
+//    });
     
     _tfAmount.text = sender.titleLabel.text;
     [self amountTfDidChange:_tfAmount];

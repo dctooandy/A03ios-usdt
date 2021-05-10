@@ -70,6 +70,9 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
     self.title = @"充币";
     _selIdx = -1;
     [self addNaviRightItemWithImageName:@"kf"];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"l_back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+//        backItem.imageInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+    self.navigationItem.leftBarButtonItem = backItem;
     
     if (kScreenHeight < 736) {
         _tableViewTop2BannerInsetCons.constant = -50;
@@ -116,6 +119,15 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
         [h5_imgs_full addObject:full];
     }];
     [self.btmBanner setImageURLStringsGroup:h5_imgs_full.copy];
+}
+
+- (void)back {
+    if (self.selIdx == -1) {
+        [self.navigationController popViewControllerAnimated:true];
+    }
+    else {
+        self.selIdx = -1;
+    }
 }
 
 #pragma mark - REQUEST
