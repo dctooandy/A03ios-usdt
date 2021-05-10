@@ -20,7 +20,7 @@
     [super loadViewFromXib];
     [self configUI];
     
-    [self selectGif:0]; //默认第一个
+    [self switchGame:self.switchBtnArr.firstObject]; //默认第一个
 }
 
 - (void)configUI {

@@ -255,6 +255,10 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     [LoadingView showLoadingViewWithToView:self.tableView needMask:YES];
     
     [DashenBoardRequest requestRecommendTableHandler:^(id responseObj, NSString *errorMsg) {
+        if (errorMsg) {
+            [LoadingView hideLoadingViewForView:self.tableView];
+        }
+        
         if (!errorMsg && [responseObj isKindOfClass:[NSString class]]) {
             /// 推荐桌台号
             self.recomTableId = self.showTableId = responseObj;
