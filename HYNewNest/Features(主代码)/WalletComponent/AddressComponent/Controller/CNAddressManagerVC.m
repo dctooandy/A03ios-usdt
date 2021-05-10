@@ -18,6 +18,8 @@
 #import "CNAddressDownloadTCell.h"
 #define kCNAddressDownloadTCellID  @"CNAddressDownloadTCell"
 
+#import "HYTextAlertView.h"
+
 #import "CNWDAccountRequest.h"
 #import "ABCOneKeyRegisterBFBHelper.h"
 #import <IVLoganAnalysis/IVLAManager.h>

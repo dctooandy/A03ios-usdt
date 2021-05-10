@@ -19,7 +19,7 @@
 #import "SuspendBall.h"
 #import "CNServerView.h"
 #import "CNHomeRequest.h"
-
+#import "HYTextAlertView.h"
 
 @interface HYTabBarViewController ()<UITabBarControllerDelegate, SuspendBallDelegte, CNServerViewDelegate>
 @property (nonatomic, strong) SuspendBall *suspendBall;

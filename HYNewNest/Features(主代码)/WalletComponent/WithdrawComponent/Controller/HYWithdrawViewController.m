@@ -24,6 +24,7 @@
 #import "HYWithdrawActivityAlertView.h"
 #import "BYCTZNBannerView.h"
 #import "HYOneImgBtnAlertView.h"
+#import "HYTextAlertView.h"
 
 #import "CNWithdrawRequest.h"
 #import "CNWDAccountRequest.h"

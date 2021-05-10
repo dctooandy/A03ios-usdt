@@ -19,6 +19,7 @@
 #import "CNStatementView.h"
 #import "HYTapHanImageCodeView.h"
 #import "CNVerifyMsgAlertView.h"
+#import "HYTextAlertView.h"
 
 #import "IVCNetworkStatusView.h"
 #import "CNLoginRequest.h"

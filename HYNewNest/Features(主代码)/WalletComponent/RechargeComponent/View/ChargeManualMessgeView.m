@@ -12,6 +12,7 @@
 #import "HYRechargeHelper.h"
 #import "CNTwoStatusBtn.h"
 #import "HYOneBtnAlertView.h"
+#import "HYTextAlertView.h"
 
 @interface ChargeManualMessgeView ()
 @property (copy,nonatomic) NSString *addressText;

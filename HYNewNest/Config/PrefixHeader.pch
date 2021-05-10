@@ -29,7 +29,6 @@
 #import "CNNotificationName.h" //通知名称
 #import "CNUserManager.h" //用户信息管理单利
 #import "HYNetworkConfigManager.h" //网络环境配置
-#import "HYTextAlertView.h" //文字alert
 #import "UILabel+Indicator.h"//菊花label ***隐藏label 配套使用
 #import "UIColor+Gradient.h" //渐变色
 

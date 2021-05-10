@@ -15,6 +15,7 @@
 #import "HYXiMaSuccViewController.h"
 #import "HYWideOneBtnAlertView.h"
 #import "HYOneBtnAlertView.h"
+#import "HYTextAlertView.h"
 
 @interface HYXiMaViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet HYXiMaTopView *topView;

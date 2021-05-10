@@ -15,6 +15,7 @@
 #import "CNRecordTypeSelectorView.h"
 #import "CNRecordDetailVC.h"
 #import "CNBaseNetworking.h"
+#import "HYTextAlertView.h"
 
 #import <UIImageView+WebCache.h>
 #import "NSURL+HYLink.h"

@@ -94,7 +94,7 @@
 
 - (IBAction)didTapBtn:(id)sender {
     if (!_resModel) {
-        [CNHUB showError:@"出错了 请刷新页面"];
+        [CNHUB showError:@"出错了 请下拉刷新页面"];
         return;
     }
     if (_resModel.fetchResultFlag == 1) {

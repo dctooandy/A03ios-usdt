@@ -12,6 +12,7 @@
 #import "CNAccountInputView.h"
 #import "NSString+Validation.h"
 #import "CNUserCenterRequest.h"
+#import "HYTextAlertView.h"
 
 @interface CNCompleteInfoVC () <CNAccountInputViewDelegate, CNNormalInputViewDelegate, CNCodeInputViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;

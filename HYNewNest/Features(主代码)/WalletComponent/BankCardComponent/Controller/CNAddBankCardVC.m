@@ -18,6 +18,7 @@
 #import <UIImageView+WebCache.h>
 #import <IVLoganAnalysis/IVLAManager.h>
 #import "CNWithdrawRequest.h"
+#import "HYTextAlertView.h"
 
 @interface CNAddBankCardVC () <CNNormalInputViewDelegate>
 /// 账户名

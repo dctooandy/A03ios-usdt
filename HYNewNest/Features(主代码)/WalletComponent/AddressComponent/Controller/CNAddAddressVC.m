@@ -16,6 +16,7 @@
 #import "HYDownloadLinkView.h"
 #import "ABCOneKeyRegisterBFBHelper.h"
 #import "CNWithdrawRequest.h"
+#import "HYTextAlertView.h"
 
 @interface CNAddAddressVC () <CNNormalInputViewDelegate, CNCodeInputViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *goldBtn;
