@@ -264,6 +264,8 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
             self.recomTableId = self.showTableId = responseObj;
             
             [DashenBoardRequest requestProfitPageNo:1 handler:^(id responseObj, NSString *errorMsg) {
+                [LoadingView hideLoadingViewForView:self.tableView];
+                
                 if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
                     NSArray *orgData = responseObj[@"data"];
                     self.usrModels = [DSBProfitBoardUsrModel cn_parse:orgData];
@@ -275,7 +277,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
                     [self setupWebSocket];
                     
                     self->_isAsking = NO;
-                    [LoadingView hideLoadingViewForView:self.tableView];
+                    
                     
                 } else {
                     [self performSelector:@selector(requestYinliRank) withObject:nil afterDelay:5];
@@ -284,6 +286,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
             }];
             
         } else {
+            [LoadingView hideLoadingViewForView:self.tableView];
             [self performSelector:@selector(requestYinliRank) withObject:nil afterDelay:5];
             self->_isAsking = NO;
         }
