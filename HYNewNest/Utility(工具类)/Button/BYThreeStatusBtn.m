@@ -69,7 +69,8 @@
 #pragma mark - Custom
 - (void)renewStatusStyle {
     if (self.status == CNThreeStaBtnStatusGradientBorder) {
-        UIColor *gradColor = [UIColor gradientFromColor:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE) withWidth:90];
+        CGFloat txtWidth = [self.titleLabel.text jk_widthWithFont:self.titleLabel.font constrainedToHeight:self.height];
+        UIColor *gradColor = [UIColor gradientFromColor:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE) withWidth:txtWidth];
         [self setTitleColor:gradColor forState:UIControlStateNormal];
         self.layer.borderColor = gradColor.CGColor;
         self.layer.borderWidth = 1.0;

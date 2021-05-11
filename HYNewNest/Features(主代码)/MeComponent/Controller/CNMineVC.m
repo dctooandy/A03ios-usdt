@@ -20,6 +20,7 @@
 #import "BYSuperCopartnerVC.h"
 #import "BYVocherCenterVC.h"
 #import "BYNewUsrMissionVC.h"
+#import "BYYuEBaoVC.h"
 
 #import <UIButton+WebCache.h>
 #import <UIImageView+WebCache.h>
@@ -92,17 +93,17 @@
 
 - (NSArray *)getCurrentFastEntryName {
     if ([CNUserManager shareManager].userInfo.newWalletFlag) {
-        return @[@"优惠券", @"洗码", @"交易记录", @"消息中心", @"提币地址", @"安全中心"];
+        return @[@"优惠券", @"洗码", @"余额宝", @"交易记录", @"消息中心", [CNUserManager shareManager].isUsdtMode?@"提币地址":@"银行卡", @"安全中心"];
     } else {
-        return @[@"洗码", @"交易记录", @"消息中心", [CNUserManager shareManager].isUsdtMode?@"提币地址":@"银行卡", @"安全中心", @"反馈意见"];
+        return @[@"洗码", @"余额宝", @"交易记录", @"消息中心", [CNUserManager shareManager].isUsdtMode?@"提币地址":@"银行卡", @"安全中心", @"反馈意见"];
     }
 }
 
 - (NSArray *)getCurrentFastEntryIconName {
     if ([CNUserManager shareManager].userInfo.newWalletFlag) {
-        return @[@"yhq", @"xm", @"jl", @"xx", @"yhk", @"aq"];
+        return @[@"yhq", @"xm", @"yeb", @"jl", @"xx", @"yhk", @"aq"];
     } else {
-        return @[@"xm", @"jl", @"xx", @"yhk", @"aq", @"yjfk"];
+        return @[@"xm", @"yeb", @"jl", @"xx", @"yhk", @"aq", @"yjfk"];
     }
 }
 
@@ -200,6 +201,8 @@
         [self.navigationController pushViewController:[CNSecurityCenterVC new] animated:YES];
     } else if ([name isEqualToString:@"反馈意见"]) {
         [self.navigationController pushViewController:[CNFeedBackVC new] animated:YES];
+    } else if ([name isEqualToString:@"余额宝"]) {
+        [self.navigationController pushViewController:[BYYuEBaoVC new] animated:YES];
     }
 }
 
