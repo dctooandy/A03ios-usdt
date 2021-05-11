@@ -8,7 +8,7 @@
 
 #import "BYYuEBaoVC.h"
 #import "BYVocherCenterVC.h"
-#import "BYThreeStatusBtn.h"
+#import "HYVIPRuleAlertView.h"
 
 @interface BYYuEBaoVC ()
 @property (weak, nonatomic) IBOutlet UILabel *lbTotalAmount;
@@ -46,7 +46,7 @@
 #pragma mark - ACTION
 
 - (IBAction)didTapRuleBtn:(id)sender {
-    
+    [HYVIPRuleAlertView showYuEBaoRule];
 }
 
 - (IBAction)didTapYuEBaoTotalAmount:(id)sender {

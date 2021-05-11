@@ -13,14 +13,18 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, RuleAlertKind) {
     RuleAlertKindVIPCumulateIdentity,
     RuleAlertKindSuperCopartner,
+    RuleAlertKindYuEBao
 };
 
-/// 累计身份/好友分享2.0 规则
+/// 全文字规则弹窗
 @interface HYVIPRuleAlertView : HYBaseAlertView
 
+// 累计身份
 + (void)showCumulateIdentityRule;
-
+// 超级合伙人
 + (void)showFriendShareV2Rule;
+// 余额宝
++ (void)showYuEBaoRule;
 
 @end
 
