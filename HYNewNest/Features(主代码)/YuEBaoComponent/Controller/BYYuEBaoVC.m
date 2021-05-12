@@ -9,6 +9,7 @@
 #import "BYYuEBaoVC.h"
 #import "BYVocherCenterVC.h"
 #import "HYVIPRuleAlertView.h"
+#import "BYYuEBaoTransferVC.h"
 
 @interface BYYuEBaoVC ()
 @property (weak, nonatomic) IBOutlet UILabel *lbTotalAmount;
@@ -54,11 +55,13 @@
 }
 
 - (IBAction)didTapDeposit2YuEBao:(id)sender {
-    
+    BYYuEBaoTransferVC *vc = [[BYYuEBaoTransferVC alloc] initWithType:YEBTransferTypeDeposit];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)didTapWithdrawFrYuEBao:(id)sender {
-    
+    BYYuEBaoTransferVC *vc = [[BYYuEBaoTransferVC alloc] initWithType:YEBTransferTypeWithdraw];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)didTapCheckMyDepositTicket:(id)sender {

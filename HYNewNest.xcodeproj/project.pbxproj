@@ -354,6 +354,8 @@
 		3DDDF88526341424009ED0AC /* BYProtocolExplainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DDDF88326341424009ED0AC /* BYProtocolExplainVC.xib */; };
 		3DDEBA32264A4E4D0014EB87 /* BYYuEBaoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDEBA30264A4E4C0014EB87 /* BYYuEBaoVC.m */; };
 		3DDEBA33264A4E4D0014EB87 /* BYYuEBaoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DDEBA31264A4E4C0014EB87 /* BYYuEBaoVC.xib */; };
+		3DDEBA37264A78D20014EB87 /* BYYuEBaoTransferVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDEBA35264A78D10014EB87 /* BYYuEBaoTransferVC.m */; };
+		3DDEBA38264A78D20014EB87 /* BYYuEBaoTransferVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DDEBA36264A78D10014EB87 /* BYYuEBaoTransferVC.xib */; };
 		3DE3CA8F24ECF6E300D591C4 /* CIRCULAR_06.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */; };
 		3DE3CA9024ECF6E300D591C4 /* CIRCULAR.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */; };
 		3DE3CA9324ED5CFC00D591C4 /* HYUpdateAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3CA9224ED5CFC00D591C4 /* HYUpdateAlertView.m */; };
@@ -1629,6 +1631,9 @@
 		3DDEBA2F264A4E4C0014EB87 /* BYYuEBaoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYYuEBaoVC.h; sourceTree = "<group>"; };
 		3DDEBA30264A4E4C0014EB87 /* BYYuEBaoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYYuEBaoVC.m; sourceTree = "<group>"; };
 		3DDEBA31264A4E4C0014EB87 /* BYYuEBaoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYYuEBaoVC.xib; sourceTree = "<group>"; };
+		3DDEBA34264A78D10014EB87 /* BYYuEBaoTransferVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYYuEBaoTransferVC.h; sourceTree = "<group>"; };
+		3DDEBA35264A78D10014EB87 /* BYYuEBaoTransferVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYYuEBaoTransferVC.m; sourceTree = "<group>"; };
+		3DDEBA36264A78D10014EB87 /* BYYuEBaoTransferVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYYuEBaoTransferVC.xib; sourceTree = "<group>"; };
 		3DE3CA8D24ECF6E300D591C4 /* CIRCULAR_06.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CIRCULAR_06.mp4; sourceTree = "<group>"; };
 		3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CIRCULAR.png; sourceTree = "<group>"; };
 		3DE3CA9124ED5CFC00D591C4 /* HYUpdateAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYUpdateAlertView.h; sourceTree = "<group>"; };
@@ -3932,6 +3937,9 @@
 				3DDEBA2F264A4E4C0014EB87 /* BYYuEBaoVC.h */,
 				3DDEBA30264A4E4C0014EB87 /* BYYuEBaoVC.m */,
 				3DDEBA31264A4E4C0014EB87 /* BYYuEBaoVC.xib */,
+				3DDEBA34264A78D10014EB87 /* BYYuEBaoTransferVC.h */,
+				3DDEBA35264A78D10014EB87 /* BYYuEBaoTransferVC.m */,
+				3DDEBA36264A78D10014EB87 /* BYYuEBaoTransferVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5518,6 +5526,7 @@
 				D5A4448524F3932400014DC6 /* 数字7_00016.png in Resources */,
 				D5A4470F24F3941400014DC6 /* 合成 1_00042.png in Resources */,
 				D5A4455424F393AC00014DC6 /* 棋牌_00073.png in Resources */,
+				3DDEBA38264A78D20014EB87 /* BYYuEBaoTransferVC.xib in Resources */,
 				D5A4439124F378CD00014DC6 /* 彩票_00057.png in Resources */,
 				D5A4471124F3941400014DC6 /* 合成 1_00081.png in Resources */,
 				E98BEF1D24D2BCA400E6B0C8 /* HYWithdrawCardCell.xib in Resources */,
@@ -6335,6 +6344,7 @@
 				E986A1C424CC7F2B000F9CFF /* TADotView.m in Sources */,
 				E9D9447724C1F37900252222 /* HYBonusViewController.m in Sources */,
 				0487C9AD24CFBA6A0013715A /* JJCollectionViewRoundFlowLayout.m in Sources */,
+				3DDEBA37264A78D20014EB87 /* BYYuEBaoTransferVC.m in Sources */,
 				0487C97B24CEB2710013715A /* CNChoseImageVC.m in Sources */,
 				3D97005025A2C3ED003238C4 /* IN3SLaunchModel.m in Sources */,
 				D5FBFE2D24BC05E400BBCAD8 /* CNLoginRegisterVC.m in Sources */,

@@ -208,6 +208,7 @@
                         <constraint firstAttribute="bottom" secondItem="z7A-3L-pTZ" secondAttribute="bottom" id="OM6-ZZ-oN8"/>
                         <constraint firstItem="f79-xL-H4C" firstAttribute="top" secondItem="pwa-lo-8gr" secondAttribute="bottom" id="Oid-4z-d8n"/>
                         <constraint firstItem="pwa-lo-8gr" firstAttribute="top" secondItem="usK-i8-YYi" secondAttribute="top" constant="30" id="Tve-d9-nnW"/>
+                        <constraint firstItem="LQ8-nC-3c3" firstAttribute="centerX" secondItem="usK-i8-YYi" secondAttribute="centerX" id="UOs-BQ-cn1"/>
                         <constraint firstAttribute="bottom" secondItem="hUR-0P-ue0" secondAttribute="bottom" id="e71-lv-Egk"/>
                         <constraint firstAttribute="height" constant="238" id="gZS-gh-KiU"/>
                         <constraint firstAttribute="bottom" secondItem="HxS-g7-40n" secondAttribute="bottom" id="jn5-Dl-Gp7"/>
@@ -217,10 +218,16 @@
                         <constraint firstItem="vwH-dC-G0C" firstAttribute="leading" secondItem="usK-i8-YYi" secondAttribute="leading" id="okd-Ox-852"/>
                         <constraint firstItem="hUR-0P-ue0" firstAttribute="leading" secondItem="z7A-3L-pTZ" secondAttribute="trailing" id="pZl-GX-m41"/>
                         <constraint firstAttribute="trailing" secondItem="vwH-dC-G0C" secondAttribute="trailing" id="rUr-ZE-jMj"/>
+                        <constraint firstItem="LQ8-nC-3c3" firstAttribute="top" secondItem="f79-xL-H4C" secondAttribute="bottom" constant="7" id="rkS-AH-6Ev"/>
                         <constraint firstItem="f79-xL-H4C" firstAttribute="centerX" secondItem="usK-i8-YYi" secondAttribute="centerX" id="rnd-d7-qmn"/>
                         <constraint firstItem="oma-Yf-sWz" firstAttribute="leading" secondItem="usK-i8-YYi" secondAttribute="leading" constant="20" id="vhz-e4-pqn"/>
                         <constraint firstItem="HxS-g7-40n" firstAttribute="leading" secondItem="usK-i8-YYi" secondAttribute="leading" id="w4F-Nx-yEU"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2G-im-wrI">
                     <rect key="frame" x="15" y="268" width="345" height="383"/>
@@ -335,6 +342,11 @@
                         <constraint firstItem="7QV-nK-gDX" firstAttribute="top" secondItem="Sko-D6-3ww" secondAttribute="bottom" constant="7" id="tqT-DI-ETb"/>
                         <constraint firstAttribute="bottom" secondItem="FNs-Ja-oF3" secondAttribute="bottom" constant="27" id="w8D-vR-bmA"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
