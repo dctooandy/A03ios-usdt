@@ -16,22 +16,28 @@ typedef NS_ENUM(NSInteger,TransactionRecordType) {
     transactionRecord_rechargeType = 1,
     
     /*
-     // 提现
+      提现
      */
     transactionRecord_withdrawType = 2,
     
     /*
-     // 洗码
+      洗码
      */
     transactionRecord_XMType = 3,
     
     /*
-     // 优惠领取
+      优惠领取
      */
     transactionRecord_activityType = 4,
     
     /*
-     // 投注记录
+      余额宝
+     */
+    transactionRecord_yuEBaoDeposit,
+    TransactionRecord_yuEBaoWithdraw,
+    
+    /*
+      投注记录
      */
     transactionRecord_betRecordType = 8,
     

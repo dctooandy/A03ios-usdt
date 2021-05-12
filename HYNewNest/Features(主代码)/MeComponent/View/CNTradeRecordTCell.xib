@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -52,7 +52,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyz-tb-2Fm">
-                                <rect key="frame" x="173" y="19.5" width="15" height="18"/>
+                                <rect key="frame" x="171" y="19.5" width="15" height="18"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -71,7 +71,7 @@
                             <constraint firstItem="gK0-rR-SzC" firstAttribute="top" secondItem="V8q-gk-7kU" secondAttribute="top" constant="20" id="ahz-Zi-vob"/>
                             <constraint firstAttribute="trailing" secondItem="a2J-BG-N0B" secondAttribute="trailing" constant="15" id="imk-LJ-H0Q"/>
                             <constraint firstItem="gK0-rR-SzC" firstAttribute="leading" secondItem="V8q-gk-7kU" secondAttribute="leading" constant="15" id="lCb-2M-HDa"/>
-                            <constraint firstItem="a2J-BG-N0B" firstAttribute="leading" secondItem="zyz-tb-2Fm" secondAttribute="trailing" id="qGn-yr-2j1"/>
+                            <constraint firstItem="a2J-BG-N0B" firstAttribute="leading" secondItem="zyz-tb-2Fm" secondAttribute="trailing" constant="2" id="qGn-yr-2j1"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -97,7 +97,7 @@
                 <outlet property="timeLb" destination="rih-rH-ndm" id="p8U-dv-gVk"/>
                 <outlet property="titleLb" destination="vbF-dm-gpX" id="j57-mX-w62"/>
             </connections>
-            <point key="canvasLocation" x="-53" y="109"/>
+            <point key="canvasLocation" x="328" y="112"/>
         </tableViewCell>
     </objects>
 </document>

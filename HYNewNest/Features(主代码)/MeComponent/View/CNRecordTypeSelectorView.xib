@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,6 +22,8 @@
                 <outletCollection property="dayBtnArray" destination="B2R-7d-hBr" id="04l-nb-Gaf"/>
                 <outletCollection property="dayBtnArray" destination="b2R-Z8-JYB" id="RZH-es-OzU"/>
                 <outletCollection property="dayBtnArray" destination="2iv-c9-Flu" id="QMv-u5-7c0"/>
+                <outletCollection property="typeBtnArray" destination="naM-vn-kbE" id="Gv3-zD-z3P"/>
+                <outletCollection property="typeBtnArray" destination="V3x-Wy-H9a" id="Sti-fc-bXS"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -30,12 +32,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWw-6O-s1l">
-                    <rect key="frame" x="0.0" y="896" width="414" height="430"/>
+                    <rect key="frame" x="0.0" y="896" width="414" height="470"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFP-qj-my7">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="84.5"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="编辑" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5S-MC-Hmy">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="筛选" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5S-MC-Hmy">
                                     <rect key="frame" x="190.5" y="16" width="33" height="19.5"/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                     <color key="textColor" white="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -75,10 +77,10 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nd4-ht-0Cf">
-                            <rect key="frame" x="0.0" y="54.5" width="414" height="375.5"/>
+                            <rect key="frame" x="0.0" y="54.5" width="414" height="415.5"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TwL-uG-QIY">
-                                    <rect key="frame" x="30" y="15" width="354" height="129.5"/>
+                                    <rect key="frame" x="30" y="15" width="354" height="184.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交易类型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-7O-S7k">
                                             <rect key="frame" x="0.0" y="0.0" width="65.5" height="19.5"/>
@@ -87,7 +89,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Zev-c8-1SY">
-                                            <rect key="frame" x="0.0" y="34.5" width="354" height="95"/>
+                                            <rect key="frame" x="0.0" y="34.5" width="354" height="150"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="6BO-ZX-pHr">
                                                     <rect key="frame" x="0.0" y="0.0" width="354" height="40"/>
@@ -122,12 +124,12 @@
                                                     </constraints>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="3dE-mb-wWt">
-                                                    <rect key="frame" x="0.0" y="55" width="231" height="40"/>
+                                                    <rect key="frame" x="0.0" y="55" width="354" height="40"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S50-Lh-I2T" customClass="HYRechProcButton">
                                                             <rect key="frame" x="0.0" y="0.0" width="108" height="40"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <state key="normal" title="优惠领取"/>
+                                                            <state key="normal" title="余额宝转入"/>
                                                             <connections>
                                                                 <action selector="typeAction:" destination="-1" eventType="touchUpInside" id="90i-qN-1pR"/>
                                                             </connections>
@@ -135,9 +137,17 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AL5-OE-z2Z" customClass="HYRechProcButton">
                                                             <rect key="frame" x="123" y="0.0" width="108" height="40"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <state key="normal" title="投注记录"/>
+                                                            <state key="normal" title="余额宝转出"/>
                                                             <connections>
                                                                 <action selector="typeAction:" destination="-1" eventType="touchUpInside" id="Vpc-5Z-MXv"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="naM-vn-kbE" customClass="HYRechProcButton">
+                                                            <rect key="frame" x="246" y="0.0" width="108" height="40"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <state key="normal" title="优惠领取"/>
+                                                            <connections>
+                                                                <action selector="typeAction:" destination="-1" eventType="touchUpInside" id="KC7-aW-EbM"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -145,11 +155,30 @@
                                                         <constraint firstAttribute="height" constant="40" id="Jqo-uj-8AL"/>
                                                     </constraints>
                                                 </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="L17-Kk-g0O">
+                                                    <rect key="frame" x="0.0" y="110" width="108" height="40"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3x-Wy-H9a" customClass="HYRechProcButton">
+                                                            <rect key="frame" x="0.0" y="0.0" width="108" height="40"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <state key="normal" title="投注记录"/>
+                                                            <connections>
+                                                                <action selector="typeAction:" destination="-1" eventType="touchUpInside" id="Hv9-Ix-5NP"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="dqi-Ec-B0S"/>
+                                                    </constraints>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="S50-Lh-I2T" firstAttribute="width" secondItem="9Cp-NA-xA4" secondAttribute="width" id="6fs-wt-yd7"/>
-                                                <constraint firstAttribute="bottom" secondItem="3dE-mb-wWt" secondAttribute="bottom" id="BeX-11-cBR"/>
+                                                <constraint firstItem="L17-Kk-g0O" firstAttribute="top" secondItem="3dE-mb-wWt" secondAttribute="bottom" constant="15" id="DSd-QL-67z"/>
+                                                <constraint firstItem="L17-Kk-g0O" firstAttribute="leading" secondItem="Zev-c8-1SY" secondAttribute="leading" id="Fch-zg-xZw"/>
+                                                <constraint firstItem="3dE-mb-wWt" firstAttribute="top" secondItem="6BO-ZX-pHr" secondAttribute="bottom" constant="15" id="Gdb-Hf-6vP"/>
                                                 <constraint firstAttribute="trailing" secondItem="6BO-ZX-pHr" secondAttribute="trailing" id="RLG-va-uWL"/>
+                                                <constraint firstItem="V3x-Wy-H9a" firstAttribute="width" secondItem="9Cp-NA-xA4" secondAttribute="width" id="Suz-Up-I7g"/>
                                                 <constraint firstItem="6BO-ZX-pHr" firstAttribute="top" secondItem="Zev-c8-1SY" secondAttribute="top" id="fbI-Kv-Wwd"/>
                                                 <constraint firstItem="3dE-mb-wWt" firstAttribute="leading" secondItem="Zev-c8-1SY" secondAttribute="leading" id="j02-cZ-Ofd"/>
                                                 <constraint firstItem="6BO-ZX-pHr" firstAttribute="leading" secondItem="Zev-c8-1SY" secondAttribute="leading" id="lfS-rf-jHG"/>
@@ -167,7 +196,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BSn-ah-Niv">
-                                    <rect key="frame" x="30" y="174.5" width="354" height="75.5"/>
+                                    <rect key="frame" x="30" y="229.5" width="354" height="75.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkY-lq-hqd">
                                             <rect key="frame" x="0.0" y="0.0" width="65.5" height="19.5"/>
@@ -219,7 +248,7 @@
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Um1-vj-t9Z" customClass="CNTwoStatusBtn">
-                                    <rect key="frame" x="30" y="303.5" width="354" height="48"/>
+                                    <rect key="frame" x="30" y="343.5" width="354" height="48"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="48" id="vXZ-He-7Qb"/>
                                     </constraints>
@@ -256,19 +285,19 @@
                         <constraint firstItem="Nd4-ht-0Cf" firstAttribute="top" secondItem="nfT-nu-4lF" secondAttribute="bottom" id="GpQ-z5-bgq"/>
                         <constraint firstAttribute="trailing" secondItem="Nd4-ht-0Cf" secondAttribute="trailing" id="KO3-xO-myO"/>
                         <constraint firstItem="aFP-qj-my7" firstAttribute="top" secondItem="iWw-6O-s1l" secondAttribute="top" id="LY4-Hv-Lww"/>
-                        <constraint firstAttribute="height" constant="430" id="MUB-Uu-qbB"/>
+                        <constraint firstAttribute="height" constant="470" id="MUB-Uu-qbB"/>
                         <constraint firstAttribute="trailing" secondItem="aFP-qj-my7" secondAttribute="trailing" id="nfu-OP-ghR"/>
                         <constraint firstAttribute="bottom" secondItem="Nd4-ht-0Cf" secondAttribute="bottom" id="ukh-zu-yHo"/>
                     </constraints>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="0bx-rG-ZxG"/>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="iWw-6O-s1l" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5gY-od-R9a"/>
-                <constraint firstAttribute="bottom" secondItem="iWw-6O-s1l" secondAttribute="bottom" constant="-430" id="Vdi-Wj-HmU"/>
+                <constraint firstAttribute="bottom" secondItem="iWw-6O-s1l" secondAttribute="bottom" constant="-470" id="Vdi-Wj-HmU"/>
                 <constraint firstAttribute="trailing" secondItem="iWw-6O-s1l" secondAttribute="trailing" id="enh-fW-aor"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="0bx-rG-ZxG"/>
             <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
         </view>
     </objects>

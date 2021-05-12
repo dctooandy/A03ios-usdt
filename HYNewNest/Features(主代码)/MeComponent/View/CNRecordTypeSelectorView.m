@@ -49,11 +49,17 @@
         case transactionRecord_XMType:
             typeIndex = 2;
             break;
-        case transactionRecord_activityType:
+        case transactionRecord_yuEBaoDeposit:
             typeIndex = 3;
             break;
-        case transactionRecord_betRecordType:
+        case TransactionRecord_yuEBaoWithdraw:
             typeIndex = 4;
+            break;
+        case transactionRecord_activityType:
+            typeIndex = 5;
+            break;
+        case transactionRecord_betRecordType:
+            typeIndex = 6;
             break;
         default:
             break;
@@ -72,17 +78,17 @@
             break;
     }
     UIButton *typeBtn = alert.typeBtnArray[typeIndex];
-    typeBtn.selected = YES;
     alert.selectType = typeBtn.currentTitle;
     UIButton *dayBtn = alert.dayBtnArray[dayIndex];
-    dayBtn.selected = YES;
     alert.selectDay = dayBtn.currentTitle;
     
     alert.submitBtn.enabled = YES;
     alert.callBack = callBack;
     alert.bottom.constant = 0;
-    [UIView animateWithDuration:0.5 animations:^{
-        [alert layoutIfNeeded];
+    [UIView animateWithDuration:0.3 animations:^{
+        [alert layoutIfNeeded]; //动画刷新约束
+        typeBtn.selected = YES;
+        dayBtn.selected = YES;
     }];
 }
 

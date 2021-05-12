@@ -14,6 +14,7 @@
 //#import "HYRechargeViewController.h"
 #import "BYRechargeUsdtVC.h"
 #import "HYRechargeCNYViewController.h"
+#import "BYYuEBaoVC.h"
 
 #define kCNXimaRecordTCellID  @"CNXimaRecordTCell"
 
@@ -75,11 +76,6 @@
 
 @implementation CNRecordDetailVC
 
-- (void)setModel:(CreditQueryDataModel *)model {
-    _model = model;
-    
-}
-
 - (instancetype)initWithType:(CNRecordDetailType)detailType {
     if (self = [super init]) {
         self.detailType = detailType;
@@ -98,10 +94,10 @@
 }
 
 - (void)configUI {
-    [self.amountLb setupGradientColorFrom:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE)];
     /// 通用参数
     self.currencyLb.text = [CNUserManager shareManager].userInfo.currency;
     self.amountLb.text = self.model.amount?:self.model.betAmount;
+    [self.amountLb setupGradientColorDirection:BYLblGrdtColorDirectionTopRightBtmLeft From:kHexColor(0x19CECE) toColor:kHexColor(0x10B4DD)];
     self.recordStatusLb.text = self.model.flagDesc;
     self.recordStatusLb.textColor = self.model.statsColor;
     self.tradeTypeLb.text = self.model.title;
@@ -128,6 +124,33 @@
     [self.xiMaTabelView registerNib:[UINib nibWithNibName:kCNXimaRecordTCellID bundle:nil] forCellReuseIdentifier:kCNXimaRecordTCellID];
     
     switch (self.detailType) {
+        case CNRecordTypeYEBDeposit:
+            self.title = @"余额宝转入详情";
+            self.touZhuView.hidden = YES;
+            self.touZhuViewH.constant = 0;
+            
+            self.xiMaView.hidden = YES;
+            
+            [self.btnBtm setTitle:@"继续转入" forState:UIControlStateNormal];
+            self.btnBtm.hidden = NO;
+            self.btnBtm.enabled = YES;
+            break;
+            
+        case CNRecordTypeYEBWithdraw:
+            self.title = @"余额宝转出详情";
+            self.touZhuView.hidden = YES;
+            self.touZhuViewH.constant = 0;
+            
+            self.xiMaView.hidden = YES;
+            //TODO: 不知道能不能取消 等接口数据出来
+            if (self.model.flag == transactionProgress_waitCheckState ||
+                self.model.flag == transactionProgress_waitPayState) {
+                [self.btnBtm setTitle:@"取消订单" forState:UIControlStateNormal];
+                self.btnBtm.hidden = NO;
+                self.btnBtm.enabled = YES;
+            }
+            break;
+            
         case CNRecordTypeDeposit:
             self.title = [CNUserManager shareManager].isUsdtMode?@"充币详情":@"充值详情";
             self.touZhuView.hidden = YES;
@@ -220,7 +243,9 @@
         } else {
             [self.navigationController pushViewController:[HYRechargeCNYViewController new] animated:YES];
         }
-    } else {
+        
+    } else if (self.detailType == CNRecordTypeWithdraw || self.detailType == CNRecordTypeYEBWithdraw) {
+        //TODO: 不知道能不能取消 等接口数据出来
         [CNUserCenterRequest cancelWithdrawBillRequestId:self.model.requestId handler:^(id responseObj, NSString *errorMsg) {
             if (KIsEmptyString(errorMsg)) {
                 [CNHUB showSuccess:@"订单取消成功"];
@@ -229,6 +254,10 @@
                 self.navPopupBlock(@(1)); //需要刷新
             }
         }];
+        
+    } else if (self.detailType == CNRecordTypeYEBDeposit) {
+        [self.navigationController pushViewController:[BYYuEBaoVC new] animated:YES];
+        
     }
 }
 
