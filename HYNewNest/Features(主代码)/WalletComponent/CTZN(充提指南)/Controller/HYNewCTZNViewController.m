@@ -137,7 +137,7 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
 - (void)didClickNotShow:(UIButton *)sender {
     sender.selected = !sender.selected;
     if (sender.selected) {
-        [HYOneBtnAlertView showWithTitle:@"温馨提示" content:@"充提指南不会再强制提醒，您仍可通过“个人中心-充提指南”打开" comfirmText:@"我知道了" comfirmHandler:^{
+        [HYOneBtnAlertView showWithTitle:@"温馨提示" content:@"充提指南不会再强制提醒，您仍可以通过“买币-教程引导-网站充提教学”打开" comfirmText:@"我知道了" comfirmHandler:^{
         }];
     }
 }
