@@ -57,9 +57,11 @@
                           loginName:^NSString *{     //获取登录名
         return [CNUserManager shareManager].userInfo.loginName;
     }];
+#ifndef DEBUG
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1), dispatch_get_main_queue(), ^{
-        [IVLAManager setPayegisSDKDomain:@"http://115.84.241.53/did/"];
+        [IVLAManager setPayegisSDKDomain:@"https://did.neptuneapi.com/did"];
     });
+#endif
     
     // pages
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

@@ -125,6 +125,7 @@ form.submit();\
     self.webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
     self.webView.opaque = NO;
     self.webView.backgroundColor = [UIColor clearColor];
+    self.webView.allowsBackForwardNavigationGestures = true;
     [self.view addSubview:self.webView];
     
     WEAKSELF_DEFINE
