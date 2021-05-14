@@ -43,6 +43,7 @@
     
     // 天网埋点
     [IVLAManager setLogEnabled:YES];
+    [IVLAManager setPayegisSDKDomain:@"http://115.84.241.53/did/"];
     [IVLAManager startWithProductId:@"A03"           //产品ID
                         productName:@"hyyl"          //产品Name
                           channelId:@""     //渠道号
