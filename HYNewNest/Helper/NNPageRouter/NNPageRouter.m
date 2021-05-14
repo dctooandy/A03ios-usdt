@@ -31,11 +31,12 @@
 #import <CSCustomSerVice/CSCustomSerVice.h>
 #import "KeyChain.h"
 
-
+#import "BYNewbieMissionVC.h"
 @implementation NNPageRouter
 
 + (void)changeRootVc2MainPage {
-    HYTabBarViewController *tabVC = [[HYTabBarViewController alloc] init];
+//    HYTabBarViewController *tabVC = [[HYTabBarViewController alloc] init];
+    BYNewbieMissionVC *tabVC = [[BYNewbieMissionVC alloc] init];
     [NNControllerHelper changeRootVc:tabVC];
 }
 
