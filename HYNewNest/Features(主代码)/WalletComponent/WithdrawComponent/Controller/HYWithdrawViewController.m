@@ -67,7 +67,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     
     // 负信用等级不能取rmb
     if (![CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userDetail.depositLevel < 0) {
-        [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"由于您的存取款行为存在资金风险，\n请联系客服了解" btnText:@"联系客服" handler:^(BOOL isComfirm) {
+        [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"为保障您的资金安全，\n详情联系客服咨询" btnText:@"联系客服" handler:^(BOOL isComfirm) {
             if (isComfirm) {
                 [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
             }
@@ -151,7 +151,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     
     // 负信用等级不能取rmb
     if (![CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userDetail.depositLevel < 0) {
-        [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"由于您的存取款行为存在资金风险，\n请联系客服了解" btnText:@"联系客服" handler:^(BOOL isComfirm) {
+        [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"为保障您的资金安全，\n详情联系客服咨询" btnText:@"联系客服" handler:^(BOOL isComfirm) {
             if (isComfirm) {
                 [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
             }
