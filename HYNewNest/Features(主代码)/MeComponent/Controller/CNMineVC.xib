@@ -20,6 +20,7 @@
                 <outlet property="appImageV" destination="CLs-5Q-0PD" id="Bl7-FR-Vbv"/>
                 <outlet property="appNameLb" destination="1ec-1z-w9j" id="zWf-Ll-MDU"/>
                 <outlet property="downLoadBtn" destination="YWN-ak-Fsx" id="k07-Sm-fT6"/>
+                <outlet property="entryStackViewHeightConst" destination="UHm-uN-LPj" id="EnT-OW-Smw"/>
                 <outlet property="headerIV" destination="L6F-j7-MKh" id="uK4-96-f0z"/>
                 <outlet property="nickNameLb" destination="tmG-wz-MyA" id="FTr-ZY-OBC"/>
                 <outlet property="scrollContentView" destination="z1O-DJ-YiD" id="F61-Sd-Lfz"/>
@@ -28,6 +29,7 @@
                 <outlet property="shareBgView" destination="BpC-IV-WtY" id="iaB-Fa-ItY"/>
                 <outlet property="shareBgViewH" destination="pbd-Ke-6gA" id="Y4D-Ey-Wfi"/>
                 <outlet property="switchBtn" destination="Fm6-UV-UE2" id="Nzv-B3-6dh"/>
+                <outlet property="thirdStackView" destination="lJI-5U-tdd" id="NXW-Xt-YWV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="walletContainerHeightCons" destination="asK-DL-nJz" id="SCb-1W-TGy"/>
                 <outlet property="walletContainerView" destination="eZN-cq-pbU" id="252-1K-ZZQ"/>

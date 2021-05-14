@@ -64,6 +64,8 @@
 #pragma mark 中间入口部分
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *entryIconBtns;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *entryIconLbs;
+@property (weak, nonatomic) IBOutlet UIStackView *thirdStackView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *entryStackViewHeightConst;
 
 #pragma mark 底部单个下载
 /// App图片
@@ -93,17 +95,26 @@
 
 - (NSArray *)getCurrentFastEntryName {
     if ([CNUserManager shareManager].userInfo.newWalletFlag) {
-        return @[@"优惠券", @"洗码", @"余额宝", @"交易记录", @"消息中心", [CNUserManager shareManager].isUsdtMode?@"提币地址":@"银行卡", @"安全中心"];
+        if ([CNUserManager shareManager].isUsdtMode) {
+            return @[@"优惠券", @"洗码", @"余额宝", @"交易记录", @"消息中心", @"提币地址", @"安全中心"];
+        } else {
+            return @[@"优惠券", @"洗码", @"交易记录", @"消息中心", @"银行卡", @"安全中心"];
+        }
+        
     } else {
-        return @[@"洗码", @"余额宝", @"交易记录", @"消息中心", [CNUserManager shareManager].isUsdtMode?@"提币地址":@"银行卡", @"安全中心", @"反馈意见"];
+        return @[@"洗码", @"交易记录", @"消息中心", [CNUserManager shareManager].isUsdtMode?@"提币地址":@"银行卡", @"安全中心", @"反馈意见"];
     }
 }
 
 - (NSArray *)getCurrentFastEntryIconName {
     if ([CNUserManager shareManager].userInfo.newWalletFlag) {
-        return @[@"yhq", @"xm", @"yeb", @"jl", @"xx", @"yhk", @"aq"];
+        if ([CNUserManager shareManager].isUsdtMode) {
+            return @[@"yhq", @"xm", @"yeb", @"jl", @"xx", @"yhk", @"aq"];
+        } else {
+            return @[@"yhq", @"xm", @"jl", @"xx", @"yhk", @"aq"];
+        }
     } else {
-        return @[@"xm", @"yeb", @"jl", @"xx", @"yhk", @"aq", @"yjfk"];
+        return @[@"xm", @"jl", @"xx", @"yhk", @"aq", @"yjfk"];
     }
 }
 
@@ -253,9 +264,9 @@
 - (IBAction)switchCurrency:(UIButton *)sender {
     
     [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg) {
-            [self switchCurrencyUI];
-        }
+//        if (!errorMsg) { //已经有监听通知了
+//            [self switchCurrencyUI];
+//        }
     }];
 }
 
@@ -277,6 +288,10 @@
     self.shareBgView.hidden = !isUsdtMode;
     self.shareBgViewH.constant = isUsdtMode?AD(90):0;
     
+    // 只有usdt模式有优惠券
+    self.thirdStackView.hidden = !isUsdtMode;
+    self.entryStackViewHeightConst.constant = isUsdtMode?255:(255-15-75);
+    
     [self setUpUserInfoAndBalaces];
     
 }
@@ -285,11 +300,17 @@
     if ([CNUserManager shareManager].isLogin) {
         // 1.入口信息
         [self.entryIconLbs enumerateObjectsUsingBlock:^(UILabel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            obj.text = [self getCurrentFastEntryName][idx];
+            NSArray *arr = [self getCurrentFastEntryName];
+            if (idx < arr.count) {
+                obj.text = arr[idx];
+            }
         }];
         [self.entryIconBtns enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSString *img = [self getCurrentFastEntryIconName][idx];
-            [obj setImage:[UIImage imageNamed:img] forState:UIControlStateNormal];
+            NSArray *arr = [self getCurrentFastEntryIconName];
+            if (idx < arr.count) {
+                NSString *img = arr[idx];
+                [obj setImage:[UIImage imageNamed:img] forState:UIControlStateNormal];
+            }
         }];
         
         // 2.用户信息

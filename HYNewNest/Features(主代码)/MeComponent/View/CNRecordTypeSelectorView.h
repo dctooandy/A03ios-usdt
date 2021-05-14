@@ -13,9 +13,6 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface CNRecordTypeSelectorView : CNBaseXibView
 
-@property (weak, nonatomic) IBOutlet HYRechProcButton *depostiBtn;
-@property (weak, nonatomic) IBOutlet HYRechProcButton *withdrawBtn;
-
 + (void)showSelectorWithSelcType:(TransactionRecordType)type dayParm:(NSInteger)day callBack:(void (^)(NSString * type, NSString * day))callBack;
 @end
 

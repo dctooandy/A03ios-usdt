@@ -11,9 +11,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CNRecordTypeSelectorView">
             <connections>
                 <outlet property="bottom" destination="Vdi-Wj-HmU" id="3He-a5-Or2"/>
-                <outlet property="depostiBtn" destination="9Cp-NA-xA4" id="Dl8-lF-HGf"/>
                 <outlet property="submitBtn" destination="Um1-vj-t9Z" id="6R5-LZ-fPT"/>
-                <outlet property="withdrawBtn" destination="Wtk-tw-fOw" id="Rim-7O-qxl"/>
+                <outlet property="thirdStackView" destination="L17-Kk-g0O" id="kpR-bK-caJ"/>
                 <outletCollection property="typeBtnArray" destination="9Cp-NA-xA4" id="2FO-6g-vRB"/>
                 <outletCollection property="typeBtnArray" destination="Wtk-tw-fOw" id="iXh-Fw-VU3"/>
                 <outletCollection property="typeBtnArray" destination="psL-Nu-rkq" id="zcK-k9-tK8"/>
