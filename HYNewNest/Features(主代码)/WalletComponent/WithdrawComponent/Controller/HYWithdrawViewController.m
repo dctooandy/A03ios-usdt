@@ -202,6 +202,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 //        self.sumitBtn.enabled = YES;
 //    }];
     [BalanceManager requestWithdrawAbleBalanceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
+        if (self.moneyModel.withdrawBal == nil)
+            self.moneyModel.withdrawBal = @(0);
         self.moneyModel = model;
         [self.topView.lblAmount hideIndicatorWithText:[model.withdrawBal jk_toDisplayNumberWithDigit:2]];
         self.sumitBtn.enabled = YES;
