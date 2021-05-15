@@ -7,13 +7,13 @@
 //
 
 #import "BalanceManager.h"
-#import "CNBaseNetworking.h"
+#import "CNYuEBaoRequest.h"
 
 @interface BalanceManager()
 {
-    NSUInteger balancesSec;
-    NSUInteger promoteSec;
-    NSUInteger betAmountSec;
+    NSUInteger balancesSec;   // 余额 倒计时
+//    NSUInteger promoteSec;  // 本月优惠和洗码 倒计时
+    NSUInteger betAmountSec;  // 周有效投注额 + 月优惠和洗码 倒计时
     AccountMoneyDetailModel *_balanceDetailModel;
 }
 @property (nonatomic, strong) AccountMoneyDetailModel *balanceDetailModel;
@@ -57,8 +57,8 @@
     dispatch_once(&onceToken, ^{
         _manager = [[BalanceManager alloc] init];
         _manager->balancesSec = 3; //刚启动三秒内不请求 接口太慢
-        _manager->promoteSec = 0;
-        _manager->betAmountSec = 0;
+//        _manager->promoteSec = 3;
+        _manager->betAmountSec = 3;
         [_manager setupTimers];
         [[NSNotificationCenter defaultCenter] addObserver:_manager selector:@selector(didLoginUser) name:HYLoginSuccessNotification object:nil];
     });
@@ -67,12 +67,12 @@
 
 - (void)didLoginUser {
     balancesSec = 0;
-    promoteSec = 0;
+//    promoteSec = 0;
     betAmountSec = 0;
-    [self requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-    }];
-    [self requestBetAmountHandler:^(BetAmountModel * _Nonnull model) {
-    }];
+//    [self requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
+//    }];
+//    [self requestBetAmountHandler:^(BetAmountModel * _Nonnull model) {
+//    }];
 }
 
 - (void)setupTimers
@@ -89,7 +89,7 @@
 }
 
 - (void)resumeTimer {
-//    MyLog(@"@@@@@@@@@@@@ 倒计时恢复60，余额定时器开始");
+    MyLog(@"@@@@@@ 余额管理者 @@@@@@ - 倒计时恢复60，余额定时器开始");
     [_balanceTimer setFireDate:[NSDate distantPast]];
 }
 
@@ -103,17 +103,16 @@
     if (balancesSec > 0) {
         balancesSec --;
     }
-    if (promoteSec > 0) {
-        promoteSec --;
-    }
+//    if (promoteSec > 0) {
+//        promoteSec --;
+//    }
     if (betAmountSec > 0) {
         betAmountSec --;
     }
-    if (balancesSec <= 0 && promoteSec <= 0 && betAmountSec <= 0) {
-        MyLog(@"@@@@@@@@@@@@ 倒计时全为0，余额定时器停止");
+    if (balancesSec <= 0 && betAmountSec <= 0) {
+        MyLog(@"@@@@@@ 余额管理者 @@@@@@ - 倒计时全为0，余额定时器停止");
         [self pauseTimer];
     }
-//    MyLog(@"@@@@@@@@@@@@@ balancesSec = %lu, promoteSec = %lu, betAmount = %lu",balancesSec, promoteSec, betAmountSec);
 }
 
 - (void)getBalanceDetailHandler:(void(^)(AccountMoneyDetailModel * _Nonnull))handler {
@@ -221,6 +220,8 @@
 }
 
 
+
+
 #pragma mark - Raw Request
 
 + (void)requestBetAmountHandler:(HandlerBlock)handler {
@@ -253,14 +254,9 @@
 + (void)requestWithdrawAbleBalanceHandler:(nullable  AccountBalancesBlock)handler {
     
     NSMutableDictionary *param = @{}.mutableCopy;
-//    if ([CNUserManager shareManager].userDetail.newWalletFlag) {
-        param[@"flag"] = @9;
-        param[@"walletCreditForPlatformFlag"] = @0;
-        param[@"realtimeFlag"] = @"true";
-//    } else {
-//        [param setObject:@"9" forKey:@"flag"];
-//        [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"];
-//    }
+    param[@"flag"] = @9;
+    param[@"walletCreditForPlatformFlag"] = @0;
+    param[@"realtimeFlag"] = @"true";
     
     [CNBaseNetworking POST:(config_getBalanceInfo) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
@@ -269,6 +265,22 @@
         }
     }];
     
+}
+
++ (void)checkYuEBaoYesterdaySumHandler:(HandlerBlock)handler {
+    NSMutableDictionary *param = @{}.mutableCopy;
+    NSDate *yesterDayNow = [[NSDate date] jk_previousDay];
+    NSUInteger year = [yesterDayNow jk_year];
+    NSUInteger month = [yesterDayNow jk_month];
+    NSUInteger day = [yesterDayNow jk_day];
+    param[@"beginTime"] = [NSString stringWithFormat:@"%lu-%lu-%lu%@", year, month, day, @" 00:00:00"];
+    param[@"endTime"] = [NSString stringWithFormat:@"%lu-%lu-%lu%@", year, month, day, @" 23:59:59"];
+            
+    [CNBaseNetworking POST:config_yebInterestLogsSum parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            
+        }
+    }];
 }
 
 @end

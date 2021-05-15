@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CNBaseNetworking.h"
 #import "BetAmountModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -27,7 +28,8 @@ typedef void(^AccountBalancesBlock)(AccountMoneyDetailModel *_Nonnull model);
 /// 提币页面拿可提币金额：类方法
 /// 针对新钱包 取款时 模拟结算 不走缓存 不查厅内余额 本地不做缓存
 + (void)requestWithdrawAbleBalanceHandler:(nullable  AccountBalancesBlock)handler;
-
+//TODO: test
++ (void)checkYuEBaoYesterdaySumHandler:(HandlerBlock)handler;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -278,6 +278,7 @@
     self.switchBtn.hidden = ![CNUserManager shareManager].isUiModeHasOptions;
     
     BOOL isUsdtMode = [CNUserManager shareManager].isUsdtMode;
+    BOOL isNewWallet = [CNUserManager shareManager].userInfo.newWalletFlag;
     self.switchBtn.selected = !isUsdtMode;
     
     self.USDTBusinessView.hidden = !isUsdtMode;
@@ -288,9 +289,9 @@
     self.shareBgView.hidden = !isUsdtMode;
     self.shareBgViewH.constant = isUsdtMode?AD(90):0;
     
-    // 只有usdt模式有优惠券
-    self.thirdStackView.hidden = !isUsdtMode;
-    self.entryStackViewHeightConst.constant = isUsdtMode?255:(255-15-75);
+    // 只有新钱包+usdt模式有优惠券
+    self.thirdStackView.hidden = !(isUsdtMode && isNewWallet);
+    self.entryStackViewHeightConst.constant = (isUsdtMode && isNewWallet)?255:(255-15-75);
     
     [self setUpUserInfoAndBalaces];
     
@@ -327,9 +328,21 @@
         if ([CNUserManager shareManager].userInfo.newWalletFlag) {
             if (!self.walletContainerView.subviews.count || [self.walletView isMemberOfClass:[BYOldMyWalletView class]]) {
                 [self.walletView removeFromSuperview];
-                self.walletView = [[BYMyWalletView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-30, 217)];
-                self.walletContainerHeightCons.constant = 217;
+                self.walletView = [BYMyWalletView new];
+                self.walletContainerHeightCons.constant = 67+11;
                 [self.walletContainerView addSubview:self.walletView];
+                [self.walletView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.right.top.equalTo(self.walletContainerView);
+                    make.height.mas_equalTo(202);
+                }];
+                BYMyWalletView *view = (BYMyWalletView *)self.walletView;
+                view.expandBlock = ^(BOOL isExpand) {
+                    if (isExpand) {
+                        self.walletContainerHeightCons.constant = 202;
+                    } else {
+                        self.walletContainerHeightCons.constant = 67+11;
+                    }
+                };
             }
             [self.walletView requestAccountBalances:YES];
             

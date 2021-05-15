@@ -242,6 +242,7 @@
 		3D65D1162568E35300917E1B /* SocketRocketUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D65D1152568E35300917E1B /* SocketRocketUtility.m */; };
 		3D6B72EC2613371900B441D2 /* BYRechargeUSDTTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6B72EB2613371900B441D2 /* BYRechargeUSDTTopView.m */; };
 		3D6B72EE2613374300B441D2 /* BYRechargeUSDTTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6B72ED2613374300B441D2 /* BYRechargeUSDTTopView.xib */; };
+		3D8A3B3A264E4DEA00AA9AB7 /* CNYuEBaoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A3B39264E4DEA00AA9AB7 /* CNYuEBaoRequest.m */; };
 		3D8A707E258B0B110058D50F /* SuperCopartnerTbDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A707D258B0B110058D50F /* SuperCopartnerTbDataSource.m */; };
 		3D8A7082258B3CBA0058D50F /* SuperCopartnerTbHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7081258B3CBA0058D50F /* SuperCopartnerTbHeader.m */; };
 		3D8A7086258B568E0058D50F /* SuperCopartnerTbCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7084258B568E0058D50F /* SuperCopartnerTbCell.m */; };
@@ -1429,6 +1430,8 @@
 		3D6B72EA2613371900B441D2 /* BYRechargeUSDTTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYRechargeUSDTTopView.h; sourceTree = "<group>"; };
 		3D6B72EB2613371900B441D2 /* BYRechargeUSDTTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYRechargeUSDTTopView.m; sourceTree = "<group>"; };
 		3D6B72ED2613374300B441D2 /* BYRechargeUSDTTopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYRechargeUSDTTopView.xib; sourceTree = "<group>"; };
+		3D8A3B38264E4DEA00AA9AB7 /* CNYuEBaoRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNYuEBaoRequest.h; sourceTree = "<group>"; };
+		3D8A3B39264E4DEA00AA9AB7 /* CNYuEBaoRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNYuEBaoRequest.m; sourceTree = "<group>"; };
 		3D8A707C258B0B110058D50F /* SuperCopartnerTbDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuperCopartnerTbDataSource.h; sourceTree = "<group>"; };
 		3D8A707D258B0B110058D50F /* SuperCopartnerTbDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperCopartnerTbDataSource.m; sourceTree = "<group>"; };
 		3D8A707F258B0DA20058D50F /* SuperCopartnerTbConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuperCopartnerTbConst.h; sourceTree = "<group>"; };
@@ -3961,6 +3964,8 @@
 		3DDEBA2E264A2D6A0014EB87 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				3D8A3B38264E4DEA00AA9AB7 /* CNYuEBaoRequest.h */,
+				3D8A3B39264E4DEA00AA9AB7 /* CNYuEBaoRequest.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -6469,6 +6474,7 @@
 				044DC69124DD01AA005CB550 /* CNShareView.m in Sources */,
 				04C6E1E624D4029D006F4DAC /* CNAddressManagerVC.m in Sources */,
 				3D41DE7525199DEE000CA1D6 /* VIPRewardAnocModel.m in Sources */,
+				3D8A3B3A264E4DEA00AA9AB7 /* CNYuEBaoRequest.m in Sources */,
 				E986A17B24C97A42000F9CFF /* CNWithdrawRequest.m in Sources */,
 				3DF03204258DE61400AF7A36 /* SCMyRecommenModel.m in Sources */,
 				040A08D324E114A900FBD534 /* OCBarrageTextDescriptor.m in Sources */,

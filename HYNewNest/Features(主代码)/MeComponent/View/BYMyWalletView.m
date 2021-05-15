@@ -24,6 +24,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *nonWithdrableTxtLb;
 @property (weak, nonatomic) IBOutlet UILabel *withdrableTxtLb;
 
+@property (weak, nonatomic) IBOutlet UILabel *yebAmountLb; //!>余额宝余额
+@property (weak, nonatomic) IBOutlet UILabel *yebInterestLb; //!>季度利息
+@property (weak, nonatomic) IBOutlet UILabel *yebProfitYesterdayLb; //!>昨日收益
+@property (weak, nonatomic) IBOutlet UIView *btmZoomBgView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *expandBtnTopConst;
+@property (weak, nonatomic) IBOutlet UIView *topZoomBgView;
+
 
 @end
 
@@ -32,17 +39,16 @@
 - (void)loadViewFromXib {
     [super loadViewFromXib];
     
-    [self setupUI];
     [self requestAccountBalances:NO];
+    
 }
 
-- (void)setupUI {
-    UIImage *theImage = [UIImage imageNamed:@"icon_rule"];
-    theImage = [theImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    _wenhaoImgv.image = theImage;
-    _wenhaoImgv.tintColor = kHexColorAlpha(0xFFFFFF, 0.7);
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    [_btmZoomBgView jk_setRoundedCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight radius:12];
+    [_topZoomBgView jk_setRoundedCorners:UIRectCornerAllCorners radius:12];
 }
-
 
 #pragma mark - Action
 /// 显示厅余额详情
@@ -62,6 +68,18 @@
     }];
 }
 
+- (IBAction)didTapExpandBtn:(UIButton *)sender {
+    if (sender.isSelected) { // 已展开
+        _btmZoomBgView.hidden = YES;
+        _expandBtnTopConst.constant = 56;
+    } else { //未展开
+        _btmZoomBgView.hidden = NO;
+        _expandBtnTopConst.constant = 56+67*2;
+    }
+    sender.selected = !sender.isSelected;
+    !_expandBlock?:_expandBlock(sender.isSelected);
+}
+
 
 #pragma mark - Data
 - (void)requestAccountBalances:(BOOL)isRefreshing {
@@ -74,31 +92,36 @@
     }
 
     [self.totalBalance showIndicatorIsBig:NO];
-    [self.effectiveBetAmountLb showIndicatorIsBig:NO];
+//    [self.effectiveBetAmountLb showIndicatorIsBig:NO];
     [self.nonWithdrableAmountLb showIndicatorIsBig:NO];
     [self.withdrableAmountLb showIndicatorIsBig:NO];
     [self.voucherAmountLb showIndicatorIsBig:NO];
     [self.gamesBalanceLb showIndicatorIsBig:NO];
+    [self.yebAmountLb showIndicatorIsBig:NO];
+    [self.yebInterestLb showIndicatorIsBig:NO];
+    [self.yebProfitYesterdayLb showIndicatorIsBig:NO];
 
     WEAKSELF_DEFINE
     if (isRefreshing) {
-        [[BalanceManager shareManager] requestBetAmountHandler:^(BetAmountModel * _Nonnull model) {
-            STRONGSELF_DEFINE
-            [strongSelf.effectiveBetAmountLb hideIndicatorWithText:[model.weekBetAmount jk_toDisplayNumberWithDigit:2]];
-
-        }];
+//        [[BalanceManager shareManager] requestBetAmountHandler:^(BetAmountModel * _Nonnull model) {
+//            STRONGSELF_DEFINE
+//            [strongSelf.effectiveBetAmountLb hideIndicatorWithText:[model.weekBetAmount jk_toDisplayNumberWithDigit:2]];
+//
+//        }];
         [[BalanceManager shareManager] requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
             STRONGSELF_DEFINE
             
             [strongSelf setupDataWithModel:model];
         }];
-
+//        [BalanceManager checkYuEBaoYesterdaySumHandler:^(id responseObj, NSString *errorMsg) {
+//
+//        }];
     } else {
-        [[BalanceManager shareManager] getWeeklyBetAmountHandler:^(BetAmountModel * _Nonnull model) {
-            STRONGSELF_DEFINE
-            [strongSelf.effectiveBetAmountLb hideIndicatorWithText:[model.weekBetAmount jk_toDisplayNumberWithDigit:2]];
-
-        }];
+//        [[BalanceManager shareManager] getWeeklyBetAmountHandler:^(BetAmountModel * _Nonnull model) {
+//            STRONGSELF_DEFINE
+//            [strongSelf.effectiveBetAmountLb hideIndicatorWithText:[model.weekBetAmount jk_toDisplayNumberWithDigit:2]];
+//
+//        }];
         [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
             STRONGSELF_DEFINE
             
@@ -113,6 +136,10 @@
     [self.nonWithdrableAmountLb hideIndicatorWithText:[model.walletBalance.nonWithDrawable jk_toDisplayNumberWithDigit:2]];
     [self.voucherAmountLb hideIndicatorWithText:[model.walletBalance.promotion jk_toDisplayNumberWithDigit:2]];
     [self.gamesBalanceLb hideIndicatorWithText:[model.platformTotalBalance jk_toDisplayNumberWithDigit:2]];
+    
+    [self.yebAmountLb hideIndicatorWithText:[model.yebAmount jk_toDisplayNumberWithDigit:2]];
+    [self.yebInterestLb hideIndicatorWithText:[model.yebInterest jk_toDisplayNumberWithDigit:2]];
+    
 }
 
 @end

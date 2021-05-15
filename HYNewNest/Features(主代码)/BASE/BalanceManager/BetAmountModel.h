@@ -63,7 +63,7 @@ UIKIT_EXTERN NSString * DBName_AccountBalance;
 @interface AccountMoneyDetailModel : CNBaseModel
 // 用户总额：balance=withdrawable+promotion+nonWithdrawable
 @property (strong,nonatomic) NSNumber *balance;
-@property (strong,nonatomic) NSNumber *localBalance;
+@property (strong,nonatomic) NSNumber *localBalance;//X 新钱包没有
 @property (strong,nonatomic) NSString *currency;
 @property (strong,nonatomic) NSNumber *minWithdrawAmount;
 @property (strong,nonatomic) NSNumber *maxWithdrawAmount;
@@ -71,7 +71,7 @@ UIKIT_EXTERN NSString * DBName_AccountBalance;
 // 厅方总额
 @property (strong,nonatomic) NSNumber *platformTotalBalance;
 // 可提现余额（新钱包放在walletBalance里面）
-@property (strong,nonatomic) NSNumber *withdrawBal;
+@property (strong,nonatomic) NSNumber *withdrawBal;//X 新钱包没有
 @property (strong,nonatomic) NSNumber *yebInterest;
 @property (strong,nonatomic) NSNumber *yebAmount;
 // 新钱包

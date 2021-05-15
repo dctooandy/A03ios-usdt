@@ -30,7 +30,11 @@
 - (NSArray *)tradeTypeStrings{
     if (!_tradeTypeStrings) {
         if ([CNUserManager shareManager].isUsdtMode) {
-            _tradeTypeStrings = @[@"充币", @"提币", @"洗码", @"余额宝转入", @"余额宝转出", @"优惠领取", @"投注记录"];
+            if ([CNUserManager shareManager].userInfo.newWalletFlag) {
+                _tradeTypeStrings = @[@"充币", @"提币", @"洗码", @"余额宝转入", @"余额宝转出", @"优惠领取", @"投注记录"];
+            } else {
+                _tradeTypeStrings = @[@"充币", @"提币", @"洗码", @"优惠领取", @"投注记录"];
+            }
         } else {
             _tradeTypeStrings = @[@"充值", @"提现", @"洗码", @"优惠领取", @"投注记录"];
         }
@@ -40,7 +44,7 @@
 
 - (void)setupBtnsWithType:(TransactionRecordType)type day:(NSInteger)day {
     
-    if ([CNUserManager shareManager].isUsdtMode) {
+    if ([CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userInfo.newWalletFlag) {
         _thirdStackView.hidden = NO;
     } else {
         _thirdStackView.hidden = YES;

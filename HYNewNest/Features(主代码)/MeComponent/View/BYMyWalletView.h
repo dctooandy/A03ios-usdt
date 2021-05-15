@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BYMyWalletView : BYBaseWalletAbsView
-
+@property (assign,nonatomic,getter=isExpanded) BOOL expanded; //!<是否展开
+@property (copy,nonatomic) void(^expandBlock)(BOOL isExpand);//!<展开操作
 @end
 
 NS_ASSUME_NONNULL_END
