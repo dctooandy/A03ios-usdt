@@ -168,6 +168,7 @@
 		3D18CFB1260883C600E6642E /* NXPingServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D18CFAD260883C600E6642E /* NXPingServices.m */; };
 		3D18CFB2260883C600E6642E /* NXPingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D18CFAE260883C600E6642E /* NXPingManager.m */; };
 		3D18CFB3260883C600E6642E /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D18CFB0260883C600E6642E /* SimplePing.m */; };
+		3D2B0873264FC4560008BB5F /* CNYuEBaoConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2B0872264FC4560008BB5F /* CNYuEBaoConfigModel.m */; };
 		3D2FB6392589E171003EE5EA /* CNBorderBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2FB6382589E171003EE5EA /* CNBorderBtn.m */; };
 		3D31B94425399CB7005275BD /* HYBuyECoinComfirmView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B94325399CB7005275BD /* HYBuyECoinComfirmView.m */; };
 		3D31B947253ACEF8005275BD /* HYWithdrawActivityAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B946253ACEF8005275BD /* HYWithdrawActivityAlertView.m */; };
@@ -1294,6 +1295,8 @@
 		3D18CFAE260883C600E6642E /* NXPingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXPingManager.m; sourceTree = "<group>"; };
 		3D18CFAF260883C600E6642E /* NXPingServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXPingServices.h; sourceTree = "<group>"; };
 		3D18CFB0260883C600E6642E /* SimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePing.m; sourceTree = "<group>"; };
+		3D2B0871264FC4560008BB5F /* CNYuEBaoConfigModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNYuEBaoConfigModel.h; sourceTree = "<group>"; };
+		3D2B0872264FC4560008BB5F /* CNYuEBaoConfigModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNYuEBaoConfigModel.m; sourceTree = "<group>"; };
 		3D2FB6372589E171003EE5EA /* CNBorderBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNBorderBtn.h; sourceTree = "<group>"; };
 		3D2FB6382589E171003EE5EA /* CNBorderBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNBorderBtn.m; sourceTree = "<group>"; };
 		3D31B94225399CB7005275BD /* HYBuyECoinComfirmView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYBuyECoinComfirmView.h; sourceTree = "<group>"; };
@@ -3950,6 +3953,8 @@
 		3DDEBA2C264A2D6A0014EB87 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3D2B0871264FC4560008BB5F /* CNYuEBaoConfigModel.h */,
+				3D2B0872264FC4560008BB5F /* CNYuEBaoConfigModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6589,6 +6594,7 @@
 				3D41DE7425199DEE000CA1D6 /* VIPHomeUserModel.m in Sources */,
 				D571B1AB24C03D790087B5EC /* CNStatementView.m in Sources */,
 				04C6E1DF24D3E995006F4DAC /* CNFeedBackLeftTCell.m in Sources */,
+				3D2B0873264FC4560008BB5F /* CNYuEBaoConfigModel.m in Sources */,
 				3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */,
 				3D41DE7825199DEE000CA1D6 /* VIPChartDSBHeaderView.m in Sources */,
 				3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */,

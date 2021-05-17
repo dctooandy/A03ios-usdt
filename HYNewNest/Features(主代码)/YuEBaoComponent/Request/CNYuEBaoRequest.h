@@ -7,6 +7,7 @@
 //
 
 #import "CNBaseNetworking.h"
+#import "CNYuEBaoConfigModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -22,7 +22,6 @@
 
 #import "HYWithdrawActivityAlertView.h"
 #import "HYBuyECoinGuideVC.h"
-#import "BYNewUsrMissionVC.h"
 
 #import "CNHomeRequest.h"
 #import "CNRechargeRequest.h"
@@ -37,12 +36,6 @@
 + (void)changeRootVc2MainPage {
     HYTabBarViewController *tabVC = [[HYTabBarViewController alloc] init];
     [NNControllerHelper changeRootVc:tabVC];
-}
-
-+ (void)changeRootVc2DevPage {
-    BYNewUsrMissionVC *vc = [BYNewUsrMissionVC new];
-    HYNavigationController *nav = [[HYNavigationController alloc] initWithRootViewController:vc];
-    [NNControllerHelper changeRootVc:nav];
 }
 
 + (void)jump2Login {
@@ -213,7 +206,6 @@
         [kCurNavVC pushViewController:vc animated:YES];
     };
 
-//    if ([CNUserManager shareManager].isLogin && ![CNUserManager shareManager].isTryUser) {
     if ([CNUserManager shareManager].isLogin) {
         [CNHomeRequest requestH5TicketHandler:^(NSString * ticket, NSString *errorMsg) {
             if (!errorMsg) {

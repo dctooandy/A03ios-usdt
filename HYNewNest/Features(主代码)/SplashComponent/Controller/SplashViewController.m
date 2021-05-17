@@ -57,7 +57,7 @@
 
     
     // 播放完成通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayEnd) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayEnd) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     
     //读取本地视频路径
     NSString *path = [[NSBundle mainBundle] pathForResource:@"CIRCULAR_06" ofType:@"mp4"];
@@ -150,13 +150,13 @@
 //区域限制
 - (void)requestAreaLimit {
 #ifdef DEBUG
-    [self goToLoginStart];
+    [self goToMainPage];
 #else
     [CNSplashRequest checkAreaLimit:^(BOOL isAllowEntry) {
         if (!isAllowEntry) {
             [self goTo403];
         } else {
-            [self goToLoginStart];
+            [self goToMainPage];
         }
     }];
 #endif
@@ -171,20 +171,16 @@
     
 }
 
-- (void)goToLoginStart{
+- (void)goToMainPage{
 //    // 动画演完才进入
 //    if (!_videoDidEnd) {
 //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [self goToLoginStart];
+//            [self goToMainPage];
 //        });
 //        return;
 //    }
     
-//#ifdef DEBUG
-//    [NNPageRouter changeRootVc2DevPage];
-//#else
     [NNPageRouter changeRootVc2MainPage];
-//#endif
 }
 
 

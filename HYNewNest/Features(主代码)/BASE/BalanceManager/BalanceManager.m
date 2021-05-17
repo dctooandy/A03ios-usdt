@@ -135,6 +135,14 @@
     }
 }
 
+- (void)getYuEBaoYesterdaySumHandler:(void (^)(id _Nonnull))handler {
+    //TODO: 还未看到数据
+    [BalanceManager checkYuEBaoYesterdaySumHandler:^(id responseObj, NSString *errorMsg) {
+            
+    }];
+    handler(@(100.86));
+}
+
 
 #pragma mark - REQUEST
 

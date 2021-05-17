@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BYYuEBaoTransferVC">
             <connections>
+                <outlet property="btnAllTrans" destination="fym-ae-PkZ" id="i3G-zK-i6x"/>
                 <outlet property="btnComfirm" destination="kaB-Ru-aVN" id="iEq-Ji-hke"/>
                 <outlet property="lbCurrency" destination="EUC-K7-a0c" id="vaW-rW-rHV"/>
                 <outlet property="lbTips" destination="dhW-Lt-Weh" id="0od-aa-5NG"/>
