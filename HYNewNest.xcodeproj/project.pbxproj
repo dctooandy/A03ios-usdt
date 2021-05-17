@@ -999,6 +999,12 @@
 		E9D9449E24C5735B00252222 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9449C24C5735B00252222 /* SplashViewController.m */; };
 		E9D944A124C5759400252222 /* UpdateVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D944A024C5759400252222 /* UpdateVersionModel.m */; };
 		E9E9590124D41BC400E866B6 /* CreditQueryResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E9590024D41BC400E866B6 /* CreditQueryResultModel.m */; };
+		F765F0EA265250FD00F15747 /* BYMissionCompleteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F765F0E8265250FD00F15747 /* BYMissionCompleteVC.m */; };
+		F765F0EB265250FD00F15747 /* BYMissionCompleteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F765F0E9265250FD00F15747 /* BYMissionCompleteVC.xib */; };
+		F765F0EF26525F4C00F15747 /* BYFirstFillBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F765F0EE26525F4C00F15747 /* BYFirstFillBannerView.m */; };
+		F765F0F126525F5800F15747 /* BYFirstFillBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F765F0F026525F5800F15747 /* BYFirstFillBannerView.xib */; };
+		F765F0F4265268D000F15747 /* BYMoreCompleteMissionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F765F0F3265268D000F15747 /* BYMoreCompleteMissionView.m */; };
+		F765F0F6265268E200F15747 /* BYMoreCompleteMissionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F765F0F5265268E200F15747 /* BYMoreCompleteMissionView.xib */; };
 		F774CDA9264CF2960062F6A2 /* BYGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = F774CDA8264CF2960062F6A2 /* BYGradientView.m */; };
 		F7A75F1C264E140500D933D7 /* BYGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F1B264E140500D933D7 /* BYGradientButton.m */; };
 		F7A75F1F264E405600D933D7 /* BYBorderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F1E264E405600D933D7 /* BYBorderButton.m */; };
@@ -2413,6 +2419,15 @@
 		E9E9590024D41BC400E866B6 /* CreditQueryResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditQueryResultModel.m; sourceTree = "<group>"; };
 		F6CE8CAC1544E651FCBD92C6 /* Pods-HYNewNest-HYNewNestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest-HYNewNestUITests.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F7369947BD28FDAEFDBB6399 /* Pods-HYNewNest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.release.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.release.xcconfig"; sourceTree = "<group>"; };
+		F765F0E7265250FD00F15747 /* BYMissionCompleteVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYMissionCompleteVC.h; sourceTree = "<group>"; };
+		F765F0E8265250FD00F15747 /* BYMissionCompleteVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYMissionCompleteVC.m; sourceTree = "<group>"; };
+		F765F0E9265250FD00F15747 /* BYMissionCompleteVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYMissionCompleteVC.xib; sourceTree = "<group>"; };
+		F765F0ED26525F4C00F15747 /* BYFirstFillBannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYFirstFillBannerView.h; sourceTree = "<group>"; };
+		F765F0EE26525F4C00F15747 /* BYFirstFillBannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYFirstFillBannerView.m; sourceTree = "<group>"; };
+		F765F0F026525F5800F15747 /* BYFirstFillBannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYFirstFillBannerView.xib; sourceTree = "<group>"; };
+		F765F0F2265268D000F15747 /* BYMoreCompleteMissionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYMoreCompleteMissionView.h; sourceTree = "<group>"; };
+		F765F0F3265268D000F15747 /* BYMoreCompleteMissionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYMoreCompleteMissionView.m; sourceTree = "<group>"; };
+		F765F0F5265268E200F15747 /* BYMoreCompleteMissionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYMoreCompleteMissionView.xib; sourceTree = "<group>"; };
 		F774CDA7264CF2960062F6A2 /* BYGradientView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGradientView.h; sourceTree = "<group>"; };
 		F774CDA8264CF2960062F6A2 /* BYGradientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGradientView.m; sourceTree = "<group>"; };
 		F7A75F1A264E140500D933D7 /* BYGradientButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGradientButton.h; sourceTree = "<group>"; };
@@ -5343,6 +5358,19 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		F765F0EC26525E4600F15747 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F765F0ED26525F4C00F15747 /* BYFirstFillBannerView.h */,
+				F765F0EE26525F4C00F15747 /* BYFirstFillBannerView.m */,
+				F765F0F026525F5800F15747 /* BYFirstFillBannerView.xib */,
+				F765F0F2265268D000F15747 /* BYMoreCompleteMissionView.h */,
+				F765F0F3265268D000F15747 /* BYMoreCompleteMissionView.m */,
+				F765F0F5265268E200F15747 /* BYMoreCompleteMissionView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		F7A75F19264E13E900D933D7 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -5356,6 +5384,7 @@
 			isa = PBXGroup;
 			children = (
 				F7CA9C56264E77AC00410BB3 /* Controller */,
+				F765F0EC26525E4600F15747 /* View */,
 			);
 			path = NewbieMissionComponent;
 			sourceTree = "<group>";
@@ -5366,6 +5395,9 @@
 				F7CF5413264CBDF300AC8F04 /* BYNewbieMissionVC.h */,
 				F7CF5414264CBDF300AC8F04 /* BYNewbieMissionVC.m */,
 				F7CF5415264CBDF300AC8F04 /* BYNewbieMissionVC.xib */,
+				F765F0E7265250FD00F15747 /* BYMissionCompleteVC.h */,
+				F765F0E8265250FD00F15747 /* BYMissionCompleteVC.m */,
+				F765F0E9265250FD00F15747 /* BYMissionCompleteVC.xib */,
 				F7CA9C50264E66D500410BB3 /* BYNewbieTwoButtonAlertVC.h */,
 				F7CA9C51264E66D500410BB3 /* BYNewbieTwoButtonAlertVC.m */,
 				F7CA9C52264E66D500410BB3 /* BYNewbieTwoButtonAlertVC.xib */,
@@ -5577,6 +5609,7 @@
 				D5A446F924F3941400014DC6 /* 合成 1_00051.png in Resources */,
 				D5A4461A24F393E500014DC6 /* 足球_00081.png in Resources */,
 				D5A4461424F393E500014DC6 /* 足球_00094.png in Resources */,
+				F765F0F6265268E200F15747 /* BYMoreCompleteMissionView.xib in Resources */,
 				D5A443FD24F37A9E00014DC6 /* 彩票_0001.png in Resources */,
 				3DBA55FE257FC207009A2B71 /* DSBHeaderSelectionView.xib in Resources */,
 				D5A444C124F3932400014DC6 /* 数字7_00087.png in Resources */,
@@ -5859,6 +5892,7 @@
 				D5A444B824F3932400014DC6 /* 数字7_00096.png in Resources */,
 				D5A444C824F3932500014DC6 /* 数字7_00047.png in Resources */,
 				D5A446D224F3941400014DC6 /* 合成 1_00075.png in Resources */,
+				F765F0EB265250FD00F15747 /* BYMissionCompleteVC.xib in Resources */,
 				04C0F13324C7D2A6007F1420 /* CNSportVC.xib in Resources */,
 				D5A446EE24F3941400014DC6 /* 合成 1_00020.png in Resources */,
 				D5A445FD24F393E500014DC6 /* 足球_00035.png in Resources */,
@@ -6088,6 +6122,7 @@
 				D5A4464C24F393E500014DC6 /* 足球_00014.png in Resources */,
 				D5A4458724F393AD00014DC6 /* 棋牌_00022.png in Resources */,
 				D5A4463824F393E500014DC6 /* 足球_00077.png in Resources */,
+				F765F0F126525F5800F15747 /* BYFirstFillBannerView.xib in Resources */,
 				D5A4447F24F3932400014DC6 /* 数字7_0009.png in Resources */,
 				D5A446F024F3941400014DC6 /* 合成 1_00035.png in Resources */,
 				D5A4460E24F393E500014DC6 /* 足球_00054.png in Resources */,
@@ -6340,6 +6375,7 @@
 				3D41DE7625199DEE000CA1D6 /* VIPGuideModel.m in Sources */,
 				3D31B95E2542D4BF005275BD /* PreLoginModel.m in Sources */,
 				3DB72DC32614334D00386B6B /* BYCTZNBannerView.m in Sources */,
+				F765F0EF26525F4C00F15747 /* BYFirstFillBannerView.m in Sources */,
 				E9B5495324CDB646002CE6EF /* UUMarqueeView.m in Sources */,
 				E986A18C24C9D39B000F9CFF /* XmCalcAmountModel.m in Sources */,
 				3D41DE8325199DEE000CA1D6 /* VIPChartDJTQCell.m in Sources */,
@@ -6360,6 +6396,7 @@
 				E9D9447724C1F37900252222 /* HYBonusViewController.m in Sources */,
 				0487C9AD24CFBA6A0013715A /* JJCollectionViewRoundFlowLayout.m in Sources */,
 				0487C97B24CEB2710013715A /* CNChoseImageVC.m in Sources */,
+				F765F0EA265250FD00F15747 /* BYMissionCompleteVC.m in Sources */,
 				3D97005025A2C3ED003238C4 /* IN3SLaunchModel.m in Sources */,
 				D5FBFE2D24BC05E400BBCAD8 /* CNLoginRegisterVC.m in Sources */,
 				04C0F12D24C7D20C007F1420 /* CNRealPersonVC.m in Sources */,
@@ -6424,6 +6461,7 @@
 				3D41DE8125199DEE000CA1D6 /* VIPNewVersionView.m in Sources */,
 				3D41DE7725199DEE000CA1D6 /* VIPMonthlyModel.m in Sources */,
 				E9A269DC24D80FCC00B512FF /* HYRechargePayWayCell.m in Sources */,
+				F765F0F4265268D000F15747 /* BYMoreCompleteMissionView.m in Sources */,
 				3D972436262E96B1005E930C /* HYSuperCopartnerAlertView.m in Sources */,
 				E98BEF0224D1AF4300E6B0C8 /* HYXiMaTopView.m in Sources */,
 				3DBA56112580D9B3009A2B71 /* CALayer+Additions.m in Sources */,
