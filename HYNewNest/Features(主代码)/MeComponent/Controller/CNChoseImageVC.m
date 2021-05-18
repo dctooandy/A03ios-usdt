@@ -70,7 +70,7 @@
     
     [CNUserCenterRequest modifyUserRealName:nil gender:nil birth:nil avatar:imgNmae onlineMessenger2:nil email:nil handler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
-            [CNHUB showSuccess:@"头像修改成功"];
+            [CNTOPHUB showSuccess:@"头像修改成功"];
             [self.navigationController popViewControllerAnimated:YES];
         }
     }];

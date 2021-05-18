@@ -52,7 +52,7 @@
     NSURL *url = [NSURL URLWithString:kDownload_XJK_Address];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
-            [CNHUB showSuccess:@"请在外部浏览器查看"];
+            [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
         }];
     }
 }

@@ -116,7 +116,7 @@ static dispatch_once_t onceToken;
         if (!errorMsg) {
             // 绑定成功
             [CNLoginRequest getUserInfoByTokenCompletionHandler:nil];
-            [CNHUB showSuccess:[NSString stringWithFormat:@"金库号 %@ 绑定成功", accountNo]];
+            [CNTOPHUB showSuccess:[NSString stringWithFormat:@"金库号 %@ 绑定成功", accountNo]];
             if (successHandler) {
                 successHandler();
             }

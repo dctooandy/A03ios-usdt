@@ -131,7 +131,7 @@
                                          handler:^{
         [CNSuperCopartnerRequest applyMyGiftBonusHandler:^(id responseObj, NSString *errorMsg) {
             if (!errorMsg) {
-                [CNHUB showSuccess:@"一键领取成功！"];
+                [CNTOPHUB showSuccess:@"一键领取成功！"];
             }
         }];
     }];
@@ -145,7 +145,7 @@
 
 - (IBAction)didTapShareBtn:(id)sender {
     [UIPasteboard generalPasteboard].string = self.linkLb.text;
-    [CNHUB showSuccess:@"已复制到剪贴板"];
+    [CNTOPHUB showSuccess:@"已复制到剪贴板"];
 }
 
 - (IBAction)didTapSaveImg:(id)sender {
@@ -165,9 +165,9 @@
 - (void)image:(UIImage*)image didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo {
 
     if(error) {
-        [CNHUB showError:[NSString stringWithFormat:@"保存失败: %@",error.localizedDescription]];
+        [CNTOPHUB showError:[NSString stringWithFormat:@"保存失败: %@",error.localizedDescription]];
     }else{
-        [CNHUB showSuccess:@"保存成功 请打开相册查看"];
+        [CNTOPHUB showSuccess:@"保存成功 请打开相册查看"];
     }
     
 }

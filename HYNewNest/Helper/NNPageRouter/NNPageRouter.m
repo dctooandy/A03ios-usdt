@@ -128,10 +128,10 @@
                 NSURL *url = [NSURL URLWithString:urlStr];
                 if ([[UIApplication sharedApplication] canOpenURL:url]) {
                     [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
-                        [CNHUB showSuccess:@"请在外部浏览器查看"];
+                        [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
                     }];
                 } else {
-                    [CNHUB showError:@"PayURL错误 请联系客服"];
+                    [CNTOPHUB showError:@"PayURL错误 请联系客服"];
                 }
             }
         }

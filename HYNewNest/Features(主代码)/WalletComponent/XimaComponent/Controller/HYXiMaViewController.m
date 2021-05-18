@@ -114,7 +114,7 @@ static NSString * const KXiMaCell = @"HYXiMaCell";
                                                   handler:^(id responseObj, NSString *errorMsg) {
                     STRONGSELF_DEFINE
                     if (KIsEmptyString(errorMsg)) {
-                        [CNHUB showSuccess:@"洗码成功"];
+                        [CNTOPHUB showSuccess:@"洗码成功"];
                         [strongSelf.selectedIndexs removeAllObjects];
                         [strongSelf requestData];
                         // 到洗码完成

@@ -232,7 +232,7 @@
                                         handler:^(id responseObj, NSString *errorMsg) {
         
         if (!errorMsg) {
-            [CNHUB showSuccess:@"银行卡绑定成功"];
+            [CNTOPHUB showSuccess:@"银行卡绑定成功"];
             [self.navigationController popViewControllerAnimated:YES];
             dispatch_async(dispatch_get_global_queue(0, 0), ^{
                 [IVLAManager singleEventId:@"A03_bankcard_update"];

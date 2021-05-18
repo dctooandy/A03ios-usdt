@@ -123,8 +123,8 @@
 		04935BEC24D93E87007A33EF /* CNELSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04935BEA24D93E87007A33EF /* CNELSearchVC.xib */; };
 		04C0F0DC24C29FFD007F1420 /* CNBindPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C0F0DA24C29FFD007F1420 /* CNBindPhoneVC.m */; };
 		04C0F0DD24C29FFD007F1420 /* CNBindPhoneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C0F0DB24C29FFD007F1420 /* CNBindPhoneVC.xib */; };
-		04C0F0E324C2B282007F1420 /* CNHUB.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C0F0E124C2B282007F1420 /* CNHUB.m */; };
-		04C0F0E424C2B282007F1420 /* CNHUB.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C0F0E224C2B282007F1420 /* CNHUB.xib */; };
+		04C0F0E324C2B282007F1420 /* CNTOPHUB.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C0F0E124C2B282007F1420 /* CNTOPHUB.m */; };
+		04C0F0E424C2B282007F1420 /* CNTOPHUB.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C0F0E224C2B282007F1420 /* CNTOPHUB.xib */; };
 		04C0F0E824C2E250007F1420 /* JHVerificationCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C0F0E724C2E250007F1420 /* JHVerificationCodeView.m */; };
 		04C0F0EC24C43ADA007F1420 /* CNForgotCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C0F0EA24C43AD9007F1420 /* CNForgotCodeVC.m */; };
 		04C0F0ED24C43ADA007F1420 /* CNForgotCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C0F0EB24C43AD9007F1420 /* CNForgotCodeVC.xib */; };
@@ -1209,9 +1209,9 @@
 		04C0F0D924C29FFD007F1420 /* CNBindPhoneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNBindPhoneVC.h; sourceTree = "<group>"; };
 		04C0F0DA24C29FFD007F1420 /* CNBindPhoneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNBindPhoneVC.m; sourceTree = "<group>"; };
 		04C0F0DB24C29FFD007F1420 /* CNBindPhoneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CNBindPhoneVC.xib; sourceTree = "<group>"; };
-		04C0F0E024C2B282007F1420 /* CNHUB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNHUB.h; sourceTree = "<group>"; };
-		04C0F0E124C2B282007F1420 /* CNHUB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNHUB.m; sourceTree = "<group>"; };
-		04C0F0E224C2B282007F1420 /* CNHUB.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNHUB.xib; sourceTree = "<group>"; };
+		04C0F0E024C2B282007F1420 /* CNTOPHUB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNTOPHUB.h; sourceTree = "<group>"; };
+		04C0F0E124C2B282007F1420 /* CNTOPHUB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNTOPHUB.m; sourceTree = "<group>"; };
+		04C0F0E224C2B282007F1420 /* CNTOPHUB.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNTOPHUB.xib; sourceTree = "<group>"; };
 		04C0F0E624C2E250007F1420 /* JHVerificationCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHVerificationCodeView.h; sourceTree = "<group>"; };
 		04C0F0E724C2E250007F1420 /* JHVerificationCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHVerificationCodeView.m; sourceTree = "<group>"; };
 		04C0F0E924C43AD9007F1420 /* CNForgotCodeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNForgotCodeVC.h; sourceTree = "<group>"; };
@@ -2809,9 +2809,9 @@
 		04C0F0DF24C2B282007F1420 /* HUB */ = {
 			isa = PBXGroup;
 			children = (
-				04C0F0E024C2B282007F1420 /* CNHUB.h */,
-				04C0F0E124C2B282007F1420 /* CNHUB.m */,
-				04C0F0E224C2B282007F1420 /* CNHUB.xib */,
+				04C0F0E024C2B282007F1420 /* CNTOPHUB.h */,
+				04C0F0E124C2B282007F1420 /* CNTOPHUB.m */,
+				04C0F0E224C2B282007F1420 /* CNTOPHUB.xib */,
 			);
 			path = HUB;
 			sourceTree = "<group>";
@@ -5560,7 +5560,7 @@
 				D5A446EC24F3941400014DC6 /* 合成 1_00018.png in Resources */,
 				D5A443AE24F378CD00014DC6 /* 彩票_00082.png in Resources */,
 				3DBA55E025763C19009A2B71 /* HYBalancesDetailView.xib in Resources */,
-				04C0F0E424C2B282007F1420 /* CNHUB.xib in Resources */,
+				04C0F0E424C2B282007F1420 /* CNTOPHUB.xib in Resources */,
 				D5A4453724F393AC00014DC6 /* 棋牌_00038.png in Resources */,
 				D5A4447224F3932400014DC6 /* 数字7_00074.png in Resources */,
 				D5A4456624F393AC00014DC6 /* 棋牌_00040.png in Resources */,
@@ -6445,7 +6445,7 @@
 				E986A1C724CC7F2B000F9CFF /* TAAbstractDotView.m in Sources */,
 				3D31B95B253DEE81005275BD /* HYWithdrawChooseWallectComView.m in Sources */,
 				040A08D724E114A900FBD534 /* OCBarrageRenderView.m in Sources */,
-				04C0F0E324C2B282007F1420 /* CNHUB.m in Sources */,
+				04C0F0E324C2B282007F1420 /* CNTOPHUB.m in Sources */,
 				3DA4F15F24B30D610039123F /* GTMBase64.m in Sources */,
 				3D31B947253ACEF8005275BD /* HYWithdrawActivityAlertView.m in Sources */,
 				3D16F10025381EEC00FE0212 /* HYBuyECoinGuideVC.m in Sources */,
@@ -6758,7 +6758,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HYNewNest/Vendors",
-					"$(PROJECT_DIR)/HYNewNest/Vendors/IVNetworkLibrary2.0/Classes/Business/SDK/Sign",
 					"$(PROJECT_DIR)/HYNewNest/Vendors/IN3SAnalytics",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -6816,7 +6815,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HYNewNest/Vendors",
-					"$(PROJECT_DIR)/HYNewNest/Vendors/IVNetworkLibrary2.0/Classes/Business/SDK/Sign",
 					"$(PROJECT_DIR)/HYNewNest/Vendors/IN3SAnalytics",
 				);
 				GCC_OPTIMIZATION_LEVEL = s;

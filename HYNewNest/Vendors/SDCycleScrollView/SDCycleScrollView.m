@@ -33,7 +33,7 @@
 #import "SDCollectionViewCell.h"
 #import "UIView+SDExtension.h"
 #import "TAPageControl.h"
-#import "SDWebImageManager.h"
+#import <SDImageCache.h>
 #import "UIImageView+WebCache.h"
 #import "TAExampleDotView.h"
 
@@ -492,7 +492,7 @@ NSString * const ID = @"SDCycleScrollViewCell";
 
 + (void)clearImagesCache
 {
-    [[[SDWebImageManager sharedManager] imageCache] clearDiskOnCompletion:nil];
+    [[SDImageCache sharedImageCache] clearDiskOnCompletion:nil];
 }
 
 #pragma mark - life circles

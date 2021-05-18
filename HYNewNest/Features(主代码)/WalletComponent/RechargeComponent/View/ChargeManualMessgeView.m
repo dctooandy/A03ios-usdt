@@ -157,7 +157,7 @@
         if (url && chargeType == ChargeMsgTypeDCBOX) {
             if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:url]]) {
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{} completionHandler:^(BOOL success) {
-                    [CNHUB showSuccess:@"请在外部浏览器查看"];
+                    [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
                 }];
             } else {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -269,10 +269,10 @@
     NSURL *url = [NSURL URLWithString:urlStr];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
-            [CNHUB showSuccess:@"请在外部浏览器查看"];
+            [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
         }];
     } else {
-        [CNHUB showError:@"小金库PayURL错误 请联系客服"];
+        [CNTOPHUB showError:@"小金库PayURL错误 请联系客服"];
     }
 }
 
@@ -284,14 +284,14 @@
 - (void)copyCllick {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = self.addressText;
-    [CNHUB showSuccess:@"复制成功"];
+    [CNTOPHUB showSuccess:@"复制成功"];
 }
 
 - (void)downLoadXJKJump {
     NSURL *URLdown = [NSURL URLWithString:kDownload_XJK_Address];
     if ([[UIApplication sharedApplication] canOpenURL:URLdown]) {
         [[UIApplication sharedApplication] openURL:URLdown options:@{} completionHandler:^(BOOL success) {
-            [CNHUB showSuccess:@"正在为您跳转币付宝下载页.."];
+            [CNTOPHUB showSuccess:@"正在为您跳转币付宝下载页.."];
         }];
     }
 }
@@ -311,9 +311,9 @@
 - (void)image:(UIImage*)image didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo {
 
     if(error) {
-        [CNHUB showError:[NSString stringWithFormat:@"保存失败: %@",error.localizedDescription]];
+        [CNTOPHUB showError:[NSString stringWithFormat:@"保存失败: %@",error.localizedDescription]];
     }else{
-        [CNHUB showSuccess:@"保存成功 请打开相册查看"];
+        [CNTOPHUB showSuccess:@"保存成功 请打开相册查看"];
     }
     
 }

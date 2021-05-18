@@ -162,7 +162,7 @@
     if (self.model.linkUrl) {
         [NNPageRouter jump2HTMLWithStrURL:self.model.linkUrl title:self.model.prizeName needPubSite:NO];
     } else {
-        [CNHUB showError:@"优惠券未配置活动链接"];
+        [CNTOPHUB showError:@"优惠券未配置活动链接"];
     }
 }
 

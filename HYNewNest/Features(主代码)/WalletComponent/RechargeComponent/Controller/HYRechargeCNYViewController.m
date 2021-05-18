@@ -263,14 +263,14 @@
                 NSURL *payUrl = [NSURL URLWithString:paymentModel.payUrl];
                 if ([[UIApplication sharedApplication] canOpenURL:payUrl]) {
                     [[UIApplication sharedApplication] openURL:payUrl options:@{} completionHandler:^(BOOL success) {
-                        [CNHUB showSuccess:@"请在外部浏览器查看"];
+                        [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
                         // 支付等待
                         HYWithdrawComfirmView *view = [[HYWithdrawComfirmView alloc] initWithAmountModel:nil sumbitBlock:nil];
                         [self.view addSubview:view];
                         [view showRechargeWaiting];
                     }];
                 } else {
-                    [CNHUB showError:@"充值渠道链接错误"];
+                    [CNTOPHUB showError:@"充值渠道链接错误"];
                 }
             }
         }];
@@ -305,7 +305,7 @@
 - (void)bindRealName:(NSString *)realName {
     [CNUserCenterRequest modifyUserRealName:realName gender:nil birth:nil avatar:nil onlineMessenger2:nil email:nil handler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
-            [CNHUB showSuccess:@"实名认证成功"];
+            [CNTOPHUB showSuccess:@"实名认证成功"];
         }
     }];
 }

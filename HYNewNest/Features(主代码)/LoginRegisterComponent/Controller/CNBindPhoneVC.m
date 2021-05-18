@@ -234,7 +234,7 @@
 /// 校验短信验证码: 提交
 - (IBAction)verfiSmsCode:(UIButton *)sender {
     if (!self.smsModel) {
-        [CNHUB showAlert:@"请输入手机号和验证码"];
+        [CNTOPHUB showAlert:@"请输入手机号和验证码"];
         return;
     }
     if (self.bindType == CNSMSCodeTypeBindPhone || self.bindType == CNSMSCodeTypeRegister) {
@@ -245,7 +245,7 @@
             if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
                 // 更新信息
                 [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
-                    [CNHUB showSuccess:@"绑定成功"];
+                    [CNTOPHUB showSuccess:@"绑定成功"];
                     
                     if (self.bindType == CNSMSCodeTypeRegister) {
                         [self.navigationController pushViewController:[BYRegisterSuccADVC new] animated:YES];
@@ -273,7 +273,7 @@
                                     smsCodeId:self.smsModel.messageId
                             completionHandler:^(id responseObj, NSString *errorMsg) {
             if (KIsEmptyString(errorMsg)) {
-                [CNHUB showSuccess:@"验证成功"];
+                [CNTOPHUB showSuccess:@"验证成功"];
                 CNBindPhoneVC *bindVc = [CNBindPhoneVC new];
                 bindVc.bindType = CNSMSCodeTypeChangePhone;
                 if (responseObj && [responseObj isKindOfClass:[NSDictionary class]]) {
@@ -289,7 +289,7 @@
                          completionHandler:^(id responseObj, NSString *errorMsg) {
             if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
                 [CNLoginRequest getUserInfoByTokenCompletionHandler:nil];
-                [CNHUB showSuccess:@"修改成功"];
+                [CNTOPHUB showSuccess:@"修改成功"];
                 if (![NNControllerHelper pop2ViewControllerClassString:@"CNSecurityCenterVC"]) {
                     [self.navigationController popViewControllerAnimated:YES];
                 }

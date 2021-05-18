@@ -71,7 +71,7 @@
         }
         [CNUserCenterRequest modifyUserRealName:nil gender:codeOfGender birth:nil avatar:nil onlineMessenger2:nil email:nil handler:^(id responseObj, NSString *errorMsg) {
             if (!KIsEmptyString(errorMsg)) {
-                [CNHUB showSuccess:@"性别修改成功"];
+                [CNTOPHUB showSuccess:@"性别修改成功"];
             }
         }];
     }];
@@ -87,7 +87,7 @@
         self.birthTF.text = selectValue;
         [CNUserCenterRequest modifyUserRealName:nil gender:nil birth:selectValue avatar:nil onlineMessenger2:nil email:nil handler:^(id responseObj, NSString *errorMsg) {
             if (!KIsEmptyString(errorMsg)) {
-                [CNHUB showSuccess:@"生日修改成功"];
+                [CNTOPHUB showSuccess:@"生日修改成功"];
             }
         }];
     }];
@@ -102,7 +102,7 @@
 - (IBAction)logout:(id)sender {
     [CNLoginRequest logoutHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
-            [CNHUB showSuccess:@"您已退出登录"];
+            [CNTOPHUB showSuccess:@"您已退出登录"];
         } else {
             [[CNUserManager shareManager] cleanUserInfo];
         }

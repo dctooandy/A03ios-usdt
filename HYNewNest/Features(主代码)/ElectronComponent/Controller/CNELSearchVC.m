@@ -39,7 +39,7 @@
     
     NSString *keyword = self.searchTF.text;
     if (keyword.length == 0) {
-        [CNHUB showError:self.searchTF.placeholder];
+        [CNTOPHUB showError:self.searchTF.placeholder];
         return;
     }
     

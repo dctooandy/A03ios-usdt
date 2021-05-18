@@ -94,11 +94,11 @@
 
 - (IBAction)didTapBtn:(id)sender {
     if (!_resModel) {
-        [CNHUB showError:@"出错了 请下拉刷新页面"];
+        [CNTOPHUB showError:@"出错了 请下拉刷新页面"];
         return;
     }
     if (_resModel.fetchResultFlag == 1) {
-        [CNHUB showError:@"您已领取过该奖励"];
+        [CNTOPHUB showError:@"您已领取过该奖励"];
         return;
     }
     
@@ -147,7 +147,7 @@
         
     } else if (_resModel.fetchResultFlag == 0) { // 待领取
         if (_isBeyondClaim) {
-            [CNHUB showError:@"该奖品已过期"];
+            [CNTOPHUB showError:@"该奖品已过期"];
         } else {
             WEAKSELF_DEFINE
             [CNTaskRequest applyTaskRewardIds:_resModel.ID code:_resModel.prizeCode handler:^(id responseObj, NSString *errorMsg) {

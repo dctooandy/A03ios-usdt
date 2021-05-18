@@ -161,7 +161,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     
     // 判断卡
     if (self.elecCardsArr.count == 0) {
-        [CNHUB showError:[NSString stringWithFormat:@"请先绑定至少%@",[CNUserManager shareManager].isUsdtMode?@"一个钱包地址":@"一张银行卡"]];
+        [CNTOPHUB showError:[NSString stringWithFormat:@"请先绑定至少%@",[CNUserManager shareManager].isUsdtMode?@"一个钱包地址":@"一张银行卡"]];
     }
     
     if (!self.moneyModel) {

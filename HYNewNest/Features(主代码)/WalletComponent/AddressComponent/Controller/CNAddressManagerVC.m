@@ -182,7 +182,7 @@
         }
         [CNWDAccountRequest deleteAccountId:model.accountId handler:^(id responseObj, NSString *errorMsg) {
             if (!errorMsg) {
-                [CNHUB showSuccess:@"删除成功"];
+                [CNTOPHUB showSuccess:@"删除成功"];
                 [self queryAccounts];
                 dispatch_async(dispatch_get_global_queue(0, 0), ^{
                     [IVLAManager singleEventId:@"A03_bankcard_update"];
