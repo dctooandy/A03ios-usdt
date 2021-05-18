@@ -165,6 +165,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     }
     
     if (!self.moneyModel) {
+        [CNHUB showError:@"未能获取到可提余额，请下拉刷新试试"];
         return;
     }
     WEAKSELF_DEFINE
@@ -184,23 +185,10 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     }
 }
 
-//- (void)getBalance {
-//    [self.topView.lblAmount showIndicatorIsBig:YES];
-//    [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-//        self.moneyModel = model;
-//        [self.topView.lblAmount hideIndicatorWithText:[model.withdrawBal jk_toDisplayNumberWithDigit:2]];
-//        self.sumitBtn.enabled = YES;
-//    }];
-//}
 
 #pragma mark - REQUEST
 - (void)requestBalance {
     [self.topView.lblAmount showIndicatorIsBig:YES];
-//    [[BalanceManager shareManager] requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-//        self.moneyModel = model;
-//        [self.topView.lblAmount hideIndicatorWithText:[model.withdrawBal jk_toDisplayNumberWithDigit:2]];
-//        self.sumitBtn.enabled = YES;
-//    }];
     [BalanceManager requestWithdrawAbleBalanceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
         self.moneyModel = model;
         [self.topView.lblAmount hideIndicatorWithText:[model.withdrawBal jk_toDisplayNumberWithDigit:2]];
@@ -262,6 +250,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     }];
 }
 
+// 提交取款金额
 - (void)sumbimtWithdrawAmount:(NSString *)amout {
     // 请求最后一步的闭包
     WEAKSELF_DEFINE

@@ -162,13 +162,14 @@
             path = config_queryWithPromo;
             break;
         }
-        //TODO: 余额宝接口接入
         case TransactionRecord_yuEBaoWithdraw: {
-            path = config_queryWithPromo;
+            path = config_yebTransferLogs;
+            param[@"transferType"] = @2;
             break;
         }
         case transactionRecord_yuEBaoDeposit: {
-            path = config_queryWithPromo;
+            path = config_yebTransferLogs;
+            param[@"transferType"] = @1;
             break;
         }
         case transactionRecord_betRecordType: {

@@ -8,6 +8,8 @@
 
 #import "BYYuEBaoTransferVC.h"
 #import "CNTwoStatusBtn.h"
+#import "CNYuEBaoRequest.h"
+#import "BalanceManager.h"
 
 @interface BYYuEBaoTransferVC ()
 {
@@ -46,15 +48,33 @@
             self.lbTips.text = [NSString stringWithFormat:@"最低买入金额%ldUSDT，最高可买入%ldUSDT", self.model.minAmount, self.model.maxAmount];
         }
         
+        [self.lbTransableAmout showIndicatorIsBig:YES];
+        [BalanceManager requestWithdrawAbleBalanceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
+            NSNumber *num = model.withdrawBal;
+            [self.lbTransableAmout hideIndicatorWithText:[num jk_toDisplayNumberWithDigit:2]];
+        }];
+        
     } else {
         self.title = @"转出余额宝";
         [self.btnComfirm setTitle:@"确认转出" forState:UIControlStateNormal];
         self.tfTransAmout.placeholder = @"请输入转出金额";
         self.lbTips.text = @"放的越久，利息越多";
+        
+        // 只支持全部转出
+        self.lbWrongMsg.text = @"*余额宝仅支持全部转出";
+        self.lbWrongMsg.hidden = NO;
+        self.lbWrongMsg.textColor = kHexColor(0x4C8BD8);
+        self.tfTransAmout.userInteractionEnabled = NO;
+        self.btnAllTrans.hidden = YES;
+        
+        NSNumber *num = @(self.model.yebAmount.floatValue + self.model.yebInterest.floatValue);
+        self.lbTransableAmout.text = [num jk_toDisplayNumberWithDigit:2];
+        [self allTransferMove];
+        if (self.tfTransAmout.text.floatValue > 0) {
+            self.btnComfirm.enabled = YES;
+        }
     }
     
-    NSNumber *num = @(self.model.yebAmount.floatValue + self.model.yebInterest.floatValue);
-    self.lbTransableAmout.text = [num jk_toDisplayNumberWithDigit:2];
 }
 
 - (instancetype)initWithType:(YEBTransferType)type  configModel:(CNYuEBaoConfigModel *)model{
@@ -67,12 +87,33 @@
 
 #pragma mark - ACTION
 
+- (void)allTransferMove {
+    NSString *amount = self.lbTransableAmout.text;
+    amount = [amount stringByReplacingOccurrencesOfString:@"," withString:@""];
+    self.tfTransAmout.text = amount;
+    [self.tfTransAmout resignFirstResponder];
+}
+
 - (IBAction)didTapAllTransBtn:(id)sender {
+    [self allTransferMove];
 }
 
 - (IBAction)didTapComfirmTransBtn:(id)sender {
-    //网络请求...
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    NSNumber *amount = [NSNumber numberWithDouble:self.tfTransAmout.text.doubleValue];
+    if (self.type == YEBTransferTypeDeposit) {
+        [CNYuEBaoRequest transferInYuEBaoAmount:amount handler:^(id responseObj, NSString *errorMsg) {
+            if (!errorMsg) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }];
+    } else {
+        [CNYuEBaoRequest transferOutYuEBaoAmount:amount handler:^(id responseObj, NSString *errorMsg) {
+            if (!errorMsg) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }];
+    }
 }
 
 
@@ -87,9 +128,9 @@
     // 校验金额
     if (![text isPrueIntOrFloat]) {
         _isAmountRight = NO;
-    } else if ([text floatValue] < 1) { // 最小 提现/转入 金额
+    } else if ([text floatValue] < self.model.minAmount) { // 最小 提现/转入 金额
         _isAmountRight = NO;
-    } else if ([text floatValue] > 1000){ // 最大 提现/转入 金额
+    } else if ([text floatValue] > self.model.maxAmount){ // 最大 提现/转入 金额
         _isAmountRight = NO;
     } else {
         _isAmountRight = YES;
