@@ -3089,6 +3089,7 @@
 		3D13389C24AF2D1900B29783 /* Features(主代码) */ = {
 			isa = PBXGroup;
 			children = (
+				3DC14E3025F8D25700D6DB85 /* VoucherComponent */,
 				3D5693B025EF5B99004077F8 /* NewUsrMissionComponent */,
 				3D643F9224F36CC200B9AAA7 /* VIPComponent */,
 				E986A15D24C979F6000F9CFF /* WalletComponent */,
@@ -5203,7 +5204,6 @@
 		E9D9447124C1F35700252222 /* MeComponent */ = {
 			isa = PBXGroup;
 			children = (
-				3DC14E3025F8D25700D6DB85 /* VoucherComponent */,
 				3DBA56052580B467009A2B71 /* CopartnerComponent */,
 				048A169524CBD3B600411819 /* View */,
 				E986A12324C7E9E1000F9CFF /* Model */,
