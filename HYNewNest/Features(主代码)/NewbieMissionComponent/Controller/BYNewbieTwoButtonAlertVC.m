@@ -8,6 +8,8 @@
 
 #import "BYNewbieTwoButtonAlertVC.h"
 #import "BYGradientButton.h"
+#import "NNPageRouter.h"
+#import "HYInGameHelper.h"
 
 @interface BYNewbieTwoButtonAlertVC ()
 
@@ -43,7 +45,7 @@
         [rightButton setTitle:@"去提现" forState:UIControlStateNormal];
     }
     
-    self.view.backgroundColor = kHexColorAlpha(0x10101C, 0.75);
+    self.view.backgroundColor = kHexColorAlpha(0x10101C, 0.5);
 }
 
 /*
@@ -59,12 +61,28 @@
 #pragma mark -
 #pragma mark Custom Method
 - (IBAction)leftButtonClicked:(id)sender {
-    [self dismissViewControllerAnimated:false completion:nil];
+    [kCurNavVC dismissViewControllerAnimated:false completion:^{
+        if (self.type == BYNewbieAlertTypeDespositAndBet) {
+            [NNPageRouter jump2Deposit];
+        }
+        else {
+            [NNPageRouter jump2Xima];
+        }
+    }];
 
 }
 
 - (IBAction)rightButtonClicked:(id)sender {
-    [self dismissViewControllerAnimated:false completion:nil];
+    [kCurNavVC dismissViewControllerAnimated:false completion:^{
+        if (self.type == BYNewbieAlertTypeDespositAndBet) {
+            //去投注
+            //百家樂旗艦廳-USDT線
+            [[HYInGameHelper sharedInstance] inGame:InGameTypeAGIN];
+        }
+        else {
+            [NNPageRouter jump2Withdraw];
+        }
+    }];
 
 }
 

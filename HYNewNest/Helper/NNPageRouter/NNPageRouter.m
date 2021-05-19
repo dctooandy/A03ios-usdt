@@ -23,6 +23,7 @@
 #import "HYWithdrawActivityAlertView.h"
 #import "HYBuyECoinGuideVC.h"
 #import "BYNewUsrMissionVC.h"
+#import "BYNewbieMissionVC.h"
 
 #import "CNHomeRequest.h"
 #import "CNRechargeRequest.h"
@@ -31,12 +32,12 @@
 #import <CSCustomSerVice/CSCustomSerVice.h>
 #import "KeyChain.h"
 
-#import "BYNewbieMissionVC.h"
+#import "HYXiMaViewController.h"
+
 @implementation NNPageRouter
 
 + (void)changeRootVc2MainPage {
-//    HYTabBarViewController *tabVC = [[HYTabBarViewController alloc] init];
-    BYNewbieMissionVC *tabVC = [[BYNewbieMissionVC alloc] init];
+    HYTabBarViewController *tabVC = [[HYTabBarViewController alloc] init];
     [NNControllerHelper changeRootVc:tabVC];
 }
 
@@ -238,5 +239,13 @@
     
 }
 
++ (void)jump2Xima {
+    HYXiMaViewController *vc = [[HYXiMaViewController alloc] init];
+    [kCurNavVC pushViewController:vc animated:true];
+}
+
++ (void)jump2Main {
+    [[NNControllerHelper currentTabBarController] setSelectedIndex:0];
+}
 
 @end

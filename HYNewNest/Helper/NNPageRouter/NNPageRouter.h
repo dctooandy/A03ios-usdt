@@ -57,6 +57,12 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 /// 跳转到(风采)文章详情
 + (void)jump2ArticalWithArticalId:(NSString *)articleId title:(NSString *)title;
 
+///去洗碼
++ (void)jump2Xima;
+
+///去大廳
++ (void)jump2Main;
+
 @end
 
 NS_ASSUME_NONNULL_END

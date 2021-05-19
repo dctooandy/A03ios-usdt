@@ -15,11 +15,16 @@
 
 @interface BYNewbieMissionVC ()
 @property (weak, nonatomic) IBOutlet UILabel *maxiumCashGiftLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalRechargeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalBettingsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
+@property (weak, nonatomic) IBOutlet UILabel *signinLabel;
 
 @end
 
 @implementation BYNewbieMissionVC
 
+#define SIGNIN(...) [NSString stringWithFormat:@"签到第%i天", __VA_ARGS__]
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,11 +32,8 @@
     [self.maxiumCashGiftLabel setupGradientColorDirection:BYLblGrdtColorDirectionLeftRight
                                                      From:kHexColor(0xFF7777)
                                                   toColor:kHexColor(0xBD005A)];
-
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+    [self lightupRecharge];
+    [self lightupCompleteGift];
 }
 
 /*
@@ -43,6 +45,21 @@
     // Pass the selected object to the new view controller.
 }
 */
+#pragma mark -
+#pragma mark Custom Method
+- (void)lightupCompleteGift {
+    for (int tag = 100; tag < 102; tag++) {
+        UIImageView *iv = [self.view viewWithTag:tag];
+        [iv setHidden:false];
+    };
+}
+
+- (void)lightupRecharge {
+    for (int tag = 200; tag < 203; tag++) {
+        UIImageView *iv = [self.view viewWithTag:tag];
+        [iv setHidden:false];
+    };
+}
 
 #pragma mark -
 #pragma mark IBAction
@@ -51,12 +68,11 @@
 }
 
 - (IBAction)completeButtonClicked:(id)sender {
-    
-//    BYNewbieTwoButtonAlertVC *alertView = [[BYNewbieTwoButtonAlertVC alloc] init];
-//    alertView.type = BYNewbieAlertTypeWithdrawal;
-//    [self presentViewController:alertView animated:false completion:nil];
-    BYMissionCompleteVC *completeVC = [[BYMissionCompleteVC alloc] init];
-    [self presentViewController:completeVC animated:true completion:nil];
+    BYNewbieTwoButtonAlertVC *alertView = [[BYNewbieTwoButtonAlertVC alloc] init];
+    alertView.type = BYNewbieAlertTypeWithdrawal;
+    [self presentViewController:alertView animated:false completion:nil];
+    //    BYMissionCompleteVC *completeVC = [[BYMissionCompleteVC alloc] init];
+    //    [self presentViewController:completeVC animated:true completion:nil];
 }
 
 - (IBAction)signinButtonClicked:(id)sender {

@@ -18,6 +18,7 @@
 #import "CNDashenBoardVC.h"
 #import "HYNewCTZNViewController.h"
 #import "BYNewUsrMissionVC.h"
+#import "BYNewbieMissionVC.h"
 
 #import "CNUserInfoLoginView.h"
 #import "SDCycleScrollView.h"
@@ -118,10 +119,15 @@
     self.bannerView.autoScroll = YES; // 恢复滚动
     [self.infoView updateLoginStatusUIIsRefreshing:NO]; // 获取余额
     
+    BYNewbieMissionVC *vc = [[BYNewbieMissionVC alloc] init];
+     [self presentViewController:vc animated:true completion:nil];
+    
     kPreventRepeatTime(60*10); //十分钟
     // 检查新版本
     [CNSplashRequest queryNewVersion:^(BOOL isHardUpdate) {
     }];
+    
+ 
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

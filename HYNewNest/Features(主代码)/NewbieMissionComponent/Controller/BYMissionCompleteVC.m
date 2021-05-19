@@ -23,6 +23,16 @@
 @synthesize bannerBackground;
 @synthesize receivedUSDTLabel;
 @synthesize gradientLabel;
+@synthesize type;
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.modalPresentationStyle = UIModalPresentationFullScreen;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,19 +57,23 @@
 #pragma mark IBAction
 - (IBAction)backToMain:(id)sender {
     [self dismissViewControllerAnimated:true completion:^{
-        //jump to Main;
+        [NNPageRouter jump2Main];
     }];
 }
 #pragma mark -
 #pragma mark Custom Method
 - (void)setupUI {    
     [self.gradientLabel setupGradientColorFrom:kHexColor(0x19CECE) toColor:kHexColor(0x10B4DD)];
-    
-//    BYFirstFillBannerView *bannerView = [[BYFirstFillBannerView alloc] init];
-    BYMoreCompleteMissionView *bannerView = [[BYMoreCompleteMissionView alloc] init];
-    bannerView.frame = self.bannerBackground.bounds;
-    [self.bannerBackground addSubview:bannerView];
-
+    if (self.type == MissionCompleteTypeFirstFill) {
+        BYFirstFillBannerView *bannerView = [[BYFirstFillBannerView alloc] init];
+        bannerView.frame = self.bannerBackground.bounds;
+        [self.bannerBackground addSubview:bannerView];
+    }
+    else {
+        BYMoreCompleteMissionView *bannerView = [[BYMoreCompleteMissionView alloc] init];
+        bannerView.frame = self.bannerBackground.bounds;
+        [self.bannerBackground addSubview:bannerView];
+    }
 }
 
 @end

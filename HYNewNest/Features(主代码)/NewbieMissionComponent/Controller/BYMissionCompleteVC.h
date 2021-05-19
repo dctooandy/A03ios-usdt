@@ -10,8 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BYMissionCompleteVC : CNBaseVC
+typedef enum {
+    MissionCompleteTypeFirstFill = 0,
+    MissionCompleteTypeMore
+} MissionCompleteType;
 
+@interface BYMissionCompleteVC : CNBaseVC
+@property (nonatomic, assign) MissionCompleteType type;
 @end
 
 NS_ASSUME_NONNULL_END
