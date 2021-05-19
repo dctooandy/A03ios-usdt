@@ -12,7 +12,6 @@ target 'HYNewNest' do
   pod 'MJRefresh'
   pod 'YYModel'
   pod 'SDWebImage', '~> 5.11.1'
-#  pod 'SDWebImage/GIF'
   pod 'Masonry'
   pod 'MBProgressHUD', '~> 1.1.0'
   pod 'UITableView+FDTemplateLayoutCell'
@@ -20,8 +19,6 @@ target 'HYNewNest' do
   pod 'FCUUID'
   pod 'SJVideoPlayer'
   pod 'JKCategories'
-  # 个推
-#  pod 'GTSDK'
   # webSocket
   pod 'SocketRocket'
   pod 'CocoaAsyncSocket'
@@ -37,7 +34,7 @@ target 'HYNewNest' do
   # 天网埋点
   pod 'IVLoganAnalysis',:git =>'http://10.66.72.115/mobile-iOS-library/IVLoganAnalysis.git'
   # OCSS客服
-  pod 'CSSerVice',:git =>'http://10.66.72.115/mobile-iOS-library/ocss-webview-sdk-demo-ios.git' ,:tag=>'0.1.3'
+  pod 'CSSerVice',:git =>'http://10.66.72.115/mobile-iOS-library/ocss-webview-sdk-demo-ios.git'
   # 微脉圈
   pod 'IVCustomerServiceLibrary',:git =>'http://10.66.72.115/mobile-iOS-library/IVCustomerServiceLibrary'
   
