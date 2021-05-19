@@ -171,7 +171,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
         [self.navigationController pushViewController:vc animated:YES];
         
     } else {
-        [CNHUB showError:@"请先登录"];
+        [CNTOPHUB showError:@"请先登录"];
     }
 }
 
@@ -198,7 +198,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
                 [CNVIPRequest vipsxhApplyCumulateIdentityPrize:model.prizeId handler:^(id responseObj, NSString *errorMsg) {
                     STRONGSELF_DEFINE
                     if (!errorMsg) {
-                        [CNHUB showSuccess:@"领取成功!"];
+                        [CNTOPHUB showSuccess:@"领取成功!"];
                         [strongSelf vipIdentityData];
                     }
                 }];
@@ -243,7 +243,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
                 [strongSelf.navigationController setNavigationBarHidden:YES animated:YES];
                 [animImgv removeFromSuperview];
             } else {
-                [CNHUB showError:@"奖品数据为空"];
+                [CNTOPHUB showError:@"奖品数据为空"];
                 [animImgv removeFromSuperview];
             }
         }];

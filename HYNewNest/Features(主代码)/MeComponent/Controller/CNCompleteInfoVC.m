@@ -96,7 +96,7 @@
 - (void)bindRealName {
     [CNUserCenterRequest modifyUserRealName:self.nameInputView.text gender:nil birth:nil avatar:nil onlineMessenger2:nil email:nil handler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
-            [CNHUB showSuccess:@"实名认证成功"];
+            [CNTOPHUB showSuccess:@"实名认证成功"];
             [self bindPhone];
         }
     }];
@@ -105,7 +105,7 @@
 - (void)bindPhone {
     SmsCodeModel *smsModel = self.codeInputView.smsModel;
     if (!smsModel) {
-        [CNHUB showError:@"请重新发送手机验证码"];
+        [CNTOPHUB showError:@"请重新发送手机验证码"];
         return;
     }
     
@@ -115,7 +115,7 @@
         if (KIsEmptyString(errorMsg)) {
             if ([responseObj isKindOfClass:[NSDictionary class]]) {
                 [CNLoginRequest getUserInfoByTokenCompletionHandler:nil]; // 更新信息
-                [CNHUB showSuccess:@"绑定手机号成功"];
+                [CNTOPHUB showSuccess:@"绑定手机号成功"];
                 [self.navigationController popViewControllerAnimated:YES];
             }
         }

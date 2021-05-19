@@ -211,7 +211,7 @@
 
 - (void)amountTfDidResignFirstResponder:(UITextField *)tf {
     if (!_isAmountRight) {
-        [CNHUB showError:_tipText];
+        [CNTOPHUB showError:_tipText];
     }
 }
 

@@ -11,10 +11,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CNElResentPlayCCell" id="gTV-IL-0wX" customClass="CNElResentPlayCCell">
-            <rect key="frame" x="0.0" y="0.0" width="152" height="175"/>
+            <rect key="frame" x="0.0" y="0.0" width="152" height="133"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="152" height="175"/>
+                <rect key="frame" x="0.0" y="0.0" width="152" height="133"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="PHo-XB-qj2">
@@ -52,13 +52,13 @@
                 <constraint firstItem="PHo-XB-qj2" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="YqR-3d-Nzn"/>
                 <constraint firstAttribute="trailing" secondItem="PHo-XB-qj2" secondAttribute="trailing" id="hOV-eq-3Bd"/>
             </constraints>
-            <size key="customSize" width="152" height="175"/>
+            <size key="customSize" width="152" height="133"/>
             <connections>
                 <outlet property="icon" destination="PHo-XB-qj2" id="9Xx-sV-nHT"/>
                 <outlet property="titleLb" destination="A7R-UP-YPu" id="Xf2-g5-wfv"/>
                 <outlet property="typeLb" destination="u7x-aT-Cqe" id="PR1-dD-DmV"/>
             </connections>
-            <point key="canvasLocation" x="159" y="122"/>
+            <point key="canvasLocation" x="157.97101449275362" y="107.47767857142857"/>
         </collectionViewCell>
     </objects>
     <resources>

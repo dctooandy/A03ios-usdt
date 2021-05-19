@@ -67,7 +67,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     
     // 负信用等级不能取rmb
     if (![CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userDetail.depositLevel < 0) {
-        [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"由于您的存取款行为存在资金风险，\n请联系客服了解" btnText:@"联系客服" handler:^(BOOL isComfirm) {
+        [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"为保障您的资金安全，\n详情联系客服咨询" btnText:@"联系客服" handler:^(BOOL isComfirm) {
             if (isComfirm) {
                 [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
             }
@@ -151,7 +151,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     
     // 负信用等级不能取rmb
     if (![CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userDetail.depositLevel < 0) {
-        [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"由于您的存取款行为存在资金风险，\n请联系客服了解" btnText:@"联系客服" handler:^(BOOL isComfirm) {
+        [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"为保障您的资金安全，\n详情联系客服咨询" btnText:@"联系客服" handler:^(BOOL isComfirm) {
             if (isComfirm) {
                 [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
             }
@@ -161,7 +161,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     
     // 判断卡
     if (self.elecCardsArr.count == 0) {
-        [CNHUB showError:[NSString stringWithFormat:@"请先绑定至少%@",[CNUserManager shareManager].isUsdtMode?@"一个钱包地址":@"一张银行卡"]];
+        [CNTOPHUB showError:[NSString stringWithFormat:@"请先绑定至少%@",[CNUserManager shareManager].isUsdtMode?@"一个钱包地址":@"一张银行卡"]];
     }
     
     if (!self.moneyModel) {
@@ -190,6 +190,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 - (void)requestBalance {
     [self.topView.lblAmount showIndicatorIsBig:YES];
     [BalanceManager requestWithdrawAbleBalanceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
+        if (self.moneyModel.withdrawBal == nil)
+            self.moneyModel.withdrawBal = @(0);
         self.moneyModel = model;
         [self.topView.lblAmount hideIndicatorWithText:[model.withdrawBal jk_toDisplayNumberWithDigit:2]];
         self.sumitBtn.enabled = YES;

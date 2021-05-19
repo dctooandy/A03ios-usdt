@@ -55,7 +55,7 @@
 - (IBAction)click2ShowAccountBalncesDetail:(id)sender {
     BOOL isIndi = self.gamesBalanceLb.isIndicating;
     if (isIndi) {
-        [CNHUB showWaiting:@"余额详情正在加载中..请稍等"];
+        [CNTOPHUB showWaiting:@"余额详情正在加载中..请稍等"];
         return;
     }
     [HYBalancesDetailView showBalancesDetailView];

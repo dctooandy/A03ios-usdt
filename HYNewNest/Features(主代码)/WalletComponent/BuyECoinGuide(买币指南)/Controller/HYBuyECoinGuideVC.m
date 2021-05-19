@@ -226,7 +226,7 @@
         
         
     } failure:^{
-        [CNHUB showError:@"下载指南失败 获取图片出错"];
+        [CNTOPHUB showError:@"下载指南失败 获取图片出错"];
     }];
 
 }
@@ -300,7 +300,7 @@
 - (IBAction)didTapRechargeECoin:(id)sender {
     kPreventRepeatTime(5);
     if (self.depositModels.count == 0) {
-        [CNHUB showWaiting:@"正在为你请求充币渠道..请稍等几秒"];
+        [CNTOPHUB showWaiting:@"正在为你请求充币渠道..请稍等几秒"];
         [self queryOnlineBankAmount];
         return;
     }
@@ -320,13 +320,13 @@
     BuyECoinModel *model = self.datas[_curIdx];
     // bitbase + 去注册 == 就走外部跳转
     if ([model.name caseInsensitiveCompare:@"dexchange"] == NSOrderedSame) {
-        [CNHUB showSuccess:@"请在外部浏览器查看"];
+        [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
         [NNPageRouter openExchangeElecCurrencyPage];
     } else {
         NSURL *url = [NSURL URLWithString:model.registerUrl];
         if ([[UIApplication sharedApplication] canOpenURL:url]) {
             [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
-                [CNHUB showSuccess:@"请在外部浏览器查看"];
+                [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
             }];
         }
     }
@@ -408,7 +408,7 @@
             [self setupViewDatas];
             
         } else {
-            [CNHUB showError:@"数据有误 请重新进入买币指南或者联系客服"];
+            [CNTOPHUB showError:@"数据有误 请重新进入买币指南或者联系客服"];
         }
     }];
     

@@ -45,7 +45,7 @@
 - (IBAction)submit:(id)sender {
     [CNUserCenterRequest modifyUserSubscribArray:self.models handler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
-            [CNHUB showSuccess:@"保存成功"];
+            [CNTOPHUB showSuccess:@"保存成功"];
             [self.navigationController popViewControllerAnimated:YES];
         }
     }];

@@ -8,7 +8,7 @@
 
 #import "HYNetworkConfigManager.h"
 #import "CNUserManager.h"
-#import "CNHUB.h"
+#import "CNTOPHUB.h"
 #import "CNSplashRequest.h"
 #import "HYInGameHelper.h"
 

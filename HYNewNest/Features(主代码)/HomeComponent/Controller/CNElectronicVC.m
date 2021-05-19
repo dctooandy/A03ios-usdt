@@ -127,7 +127,9 @@
     
     CNElResentPlayCCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCNElResentPlayCCell forIndexPath:indexPath];
     cell.titleLb.text = model.gameName;
-    [cell.icon sd_setImageWithURL:[NSURL URLWithString:model.gameImg] placeholderImage:[UIImage imageNamed:@"1"]];
+    if ([model.gameImg hasSuffix:@".jpg"] || [model.gameImg hasSuffix:@".png"]) {
+        [cell.icon sd_setImageWithURL:[NSURL URLWithString:model.gameImg] placeholderImage:[UIImage imageNamed:@"1"]];
+    }
     cell.typeLb.text = model.platformDisplayName;
 //    cell.playCountLb.text = [NSString stringWithFormat:@"%@人正在游戏", model.gameParam.playLine];
     return cell;

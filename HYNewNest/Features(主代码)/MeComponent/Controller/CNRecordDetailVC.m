@@ -248,7 +248,7 @@
         //TODO: 不知道能不能取消 等接口数据出来
         [CNUserCenterRequest cancelWithdrawBillRequestId:self.model.requestId handler:^(id responseObj, NSString *errorMsg) {
             if (KIsEmptyString(errorMsg)) {
-                [CNHUB showSuccess:@"订单取消成功"];
+                [CNTOPHUB showSuccess:@"订单取消成功"];
                 [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil]; // 让首页和我的余额刷新
                 self.btnBtm.enabled = NO;
                 self.navPopupBlock(@(1)); //需要刷新

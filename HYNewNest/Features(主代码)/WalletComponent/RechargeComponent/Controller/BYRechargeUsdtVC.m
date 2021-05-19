@@ -340,7 +340,7 @@ USDT支付渠道
             NSURL *URL = [NSURL URLWithString:url];
             if ([[UIApplication sharedApplication] canOpenURL:URL]) {
                 [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:^(BOOL success) {
-                    [CNHUB showSuccess:@"请在外部浏览器查看"];
+                    [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
                 }];
             }
         }

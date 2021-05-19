@@ -46,7 +46,7 @@
     
     switch (self.shareType) {
         case CNShareTypeCopy:
-            [CNHUB showSuccess:@"已复制到剪切板！"];
+            [CNTOPHUB showSuccess:@"已复制到剪切板！"];
             [self removeFromSuperview];
             
             break;

@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CNHUB : CNBaseXibView
+@interface CNTOPHUB : CNBaseXibView
 
 + (void)showError:(NSString *)error;
 + (void)showSuccess:(NSString *)success;

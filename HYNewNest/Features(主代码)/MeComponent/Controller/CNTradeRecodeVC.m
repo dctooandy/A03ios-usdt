@@ -282,7 +282,7 @@
     
     [CNBaseNetworking POST:URLPath parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
-            [CNHUB showSuccess:@"记录已删除"];
+            [CNTOPHUB showSuccess:@"记录已删除"];
             [self manualDeleteModelAndUpdateTableView:row];
         }
     }];

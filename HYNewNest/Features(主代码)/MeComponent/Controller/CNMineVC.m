@@ -238,10 +238,10 @@
     OtherAppModel *model = self.otherApps[0];
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:model.appDownUrl]]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.appDownUrl] options:@{} completionHandler:^(BOOL success) {
-            [CNHUB showSuccess:@"正在为您跳转..."];
+            [CNTOPHUB showSuccess:@"正在为您跳转..."];
         }];
     } else {
-        [CNHUB showError:@"未知错误 无法下载"];
+        [CNTOPHUB showError:@"未知错误 无法下载"];
     }
     
 }

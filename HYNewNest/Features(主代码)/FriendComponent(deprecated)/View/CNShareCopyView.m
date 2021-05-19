@@ -76,15 +76,15 @@
         switch (self.shareType) {
             case CNShareTypeWechat:
             case CNShareTypeWechatFriend:
-                [CNHUB showError:@"您尚未安装微信"];
+                [CNTOPHUB showError:@"您尚未安装微信"];
                 break;
                 
             case CNShareTypeSina:
-                [CNHUB showError:@"您尚未安装新浪微博"];
+                [CNTOPHUB showError:@"您尚未安装新浪微博"];
                 break;
                 
             case CNShareTypeQQ:
-                [CNHUB showError:@"您尚未安装腾讯QQ"];
+                [CNTOPHUB showError:@"您尚未安装腾讯QQ"];
                 break;
             default:
                 break;

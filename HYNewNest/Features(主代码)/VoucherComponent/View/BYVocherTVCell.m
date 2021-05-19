@@ -75,7 +75,12 @@
     [_titleBtn setTitle:model.prizeName forState:UIControlStateNormal];
     [_titleBtn sizeToFit];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.titleBtn jk_setImagePosition:LXMImagePositionRight spacing:0];
+        if (KIsEmptyString(self.model.linkUrl)) {
+            [self.titleBtn setImage:nil forState:UIControlStateNormal];
+        } else {
+            [self.titleBtn setImage:[UIImage imageNamed:@"swift"] forState:UIControlStateNormal];//white_disclosure
+            [self.titleBtn jk_setImagePosition:LXMImagePositionRight spacing:0];
+        }
     });
     
     _statusLb.text = VocherStatusString[model.status];
@@ -145,30 +150,18 @@
 }
 
 
-#pragma mark - View
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-    
-    self.bgView.layer.cornerRadius = 12;
-    self.bgView.layer.masksToBounds = YES;
-}
-
-
 #pragma mark - Action
 
 - (IBAction)didTapDetailBtn:(id)sender {
     // 跳转活动
-    if (self.model.linkUrl) {
+    if (!KIsEmptyString(self.model.linkUrl)) {
         [NNPageRouter jump2HTMLWithStrURL:self.model.linkUrl title:self.model.prizeName needPubSite:NO];
-    } else {
-        [CNHUB showError:@"优惠券未配置活动链接"];
     }
 }
 
 
 - (IBAction)didTapRuleBtn:(id)sender {
-    [HYWideOneBtnAlertView showWithTitle:@"优惠券说明" content:@"1，优惠券一旦激活，优惠券总额将锁定，直到完成流水要求或额度用光后，自动转入可提现金额；\n2，充值送礼金类的优惠，充值的金额也会被划入到优惠券总额里；\n3，当存在未完成流水要求的优惠券时，您的盈利也会被划入到优惠券总额里；\n4，优惠券总额、流水要求只针对支持的游戏生效，如您领取体育优惠券，不对在百家乐游戏数据生效；\n5，当存在多张优惠券时，系统会优先满足流水要求较小的优惠券；\n6，本优惠券解释权归币游国际所有，如有疑问详询客服。" comfirmText:@"我知道了" comfirmHandler:^{
+    [HYWideOneBtnAlertView showWithTitle:@"优惠券说明" content:@"1，优惠券一旦激活，优惠券总额将锁定，直到完成流水要求或额度用光后，自动转入可提现金额；2，优惠券未释放前，使用优惠券获取的盈利部分将划分到优惠券总额里；\n3，优惠券总额、流水要求只针对支持的游戏生效，如您领取体育优惠券，不对在百家乐游戏数据生效；\n4，当存在多张优惠券时，系统会优先满足流水要求较小的优惠券；\n5，本优惠券解释权归币游国际所有，如有疑问详询客服。" comfirmText:@"我知道了" comfirmHandler:^{
     }];
 }
 

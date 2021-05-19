@@ -403,9 +403,9 @@
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil];
                 if ([CNUserManager shareManager].isUsdtMode) {
-                    [CNHUB showSuccess:@"切换到了USDT模式"];
+                    [CNTOPHUB showSuccess:@"切换到了USDT模式"];
                 } else {
-                    [CNHUB showSuccess:@"切换到了CNY模式"];
+                    [CNTOPHUB showSuccess:@"切换到了CNY模式"];
                 }
                 !completionHandler?:completionHandler(responseObj, errorMsg);
             }

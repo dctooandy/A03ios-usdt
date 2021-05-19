@@ -42,7 +42,7 @@
     //在这里是可以做一些判定什么的，用来确定对应的操作。
     if ([[UIApplication sharedApplication] canOpenURL:URL]) {
         [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:^(BOOL success) {
-            [CNHUB showSuccess:@"正在为您跳转.."];
+            [CNTOPHUB showSuccess:@"正在为您跳转.."];
         }];
         return YES;
     } else {

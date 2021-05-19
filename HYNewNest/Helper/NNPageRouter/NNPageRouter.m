@@ -68,8 +68,10 @@
 
 + (void)jump2Withdraw {
     
+    [LoadingView show];
     [CNWithdrawRequest getUserMobileStatusCompletionHandler:^(id responseObj, NSString *errorMsg) {
         CNUserDetailModel *model = [CNUserDetailModel cn_parse:responseObj];
+        [LoadingView hide];
         if (!model.mobileNoBind) { // 没有绑定手机 -> 跳到手机绑定
             CNBindPhoneVC *vc = [CNBindPhoneVC new];
             vc.bindType = CNSMSCodeTypeBindPhone;
@@ -119,10 +121,10 @@
                 NSURL *url = [NSURL URLWithString:urlStr];
                 if ([[UIApplication sharedApplication] canOpenURL:url]) {
                     [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
-                        [CNHUB showSuccess:@"请在外部浏览器查看"];
+                        [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
                     }];
                 } else {
-                    [CNHUB showError:@"PayURL错误 请联系客服"];
+                    [CNTOPHUB showError:@"PayURL错误 请联系客服"];
                 }
             }
         }

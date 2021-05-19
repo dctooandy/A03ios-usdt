@@ -117,7 +117,7 @@ static NSString * const kMissionCell = @"BYNewUsrMissionCell";
 
 - (IBAction)didTapApplyLoginRewardBtn:(BYThreeStatusBtn *)sender {
     if (!self.model) {
-        [CNHUB showError:@"出错了 请刷新页面"];
+        [CNTOPHUB showError:@"出错了 请刷新页面"];
         return;
     }
     

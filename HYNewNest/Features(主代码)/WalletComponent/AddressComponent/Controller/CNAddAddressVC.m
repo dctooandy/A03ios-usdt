@@ -216,7 +216,7 @@
                                                   messageId:self.codeInputView.smsModel.messageId
                                                     handler:^(id responseObj, NSString *errorMsg) {
                 if (!errorMsg) {
-                    [CNHUB showSuccess:@"小金库添加成功"];
+                    [CNTOPHUB showSuccess:@"小金库添加成功"];
                     [self.navigationController popViewControllerAnimated:YES];
                     dispatch_async(dispatch_get_global_queue(0, 0), ^{
                         [IVLAManager singleEventId:@"A03_bankcard_update"];
@@ -233,7 +233,7 @@
                                                  messageId:self.codeInputView.smsModel.messageId
                                                    handler:^(id responseObj, NSString *errorMsg) {
                 if (!errorMsg) {
-                    [CNHUB showSuccess:@"地址添加成功"];
+                    [CNTOPHUB showSuccess:@"地址添加成功"];
                     [self.navigationController popViewControllerAnimated:YES];
                     dispatch_async(dispatch_get_global_queue(0, 0), ^{
                         [IVLAManager singleEventId:@"A03_bankcard_update"];

@@ -36,17 +36,17 @@
         } else if ([[self errorCodeOfTokenException] containsObject:response.head.errCode]) {
             [LoadingView hide];
             // token过期
-            [CNHUB showError:@"登录失效，请重新登录"];
+            [CNTOPHUB showError:@"登录失效，请重新登录"];
             !completionHandler ?: completionHandler(response.head.errCode, @"登录失效，请重新登录");
             [[CNUserManager shareManager] cleanUserInfo];
             
         } else {
             [LoadingView hide];
             if (error) {
-                [CNHUB showError:error.localizedDescription];
+                [CNTOPHUB showError:error.localizedDescription];
                 !completionHandler ?: completionHandler(nil, error.localizedDescription);
             } else {
-                [CNHUB showError:response.head.errMsg];
+                [CNTOPHUB showError:response.head.errMsg];
                 !completionHandler ?: completionHandler(response.head.errCode, response.head.errMsg);
             }
         }
@@ -66,14 +66,14 @@
             
         } else if ([[self errorCodeOfTokenException] containsObject:response.head.errCode]) { // token过期
             [LoadingView hide];
-            [CNHUB showError:@"登录失效，请重新登录"];
+            [CNTOPHUB showError:@"登录失效，请重新登录"];
             !completionHandler ?: completionHandler(response.head.errCode, @"登录失效，请重新登录");
             [[CNUserManager shareManager] cleanUserInfo];
             [[NNControllerHelper currentTabBarController] setSelectedIndex:0];
             
         } else if ([response.head.errCode isEqualToString:LoginRegionRisk_ErroCode]) { //异地登录
             [LoadingView hide];
-            [CNHUB showAlert:response.head.errMsg];
+            [CNTOPHUB showAlert:response.head.errMsg];
             !completionHandler ?: completionHandler(response.body, response.head.errCode);
             
         } else {
@@ -81,9 +81,9 @@
             if (error) {
                 // 错误信息处理
                 if ([response.head.errCode isEqualToString:Network_TimeOut_ErroCode]) {
-                    [CNHUB showError: @"请求超时 请重试"];
+                    [CNTOPHUB showError: @"请求超时 请重试"];
                 } else {
-                    [CNHUB showError:error.localizedDescription];
+                    [CNTOPHUB showError:error.localizedDescription];
                 }
                 !completionHandler ?: completionHandler(nil, error.localizedDescription);
             } else {
@@ -92,7 +92,7 @@
                     // 不显示错误
                 }
                 else if (![path containsString:config_getByCardBin]) {
-                    [CNHUB showError:response.head.errMsg];
+                    [CNTOPHUB showError:response.head.errMsg];
                 }
                 !completionHandler ?: completionHandler(response.head.errCode, response.head.errMsg);
             }

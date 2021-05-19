@@ -153,19 +153,19 @@
 // 复制卡号
 - (IBAction)copyCardNo:(id)sender {
     [UIPasteboard generalPasteboard].string = self.cardNoLb.text;
-    [CNHUB showSuccess:@"已复制到剪切板！"];
+    [CNTOPHUB showSuccess:@"已复制到剪切板！"];
 }
 
 // 复制姓名
 - (IBAction)copyAccountName:(id)sender {
     [UIPasteboard generalPasteboard].string = self.accountNameLb.text;
-    [CNHUB showSuccess:@"已复制到剪切板！"];
+    [CNTOPHUB showSuccess:@"已复制到剪切板！"];
 }
 
 // 复制支行名称
 - (IBAction)copySubBankName:(id)sender {
     [UIPasteboard generalPasteboard].string = self.subBankNameLb.text;
-    [CNHUB showSuccess:@"已复制到剪切板！"];
+    [CNTOPHUB showSuccess:@"已复制到剪切板！"];
 }
 
 // 客户端
@@ -189,10 +189,10 @@
     NSURL *URL = [NSURL URLWithString:urlStr];
     if ([[UIApplication sharedApplication] canOpenURL:URL]) {
         [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:^(BOOL success) {
-            [CNHUB showSuccess:@"正在为您跳转.."];
+            [CNTOPHUB showSuccess:@"正在为您跳转.."];
         }];
     } else {
-        [CNHUB showError:[NSString stringWithFormat:@"您尚未安装%@客户端", appName]];
+        [CNTOPHUB showError:[NSString stringWithFormat:@"您尚未安装%@客户端", appName]];
     }
 }
 

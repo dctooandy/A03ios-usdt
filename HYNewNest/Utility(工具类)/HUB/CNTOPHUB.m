@@ -6,23 +6,23 @@
 //  Copyright © 2020 james. All rights reserved.
 //
 
-#import "CNHUB.h"
+#import "CNTOPHUB.h"
 
-@interface CNHUB ()
+@interface CNTOPHUB ()
 @property (nonatomic, strong) NSTimer *hideTimer;
 @property (weak, nonatomic) IBOutlet UIImageView *tipIV;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 
 @end
 
-@implementation CNHUB
+@implementation CNTOPHUB
 
 + (void)showError:(NSString *)error {
     if (error.length == 0) {
         return;
     }
     dispatch_async(dispatch_get_main_queue(), ^{
-        CNHUB *view = [self creatTipViewWithMsg:error];
+        CNTOPHUB *view = [self creatTipViewWithMsg:error];
         view.tipIV.image = [UIImage imageNamed:@"l_wrong"];
     });
 }
@@ -32,7 +32,7 @@
         return;
     }
     dispatch_async(dispatch_get_main_queue(), ^{
-        CNHUB *view = [self creatTipViewWithMsg:success];
+        CNTOPHUB *view = [self creatTipViewWithMsg:success];
         view.tipIV.image = [UIImage imageNamed:@"l_right"];
     });
 }
@@ -42,7 +42,7 @@
         return;
     }
     dispatch_async(dispatch_get_main_queue(), ^{
-        CNHUB *view = [self creatTipViewWithMsg:wait];
+        CNTOPHUB *view = [self creatTipViewWithMsg:wait];
         view.tipIV.image = [UIImage imageNamed:@"编组"];
         view.centerY = kScreenHeight*0.5;
     });
@@ -53,7 +53,7 @@
         return;
     }
     dispatch_async(dispatch_get_main_queue(), ^{
-        CNHUB *view = [self creatTipViewWithMsg:alert];
+        CNTOPHUB *view = [self creatTipViewWithMsg:alert];
         view.tipIV.image = [UIImage imageNamed:@"l_prob"];
     });
 }
@@ -73,7 +73,7 @@
     
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     [window endEditing:YES];
-    CNHUB *tipView = [[CNHUB alloc] initWithFrame:frame];
+    CNTOPHUB *tipView = [[CNTOPHUB alloc] initWithFrame:frame];
     tipView.layer.cornerRadius = 5;
     tipView.layer.masksToBounds = YES;
     tipView.tipLabel.text = msg;

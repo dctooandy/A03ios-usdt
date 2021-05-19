@@ -125,6 +125,7 @@ form.submit();\
     self.webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
     self.webView.opaque = NO;
     self.webView.backgroundColor = [UIColor clearColor];
+    self.webView.allowsBackForwardNavigationGestures = true;
     [self.view addSubview:self.webView];
     
     WEAKSELF_DEFINE
@@ -230,7 +231,7 @@ form.submit();\
       NSString *absoluteString = webView.URL.absoluteString;
         
       if ([absoluteString containsString:@"getticketfailed"]) {
-          [CNHUB showError:@"获取票据失败"];
+          [CNTOPHUB showError:@"获取票据失败"];
       }
       
       if ([absoluteString containsString:@"landscape.html"] ||
@@ -259,7 +260,7 @@ form.submit();\
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation {
     MyLog(@"didFailProvisionalNavigation \n")
-    [CNHUB showError:@"游戏加载失败"];
+    [CNTOPHUB showError:@"游戏加载失败"];
 }
 
 
