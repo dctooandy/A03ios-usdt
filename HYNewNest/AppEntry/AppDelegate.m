@@ -45,6 +45,7 @@
     
     // 天网埋点
     [IVLAManager setLogEnabled:YES];
+    [IVLAManager needUploadWithNewDomain:YES];
     [IVLAManager setPayegisSDKDomain:@"http://115.84.241.53/did/"];
     [IVLAManager startWithProductId:@"A03"           //产品ID
                         productName:@"hyyl"          //产品Name
@@ -71,6 +72,7 @@
     
     // 注册 APNs
     [self registerRemoteNotification];
+    
     // 微脉圈
 #ifdef DEBUG
     [YJChat initChatWithProductId:@"A03" env:1];
