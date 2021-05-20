@@ -60,8 +60,8 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 ///去洗碼
 + (void)jump2Xima;
 
-///去大廳
-+ (void)jump2Main;
+///去VIP
++ (void)jump2VIP;
 
 @end
 

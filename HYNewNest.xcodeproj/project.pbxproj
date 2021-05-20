@@ -1009,8 +1009,8 @@
 		F7A75F1C264E140500D933D7 /* BYGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F1B264E140500D933D7 /* BYGradientButton.m */; };
 		F7A75F1F264E405600D933D7 /* BYBorderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F1E264E405600D933D7 /* BYBorderButton.m */; };
 		F7A75F22264E507200D933D7 /* BYBorderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F21264E507200D933D7 /* BYBorderLabel.m */; };
-		F7CA9C53264E66D500410BB3 /* BYNewbieTwoButtonAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CA9C51264E66D500410BB3 /* BYNewbieTwoButtonAlertVC.m */; };
-		F7CA9C54264E66D500410BB3 /* BYNewbieTwoButtonAlertVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7CA9C52264E66D500410BB3 /* BYNewbieTwoButtonAlertVC.xib */; };
+		F7CA9C53264E66D500410BB3 /* BYNewbieAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CA9C51264E66D500410BB3 /* BYNewbieAlertVC.m */; };
+		F7CA9C54264E66D500410BB3 /* BYNewbieAlertVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7CA9C52264E66D500410BB3 /* BYNewbieAlertVC.xib */; };
 		F7CA9C5A264E784200410BB3 /* BYNewbieCashGiftAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CA9C58264E784200410BB3 /* BYNewbieCashGiftAlertVC.m */; };
 		F7CA9C5B264E784200410BB3 /* BYNewbieCashGiftAlertVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7CA9C59264E784200410BB3 /* BYNewbieCashGiftAlertVC.xib */; };
 		F7CF5416264CBDF300AC8F04 /* BYNewbieMissionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CF5414264CBDF300AC8F04 /* BYNewbieMissionVC.m */; };
@@ -2436,9 +2436,9 @@
 		F7A75F1E264E405600D933D7 /* BYBorderButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYBorderButton.m; sourceTree = "<group>"; };
 		F7A75F20264E507200D933D7 /* BYBorderLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYBorderLabel.h; sourceTree = "<group>"; };
 		F7A75F21264E507200D933D7 /* BYBorderLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYBorderLabel.m; sourceTree = "<group>"; };
-		F7CA9C50264E66D500410BB3 /* BYNewbieTwoButtonAlertVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYNewbieTwoButtonAlertVC.h; sourceTree = "<group>"; };
-		F7CA9C51264E66D500410BB3 /* BYNewbieTwoButtonAlertVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYNewbieTwoButtonAlertVC.m; sourceTree = "<group>"; };
-		F7CA9C52264E66D500410BB3 /* BYNewbieTwoButtonAlertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYNewbieTwoButtonAlertVC.xib; sourceTree = "<group>"; };
+		F7CA9C50264E66D500410BB3 /* BYNewbieAlertVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYNewbieAlertVC.h; sourceTree = "<group>"; };
+		F7CA9C51264E66D500410BB3 /* BYNewbieAlertVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYNewbieAlertVC.m; sourceTree = "<group>"; };
+		F7CA9C52264E66D500410BB3 /* BYNewbieAlertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYNewbieAlertVC.xib; sourceTree = "<group>"; };
 		F7CA9C57264E784200410BB3 /* BYNewbieCashGiftAlertVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYNewbieCashGiftAlertVC.h; sourceTree = "<group>"; };
 		F7CA9C58264E784200410BB3 /* BYNewbieCashGiftAlertVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYNewbieCashGiftAlertVC.m; sourceTree = "<group>"; };
 		F7CA9C59264E784200410BB3 /* BYNewbieCashGiftAlertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYNewbieCashGiftAlertVC.xib; sourceTree = "<group>"; };
@@ -5398,9 +5398,9 @@
 				F765F0E7265250FD00F15747 /* BYMissionCompleteVC.h */,
 				F765F0E8265250FD00F15747 /* BYMissionCompleteVC.m */,
 				F765F0E9265250FD00F15747 /* BYMissionCompleteVC.xib */,
-				F7CA9C50264E66D500410BB3 /* BYNewbieTwoButtonAlertVC.h */,
-				F7CA9C51264E66D500410BB3 /* BYNewbieTwoButtonAlertVC.m */,
-				F7CA9C52264E66D500410BB3 /* BYNewbieTwoButtonAlertVC.xib */,
+				F7CA9C50264E66D500410BB3 /* BYNewbieAlertVC.h */,
+				F7CA9C51264E66D500410BB3 /* BYNewbieAlertVC.m */,
+				F7CA9C52264E66D500410BB3 /* BYNewbieAlertVC.xib */,
 				F7CA9C57264E784200410BB3 /* BYNewbieCashGiftAlertVC.h */,
 				F7CA9C58264E784200410BB3 /* BYNewbieCashGiftAlertVC.m */,
 				F7CA9C59264E784200410BB3 /* BYNewbieCashGiftAlertVC.xib */,
@@ -5797,7 +5797,7 @@
 				D5A4460C24F393E500014DC6 /* 足球_00068.png in Resources */,
 				D5A444BE24F3932400014DC6 /* 数字7_00078.png in Resources */,
 				D5A444B424F3932400014DC6 /* 数字7_00041.png in Resources */,
-				F7CA9C54264E66D500410BB3 /* BYNewbieTwoButtonAlertVC.xib in Resources */,
+				F7CA9C54264E66D500410BB3 /* BYNewbieAlertVC.xib in Resources */,
 				D5A445F824F393E500014DC6 /* 足球_00036.png in Resources */,
 				D5A446C724F3941400014DC6 /* 合成 1_00067.png in Resources */,
 				D5A4455F24F393AC00014DC6 /* 棋牌_0009.png in Resources */,
@@ -6487,7 +6487,7 @@
 				E98BEF3A24D3D27100E6B0C8 /* HYDownloadLinkView.m in Sources */,
 				E9D9447A24C1F39C00252222 /* HYGloryViewController.m in Sources */,
 				E98BEF3024D2F35600E6B0C8 /* HYWithdrawComfirmView.m in Sources */,
-				F7CA9C53264E66D500410BB3 /* BYNewbieTwoButtonAlertVC.m in Sources */,
+				F7CA9C53264E66D500410BB3 /* BYNewbieAlertVC.m in Sources */,
 				3D643F8B24F29F3600B9AAA7 /* SocketTool.m in Sources */,
 				04010BB624DA569C0043C608 /* CNMessageBoxView.m in Sources */,
 				3DBA55F9257F6882009A2B71 /* DashenBoardRequest.m in Sources */,

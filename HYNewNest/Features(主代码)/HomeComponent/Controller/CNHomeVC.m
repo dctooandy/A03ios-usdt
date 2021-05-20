@@ -115,12 +115,13 @@
     if (!_hasRecord) {
         [IN3SAnalytics launchFinished];
         _hasRecord = YES;
+        
+        BYNewbieMissionVC *vc = [[BYNewbieMissionVC alloc] init];
+        [self.navigationController pushViewController:vc animated:true];
+
     }
     self.bannerView.autoScroll = YES; // 恢复滚动
     [self.infoView updateLoginStatusUIIsRefreshing:NO]; // 获取余额
-    
-    BYNewbieMissionVC *vc = [[BYNewbieMissionVC alloc] init];
-     [self presentViewController:vc animated:true completion:nil];
     
     kPreventRepeatTime(60*10); //十分钟
     // 检查新版本

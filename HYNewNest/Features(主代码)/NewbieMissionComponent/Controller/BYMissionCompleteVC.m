@@ -56,9 +56,7 @@
 #pragma mark -
 #pragma mark IBAction
 - (IBAction)backToMain:(id)sender {
-    [self dismissViewControllerAnimated:true completion:^{
-        [NNPageRouter jump2Main];
-    }];
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 #pragma mark -
 #pragma mark Custom Method

@@ -244,8 +244,8 @@
     [kCurNavVC pushViewController:vc animated:true];
 }
 
-+ (void)jump2Main {
-    [[NNControllerHelper currentTabBarController] setSelectedIndex:0];
++ (void)jump2VIP {
+    [[NNControllerHelper currentTabBarController] setSelectedIndex:1];
 }
 
 @end

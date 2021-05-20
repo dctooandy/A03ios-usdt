@@ -12,10 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef enum  {
     BYNewbieAlertTypeDespositAndBet = 0,
-    BYNewbieAlertTypeWithdrawal
+    BYNewbieAlertTypeXima
 } BYNewbieAlertType;
 
-@interface BYNewbieTwoButtonAlertVC : UIViewController
+@interface BYNewbieAlertVC : UIViewController
 @property (nonatomic, assign) BYNewbieAlertType type;
 @end
 
