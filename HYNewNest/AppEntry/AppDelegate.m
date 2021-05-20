@@ -11,7 +11,7 @@
 #import <IQKeyboardManager/IQKeyboardManager.h>
 #import <IVLoganAnalysis/IVLAManager.h>
 #import "CNPushRequest.h"
-#import "IN3SAnalytics.h"
+#import <IN3SAnalytics/CNTimeLog.h>
 #import <YJChat.h>
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
@@ -38,9 +38,10 @@
     
     // 3S 统计
 #if DEBUG
-    [IN3SAnalytics debugEnable:YES];
+    [CNTimeLog debugEnable:YES];
 #endif
-    [IN3SAnalytics configureSDKWithProduct:@"A03"];
+    [CNTimeLog debugEnable:NO];
+    [CNTimeLog configProduct:@"A03"];
     
     // 天网埋点
     [IVLAManager setLogEnabled:YES];
@@ -88,7 +89,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    [IN3SAnalytics exitApp];
+//    [IN3SAnalytics exitApp];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

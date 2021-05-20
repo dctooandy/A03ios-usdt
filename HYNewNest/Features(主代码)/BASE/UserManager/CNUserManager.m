@@ -9,7 +9,7 @@
 #import "CNUserManager.h"
 #import "IVHttpManager.h"
 #import <WebKit/WebKit.h>
-#import "IN3SAnalytics.h"
+#import <IN3SAnalytics/CNTimeLog.h>
 
 @interface CNUserManager ()
 @property (nonatomic, copy) NSString *modelFile;
@@ -75,7 +75,7 @@
     [IVHttpManager shareManager].userToken = nil;
     [IVHttpManager shareManager].loginName = nil;
     // 给3S赋值
-    [IN3SAnalytics setUserName:nil];
+    [CNTimeLog setUserName:nil];
     // 发通知
     [[NSNotificationCenter defaultCenter] postNotificationName:HYLogoutSuccessNotification object:nil];
     // 清文件
@@ -167,7 +167,7 @@
     [IVHttpManager shareManager].userToken = userInfo.token;
     [IVHttpManager shareManager].loginName = userInfo.loginName;
     // 给3S赋值
-    [IN3SAnalytics setUserName:userInfo.loginName];
+    [CNTimeLog setUserName:userInfo.loginName];
 }
 
 @end

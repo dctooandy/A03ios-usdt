@@ -11,7 +11,6 @@
 #import "HYNewCTZNViewController.h"
 
 #import "HYRechargeHelper.h"
-#import "IN3SAnalytics.h"
 #import "CNRechargeRequest.h"
 #import <UIImageView+WebCache.h>
 
@@ -20,6 +19,7 @@
 #import "LYEmptyView.h"
 #import "UIView+Empty.h"
 #import "ChargeManualMessgeView.h"
+#import <IN3SAnalytics/CNTimeLog.h>
 
 static NSString * const cellName = @"BYRechargeUSDTTopView";
 
@@ -60,6 +60,7 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
 
 - (instancetype)init {
     _launchDate = [NSDate date];
+    [CNTimeLog startRecordTime:CNEventPayLaunch];
     if (self = [super init]) {
     }
     return self;
@@ -88,10 +89,8 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
     [super viewDidAppear:animated];
     
     if (!_hasRecord) {
-        NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:self->_launchDate] * 1000;
-        NSLog(@" ======> 进USDT支付 耗时：%f毫秒", duration);
-        NSString *timeString = [NSString stringWithFormat:@"%f", [self->_launchDate timeIntervalSince1970]];
-        [IN3SAnalytics enterPageWithName:@"PaymentPageLoad" responseTime:duration timestamp:timeString];
+        [CNTimeLog endRecordTime:CNEventPayLaunch];
+        _hasRecord = YES;
     }
 }
 
