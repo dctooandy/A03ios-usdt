@@ -255,21 +255,6 @@
 		3D9700272599DB2A003238C4 /* HYDSBSlideUpViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9700252599DB2A003238C4 /* HYDSBSlideUpViewCell.xib */; };
 		3D97002B259B1CE1003238C4 /* BYRegisterSuccADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D970029259B1CE1003238C4 /* BYRegisterSuccADVC.m */; };
 		3D97002C259B1CE1003238C4 /* BYRegisterSuccADVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D97002A259B1CE1003238C4 /* BYRegisterSuccADVC.xib */; };
-		3D97004C25A2C3ED003238C4 /* IN3SResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3D97003025A2C3ED003238C4 /* IN3SResource.bundle */; };
-		3D97004D25A2C3ED003238C4 /* IN3SConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003125A2C3ED003238C4 /* IN3SConstants.m */; };
-		3D97004E25A2C3ED003238C4 /* IN3SAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003225A2C3ED003238C4 /* IN3SAnalytics.m */; };
-		3D97004F25A2C3ED003238C4 /* IN3SUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003325A2C3ED003238C4 /* IN3SUtility.m */; };
-		3D97005025A2C3ED003238C4 /* IN3SLaunchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003525A2C3ED003238C4 /* IN3SLaunchModel.m */; };
-		3D97005125A2C3ED003238C4 /* IN3SGlobalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003825A2C3ED003238C4 /* IN3SGlobalModel.m */; };
-		3D97005225A2C3ED003238C4 /* IN3SPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003925A2C3ED003238C4 /* IN3SPageModel.m */; };
-		3D97005325A2C3ED003238C4 /* IN3SExitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003A25A2C3ED003238C4 /* IN3SExitModel.m */; };
-		3D97005425A2C3ED003238C4 /* IN3SAGQJModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003C25A2C3ED003238C4 /* IN3SAGQJModel.m */; };
-		3D97005525A2C3ED003238C4 /* IN3SRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003D25A2C3ED003238C4 /* IN3SRequestModel.m */; };
-		3D97005625A2C3ED003238C4 /* IN3SBrowserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97004025A2C3ED003238C4 /* IN3SBrowserModel.m */; };
-		3D97005725A2C3ED003238C4 /* IN3SParamsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97004325A2C3ED003238C4 /* IN3SParamsModel.m */; };
-		3D97005825A2C3ED003238C4 /* IN3SWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97004625A2C3ED003238C4 /* IN3SWebViewController.m */; };
-		3D97005925A2C3ED003238C4 /* IN3SManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97004925A2C3ED003238C4 /* IN3SManager.m */; };
-		3D97005A25A2C3ED003238C4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D97004B25A2C3ED003238C4 /* Info.plist */; };
 		3D972436262E96B1005E930C /* HYSuperCopartnerAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D972435262E96B1005E930C /* HYSuperCopartnerAlertView.m */; };
 		3D972439262EDF9D005E930C /* SCMyRebateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D972438262EDF9D005E930C /* SCMyRebateModel.m */; };
 		3D97243D26300D98005E930C /* BYRechargeUsdtVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97243B26300D98005E930C /* BYRechargeUsdtVC.m */; };
@@ -1455,34 +1440,6 @@
 		3D970028259B1CE1003238C4 /* BYRegisterSuccADVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYRegisterSuccADVC.h; sourceTree = "<group>"; };
 		3D970029259B1CE1003238C4 /* BYRegisterSuccADVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYRegisterSuccADVC.m; sourceTree = "<group>"; };
 		3D97002A259B1CE1003238C4 /* BYRegisterSuccADVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYRegisterSuccADVC.xib; sourceTree = "<group>"; };
-		3D97002E25A2C3ED003238C4 /* IN3SWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SWebViewController.h; sourceTree = "<group>"; };
-		3D97003025A2C3ED003238C4 /* IN3SResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IN3SResource.bundle; sourceTree = "<group>"; };
-		3D97003125A2C3ED003238C4 /* IN3SConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SConstants.m; sourceTree = "<group>"; };
-		3D97003225A2C3ED003238C4 /* IN3SAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SAnalytics.m; sourceTree = "<group>"; };
-		3D97003325A2C3ED003238C4 /* IN3SUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SUtility.m; sourceTree = "<group>"; };
-		3D97003525A2C3ED003238C4 /* IN3SLaunchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SLaunchModel.m; sourceTree = "<group>"; };
-		3D97003625A2C3ED003238C4 /* IN3SRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SRequestModel.h; sourceTree = "<group>"; };
-		3D97003725A2C3ED003238C4 /* IN3SBrowserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SBrowserModel.h; sourceTree = "<group>"; };
-		3D97003825A2C3ED003238C4 /* IN3SGlobalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SGlobalModel.m; sourceTree = "<group>"; };
-		3D97003925A2C3ED003238C4 /* IN3SPageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SPageModel.m; sourceTree = "<group>"; };
-		3D97003A25A2C3ED003238C4 /* IN3SExitModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SExitModel.m; sourceTree = "<group>"; };
-		3D97003B25A2C3ED003238C4 /* IN3SParamsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SParamsModel.h; sourceTree = "<group>"; };
-		3D97003C25A2C3ED003238C4 /* IN3SAGQJModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SAGQJModel.m; sourceTree = "<group>"; };
-		3D97003D25A2C3ED003238C4 /* IN3SRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SRequestModel.m; sourceTree = "<group>"; };
-		3D97003E25A2C3ED003238C4 /* IN3SLaunchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SLaunchModel.h; sourceTree = "<group>"; };
-		3D97003F25A2C3ED003238C4 /* IN3SGlobalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SGlobalModel.h; sourceTree = "<group>"; };
-		3D97004025A2C3ED003238C4 /* IN3SBrowserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SBrowserModel.m; sourceTree = "<group>"; };
-		3D97004125A2C3ED003238C4 /* IN3SPageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SPageModel.h; sourceTree = "<group>"; };
-		3D97004225A2C3ED003238C4 /* IN3SAGQJModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SAGQJModel.h; sourceTree = "<group>"; };
-		3D97004325A2C3ED003238C4 /* IN3SParamsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SParamsModel.m; sourceTree = "<group>"; };
-		3D97004425A2C3ED003238C4 /* IN3SExitModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SExitModel.h; sourceTree = "<group>"; };
-		3D97004525A2C3ED003238C4 /* IN3SManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SManager.h; sourceTree = "<group>"; };
-		3D97004625A2C3ED003238C4 /* IN3SWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SWebViewController.m; sourceTree = "<group>"; };
-		3D97004725A2C3ED003238C4 /* IN3SAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SAnalytics.h; sourceTree = "<group>"; };
-		3D97004825A2C3ED003238C4 /* IN3SConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SConstants.h; sourceTree = "<group>"; };
-		3D97004925A2C3ED003238C4 /* IN3SManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SManager.m; sourceTree = "<group>"; };
-		3D97004A25A2C3ED003238C4 /* IN3SUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SUtility.h; sourceTree = "<group>"; };
-		3D97004B25A2C3ED003238C4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D972434262E96B0005E930C /* HYSuperCopartnerAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSuperCopartnerAlertView.h; sourceTree = "<group>"; };
 		3D972435262E96B1005E930C /* HYSuperCopartnerAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSuperCopartnerAlertView.m; sourceTree = "<group>"; };
 		3D972437262EDF9D005E930C /* SCMyRebateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCMyRebateModel.h; sourceTree = "<group>"; };
@@ -3155,7 +3112,6 @@
 		3D1338A624AF2E7D00B29783 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
-				3D97002D25A2C3ED003238C4 /* IN3SAnalytics */,
 				3DF43D2A2592EE8B0087F26A /* SlideCard */,
 				3D31B96425467131005275BD /* tingyunApp.framework */,
 				3D41DEB4251F1A20000CA1D6 /* WSLPictureBrowserView */,
@@ -3529,57 +3485,6 @@
 				3D65D1152568E35300917E1B /* SocketRocketUtility.m */,
 			);
 			path = WebSocket;
-			sourceTree = "<group>";
-		};
-		3D97002D25A2C3ED003238C4 /* IN3SAnalytics */ = {
-			isa = PBXGroup;
-			children = (
-				3D97002E25A2C3ED003238C4 /* IN3SWebViewController.h */,
-				3D97002F25A2C3ED003238C4 /* IN3SAnalyticsSDK */,
-				3D97003125A2C3ED003238C4 /* IN3SConstants.m */,
-				3D97003225A2C3ED003238C4 /* IN3SAnalytics.m */,
-				3D97003325A2C3ED003238C4 /* IN3SUtility.m */,
-				3D97003425A2C3ED003238C4 /* Models */,
-				3D97004525A2C3ED003238C4 /* IN3SManager.h */,
-				3D97004625A2C3ED003238C4 /* IN3SWebViewController.m */,
-				3D97004725A2C3ED003238C4 /* IN3SAnalytics.h */,
-				3D97004825A2C3ED003238C4 /* IN3SConstants.h */,
-				3D97004925A2C3ED003238C4 /* IN3SManager.m */,
-				3D97004A25A2C3ED003238C4 /* IN3SUtility.h */,
-				3D97004B25A2C3ED003238C4 /* Info.plist */,
-			);
-			path = IN3SAnalytics;
-			sourceTree = "<group>";
-		};
-		3D97002F25A2C3ED003238C4 /* IN3SAnalyticsSDK */ = {
-			isa = PBXGroup;
-			children = (
-				3D97003025A2C3ED003238C4 /* IN3SResource.bundle */,
-			);
-			path = IN3SAnalyticsSDK;
-			sourceTree = "<group>";
-		};
-		3D97003425A2C3ED003238C4 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				3D97003525A2C3ED003238C4 /* IN3SLaunchModel.m */,
-				3D97003625A2C3ED003238C4 /* IN3SRequestModel.h */,
-				3D97003725A2C3ED003238C4 /* IN3SBrowserModel.h */,
-				3D97003825A2C3ED003238C4 /* IN3SGlobalModel.m */,
-				3D97003925A2C3ED003238C4 /* IN3SPageModel.m */,
-				3D97003A25A2C3ED003238C4 /* IN3SExitModel.m */,
-				3D97003B25A2C3ED003238C4 /* IN3SParamsModel.h */,
-				3D97003C25A2C3ED003238C4 /* IN3SAGQJModel.m */,
-				3D97003D25A2C3ED003238C4 /* IN3SRequestModel.m */,
-				3D97003E25A2C3ED003238C4 /* IN3SLaunchModel.h */,
-				3D97003F25A2C3ED003238C4 /* IN3SGlobalModel.h */,
-				3D97004025A2C3ED003238C4 /* IN3SBrowserModel.m */,
-				3D97004125A2C3ED003238C4 /* IN3SPageModel.h */,
-				3D97004225A2C3ED003238C4 /* IN3SAGQJModel.h */,
-				3D97004325A2C3ED003238C4 /* IN3SParamsModel.m */,
-				3D97004425A2C3ED003238C4 /* IN3SExitModel.h */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		3D9DA6762591DAC0003C3F28 /* DataSource */ = {
@@ -5387,7 +5292,7 @@
 				3D13384F24AD8F9B00B29783 /* Resources */,
 				C08FB099C221193B86170E0B /* [CP] Embed Pods Frameworks */,
 				3DFF702F261EF93900801654 /* IconVersioning Script */,
-				AA25AB562724D3EA899EDB5E /* [CP] Copy Pods Resources */,
+				388A1E59F1464CE2464F0096 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5426,7 +5331,7 @@
 				3D13387424AD8F9C00B29783 /* Frameworks */,
 				3D13387524AD8F9C00B29783 /* Resources */,
 				28822A1001555599A37308F2 /* [CP] Embed Pods Frameworks */,
-				C581BB90000BAEAC19CD4D2B /* [CP] Copy Pods Resources */,
+				3F5A9C537292B9CAC8BDAD41 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5610,7 +5515,6 @@
 				D5A443A824F378CD00014DC6 /* 彩票_00039.png in Resources */,
 				D5A443A924F378CD00014DC6 /* 彩票_00020.png in Resources */,
 				D5A4440024F37A9E00014DC6 /* 彩票_0008.png in Resources */,
-				3D97004C25A2C3ED003238C4 /* IN3SResource.bundle in Resources */,
 				D5A4446924F3932400014DC6 /* 数字7_00062.png in Resources */,
 				D5A446E724F3941400014DC6 /* 合成 1_00019.png in Resources */,
 				D5A4453E24F393AC00014DC6 /* 棋牌_0001.png in Resources */,
@@ -5790,7 +5694,6 @@
 				D5A443AF24F378CD00014DC6 /* 彩票_00038.png in Resources */,
 				3D5693BE25EF612E004077F8 /* BYNewUsrMissionVC.xib in Resources */,
 				D5A446CD24F3941400014DC6 /* 合成 1_00062.png in Resources */,
-				3D97005A25A2C3ED003238C4 /* Info.plist in Resources */,
 				D5A4439524F378CD00014DC6 /* 彩票_00019.png in Resources */,
 				D5A446BE24F3941400014DC6 /* 合成 1_00058.png in Resources */,
 				D5A444A524F3932400014DC6 /* 数字7_00024.png in Resources */,
@@ -6168,6 +6071,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		388A1E59F1464CE2464F0096 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3DFF702F261EF93900801654 /* IconVersioning Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -6186,21 +6106,21 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n$SRCROOT/HYNewNest/Other/LLIconVersioning.sh\n";
 		};
-		AA25AB562724D3EA899EDB5E /* [CP] Copy Pods Resources */ = {
+		3F5A9C537292B9CAC8BDAD41 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C08FB099C221193B86170E0B /* [CP] Embed Pods Frameworks */ = {
@@ -6218,23 +6138,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C581BB90000BAEAC19CD4D2B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E016B7A80FC4A5DA5714F36A /* [CP] Check Pods Manifest.lock */ = {
@@ -6306,7 +6209,6 @@
 				0487C98F24CEC8040013715A /* segmentHeaderView.m in Sources */,
 				04C6E1EC24D40728006F4DAC /* CNAddressAddTCell.m in Sources */,
 				E97054A724DBD0E40007F845 /* UserSuggestionModel.m in Sources */,
-				3D97005625A2C3ED003238C4 /* IN3SBrowserModel.m in Sources */,
 				E98BEED724CFD4F200E6B0C8 /* HYBonusTableViewController.m in Sources */,
 				0487C98E24CEC8040013715A /* UIView+HHLayout.m in Sources */,
 				3DA4F18424B317490039123F /* LoadingView.m in Sources */,
@@ -6321,7 +6223,6 @@
 				E986A10824C6F5C1000F9CFF /* HYHTMLViewController.m in Sources */,
 				3D41DE7025199DEE000CA1D6 /* VIPMonthlyAlertsVC.m in Sources */,
 				048A168F24CACABF00411819 /* CNAlertPickerView.m in Sources */,
-				3D97005225A2C3ED003238C4 /* IN3SPageModel.m in Sources */,
 				E986A1C524CC7F2B000F9CFF /* TAPageControl.m in Sources */,
 				3D41DEAE251CC6FD000CA1D6 /* UIColor+Gradient.m in Sources */,
 				3DA4F15524B30A090039123F /* SGQRCodeScanManager.m in Sources */,
@@ -6348,7 +6249,6 @@
 				3DBA55EC2578F23E009A2B71 /* CNGameBtnsStackView.m in Sources */,
 				E9B5496D24CEE34F002CE6EF /* HYArticalTableViewController.m in Sources */,
 				3D41DE7A25199DEE000CA1D6 /* VIPChartDSBCell.m in Sources */,
-				3D97005925A2C3ED003238C4 /* IN3SManager.m in Sources */,
 				E986A1C324CC7F2B000F9CFF /* SDCollectionViewCell.m in Sources */,
 				E98BEF0A24D25F6E00E6B0C8 /* HYXiMaCell.m in Sources */,
 				E986A1C424CC7F2B000F9CFF /* TADotView.m in Sources */,
@@ -6356,7 +6256,6 @@
 				0487C9AD24CFBA6A0013715A /* JJCollectionViewRoundFlowLayout.m in Sources */,
 				3DDEBA37264A78D20014EB87 /* BYYuEBaoTransferVC.m in Sources */,
 				0487C97B24CEB2710013715A /* CNChoseImageVC.m in Sources */,
-				3D97005025A2C3ED003238C4 /* IN3SLaunchModel.m in Sources */,
 				D5FBFE2D24BC05E400BBCAD8 /* CNLoginRegisterVC.m in Sources */,
 				04C0F12D24C7D20C007F1420 /* CNRealPersonVC.m in Sources */,
 				3D18CFB1260883C600E6642E /* NXPingServices.m in Sources */,
@@ -6371,7 +6270,6 @@
 				0487C9F424D2AADC0013715A /* CNMessageTCell.m in Sources */,
 				3D41DECA2521CDE7000CA1D6 /* VIPRecordSelectorView.m in Sources */,
 				3D5B259925C019C600FD23F0 /* DSBGameRoundResModel.m in Sources */,
-				3D97005425A2C3ED003238C4 /* IN3SAGQJModel.m in Sources */,
 				3D8A708A258C5C1A0058D50F /* SuperCopartnerTbFooter.m in Sources */,
 				E986A1A624CB3C18000F9CFF /* HYTextAlertView.m in Sources */,
 				E9D9449024C5454F00252222 /* HYNetworkConfigManager.m in Sources */,
@@ -6412,7 +6310,6 @@
 				0487C9B224CFF3170013715A /* CNSecurityCenterVC.m in Sources */,
 				E98BEF3324D3B8BC00E6B0C8 /* ChargeManualMessgeView.m in Sources */,
 				0487C98D24CEC8040013715A /* UIView+SDAutoLayout.m in Sources */,
-				3D97005725A2C3ED003238C4 /* IN3SParamsModel.m in Sources */,
 				0430AB3124E38F8300C873DC /* CNBankVerifySmsView.m in Sources */,
 				3DF43D312592EE8B0087F26A /* V_SlideCardCell.m in Sources */,
 				04C6E1F724D41C3C006F4DAC /* CNAddressInfoTCell.m in Sources */,
@@ -6450,7 +6347,6 @@
 				E986A10124C6E0CD000F9CFF /* CNHomeRequest.m in Sources */,
 				0487C96C24CE9A630013715A /* BRStringPickerView.m in Sources */,
 				E993095424D7F3CD00E0843B /* HYRechProcButton.m in Sources */,
-				3D97004F25A2C3ED003238C4 /* IN3SUtility.m in Sources */,
 				04C0F12324C69738007F1420 /* CNHomeVC.m in Sources */,
 				E986A19C24CADCA3000F9CFF /* UserSubscribItem.m in Sources */,
 				04C0F11324C594D5007F1420 /* CNLoginRequest.m in Sources */,
@@ -6508,7 +6404,6 @@
 				3DB600B32627E7C9002278F8 /* HYOneImgBtnAlertView.m in Sources */,
 				3D41DE7325199DEE000CA1D6 /* VIPDSBUsrModel.m in Sources */,
 				3DC14E4C25FB561000D6DB85 /* BYOldMyWalletView.m in Sources */,
-				3D97004E25A2C3ED003238C4 /* IN3SAnalytics.m in Sources */,
 				3DBA55D4256FA6D3009A2B71 /* CNSelectBtn.m in Sources */,
 				3D31B9612542E97D005275BD /* HYTapHanImageCodeView.m in Sources */,
 				3D41DEBD251F1B47000CA1D6 /* UIImageView+GIF.m in Sources */,
@@ -6529,7 +6424,6 @@
 				3D41DEC025206AAE000CA1D6 /* VIPReceiveRecordVC.m in Sources */,
 				3D41DE7125199DEE000CA1D6 /* VIPTwoChartVC.m in Sources */,
 				3D1338B924AF3AB200B29783 /* NNPageRouter.m in Sources */,
-				3D97005325A2C3ED003238C4 /* IN3SExitModel.m in Sources */,
 				3D2FB6392589E171003EE5EA /* CNBorderBtn.m in Sources */,
 				3D31B955253D8801005275BD /* WithdrawCalculateModel.m in Sources */,
 				040A08D224E114A900FBD534 /* OCBarrageCell.m in Sources */,
@@ -6545,11 +6439,9 @@
 				044DC69524DD1A35005CB550 /* CNShareCopyView.m in Sources */,
 				0487CA0D24D3CC380013715A /* CNFeedBackVC.m in Sources */,
 				3DBA55DB2570D188009A2B71 /* BetAmountModel.m in Sources */,
-				3D97004D25A2C3ED003238C4 /* IN3SConstants.m in Sources */,
 				048A0EE024C832F800411819 /* CNElectronicVC.m in Sources */,
 				3D97243D26300D98005E930C /* BYRechargeUsdtVC.m in Sources */,
 				042372A324CE65A000D37B9C /* CNSettingVC.m in Sources */,
-				3D97005125A2C3ED003238C4 /* IN3SGlobalModel.m in Sources */,
 				0487CA0624D3BAB90013715A /* CNInviteFriendVC.m in Sources */,
 				3D564E2024F3C02C006846DD /* MessageBoxModel.m in Sources */,
 				E98BEF1C24D2BCA400E6B0C8 /* HYWithdrawCardCell.m in Sources */,
@@ -6583,8 +6475,6 @@
 				E986A19224CA93D3000F9CFF /* BQPaymentModel.m in Sources */,
 				E969EB3524E14B4B00D58FE9 /* MineBindView.m in Sources */,
 				3DC14E4725FB52DE00D6DB85 /* BYMyWalletView.m in Sources */,
-				3D97005825A2C3ED003238C4 /* IN3SWebViewController.m in Sources */,
-				3D97005525A2C3ED003238C4 /* IN3SRequestModel.m in Sources */,
 				E98BEF2524D2C40100E6B0C8 /* HYWithdrawAddCardFooter.m in Sources */,
 				3DDEBA32264A4E4D0014EB87 /* BYYuEBaoVC.m in Sources */,
 				3D41DEB9251F1A20000CA1D6 /* WSLPhotoZoom.m in Sources */,
@@ -6825,7 +6715,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 90;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
-				DEVELOPMENT_TEAM = JW7F38ZMYT;
+				DEVELOPMENT_TEAM = 29V6J8T68S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6863,7 +6753,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 3.6.83;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-geh";
 				PRODUCT_NAME = "币游_dev";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -6882,7 +6772,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 90;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
-				DEVELOPMENT_TEAM = JW7F38ZMYT;
+				DEVELOPMENT_TEAM = 29V6J8T68S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6920,7 +6810,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 3.6.83;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-geh";
 				PRODUCT_NAME = "币游";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

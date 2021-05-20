@@ -21,7 +21,7 @@
 #import "LYEmptyView.h"
 #import "UIView+Empty.h"
 #import "HYTabBarViewController.h"
-#import "IN3SAnalytics.h"
+#import <IN3SAnalytics/CNTimeLog.h>
 
 @interface HYRechargeCNYViewController () <HYRechargeCNYEditViewDelegate>
 @property (nonatomic, assign) NSInteger selcPayWayIdx;
@@ -68,6 +68,7 @@
 
 - (instancetype)init {
     _launchDate = [NSDate date];
+    [CNTimeLog startRecordTime:CNEventPayLaunch];
     if (self = [super init]) {
     }
     return self;
@@ -95,12 +96,11 @@
     [super viewDidAppear:animated];
     
     if (!_hasRecord) {
-        NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:self->_launchDate] * 1000;
-        NSLog(@" ======> 进CNY支付 耗时：%f毫秒", duration);
-        NSString *timeString = [NSString stringWithFormat:@"%f", [self->_launchDate timeIntervalSince1970]];
-        [IN3SAnalytics enterPageWithName:@"PaymentPageLoad" responseTime:duration timestamp:timeString];
-        
         [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] showSuspendBall];
+        
+        [CNTimeLog endRecordTime:CNEventPayLaunch];
+        _hasRecord = YES;
+
     }
 }
 

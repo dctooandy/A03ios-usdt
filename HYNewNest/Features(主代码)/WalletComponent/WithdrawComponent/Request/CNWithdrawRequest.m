@@ -7,7 +7,7 @@
 //
 
 #import "CNWithdrawRequest.h"
-#import <IVLAManager.h>
+#import <IVLoganAnalysis/IVLAManager.h>
 
 @implementation CNWithdrawRequest
 

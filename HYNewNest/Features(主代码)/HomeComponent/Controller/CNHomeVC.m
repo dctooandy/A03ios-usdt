@@ -31,7 +31,7 @@
 #import "CNUserCenterRequest.h"
 #import "CNLoginRequest.h"
 #import "HYInGameHelper.h"
-#import "IN3SAnalytics.h"
+#import <IN3SAnalytics/CNTimeLog.h>
 #import "CNSplashRequest.h"
 
 #import <MJRefresh/MJRefresh.h>
@@ -112,7 +112,7 @@
     [super viewDidAppear:animated];
     //启动完成, 只调一次
     if (!_hasRecord) {
-        [IN3SAnalytics launchFinished];
+        [CNTimeLog endRecordTime:CNEventAppLaunch];
         _hasRecord = YES;
     }
     self.bannerView.autoScroll = YES; // 恢复滚动
