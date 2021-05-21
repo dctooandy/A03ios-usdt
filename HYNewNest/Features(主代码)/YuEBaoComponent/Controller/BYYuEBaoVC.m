@@ -127,25 +127,28 @@
             __block int num_20percent = 0;
             [tickets enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSNumber *plevel = obj[@"prizeLevel"];
-                switch ([plevel integerValue]) {
-                    case 1:
-                    case 2:
-                        num_5percent ++;
-                        break;
-                    case 3:
-                    case 4:
-                        num_10percent ++;
-                        break;
-                    case 5:
-                    case 6:
-                        num_15percent ++;
-                        break;
-                    case 7:
-                    case 8:
-                        num_20percent ++;
-                        break;
-                    default:
-                        break;
+                NSNumber *flag = obj[@"flag"];
+                if (flag.integerValue == 1) {
+                    switch ([plevel integerValue]) {
+                        case 1:
+                        case 2:
+                            num_5percent ++;
+                            break;
+                        case 3:
+                        case 4:
+                            num_10percent ++;
+                            break;
+                        case 5:
+                        case 6:
+                            num_15percent ++;
+                            break;
+                        case 7:
+                        case 8:
+                            num_20percent ++;
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }];
             strongSelf.lb5Percent.text = [NSString stringWithFormat:@"%d 张", num_5percent];
