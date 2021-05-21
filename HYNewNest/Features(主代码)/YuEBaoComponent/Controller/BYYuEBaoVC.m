@@ -42,6 +42,7 @@
     [super viewDidAppear:animated];
     
     [self requestAmount];
+    [self requestTickets];
 }
 
 - (void)setupUI {
@@ -66,7 +67,8 @@
 }
 
 - (IBAction)didTapYuEBaoTotalAmount:(id)sender {
-    //???: 
+    //???:
+    [CNTOPHUB showAlert:@"还未配置跳转链接"];
 }
 
 - (IBAction)didTapDeposit2YuEBao:(id)sender {
@@ -92,28 +94,67 @@
     [_lbEarningsYesterdayAmt showIndicatorIsBig:NO];
     [_lbAnnualizedReturnAmnt showIndicatorIsBig:NO];
     
-    [[BalanceManager shareManager] getYuEBaoYesterdaySumHandler:^(id  _Nonnull unknowModel) {
-        
-        if ([unknowModel isKindOfClass:[NSNumber class]]) {
-            NSString *num = [(NSNumber *)unknowModel jk_toDisplayNumberWithDigit:2];
-            NSString *numStr = [NSString stringWithFormat:@"+%@",num];
-            [self.lbEarningsYesterdayAmt hideIndicatorWithText:numStr];
+    [[BalanceManager shareManager] requestYuEBaoYesterdaySumHandler:^(CNYuEBaoBalanceModel * model) {
+        if (model) {
+            NSString *yesDay = [model.interestDay jk_toDisplayNumberWithDigit:2];
+            NSString *yesDayStr = [NSString stringWithFormat:@"+%@",yesDay];
+            [self.lbEarningsYesterdayAmt hideIndicatorWithText:yesDayStr];
+            [self.lbQuarterlyInterestAmt hideIndicatorWithText:[model.interestSeason jk_toDisplayNumberWithDigit:2]];
         }
     }];
     
     [CNYuEBaoRequest checkYuEBaoConfigHandler:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+        if (!errorMsg) {
             CNYuEBaoConfigModel *model = [CNYuEBaoConfigModel cn_parse:responseObj];
             self.model = model;
             NSString *annStr = [NSString stringWithFormat:@"%@%%",model.yearRate];
             [self.lbAnnualizedReturnAmnt hideIndicatorWithText:annStr];
             NSNumber *total = @( model.yebAmount.floatValue + model.yebInterest.floatValue );
             [self.lbTotalAmount hideIndicatorWithText:[total jk_toDisplayNumberWithDigit:2]];
-            [self.lbQuarterlyInterestAmt hideIndicatorWithText:[model.yebInterest jk_toDisplayNumberWithDigit:2]];
         }
     }];
 }
 
+- (void)requestTickets {
+    WEAKSELF_DEFINE
+    [CNYuEBaoRequest checkYuEBaoTicketsHandler:^(id responseObj, NSString *errorMsg) {
+        STRONGSELF_DEFINE
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+            NSArray *tickets = responseObj[@"result"];
+            __block int num_5percent = 0;
+            __block int num_15percent = 0;
+            __block int num_10percent = 0;
+            __block int num_20percent = 0;
+            [tickets enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSNumber *plevel = obj[@"prizeLevel"];
+                switch ([plevel integerValue]) {
+                    case 1:
+                    case 2:
+                        num_5percent ++;
+                        break;
+                    case 3:
+                    case 4:
+                        num_10percent ++;
+                        break;
+                    case 5:
+                    case 6:
+                        num_15percent ++;
+                        break;
+                    case 7:
+                    case 8:
+                        num_20percent ++;
+                        break;
+                    default:
+                        break;
+                }
+            }];
+            strongSelf.lb5Percent.text = [NSString stringWithFormat:@"%d 张", num_5percent];
+            strongSelf.lb10Percent.text = [NSString stringWithFormat:@"%d 张", num_10percent];
+            strongSelf.lb15Percent.text = [NSString stringWithFormat:@"%d 张", num_15percent];
+            strongSelf.lb20Percent.text = [NSString stringWithFormat:@"%d 张", num_20percent];
+        }
+    }];
+}
 
 
 

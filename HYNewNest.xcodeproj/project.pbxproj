@@ -170,6 +170,7 @@
 		3D18CFB3260883C600E6642E /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D18CFB0260883C600E6642E /* SimplePing.m */; };
 		3D2B0873264FC4560008BB5F /* CNYuEBaoConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2B0872264FC4560008BB5F /* CNYuEBaoConfigModel.m */; };
 		3D2FB6392589E171003EE5EA /* CNBorderBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2FB6382589E171003EE5EA /* CNBorderBtn.m */; };
+		3D31A2622657A425008613E9 /* CNYuEBaoBalanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31A2612657A425008613E9 /* CNYuEBaoBalanceModel.m */; };
 		3D31B94425399CB7005275BD /* HYBuyECoinComfirmView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B94325399CB7005275BD /* HYBuyECoinComfirmView.m */; };
 		3D31B947253ACEF8005275BD /* HYWithdrawActivityAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B946253ACEF8005275BD /* HYWithdrawActivityAlertView.m */; };
 		3D31B94A253D3E42005275BD /* UIView+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D31B949253D3E42005275BD /* UIView+Badge.m */; };
@@ -1284,6 +1285,8 @@
 		3D2B0872264FC4560008BB5F /* CNYuEBaoConfigModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNYuEBaoConfigModel.m; sourceTree = "<group>"; };
 		3D2FB6372589E171003EE5EA /* CNBorderBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNBorderBtn.h; sourceTree = "<group>"; };
 		3D2FB6382589E171003EE5EA /* CNBorderBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNBorderBtn.m; sourceTree = "<group>"; };
+		3D31A2602657A425008613E9 /* CNYuEBaoBalanceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNYuEBaoBalanceModel.h; sourceTree = "<group>"; };
+		3D31A2612657A425008613E9 /* CNYuEBaoBalanceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNYuEBaoBalanceModel.m; sourceTree = "<group>"; };
 		3D31B94225399CB7005275BD /* HYBuyECoinComfirmView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYBuyECoinComfirmView.h; sourceTree = "<group>"; };
 		3D31B94325399CB7005275BD /* HYBuyECoinComfirmView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYBuyECoinComfirmView.m; sourceTree = "<group>"; };
 		3D31B945253ACEF8005275BD /* HYWithdrawActivityAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYWithdrawActivityAlertView.h; sourceTree = "<group>"; };
@@ -3861,6 +3864,8 @@
 			children = (
 				3D2B0871264FC4560008BB5F /* CNYuEBaoConfigModel.h */,
 				3D2B0872264FC4560008BB5F /* CNYuEBaoConfigModel.m */,
+				3D31A2602657A425008613E9 /* CNYuEBaoBalanceModel.h */,
+				3D31A2612657A425008613E9 /* CNYuEBaoBalanceModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6495,6 +6500,7 @@
 				3DF031FE258DA36A00AF7A36 /* CNSuperCopartnerRequest.m in Sources */,
 				E9063B8C24D6BE870000273A /* HYWideOneBtnAlertView.m in Sources */,
 				3DB6A0432594A1B5004A391B /* DSBProfitFooter.m in Sources */,
+				3D31A2622657A425008613E9 /* CNYuEBaoBalanceModel.m in Sources */,
 				3D65D1162568E35300917E1B /* SocketRocketUtility.m in Sources */,
 				E986A17724C979F6000F9CFF /* CNRechargeRequest.m in Sources */,
 				3D8A707E258B0B110058D50F /* SuperCopartnerTbDataSource.m in Sources */,

@@ -12,38 +12,14 @@
 
 + (void)checkYuEBaoInterestLogsSumHandler:(HandlerBlock)handler {
     NSMutableDictionary *param = @{}.mutableCopy;
-    NSUInteger month = [[NSDate date] jk_month];
-    NSUInteger year = [[NSDate date] jk_year];
-    switch (month) {
-        // 第一季度 以此类推
-        case 1:
-        case 2:
-        case 3:
-            param[@"beginTime"] = [NSString stringWithFormat:@"%lu-%@", (unsigned long)year, @"01-01 00:00:00"];
-            param[@"endTime"] = [NSString stringWithFormat:@"%lu-%@", (unsigned long)year, @"03-31 23:59:59"];
-            break;
-        case 4:
-        case 5:
-        case 6:
-            param[@"beginTime"] = [NSString stringWithFormat:@"%lu-%@", (unsigned long)year, @"04-01 00:00:00"];
-            param[@"endTime"] = [NSString stringWithFormat:@"%lu-%@", (unsigned long)year, @"06-30 23:59:59"];
-            break;
-        case 7:
-        case 8:
-        case 9:
-            param[@"beginTime"] = [NSString stringWithFormat:@"%lu-%@", (unsigned long)year, @"07-01 00:00:00"];
-            param[@"endTime"] = [NSString stringWithFormat:@"%lu-%@", (unsigned long)year, @"09-30 23:59:59"];
-            break;
-        case 10:
-        case 11:
-        case 12:
-            param[@"beginTime"] = [NSString stringWithFormat:@"%lu-%@", (unsigned long)year, @"10-01 00:00:00"];
-            param[@"endTime"] = [NSString stringWithFormat:@"%lu-%@", (unsigned long)year, @"12-31 23:59:59"];
-            break;
-        default:
-            break;
-    }
-    [self POST:config_yebInterestLogsSum parameters:param completionHandler:handler];
+    param[@"action"] = @"yebBalance";
+    [self POST:kGatewayExtraPath(config_yebPromo) parameters:param completionHandler:handler];
+}
+
++ (void)checkYuEBaoTicketsHandler:(HandlerBlock)handler {
+    NSMutableDictionary *param = @{}.mutableCopy;
+    param[@"action"] = @"yebView";
+    [self POST:kGatewayExtraPath(config_yebPromo) parameters:param completionHandler:handler];
 }
 
 + (void)transferInYuEBaoAmount:(NSNumber *)amount handler:(HandlerBlock)handler {

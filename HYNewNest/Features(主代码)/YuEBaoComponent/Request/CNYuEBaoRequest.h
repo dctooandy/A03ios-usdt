@@ -8,19 +8,14 @@
 
 #import "CNBaseNetworking.h"
 #import "CNYuEBaoConfigModel.h"
+#import "CNYuEBaoBalanceModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef NS_ENUM(NSInteger, YEBQuarterlyInterest) {
-    YEBQuarterlyInterestQ1 = 0,
-    YEBQuarterlyInterestQ2 = 0,
-    YEBQuarterlyInterestQ3 = 0,
-    YEBQuarterlyInterestQ4 = 0
-};
 
 @interface CNYuEBaoRequest : CNBaseNetworking
 
 + (void)checkYuEBaoInterestLogsSumHandler:(HandlerBlock)handler;
++ (void)checkYuEBaoTicketsHandler:(HandlerBlock)handler;
 + (void)transferInYuEBaoAmount:(NSNumber *)amount
                        handler:(HandlerBlock)handler;
 + (void)transferOutYuEBaoAmount:(NSNumber *)amount

@@ -178,7 +178,7 @@
 #define config_newapiTask       @"83e6dy/activity/newapi/task" //新手任务
 
 #pragma mark 余额宝
-#define config_yebInterestLogsSum       @"ws/yebInterestLogsSum" //昨日收益和季度利息
+#define config_yebPromo         @"83e6dy/activity/newapi/promo" //昨日收益和季度利息 & 存送券
 #define config_yebTransferIn    @"yeb/transferIn"   // 转入
 #define config_yebTransferOut   @"yeb/transferOut"  // 转出
 #define config_yebTransferLogs  @"yeb/yebTransferLogs" // 余额宝交易记录

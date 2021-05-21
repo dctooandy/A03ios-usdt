@@ -7,18 +7,20 @@
 //
 
 #import "BalanceManager.h"
-#import "CNYuEBaoRequest.h"
+
 
 @interface BalanceManager()
 {
     NSUInteger balancesSec;   // 余额 倒计时
 //    NSUInteger promoteSec;  // 本月优惠和洗码 倒计时
     NSUInteger betAmountSec;  // 周有效投注额 + 月优惠和洗码 倒计时
+    NSUInteger yebSec;        // 余额宝利息 倒计时
     AccountMoneyDetailModel *_balanceDetailModel;
 }
 @property (nonatomic, strong) AccountMoneyDetailModel *balanceDetailModel;
 //@property (nonatomic, strong) PromoteXimaModel        *promoteXimaModel;
 @property (nonatomic, strong) BetAmountModel          *betAmountModel;
+@property (strong,nonatomic) CNYuEBaoBalanceModel     *yebModel;
 @property (nonatomic, weak) NSTimer *balanceTimer;
 
 @end
@@ -59,6 +61,7 @@
         _manager->balancesSec = 3; //刚启动三秒内不请求 接口太慢
 //        _manager->promoteSec = 3;
         _manager->betAmountSec = 3;
+        _manager->yebSec = 3;
         [_manager setupTimers];
         [[NSNotificationCenter defaultCenter] addObserver:_manager selector:@selector(didLoginUser) name:HYLoginSuccessNotification object:nil];
     });
@@ -69,10 +72,7 @@
     balancesSec = 0;
 //    promoteSec = 0;
     betAmountSec = 0;
-//    [self requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-//    }];
-//    [self requestBetAmountHandler:^(BetAmountModel * _Nonnull model) {
-//    }];
+    yebSec = 0;
 }
 
 - (void)setupTimers
@@ -109,7 +109,10 @@
     if (betAmountSec > 0) {
         betAmountSec --;
     }
-    if (balancesSec <= 0 && betAmountSec <= 0) {
+    if (yebSec > 0) {
+        yebSec --;
+    }
+    if (balancesSec <= 0 && betAmountSec <= 0 && yebSec <= 0) {
         MyLog(@"@@@@@@ 余额管理者 @@@@@@ - 倒计时全为0，余额定时器停止");
         [self pauseTimer];
     }
@@ -135,12 +138,14 @@
     }
 }
 
-- (void)getYuEBaoYesterdaySumHandler:(void (^)(id _Nonnull))handler {
-    //TODO: 还未看到数据
-    [BalanceManager checkYuEBaoYesterdaySumHandler:^(id responseObj, NSString *errorMsg) {
-            
-    }];
-    handler(@(100.86));
+- (void)getYuEBaoYesterdaySumHandler:(void (^)(CNYuEBaoBalanceModel * _Nonnull))handler {
+    if (_yebModel && yebSec > 0) {
+        handler(_yebModel);
+    } else {
+        [self requestYuEBaoYesterdaySumHandler:^(CNYuEBaoBalanceModel * model) {
+            handler(model);
+        }];
+    }
 }
 
 
@@ -227,6 +232,24 @@
     }];
 }
 
+/// 余额宝昨日收益 + 季度收益
+- (void)requestYuEBaoYesterdaySumHandler:(nullable void(^)(CNYuEBaoBalanceModel *))handler {
+    [CNYuEBaoRequest checkYuEBaoInterestLogsSumHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            CNYuEBaoBalanceModel *yebModel = [CNYuEBaoBalanceModel cn_parse:responseObj];
+            self.yebModel = yebModel;
+            self->yebSec = 120;
+            [self resumeTimer];
+            if (handler) {
+                handler(yebModel);
+            }
+        } else {
+            if (handler) {
+                handler(nil);
+            }
+        }
+    }];
+}
 
 
 
@@ -275,20 +298,5 @@
     
 }
 
-+ (void)checkYuEBaoYesterdaySumHandler:(HandlerBlock)handler {
-    NSMutableDictionary *param = @{}.mutableCopy;
-    NSDate *yesterDayNow = [[NSDate date] jk_previousDay];
-    NSUInteger year = [yesterDayNow jk_year];
-    NSUInteger month = [yesterDayNow jk_month];
-    NSUInteger day = [yesterDayNow jk_day];
-    param[@"beginTime"] = [NSString stringWithFormat:@"%lu-%lu-%lu%@", year, month, day, @" 00:00:00"];
-    param[@"endTime"] = [NSString stringWithFormat:@"%lu-%lu-%lu%@", year, month, day, @" 23:59:59"];
-            
-    [CNBaseNetworking POST:config_yebInterestLogsSum parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg) {
-            
-        }
-    }];
-}
 
 @end

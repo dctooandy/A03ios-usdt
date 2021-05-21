@@ -110,12 +110,13 @@
 //        }];
         [[BalanceManager shareManager] requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
             STRONGSELF_DEFINE
-            
             [strongSelf setupDataWithModel:model];
         }];
-//        [BalanceManager checkYuEBaoYesterdaySumHandler:^(id responseObj, NSString *errorMsg) {
-//
-//        }];
+        [[BalanceManager shareManager] requestYuEBaoYesterdaySumHandler:^(CNYuEBaoBalanceModel * _Nonnull model) {
+            STRONGSELF_DEFINE
+            [strongSelf.yebInterestLb hideIndicatorWithText:[model.interestSeason jk_toDisplayNumberWithDigit:2]];
+            [strongSelf.yebProfitYesterdayLb hideIndicatorWithText:[model.interestDay jk_toDisplayNumberWithDigit:2]];
+        }];
     } else {
 //        [[BalanceManager shareManager] getWeeklyBetAmountHandler:^(BetAmountModel * _Nonnull model) {
 //            STRONGSELF_DEFINE
@@ -124,8 +125,12 @@
 //        }];
         [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
             STRONGSELF_DEFINE
-            
             [strongSelf setupDataWithModel:model];
+        }];
+        [[BalanceManager shareManager] getYuEBaoYesterdaySumHandler:^(CNYuEBaoBalanceModel * _Nonnull model) {
+            STRONGSELF_DEFINE
+            [strongSelf.yebInterestLb hideIndicatorWithText:[model.interestSeason jk_toDisplayNumberWithDigit:2]];
+            [strongSelf.yebProfitYesterdayLb hideIndicatorWithText:[model.interestDay jk_toDisplayNumberWithDigit:2]];
         }];
     }
 }
@@ -137,8 +142,8 @@
     [self.voucherAmountLb hideIndicatorWithText:[model.walletBalance.promotion jk_toDisplayNumberWithDigit:2]];
     [self.gamesBalanceLb hideIndicatorWithText:[model.platformTotalBalance jk_toDisplayNumberWithDigit:2]];
     
-    [self.yebAmountLb hideIndicatorWithText:[model.yebAmount jk_toDisplayNumberWithDigit:2]];
-    [self.yebInterestLb hideIndicatorWithText:[model.yebInterest jk_toDisplayNumberWithDigit:2]];
+    float yebAmount = model.yebAmount.floatValue + model.yebInterest.floatValue;
+    [self.yebAmountLb hideIndicatorWithText:[@(yebAmount) jk_toDisplayNumberWithDigit:2]];
     
 }
 
