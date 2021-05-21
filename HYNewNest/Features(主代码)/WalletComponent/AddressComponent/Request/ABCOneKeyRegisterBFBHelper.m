@@ -53,8 +53,8 @@ static dispatch_once_t onceToken;
             [self sendVerifyCode:nil];
                 
         } finish:^(NSString * _Nonnull smsCode) {
-            [self createBitollAccountVerifyCode:smsCode successHandler:^{
-                [self bindBitollAccount:self.accountNo handler:^{
+            [self createBitollAccountSuccessHandler:^{
+                [self bindBitollAccount:self.accountNo messageId:self.phoneModel.messageId smsCode:smsCode handler:^{
                     if (addBFBBlock) {
                         addBFBBlock();
                         [ABCOneKeyRegisterBFBHelper attempDealloc];
@@ -84,14 +84,12 @@ static dispatch_once_t onceToken;
 }
 
 /// 创建小金库
-- (void)createBitollAccountVerifyCode:(NSString *)smsCode successHandler:(void(^)(void))successHandler {
-    if (!smsCode) {
-        [kKeywindow jk_makeToast:@"请填写验证码" duration:3 position:JKToastPositionCenter];
+- (void)createBitollAccountSuccessHandler:(void(^)(void))successHandler {
+    if (!self.phoneModel) {
+        [kKeywindow jk_makeToast:@"请点击发送验证码" duration:3 position:JKToastPositionCenter];
         return;
     }
-    [CNWDAccountRequest createGoldAccountSmsCode:smsCode
-                                       messageId:self.phoneModel.messageId
-                                         handler:^(id responseObj, NSString *errorMsg) {
+    [CNWDAccountRequest createGoldAccountHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             NSString *b64AccountNo = responseObj[@"accountNo"];
             self.accountNo = [GTMBase64 decodeBase64String:b64AccountNo];
@@ -111,8 +109,8 @@ static dispatch_once_t onceToken;
 
 
 // 绑定创建的小金库账户
-- (void)bindBitollAccount:(NSString *)accountNo handler:(void(^)(void))successHandler {
-    [CNWDAccountRequest createAccountDCBoxAccountNo:self.accountNo isOneKey:YES validateId:nil messageId:nil handler:^(id responseObj, NSString *errorMsg) {
+- (void)bindBitollAccount:(NSString *)accountNo messageId:(NSString *)messageId smsCode:(NSString *)smsCode handler:(void(^)(void))successHandler {
+    [CNWDAccountRequest createAccountDCBoxAccountNo:self.accountNo isOneKey:YES validateId:nil messageId:messageId smsCode:smsCode handler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
             // 绑定成功
             [CNLoginRequest getUserInfoByTokenCompletionHandler:nil];

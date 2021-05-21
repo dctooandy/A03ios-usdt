@@ -165,6 +165,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     }
     
     if (!self.moneyModel) {
+        [CNTOPHUB showError:@"未能获取到可提余额，请下拉刷新试试"];
         return;
     }
     WEAKSELF_DEFINE

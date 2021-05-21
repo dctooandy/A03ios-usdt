@@ -68,13 +68,12 @@ typedef enum : NSUInteger {
 /// 绑定币付宝账户
 /// @param accountNo 账号
 /// @param isOneKey 是否一键绑定币付宝
-/// @param validateId SmsCodeModel.validateId 一键不需要
-/// @param messageId SmsCodeModel.messageId 一键不需要
 /// @param handler 回调
 + (void)createAccountDCBoxAccountNo:(NSString *)accountNo
                            isOneKey:(BOOL)isOneKey
                          validateId:(nullable NSString *)validateId
                           messageId:(nullable NSString *)messageId
+                            smsCode:(nullable NSString *)smsCode
                             handler:(HandlerBlock)handler;
 
 /// 绑定USDT地址
@@ -90,12 +89,7 @@ typedef enum : NSUInteger {
 
 
 /// 创建小金库
-/// @param smsCode 短信验证码
-/// @param messageId 短信ID
-/// @param handler 回调
-+ (void)createGoldAccountSmsCode:(NSString *)smsCode
-                       messageId:(NSString *)messageId
-                         handler:(HandlerBlock)handler;
++ (void)createGoldAccountHandler:(HandlerBlock)handler;
 
 @end
 
