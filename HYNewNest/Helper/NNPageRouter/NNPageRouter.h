@@ -49,6 +49,9 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 //+(void)jump2Live800Type:(CNLive800Type)type;
 + (void)presentOCSS_VC:(CNLive800Type)type;
 
+/// 跳转到微脉圈
++ (void)presentWMQCustomerService;
+
 /// 跳转到H5
 +(void)jump2HTMLWithStrURL: (NSString *)strURL title:(NSString *)title needPubSite:(BOOL)needPubSite;
 

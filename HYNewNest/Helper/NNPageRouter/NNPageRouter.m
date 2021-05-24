@@ -29,6 +29,7 @@
 #import "NSURL+HYLink.h"
 #import <CSCustomSerVice/CSCustomSerVice.h>
 #import "KeyChain.h"
+#import <YJChat.h>
 
 
 @implementation NNPageRouter
@@ -158,6 +159,21 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [NNPageRouter jump2Live800Type:type];
             });
+        }
+    }];
+}
+
++ (void)presentWMQCustomerService {
+    [LoadingView show];
+    [YJChat connectToUser:[CNUserManager shareManager].printedloginName
+                    level:[NSString stringWithFormat:@"%ld",[CNUserManager shareManager].userInfo.starLevel]
+               customerId:[CNUserManager shareManager].userInfo.customerId
+               complation:^(BOOL success, NSString * _Nonnull message) {
+        [LoadingView hide];
+        if (!success) {
+            [CNTOPHUB showError:message];
+        } else {
+            [CNTOPHUB showSuccess:message];
         }
     }];
 }

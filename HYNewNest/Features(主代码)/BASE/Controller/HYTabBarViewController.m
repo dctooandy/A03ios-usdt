@@ -20,7 +20,7 @@
 #import "CNServerView.h"
 #import "CNHomeRequest.h"
 #import "HYTextAlertView.h"
-#import <YJChat.h>
+
 
 @interface HYTabBarViewController ()<UITabBarControllerDelegate, SuspendBallDelegte, CNServerViewDelegate>
 @property (nonatomic, strong) SuspendBall *suspendBall;
@@ -187,16 +187,8 @@
     [self.suspendBall suspendBallShow];
     
     if(tag == 0){
-        [YJChat connectToUser:[CNUserManager shareManager].userInfo.loginName
-                        level:[NSString stringWithFormat:@"%ld",[CNUserManager shareManager].userInfo.starLevel]
-                   customerId:[CNUserManager shareManager].userInfo.customerId
-                   complation:^(BOOL success, NSString * _Nonnull message) {
-            if (!success) {
-                [CNTOPHUB showError:message];
-            } else {
-                [CNTOPHUB showSuccess:message];
-            }
-        }];
+        //客服 微脉圈
+        [NNPageRouter presentWMQCustomerService];
     }else if (tag == 1){
         //客服 存取款问题
         [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
