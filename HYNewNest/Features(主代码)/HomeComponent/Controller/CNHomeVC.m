@@ -222,7 +222,7 @@
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         __block NSString *nowDateStr = [dateFormatter stringFromDate:nowDate];
 
-        //TODO: 筛选等级
+        // 筛选等级
         if ([agoDateStr isEqualToString:nowDateStr]) {
             MyLog(@"弹窗盒子一天就显示一次");
         }else{

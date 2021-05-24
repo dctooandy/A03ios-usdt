@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 创建订单
 
-/// 创建在线支付订单 (USDT)
+/// 创建在线支付订单 (USDT)  废弃。
 /// @param amount 金额
 /// @param currency 货币
 /// @param usdtProtocol 协议
@@ -70,16 +70,16 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param payid OnlineBanksModel.payid
 /// @param showQRCode 是否返回二维码  0:否 ，1:是
 /// @param handler 回调
-+ (void)submitOnlinePayOrderAmount:(NSString *)amount
-                          currency:(NSString *)currency
-                      usdtProtocol:(NSString *)usdtProtocol
-                           payType:(NSString *)payType
-                             payid:(NSString *)payid
-                        showQRCode:(NSInteger)showQRCode
-                           handler:(HandlerBlock)handler;
+//+ (void)submitOnlinePayOrderAmount:(NSString *)amount
+//                          currency:(NSString *)currency
+//                      usdtProtocol:(NSString *)usdtProtocol
+//                           payType:(NSString *)payType
+//                             payid:(NSString *)payid
+//                        showQRCode:(NSInteger)showQRCode
+//                           handler:(HandlerBlock)handler;
 
 
-/// 创建在线支付订单（USDT渠道：钱包扫码）
+/// 创建在线支付订单（USDT渠道）
 /// @param amount 金额
 /// @param currency 货币
 /// @param usdtProtocol 协议

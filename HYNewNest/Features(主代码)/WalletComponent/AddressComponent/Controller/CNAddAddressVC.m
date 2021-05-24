@@ -214,6 +214,7 @@
                                                    isOneKey:NO
                                                  validateId:self.codeInputView.smsModel.validateId
                                                   messageId:self.codeInputView.smsModel.messageId
+                                                    smsCode:nil
                                                     handler:^(id responseObj, NSString *errorMsg) {
                 if (!errorMsg) {
                     [CNTOPHUB showSuccess:@"小金库添加成功"];

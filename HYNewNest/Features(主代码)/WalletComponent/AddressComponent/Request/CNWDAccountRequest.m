@@ -66,6 +66,7 @@
                            isOneKey:(BOOL)isOneKey
                          validateId:(nullable NSString *)validateId
                           messageId:(nullable NSString *)messageId
+                            smsCode:(nullable NSString *)smsCode
                             handler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
@@ -82,6 +83,9 @@
     }
     if (messageId) {
         param[@"messageId"] = messageId;
+    }
+    if (smsCode) {
+        param[@"smsCode"] = smsCode;
     }
     
     [self POST:(config_create) parameters:param completionHandler:handler];
@@ -126,14 +130,10 @@
     return @"ERC20";
 }
 
-+ (void)createGoldAccountSmsCode:(NSString *)smsCode
-                       messageId:(NSString *)messageId
-                         handler:(HandlerBlock)handler {
++ (void)createGoldAccountHandler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"use"] = @8;
-    param[@"smsCode"] = smsCode;
-    param[@"messageId"] = messageId;
     
     [self POST:(config_createGoldAccount) parameters:param completionHandler:handler];
 }

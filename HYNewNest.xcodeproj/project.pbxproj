@@ -962,7 +962,6 @@
 		E98BEF3A24D3D27100E6B0C8 /* HYDownloadLinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = E98BEF3824D3D27100E6B0C8 /* HYDownloadLinkView.m */; };
 		E98BEF3F24D3E99000E6B0C8 /* CNAmountInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = E98BEF3D24D3E99000E6B0C8 /* CNAmountInputView.m */; };
 		E98BEF4324D3F29800E6B0C8 /* CNAmountInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98BEF4224D3F29800E6B0C8 /* CNAmountInputView.xib */; };
-		E993094624D7B59A00E0843B /* HYRechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E993094524D7B59A00E0843B /* HYRechargeViewController.m */; };
 		E993094F24D7C1BB00E0843B /* HYRechargeEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = E993094E24D7C1BB00E0843B /* HYRechargeEditView.m */; };
 		E993095124D7C1CC00E0843B /* HYRechargeEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E993095024D7C1CC00E0843B /* HYRechargeEditView.xib */; };
 		E993095424D7F3CD00E0843B /* HYRechProcButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E993095324D7F3CD00E0843B /* HYRechProcButton.m */; };
@@ -2321,8 +2320,6 @@
 		E98BEF3C24D3E99000E6B0C8 /* CNAmountInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNAmountInputView.h; sourceTree = "<group>"; };
 		E98BEF3D24D3E99000E6B0C8 /* CNAmountInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNAmountInputView.m; sourceTree = "<group>"; };
 		E98BEF4224D3F29800E6B0C8 /* CNAmountInputView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CNAmountInputView.xib; sourceTree = "<group>"; };
-		E993094424D7B59A00E0843B /* HYRechargeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYRechargeViewController.h; sourceTree = "<group>"; };
-		E993094524D7B59A00E0843B /* HYRechargeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYRechargeViewController.m; sourceTree = "<group>"; };
 		E993094D24D7C1BB00E0843B /* HYRechargeEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYRechargeEditView.h; sourceTree = "<group>"; };
 		E993094E24D7C1BB00E0843B /* HYRechargeEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYRechargeEditView.m; sourceTree = "<group>"; };
 		E993095024D7C1CC00E0843B /* HYRechargeEditView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYRechargeEditView.xib; sourceTree = "<group>"; };
@@ -4783,8 +4780,6 @@
 		E986A16324C979F6000F9CFF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E993094424D7B59A00E0843B /* HYRechargeViewController.h */,
-				E993094524D7B59A00E0843B /* HYRechargeViewController.m */,
 				E9A269D424D80D8700B512FF /* HYRechargePayWayController.h */,
 				E9A269D524D80D8700B512FF /* HYRechargePayWayController.m */,
 				E9A269D624D80D8700B512FF /* HYRechargePayWayController.xib */,
@@ -6232,7 +6227,6 @@
 				3D41DEAE251CC6FD000CA1D6 /* UIColor+Gradient.m in Sources */,
 				3DA4F15524B30A090039123F /* SGQRCodeScanManager.m in Sources */,
 				E9B5496924CECE23002CE6EF /* LTSegmentedBar.m in Sources */,
-				E993094624D7B59A00E0843B /* HYRechargeViewController.m in Sources */,
 				048A0EEA24C834B200411819 /* CNChessVC.m in Sources */,
 				3DE3CA9624ED6AEC00D591C4 /* UILabel+Indicator.m in Sources */,
 				040A08D524E114A900FBD534 /* OCBarrageManager.m in Sources */,
