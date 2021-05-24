@@ -12,7 +12,7 @@
 #import "BYMoreCompleteMissionView.h"
 #import "NNPageRouter.h"
 
-@interface BYMissionCompleteVC ()
+@interface BYMissionCompleteVC ()<BYMoreCompleteDelegate>
 @property (weak, nonatomic) IBOutlet UIView *bannerBackground;
 @property (weak, nonatomic) IBOutlet UILabel *receivedUSDTLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gradientLabel;
@@ -58,6 +58,13 @@
 - (IBAction)backToMain:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
 }
+
+#pragma mark -
+#pragma mark Delegate
+- (void)moreBannerClicked {
+    //reload
+}
+
 #pragma mark -
 #pragma mark Custom Method
 - (void)setupUI {    
@@ -69,9 +76,11 @@
     }
     else {
         BYMoreCompleteMissionView *bannerView = [[BYMoreCompleteMissionView alloc] init];
+        [bannerView setDelegate:self];
         bannerView.frame = self.bannerBackground.bounds;
         [self.bannerBackground addSubview:bannerView];
     }
 }
+
 
 @end

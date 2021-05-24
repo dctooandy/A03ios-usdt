@@ -9,7 +9,7 @@
 #import "BYMoreCompleteMissionView.h"
 
 @implementation BYMoreCompleteMissionView
-
+@synthesize delegate;
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -17,5 +17,13 @@
     // Drawing code
 }
 */
+
+#pragma mark -
+#pragma mark IBaction
+- (IBAction)moreClicked:(id)sender {
+    if (self.delegate) {
+        [delegate moreBannerClicked];
+    }
+}
 
 @end

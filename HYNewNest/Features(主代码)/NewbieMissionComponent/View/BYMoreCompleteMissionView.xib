@@ -14,8 +14,12 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="券" translatesAutoresizingMaskIntoConstraints="NO" id="DI2-7Z-8p6">
+                <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="券" translatesAutoresizingMaskIntoConstraints="NO" id="DI2-7Z-8p6">
                     <rect key="frame" x="15" y="761" width="384" height="120"/>
+                    <gestureRecognizers/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="amD-Db-pbE" appends="YES" id="CCe-5h-w8M"/>
+                    </connections>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-可领取的礼金-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VqI-xC-6Fd">
                     <rect key="frame" x="149.5" y="728.5" width="115.5" height="22.5"/>
@@ -36,6 +40,11 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="51" y="136"/>
         </view>
+        <tapGestureRecognizer id="amD-Db-pbE">
+            <connections>
+                <action selector="moreClicked:" destination="-1" id="Ovm-xk-AMx"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="券" width="345" height="120"/>
