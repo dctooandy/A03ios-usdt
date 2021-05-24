@@ -118,6 +118,7 @@
         if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             NSString *urlStr = responseObj[@"payUrl"];
             if (!KIsEmptyString(urlStr)) {
+                urlStr = [urlStr stringByReplacingOccurrencesOfString:@"/list" withString:@""];
                 NSURL *url = [NSURL URLWithString:urlStr];
                 if ([[UIApplication sharedApplication] canOpenURL:url]) {
                     [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
