@@ -128,27 +128,22 @@
             self.title = @"余额宝转入详情";
             self.touZhuView.hidden = YES;
             self.touZhuViewH.constant = 0;
-            
+            self.recordStatusLb.text = self.model.yebStatusTxt;
             self.xiMaView.hidden = YES;
-            
-            [self.btnBtm setTitle:@"继续转入" forState:UIControlStateNormal];
-            self.btnBtm.hidden = NO;
-            self.btnBtm.enabled = YES;
+            self.tradeTypeLb.text = @"USDT支付";
+            self.processView.hidden = YES;
+            self.processViewH.constant = 0;
             break;
             
         case CNRecordTypeYEBWithdraw:
             self.title = @"余额宝转出详情";
             self.touZhuView.hidden = YES;
             self.touZhuViewH.constant = 0;
-            
+            self.recordStatusLb.text = self.model.yebStatusTxt;
             self.xiMaView.hidden = YES;
-            //TODO: 不知道能不能取消 等接口数据出来
-            if (self.model.flag == transactionProgress_waitCheckState ||
-                self.model.flag == transactionProgress_waitPayState) {
-                [self.btnBtm setTitle:@"取消订单" forState:UIControlStateNormal];
-                self.btnBtm.hidden = NO;
-                self.btnBtm.enabled = YES;
-            }
+            self.tradeTypeLb.text = @"USDT支付";
+            self.processView.hidden = YES;
+            self.processViewH.constant = 0;
             break;
             
         case CNRecordTypeDeposit:

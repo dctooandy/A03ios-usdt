@@ -217,7 +217,6 @@
     [CNBaseNetworking POST:path parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         
         if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-            //TODO: 余额宝模型增加字段？
             CreditQueryResultModel *resultModel = [CreditQueryResultModel cn_parse:responseObj];
             self.resultModel = resultModel;
             
@@ -317,7 +316,7 @@
     // 数据
     cell.titleLb.text = model.title;
     cell.amountLb.text = model.amount;
-    cell.timeLb.text = model.createDate;
+    cell.timeLb.text = model.createDate?:model.createdTime;
     cell.statusLb.text = model.flagDesc;
     cell.statusLb.textColor = model.statsColor;
     cell.currencyLb.text = model.currency?:[CNUserManager shareManager].userInfo.currency;
@@ -329,6 +328,10 @@
     }
     if (_recoType == transactionRecord_rechargeType) {
         cell.amountLb.text = model.arrivalAmount;
+    }
+    if (_recoType == transactionRecord_yuEBaoDeposit || _recoType == TransactionRecord_yuEBaoWithdraw) {
+        cell.titleLb.text = @"余额宝";
+        cell.statusLb.text = model.yebStatusTxt;
     }
     
     // ICON

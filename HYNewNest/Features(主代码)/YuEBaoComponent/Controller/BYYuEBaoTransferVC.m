@@ -15,6 +15,7 @@
 {
     BOOL _isAmountRight;
 }
+@property (weak, nonatomic) IBOutlet UILabel *lbThird;
 @property (weak, nonatomic) IBOutlet UILabel *lbTransableAmout;
 @property (weak, nonatomic) IBOutlet UILabel *lbCurrency;
 @property (weak, nonatomic) IBOutlet UITextField *tfTransAmout;
@@ -40,6 +41,7 @@
     
     if (self.type == YEBTransferTypeDeposit) {
         self.title = @"转入余额宝";
+        self.lbThird.text = @"可提现余额";
         [self.btnComfirm setTitle:@"确认转入" forState:UIControlStateNormal];
         self.tfTransAmout.placeholder = @"请输入转入金额";
         if (self.model.maxAmount == -1) {
@@ -56,6 +58,7 @@
         
     } else {
         self.title = @"转出余额宝";
+        self.lbThird.text = @"余额宝总额";
         [self.btnComfirm setTitle:@"确认转出" forState:UIControlStateNormal];
         self.tfTransAmout.placeholder = @"请输入转出金额";
         self.lbTips.text = @"放的越久，利息越多";

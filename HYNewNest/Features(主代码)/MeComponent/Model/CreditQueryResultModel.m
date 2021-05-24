@@ -11,15 +11,28 @@
 @implementation CreditQueryDataModel
 
 - (UIColor *)statsColor {
-    if ([self.flagDesc containsString:@"等待"] || [self.flagDesc containsString:@"待核"]) {
+    if ([self.flagDesc containsString:@"等待"] || [self.flagDesc containsString:@"待核"] || self.status == 0) {
         return kHexColor(0xAEA876);
-    } else if ([self.flagDesc containsString:@"完成"] || [self.flagDesc containsString:@"已到账"] || [self.flagDesc containsString:@"批准"]) {
+    } else if ([self.flagDesc containsString:@"完成"] || [self.flagDesc containsString:@"已到账"] || [self.flagDesc containsString:@"批准"] || self.status == 1) {
         return kHexColor(0x5A9F7C);
-    } else if ([self.flagDesc containsString:@"失效"] || [self.flagDesc containsString:@"取消"] || [self.flagDesc containsString:@"拒绝"]) {
+    } else if ([self.flagDesc containsString:@"失效"] || [self.flagDesc containsString:@"取消"] || [self.flagDesc containsString:@"拒绝"] || self.status == -1 || self.status == -9) {
         return kHexColor(0xBD4848);
     } else {
         return kHexColor(0xADBACD);
     }
+}
+
+- (NSString *)yebStatusTxt {
+    if (self.status == 0) {
+        return @"等待";
+    } else if (self.status == 1) {
+        return @"交易成功";
+    } else if (self.status == -1) {
+        return @"拒绝";
+    } else if (self.status == -9) {
+        return @"失效";
+    }
+    return @"";
 }
 
 - (NSString *)gameKindName {
