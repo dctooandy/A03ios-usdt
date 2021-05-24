@@ -84,24 +84,24 @@
     [self POST:(config_queryOnlineBanks) parameters:parm completionHandler:handler];
 }
 
-+ (void)submitOnlinePayOrderAmount:(NSString *)amount
-                          currency:(NSString *)currency
-                      usdtProtocol:(NSString *)usdtProtocol
-                           payType:(NSString *)payType
-                             payid:(NSString *)payid
-                        showQRCode:(NSInteger)showQRCode
-                           handler:(HandlerBlock)handler {
-    
-    NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
-    paramDic[@"amount"] = amount;
-    paramDic[@"currency"] = currency;
-    paramDic[@"usdtProtocol"] = usdtProtocol;
-    paramDic[@"payType"] = payType;
-    paramDic[@"payid"] = payid;
-    paramDic[@"showQRCode"] = @(showQRCode);
-    
-    [self POST:(config_createOnlineOrder) parameters:paramDic completionHandler:handler];
-}
+//+ (void)submitOnlinePayOrderAmount:(NSString *)amount
+//                          currency:(NSString *)currency
+//                      usdtProtocol:(NSString *)usdtProtocol
+//                           payType:(NSString *)payType
+//                             payid:(NSString *)payid
+//                        showQRCode:(NSInteger)showQRCode
+//                           handler:(HandlerBlock)handler {
+//
+//    NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
+//    paramDic[@"amount"] = amount;
+//    paramDic[@"currency"] = currency;
+//    paramDic[@"usdtProtocol"] = usdtProtocol;
+//    paramDic[@"payType"] = payType;
+//    paramDic[@"payid"] = payid;
+//    paramDic[@"showQRCode"] = @(showQRCode);
+//
+//    [self POST:(config_createOnlineOrder) parameters:paramDic completionHandler:handler];
+//}
 
 + (void)submitOnlinePayOrderRMBAmount:(NSString *)amount
                               payType:(NSString *)payType

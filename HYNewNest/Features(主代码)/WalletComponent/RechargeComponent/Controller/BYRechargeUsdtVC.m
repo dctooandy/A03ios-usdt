@@ -231,40 +231,26 @@ USDT支付渠道
                        amount:(NSString *)amountStr
                      protocol:(NSString *)protocolStr {
     
-    if ([HYRechargeHelper isUSDTOtherBankModel:model]) {
-        [CNRechargeRequest submitOnlinePayOrderV2Amount:amountStr
-                                               currency:model.currency
-                                           usdtProtocol:protocolStr
-                                                payType:model.payType
-                                                handler:^(id responseObj, NSString *errorMsg) {
-            
-            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-                ChargeManualMessgeView *view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"address"] amount:amountStr retelling:nil type:ChargeMsgTypeOTHERS];
-                view.clickBlock = ^(BOOL isSure) {
-                    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
-                };
-                [kKeywindow addSubview:view];
-            }
-        }];
+    [CNRechargeRequest submitOnlinePayOrderV2Amount:amountStr
+                                           currency:model.currency
+                                       usdtProtocol:protocolStr
+                                            payType:model.payType
+                                            handler:^(id responseObj, NSString *errorMsg) {
         
-    } else {
-        [CNRechargeRequest submitOnlinePayOrderAmount:amountStr
-                                             currency:model.currency
-                                         usdtProtocol:protocolStr
-                                              payType:model.payType
-                                                payid:self.curOnliBankModel.payid
-                                           showQRCode:1
-                                              handler:^(id responseObj, NSString *errorMsg) {
-            
-            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-                ChargeManualMessgeView *view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"payUrl"] amount:amountStr retelling:nil type:[HYRechargeHelper isUSDTOtherBankModel:model]?ChargeMsgTypeOTHERS:ChargeMsgTypeDCBOX];
-                view.clickBlock = ^(BOOL isSure) {
-                    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
-                };
-                [kKeywindow addSubview:view];
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            ChargeManualMessgeView *view;
+            if ([HYRechargeHelper isUSDTOtherBankModel:model]) {
+                view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"address"] amount:amountStr retelling:nil type:ChargeMsgTypeOTHERS];
+            } else {
+                view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"address"] amount:amountStr retelling:nil type:ChargeMsgTypeDCBOX];
             }
-        }];
-    }
+            view.clickBlock = ^(BOOL isSure) {
+                [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
+            };
+            [kKeywindow addSubview:view];
+        }
+    }];
+
 }
 
 
