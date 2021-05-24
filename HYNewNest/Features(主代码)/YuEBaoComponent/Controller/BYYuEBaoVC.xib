@@ -77,7 +77,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="22" id="9dk-Xy-XM3"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                            <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -106,7 +106,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="22" id="n8Y-vz-QYt"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                            <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -135,7 +135,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="22" id="3hl-Mj-czR"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                            <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>

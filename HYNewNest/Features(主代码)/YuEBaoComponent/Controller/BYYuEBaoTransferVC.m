@@ -69,7 +69,7 @@
         
         NSNumber *num = @(self.model.yebAmount.floatValue + self.model.yebInterest.floatValue);
         self.lbTransableAmout.text = [num jk_toDisplayNumberWithDigit:2];
-        [self allTransferMove];
+        [self allTransferOutMove];
         if (self.tfTransAmout.text.floatValue > 0) {
             self.btnComfirm.enabled = YES;
         }
@@ -87,15 +87,22 @@
 
 #pragma mark - ACTION
 
-- (void)allTransferMove {
+- (void)allTransferInMove {
     NSString *amount = self.lbTransableAmout.text;
     amount = [amount stringByReplacingOccurrencesOfString:@"," withString:@""];
+    amount = [amount componentsSeparatedByString:@"."].firstObject;
     self.tfTransAmout.text = amount;
     [self.tfTransAmout resignFirstResponder];
 }
 
+- (void)allTransferOutMove {
+    CGFloat amount = self.model.yebAmount.jk_CGFloatValue + self.model.yebInterest.jk_CGFloatValue;
+    self.tfTransAmout.text = [NSString stringWithFormat:@"%lf", amount];
+    [self.tfTransAmout resignFirstResponder];
+}
+
 - (IBAction)didTapAllTransBtn:(id)sender {
-    [self allTransferMove];
+    [self allTransferInMove];
 }
 
 - (IBAction)didTapComfirmTransBtn:(id)sender {
