@@ -237,6 +237,11 @@
     [CNYuEBaoRequest checkYuEBaoInterestLogsSumHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
             CNYuEBaoBalanceModel *yebModel = [CNYuEBaoBalanceModel cn_parse:responseObj];
+            if ([yebModel isKindOfClass:[NSArray class]]) {
+                yebModel = [[CNYuEBaoBalanceModel alloc] init];
+                yebModel.interestDay = @0;
+                yebModel.interestSeason = @0;
+            }
             self.yebModel = yebModel;
             self->yebSec = 120;
             [self resumeTimer];
