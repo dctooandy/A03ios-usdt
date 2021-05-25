@@ -74,11 +74,11 @@
     [self registerRemoteNotification];
     
     // 微脉圈
-#ifdef DEBUG
-    [YJChat initChatWithProductId:@"A03" env:1];
-#else
-    [YJChat initChatWithProductId:@"A03" env:2];
-#endif
+//#ifdef DEBUG
+//    [YJChat initChatWithProductId:@"A03" env:1];
+//#else
+//    [YJChat initChatWithProductId:@"A03" env:2];
+//#endif
     
     //这个是应用未启动但是通过点击通知的横幅来启动应用的时候
     NSDictionary *userInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];

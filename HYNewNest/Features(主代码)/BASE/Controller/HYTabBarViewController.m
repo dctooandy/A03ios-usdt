@@ -138,7 +138,7 @@
 
 - (void)setupCSSuspendBall {
     CGFloat btnWH = 60.f;
-    NSArray *imgNameGroup = @[@"cunqu", @"help", @"help", @"phone_s", @"phone_s"];
+    NSArray *imgNameGroup = @[ @"help", @"help", @"phone_s", @"phone_s"];//@"cunqu"
     SuspendBall *suspendBall = [SuspendBall suspendBallWithFrame:CGRectMake(kScreenWidth - btnWH, kScreenHeight *0.75, btnWH, btnWH) delegate:self subBallImageArray:imgNameGroup];
     suspendBall.top = kNavPlusStaBarHeight;
     suspendBall.bottom = kTabBarHeight + kSafeAreaHeight;
@@ -187,20 +187,20 @@
     [self.suspendBall suspendBallShow];
     
     if(tag == 0){
-        //客服 微脉圈
-        [NNPageRouter presentWMQCustomerService];
-    }else if (tag == 1){
+//        //客服 微脉圈
+//        [NNPageRouter presentWMQCustomerService];
         //客服 存取款问题
         [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
-    }else if (tag == 2){
+    }else if (tag == 1){
         //客服 其他问题
         [NNPageRouter presentOCSS_VC:CNLive800TypeNormal];
-    }else if (tag == 3){
+    }else if (tag == 2){
         //电话回拨
         [CNServerView showServerWithDelegate:self];
-    }else if (tag == 4){
+    }else if (tag == 3){
         //400
         [self call400];
+    }else if (tag == 4){
     }
 }
 
