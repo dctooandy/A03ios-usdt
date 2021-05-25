@@ -99,8 +99,8 @@
 }
 
 - (void)allTransferOutMove {
-    CGFloat amount = self.model.yebAmount.jk_CGFloatValue + self.model.yebInterest.jk_CGFloatValue;
-    self.tfTransAmout.text = [NSString stringWithFormat:@"%lf", amount];
+    NSString *trasnAmount = [self.lbTransableAmout.text stringByReplacingOccurrencesOfString:@"," withString:@""];
+    self.tfTransAmout.text = trasnAmount;
     [self.tfTransAmout resignFirstResponder];
 }
 

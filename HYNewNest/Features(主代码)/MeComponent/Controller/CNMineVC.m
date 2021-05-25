@@ -96,7 +96,7 @@
 - (NSArray *)getCurrentFastEntryName {
     if ([CNUserManager shareManager].userInfo.newWalletFlag) {
         if ([CNUserManager shareManager].isUsdtMode) {
-            return @[@"优惠券", @"洗码", @"余额宝", @"交易记录", @"消息中心", @"提币地址", @"安全中心"];
+            return @[@"优惠券", @"洗码", @"余额宝", @"消息中心", @"提币地址", @"安全中心", @"交易记录"];
         } else {
             return @[@"优惠券", @"洗码", @"交易记录", @"消息中心", @"银行卡", @"安全中心"];
         }
@@ -109,7 +109,7 @@
 - (NSArray *)getCurrentFastEntryIconName {
     if ([CNUserManager shareManager].userInfo.newWalletFlag) {
         if ([CNUserManager shareManager].isUsdtMode) {
-            return @[@"yhq", @"xm", @"yeb", @"jl", @"xx", @"yhk", @"aq"];
+            return @[@"yhq", @"xm", @"yeb", @"xx", @"yhk", @"aq", @"jl"];
         } else {
             return @[@"yhq", @"xm", @"jl", @"xx", @"yhk", @"aq"];
         }

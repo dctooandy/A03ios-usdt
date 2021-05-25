@@ -28,7 +28,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wl9-Aw-D1i">
-                    <rect key="frame" x="15" y="59" width="384" height="270"/>
+                    <rect key="frame" x="15" y="59" width="384" height="258.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PXu-u4-7M5">
                             <rect key="frame" x="155" y="42" width="74" height="33"/>
@@ -107,8 +107,8 @@
                         <constraint firstItem="f1a-dR-Pjr" firstAttribute="centerX" secondItem="wl9-Aw-D1i" secondAttribute="centerX" id="Brg-nB-nPP"/>
                         <constraint firstItem="PXu-u4-7M5" firstAttribute="top" secondItem="wl9-Aw-D1i" secondAttribute="top" constant="42" id="C3b-hU-r5G"/>
                         <constraint firstItem="SFg-i5-fK8" firstAttribute="top" secondItem="f1a-dR-Pjr" secondAttribute="bottom" constant="43" id="Gtk-gS-jbM"/>
-                        <constraint firstAttribute="height" constant="270" id="Kml-gk-N9c"/>
                         <constraint firstItem="n1a-7N-D4n" firstAttribute="leading" secondItem="SFg-i5-fK8" secondAttribute="leading" id="MYR-X6-qFh"/>
+                        <constraint firstAttribute="bottom" secondItem="dhW-Lt-Weh" secondAttribute="bottom" constant="30" id="RFT-v9-gsD"/>
                         <constraint firstItem="dhW-Lt-Weh" firstAttribute="leading" secondItem="SFg-i5-fK8" secondAttribute="leading" id="RyX-hI-9mw"/>
                         <constraint firstItem="f1a-dR-Pjr" firstAttribute="top" secondItem="EUC-K7-a0c" secondAttribute="bottom" constant="7" id="VF3-ht-uYT"/>
                         <constraint firstItem="dhW-Lt-Weh" firstAttribute="top" secondItem="SFg-i5-fK8" secondAttribute="bottom" constant="8.5" id="b4Q-ZQ-XPQ"/>

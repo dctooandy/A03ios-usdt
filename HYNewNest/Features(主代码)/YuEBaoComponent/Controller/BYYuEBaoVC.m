@@ -27,6 +27,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *lb10Percent;
 @property (weak, nonatomic) IBOutlet UILabel *lb20Percent;
 @property (strong,nonatomic) CNYuEBaoConfigModel *model;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ticktStackViewHeightConst;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ticketStackView1HeightConst;
+
 @end
 
 @implementation BYYuEBaoVC
@@ -52,6 +55,10 @@
     [_btnDeposit setTitleColor:gColor forState:UIControlStateNormal];
     [_btnWithdraw setTitleColor:gColor forState:UIControlStateNormal];
     
+    if (kScreenHeight <= 667) {
+        _ticktStackViewHeightConst.constant = 48;
+        _ticketStackView1HeightConst.constant = 48;
+    }
 }
 
 - (void)setModel:(CNYuEBaoConfigModel *)model {
@@ -64,11 +71,6 @@
 
 - (IBAction)didTapRuleBtn:(id)sender {
     [HYVIPRuleAlertView showYuEBaoRule];
-}
-
-- (IBAction)didTapYuEBaoTotalAmount:(id)sender {
-    //???:
-    [CNTOPHUB showAlert:@"还未配置跳转链接"];
 }
 
 - (IBAction)didTapDeposit2YuEBao:(id)sender {

@@ -92,7 +92,7 @@
     }
 
     [self.totalBalance showIndicatorIsBig:NO];
-//    [self.effectiveBetAmountLb showIndicatorIsBig:NO];
+    [self.effectiveBetAmountLb showIndicatorIsBig:NO];
     [self.nonWithdrableAmountLb showIndicatorIsBig:NO];
     [self.withdrableAmountLb showIndicatorIsBig:NO];
     [self.voucherAmountLb showIndicatorIsBig:NO];
@@ -103,11 +103,11 @@
 
     WEAKSELF_DEFINE
     if (isRefreshing) {
-//        [[BalanceManager shareManager] requestBetAmountHandler:^(BetAmountModel * _Nonnull model) {
-//            STRONGSELF_DEFINE
-//            [strongSelf.effectiveBetAmountLb hideIndicatorWithText:[model.weekBetAmount jk_toDisplayNumberWithDigit:2]];
-//
-//        }];
+        [[BalanceManager shareManager] requestBetAmountHandler:^(BetAmountModel * _Nonnull model) {
+            STRONGSELF_DEFINE
+            [strongSelf.effectiveBetAmountLb hideIndicatorWithText:[model.weekBetAmount jk_toDisplayNumberWithDigit:2]];
+
+        }];
         [[BalanceManager shareManager] requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
             STRONGSELF_DEFINE
             [strongSelf setupDataWithModel:model];
@@ -118,11 +118,10 @@
             [strongSelf.yebProfitYesterdayLb hideIndicatorWithText:[model.interestDay jk_toDisplayNumberWithDigit:2]];
         }];
     } else {
-//        [[BalanceManager shareManager] getWeeklyBetAmountHandler:^(BetAmountModel * _Nonnull model) {
-//            STRONGSELF_DEFINE
-//            [strongSelf.effectiveBetAmountLb hideIndicatorWithText:[model.weekBetAmount jk_toDisplayNumberWithDigit:2]];
-//
-//        }];
+        [[BalanceManager shareManager] getWeeklyBetAmountHandler:^(BetAmountModel * _Nonnull model) {
+            STRONGSELF_DEFINE
+            [strongSelf.effectiveBetAmountLb hideIndicatorWithText:[model.weekBetAmount jk_toDisplayNumberWithDigit:2]];
+        }];
         [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
             STRONGSELF_DEFINE
             [strongSelf setupDataWithModel:model];
