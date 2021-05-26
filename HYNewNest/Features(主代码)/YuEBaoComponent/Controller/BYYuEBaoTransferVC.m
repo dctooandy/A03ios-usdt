@@ -41,7 +41,7 @@
     
     if (self.type == YEBTransferTypeDeposit) {
         self.title = @"转入余额宝";
-        self.lbThird.text = @"可提现余额";
+        self.lbThird.text = @"可提币余额";
         [self.btnComfirm setTitle:@"确认转入" forState:UIControlStateNormal];
         self.tfTransAmout.placeholder = @"请输入转入金额";
         if (self.model.maxAmount == -1) {

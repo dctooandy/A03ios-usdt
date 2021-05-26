@@ -78,6 +78,7 @@
             
         } else {
             [LoadingView hide];
+            // 有错误信息的错误
             if (error) {
                 // 错误信息处理
                 if ([response.head.errCode isEqualToString:Network_TimeOut_ErroCode]) {
@@ -86,13 +87,16 @@
                     [CNTOPHUB showError:error.localizedDescription];
                 }
                 !completionHandler ?: completionHandler(nil, error.localizedDescription);
+                
+            // 无错误信息的错误
             } else {
                 //一些错误信息不要提示
                 if ([response.head.errCode isEqualToString:Network_TopDomainEmpty_ErroCode]) {
-                    // 不显示错误
+                    //非白名单用户错误 不提示
                 }
-                else if (![path containsString:config_getByCardBin]) {
+                else if (![path containsString:config_getByCardBin]) { //非银行卡错误 才提示
                     [CNTOPHUB showError:response.head.errMsg];
+                    
                 }
                 !completionHandler ?: completionHandler(response.head.errCode, response.head.errMsg);
             }
