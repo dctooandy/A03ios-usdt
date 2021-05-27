@@ -63,7 +63,7 @@
 
 - (IBAction)didTapDetailBtn:(id)sender {
     NSString *tx = [CNUserManager shareManager].isUsdtMode?@"提币":@"提现";
-    NSString *content = [NSString stringWithFormat:@"总余额 = 可%@额度 + 不可%@额度 + 优惠券总额 + 厅内额度", tx, tx];
+    NSString *content = [NSString stringWithFormat:@"账户余额 = 可%@额度 + 不可%@额度 + 优惠券总额 + 厅内额度", tx, tx];
     [HYOneBtnAlertView showWithTitle:@"温馨提示" content:content comfirmText:@"知道了" comfirmHandler:^{
     }];
 }

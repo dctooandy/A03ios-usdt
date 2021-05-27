@@ -45,9 +45,9 @@
         [self.btnComfirm setTitle:@"确认转入" forState:UIControlStateNormal];
         self.tfTransAmout.placeholder = @"请输入转入金额";
         if (self.model.maxAmount == -1) {
-            self.lbTips.text = [NSString stringWithFormat:@"最低买入金额%ldUSDT", self.model.minAmount];
+            self.lbTips.text = [NSString stringWithFormat:@"最低买入金额%ldUSDT", (long)self.model.minAmount];
         } else {
-            self.lbTips.text = [NSString stringWithFormat:@"最低买入金额%ldUSDT，最高可买入%ldUSDT", self.model.minAmount, self.model.maxAmount];
+            self.lbTips.text = [NSString stringWithFormat:@"最低买入金额%ldUSDT，最高可买入%ldUSDT", (long)self.model.minAmount, (long)self.model.maxAmount];
         }
         
         [self.lbTransableAmout showIndicatorIsBig:YES];
@@ -95,7 +95,7 @@
     amount = [amount stringByReplacingOccurrencesOfString:@"," withString:@""];
     amount = [amount componentsSeparatedByString:@"."].firstObject;
     self.tfTransAmout.text = amount;
-    [self.tfTransAmout resignFirstResponder];
+    [self amountTfDidResignFirstResponder:self.tfTransAmout];
 }
 
 - (void)allTransferOutMove {
