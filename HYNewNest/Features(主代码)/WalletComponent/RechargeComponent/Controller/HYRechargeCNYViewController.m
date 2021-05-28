@@ -161,7 +161,7 @@
 
 - (void)queryCNYPayways {
     [CNRechargeRequest queryPayWaysV3Handler:^(id responseObj, NSString *errorMsg) {
-        if (!KIsEmptyString(errorMsg)) {
+        if (errorMsg) {
             return;
         }
         PayWayV3Model *resultModel = [PayWayV3Model cn_parse:responseObj];

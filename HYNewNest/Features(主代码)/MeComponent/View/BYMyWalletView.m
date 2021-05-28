@@ -13,6 +13,9 @@
 #import "HYOneBtnAlertView.h"
 
 @interface BYMyWalletView()
+{
+    BOOL _isExpanded;
+}
 @property (weak, nonatomic) IBOutlet UIImageView *wenhaoImgv;
 @property (weak, nonatomic) IBOutlet UILabel *totalBalance; //!>总余额
 @property (weak, nonatomic) IBOutlet UILabel *effectiveBetAmountLb; //!>本周有效投注额
@@ -27,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *yebAmountLb; //!>余额宝余额
 @property (weak, nonatomic) IBOutlet UILabel *yebInterestLb; //!>季度利息
 @property (weak, nonatomic) IBOutlet UILabel *yebProfitYesterdayLb; //!>昨日收益
+@property (weak, nonatomic) IBOutlet UIView *middleZoomBgView;
 @property (weak, nonatomic) IBOutlet UIView *btmZoomBgView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *expandBtnTopConst;
 @property (weak, nonatomic) IBOutlet UIView *topZoomBgView;
@@ -39,6 +43,7 @@
 - (void)loadViewFromXib {
     [super loadViewFromXib];
     
+    _isExpanded = NO;
     [self requestAccountBalances:NO];
     
 }
@@ -46,7 +51,8 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    [_btmZoomBgView jk_setRoundedCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight radius:12];
+    [_btmZoomBgView jk_setRoundedCorners:UIRectCornerAllCorners radius:12];
+    [_middleZoomBgView jk_setRoundedCorners:UIRectCornerAllCorners radius:12];
     [_topZoomBgView jk_setRoundedCorners:UIRectCornerAllCorners radius:12];
 }
 
@@ -62,22 +68,40 @@
 }
 
 - (IBAction)didTapDetailBtn:(id)sender {
-    NSString *tx = [CNUserManager shareManager].isUsdtMode?@"提币":@"提现";
-    NSString *content = [NSString stringWithFormat:@"账户余额 = 可%@额度 + 不可%@额度 + 优惠券总额 + 厅内额度", tx, tx];
+    NSString *content;
+    if ([CNUserManager shareManager].isUsdtMode) {
+        content = @"账户余额 = 可提币额度 + 不可提币额度 + 优惠券总额 + 厅内额度 + 余额宝";
+    } else {
+        content = @"账户余额 = 可提币额度 + 不可提币额度 + 优惠券总额 + 厅内额度";
+    }
+
     [HYOneBtnAlertView showWithTitle:@"温馨提示" content:content comfirmText:@"知道了" comfirmHandler:^{
     }];
 }
 
 - (IBAction)didTapExpandBtn:(UIButton *)sender {
-    if (sender.isSelected) { // 已展开
+    sender.selected = !sender.isSelected;
+    _isExpanded = !_isExpanded;
+    [self refreshUI];
+}
+
+- (void)refreshUI {
+    if (!_isExpanded) { // 已展开
+        _middleZoomBgView.hidden = YES;
         _btmZoomBgView.hidden = YES;
         _expandBtnTopConst.constant = 56;
     } else { //未展开
-        _btmZoomBgView.hidden = NO;
-        _expandBtnTopConst.constant = 56+67*2;
+        if ([CNUserManager shareManager].isUsdtMode) {
+            _middleZoomBgView.hidden = NO;
+            _btmZoomBgView.hidden = NO;
+            _expandBtnTopConst.constant = 56+67*2;
+        } else {
+            _middleZoomBgView.hidden = NO;
+            _btmZoomBgView.hidden = YES;
+            _expandBtnTopConst.constant = 56+67;
+        }
     }
-    sender.selected = !sender.isSelected;
-    !_expandBlock?:_expandBlock(sender.isSelected);
+    !_expandBlock?:_expandBlock(_isExpanded);
 }
 
 
@@ -100,6 +124,7 @@
     [self.yebAmountLb showIndicatorIsBig:NO];
     [self.yebInterestLb showIndicatorIsBig:NO];
     [self.yebProfitYesterdayLb showIndicatorIsBig:NO];
+    [self refreshUI];
 
     WEAKSELF_DEFINE
     if (isRefreshing) {
@@ -135,7 +160,7 @@
 }
 
 - (void)setupDataWithModel:(AccountMoneyDetailModel *)model {
-    [self.totalBalance hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
+    
     [self.withdrableAmountLb hideIndicatorWithText:[model.walletBalance.withdrawable jk_toDisplayNumberWithDigit:2]];
     [self.nonWithdrableAmountLb hideIndicatorWithText:[model.walletBalance.nonWithDrawable jk_toDisplayNumberWithDigit:2]];
     [self.voucherAmountLb hideIndicatorWithText:[model.walletBalance.promotion jk_toDisplayNumberWithDigit:2]];
@@ -143,7 +168,8 @@
     
     float yebAmount = model.yebAmount.floatValue + model.yebInterest.floatValue;
     [self.yebAmountLb hideIndicatorWithText:[@(yebAmount) jk_toDisplayNumberWithDigit:2]];
-    
+    float totalAmount = model.balance.floatValue + yebAmount;
+    [self.totalBalance hideIndicatorWithText:[@(totalAmount) jk_toDisplayNumberWithDigit:2]];
 }
 
 @end

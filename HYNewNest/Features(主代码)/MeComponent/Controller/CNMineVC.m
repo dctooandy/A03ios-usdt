@@ -338,7 +338,11 @@
                 BYMyWalletView *view = (BYMyWalletView *)self.walletView;
                 view.expandBlock = ^(BOOL isExpand) {
                     if (isExpand) {
-                        self.walletContainerHeightCons.constant = 202;
+                        if ([CNUserManager shareManager].isUsdtMode) {
+                            self.walletContainerHeightCons.constant = 67*3+1;
+                        } else {
+                            self.walletContainerHeightCons.constant = 67*2+1;
+                        }
                     } else {
                         self.walletContainerHeightCons.constant = 67+11;
                     }
