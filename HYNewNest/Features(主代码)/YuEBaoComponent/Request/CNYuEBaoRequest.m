@@ -22,20 +22,13 @@
     [self POST:kGatewayExtraPath(config_yebPromo) parameters:param completionHandler:handler];
 }
 
-+ (void)transferInYuEBaoAmount:(NSNumber *)amount handler:(HandlerBlock)handler {
++ (void)transferYuEBaoType:(YEBTransferType)type amount:(NSNumber *)amount handler:(HandlerBlock)handler {
     NSMutableDictionary *param = @{}.mutableCopy;
     param[@"clientType"] = @4; //1=PC 2=H5 3=android 4=iOS
     param[@"remarks"] = @"iOS";
     param[@"amount"] = amount;
-    [self POST:config_yebTransferIn parameters:param completionHandler:handler];
-}
-
-+ (void)transferOutYuEBaoAmount:(NSNumber *)amount handler:(HandlerBlock)handler {
-    NSMutableDictionary *param = @{}.mutableCopy;
-    param[@"clientType"] = @4; //1=PC 2=H5 3=android 4=iOS
-    param[@"remarks"] = @"iOS";
-    param[@"amount"] = amount;
-    [self POST:config_yebTransferOut parameters:param completionHandler:handler];
+    NSString *urlStr = (type==YEBTransferTypeDeposit)?config_yebTransferIn:config_yebTransferOut;
+    [self POST:urlStr parameters:param completionHandler:handler];
 }
 
 + (void)checkYuEBaoConfigHandler:(HandlerBlock)handler {

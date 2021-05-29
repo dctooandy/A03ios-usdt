@@ -7,14 +7,10 @@
 //
 
 #import "CNBaseVC.h"
-#import "CNYuEBaoConfigModel.h"
+#import "CNYuEBaoRequest.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, YEBTransferType) {
-    YEBTransferTypeWithdraw = 0,
-    YEBTransferTypeDeposit,
-};
 
 @interface BYYuEBaoTransferVC : CNBaseVC
 - (instancetype)initWithType:(YEBTransferType)type configModel:(CNYuEBaoConfigModel *)model;

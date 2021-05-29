@@ -162,7 +162,7 @@
                     <rect key="frame" x="0.0" y="47" width="503" height="87"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jI1-A9-O9a" userLabel="line_separator">
-                            <rect key="frame" x="165.5" y="49.5" width="0.5" height="12"/>
+                            <rect key="frame" x="165.5" y="68" width="0.5" height="12"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10160661610000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="0.5" id="V5v-rN-Ktn"/>
@@ -170,7 +170,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W7F-oS-D1f" userLabel="line_separator">
-                            <rect key="frame" x="331.5" y="49.5" width="0.5" height="12"/>
+                            <rect key="frame" x="331.5" y="68" width="0.5" height="12"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10160661610000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="0.5" id="QP0-rJ-cLg"/>
@@ -185,7 +185,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mn6-Yi-dPJ">
-                            <rect key="frame" x="166" y="20.5" width="165.5" height="30"/>
+                            <rect key="frame" x="166" y="20.5" width="165.5" height="66.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vis-mo-iP5">
                                     <rect key="frame" x="69.5" y="14.5" width="27" height="19"/>
@@ -207,7 +207,7 @@
                                     </constraints>
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qry-Pm-M1Q">
-                                    <rect key="frame" x="0.0" y="0.0" width="165.5" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="165.5" height="66.5"/>
                                     <connections>
                                         <action selector="click2ShowAccountBalncesDetail:" destination="-1" eventType="touchUpInside" id="g19-Zb-0L8"/>
                                     </connections>
@@ -219,9 +219,9 @@
                                 <constraint firstItem="Vis-mo-iP5" firstAttribute="top" secondItem="Mn6-Yi-dPJ" secondAttribute="top" constant="14.5" id="1Rf-Hb-8bK"/>
                                 <constraint firstItem="dBN-q5-7th" firstAttribute="centerX" secondItem="Mn6-Yi-dPJ" secondAttribute="centerX" constant="-5" id="Anw-F1-Hfd"/>
                                 <constraint firstItem="dBN-q5-7th" firstAttribute="top" secondItem="Vis-mo-iP5" secondAttribute="bottom" constant="1" id="EZz-6B-ug6"/>
+                                <constraint firstAttribute="bottom" secondItem="qry-Pm-M1Q" secondAttribute="bottom" id="JzL-yR-DY3"/>
                                 <constraint firstAttribute="trailing" secondItem="qry-Pm-M1Q" secondAttribute="trailing" id="KeC-SH-ZOC"/>
                                 <constraint firstItem="Bc9-5A-Gkj" firstAttribute="leading" secondItem="dBN-q5-7th" secondAttribute="trailing" constant="2.5" id="Nrh-Bu-HHB"/>
-                                <constraint firstAttribute="bottom" secondItem="qry-Pm-M1Q" secondAttribute="bottom" id="XS7-Yp-u1P"/>
                                 <constraint firstItem="qry-Pm-M1Q" firstAttribute="top" secondItem="Mn6-Yi-dPJ" secondAttribute="top" id="YDC-uy-kUN"/>
                                 <constraint firstItem="Bc9-5A-Gkj" firstAttribute="centerY" secondItem="dBN-q5-7th" secondAttribute="centerY" id="YFv-Tf-fhE"/>
                                 <constraint firstItem="Vis-mo-iP5" firstAttribute="centerX" secondItem="Mn6-Yi-dPJ" secondAttribute="centerX" id="YSX-Hh-spT"/>
@@ -299,6 +299,7 @@
                         <constraint firstAttribute="bottom" secondItem="YTX-Jn-CUR" secondAttribute="bottom" id="ohk-bW-KHG"/>
                         <constraint firstAttribute="trailing" secondItem="YTX-Jn-CUR" secondAttribute="trailing" id="s9E-Lo-7Pa"/>
                         <constraint firstItem="jI1-A9-O9a" firstAttribute="centerY" secondItem="Mn6-Yi-dPJ" secondAttribute="centerY" constant="20" id="uqJ-bh-wtG"/>
+                        <constraint firstAttribute="bottom" secondItem="Mn6-Yi-dPJ" secondAttribute="bottom" id="v9A-D0-5OX"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1AI-F3-gMh">

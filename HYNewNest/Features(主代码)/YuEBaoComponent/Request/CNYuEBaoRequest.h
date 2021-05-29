@@ -9,17 +9,22 @@
 #import "CNBaseNetworking.h"
 #import "CNYuEBaoConfigModel.h"
 #import "CNYuEBaoBalanceModel.h"
+#import "CNYuEBaoTransferModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+typedef NS_ENUM(NSInteger, YEBTransferType) {
+    YEBTransferTypeWithdraw = 0,
+    YEBTransferTypeDeposit,
+};
 
 @interface CNYuEBaoRequest : CNBaseNetworking
 
 + (void)checkYuEBaoInterestLogsSumHandler:(HandlerBlock)handler;
 + (void)checkYuEBaoTicketsHandler:(HandlerBlock)handler;
-+ (void)transferInYuEBaoAmount:(NSNumber *)amount
-                       handler:(HandlerBlock)handler;
-+ (void)transferOutYuEBaoAmount:(NSNumber *)amount
-                        handler:(HandlerBlock)handler;
++ (void)transferYuEBaoType:(YEBTransferType)type
+                    amount:(NSNumber *)amount
+                   handler:(HandlerBlock)handler;
 + (void)checkYuEBaoConfigHandler:(HandlerBlock)handler;
 
 @end

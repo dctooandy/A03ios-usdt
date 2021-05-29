@@ -264,7 +264,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" id="bWe-Js-K1F">
-                    <rect key="frame" x="0.0" y="130" width="404" height="130"/>
+                    <rect key="frame" x="0.0" y="0.0" width="404" height="130"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shape" translatesAutoresizingMaskIntoConstraints="NO" id="Sim-dp-tCw">

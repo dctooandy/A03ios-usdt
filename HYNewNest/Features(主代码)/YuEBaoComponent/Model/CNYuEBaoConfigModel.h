@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign) NSInteger              maxHours;
 @property (nonatomic , assign) NSInteger              minAmount; //最小存入金额
 @property (nonatomic , assign) NSInteger              minHours;
-@property (nonatomic , assign) NSInteger              periodHours;
+@property (nonatomic , assign) NSInteger              periodHours; //核算周期（用户下次计息时间 = 当前时间 + periodHours）
 @property (nonatomic , copy) NSString              * rate;
 @property (nonatomic , assign) NSInteger              supportMulti;
 @property (nonatomic , copy) NSString              * value;

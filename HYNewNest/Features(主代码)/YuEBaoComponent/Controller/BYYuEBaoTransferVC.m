@@ -10,6 +10,7 @@
 #import "CNTwoStatusBtn.h"
 #import "CNYuEBaoRequest.h"
 #import "BalanceManager.h"
+#import "BYYuEBaoTransAlertView.h"
 
 @interface BYYuEBaoTransferVC ()
 {
@@ -45,10 +46,11 @@
         [self.btnComfirm setTitle:@"确认转入" forState:UIControlStateNormal];
         self.tfTransAmout.placeholder = @"请输入转入金额";
         if (self.model.maxAmount == -1) {
-            self.lbTips.text = [NSString stringWithFormat:@"最低买入金额%ldUSDT", (long)self.model.minAmount];
+            self.lbWrongMsg.text = [NSString stringWithFormat:@"*最低买入金额%ldUSDT", (long)self.model.minAmount];
         } else {
-            self.lbTips.text = [NSString stringWithFormat:@"最低买入金额%ldUSDT，最高可买入%ldUSDT", (long)self.model.minAmount, (long)self.model.maxAmount];
+            self.lbWrongMsg.text = [NSString stringWithFormat:@"*最低买入金额%ldUSDT，最高可买入%ldUSDT", (long)self.model.minAmount, (long)self.model.maxAmount];
         }
+        self.lbTips.text = [NSString stringWithFormat:@"最小计息时间%ld小时，多次转入时将结算利息并重置计息时间", (long)self.model.periodHours];
         
         [self.lbTransableAmout showIndicatorIsBig:YES];
         [BalanceManager requestWithdrawAbleBalanceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
@@ -111,19 +113,24 @@
 - (IBAction)didTapComfirmTransBtn:(id)sender {
     
     NSNumber *amount = [NSNumber numberWithDouble:self.tfTransAmout.text.doubleValue];
-    if (self.type == YEBTransferTypeDeposit) {
-        [CNYuEBaoRequest transferInYuEBaoAmount:amount handler:^(id responseObj, NSString *errorMsg) {
-            if (!errorMsg) {
+    [CNYuEBaoRequest transferYuEBaoType:self.type amount:amount handler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            CNYuEBaoTransferModel *model = [CNYuEBaoTransferModel cn_parse:responseObj];
+//            if (model.flag == 1) {
+                // 弹窗
+                if (self.type == YEBTransferTypeDeposit) {
+                    NSInteger hour = self.model.periodHours;
+                    NSDate *date = [NSDate jk_dateWithHoursFromNow:hour];
+                    NSString *intersetNexTime = [date jk_stringWithFormat:@"yyyy-MM-dd HH:mm:ss"]; //下次计息时间
+                    NSString *lasTimeInterset = model.lastProfitAmount; //上次利息金额
+                    [BYYuEBaoTransAlertView showTransAlertTransAmount:model.amount interest:lasTimeInterset intersetNexTime:intersetNexTime];
+                } else {
+                    [BYYuEBaoTransAlertView showTransAlertTransAmount:model.amount interest:nil intersetNexTime:nil];
+                }
                 [self.navigationController popViewControllerAnimated:YES];
-            }
-        }];
-    } else {
-        [CNYuEBaoRequest transferOutYuEBaoAmount:amount handler:^(id responseObj, NSString *errorMsg) {
-            if (!errorMsg) {
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-        }];
-    }
+//            }
+        }
+    }];
 }
 
 

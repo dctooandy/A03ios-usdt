@@ -348,6 +348,8 @@
 		3DE3CA9024ECF6E300D591C4 /* CIRCULAR.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE3CA8E24ECF6E300D591C4 /* CIRCULAR.png */; };
 		3DE3CA9324ED5CFC00D591C4 /* HYUpdateAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3CA9224ED5CFC00D591C4 /* HYUpdateAlertView.m */; };
 		3DE3CA9624ED6AEC00D591C4 /* UILabel+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3CA9524ED6AEC00D591C4 /* UILabel+Indicator.m */; };
+		3DED18B52662245100823BD7 /* CNYuEBaoTransferModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DED18B42662245100823BD7 /* CNYuEBaoTransferModel.m */; };
+		3DED18BD266232F600823BD7 /* BYYuEBaoTransAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DED18BC266232F600823BD7 /* BYYuEBaoTransAlertView.m */; };
 		3DF031FE258DA36A00AF7A36 /* CNSuperCopartnerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF031FD258DA36A00AF7A36 /* CNSuperCopartnerRequest.m */; };
 		3DF03201258DD16900AF7A36 /* SCBetRankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF03200258DD16900AF7A36 /* SCBetRankModel.m */; };
 		3DF03204258DE61400AF7A36 /* SCMyRecommenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF03203258DE61400AF7A36 /* SCMyRecommenModel.m */; };
@@ -1605,6 +1607,10 @@
 		3DE3CA9224ED5CFC00D591C4 /* HYUpdateAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYUpdateAlertView.m; sourceTree = "<group>"; };
 		3DE3CA9424ED6AEC00D591C4 /* UILabel+Indicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Indicator.h"; sourceTree = "<group>"; };
 		3DE3CA9524ED6AEC00D591C4 /* UILabel+Indicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Indicator.m"; sourceTree = "<group>"; };
+		3DED18B32662245100823BD7 /* CNYuEBaoTransferModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNYuEBaoTransferModel.h; sourceTree = "<group>"; };
+		3DED18B42662245100823BD7 /* CNYuEBaoTransferModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNYuEBaoTransferModel.m; sourceTree = "<group>"; };
+		3DED18BB266232F500823BD7 /* BYYuEBaoTransAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYYuEBaoTransAlertView.h; sourceTree = "<group>"; };
+		3DED18BC266232F600823BD7 /* BYYuEBaoTransAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYYuEBaoTransAlertView.m; sourceTree = "<group>"; };
 		3DF031FB258DA03900AF7A36 /* VIPRankConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPRankConst.h; sourceTree = "<group>"; };
 		3DF031FC258DA36A00AF7A36 /* CNSuperCopartnerRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNSuperCopartnerRequest.h; sourceTree = "<group>"; };
 		3DF031FD258DA36A00AF7A36 /* CNSuperCopartnerRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNSuperCopartnerRequest.m; sourceTree = "<group>"; };
@@ -3863,6 +3869,8 @@
 				3D2B0872264FC4560008BB5F /* CNYuEBaoConfigModel.m */,
 				3D31A2602657A425008613E9 /* CNYuEBaoBalanceModel.h */,
 				3D31A2612657A425008613E9 /* CNYuEBaoBalanceModel.m */,
+				3DED18B32662245100823BD7 /* CNYuEBaoTransferModel.h */,
+				3DED18B42662245100823BD7 /* CNYuEBaoTransferModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4954,6 +4962,8 @@
 				3DB600B52627FB5C002278F8 /* HYNewUsrMissonAlertView.m */,
 				3D972434262E96B0005E930C /* HYSuperCopartnerAlertView.h */,
 				3D972435262E96B1005E930C /* HYSuperCopartnerAlertView.m */,
+				3DED18BB266232F500823BD7 /* BYYuEBaoTransAlertView.h */,
+				3DED18BC266232F600823BD7 /* BYYuEBaoTransAlertView.m */,
 			);
 			path = HYAlertView;
 			sourceTree = "<group>";
@@ -6323,6 +6333,7 @@
 				0487C97024CE9A630013715A /* BRAddressModel.m in Sources */,
 				0430AB2D24E2A3DC00C873DC /* BRImageStringPickerView.m in Sources */,
 				3DC14E572601DDCD00D6DB85 /* BYVocherModel.m in Sources */,
+				3DED18B52662245100823BD7 /* CNYuEBaoTransferModel.m in Sources */,
 				044DC68B24DBB420005CB550 /* CNVerifyMsgAlertView.m in Sources */,
 				D571B19624BE9F120087B5EC /* CNLineView.m in Sources */,
 				0487C99924CEDE6B0013715A /* CNChoseImageCCell.m in Sources */,
@@ -6528,6 +6539,7 @@
 				E986A1A324CB37C3000F9CFF /* HYBaseAlertView.m in Sources */,
 				040A08D624E114A900FBD534 /* OCBarrageTrackInfo.m in Sources */,
 				E9D9446C24C1EC1300252222 /* HYTabBarViewController.m in Sources */,
+				3DED18BD266232F600823BD7 /* BYYuEBaoTransAlertView.m in Sources */,
 				3DC14E4325F9DF0800D6DB85 /* BYVocherTVCell.m in Sources */,
 				3D41DE7F25199DEE000CA1D6 /* VIPMonlyAlertCell.m in Sources */,
 				E986A12624C7EAA6000F9CFF /* OtherAppModel.m in Sources */,
@@ -6754,7 +6766,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.88;
+				MARKETING_VERSION = 3.6.89;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-geh";
 				PRODUCT_NAME = "币游_dev";
@@ -6814,7 +6826,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6.88;
+				MARKETING_VERSION = 3.6.89;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-geh";
 				PRODUCT_NAME = "币游";
