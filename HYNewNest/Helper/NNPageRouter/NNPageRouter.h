@@ -39,6 +39,8 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 /// 去【充】值(双模式统一入口)
 + (void)jump2Deposit;
 
++ (void)jump2DepositWithSuggestAmount:(int)amount;
+
 /// 去【买】币（买币指南，包含了“一键【买/卖】币”）
 + (void)jump2BuyECoin;
 

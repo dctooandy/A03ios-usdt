@@ -75,6 +75,17 @@
     }
 }
 
++ (void)jump2DepositWithSuggestAmount:(int)amount {
+    if ([CNUserManager shareManager].isUsdtMode) {
+        BYRechargeUsdtVC *vc = [[BYRechargeUsdtVC alloc] init];
+        vc.suggestRecharge = amount;
+        [kCurNavVC pushViewController:vc animated:true];
+    }
+    else {
+        [kCurNavVC pushViewController:[HYRechargeCNYViewController new] animated:YES];
+    }
+}
+
 + (void)jump2Withdraw {
     
     [CNWithdrawRequest getUserMobileStatusCompletionHandler:^(id responseObj, NSString *errorMsg) {

@@ -74,6 +74,7 @@
     [self.tfAmount setValue:[UIFont fontPFR15] forKeyPath:@"placeholderLabel.font"];
     [self.tfAmount addTarget:self action:@selector(amountTfDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.tfAmount addTarget:self action:@selector(amountTfDidResignFirstResponder:) forControlEvents:UIControlEventEditingDidEnd];
+    
 }
 
 - (void)drawArrow {
@@ -206,12 +207,23 @@
     [self setupProtocolView];
 }
 
+- (void)setSuggestRecharge:(int)suggestRecharge {
+    if (self.tfAmount.text.length == 0 ) {
+        [self.tfAmount setText:[NSString stringWithFormat:@"%i",suggestRecharge]];
+    }
+}
 
 #pragma mark - TextField
 
 - (void)amountTfDidResignFirstResponder:(UITextField *)tf {
     if (!_isAmountRight) {
         [CNHUB showError:_tipText];
+    }
+    
+    //編輯過後取消button focus狀態
+    for (int tag = 100; tag < 106; tag++) {
+        BYThreeStatusBtn *btn = (BYThreeStatusBtn *)[self viewWithTag:tag];
+        btn.status = CNThreeStaBtnStatusGradientBorder;
     }
 }
 

@@ -363,7 +363,9 @@ USDT支付渠道
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BYRechargeUSDTTopView *cell = [tableView dequeueReusableCellWithIdentifier:cellName];
-    
+    if (self.suggestRecharge != 0) {
+        cell.suggestRecharge = self.suggestRecharge;
+    }
     // action
 //    WEAKSELF_DEFINE
 //    cell.didTapTopBgActionBlock = ^(NSInteger lineIdx) {

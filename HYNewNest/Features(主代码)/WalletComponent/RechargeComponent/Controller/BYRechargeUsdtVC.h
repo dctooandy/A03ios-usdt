@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BYRechargeUsdtVC : CNBaseVC
-
+//新手任務2.0 建議儲值金額
+@property (nonatomic, assign) int suggestRecharge;
 @end
 
 NS_ASSUME_NONNULL_END

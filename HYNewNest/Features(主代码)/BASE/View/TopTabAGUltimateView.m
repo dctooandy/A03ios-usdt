@@ -11,6 +11,7 @@
 #import "HYInGameHelper.h"
 #import "BYSuperCopartnerVC.h"
 #import "BYNewUsrMissionVC.h"
+#import "BYNewbieMissionVC.h"
 
 @interface TopTabAGUltimateView()<WKNavigationDelegate, WKUIDelegate> //WKScriptMessageHandler  要加协议
 
@@ -237,7 +238,13 @@
         [kCurNavVC popToRootViewControllerAnimated:NO];
         [kCurNavVC pushViewController:[BYNewUsrMissionVC new] animated:YES];
         
-    }else {
+    }else if ([url containsString:@""]){
+        //新手任務v2
+        decisionHandler(WKNavigationActionPolicyCancel);
+        [kCurNavVC popToRootViewControllerAnimated:true];
+        [kCurNavVC pushViewController:[[BYNewbieMissionVC alloc] init] animated:true];
+    }
+    else {
         decisionHandler(WKNavigationActionPolicyAllow);
     }
 }

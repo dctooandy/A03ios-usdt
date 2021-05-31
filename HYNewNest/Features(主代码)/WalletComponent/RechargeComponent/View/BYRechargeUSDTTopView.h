@@ -28,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign,nonatomic) NSInteger lineIdx; //!< 行数 必须赋值
 
 //@property (copy,nonatomic) void(^didTapTopBgActionBlock)(NSInteger lineIdx); //!< 点击头部回调
+
+@property (nonatomic, assign) int suggestRecharge;
+
 @end
 
 NS_ASSUME_NONNULL_END

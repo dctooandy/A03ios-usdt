@@ -999,6 +999,8 @@
 		E9D9449E24C5735B00252222 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9449C24C5735B00252222 /* SplashViewController.m */; };
 		E9D944A124C5759400252222 /* UpdateVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D944A024C5759400252222 /* UpdateVersionModel.m */; };
 		E9E9590124D41BC400E866B6 /* CreditQueryResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E9590024D41BC400E866B6 /* CreditQueryResultModel.m */; };
+		F706E68A265B9E7800AE34C5 /* BYNewbieRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F706E689265B9E7800AE34C5 /* BYNewbieRequest.m */; };
+		F706E68D265BA7FD00AE34C5 /* BYNewbieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F706E68C265BA7FD00AE34C5 /* BYNewbieModel.m */; };
 		F765F0EA265250FD00F15747 /* BYMissionCompleteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F765F0E8265250FD00F15747 /* BYMissionCompleteVC.m */; };
 		F765F0EB265250FD00F15747 /* BYMissionCompleteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F765F0E9265250FD00F15747 /* BYMissionCompleteVC.xib */; };
 		F765F0EF26525F4C00F15747 /* BYFirstFillBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F765F0EE26525F4C00F15747 /* BYFirstFillBannerView.m */; };
@@ -2418,6 +2420,10 @@
 		E9E958FF24D41BC300E866B6 /* CreditQueryResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditQueryResultModel.h; sourceTree = "<group>"; };
 		E9E9590024D41BC400E866B6 /* CreditQueryResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditQueryResultModel.m; sourceTree = "<group>"; };
 		F6CE8CAC1544E651FCBD92C6 /* Pods-HYNewNest-HYNewNestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest-HYNewNestUITests.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F706E688265B9E7800AE34C5 /* BYNewbieRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYNewbieRequest.h; sourceTree = "<group>"; };
+		F706E689265B9E7800AE34C5 /* BYNewbieRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYNewbieRequest.m; sourceTree = "<group>"; };
+		F706E68B265BA7FD00AE34C5 /* BYNewbieModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYNewbieModel.h; sourceTree = "<group>"; };
+		F706E68C265BA7FD00AE34C5 /* BYNewbieModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYNewbieModel.m; sourceTree = "<group>"; };
 		F7369947BD28FDAEFDBB6399 /* Pods-HYNewNest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.release.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.release.xcconfig"; sourceTree = "<group>"; };
 		F765F0E7265250FD00F15747 /* BYMissionCompleteVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYMissionCompleteVC.h; sourceTree = "<group>"; };
 		F765F0E8265250FD00F15747 /* BYMissionCompleteVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYMissionCompleteVC.m; sourceTree = "<group>"; };
@@ -5358,6 +5364,24 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		F706E686265B9DCB00AE34C5 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				F706E688265B9E7800AE34C5 /* BYNewbieRequest.h */,
+				F706E689265B9E7800AE34C5 /* BYNewbieRequest.m */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		F706E687265B9DE800AE34C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F706E68B265BA7FD00AE34C5 /* BYNewbieModel.h */,
+				F706E68C265BA7FD00AE34C5 /* BYNewbieModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		F765F0EC26525E4600F15747 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -5385,6 +5409,8 @@
 			children = (
 				F7CA9C56264E77AC00410BB3 /* Controller */,
 				F765F0EC26525E4600F15747 /* View */,
+				F706E686265B9DCB00AE34C5 /* Request */,
+				F706E687265B9DE800AE34C5 /* Model */,
 			);
 			path = NewbieMissionComponent;
 			sourceTree = "<group>";
@@ -6542,6 +6568,7 @@
 				3DBA55D2256FA6D3009A2B71 /* CNTextSaleBtn.m in Sources */,
 				D5FBFE3D24BC05E400BBCAD8 /* CNImageCodeInputView.m in Sources */,
 				E986A10B24C6F5E7000F9CFF /* TopTabAGUltimateView.m in Sources */,
+				F706E68D265BA7FD00AE34C5 /* BYNewbieModel.m in Sources */,
 				3D643F8824F29F3600B9AAA7 /* AlertViewHelp.m in Sources */,
 				E9B5494F24CD8209002CE6EF /* NNControllerHelper.m in Sources */,
 				E986A17524C979F6000F9CFF /* PayWayV3Model.m in Sources */,
@@ -6622,6 +6649,7 @@
 				E98BEEFE24D1815200E6B0C8 /* HYXiMaViewController.m in Sources */,
 				E986A13124C7FC0E000F9CFF /* ArticalModel.m in Sources */,
 				F7A75F22264E507200D933D7 /* BYBorderLabel.m in Sources */,
+				F706E68A265B9E7800AE34C5 /* BYNewbieRequest.m in Sources */,
 				3DBA55D8256FA793009A2B71 /* BalanceManager.m in Sources */,
 				04C0F0FC24C589DD007F1420 /* CNUserModel.m in Sources */,
 				E986A1C124CC7F2B000F9CFF /* SDCycleScrollView.m in Sources */,

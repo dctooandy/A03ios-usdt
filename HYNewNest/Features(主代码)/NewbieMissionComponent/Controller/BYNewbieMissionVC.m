@@ -98,14 +98,14 @@
 - (IBAction)completeButtonClicked:(id)sender {
     if ([self checkUserLogin] == false) return;
     
-    [NNPageRouter jump2Deposit];
+    [NNPageRouter jump2DepositWithSuggestAmount:15];
 }
 
 - (IBAction)signinButtonClicked:(id)sender {
     if ([self checkUserLogin]) return;
     
     //        if (){
-    [NNPageRouter jump2Deposit];
+    [NNPageRouter jump2DepositWithSuggestAmount:15];
     //        }
     //        else {
     //領取
