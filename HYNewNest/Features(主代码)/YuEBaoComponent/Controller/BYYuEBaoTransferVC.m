@@ -110,6 +110,12 @@
     [self allTransferInMove];
 }
 
+- (void)extracted:(NSString *)intersetNexTime lasTimeInterset:(NSString *)lasTimeInterset model:(CNYuEBaoTransferModel *)model {
+    [BYYuEBaoTransAlertView showTransAlertTransAmount:model.amount interest:lasTimeInterset intersetNexTime:intersetNexTime easyBlock:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+}
+
 - (IBAction)didTapComfirmTransBtn:(id)sender {
     
     NSNumber *amount = [NSNumber numberWithDouble:self.tfTransAmout.text.doubleValue];
@@ -123,11 +129,12 @@
                     NSDate *date = [NSDate jk_dateWithHoursFromNow:hour];
                     NSString *intersetNexTime = [date jk_stringWithFormat:@"yyyy-MM-dd HH:mm:ss"]; //下次计息时间
                     NSString *lasTimeInterset = model.lastProfitAmount; //上次利息金额
-                    [BYYuEBaoTransAlertView showTransAlertTransAmount:model.amount interest:lasTimeInterset intersetNexTime:intersetNexTime];
+                    [self extracted:intersetNexTime lasTimeInterset:lasTimeInterset model:model];
                 } else {
-                    [BYYuEBaoTransAlertView showTransAlertTransAmount:model.amount interest:nil intersetNexTime:nil];
+                    [BYYuEBaoTransAlertView showTransAlertTransAmount:model.amount interest:nil intersetNexTime:nil easyBlock:^{
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }];
                 }
-                [self.navigationController popViewControllerAnimated:YES];
 //            }
         }
     }];

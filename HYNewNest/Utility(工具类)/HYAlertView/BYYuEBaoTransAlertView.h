@@ -15,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 // 如果没有利息相关的信息那就是转出到余额
 + (void)showTransAlertTransAmount:(NSNumber *)amount
                          interest:(nullable NSString *)interset
-                  intersetNexTime:(nullable NSString *)timeStr;
+                  intersetNexTime:(nullable NSString *)timeStr
+                        easyBlock:(AlertEasyBlock)block;
 @end
 
 NS_ASSUME_NONNULL_END

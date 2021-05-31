@@ -34,6 +34,11 @@
     return _contentView;
 }
 
+- (void)addupBasicView {
+    [self addSubview:self.bgView];
+    [self.bgView addSubview:self.contentView];
+}
+
 - (void)show {
     [kKeywindow addSubview:self];
     [kKeywindow bringSubviewToFront:self];
@@ -60,8 +65,13 @@
 
 - (instancetype)init {
     self = [super init];
-    [self addSubview:self.bgView];
-    [self.bgView addSubview:self.contentView];
+    [self addupBasicView];
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    [self addupBasicView];
     return self;
 }
 

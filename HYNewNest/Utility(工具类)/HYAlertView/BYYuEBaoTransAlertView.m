@@ -13,11 +13,12 @@
 
 + (void)showTransAlertTransAmount:(NSNumber *)amount
                          interest:(nullable NSString *)interset
-                  intersetNexTime:(nullable NSString *)timeStr {
-    BYYuEBaoTransAlertView *a = [[BYYuEBaoTransAlertView alloc] init];
-    a.frame = [UIScreen mainScreen].bounds;
-    [a show];
+                  intersetNexTime:(nullable NSString *)timeStr
+                        easyBlock:(nonnull AlertEasyBlock)block {
+    BYYuEBaoTransAlertView *a = [[BYYuEBaoTransAlertView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    a.easyBlock = block;
     [a setupViewsWithAmount:amount interest:interset intersetNexTime:timeStr];
+    [a show];
 }
 
 - (void)setupViewsWithAmount:(NSNumber *)amount
@@ -114,7 +115,7 @@
             make.centerX.equalTo(self.contentView);
         }];
         
-        [mainLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        [mainLb mas_updateConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(btn.mas_top).offset(-30);
         }];
     }
@@ -127,6 +128,9 @@
 }
 
 - (void)comfirmClick {
+    if (self.easyBlock) {
+        self.easyBlock();
+    }
     [self dismiss];
 }
 
