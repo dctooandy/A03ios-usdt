@@ -44,7 +44,7 @@
         self.title = @"转入余额宝";
         self.lbThird.text = @"可提币余额";
         [self.btnComfirm setTitle:@"确认转入" forState:UIControlStateNormal];
-        self.tfTransAmout.placeholder = @"请输入转入金额";
+        self.tfTransAmout.placeholder = [NSString stringWithFormat:@"请输入转入金额(最低%ldUSDT)", (long)self.model.minAmount];
         if (self.model.maxAmount == -1) {
             self.lbWrongMsg.text = [NSString stringWithFormat:@"*最低买入金额%ldUSDT", (long)self.model.minAmount];
         } else {
@@ -110,12 +110,6 @@
     [self allTransferInMove];
 }
 
-- (void)extracted:(NSString *)intersetNexTime lasTimeInterset:(NSString *)lasTimeInterset model:(CNYuEBaoTransferModel *)model {
-    [BYYuEBaoTransAlertView showTransAlertTransAmount:model.amount interest:lasTimeInterset intersetNexTime:intersetNexTime easyBlock:^{
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
-}
-
 - (IBAction)didTapComfirmTransBtn:(id)sender {
     
     NSNumber *amount = [NSNumber numberWithDouble:self.tfTransAmout.text.doubleValue];
@@ -129,7 +123,9 @@
                     NSDate *date = [NSDate jk_dateWithHoursFromNow:hour];
                     NSString *intersetNexTime = [date jk_stringWithFormat:@"yyyy-MM-dd HH:mm:ss"]; //下次计息时间
                     NSString *lasTimeInterset = model.lastProfitAmount; //上次利息金额
-                    [self extracted:intersetNexTime lasTimeInterset:lasTimeInterset model:model];
+                    [BYYuEBaoTransAlertView showTransAlertTransAmount:model.amount interest:lasTimeInterset intersetNexTime:intersetNexTime easyBlock:^{
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }];
                 } else {
                     [BYYuEBaoTransAlertView showTransAlertTransAmount:model.amount interest:nil intersetNexTime:nil easyBlock:^{
                         [self.navigationController popViewControllerAnimated:YES];
