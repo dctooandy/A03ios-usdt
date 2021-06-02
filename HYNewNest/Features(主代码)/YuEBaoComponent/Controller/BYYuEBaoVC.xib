@@ -25,7 +25,7 @@
                 <outlet property="ticketStackView1HeightConst" destination="2EW-K6-R9p" id="qyK-LE-riA"/>
                 <outlet property="ticktStackViewHeightConst" destination="ri4-Pu-JFM" id="dyC-8T-zRn"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="yuebaoBtn" destination="LQ8-nC-3c3" id="6S7-GE-o5z"/>
+                <outlet property="yuebaoBtn" destination="LQ8-nC-3c3" id="3SG-Ee-W5L"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

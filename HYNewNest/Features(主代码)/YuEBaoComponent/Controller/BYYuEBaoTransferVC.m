@@ -40,6 +40,28 @@
     [self.tfTransAmout addTarget:self action:@selector(amountTfDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.tfTransAmout addTarget:self action:@selector(amountTfDidResignFirstResponder:) forControlEvents:UIControlEventEditingDidEnd];
     
+    [self setupData];
+    
+}
+
+- (instancetype)initWithType:(YEBTransferType)type  configModel:(nullable CNYuEBaoConfigModel *)model{
+    self = [super init];
+    self.type = type;
+    self.model = model;
+    return self;
+}
+
+- (void)setupData {
+    if (!self.model) {
+        [CNYuEBaoRequest checkYuEBaoConfigHandler:^(id responseObj, NSString *errorMsg) {
+            if (!errorMsg) {
+                CNYuEBaoConfigModel *model = [CNYuEBaoConfigModel cn_parse:responseObj];
+                self.model = model;
+                [self setupData];
+            }
+        }];
+        return;
+    }
     if (self.type == YEBTransferTypeDeposit) {
         self.title = @"转入余额宝";
         self.lbThird.text = @"可提币余额";
@@ -79,16 +101,7 @@
             self.btnComfirm.enabled = YES;
         }
     }
-    
 }
-
-- (instancetype)initWithType:(YEBTransferType)type  configModel:(CNYuEBaoConfigModel *)model{
-    self = [super init];
-    self.type = type;
-    self.model = model;
-    return self;
-}
-
 
 #pragma mark - ACTION
 

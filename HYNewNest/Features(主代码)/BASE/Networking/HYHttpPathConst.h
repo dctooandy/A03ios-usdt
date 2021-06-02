@@ -16,7 +16,7 @@
 #define H5URL_Pub_UsdtTutorial  @"/pub_site/tutorialReference"  // usdt存取新手指南
 #define H5URL_BBS               @"/bbs"                    // 论坛
 #define H5URL_Pub_Starall       @"/pub_site/starall"       // 星级特权
-
+#define H5URL_Pub_yeb           @"/pub_site/yeb"           // 余额宝
 
 #pragma mark - API PATH
 

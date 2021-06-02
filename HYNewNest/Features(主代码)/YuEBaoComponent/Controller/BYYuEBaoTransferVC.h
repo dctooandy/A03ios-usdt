@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @interface BYYuEBaoTransferVC : CNBaseVC
-- (instancetype)initWithType:(YEBTransferType)type configModel:(CNYuEBaoConfigModel *)model;
+- (instancetype)initWithType:(YEBTransferType)type configModel:(nullable CNYuEBaoConfigModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -49,7 +49,7 @@
 }
 
 - (void)setupUI {
-    [_yuebaoBtn jk_setImagePosition:LXMImagePositionRight spacing:2];
+//    [_yuebaoBtn jk_setImagePosition:LXMImagePositionRight spacing:2];
     
     UIColor *gColor = [UIColor gradientFromColor:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE) withWidth:40];
     [_btnDeposit setTitleColor:gColor forState:UIControlStateNormal];
@@ -84,7 +84,7 @@
 }
 
 - (IBAction)didTapCheckMyDepositTicket:(id)sender {
-    [self.navigationController pushViewController:[BYVocherCenterVC new] animated:YES];
+    [NNPageRouter jump2HTMLWithStrURL:H5URL_Pub_yeb title:@"我的存送券" needPubSite:NO];
 }
 
 
