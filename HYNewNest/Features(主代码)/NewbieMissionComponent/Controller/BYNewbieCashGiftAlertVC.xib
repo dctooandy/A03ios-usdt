@@ -24,10 +24,10 @@
                     <rect key="frame" x="15" y="291" width="384" height="314"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1wI-1a-ep0" customClass="BYGradientView">
-                            <rect key="frame" x="10" y="0.0" width="364" height="40"/>
+                            <rect key="frame" x="25" y="0.0" width="334" height="40"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新人礼金" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5x-tK-hf5">
-                                    <rect key="frame" x="142" y="8.5" width="80" height="28"/>
+                                    <rect key="frame" x="127" y="8.5" width="80" height="28"/>
                                     <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="20"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -56,13 +56,13 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8gV-VH-JNc" customClass="BYGradientView">
-                            <rect key="frame" x="0.0" y="40" width="384" height="217"/>
+                            <rect key="frame" x="15" y="40" width="354" height="217"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="libao" translatesAutoresizingMaskIntoConstraints="NO" id="cM7-9M-1rf">
-                                    <rect key="frame" x="145.5" y="12" width="93" height="83"/>
+                                    <rect key="frame" x="130.5" y="12" width="93" height="83"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzQ-vS-siY">
-                                    <rect key="frame" x="146.5" y="101" width="91.5" height="34"/>
+                                    <rect key="frame" x="131.5" y="101" width="91.5" height="34"/>
                                     <string key="text">您有2条未领取的
 新人礼金</string>
                                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
@@ -70,7 +70,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZv-8n-ztX" customClass="BYGradientButton">
-                                    <rect key="frame" x="97" y="150" width="190" height="48"/>
+                                    <rect key="frame" x="97" y="150" width="160" height="48"/>
                                     <color key="backgroundColor" red="0.74117647060000003" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="48" id="Tz9-Q0-2Af"/>
@@ -135,14 +135,14 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="ZDI-RJ-7ai" firstAttribute="centerX" secondItem="nO3-il-sKw" secondAttribute="centerX" id="EsO-Wd-cGH"/>
-                        <constraint firstAttribute="trailing" secondItem="8gV-VH-JNc" secondAttribute="trailing" id="Q48-4s-Kyq"/>
+                        <constraint firstAttribute="trailing" secondItem="8gV-VH-JNc" secondAttribute="trailing" constant="15" id="Q48-4s-Kyq"/>
                         <constraint firstItem="1wI-1a-ep0" firstAttribute="top" secondItem="nO3-il-sKw" secondAttribute="top" id="RYU-gC-BCs"/>
-                        <constraint firstItem="1wI-1a-ep0" firstAttribute="leading" secondItem="nO3-il-sKw" secondAttribute="leading" constant="10" id="VDQ-Gg-XVg"/>
-                        <constraint firstAttribute="trailing" secondItem="1wI-1a-ep0" secondAttribute="trailing" constant="10" id="jxN-LK-YeR"/>
+                        <constraint firstItem="1wI-1a-ep0" firstAttribute="leading" secondItem="nO3-il-sKw" secondAttribute="leading" constant="25" id="VDQ-Gg-XVg"/>
+                        <constraint firstAttribute="trailing" secondItem="1wI-1a-ep0" secondAttribute="trailing" constant="25" id="jxN-LK-YeR"/>
                         <constraint firstAttribute="height" constant="314" id="lr8-VC-ahX"/>
                         <constraint firstItem="ZDI-RJ-7ai" firstAttribute="top" secondItem="8gV-VH-JNc" secondAttribute="bottom" constant="10" id="ofo-Et-u2Y"/>
                         <constraint firstItem="8gV-VH-JNc" firstAttribute="top" secondItem="1wI-1a-ep0" secondAttribute="bottom" id="ql2-Pl-d4n"/>
-                        <constraint firstItem="8gV-VH-JNc" firstAttribute="leading" secondItem="nO3-il-sKw" secondAttribute="leading" id="vIi-Fj-BeM"/>
+                        <constraint firstItem="8gV-VH-JNc" firstAttribute="leading" secondItem="nO3-il-sKw" secondAttribute="leading" constant="15" id="vIi-Fj-BeM"/>
                     </constraints>
                 </view>
             </subviews>

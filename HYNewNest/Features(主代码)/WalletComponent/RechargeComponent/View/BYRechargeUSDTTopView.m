@@ -210,6 +210,7 @@
 - (void)setSuggestRecharge:(int)suggestRecharge {
     if (self.tfAmount.text.length == 0 ) {
         [self.tfAmount setText:[NSString stringWithFormat:@"%i",suggestRecharge]];
+        [self.submitBtn setEnabled:true];
     }
 }
 

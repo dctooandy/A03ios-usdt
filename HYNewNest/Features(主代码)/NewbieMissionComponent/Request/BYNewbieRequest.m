@@ -9,5 +9,9 @@
 #import "BYNewbieRequest.h"
 
 @implementation BYNewbieRequest
++ (void)getrequest:(HandlerBlock)handler {
+    
+//    [self POST:kGatewayExtraPath(config_newapiTask) parameters:param completionHandler:handler];
 
+}
 @end
