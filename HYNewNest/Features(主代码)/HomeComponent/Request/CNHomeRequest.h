@@ -18,14 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CNHomeRequest : CNBaseNetworking
 
-/**
- 数字站 存取款客服  usdt_depositLive800
- 数字站 其他客服    usdt_otheLive800
- 忘记密码
- */
-///动态表单获取5个客服链接
-+ (void)requestDynamicLive800AddressCompletionHandler:(HandlerBlock)handler;
-
 /// 弹窗盒子
 + (void)queryMessageBoxHandler:(HandlerBlock)handler;
 
@@ -34,9 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
                             smsCode:(nullable NSString *)smsCode
                            mobileNo:(nullable NSString*)mobileNo
                             handler:(HandlerBlock)handler;
-
-///进入H5获取ticket
-+ (void)requestH5TicketHandler:(HandlerBlock)handler;
 
 
 typedef NS_ENUM(NSUInteger, BannerWhere) {

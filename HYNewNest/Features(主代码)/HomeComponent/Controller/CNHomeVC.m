@@ -98,6 +98,7 @@
     
     [self userDidLogin];
     [self requestAnnouncement];
+    [self requestCDNAndDomain];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYSwitchAcoutSuccNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYLoginSuccessNotification object:nil];
@@ -313,6 +314,19 @@
     }];
 }
 
+- (void)requestCDNAndDomain {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [CNSplashRequest queryCDNH5Domain:^(id responseObj, NSString *errorMsg) {
+            NSString *cdnAddr = responseObj[@"csdnAddress"];
+            NSString *h5Addr = responseObj[@"h5Address"];
+            if ([cdnAddr containsString:@","]) {
+                cdnAddr = [cdnAddr componentsSeparatedByString:@","].firstObject;
+            }
+            [IVHttpManager shareManager].cdn = cdnAddr;
+            [IVHttpManager shareManager].domain = h5Addr;
+        }];
+    });
+}
 
 #pragma mark - DashenBoredDelegte
 - (void)didSetupDataGetTableHeight:(CGFloat)tableHeight {

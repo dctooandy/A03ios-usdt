@@ -13,8 +13,8 @@
             <connections>
                 <outlet property="btnDeposit" destination="hUR-0P-ue0" id="1Vi-To-pNu"/>
                 <outlet property="btnWithdraw" destination="HxS-g7-40n" id="fRU-G0-sZL"/>
-                <outlet property="lb10Percent" destination="7QV-nK-gDX" id="rpx-on-c3X"/>
-                <outlet property="lb15Percent" destination="XQX-rn-lpO" id="H2F-hb-F3l"/>
+                <outlet property="lb10Percent" destination="XQX-rn-lpO" id="HxI-4V-8Ws"/>
+                <outlet property="lb15Percent" destination="7QV-nK-gDX" id="FZH-pE-bY6"/>
                 <outlet property="lb20Percent" destination="KdP-oj-ZWS" id="VE1-tq-W22"/>
                 <outlet property="lb5Percent" destination="f12-pK-Ota" id="OCL-10-tOx"/>
                 <outlet property="lbAnnualizedReturnAmnt" destination="G6B-hv-r5B" id="uqs-v3-bFl"/>
@@ -269,7 +269,7 @@
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="csq_5" translatesAutoresizingMaskIntoConstraints="NO" id="wNe-fB-lfw">
                                     <rect key="frame" x="0.0" y="0.0" width="109.5" height="68"/>
                                 </imageView>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="csq_15" translatesAutoresizingMaskIntoConstraints="NO" id="jrq-6Q-Thy">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="csq_10" translatesAutoresizingMaskIntoConstraints="NO" id="jrq-6Q-Thy">
                                     <rect key="frame" x="139.5" y="0.0" width="109.5" height="68"/>
                                 </imageView>
                             </subviews>
@@ -280,7 +280,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Sko-D6-3ww">
                             <rect key="frame" x="48" y="180.5" width="249" height="68"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="csq_10" translatesAutoresizingMaskIntoConstraints="NO" id="BaR-og-vTU">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="csq_15" translatesAutoresizingMaskIntoConstraints="NO" id="BaR-og-vTU">
                                     <rect key="frame" x="0.0" y="0.0" width="109.5" height="68"/>
                                 </imageView>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="csq_20" translatesAutoresizingMaskIntoConstraints="NO" id="2PK-Zg-qIr">

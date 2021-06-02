@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "CNBaseNetworking.h"
 #import "NNControllerHelper.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -25,6 +26,7 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 
 /// 改变根控制器为首页
 + (void)changeRootVc2MainPage;
+
 
 /// 跳到登录注册
 + (void)jump2Login;
@@ -51,6 +53,10 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 
 /// 跳转到微脉圈
 + (void)presentWMQCustomerService;
+
+
+///进入H5获取ticket
++ (void)requestH5TicketHandler:(HandlerBlock)handler;
 
 /// 跳转到H5
 +(void)jump2HTMLWithStrURL: (NSString *)strURL title:(NSString *)title needPubSite:(BOOL)needPubSite;

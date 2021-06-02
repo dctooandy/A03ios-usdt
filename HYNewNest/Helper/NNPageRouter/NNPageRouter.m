@@ -14,7 +14,6 @@
 
 #import "GameStartPlayViewController.h"
 #import "HYWithdrawViewController.h"
-//#import "HYRechargeViewController.h"
 #import "BYRechargeUsdtVC.h"
 #import "HYRechargeCNYViewController.h"
 #import "CNLoginRegisterVC.h"
@@ -23,7 +22,6 @@
 #import "HYWithdrawActivityAlertView.h"
 #import "HYBuyECoinGuideVC.h"
 
-#import "CNHomeRequest.h"
 #import "CNRechargeRequest.h"
 #import "CNWithdrawRequest.h"
 #import "NSURL+HYLink.h"
@@ -60,7 +58,6 @@
 
 + (void)jump2Deposit {
     if ([CNUserManager shareManager].isUsdtMode) {
-//        [kCurNavVC pushViewController:[HYRechargeViewController new] animated:YES];
         [kCurNavVC pushViewController:[BYRechargeUsdtVC new] animated:YES];
     } else {
         [kCurNavVC pushViewController:[HYRechargeCNYViewController new] animated:YES];
@@ -193,7 +190,7 @@
         default:
             break;
     }
-    [CNHomeRequest requestDynamicLive800AddressCompletionHandler:^(id responseObj, NSString *errorMsg) {
+    [self requestDynamicLive800AddressCompletionHandler:^(id responseObj, NSString *errorMsg) {
 
         NSArray *data = responseObj;
         NSMutableString *newUrl;
@@ -226,7 +223,7 @@
     };
 
     if ([CNUserManager shareManager].isLogin) {
-        [CNHomeRequest requestH5TicketHandler:^(NSString * ticket, NSString *errorMsg) {
+        [self requestH5TicketHandler:^(NSString * ticket, NSString *errorMsg) {
             if (!errorMsg) {
                 NSString *strUrl = [NSURL getH5StrUrlWithString:strURL ticket:ticket needPubSite:needPubSite];
                 jumpHTMLBlock(strUrl, title);
@@ -246,6 +243,33 @@
     vc.hidesBottomBarWhenPushed = YES;
     [kCurNavVC pushViewController:vc animated:YES];
     
+}
+
+
+#pragma mark - Request
+
++ (void)requestDynamicLive800AddressCompletionHandler:(HandlerBlock)handler{
+    
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"bizCode"] = @"800_DEPLOY";
+    
+    [CNBaseNetworking POST:(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            handler(responseObj[@"data"], errorMsg);
+        }
+    }];
+}
+
++ (void)requestH5TicketHandler:(HandlerBlock)handler {
+    
+    [CNBaseNetworking POST:(config_h5Ticket) parameters:[kNetworkMgr baseParam] completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]] && [[responseObj allKeys] containsObject:@"ticket"]) {
+            NSString *ticket = responseObj[@"ticket"];
+            handler(ticket, errorMsg);
+        } else {
+            handler(nil, errorMsg);
+        }
+    }];
 }
 
 
