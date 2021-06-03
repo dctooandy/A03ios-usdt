@@ -72,7 +72,7 @@
         } else {
             self.lbWrongMsg.text = [NSString stringWithFormat:@"*最低买入金额%ldUSDT，最高可买入%ldUSDT", (long)self.model.minAmount, (long)self.model.maxAmount];
         }
-        self.lbTips.text = [NSString stringWithFormat:@"最小计息时间%ld小时，多次转入时将结算利息并重置计息时间", (long)self.model.periodHours];
+        self.lbTips.text = @"最小计息时间6小时，多次转入时将结算利息并重置计息时间";
         
         [self.lbTransableAmout showIndicatorIsBig:YES];
         [BalanceManager requestWithdrawAbleBalanceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
@@ -125,7 +125,7 @@
 
 - (IBAction)didTapComfirmTransBtn:(id)sender {
     
-    NSNumber *amount = [NSNumber numberWithDouble:self.tfTransAmout.text.doubleValue];
+    __block NSNumber *amount = [NSNumber numberWithDouble:self.tfTransAmout.text.doubleValue];
     [CNYuEBaoRequest transferYuEBaoType:self.type amount:amount handler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
             CNYuEBaoTransferModel *model = [CNYuEBaoTransferModel cn_parse:responseObj];
@@ -136,11 +136,11 @@
                     NSDate *date = [NSDate jk_dateWithHoursFromNow:hour];
                     NSString *intersetNexTime = [date jk_stringWithFormat:@"yyyy-MM-dd HH:mm:ss"]; //下次计息时间
                     NSString *lasTimeInterset = model.lastProfitAmount; //上次利息金额
-                    [BYYuEBaoTransAlertView showTransAlertTransAmount:model.amount interest:lasTimeInterset intersetNexTime:intersetNexTime easyBlock:^{
+                    [BYYuEBaoTransAlertView showTransAlertTransAmount:amount interest:lasTimeInterset intersetNexTime:intersetNexTime easyBlock:^{
                         [self.navigationController popViewControllerAnimated:YES];
                     }];
                 } else {
-                    [BYYuEBaoTransAlertView showTransAlertTransAmount:model.amount interest:nil intersetNexTime:nil easyBlock:^{
+                    [BYYuEBaoTransAlertView showTransAlertTransAmount:amount interest:nil intersetNexTime:nil easyBlock:^{
                         [self.navigationController popViewControllerAnimated:YES];
                     }];
                 }

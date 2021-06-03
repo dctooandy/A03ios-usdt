@@ -86,18 +86,20 @@
             make.centerX.equalTo(self.contentView);
         }];
         
-        NSString *intersetStr = [NSString stringWithFormat:@"利息收益为%@USDT", interset];
-        UILabel *secondLb = [[UILabel alloc] init];
-        secondLb.textAlignment = NSTextAlignmentCenter;
-        NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:intersetStr attributes:@{NSFontAttributeName:font, NSForegroundColorAttributeName:normCor}];
-        [attrStr addAttribute:NSForegroundColorAttributeName value:blueCor range:[intersetStr rangeOfString:interset]];
-        secondLb.attributedText = attrStr;
-        [self.contentView addSubview:secondLb];
-        [secondLb mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.contentView);
-            make.top.equalTo(mainLb.mas_bottom).offset(2);
-            make.height.mas_equalTo(18);
-        }];
+        if (interset.floatValue > 0) {
+            NSString *intersetStr = [NSString stringWithFormat:@"利息收益为%@USDT", interset];
+            UILabel *secondLb = [[UILabel alloc] init];
+            secondLb.textAlignment = NSTextAlignmentCenter;
+            NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:intersetStr attributes:@{NSFontAttributeName:font, NSForegroundColorAttributeName:normCor}];
+            [attrStr addAttribute:NSForegroundColorAttributeName value:blueCor range:[intersetStr rangeOfString:interset]];
+            secondLb.attributedText = attrStr;
+            [self.contentView addSubview:secondLb];
+            [secondLb mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self.contentView);
+                make.top.equalTo(mainLb.mas_bottom).offset(2);
+                make.height.mas_equalTo(18);
+            }];
+        }
         
     } else {
         [imgv mas_updateConstraints:^(MASConstraintMaker *make) {
