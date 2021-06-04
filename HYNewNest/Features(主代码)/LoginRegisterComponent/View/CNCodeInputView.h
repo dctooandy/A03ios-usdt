@@ -18,8 +18,11 @@ typedef NS_ENUM(NSUInteger, CNCodeType) {
     CNCodeTypeAccountRegister,  //账号注册
     CNCodeTypeNewPwd,           //修改密码
     CNCodeTypeOldPwd,           //旧密码
-    CNCodeTypeBankCard,
-    CNCodeTypeBindPhone
+    CNCodeTypeBankCard,         //绑定提现地址短信验证码
+    CNCodeTypeBindPhone,        //绑定手机
+    CNCodeTypeOldFundPwd,       //资金密码旧
+    CNCodeTypeNewFundPwd,       //资金密码
+    CNCodeTypeFundPwdSMS,       //发送资金密码短信验证码
 };
 
 @class CNCodeInputView;
@@ -45,6 +48,7 @@ typedef NS_ENUM(NSUInteger, CNCodeType) {
 
 - (void)showWrongMsg:(NSString *)msg;
 - (void)setPlaceholder:(NSString *)text;
+- (void)setTipsText:(NSString *)text;
 @end
 
 NS_ASSUME_NONNULL_END

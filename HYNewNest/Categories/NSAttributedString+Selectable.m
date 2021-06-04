@@ -18,10 +18,10 @@
                                 isUnderline:(BOOL)isUnderline
                                      URLStr:(NSString *)urlStr {
     //普通字体的大小颜色
-    NSDictionary * normalAtt = @{NSFontAttributeName:[UIFont systemFontOfSize:AD(12)], NSForegroundColorAttributeName:[UIColor lightGrayColor]};
+    NSDictionary * normalAtt = @{NSFontAttributeName:[UIFont systemFontOfSize:AD(13)], NSForegroundColorAttributeName:[UIColor lightGrayColor]};
    
     //可点击字体的大小颜色
-    NSMutableDictionary * specAtt = @{NSFontAttributeName:[UIFont systemFontOfSize:AD(12)], NSForegroundColorAttributeName:selColor}.mutableCopy;
+    NSMutableDictionary * specAtt = @{NSFontAttributeName:[UIFont systemFontOfSize:AD(13)], NSForegroundColorAttributeName:selColor}.mutableCopy;
     
     //可点击字体加下划线否
     if (isUnderline) {

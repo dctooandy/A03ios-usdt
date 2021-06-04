@@ -73,7 +73,7 @@ static dispatch_once_t onceToken;
 - (void)sendVerifyCode:(nullable void(^)(void))successHandler {
     [CNLoginRequest getSMSCodeByLoginNameType:CNSMSCodeTypeChangeBank completionHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
-            [kKeywindow jk_makeToast:[NSString stringWithFormat:@"向手机%@发送了一条验证码", [CNUserManager shareManager].userDetail.mobileNo] duration:3 position:JKToastPositionCenter];
+//            [kKeywindow jk_makeToast:[NSString stringWithFormat:@"向手机%@发送了一条验证码", [CNUserManager shareManager].userDetail.mobileNo] duration:3 position:JKToastPositionCenter];
             SmsCodeModel *smsModel = [SmsCodeModel cn_parse:responseObj];
             self.phoneModel = smsModel;
             if (successHandler) {

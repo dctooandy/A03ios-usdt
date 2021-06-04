@@ -10,19 +10,24 @@
 #import "CNBaseTF.h"
 #import "CNAmountInputView.h"
 #import "CNNormalInputView.h"
+#import "CNCodeInputView.h"
 #import "CNTwoStatusBtn.h"
+#import "BYChangeFundPwdVC.h"
 
-@interface HYWithdrawComfirmView () <CNAmountInputViewDelegate, CNNormalInputViewDelegate>
+@interface HYWithdrawComfirmView () <CNAmountInputViewDelegate, CNNormalInputViewDelegate, CNCodeInputViewDelegate>
 // UI
 @property (nonatomic, strong) UIView *mainView;
 @property (nonatomic, strong) UILabel *lblTitle;
 @property (weak, nonatomic) CNAmountInputView *inputTF;
+@property (weak,nonatomic) CNCodeInputView *codeTF;
 @property (nonatomic, weak) CNTwoStatusBtn *btn;
+@property (assign,nonatomic) BOOL needPwd; 
 // UI2
 @property (weak, nonatomic) CNNormalInputView *nameTF;
 // DATA
 @property (nonatomic, strong) AccountMoneyDetailModel *amoutModel;
-@property (nonatomic, copy) void(^clickBlock)(NSString* text);
+@property (nonatomic, copy) void(^clickBlock)(NSString* text, NSString* pwd);
+@property (copy,nonatomic) void(^easyBlock)(NSString* text);
 @property (nonatomic, copy) void(^dismissBlock)(void);
 // 完成状态 UI
 @property (nonatomic, strong) UIView *succView;
@@ -39,13 +44,13 @@
     [self addSubview:bgView];
     
       // 主背景
-    UIView *mainView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-kNavPlusStaBarHeight, kScreenWidth, 426+kSafeAreaHeight)];
+    UIView *mainView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-kNavPlusStaBarHeight, kScreenWidth, 1000+kSafeAreaHeight)];
     self.mainView = mainView;
     mainView.tag = 150;
     mainView.backgroundColor = kHexColor(0x212137);
     [self addSubview:mainView];
       
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:mainView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(AD(10), AD(10))];
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:mainView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(20, 20)];
     CAShapeLayer *layer = [[CAShapeLayer alloc] init];
     layer.path = path.CGPath;
     layer.frame = mainView.bounds;
@@ -71,7 +76,7 @@
     [mainView addSubview:btnCancle];
     
     //btn
-    CNTwoStatusBtn *btn = [[CNTwoStatusBtn alloc] initWithFrame:CGRectMake(30, 272, kScreenWidth - 60, 48)];
+    CNTwoStatusBtn *btn = [[CNTwoStatusBtn alloc] initWithFrame:CGRectMake(30, 272, kScreenWidth - 60, 60)];
     self.btn = btn;
     [btn setTitle:@"提交" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(submitClick) forControlEvents:UIControlEventTouchUpInside];
@@ -87,7 +92,7 @@
     self = [super init];
     self.frame = [UIScreen mainScreen].bounds;
     
-    self.clickBlock = block;
+    self.easyBlock = block;
     [self commonViewsSetup];
     
     // lable
@@ -111,7 +116,8 @@
 
 /// 输入金额
 - (instancetype)initWithAmountModel:(nullable AccountMoneyDetailModel *)amoutModel
-                        sumbitBlock:(nullable void(^)(NSString *withdrawAmout))block{
+                            needPwd:(BOOL)needPwd
+                        sumbitBlock:(nullable void(^)(NSString *withdrawAmout, NSString *fPwd))block{
     self = [super init];
     self.frame = [UIScreen mainScreen].bounds;
     
@@ -119,11 +125,18 @@
     self.clickBlock = block;
     [self commonViewsSetup];
     
+    if (needPwd) {
+        self.mainView.frame = CGRectMake(0, kScreenHeight-kNavPlusStaBarHeight, kScreenWidth, 426+kSafeAreaHeight+89);
+        [UIView animateWithDuration:0.25 animations:^{
+            self.mainView.y = kScreenHeight-kNavPlusStaBarHeight - 345 - 89 - kSafeAreaHeight;
+        }];
+    }
+    
     // money
     UILabel *lblMon = [[UILabel alloc] init];
     lblMon.text = [CNUserManager shareManager].isUsdtMode?@"可提币USDT":@"可提现金额";
     lblMon.frame = CGRectMake(30, CGRectGetMaxY(self.lblTitle.frame)+32, kScreenWidth-60, 17);
-    lblMon.textColor = kHexColorAlpha(0xFFFFFF, 0.4);
+    lblMon.textColor = kHexColorAlpha(0xFFFFFF, 0.5);
     lblMon.font = [UIFont fontPFR15];
     [self.mainView addSubview:lblMon];
     
@@ -131,7 +144,7 @@
     if (amoutModel) {
         lblAmo.text = [amoutModel.withdrawBal jk_toDisplayNumberWithDigit:2];
     }
-    lblAmo.textColor = kHexColorAlpha(0xFFFFFF, 0.8);
+    lblAmo.textColor = kHexColorAlpha(0xFFFFFF, 1.0);
     lblAmo.font = [UIFont fontDBOfMIDSize];
     [lblAmo sizeToFit];
     lblAmo.x = lblMon.x;
@@ -142,7 +155,7 @@
     if (amoutModel) {
         lblUnit.text = amoutModel.currency;
     }
-    lblUnit.textColor = kHexColorAlpha(0xFFFFFF, 0.8);
+    lblUnit.textColor = kHexColorAlpha(0xFFFFFF, 1.0);
     lblUnit.font = [UIFont fontPFR14];
     [lblUnit sizeToFit];
     lblUnit.x = lblAmo.right + AD(4);
@@ -160,9 +173,33 @@
     [inputView setPlaceholder:([CNUserManager shareManager].isUsdtMode?@"请输入提币金额":@"请输入提款金额")];
     [self.mainView addSubview:inputView];
     
+    if (needPwd) {
+        CNCodeInputView *codeView = [[CNCodeInputView alloc] initWithFrame:CGRectMake(30, inputView.bottom, kScreenWidth-60-110, 89)];
+        self.codeTF = codeView;
+        codeView.delegate = self;
+        codeView.codeType = CNCodeTypeOldFundPwd;
+        [codeView setPlaceholder:@"请输入6位数字资金密码"];
+        [self.mainView addSubview:codeView];
+        
+        UIButton *changBtn = [[UIButton alloc] init];
+        [changBtn setTitle:@"修改资金密码" forState:UIControlStateNormal];
+        [changBtn setTitleColor:kHexColor(0x10B4DD) forState:UIControlStateNormal];
+        changBtn.titleLabel.font = [UIFont fontPFR15];
+        changBtn.frame = CGRectMake(codeView.right+20, codeView.bottom - 57, 90, 57);
+        [changBtn addTarget:self action:@selector(jump2ModifyFundPwd) forControlEvents:UIControlEventTouchUpInside];
+        [self.mainView addSubview:changBtn];
+        
+        self.btn.top = codeView.bottom + 40;
+    }
+    
     return self;
 }
 
+- (void)jump2ModifyFundPwd {
+    BYChangeFundPwdVC *vc = [BYChangeFundPwdVC new];
+    [kCurNavVC pushViewController:vc animated:YES];
+    [self removeView];
+}
 
 #pragma mark - ACTION
 
@@ -286,8 +323,11 @@
 
 
 - (void)submitClick {
+    if (self.easyBlock) {
+        self.easyBlock(self.nameTF.text);
+    }
     if (self.clickBlock) {
-        self.clickBlock(self.inputTF ? self.inputTF.money : self.nameTF.text);
+        self.clickBlock(self.inputTF.money, self.codeTF.code);
     }
     if (self.nameTF.text) {
         [self removeView];
@@ -324,7 +364,14 @@
 #pragma mark - DELEGATE
 
 - (void)amountInputViewTextChange:(CNAmountInputView *)view {
-    self.btn.enabled = (view.correct && view.money.length > 0);
+    if (self.needPwd) {
+        self.btn.enabled = (view.correct && view.money.length > 0) && self.codeTF.correct;
+    } else {
+        self.btn.enabled = (view.correct && view.money.length > 0);
+    }
+}
+- (void)codeInputViewTextChange:(CNCodeInputView *)view {
+    self.btn.enabled = self.inputTF.correct && self.codeTF.correct;
 }
 
 - (void)inputViewTextChange:(CNNormalInputView *)view {

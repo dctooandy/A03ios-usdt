@@ -74,7 +74,7 @@
 
 #define config_betAmountLevel @"83e6dy/getBetAmountLevelConfig" //获取投注额
 #define config_getBalanceInfo @"customer/getBalance" //获取用户额度信息
-#define config_getByLoginNameEx @"customer/getByLoginNameEx"  //获取用户信息
+//#define config_getByLoginNameEx @"customer/getByLoginNameEx"  //获取用户信息
 
 #pragma mark 好友推荐
 #define config_queryAgentRecord  @"83e6dy/agentRecodTotalSum"  //获取好友推荐所有消息

@@ -41,7 +41,11 @@ NS_ASSUME_NONNULL_BEGIN
                            protocol:(NSString *)protocol
                             remarks:(NSString *)remarks
                    subWallAccountId:(nullable NSString *)subWallAccountId
+                           password:(NSString *)password
                             handler:(HandlerBlock)handler;
+
+/// 查询是否需要资金密码
++ (void)checkIsNeedWithdrawPwdHandler:(HandlerBlock)handler;
 
 /// 查询所有钱包额度
 + (void)getBalancesHandler:(HandlerBlock)handler;

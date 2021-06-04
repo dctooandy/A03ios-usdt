@@ -57,6 +57,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign) NSInteger              usdtNum;
 @property (nonatomic , copy) NSString              * verifyCode;
 @property (nonatomic, copy) NSString                *birthday;
+@property (nonatomic , assign) NSInteger              withdralPwdFlag; //是否有资金密码
+@property (nonatomic , assign) NSInteger              unbondPhoneCount; //该值>0表示需要校验资金密码
 @end
 
 NS_ASSUME_NONNULL_END

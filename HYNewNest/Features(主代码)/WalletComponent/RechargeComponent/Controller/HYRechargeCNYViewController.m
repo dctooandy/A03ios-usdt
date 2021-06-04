@@ -265,7 +265,7 @@
                     [[UIApplication sharedApplication] openURL:payUrl options:@{} completionHandler:^(BOOL success) {
                         [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
                         // 支付等待
-                        HYWithdrawComfirmView *view = [[HYWithdrawComfirmView alloc] initWithAmountModel:nil sumbitBlock:nil];
+                        HYWithdrawComfirmView *view = [[HYWithdrawComfirmView alloc] initWithAmountModel:nil needPwd:NO sumbitBlock:nil];
                         [self.view addSubview:view];
                         [view showRechargeWaiting];
                     }];

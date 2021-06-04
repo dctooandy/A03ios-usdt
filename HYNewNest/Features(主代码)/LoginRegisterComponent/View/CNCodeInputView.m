@@ -57,6 +57,10 @@ int TotalSecond = 60;
     self.inputTF.placeholder = text;
 }
 
+- (void)setTipsText:(NSString *)text {
+    self.tipLb.text = text;
+}
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     switch (_codeType) {
         case CNCodeTypeAccountRegister:
@@ -69,6 +73,7 @@ int TotalSecond = 60;
         case CNCodeTypeBindPhone:
         case CNCodeTypePhoneLogin:
         case CNCodeTypeBankCard:
+        case CNCodeTypeFundPwdSMS:
             self.tipLb.text = @"验证码*";
             break;
         case CNCodeTypeNewPwd:
@@ -76,6 +81,12 @@ int TotalSecond = 60;
             break;
         case CNCodeTypeOldPwd:
             self.tipLb.text = @"旧密码*";
+            break;
+        case CNCodeTypeOldFundPwd:
+            self.tipLb.text = @"资金密码*";
+            break;
+        case CNCodeTypeNewFundPwd:
+            self.tipLb.text = @"新资金密码*";
             break;
         default:
             break;
@@ -93,13 +104,19 @@ int TotalSecond = 60;
         case CNCodeTypeBindPhone:
         case CNCodeTypePhoneLogin:
         case CNCodeTypeBankCard:
+        case CNCodeTypeFundPwdSMS:
             self.correct = (text.length >= 6);
-            wrongTip = @"请输入6位验证码";
+            wrongTip = @"请输入6位数字验证码";
             break;
         case CNCodeTypeAccountLogin:
         case CNCodeTypeAccountRegister:
         case CNCodeTypeNewPwd:
             self.correct = [text validationType:ValidationTypePassword];
+            break;
+        case CNCodeTypeNewFundPwd:
+        case CNCodeTypeOldFundPwd:
+            self.correct = [text validationType:ValidationTypePhoneCode]; //资金密码是6位数字
+            wrongTip = @"请输入6位数字资金密码";
             break;
         default:
             self.correct = (text.length >= 8);
@@ -143,6 +160,7 @@ int TotalSecond = 60;
         case CNCodeTypeBindPhone:
         case CNCodeTypePhoneLogin:
         case CNCodeTypeBankCard:
+        case CNCodeTypeFundPwdSMS:
             if (textField.text.length >= 6) {
                 self.correct = [text validationType:ValidationTypePhoneCode];
                 if (!self.correct) {
@@ -151,7 +169,18 @@ int TotalSecond = 60;
             } else {
                 self.correct = NO;
             }
-            
+            break;
+        // 资金密码
+        case CNCodeTypeNewFundPwd:
+        case CNCodeTypeOldFundPwd:
+            if (textField.text.length >= 6) {
+                self.correct = [text validationType:ValidationTypePhoneCode];
+                if (!self.correct) {
+                    [self showWrongMsg:@"请输入6位数字资金密码"];
+                }
+            } else {
+                self.correct = NO;
+            }
             break;
         default:
             break;
@@ -214,7 +243,16 @@ int TotalSecond = 60;
     
     if (self.codeType==CNCodeTypeBankCard) {
         [CNLoginRequest getSMSCodeByLoginNameType:CNSMSCodeTypeChangeBank completionHandler:^(id responseObj, NSString *errorMsg) {
-            [kKeywindow jk_makeToast:[NSString stringWithFormat:@"向手机%@\n发送了一条验证码", [CNUserManager shareManager].userDetail.mobileNo] duration:2 position:JKToastPositionCenter];
+//            [kKeywindow jk_makeToast:[NSString stringWithFormat:@"向手机%@\n发送了一条验证码", [CNUserManager shareManager].userDetail.mobileNo] duration:2 position:JKToastPositionCenter];
+            SmsCodeModel *smsModel = [SmsCodeModel cn_parse:responseObj];
+            self.smsModel = smsModel;
+            if (self->_delegate && [self->_delegate respondsToSelector:@selector(didReceiveSmsCodeModel:)]) {
+                [self->_delegate didReceiveSmsCodeModel:smsModel];
+            }
+        }];
+        
+    } else if (self.codeType == CNCodeTypeFundPwdSMS) {
+        [CNLoginRequest getSMSCodeByLoginNameType:CNSMSCodeTypeChangeFundPwd completionHandler:^(id responseObj, NSString *errorMsg) {
             SmsCodeModel *smsModel = [SmsCodeModel cn_parse:responseObj];
             self.smsModel = smsModel;
             if (self->_delegate && [self->_delegate respondsToSelector:@selector(didReceiveSmsCodeModel:)]) {
@@ -247,6 +285,8 @@ int TotalSecond = 60;
             break;
         case CNCodeTypeBindPhone:
         case CNCodeTypePhoneLogin:
+        case CNCodeTypeBankCard:
+        case CNCodeTypeFundPwdSMS:
             self.inputTrailing.constant = 100;
             self.inputTF.placeholder = @"请输入验证码";
             self.eyeBtn.hidden = YES;
@@ -270,13 +310,19 @@ int TotalSecond = 60;
             self.tipLb.text = @"旧密码*";
             self.tipLb.hidden = YES;
             break;
-        case CNCodeTypeBankCard:
-            self.inputTrailing.constant = 100;
-            self.inputTF.placeholder = @"请输入验证码";
-            self.eyeBtn.hidden = YES;
-            self.inputTF.secureTextEntry = NO;
-            self.codeBtn.hidden = NO;
+        case CNCodeTypeOldFundPwd:
+            self.inputTrailing.constant = 50;
+            self.inputTF.secureTextEntry = self.eyeBtn.selected;
+            self.inputTF.keyboardType = UIKeyboardTypeNumberPad;
+            self.tipLb.text = @"资金密码*";
+            self.tipLb.hidden = YES;
             break;
+        case CNCodeTypeNewFundPwd:
+            self.inputTrailing.constant = 50;
+            self.inputTF.secureTextEntry = self.eyeBtn.selected;
+            self.inputTF.keyboardType = UIKeyboardTypeNumberPad;
+            self.tipLb.text = @"新资金密码*";
+            self.tipLb.hidden = YES;
         default:
             break;
     }

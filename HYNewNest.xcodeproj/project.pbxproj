@@ -185,6 +185,7 @@
 		3D3A9B6424F90666003FB33C /* UIWindow+Motion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B6324F90666003FB33C /* UIWindow+Motion.m */; };
 		3D3A9B6A24FA3696003FB33C /* DXRadianLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B6824FA3696003FB33C /* DXRadianLayerView.m */; };
 		3D3A9B7324FA7DA5003FB33C /* CNVIPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B7224FA7DA5003FB33C /* CNVIPRequest.m */; };
+		3D4179D82669BFE0003928F0 /* BYChangeFundPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4179D62669BFE0003928F0 /* BYChangeFundPwdVC.m */; };
 		3D41DE6D25199DEE000CA1D6 /* HYVIPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D41DE4725199DEE000CA1D6 /* HYVIPViewController.xib */; };
 		3D41DE6E25199DEE000CA1D6 /* JLXUICollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DE4825199DEE000CA1D6 /* JLXUICollectionViewFlowLayout.m */; };
 		3D41DE6F25199DEE000CA1D6 /* HYVIPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DE4925199DEE000CA1D6 /* HYVIPViewController.m */; };
@@ -229,6 +230,7 @@
 		3D564E2024F3C02C006846DD /* MessageBoxModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D564E1F24F3C02C006846DD /* MessageBoxModel.m */; };
 		3D5693BD25EF612E004077F8 /* BYNewUsrMissionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5693BB25EF612E004077F8 /* BYNewUsrMissionVC.m */; };
 		3D5693BE25EF612E004077F8 /* BYNewUsrMissionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D5693BC25EF612E004077F8 /* BYNewUsrMissionVC.xib */; };
+		3D57EF132668ED0A00A5CCC6 /* BYChangeFundPwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D57EF112668ED0A00A5CCC6 /* BYChangeFundPwdVC.xib */; };
 		3D5B259625BE70FD00FD23F0 /* DSBProfitBoardUsrModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B259525BE70FD00FD23F0 /* DSBProfitBoardUsrModel.m */; };
 		3D5B259925C019C600FD23F0 /* DSBGameRoundResModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B259825C019C600FD23F0 /* DSBGameRoundResModel.m */; };
 		3D5B259D25C01E9200FD23F0 /* BYJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B259C25C01E9200FD23F0 /* BYJSONHelper.m */; };
@@ -1316,6 +1318,8 @@
 		3D3A9B6924FA3696003FB33C /* DXRadianLayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXRadianLayerView.h; sourceTree = "<group>"; };
 		3D3A9B7124FA7DA5003FB33C /* CNVIPRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNVIPRequest.h; sourceTree = "<group>"; };
 		3D3A9B7224FA7DA5003FB33C /* CNVIPRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNVIPRequest.m; sourceTree = "<group>"; };
+		3D4179D62669BFE0003928F0 /* BYChangeFundPwdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BYChangeFundPwdVC.m; sourceTree = "<group>"; };
+		3D4179D72669BFE0003928F0 /* BYChangeFundPwdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BYChangeFundPwdVC.h; sourceTree = "<group>"; };
 		3D41DE4325199DEE000CA1D6 /* HYVIPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYVIPViewController.h; sourceTree = "<group>"; };
 		3D41DE4425199DEE000CA1D6 /* JLXUICollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLXUICollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		3D41DE4525199DEE000CA1D6 /* VIPMonthlyAlertsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPMonthlyAlertsVC.h; sourceTree = "<group>"; };
@@ -1391,6 +1395,7 @@
 		3D5693BA25EF612E004077F8 /* BYNewUsrMissionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYNewUsrMissionVC.h; sourceTree = "<group>"; };
 		3D5693BB25EF612E004077F8 /* BYNewUsrMissionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYNewUsrMissionVC.m; sourceTree = "<group>"; };
 		3D5693BC25EF612E004077F8 /* BYNewUsrMissionVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYNewUsrMissionVC.xib; sourceTree = "<group>"; };
+		3D57EF112668ED0A00A5CCC6 /* BYChangeFundPwdVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYChangeFundPwdVC.xib; sourceTree = "<group>"; };
 		3D5B259425BE70FD00FD23F0 /* DSBProfitBoardUsrModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBProfitBoardUsrModel.h; sourceTree = "<group>"; };
 		3D5B259525BE70FD00FD23F0 /* DSBProfitBoardUsrModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBProfitBoardUsrModel.m; sourceTree = "<group>"; };
 		3D5B259725C019C600FD23F0 /* DSBGameRoundResModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBGameRoundResModel.h; sourceTree = "<group>"; };
@@ -5224,6 +5229,9 @@
 				0430AB3324E3B84700C873DC /* CNCompleteInfoVC.h */,
 				0430AB3424E3B84700C873DC /* CNCompleteInfoVC.m */,
 				0430AB3524E3B84700C873DC /* CNCompleteInfoVC.xib */,
+				3D4179D72669BFE0003928F0 /* BYChangeFundPwdVC.h */,
+				3D4179D62669BFE0003928F0 /* BYChangeFundPwdVC.m */,
+				3D57EF112668ED0A00A5CCC6 /* BYChangeFundPwdVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5877,6 +5885,7 @@
 				D5A4470124F3941400014DC6 /* 合成 1_00091.png in Resources */,
 				D5A4461F24F393E500014DC6 /* 足球_00046.png in Resources */,
 				D5A443E224F378CD00014DC6 /* 彩票_00088.png in Resources */,
+				3D57EF132668ED0A00A5CCC6 /* BYChangeFundPwdVC.xib in Resources */,
 				D5A446CC24F3941400014DC6 /* 合成 1_00076.png in Resources */,
 				0487C9E824D27BDD0013715A /* CNNotifySettingTCell.xib in Resources */,
 				D5A4461024F393E500014DC6 /* 足球_00041.png in Resources */,
@@ -6396,6 +6405,7 @@
 				3D5B259625BE70FD00FD23F0 /* DSBProfitBoardUsrModel.m in Sources */,
 				E98BEF1224D2A32700E6B0C8 /* HYXiMaSuccViewController.m in Sources */,
 				E986A17F24C97B21000F9CFF /* CNWDAccountRequest.m in Sources */,
+				3D4179D82669BFE0003928F0 /* BYChangeFundPwdVC.m in Sources */,
 				D5FBFE4224BC05E400BBCAD8 /* CNCodeInputView.m in Sources */,
 				E986A0FD24C6D1F9000F9CFF /* CNUserDetailModel.m in Sources */,
 				E986A15624C95F4F000F9CFF /* UIButton+Indicator.m in Sources */,

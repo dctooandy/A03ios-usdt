@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-/// 提现金额 & 提现确认 & 支付等待 & 真实姓名绑定
+/// 提现金额 & 提现确认 & 支付等待 & 真实姓名绑定 -> 分开。。。
 @interface HYWithdrawComfirmView : UIView
 
 /// 真实姓名绑定
@@ -21,7 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 提现金额输入
 - (instancetype)initWithAmountModel:(nullable AccountMoneyDetailModel *)amoutModel
-                        sumbitBlock:(nullable void(^)(NSString *withdrawAmout))block;
+                            needPwd:(BOOL)needPwd
+                        sumbitBlock:(nullable void(^)(NSString *withdrawAmout, NSString *fPwd))block;
 
 /// CNY提现拆分 提现成功
 - (void)showSuccessWithdrawCNYExUSDT:(NSNumber *)uAmount dismissBlock:(nullable void(^)(void))block;
