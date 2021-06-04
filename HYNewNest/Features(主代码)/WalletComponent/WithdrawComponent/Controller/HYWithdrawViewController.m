@@ -59,7 +59,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 #pragma mark - Lazy
 - (HYDownloadLinkView *)linkView {
     if (!_linkView) {
-        HYDownloadLinkView *linkView = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(AD(96), 0, AD(182), 30) normalText:[CNUserManager shareManager].isUsdtMode?@"提币需要资金密码，":@"提现需要资金密码，" tapableText:@"前往设置" tapColor:kHexColor(0x3176F0) hasUnderLine:YES urlValue:nil];
+        HYDownloadLinkView *linkView = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(80, 0, 200, 30) normalText:[CNUserManager shareManager].isUsdtMode?@"提币需要资金密码，":@"提现需要资金密码，" tapableText:@"前往设置" tapColor:kHexColor(0x3176F0) hasUnderLine:YES urlValue:nil];
         WEAKSELF_DEFINE
         linkView.tapBlock = ^{
             STRONGSELF_DEFINE
