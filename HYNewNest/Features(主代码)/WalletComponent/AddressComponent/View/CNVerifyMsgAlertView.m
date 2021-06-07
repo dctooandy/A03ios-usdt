@@ -125,6 +125,10 @@
     __weak typeof(self) weakSelf = self;
     view.finishBlock = ^(NSString *code) {
         weakSelf.smsCode = code;
+        weakSelf.rightBtn.enabled = YES;
+    };
+    view.inputBlock = ^(NSString *code) {
+        weakSelf.rightBtn.enabled = NO;
     };
     [self.shakingView addSubview:view];
     self.codeView = view;

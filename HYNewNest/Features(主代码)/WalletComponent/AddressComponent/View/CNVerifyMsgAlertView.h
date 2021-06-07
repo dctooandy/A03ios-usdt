@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface CNVerifyMsgAlertView : CNBaseXibView
 
+/// 一键注册
 + (CNVerifyMsgAlertView *)showPhone:(NSString *)phone reSendCode:(dispatch_block_t)sendCodeBlock finish:(void(^)(NSString *smsCode))finishBlock;
 - (void)resetCodeView;
 + (void)removeAlertView;

@@ -24,7 +24,7 @@
 
 - (HYDownloadLinkView *)linkView {
     if (!_linkView) {
-        HYDownloadLinkView *view = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(AD(117), AD(110), AD(140), AD(25)) normalText:@"已有小金库？" tapableText:@"立即添加" tapColor:kHexColor(0x10B4DD) hasUnderLine:NO urlValue:nil];
+        HYDownloadLinkView *view = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(110, AD(110), 160, AD(25)) normalText:@"已有小金库？" tapableText:@"立即添加" tapColor:kHexColor(0x10B4DD) hasUnderLine:NO urlValue:nil];
         view.tapBlock = ^{
             CNAddAddressVC *vc = [CNAddAddressVC new];
             vc.addrType = HYAddressTypeDCBOX;
