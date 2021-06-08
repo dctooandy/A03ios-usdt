@@ -88,18 +88,6 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     [self setupTopView];
     [self setupTableView];
     
-    // 负信用等级不能取rmb
-    if (![CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userDetail.depositLevel < 0) {
-        [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"为保障您的资金安全，\n详情联系客服咨询" btnText:@"联系客服" handler:^(BOOL isComfirm) {
-            if (isComfirm) {
-                [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
-            }
-        }];
-    }
-    
-    // 刷新用户信息
-    [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
-    }];
     
     // 动态表单
     [CNWithdrawRequest checkIsNeedWithdrawPwdHandler:^(id responseObj, NSString *errorMsg) {
@@ -116,15 +104,23 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self requestBalance];
-    [self requestWithdrawAddress];
+    [self bunchRequest];
 }
 
 - (void)bunchRequest {
     [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
+        [self requestBalance];
+        [self requestWithdrawAddress];
+        // 负信用等级不能取rmb
+        if (![CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userDetail.depositLevel < 0) {
+            [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"为保障您的资金安全，\n详情联系客服咨询" btnText:@"联系客服" handler:^(BOOL isComfirm) {
+                if (isComfirm) {
+                    [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
+                }
+            }];
+            return;
+        }
     }];
-    [self requestBalance];
-    [self requestWithdrawAddress];
 }
 
 - (void)rightItemAction {
