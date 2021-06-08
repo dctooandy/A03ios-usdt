@@ -58,6 +58,7 @@
     self.userDetail.realName = mobileStatus[@"realName"];
     self.userDetail.mobileNo = mobileStatus[@"mobileNo"];
     self.userDetail.mobileNoBind = [mobileStatus[@"mobileNoBind"] integerValue];
+    self.userDetail.withdralPwdFlag = [mobileStatus[@"withdralPwdFlag"] integerValue];
     return [self saveUerDetailToSandBox];
 }
 

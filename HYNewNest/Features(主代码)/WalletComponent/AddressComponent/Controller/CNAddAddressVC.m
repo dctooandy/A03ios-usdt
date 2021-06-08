@@ -59,28 +59,32 @@
         [self goldAddress:self.goldBtn];
     }
     
-    [CNWithdrawRequest getUserMobileStatusCompletionHandler:^(id responseObj, NSString *errorMsg) {
-    }];
     [self setDelegate];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    if (![CNUserManager shareManager].userDetail.mobileNoBind) {
-        [HYTextAlertView showWithTitle:@"手机绑定" content:@"对不起！系统发现您还没有绑定手机，请先完成手机绑定流程，再进行添加地址操作。" comfirmText:@"确定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
-            if (isComfirm) {
-                CNBindPhoneVC *vc = [CNBindPhoneVC new];
-                vc.bindType = CNSMSCodeTypeBindPhone;
-                [self.navigationController pushViewController:vc animated:YES];
-            } else {
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-        }];
-        
-    } else {
-        // 验证码须传入手机号
-        self.codeInputView.account = [CNUserManager shareManager].userDetail.mobileNo;
-        self.codeInputView.codeType = CNCodeTypeBankCard;
-    }
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    WEAKSELF_DEFINE
+    [CNWithdrawRequest getUserMobileStatusCompletionHandler:^(id responseObj, NSString *errorMsg) {
+        STRONGSELF_DEFINE
+        if (![CNUserManager shareManager].userDetail.mobileNoBind) {
+            [HYTextAlertView showWithTitle:@"手机绑定" content:@"对不起！系统发现您还没有绑定手机，请先完成手机绑定流程，再进行添加地址操作。" comfirmText:@"确定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
+                if (isComfirm) {
+                    CNBindPhoneVC *vc = [CNBindPhoneVC new];
+                    vc.bindType = CNSMSCodeTypeBindPhone;
+                    [strongSelf.navigationController pushViewController:vc animated:YES];
+                } else {
+                    [strongSelf.navigationController popViewControllerAnimated:YES];
+                }
+            }];
+            
+        } else {
+            // 验证码须传入手机号
+            strongSelf.codeInputView.account = [CNUserManager shareManager].userDetail.mobileNo;
+            strongSelf.codeInputView.codeType = CNCodeTypeBankCard;
+        }
+    }];
 }
 
 - (void)configUI {

@@ -100,8 +100,8 @@
 #define config_getRealNamePhone @"customer/modifyCustomerRealNamePhone" //修改手机和姓名
 #define config_createBank      @"account/createBank"    //添加银行卡号
 #define config_createBitCoin   @"account/createBtc"   //添加比特币账户
-#define config_create          @"account/create"    //添加币付宝账户
-#define config_createGoldAccount @"account/createGoldAccount" //创建币付宝账户
+#define config_create          @"account/create"    //添加小金库账户
+#define config_createGoldAccount @"account/createGoldAccount" //创建小金库账户
 #define config_getQueryCard    @"account/query" //查询有多少卡绑定， 银行卡管理界面
 #define config_deleteAccount   @"account/delete"  //删除银行卡
 #define config_verifySmsCode   @"phone/verifySmsCode" //获取validateId
