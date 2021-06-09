@@ -33,12 +33,6 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
 @property (weak, nonatomic) IBOutlet SDCycleScrollView *btmBanner;
 @property (weak, nonatomic) IBOutlet UILabel *btmTitleLb;
 
-/**{
- "amount_list" = "20;100;200;500;1000;2000";
- id = 1738;
- "promo_info" = "{ \"h5_img\": \"cbymtch5.png\",\"pc_img\": \"cbymtcpc.png\",\"promo_url\": \"/pub_site/coin\",  \"root\":\"https://83e6dyfront.58baili.com/cdn/83e6dyP/externals/img/_wms/banner-biyou/\"}";
- teaching = "{ \"h5_img\": [\"cbymtch5.png\",\"cbymtch5.png\",\"cbymtch5.png\"], \"pc_img\": [\"cbymtch5.png\",\"cbymtch5.png\",\"cbymtch5.png\"], \"root\": \"https://83e6dyfront.58baili.com/cdn/83e6dyP/externals/img/_wms/banner-biyou/\" }";
-}*/
 @property (strong,nonatomic) NSDictionary *topBannerDict; //!<顶部banner数据
 @property (strong,nonatomic) NSDictionary *btmBannerDict; //!<底部轮播数据
 
@@ -190,25 +184,8 @@ USDT支付渠道
 }
 
 /**
-在线类支付 需要
-*/
-//- (void)queryOnlineBankAmount {
-//    if (_selIdx < 1) { //0是直充
-//        return;
-//    }
-//    DepositsBankModel *model = self.depositModels[_selIdx-1];
-//    NSArray *cells = [self.tableView visibleCells];
-//    BYRechargeUSDTTopView *cell = cells[_selIdx];
-//
-//    [CNRechargeRequest queryOnlineBanksPayType:model.payType
-//                                  usdtProtocol:cell.selectedProtocol
-//                                       handler:^(id responseObj, NSString *errorMsg) {
-//        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-//            OnlineBanksModel *oModel = [OnlineBanksModel cn_parse:responseObj];
-//            self.curOnliBankModel = oModel;
-//        }
-//    }];
-//}
+ 选择了协议
+ */
 - (void)didSelectOneProtocol:(NSString *)selectedProtocol {
     if (_selIdx < 1) { //0是直充
         return;

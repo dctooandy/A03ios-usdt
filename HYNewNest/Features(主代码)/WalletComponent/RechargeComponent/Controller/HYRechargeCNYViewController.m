@@ -64,6 +64,7 @@
     [self refreshQueryData];
 }
 
+
 #pragma mark - View life cycle
 
 - (instancetype)init {
@@ -77,9 +78,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"充值";
+    [self addNaviRightItemWithImageName:@"kf"];
+    
     _selcPayWayIdx = 0;
     _launchDate = [NSDate date];
     
+    [self setupEmptyView];
+    [self setupSubmitBtn];
+    [self queryCNYPayways];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (!_hasRecord) {
+        [CNTimeLog endRecordTime:CNEventPayLaunch];
+        _hasRecord = YES;
+    }
+}
+
+- (void)rightItemAction {
+    [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
+}
+
+- (void)setupEmptyView {
     LYEmptyView *empView = [LYEmptyView emptyActionViewWithImage:[UIImage imageNamed:@"kongduixiang"] titleStr:@"" detailStr:@"暂无充值方式提供" btnTitleStr:@"刷新试试" btnClickBlock:^{
         [self queryCNYPayways];
     }];
@@ -87,21 +108,6 @@
     empView.actionBtnCornerRadius = 10;
     empView.actionBtnTitleColor = [UIColor lightGrayColor];
     self.view.ly_emptyView = empView;
-    
-    [self setupSubmitBtn];
-    [self queryCNYPayways];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    if (!_hasRecord) {
-        [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] showSuspendBall];
-        
-        [CNTimeLog endRecordTime:CNEventPayLaunch];
-        _hasRecord = YES;
-
-    }
 }
 
 - (void)setupMainEditView {

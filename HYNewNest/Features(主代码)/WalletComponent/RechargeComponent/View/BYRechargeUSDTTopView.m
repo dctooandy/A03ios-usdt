@@ -145,6 +145,7 @@
 - (void)setDeposModel:(DepositsBankModel *)deposModel {
     _deposModel = deposModel;
     
+    // 当前业务逻辑 USDT只有三个充值方式，则不从网络上取图片了
 //    [_payWayImgv sd_setImageWithURL:[NSURL getUrlWithString:model.bankIcon] placeholderImage:[UIImage imageNamed:@"rmb"]];
     
     // RMB直冲方式
@@ -216,6 +217,16 @@
 }
 
 - (void)amountTfDidChange:(UITextField *)tf {
+    // 当手动编辑时 取消点击的按钮
+    for (int tag = 100; tag < 106; tag++) {
+        BYThreeStatusBtn *btn = (BYThreeStatusBtn *)[self viewWithTag:tag];
+        btn.status = CNThreeStaBtnStatusGradientBorder;
+    }
+    
+    [self checkEnableStatus:tf];
+}
+
+- (void)checkEnableStatus:(UITextField *)tf {
     NSString *text = tf.text;
     // 校验金额
     if (![text isPrueIntOrFloat]) {
@@ -271,14 +282,10 @@
         BYThreeStatusBtn *btn = (BYThreeStatusBtn *)[self viewWithTag:tag];
         btn.status = CNThreeStaBtnStatusGradientBorder;
     }
-    
     sender.status = CNThreeStaBtnStatusGradientBackground;
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        sender.status = CNThreeStaBtnStatusGradientBorder;
-//    });
     
     _tfAmount.text = sender.titleLabel.text;
-    [self amountTfDidChange:_tfAmount];
+    [self checkEnableStatus:_tfAmount];
 }
 
 - (IBAction)didTapQuestion:(id)sender {

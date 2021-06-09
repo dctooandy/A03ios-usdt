@@ -137,33 +137,29 @@
         }
     }
 
-    if (![HYRechargeHelper isOnlinePayWay:itemModel]) {
+    if ([HYRechargeHelper isOnlinePayWay:itemModel] && amountModel.depositorList.count) {
         
         /// 付款人选择按钮
-        if (amountModel.depositorList.count == 0) {
-            self.depositIdBtnsContain.hidden = YES;
-            self.depositIdBtnsContainH.constant = 0;
-            
-        } else {
-            self.depositIdBtnsContain.hidden = NO;
-            self.depositIdBtnsContainH.constant = 40 + ((amountModel.depositorList.count-1)/3)*(40+16);
-                        
-            for (int i=0; i<amountModel.depositorList.count; i++) {
-                NSDictionary *dictDepositor = [amountModel.depositorList objectAtIndex:i];
-                NSString *depositor = [dictDepositor objectForKey:@"depositor"];
-                NSNumber *depositorId = [dictDepositor objectForKey:@"id"];
+        self.depositIdBtnsContain.hidden = NO;
+        self.depositIdBtnsContainH.constant = 40 + ((amountModel.depositorList.count-1)/3)*(40+16);
+                    
+        for (int i=0; i<amountModel.depositorList.count; i++) {
+            NSDictionary *dictDepositor = [amountModel.depositorList objectAtIndex:i];
+            NSString *depositor = [dictDepositor objectForKey:@"depositor"];
+            NSNumber *depositorId = [dictDepositor objectForKey:@"id"];
 
-                HYRechProcButton *btn = [[HYRechProcButton alloc] init];
-                [btn setTitle:depositor forState:UIControlStateNormal];
-                [btn addTarget:self action:@selector(depositorBtnSelected:) forControlEvents:UIControlEventTouchUpInside];
-                btn.tag = [depositorId integerValue];
+            HYRechProcButton *btn = [[HYRechProcButton alloc] init];
+            [btn setTitle:depositor forState:UIControlStateNormal];
+            [btn addTarget:self action:@selector(depositorBtnSelected:) forControlEvents:UIControlEventTouchUpInside];
+            btn.tag = [depositorId integerValue];
 
-                [self.depositIdBtnsContain addSubview:btn];
-                btn.frame = CGRectMake((ItemMargin + ItemWidht) * (i%3), (i/3) * (40+16), ItemWidht, 40);
-            }
+            [self.depositIdBtnsContain addSubview:btn];
+            btn.frame = CGRectMake((ItemMargin + ItemWidht) * (i%3), (i/3) * (40+16), ItemWidht, 40);
         }
-        
 
+    } else {
+        self.depositIdBtnsContain.hidden = YES;
+        self.depositIdBtnsContainH.constant = 0;
     }
     
     // 选择收款银行 暂时废弃 隐藏掉
@@ -185,7 +181,7 @@
     }
     btn.selected = YES;
     self.rechargeAmount = btn.titleLabel.text;
-    self.amountTfView.text = @"";
+    self.amountTfView.text = btn.titleLabel.text;
     [self endEditing:YES];
     
     [self checkEnableStatus];
@@ -228,11 +224,18 @@
 - (void)inputViewTextChange:(CNNormalInputView *)view {
     if (view == self.amountTfView) {
         NSInteger amount = [view.text integerValue];
-        if (amount < self.itemModel.minAmount || amount > self.itemModel.maxAmount) {
+        if (![view.text isPrueIntOrFloat]) {
+            [view showWrongMsg:@"请输入正确的数字金额"];
+        } else if (amount < self.itemModel.minAmount || amount > self.itemModel.maxAmount) {
             [view showWrongMsg:[NSString stringWithFormat:@"单笔 %@ CNY", [HYRechargeHelper amountTip:self.itemModel]]];
         } else {
             view.wrongAccout = NO;
             self.rechargeAmount = view.text;
+        }
+        if (view.text.length > 0) {
+            for (UIButton *btn in self.amountBtnsContain.subviews) {
+                btn.selected = NO;
+            }
         }
     } else if (view == self.depositorTfView) {
         if (![view.text validationType:ValidationTypeRealName]) {
@@ -245,13 +248,7 @@
 }
 
 - (void)inputViewDidEndEditing:(CNNormalInputView *)view {
-    if (view == self.amountTfView) {
-        if (view.text.length > 0) {
-            for (UIButton *btn in self.amountBtnsContain.subviews) {
-                btn.selected = NO;
-            }
-        }
-    } else if (view == self.depositorTfView) {
+    if (view == self.depositorTfView) {
         if (view.text.length > 0) {
             for (UIButton *btn in self.depositIdBtnsContain.subviews) {
                 btn.selected = NO;
