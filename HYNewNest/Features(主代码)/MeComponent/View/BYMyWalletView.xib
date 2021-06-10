@@ -438,9 +438,9 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSi-cK-xwv">
-                    <rect key="frame" x="240" y="56" width="23" height="23"/>
-                    <state key="normal" image="down"/>
-                    <state key="selected" image="up"/>
+                    <rect key="frame" x="198.5" y="56" width="106.5" height="22"/>
+                    <state key="normal" image="DOWN"/>
+                    <state key="selected" image="UP"/>
                     <connections>
                         <action selector="didTapExpandBtn:" destination="-1" eventType="touchUpInside" id="yY7-0Y-cXm"/>
                     </connections>
@@ -465,13 +465,13 @@
                 <constraint firstItem="1AI-F3-gMh" firstAttribute="leading" secondItem="Mxp-iV-Gwm" secondAttribute="leading" id="z1A-Jn-ppV"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-476.08695652173918" y="-223.99553571428569"/>
+            <point key="canvasLocation" x="-679" y="-203"/>
         </view>
     </objects>
     <resources>
-        <image name="down" width="23" height="23"/>
+        <image name="DOWN" width="106.5" height="16.5"/>
+        <image name="UP" width="106.5" height="16.5"/>
         <image name="next" width="5" height="10"/>
-        <image name="up" width="23" height="22"/>
         <image name="疑问" width="16" height="16"/>
     </resources>
 </document>
