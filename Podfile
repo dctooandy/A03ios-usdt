@@ -22,6 +22,7 @@ target 'HYNewNest' do
   # webSocket
   pod 'SocketRocket'
   pod 'CocoaAsyncSocket'
+  pod 'LookinServer', :configurations => ['Debug']
   
   # 公共接口
   pod 'IVPublicAPILibrary',:git =>'http://10.66.72.115/mobile-iOS-Library/IVPublicAPILibrary.git'
@@ -37,12 +38,10 @@ target 'HYNewNest' do
   pod 'CSSerVice',:git =>'http://10.66.72.115/mobile-iOS-library/ocss-webview-sdk-demo-ios.git'
   # 微脉圈
   pod 'IVCustomerServiceLibrary',:git =>'http://10.66.72.115/mobile-iOS-library/IVCustomerServiceLibrary'
-  
-  #3S
+  pod 'IVIMPublicLibrary',:git =>'http://10.66.72.115/mobile-iOS-library/IVIMPublicLibrary.git'
+  # 3S
   pod 'IN3SAnalyticsSDK',:git =>'http://10.66.72.115/mobile-iOS-library/IV3SLibrary.git'
   pod 'IVGameLibrary',:git =>'http://10.66.72.115/mobile-iOS-Library/IVGameLibrary.git',:branch=>'v2.0'
-  
-  pod 'LookinServer', :configurations => ['Debug']
 
   target 'HYNewNestTests' do
     inherit! :search_paths
