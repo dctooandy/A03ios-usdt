@@ -7,7 +7,6 @@
 //
 
 #import "BYFirstFillBannerView.h"
-#import "NNPageRouter.h"
 
 @implementation BYFirstFillBannerView
 
@@ -21,7 +20,9 @@
 #pragma mark -
 #pragma mark IBAction
 - (IBAction)firstFillClicked:(id)sender {
-    //開啟html
+    if (self.delegate) {
+        [self.delegate moreBannerClicked];
+    }
 }
 
 - (IBAction)killSelf:(id)sender {

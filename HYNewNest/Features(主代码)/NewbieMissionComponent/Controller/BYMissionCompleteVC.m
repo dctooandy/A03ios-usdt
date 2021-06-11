@@ -15,10 +15,11 @@
 #import "CNTaskModel.h"
 #import "LoadingView.h"
 
-@interface BYMissionCompleteVC ()<BYMoreCompleteDelegate>
+@interface BYMissionCompleteVC ()<BYMissionBannerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *bannerBackground;
 @property (weak, nonatomic) IBOutlet UILabel *receivedUSDTLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gradientLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rewardLabel;
 
 @end
 
@@ -26,7 +27,6 @@
 @synthesize bannerBackground;
 @synthesize receivedUSDTLabel;
 @synthesize gradientLabel;
-@synthesize type;
 
 - (instancetype)init
 {
@@ -42,9 +42,8 @@
     // Do any additional setup after loading the view from its nib.
     [self setupBanner];
     [self.gradientLabel setupGradientColorFrom:kHexColor(0x19CECE) toColor:kHexColor(0x10B4DD)];
-    
-    [self receivedData:self.result];
-    
+    [self.rewardLabel setText:[NSString stringWithFormat:@"%liUSDT",self.reward.sucAmount]];
+        
 }
 
 /*
@@ -63,60 +62,21 @@
 }
 
 #pragma mark -
-#pragma mark PostData
-- (void)receivedData:(CNTaskReceived *)result {
-    [LoadingView show];
-    WEAKSELF_DEFINE
-    [CNTaskRequest applyTaskRewardIds:result.receivedID code:result.receivedCode handler:^(id responseObj, NSString *errorMsg) {
-        [LoadingView hide];
-        if (!errorMsg) {
-            CNTaskReceivedReward *reward = [CNTaskReceivedReward cn_parse:responseObj];
-            STRONGSELF_DEFINE
-            if (strongSelf.resultArray.count > 0) {
-                [strongSelf.resultArray removeObjectAtIndex:0];
-                [strongSelf setupBanner];
-            }
-            [strongSelf.receivedUSDTLabel setText:[NSString stringWithFormat:@"%liUSDT", reward.sucAmount]];
-            
-        }
-    }];
-}
-
-#pragma mark -
 #pragma mark Delegate
 - (void)moreBannerClicked {
-    //reload
-    if (self.type == MissionCompleteTypeLimite) {
-        
-    }
-    else {
-        //call api
-        if (self.resultArray.count > 0) {
-            CNTaskReceived *recevied = self.resultArray.firstObject.mutableCopy;
-            [self receivedData:recevied];
-        }
-    }
+    [self dismissViewControllerAnimated:false completion:nil];
+    [NNPageRouter jump2HTMLWithStrURL:H5URL_Pub_Coin
+                                title:@"首存活動"
+                          needPubSite:false];
 }
 
 #pragma mark -
 #pragma mark Custom Method
 - (void)setupBanner {
-    for (UIView *subview in self.bannerBackground.subviews) {
-        [subview removeFromSuperview];
-    }
-    
-    if (self.type == MissionCompleteTypeLimite) {
-        BYFirstFillBannerView *bannerView = [[BYFirstFillBannerView alloc] init];
-        bannerView.frame = self.bannerBackground.bounds;
-        [self.bannerBackground addSubview:bannerView];
-    }
-    else if (self.resultArray.count > 0){
-        BYMoreCompleteMissionView *bannerView = [[BYMoreCompleteMissionView alloc] init];
-        [bannerView setDelegate:self];
-        bannerView.frame = self.bannerBackground.bounds;
-        [self.bannerBackground addSubview:bannerView];
-    }
-    
+    BYFirstFillBannerView *bannerView = [[BYFirstFillBannerView alloc] init];
+    bannerView.frame = self.bannerBackground.bounds;
+    bannerView.delegate = self;
+    [self.bannerBackground addSubview:bannerView];
 }
 
 

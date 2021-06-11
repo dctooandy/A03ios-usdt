@@ -2430,6 +2430,7 @@
 		F78397292673360600AB8BE6 /* BYRegisterSuccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYRegisterSuccessVC.h; sourceTree = "<group>"; };
 		F783972A2673360600AB8BE6 /* BYRegisterSuccessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYRegisterSuccessVC.m; sourceTree = "<group>"; };
 		F783972B2673360600AB8BE6 /* BYRegisterSuccessVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYRegisterSuccessVC.xib; sourceTree = "<group>"; };
+		F78F827B2673435200871BE4 /* BYMissionBannerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYMissionBannerDelegate.h; sourceTree = "<group>"; };
 		F7A75F1A264E140500D933D7 /* BYGradientButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGradientButton.h; sourceTree = "<group>"; };
 		F7A75F1B264E140500D933D7 /* BYGradientButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGradientButton.m; sourceTree = "<group>"; };
 		F7A75F1D264E405600D933D7 /* BYBorderButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYBorderButton.h; sourceTree = "<group>"; };
@@ -5361,6 +5362,7 @@
 		F765F0EC26525E4600F15747 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F78F827B2673435200871BE4 /* BYMissionBannerDelegate.h */,
 				F765F0ED26525F4C00F15747 /* BYFirstFillBannerView.h */,
 				F765F0EE26525F4C00F15747 /* BYFirstFillBannerView.m */,
 				F765F0F026525F5800F15747 /* BYFirstFillBannerView.xib */,

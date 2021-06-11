@@ -20,6 +20,9 @@
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Twt-nX-c54" secondAttribute="height" multiplier="23:8" id="oe9-8f-ucT"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="oZB-hP-Zma" appends="YES" id="2Mu-TX-Q3n"/>
+                    </connections>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaE-7f-hdh">
                     <rect key="frame" x="176.5" y="125.5" width="24.5" height="24.5"/>
@@ -41,9 +44,9 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="207.97101449275365" y="174.44196428571428"/>
         </view>
-        <tapGestureRecognizer id="Jy0-wr-Qud">
+        <tapGestureRecognizer id="oZB-hP-Zma">
             <connections>
-                <action selector="firstFillClicked:" destination="-1" id="BTI-uJ-Eah"/>
+                <action selector="firstFillClicked:" destination="-1" id="pnr-Sr-dhF"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

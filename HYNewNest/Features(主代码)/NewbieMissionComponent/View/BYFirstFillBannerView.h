@@ -7,11 +7,11 @@
 //
 
 #import "CNBaseXibView.h"
-
+#import "BYMissionBannerDelegate.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BYFirstFillBannerView : CNBaseXibView
-
+@property (nonatomic, weak) id<BYMissionBannerDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

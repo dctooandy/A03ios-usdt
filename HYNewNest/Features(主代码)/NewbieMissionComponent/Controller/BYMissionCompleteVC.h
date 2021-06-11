@@ -11,15 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef enum {
-    MissionCompleteTypeLimite = 0,
-    MissionCompleteTypeMore
-} MissionCompleteType;
-
 @interface BYMissionCompleteVC : CNBaseVC
-@property (nonatomic, assign) MissionCompleteType type;
-@property (nonatomic, strong) CNTaskReceived *result;
-@property (nonatomic, strong) NSMutableArray<CNTaskReceived *> *resultArray;
+@property (nonatomic, strong) CNTaskReceivedReward *reward;
 @end
 
 NS_ASSUME_NONNULL_END

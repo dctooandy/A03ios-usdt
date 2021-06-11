@@ -7,16 +7,12 @@
 //
 
 #import "CNBaseXibView.h"
+#import "BYMissionBannerDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@protocol BYMoreCompleteDelegate <NSObject>
-
-- (void)moreBannerClicked;
-
-@end
 
 @interface BYMoreCompleteMissionView : CNBaseXibView
-@property (nonatomic, weak) id<BYMoreCompleteDelegate> delegate;
+@property (nonatomic, weak) id<BYMissionBannerDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END
