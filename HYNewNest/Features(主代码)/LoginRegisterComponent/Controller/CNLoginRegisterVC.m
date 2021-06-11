@@ -247,7 +247,7 @@
     // 账号登录
     if (self.needImageCode) {
         if (self.loginImageCodeView.imageCode.length == 0) {
-            [CNHUB showError:@"请输入图形验证码"];
+            [CNTOPHUB showError:@"请输入图形验证码"];
             return;
         }
     }
@@ -291,14 +291,14 @@
     NSString *captchaId = @"";
     if (self.needImageCode) {
         if (!self.loginImageCodeView.correct) {
-            [CNHUB showError:@"请输入图片中的数字验证码"];
+            [CNTOPHUB showError:@"请输入图片中的数字验证码"];
             return;
         }
         captcha = self.loginImageCodeView.imageCode;
         captchaId = self.loginImageCodeView.imageCodeId;
     } else if (self.needHanImageCode) {
         if (!self.hanImgCodeView.correct) {
-            [CNHUB showError:@"请按正确顺序点击图片中的文字"];
+            [CNTOPHUB showError:@"请按正确顺序点击图片中的文字"];
             return;
         }
         captcha = self.hanImgCodeView.ticket;
@@ -321,7 +321,7 @@
                 [strongSelf.navigationController pushViewController:vc animated:YES];
                 
             } else {
-                [CNHUB showSuccess:@"登录成功"];
+                [CNTOPHUB showSuccess:@"登录成功"];
                 if ([NNControllerHelper pop2ViewControllerClassString:@"CNHomeVC"]) { // 如果无法pop回homepage 则直接pop回上一级
                     [[NNControllerHelper currentTabBarController] performSelector:@selector(showSuspendBall)];
                 } else {
@@ -383,7 +383,7 @@
                               completionHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
             [CNVerifyMsgAlertView removeAlertView];
-            [CNHUB showSuccess:@"登录成功"];
+            [CNTOPHUB showSuccess:@"登录成功"];
             if (![NNControllerHelper pop2ViewControllerClassString:@"CNHomeVC"]) { // 如果无法pop回homepage 则直接pop回上一级
                 [self.navigationController popViewControllerAnimated:YES];
             }
@@ -397,7 +397,7 @@
 - (IBAction)registerAction:(UIButton *)sender {
     
     if (!self.regHanImgCodeView.correct) {
-        [CNHUB showError:@"请按正确顺序点击图片中的文字"];
+        [CNTOPHUB showError:@"请按正确顺序点击图片中的文字"];
         return;
     }
     NSString * captcha = self.regHanImgCodeView.ticket;
@@ -409,7 +409,7 @@
                                   captchaId:captchaId
                           completionHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
-            [CNHUB showSuccess:@"注册成功"];
+            [CNTOPHUB showSuccess:@"注册成功"];
             CNBindPhoneVC *vc = [CNBindPhoneVC new];
             vc.bindType = CNSMSCodeTypeRegister;
             [self.navigationController pushViewController:vc animated:YES];

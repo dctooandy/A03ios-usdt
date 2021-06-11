@@ -11,6 +11,7 @@
 #import "HYInGameHelper.h"
 #import "BYSuperCopartnerVC.h"
 #import "BYNewbieMissionVC.h"
+#import "BYYuEBaoTransferVC.h"
 
 @interface TopTabAGUltimateView()<WKNavigationDelegate, WKUIDelegate> //WKScriptMessageHandler  要加协议
 
@@ -244,8 +245,13 @@
         decisionHandler(WKNavigationActionPolicyCancel);
         [kCurNavVC popToRootViewControllerAnimated:false];
         [kCurNavVC pushViewController:[[BYNewbieMissionVC alloc] init] animated:true];
-    }
-    else {
+    }else if ([url hasPrefix:@"hy://yuebao"]) {
+        // 余额宝
+        decisionHandler(WKNavigationActionPolicyCancel);
+        BYYuEBaoTransferVC *vc = [[BYYuEBaoTransferVC alloc] initWithType:YEBTransferTypeDeposit configModel:nil];
+        [kCurNavVC pushViewController:vc animated:YES];
+        
+    }else {
         decisionHandler(WKNavigationActionPolicyAllow);
     }
 }

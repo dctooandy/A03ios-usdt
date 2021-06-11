@@ -36,17 +36,17 @@
         } else if ([[self errorCodeOfTokenException] containsObject:response.head.errCode]) {
             [LoadingView hide];
             // token过期
-            [CNHUB showError:@"登录失效，请重新登录"];
+            [CNTOPHUB showError:@"登录失效，请重新登录"];
             !completionHandler ?: completionHandler(response.head.errCode, @"登录失效，请重新登录");
             [[CNUserManager shareManager] cleanUserInfo];
             
         } else {
             [LoadingView hide];
             if (error) {
-                [CNHUB showError:error.localizedDescription];
+                [CNTOPHUB showError:error.localizedDescription];
                 !completionHandler ?: completionHandler(nil, error.localizedDescription);
             } else {
-                [CNHUB showError:response.head.errMsg];
+                [CNTOPHUB showError:response.head.errMsg];
                 !completionHandler ?: completionHandler(response.head.errCode, response.head.errMsg);
             }
         }
@@ -54,7 +54,7 @@
 }
 
 + (id)POST:(NSString *)path parameters:(NSDictionary *)parameters completionHandler:(HandlerBlock)completionHandler {
-    if (!([path containsString:config_betAmountLevel] || [path containsString:config_getBalanceInfo] || [path containsString:config_getByLoginNameEx] || [path containsString:config_getByLoginName] || [path containsString:config_getByCardBin] || [path containsString:config_createUdid] || [path containsString:config_superSignSend] || [path containsString:config_upgradeApp] || [path containsString:config_queryDSBRank] || [path containsString:config_dynamicQuery] || [path containsString:config_newapiTask])) { //加载一些信息不要loading
+    if (!([path containsString:config_betAmountLevel] || [path containsString:config_getBalanceInfo] || [path containsString:config_getByLoginName] || [path containsString:config_getByCardBin] || [path containsString:config_createUdid] || [path containsString:config_superSignSend] || [path containsString:config_upgradeApp] || [path containsString:config_queryDSBRank] || [path containsString:config_dynamicQuery] || [path containsString:config_newapiTask])) { //加载一些信息不要loading
         [LoadingView show];
     }
     
@@ -69,33 +69,37 @@
             
         } else if ([[self errorCodeOfTokenException] containsObject:response.head.errCode]) { // token过期
             [LoadingView hide];
-            [CNHUB showError:@"登录失效，请重新登录"];
+            [CNTOPHUB showError:@"登录失效，请重新登录"];
             !completionHandler ?: completionHandler(response.head.errCode, @"登录失效，请重新登录");
             [[CNUserManager shareManager] cleanUserInfo];
             [[NNControllerHelper currentTabBarController] setSelectedIndex:0];
             
         } else if ([response.head.errCode isEqualToString:LoginRegionRisk_ErroCode]) { //异地登录
             [LoadingView hide];
-            [CNHUB showAlert:response.head.errMsg];
+            [CNTOPHUB showAlert:response.head.errMsg];
             !completionHandler ?: completionHandler(response.body, response.head.errCode);
             
         } else {
             [LoadingView hide];
+            // 有错误信息的错误
             if (error) {
                 // 错误信息处理
                 if ([response.head.errCode isEqualToString:Network_TimeOut_ErroCode]) {
-                    [CNHUB showError: @"请求超时 请重试"];
+                    [CNTOPHUB showError: @"请求超时 请重试"];
                 } else {
-                    [CNHUB showError:error.localizedDescription];
+                    [CNTOPHUB showError:error.localizedDescription];
                 }
                 !completionHandler ?: completionHandler(nil, error.localizedDescription);
+                
+            // 无错误信息的错误
             } else {
                 //一些错误信息不要提示
                 if ([response.head.errCode isEqualToString:Network_TopDomainEmpty_ErroCode]) {
-                    // 不显示错误
+                    //非白名单用户错误 不提示
                 }
-                else if (![path containsString:config_getByCardBin]) {
-                    [CNHUB showError:response.head.errMsg];
+                else if (![path containsString:config_getByCardBin]) { //非银行卡错误 才提示
+                    [CNTOPHUB showError:response.head.errMsg];
+                    
                 }
                 !completionHandler ?: completionHandler(response.head.errCode, response.head.errMsg);
             }

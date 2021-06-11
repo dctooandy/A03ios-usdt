@@ -11,7 +11,8 @@
 #import <IQKeyboardManager/IQKeyboardManager.h>
 #import <IVLoganAnalysis/IVLAManager.h>
 #import "CNPushRequest.h"
-#import "IN3SAnalytics.h"
+#import <IN3SAnalytics/CNTimeLog.h>
+#import <YJChat.h>
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 #import <UserNotifications/UserNotifications.h>
@@ -37,12 +38,15 @@
     
     // 3S 统计
 #if DEBUG
-    [IN3SAnalytics debugEnable:YES];
+    [CNTimeLog debugEnable:YES];
 #endif
-    [IN3SAnalytics configureSDKWithProduct:@"A03"];
+    [CNTimeLog debugEnable:NO];
+    [CNTimeLog configProduct:@"A03"];
     
     // 天网埋点
     [IVLAManager setLogEnabled:YES];
+    [IVLAManager needUploadWithNewDomain:YES];
+    [IVLAManager setPayegisSDKDomain:@"http://115.84.241.53/did/"];
     [IVLAManager startWithProductId:@"A03"           //产品ID
                         productName:@"hyyl"          //产品Name
                           channelId:@""     //渠道号
@@ -57,11 +61,6 @@
                           loginName:^NSString *{     //获取登录名
         return [CNUserManager shareManager].userInfo.loginName;
     }];
-#ifndef DEBUG
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1), dispatch_get_main_queue(), ^{
-        [IVLAManager setPayegisSDKDomain:@"https://did.neptuneapi.com/did"];
-    });
-#endif
     
     // pages
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -74,6 +73,13 @@
     // 注册 APNs
     [self registerRemoteNotification];
     
+    // 微脉圈
+#ifdef DEBUG
+    [YJChat initChatWithProductId:@"A03" env:1];
+#else
+    [YJChat initChatWithProductId:@"A03" env:2];
+#endif
+    
     //这个是应用未启动但是通过点击通知的横幅来启动应用的时候
     NSDictionary *userInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     if (userInfo != nil) {
@@ -85,7 +91,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    [IN3SAnalytics exitApp];
+//    [IN3SAnalytics exitApp];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -158,7 +164,7 @@
  * 推送注册失败
  */
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    [CNHUB showError:@"推送服务注册失败 请检查推送证书"];
+    [CNTOPHUB showError:@"推送服务注册失败 请检查推送证书"];
     
 //#ifdef DEBUG
 //    [kKeywindow jk_makeToast:[NSString stringWithFormat:@"===didFailToRegisterForRemoteNotifications===\nError:%@", error] duration:8 position:JKToastPositionBottom];

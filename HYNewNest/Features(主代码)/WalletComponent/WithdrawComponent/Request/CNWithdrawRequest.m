@@ -7,7 +7,7 @@
 //
 
 #import "CNWithdrawRequest.h"
-#import <IVLAManager.h>
+#import <IVLoganAnalysis/IVLAManager.h>
 
 @implementation CNWithdrawRequest
 
@@ -31,7 +31,8 @@
                           accountId:(NSString *)accountId
                            protocol:(NSString *)protocol
                             remarks:(NSString *)remarks
-                   subWallAccountId:(NSString *)subWallAccountId
+                   subWallAccountId:(nullable NSString *)subWallAccountId
+                           password:(NSString *)password
                             handler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
@@ -40,6 +41,7 @@
     param[@"protocol"] = protocol;
     param[@"remarks"] = remarks;
     param[@"subWallAccountId"] = subWallAccountId;
+    param[@"password"] = password;
     
     [self POST:(config_drawCreateRequest) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         
@@ -66,11 +68,21 @@
     paramDic[@"inclMobileNo"] = @(1);
     paramDic[@"inclMobileNoBind"] = @(1);
     paramDic[@"inclRealName"] = @(1);
+    paramDic[@"inclExistsWithdralPwd"] = @1;
     
     [self POST:(config_getByLoginName) parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
         [[CNUserManager shareManager] saveUserMobileStatus:responseObj];
         if (completionHandler) {
             completionHandler(responseObj, errorMsg);
+        }
+    }];
+}
+
++ (void)checkIsNeedWithdrawPwdHandler:(HandlerBlock)handler {
+    NSDictionary *param = @{@"bizCode" : @"WITHDRAL_PWD_FLAG"};
+    [self POST:(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+            handler(responseObj[@"data"], errorMsg);
         }
     }];
 }

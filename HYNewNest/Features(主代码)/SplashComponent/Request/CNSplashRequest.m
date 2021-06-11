@@ -54,7 +54,7 @@
         [HYUpdateAlertView showWithVersionString:content isForceUpdate:NO handler:^(BOOL isComfirm) {
             if (isComfirm && [[UIApplication sharedApplication] canOpenURL:downURL]) {
                 [[UIApplication sharedApplication] openURL:downURL options:@{} completionHandler:^(BOOL success) {
-                    [CNHUB showSuccess:@"正在为您打开下载链接.."];
+                    [CNTOPHUB showSuccess:@"正在为您打开下载链接.."];
                 }];
             }
             // 弱更 不管怎样都往下走
@@ -80,7 +80,7 @@
         [HYUpdateAlertView showWithVersionString:content isForceUpdate:YES handler:^(BOOL isComfirm) {
             if (isComfirm && [[UIApplication sharedApplication] canOpenURL:downURL]) {
                 [[UIApplication sharedApplication] openURL:downURL options:@{} completionHandler:^(BOOL success) {
-                    [CNHUB showSuccess:@"正在为您打开下载链接.."];
+                    [CNTOPHUB showSuccess:@"正在为您打开下载链接.."];
                     handler(YES);
                 }];
             } else {

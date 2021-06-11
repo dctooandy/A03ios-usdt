@@ -25,6 +25,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 @interface DSBProfitBoardDataSource () <UITableViewDelegate, UITableViewDataSource>
 {
     BOOL _isAsking;
+    NSInteger _retryTimes;
 }
 
 @property (weak,nonatomic) id<DashenBoardAutoHeightDelegate> delegate; // 高度代理
@@ -44,6 +45,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     
     self = [super init];
     _isAsking = NO;
+    _retryTimes = 0;
     _delegate = delegate;
     _curPage = 0;
     
@@ -145,6 +147,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
     }];
 }
 
+
 #pragma mark - UITableView
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -168,11 +171,6 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 115;//固定
 }
-
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    MyLog(@"点了%@", indexPath);
-//}
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     DSBProfitHeader *header = (DSBProfitHeader *)[tableView dequeueReusableHeaderFooterViewWithIdentifier:ProfitHeaderId];
@@ -249,41 +247,18 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
 /// 盈利榜
 - (void)requestYinliRank {
     if (_isAsking) {
+        MyLog(@"~~~~~> [推荐桌台] 正在请求中。。。");
         return;
     }
     _isAsking = YES; //正在请求
     [LoadingView showLoadingViewWithToView:self.tableView needMask:YES];
     
+    /// 推荐桌台号
     [DashenBoardRequest requestRecommendTableHandler:^(id responseObj, NSString *errorMsg) {
-        if (errorMsg) {
-            [LoadingView hideLoadingViewForView:self.tableView];
-        }
         
         if (!errorMsg && [responseObj isKindOfClass:[NSString class]]) {
-            /// 推荐桌台号
             self.recomTableId = self.showTableId = responseObj;
-            
-            [DashenBoardRequest requestProfitPageNo:1 handler:^(id responseObj, NSString *errorMsg) {
-                [LoadingView hideLoadingViewForView:self.tableView];
-                
-                if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-                    NSArray *orgData = responseObj[@"data"];
-                    self.usrModels = [DSBProfitBoardUsrModel cn_parse:orgData];
-                    [self.tableView reloadData];
-                    
-                    // clear data
-                    [DSBGameRoundResModel bg_drop:DBName_DSBGameRoundResults];
-                    // setup webSocket
-                    [self setupWebSocket];
-                    
-                    self->_isAsking = NO;
-                    
-                    
-                } else {
-                    [self performSelector:@selector(requestYinliRank) withObject:nil afterDelay:5];
-                    self->_isAsking = NO;
-                }
-            }];
+            [self requestList];
             
         } else {
             [LoadingView hideLoadingViewForView:self.tableView];
@@ -292,6 +267,36 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
         }
     }];
         
+}
+
+/// 盈利榜单列表
+- (void)requestList {
+    MyLog(@"~~~~~> [盈利榜] 重试次数：%ld（超过五次不再请求）", _retryTimes+1);
+    if (_retryTimes > 4) {
+        return;
+    }
+    
+    [DashenBoardRequest requestProfitPageNo:1 handler:^(id responseObj, NSString *errorMsg) {
+        [LoadingView hideLoadingViewForView:self.tableView];
+        
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+            NSArray *orgData = responseObj[@"data"];
+            self.usrModels = [DSBProfitBoardUsrModel cn_parse:orgData];
+            [self.tableView reloadData];
+            
+            // clear data
+            [DSBGameRoundResModel bg_drop:DBName_DSBGameRoundResults];
+            // setup webSocket
+            [self setupWebSocket];
+            
+            self->_isAsking = NO;
+            
+        } else {
+            [self performSelector:@selector(requestList) withObject:nil afterDelay:5];
+            self->_retryTimes += 1;
+            self->_isAsking = NO;
+        }
+    }];
 }
 
 

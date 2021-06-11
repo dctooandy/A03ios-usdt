@@ -9,7 +9,6 @@
 #import "HYHTMLViewController.h"
 #import "NSURL+HYLink.h"
 #import <IQKeyboardManager/IQKeyboardManager.h>
-#import "CNHomeRequest.h"
 
 @interface HYHTMLViewController ()
 
@@ -83,7 +82,7 @@
     
     if ([CNUserManager shareManager].isLogin) {
         WEAKSELF_DEFINE
-        [CNHomeRequest requestH5TicketHandler:^(NSString * ticket, NSString *errorMsg) {
+        [NNPageRouter requestH5TicketHandler:^(NSString * ticket, NSString *errorMsg) {
             STRONGSELF_DEFINE
             NSString *strUrl = [NSURL getH5StrUrlWithString:H5URL_Pub_VipRecord
                                                      ticket:ticket?:@""

@@ -13,7 +13,6 @@
 #import <UIImageView+WebCache.h>
 #import "CNSplashRequest.h"
 #import <AVKit/AVKit.h>
-#import "IN3SAnalytics.h"
 
 @interface SplashViewController () {
     BOOL _videoDidEnd;
@@ -57,7 +56,7 @@
 
     
     // 播放完成通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayEnd) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayEnd) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     
     //读取本地视频路径
     NSString *path = [[NSBundle mainBundle] pathForResource:@"CIRCULAR_06" ofType:@"mp4"];
@@ -90,79 +89,29 @@
 //        }
 //    }];
     
-    [CNSplashRequest queryCDNH5Domain:^(id responseObj, NSString *errorMsg) {
-        NSString *cdnAddr = responseObj[@"csdnAddress"];
-        NSString *h5Addr = responseObj[@"h5Address"];
-        if ([cdnAddr containsString:@","]) {
-            cdnAddr = [cdnAddr componentsSeparatedByString:@","].firstObject;
-        }
-        [IVHttpManager shareManager].cdn = cdnAddr;
-        [IVHttpManager shareManager].domain = h5Addr;
-        [IN3SAnalytics setDomain:h5Addr];
-    }];
-    
     // 检查区域限制 -> 进入首页
     [self requestAreaLimit];
-
     
 }
 
 
-//
-//-(void)requestNewAddressForApp {
-//    ///welcome
-//    NSMutableDictionary *paramDic = [ManageDataModel configBasicParamDic];
-//    NSString *gatewayAddress = EnvironmentConfig.gatewayAddressRequet_domain;
-//    if ([NetWorkEnvironmentConfig readGatewayAddress].length > 1) {
-//        gatewayAddress = [NetWorkEnvironmentConfig readGatewayAddress];
-//    }
-//    [paramDic setObject:gatewayAddress forKey:@"url"];
-//    _requestGWTimes++;
-//    if (_requestGWTimes > 3) {
-//        return;
-//    }
-//    NSString *dynamicGwUrl = EnvironmentConfig.dynamicGwAddress_domain;  //
-//    if (dynamicGwUrl.length < 1) {
-//        dynamicGwUrl = [NetWorkEnvironmentConfig readDynamicGwAddresses];
-//    }
-//    dynamicGwUrl = [NSString stringWithFormat:@"%@/%@",dynamicGwUrl,@"getDsGwAddress"];
-//
-//    WEAKSELF_DEFINE
-//    [MLRequestNetWork POSTFORFULLURL:dynamicGwUrl parameters:paramDic success:^(NSURLSessionDataTask *task, id responseObject) {
-//        STRONGSELF_DEFINE
-//        if (responseObject == nil || ![responseObject isKindOfClass:[NSDictionary class]]) {
-//            return  ;
-//        }
-//        if ([responseObject[@"body"] isKindOfClass:[NSArray class] ] ) {
-//            NSArray *bodyGatewayArr = responseObject[@"body"];
-//            strongSelf.gatewaysArr = bodyGatewayArr ;
-//            strongSelf.selectGatewayIndex = 0;
-//            [strongSelf selectGateWayAddress];
-//        }
-//    } failure:^(NSURLSessionDataTask *task, MLFrameworkError *error,id responseObject) {
-//        DLog(@"responseObject:%@  error:%@\n",responseObject,error);
-//        [weakSelf requestNewAddressForApp];  //如果请求失败3次 则不再请求
-//    }];
-//}
-
-
-
-//区域限制
+#pragma mark 区域限制
 - (void)requestAreaLimit {
 #ifdef DEBUG
-    [self goToLoginStart];
+    [self goToMainPage];
 #else
     [CNSplashRequest checkAreaLimit:^(BOOL isAllowEntry) {
         if (!isAllowEntry) {
             [self goTo403];
         } else {
-            [self goToLoginStart];
+            [self goToMainPage];
         }
     }];
 #endif
 }
 
-#pragma mark - 跳转
+
+#pragma mark 跳转
 
 - (void)goTo403{
     HY403ViewController *vc = [[HY403ViewController alloc] init];
@@ -171,20 +120,16 @@
     
 }
 
-- (void)goToLoginStart{
+- (void)goToMainPage{
 //    // 动画演完才进入
 //    if (!_videoDidEnd) {
 //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [self goToLoginStart];
+//            [self goToMainPage];
 //        });
 //        return;
 //    }
     
-//#ifdef DEBUG
-//    [NNPageRouter changeRootVc2DevPage];
-//#else
     [NNPageRouter changeRootVc2MainPage];
-//#endif
 }
 
 

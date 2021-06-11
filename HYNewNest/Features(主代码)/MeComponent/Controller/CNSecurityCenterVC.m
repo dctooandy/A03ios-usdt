@@ -13,6 +13,7 @@
 #import "CNBaseTF.h"
 #import "MineBindView.h"
 #import "CNUserCenterRequest.h"
+#import "BYChangeFundPwdVC.h"
 
 @interface CNSecurityCenterVC ()
 @property (weak, nonatomic) IBOutlet CNBaseTF *phoneTF;
@@ -26,7 +27,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"安全中心";
-    [self updateData];
+    [LoadingView show];
+    [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
+        [LoadingView hide];
+        [self updateData];
+    }];
 }
 
 - (void)updateData {
@@ -57,6 +62,12 @@
 // 修改密码
 - (IBAction)changePWD:(id)sender {
     CNChangePwdVC *vc = [CNChangePwdVC new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+// 修改资金密码
+- (IBAction)changeFundPWD:(id)sender {
+    BYChangeFundPwdVC *vc = [BYChangeFundPwdVC new];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

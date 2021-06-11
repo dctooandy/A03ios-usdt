@@ -31,7 +31,7 @@
 #import "CNUserCenterRequest.h"
 #import "CNLoginRequest.h"
 #import "HYInGameHelper.h"
-#import "IN3SAnalytics.h"
+#import <IN3SAnalytics/CNTimeLog.h>
 #import "CNSplashRequest.h"
 
 #import <MJRefresh/MJRefresh.h>
@@ -98,6 +98,7 @@
     
     [self userDidLogin];
     [self requestAnnouncement];
+    [self requestCDNAndDomain];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYSwitchAcoutSuccNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYLoginSuccessNotification object:nil];
@@ -112,7 +113,7 @@
     [super viewDidAppear:animated];
     //启动完成, 只调一次
     if (!_hasRecord) {
-        [IN3SAnalytics launchFinished];
+        [CNTimeLog endRecordTime:CNEventAppLaunch];
         _hasRecord = YES;
     }
     
@@ -225,7 +226,7 @@
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         __block NSString *nowDateStr = [dateFormatter stringFromDate:nowDate];
 
-        //TODO: 筛选等级
+        // 筛选等级
         if ([agoDateStr isEqualToString:nowDateStr]) {
             MyLog(@"弹窗盒子一天就显示一次");
         }else{
@@ -316,6 +317,19 @@
     }];
 }
 
+- (void)requestCDNAndDomain {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [CNSplashRequest queryCDNH5Domain:^(id responseObj, NSString *errorMsg) {
+            NSString *cdnAddr = responseObj[@"csdnAddress"];
+            NSString *h5Addr = responseObj[@"h5Address"];
+            if ([cdnAddr containsString:@","]) {
+                cdnAddr = [cdnAddr componentsSeparatedByString:@","].firstObject;
+            }
+            [IVHttpManager shareManager].cdn = cdnAddr;
+            [IVHttpManager shareManager].domain = h5Addr;
+        }];
+    });
+}
 
 #pragma mark - DashenBoredDelegte
 - (void)didSetupDataGetTableHeight:(CGFloat)tableHeight {
@@ -334,7 +348,7 @@
             NSURL *URL = [NSURL URLWithString:model.linkUrl];
             if ([[UIApplication sharedApplication] canOpenURL:URL]) {
                 [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:^(BOOL success) {
-                    [CNHUB showSuccess:@"请在外部浏览器查看"];
+                    [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
                 }];
             }
         } else { // 跳活动

@@ -16,7 +16,7 @@
 
 @implementation HYDownloadLinkView
 
-- (instancetype)initWithFrame:(CGRect)frame normalText:(NSString *)norTxt tapableText:(NSString *)tapTxt tapColor:(UIColor *)color urlValue:(nullable NSString *)url
+- (instancetype)initWithFrame:(CGRect)frame normalText:(NSString *)norTxt tapableText:(NSString *)tapTxt tapColor:(UIColor *)color hasUnderLine:(BOOL)hasUnderLine urlValue:(nullable NSString *)url
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -26,7 +26,7 @@
         UITextView *lblDown = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         lblDown.linkTextAttributes = @{};
         lblDown.backgroundColor = [UIColor clearColor];
-        lblDown.attributedText = [NSAttributedString attributeText:norTxt selectableText:tapTxt selectableColor:color isUnderline:NO URLStr:url?url:@""];
+        lblDown.attributedText = [NSAttributedString attributeText:norTxt selectableText:tapTxt selectableColor:color isUnderline:hasUnderLine URLStr:url?url:@""];
         lblDown.delegate = self;
         lblDown.editable = NO;
         lblDown.scrollEnabled = NO;
@@ -42,7 +42,7 @@
     //在这里是可以做一些判定什么的，用来确定对应的操作。
     if ([[UIApplication sharedApplication] canOpenURL:URL]) {
         [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:^(BOOL success) {
-            [CNHUB showSuccess:@"正在为您跳转.."];
+            [CNTOPHUB showSuccess:@"正在为您跳转.."];
         }];
         return YES;
     } else {

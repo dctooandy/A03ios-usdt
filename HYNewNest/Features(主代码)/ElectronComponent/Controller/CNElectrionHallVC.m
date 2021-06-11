@@ -492,7 +492,7 @@ typedef enum : NSUInteger {
             NSURL *URL = [NSURL URLWithString:model.linkUrl];
             if ([[UIApplication sharedApplication] canOpenURL:URL]) {
                 [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:^(BOOL success) {
-                    [CNHUB showSuccess:@"请在外部浏览器查看"];
+                    [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
                 }];
             }
         } else { // 跳活动

@@ -65,7 +65,12 @@
     NSMutableDictionary *paras = [kNetworkMgr baseParam];
     paras[@"use"] = @(type);
     
-    [self POST:(config_sendCodeByLoginName) parameters:paras completionHandler:completionHandler];
+    [self POST:config_sendCodeByLoginName parameters:paras completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            [kKeywindow jk_makeToast:[NSString stringWithFormat:@"向手机%@\n发送了一条验证码", [CNUserManager shareManager].userDetail.mobileNo] duration:2.5 position:JKToastPositionCenter];
+        }
+        completionHandler(responseObj, errorMsg);
+    }];
 }
 
 + (void)verifySMSCodeWithType:(CNSMSCodeType)type
@@ -273,6 +278,23 @@
     [self POST:(config_modifyPwd) parameters:paras completionHandler:completionHandler];
 }
 
++ (void)modifyFundPwdSmsCode:(NSString *)smsCode
+                   messageId:(NSString *)messageId
+                 oldPassword:(NSString *)oldPassword
+                 newPassword:(NSString *)newPassword
+                        type:(NSNumber *)type
+                     handler:(HandlerBlock)handler{
+    
+    NSMutableDictionary *paras = @{}.mutableCopy;
+    paras[@"oldPassword"] = oldPassword?[CNEncrypt encryptString:oldPassword]:nil;
+    paras[@"newPassword"] = [CNEncrypt encryptString:newPassword];
+    paras[@"type"] = type;
+    paras[@"use"] = @20;
+    paras[@"smsCode"] = smsCode;
+    paras[@"messageId"] = messageId;
+    
+    [self POST:config_modifyPwd parameters:paras completionHandler:handler];
+}
 
 + (void)forgetPasswordValidateSmsCode:(NSString *)smsCode
                             messageId:(NSString *)messageId
@@ -342,6 +364,7 @@
     paramDic[@"inclBankAccount"] = @(1);
     paramDic[@"inclOnlineMessenger2"] = @(1);
     paramDic[@"inclEmail"] = @(1);
+    paramDic[@"inclExistsWithdralPwd"] = @1;       //是否设置了资金密码
 //    paramDic[@"inclPromoAmountByMonth"] = @(1); // 本月优惠
 //    paramDic[@"inclRebatedAmountByMonth"] = @(1); // 本月洗码
 
@@ -403,9 +426,9 @@
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil];
                 if ([CNUserManager shareManager].isUsdtMode) {
-                    [CNHUB showSuccess:@"切换到了USDT模式"];
+                    [CNTOPHUB showSuccess:@"切换到了USDT模式"];
                 } else {
-                    [CNHUB showSuccess:@"切换到了CNY模式"];
+                    [CNTOPHUB showSuccess:@"切换到了CNY模式"];
                 }
                 !completionHandler?:completionHandler(responseObj, errorMsg);
             }

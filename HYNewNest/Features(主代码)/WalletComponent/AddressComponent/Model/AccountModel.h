@@ -10,27 +10,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**{
-    "accountId": "1000430955",
-    "accountName": "**a",
-    "accountNo": "**** **** **** 369t",
-    "accountType": "DCBOX",
-    "backgroundColor": "FAA732",
-    "bankAlias": "",
-    "bankBranchName": "DCBOX",
-    "bankIcon": "/cdn/A03PY/externals/img/_wms/icon/dcbox.png",
-    "bankName": "DCBOX",
-    "catalog": "9",
-    "city": "DCBOX",
-    "default": true,
-    "flag": "1",
-    "isDefault": true,
-    "isOpen": "1",
-    "loginName": "fzoe88usdt",
-    "protocol": "ERC20",
-    "province": "DCBOX"
-}*/
-
 @interface AccountModel : CNBaseModel
 
 @property (nonatomic , copy) NSString              * accountId;

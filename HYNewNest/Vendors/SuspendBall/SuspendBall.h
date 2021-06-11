@@ -19,16 +19,17 @@ typedef void(^FunctionClickAction)(UIButton *);
 
 + (instancetype)suspendBallWithFrame:(CGRect)ballFrame
                             delegate:(id<SuspendBallDelegte>)delegate
-                   subBallImageArray:(NSArray *)imageArray;
+                   subBallImageArray:(NSArray *)imageArray
+                           textArray:(NSArray *)textArray;
 
 
 
 
 /*****          数据源接口          *****/
-
 /** 子悬浮球 图片名字 数组  */
 @property (nonatomic, strong) NSArray *imageNameGroup;
-
+/** 子悬浮球 文字 数组  */
+@property (nonatomic, strong) NSArray *textGroup;
 
 /*****          悬浮球样式接口          *****/
 /** 主悬浮球背景颜色  */
@@ -41,6 +42,7 @@ typedef void(^FunctionClickAction)(UIButton *);
 @property (nonatomic ,assign) int top;
 // 底部的安全距离
 @property (nonatomic ,assign) int bottom;
+
 /*****          悬浮球点击事件          *****/
 /** 打开 */
 @property (nonatomic, copy) ShowOrClose show;
@@ -51,6 +53,7 @@ typedef void(^FunctionClickAction)(UIButton *);
 /** 功能菜单  */
 @property (nonatomic, strong) UIView *functionMenu;
 @property (strong,nonatomic) UIView *bgView; //!<可点击背景遮罩
+
 //** 代理 */
 @property (nonatomic, weak) id<SuspendBallDelegte> delegate;
 

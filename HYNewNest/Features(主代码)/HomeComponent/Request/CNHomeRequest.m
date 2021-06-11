@@ -10,18 +10,6 @@
 
 @implementation CNHomeRequest
 
-+ (void)requestDynamicLive800AddressCompletionHandler:(HandlerBlock)handler{
-    
-    NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"bizCode"] = @"800_DEPLOY";
-    
-    [self POST:(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
-        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-            handler(responseObj[@"data"], errorMsg);
-        }
-    }];
-}
-
 + (void)queryMessageBoxHandler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
@@ -46,18 +34,6 @@
     param[@"smsCode"] = smsCode;
   
     [self POST:(config_callBackPhone) parameters:param completionHandler:handler];
-}
-
-+ (void)requestH5TicketHandler:(HandlerBlock)handler {
-    
-    [self POST:(config_h5Ticket) parameters:[kNetworkMgr baseParam] completionHandler:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]] && [[responseObj allKeys] containsObject:@"ticket"]) {
-            NSString *ticket = responseObj[@"ticket"];
-            handler(ticket, errorMsg);
-        } else {
-            handler(nil, errorMsg);
-        }
-    }];
 }
 
 + (void)requestBannerWhere:(BannerWhere)where Handler:(HandlerBlock)handler{

@@ -65,7 +65,7 @@
                                          handler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
             self->_isDrawed = YES;
-            [CNHUB showSuccess:@"领取成功"];
+            [CNTOPHUB showSuccess:@"领取成功"];
             [self.slideCard animateTopCardToDirection:PanDirectionLeft];
         }
     }];
@@ -109,7 +109,7 @@
         [CNVIPRequest vipsxhDrawGiftMoneyLevelStatus:[NSString stringWithFormat:@"%@",self.model.clubLevel]
                                              handler:^(id responseObj, NSString *errorMsg) {
             if (!errorMsg) {
-                [CNHUB showSuccess:@"已为您自动领取入会礼金"];
+                [CNTOPHUB showSuccess:@"已为您自动领取入会礼金"];
             }
         }];
     }

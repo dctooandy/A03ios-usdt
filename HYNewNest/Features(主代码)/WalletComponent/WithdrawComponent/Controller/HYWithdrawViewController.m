@@ -25,7 +25,10 @@
 #import "BYCTZNBannerView.h"
 #import "HYOneImgBtnAlertView.h"
 #import "HYTextAlertView.h"
+#import "HYDownloadLinkView.h"
+#import "BYChangeFundPwdVC.h"
 
+#import "CNEncrypt.h"
 #import "CNWithdrawRequest.h"
 #import "CNWDAccountRequest.h"
 #import "BalanceManager.h"
@@ -44,11 +47,31 @@
 @property (nonatomic, strong) AccountMoneyDetailModel *moneyModel;
 @property (nonatomic, strong) WithdrawCalculateModel *giftCalculatorModel;//带参数计算后的 全额和拆分会有所不同
 
+@property (weak, nonatomic) IBOutlet UIView *fundpwdEntryBg;
+@property (strong,nonatomic) HYDownloadLinkView *linkView;
+@property (assign,nonatomic) BOOL needWithdrawPwd;
 @end
 
 @implementation HYWithdrawViewController
 static NSString * const KCardCell = @"HYWithdrawCardCell";
 
+
+#pragma mark - Lazy
+- (HYDownloadLinkView *)linkView {
+    if (!_linkView) {
+        HYDownloadLinkView *linkView = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(80, 0, 200, 30) normalText:[CNUserManager shareManager].isUsdtMode?@"提币需要资金密码，":@"提现需要资金密码，" tapableText:@"前往设置" tapColor:kHexColor(0x3176F0) hasUnderLine:YES urlValue:nil];
+        WEAKSELF_DEFINE
+        linkView.tapBlock = ^{
+            STRONGSELF_DEFINE
+            [strongSelf.navigationController pushViewController:[BYChangeFundPwdVC new] animated:YES];
+        };
+        _linkView = linkView;
+    }
+    return _linkView;
+}
+
+
+#pragma mark - View Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = [CNUserManager shareManager].isUsdtMode ? @"提币" : @"提现";
@@ -65,25 +88,39 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     [self setupTopView];
     [self setupTableView];
     
-    // 负信用等级不能取rmb
-    if (![CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userDetail.depositLevel < 0) {
-        [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"由于您的存取款行为存在资金风险，\n请联系客服了解" btnText:@"联系客服" handler:^(BOOL isComfirm) {
-            if (isComfirm) {
-                [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
+    
+    // 动态表单
+    [CNWithdrawRequest checkIsNeedWithdrawPwdHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            NSDictionary *dict = responseObj[0];
+            if ([dict[@"password_flag"] integerValue] == 1) {
+                [self.fundpwdEntryBg addSubview:self.linkView];
+                self.needWithdrawPwd = YES;
             }
-        }];
-    }
+        }
+    }];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self requestBalance];
-    [self requestWithdrawAddress];
+    [self bunchRequest];
 }
 
 - (void)bunchRequest {
-    [self requestBalance];
-    [self requestWithdrawAddress];
+    [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
+        [self requestBalance];
+        [self requestWithdrawAddress];
+        // 负信用等级不能取rmb
+        if (![CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userDetail.depositLevel < 0) {
+            [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"为保障您的资金安全，\n详情联系客服咨询" btnText:@"联系客服" handler:^(BOOL isComfirm) {
+                if (isComfirm) {
+                    [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
+                }
+            }];
+            return;
+        }
+    }];
 }
 
 - (void)rightItemAction {
@@ -151,7 +188,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     
     // 负信用等级不能取rmb
     if (![CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userDetail.depositLevel < 0) {
-        [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"由于您的存取款行为存在资金风险，\n请联系客服了解" btnText:@"联系客服" handler:^(BOOL isComfirm) {
+        [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"为保障您的资金安全，\n详情联系客服咨询" btnText:@"联系客服" handler:^(BOOL isComfirm) {
             if (isComfirm) {
                 [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
             }
@@ -161,16 +198,17 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     
     // 判断卡
     if (self.elecCardsArr.count == 0) {
-        [CNHUB showError:[NSString stringWithFormat:@"请先绑定至少%@",[CNUserManager shareManager].isUsdtMode?@"一个钱包地址":@"一张银行卡"]];
+        [CNTOPHUB showError:[NSString stringWithFormat:@"请先绑定至少%@",[CNUserManager shareManager].isUsdtMode?@"一个钱包地址":@"一张银行卡"]];
     }
     
     if (!self.moneyModel) {
+        [CNTOPHUB showError:@"未能获取到可提余额，请下拉刷新试试"];
         return;
     }
     WEAKSELF_DEFINE
-    HYWithdrawComfirmView *view = [[HYWithdrawComfirmView alloc] initWithAmountModel:self.moneyModel sumbitBlock:^(NSString * withdrawAmout) {
+    HYWithdrawComfirmView *view = [[HYWithdrawComfirmView alloc] initWithAmountModel:self.moneyModel needPwd:self.needWithdrawPwd sumbitBlock:^(NSString * withdrawAmout, NSString *pwdText) {
         STRONGSELF_DEFINE
-        [strongSelf sumbimtWithdrawAmount:withdrawAmout];
+        [strongSelf sumbimtWithdrawAmount:withdrawAmout pwd:[CNEncrypt encryptString:pwdText]];
     }];
     self.comfirmView = view;
     [self.view addSubview:view];
@@ -184,24 +222,13 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     }
 }
 
-//- (void)getBalance {
-//    [self.topView.lblAmount showIndicatorIsBig:YES];
-//    [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-//        self.moneyModel = model;
-//        [self.topView.lblAmount hideIndicatorWithText:[model.withdrawBal jk_toDisplayNumberWithDigit:2]];
-//        self.sumitBtn.enabled = YES;
-//    }];
-//}
 
 #pragma mark - REQUEST
 - (void)requestBalance {
     [self.topView.lblAmount showIndicatorIsBig:YES];
-//    [[BalanceManager shareManager] requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-//        self.moneyModel = model;
-//        [self.topView.lblAmount hideIndicatorWithText:[model.withdrawBal jk_toDisplayNumberWithDigit:2]];
-//        self.sumitBtn.enabled = YES;
-//    }];
     [BalanceManager requestWithdrawAbleBalanceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
+        if (self.moneyModel.withdrawBal == nil)
+            self.moneyModel.withdrawBal = @(0);
         self.moneyModel = model;
         [self.topView.lblAmount hideIndicatorWithText:[model.withdrawBal jk_toDisplayNumberWithDigit:2]];
         self.sumitBtn.enabled = YES;
@@ -262,7 +289,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     }];
 }
 
-- (void)sumbimtWithdrawAmount:(NSString *)amout {
+// 提交取款金额
+- (void)sumbimtWithdrawAmount:(NSString *)amout pwd:(NSString *)pwd{
     // 请求最后一步的闭包
     WEAKSELF_DEFINE
     AccountModel *model = self.elecCardsArr[self.selectedIdx];
@@ -275,6 +303,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                                               protocol:model.protocol
                                                remarks:@""
                                       subWallAccountId:nil
+                                              password:pwd
                                                handler:^(id responseObj, NSString *errorMsg) {
             STRONGSELF_DEFINE
             if (KIsEmptyString(errorMsg)) {
@@ -320,6 +349,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                                                               protocol:model.protocol
                                                                remarks:@""
                                                       subWallAccountId:[NSString stringWithFormat:@"%@", args]
+                                                              password:pwd
                                                                handler:^(id responseObj, NSString *errorMsg) {
                             STRONGSELF_DEFINE
                             if (KIsEmptyString(errorMsg)) {
@@ -344,6 +374,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                                                   protocol:model.protocol
                                                    remarks:@""
                                           subWallAccountId:nil
+                                                  password:pwd
                                                    handler:^(id responseObj, NSString *errorMsg) {
                 STRONGSELF_DEFINE
                 if (KIsEmptyString(errorMsg)) {

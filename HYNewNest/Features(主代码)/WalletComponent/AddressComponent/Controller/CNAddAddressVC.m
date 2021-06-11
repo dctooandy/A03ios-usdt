@@ -38,7 +38,7 @@
 
 - (HYDownloadLinkView *)linkView {
     if (!_linkView) {
-        HYDownloadLinkView *linkView = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(AD(96), self.codeInputView.bottom, AD(182), AD(30)) normalText:@"还没有小金库账号？" tapableText:@"一键注册" tapColor:kHexColor(0x10B4DD) urlValue:nil];
+        HYDownloadLinkView *linkView = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(90, self.codeInputView.bottom, 200, 30) normalText:@"还没有小金库账号？" tapableText:@"一键注册" tapColor:kHexColor(0x10B4DD) hasUnderLine:NO urlValue:nil];
         linkView.tapBlock = ^{
             [[ABCOneKeyRegisterBFBHelper shareInstance] startOneKeyRegisterBFBHandler:^{
                 [self.navigationController popViewControllerAnimated:YES];
@@ -59,28 +59,32 @@
         [self goldAddress:self.goldBtn];
     }
     
-    [CNWithdrawRequest getUserMobileStatusCompletionHandler:^(id responseObj, NSString *errorMsg) {
-    }];
     [self setDelegate];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    if (![CNUserManager shareManager].userDetail.mobileNoBind) {
-        [HYTextAlertView showWithTitle:@"手机绑定" content:@"对不起！系统发现您还没有绑定手机，请先完成手机绑定流程，再进行添加地址操作。" comfirmText:@"确定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
-            if (isComfirm) {
-                CNBindPhoneVC *vc = [CNBindPhoneVC new];
-                vc.bindType = CNSMSCodeTypeBindPhone;
-                [self.navigationController pushViewController:vc animated:YES];
-            } else {
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-        }];
-        
-    } else {
-        // 验证码须传入手机号
-        self.codeInputView.account = [CNUserManager shareManager].userDetail.mobileNo;
-        self.codeInputView.codeType = CNCodeTypeBankCard;
-    }
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    WEAKSELF_DEFINE
+    [CNWithdrawRequest getUserMobileStatusCompletionHandler:^(id responseObj, NSString *errorMsg) {
+        STRONGSELF_DEFINE
+        if (![CNUserManager shareManager].userDetail.mobileNoBind) {
+            [HYTextAlertView showWithTitle:@"手机绑定" content:@"对不起！系统发现您还没有绑定手机，请先完成手机绑定流程，再进行添加地址操作。" comfirmText:@"确定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
+                if (isComfirm) {
+                    CNBindPhoneVC *vc = [CNBindPhoneVC new];
+                    vc.bindType = CNSMSCodeTypeBindPhone;
+                    [strongSelf.navigationController pushViewController:vc animated:YES];
+                } else {
+                    [strongSelf.navigationController popViewControllerAnimated:YES];
+                }
+            }];
+            
+        } else {
+            // 验证码须传入手机号
+            strongSelf.codeInputView.account = [CNUserManager shareManager].userDetail.mobileNo;
+            strongSelf.codeInputView.codeType = CNCodeTypeBankCard;
+        }
+    }];
 }
 
 - (void)configUI {
@@ -214,9 +218,10 @@
                                                    isOneKey:NO
                                                  validateId:self.codeInputView.smsModel.validateId
                                                   messageId:self.codeInputView.smsModel.messageId
+                                                    smsCode:nil
                                                     handler:^(id responseObj, NSString *errorMsg) {
                 if (!errorMsg) {
-                    [CNHUB showSuccess:@"小金库添加成功"];
+                    [CNTOPHUB showSuccess:@"小金库添加成功"];
                     [self.navigationController popViewControllerAnimated:YES];
                     dispatch_async(dispatch_get_global_queue(0, 0), ^{
                         [IVLAManager singleEventId:@"A03_bankcard_update"];
@@ -233,7 +238,7 @@
                                                  messageId:self.codeInputView.smsModel.messageId
                                                    handler:^(id responseObj, NSString *errorMsg) {
                 if (!errorMsg) {
-                    [CNHUB showSuccess:@"地址添加成功"];
+                    [CNTOPHUB showSuccess:@"地址添加成功"];
                     [self.navigationController popViewControllerAnimated:YES];
                     dispatch_async(dispatch_get_global_queue(0, 0), ^{
                         [IVLAManager singleEventId:@"A03_bankcard_update"];

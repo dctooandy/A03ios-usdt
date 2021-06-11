@@ -23,7 +23,7 @@
 #import "LoadingView.h"     //全局loading
 #import <JKCategories/JKCategories.h> //常用分类
 #import "NSString+Validation.h"  // 正则校验
-#import "CNHUB.h" //顶部悬浮提示框
+#import "CNTOPHUB.h" //顶部悬浮提示框
 #import "UIFont+RCFont.h"  //字体
 #import "NSObject+CNParse.h" //模型解析
 #import "CNNotificationName.h" //通知名称

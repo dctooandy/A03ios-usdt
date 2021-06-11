@@ -7,18 +7,20 @@
 //
 
 #import "BalanceManager.h"
-#import "CNBaseNetworking.h"
+
 
 @interface BalanceManager()
 {
-    NSUInteger balancesSec;
-    NSUInteger promoteSec;
-    NSUInteger betAmountSec;
+    NSUInteger balancesSec;   // 余额 倒计时
+//    NSUInteger promoteSec;  // 本月优惠和洗码 倒计时
+    NSUInteger betAmountSec;  // 周有效投注额 + 月优惠和洗码 倒计时
+    NSUInteger yebSec;        // 余额宝利息 倒计时
     AccountMoneyDetailModel *_balanceDetailModel;
 }
 @property (nonatomic, strong) AccountMoneyDetailModel *balanceDetailModel;
 //@property (nonatomic, strong) PromoteXimaModel        *promoteXimaModel;
 @property (nonatomic, strong) BetAmountModel          *betAmountModel;
+@property (strong,nonatomic) CNYuEBaoBalanceModel     *yebModel;
 @property (nonatomic, weak) NSTimer *balanceTimer;
 
 @end
@@ -57,8 +59,9 @@
     dispatch_once(&onceToken, ^{
         _manager = [[BalanceManager alloc] init];
         _manager->balancesSec = 3; //刚启动三秒内不请求 接口太慢
-        _manager->promoteSec = 0;
-        _manager->betAmountSec = 0;
+//        _manager->promoteSec = 3;
+        _manager->betAmountSec = 3;
+        _manager->yebSec = 3;
         [_manager setupTimers];
         [[NSNotificationCenter defaultCenter] addObserver:_manager selector:@selector(didLoginUser) name:HYLoginSuccessNotification object:nil];
     });
@@ -67,12 +70,9 @@
 
 - (void)didLoginUser {
     balancesSec = 0;
-    promoteSec = 0;
+//    promoteSec = 0;
     betAmountSec = 0;
-    [self requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-    }];
-    [self requestBetAmountHandler:^(BetAmountModel * _Nonnull model) {
-    }];
+    yebSec = 0;
 }
 
 - (void)setupTimers
@@ -89,7 +89,7 @@
 }
 
 - (void)resumeTimer {
-//    MyLog(@"@@@@@@@@@@@@ 倒计时恢复60，余额定时器开始");
+    MyLog(@"@@@@@@ 余额管理者 @@@@@@ - 倒计时恢复60，余额定时器开始");
     [_balanceTimer setFireDate:[NSDate distantPast]];
 }
 
@@ -103,17 +103,19 @@
     if (balancesSec > 0) {
         balancesSec --;
     }
-    if (promoteSec > 0) {
-        promoteSec --;
-    }
+//    if (promoteSec > 0) {
+//        promoteSec --;
+//    }
     if (betAmountSec > 0) {
         betAmountSec --;
     }
-    if (balancesSec <= 0 && promoteSec <= 0 && betAmountSec <= 0) {
-        MyLog(@"@@@@@@@@@@@@ 倒计时全为0，余额定时器停止");
+    if (yebSec > 0) {
+        yebSec --;
+    }
+    if (balancesSec <= 0 && betAmountSec <= 0 && yebSec <= 0) {
+        MyLog(@"@@@@@@ 余额管理者 @@@@@@ - 倒计时全为0，余额定时器停止");
         [self pauseTimer];
     }
-//    MyLog(@"@@@@@@@@@@@@@ balancesSec = %lu, promoteSec = %lu, betAmount = %lu",balancesSec, promoteSec, betAmountSec);
 }
 
 - (void)getBalanceDetailHandler:(void(^)(AccountMoneyDetailModel * _Nonnull))handler {
@@ -131,6 +133,16 @@
         handler(_betAmountModel);
     } else {
         [self requestBetAmountHandler:^(BetAmountModel *model) {
+            handler(model);
+        }];
+    }
+}
+
+- (void)getYuEBaoYesterdaySumHandler:(void (^)(CNYuEBaoBalanceModel * _Nonnull))handler {
+    if (_yebModel && yebSec > 0) {
+        handler(_yebModel);
+    } else {
+        [self requestYuEBaoYesterdaySumHandler:^(CNYuEBaoBalanceModel * model) {
             handler(model);
         }];
     }
@@ -220,6 +232,31 @@
     }];
 }
 
+/// 余额宝昨日收益 + 季度收益
+- (void)requestYuEBaoYesterdaySumHandler:(nullable void(^)(CNYuEBaoBalanceModel *))handler {
+    [CNYuEBaoRequest checkYuEBaoInterestLogsSumHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            CNYuEBaoBalanceModel *yebModel = [CNYuEBaoBalanceModel cn_parse:responseObj];
+            if ([yebModel isKindOfClass:[NSArray class]]) {
+                yebModel = [[CNYuEBaoBalanceModel alloc] init];
+                yebModel.interestDay = @0;
+                yebModel.interestSeason = @0;
+            }
+            self.yebModel = yebModel;
+            self->yebSec = 120;
+            [self resumeTimer];
+            if (handler) {
+                handler(yebModel);
+            }
+        } else {
+            if (handler) {
+                handler(nil);
+            }
+        }
+    }];
+}
+
+
 
 #pragma mark - Raw Request
 
@@ -253,14 +290,9 @@
 + (void)requestWithdrawAbleBalanceHandler:(nullable  AccountBalancesBlock)handler {
     
     NSMutableDictionary *param = @{}.mutableCopy;
-//    if ([CNUserManager shareManager].userDetail.newWalletFlag) {
-        param[@"flag"] = @9;
-        param[@"walletCreditForPlatformFlag"] = @0;
-        param[@"realtimeFlag"] = @"true";
-//    } else {
-//        [param setObject:@"9" forKey:@"flag"];
-//        [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@0 forKey:@"defineFlag"];
-//    }
+    param[@"flag"] = @9;
+    param[@"walletCreditForPlatformFlag"] = @0;
+    param[@"realtimeFlag"] = @"true";
     
     [CNBaseNetworking POST:(config_getBalanceInfo) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
@@ -270,5 +302,6 @@
     }];
     
 }
+
 
 @end

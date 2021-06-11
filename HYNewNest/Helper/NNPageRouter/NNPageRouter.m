@@ -14,7 +14,6 @@
 
 #import "GameStartPlayViewController.h"
 #import "HYWithdrawViewController.h"
-//#import "HYRechargeViewController.h"
 #import "BYRechargeUsdtVC.h"
 #import "HYRechargeCNYViewController.h"
 #import "CNLoginRegisterVC.h"
@@ -24,12 +23,12 @@
 #import "HYBuyECoinGuideVC.h"
 #import "BYNewbieMissionVC.h"
 
-#import "CNHomeRequest.h"
 #import "CNRechargeRequest.h"
 #import "CNWithdrawRequest.h"
 #import "NSURL+HYLink.h"
 #import <CSCustomSerVice/CSCustomSerVice.h>
 #import "KeyChain.h"
+#import <YJChat.h>
 
 #import "HYXiMaViewController.h"
 
@@ -65,7 +64,6 @@
 
 + (void)jump2Deposit {
     if ([CNUserManager shareManager].isUsdtMode) {
-//        [kCurNavVC pushViewController:[HYRechargeViewController new] animated:YES];
         [kCurNavVC pushViewController:[BYRechargeUsdtVC new] animated:YES];
     } else {
         [kCurNavVC pushViewController:[HYRechargeCNYViewController new] animated:YES];
@@ -85,8 +83,10 @@
 
 + (void)jump2Withdraw {
     
+    [LoadingView show];
     [CNWithdrawRequest getUserMobileStatusCompletionHandler:^(id responseObj, NSString *errorMsg) {
         CNUserDetailModel *model = [CNUserDetailModel cn_parse:responseObj];
+        [LoadingView hide];
         if (!model.mobileNoBind) { // 没有绑定手机 -> 跳到手机绑定
             CNBindPhoneVC *vc = [CNBindPhoneVC new];
             vc.bindType = CNSMSCodeTypeBindPhone;
@@ -133,13 +133,14 @@
         if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             NSString *urlStr = responseObj[@"payUrl"];
             if (!KIsEmptyString(urlStr)) {
+                urlStr = [urlStr stringByReplacingOccurrencesOfString:@"/list" withString:@""];
                 NSURL *url = [NSURL URLWithString:urlStr];
                 if ([[UIApplication sharedApplication] canOpenURL:url]) {
                     [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
-                        [CNHUB showSuccess:@"请在外部浏览器查看"];
+                        [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
                     }];
                 } else {
-                    [CNHUB showError:@"PayURL错误 请联系客服"];
+                    [CNTOPHUB showError:@"PayURL错误 请联系客服"];
                 }
             }
         }
@@ -176,6 +177,21 @@
     }];
 }
 
++ (void)presentWMQCustomerService {
+    [LoadingView show];
+    [YJChat connectToUser:[CNUserManager shareManager].printedloginName
+                    level:[NSString stringWithFormat:@"%ld",[CNUserManager shareManager].userInfo.starLevel]
+               customerId:[CNUserManager shareManager].userInfo.customerId
+               complation:^(BOOL success, NSString * _Nonnull message) {
+        [LoadingView hide];
+        if (!success) {
+            [CNTOPHUB showError:message];
+        } else {
+            [CNTOPHUB showSuccess:message];
+        }
+    }];
+}
+
 + (void)jump2Live800Type:(CNLive800Type)type {
     __block NSString *keyName;
     switch (type) {
@@ -191,7 +207,7 @@
         default:
             break;
     }
-    [CNHomeRequest requestDynamicLive800AddressCompletionHandler:^(id responseObj, NSString *errorMsg) {
+    [self requestDynamicLive800AddressCompletionHandler:^(id responseObj, NSString *errorMsg) {
 
         NSArray *data = responseObj;
         NSMutableString *newUrl;
@@ -223,9 +239,8 @@
         [kCurNavVC pushViewController:vc animated:YES];
     };
 
-//    if ([CNUserManager shareManager].isLogin && ![CNUserManager shareManager].isTryUser) {
     if ([CNUserManager shareManager].isLogin) {
-        [CNHomeRequest requestH5TicketHandler:^(NSString * ticket, NSString *errorMsg) {
+        [self requestH5TicketHandler:^(NSString * ticket, NSString *errorMsg) {
             if (!errorMsg) {
                 NSString *strUrl = [NSURL getH5StrUrlWithString:strURL ticket:ticket needPubSite:needPubSite];
                 jumpHTMLBlock(strUrl, title);
@@ -261,5 +276,32 @@
     [kCurNavVC popToRootViewControllerAnimated:false];
     [kCurNavVC pushViewController:[[BYNewbieMissionVC alloc] init] animated:true];
 }
+
+#pragma mark - Request
+
++ (void)requestDynamicLive800AddressCompletionHandler:(HandlerBlock)handler{
+    
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"bizCode"] = @"800_DEPLOY";
+    
+    [CNBaseNetworking POST:(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            handler(responseObj[@"data"], errorMsg);
+        }
+    }];
+}
+
++ (void)requestH5TicketHandler:(HandlerBlock)handler {
+    
+    [CNBaseNetworking POST:(config_h5Ticket) parameters:[kNetworkMgr baseParam] completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]] && [[responseObj allKeys] containsObject:@"ticket"]) {
+            NSString *ticket = responseObj[@"ticket"];
+            handler(ticket, errorMsg);
+        } else {
+            handler(nil, errorMsg);
+        }
+    }];
+}
+
 
 @end

@@ -16,22 +16,28 @@ typedef NS_ENUM(NSInteger,TransactionRecordType) {
     transactionRecord_rechargeType = 1,
     
     /*
-     // 提现
+      提现
      */
     transactionRecord_withdrawType = 2,
     
     /*
-     // 洗码
+      洗码
      */
     transactionRecord_XMType = 3,
     
     /*
-     // 优惠领取
+      优惠领取
      */
     transactionRecord_activityType = 4,
     
     /*
-     // 投注记录
+      余额宝
+     */
+    transactionRecord_yuEBaoDeposit,
+    TransactionRecord_yuEBaoWithdraw,
+    
+    /*
+      投注记录
      */
     transactionRecord_betRecordType = 8,
     
@@ -124,6 +130,10 @@ typedef NS_ENUM(NSInteger,TransactionProgressState) {
 
 #pragma mark - 洗码
 @property (copy, nonatomic) NSString *platform;
+
+#pragma mark - 余额宝
+@property (assign,nonatomic) NSInteger status; //!<转账状态，0待审批，1审批通过，-1后台拒绝，-9确认失败
+@property (copy,nonatomic) NSString *yebStatusTxt;
 @end
 
 @interface CreditQueryResultModel : CNBaseModel

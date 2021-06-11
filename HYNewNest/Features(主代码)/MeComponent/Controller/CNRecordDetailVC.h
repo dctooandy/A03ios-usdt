@@ -15,6 +15,8 @@ typedef enum : NSUInteger {
     CNRecordTypeXima,     //洗码
     CNRecordTypePromo,    //优惠
     CNRecordTypeTouZhu,   //投注
+    CNRecordTypeYEBDeposit, //余额宝转入
+    CNRecordTypeYEBWithdraw //余额宝转出
 } CNRecordDetailType;
 
 NS_ASSUME_NONNULL_BEGIN

@@ -118,7 +118,7 @@
 // 复制
 - (IBAction)copyLink:(id)sender {
     [UIPasteboard generalPasteboard].string = self.linkLb.text;
-    [CNHUB showSuccess:@"已复制到剪切板！"];
+    [CNTOPHUB showSuccess:@"已复制到剪切板！"];
 }
 
 

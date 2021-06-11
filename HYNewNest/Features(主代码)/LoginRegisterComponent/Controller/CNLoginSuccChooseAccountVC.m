@@ -42,7 +42,7 @@
                                    validateId:self.samePhoneLogNameModel.validateId
                             completionHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
-            [CNHUB showSuccess:@"登录成功"];
+            [CNTOPHUB showSuccess:@"登录成功"];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }];

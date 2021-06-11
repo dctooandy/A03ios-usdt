@@ -71,8 +71,14 @@
         case transactionRecord_activityType:
             self.typeLb.text = @"优惠领取";
             break;
-            case transactionRecord_betRecordType:
+        case transactionRecord_betRecordType:
             self.typeLb.text = @"投注记录";
+            break;
+        case transactionRecord_yuEBaoDeposit:
+            self.typeLb.text = @"余额宝转入";
+            break;
+        case TransactionRecord_yuEBaoWithdraw:
+            self.typeLb.text = @"余额宝转出";
             break;
         default:
             break;
@@ -103,20 +109,25 @@
         } else if ([day isEqualToString:@"近30天"]){
             self.dayParm = 30;
         }
+        
         self.topViewHeight.constant = 0;
         self.topView.hidden = YES;
-        if ([type containsString:@"充值"] || [type containsString:@"充币"]) {
+        if ([type containsString:@"充"]) {
             self.recoType = transactionRecord_rechargeType;
-        } else if ([type containsString:@"提现"] || [type containsString:@"提币"]) {
+        } else if ([type containsString:@"提"]) {
             self.recoType = transactionRecord_withdrawType;
         } else if ([type containsString:@"洗码"]) {
             self.recoType = transactionRecord_XMType;
         } else if ([type containsString:@"优惠领取"]) {
             self.recoType = transactionRecord_activityType;
-        } else {
+        } else if ([type containsString:@"投注记录"]) {
             self.recoType = transactionRecord_betRecordType;
             self.topViewHeight.constant = 30;
             self.topView.hidden = NO;
+        } else if ([type containsString:@"余额宝转入"]) {
+            self.recoType = transactionRecord_yuEBaoDeposit;
+        } else if ([type containsString:@"余额宝转出"]) {
+            self.recoType = TransactionRecord_yuEBaoWithdraw;
         }
         // 请求接口，刷新表格数据
         self.currentPage = 1;
@@ -132,6 +143,7 @@
     [param setObject:@(self.currentPage) forKey:@"pageNo"];
     [param setObject:@(self.dayParm) forKey:@"lastDays"];
     [param setObject:@(10) forKey:@"pageSize"];
+    
     NSString *path;
     switch (_recoType) {
         case transactionRecord_rechargeType: {
@@ -148,6 +160,16 @@
         }
         case transactionRecord_activityType: {
             path = config_queryWithPromo;
+            break;
+        }
+        case TransactionRecord_yuEBaoWithdraw: {
+            path = config_yebTransferLogs;
+            param[@"transferType"] = @2;
+            break;
+        }
+        case transactionRecord_yuEBaoDeposit: {
+            path = config_yebTransferLogs;
+            param[@"transferType"] = @1;
             break;
         }
         case transactionRecord_betRecordType: {
@@ -194,7 +216,7 @@
     
     [CNBaseNetworking POST:path parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
         
-        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             CreditQueryResultModel *resultModel = [CreditQueryResultModel cn_parse:responseObj];
             self.resultModel = resultModel;
             
@@ -259,7 +281,7 @@
     
     [CNBaseNetworking POST:URLPath parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
         if (KIsEmptyString(errorMsg)) {
-            [CNHUB showSuccess:@"记录已删除"];
+            [CNTOPHUB showSuccess:@"记录已删除"];
             [self manualDeleteModelAndUpdateTableView:row];
         }
     }];
@@ -294,7 +316,7 @@
     // 数据
     cell.titleLb.text = model.title;
     cell.amountLb.text = model.amount;
-    cell.timeLb.text = model.createDate;
+    cell.timeLb.text = model.createDate?:model.createdTime;
     cell.statusLb.text = model.flagDesc;
     cell.statusLb.textColor = model.statsColor;
     cell.currencyLb.text = model.currency?:[CNUserManager shareManager].userInfo.currency;
@@ -307,9 +329,15 @@
     if (_recoType == transactionRecord_rechargeType) {
         cell.amountLb.text = model.arrivalAmount;
     }
+    if (_recoType == transactionRecord_yuEBaoDeposit || _recoType == TransactionRecord_yuEBaoWithdraw) {
+        cell.titleLb.text = @"余额宝";
+        cell.statusLb.text = model.yebStatusTxt;
+    }
     
     // ICON
     switch (_recoType) {
+        case transactionRecord_yuEBaoDeposit:
+        case TransactionRecord_yuEBaoWithdraw:
         case transactionRecord_rechargeType:
         case transactionRecord_withdrawType:
             [cell.icon sd_setImageWithURL:[NSURL getUrlWithString:model.itemIcon] placeholderImage:[UIImage imageNamed:[CNUserManager shareManager].isUsdtMode?@"usdt":@"cny"]];
@@ -344,7 +372,6 @@
             }
             break;
         default:
-            [cell.icon setImage:[UIImage imageNamed:@"usdt"]];
             break;
     }
     
@@ -368,6 +395,12 @@
             break;;
         case transactionRecord_XMType:
             dtype = CNRecordTypeXima;
+            break;
+        case transactionRecord_yuEBaoDeposit:
+            dtype = CNRecordTypeYEBDeposit;
+            break;
+        case TransactionRecord_yuEBaoWithdraw:
+            dtype = CNRecordTypeYEBWithdraw;
             break;
         default:
             break;

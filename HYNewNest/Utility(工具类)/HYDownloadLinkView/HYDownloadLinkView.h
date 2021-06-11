@@ -15,7 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic) UITextView *lblDown;
 @property (strong,nonatomic) NSString *url;
 
-- (instancetype)initWithFrame:(CGRect)frame normalText:(NSString *)norTxt tapableText:(NSString *)tapTxt tapColor:(UIColor *)color urlValue:(nullable NSString *)url;
+- (instancetype)initWithFrame:(CGRect)frame
+                   normalText:(NSString *)norTxt
+                  tapableText:(NSString *)tapTxt
+                     tapColor:(UIColor *)color
+                 hasUnderLine:(BOOL)hasUnderLine
+                     urlValue:(nullable NSString *)url;
+
 @end
 
 NS_ASSUME_NONNULL_END

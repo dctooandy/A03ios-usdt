@@ -32,6 +32,7 @@ typedef NS_ENUM(NSUInteger, CNSMSCodeType) {
     CNSMSCodeTypeNormalVerify = 9,
     CNSMSCodeTypeChangePwd = 10, //密码修改
     CNSMSCodeTypeForgotAccount = 11,
+    CNSMSCodeTypeChangeFundPwd = 20 // 资金密码修改
 };
 
 @interface CNLoginRequest : CNBaseNetworking
@@ -170,6 +171,15 @@ typedef NS_ENUM(NSUInteger, CNSMSCodeType) {
 + (void)modifyPassword:(NSString *)oldPassword
            newPassword:(NSString *)newPassword
      completionHandler:(HandlerBlock)completionHandler;
+
+/// 修改资金密码
+/// type字段  -  3:修改取款密码；4:新增取款密码
++ (void)modifyFundPwdSmsCode:(NSString *)smsCode
+                   messageId:(NSString *)messageId
+                 oldPassword:(NSString *)oldPassword
+                 newPassword:(NSString *)newPassword
+                        type:(NSNumber *)type
+                     handler:(HandlerBlock)handler;
 
 
 /// 找回密码（忘记密码）第一步

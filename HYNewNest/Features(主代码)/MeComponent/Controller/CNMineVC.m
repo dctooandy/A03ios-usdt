@@ -19,6 +19,7 @@
 #import "CNAddressManagerVC.h"
 #import "BYSuperCopartnerVC.h"
 #import "BYVocherCenterVC.h"
+#import "BYYuEBaoVC.h"
 
 #import <UIButton+WebCache.h>
 #import <UIImageView+WebCache.h>
@@ -62,6 +63,8 @@
 #pragma mark 中间入口部分
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *entryIconBtns;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *entryIconLbs;
+@property (weak, nonatomic) IBOutlet UIStackView *thirdStackView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *entryStackViewHeightConst;
 
 #pragma mark 底部单个下载
 /// App图片
@@ -91,7 +94,12 @@
 
 - (NSArray *)getCurrentFastEntryName {
     if ([CNUserManager shareManager].userInfo.newWalletFlag) {
-        return @[@"优惠券", @"洗码", @"交易记录", @"消息中心", @"提币地址", @"安全中心"];
+        if ([CNUserManager shareManager].isUsdtMode) {
+            return @[@"优惠券", @"洗码", @"余额宝", @"消息中心", @"提币地址", @"安全中心", @"交易记录"];
+        } else {
+            return @[@"优惠券", @"洗码", @"交易记录", @"消息中心", @"银行卡", @"安全中心"];
+        }
+        
     } else {
         return @[@"洗码", @"交易记录", @"消息中心", [CNUserManager shareManager].isUsdtMode?@"提币地址":@"银行卡", @"安全中心", @"反馈意见"];
     }
@@ -99,7 +107,11 @@
 
 - (NSArray *)getCurrentFastEntryIconName {
     if ([CNUserManager shareManager].userInfo.newWalletFlag) {
-        return @[@"yhq", @"xm", @"jl", @"xx", @"yhk", @"aq"];
+        if ([CNUserManager shareManager].isUsdtMode) {
+            return @[@"yhq", @"xm", @"yeb", @"xx", @"yhk", @"aq", @"jl"];
+        } else {
+            return @[@"yhq", @"xm", @"jl", @"xx", @"yhk", @"aq"];
+        }
     } else {
         return @[@"xm", @"jl", @"xx", @"yhk", @"aq", @"yjfk"];
     }
@@ -199,6 +211,8 @@
         [self.navigationController pushViewController:[CNSecurityCenterVC new] animated:YES];
     } else if ([name isEqualToString:@"反馈意见"]) {
         [self.navigationController pushViewController:[CNFeedBackVC new] animated:YES];
+    } else if ([name isEqualToString:@"余额宝"]) {
+        [self.navigationController pushViewController:[BYYuEBaoVC new] animated:YES];
     }
 }
 
@@ -223,10 +237,10 @@
     OtherAppModel *model = self.otherApps[0];
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:model.appDownUrl]]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.appDownUrl] options:@{} completionHandler:^(BOOL success) {
-            [CNHUB showSuccess:@"正在为您跳转..."];
+            [CNTOPHUB showSuccess:@"正在为您跳转..."];
         }];
     } else {
-        [CNHUB showError:@"未知错误 无法下载"];
+        [CNTOPHUB showError:@"未知错误 无法下载"];
     }
     
 }
@@ -249,9 +263,9 @@
 - (IBAction)switchCurrency:(UIButton *)sender {
     
     [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg) {
-            [self switchCurrencyUI];
-        }
+//        if (!errorMsg) { //已经有监听通知了
+//            [self switchCurrencyUI];
+//        }
     }];
 }
 
@@ -263,6 +277,7 @@
     self.switchBtn.hidden = ![CNUserManager shareManager].isUiModeHasOptions;
     
     BOOL isUsdtMode = [CNUserManager shareManager].isUsdtMode;
+    BOOL isNewWallet = [CNUserManager shareManager].userInfo.newWalletFlag;
     self.switchBtn.selected = !isUsdtMode;
     
     self.USDTBusinessView.hidden = !isUsdtMode;
@@ -273,6 +288,10 @@
     self.shareBgView.hidden = !isUsdtMode;
     self.shareBgViewH.constant = isUsdtMode?AD(90):0;
     
+    // 只有新钱包+usdt模式有优惠券
+    self.thirdStackView.hidden = !(isUsdtMode && isNewWallet);
+    self.entryStackViewHeightConst.constant = (isUsdtMode && isNewWallet)?255:(255-15-75);
+    
     [self setUpUserInfoAndBalaces];
     
 }
@@ -281,11 +300,17 @@
     if ([CNUserManager shareManager].isLogin) {
         // 1.入口信息
         [self.entryIconLbs enumerateObjectsUsingBlock:^(UILabel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            obj.text = [self getCurrentFastEntryName][idx];
+            NSArray *arr = [self getCurrentFastEntryName];
+            if (idx < arr.count) {
+                obj.text = arr[idx];
+            }
         }];
         [self.entryIconBtns enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSString *img = [self getCurrentFastEntryIconName][idx];
-            [obj setImage:[UIImage imageNamed:img] forState:UIControlStateNormal];
+            NSArray *arr = [self getCurrentFastEntryIconName];
+            if (idx < arr.count) {
+                NSString *img = arr[idx];
+                [obj setImage:[UIImage imageNamed:img] forState:UIControlStateNormal];
+            }
         }];
         
         // 2.用户信息
@@ -302,9 +327,25 @@
         if ([CNUserManager shareManager].userInfo.newWalletFlag) {
             if (!self.walletContainerView.subviews.count || [self.walletView isMemberOfClass:[BYOldMyWalletView class]]) {
                 [self.walletView removeFromSuperview];
-                self.walletView = [[BYMyWalletView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-30, 217)];
-                self.walletContainerHeightCons.constant = 217;
+                self.walletView = [BYMyWalletView new];
+                self.walletContainerHeightCons.constant = 67+11;
                 [self.walletContainerView addSubview:self.walletView];
+                [self.walletView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.right.top.equalTo(self.walletContainerView);
+                    make.height.mas_equalTo(202);
+                }];
+                BYMyWalletView *view = (BYMyWalletView *)self.walletView;
+                view.expandBlock = ^(BOOL isExpand) {
+                    if (isExpand) {
+                        if ([CNUserManager shareManager].isUsdtMode) {
+                            self.walletContainerHeightCons.constant = 67*3+1;
+                        } else {
+                            self.walletContainerHeightCons.constant = 67*2+1;
+                        }
+                    } else {
+                        self.walletContainerHeightCons.constant = 67+11;
+                    }
+                };
             }
             [self.walletView requestAccountBalances:YES];
             

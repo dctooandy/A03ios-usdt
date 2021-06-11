@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "CNBaseNetworking.h"
 #import "NNControllerHelper.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -25,8 +26,7 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 
 /// 改变根控制器为首页
 + (void)changeRootVc2MainPage;
-/// 新页面开发阶段
-+ (void)changeRootVc2DevPage;
+
 
 /// 跳到登录注册
 + (void)jump2Login;
@@ -41,7 +41,7 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 
 + (void)jump2DepositWithSuggestAmount:(int)amount;
 
-/// 去【买】币（买币指南，包含了“一键【买/卖】币”）
+/// 去【买】币 (已和一键买卖币合并)
 + (void)jump2BuyECoin;
 
 /// 一键【买/卖】币（外部跳转dexchange）
@@ -52,6 +52,13 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 /// @param type 客服类型
 //+(void)jump2Live800Type:(CNLive800Type)type;
 + (void)presentOCSS_VC:(CNLive800Type)type;
+
+/// 跳转到微脉圈
++ (void)presentWMQCustomerService;
+
+
+///进入H5获取ticket
++ (void)requestH5TicketHandler:(HandlerBlock)handler;
 
 /// 跳转到H5
 +(void)jump2HTMLWithStrURL: (NSString *)strURL title:(NSString *)title needPubSite:(BOOL)needPubSite;

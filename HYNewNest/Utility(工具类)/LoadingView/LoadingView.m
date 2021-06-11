@@ -110,11 +110,9 @@
         }];
         [self.loadingImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self);
-            make.height.width.mas_equalTo(90);
         }];
         [self.successImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self);
-            make.width.height.mas_equalTo(60);
         }];
     }
     return self;
@@ -200,7 +198,7 @@
     if (!_successImageView) {
         _successImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _successImageView.alpha = 0;
-        _successImageView.image = [UIImage imageNamed:@"l_loading OK"];
+        _successImageView.image = [UIImage imageNamed:@"cg"];
     }
     return _successImageView;
 }

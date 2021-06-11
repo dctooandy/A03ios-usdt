@@ -176,7 +176,7 @@
 /// 校验短信验证码
 - (IBAction)verfiSmsCode:(UIButton *)sender {
     if (self.smsModel.smsCode.length <= 0) {
-        [CNHUB showError:@"请重新输入验证码"];
+        [CNTOPHUB showError:@"请重新输入验证码"];
         return;
     }
     WEAKSELF_DEFINE

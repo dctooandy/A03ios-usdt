@@ -19,41 +19,72 @@
 @property (nonatomic, copy) NSString *selectDay;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottom;
 @property (nonatomic, weak) id delegate;
+@property (weak, nonatomic) IBOutlet UIStackView *thirdStackView;
+@property (strong,nonatomic) NSArray *tradeTypeStrings;
 
 @property (nonatomic, copy) void(^callBack)(NSString *type, NSString *day);
 @end
 
 @implementation CNRecordTypeSelectorView
 
-+ (void)showSelectorWithSelcType:(TransactionRecordType)type dayParm:(NSInteger)day callBack:(void (^)(NSString * _Nonnull, NSString * _Nonnull))callBack {
+- (NSArray *)tradeTypeStrings{
+    if (!_tradeTypeStrings) {
+        if ([CNUserManager shareManager].isUsdtMode) {
+            if ([CNUserManager shareManager].userInfo.newWalletFlag) {
+                _tradeTypeStrings = @[@"充币", @"提币", @"洗码", @"余额宝转入", @"余额宝转出", @"优惠领取", @"投注记录"];
+            } else {
+                _tradeTypeStrings = @[@"充币", @"提币", @"洗码", @"优惠领取", @"投注记录"];
+            }
+        } else {
+            _tradeTypeStrings = @[@"充值", @"提现", @"洗码", @"优惠领取", @"投注记录"];
+        }
+    }
+    return _tradeTypeStrings;
+}
+
+- (void)setupBtnsWithType:(TransactionRecordType)type day:(NSInteger)day {
     
-    CNRecordTypeSelectorView *alert = [[CNRecordTypeSelectorView alloc] init];
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [window endEditing:YES];
-    alert.frame = window.bounds;
-    [window addSubview:alert];
+    if ([CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userInfo.newWalletFlag) {
+        _thirdStackView.hidden = NO;
+    } else {
+        _thirdStackView.hidden = YES;
+    }
     
-    [alert.depostiBtn setTitle:[CNUserManager shareManager].isUsdtMode?@"充币":@"充值" forState:UIControlStateNormal];
-    [alert.withdrawBtn setTitle:[CNUserManager shareManager].isUsdtMode?@"提币":@"提现" forState:UIControlStateNormal];
+    [self.typeBtnArray enumerateObjectsUsingBlock:^(HYRechProcButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (idx < self.tradeTypeStrings.count) {
+            [obj setTitle:self.tradeTypeStrings[idx] forState:UIControlStateNormal];
+            obj.alpha = 1;
+            obj.enabled = YES;
+        } else {
+            obj.alpha = 0;
+            obj.enabled = NO;
+        }
+    }];
     
     // 设置默认选择
-    NSInteger typeIndex = 0;
     NSInteger dayIndex = 0;
+    NSString *name;
     switch (type) {
         case transactionRecord_rechargeType:
-            typeIndex = 0;
+            name = [CNUserManager shareManager].isUsdtMode?@"充币":@"充值";
             break;
         case transactionRecord_withdrawType:
-            typeIndex = 1;
+            name = [CNUserManager shareManager].isUsdtMode?@"提币":@"提现";
             break;
         case transactionRecord_XMType:
-            typeIndex = 2;
+            name = @"洗码";
+            break;
+        case transactionRecord_yuEBaoDeposit:
+            name = @"余额宝转入";
+            break;
+        case TransactionRecord_yuEBaoWithdraw:
+            name = @"余额宝转出";
             break;
         case transactionRecord_activityType:
-            typeIndex = 3;
+            name = @"优惠领取";
             break;
         case transactionRecord_betRecordType:
-            typeIndex = 4;
+            name = @"投注记录";
             break;
         default:
             break;
@@ -71,19 +102,35 @@
         default:
             break;
     }
-    UIButton *typeBtn = alert.typeBtnArray[typeIndex];
-    typeBtn.selected = YES;
-    alert.selectType = typeBtn.currentTitle;
-    UIButton *dayBtn = alert.dayBtnArray[dayIndex];
-    dayBtn.selected = YES;
-    alert.selectDay = dayBtn.currentTitle;
+    NSInteger idx = [self.tradeTypeStrings indexOfObject:name];
+    UIButton *typeBtn = self.typeBtnArray[idx];
+    self.selectType = typeBtn.currentTitle;
+    UIButton *dayBtn = self.dayBtnArray[dayIndex];
+    self.selectDay = dayBtn.currentTitle;
     
-    alert.submitBtn.enabled = YES;
-    alert.callBack = callBack;
-    alert.bottom.constant = 0;
-    [UIView animateWithDuration:0.5 animations:^{
-        [alert layoutIfNeeded];
+    self.submitBtn.enabled = YES;
+    self.bottom.constant = 0;
+    [UIView animateWithDuration:0.3 animations:^{
+        [self layoutIfNeeded]; //动画刷新约束
+        typeBtn.selected = YES;
+        dayBtn.selected = YES;
     }];
+}
+
+
+#pragma mark - 类方法
+
++ (void)showSelectorWithSelcType:(TransactionRecordType)type dayParm:(NSInteger)day callBack:(void (^)(NSString * _Nonnull, NSString * _Nonnull))callBack {
+    
+    CNRecordTypeSelectorView *alert = [[CNRecordTypeSelectorView alloc] init];
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [window endEditing:YES];
+    alert.frame = window.bounds;
+    [window addSubview:alert];
+
+    alert.callBack = callBack;
+    [alert setupBtnsWithType:type day:day];
+    
 }
 
 #pragma mark - button Action

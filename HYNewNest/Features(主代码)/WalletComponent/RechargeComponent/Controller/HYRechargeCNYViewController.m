@@ -21,7 +21,7 @@
 #import "LYEmptyView.h"
 #import "UIView+Empty.h"
 #import "HYTabBarViewController.h"
-#import "IN3SAnalytics.h"
+#import <IN3SAnalytics/CNTimeLog.h>
 
 @interface HYRechargeCNYViewController () <HYRechargeCNYEditViewDelegate>
 @property (nonatomic, assign) NSInteger selcPayWayIdx;
@@ -64,10 +64,12 @@
     [self refreshQueryData];
 }
 
+
 #pragma mark - View life cycle
 
 - (instancetype)init {
     _launchDate = [NSDate date];
+    [CNTimeLog startRecordTime:CNEventPayLaunch];
     if (self = [super init]) {
     }
     return self;
@@ -76,9 +78,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"充值";
+    [self addNaviRightItemWithImageName:@"kf"];
+    
     _selcPayWayIdx = 0;
     _launchDate = [NSDate date];
     
+    [self setupEmptyView];
+    [self setupSubmitBtn];
+    [self queryCNYPayways];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (!_hasRecord) {
+        [CNTimeLog endRecordTime:CNEventPayLaunch];
+        _hasRecord = YES;
+    }
+}
+
+- (void)rightItemAction {
+    [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
+}
+
+- (void)setupEmptyView {
     LYEmptyView *empView = [LYEmptyView emptyActionViewWithImage:[UIImage imageNamed:@"kongduixiang"] titleStr:@"" detailStr:@"暂无充值方式提供" btnTitleStr:@"刷新试试" btnClickBlock:^{
         [self queryCNYPayways];
     }];
@@ -86,22 +108,6 @@
     empView.actionBtnCornerRadius = 10;
     empView.actionBtnTitleColor = [UIColor lightGrayColor];
     self.view.ly_emptyView = empView;
-    
-    [self setupSubmitBtn];
-    [self queryCNYPayways];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    if (!_hasRecord) {
-        NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:self->_launchDate] * 1000;
-        NSLog(@" ======> 进CNY支付 耗时：%f毫秒", duration);
-        NSString *timeString = [NSString stringWithFormat:@"%f", [self->_launchDate timeIntervalSince1970]];
-        [IN3SAnalytics enterPageWithName:@"PaymentPageLoad" responseTime:duration timestamp:timeString];
-        
-        [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] showSuspendBall];
-    }
 }
 
 - (void)setupMainEditView {
@@ -161,7 +167,7 @@
 
 - (void)queryCNYPayways {
     [CNRechargeRequest queryPayWaysV3Handler:^(id responseObj, NSString *errorMsg) {
-        if (!KIsEmptyString(errorMsg)) {
+        if (errorMsg) {
             return;
         }
         PayWayV3Model *resultModel = [PayWayV3Model cn_parse:responseObj];
@@ -263,14 +269,14 @@
                 NSURL *payUrl = [NSURL URLWithString:paymentModel.payUrl];
                 if ([[UIApplication sharedApplication] canOpenURL:payUrl]) {
                     [[UIApplication sharedApplication] openURL:payUrl options:@{} completionHandler:^(BOOL success) {
-                        [CNHUB showSuccess:@"请在外部浏览器查看"];
+                        [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
                         // 支付等待
-                        HYWithdrawComfirmView *view = [[HYWithdrawComfirmView alloc] initWithAmountModel:nil sumbitBlock:nil];
+                        HYWithdrawComfirmView *view = [[HYWithdrawComfirmView alloc] initWithAmountModel:nil needPwd:NO sumbitBlock:nil];
                         [self.view addSubview:view];
                         [view showRechargeWaiting];
                     }];
                 } else {
-                    [CNHUB showError:@"充值渠道链接错误"];
+                    [CNTOPHUB showError:@"充值渠道链接错误"];
                 }
             }
         }];
@@ -305,7 +311,7 @@
 - (void)bindRealName:(NSString *)realName {
     [CNUserCenterRequest modifyUserRealName:realName gender:nil birth:nil avatar:nil onlineMessenger2:nil email:nil handler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
-            [CNHUB showSuccess:@"实名认证成功"];
+            [CNTOPHUB showSuccess:@"实名认证成功"];
         }
     }];
 }

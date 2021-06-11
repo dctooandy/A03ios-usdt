@@ -11,7 +11,6 @@
 #import "HYNewCTZNViewController.h"
 
 #import "HYRechargeHelper.h"
-#import "IN3SAnalytics.h"
 #import "CNRechargeRequest.h"
 #import <UIImageView+WebCache.h>
 
@@ -20,6 +19,7 @@
 #import "LYEmptyView.h"
 #import "UIView+Empty.h"
 #import "ChargeManualMessgeView.h"
+#import <IN3SAnalytics/CNTimeLog.h>
 
 static NSString * const cellName = @"BYRechargeUSDTTopView";
 
@@ -33,12 +33,6 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
 @property (weak, nonatomic) IBOutlet SDCycleScrollView *btmBanner;
 @property (weak, nonatomic) IBOutlet UILabel *btmTitleLb;
 
-/**{
- "amount_list" = "20;100;200;500;1000;2000";
- id = 1738;
- "promo_info" = "{ \"h5_img\": \"cbymtch5.png\",\"pc_img\": \"cbymtcpc.png\",\"promo_url\": \"/pub_site/coin\",  \"root\":\"https://83e6dyfront.58baili.com/cdn/83e6dyP/externals/img/_wms/banner-biyou/\"}";
- teaching = "{ \"h5_img\": [\"cbymtch5.png\",\"cbymtch5.png\",\"cbymtch5.png\"], \"pc_img\": [\"cbymtch5.png\",\"cbymtch5.png\",\"cbymtch5.png\"], \"root\": \"https://83e6dyfront.58baili.com/cdn/83e6dyP/externals/img/_wms/banner-biyou/\" }";
-}*/
 @property (strong,nonatomic) NSDictionary *topBannerDict; //!<顶部banner数据
 @property (strong,nonatomic) NSDictionary *btmBannerDict; //!<底部轮播数据
 
@@ -60,6 +54,7 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
 
 - (instancetype)init {
     _launchDate = [NSDate date];
+    [CNTimeLog startRecordTime:CNEventPayLaunch];
     if (self = [super init]) {
     }
     return self;
@@ -88,10 +83,8 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
     [super viewDidAppear:animated];
     
     if (!_hasRecord) {
-        NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:self->_launchDate] * 1000;
-        NSLog(@" ======> 进USDT支付 耗时：%f毫秒", duration);
-        NSString *timeString = [NSString stringWithFormat:@"%f", [self->_launchDate timeIntervalSince1970]];
-        [IN3SAnalytics enterPageWithName:@"PaymentPageLoad" responseTime:duration timestamp:timeString];
+        [CNTimeLog endRecordTime:CNEventPayLaunch];
+        _hasRecord = YES;
     }
 }
 
@@ -191,25 +184,8 @@ USDT支付渠道
 }
 
 /**
-在线类支付 需要
-*/
-//- (void)queryOnlineBankAmount {
-//    if (_selIdx < 1) { //0是直充
-//        return;
-//    }
-//    DepositsBankModel *model = self.depositModels[_selIdx-1];
-//    NSArray *cells = [self.tableView visibleCells];
-//    BYRechargeUSDTTopView *cell = cells[_selIdx];
-//
-//    [CNRechargeRequest queryOnlineBanksPayType:model.payType
-//                                  usdtProtocol:cell.selectedProtocol
-//                                       handler:^(id responseObj, NSString *errorMsg) {
-//        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-//            OnlineBanksModel *oModel = [OnlineBanksModel cn_parse:responseObj];
-//            self.curOnliBankModel = oModel;
-//        }
-//    }];
-//}
+ 选择了协议
+ */
 - (void)didSelectOneProtocol:(NSString *)selectedProtocol {
     if (_selIdx < 1) { //0是直充
         return;
@@ -232,40 +208,26 @@ USDT支付渠道
                        amount:(NSString *)amountStr
                      protocol:(NSString *)protocolStr {
     
-    if ([HYRechargeHelper isUSDTOtherBankModel:model]) {
-        [CNRechargeRequest submitOnlinePayOrderV2Amount:amountStr
-                                               currency:model.currency
-                                           usdtProtocol:protocolStr
-                                                payType:model.payType
-                                                handler:^(id responseObj, NSString *errorMsg) {
-            
-            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-                ChargeManualMessgeView *view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"address"] amount:amountStr retelling:nil type:ChargeMsgTypeOTHERS];
-                view.clickBlock = ^(BOOL isSure) {
-                    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
-                };
-                [kKeywindow addSubview:view];
-            }
-        }];
+    [CNRechargeRequest submitOnlinePayOrderV2Amount:amountStr
+                                           currency:model.currency
+                                       usdtProtocol:protocolStr
+                                            payType:model.payType
+                                            handler:^(id responseObj, NSString *errorMsg) {
         
-    } else {
-        [CNRechargeRequest submitOnlinePayOrderAmount:amountStr
-                                             currency:model.currency
-                                         usdtProtocol:protocolStr
-                                              payType:model.payType
-                                                payid:self.curOnliBankModel.payid
-                                           showQRCode:1
-                                              handler:^(id responseObj, NSString *errorMsg) {
-            
-            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-                ChargeManualMessgeView *view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"payUrl"] amount:amountStr retelling:nil type:[HYRechargeHelper isUSDTOtherBankModel:model]?ChargeMsgTypeOTHERS:ChargeMsgTypeDCBOX];
-                view.clickBlock = ^(BOOL isSure) {
-                    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
-                };
-                [kKeywindow addSubview:view];
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            ChargeManualMessgeView *view;
+            if ([HYRechargeHelper isUSDTOtherBankModel:model]) {
+                view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"address"] amount:amountStr retelling:nil type:ChargeMsgTypeOTHERS];
+            } else {
+                view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"address"] amount:amountStr retelling:nil type:ChargeMsgTypeDCBOX];
             }
-        }];
-    }
+            view.clickBlock = ^(BOOL isSure) {
+                [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
+            };
+            [kKeywindow addSubview:view];
+        }
+    }];
+
 }
 
 
@@ -340,7 +302,7 @@ USDT支付渠道
             NSURL *URL = [NSURL URLWithString:url];
             if ([[UIApplication sharedApplication] canOpenURL:URL]) {
                 [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:^(BOOL success) {
-                    [CNHUB showSuccess:@"请在外部浏览器查看"];
+                    [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
                 }];
             }
         }

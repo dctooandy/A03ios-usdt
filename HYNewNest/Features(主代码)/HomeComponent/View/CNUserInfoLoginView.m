@@ -49,7 +49,9 @@
             [self reloadBalance];
         } else {
             [[BalanceManager shareManager] getBalanceDetailHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-                [self.moneyLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
+                
+                float amount = model.yebAmount.floatValue + model.yebInterest.floatValue + model.balance.floatValue;
+                [self.moneyLb hideIndicatorWithText:[@(amount) jk_toDisplayNumberWithDigit:2]];
             }];
         }
         

@@ -17,7 +17,7 @@
 #define H5URL_BBS               @"/bbs"                    // 论坛
 #define H5URL_Pub_Starall       @"/pub_site/starall"       // 星级特权
 #define H5URL_Pub_Coin          @"/pub_site/coin"          // 首存活動
-
+#define H5URL_Pub_yeb           @"/pub_site/yeb"           // 余额宝
 
 #pragma mark - API PATH
 
@@ -75,7 +75,7 @@
 
 #define config_betAmountLevel @"83e6dy/getBetAmountLevelConfig" //获取投注额
 #define config_getBalanceInfo @"customer/getBalance" //获取用户额度信息
-#define config_getByLoginNameEx @"customer/getByLoginNameEx"  //获取用户信息
+//#define config_getByLoginNameEx @"customer/getByLoginNameEx"  //获取用户信息
 
 #pragma mark 好友推荐
 #define config_queryAgentRecord  @"83e6dy/agentRecodTotalSum"  //获取好友推荐所有消息
@@ -101,8 +101,8 @@
 #define config_getRealNamePhone @"customer/modifyCustomerRealNamePhone" //修改手机和姓名
 #define config_createBank      @"account/createBank"    //添加银行卡号
 #define config_createBitCoin   @"account/createBtc"   //添加比特币账户
-#define config_create          @"account/create"    //添加币付宝账户
-#define config_createGoldAccount @"account/createGoldAccount" //创建币付宝账户
+#define config_create          @"account/create"    //添加小金库账户
+#define config_createGoldAccount @"account/createGoldAccount" //创建小金库账户
 #define config_getQueryCard    @"account/query" //查询有多少卡绑定， 银行卡管理界面
 #define config_deleteAccount   @"account/delete"  //删除银行卡
 #define config_verifySmsCode   @"phone/verifySmsCode" //获取validateId
@@ -131,8 +131,8 @@
 #define config_getArticels  @"83e6dy/getArticles" //查询投注详情  电游投注详情用
 
 #pragma mark 交易记录
-//#define config_queryTransWithCheck @"deposit/queryTransWithCheck" //查询交易记录中的 充值 一项
-#define config_queryTrans @"deposit/queryTrans"
+//#define config_queryTransWithCheck @"deposit/queryTransWithCheck" //废弃
+#define config_queryTrans @"deposit/queryTrans" //查询交易记录中的 充值 一项
 #define config_queryWithDraw @"withdraw/queryRequest" //提现 查询交易记录中的转账 一项
 #define config_queryWithXM @"xm/queryRequest" //洗码 查询交易记录中的转账 一项
 #define config_queryWithIntegral @"integral/queryIntegralLogs" //积分 查询交易记录中的转账 一项
@@ -177,5 +177,12 @@
 
 #pragma mark 新手任务
 #define config_newapiTask       @"83e6dy/activity/newapi/task" //新手任务
+
+#pragma mark 余额宝
+#define config_yebPromo         @"83e6dy/activity/newapi/promo" //昨日收益和季度利息 & 存送券
+#define config_yebTransferIn    @"yeb/transferIn"   // 转入
+#define config_yebTransferOut   @"yeb/transferOut"  // 转出
+#define config_yebTransferLogs  @"yeb/yebTransferLogs" // 余额宝交易记录
+#define config_yebConfig        @"yeb/yebConfig" // 查询余额宝配置
 
 #endif /* HYHttpPathConst_h */

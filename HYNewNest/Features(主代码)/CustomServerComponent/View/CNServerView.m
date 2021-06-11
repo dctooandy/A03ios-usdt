@@ -73,11 +73,11 @@
 
 - (IBAction)dialBindedPhone:(id)sender {
     if (![CNUserManager shareManager].isLogin) {
-        [CNHUB showError:@"您未登录 请输入要回拨的手机号后提交"];
+        [CNTOPHUB showError:@"您未登录 请输入要回拨的手机号后提交"];
         return;
     }
     if (![CNUserManager shareManager].userDetail.mobileNoBind) {
-        [CNHUB showError:@"您未绑定手机号 请先到“我的-安全中心“绑定"];
+        [CNTOPHUB showError:@"您未绑定手机号 请先到“我的-安全中心“绑定"];
         return;
     }
     if (_delegate && [_delegate respondsToSelector:@selector(serverViewWillDialBindedPhone)]) {

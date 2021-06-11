@@ -11,8 +11,7 @@ target 'HYNewNest' do
   pod 'AFNetworking'
   pod 'MJRefresh'
   pod 'YYModel'
-  pod 'SDWebImage'
-  pod 'SDWebImage/GIF'
+  pod 'SDWebImage', '~> 5.11.1'
   pod 'Masonry'
   pod 'MBProgressHUD', '~> 1.1.0'
   pod 'UITableView+FDTemplateLayoutCell'
@@ -20,11 +19,10 @@ target 'HYNewNest' do
   pod 'FCUUID'
   pod 'SJVideoPlayer'
   pod 'JKCategories'
-  # 个推
-#  pod 'GTSDK'
   # webSocket
   pod 'SocketRocket'
   pod 'CocoaAsyncSocket'
+  pod 'LookinServer', :configurations => ['Debug']
   
   # 公共接口
   pod 'IVPublicAPILibrary',:git =>'http://10.66.72.115/mobile-iOS-Library/IVPublicAPILibrary.git'
@@ -37,9 +35,13 @@ target 'HYNewNest' do
   # 天网埋点
   pod 'IVLoganAnalysis',:git =>'http://10.66.72.115/mobile-iOS-library/IVLoganAnalysis.git'
   # OCSS客服
-  pod 'CSSerVice',:git =>'http://10.66.72.115/mobile-iOS-library/ocss-webview-sdk-demo-ios.git' ,:tag=>'0.1.3'
-  
-  pod 'LookinServer', :configurations => ['Debug']
+  pod 'CSSerVice',:git =>'http://10.66.72.115/mobile-iOS-library/ocss-webview-sdk-demo-ios.git'
+  # 微脉圈
+  pod 'IVCustomerServiceLibrary',:git =>'http://10.66.72.115/mobile-iOS-library/IVCustomerServiceLibrary'
+  pod 'IVIMPublicLibrary',:git =>'http://10.66.72.115/mobile-iOS-library/IVIMPublicLibrary.git'
+  # 3S
+  pod 'IN3SAnalyticsSDK',:git =>'http://10.66.72.115/mobile-iOS-library/IV3SLibrary.git'
+  pod 'IVGameLibrary',:git =>'http://10.66.72.115/mobile-iOS-Library/IVGameLibrary.git',:branch=>'v2.0'
 
   target 'HYNewNestTests' do
     inherit! :search_paths
@@ -55,10 +57,11 @@ end
 
 # 注意：【IVNetworkLibrary2.0】文件：IVHTTPBaseRequest.h & .m 有自定义内容；
 #      【IVCheckNetworkLibrary】文件：IVCheckNetworkWrapper.m (aggameh5) 有自定义内容；
+#      【NSNumber+JKRound】文件：NSNumber+JKRound.m 有自定义内容
 #      【SJVideoPlayer】的仓库地址被公司黑名单。。
-#       因此谨慎使用'pod install'，'pod update'。
-# 请使用'pod update XXX'更新单个库，然后将'IVCheckNetworkLibrary'和'IVCheckNetworkLibrary'的bitcode配置改为NO (网络库埋下的坑)
-# 如果不慎更新了，请根据下面的代码查找后直接替换；请求AE临时开通权限更新SJ库
+#       因此谨慎使用'pod update'。
+# 请使用'pod update XXX'更新单个库，然后将'IVCheckNetworkLibrary'和'IVPublicAPILibrary'的bitcode配置改为NO (IVNetworkLibrary2.0 网络库不支持bitcode 埋下的坑)
+# 如果更新了，请根据下面的代码查找后直接替换；请求AE临时开通权限更新SJ库
 
 #  typedef NS_ENUM(NSInteger,IVNEnvironment){
 #      IVNEnvironmentTest = 0,// 测试
@@ -86,10 +89,16 @@ end
 #          break;
 #      case IVKCheckNetworkTypeGameDomian:
 #          typeName = @"game domain";
-#          subUrl = @"/aggameh5/version.txt";
+#          subUrl = @"/aggameh5/version.txt";    // add this
 #          break;
 #      case IVKCheckNetworkTypeDomain:
 #          typeName = @"domain";
+#          break;
+#      case IVKCheckNetworkTypeOnline:
+#          typeName = @"online";
+#          subUrl = @"health";
+#          request = [IVCheckGatewayRequest manager];
+#          ((IVCheckGatewayRequest *)request).url = url;
 #          break;
 #      default:
 #          typeName = [NSString stringWithFormat:@"other%@",@(type)];

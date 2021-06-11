@@ -86,7 +86,7 @@
                                       messageId:self.fpwdModel.messageId
                               completionHandler:^(id responseObj, NSString *errorMsg) {
             
-            [CNHUB showSuccess:@"重设成功 请牢记您的新密码"];
+            [CNTOPHUB showSuccess:@"重设成功 请牢记您的新密码"];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [NNControllerHelper pop2ViewControllerClass:[CNLoginRegisterVC class]];
             });

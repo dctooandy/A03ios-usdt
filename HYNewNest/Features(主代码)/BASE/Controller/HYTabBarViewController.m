@@ -21,6 +21,7 @@
 #import "CNHomeRequest.h"
 #import "HYTextAlertView.h"
 
+
 @interface HYTabBarViewController ()<UITabBarControllerDelegate, SuspendBallDelegte, CNServerViewDelegate>
 @property (nonatomic, strong) SuspendBall *suspendBall;
 @property (strong, nonatomic) HYNavigationController *bonusNavVC;
@@ -137,8 +138,9 @@
 
 - (void)setupCSSuspendBall {
     CGFloat btnWH = 60.f;
-    NSArray *imgNameGroup = @[@"cunqu", @"help", @"phone_s", @"phone_s"];
-    SuspendBall *suspendBall = [SuspendBall suspendBallWithFrame:CGRectMake(kScreenWidth - btnWH, kScreenHeight *0.75, btnWH, btnWH) delegate:self subBallImageArray:imgNameGroup];
+    NSArray *imgNameGroup = @[@"cunqu", @"help", @"help", @"phone_s", @"phone_s"];//@"cunqu"
+    NSArray *titleGroup = @[@"微脉圈", @"存取", @"疑问", @"回拨", @"400"];//@"微脉圈"
+    SuspendBall *suspendBall = [SuspendBall suspendBallWithFrame:CGRectMake(kScreenWidth - btnWH, kScreenHeight *0.75, btnWH, btnWH) delegate:self subBallImageArray:imgNameGroup textArray:titleGroup];
     suspendBall.top = kNavPlusStaBarHeight;
     suspendBall.bottom = kTabBarHeight + kSafeAreaHeight;
     suspendBall.hidden = NO;
@@ -186,15 +188,18 @@
     [self.suspendBall suspendBallShow];
     
     if(tag == 0){
+        //客服 微脉圈
+        [NNPageRouter presentWMQCustomerService];
+    }else if (tag == 1){
         //客服 存取款问题
         [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
-    }else if (tag == 1){
+    }else if (tag == 2){
         //客服 其他问题
         [NNPageRouter presentOCSS_VC:CNLive800TypeNormal];
-    }else if (tag == 2){
+    }else if (tag == 3){
         //电话回拨
         [CNServerView showServerWithDelegate:self];
-    }else if (tag == 3){
+    }else if (tag == 4){
         //400
         [self call400];
     }
@@ -204,7 +209,7 @@
     
     NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",@"4001200938"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str] options:@{} completionHandler:^(BOOL success) {
-        [CNHUB showSuccess:@"正在为您拨通.."];
+        [CNTOPHUB showSuccess:@"正在为您拨通.."];
     }];
 }
 

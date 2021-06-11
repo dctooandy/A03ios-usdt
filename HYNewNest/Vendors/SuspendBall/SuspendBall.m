@@ -157,12 +157,13 @@ static CGFloat btnSmallImageWidth = 60;
 }
 
 
-+ (instancetype)suspendBallWithFrame:(CGRect)ballFrame delegate:(id<SuspendBallDelegte>)delegate subBallImageArray:(NSArray *)imageArray
++ (instancetype)suspendBallWithFrame:(CGRect)ballFrame delegate:(id<SuspendBallDelegte>)delegate subBallImageArray:(NSArray *)imageArray textArray:(NSArray *)textArray
 {
     SuspendBall *suspendBall = [SuspendBall shareInstance];
     suspendBall.frame = ballFrame;
     suspendBall.delegate = delegate;
     suspendBall.imageNameGroup = imageArray;
+    suspendBall.textGroup = textArray;
     return suspendBall;
 }
 
@@ -366,7 +367,7 @@ static CGFloat btnSmallImageWidth = 60;
     for(UIView* sub in [self.functionMenu subviews]){
         [sub removeFromSuperview];
     }
-    NSArray *titles = @[@"存取",@"疑问",@"回拨",@"400"];
+    NSArray *titles = self.textGroup.copy;
     for (int i = 0; i < self.imageNameGroup.count; i++) {
         UIButton *functionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [functionBtn setBackgroundImage:[UIImage imageNamed:@"bg"] forState:UIControlStateNormal];
