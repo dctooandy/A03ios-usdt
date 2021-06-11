@@ -19,7 +19,6 @@
 #import "CNAddressManagerVC.h"
 #import "BYSuperCopartnerVC.h"
 #import "BYVocherCenterVC.h"
-#import "BYNewUsrMissionVC.h"
 
 #import <UIButton+WebCache.h>
 #import <UIImageView+WebCache.h>

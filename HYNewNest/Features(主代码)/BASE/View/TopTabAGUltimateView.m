@@ -10,7 +10,6 @@
 #import "HYHTMLViewController.h"
 #import "HYInGameHelper.h"
 #import "BYSuperCopartnerVC.h"
-#import "BYNewUsrMissionVC.h"
 #import "BYNewbieMissionVC.h"
 
 @interface TopTabAGUltimateView()<WKNavigationDelegate, WKUIDelegate> //WKScriptMessageHandler  要加协议

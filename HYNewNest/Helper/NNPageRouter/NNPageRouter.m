@@ -22,7 +22,6 @@
 
 #import "HYWithdrawActivityAlertView.h"
 #import "HYBuyECoinGuideVC.h"
-#import "BYNewUsrMissionVC.h"
 #import "BYNewbieMissionVC.h"
 
 #import "CNHomeRequest.h"
@@ -42,9 +41,7 @@
 }
 
 + (void)changeRootVc2DevPage {
-    BYNewUsrMissionVC *vc = [BYNewUsrMissionVC new];
-    HYNavigationController *nav = [[HYNavigationController alloc] initWithRootViewController:vc];
-    [NNControllerHelper changeRootVc:nav];
+
 }
 
 + (void)jump2Login {
