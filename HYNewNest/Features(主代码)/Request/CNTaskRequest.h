@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)getNewUsrTask:(HandlerBlock)handler;
 
++ (void)getNewUsrTaskDetail:(HandlerBlock)handler;
+
 + (void)applyTaskRewardIds:(NSString *)prizeIds code:(NSString *)prizeCode handler:(HandlerBlock)handler;
 
 @end

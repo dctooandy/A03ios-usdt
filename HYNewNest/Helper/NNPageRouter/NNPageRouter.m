@@ -256,7 +256,13 @@
 }
 
 + (void)jump2VIP {
+    [kCurNavVC popToRootViewControllerAnimated:false];
     [[NNControllerHelper currentTabBarController] setSelectedIndex:1];
+}
+
++ (void)jump2NewbieMission {
+    [kCurNavVC popToRootViewControllerAnimated:false];
+    [kCurNavVC pushViewController:[[BYNewbieMissionVC alloc] init] animated:true];
 }
 
 @end

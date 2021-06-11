@@ -9,9 +9,11 @@
 #import "BYNewbieRequest.h"
 
 @implementation BYNewbieRequest
-+ (void)getrequest:(HandlerBlock)handler {
++ (void)getNewUsrTask:(HandlerBlock)handler {
+    NSMutableDictionary *param = @{}.mutableCopy;
+    param[@"action"] = @"myTask";
     
-//    [self POST:kGatewayExtraPath(config_newapiTask) parameters:param completionHandler:handler];
-
+    [self POST:kGatewayExtraPath(config_newapiTask) parameters:param completionHandler:handler];
 }
+
 @end

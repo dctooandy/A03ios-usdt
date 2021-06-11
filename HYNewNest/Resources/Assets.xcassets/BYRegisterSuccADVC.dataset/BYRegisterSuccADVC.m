@@ -46,6 +46,9 @@
     [NNPageRouter jump2Deposit];
 }
 
+- (IBAction)newbieMissionClicked:(id)sender {
+    [NNPageRouter jump2NewbieMission];
+}
 
 /*
 #pragma mark - Navigation

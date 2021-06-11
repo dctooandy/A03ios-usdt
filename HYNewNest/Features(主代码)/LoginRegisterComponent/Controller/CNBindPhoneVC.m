@@ -10,7 +10,8 @@
 #import "JHVerificationCodeView.h"
 #import "CNTwoStatusBtn.h"
 #import "CNBaseTF.h"
-#import "BYRegisterSuccADVC.h"
+//#import "BYRegisterSuccADVC.h"
+#import "BYRegisterSuccessVC.h"
 
 @interface CNBindPhoneVC () <UITextFieldDelegate>
 @property (strong, nonatomic) JHVerificationCodeView *codeView;
@@ -248,7 +249,7 @@
                     [CNHUB showSuccess:@"绑定成功"];
                     
                     if (self.bindType == CNSMSCodeTypeRegister) {
-                        [self.navigationController pushViewController:[BYRegisterSuccADVC new] animated:YES];
+                        [self.navigationController pushViewController:[BYRegisterSuccessVC new] animated:YES];
                     } else {
                     
                         // 如果返回安全中心失败 证明是从别处过来的
@@ -302,7 +303,7 @@
 - (IBAction)pass:(id)sender {
     // 跳过绑定，登录成功，回到首页
     if (self.bindType == CNSMSCodeTypeRegister) {
-        [self.navigationController pushViewController:[BYRegisterSuccADVC new] animated:YES];
+        [self.navigationController pushViewController:[BYRegisterSuccessVC new] animated:YES];
     } else {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }

@@ -232,16 +232,18 @@
                 [NNControllerHelper currentTabBarController].selectedIndex = 1;
         });
         
-    }else if ([url containsString:@"/noviceTask?"]) {
-        //新手任务
-        decisionHandler(WKNavigationActionPolicyCancel);
-        [kCurNavVC popToRootViewControllerAnimated:NO];
-        [kCurNavVC pushViewController:[BYNewUsrMissionVC new] animated:YES];
-        
-    }else if ([url containsString:@""]){
+    }
+//    else if ([url containsString:@"/noviceTask?"]) {
+//        //新手任务
+//        decisionHandler(WKNavigationActionPolicyCancel);
+//        [kCurNavVC popToRootViewControllerAnimated:NO];
+//        [kCurNavVC pushViewController:[BYNewUsrMissionVC new] animated:YES];
+//
+//    }
+    else if ([url containsString:@"/noviceTask?"]){
         //新手任務v2
         decisionHandler(WKNavigationActionPolicyCancel);
-        [kCurNavVC popToRootViewControllerAnimated:true];
+        [kCurNavVC popToRootViewControllerAnimated:false];
         [kCurNavVC pushViewController:[[BYNewbieMissionVC alloc] init] animated:true];
     }
     else {

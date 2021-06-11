@@ -251,8 +251,6 @@
 		3D9700222599D8D4003238C4 /* HYDSBSlideUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9700212599D8D4003238C4 /* HYDSBSlideUpView.m */; };
 		3D9700262599DB2A003238C4 /* HYDSBSlideUpViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9700242599DB2A003238C4 /* HYDSBSlideUpViewCell.m */; };
 		3D9700272599DB2A003238C4 /* HYDSBSlideUpViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9700252599DB2A003238C4 /* HYDSBSlideUpViewCell.xib */; };
-		3D97002B259B1CE1003238C4 /* BYRegisterSuccADVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D970029259B1CE1003238C4 /* BYRegisterSuccADVC.m */; };
-		3D97002C259B1CE1003238C4 /* BYRegisterSuccADVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D97002A259B1CE1003238C4 /* BYRegisterSuccADVC.xib */; };
 		3D97004C25A2C3ED003238C4 /* IN3SResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3D97003025A2C3ED003238C4 /* IN3SResource.bundle */; };
 		3D97004D25A2C3ED003238C4 /* IN3SConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003125A2C3ED003238C4 /* IN3SConstants.m */; };
 		3D97004E25A2C3ED003238C4 /* IN3SAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97003225A2C3ED003238C4 /* IN3SAnalytics.m */; };
@@ -999,8 +997,6 @@
 		E9D9449E24C5735B00252222 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9449C24C5735B00252222 /* SplashViewController.m */; };
 		E9D944A124C5759400252222 /* UpdateVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D944A024C5759400252222 /* UpdateVersionModel.m */; };
 		E9E9590124D41BC400E866B6 /* CreditQueryResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E9590024D41BC400E866B6 /* CreditQueryResultModel.m */; };
-		F706E68A265B9E7800AE34C5 /* BYNewbieRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F706E689265B9E7800AE34C5 /* BYNewbieRequest.m */; };
-		F706E68D265BA7FD00AE34C5 /* BYNewbieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F706E68C265BA7FD00AE34C5 /* BYNewbieModel.m */; };
 		F765F0EA265250FD00F15747 /* BYMissionCompleteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F765F0E8265250FD00F15747 /* BYMissionCompleteVC.m */; };
 		F765F0EB265250FD00F15747 /* BYMissionCompleteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F765F0E9265250FD00F15747 /* BYMissionCompleteVC.xib */; };
 		F765F0EF26525F4C00F15747 /* BYFirstFillBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F765F0EE26525F4C00F15747 /* BYFirstFillBannerView.m */; };
@@ -1008,6 +1004,8 @@
 		F765F0F4265268D000F15747 /* BYMoreCompleteMissionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F765F0F3265268D000F15747 /* BYMoreCompleteMissionView.m */; };
 		F765F0F6265268E200F15747 /* BYMoreCompleteMissionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F765F0F5265268E200F15747 /* BYMoreCompleteMissionView.xib */; };
 		F774CDA9264CF2960062F6A2 /* BYGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = F774CDA8264CF2960062F6A2 /* BYGradientView.m */; };
+		F783972C2673360600AB8BE6 /* BYRegisterSuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F783972A2673360600AB8BE6 /* BYRegisterSuccessVC.m */; };
+		F783972D2673360600AB8BE6 /* BYRegisterSuccessVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F783972B2673360600AB8BE6 /* BYRegisterSuccessVC.xib */; };
 		F7A75F1C264E140500D933D7 /* BYGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F1B264E140500D933D7 /* BYGradientButton.m */; };
 		F7A75F1F264E405600D933D7 /* BYBorderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F1E264E405600D933D7 /* BYBorderButton.m */; };
 		F7A75F22264E507200D933D7 /* BYBorderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F21264E507200D933D7 /* BYBorderLabel.m */; };
@@ -1460,9 +1458,6 @@
 		3D9700232599DB2A003238C4 /* HYDSBSlideUpViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYDSBSlideUpViewCell.h; sourceTree = "<group>"; };
 		3D9700242599DB2A003238C4 /* HYDSBSlideUpViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYDSBSlideUpViewCell.m; sourceTree = "<group>"; };
 		3D9700252599DB2A003238C4 /* HYDSBSlideUpViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYDSBSlideUpViewCell.xib; sourceTree = "<group>"; };
-		3D970028259B1CE1003238C4 /* BYRegisterSuccADVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYRegisterSuccADVC.h; sourceTree = "<group>"; };
-		3D970029259B1CE1003238C4 /* BYRegisterSuccADVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYRegisterSuccADVC.m; sourceTree = "<group>"; };
-		3D97002A259B1CE1003238C4 /* BYRegisterSuccADVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYRegisterSuccADVC.xib; sourceTree = "<group>"; };
 		3D97002E25A2C3ED003238C4 /* IN3SWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IN3SWebViewController.h; sourceTree = "<group>"; };
 		3D97003025A2C3ED003238C4 /* IN3SResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IN3SResource.bundle; sourceTree = "<group>"; };
 		3D97003125A2C3ED003238C4 /* IN3SConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IN3SConstants.m; sourceTree = "<group>"; };
@@ -2420,10 +2415,6 @@
 		E9E958FF24D41BC300E866B6 /* CreditQueryResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditQueryResultModel.h; sourceTree = "<group>"; };
 		E9E9590024D41BC400E866B6 /* CreditQueryResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditQueryResultModel.m; sourceTree = "<group>"; };
 		F6CE8CAC1544E651FCBD92C6 /* Pods-HYNewNest-HYNewNestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest-HYNewNestUITests.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		F706E688265B9E7800AE34C5 /* BYNewbieRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYNewbieRequest.h; sourceTree = "<group>"; };
-		F706E689265B9E7800AE34C5 /* BYNewbieRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYNewbieRequest.m; sourceTree = "<group>"; };
-		F706E68B265BA7FD00AE34C5 /* BYNewbieModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYNewbieModel.h; sourceTree = "<group>"; };
-		F706E68C265BA7FD00AE34C5 /* BYNewbieModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYNewbieModel.m; sourceTree = "<group>"; };
 		F7369947BD28FDAEFDBB6399 /* Pods-HYNewNest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.release.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.release.xcconfig"; sourceTree = "<group>"; };
 		F765F0E7265250FD00F15747 /* BYMissionCompleteVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYMissionCompleteVC.h; sourceTree = "<group>"; };
 		F765F0E8265250FD00F15747 /* BYMissionCompleteVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYMissionCompleteVC.m; sourceTree = "<group>"; };
@@ -2436,6 +2427,9 @@
 		F765F0F5265268E200F15747 /* BYMoreCompleteMissionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYMoreCompleteMissionView.xib; sourceTree = "<group>"; };
 		F774CDA7264CF2960062F6A2 /* BYGradientView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGradientView.h; sourceTree = "<group>"; };
 		F774CDA8264CF2960062F6A2 /* BYGradientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGradientView.m; sourceTree = "<group>"; };
+		F78397292673360600AB8BE6 /* BYRegisterSuccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYRegisterSuccessVC.h; sourceTree = "<group>"; };
+		F783972A2673360600AB8BE6 /* BYRegisterSuccessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYRegisterSuccessVC.m; sourceTree = "<group>"; };
+		F783972B2673360600AB8BE6 /* BYRegisterSuccessVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYRegisterSuccessVC.xib; sourceTree = "<group>"; };
 		F7A75F1A264E140500D933D7 /* BYGradientButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGradientButton.h; sourceTree = "<group>"; };
 		F7A75F1B264E140500D933D7 /* BYGradientButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGradientButton.m; sourceTree = "<group>"; };
 		F7A75F1D264E405600D933D7 /* BYBorderButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYBorderButton.h; sourceTree = "<group>"; };
@@ -3469,9 +3463,7 @@
 			isa = PBXGroup;
 			children = (
 				3D5693B125EF5B99004077F8 /* Controller */,
-				3D5693B225EF5B99004077F8 /* Model */,
 				3D5693B325EF5B99004077F8 /* View */,
-				3D5693B425EF5B99004077F8 /* Request */,
 			);
 			path = NewUsrMissionComponent;
 			sourceTree = "<group>";
@@ -3492,7 +3484,8 @@
 				3DB600AE2625816B002278F8 /* CNTaskModel.h */,
 				3DB600AF2625816B002278F8 /* CNTaskModel.m */,
 			);
-			path = Model;
+			name = Model;
+			path = ../Model;
 			sourceTree = "<group>";
 		};
 		3D5693B325EF5B99004077F8 /* View */ = {
@@ -3511,7 +3504,8 @@
 				3DB600A326242F4C002278F8 /* CNTaskRequest.h */,
 				3DB600A426242F4C002278F8 /* CNTaskRequest.m */,
 			);
-			path = Request;
+			name = Request;
+			path = ../Request;
 			sourceTree = "<group>";
 		};
 		3D5B259A25C01E7A00FD23F0 /* JSONHelper */ = {
@@ -4572,9 +4566,9 @@
 				E986A1A724CBCD39000F9CFF /* CNLoginSuccChooseAccountVC.h */,
 				E986A1A824CBCD39000F9CFF /* CNLoginSuccChooseAccountVC.m */,
 				E986A1A924CBCD39000F9CFF /* CNLoginSuccChooseAccountVC.xib */,
-				3D970028259B1CE1003238C4 /* BYRegisterSuccADVC.h */,
-				3D970029259B1CE1003238C4 /* BYRegisterSuccADVC.m */,
-				3D97002A259B1CE1003238C4 /* BYRegisterSuccADVC.xib */,
+				F78397292673360600AB8BE6 /* BYRegisterSuccessVC.h */,
+				F783972A2673360600AB8BE6 /* BYRegisterSuccessVC.m */,
+				F783972B2673360600AB8BE6 /* BYRegisterSuccessVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5364,24 +5358,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		F706E686265B9DCB00AE34C5 /* Request */ = {
-			isa = PBXGroup;
-			children = (
-				F706E688265B9E7800AE34C5 /* BYNewbieRequest.h */,
-				F706E689265B9E7800AE34C5 /* BYNewbieRequest.m */,
-			);
-			path = Request;
-			sourceTree = "<group>";
-		};
-		F706E687265B9DE800AE34C5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				F706E68B265BA7FD00AE34C5 /* BYNewbieModel.h */,
-				F706E68C265BA7FD00AE34C5 /* BYNewbieModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		F765F0EC26525E4600F15747 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -5409,8 +5385,8 @@
 			children = (
 				F7CA9C56264E77AC00410BB3 /* Controller */,
 				F765F0EC26525E4600F15747 /* View */,
-				F706E686265B9DCB00AE34C5 /* Request */,
-				F706E687265B9DE800AE34C5 /* Model */,
+				3D5693B425EF5B99004077F8 /* Request */,
+				3D5693B225EF5B99004077F8 /* Model */,
 			);
 			path = NewbieMissionComponent;
 			sourceTree = "<group>";
@@ -5584,6 +5560,7 @@
 				D5A4454224F393AC00014DC6 /* 棋牌_00088.png in Resources */,
 				D5A4460124F393E500014DC6 /* 足球_00019.png in Resources */,
 				D5A444C724F3932500014DC6 /* 数字7_00053.png in Resources */,
+				F783972D2673360600AB8BE6 /* BYRegisterSuccessVC.xib in Resources */,
 				D5A4449224F3932400014DC6 /* 数字7_0001.png in Resources */,
 				D5A4457524F393AD00014DC6 /* 棋牌_00078.png in Resources */,
 				D5A4449B24F3932400014DC6 /* 数字7_00026.png in Resources */,
@@ -5772,7 +5749,6 @@
 				D5A443D424F378CD00014DC6 /* 彩票_00042.png in Resources */,
 				D5A4457D24F393AD00014DC6 /* 棋牌_00053.png in Resources */,
 				0487C9C924D11F460013715A /* CNNoDataView.xib in Resources */,
-				3D97002C259B1CE1003238C4 /* BYRegisterSuccADVC.xib in Resources */,
 				D5A4457024F393AC00014DC6 /* 棋牌_00079.png in Resources */,
 				0430AB3224E38F8300C873DC /* CNBankVerifySmsView.xib in Resources */,
 				D5A4454D24F393AC00014DC6 /* 棋牌_00070.png in Resources */,
@@ -6512,6 +6488,7 @@
 				04C0F0DC24C29FFD007F1420 /* CNBindPhoneVC.m in Sources */,
 				E98BEF3A24D3D27100E6B0C8 /* HYDownloadLinkView.m in Sources */,
 				E9D9447A24C1F39C00252222 /* HYGloryViewController.m in Sources */,
+				F783972C2673360600AB8BE6 /* BYRegisterSuccessVC.m in Sources */,
 				E98BEF3024D2F35600E6B0C8 /* HYWithdrawComfirmView.m in Sources */,
 				F7CA9C53264E66D500410BB3 /* BYNewbieAlertVC.m in Sources */,
 				3D643F8B24F29F3600B9AAA7 /* SocketTool.m in Sources */,
@@ -6568,7 +6545,6 @@
 				3DBA55D2256FA6D3009A2B71 /* CNTextSaleBtn.m in Sources */,
 				D5FBFE3D24BC05E400BBCAD8 /* CNImageCodeInputView.m in Sources */,
 				E986A10B24C6F5E7000F9CFF /* TopTabAGUltimateView.m in Sources */,
-				F706E68D265BA7FD00AE34C5 /* BYNewbieModel.m in Sources */,
 				3D643F8824F29F3600B9AAA7 /* AlertViewHelp.m in Sources */,
 				E9B5494F24CD8209002CE6EF /* NNControllerHelper.m in Sources */,
 				E986A17524C979F6000F9CFF /* PayWayV3Model.m in Sources */,
@@ -6649,7 +6625,6 @@
 				E98BEEFE24D1815200E6B0C8 /* HYXiMaViewController.m in Sources */,
 				E986A13124C7FC0E000F9CFF /* ArticalModel.m in Sources */,
 				F7A75F22264E507200D933D7 /* BYBorderLabel.m in Sources */,
-				F706E68A265B9E7800AE34C5 /* BYNewbieRequest.m in Sources */,
 				3DBA55D8256FA793009A2B71 /* BalanceManager.m in Sources */,
 				04C0F0FC24C589DD007F1420 /* CNUserModel.m in Sources */,
 				E986A1C124CC7F2B000F9CFF /* SDCycleScrollView.m in Sources */,
@@ -6701,7 +6676,6 @@
 				0487C9E724D27BDD0013715A /* CNNotifySettingTCell.m in Sources */,
 				3D18CFB2260883C600E6642E /* NXPingManager.m in Sources */,
 				3D643F8C24F29F3600B9AAA7 /* KeyChain.m in Sources */,
-				3D97002B259B1CE1003238C4 /* BYRegisterSuccADVC.m in Sources */,
 				3D31B94425399CB7005275BD /* HYBuyECoinComfirmView.m in Sources */,
 				3DC14E3F25F8DC0D00D6DB85 /* BYVocherTableVC.m in Sources */,
 				E986A18F24CA8DB9000F9CFF /* ChooseAvatarsModel.m in Sources */,

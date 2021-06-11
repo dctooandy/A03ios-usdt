@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BYNewbieRequest : CNBaseNetworking
 
-+ (void)getrequest:(HandlerBlock)handler;
++ (void)getNewUsrTask:(HandlerBlock)handler;
 
 @end
 

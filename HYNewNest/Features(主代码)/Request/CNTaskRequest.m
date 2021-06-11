@@ -17,6 +17,13 @@
     [self POST:kGatewayExtraPath(config_newapiTask) parameters:param completionHandler:handler];
 }
 
++ (void)getNewUsrTaskDetail:(HandlerBlock)handler {
+    NSMutableDictionary *param = @{}.mutableCopy;
+    param[@"action"] = @"myTaskDetail";
+    
+    [self POST:kGatewayExtraPath(config_newapiTask) parameters:param completionHandler:handler];
+}
+
 + (void)applyTaskRewardIds:(NSString *)prizeIds code:(NSString *)prizeCode handler:(HandlerBlock)handler {
     NSMutableDictionary *param = @{}.mutableCopy;
     param[@"action"] = @"apply";

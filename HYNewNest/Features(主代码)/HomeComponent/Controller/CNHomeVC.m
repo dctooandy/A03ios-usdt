@@ -115,11 +115,8 @@
     if (!_hasRecord) {
         [IN3SAnalytics launchFinished];
         _hasRecord = YES;
-        
-        BYNewbieMissionVC *vc = [[BYNewbieMissionVC alloc] init];
-        [self.navigationController pushViewController:vc animated:true];
-
     }
+    
     self.bannerView.autoScroll = YES; // 恢复滚动
     [self.infoView updateLoginStatusUIIsRefreshing:NO]; // 获取余额
     

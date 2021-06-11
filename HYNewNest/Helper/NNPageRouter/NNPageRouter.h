@@ -65,6 +65,8 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 ///去VIP
 + (void)jump2VIP;
 
++ (void)jump2NewbieMission;
+
 @end
 
 NS_ASSUME_NONNULL_END

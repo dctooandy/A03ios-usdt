@@ -45,3 +45,22 @@
     return sec <= 0;
 }
 @end
+
+@implementation CNTaskDetail
+@end
+
+@implementation CNTaskReceived
+- (instancetype)initWithID:(NSString *)rId andCode:(NSString *)code andAmount:(NSInteger)amount {
+    self = [super init];
+    if (self) {
+        self.receivedID = rId;
+        self.receivedCode = code;
+        self.receivedAmount = amount;
+    }
+    return self;
+}
+@end
+
+@implementation CNTaskReceivedReward
+
+@end

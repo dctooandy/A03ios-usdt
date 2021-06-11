@@ -11,6 +11,9 @@
 #import "UILabel+Gradient.h"
 #import "BYMoreCompleteMissionView.h"
 #import "NNPageRouter.h"
+#import "CNTaskRequest.h"
+#import "CNTaskModel.h"
+#import "LoadingView.h"
 
 @interface BYMissionCompleteVC ()<BYMoreCompleteDelegate>
 @property (weak, nonatomic) IBOutlet UIView *bannerBackground;
@@ -37,11 +40,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self setupUI];
+    [self setupBanner];
+    [self.gradientLabel setupGradientColorFrom:kHexColor(0x19CECE) toColor:kHexColor(0x10B4DD)];
+    
+    [self receivedData:self.result];
+    
 }
 
 /*
@@ -60,26 +63,60 @@
 }
 
 #pragma mark -
+#pragma mark PostData
+- (void)receivedData:(CNTaskReceived *)result {
+    [LoadingView show];
+    WEAKSELF_DEFINE
+    [CNTaskRequest applyTaskRewardIds:result.receivedID code:result.receivedCode handler:^(id responseObj, NSString *errorMsg) {
+        [LoadingView hide];
+        if (!errorMsg) {
+            CNTaskReceivedReward *reward = [CNTaskReceivedReward cn_parse:responseObj];
+            STRONGSELF_DEFINE
+            if (strongSelf.resultArray.count > 0) {
+                [strongSelf.resultArray removeObjectAtIndex:0];
+                [strongSelf setupBanner];
+            }
+            [strongSelf.receivedUSDTLabel setText:[NSString stringWithFormat:@"%liUSDT", reward.sucAmount]];
+            
+        }
+    }];
+}
+
+#pragma mark -
 #pragma mark Delegate
 - (void)moreBannerClicked {
     //reload
+    if (self.type == MissionCompleteTypeLimite) {
+        
+    }
+    else {
+        //call api
+        if (self.resultArray.count > 0) {
+            CNTaskReceived *recevied = self.resultArray.firstObject.mutableCopy;
+            [self receivedData:recevied];
+        }
+    }
 }
 
 #pragma mark -
 #pragma mark Custom Method
-- (void)setupUI {    
-    [self.gradientLabel setupGradientColorFrom:kHexColor(0x19CECE) toColor:kHexColor(0x10B4DD)];
-    if (self.type == MissionCompleteTypeFirstFill) {
+- (void)setupBanner {
+    for (UIView *subview in self.bannerBackground.subviews) {
+        [subview removeFromSuperview];
+    }
+    
+    if (self.type == MissionCompleteTypeLimite) {
         BYFirstFillBannerView *bannerView = [[BYFirstFillBannerView alloc] init];
         bannerView.frame = self.bannerBackground.bounds;
         [self.bannerBackground addSubview:bannerView];
     }
-    else {
+    else if (self.resultArray.count > 0){
         BYMoreCompleteMissionView *bannerView = [[BYMoreCompleteMissionView alloc] init];
         [bannerView setDelegate:self];
         bannerView.frame = self.bannerBackground.bounds;
         [self.bannerBackground addSubview:bannerView];
     }
+    
 }
 
 
