@@ -58,7 +58,6 @@
     [self.maxiumCashGiftLabel setupGradientColorDirection:BYLblGrdtColorDirectionLeftRight
                                                      From:kHexColor(0xFF7777)
                                                   toColor:kHexColor(0xBD005A)];
-    
     [self setTitle:@"新手任务"];
 }
 
