@@ -2699,6 +2699,7 @@
 		048A168424CA70AF00411819 /* CustomServerComponent */ = {
 			isa = PBXGroup;
 			children = (
+				3DBB590F26788E1E00F5A759 /* Request */,
 				048A168524CA70C600411819 /* View */,
 			);
 			path = CustomServerComponent;
@@ -2850,8 +2851,6 @@
 				04C0F10E24C59298007F1420 /* CNBaseNetworking.m */,
 				E9D9448E24C5454F00252222 /* HYNetworkConfigManager.h */,
 				E9D9448F24C5454F00252222 /* HYNetworkConfigManager.m */,
-				3DBB590C26787A2400F5A759 /* CNServiceRequest.h */,
-				3DBB590D26787A2400F5A759 /* CNServiceRequest.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -3078,6 +3077,7 @@
 		3D13389C24AF2D1900B29783 /* Features(主代码) */ = {
 			isa = PBXGroup;
 			children = (
+				3DBA56052580B467009A2B71 /* CopartnerComponent */,
 				3DDEBA2A264A2D6A0014EB87 /* YuEBaoComponent */,
 				3DC14E3025F8D25700D6DB85 /* VoucherComponent */,
 				3D5693B025EF5B99004077F8 /* NewUsrMissionComponent */,
@@ -3794,6 +3794,15 @@
 			children = (
 				3DF031FC258DA36A00AF7A36 /* CNSuperCopartnerRequest.h */,
 				3DF031FD258DA36A00AF7A36 /* CNSuperCopartnerRequest.m */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		3DBB590F26788E1E00F5A759 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				3DBB590C26787A2400F5A759 /* CNServiceRequest.h */,
+				3DBB590D26787A2400F5A759 /* CNServiceRequest.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -5195,7 +5204,6 @@
 		E9D9447124C1F35700252222 /* MeComponent */ = {
 			isa = PBXGroup;
 			children = (
-				3DBA56052580B467009A2B71 /* CopartnerComponent */,
 				048A169524CBD3B600411819 /* View */,
 				E986A12324C7E9E1000F9CFF /* Model */,
 				E986A11F24C7E7AE000F9CFF /* Request */,
