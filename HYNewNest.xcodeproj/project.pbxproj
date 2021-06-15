@@ -5950,7 +5950,6 @@
 				D5A4470124F3941400014DC6 /* 合成 1_00091.png in Resources */,
 				D5A4461F24F393E500014DC6 /* 足球_00046.png in Resources */,
 				D5A443E224F378CD00014DC6 /* 彩票_00088.png in Resources */,
-				3D57EF132668ED0A00A5CCC6 /* BYChangeFundPwdVC.xib in Resources */,
 				D5A446CC24F3941400014DC6 /* 合成 1_00076.png in Resources */,
 				0487C9E824D27BDD0013715A /* CNNotifySettingTCell.xib in Resources */,
 				D5A4461024F393E500014DC6 /* 足球_00041.png in Resources */,
@@ -6855,7 +6854,7 @@
 				);
 				MARKETING_VERSION = 3.7.2;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-geh";
 				PRODUCT_NAME = "币游_dev";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -6915,7 +6914,7 @@
 				);
 				MARKETING_VERSION = 3.7.2;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-geh";
 				PRODUCT_NAME = "币游";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

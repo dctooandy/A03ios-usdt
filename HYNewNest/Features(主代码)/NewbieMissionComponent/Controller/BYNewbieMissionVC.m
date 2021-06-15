@@ -58,6 +58,8 @@
     [self.maxiumCashGiftLabel setupGradientColorDirection:BYLblGrdtColorDirectionLeftRight
                                                      From:kHexColor(0xFF7777)
                                                   toColor:kHexColor(0xBD005A)];
+    
+    [self setTitle:@"新手任务"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -93,6 +95,13 @@
     [self setupSiginUI];
     [self setupLimitTaskUI];
     [self setupUpgradeTaskUI];
+    
+    if (self.model.beginFlag == 2) {
+        for (BYGradientButton *btn in self.receivedButtons) {
+            [btn setEnabled:false];
+            [btn setTitle:@"已结束" forState:UIControlStateNormal];
+        }
+    }
 }
 
 - (void)setupSiginUI {
@@ -177,14 +186,8 @@
     switch (limitTask.totalFlag) {
         case 0:
         case -1:{
-            if (limitTask.endTime == 0) {
-                [limiteButton setTitle:@"已过期" forState:UIControlStateNormal];
-                [limiteButton setEnabled:false];
-            }
-            else {
-                [limiteButton setTitle:[NSString stringWithFormat:@"领%liUSDT", limitTask.totalAmount] forState:UIControlStateNormal];
-                [limiteButton setEnabled:true];
-            }
+            [limiteButton setTitle:[NSString stringWithFormat:@"领%liUSDT", limitTask.totalAmount] forState:UIControlStateNormal];
+            [limiteButton setEnabled:true];
             break;
         }
         case 1:{
@@ -322,7 +325,7 @@
 #pragma mark -
 #pragma mark IBAction
 - (IBAction)bindingPhoneClicked:(id)sender {
-    if ([self checkUserLogin] == true && [CNUserManager shareManager].userDetail.mobileNoBind) {
+    if ([self checkUserLogin] == true && [CNUserManager shareManager].userDetail.mobileNoBind == false) {
         CNBindPhoneVC *bindPhoneVC = [[CNBindPhoneVC alloc] init];
         bindPhoneVC.bindType = CNSMSCodeTypeBindPhone;
         [self.navigationController pushViewController:bindPhoneVC animated:true];

@@ -165,9 +165,6 @@
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                     <real key="value" value="6"/>
                                                 </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="topLeftCorner" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="topRightCorner" value="NO"/>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="bottomLeftCorner" value="NO"/>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerType">
                                                     <integer key="value" value="1"/>
                                                 </userDefinedRuntimeAttribute>
@@ -419,9 +416,6 @@
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                     <real key="value" value="6"/>
                                                 </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="topLeftCorner" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="topRightCorner" value="NO"/>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="bottomLeftCorner" value="NO"/>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerType">
                                                     <integer key="value" value="1"/>
                                                 </userDefinedRuntimeAttribute>
@@ -721,9 +715,6 @@
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                     <real key="value" value="6"/>
                                                 </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="topLeftCorner" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="topRightCorner" value="NO"/>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="bottomLeftCorner" value="NO"/>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerType">
                                                     <integer key="value" value="1"/>
                                                 </userDefinedRuntimeAttribute>

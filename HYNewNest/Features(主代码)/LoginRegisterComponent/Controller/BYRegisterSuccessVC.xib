@@ -44,7 +44,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g0M-gU-A9T">
                     <rect key="frame" x="167" y="393.5" width="80" height="109"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cg" translatesAutoresizingMaskIntoConstraints="NO" id="e1j-su-rSa">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cg-1" translatesAutoresizingMaskIntoConstraints="NO" id="e1j-su-rSa">
                             <rect key="frame" x="0.0" y="0.0" width="80" height="66"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="註冊成功" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcw-mt-1Jy">
@@ -54,7 +54,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="e1j-su-rSa" firstAttribute="leading" secondItem="g0M-gU-A9T" secondAttribute="leading" id="2Gm-9z-S7T"/>
                         <constraint firstAttribute="height" constant="109" id="4Jh-gx-3l3"/>
@@ -84,7 +84,7 @@
         </view>
     </objects>
     <resources>
-        <image name="cg" width="80" height="66"/>
+        <image name="cg-1" width="80" height="66"/>
         <image name="rk" width="345" height="54"/>
         <image name="矩形" width="345" height="49"/>
         <systemColor name="systemBackgroundColor">
