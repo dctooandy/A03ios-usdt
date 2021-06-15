@@ -144,15 +144,8 @@
     }
     [CNServiceRequest queryIsOpenWMQHandler:^(id responseObj, NSString *errorMsg) {
         NSDictionary *dict = responseObj[0];
-        NSString *levels = dict[@"lev"];
-        NSArray *lels = [levels componentsSeparatedByString:@","];
-        [lels enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([CNUserManager shareManager].userInfo.starLevel == obj.integerValue) {
-                self.isOpenWMQ = YES;
-            } else {
-                self.isOpenWMQ = NO;
-            }
-        }];
+        NSString *level = dict[@"lev"];
+        self.isOpenWMQ = level.integerValue;
     }];
 }
 
