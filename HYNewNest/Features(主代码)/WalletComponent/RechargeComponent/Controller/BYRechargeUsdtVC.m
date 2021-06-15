@@ -89,7 +89,7 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
 }
 
 - (void)rightItemAction {
-    [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
+    [NNPageRouter presentOCSS_VC];
 }
 
 - (void)setupBtmBanners {

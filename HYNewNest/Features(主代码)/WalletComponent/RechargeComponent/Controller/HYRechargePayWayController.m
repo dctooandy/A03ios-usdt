@@ -61,7 +61,7 @@ static NSString *const KRechargeCell = @"HYRechargePayWayCell";
 }
 
 - (void)rightItemAction {
-    [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
+    [NNPageRouter presentOCSS_VC];
 }
 
 - (void)setupTableView {

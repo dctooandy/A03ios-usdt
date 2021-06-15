@@ -18,15 +18,13 @@
 #import "UIImage+ESUtilities.h"
 #import "SuspendBall.h"
 #import "CNServerView.h"
-#import "CNHomeRequest.h"
+#import "CNServiceRequest.h"
 #import "HYTextAlertView.h"
 
 
 @interface HYTabBarViewController ()<UITabBarControllerDelegate, SuspendBallDelegte, CNServerViewDelegate>
 @property (nonatomic, strong) SuspendBall *suspendBall;
-@property (strong, nonatomic) HYNavigationController *bonusNavVC;
-@property (strong, nonatomic) HYNavigationController *vipNavVC;
-@property (strong, nonatomic) HYNavigationController *gloryNavVC;
+@property (assign, nonatomic) BOOL isOpenWMQ; //!<是否开启微脉圈
 @end
 
 @implementation HYTabBarViewController
@@ -36,33 +34,13 @@
     
     [self setupControllers];
     [self setupAppearance];
-    [self setupCSSuspendBall];
-//    [self didSwitchAcount];
+    [self checkWMQStatus];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupAppearance) name:CNSkinChangeNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSwitchAcount) name:HYSwitchAcoutSuccNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSwitchAcount) name:HYLoginSuccessNotification object:nil];
-    
-}
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkWMQStatus) name:HYLoginSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkWMQStatus) name:HYLogoutSuccessNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupAppearance) name:CNSkinChangeNotification object:nil];
 
-//- (void)didSwitchAcount{
-//    NSMutableArray *childVcs = [self.viewControllers mutableCopy];
-//    if (![CNUserManager shareManager].isUsdtMode) { //rmb 去掉“优惠”&"vip"
-//        if (childVcs.count == 5) {
-//            [childVcs removeObjectAtIndex:1];
-//            [childVcs removeObjectAtIndex:1];
-//            [childVcs removeObjectAtIndex:1];
-//        }
-//        self.viewControllers = childVcs.copy;
-//    } else {
-//        if (childVcs.count == 2) {
-//            [childVcs insertObject:self.gloryNavVC atIndex:1];
-//            [childVcs insertObject:self.bonusNavVC atIndex:1];
-//            [childVcs insertObject:self.vipNavVC atIndex:1];
-//        }
-//        self.viewControllers = childVcs.copy;
-//    }
-//}
+}
 
 - (void)setupAppearance{
     
@@ -108,21 +86,18 @@
                                                                                         tabBarTitle:@"VIP"
                                                                                         normalImage:[UIImage imageNamed:@"vip"]
                                                                                       selectedImage:[UIImage imageNamed:@"vip_s"]];
-    self.vipNavVC = vipNav;
     [vcs addObject:vipNav];
     
     HYNavigationController *bonusNav = [HYNavigationController navigationControllerWithController:[HYBonusViewController class]
                                                                                             tabBarTitle:@"优惠"
                                                                                             normalImage:[UIImage imageNamed:@"youhui"]
                                                                                           selectedImage:[UIImage imageNamed:@"youhui_s"]];
-    self.bonusNavVC = bonusNav;
     [vcs addObject:bonusNav];
    
     HYNavigationController *gloryNav = [HYNavigationController navigationControllerWithController:[HYGloryViewController class]
                                                                       tabBarTitle:@"风采"
                                                                       normalImage:[UIImage imageNamed:@"Fengcai"]
                                                                     selectedImage:[UIImage imageNamed:@"Fengcai_s"]];
-    self.gloryNavVC = gloryNav;
     [vcs addObject:gloryNav];
     
     HYNavigationController *mineNav = [HYNavigationController navigationControllerWithController:[CNMineVC class]
@@ -137,10 +112,23 @@
 }
 
 - (void)setupCSSuspendBall {
+    [self.suspendBall removeFromSuperview];
+    self.suspendBall = nil;
+    
     CGFloat btnWH = 60.f;
-    NSArray *imgNameGroup = @[@"cunqu", @"help", @"help", @"phone_s", @"phone_s"];//@"cunqu"
-    NSArray *titleGroup = @[@"微脉圈", @"存取", @"疑问", @"回拨", @"400"];//@"微脉圈"
-    SuspendBall *suspendBall = [SuspendBall suspendBallWithFrame:CGRectMake(kScreenWidth - btnWH, kScreenHeight *0.75, btnWH, btnWH) delegate:self subBallImageArray:imgNameGroup textArray:titleGroup];
+    NSArray *imgNameGroup;
+    NSArray *titleGroup;
+    if (self.isOpenWMQ) {
+        imgNameGroup = @[@"cunqu", @"help", @"phone_s", @"phone_s"];
+        titleGroup = @[@"VIP", @"疑问", @"回拨", @"400"];
+    } else {
+        imgNameGroup = @[@"help", @"phone_s", @"phone_s"];
+        titleGroup = @[@"疑问", @"回拨", @"400"];
+    }
+    SuspendBall *suspendBall = [SuspendBall suspendBallWithFrame:CGRectMake(kScreenWidth - btnWH, kScreenHeight *0.75, btnWH, btnWH)
+                                                        delegate:self
+                                               subBallImageArray:imgNameGroup
+                                                       textArray:titleGroup];
     suspendBall.top = kNavPlusStaBarHeight;
     suspendBall.bottom = kTabBarHeight + kSafeAreaHeight;
     suspendBall.hidden = NO;
@@ -149,6 +137,29 @@
     [self.view bringSubviewToFront:suspendBall];
 }
 
+- (void)checkWMQStatus {
+    if (![CNUserManager shareManager].isLogin) {
+        self.isOpenWMQ = NO;
+        return;
+    }
+    [CNServiceRequest queryIsOpenWMQHandler:^(id responseObj, NSString *errorMsg) {
+        NSDictionary *dict = responseObj[0];
+        NSString *levels = dict[@"lev"];
+        NSArray *lels = [levels componentsSeparatedByString:@","];
+        [lels enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([CNUserManager shareManager].userInfo.starLevel == obj.integerValue) {
+                self.isOpenWMQ = YES;
+            } else {
+                self.isOpenWMQ = NO;
+            }
+        }];
+    }];
+}
+
+- (void)setIsOpenWMQ:(BOOL)isOpenWMQ {
+    _isOpenWMQ = isOpenWMQ;
+    [self setupCSSuspendBall];
+}
 
 #pragma mark  UITabBarControllerDelegate
 
@@ -187,37 +198,30 @@
 - (void)suspendBall:(UIButton *)subBall didSelectTag:(NSInteger)tag{
     [self.suspendBall suspendBallShow];
     
-    if(tag == 0){
+    NSString *title = subBall.titleLabel.text;
+    if([title isEqualToString:@"VIP"]){
         //客服 微脉圈
         [NNPageRouter presentWMQCustomerService];
-    }else if (tag == 1){
+    }else if ([title isEqualToString:@"存取"]){
         //客服 存取款问题
-        [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
-    }else if (tag == 2){
+        [NNPageRouter presentOCSS_VC];
+    }else if ([title isEqualToString:@"疑问"]){
         //客服 其他问题
-        [NNPageRouter presentOCSS_VC:CNLive800TypeNormal];
-    }else if (tag == 3){
+        [NNPageRouter presentOCSS_VC];
+    }else if ([title isEqualToString:@"回拨"]){
         //电话回拨
         [CNServerView showServerWithDelegate:self];
-    }else if (tag == 4){
+    }else if ([title isEqualToString:@"400"]){
         //400
-        [self call400];
+        [CNServiceRequest call400];
     }
-}
-
-- (void)call400{
-    
-    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",@"4001200938"];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str] options:@{} completionHandler:^(BOOL success) {
-        [CNTOPHUB showSuccess:@"正在为您拨通.."];
-    }];
 }
 
 
 #pragma mark - CNServerViewDelegate 电话回拨
 
 - (void)serverView:(CNServerView *)server callBack:(NSString *)phone code:(NSString *)code messageId:(NSString *)messageId {
-    [CNHomeRequest callCenterCallBackMessageId:messageId
+    [CNServiceRequest callCenterCallBackMessageId:messageId
                                        smsCode:code
                                       mobileNo:phone
                                        handler:^(id responseObj, NSString *errorMsg) {
@@ -228,8 +232,7 @@
 }
 
 - (void)serverViewWillDialBindedPhone {
-    
-    [CNHomeRequest callCenterCallBackMessageId:nil
+    [CNServiceRequest callCenterCallBackMessageId:nil
                                        smsCode:nil
                                       mobileNo:nil
                                        handler:^(id responseObj, NSString *errorMsg) {

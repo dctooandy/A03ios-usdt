@@ -271,7 +271,7 @@
             }
         }];
     } else {
-        [NNPageRouter presentOCSS_VC:CNLive800TypeNormal];
+        [NNPageRouter presentOCSS_VC];
     }
 }
 

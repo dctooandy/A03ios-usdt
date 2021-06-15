@@ -139,7 +139,7 @@
 
 - (IBAction)customerServer:(id)sender {
     [self removeFromSuperview];
-    [NNPageRouter presentOCSS_VC:CNLive800TypeNormal];
+    [NNPageRouter presentOCSS_VC];
 }
 
 // 发送验证码

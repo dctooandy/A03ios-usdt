@@ -22,20 +22,6 @@
     }];
 }
 
-+ (void)callCenterCallBackMessageId:(nullable NSString *)messageId
-                            smsCode:(nullable NSString *)smsCode
-                           mobileNo:(nullable NSString *)mobileNo
-                            handler:(HandlerBlock)handler {
-    
-    NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"type"] = mobileNo ? @(0) : @(1);// 是否用户绑定手机，0：否
-    param[@"messageId"] = messageId;
-    param[@"mobileNo"] = mobileNo;
-    param[@"smsCode"] = smsCode;
-  
-    [self POST:(config_callBackPhone) parameters:param completionHandler:handler];
-}
-
 + (void)requestBannerWhere:(BannerWhere)where Handler:(HandlerBlock)handler{
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
     if (where == BannerWhereHome) {

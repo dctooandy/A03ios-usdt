@@ -404,7 +404,7 @@
 
 //联系客服
 - (void)kefu{
-    [NNPageRouter presentOCSS_VC:CNLive800TypeNormal];
+    [NNPageRouter presentOCSS_VC];
 }
 
 - (void)reloadFirstPage {

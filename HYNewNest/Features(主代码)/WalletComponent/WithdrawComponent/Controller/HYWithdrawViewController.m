@@ -115,7 +115,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         if (![CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userDetail.depositLevel < 0) {
             [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"为保障您的资金安全，\n详情联系客服咨询" btnText:@"联系客服" handler:^(BOOL isComfirm) {
                 if (isComfirm) {
-                    [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
+                    [NNPageRouter presentOCSS_VC];
                 }
             }];
             return;
@@ -124,7 +124,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 }
 
 - (void)rightItemAction {
-    [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
+    [NNPageRouter presentOCSS_VC];
 }
 
 - (void)setupBanner {
@@ -190,7 +190,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     if (![CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userDetail.depositLevel < 0) {
         [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"为保障您的资金安全，\n详情联系客服咨询" btnText:@"联系客服" handler:^(BOOL isComfirm) {
             if (isComfirm) {
-                [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
+                [NNPageRouter presentOCSS_VC];
             }
         }];
         return;

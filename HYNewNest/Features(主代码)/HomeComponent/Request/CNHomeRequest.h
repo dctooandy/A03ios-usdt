@@ -21,12 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 弹窗盒子
 + (void)queryMessageBoxHandler:(HandlerBlock)handler;
 
-/// 客服回拨
-+ (void)callCenterCallBackMessageId:(nullable NSString *)messageId
-                            smsCode:(nullable NSString *)smsCode
-                           mobileNo:(nullable NSString*)mobileNo
-                            handler:(HandlerBlock)handler;
-
 
 typedef NS_ENUM(NSUInteger, BannerWhere) {
     BannerWhereHome, //首页

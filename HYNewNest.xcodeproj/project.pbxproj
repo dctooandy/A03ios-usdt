@@ -324,6 +324,7 @@
 		3DBA560D2580B5E4009A2B71 /* BYSuperCopartnerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA560B2580B5E4009A2B71 /* BYSuperCopartnerVC.m */; };
 		3DBA560E2580B5E4009A2B71 /* BYSuperCopartnerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA560C2580B5E4009A2B71 /* BYSuperCopartnerVC.xib */; };
 		3DBA56112580D9B3009A2B71 /* CALayer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA56102580D9B3009A2B71 /* CALayer+Additions.m */; };
+		3DBB590E26787A2400F5A759 /* CNServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBB590D26787A2400F5A759 /* CNServiceRequest.m */; };
 		3DC14E3825F8D37500D6DB85 /* BYVocherCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E3625F8D37500D6DB85 /* BYVocherCenterVC.m */; };
 		3DC14E3F25F8DC0D00D6DB85 /* BYVocherTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E3E25F8DC0D00D6DB85 /* BYVocherTableVC.m */; };
 		3DC14E4325F9DF0800D6DB85 /* BYVocherTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E4125F9DF0800D6DB85 /* BYVocherTVCell.m */; };
@@ -1570,6 +1571,8 @@
 		3DBA560C2580B5E4009A2B71 /* BYSuperCopartnerVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYSuperCopartnerVC.xib; sourceTree = "<group>"; };
 		3DBA560F2580D9B3009A2B71 /* CALayer+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+Additions.h"; sourceTree = "<group>"; };
 		3DBA56102580D9B3009A2B71 /* CALayer+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Additions.m"; sourceTree = "<group>"; };
+		3DBB590C26787A2400F5A759 /* CNServiceRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNServiceRequest.h; sourceTree = "<group>"; };
+		3DBB590D26787A2400F5A759 /* CNServiceRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNServiceRequest.m; sourceTree = "<group>"; };
 		3DC14E3525F8D37500D6DB85 /* BYVocherCenterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYVocherCenterVC.h; sourceTree = "<group>"; };
 		3DC14E3625F8D37500D6DB85 /* BYVocherCenterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYVocherCenterVC.m; sourceTree = "<group>"; };
 		3DC14E3D25F8DC0D00D6DB85 /* BYVocherTableVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYVocherTableVC.h; sourceTree = "<group>"; };
@@ -2847,6 +2850,8 @@
 				04C0F10E24C59298007F1420 /* CNBaseNetworking.m */,
 				E9D9448E24C5454F00252222 /* HYNetworkConfigManager.h */,
 				E9D9448F24C5454F00252222 /* HYNetworkConfigManager.m */,
+				3DBB590C26787A2400F5A759 /* CNServiceRequest.h */,
+				3DBB590D26787A2400F5A759 /* CNServiceRequest.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -6488,6 +6493,7 @@
 				E98BEF0E24D274F700E6B0C8 /* UILabel+Gradient.m in Sources */,
 				3DA4F16B24B312BE0039123F /* UIViewController+Extension.m in Sources */,
 				E98BEEFE24D1815200E6B0C8 /* HYXiMaViewController.m in Sources */,
+				3DBB590E26787A2400F5A759 /* CNServiceRequest.m in Sources */,
 				E986A13124C7FC0E000F9CFF /* ArticalModel.m in Sources */,
 				3DBA55D8256FA793009A2B71 /* BalanceManager.m in Sources */,
 				04C0F0FC24C589DD007F1420 /* CNUserModel.m in Sources */,
@@ -6737,10 +6743,11 @@
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 97;
+				CURRENT_PROJECT_VERSION = 98;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = JW7F38ZMYT;
 				ENABLE_BITCODE = NO;
+				ENABLE_INCREMENTAL_DISTILL = YES;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6778,7 +6785,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.2;
+				MARKETING_VERSION = 3.7.4;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
 				PRODUCT_NAME = "币游_dev";
@@ -6797,7 +6804,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游Release.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 97;
+				CURRENT_PROJECT_VERSION = 98;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = JW7F38ZMYT;
 				ENABLE_BITCODE = NO;
@@ -6838,7 +6845,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.2;
+				MARKETING_VERSION = 3.7.4;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
 				PRODUCT_NAME = "币游";
