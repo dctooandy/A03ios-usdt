@@ -93,6 +93,13 @@
     [self setupSiginUI];
     [self setupLimitTaskUI];
     [self setupUpgradeTaskUI];
+    
+    if (self.model.beginFlag == 2) {
+        for (BYGradientButton *btn in self.receivedButtons) {
+            [btn setEnabled:false];
+            [btn setTitle:@"已结束" forState:UIControlStateNormal];
+        }
+    }
 }
 
 - (void)setupSiginUI {
@@ -177,14 +184,8 @@
     switch (limitTask.totalFlag) {
         case 0:
         case -1:{
-            if (limitTask.endTime == 0) {
-                [limiteButton setTitle:@"已过期" forState:UIControlStateNormal];
-                [limiteButton setEnabled:false];
-            }
-            else {
-                [limiteButton setTitle:[NSString stringWithFormat:@"领%liUSDT", limitTask.totalAmount] forState:UIControlStateNormal];
-                [limiteButton setEnabled:true];
-            }
+            [limiteButton setTitle:[NSString stringWithFormat:@"领%liUSDT", limitTask.totalAmount] forState:UIControlStateNormal];
+            [limiteButton setEnabled:true];
             break;
         }
         case 1:{
