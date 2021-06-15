@@ -58,6 +58,7 @@
     [self.maxiumCashGiftLabel setupGradientColorDirection:BYLblGrdtColorDirectionLeftRight
                                                      From:kHexColor(0xFF7777)
                                                   toColor:kHexColor(0xBD005A)];
+    [self setTitle:@"新手任务"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -323,7 +324,7 @@
 #pragma mark -
 #pragma mark IBAction
 - (IBAction)bindingPhoneClicked:(id)sender {
-    if ([self checkUserLogin] == true && [CNUserManager shareManager].userDetail.mobileNoBind) {
+    if ([self checkUserLogin] == true && [CNUserManager shareManager].userDetail.mobileNoBind == false) {
         CNBindPhoneVC *bindPhoneVC = [[CNBindPhoneVC alloc] init];
         bindPhoneVC.bindType = CNSMSCodeTypeBindPhone;
         [self.navigationController pushViewController:bindPhoneVC animated:true];
