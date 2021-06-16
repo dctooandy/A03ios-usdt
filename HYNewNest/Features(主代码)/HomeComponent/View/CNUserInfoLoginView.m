@@ -21,11 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *switchModeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *withdrawCNYBtn;
 
-@property (weak, nonatomic) IBOutlet UIImageView *usdtADImgv;
-
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewH;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewSpacing;
 
 #pragma - mark 未登录属性
 @property (weak, nonatomic) IBOutlet UIView *loginView;
@@ -70,7 +66,6 @@
 - (void)configLogoutUI {
     self.loginView.hidden = NO;
     self.headerIcon.image = nil;
-    self.usdtADImgv.hidden = YES;
 }
 
 - (void)configLogInUI {
@@ -108,18 +103,10 @@
 - (void)refreshBottomBtnsStatus {
     if ([CNUserManager shareManager].isUsdtMode) {
         self.switchModeBtn.selected = NO;
-        self.bottomViewH.constant = 88;
-        self.bottomViewSpacing.constant = -44;
         self.currencyLb.text = @"USDT";
-        if ([CNUserManager shareManager].userInfo.starLevel == 0) {
-            self.usdtADImgv.hidden = NO;
-        }
     } else {
         self.switchModeBtn.selected = YES;
-        self.bottomViewH.constant = 44;
-        self.bottomViewSpacing.constant = 0;
         self.currencyLb.text = @"CNY";
-        self.usdtADImgv.hidden = YES;
     }
 }
 

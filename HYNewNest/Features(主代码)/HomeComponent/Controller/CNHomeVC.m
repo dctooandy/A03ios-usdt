@@ -399,6 +399,7 @@
 #pragma mark - CNUserInfoLoginViewDelegate
 
 - (void)buttonArrayAction:(CNActionType)type {
+    //???: 充提指南 逻辑怎么处理?
     //usdt模式下 未选择“不再提醒”充提指南 的0星级别用户 => 进充提指南
     if ([CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userInfo.starLevel == 0 && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
         HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
@@ -406,10 +407,11 @@
         [self presentViewController:vc animated:YES completion:nil];
 
     } else {
+        //TODO: 买充 提卖 合并，修改NNPageRouter
         switch (type) {
-            case CNActionTypeBuy: //买
-                [NNPageRouter jump2BuyECoin];
-                break;
+//            case CNActionTypeBuy: //买
+//                [NNPageRouter jump2BuyECoin];
+//                break;
                 
             case CNActionTypeDeposit: //充
                 [NNPageRouter jump2Deposit];
@@ -419,11 +421,11 @@
                 [NNPageRouter jump2Withdraw];
                 break;
                 
-            case CNActionTypeSell: //卖
-                [HYWideOneBtnAlertView showWithTitle:@"卖币跳转" content:@"正在为您跳转..请稍后。\n在交易所卖币数字货币，买家会将金额支付到您的银行卡，方便快捷。" comfirmText:@"我知道了，帮我跳转" comfirmHandler:^{
-                    [NNPageRouter openExchangeElecCurrencyPage];
-                }];
-                break;
+//            case CNActionTypeSell: //卖
+//                [HYWideOneBtnAlertView showWithTitle:@"卖币跳转" content:@"正在为您跳转..请稍后。\n在交易所卖币数字货币，买家会将金额支付到您的银行卡，方便快捷。" comfirmText:@"我知道了，帮我跳转" comfirmHandler:^{
+//                    [NNPageRouter openExchangeElecCurrencyPage];
+//                }];
+//                break;
                 
             case CNActionTypeXima: //洗
                 [self.navigationController pushViewController:[HYXiMaViewController new] animated:YES];

@@ -10,10 +10,10 @@
 
 
 typedef enum : NSInteger {
-    CNActionTypeBuy = 0,        //买
-    CNActionTypeDeposit,    //充
+//    CNActionTypeBuy = 0,        //买
+    CNActionTypeDeposit = 0,    //充
     CNActionTypeWithdraw,   //提
-    CNActionTypeSell,       //卖
+//    CNActionTypeSell,       //卖
     CNActionTypeXima,       //洗
 } CNActionType;
 
