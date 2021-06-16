@@ -89,16 +89,16 @@
     if (!_isExpanded) { // 已展开
         _middleZoomBgView.hidden = YES;
         _btmZoomBgView.hidden = YES;
-        _expandBtnTopConst.constant = 56;
+        _expandBtnTopConst.constant = 53;
     } else { //未展开
         if ([CNUserManager shareManager].isUsdtMode) {
             _middleZoomBgView.hidden = NO;
             _btmZoomBgView.hidden = NO;
-            _expandBtnTopConst.constant = 56+67*2;
+            _expandBtnTopConst.constant = 53+67*2;
         } else {
             _middleZoomBgView.hidden = NO;
             _btmZoomBgView.hidden = YES;
-            _expandBtnTopConst.constant = 56+67;
+            _expandBtnTopConst.constant = 53+67;
         }
     }
     !_expandBlock?:_expandBlock(_isExpanded);

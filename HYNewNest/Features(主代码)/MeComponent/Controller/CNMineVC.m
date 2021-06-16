@@ -339,9 +339,9 @@
                 view.expandBlock = ^(BOOL isExpand) {
                     if (isExpand) {
                         if ([CNUserManager shareManager].isUsdtMode) {
-                            self.walletContainerHeightCons.constant = 67*3+1;
+                            self.walletContainerHeightCons.constant = 67*3+11;
                         } else {
-                            self.walletContainerHeightCons.constant = 67*2+1;
+                            self.walletContainerHeightCons.constant = 67*2+11;
                         }
                     } else {
                         self.walletContainerHeightCons.constant = 67+11;
