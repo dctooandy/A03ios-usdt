@@ -338,11 +338,18 @@
 
 - (IBAction)completeButtonClicked:(id)sender {
     LimiteTask *limitTask = self.model.limiteTask;
-    if ([self checkUserLogin] == false || limitTask.endTime == 0) return;
+    if ([self checkUserLogin] == false) return;
 
     switch (limitTask.totalFlag) {
         case -1:
-            [NNPageRouter jump2DepositWithSuggestAmount:15];
+            if ([CNUserManager shareManager].userDetail.mobileNoBind == false) {
+                CNBindPhoneVC *bindPhoneVC = [[CNBindPhoneVC alloc] init];
+                bindPhoneVC.bindType = CNSMSCodeTypeBindPhone;
+                [self.navigationController pushViewController:bindPhoneVC animated:true];
+            }
+            else{
+                [NNPageRouter jump2DepositWithSuggestAmount:15];
+            }
             break;
         case 0: {
             NSMutableString *receivedId = [[NSMutableString alloc] init];
@@ -352,7 +359,6 @@
             [receivedId deleteCharactersInRange:NSMakeRange(receivedId.length - 1, 1)];
             
             [self getRewardWithReceivedId:receivedId andCode:limitTask.result.firstObject.prizeCode];
-            
             break;
         }
         default:
@@ -483,9 +489,14 @@
         if (!errorMsg) {
             CNTaskReceivedReward *reward = [CNTaskReceivedReward cn_parse:responseObj];
             STRONGSELF_DEFINE
-            BYMissionCompleteVC *vc = [[BYMissionCompleteVC alloc] init];
-            vc.reward = reward;
-            [strongSelf presentViewController:vc animated:true completion:nil];
+            if ([receivedCode isEqualToString:NUMBER_BIDING_CODE] || [receivedCode isEqualToString:APP_LOGIN_CODE] || [receivedCode isEqualToString:FIRST_RECHARGE_CODE]) {
+                BYMissionCompleteVC *vc = [[BYMissionCompleteVC alloc] init];
+                vc.reward = reward;
+                [strongSelf presentViewController:vc animated:true completion:nil];
+            }
+            else {
+                [CNHUB showSuccess:[NSString stringWithFormat:@"%liUSDT", reward.sucAmount]];
+            }
             
         }
     }];
