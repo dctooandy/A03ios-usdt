@@ -104,29 +104,56 @@
 }
 
 - (void)setupSiginUI {
-    [self.signinLabel setText:[NSString stringWithFormat:@"签到第%li天", self.model.loginTask.count]];
     
+    NSInteger loginDays = self.model.loginTask.count;
+    [self.signinLabel setText:[NSString stringWithFormat:@"签到第%li天", loginDays]];
     BYGradientButton *signinButton = self.receivedButtons[1];
     [signinButton setEnabled:true];
     Result *loginResult = self.model.loginTask.result.firstObject;
-    if (loginResult == nil) {
-        [signinButton setTitle:@"我要签到" forState:UIControlStateNormal];
+    
+    NSString *signinText;
+    if (loginResult == nil
+        || (loginResult.prizeLevel == 1 && loginDays > 3 && loginDays < 7)
+        || (loginResult.prizeLevel == 2 && loginDays > 7 && loginDays < 15)) {
+        
+        if (self.model.loginTask.isSignIn == true) {
+            [signinButton setTitle:@"已签到" forState:UIControlStateNormal];
+            [signinButton setEnabled:false];
+        }
+        else {
+            [signinButton setTitle:@"我要签到" forState:UIControlStateNormal];
+            [signinButton setEnabled:true];
+        }
+        
+        for (int tag = 200; tag < 203; tag++) {
+            UIImageView *iv = [self.view viewWithTag:tag];
+            if (tag - 200 <= loginResult.prizeLevel - 1 ) {
+                [iv setHidden:false];
+            }
+            else {
+                [iv setHidden:true];
+            }
+        }
+        
         return;
     }
     
-    NSString *signinText;
+    
+    
     switch (loginResult.fetchResultFlag) {
         case -1: //未完成
             if (self.model.loginTask.isSignIn == true) {
-                signinText = @"我要签到";
-            }
-            else {
                 signinText = @"已签到";
                 [signinButton setEnabled:false];
+            }
+            else {
+                signinText = @"我要签到";
+                [signinButton setEnabled:true];
             }
             break;
         case 0: // 可領取
             signinText = [NSString stringWithFormat:@"领%liUSDT", loginResult.prizeAmount];
+            [signinButton setEnabled:true];
             break;
         case 1: //已領取
             signinText = [NSString stringWithFormat:@"已领取"];
@@ -136,17 +163,16 @@
             break;
     }
     [signinButton setTitle:signinText forState:UIControlStateNormal];
-    
+        
     for (int tag = 200; tag < 203; tag++) {
         UIImageView *iv = [self.view viewWithTag:tag];
-        if (tag - 200 <= loginResult.prizeLevel - 1 || loginResult.fetchResultFlag == 1) {
+        if (tag - 200 <= loginResult.prizeLevel - 1 ) {
             [iv setHidden:false];
         }
         else {
             [iv setHidden:true];
         }
     }
-    
 }
 
 - (void)setupLimitTaskUI {
@@ -370,7 +396,7 @@
     if ([self checkUserLogin] == false) return;
         
     Result *loginResult = self.model.loginTask.result.firstObject;
-    if (loginResult == nil || loginResult.fetchResultFlag == - 1) {
+    if (loginResult == nil || self.model.loginTask.isSignIn == false) {
         [NNPageRouter jump2DepositWithSuggestAmount:15];
     }
     else if (loginResult.fetchResultFlag == 0){
