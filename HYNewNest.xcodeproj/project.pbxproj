@@ -995,6 +995,12 @@
 		E9D9449E24C5735B00252222 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9449C24C5735B00252222 /* SplashViewController.m */; };
 		E9D944A124C5759400252222 /* UpdateVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D944A024C5759400252222 /* UpdateVersionModel.m */; };
 		E9E9590124D41BC400E866B6 /* CreditQueryResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E9590024D41BC400E866B6 /* CreditQueryResultModel.m */; };
+		F73857D2267B18E200768D14 /* BYGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F73857D0267B18E200768D14 /* BYGradientButton.m */; };
+		F73857D6267B18F300768D14 /* BYGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = F73857D4267B18F300768D14 /* BYGradientView.m */; };
+		F76BEC2F267AE85800577547 /* BYWithdrawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F76BEC2D267AE85800577547 /* BYWithdrawVC.m */; };
+		F76BEC30267AE85800577547 /* BYWithdrawVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F76BEC2E267AE85800577547 /* BYWithdrawVC.xib */; };
+		F76BEC34267AF16E00577547 /* BYWithdrawTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F76BEC32267AF16E00577547 /* BYWithdrawTableViewCell.m */; };
+		F76BEC35267AF16E00577547 /* BYWithdrawTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F76BEC33267AF16E00577547 /* BYWithdrawTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2390,6 +2396,16 @@
 		E9E9590024D41BC400E866B6 /* CreditQueryResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditQueryResultModel.m; sourceTree = "<group>"; };
 		F6CE8CAC1544E651FCBD92C6 /* Pods-HYNewNest-HYNewNestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest-HYNewNestUITests.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F7369947BD28FDAEFDBB6399 /* Pods-HYNewNest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.release.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.release.xcconfig"; sourceTree = "<group>"; };
+		F73857D0267B18E200768D14 /* BYGradientButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BYGradientButton.m; sourceTree = "<group>"; };
+		F73857D1267B18E200768D14 /* BYGradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BYGradientButton.h; sourceTree = "<group>"; };
+		F73857D4267B18F300768D14 /* BYGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BYGradientView.m; sourceTree = "<group>"; };
+		F73857D5267B18F300768D14 /* BYGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BYGradientView.h; sourceTree = "<group>"; };
+		F76BEC2C267AE85800577547 /* BYWithdrawVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYWithdrawVC.h; sourceTree = "<group>"; };
+		F76BEC2D267AE85800577547 /* BYWithdrawVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYWithdrawVC.m; sourceTree = "<group>"; };
+		F76BEC2E267AE85800577547 /* BYWithdrawVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYWithdrawVC.xib; sourceTree = "<group>"; };
+		F76BEC31267AF16E00577547 /* BYWithdrawTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYWithdrawTableViewCell.h; sourceTree = "<group>"; };
+		F76BEC32267AF16E00577547 /* BYWithdrawTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYWithdrawTableViewCell.m; sourceTree = "<group>"; };
+		F76BEC33267AF16E00577547 /* BYWithdrawTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYWithdrawTableViewCell.xib; sourceTree = "<group>"; };
 		FB136AFAD485E031A2148702 /* Pods-HYNewNestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNestTests.release.xcconfig"; path = "Target Support Files/Pods-HYNewNestTests/Pods-HYNewNestTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -3008,6 +3024,7 @@
 		3D13389924AF2D1900B29783 /* Utility(工具类) */ = {
 			isa = PBXGroup;
 			children = (
+				F73857D3267B18E700768D14 /* View */,
 				3DBA55C5256FA6D3009A2B71 /* Button */,
 				3DBA55BF256FA6D3009A2B71 /* TextFeild */,
 				3D31B94B253D691A005275BD /* HYSlideUpComfirmView */,
@@ -3624,6 +3641,8 @@
 		3DBA55C5256FA6D3009A2B71 /* Button */ = {
 			isa = PBXGroup;
 			children = (
+				F73857D1267B18E200768D14 /* BYGradientButton.h */,
+				F73857D0267B18E200768D14 /* BYGradientButton.m */,
 				3DBA55C6256FA6D3009A2B71 /* CNTextSaleBtn.h */,
 				3DBA55C7256FA6D3009A2B71 /* CNOneStatusBtn.m */,
 				3DBA55C8256FA6D3009A2B71 /* CNSelectBtn.h */,
@@ -4896,6 +4915,9 @@
 				E98BEF1424D2AF9B00E6B0C8 /* HYWithdrawViewController.h */,
 				E98BEF1524D2AF9B00E6B0C8 /* HYWithdrawViewController.m */,
 				E98BEF1624D2AF9B00E6B0C8 /* HYWithdrawViewController.xib */,
+				F76BEC2C267AE85800577547 /* BYWithdrawVC.h */,
+				F76BEC2D267AE85800577547 /* BYWithdrawVC.m */,
+				F76BEC2E267AE85800577547 /* BYWithdrawVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4914,6 +4936,9 @@
 				E98BEF2624D2C41E00E6B0C8 /* HYWithdrawAddCardFooter.xib */,
 				E98BEF2E24D2F35500E6B0C8 /* HYWithdrawComfirmView.h */,
 				E98BEF2F24D2F35500E6B0C8 /* HYWithdrawComfirmView.m */,
+				F76BEC31267AF16E00577547 /* BYWithdrawTableViewCell.h */,
+				F76BEC32267AF16E00577547 /* BYWithdrawTableViewCell.m */,
+				F76BEC33267AF16E00577547 /* BYWithdrawTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5308,6 +5333,15 @@
 				E9D9449C24C5735B00252222 /* SplashViewController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		F73857D3267B18E700768D14 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F73857D5267B18F300768D14 /* BYGradientView.h */,
+				F73857D4267B18F300768D14 /* BYGradientView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -5785,6 +5819,7 @@
 				D5A444BD24F3932400014DC6 /* 数字7_00079.png in Resources */,
 				D5A446F224F3941400014DC6 /* 合成 1_00037.png in Resources */,
 				D5A4460224F393E500014DC6 /* 足球_00018.png in Resources */,
+				F76BEC30267AE85800577547 /* BYWithdrawVC.xib in Resources */,
 				D5A4456424F393AC00014DC6 /* 棋牌_00083.png in Resources */,
 				044DC69024DD01AA005CB550 /* CNShareView.xib in Resources */,
 				D5A443ED24F378CD00014DC6 /* 彩票_00046.png in Resources */,
@@ -5802,6 +5837,7 @@
 				D5A4453A24F393AC00014DC6 /* 棋牌_00039.png in Resources */,
 				D5A443AB24F378CD00014DC6 /* 彩票_00034.png in Resources */,
 				048A0EE624C8332600411819 /* CNLotteryVC.xib in Resources */,
+				F76BEC35267AF16E00577547 /* BYWithdrawTableViewCell.xib in Resources */,
 				D5A446DB24F3941400014DC6 /* 合成 1_00011.png in Resources */,
 				D5A4471C24F3941400014DC6 /* 合成 1_00041.png in Resources */,
 				D5A4455224F393AC00014DC6 /* 棋牌_00059.png in Resources */,
@@ -6300,8 +6336,10 @@
 				D5FBFE8B24BC28B200BBCAD8 /* CNBaseModel.m in Sources */,
 				0487C9F424D2AADC0013715A /* CNMessageTCell.m in Sources */,
 				3D41DECA2521CDE7000CA1D6 /* VIPRecordSelectorView.m in Sources */,
+				F73857D2267B18E200768D14 /* BYGradientButton.m in Sources */,
 				3D5B259925C019C600FD23F0 /* DSBGameRoundResModel.m in Sources */,
 				3D8A708A258C5C1A0058D50F /* SuperCopartnerTbFooter.m in Sources */,
+				F76BEC34267AF16E00577547 /* BYWithdrawTableViewCell.m in Sources */,
 				E986A1A624CB3C18000F9CFF /* HYTextAlertView.m in Sources */,
 				E9D9449024C5454F00252222 /* HYNetworkConfigManager.m in Sources */,
 				040A08D424E114A900FBD534 /* CALayer+OCBarrage.m in Sources */,
@@ -6380,6 +6418,7 @@
 				0487C96C24CE9A630013715A /* BRStringPickerView.m in Sources */,
 				E993095424D7F3CD00E0843B /* HYRechProcButton.m in Sources */,
 				04C0F12324C69738007F1420 /* CNHomeVC.m in Sources */,
+				F73857D6267B18F300768D14 /* BYGradientView.m in Sources */,
 				E986A19C24CADCA3000F9CFF /* UserSubscribItem.m in Sources */,
 				04C0F11324C594D5007F1420 /* CNLoginRequest.m in Sources */,
 				3D31B94E253D6934005275BD /* HYSlideUpComfirmBaseView.m in Sources */,
@@ -6527,6 +6566,7 @@
 				3D972439262EDF9D005E930C /* SCMyRebateModel.m in Sources */,
 				E986A13D24C93460000F9CFF /* CNBonusRequest.m in Sources */,
 				3DF031FE258DA36A00AF7A36 /* CNSuperCopartnerRequest.m in Sources */,
+				F76BEC2F267AE85800577547 /* BYWithdrawVC.m in Sources */,
 				E9063B8C24D6BE870000273A /* HYWideOneBtnAlertView.m in Sources */,
 				3DB6A0432594A1B5004A391B /* DSBProfitFooter.m in Sources */,
 				3D31A2622657A425008613E9 /* CNYuEBaoBalanceModel.m in Sources */,
@@ -6753,7 +6793,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 98;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
-				DEVELOPMENT_TEAM = JW7F38ZMYT;
+				DEVELOPMENT_TEAM = 29V6J8T68S;
 				ENABLE_BITCODE = NO;
 				ENABLE_INCREMENTAL_DISTILL = YES;
 				EXCLUDED_ARCHS = "";
@@ -6795,7 +6835,7 @@
 				);
 				MARKETING_VERSION = 3.7.4;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-geh";
 				PRODUCT_NAME = "币游_dev";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

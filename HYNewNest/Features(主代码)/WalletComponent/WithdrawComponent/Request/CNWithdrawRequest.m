@@ -87,4 +87,12 @@
     }];
 }
 
++ (void)fetchBannerHandler:(HandlerBlock)handler {
+    NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
+    paramDic[@"imageGroups"] = @"TOP_BANNER";
+
+    [self POST:kGatewayExtraPath(config_new_queryImageList) parameters:paramDic completionHandler:handler];
+
+}
+
 @end
