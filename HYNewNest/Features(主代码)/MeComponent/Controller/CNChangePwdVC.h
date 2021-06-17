@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CNChangePwdVC : CNBaseVC
+@interface CNChangePwdVC : UIViewController
 
 @end
 

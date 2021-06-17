@@ -62,7 +62,11 @@
 // 修改密码
 - (IBAction)changePWD:(id)sender {
     CNChangePwdVC *vc = [CNChangePwdVC new];
-    [self.navigationController pushViewController:vc animated:YES];
+    vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    self.definesPresentationContext = YES;
+    [self.navigationController presentViewController:vc animated:YES completion:^{
+        vc.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    }];
 }
 
 // 修改资金密码
