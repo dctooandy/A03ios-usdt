@@ -180,15 +180,15 @@
     
     NSMutableString *prizeID = [[NSMutableString alloc] init];
     for (Result *result in limitTask.result) {
-        if ([result.prizeCode  isEqual:NUMBER_BIDING_CODE]) {
+        if ([result.prizeCode  containsString:NUMBER_BIDING_CODE]) {
             UIImageView *iv = [self.view viewWithTag:100];
             [iv setHidden:false];
         }
-        else if ([result.prizeCode isEqual:APP_LOGIN_CODE]) {
+        else if ([result.prizeCode containsString:APP_LOGIN_CODE]) {
             UIImageView *iv = [self.view viewWithTag:101];
             [iv setHidden:false];
         }
-        else if ([result.prizeCode isEqual:FIRST_RECHARGE_CODE]) {
+        else if ([result.prizeCode containsString:FIRST_RECHARGE_CODE]) {
             UIImageView *iv = [self.view viewWithTag:102];
             [iv setHidden:false];
         }
@@ -228,7 +228,7 @@
 - (void)setupUpgradeTaskUI {
     UpgradeTask *upgradeTask = self.model.upgradeTask;
     for (Result *result in upgradeTask.result) {
-        if ([result.prizeCode isEqual:CAHS_GIFT_CODE]) {
+        if ([result.prizeCode containsString:CAHS_GIFT_CODE]) {
             [self.cashgiftLabel setText:[NSString stringWithFormat:@"%li", result.prizeAmount]];
             BYGradientButton *cashgiftButton = self.receivedButtons[2];
             switch (result.fetchResultFlag) {
@@ -245,7 +245,7 @@
                     break;
             }
         }
-        else if ([result.prizeCode isEqual:BASIC_RECHARGE_CODE]) {
+        else if ([result.prizeCode containsString:BASIC_RECHARGE_CODE]) {
             BYGradientButton *rechargeButton = self.receivedButtons[3];
             switch (result.fetchResultFlag) {
                 case 0:
@@ -262,7 +262,7 @@
                     break;
             }
         }
-        else if ([result.prizeCode isEqual:ADVANCED_RECHARGE_CODE]) {
+        else if ([result.prizeCode containsString:ADVANCED_RECHARGE_CODE]) {
             BYGradientButton *rechargeButton = self.receivedButtons[4];
             switch (result.fetchResultFlag) {
                 case 0:
@@ -279,7 +279,7 @@
                     break;
             }
         }
-        else if ([result.prizeCode isEqual:FIRST_XIMA_CODE]) {
+        else if ([result.prizeCode containsString:FIRST_XIMA_CODE]) {
             BYGradientButton *ximaButton = self.receivedButtons[5];
             switch (result.fetchResultFlag) {
                 case 0:
@@ -296,7 +296,7 @@
                     break;
             }
         }
-        else if ([result.prizeCode isEqual:SHARE_VIP_CODE]) {
+        else if ([result.prizeCode containsString:SHARE_VIP_CODE]) {
             BYGradientButton *vipshareButton = self.receivedButtons[6];
             switch (result.fetchResultFlag) {
                 case 0:
@@ -339,7 +339,7 @@
 
 - (Result *)getUpgradeTaskResultWithCode:(NSString *)code {
     for (Result *result in self.model.upgradeTask.result) {
-        if ([result.prizeCode isEqual:code]){
+        if ([result.prizeCode containsString:code]){
             return result;
         }
     }
@@ -515,7 +515,7 @@
         if (!errorMsg) {
             CNTaskReceivedReward *reward = [CNTaskReceivedReward cn_parse:responseObj];
             STRONGSELF_DEFINE
-            if ([receivedCode isEqualToString:NUMBER_BIDING_CODE] || [receivedCode isEqualToString:APP_LOGIN_CODE] || [receivedCode isEqualToString:FIRST_RECHARGE_CODE]) {
+            if ([receivedCode containsString:NUMBER_BIDING_CODE] || [receivedCode containsString:APP_LOGIN_CODE] || [receivedCode containsString:FIRST_RECHARGE_CODE]) {
                 BYMissionCompleteVC *vc = [[BYMissionCompleteVC alloc] init];
                 vc.reward = reward;
                 [strongSelf presentViewController:vc animated:true completion:nil];
