@@ -38,8 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /// 跳转到客服
-/// @param type 客服类型
-//+(void)jump2Live800Type:(CNLive800Type)type;
 + (void)presentOCSS_VC;
 
 /// 跳转到微脉圈

@@ -152,12 +152,7 @@
     [CSVisitChatmanager startServiceWithSuperVC:[NNControllerHelper currentTabBarController]
                                        chatInfo:info
                                          finish:^(CSServiceCode errCode) {
-
-        if (errCode != CSServiceCode_Request_Suc) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [NNPageRouter jump2Live800];
-            });
-        }
+        [CNTOPHUB showError:@"系统错误，请稍后再试"];
     }];
 }
 
@@ -175,46 +170,6 @@
         }
     }];
 }
-
-+ (void)jump2Live800 {
-    __block NSString *keyName;
-//    switch (type) {
-//        case CNLive800TypeNormal:
-            keyName = @"usdt_otherLive800";
-//            break;
-//        case CNLive800TypeDeposit:
-//            keyName = @"usdt_depositLive800";
-//            break;
-//        case CNLive800TypeForgot:
-//            keyName = @"忘记密码";
-//            break;
-//        default:
-//            break;
-//    }
-    [CNServiceRequest requestDynamicLive800AddressCompletionHandler:^(id responseObj, NSString *errorMsg) {
-
-        NSArray *data = responseObj;
-        NSMutableString *newUrl;
-        for (NSDictionary *body in data) {
-            if ([body[@"domian"] isEqualToString:keyName]) {
-                newUrl = [[body objectForKey:@"url"] mutableCopy];
-                break;
-            }
-        }
-        if ([newUrl hasSuffix:@"&enterurl="]) {
-            [newUrl appendString:[IVHttpManager shareManager].domain];
-        } else {
-            NSString *enterurl = [NSString stringWithFormat:@"&enterurl=%@", [IVHttpManager shareManager].domain];
-            [newUrl appendString:enterurl];
-        }
-        [newUrl appendFormat:@"&loginname=%@&name=%@&timestamp=%ld", [CNUserManager shareManager].userInfo.loginName,  [CNUserManager shareManager].userInfo.loginName, (NSInteger)[[NSDate date] timeIntervalSince1970]*1000];
-        
-        HYHTMLViewController *vc = [[HYHTMLViewController alloc] initWithTitle:@"客服" strUrl:newUrl];
-        vc.hidesBottomBarWhenPushed = YES;
-        [kCurNavVC pushViewController:vc animated:YES];
-    }];
-}
-
 
 + (void)jump2HTMLWithStrURL:(NSString *)strURL title:(NSString *)title needPubSite:(BOOL)needPubSite{
     void(^jumpHTMLBlock)(NSString*, NSString*) = ^(NSString * url, NSString * title) {
