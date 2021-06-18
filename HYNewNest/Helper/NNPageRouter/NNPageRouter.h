@@ -13,16 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, CNLive800Type) {
-    CNLive800TypeNormal = 0, //普通问题
-    CNLive800TypeDeposit,    //存取款问题
-    CNLive800TypeForgot      //忘记密码问题
-};
-
 @interface NNPageRouter : NSObject
-
-
-#pragma mark - MAIN
 
 /// 改变根控制器为首页
 + (void)changeRootVc2MainPage;
@@ -51,7 +42,7 @@ typedef NS_ENUM(NSUInteger, CNLive800Type) {
 /// 跳转到客服
 /// @param type 客服类型
 //+(void)jump2Live800Type:(CNLive800Type)type;
-+ (void)presentOCSS_VC:(CNLive800Type)type;
++ (void)presentOCSS_VC;
 
 /// 跳转到微脉圈
 + (void)presentWMQCustomerService;

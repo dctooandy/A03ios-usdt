@@ -25,6 +25,7 @@
 
 #import "CNRechargeRequest.h"
 #import "CNWithdrawRequest.h"
+#import "CNServiceRequest.h"
 #import "NSURL+HYLink.h"
 #import <CSCustomSerVice/CSCustomSerVice.h>
 #import "KeyChain.h"
@@ -147,7 +148,7 @@
     }];
 }
 
-+ (void)presentOCSS_VC:(CNLive800Type)type {
++ (void)presentOCSS_VC {
     // 打开新客服入口
     MyLog(@"新客服版本：%@",[CSVisitChatmanager getVersion]);
     CSChatInfo *info = [[CSChatInfo alloc]init];
@@ -171,7 +172,7 @@
 
         if (errCode != CSServiceCode_Request_Suc) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [NNPageRouter jump2Live800Type:type];
+                [NNPageRouter jump2Live800];
             });
         }
     }];
@@ -192,22 +193,22 @@
     }];
 }
 
-+ (void)jump2Live800Type:(CNLive800Type)type {
++ (void)jump2Live800 {
     __block NSString *keyName;
-    switch (type) {
-        case CNLive800TypeNormal:
+//    switch (type) {
+//        case CNLive800TypeNormal:
             keyName = @"usdt_otherLive800";
-            break;
-        case CNLive800TypeDeposit:
-            keyName = @"usdt_depositLive800";
-            break;
-        case CNLive800TypeForgot:
-            keyName = @"忘记密码";
-            break;
-        default:
-            break;
-    }
-    [self requestDynamicLive800AddressCompletionHandler:^(id responseObj, NSString *errorMsg) {
+//            break;
+//        case CNLive800TypeDeposit:
+//            keyName = @"usdt_depositLive800";
+//            break;
+//        case CNLive800TypeForgot:
+//            keyName = @"忘记密码";
+//            break;
+//        default:
+//            break;
+//    }
+    [CNServiceRequest requestDynamicLive800AddressCompletionHandler:^(id responseObj, NSString *errorMsg) {
 
         NSArray *data = responseObj;
         NSMutableString *newUrl;
@@ -278,18 +279,6 @@
 }
 
 #pragma mark - Request
-
-+ (void)requestDynamicLive800AddressCompletionHandler:(HandlerBlock)handler{
-    
-    NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"bizCode"] = @"800_DEPLOY";
-    
-    [CNBaseNetworking POST:(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
-        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-            handler(responseObj[@"data"], errorMsg);
-        }
-    }];
-}
 
 + (void)requestH5TicketHandler:(HandlerBlock)handler {
     

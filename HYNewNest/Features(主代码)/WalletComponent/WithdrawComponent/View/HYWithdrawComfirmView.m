@@ -335,7 +335,7 @@
 }
 
 - (void)jump2Kefu {
-    [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
+    [NNPageRouter presentOCSS_VC];
 }
 
 - (void)hideView {

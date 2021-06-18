@@ -74,7 +74,7 @@
 }
 
 - (void)btnSureClick{
-    [NNPageRouter presentOCSS_VC:CNLive800TypeNormal];
+    [NNPageRouter presentOCSS_VC];
 }
 
 

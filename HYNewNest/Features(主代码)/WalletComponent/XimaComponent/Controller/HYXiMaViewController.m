@@ -48,7 +48,7 @@ static NSString * const KXiMaCell = @"HYXiMaCell";
 }
 
 - (void)rightItemAction {
-    [NNPageRouter presentOCSS_VC:CNLive800TypeDeposit];
+    [NNPageRouter presentOCSS_VC];
 }
 
 - (void)setupTopView {
