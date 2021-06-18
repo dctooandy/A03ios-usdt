@@ -33,6 +33,10 @@
 @property (strong,nonatomic) CNTaskModel *model;
 @property (nonatomic, assign) NSInteger countdownSec;
 @property (nonatomic, strong) NSTimer *timer;
+
+@property (nonatomic, strong) UIImage *grayColorImage;
+@property (nonatomic, strong) UIImage *normalColorImage;
+
 @end
 
 @implementation BYNewbieMissionVC
@@ -58,7 +62,18 @@
     [self.maxiumCashGiftLabel setupGradientColorDirection:BYLblGrdtColorDirectionLeftRight
                                                      From:kHexColor(0xFF7777)
                                                   toColor:kHexColor(0xBD005A)];
+    
+    
+    self.normalColorImage = [UIColor gradientImageFromColors:@[kHexColor(0xFF7777), kHexColor(0xBD005A)]
+                                                gradientType:GradientTypeLeftToRight
+                                                     imgSize:CGSizeMake(215, 48)];
+    
+    self.grayColorImage = [UIColor gradientImageFromColors:@[kHexColor(0xBDBDBF), kHexColor(0x74759C)]
+                                              gradientType:GradientTypeLeftToRight
+                                                   imgSize:CGSizeMake(215, 48)];
+    
     [self setTitle:@"新手任务"];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -91,6 +106,19 @@
 #pragma mark -
 #pragma mark UI Method
 - (void)setupUI {
+    
+    for (int i = 0; i < self.receivedButtons.count; i++) {
+        BYGradientButton *btn = self.receivedButtons[i];
+        [btn setBackgroundImage:self.grayColorImage forState:UIControlStateDisabled];
+        
+        if (i == 1) {
+            [btn setBackgroundImage:self.normalColorImage forState:UIControlStateNormal];
+        }
+        else {
+            [btn setBackgroundImage:self.grayColorImage forState:UIControlStateNormal];
+        }
+    }
+    
     [self setupSiginUI];
     [self setupLimitTaskUI];
     [self setupUpgradeTaskUI];
@@ -101,6 +129,8 @@
             [btn setTitle:@"已结束" forState:UIControlStateNormal];
         }
     }
+
+    
 }
 
 - (void)setupSiginUI {
@@ -131,7 +161,7 @@
         [signinButton setTitle:[NSString stringWithFormat:@"已领取"] forState:UIControlStateNormal];
         [signinButton setEnabled:false];
     }
-        
+    
     for (int tag = 200; tag < 203; tag++) {
         UIImageView *iv = [self.view viewWithTag:tag];
         if (tag - 200 <= loginResult.prizeLevel - 1 ) {
@@ -146,7 +176,11 @@
 - (void)setupLimitTaskUI {
     LimiteTask *limitTask = self.model.limiteTask;
     
-    NSMutableString *prizeID = [[NSMutableString alloc] init];
+    if (limitTask.endTime > 0) {
+        self.countdownSec = limitTask.endTime;
+        [self.timer setFireDate:[NSDate distantPast]];
+    }
+        
     for (Result *result in limitTask.result) {
         if ([result.prizeCode  containsString:NUMBER_BIDING_CODE]) {
             UIImageView *iv = [self.view viewWithTag:100];
@@ -160,26 +194,13 @@
             UIImageView *iv = [self.view viewWithTag:102];
             [iv setHidden:false];
         }
-        
-        if (limitTask.totalFlag == 0) {
-            [prizeID appendString:[NSString stringWithFormat:@"%@;", result.ID]];
-        }
-    }
-    
-    if (prizeID.length > 0) {
-        [prizeID deleteCharactersInRange:NSMakeRange((prizeID.length -1), 1)];
-    }
-    
-    if (limitTask.endTime > 0) {
-        self.countdownSec = limitTask.endTime;
-        [self.timer setFireDate:[NSDate distantPast]];
+
     }
     
     BYGradientButton *limiteButton = self.receivedButtons[0];
     switch (limitTask.totalFlag) {
-        case 0:
-        case -1:{
-            [limiteButton setTitle:[NSString stringWithFormat:@"领%liUSDT", limitTask.totalAmount] forState:UIControlStateNormal];
+        case 0:{
+            [limiteButton setBackgroundImage:self.normalColorImage forState:UIControlStateNormal];
             [limiteButton setEnabled:true];
             break;
         }
@@ -201,6 +222,7 @@
             BYGradientButton *cashgiftButton = self.receivedButtons[2];
             switch (result.fetchResultFlag) {
                 case 0:
+                    [cashgiftButton setBackgroundImage:self.normalColorImage forState:UIControlStateNormal];
                     [cashgiftButton setEnabled:true];
                     break;
                 case 1:{
@@ -217,7 +239,7 @@
             BYGradientButton *rechargeButton = self.receivedButtons[3];
             switch (result.fetchResultFlag) {
                 case 0:
-                    [rechargeButton setTitle:[NSString stringWithFormat:@"领%liUSDT", result.prizeAmount] forState:UIControlStateNormal];
+                    [rechargeButton setBackgroundImage:self.normalColorImage forState:UIControlStateNormal];
                     [rechargeButton setEnabled:true];
                     break;
                 case 1:{
@@ -226,7 +248,6 @@
                     break;
                 }
                 default:
-                    [rechargeButton setEnabled:true];
                     break;
             }
         }
@@ -234,7 +255,7 @@
             BYGradientButton *rechargeButton = self.receivedButtons[4];
             switch (result.fetchResultFlag) {
                 case 0:
-                    [rechargeButton setTitle:[NSString stringWithFormat:@"领%liUSDT", result.prizeAmount] forState:UIControlStateNormal];
+                    [rechargeButton setBackgroundImage:self.normalColorImage forState:UIControlStateNormal];
                     [rechargeButton setEnabled:true];
                     break;
                 case 1:{
@@ -243,7 +264,6 @@
                     break;
                 }
                 default:
-                    [rechargeButton setEnabled:true];
                     break;
             }
         }
@@ -251,7 +271,7 @@
             BYGradientButton *ximaButton = self.receivedButtons[5];
             switch (result.fetchResultFlag) {
                 case 0:
-                    [ximaButton setTitle:[NSString stringWithFormat:@"领%liUSDT", result.prizeAmount] forState:UIControlStateNormal];
+                    [ximaButton setBackgroundImage:self.normalColorImage forState:UIControlStateNormal];
                     [ximaButton setEnabled:true];
                     break;
                 case 1:{
@@ -260,7 +280,6 @@
                     break;
                 }
                 default:
-                    [ximaButton setEnabled:true];
                     break;
             }
         }
@@ -268,15 +287,16 @@
             BYGradientButton *vipshareButton = self.receivedButtons[6];
             switch (result.fetchResultFlag) {
                 case 0:
-                    [vipshareButton setTitle:[NSString stringWithFormat:@"领%liUSDT", result.prizeAmount] forState:UIControlStateNormal];
+                    [vipshareButton setBackgroundImage:self.normalColorImage forState:UIControlStateNormal];
+                    [vipshareButton setEnabled:true];
                     break;
                 case 1:{
                     [vipshareButton setTitle:@"已领取" forState:UIControlStateNormal];
                     [vipshareButton setEnabled:false];
+                    
                     break;
                 }
                 default:
-                    [vipshareButton setEnabled:true];
                     break;
             }
             
@@ -316,7 +336,6 @@
 }
 
 - (void)changeButtonReceviedStatus:(NSString *)code {
-    
     UIButton *button;
     if ([code isEqualToString:SIGNIN_CODE]) {
         button = self.receivedButtons[1];
@@ -327,6 +346,7 @@
         }
         else {
             [button setTitle:@"我要签到" forState:UIControlStateNormal];
+            [button setBackgroundImage:self.normalColorImage forState:UIControlStateNormal];
             [button setEnabled:true];
         }
     }
@@ -352,10 +372,11 @@
 #pragma mark -
 #pragma mark IBAction
 - (IBAction)bindingPhoneClicked:(id)sender {
-    if ([self checkUserLogin] == true && [CNUserManager shareManager].userDetail.mobileNoBind == false) {
+    if ([self checkUserLogin] == true) {
         CNBindPhoneVC *bindPhoneVC = [[CNBindPhoneVC alloc] init];
         bindPhoneVC.bindType = CNSMSCodeTypeBindPhone;
         [self.navigationController pushViewController:bindPhoneVC animated:true];
+        
     }
     
 }
@@ -367,17 +388,10 @@
 - (IBAction)completeButtonClicked:(id)sender {
     LimiteTask *limitTask = self.model.limiteTask;
     if ([self checkUserLogin] == false) return;
-
+    
     switch (limitTask.totalFlag) {
         case -1:
-            if ([CNUserManager shareManager].userDetail.mobileNoBind == false) {
-                CNBindPhoneVC *bindPhoneVC = [[CNBindPhoneVC alloc] init];
-                bindPhoneVC.bindType = CNSMSCodeTypeBindPhone;
-                [self.navigationController pushViewController:bindPhoneVC animated:true];
-            }
-            else{
-                [NNPageRouter jump2DepositWithSuggestAmount:15];
-            }
+            [CNTOPHUB showAlert:@"任務未完成"];
             break;
         case 0: {
             NSMutableString *receivedId = [[NSMutableString alloc] init];
@@ -396,12 +410,12 @@
 
 - (IBAction)signinButtonClicked:(id)sender {
     if ([self checkUserLogin] == false) return;
-        
+    
     NSInteger loginDays = self.model.loginTask.count;
     Result *loginResult = self.model.loginTask.result.firstObject;
     if (loginResult == nil
         || (((loginResult.prizeLevel == 1 && loginDays > 3 && loginDays < 7)
-        || (loginResult.prizeLevel == 2 && loginDays > 7 && loginDays < 15)) && loginResult.fetchResultFlag != 0)) {
+             || (loginResult.prizeLevel == 2 && loginDays > 7 && loginDays < 15)) && loginResult.fetchResultFlag != 0)) {
         [NNPageRouter jump2DepositWithSuggestAmount:15];
     }
     else if (loginResult.fetchResultFlag == 0){
@@ -454,7 +468,7 @@
     if ([self checkUserLogin] == false) return;
     
     Result *result = [self getUpgradeTaskResultWithCode:FIRST_XIMA_CODE];
-
+    
     if (result == nil || result.fetchResultFlag == -1) {
         BYNewbieAlertVC *alertView = [[BYNewbieAlertVC alloc] init];
         alertView.type = BYNewbieAlertTypeXima;
@@ -469,12 +483,18 @@
     if ([self checkUserLogin] == false) return;
     Result *result = [self getUpgradeTaskResultWithCode:SHARE_VIP_CODE];
     
-    if (result == nil || result.fetchResultFlag == -1) {
-        [NNPageRouter jump2VIP];
-    }
-    else {
+    //    if (result == nil || result.fetchResultFlag == -1) {
+    //        [NNPageRouter jump2VIP];
+    //    }
+    //    else {
+    if (result.fetchResultFlag == 0) {
         [self getRewardWithReceivedId:result.ID andCode:result.prizeCode];
     }
+    //    }
+}
+
+- (IBAction)firstRechargeClicked:(id)sender {
+    [NNPageRouter jump2DepositWithSuggestAmount:15];
 }
 
 #pragma mark -
@@ -507,13 +527,13 @@
         [weakSelf.totalRechargeLabel setText:[NSString stringWithFormat:@"%li", (long)detail.totalRechargeAmount]];
         [weakSelf setupUI];
         [LoadingView hide];
-     });
+    });
     
 }
 
 - (void)getRewardWithReceivedId:(NSString *)receivedID andCode:(NSString *)receivedCode{
     [LoadingView show];
-
+    
     WEAKSELF_DEFINE
     [CNTaskRequest applyTaskRewardIds:receivedID code:receivedCode handler:^(id responseObj, NSString *errorMsg) {
         [LoadingView hide];
