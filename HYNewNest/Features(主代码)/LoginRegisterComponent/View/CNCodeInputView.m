@@ -74,6 +74,8 @@ int TotalSecond = 60;
         case CNCodeTypePhoneLogin:
         case CNCodeTypeBankCard:
         case CNCodeTypeFundPwdSMS:
+        case CNCodeTypeUnbind:
+        case CNCodeTypeChangePhone:
             self.tipLb.text = @"验证码*";
             break;
         case CNCodeTypeNewPwd:
@@ -105,6 +107,8 @@ int TotalSecond = 60;
         case CNCodeTypePhoneLogin:
         case CNCodeTypeBankCard:
         case CNCodeTypeFundPwdSMS:
+        case CNCodeTypeUnbind:
+        case CNCodeTypeChangePhone:
             self.correct = (text.length >= 6);
             wrongTip = @"请输入6位数字验证码";
             break;
@@ -161,6 +165,8 @@ int TotalSecond = 60;
         case CNCodeTypePhoneLogin:
         case CNCodeTypeBankCard:
         case CNCodeTypeFundPwdSMS:
+        case CNCodeTypeUnbind:
+        case CNCodeTypeChangePhone:
             if (textField.text.length >= 6) {
                 self.correct = [text validationType:ValidationTypePhoneCode];
                 if (!self.correct) {
@@ -246,32 +252,54 @@ int TotalSecond = 60;
 //            [kKeywindow jk_makeToast:[NSString stringWithFormat:@"向手机%@\n发送了一条验证码", [CNUserManager shareManager].userDetail.mobileNo] duration:2 position:JKToastPositionCenter];
             SmsCodeModel *smsModel = [SmsCodeModel cn_parse:responseObj];
             self.smsModel = smsModel;
-            if (self->_delegate && [self->_delegate respondsToSelector:@selector(didReceiveSmsCodeModel:)]) {
-                [self->_delegate didReceiveSmsCodeModel:smsModel];
-            }
+            [self callBlock];
         }];
         
     } else if (self.codeType == CNCodeTypeFundPwdSMS) {
         [CNLoginRequest getSMSCodeByLoginNameType:CNSMSCodeTypeChangeFundPwd completionHandler:^(id responseObj, NSString *errorMsg) {
             SmsCodeModel *smsModel = [SmsCodeModel cn_parse:responseObj];
             self.smsModel = smsModel;
-            if (self->_delegate && [self->_delegate respondsToSelector:@selector(didReceiveSmsCodeModel:)]) {
-                [self->_delegate didReceiveSmsCodeModel:smsModel];
-            }
+            [self callBlock];
         }];
-        
-    } else {
-        // 发送验证码请求
-        [CNLoginRequest getSMSCodeWithType:self.codeType == CNCodeTypeBindPhone?CNSMSCodeTypeBindPhone:CNSMSCodeTypeLogin
-                                     phone:self.account
+    } else if (self.codeType == CNCodeTypeUnbind) { //解绑
+        [CNLoginRequest getSMSCodeByLoginNameType:CNSMSCodeTypeChangePhone
+                                completionHandler:^(id responseObj, NSString *errorMsg) {
+            SmsCodeModel *smsModel = [SmsCodeModel cn_parse: responseObj];
+            self.smsModel = smsModel;
+            [self callBlock];
+        }];
+    } else if (self.codeType == CNCodeTypeChangePhone) { //解绑2
+        [CNLoginRequest getSMSCodeWithType:CNSMSCodeTypeChangePhone
+                                     phone:self.mobileNum
+                                validateId:self.validateId?:@""
                          completionHandler:^(id responseObj, NSString *errorMsg) {
-            [kKeywindow jk_makeToast:[NSString stringWithFormat:@"向手机%@\n发送了一条验证码", self.account] duration:2 position:JKToastPositionCenter];
+            SmsCodeModel *smsModel = [SmsCodeModel cn_parse: responseObj];
+            self.smsModel = smsModel;
+            [self callBlock];
+        }];
+    } else if (self.codeType == CNCodeTypeBindPhone) { //绑定
+        [CNLoginRequest getSMSCodeWithType:CNSMSCodeTypeBindPhone
+                                     phone:self.mobileNum
+                         completionHandler:^(id responseObj, NSString *errorMsg) {
             SmsCodeModel *smsModel = [SmsCodeModel cn_parse:responseObj];
             self.smsModel = smsModel;
-            if (self->_delegate && [self->_delegate respondsToSelector:@selector(didReceiveSmsCodeModel:)]) {
-                [self->_delegate didReceiveSmsCodeModel:smsModel];
-            }
+            [self callBlock];
         }];
+    } else {
+        // 发送验证码请求
+        [CNLoginRequest getSMSCodeWithType:CNSMSCodeTypeLogin
+                                     phone:self.account
+                         completionHandler:^(id responseObj, NSString *errorMsg) {
+            SmsCodeModel *smsModel = [SmsCodeModel cn_parse:responseObj];
+            self.smsModel = smsModel;
+            [self callBlock];
+        }];
+    }
+}
+
+- (void)callBlock {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didReceiveSmsCodeModel:)]) {
+        [self.delegate didReceiveSmsCodeModel:self.smsModel];
     }
 }
 
@@ -287,6 +315,8 @@ int TotalSecond = 60;
         case CNCodeTypePhoneLogin:
         case CNCodeTypeBankCard:
         case CNCodeTypeFundPwdSMS:
+        case CNCodeTypeUnbind:
+        case CNCodeTypeChangePhone:
             self.inputTrailing.constant = 100;
             self.inputTF.placeholder = @"请输入验证码";
             self.eyeBtn.hidden = YES;

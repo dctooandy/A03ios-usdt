@@ -1,5 +1,5 @@
 //
-//  CNBindPhoneVC.h
+//  CNForgotCodeVC.h
 //  HYNewNest
 //
 //  Created by Cean on 2020/7/18.

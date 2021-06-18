@@ -23,6 +23,15 @@
 
 @implementation CNChangePwdVC
 
++ (void)modalVc {
+    CNChangePwdVC *vc = [CNChangePwdVC new];
+    vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [NNControllerHelper getCurrentViewController].definesPresentationContext = YES;
+    [kCurNavVC presentViewController:vc animated:YES completion:^{
+        vc.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
@@ -72,8 +81,8 @@
             [CNTOPHUB showSuccess:@"密码修改成功 请重新登录"];
             [CNLoginRequest logoutHandler:^(id responseObj, NSString *errorMsg) {
                 [[CNUserManager shareManager] cleanUserInfo];
-                self.tabBarController.selectedIndex = 0;
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                [kCurNavVC popToRootViewControllerAnimated:YES];
+                [NNControllerHelper currentTabBarController].selectedIndex = 0;
                 [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[CNLoginRegisterVC loginVC] animated:YES];
             }];
             

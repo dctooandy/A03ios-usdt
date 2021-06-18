@@ -366,6 +366,8 @@
 		3DF43D482594614D0087F26A /* DSBProfitBoardDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D472594614D0087F26A /* DSBProfitBoardDataSource.m */; };
 		3DF43D4C25946AED0087F26A /* DSBProfitBoardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D4A25946AED0087F26A /* DSBProfitBoardCell.m */; };
 		3DF43D4D25946AED0087F26A /* DSBProfitBoardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF43D4B25946AED0087F26A /* DSBProfitBoardCell.xib */; };
+		3DF6E7BC267B1DA800911FC8 /* BYModifyPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E7BA267B1DA800911FC8 /* BYModifyPhoneVC.m */; };
+		3DF6E7BD267B1DA800911FC8 /* BYModifyPhoneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF6E7BB267B1DA800911FC8 /* BYModifyPhoneVC.xib */; };
 		3DFF702E261EF92E00801654 /* LLIconVersioning.sh in Resources */ = {isa = PBXBuildFile; fileRef = 3DFF702D261EF92E00801654 /* LLIconVersioning.sh */; };
 		5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */; };
 		D571B19624BE9F120087B5EC /* CNLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19524BE9F120087B5EC /* CNLineView.m */; };
@@ -1648,6 +1650,9 @@
 		3DF43D4925946AED0087F26A /* DSBProfitBoardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBProfitBoardCell.h; sourceTree = "<group>"; };
 		3DF43D4A25946AED0087F26A /* DSBProfitBoardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBProfitBoardCell.m; sourceTree = "<group>"; };
 		3DF43D4B25946AED0087F26A /* DSBProfitBoardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBProfitBoardCell.xib; sourceTree = "<group>"; };
+		3DF6E7B9267B1DA800911FC8 /* BYModifyPhoneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYModifyPhoneVC.h; sourceTree = "<group>"; };
+		3DF6E7BA267B1DA800911FC8 /* BYModifyPhoneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYModifyPhoneVC.m; sourceTree = "<group>"; };
+		3DF6E7BB267B1DA800911FC8 /* BYModifyPhoneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYModifyPhoneVC.xib; sourceTree = "<group>"; };
 		3DFF702D261EF92E00801654 /* LLIconVersioning.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = LLIconVersioning.sh; sourceTree = "<group>"; };
 		62DF1724D3A54A4E27D4B55B /* Pods-HYNewNest-HYNewNestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; path = "Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.debug.xcconfig"; sourceTree = "<group>"; };
@@ -5270,6 +5275,9 @@
 				3D4179D72669BFE0003928F0 /* BYChangeFundPwdVC.h */,
 				3D4179D62669BFE0003928F0 /* BYChangeFundPwdVC.m */,
 				3D57EF112668ED0A00A5CCC6 /* BYChangeFundPwdVC.xib */,
+				3DF6E7B9267B1DA800911FC8 /* BYModifyPhoneVC.h */,
+				3DF6E7BA267B1DA800911FC8 /* BYModifyPhoneVC.m */,
+				3DF6E7BB267B1DA800911FC8 /* BYModifyPhoneVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5719,6 +5727,7 @@
 				D5A443A024F378CD00014DC6 /* 彩票_00033.png in Resources */,
 				D5A4461924F393E500014DC6 /* 足球_00056.png in Resources */,
 				D5A4462524F393E500014DC6 /* 足球_00092.png in Resources */,
+				3DF6E7BD267B1DA800911FC8 /* BYModifyPhoneVC.xib in Resources */,
 				04C6E1F824D41C3C006F4DAC /* CNAddressInfoTCell.xib in Resources */,
 				0487C9F524D2AADC0013715A /* CNMessageTCell.xib in Resources */,
 				D5A444A624F3932400014DC6 /* 数字7_0004.png in Resources */,
@@ -6292,6 +6301,7 @@
 				3D41DE7025199DEE000CA1D6 /* VIPMonthlyAlertsVC.m in Sources */,
 				048A168F24CACABF00411819 /* CNAlertPickerView.m in Sources */,
 				E986A1C524CC7F2B000F9CFF /* TAPageControl.m in Sources */,
+				3DF6E7BC267B1DA800911FC8 /* BYModifyPhoneVC.m in Sources */,
 				3D41DEAE251CC6FD000CA1D6 /* UIColor+Gradient.m in Sources */,
 				3DA4F15524B30A090039123F /* SGQRCodeScanManager.m in Sources */,
 				E9B5496924CECE23002CE6EF /* LTSegmentedBar.m in Sources */,

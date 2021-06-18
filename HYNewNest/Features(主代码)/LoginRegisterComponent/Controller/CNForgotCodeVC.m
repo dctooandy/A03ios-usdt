@@ -1,5 +1,5 @@
 //
-//  CNBindPhoneVC.m
+//  CNForgotCodeVC.m
 //  HYNewNest
 //
 //  Created by Cean on 2020/7/18.
@@ -13,7 +13,6 @@
 #import "CNResetPwdVC.h"
 #import "CNLoginRequest.h"
 #import "SmsCodeModel.h"
-#import "CNBindPhoneVC.h"
 
 @interface CNForgotCodeVC () <UITextFieldDelegate>
 @property (strong, nonatomic) JHVerificationCodeView *codeView;
