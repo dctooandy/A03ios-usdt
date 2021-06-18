@@ -13,8 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BYModifyPhoneVC : UIViewController
-@property (nonatomic, assign) CNSMSCodeType bindType;
-@property (copy,nonatomic) void(^completionBlock)(void);//!<完成回调
++ (void)modalVcWithSMSCodeType:(CNSMSCodeType)type;
 @end
 
 NS_ASSUME_NONNULL_END

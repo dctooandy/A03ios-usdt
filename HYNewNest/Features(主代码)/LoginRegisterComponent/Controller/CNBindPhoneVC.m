@@ -58,9 +58,6 @@
 }
 
 - (void)configDifferentUI {
-    switch (self.bindType) {
-        // 注册来的
-        case CNSMSCodeTypeRegister:
             self.view.backgroundColor = kHexColor(0x212137);
             self.navBarTransparent = YES;
             self.makeTranslucent = YES;
@@ -73,37 +70,6 @@
             self.submitBtn.enabled = YES;
             [self.submitBtn setTitle:@"" forState:UIControlStateNormal];
             [self.submitBtn setBackgroundImage:[UIImage imageNamed:@"h5"] forState:UIControlStateNormal];
-            
-//            // 注册过来也要变成bind类型
-//            self.bindType = CNSMSCodeTypeBindPhone;
-            break;
-            
-        // 安全中心来的 未绑手机
-        case CNSMSCodeTypeBindPhone:
-               self.navigationItem.title = @"绑定新手机";
-            // 如果有已有手机号则设置
-            if ([CNUserManager shareManager].userDetail.mobileNo.length) {
-                self.inputTF.text = [CNUserManager shareManager].userDetail.mobileNo;
-                self.inputTF.userInteractionEnabled = NO;
-                self.sendCodeBtn.hidden = NO;
-            }
-            break;
-        // 安全中心来的 解绑
-        case CNSMSCodeTypeUnbind:
-//            self.inputTF.placeholder = [NSString stringWithFormat:@"请输入%@手机号",[CNUserManager shareManager].userDetail.mobileNo];
-            self.inputTF.text = [CNUserManager shareManager].userDetail.mobileNo;
-            self.inputTF.userInteractionEnabled = NO;
-            self.sendCodeBtn.hidden = NO;
-            self.navigationItem.title = @"手机号修改";
-            [self.submitBtn setTitle:@"确认" forState:UIControlStateNormal];
-            break;
-        // 解绑来的 绑新手机
-        case CNSMSCodeTypeChangePhone:
-            self.navigationItem.title = @"绑定新手机";
-            break;
-        default:
-            break;
-    }
 }
 
 - (void)initCodeView {
@@ -139,9 +105,7 @@
     __weak typeof(self) weakSelf = self;
     view.finishBlock = ^(NSString *code) {
         weakSelf.submitBtn.enabled = YES;
-        if (weakSelf.bindType == CNSMSCodeTypeRegister) {
-            [weakSelf.submitBtn setBackgroundImage:[UIImage imageNamed:@"h5"] forState:UIControlStateNormal];
-        }
+        [weakSelf.submitBtn setBackgroundImage:[UIImage imageNamed:@"h5"] forState:UIControlStateNormal];
         weakSelf.smsModel.smsCode = code;
     };
     [self.shakingView addSubview:view];
@@ -191,31 +155,17 @@
 - (IBAction)sendSmsCode:(UIButton *)sender {
 
     WEAKSELF_DEFINE
-    // 请求短信   a03没有这个用处：CNSMSCodeTypeUnbind
-    if (self.bindType == CNSMSCodeTypeUnbind) {
-        [CNLoginRequest getSMSCodeByLoginNameType:CNSMSCodeTypeChangePhone
-                                completionHandler:^(id responseObj, NSString *errorMsg) {
-            STRONGSELF_DEFINE
-            SmsCodeModel *smsModel = [SmsCodeModel cn_parse: responseObj];
-            strongSelf.smsModel = smsModel;
-
-            sender.enabled = NO;
-            [strongSelf didSendCodeUIChange];
-        }];
+    [CNLoginRequest getSMSCodeWithType:CNSMSCodeTypeBindPhone
+                                 phone:self.inputTF.text
+                            validateId:@""
+                     completionHandler:^(id responseObj, NSString *errorMsg) {
+        STRONGSELF_DEFINE
+        SmsCodeModel *smsModel = [SmsCodeModel cn_parse: responseObj];
+        strongSelf.smsModel = smsModel;
         
-    } else {
-        [CNLoginRequest getSMSCodeWithType:self.validateId?CNSMSCodeTypeChangePhone:CNSMSCodeTypeBindPhone
-                                     phone:self.inputTF.text
-                                validateId:self.validateId?:@""
-                         completionHandler:^(id responseObj, NSString *errorMsg) {
-            STRONGSELF_DEFINE
-            SmsCodeModel *smsModel = [SmsCodeModel cn_parse: responseObj];
-            strongSelf.smsModel = smsModel;
-            
-            sender.enabled = NO;
-            [strongSelf didSendCodeUIChange];
-        }];
-    }
+        sender.enabled = NO;
+        [strongSelf didSendCodeUIChange];
+    }];
 }
 
 // 高亮变化, 界面UI变化
@@ -237,75 +187,27 @@
         [CNTOPHUB showAlert:@"请输入手机号和验证码"];
         return;
     }
-    if (self.bindType == CNSMSCodeTypeBindPhone || self.bindType == CNSMSCodeTypeRegister) {
 
-        [CNLoginRequest requestPhoneBind:self.smsModel.smsCode
-                               messageId:self.smsModel.messageId
-                       completionHandler:^(id responseObj, NSString *errorMsg) {
-            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-                // 更新信息
-                [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
-                    [CNTOPHUB showSuccess:@"绑定成功"];
-                    
-                    if (self.bindType == CNSMSCodeTypeRegister) {
-                        [self.navigationController pushViewController:[BYRegisterSuccADVC new] animated:YES];
-                    } else {
-                    
-                        // 如果返回安全中心失败 证明是从别处过来的
-                        if (![NNControllerHelper pop2ViewControllerClassString:@"CNSecurityCenterVC"]) {
-                            // 如果返回首页失败 证明不是注册 是从绑卡过来的
-                            if (![NNControllerHelper pop2ViewControllerClassString:@"CNHomeVC"]) {
-                                // 直接返回就好
-                                [self.navigationController popViewControllerAnimated:YES];
-                            }
-                        }
-                        
-                    }
-                    
-                }];
-            }
-        }];
-    
-    } else if (self.bindType == CNSMSCodeTypeUnbind) {
-        
-        [CNLoginRequest verifySMSCodeWithType:CNSMSCodeTypeChangePhone
-                                      smsCode:self.smsModel.smsCode
-                                    smsCodeId:self.smsModel.messageId
-                            completionHandler:^(id responseObj, NSString *errorMsg) {
-            if (KIsEmptyString(errorMsg)) {
-                [CNTOPHUB showSuccess:@"验证成功"];
-                CNBindPhoneVC *bindVc = [CNBindPhoneVC new];
-                bindVc.bindType = CNSMSCodeTypeChangePhone;
-                if (responseObj && [responseObj isKindOfClass:[NSDictionary class]]) {
-                    bindVc.validateId = responseObj[@"validateId"];
-                }
-                [self.navigationController pushViewController:bindVc animated:YES];
-            }
-        }];
-        
-    } else { //绑定新手机 CNSMSCodeTypeChangePhone
-        [CNLoginRequest requestRebindPhone:self.smsModel.smsCode
-                                 messageId:self.smsModel.messageId
-                         completionHandler:^(id responseObj, NSString *errorMsg) {
-            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-                [CNLoginRequest getUserInfoByTokenCompletionHandler:nil];
-                [CNTOPHUB showSuccess:@"修改成功"];
-                if (![NNControllerHelper pop2ViewControllerClassString:@"CNSecurityCenterVC"]) {
-                    [self.navigationController popViewControllerAnimated:YES];
-                }
-            }
-        }];
-    }
+    [CNLoginRequest requestPhoneBind:self.smsModel.smsCode
+                           messageId:self.smsModel.messageId
+                   completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            // 更新信息
+            [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
+                [CNTOPHUB showSuccess:@"绑定成功"];
+                
+                    [self.navigationController pushViewController:[BYRegisterSuccADVC new] animated:YES];
+                
+            }];
+        }
+    }];
+
 }
 
 /// 跳过
 - (IBAction)pass:(id)sender {
     // 跳过绑定，登录成功，回到首页
-    if (self.bindType == CNSMSCodeTypeRegister) {
-        [self.navigationController pushViewController:[BYRegisterSuccADVC new] animated:YES];
-    } else {
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    }
+    [self.navigationController pushViewController:[BYRegisterSuccADVC new] animated:YES];
 }
 
 #pragma - mark Timer

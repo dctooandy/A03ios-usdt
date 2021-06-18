@@ -9,7 +9,7 @@
 #import "HYWithdrawViewController.h"
 #import "HYTabBarViewController.h"
 #import "CNTradeRecodeVC.h"
-#import "CNBindPhoneVC.h"
+#import "BYModifyPhoneVC.h"
 #import "CNCompleteInfoVC.h"
 
 #import "HYXiMaTopView.h"
@@ -178,9 +178,9 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     if (![CNUserManager shareManager].userDetail.mobileNoBind) {
         [HYTextAlertView showWithTitle:@"手机绑定" content:@"对不起！系统发现您还没有绑定手机，请先完成手机绑定流程，再进行提现操作。" comfirmText:@"去绑定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
             if (isComfirm) {
-                CNBindPhoneVC *vc = [CNBindPhoneVC new];
-                vc.bindType = CNSMSCodeTypeBindPhone;
-                [self.navigationController pushViewController:vc animated:YES];
+                [BYModifyPhoneVC modalVcWithSMSCodeType:CNSMSCodeTypeBindPhone];
+            } else {
+                [CNTOPHUB showError:@"用户拒绝"];
             }
         }];
         return;

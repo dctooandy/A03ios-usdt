@@ -9,7 +9,7 @@
 #import "CNAddressManagerVC.h"
 #import "CNAddAddressVC.h"
 #import "CNAddBankCardVC.h"
-#import "CNBindPhoneVC.h"
+#import "BYModifyPhoneVC.h"
 
 #import "CNAddressAddTCell.h"
 #define kCNAddressAddTCellID  @"CNAddressAddTCell"
@@ -309,9 +309,7 @@
                     if (![CNUserManager shareManager].userDetail.mobileNoBind) {
                         [HYTextAlertView showWithTitle:@"手机绑定" content:@"对不起！系统发现您还没有绑定手机，请先完成手机绑定流程，再进行添加地址操作。" comfirmText:@"确定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
                             if (isComfirm) {
-                                CNBindPhoneVC *vc = [CNBindPhoneVC new];
-                                vc.bindType = CNSMSCodeTypeBindPhone;
-                                [self.navigationController pushViewController:vc animated:YES];
+                                [BYModifyPhoneVC modalVcWithSMSCodeType:CNSMSCodeTypeBindPhone];
                             }
                         }];
                         

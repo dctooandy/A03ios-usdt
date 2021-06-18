@@ -119,7 +119,7 @@
     if (_resModel.fetchResultFlag == -1) { // 去完成
         if ([_resModel.title isEqualToString:@"完善资料"]) {
             CNBindPhoneVC *vc = [CNBindPhoneVC new];
-            vc.bindType = CNSMSCodeTypeBindPhone;
+//            vc.bindType = CNSMSCodeTypeBindPhone;
             [nav pushViewController:vc animated:YES];
         } else if ([_resModel.title isEqualToString:@"首次充值"]) {
             [HYNewUsrMissonAlertView showFirstDepositOrTaskEndIsEnd:NO handler:^(BOOL isComfm) {

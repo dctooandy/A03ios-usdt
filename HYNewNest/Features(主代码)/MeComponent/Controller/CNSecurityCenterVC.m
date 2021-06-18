@@ -7,7 +7,6 @@
 //
 
 #import "CNSecurityCenterVC.h"
-#import "CNBindPhoneVC.h"
 #import "CNForgotCodeVC.h"
 #import "CNChangePwdVC.h"
 #import "CNBaseTF.h"
@@ -50,18 +49,7 @@
 
 // 修改手机号
 - (IBAction)changePhoneNum:(id)sender {
-//    CNBindPhoneVC *vc = [CNBindPhoneVC new];
-//    vc.bindType = self.phoneTF.text.length > 0 ? CNSMSCodeTypeUnbind : CNSMSCodeTypeBindPhone;
-//    [self.navigationController pushViewController:vc animated:YES];
-    //TODO: 已完成修改手机流程（Unbind），还有新增手机 (BindPhone)
-    
-    BYModifyPhoneVC *vc = [BYModifyPhoneVC new];
-    vc.bindType = self.phoneTF.text.length > 0 ? CNSMSCodeTypeUnbind : CNSMSCodeTypeBindPhone;
-    vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    self.definesPresentationContext = YES;
-    [self.navigationController presentViewController:vc animated:YES completion:^{
-        vc.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-    }];
+    [BYModifyPhoneVC modalVcWithSMSCodeType:(self.phoneTF.text.length > 0 ? CNSMSCodeTypeUnbind : CNSMSCodeTypeBindPhone)];
 }
 
 // 修改密码

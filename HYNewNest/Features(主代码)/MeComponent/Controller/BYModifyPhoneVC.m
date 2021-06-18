@@ -13,6 +13,7 @@
 #import "CNLoginRequest.h"
 
 @interface BYModifyPhoneVC () <CNCodeInputViewDelegate, CNAccountInputViewDelegate>
+@property (nonatomic, assign) CNSMSCodeType bindType;
 @property (weak, nonatomic) IBOutlet UILabel *titleLb;
 @property (weak, nonatomic) IBOutlet CNAccountInputView *accountInputView; //手机号
 @property (weak, nonatomic) IBOutlet CNCodeInputView *codeInputView; //验证码
@@ -22,6 +23,16 @@
 @end
 
 @implementation BYModifyPhoneVC
+
++ (void)modalVcWithSMSCodeType:(CNSMSCodeType)type {
+    BYModifyPhoneVC *vc = [BYModifyPhoneVC new];
+    vc.bindType = type;
+    vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [NNControllerHelper getCurrentViewController].definesPresentationContext = YES;
+    [kCurNavVC presentViewController:vc animated:YES completion:^{
+        vc.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    }];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -141,11 +152,8 @@
 
 - (IBAction)didTapCloseBtn:(nullable id)sender {
     self.view.backgroundColor = [UIColor clearColor];
-    [[NSNotificationCenter defaultCenter] postNotificationName:BYDidUpdateUserProfileNoti object:nil userInfo:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:BYDidUpdateUserProfileNoti object:nil userInfo:nil]; //发送通知让安全中心更新信息
     [self dismissViewControllerAnimated:YES completion:^{
-        if (self.completionBlock) {
-            self.completionBlock();
-        }
     }];
 }
 
