@@ -152,8 +152,8 @@
 /// 发送短信验证码
 - (IBAction)sendSmsCode:(UIButton *)sender {
     WEAKSELF_DEFINE
-    // 请求短信
-    [CNLoginRequest getSMSCodeWithType:self.bindType
+    // 请求短信 (居然是2)
+    [CNLoginRequest getSMSCodeWithType:2
                                  phone:self.inputTF.text
                      completionHandler:^(id responseObj, NSString *errorMsg) {
         STRONGSELF_DEFINE
