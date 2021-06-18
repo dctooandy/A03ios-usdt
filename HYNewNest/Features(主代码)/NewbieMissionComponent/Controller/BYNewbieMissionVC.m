@@ -397,8 +397,11 @@
 - (IBAction)signinButtonClicked:(id)sender {
     if ([self checkUserLogin] == false) return;
         
+    NSInteger loginDays = self.model.loginTask.count;
     Result *loginResult = self.model.loginTask.result.firstObject;
-    if (loginResult == nil || self.model.loginTask.isSignIn == false) {
+    if (loginResult == nil
+        || (((loginResult.prizeLevel == 1 && loginDays > 3 && loginDays < 7)
+        || (loginResult.prizeLevel == 2 && loginDays > 7 && loginDays < 15)) && loginResult.fetchResultFlag != 0)) {
         [NNPageRouter jump2DepositWithSuggestAmount:15];
     }
     else if (loginResult.fetchResultFlag == 0){
