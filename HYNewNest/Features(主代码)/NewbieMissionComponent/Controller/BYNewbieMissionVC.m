@@ -104,14 +104,11 @@
 }
 
 - (void)setupSiginUI {
-    
     NSInteger loginDays = self.model.loginTask.count;
     [self.signinLabel setText:[NSString stringWithFormat:@"签到第%li天", loginDays]];
     BYGradientButton *signinButton = self.receivedButtons[1];
-    [signinButton setEnabled:true];
     Result *loginResult = self.model.loginTask.result.firstObject;
     
-    NSString *signinText;
     if (loginResult == nil
         || (loginResult.prizeLevel == 1 && loginDays > 3 && loginDays < 7)
         || (loginResult.prizeLevel == 2 && loginDays > 7 && loginDays < 15)) {
@@ -125,44 +122,15 @@
             [signinButton setEnabled:true];
         }
         
-        for (int tag = 200; tag < 203; tag++) {
-            UIImageView *iv = [self.view viewWithTag:tag];
-            if (tag - 200 <= loginResult.prizeLevel - 1 ) {
-                [iv setHidden:false];
-            }
-            else {
-                [iv setHidden:true];
-            }
-        }
-        
-        return;
     }
-    
-    
-    
-    switch (loginResult.fetchResultFlag) {
-        case -1: //未完成
-            if (self.model.loginTask.isSignIn == true) {
-                signinText = @"已签到";
-                [signinButton setEnabled:false];
-            }
-            else {
-                signinText = @"我要签到";
-                [signinButton setEnabled:true];
-            }
-            break;
-        case 0: // 可領取
-            signinText = [NSString stringWithFormat:@"领%liUSDT", loginResult.prizeAmount];
-            [signinButton setEnabled:true];
-            break;
-        case 1: //已領取
-            signinText = [NSString stringWithFormat:@"已领取"];
-            [signinButton setEnabled:false];
-            break;
-        default:
-            break;
+    else if (loginResult.fetchResultFlag == 0) {
+        [signinButton setTitle:[NSString stringWithFormat:@"领%liUSDT", loginResult.prizeAmount] forState:UIControlStateNormal];
+        [signinButton setEnabled:true];
     }
-    [signinButton setTitle:signinText forState:UIControlStateNormal];
+    else if (loginResult.fetchResultFlag == 1) {
+        [signinButton setTitle:[NSString stringWithFormat:@"已领取"] forState:UIControlStateNormal];
+        [signinButton setEnabled:false];
+    }
         
     for (int tag = 200; tag < 203; tag++) {
         UIImageView *iv = [self.view viewWithTag:tag];
@@ -347,6 +315,40 @@
     return nil;
 }
 
+- (void)changeButtonReceviedStatus:(NSString *)code {
+    
+    UIButton *button;
+    if ([code isEqualToString:SIGNIN_CODE]) {
+        button = self.receivedButtons[1];
+        
+        if (self.model.loginTask.isSignIn == true) {
+            [button setTitle:@"已领取" forState:UIControlStateNormal];
+            [button setEnabled:false];
+        }
+        else {
+            [button setTitle:@"我要签到" forState:UIControlStateNormal];
+            [button setEnabled:true];
+        }
+    }
+    else if ([code isEqualToString:CAHS_GIFT_CODE]) {
+        button = self.receivedButtons[2];
+    }
+    else if ([code isEqualToString:BASIC_RECHARGE_CODE]) {
+        button = self.receivedButtons[3];
+    }
+    else if ([code isEqualToString:ADVANCED_RECHARGE_CODE]) {
+        button = self.receivedButtons[4];
+    }
+    else if ([code isEqualToString:FIRST_XIMA_CODE]) {
+        button = self.receivedButtons[5];
+    }
+    else if ([code isEqualToString:SHARE_VIP_CODE]) {
+        button = self.receivedButtons[6];
+    }
+    [button setEnabled:false];
+    [button setTitle:@"已领取" forState:UIControlStateNormal];
+}
+
 #pragma mark -
 #pragma mark IBAction
 - (IBAction)bindingPhoneClicked:(id)sender {
@@ -506,7 +508,7 @@
     
 }
 
-- (void)getRewardWithReceivedId:(NSString *)receivedID  andCode:(NSString *)receivedCode{
+- (void)getRewardWithReceivedId:(NSString *)receivedID andCode:(NSString *)receivedCode{
     [LoadingView show];
 
     WEAKSELF_DEFINE
@@ -522,6 +524,7 @@
             }
             else {
                 [CNTOPHUB showSuccess:[NSString stringWithFormat:@"%liUSDT", reward.sucAmount]];
+                [strongSelf changeButtonReceviedStatus:receivedCode];
             }
             
         }
