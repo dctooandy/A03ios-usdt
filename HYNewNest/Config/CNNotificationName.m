@@ -13,7 +13,8 @@ NSNotificationName const HYLogoutSuccessNotification          = @"HYLogoutSucces
 NSNotificationName const HYSwitchAcoutSuccNotification        = @"HYSwitchAcoutSuccNotification";
 NSNotificationName const BYWebSocketDidOpenNoti               = @"BYWebSocketDidOpenNoti";
 NSNotificationName const BYWebSocketDidReceivedNoti           = @"BYWebSocketDidReceivedNoti";
-NSNotificationName const BYDidEnterHomePageNoti               = @"BYDidEnterHomePageNoti";;
+NSNotificationName const BYDidEnterHomePageNoti               = @"BYDidEnterHomePageNoti";
+NSNotificationName const BYDidUpdateUserProfileNoti           = @"BYDidUpdateUserProfileNoti";
 
 
 NSString * const HYNotShowCTZNEUserDefaultKey = @"HYNotShowCTZNEUserDefaultKey";

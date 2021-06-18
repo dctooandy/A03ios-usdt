@@ -44,7 +44,12 @@
     paras[@"use"] = @(type);
     paras[@"mobileNo"] = [CNEncrypt encryptString:phone];
     
-    [self POST:(config_SendCodePhone) parameters:paras completionHandler:completionHandler];
+    [self POST:(config_SendCodePhone) parameters:paras completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            [kKeywindow jk_makeToast:[NSString stringWithFormat:@"向手机%@\n发送了一条验证码", phone] duration:2 position:JKToastPositionCenter];
+        }
+        completionHandler(responseObj, errorMsg);
+    }];
 }
 
 + (void)getSMSCodeWithType:(CNSMSCodeType)type
@@ -57,7 +62,12 @@
     paras[@"mobileNo"] = [CNEncrypt encryptString:phone];
     paras[@"validateId"] = vId;
     
-    [self POST:(config_SendCodePhone) parameters:paras completionHandler:completionHandler];
+    [self POST:(config_SendCodePhone) parameters:paras completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            [kKeywindow jk_makeToast:[NSString stringWithFormat:@"向手机%@\n发送了一条验证码", phone] duration:2 position:JKToastPositionCenter];
+        }
+        completionHandler(responseObj, errorMsg);
+    }];
 }
 
 + (void)getSMSCodeByLoginNameType:(CNSMSCodeType)type   completionHandler:(HandlerBlock)completionHandler {

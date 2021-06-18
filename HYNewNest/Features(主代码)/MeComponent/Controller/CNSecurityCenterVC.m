@@ -14,6 +14,7 @@
 #import "MineBindView.h"
 #import "CNUserCenterRequest.h"
 #import "BYChangeFundPwdVC.h"
+#import "BYModifyPhoneVC.h"
 
 @interface CNSecurityCenterVC ()
 @property (weak, nonatomic) IBOutlet CNBaseTF *phoneTF;
@@ -26,7 +27,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.title = @"安全中心";
+    [self getUserProfile];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserProfile) name:BYDidUpdateUserProfileNoti object:nil];
+}
+
+- (void)getUserProfile {
     [LoadingView show];
     [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
         [LoadingView hide];
@@ -43,30 +50,23 @@
 
 // 修改手机号
 - (IBAction)changePhoneNum:(id)sender {
-//    if (self.phoneTF.text.length > 0) {
-//        // 已经绑定手机号，走解绑
-//        CNForgotCodeVC *vc = [CNForgotCodeVC new];
-//        vc.bindType = CNSMSCodeTypeChangePhone;
-//        [self.navigationController pushViewController:vc animated:YES];
-//    } else {
-//        // 未绑定的直接去绑定
-//        CNBindPhoneVC *vc = [CNBindPhoneVC new];
-//        vc.bindType = CNSMSCodeTypeBindPhone;
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
-    CNBindPhoneVC *vc = [CNBindPhoneVC new];
+//    CNBindPhoneVC *vc = [CNBindPhoneVC new];
+//    vc.bindType = self.phoneTF.text.length > 0 ? CNSMSCodeTypeUnbind : CNSMSCodeTypeBindPhone;
+//    [self.navigationController pushViewController:vc animated:YES];
+    //TODO: 已完成修改手机流程（Unbind），还有新增手机 (BindPhone)
+    
+    BYModifyPhoneVC *vc = [BYModifyPhoneVC new];
     vc.bindType = self.phoneTF.text.length > 0 ? CNSMSCodeTypeUnbind : CNSMSCodeTypeBindPhone;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-// 修改密码
-- (IBAction)changePWD:(id)sender {
-    CNChangePwdVC *vc = [CNChangePwdVC new];
     vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     self.definesPresentationContext = YES;
     [self.navigationController presentViewController:vc animated:YES completion:^{
         vc.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     }];
+}
+
+// 修改密码
+- (IBAction)changePWD:(id)sender {
+    [CNChangePwdVC modalVc];
 }
 
 // 修改资金密码

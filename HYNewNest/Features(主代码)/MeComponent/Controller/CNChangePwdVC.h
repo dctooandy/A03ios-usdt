@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CNChangePwdVC : UIViewController
-
++ (void)modalVc;
 @end
 
 NS_ASSUME_NONNULL_END
