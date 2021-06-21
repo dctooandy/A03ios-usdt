@@ -10,8 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BYChangeFundPwdVC : CNBaseVC
-
+@interface BYChangeFundPwdVC : UIViewController
++ (void)modalVc;
 @end
 
 NS_ASSUME_NONNULL_END
