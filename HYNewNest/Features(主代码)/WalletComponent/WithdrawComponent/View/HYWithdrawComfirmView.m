@@ -196,8 +196,9 @@
 }
 
 - (void)jump2ModifyFundPwd {
-    BYChangeFundPwdVC *vc = [BYChangeFundPwdVC new];
-    [kCurNavVC pushViewController:vc animated:YES];
+//    BYChangeFundPwdVC *vc = [BYChangeFundPwdVC new];
+//    [kCurNavVC pushViewController:vc animated:YES];
+    [BYChangeFundPwdVC modalVc];
     [self removeView];
 }
 

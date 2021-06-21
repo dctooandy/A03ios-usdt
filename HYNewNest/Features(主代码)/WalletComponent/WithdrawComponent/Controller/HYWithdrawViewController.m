@@ -63,10 +63,9 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 - (HYDownloadLinkView *)linkView {
     if (!_linkView) {
         HYDownloadLinkView *linkView = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(80, 0, 200, 30) normalText:[CNUserManager shareManager].isUsdtMode?@"提币需要资金密码，":@"提现需要资金密码，" tapableText:@"前往设置" tapColor:kHexColor(0x3176F0) hasUnderLine:YES urlValue:nil];
-        WEAKSELF_DEFINE
         linkView.tapBlock = ^{
-            STRONGSELF_DEFINE
-            [strongSelf.navigationController pushViewController:[BYChangeFundPwdVC new] animated:YES];
+//            [strongSelf.navigationController pushViewController:[BYChangeFundPwdVC new] animated:YES];
+            [BYChangeFundPwdVC modalVc];
         };
         _linkView = linkView;
     }
@@ -202,6 +201,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     // 判断卡
     if (self.elecCardsArr.count == 0) {
         [CNTOPHUB showError:[NSString stringWithFormat:@"请先绑定至少%@",[CNUserManager shareManager].isUsdtMode?@"一个钱包地址":@"一张银行卡"]];
+        return;
     }
     
     if (!self.moneyModel) {

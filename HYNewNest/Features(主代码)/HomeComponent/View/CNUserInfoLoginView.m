@@ -89,7 +89,7 @@
             [self.moneyLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.switchModeBtn setEnabled:YES];
-            });\
+            });
         }];
     }
 }
