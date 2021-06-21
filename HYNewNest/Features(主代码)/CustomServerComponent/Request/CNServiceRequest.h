@@ -15,9 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是否开启微脉圈
 + (void)queryIsOpenWMQHandler:(HandlerBlock)handler;
 
-/// 旧版客服地址链接获取
-+ (void)requestDynamicLive800AddressCompletionHandler:(HandlerBlock)handler;
-
 /// 客服回拨
 + (void)callCenterCallBackMessageId:(nullable NSString *)messageId
                             smsCode:(nullable NSString *)smsCode
