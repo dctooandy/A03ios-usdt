@@ -249,7 +249,7 @@
                 <constraint firstItem="GBy-vV-Zaw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qGN-Z2-P8J"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="97" y="106"/>
+            <point key="canvasLocation" x="95.652173913043484" y="105.80357142857143"/>
         </view>
     </objects>
     <resources>
