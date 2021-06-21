@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,8 +14,8 @@
                 <outlet property="fundpwdEntryBg" destination="hRM-ja-CUf" id="rvK-5Q-ZNV"/>
                 <outlet property="sumitBtn" destination="az0-7H-f0l" id="z9F-8V-hpw"/>
                 <outlet property="tableView" destination="RxF-ga-guY" id="3Zw-aD-Kh8"/>
-                <outlet property="topView" destination="TJv-mn-le0" id="rqT-z4-5cV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="withdrawAmoutLabel" destination="qOV-h4-A6b" id="Xt1-XX-YVm"/>
                 <outlet property="withdrawBtnBtmConst" destination="qPo-gs-R0N" id="XJA-I0-tpS"/>
             </connections>
         </placeholder>
@@ -24,15 +24,54 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TJv-mn-le0" customClass="HYXiMaTopView">
-                    <rect key="frame" x="0.0" y="44" width="414" height="138.5"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TJv-mn-le0">
+                    <rect key="frame" x="0.0" y="44" width="414" height="120"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可提现金额 (USDT)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWI-wJ-Lgs">
+                            <rect key="frame" x="15" y="15" width="121.5" height="20"/>
+                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttx-ZJ-u38">
+                            <rect key="frame" x="146.5" y="16" width="49" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title=" 说明" image="icon_rule">
+                                <color key="titleColor" red="0.062745098040000002" green="0.70588235290000001" blue="0.86666666670000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qOV-h4-A6b">
+                            <rect key="frame" x="15" y="55" width="50.5" height="35"/>
+                            <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="30"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9m7-lJ-3tP">
+                            <rect key="frame" x="329" y="58" width="70" height="32"/>
+                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                            <state key="normal" title="转入余额宝">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="yuebaoDidClicked:" destination="-1" eventType="touchUpInside" id="DZ0-4z-0LV"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.15294117647058825" green="0.15294117647058825" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="138.5" id="100-hL-d4v"/>
+                        <constraint firstAttribute="height" constant="120" id="100-hL-d4v"/>
+                        <constraint firstAttribute="trailing" secondItem="9m7-lJ-3tP" secondAttribute="trailing" constant="15" id="BPw-0H-sAi"/>
+                        <constraint firstItem="ttx-ZJ-u38" firstAttribute="centerY" secondItem="qWI-wJ-Lgs" secondAttribute="centerY" id="GAd-Mv-ZHK"/>
+                        <constraint firstItem="qWI-wJ-Lgs" firstAttribute="leading" secondItem="TJv-mn-le0" secondAttribute="leading" constant="15" id="Ilx-kw-P0Z"/>
+                        <constraint firstItem="9m7-lJ-3tP" firstAttribute="bottom" secondItem="qOV-h4-A6b" secondAttribute="bottom" id="TfW-fD-vaO"/>
+                        <constraint firstItem="qOV-h4-A6b" firstAttribute="leading" secondItem="qWI-wJ-Lgs" secondAttribute="leading" id="V4e-Kq-eUC"/>
+                        <constraint firstAttribute="bottom" secondItem="qOV-h4-A6b" secondAttribute="bottom" constant="30" id="YAN-RT-lD9"/>
+                        <constraint firstItem="ttx-ZJ-u38" firstAttribute="leading" secondItem="qWI-wJ-Lgs" secondAttribute="trailing" constant="10" id="apI-81-B3t"/>
+                        <constraint firstItem="qWI-wJ-Lgs" firstAttribute="top" secondItem="TJv-mn-le0" secondAttribute="top" constant="15" id="wT4-a8-mVc"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RxF-ga-guY">
-                    <rect key="frame" x="0.0" y="188.5" width="414" height="430.5"/>
+                    <rect key="frame" x="0.0" y="170" width="414" height="449"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="O9r-N8-YYt"/>
@@ -84,6 +123,7 @@
         </view>
     </objects>
     <resources>
+        <image name="icon_rule" width="14" height="14"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

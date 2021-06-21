@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yhM-J9-dpm">
-                        <rect key="frame" x="30" y="10" width="315" height="86"/>
+                        <rect key="frame" x="15" y="10" width="330" height="86"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Exchanges-logo-1" translatesAutoresizingMaskIntoConstraints="NO" id="B8O-dC-ok1">
                                 <rect key="frame" x="15" y="19" width="48" height="48"/>
@@ -42,7 +42,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="****  ****  ****  1234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJB-0y-l54">
-                                <rect key="frame" x="79" y="51" width="206" height="17"/>
+                                <rect key="frame" x="79" y="51" width="221" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                 <color key="textColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="0.80316245719178081" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -65,7 +65,7 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="yhM-J9-dpm" secondAttribute="trailing" constant="30" id="2rY-q2-koI"/>
                     <constraint firstItem="yhM-J9-dpm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="8bS-P4-moH"/>
-                    <constraint firstItem="yhM-J9-dpm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="9j5-I9-W26"/>
+                    <constraint firstItem="yhM-J9-dpm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="9j5-I9-W26"/>
                     <constraint firstAttribute="bottom" secondItem="yhM-J9-dpm" secondAttribute="bottom" constant="10" id="SRx-9j-XoH"/>
                 </constraints>
             </tableViewCellContentView>

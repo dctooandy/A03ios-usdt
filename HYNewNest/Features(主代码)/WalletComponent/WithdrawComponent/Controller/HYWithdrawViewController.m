@@ -27,6 +27,8 @@
 #import "HYTextAlertView.h"
 #import "HYDownloadLinkView.h"
 #import "BYChangeFundPwdVC.h"
+#import "BYYuEBaoVC.h"
+
 
 #import "CNEncrypt.h"
 #import "CNWithdrawRequest.h"
@@ -36,6 +38,7 @@
 
 @interface HYWithdrawViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet HYXiMaTopView *topView;
+@property (weak, nonatomic) IBOutlet UILabel *withdrawAmoutLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *sumitBtn;
 @property (nonatomic, strong) HYWithdrawComfirmView *comfirmView;
@@ -79,12 +82,12 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     [self addNaviRightItemWithImageName:@"service"];
     
     self.selectedIdx = 0;
-    if ([CNUserManager shareManager].isUsdtMode) {
-        _withdrawBtnBtmConst.constant = 175;
-        [self setupBanner];
-    } else {
+//    if ([CNUserManager shareManager].isUsdtMode) {
+//        _withdrawBtnBtmConst.constant = 175;
+//        [self setupBanner];
+//    } else {
         _withdrawBtnBtmConst.constant = 30;
-    }
+//    }
     [self setupTopView];
     [self setupTableView];
     
@@ -222,15 +225,18 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     }
 }
 
+- (IBAction)yuebaoDidClicked:(id)sender {
+    [self.navigationController pushViewController:[BYYuEBaoVC new] animated:true];
+}
 
 #pragma mark - REQUEST
 - (void)requestBalance {
-    [self.topView.lblAmount showIndicatorIsBig:YES];
+    [self.withdrawAmoutLabel showIndicatorIsBig:YES];
     [BalanceManager requestWithdrawAbleBalanceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
         if (self.moneyModel.withdrawBal == nil)
             self.moneyModel.withdrawBal = @(0);
         self.moneyModel = model;
-        [self.topView.lblAmount hideIndicatorWithText:[model.withdrawBal jk_toDisplayNumberWithDigit:2]];
+        [self.withdrawAmoutLabel hideIndicatorWithText:[model.withdrawBal jk_toDisplayNumberWithDigit:2]];
         self.sumitBtn.enabled = YES;
     }];
 }
@@ -399,10 +405,11 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     bgView.frame = CGRectMake(0, 0, kScreenWidth, 60);
     UILabel *lblTitle = [[UILabel alloc] init];
     [bgView addSubview:lblTitle];
-    lblTitle.frame = CGRectMake(30, 60-15-17, 100, 17);
-    lblTitle.text = [CNUserManager shareManager].isUsdtMode ? @"提币地址" : @"提现至";
-    lblTitle.textColor = kHexColorAlpha(0xFFFFFF, 0.4);
-    lblTitle.font = [UIFont fontPFR15];
+    lblTitle.frame = CGRectMake(15, 60-15-17, 100, 17);
+    lblTitle.text = [CNUserManager shareManager].isUsdtMode ? @"提现地址" : @"提现至";
+//    lblTitle.textColor = kHexColorAlpha(0xFFFFFF, 0.4);
+    lblTitle.textColor = [UIColor whiteColor];
+    lblTitle.font = [UIFont fontPFR16];
     return bgView;
 }
 

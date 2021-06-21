@@ -14,7 +14,7 @@
 
 #import "GameStartPlayViewController.h"
 #import "HYWithdrawViewController.h"
-#import "BYWithdrawVC.h"
+#import "BYTradeEntryVC.h"
 #import "BYRechargeUsdtVC.h"
 #import "HYRechargeCNYViewController.h"
 #import "CNLoginRegisterVC.h"
@@ -81,7 +81,8 @@
         
         if ([CNUserManager shareManager].isUsdtMode) {
 //            [kCurNavVC pushViewController:[HYWithdrawViewController new] animated:YES];
-            [kCurNavVC pushViewController:[BYWithdrawVC new] animated:true];
+            BYTradeEntryVC *tradeVC = [[BYTradeEntryVC alloc] initWithType:TradeEntryTypeWithdraw];
+            [kCurNavVC pushViewController:tradeVC animated:true];
             
         } else {
             
