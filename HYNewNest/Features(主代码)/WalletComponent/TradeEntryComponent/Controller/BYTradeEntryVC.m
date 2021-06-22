@@ -15,6 +15,10 @@
 #import "BYGradientButton.h"
 #import "BYTradeEntryModel.h"
 #import "BYJSONHelper.h"
+#import "HYCTZNPlayerViewController.h"
+#import "NNPageRouter.h"
+#import "HYWideOneBtnAlertView.h"
+#import "BYRechargeUsdtVC.h"
 
 @interface BYTradeEntryVC () <UITableViewDataSource, UITableViewDelegate, SDCycleScrollViewDelegate>
 
@@ -23,19 +27,17 @@
 @property (nonatomic, strong) SDCycleScrollView *bannerView;
 @property (nonatomic, assign) TradeEntryType type;
 
-@property (nonatomic, strong) NSArray *bannerModels;
-@property (nonatomic, strong) NSArray *setTypeModels;
+@property (nonatomic, strong) NSMutableArray<TradeBannerItem *> *bannerModels;
+@property (nonatomic, strong) NSMutableArray<TradeEntrySetTypeItem *> *setTypeModels;
+@property (nonatomic, strong) NSDictionary *tutorialsVideos;
+
+@property (nonatomic, strong) NSString *h5Root;
 
 @end
 
 @implementation BYTradeEntryVC
 
 static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -82,43 +84,52 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
         [sellButton setTitle:@"卖币教学" forState:UIControlStateNormal];
     }
     
-    
-    
     [self.tableView.tableHeaderView addSubview:self.bannerView];
     [self.tableView registerNib:[UINib nibWithNibName:@"BYTradeTableViewCell" bundle:nil]
          forCellReuseIdentifier:kTradeEntryCell];
 
 }
 
-- (UIImage *)iconImageWithRow:(NSInteger)row {
-    UIImage *image;
-    switch (row) {
-        case 0:
-            image = [UIImage imageNamed:self.type == TradeEntryTypeDeposit ? @"icon_RMB" : @"icon_YuEBao"];
-            break;
-        case 1:
-            image = [UIImage imageNamed:self.type == TradeEntryTypeDeposit ? @"icon_recharge" : @"icon_withdraw"];
-            break;;
-        case 2:
-            image = [UIImage imageNamed:self.type == TradeEntryTypeDeposit ? @"icon_buy" : @"icon_sell"];
-            break;
-        default:
-            break;
+- (void)setupBanner {
+    NSMutableArray *h5Images = [[NSMutableArray alloc] init];
+    for (TradeBannerItem *banner in self.bannerModels) {
+        [h5Images addObject:[NSString stringWithFormat:@"%@%@", self.h5Root, banner.img]];
     }
-    return image;
+
+    [self.bannerView setImageURLStringsGroup:h5Images];
 }
+
 #pragma mark -
 #pragma mark Fetch Data From Server
 - (void)fetchData {
+    self.bannerModels = [[NSMutableArray alloc] init];
+    self.setTypeModels = [[NSMutableArray alloc] init];
+    
     WEAKSELF_DEFINE
     [BYTradeEntryRequest fetchTradeHandler:^(id responseObj, NSString *errorMsg) {
         STRONGSELF_DEFINE
         if (!errorMsg) {
             BYTradeEntryModel *model = [BYTradeEntryModel cn_parse:responseObj][self.type == TradeEntryTypeDeposit ? 0 : 1];
-            strongSelf.bannerModels = [BYJSONHelper dictOrArrayWithJsonString:model.banner][@"h5"];
-            strongSelf.setTypeModels = [BYJSONHelper dictOrArrayWithJsonString:model.setType];
-            NSLog(@"%@", strongSelf.setTypeModels);
-            [strongSelf.tableView reloadData];
+            NSArray *banners = [BYJSONHelper dictOrArrayWithJsonString:model.banner][@"h5"];
+            strongSelf.bannerModels = [[NSMutableArray alloc] init];
+
+            for (NSDictionary *dict in banners) {
+                [strongSelf.bannerModels addObject:[TradeBannerItem cn_parse:dict]];
+            }
+            
+            NSArray *setTypes = [BYJSONHelper dictOrArrayWithJsonString:model.setType];
+            for (NSMutableDictionary *dict in setTypes) {
+                dict[@"icon"] = [NSString stringWithFormat:@"icon_%@_", strongSelf.type == TradeEntryTypeWithdraw ? @"withdraw" : @"deposit"];
+                [strongSelf.setTypeModels addObject:[TradeEntrySetTypeItem cn_parse:dict]];
+            }
+            
+            strongSelf.tutorialsVideos = [BYJSONHelper dictOrArrayWithJsonString:model.video];
+            strongSelf.h5Root = model.h5_root;
+                
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [strongSelf.tableView reloadData];
+                [strongSelf setupBanner];
+            });
         }
     }];
 
@@ -128,22 +139,8 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
 #pragma mark SDCycleScrollViewDelegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     if (self.bannerModels.count > 0 && self.bannerModels.count-1 >= index) {
-//        AdBannerModel *model = self.bannModels[index];
-//        if ([model.linkUrl containsString:@"detailsPage?id="]) { // 跳文章
-//            NSString *articalId = [model.linkUrl componentsSeparatedByString:@"="].lastObject;
-//            [NNPageRouter jump2ArticalWithArticalId:articalId title:@"文章"];
-//        } else if ([model.linkUrl hasPrefix:@"http"]) { // 跳外链
-//            NSURL *URL = [NSURL URLWithString:model.linkUrl];
-//            if ([[UIApplication sharedApplication] canOpenURL:URL]) {
-//                [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:^(BOOL success) {
-//                    [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
-//                }];
-//            }
-//        } else { // 跳活动
-//            [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"电游活动" needPubSite:NO];
-//        }
-        
-//        TradeBannerItem *banner = self.bannerModels[index];
+        TradeBannerItem *item = self.bannerModels[index];
+        [NNPageRouter jump2HTMLWithStrURL:item.url title:@"活动" needPubSite:NO];
     }
 }
 
@@ -155,13 +152,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BYTradeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTradeEntryCell];
-    
-    NSDictionary *item = self.setTypeModels[indexPath.row];
-    cell.suggestionImageView.hidden = indexPath.row == 0 ? false : true;
-    cell.titleLabel.text = item[@"name"];
-    cell.subTitleLabel.text = item[@"text"];
-    cell.tradeImageView.image = [self iconImageWithRow:indexPath.row];
-    
+    [cell setCellWithItem:self.setTypeModels[indexPath.row] row:indexPath.row];
     return  cell;
 }
 
@@ -172,45 +163,69 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    switch (indexPath.row) {
-//        case 0:
-//            [self.navigationController pushViewController:[BYYuEBaoVC new] animated:true];
-//            break;
-//        case 1:
-//            [self.navigationController pushViewController:[HYWithdrawViewController new] animated:true];
-//            break;
-//        default:
-//            break;
-//    }
+    TradeEntrySetTypeItem *setTypeItem = self.setTypeModels[indexPath.row];
+
+    if ([setTypeItem.name isEqualToString:@"转入余额宝"]) {
+        [self.navigationController pushViewController:[BYYuEBaoVC new] animated:YES];
+    }
+    else if ([setTypeItem.name isEqualToString:@"提币"]) {
+        [self.navigationController pushViewController:[HYWithdrawViewController new] animated:YES];
+    }
+    else if ([setTypeItem.name isEqualToString:@"卖币"]) {
+        [HYWideOneBtnAlertView showWithTitle:@"卖币跳转" content:@"正在为您跳转..请稍后。\n在交易所卖币数字货币，买家会将金额支付到您的银行卡，方便快捷。" comfirmText:@"我知道了，帮我跳转" comfirmHandler:^{
+            [NNPageRouter openExchangeElecCurrencyPage];
+        }];
+    }
+    else if ([setTypeItem.name isEqualToString:@"RMB直充"]) {
+        [NNPageRouter jump2BuyECoin];
+    }
+    else if ([setTypeItem.name isEqualToString:@"充币"]) {
+        [self.navigationController pushViewController:[BYRechargeUsdtVC new] animated:YES];
+
+    }
+    else if ([setTypeItem.name isEqualToString:@"买币"]) {
+        [NNPageRouter openExchangeElecCurrencyPage];
+    }
+    
 }
 
 #pragma mark -
 #pragma mark IBAction
-- (IBAction)withdrawToolClicked:(id)sender {
-    /*
-     HYCTZNPlayerViewController *playVC = [[HYCTZNPlayerViewController alloc] init];
-     playVC.sourceUrl = model.video;
-     playVC.tit = model.title;
-     playVC.modalPresentationStyle = UIModalPresentationFullScreen;
-     [self presentViewController:playVC animated:YES completion:nil];
-     */
+- (IBAction)tutorialWithdrawDepositClicked:(id)sender {
+    HYCTZNPlayerViewController *playVC = [[HYCTZNPlayerViewController alloc] init];
+    if (self.type == TradeEntryTypeDeposit) {
+        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5chongbi"]];
+        playVC.tit = @"充币教学";
+    }
+    else {
+        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5tibi"]];
+        playVC.tit = @"提币教学";
+    }
+    
+    playVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:playVC animated:YES completion:nil];
 }
 
-- (IBAction)sellToolClicked:(id)sender {
-    /*
-     HYCTZNPlayerViewController *playVC = [[HYCTZNPlayerViewController alloc] init];
-     playVC.sourceUrl = model.video;
-     playVC.tit = model.title;
-     playVC.modalPresentationStyle = UIModalPresentationFullScreen;
-     [self presentViewController:playVC animated:YES completion:nil];
-     */
+- (IBAction)tutorialSellBuyClicked:(id)sender {
+    HYCTZNPlayerViewController *playVC = [[HYCTZNPlayerViewController alloc] init];
+    if (self.type == TradeEntryTypeDeposit) {
+        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5maibi"]];
+        playVC.tit = @"买币教学";
+    }
+    else {
+        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5maibi"]];
+        playVC.tit = @"卖币教学";
+    }
+    
+    playVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:playVC animated:YES completion:nil];
 }
 
 #pragma mark -
 #pragma mark Lazy Load
 - (SDCycleScrollView *)bannerView {
     if (!_bannerView) {
-        SDCycleScrollView *bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(15, 15, kScreenWidth - 30, 150) delegate:self placeholderImage:[UIImage imageNamed:@"3"]];
+        SDCycleScrollView *bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(15, 15, kScreenWidth - 30, 120) delegate:self placeholderImage:[UIImage imageNamed:@"3"]];
         bannerView.layer.cornerRadius = 6;
         bannerView.layer.masksToBounds = true;
         bannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;

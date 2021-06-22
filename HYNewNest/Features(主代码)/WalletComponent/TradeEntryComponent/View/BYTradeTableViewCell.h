@@ -7,14 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BYTradeEntryModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BYTradeTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *tradeImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *suggestionImageView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
+- (void)setCellWithItem:(TradeEntrySetTypeItem *)item row:(NSInteger)row;
 @end
 
 NS_ASSUME_NONNULL_END

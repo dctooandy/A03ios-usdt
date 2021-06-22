@@ -60,7 +60,10 @@
 
 + (void)jump2Deposit {
     if ([CNUserManager shareManager].isUsdtMode) {
-        [kCurNavVC pushViewController:[BYRechargeUsdtVC new] animated:YES];
+//        [kCurNavVC pushViewController:[BYRechargeUsdtVC new] animated:YES];
+        BYTradeEntryVC *tradeVC = [[BYTradeEntryVC alloc] initWithType:TradeEntryTypeDeposit];
+        [kCurNavVC pushViewController:tradeVC animated:true];
+
     } else {
         [kCurNavVC pushViewController:[HYRechargeCNYViewController new] animated:YES];
     }
@@ -70,8 +73,8 @@
     
     [LoadingView show];
     [CNWithdrawRequest getUserMobileStatusCompletionHandler:^(id responseObj, NSString *errorMsg) {
-        CNUserDetailModel *model = [CNUserDetailModel cn_parse:responseObj];
         [LoadingView hide];
+//        CNUserDetailModel *model = [CNUserDetailModel cn_parse:responseObj];
 //        if (!model.mobileNoBind) { // 没有绑定手机 -> 跳到手机绑定
 //            CNBindPhoneVC *vc = [CNBindPhoneVC new];
 //            vc.bindType = CNSMSCodeTypeBindPhone;

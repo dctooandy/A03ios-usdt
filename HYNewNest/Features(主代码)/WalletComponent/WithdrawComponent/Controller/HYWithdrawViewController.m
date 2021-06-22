@@ -76,8 +76,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 #pragma mark - View Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = [CNUserManager shareManager].isUsdtMode ? @"提币" : @"提现";
-    [self.sumitBtn setTitle:[CNUserManager shareManager].isUsdtMode ? @"提币" : @"提现" forState:UIControlStateNormal];
+    self.title =  @"提现";
+    [self.sumitBtn setTitle:@"提现" forState:UIControlStateNormal];
     [self addNaviRightItemWithImageName:@"service"];
     
     self.selectedIdx = 0;

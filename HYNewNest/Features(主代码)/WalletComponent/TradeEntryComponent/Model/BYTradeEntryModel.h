@@ -23,13 +23,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *url;
 @end
 
-
-
 @interface BYTradeEntryModel : CNBaseModel
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, copy) NSString *banner;
 @property (nonatomic, copy) NSString *setType;
 @property (nonatomic, copy) NSString *video;
+@property (nonatomic, copy) NSString *h5_root;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -401,12 +401,13 @@
 - (void)buttonArrayAction:(CNActionType)type {
     //???: 充提指南 逻辑怎么处理?
     //usdt模式下 未选择“不再提醒”充提指南 的0星级别用户 => 进充提指南
-    if ([CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userInfo.starLevel == 0 && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
-        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
-        vc.type = (NSInteger)type;
-        [self presentViewController:vc animated:YES completion:nil];
-
-    } else {
+    // 移除充題指南頁面
+//    if ([CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userInfo.starLevel == 0 && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
+//        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
+//        vc.type = (NSInteger)type;
+//        [self presentViewController:vc animated:YES completion:nil];
+//
+//    } else {
         //TODO: 买充 提卖 合并，修改NNPageRouter
         switch (type) {
 //            case CNActionTypeBuy: //买
@@ -431,7 +432,7 @@
                 [self.navigationController pushViewController:[HYXiMaViewController new] animated:YES];
                 break;
         }
-    }
+//    }
     
 }
 
