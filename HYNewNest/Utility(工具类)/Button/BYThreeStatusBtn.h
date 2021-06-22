@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger, CNThreeStaBtnStatus) {
 @property (assign,nonatomic) CNThreeStaBtnStatus status; //!<样式
 @property (assign,nonatomic) IBInspectable NSInteger ibStatus; //!< 样式适配器（用于在xib中调试）
 @property (assign,nonatomic) IBInspectable CGFloat txtSize; //!< 文字大小
+@property (assign,nonatomic) IBInspectable CGFloat cornerRadius; //!<圆角 默认是全圆角
 @end
 
 NS_ASSUME_NONNULL_END

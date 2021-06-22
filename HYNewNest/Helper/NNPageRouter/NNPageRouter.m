@@ -15,7 +15,7 @@
 #import "GameStartPlayViewController.h"
 #import "HYWithdrawViewController.h"
 #import "BYWithdrawVC.h"
-#import "BYRechargeUsdtVC.h"
+#import "BYDepositUsdtVC.h"
 #import "HYRechargeCNYViewController.h"
 #import "CNLoginRegisterVC.h"
 #import "CNBindPhoneVC.h"
@@ -60,7 +60,7 @@
 
 + (void)jump2Deposit {
     if ([CNUserManager shareManager].isUsdtMode) {
-        [kCurNavVC pushViewController:[BYRechargeUsdtVC new] animated:YES];
+        [kCurNavVC pushViewController:[BYDepositUsdtVC new] animated:YES];
     } else {
         [kCurNavVC pushViewController:[HYRechargeCNYViewController new] animated:YES];
     }
@@ -70,8 +70,8 @@
     
     [LoadingView show];
     [CNWithdrawRequest getUserMobileStatusCompletionHandler:^(id responseObj, NSString *errorMsg) {
-        CNUserDetailModel *model = [CNUserDetailModel cn_parse:responseObj];
         [LoadingView hide];
+//        CNUserDetailModel *model = [CNUserDetailModel cn_parse:responseObj];
 //        if (!model.mobileNoBind) { // 没有绑定手机 -> 跳到手机绑定
 //            CNBindPhoneVC *vc = [CNBindPhoneVC new];
 //            vc.bindType = CNSMSCodeTypeBindPhone;
