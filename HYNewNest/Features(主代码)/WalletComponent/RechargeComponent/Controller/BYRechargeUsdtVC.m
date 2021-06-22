@@ -342,7 +342,6 @@ USDT支付渠道
     
     // 赋值
     cell.delegate = self;
-    cell.lineIdx = indexPath.row;
     if (indexPath.row == 0) { //人民币直充
         cell.deposModel = nil;
     } else {

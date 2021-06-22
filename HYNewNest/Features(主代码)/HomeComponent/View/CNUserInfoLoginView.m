@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *currencyLb;
 @property (weak, nonatomic) IBOutlet UIButton *switchModeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *withdrawCNYBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *usdtADImgv;
 
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 
@@ -66,6 +67,7 @@
 - (void)configLogoutUI {
     self.loginView.hidden = NO;
     self.headerIcon.image = nil;
+    self.usdtADImgv.hidden = YES;
 }
 
 - (void)configLogInUI {
@@ -104,9 +106,14 @@
     if ([CNUserManager shareManager].isUsdtMode) {
         self.switchModeBtn.selected = NO;
         self.currencyLb.text = @"USDT";
+        if ([CNUserManager shareManager].userInfo.starLevel == 0) {
+            self.usdtADImgv.hidden = NO;
+        }
+
     } else {
         self.switchModeBtn.selected = YES;
         self.currencyLb.text = @"CNY";
+        self.usdtADImgv.hidden = YES;
     }
 }
 

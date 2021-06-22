@@ -14,6 +14,7 @@
 
 #import "GameStartPlayViewController.h"
 #import "HYWithdrawViewController.h"
+#import "BYDepositUsdtVC.h"
 #import "BYTradeEntryVC.h"
 #import "BYRechargeUsdtVC.h"
 #import "HYRechargeCNYViewController.h"
@@ -63,7 +64,6 @@
 //        [kCurNavVC pushViewController:[BYRechargeUsdtVC new] animated:YES];
         BYTradeEntryVC *tradeVC = [[BYTradeEntryVC alloc] initWithType:TradeEntryTypeDeposit];
         [kCurNavVC pushViewController:tradeVC animated:true];
-
     } else {
         [kCurNavVC pushViewController:[HYRechargeCNYViewController new] animated:YES];
     }

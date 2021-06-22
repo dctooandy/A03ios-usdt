@@ -1,8 +1,8 @@
 //
-//  BYRechargeUsdtVC.h
+//  BYDepositUsdtVC.h
 //  HYNewNest
 //
-//  Created by zaky on 4/21/21.
+//  Created by zaky on 6/21/21.
 //  Copyright © 2021 BYGJ. All rights reserved.
 //
 
@@ -10,8 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-///deprecated
-@interface BYRechargeUsdtVC : CNBaseVC
+@interface BYDepositUsdtVC : CNBaseVC
 
 @end
 

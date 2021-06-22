@@ -18,7 +18,7 @@
 #import "HYCTZNPlayerViewController.h"
 #import "NNPageRouter.h"
 #import "HYWideOneBtnAlertView.h"
-#import "BYRechargeUsdtVC.h"
+#import "BYDepositUsdtVC.h"
 
 @interface BYTradeEntryVC () <UITableViewDataSource, UITableViewDelegate, SDCycleScrollViewDelegate>
 
@@ -180,7 +180,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
         [NNPageRouter jump2BuyECoin];
     }
     else if ([setTypeItem.name isEqualToString:@"数字货币充值"]) {
-        [self.navigationController pushViewController:[BYRechargeUsdtVC new] animated:YES];
+        [self.navigationController pushViewController:[BYDepositUsdtVC new] animated:YES];
     }
     else if ([setTypeItem.name isEqualToString:@"买币"]) {
         [NNPageRouter openExchangeElecCurrencyPage];

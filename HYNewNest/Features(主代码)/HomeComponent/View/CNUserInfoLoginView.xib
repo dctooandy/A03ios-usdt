@@ -16,6 +16,7 @@
                 <outlet property="loginView" destination="bWe-Js-K1F" id="5y4-ts-Wf5"/>
                 <outlet property="moneyLb" destination="oAS-o1-hZh" id="Faf-IR-ofN"/>
                 <outlet property="switchModeBtn" destination="tb7-qs-Zp1" id="psw-c2-4FJ"/>
+                <outlet property="usdtADImgv" destination="gdW-q9-I6I" id="ZDU-6E-PTm"/>
                 <outlet property="vipImgv" destination="e1n-OH-5Tm" id="UaW-f4-JWT"/>
                 <outlet property="withdrawCNYBtn" destination="2cK-kw-z7Y" id="LQG-uM-Yp8"/>
             </connections>
@@ -237,12 +238,20 @@
                         <constraint firstItem="Sim-dp-tCw" firstAttribute="top" secondItem="bWe-Js-K1F" secondAttribute="top" id="zIc-Yz-SxG"/>
                     </constraints>
                 </view>
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biaoq" translatesAutoresizingMaskIntoConstraints="NO" id="gdW-q9-I6I">
+                    <rect key="frame" x="48" y="43" width="120" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="d7s-Er-spH"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="GBy-vV-Zaw" secondAttribute="trailing" id="CUg-bu-nUD"/>
                 <constraint firstItem="GBy-vV-Zaw" firstAttribute="top" secondItem="sLZ-3h-qrV" secondAttribute="bottom" id="K7o-GA-I5C"/>
                 <constraint firstAttribute="bottom" secondItem="GBy-vV-Zaw" secondAttribute="bottom" id="NVD-Ee-EKy"/>
+                <constraint firstItem="gdW-q9-I6I" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="48" id="OfA-yq-z2h"/>
+                <constraint firstAttribute="bottom" secondItem="gdW-q9-I6I" secondAttribute="bottom" constant="30" id="R90-5z-cBe"/>
                 <constraint firstItem="sLZ-3h-qrV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Xyn-xb-ehk"/>
                 <constraint firstAttribute="trailing" secondItem="sLZ-3h-qrV" secondAttribute="trailing" id="gfP-1w-f0R"/>
                 <constraint firstItem="sLZ-3h-qrV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="lPU-th-sFn"/>
@@ -254,6 +263,7 @@
     </objects>
     <resources>
         <image name="Shape" width="84" height="81"/>
+        <image name="biaoq" width="142" height="37"/>
         <image name="btn_change" width="66" height="20"/>
         <image name="btn_login" width="141" height="38"/>
         <image name="btn_regsiter" width="141" height="38"/>

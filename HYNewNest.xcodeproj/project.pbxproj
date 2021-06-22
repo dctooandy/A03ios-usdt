@@ -325,6 +325,8 @@
 		3DBA560E2580B5E4009A2B71 /* BYSuperCopartnerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA560C2580B5E4009A2B71 /* BYSuperCopartnerVC.xib */; };
 		3DBA56112580D9B3009A2B71 /* CALayer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA56102580D9B3009A2B71 /* CALayer+Additions.m */; };
 		3DBB590E26787A2400F5A759 /* CNServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBB590D26787A2400F5A759 /* CNServiceRequest.m */; };
+		3DBF5FB52680A0A700C246A9 /* BYDepositUsdtVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBF5FB32680A0A700C246A9 /* BYDepositUsdtVC.m */; };
+		3DBF5FB62680A0A800C246A9 /* BYDepositUsdtVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBF5FB42680A0A700C246A9 /* BYDepositUsdtVC.xib */; };
 		3DC14E3825F8D37500D6DB85 /* BYVocherCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E3625F8D37500D6DB85 /* BYVocherCenterVC.m */; };
 		3DC14E3F25F8DC0D00D6DB85 /* BYVocherTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E3E25F8DC0D00D6DB85 /* BYVocherTableVC.m */; };
 		3DC14E4325F9DF0800D6DB85 /* BYVocherTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14E4125F9DF0800D6DB85 /* BYVocherTVCell.m */; };
@@ -341,6 +343,8 @@
 		3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC87A50253967DC0032ED1B /* BuyECoinModel.m */; };
 		3DCFEA9A25050AD90071F356 /* 方正兰亭大黑_GBK.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEA9925050AD90071F356 /* 方正兰亭大黑_GBK.ttf */; };
 		3DCFEAA1250624CD0071F356 /* TAExampleDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA9F250624CD0071F356 /* TAExampleDotView.m */; };
+		3DD05E822681817B004B1062 /* BYDepositUsdtEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD05E812681817B004B1062 /* BYDepositUsdtEditorView.m */; };
+		3DD05E842681819B004B1062 /* BYDepositUsdtEditorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DD05E832681819B004B1062 /* BYDepositUsdtEditorView.xib */; };
 		3DDDF88426341424009ED0AC /* BYProtocolExplainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDDF88226341424009ED0AC /* BYProtocolExplainVC.m */; };
 		3DDDF88526341424009ED0AC /* BYProtocolExplainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DDDF88326341424009ED0AC /* BYProtocolExplainVC.xib */; };
 		3DDEBA32264A4E4D0014EB87 /* BYYuEBaoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDEBA30264A4E4C0014EB87 /* BYYuEBaoVC.m */; };
@@ -969,8 +973,6 @@
 		E98BEF3A24D3D27100E6B0C8 /* HYDownloadLinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = E98BEF3824D3D27100E6B0C8 /* HYDownloadLinkView.m */; };
 		E98BEF3F24D3E99000E6B0C8 /* CNAmountInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = E98BEF3D24D3E99000E6B0C8 /* CNAmountInputView.m */; };
 		E98BEF4324D3F29800E6B0C8 /* CNAmountInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98BEF4224D3F29800E6B0C8 /* CNAmountInputView.xib */; };
-		E993094F24D7C1BB00E0843B /* HYRechargeEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = E993094E24D7C1BB00E0843B /* HYRechargeEditView.m */; };
-		E993095124D7C1CC00E0843B /* HYRechargeEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E993095024D7C1CC00E0843B /* HYRechargeEditView.xib */; };
 		E993095424D7F3CD00E0843B /* HYRechProcButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E993095324D7F3CD00E0843B /* HYRechProcButton.m */; };
 		E994D40D24E521E300D0D81A /* CardBinTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E994D40C24E521E300D0D81A /* CardBinTypeModel.m */; };
 		E9A269D724D80D8700B512FF /* HYRechargePayWayController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A269D524D80D8700B512FF /* HYRechargePayWayController.m */; };
@@ -1583,6 +1585,9 @@
 		3DBA56102580D9B3009A2B71 /* CALayer+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Additions.m"; sourceTree = "<group>"; };
 		3DBB590C26787A2400F5A759 /* CNServiceRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNServiceRequest.h; sourceTree = "<group>"; };
 		3DBB590D26787A2400F5A759 /* CNServiceRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNServiceRequest.m; sourceTree = "<group>"; };
+		3DBF5FB22680A0A700C246A9 /* BYDepositUsdtVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYDepositUsdtVC.h; sourceTree = "<group>"; };
+		3DBF5FB32680A0A700C246A9 /* BYDepositUsdtVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYDepositUsdtVC.m; sourceTree = "<group>"; };
+		3DBF5FB42680A0A700C246A9 /* BYDepositUsdtVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYDepositUsdtVC.xib; sourceTree = "<group>"; };
 		3DC14E3525F8D37500D6DB85 /* BYVocherCenterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYVocherCenterVC.h; sourceTree = "<group>"; };
 		3DC14E3625F8D37500D6DB85 /* BYVocherCenterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYVocherCenterVC.m; sourceTree = "<group>"; };
 		3DC14E3D25F8DC0D00D6DB85 /* BYVocherTableVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYVocherTableVC.h; sourceTree = "<group>"; };
@@ -1610,6 +1615,9 @@
 		3DCFEA9925050AD90071F356 /* 方正兰亭大黑_GBK.ttf */ = {isa = PBXFileReference; lastKnownFileType = text; path = "方正兰亭大黑_GBK.ttf"; sourceTree = "<group>"; };
 		3DCFEA9F250624CD0071F356 /* TAExampleDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAExampleDotView.m; sourceTree = "<group>"; };
 		3DCFEAA0250624CD0071F356 /* TAExampleDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAExampleDotView.h; sourceTree = "<group>"; };
+		3DD05E802681817B004B1062 /* BYDepositUsdtEditorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYDepositUsdtEditorView.h; sourceTree = "<group>"; };
+		3DD05E812681817B004B1062 /* BYDepositUsdtEditorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYDepositUsdtEditorView.m; sourceTree = "<group>"; };
+		3DD05E832681819B004B1062 /* BYDepositUsdtEditorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYDepositUsdtEditorView.xib; sourceTree = "<group>"; };
 		3DDDF88126341424009ED0AC /* BYProtocolExplainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYProtocolExplainVC.h; sourceTree = "<group>"; };
 		3DDDF88226341424009ED0AC /* BYProtocolExplainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYProtocolExplainVC.m; sourceTree = "<group>"; };
 		3DDDF88326341424009ED0AC /* BYProtocolExplainVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYProtocolExplainVC.xib; sourceTree = "<group>"; };
@@ -2347,9 +2355,6 @@
 		E98BEF3C24D3E99000E6B0C8 /* CNAmountInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNAmountInputView.h; sourceTree = "<group>"; };
 		E98BEF3D24D3E99000E6B0C8 /* CNAmountInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNAmountInputView.m; sourceTree = "<group>"; };
 		E98BEF4224D3F29800E6B0C8 /* CNAmountInputView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CNAmountInputView.xib; sourceTree = "<group>"; };
-		E993094D24D7C1BB00E0843B /* HYRechargeEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYRechargeEditView.h; sourceTree = "<group>"; };
-		E993094E24D7C1BB00E0843B /* HYRechargeEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYRechargeEditView.m; sourceTree = "<group>"; };
-		E993095024D7C1CC00E0843B /* HYRechargeEditView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYRechargeEditView.xib; sourceTree = "<group>"; };
 		E993095224D7F3CD00E0843B /* HYRechProcButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYRechProcButton.h; sourceTree = "<group>"; };
 		E993095324D7F3CD00E0843B /* HYRechProcButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYRechProcButton.m; sourceTree = "<group>"; };
 		E994D40B24E521E300D0D81A /* CardBinTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardBinTypeModel.h; sourceTree = "<group>"; };
@@ -4852,6 +4857,9 @@
 				3DDDF88126341424009ED0AC /* BYProtocolExplainVC.h */,
 				3DDDF88226341424009ED0AC /* BYProtocolExplainVC.m */,
 				3DDDF88326341424009ED0AC /* BYProtocolExplainVC.xib */,
+				3DBF5FB22680A0A700C246A9 /* BYDepositUsdtVC.h */,
+				3DBF5FB32680A0A700C246A9 /* BYDepositUsdtVC.m */,
+				3DBF5FB42680A0A700C246A9 /* BYDepositUsdtVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4874,9 +4882,6 @@
 			children = (
 				E98BEF3224D3B8BC00E6B0C8 /* ChargeManualMessgeView.h */,
 				E98BEF3124D3B8BC00E6B0C8 /* ChargeManualMessgeView.m */,
-				E993094D24D7C1BB00E0843B /* HYRechargeEditView.h */,
-				E993094E24D7C1BB00E0843B /* HYRechargeEditView.m */,
-				E993095024D7C1CC00E0843B /* HYRechargeEditView.xib */,
 				E969EB3924E2755F00D58FE9 /* HYRechargeCNYEditView.h */,
 				E969EB3A24E2755F00D58FE9 /* HYRechargeCNYEditView.m */,
 				E969EB3C24E2757400D58FE9 /* HYRechargeCNYEditView.xib */,
@@ -4888,6 +4893,9 @@
 				3D6B72EA2613371900B441D2 /* BYRechargeUSDTTopView.h */,
 				3D6B72EB2613371900B441D2 /* BYRechargeUSDTTopView.m */,
 				3D6B72ED2613374300B441D2 /* BYRechargeUSDTTopView.xib */,
+				3DD05E802681817B004B1062 /* BYDepositUsdtEditorView.h */,
+				3DD05E812681817B004B1062 /* BYDepositUsdtEditorView.m */,
+				3DD05E832681819B004B1062 /* BYDepositUsdtEditorView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5538,6 +5546,7 @@
 				D5A443E924F378CD00014DC6 /* 彩票_00037.png in Resources */,
 				E98BEF0424D1AF5800E6B0C8 /* HYXiMaTopView.xib in Resources */,
 				D5A4458524F393AD00014DC6 /* 棋牌_00037.png in Resources */,
+				3DBF5FB62680A0A800C246A9 /* BYDepositUsdtVC.xib in Resources */,
 				D5A4462024F393E500014DC6 /* 足球_00047.png in Resources */,
 				044DC69624DD1A35005CB550 /* CNShareCopyView.xib in Resources */,
 				D5A4457E24F393AD00014DC6 /* 棋牌_00084.png in Resources */,
@@ -6093,7 +6102,6 @@
 				D5A4457224F393AC00014DC6 /* 棋牌_00051.png in Resources */,
 				D5A443EE24F378CD00014DC6 /* 彩票_00093.png in Resources */,
 				D5FBFE3B24BC05E400BBCAD8 /* CNAccountInputView.xib in Resources */,
-				E993095124D7C1CC00E0843B /* HYRechargeEditView.xib in Resources */,
 				D5A443CB24F378CD00014DC6 /* 彩票_00098.png in Resources */,
 				D5A4449724F3932400014DC6 /* 数字7_00036.png in Resources */,
 				D5A443C024F378CD00014DC6 /* 彩票_00014.png in Resources */,
@@ -6101,6 +6109,7 @@
 				D5A4440324F37A9E00014DC6 /* 彩票_0000.png in Resources */,
 				D5A444BB24F3932400014DC6 /* 数字7_00051.png in Resources */,
 				D5A4458424F393AD00014DC6 /* 棋牌_00023.png in Resources */,
+				3DD05E842681819B004B1062 /* BYDepositUsdtEditorView.xib in Resources */,
 				0487C9E224D27B960013715A /* CNNotifySettingVC.xib in Resources */,
 				048A0EE124C832F800411819 /* CNElectronicVC.xib in Resources */,
 				D5A4455D24F393AC00014DC6 /* 棋牌_00043.png in Resources */,
@@ -6371,7 +6380,6 @@
 				E9D9449E24C5735B00252222 /* SplashViewController.m in Sources */,
 				E994D40D24E521E300D0D81A /* CardBinTypeModel.m in Sources */,
 				048A0EE524C8332600411819 /* CNLotteryVC.m in Sources */,
-				E993094F24D7C1BB00E0843B /* HYRechargeEditView.m in Sources */,
 				048A0EEF24C921F100411819 /* CNElResentPlayCCell.m in Sources */,
 				3DBA55EC2578F23E009A2B71 /* CNGameBtnsStackView.m in Sources */,
 				E9B5496D24CEE34F002CE6EF /* HYArticalTableViewController.m in Sources */,
@@ -6447,6 +6455,7 @@
 				3D41DE7725199DEE000CA1D6 /* VIPMonthlyModel.m in Sources */,
 				E9A269DC24D80FCC00B512FF /* HYRechargePayWayCell.m in Sources */,
 				3D972436262E96B1005E930C /* HYSuperCopartnerAlertView.m in Sources */,
+				3DBF5FB52680A0A700C246A9 /* BYDepositUsdtVC.m in Sources */,
 				E98BEF0224D1AF4300E6B0C8 /* HYXiMaTopView.m in Sources */,
 				3DBA56112580D9B3009A2B71 /* CALayer+Additions.m in Sources */,
 				0487C9AA24CFBA6A0013715A /* JJCollectionViewRoundFlowLayout+Alignment.m in Sources */,
@@ -6609,6 +6618,7 @@
 				E986A1C124CC7F2B000F9CFF /* SDCycleScrollView.m in Sources */,
 				E986A19224CA93D3000F9CFF /* BQPaymentModel.m in Sources */,
 				E969EB3524E14B4B00D58FE9 /* MineBindView.m in Sources */,
+				3DD05E822681817B004B1062 /* BYDepositUsdtEditorView.m in Sources */,
 				3DC14E4725FB52DE00D6DB85 /* BYMyWalletView.m in Sources */,
 				E98BEF2524D2C40100E6B0C8 /* HYWithdrawAddCardFooter.m in Sources */,
 				3DDEBA32264A4E4D0014EB87 /* BYYuEBaoVC.m in Sources */,
