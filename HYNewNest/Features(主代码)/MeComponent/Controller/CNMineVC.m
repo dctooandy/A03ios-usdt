@@ -37,6 +37,8 @@
 #import "CNUserCenterRequest.h"
 #import "CNLoginRequest.h"
 
+#import "BYTradeEntryVC.h"
+
 @interface CNMineVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 /// 滚动视图
@@ -168,18 +170,25 @@
 /// 充提洗
 - (IBAction)didClickMCTMBtns:(UIButton *)sender {
     //???: 充提指南 逻辑怎么处理?
-    if ([CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userInfo.starLevel == 0 && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
-        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
-        vc.type = sender.tag;
-        [self presentViewController:vc animated:YES completion:nil];
-        return;
-    }
-    
+    //移除充題指南
+//    if ([CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userInfo.starLevel == 0 && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
+//        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
+//        vc.type = sender.tag;
+//        [self presentViewController:vc animated:YES completion:nil];
+//        return;
+//    }
+//
     if (sender.tag == 0) { // 充值
-        [NNPageRouter jump2Deposit];
+//        [NNPageRouter jump2Deposit];
+        BYTradeEntryVC *tradeVC = [[BYTradeEntryVC alloc] initWithType:TradeEntryTypeDeposit];
+        [kCurNavVC pushViewController:tradeVC animated:true];
+
         
     } else if (sender.tag == 1) { // 提现
-        [NNPageRouter jump2Withdraw];
+//        [NNPageRouter jump2Withdraw];
+        BYTradeEntryVC *tradeVC = [[BYTradeEntryVC alloc] initWithType:TradeEntryTypeWithdraw];
+        [kCurNavVC pushViewController:tradeVC animated:true];
+
         
     } else { //洗码
         [self.navigationController pushViewController:[HYXiMaViewController new] animated:YES];

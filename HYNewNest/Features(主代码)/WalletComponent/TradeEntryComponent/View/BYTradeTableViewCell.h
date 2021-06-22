@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BYTradeEntryModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BYWithdrawTableViewCell : UITableViewCell
-- (void)setIndexRow:(NSInteger)row;
+@interface BYTradeTableViewCell : UITableViewCell
+- (void)setCellWithItem:(TradeEntrySetTypeItem *)item row:(NSInteger)row;
 @end
 
 NS_ASSUME_NONNULL_END

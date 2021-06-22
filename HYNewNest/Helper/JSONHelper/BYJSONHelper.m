@@ -23,7 +23,6 @@
 
 #pragma mark -json串转换成数组或字典
 + (id)dictOrArrayWithJsonString:(NSString *)jsonString{
-    
     if (jsonString == nil) {
         return nil;
     }

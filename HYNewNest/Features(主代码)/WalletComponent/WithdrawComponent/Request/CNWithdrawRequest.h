@@ -54,8 +54,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获取用户手机绑定状态
 + (void)getUserMobileStatusCompletionHandler:(nullable HandlerBlock)completionHandler;
 
-///取得Banner
-+ (void)fetchBannerHandler:(HandlerBlock)handler;
 
 @end
 

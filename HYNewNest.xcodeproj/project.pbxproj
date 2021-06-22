@@ -1001,10 +1001,12 @@
 		E9E9590124D41BC400E866B6 /* CreditQueryResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E9590024D41BC400E866B6 /* CreditQueryResultModel.m */; };
 		F73857D2267B18E200768D14 /* BYGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F73857D0267B18E200768D14 /* BYGradientButton.m */; };
 		F73857D6267B18F300768D14 /* BYGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = F73857D4267B18F300768D14 /* BYGradientView.m */; };
-		F76BEC2F267AE85800577547 /* BYWithdrawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F76BEC2D267AE85800577547 /* BYWithdrawVC.m */; };
-		F76BEC30267AE85800577547 /* BYWithdrawVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F76BEC2E267AE85800577547 /* BYWithdrawVC.xib */; };
-		F76BEC34267AF16E00577547 /* BYWithdrawTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F76BEC32267AF16E00577547 /* BYWithdrawTableViewCell.m */; };
-		F76BEC35267AF16E00577547 /* BYWithdrawTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F76BEC33267AF16E00577547 /* BYWithdrawTableViewCell.xib */; };
+		F76BEC2F267AE85800577547 /* BYTradeEntryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F76BEC2D267AE85800577547 /* BYTradeEntryVC.m */; };
+		F76BEC30267AE85800577547 /* BYTradeEntryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F76BEC2E267AE85800577547 /* BYTradeEntryVC.xib */; };
+		F76BEC34267AF16E00577547 /* BYTradeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F76BEC32267AF16E00577547 /* BYTradeTableViewCell.m */; };
+		F76D2FF2268059FE00B5BE84 /* BYTradeEntryRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F76D2FF1268059FE00B5BE84 /* BYTradeEntryRequest.m */; };
+		F786E5812680609C008B7DDE /* BYTradeEntryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F786E5802680609C008B7DDE /* BYTradeEntryModel.m */; };
+		F786E583268063C8008B7DDE /* BYTradeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F786E582268063C8008B7DDE /* BYTradeTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2410,12 +2412,16 @@
 		F73857D1267B18E200768D14 /* BYGradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BYGradientButton.h; sourceTree = "<group>"; };
 		F73857D4267B18F300768D14 /* BYGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BYGradientView.m; sourceTree = "<group>"; };
 		F73857D5267B18F300768D14 /* BYGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BYGradientView.h; sourceTree = "<group>"; };
-		F76BEC2C267AE85800577547 /* BYWithdrawVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYWithdrawVC.h; sourceTree = "<group>"; };
-		F76BEC2D267AE85800577547 /* BYWithdrawVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYWithdrawVC.m; sourceTree = "<group>"; };
-		F76BEC2E267AE85800577547 /* BYWithdrawVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYWithdrawVC.xib; sourceTree = "<group>"; };
-		F76BEC31267AF16E00577547 /* BYWithdrawTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYWithdrawTableViewCell.h; sourceTree = "<group>"; };
-		F76BEC32267AF16E00577547 /* BYWithdrawTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYWithdrawTableViewCell.m; sourceTree = "<group>"; };
-		F76BEC33267AF16E00577547 /* BYWithdrawTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYWithdrawTableViewCell.xib; sourceTree = "<group>"; };
+		F76BEC2C267AE85800577547 /* BYTradeEntryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYTradeEntryVC.h; sourceTree = "<group>"; };
+		F76BEC2D267AE85800577547 /* BYTradeEntryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYTradeEntryVC.m; sourceTree = "<group>"; };
+		F76BEC2E267AE85800577547 /* BYTradeEntryVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYTradeEntryVC.xib; sourceTree = "<group>"; };
+		F76BEC31267AF16E00577547 /* BYTradeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYTradeTableViewCell.h; sourceTree = "<group>"; };
+		F76BEC32267AF16E00577547 /* BYTradeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYTradeTableViewCell.m; sourceTree = "<group>"; };
+		F76D2FF0268059FE00B5BE84 /* BYTradeEntryRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYTradeEntryRequest.h; sourceTree = "<group>"; };
+		F76D2FF1268059FE00B5BE84 /* BYTradeEntryRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYTradeEntryRequest.m; sourceTree = "<group>"; };
+		F786E57F2680609C008B7DDE /* BYTradeEntryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYTradeEntryModel.h; sourceTree = "<group>"; };
+		F786E5802680609C008B7DDE /* BYTradeEntryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYTradeEntryModel.m; sourceTree = "<group>"; };
+		F786E582268063C8008B7DDE /* BYTradeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BYTradeTableViewCell.xib; sourceTree = "<group>"; };
 		FB136AFAD485E031A2148702 /* Pods-HYNewNestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNestTests.release.xcconfig"; path = "Target Support Files/Pods-HYNewNestTests/Pods-HYNewNestTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -4780,6 +4786,7 @@
 				0430AB1E24E24E4B00C873DC /* BankCardComponent */,
 				04C6E1E124D40219006F4DAC /* AddressComponent */,
 				E98BEEEC24D0341A00E6B0C8 /* CTZN(充提指南) */,
+				F76D2FEB2680571E00B5BE84 /* TradeEntryComponent */,
 				E986A15E24C979F6000F9CFF /* XimaComponent */,
 				E986A16224C979F6000F9CFF /* RechargeComponent */,
 				E986A17124C979F6000F9CFF /* WithdrawComponent */,
@@ -4928,9 +4935,6 @@
 				E98BEF1424D2AF9B00E6B0C8 /* HYWithdrawViewController.h */,
 				E98BEF1524D2AF9B00E6B0C8 /* HYWithdrawViewController.m */,
 				E98BEF1624D2AF9B00E6B0C8 /* HYWithdrawViewController.xib */,
-				F76BEC2C267AE85800577547 /* BYWithdrawVC.h */,
-				F76BEC2D267AE85800577547 /* BYWithdrawVC.m */,
-				F76BEC2E267AE85800577547 /* BYWithdrawVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4949,9 +4953,6 @@
 				E98BEF2624D2C41E00E6B0C8 /* HYWithdrawAddCardFooter.xib */,
 				E98BEF2E24D2F35500E6B0C8 /* HYWithdrawComfirmView.h */,
 				E98BEF2F24D2F35500E6B0C8 /* HYWithdrawComfirmView.m */,
-				F76BEC31267AF16E00577547 /* BYWithdrawTableViewCell.h */,
-				F76BEC32267AF16E00577547 /* BYWithdrawTableViewCell.m */,
-				F76BEC33267AF16E00577547 /* BYWithdrawTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5358,6 +5359,55 @@
 				F73857D4267B18F300768D14 /* BYGradientView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		F76D2FEB2680571E00B5BE84 /* TradeEntryComponent */ = {
+			isa = PBXGroup;
+			children = (
+				F76D2FEC2680576B00B5BE84 /* Controller */,
+				F76D2FED2680577700B5BE84 /* Request */,
+				F76D2FEE2680578300B5BE84 /* View */,
+				F76D2FEF2680579300B5BE84 /* Model */,
+			);
+			path = TradeEntryComponent;
+			sourceTree = "<group>";
+		};
+		F76D2FEC2680576B00B5BE84 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F76BEC2C267AE85800577547 /* BYTradeEntryVC.h */,
+				F76BEC2D267AE85800577547 /* BYTradeEntryVC.m */,
+				F76BEC2E267AE85800577547 /* BYTradeEntryVC.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F76D2FED2680577700B5BE84 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				F76D2FF0268059FE00B5BE84 /* BYTradeEntryRequest.h */,
+				F76D2FF1268059FE00B5BE84 /* BYTradeEntryRequest.m */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		F76D2FEE2680578300B5BE84 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F76BEC31267AF16E00577547 /* BYTradeTableViewCell.h */,
+				F76BEC32267AF16E00577547 /* BYTradeTableViewCell.m */,
+				F786E582268063C8008B7DDE /* BYTradeTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F76D2FEF2680579300B5BE84 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F786E57F2680609C008B7DDE /* BYTradeEntryModel.h */,
+				F786E5802680609C008B7DDE /* BYTradeEntryModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -5837,7 +5887,7 @@
 				D5A444BD24F3932400014DC6 /* 数字7_00079.png in Resources */,
 				D5A446F224F3941400014DC6 /* 合成 1_00037.png in Resources */,
 				D5A4460224F393E500014DC6 /* 足球_00018.png in Resources */,
-				F76BEC30267AE85800577547 /* BYWithdrawVC.xib in Resources */,
+				F76BEC30267AE85800577547 /* BYTradeEntryVC.xib in Resources */,
 				D5A4456424F393AC00014DC6 /* 棋牌_00083.png in Resources */,
 				044DC69024DD01AA005CB550 /* CNShareView.xib in Resources */,
 				D5A443ED24F378CD00014DC6 /* 彩票_00046.png in Resources */,
@@ -5855,7 +5905,6 @@
 				D5A4453A24F393AC00014DC6 /* 棋牌_00039.png in Resources */,
 				D5A443AB24F378CD00014DC6 /* 彩票_00034.png in Resources */,
 				048A0EE624C8332600411819 /* CNLotteryVC.xib in Resources */,
-				F76BEC35267AF16E00577547 /* BYWithdrawTableViewCell.xib in Resources */,
 				D5A446DB24F3941400014DC6 /* 合成 1_00011.png in Resources */,
 				D5A4471C24F3941400014DC6 /* 合成 1_00041.png in Resources */,
 				D5A4455224F393AC00014DC6 /* 棋牌_00059.png in Resources */,
@@ -5901,6 +5950,7 @@
 				E986A1B024CBCEFF000F9CFF /* CNAccountSelectView.xib in Resources */,
 				D5A446E124F3941400014DC6 /* 合成 1_00016.png in Resources */,
 				D5A4461C24F393E500014DC6 /* 足球_00091.png in Resources */,
+				F786E583268063C8008B7DDE /* BYTradeTableViewCell.xib in Resources */,
 				D5A444CA24F3932500014DC6 /* 数字7_00084.png in Resources */,
 				D5A446F524F3941400014DC6 /* 合成 1_00086.png in Resources */,
 				D5A443C324F378CD00014DC6 /* 彩票_00085.png in Resources */,
@@ -6348,6 +6398,7 @@
 				3DA4F19D24B3195F0039123F /* HYRefreshHeader.m in Sources */,
 				3DA4F15624B30A090039123F /* SGQRCodeGenerateManager.m in Sources */,
 				3D643F8924F29F3600B9AAA7 /* IVOtherInfoModel.m in Sources */,
+				F786E5812680609C008B7DDE /* BYTradeEntryModel.m in Sources */,
 				3D9DA66E25918DF0003C3F28 /* DSBWeekMonthListCell.m in Sources */,
 				E97054AD24DC4C0E0007F845 /* CNImageCodeModel.m in Sources */,
 				3DA4F1A124B3199A0039123F /* HYNavigationController.m in Sources */,
@@ -6357,7 +6408,7 @@
 				F73857D2267B18E200768D14 /* BYGradientButton.m in Sources */,
 				3D5B259925C019C600FD23F0 /* DSBGameRoundResModel.m in Sources */,
 				3D8A708A258C5C1A0058D50F /* SuperCopartnerTbFooter.m in Sources */,
-				F76BEC34267AF16E00577547 /* BYWithdrawTableViewCell.m in Sources */,
+				F76BEC34267AF16E00577547 /* BYTradeTableViewCell.m in Sources */,
 				E986A1A624CB3C18000F9CFF /* HYTextAlertView.m in Sources */,
 				E9D9449024C5454F00252222 /* HYNetworkConfigManager.m in Sources */,
 				040A08D424E114A900FBD534 /* CALayer+OCBarrage.m in Sources */,
@@ -6479,6 +6530,7 @@
 				3D4179D82669BFE0003928F0 /* BYChangeFundPwdVC.m in Sources */,
 				D5FBFE4224BC05E400BBCAD8 /* CNCodeInputView.m in Sources */,
 				E986A0FD24C6D1F9000F9CFF /* CNUserDetailModel.m in Sources */,
+				F76D2FF2268059FE00B5BE84 /* BYTradeEntryRequest.m in Sources */,
 				E986A15624C95F4F000F9CFF /* UIButton+Indicator.m in Sources */,
 				040A08D024E114A900FBD534 /* OCBarrageTextCell.m in Sources */,
 				0487C9EC24D297CA0013715A /* CNMessageCenterVC.m in Sources */,
@@ -6586,7 +6638,7 @@
 				3D972439262EDF9D005E930C /* SCMyRebateModel.m in Sources */,
 				E986A13D24C93460000F9CFF /* CNBonusRequest.m in Sources */,
 				3DF031FE258DA36A00AF7A36 /* CNSuperCopartnerRequest.m in Sources */,
-				F76BEC2F267AE85800577547 /* BYWithdrawVC.m in Sources */,
+				F76BEC2F267AE85800577547 /* BYTradeEntryVC.m in Sources */,
 				E9063B8C24D6BE870000273A /* HYWideOneBtnAlertView.m in Sources */,
 				3DB6A0432594A1B5004A391B /* DSBProfitFooter.m in Sources */,
 				3D31A2622657A425008613E9 /* CNYuEBaoBalanceModel.m in Sources */,
