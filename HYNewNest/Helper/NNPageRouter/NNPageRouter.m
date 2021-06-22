@@ -169,7 +169,9 @@
     [CSVisitChatmanager startServiceWithSuperVC:[NNControllerHelper currentTabBarController]
                                        chatInfo:info
                                          finish:^(CSServiceCode errCode) {
-        [CNTOPHUB showError:@"系统错误，请稍后再试"];
+        if (errCode != CSServiceCode_Request_Suc) {
+            [CNTOPHUB showError:@"系统错误，请稍后再试"];
+        }
     }];
 }
 
