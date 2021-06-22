@@ -33,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 支付确认 等待到账
 - (void)showRechargeWaiting;
 
+///密碼失敗後顯示忘記密碼
+- (void)showForgetPWDButton;
+
 - (void)hideView;
 - (void)removeView;
 

@@ -28,7 +28,7 @@
 #import "HYDownloadLinkView.h"
 #import "BYChangeFundPwdVC.h"
 #import "BYYuEBaoVC.h"
-
+#import "UIColor+Gradient.h"
 
 #import "CNEncrypt.h"
 #import "CNWithdrawRequest.h"
@@ -37,7 +37,6 @@
 #import <IVLoganAnalysis/IVLAManager.h>
 
 @interface HYWithdrawViewController () <UITableViewDelegate, UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet HYXiMaTopView *topView;
 @property (weak, nonatomic) IBOutlet UILabel *withdrawAmoutLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *sumitBtn;
@@ -53,11 +52,14 @@
 @property (weak, nonatomic) IBOutlet UIView *fundpwdEntryBg;
 @property (strong,nonatomic) HYDownloadLinkView *linkView;
 @property (assign,nonatomic) BOOL needWithdrawPwd;
+
+@property (weak, nonatomic) IBOutlet UIButton *explanationButton;
+
 @end
 
 @implementation HYWithdrawViewController
-static NSString * const KCardCell = @"HYWithdrawCardCell";
 
+static NSString * const KCardCell = @"HYWithdrawCardCell";
 
 #pragma mark - Lazy
 - (HYDownloadLinkView *)linkView {
@@ -72,7 +74,6 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     return _linkView;
 }
 
-
 #pragma mark - View Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -81,15 +82,13 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     [self addNaviRightItemWithImageName:@"service"];
     
     self.selectedIdx = 0;
-//    if ([CNUserManager shareManager].isUsdtMode) {
-//        _withdrawBtnBtmConst.constant = 175;
-//        [self setupBanner];
-//    } else {
-        _withdrawBtnBtmConst.constant = 30;
-//    }
-    [self setupTopView];
+
     [self setupTableView];
     
+    [self.explanationButton setTitleColor:[UIColor gradientFromColor:kHexColor(0x19CECE)
+                                                             toColor:kHexColor(0x10B4DD)
+                                                           withWidth:self.explanationButton.size.width]
+                                 forState:UIControlStateNormal];
     
     // 动态表单
     [CNWithdrawRequest checkIsNeedWithdrawPwdHandler:^(id responseObj, NSString *errorMsg) {
@@ -138,23 +137,6 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         make.height.equalTo(imgv.mas_width).multipliedBy(115/345.0);
         make.bottom.equalTo(self.view).offset(-40);
     }];
-}
-
-- (void)setupTopView {
-    NSString *tx = [CNUserManager shareManager].isUsdtMode?@"提币USDT":@"提现金额";
-    self.topView.lblTitle.text = [NSString stringWithFormat:@"可%@", tx];
-    [self.topView.ruleBtn setTitle:@" 说明" forState:UIControlStateNormal];
-    
-    self.topView.clickBlock = ^{
-        if (![CNUserManager shareManager].isUsdtMode && self.calculatorModel.creditExchangeFlag) {
-            [self didTapNewCNYRule];
-        } else {
-            NSString *content = [NSString stringWithFormat:@"根据《菲律宾反洗钱法》规定：\n1. %@需达到充币的1倍有效投注额\n2. 可%@金额＝总资产 - 各厅不足1%@下的金额\n3. 如参与了网站的优惠活动，%@需根据相关活动规则有效投注额\n\n具体%@情况以审核完结果为准。", tx, tx, [CNUserManager shareManager].userInfo.currency, tx, tx];
-            [HYWideOneBtnAlertView showWithTitle:[NSString stringWithFormat:@"%@说明", tx] content:content comfirmText:@"我知道了" comfirmHandler:^{
-            }];
-        }
-        
-    };
 }
 
 - (void)setupTableView {
@@ -227,6 +209,13 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 
 - (IBAction)yuebaoDidClicked:(id)sender {
     [self.navigationController pushViewController:[BYYuEBaoVC new] animated:true];
+}
+
+- (IBAction)explanationClicked:(id)sender {
+    NSString *tx = [CNUserManager shareManager].isUsdtMode ? @"提币USDT" : @"提现金额";
+    NSString *content = [NSString stringWithFormat:@"根据《菲律宾反洗钱法》规定：\n1. %@需达到充币的1倍有效投注额\n2. 可%@金额＝总资产 - 各厅不足1%@下的金额\n3. 如参与了网站的优惠活动，%@需根据相关活动规则有效投注额\n\n具体%@情况以审核完结果为准。", tx, tx, [CNUserManager shareManager].userInfo.currency, tx, tx];
+    [HYWideOneBtnAlertView showWithTitle:[NSString stringWithFormat:@"%@说明", tx] content:content comfirmText:@"我知道了" comfirmHandler:^{
+    }];
 }
 
 #pragma mark - REQUEST
@@ -317,7 +306,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                 [strongSelf requestBalance];
                 [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil]; // 让首页和我的余额刷新
             } else {
-                [strongSelf.comfirmView removeView];
+                [strongSelf.comfirmView showForgetPWDButton];
             }
         }];
         

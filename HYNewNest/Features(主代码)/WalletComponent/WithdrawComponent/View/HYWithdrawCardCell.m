@@ -28,10 +28,10 @@
     if (!_triangleLy) {
         CAShapeLayer *trangle = [CAShapeLayer layer];
         UIBezierPath *path = [UIBezierPath bezierPath];
-        [path moveToPoint:CGPointMake(kScreenWidth-60-24, 86)];
-        [path addLineToPoint:CGPointMake(kScreenWidth-60, 86-24)];
-        [path addLineToPoint:CGPointMake(kScreenWidth-60, 86)];
-        [path addLineToPoint:CGPointMake(kScreenWidth-60-24, 86)];
+        [path moveToPoint:CGPointMake(kScreenWidth-30-24, 86)];
+        [path addLineToPoint:CGPointMake(kScreenWidth-30, 86-24)];
+        [path addLineToPoint:CGPointMake(kScreenWidth-30, 86)];
+        [path addLineToPoint:CGPointMake(kScreenWidth-30-24, 86)];
         trangle.path = path.CGPath;
         UIColor *color = [UIColor jk_gradientFromColor:kHexColor(0x19CECE) toColor:kHexColor(0x10B4DD) withHeight:self.bgView.height];
         trangle.fillColor = color.CGColor;
@@ -43,7 +43,7 @@
 
 - (UIImageView *)gougou {
     if (!_gougou) {
-        UIImageView *gougou = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth-60-16, 86-16, 16, 16)];
+        UIImageView *gougou = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth-30-16, 86-16, 16, 16)];
         gougou.image = [UIImage imageNamed:@"icon-choosen"];
         gougou.contentMode = UIViewContentModeCenter;
         [self.bgView addSubview:gougou];

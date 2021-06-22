@@ -179,9 +179,8 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
     else if ([setTypeItem.name isEqualToString:@"RMB直充"]) {
         [NNPageRouter jump2BuyECoin];
     }
-    else if ([setTypeItem.name isEqualToString:@"充币"]) {
+    else if ([setTypeItem.name isEqualToString:@"数字货币充值"]) {
         [self.navigationController pushViewController:[BYRechargeUsdtVC new] animated:YES];
-
     }
     else if ([setTypeItem.name isEqualToString:@"买币"]) {
         [NNPageRouter openExchangeElecCurrencyPage];

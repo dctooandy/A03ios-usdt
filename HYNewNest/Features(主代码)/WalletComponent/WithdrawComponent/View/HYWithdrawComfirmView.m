@@ -21,7 +21,8 @@
 @property (weak, nonatomic) CNAmountInputView *inputTF;
 @property (weak,nonatomic) CNCodeInputView *codeTF;
 @property (nonatomic, weak) CNTwoStatusBtn *btn;
-@property (assign,nonatomic) BOOL needPwd; 
+@property (assign,nonatomic) BOOL needPwd;
+@property (nonatomic, assign) BOOL showForgetPwd;
 // UI2
 @property (weak, nonatomic) CNNormalInputView *nameTF;
 // DATA
@@ -126,9 +127,10 @@
     [self commonViewsSetup];
     
     if (needPwd) {
-        self.mainView.frame = CGRectMake(0, kScreenHeight-kNavPlusStaBarHeight, kScreenWidth, 426+kSafeAreaHeight+89);
+        self.mainView.frame = CGRectMake(0, 0, kScreenWidth, 400 + kSafeAreaHeight);
         [UIView animateWithDuration:0.25 animations:^{
-            self.mainView.y = kScreenHeight-kNavPlusStaBarHeight - 345 - 89 - kSafeAreaHeight;
+            self.mainView.y = kScreenHeight-kNavPlusStaBarHeight - 400 - kSafeAreaHeight;
+            NSLog(@"%f\n%f\n%f",kScreenHeight,self.mainView.y, self.mainView.height);
         }];
     }
     
@@ -174,20 +176,20 @@
     [self.mainView addSubview:inputView];
     
     if (needPwd) {
-        CNCodeInputView *codeView = [[CNCodeInputView alloc] initWithFrame:CGRectMake(30, inputView.bottom, kScreenWidth-60-110, 89)];
+        CNCodeInputView *codeView = [[CNCodeInputView alloc] initWithFrame:CGRectMake(30, inputView.bottom, kScreenWidth-60, 89)];
         self.codeTF = codeView;
         codeView.delegate = self;
         codeView.codeType = CNCodeTypeOldFundPwd;
-        [codeView setPlaceholder:@"请输入6位数字资金密码"];
+        [codeView setPlaceholder:@"请输入资金密码"];
         [self.mainView addSubview:codeView];
         
-        UIButton *changBtn = [[UIButton alloc] init];
-        [changBtn setTitle:@"修改资金密码" forState:UIControlStateNormal];
-        [changBtn setTitleColor:kHexColor(0x10B4DD) forState:UIControlStateNormal];
-        changBtn.titleLabel.font = [UIFont fontPFR15];
-        changBtn.frame = CGRectMake(codeView.right+20, codeView.bottom - 57, 90, 57);
-        [changBtn addTarget:self action:@selector(jump2ModifyFundPwd) forControlEvents:UIControlEventTouchUpInside];
-        [self.mainView addSubview:changBtn];
+//        UIButton *changBtn = [[UIButton alloc] init];
+//        [changBtn setTitle:@"修改资金密码" forState:UIControlStateNormal];
+//        [changBtn setTitleColor:kHexColor(0x10B4DD) forState:UIControlStateNormal];
+//        changBtn.titleLabel.font = [UIFont fontPFR15];
+//        changBtn.frame = CGRectMake(codeView.right+20, codeView.bottom - 57, 90, 57);
+//        [changBtn addTarget:self action:@selector(jump2ModifyFundPwd) forControlEvents:UIControlEventTouchUpInside];
+//        [self.mainView addSubview:changBtn];
         
         self.btn.top = codeView.bottom + 40;
     }
@@ -322,6 +324,23 @@
     [succView addSubview:botoomBtn];
 }
 
+- (void)showForgetPWDButton {
+    if (self.showForgetPwd == true) {
+        return;
+    }
+    
+    self.showForgetPwd = true;
+    CGRect codeFrame = self.codeTF.frame;
+    [self.codeTF setFrame:CGRectMake(codeFrame.origin.x, codeFrame.origin.y, codeFrame.size.width - 110, 89)];
+    
+    UIButton *changBtn = [[UIButton alloc] init];
+    [changBtn setTitle:@"忘记资金密码" forState:UIControlStateNormal];
+    [changBtn setTitleColor:kHexColor(0x10B4DD) forState:UIControlStateNormal];
+    changBtn.titleLabel.font = [UIFont fontPFR15];
+    changBtn.frame = CGRectMake(self.codeTF.right + 20, self.codeTF.bottom - 57, 90, 57);
+    [changBtn addTarget:self action:@selector(jump2Kefu) forControlEvents:UIControlEventTouchUpInside];
+    [self.mainView addSubview:changBtn];
+}
 
 - (void)submitClick {
     if (self.easyBlock) {
