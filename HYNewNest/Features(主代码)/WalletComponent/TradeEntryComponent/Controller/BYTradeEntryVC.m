@@ -179,7 +179,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
     else if ([setTypeItem.name isEqualToString:@"RMB直充"]) {
         [NNPageRouter jump2BuyECoin];
     }
-    else if ([setTypeItem.name isEqualToString:@"充币"]) {
+    else if ([setTypeItem.name containsString:@"充币"] || [setTypeItem.name containsString:@"充币"]) {
         [self.navigationController pushViewController:[BYDepositUsdtVC new] animated:YES];
 
     }

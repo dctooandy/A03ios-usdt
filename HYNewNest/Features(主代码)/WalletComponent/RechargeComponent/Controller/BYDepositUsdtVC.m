@@ -37,7 +37,7 @@
 
 - (HYDownloadLinkView *)linkView {
     if (!_linkView) {
-        HYDownloadLinkView *linkView = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(90, self.editorView.bottom, 200, 30) normalText:@"没有小金库？" tapableText:@"去下载" tapColor:kHexColor(0x11B5DD) hasUnderLine:YES urlValue:nil];
+        HYDownloadLinkView *linkView = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(90, self.editorView.bottom+17, 200, 30) normalText:@"没有小金库？" tapableText:@"去下载" tapColor:kHexColor(0x11B5DD) hasUnderLine:YES urlValue:nil];
         linkView.tapBlock = ^{
             NSURL *url = [NSURL URLWithString:kDownload_XJK_Address];
             if ([[UIApplication sharedApplication] canOpenURL:url]) {
