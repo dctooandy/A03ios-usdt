@@ -115,7 +115,7 @@
         }
     } else {
 //        return @[@"jl", @"xx", @"yhk", @"aq", @"yjfk"];
-        return @[@"xx", @"yhk", @"aq", @"aq", @"jl"];
+        return @[@"xx", @"yhk", @"aq", @"jl"];
     }
 }
 
