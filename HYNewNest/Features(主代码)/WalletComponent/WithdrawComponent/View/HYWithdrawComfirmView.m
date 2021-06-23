@@ -77,7 +77,7 @@
     [mainView addSubview:btnCancle];
     
     //btn
-    CNTwoStatusBtn *btn = [[CNTwoStatusBtn alloc] initWithFrame:CGRectMake(30, 272, kScreenWidth - 60, 60)];
+    CNTwoStatusBtn *btn = [[CNTwoStatusBtn alloc] initWithFrame:CGRectMake(AD(30), AD(272), kScreenWidth - AD(60), 48)];
     self.btn = btn;
     [btn setTitle:@"提交" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(submitClick) forControlEvents:UIControlEventTouchUpInside];
@@ -197,8 +197,6 @@
 }
 
 - (void)jump2ModifyFundPwd {
-//    BYChangeFundPwdVC *vc = [BYChangeFundPwdVC new];
-//    [kCurNavVC pushViewController:vc animated:YES];
     [BYChangeFundPwdVC modalVc];
     [self removeView];
 }

@@ -267,7 +267,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
 - (SDCycleScrollView *)bannerView {
     if (!_bannerView) {
         SDCycleScrollView *bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(15, 15, kScreenWidth - 30, 120) delegate:self placeholderImage:[UIImage imageNamed:@"3"]];
-        bannerView.layer.cornerRadius = 6;
+        bannerView.layer.cornerRadius = 10;
         bannerView.layer.masksToBounds = true;
         bannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
         bannerView.pageControlStyle = SDCycleScrollViewPageContolStyleBiyou;
