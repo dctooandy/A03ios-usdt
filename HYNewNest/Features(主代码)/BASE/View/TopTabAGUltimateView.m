@@ -10,7 +10,7 @@
 #import "HYHTMLViewController.h"
 #import "HYInGameHelper.h"
 #import "BYSuperCopartnerVC.h"
-#import "BYNewUsrMissionVC.h"
+#import "BYNewbieMissionVC.h"
 #import "BYYuEBaoTransferVC.h"
 
 @interface TopTabAGUltimateView()<WKNavigationDelegate, WKUIDelegate> //WKScriptMessageHandler  要加协议
@@ -232,12 +232,19 @@
                 [NNControllerHelper currentTabBarController].selectedIndex = 1;
         });
         
-    }else if ([url containsString:@"/noviceTask?"]) {
-        //新手任务
+    }
+//    else if ([url containsString:@"/noviceTask?"]) {
+//        //新手任务
+//        decisionHandler(WKNavigationActionPolicyCancel);
+//        [kCurNavVC popToRootViewControllerAnimated:NO];
+//        [kCurNavVC pushViewController:[BYNewUsrMissionVC new] animated:YES];
+//
+//    }
+    else if ([url containsString:@"/noviceTask?"]){
+        //新手任務v2
         decisionHandler(WKNavigationActionPolicyCancel);
-        [kCurNavVC popToRootViewControllerAnimated:NO];
-        [kCurNavVC pushViewController:[BYNewUsrMissionVC new] animated:YES];
-        
+        [kCurNavVC popToRootViewControllerAnimated:false];
+        [kCurNavVC pushViewController:[[BYNewbieMissionVC alloc] init] animated:true];
     }else if ([url hasPrefix:@"hy://yuebao"]) {
         // 余额宝
         decisionHandler(WKNavigationActionPolicyCancel);

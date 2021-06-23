@@ -10,7 +10,7 @@
 #import "JHVerificationCodeView.h"
 #import "CNTwoStatusBtn.h"
 #import "CNBaseTF.h"
-#import "BYRegisterSuccADVC.h"
+#import "BYRegisterSuccessVC.h"
 
 @interface CNBindPhoneVC () <UITextFieldDelegate>
 @property (strong, nonatomic) JHVerificationCodeView *codeView;
@@ -196,7 +196,7 @@
             [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
                 [CNTOPHUB showSuccess:@"绑定成功"];
                 
-                    [self.navigationController pushViewController:[BYRegisterSuccADVC new] animated:YES];
+                    [self.navigationController pushViewController:[BYRegisterSuccessVC new] animated:YES];
                 
             }];
         }
@@ -207,7 +207,7 @@
 /// 跳过
 - (IBAction)pass:(id)sender {
     // 跳过绑定，登录成功，回到首页
-    [self.navigationController pushViewController:[BYRegisterSuccADVC new] animated:YES];
+    [self.navigationController pushViewController:[BYRegisterSuccessVC new] animated:YES];
 }
 
 #pragma - mark Timer

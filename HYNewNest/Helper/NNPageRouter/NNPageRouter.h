@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 去【充】值(双模式统一入口)
 + (void)jump2Deposit;
 
++ (void)jump2DepositWithSuggestAmount:(int)amount;
+
 /// 去【买】币 (已和一键买卖币合并)
 + (void)jump2BuyECoin;
 
@@ -38,8 +40,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /// 跳转到客服
-/// @param type 客服类型
-//+(void)jump2Live800Type:(CNLive800Type)type;
 + (void)presentOCSS_VC;
 
 /// 跳转到微脉圈
@@ -54,6 +54,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 跳转到(风采)文章详情
 + (void)jump2ArticalWithArticalId:(NSString *)articleId title:(NSString *)title;
+
+///去洗碼
++ (void)jump2Xima;
+
+///去VIP
++ (void)jump2VIP;
+
++ (void)jump2NewbieMission;
 
 @end
 

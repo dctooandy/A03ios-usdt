@@ -54,14 +54,17 @@
 }
 
 + (id)POST:(NSString *)path parameters:(NSDictionary *)parameters completionHandler:(HandlerBlock)completionHandler {
-    if (!([path containsString:config_betAmountLevel] || [path containsString:config_getBalanceInfo] || [path containsString:config_getByLoginName] || [path containsString:config_getByCardBin] || [path containsString:config_createUdid] || [path containsString:config_superSignSend] || [path containsString:config_upgradeApp] || [path containsString:config_queryDSBRank] || [path containsString:config_dynamicQuery])) { //加载一些信息不要loading
+    if (!([path containsString:config_betAmountLevel] || [path containsString:config_getBalanceInfo] || [path containsString:config_getByLoginName] || [path containsString:config_getByCardBin] || [path containsString:config_createUdid] || [path containsString:config_superSignSend] || [path containsString:config_upgradeApp] || [path containsString:config_queryDSBRank] || [path containsString:config_dynamicQuery] || [path containsString:config_newapiTask])) { //加载一些信息不要loading
         [LoadingView show];
     }
     
     return [[IVHttpManager shareManager] sendRequestWithMethod:KYHTTPMethodPOST url:path parameters:parameters callBack:^(IVJResponseObject * _Nullable response, NSError * _Nullable error) {
         
         if ([response.head.errCode isEqualToString:@"0000"]) { // 正常返回
-            [LoadingView showSuccess];
+            if (![path containsString:config_newapiTask]) {
+                //新手任務頁面呼叫兩隻API Loading在新手任務頁面操控
+                [LoadingView showSuccess];
+            }
             !completionHandler ?: completionHandler(response.body, nil);
             
         } else if ([[self errorCodeOfTokenException] containsObject:response.head.errCode]) { // token过期

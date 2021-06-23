@@ -22,18 +22,6 @@
     }];
 }
 
-+ (void)requestDynamicLive800AddressCompletionHandler:(HandlerBlock)handler{
-    
-    NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"bizCode"] = @"800_DEPLOY";
-    
-    [CNBaseNetworking POST:(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
-        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-            handler(responseObj[@"data"], errorMsg);
-        }
-    }];
-}
-
 + (void)callCenterCallBackMessageId:(nullable NSString *)messageId
                             smsCode:(nullable NSString *)smsCode
                            mobileNo:(nullable NSString *)mobileNo

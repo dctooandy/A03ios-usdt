@@ -17,7 +17,7 @@
 #import "HYXiMaViewController.h"
 #import "CNDashenBoardVC.h"
 #import "HYNewCTZNViewController.h"
-#import "BYNewUsrMissionVC.h"
+#import "BYNewbieMissionVC.h"
 
 #import "CNUserInfoLoginView.h"
 #import "SDCycleScrollView.h"
@@ -116,6 +116,7 @@
         [CNTimeLog endRecordTime:CNEventAppLaunch];
         _hasRecord = YES;
     }
+    
     self.bannerView.autoScroll = YES; // 恢复滚动
     [self.infoView updateLoginStatusUIIsRefreshing:NO]; // 获取余额
     
@@ -123,6 +124,8 @@
     // 检查新版本
     [CNSplashRequest queryNewVersion:^(BOOL isHardUpdate) {
     }];
+    
+ 
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

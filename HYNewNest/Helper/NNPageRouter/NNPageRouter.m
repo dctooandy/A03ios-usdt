@@ -23,6 +23,7 @@
 
 #import "HYWithdrawActivityAlertView.h"
 #import "HYBuyECoinGuideVC.h"
+#import "BYNewbieMissionVC.h"
 
 #import "CNRechargeRequest.h"
 #import "CNWithdrawRequest.h"
@@ -32,12 +33,17 @@
 #import "KeyChain.h"
 #import <YJChat.h>
 
+#import "HYXiMaViewController.h"
 
 @implementation NNPageRouter
 
 + (void)changeRootVc2MainPage {
     HYTabBarViewController *tabVC = [[HYTabBarViewController alloc] init];
     [NNControllerHelper changeRootVc:tabVC];
+}
+
++ (void)changeRootVc2DevPage {
+
 }
 
 + (void)jump2Login {
@@ -65,6 +71,17 @@
         BYTradeEntryVC *tradeVC = [[BYTradeEntryVC alloc] initWithType:TradeEntryTypeDeposit];
         [kCurNavVC pushViewController:tradeVC animated:true];
     } else {
+        [kCurNavVC pushViewController:[HYRechargeCNYViewController new] animated:YES];
+    }
+}
+
++ (void)jump2DepositWithSuggestAmount:(int)amount {
+    if ([CNUserManager shareManager].isUsdtMode) {
+        BYRechargeUsdtVC *vc = [[BYRechargeUsdtVC alloc] init];
+        vc.suggestRecharge = amount;
+        [kCurNavVC pushViewController:vc animated:true];
+    }
+    else {
         [kCurNavVC pushViewController:[HYRechargeCNYViewController new] animated:YES];
     }
 }
@@ -158,11 +175,8 @@
     [CSVisitChatmanager startServiceWithSuperVC:[NNControllerHelper currentTabBarController]
                                        chatInfo:info
                                          finish:^(CSServiceCode errCode) {
-
         if (errCode != CSServiceCode_Request_Suc) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [NNPageRouter jump2Live800];
-            });
+            [CNTOPHUB showError:@"系统错误，请稍后再试"];
         }
     }];
 }
@@ -181,46 +195,6 @@
         }
     }];
 }
-
-+ (void)jump2Live800 {
-    __block NSString *keyName;
-//    switch (type) {
-//        case CNLive800TypeNormal:
-            keyName = @"usdt_otherLive800";
-//            break;
-//        case CNLive800TypeDeposit:
-//            keyName = @"usdt_depositLive800";
-//            break;
-//        case CNLive800TypeForgot:
-//            keyName = @"忘记密码";
-//            break;
-//        default:
-//            break;
-//    }
-    [CNServiceRequest requestDynamicLive800AddressCompletionHandler:^(id responseObj, NSString *errorMsg) {
-
-        NSArray *data = responseObj;
-        NSMutableString *newUrl;
-        for (NSDictionary *body in data) {
-            if ([body[@"domian"] isEqualToString:keyName]) {
-                newUrl = [[body objectForKey:@"url"] mutableCopy];
-                break;
-            }
-        }
-        if ([newUrl hasSuffix:@"&enterurl="]) {
-            [newUrl appendString:[IVHttpManager shareManager].domain];
-        } else {
-            NSString *enterurl = [NSString stringWithFormat:@"&enterurl=%@", [IVHttpManager shareManager].domain];
-            [newUrl appendString:enterurl];
-        }
-        [newUrl appendFormat:@"&loginname=%@&name=%@&timestamp=%ld", [CNUserManager shareManager].userInfo.loginName,  [CNUserManager shareManager].userInfo.loginName, (NSInteger)[[NSDate date] timeIntervalSince1970]*1000];
-        
-        HYHTMLViewController *vc = [[HYHTMLViewController alloc] initWithTitle:@"客服" strUrl:newUrl];
-        vc.hidesBottomBarWhenPushed = YES;
-        [kCurNavVC pushViewController:vc animated:YES];
-    }];
-}
-
 
 + (void)jump2HTMLWithStrURL:(NSString *)strURL title:(NSString *)title needPubSite:(BOOL)needPubSite{
     void(^jumpHTMLBlock)(NSString*, NSString*) = ^(NSString * url, NSString * title) {
@@ -252,6 +226,20 @@
     
 }
 
++ (void)jump2Xima {
+    HYXiMaViewController *vc = [[HYXiMaViewController alloc] init];
+    [kCurNavVC pushViewController:vc animated:true];
+}
+
++ (void)jump2VIP {
+    [kCurNavVC popToRootViewControllerAnimated:false];
+    [[NNControllerHelper currentTabBarController] setSelectedIndex:1];
+}
+
++ (void)jump2NewbieMission {
+    [kCurNavVC popToRootViewControllerAnimated:false];
+    [kCurNavVC pushViewController:[[BYNewbieMissionVC alloc] init] animated:true];
+}
 
 #pragma mark - Request
 

@@ -20,7 +20,7 @@
 #import "CNServerView.h"
 #import "CNServiceRequest.h"
 #import "HYTextAlertView.h"
-
+#import <YJChat.h>
 
 @interface HYTabBarViewController ()<UITabBarControllerDelegate, SuspendBallDelegte, CNServerViewDelegate>
 @property (nonatomic, strong) SuspendBall *suspendBall;
@@ -142,10 +142,19 @@
         self.isOpenWMQ = NO;
         return;
     }
+    WEAKSELF_DEFINE
     [CNServiceRequest queryIsOpenWMQHandler:^(id responseObj, NSString *errorMsg) {
         NSDictionary *dict = responseObj[0];
         NSString *level = dict[@"lev"];
-        self.isOpenWMQ = level.integerValue;
+        if (level.integerValue == 1) {
+            [YJChat checkManagerWithUser:[CNUserManager shareManager].printedloginName
+                                   level:[NSString stringWithFormat:@"%ld",[CNUserManager shareManager].userInfo.starLevel]
+                              customerId:[CNUserManager shareManager].userInfo.customerId
+                              complation:^(BOOL success, NSString * _Nonnull message) {
+                STRONGSELF_DEFINE
+                strongSelf.isOpenWMQ = level.integerValue && success;
+            }];
+        }
     }];
 }
 
