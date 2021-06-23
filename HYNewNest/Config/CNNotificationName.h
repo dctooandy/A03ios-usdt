@@ -26,3 +26,12 @@ UIKIT_EXTERN NSString * const HYNotShowQKFLUserDefaultKey;
 UIKIT_EXTERN NSString * const HYHomeMessageBoxLastimeDate;
 /// vip2.0
 UIKIT_EXTERN NSString * const HYVIPIsAlreadyShowV2Alert;
+
+/// 提幣教學
+UIKIT_EXTERN NSString * const HYNotShowWithdrawUserDefaultKey;
+/// 賣幣指南
+UIKIT_EXTERN NSString * const HYNotShowSellUserDefaultKey;
+/// 人民幣直充指南
+UIKIT_EXTERN NSString * const HYNotShowRMBRechrageUserDefaultKey;
+/// 數字貨幣充值指南
+UIKIT_EXTERN NSString * const HYNotShowDigitRechargeUserDefaultKey;

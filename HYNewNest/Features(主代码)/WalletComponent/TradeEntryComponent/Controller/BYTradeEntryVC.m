@@ -69,10 +69,10 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
     if (self.type == TradeEntryTypeDeposit) {
         [self setTitle:@"充值"];
         BYGradientButton *rechargeButton = self.playGuideButtons[0];
-        [rechargeButton setTitle:@"充币教学" forState:UIControlStateNormal];
+        [rechargeButton setTitle:@"RMB直充教学" forState:UIControlStateNormal];
         
         BYGradientButton *buyButton = self.playGuideButtons[1];
-        [buyButton setTitle:@"买币教学" forState:UIControlStateNormal];
+        [buyButton setTitle:@"数字货币充值教学" forState:UIControlStateNormal];
     }
     else {
         [self setTitle:@"提现"];
@@ -87,7 +87,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
     [self.tableView.tableHeaderView addSubview:self.bannerView];
     [self.tableView registerNib:[UINib nibWithNibName:@"BYTradeTableViewCell" bundle:nil]
          forCellReuseIdentifier:kTradeEntryCell];
-
+    [self addNaviRightItemWithImageName:@"kf"];
 }
 
 - (void)setupBanner {
@@ -98,6 +98,33 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
 
     [self.bannerView setImageURLStringsGroup:h5Images];
 }
+
+- (void)playTurtorialVideosWithType:(NSString *)type {
+    HYCTZNPlayerViewController *playVC = [[HYCTZNPlayerViewController alloc] init];
+    if ([type isEqualToString:@"TB"]) {
+        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5tibi"]];
+        playVC.tit = @"提币教学";
+    }
+    else if ([type isEqualToString:@"MB"]) {
+        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5maibi"]];
+        playVC.tit = @"卖币教学";
+    }
+    else if ([type isEqualToString:@"RMB"]) {
+        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5chongbi"]];
+        playVC.tit = @"RMB直充教学";
+    }
+    else if ([type isEqualToString:@"USDT"]) {
+        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5maibi"]];
+        playVC.tit = @"数字货币充值教学";
+    }
+    else {
+        return;
+    }
+    
+    playVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:playVC animated:YES completion:nil];
+}
+
 
 #pragma mark -
 #pragma mark Fetch Data From Server
@@ -165,25 +192,46 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     TradeEntrySetTypeItem *setTypeItem = self.setTypeModels[indexPath.row];
 
-    if ([setTypeItem.name isEqualToString:@"转入余额宝"]) {
+    if ([setTypeItem.type isEqualToString:@"YEB"]) { //餘額寶
         [self.navigationController pushViewController:[BYYuEBaoVC new] animated:YES];
     }
-    else if ([setTypeItem.name isEqualToString:@"提币"]) {
+    else if ([setTypeItem.type isEqualToString:@"TB"]) { //提幣
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowWithdrawUserDefaultKey] == false) {
+            [[NSUserDefaults standardUserDefaults] setBool:true forKey:HYNotShowWithdrawUserDefaultKey];
+            [self playTurtorialVideosWithType:setTypeItem.type];
+            return;
+        }
+        
         [self.navigationController pushViewController:[HYWithdrawViewController new] animated:YES];
     }
-    else if ([setTypeItem.name isEqualToString:@"卖币"]) {
+    else if ([setTypeItem.type isEqualToString:@"MB"]) { //賣幣
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowSellUserDefaultKey] == false) {
+            [[NSUserDefaults standardUserDefaults] setBool:true forKey:HYNotShowSellUserDefaultKey];
+            [self playTurtorialVideosWithType:setTypeItem.type];
+            return;
+        }
+        
         [HYWideOneBtnAlertView showWithTitle:@"卖币跳转" content:@"正在为您跳转..请稍后。\n在交易所卖币数字货币，买家会将金额支付到您的银行卡，方便快捷。" comfirmText:@"我知道了，帮我跳转" comfirmHandler:^{
             [NNPageRouter openExchangeElecCurrencyPage];
         }];
     }
-    else if ([setTypeItem.name isEqualToString:@"RMB直充"]) {
+    else if ([setTypeItem.type isEqualToString:@"RMB"]) { //人民幣直充
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowRMBRechrageUserDefaultKey] == false) {
+            [[NSUserDefaults standardUserDefaults] setBool:true forKey:HYNotShowRMBRechrageUserDefaultKey];
+            [self playTurtorialVideosWithType:setTypeItem.type];
+            return;
+        }
+        
         [NNPageRouter jump2BuyECoin];
     }
-    else if ([setTypeItem.name isEqualToString:@"数字货币充值"]) {
+    else if ([setTypeItem.type isEqualToString:@"USDT"]) {  //數位貨幣充值
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowDigitRechargeUserDefaultKey] == false) {
+            [[NSUserDefaults standardUserDefaults] setBool:true forKey:HYNotShowDigitRechargeUserDefaultKey];
+            [self playTurtorialVideosWithType:setTypeItem.type];
+            return;
+        }
+        
         [self.navigationController pushViewController:[BYDepositUsdtVC new] animated:YES];
-    }
-    else if ([setTypeItem.name isEqualToString:@"买币"]) {
-        [NNPageRouter openExchangeElecCurrencyPage];
     }
     
 }
@@ -191,34 +239,29 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
 #pragma mark -
 #pragma mark IBAction
 - (IBAction)tutorialWithdrawDepositClicked:(id)sender {
-    HYCTZNPlayerViewController *playVC = [[HYCTZNPlayerViewController alloc] init];
     if (self.type == TradeEntryTypeDeposit) {
-        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5chongbi"]];
-        playVC.tit = @"充币教学";
+        [self playTurtorialVideosWithType:@"RMB"];
     }
     else {
-        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5tibi"]];
-        playVC.tit = @"提币教学";
+        [self playTurtorialVideosWithType:@"TB"];
     }
     
-    playVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:playVC animated:YES completion:nil];
 }
 
 - (IBAction)tutorialSellBuyClicked:(id)sender {
-    HYCTZNPlayerViewController *playVC = [[HYCTZNPlayerViewController alloc] init];
     if (self.type == TradeEntryTypeDeposit) {
-        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5maibi"]];
-        playVC.tit = @"买币教学";
+        [self playTurtorialVideosWithType:@"USDT"];
     }
     else {
-        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5maibi"]];
-        playVC.tit = @"卖币教学";
+        [self playTurtorialVideosWithType:@"MB"];
     }
     
-    playVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:playVC animated:YES completion:nil];
 }
+
+- (void)rightItemAction {
+    [NNPageRouter presentOCSS_VC];
+}
+
 
 #pragma mark -
 #pragma mark Lazy Load

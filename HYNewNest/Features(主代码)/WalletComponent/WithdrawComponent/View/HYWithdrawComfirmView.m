@@ -127,10 +127,9 @@
     [self commonViewsSetup];
     
     if (needPwd) {
-        self.mainView.frame = CGRectMake(0, 0, kScreenWidth, 400 + kSafeAreaHeight);
+        self.mainView.frame = CGRectMake(0, kScreenHeight-kNavPlusStaBarHeight, kScreenWidth, 426+kSafeAreaHeight+89);
         [UIView animateWithDuration:0.25 animations:^{
-            self.mainView.y = kScreenHeight-kNavPlusStaBarHeight - 400 - kSafeAreaHeight;
-            NSLog(@"%f\n%f\n%f",kScreenHeight,self.mainView.y, self.mainView.height);
+            self.mainView.y = kScreenHeight-kNavPlusStaBarHeight - 345 - 89 - kSafeAreaHeight;
         }];
     }
     
@@ -235,7 +234,54 @@
 }
 
 - (void)showSuccessWithdraw {
-    [self showStatusCommonViews];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.mainView.y -= 81;
+    }];
+    
+    UIView *succView = [[UIView alloc] init];
+    succView.backgroundColor = kHexColor(0x212137);
+    succView.frame = CGRectMake(0, 50, kScreenWidth, 426 + kSafeAreaHeight-50);
+    self.succView = succView;
+    [self.mainView addSubview:succView];
+    
+    UIImageView *imgv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 205)];
+    imgv.contentMode = UIViewContentModeCenter;
+    imgv.image = [UIImage imageNamed:@"cg"];
+    self.depositSuccssImgv = imgv;
+    [succView addSubview:imgv];
+    
+    
+    // 俩按钮
+    CGFloat LRMargin = 40;
+    CGFloat BtnMargin = 30;
+    CGFloat BtnWIdth = (kScreenWidth - LRMargin*2 - BtnMargin)*0.5;
+    
+    CNTwoStatusBtn *topBtn = [[CNTwoStatusBtn alloc] initWithFrame:CGRectMake(kScreenWidth-LRMargin-BtnWIdth, succView.height-kSafeAreaHeight-24-48, BtnWIdth, 48)];
+    [topBtn setTitle:@"我知道了" forState:UIControlStateNormal];
+    topBtn.titleLabel.font = [UIFont fontPFM18];
+    topBtn.tag = 1;
+    [topBtn addTarget:self action:@selector(removeView) forControlEvents:UIControlEventTouchUpInside];
+    topBtn.enabled = YES;
+    [succView addSubview:topBtn];
+    self.secondBtn = topBtn;
+      
+    UIButton *botoomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [botoomBtn setTitle:@"联系客服" forState:UIControlStateNormal];
+    [botoomBtn.titleLabel setFont: [UIFont fontPFM18]];
+    [botoomBtn setTitleColor:kHexColor(0xFFFFFF) forState:UIControlStateNormal];
+    botoomBtn.frame = CGRectMake(LRMargin, topBtn.y, BtnWIdth, 48);
+    botoomBtn.tag = 0;
+    botoomBtn.layer.cornerRadius = 24;
+    botoomBtn.layer.masksToBounds = true;
+    [botoomBtn setBackgroundImage:[UIImage jk_imageWithColor:kHexColor(0x38385C)] forState:UIControlStateNormal];
+    [botoomBtn addTarget:self action:@selector(jump2Kefu) forControlEvents:UIControlEventTouchUpInside];
+    [succView addSubview:botoomBtn];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{ @autoreleasepool {
+        [UIView animateWithDuration:0.2 animations:^{
+            self.mainView.y = kScreenHeight-kNavPlusStaBarHeight - 345 - kSafeAreaHeight - 81;
+        }];
+    }});
     
     self.lblTitle.text = @"提币成功";
     

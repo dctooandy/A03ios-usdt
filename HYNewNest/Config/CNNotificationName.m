@@ -17,7 +17,11 @@ NSNotificationName const BYDidEnterHomePageNoti               = @"BYDidEnterHome
 NSNotificationName const BYDidUpdateUserProfileNoti           = @"BYDidUpdateUserProfileNoti";
 
 
-NSString * const HYNotShowCTZNEUserDefaultKey = @"HYNotShowCTZNEUserDefaultKey";
-NSString * const HYNotShowQKFLUserDefaultKey = @"HYNotShowQKFLUserDefaultKey";
-NSString * const HYHomeMessageBoxLastimeDate = @"HYHomeMessageBoxLastimeDate";
-NSString * const HYVIPIsAlreadyShowV2Alert = @"HYVIPIsAlreadyShowV2Alert";
+NSString * const HYNotShowCTZNEUserDefaultKey                 = @"HYNotShowCTZNEUserDefaultKey";
+NSString * const HYNotShowQKFLUserDefaultKey                  = @"HYNotShowQKFLUserDefaultKey";
+NSString * const HYHomeMessageBoxLastimeDate                  = @"HYHomeMessageBoxLastimeDate";
+NSString * const HYVIPIsAlreadyShowV2Alert                    = @"HYVIPIsAlreadyShowV2Alert";
+NSString * const HYNotShowWithdrawUserDefaultKey              = @"HYNotShowWithdrawUserDefaultKey";
+NSString * const HYNotShowSellUserDefaultKey                  = @"HYNotShowSellUserDefaultKey";
+NSString * const HYNotShowRMBRechrageUserDefaultKey           = @"HYNotShowRMBRechrageUserDefaultKey";
+NSString * const HYNotShowDigitRechargeUserDefaultKey         = @"HYNotShowDigitRechargeUserDefaultKey";

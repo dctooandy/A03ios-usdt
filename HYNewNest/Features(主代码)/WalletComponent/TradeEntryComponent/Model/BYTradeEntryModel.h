@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *icon;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *text;
+@property (nonatomic, copy) NSString *type;
 @end
 
 

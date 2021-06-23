@@ -64,7 +64,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 #pragma mark - Lazy
 - (HYDownloadLinkView *)linkView {
     if (!_linkView) {
-        HYDownloadLinkView *linkView = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(80, 0, 200, 30) normalText:[CNUserManager shareManager].isUsdtMode?@"提币需要资金密码，":@"提现需要资金密码，" tapableText:@"前往设置" tapColor:kHexColor(0x3176F0) hasUnderLine:YES urlValue:nil];
+        HYDownloadLinkView *linkView = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(80, 0, 200, 30) normalText:@"提现需要资金密码，" tapableText:@"前往设置" tapColor:kHexColor(0x3176F0) hasUnderLine:YES urlValue:nil];
         linkView.tapBlock = ^{
 //            [strongSelf.navigationController pushViewController:[BYChangeFundPwdVC new] animated:YES];
             [BYChangeFundPwdVC modalVc];
@@ -79,7 +79,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     [super viewDidLoad];
     self.title =  @"提现";
     [self.sumitBtn setTitle:@"提现" forState:UIControlStateNormal];
-    [self addNaviRightItemWithImageName:@"service"];
+    [self addNaviRightItemWithImageName:@"kf"];
     
     self.selectedIdx = 0;
 
