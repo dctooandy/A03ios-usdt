@@ -110,11 +110,11 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
         playVC.tit = @"卖币教学";
     }
     else if ([type isEqualToString:@"RMB"]) {
-        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5chongbi"]];
+        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5maibi"]];
         playVC.tit = @"RMB直充教学";
     }
     else if ([type isEqualToString:@"USDT"]) {
-        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5maibi"]];
+        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5chongbi"]];
         playVC.tit = @"数字货币充值教学";
     }
     else {
