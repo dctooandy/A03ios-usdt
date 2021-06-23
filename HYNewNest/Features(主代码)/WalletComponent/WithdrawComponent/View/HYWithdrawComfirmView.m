@@ -369,24 +369,24 @@
     [botoomBtn addTarget:self action:@selector(jump2Kefu) forControlEvents:UIControlEventTouchUpInside];
     [succView addSubview:botoomBtn];
 }
-
-- (void)showForgetPWDButton {
-    if (self.showForgetPwd == true) {
-        return;
-    }
-    
-    self.showForgetPwd = true;
-    CGRect codeFrame = self.codeTF.frame;
-    [self.codeTF setFrame:CGRectMake(codeFrame.origin.x, codeFrame.origin.y, codeFrame.size.width - 110, 89)];
-    
-    UIButton *changBtn = [[UIButton alloc] init];
-    [changBtn setTitle:@"忘记资金密码" forState:UIControlStateNormal];
-    [changBtn setTitleColor:kHexColor(0x10B4DD) forState:UIControlStateNormal];
-    changBtn.titleLabel.font = [UIFont fontPFR15];
-    changBtn.frame = CGRectMake(self.codeTF.right + 20, self.codeTF.bottom - 57, 90, 57);
-    [changBtn addTarget:self action:@selector(jump2Kefu) forControlEvents:UIControlEventTouchUpInside];
-    [self.mainView addSubview:changBtn];
-}
+//
+//- (void)showForgetPWDButton {
+//    if (self.showForgetPwd == true) {
+//        return;
+//    }
+//    
+//    self.showForgetPwd = true;
+//    CGRect codeFrame = self.codeTF.frame;
+//    [self.codeTF setFrame:CGRectMake(codeFrame.origin.x, codeFrame.origin.y, codeFrame.size.width - 110, 89)];
+//    
+//    UIButton *changBtn = [[UIButton alloc] init];
+//    [changBtn setTitle:@"忘记资金密码" forState:UIControlStateNormal];
+//    [changBtn setTitleColor:kHexColor(0x10B4DD) forState:UIControlStateNormal];
+//    changBtn.titleLabel.font = [UIFont fontPFR15];
+//    changBtn.frame = CGRectMake(self.codeTF.right + 20, self.codeTF.bottom - 57, 90, 57);
+//    [changBtn addTarget:self action:@selector(jump2Kefu) forControlEvents:UIControlEventTouchUpInside];
+//    [self.mainView addSubview:changBtn];
+//}
 
 - (void)submitClick {
     if (self.easyBlock) {

@@ -306,7 +306,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                 [strongSelf requestBalance];
                 [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil]; // 让首页和我的余额刷新
             } else {
-                [strongSelf.comfirmView showForgetPWDButton];
+                //
+//                [strongSelf.comfirmView showForgetPWDButton];
             }
         }];
         
