@@ -1018,6 +1018,7 @@
 		F786E583268063C8008B7DDE /* BYTradeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F786E582268063C8008B7DDE /* BYTradeTableViewCell.xib */; };
 		F7A75F1F264E405600D933D7 /* BYBorderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F1E264E405600D933D7 /* BYBorderButton.m */; };
 		F7A75F22264E507200D933D7 /* BYBorderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F21264E507200D933D7 /* BYBorderLabel.m */; };
+		F7C4CB5526832C6600EBA3B4 /* BYChangeFundPwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D57EF112668ED0A00A5CCC6 /* BYChangeFundPwdVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -5583,6 +5584,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7C4CB5526832C6600EBA3B4 /* BYChangeFundPwdVC.xib in Resources */,
 				D5A446D424F3941400014DC6 /* 合成 1_00048.png in Resources */,
 				D5A4463324F393E500014DC6 /* 足球_00048.png in Resources */,
 				D5A4456F24F393AC00014DC6 /* 棋牌_00092.png in Resources */,
