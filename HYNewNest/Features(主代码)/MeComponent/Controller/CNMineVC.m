@@ -91,25 +91,31 @@
 - (NSArray *)getCurrentFastEntryName {
     if ([CNUserManager shareManager].userInfo.newWalletFlag) {
         if ([CNUserManager shareManager].isUsdtMode) {
-            return @[@"优惠券", @"余额宝", @"交易记录", @"消息中心", @"提币地址", @"安全中心"];
+//            return @[@"优惠券", @"余额宝", @"交易记录", @"消息中心", @"提币地址", @"安全中心"];
+            return @[@"余额宝", @"优惠券", @"消息中心", @"提币地址", @"安全中心", @"交易记录"];
+
         } else {
             return @[@"优惠券", @"交易记录", @"消息中心", @"银行卡", @"安全中心", @"意见反馈"];
         }
         
     } else {
-        return @[@"交易记录", @"消息中心", [CNUserManager shareManager].isUsdtMode?@"提币地址":@"银行卡", @"安全中心", @"意见反馈"];
+//        return @[@"交易记录", @"消息中心", [CNUserManager shareManager].isUsdtMode?@"提币地址":@"银行卡", @"安全中心", @"意见反馈"];
+        return @[@"消息中心", [CNUserManager shareManager].isUsdtMode?@"提币地址":@"银行卡", @"安全中心", @"交易记录"];
+
     }
 }
 
 - (NSArray *)getCurrentFastEntryIconName {
     if ([CNUserManager shareManager].userInfo.newWalletFlag) {
         if ([CNUserManager shareManager].isUsdtMode) {
-            return @[@"yhq", @"yeb", @"jl", @"xx", @"yhk", @"aq",];
+//            return @[@"yhq", @"yeb", @"jl", @"xx", @"yhk", @"aq",];
+            return @[@"yeb", @"yhq", @"xx", @"yhk", @"aq", @"jl",];
         } else {
             return @[@"yhq", @"jl", @"xx", @"yhk", @"aq", @"yjfk"];
         }
     } else {
-        return @[@"jl", @"xx", @"yhk", @"aq", @"yjfk"];
+//        return @[@"jl", @"xx", @"yhk", @"aq", @"yjfk"];
+        return @[@"xx", @"yhk", @"aq", @"aq", @"jl"];
     }
 }
 
