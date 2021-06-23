@@ -14,6 +14,12 @@
                 <outlet property="protocolContainer" destination="ocF-yA-ncw" id="fqm-Lb-swz"/>
                 <outlet property="protocolQuestBtn" destination="oxL-Yi-2TB" id="DfX-eo-SSJ"/>
                 <outlet property="tfAmount" destination="9QB-qy-vQJ" id="Meq-MS-1Su"/>
+                <outletCollection property="shortCutAmountBtns" destination="X0A-ff-r3Q" id="OtB-Um-Hyi"/>
+                <outletCollection property="shortCutAmountBtns" destination="Pub-DM-tSB" id="Em8-6d-zVg"/>
+                <outletCollection property="shortCutAmountBtns" destination="OGD-wc-ino" id="cUL-Mb-jSI"/>
+                <outletCollection property="shortCutAmountBtns" destination="hqS-jo-WIi" id="fym-KN-kvw"/>
+                <outletCollection property="shortCutAmountBtns" destination="nA0-EW-BS5" id="sXY-iF-gd0"/>
+                <outletCollection property="shortCutAmountBtns" destination="Fhe-L7-7IV" id="8uA-Lk-jSU"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

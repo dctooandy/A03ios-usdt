@@ -32,7 +32,7 @@
 @property (nonatomic, strong) NSDictionary *tutorialsVideos;
 
 @property (nonatomic, strong) NSString *h5Root;
-
+@property (nonatomic, copy) NSString *amount_list; //快捷输入金额
 @end
 
 @implementation BYTradeEntryVC
@@ -152,6 +152,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
             
             strongSelf.tutorialsVideos = [BYJSONHelper dictOrArrayWithJsonString:model.video];
             strongSelf.h5Root = model.h5_root;
+            strongSelf.amount_list = model.amount_list;
                 
             dispatch_async(dispatch_get_main_queue(), ^{
                 [strongSelf.tableView reloadData];
@@ -230,7 +231,9 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
             [self playTurtorialVideosWithType:setTypeItem.type];
             return;
         }
-        [self.navigationController pushViewController:[BYDepositUsdtVC new] animated:YES];
+        BYDepositUsdtVC *vc = [BYDepositUsdtVC new];
+        vc.amount_list = self.amount_list;
+        [self.navigationController pushViewController:vc animated:YES];
     }
     
 }

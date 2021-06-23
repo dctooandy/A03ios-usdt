@@ -20,9 +20,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *tfAmount;
 @property (weak, nonatomic) IBOutlet UIButton *protocolQuestBtn;
 @property (weak, nonatomic) IBOutlet UILabel *amountTipsLb;
+@property (strong, nonatomic) IBOutletCollection(BYThreeStatusBtn) NSArray *shortCutAmountBtns;
 
 /// 选中的协议
-@property (nonatomic, copy, readwrite) NSString *rechargeAmount;
 @property (nonatomic, copy, readwrite) NSString *selectedProtocol;
 @property (nonatomic, strong) NSArray *protocols; // 所有协议
 //@property (nonatomic, copy) NSString *selectProtocolAddress;
@@ -136,6 +136,20 @@
 //    self.protocolAddrs = protocolAddrsArr;
     
     [self setupProtocolView];
+}
+
+- (void)setRechargeAmount:(NSString *)rechargeAmount {
+    _rechargeAmount = rechargeAmount;
+    self.tfAmount.text = rechargeAmount;
+    [self checkEnableStatus:self.tfAmount];
+}
+
+- (void)setAmount_list:(NSString *)amount_list {
+    _amount_list = amount_list;
+    NSArray *amounts = [amount_list componentsSeparatedByString:@";"];
+    [self.shortCutAmountBtns enumerateObjectsUsingBlock:^(BYThreeStatusBtn  * _Nonnull  obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj setTitle:amounts[idx] forState:UIControlStateNormal];
+    }];
 }
 
 

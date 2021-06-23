@@ -70,6 +70,9 @@
     _selIdx = 0;
     _editorView.delegate = self;
     _depoBtn.enabled = NO;
+    if (self.amount_list.length > 0) {
+        _editorView.amount_list = self.amount_list;
+    }
     
     [_xjk setupGradientColorDirection:BYLblGrdtColorDirectionLeftRight From:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE)];
     [_qtqb setupGradientColorDirection:BYLblGrdtColorDirectionLeftRight From:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE)];
@@ -109,6 +112,9 @@
 - (void)setSelIdx:(NSInteger)selIdx {
     _selIdx = selIdx;
     _editorView.deposModel = self.depositModels[_selIdx];
+    if (self.suggestRecharge != 0) {
+        _editorView.rechargeAmount = [NSString stringWithFormat:@"%i", self.suggestRecharge];
+    }
 }
 
 

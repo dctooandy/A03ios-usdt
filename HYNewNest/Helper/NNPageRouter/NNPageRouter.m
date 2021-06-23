@@ -16,7 +16,6 @@
 #import "HYWithdrawViewController.h"
 #import "BYDepositUsdtVC.h"
 #import "BYTradeEntryVC.h"
-#import "BYRechargeUsdtVC.h"
 #import "HYRechargeCNYViewController.h"
 #import "CNLoginRegisterVC.h"
 #import "CNBindPhoneVC.h"
@@ -67,7 +66,6 @@
 
 + (void)jump2Deposit {
     if ([CNUserManager shareManager].isUsdtMode) {
-//        [kCurNavVC pushViewController:[BYRechargeUsdtVC new] animated:YES];
         BYTradeEntryVC *tradeVC = [[BYTradeEntryVC alloc] initWithType:TradeEntryTypeDeposit];
         [kCurNavVC pushViewController:tradeVC animated:true];
     } else {
@@ -77,7 +75,7 @@
 
 + (void)jump2DepositWithSuggestAmount:(int)amount {
     if ([CNUserManager shareManager].isUsdtMode) {
-        BYRechargeUsdtVC *vc = [[BYRechargeUsdtVC alloc] init];
+        BYDepositUsdtVC *vc = [[BYDepositUsdtVC alloc] init];
         vc.suggestRecharge = amount;
         [kCurNavVC pushViewController:vc animated:true];
     }

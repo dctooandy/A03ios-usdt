@@ -18,7 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BYDepositUsdtEditorView : CNBaseXibView
 @property (weak,nonatomic) id<BYDepositUsdtEditorDelegate> delegate;
-@property (nonatomic, copy, readonly) NSString *rechargeAmount; //!< 用户写入的金额
+@property (nonatomic, copy) NSString *amount_list; //快捷输入金额
+@property (nonatomic, copy) NSString *rechargeAmount; //!< 用户写入的金额
 @property (nonatomic, copy, readonly) NSString *selectedProtocol; //!< 选中的协议
 @property (strong,nonatomic,nullable) DepositsBankModel * deposModel; //!< 模型
 @end

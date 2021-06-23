@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *setType;
 @property (nonatomic, copy) NSString *video;
 @property (nonatomic, copy) NSString *h5_root;
+@property (nonatomic, copy) NSString *amount_list;
 @end
 
 NS_ASSUME_NONNULL_END
