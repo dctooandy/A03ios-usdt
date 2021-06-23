@@ -83,6 +83,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *switchBtn;
 @property (weak, nonatomic) IBOutlet UIStackView *USDTBusinessView;
 @property (weak, nonatomic) IBOutlet UIView *lastEntryView;
+@property (weak, nonatomic) IBOutlet UIView *bottomMidleView;
 
 @end
 
@@ -282,7 +283,7 @@
     self.switchBtn.selected = !isUsdtMode;
     
     self.lastEntryView.alpha = isNewWallet?1:0;
-        
+    self.bottomMidleView.alpha = isNewWallet?1:0;
     self.shareBgView.hidden = !isUsdtMode;
     self.shareBgViewH.constant = isUsdtMode?AD(90):0;
     
@@ -298,6 +299,7 @@
             if (idx < arr.count) {
                 obj.text = arr[idx];
             }
+            
         }];
         [self.entryIconBtns enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSArray *arr = [self getCurrentFastEntryIconName];
