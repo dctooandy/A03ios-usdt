@@ -230,7 +230,6 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
             [self playTurtorialVideosWithType:setTypeItem.type];
             return;
         }
-        
         [self.navigationController pushViewController:[BYDepositUsdtVC new] animated:YES];
     }
     
