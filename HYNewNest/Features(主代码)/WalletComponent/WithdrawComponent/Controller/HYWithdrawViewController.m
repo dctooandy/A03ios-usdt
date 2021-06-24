@@ -54,6 +54,7 @@
 @property (assign,nonatomic) BOOL needWithdrawPwd;
 
 @property (weak, nonatomic) IBOutlet UIButton *explanationButton;
+@property (weak, nonatomic) IBOutlet UIButton *transferYEBButton;
 
 @end
 
@@ -89,6 +90,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                                                              toColor:kHexColor(0x10B4DD)
                                                            withWidth:self.explanationButton.size.width]
                                  forState:UIControlStateNormal];
+    
+    [self.transferYEBButton setHidden:[CNUserManager shareManager].isUsdtMode ? false : true];
     
     // 动态表单
     [CNWithdrawRequest checkIsNeedWithdrawPwdHandler:^(id responseObj, NSString *errorMsg) {

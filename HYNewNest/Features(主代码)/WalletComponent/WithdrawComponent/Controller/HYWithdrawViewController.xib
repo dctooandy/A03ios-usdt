@@ -15,6 +15,7 @@
                 <outlet property="fundpwdEntryBg" destination="hRM-ja-CUf" id="rvK-5Q-ZNV"/>
                 <outlet property="sumitBtn" destination="az0-7H-f0l" id="z9F-8V-hpw"/>
                 <outlet property="tableView" destination="RxF-ga-guY" id="3Zw-aD-Kh8"/>
+                <outlet property="transferYEBButton" destination="9m7-lJ-3tP" id="RCg-oX-wtV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="withdrawAmoutLabel" destination="qOV-h4-A6b" id="Xt1-XX-YVm"/>
                 <outlet property="withdrawBtnBtmConst" destination="qPo-gs-R0N" id="XJA-I0-tpS"/>
