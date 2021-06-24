@@ -185,17 +185,9 @@
 //    }
 //
     if (sender.tag == 0) { // 充值
-//        [NNPageRouter jump2Deposit];
-        BYTradeEntryVC *tradeVC = [[BYTradeEntryVC alloc] initWithType:TradeEntryTypeDeposit];
-        [kCurNavVC pushViewController:tradeVC animated:true];
-
-        
+        [NNPageRouter jump2Deposit];        
     } else if (sender.tag == 1) { // 提现
-//        [NNPageRouter jump2Withdraw];
-        BYTradeEntryVC *tradeVC = [[BYTradeEntryVC alloc] initWithType:TradeEntryTypeWithdraw];
-        [kCurNavVC pushViewController:tradeVC animated:true];
-
-        
+        [NNPageRouter jump2Withdraw];        
     } else { //洗码
         [self.navigationController pushViewController:[HYXiMaViewController new] animated:YES];
     }
