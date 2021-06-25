@@ -241,8 +241,6 @@
 		3D643F9B24F396BC00B9AAA7 /* GameLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F9A24F396BC00B9AAA7 /* GameLineModel.m */; };
 		3D643F9E24F39BA600B9AAA7 /* HYInGameHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D643F9D24F39BA600B9AAA7 /* HYInGameHelper.m */; };
 		3D65D1162568E35300917E1B /* SocketRocketUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D65D1152568E35300917E1B /* SocketRocketUtility.m */; };
-		3D6B72EC2613371900B441D2 /* BYRechargeUSDTTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6B72EB2613371900B441D2 /* BYRechargeUSDTTopView.m */; };
-		3D6B72EE2613374300B441D2 /* BYRechargeUSDTTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6B72ED2613374300B441D2 /* BYRechargeUSDTTopView.xib */; };
 		3D8A3B3A264E4DEA00AA9AB7 /* CNYuEBaoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A3B39264E4DEA00AA9AB7 /* CNYuEBaoRequest.m */; };
 		3D8A707E258B0B110058D50F /* SuperCopartnerTbDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A707D258B0B110058D50F /* SuperCopartnerTbDataSource.m */; };
 		3D8A7082258B3CBA0058D50F /* SuperCopartnerTbHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7081258B3CBA0058D50F /* SuperCopartnerTbHeader.m */; };
@@ -255,8 +253,6 @@
 		3D9700272599DB2A003238C4 /* HYDSBSlideUpViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9700252599DB2A003238C4 /* HYDSBSlideUpViewCell.xib */; };
 		3D972436262E96B1005E930C /* HYSuperCopartnerAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D972435262E96B1005E930C /* HYSuperCopartnerAlertView.m */; };
 		3D972439262EDF9D005E930C /* SCMyRebateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D972438262EDF9D005E930C /* SCMyRebateModel.m */; };
-		3D97243D26300D98005E930C /* BYRechargeUsdtVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97243B26300D98005E930C /* BYRechargeUsdtVC.m */; };
-		3D97243E26300D98005E930C /* BYRechargeUsdtVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D97243C26300D98005E930C /* BYRechargeUsdtVC.xib */; };
 		3D9DA66125908327003C3F28 /* DSBWeekMonthListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */; };
 		3D9DA669259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA668259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.m */; };
 		3D9DA66E25918DF0003C3F28 /* DSBWeekMonthListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DA66C25918DF0003C3F28 /* DSBWeekMonthListCell.m */; };
@@ -287,7 +283,6 @@
 		3DA4F1A424B31A110039123F /* NSString+Font.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4F1A324B31A110039123F /* NSString+Font.m */; };
 		3DB600AD262572A8002278F8 /* BYThreeStatusBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB600AC262572A8002278F8 /* BYThreeStatusBtn.m */; };
 		3DB600B32627E7C9002278F8 /* HYOneImgBtnAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB600B22627E7C9002278F8 /* HYOneImgBtnAlertView.m */; };
-		3DB600B62627FB5C002278F8 /* HYNewUsrMissonAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB600B52627FB5C002278F8 /* HYNewUsrMissonAlertView.m */; };
 		3DB6A03E2594A127004A391B /* DSBProfitHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6A03D2594A127004A391B /* DSBProfitHeader.m */; };
 		3DB6A0402594A137004A391B /* DSBProfitHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB6A03F2594A137004A391B /* DSBProfitHeader.xib */; };
 		3DB6A0432594A1B5004A391B /* DSBProfitFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6A0422594A1B5004A391B /* DSBProfitFooter.m */; };
@@ -1446,9 +1441,6 @@
 		3D65D11025651F3000917E1B /* 币游_devDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "币游_devDebug.entitlements"; sourceTree = "<group>"; };
 		3D65D1142568E35300917E1B /* SocketRocketUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketRocketUtility.h; sourceTree = "<group>"; };
 		3D65D1152568E35300917E1B /* SocketRocketUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketRocketUtility.m; sourceTree = "<group>"; };
-		3D6B72EA2613371900B441D2 /* BYRechargeUSDTTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYRechargeUSDTTopView.h; sourceTree = "<group>"; };
-		3D6B72EB2613371900B441D2 /* BYRechargeUSDTTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYRechargeUSDTTopView.m; sourceTree = "<group>"; };
-		3D6B72ED2613374300B441D2 /* BYRechargeUSDTTopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYRechargeUSDTTopView.xib; sourceTree = "<group>"; };
 		3D8A3B38264E4DEA00AA9AB7 /* CNYuEBaoRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNYuEBaoRequest.h; sourceTree = "<group>"; };
 		3D8A3B39264E4DEA00AA9AB7 /* CNYuEBaoRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNYuEBaoRequest.m; sourceTree = "<group>"; };
 		3D8A707C258B0B110058D50F /* SuperCopartnerTbDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuperCopartnerTbDataSource.h; sourceTree = "<group>"; };
@@ -1472,9 +1464,6 @@
 		3D972435262E96B1005E930C /* HYSuperCopartnerAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSuperCopartnerAlertView.m; sourceTree = "<group>"; };
 		3D972437262EDF9D005E930C /* SCMyRebateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCMyRebateModel.h; sourceTree = "<group>"; };
 		3D972438262EDF9D005E930C /* SCMyRebateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCMyRebateModel.m; sourceTree = "<group>"; };
-		3D97243A26300D98005E930C /* BYRechargeUsdtVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYRechargeUsdtVC.h; sourceTree = "<group>"; };
-		3D97243B26300D98005E930C /* BYRechargeUsdtVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYRechargeUsdtVC.m; sourceTree = "<group>"; };
-		3D97243C26300D98005E930C /* BYRechargeUsdtVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYRechargeUsdtVC.xib; sourceTree = "<group>"; };
 		3D9DA65F25908327003C3F28 /* DSBWeekMonthListDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBWeekMonthListDataSource.h; sourceTree = "<group>"; };
 		3D9DA66025908327003C3F28 /* DSBWeekMonthListDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBWeekMonthListDataSource.m; sourceTree = "<group>"; };
 		3D9DA667259083B7003C3F28 /* DSBRecharWithdrwRankDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBRecharWithdrwRankDataSource.h; sourceTree = "<group>"; };
@@ -1534,8 +1523,6 @@
 		3DB600AC262572A8002278F8 /* BYThreeStatusBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYThreeStatusBtn.m; sourceTree = "<group>"; };
 		3DB600B12627E7C9002278F8 /* HYOneImgBtnAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYOneImgBtnAlertView.h; sourceTree = "<group>"; };
 		3DB600B22627E7C9002278F8 /* HYOneImgBtnAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYOneImgBtnAlertView.m; sourceTree = "<group>"; };
-		3DB600B42627FB5C002278F8 /* HYNewUsrMissonAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYNewUsrMissonAlertView.h; sourceTree = "<group>"; };
-		3DB600B52627FB5C002278F8 /* HYNewUsrMissonAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYNewUsrMissonAlertView.m; sourceTree = "<group>"; };
 		3DB6A03C2594A127004A391B /* DSBProfitHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBProfitHeader.h; sourceTree = "<group>"; };
 		3DB6A03D2594A127004A391B /* DSBProfitHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBProfitHeader.m; sourceTree = "<group>"; };
 		3DB6A03F2594A137004A391B /* DSBProfitHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSBProfitHeader.xib; sourceTree = "<group>"; };
@@ -4913,9 +4900,6 @@
 				0430AB3824E3CCCF00C873DC /* CNRechargeChosePayTypeVC.h */,
 				0430AB3924E3CCD000C873DC /* CNRechargeChosePayTypeVC.m */,
 				0430AB3A24E3CCD000C873DC /* CNRechargeChosePayTypeVC.xib */,
-				3D97243A26300D98005E930C /* BYRechargeUsdtVC.h */,
-				3D97243B26300D98005E930C /* BYRechargeUsdtVC.m */,
-				3D97243C26300D98005E930C /* BYRechargeUsdtVC.xib */,
 				3DDDF88126341424009ED0AC /* BYProtocolExplainVC.h */,
 				3DDDF88226341424009ED0AC /* BYProtocolExplainVC.m */,
 				3DDDF88326341424009ED0AC /* BYProtocolExplainVC.xib */,
@@ -4952,9 +4936,6 @@
 				E9A269D924D80FCC00B512FF /* HYRechargePayWayCell.h */,
 				E9A269DA24D80FCC00B512FF /* HYRechargePayWayCell.m */,
 				E9A269DB24D80FCC00B512FF /* HYRechargePayWayCell.xib */,
-				3D6B72EA2613371900B441D2 /* BYRechargeUSDTTopView.h */,
-				3D6B72EB2613371900B441D2 /* BYRechargeUSDTTopView.m */,
-				3D6B72ED2613374300B441D2 /* BYRechargeUSDTTopView.xib */,
 				3DD05E802681817B004B1062 /* BYDepositUsdtEditorView.h */,
 				3DD05E812681817B004B1062 /* BYDepositUsdtEditorView.m */,
 				3DD05E832681819B004B1062 /* BYDepositUsdtEditorView.xib */,
@@ -5078,8 +5059,6 @@
 				3D31B946253ACEF8005275BD /* HYWithdrawActivityAlertView.m */,
 				3DB600B12627E7C9002278F8 /* HYOneImgBtnAlertView.h */,
 				3DB600B22627E7C9002278F8 /* HYOneImgBtnAlertView.m */,
-				3DB600B42627FB5C002278F8 /* HYNewUsrMissonAlertView.h */,
-				3DB600B52627FB5C002278F8 /* HYNewUsrMissonAlertView.m */,
 				3D972434262E96B0005E930C /* HYSuperCopartnerAlertView.h */,
 				3D972435262E96B1005E930C /* HYSuperCopartnerAlertView.m */,
 				3DED18BB266232F500823BD7 /* BYYuEBaoTransAlertView.h */,
@@ -5886,7 +5865,6 @@
 				D5A443DC24F378CD00014DC6 /* 彩票_00017.png in Resources */,
 				0487C9DB24D2627D0013715A /* CNXimaRecordTCell.xib in Resources */,
 				D5A4456124F393AC00014DC6 /* 棋牌_00056.png in Resources */,
-				3D97243E26300D98005E930C /* BYRechargeUsdtVC.xib in Resources */,
 				D5A4458224F393AD00014DC6 /* 棋牌_00021.png in Resources */,
 				D5A4446B24F3932400014DC6 /* 数字7_00077.png in Resources */,
 				D5A4471024F3941400014DC6 /* 合成 1_00056.png in Resources */,
@@ -6201,7 +6179,6 @@
 				D5A443B124F378CD00014DC6 /* 彩票_00063.png in Resources */,
 				3DB6A0452594A1C5004A391B /* DSBProfitFooter.xib in Resources */,
 				D5A446D724F3941400014DC6 /* 合成 1_00013.png in Resources */,
-				3D6B72EE2613374300B441D2 /* BYRechargeUSDTTopView.xib in Resources */,
 				D5A443CF24F378CD00014DC6 /* 彩票_00081.png in Resources */,
 				D5A443EA24F378CD00014DC6 /* 彩票_00050.png in Resources */,
 				3D41DE7B25199DEE000CA1D6 /* VIPChartDJTQCell.xib in Resources */,
@@ -6612,7 +6589,6 @@
 				D5FBFE8D24BC28B200BBCAD8 /* CNBaseVC.m in Sources */,
 				3D41DEA5251AF662000CA1D6 /* VIPCumulateIdButton.m in Sources */,
 				3D41DE9A2519F996000CA1D6 /* VIPCumulateIdHeader.m in Sources */,
-				3D6B72EC2613371900B441D2 /* BYRechargeUSDTTopView.m in Sources */,
 				3DB600B32627E7C9002278F8 /* HYOneImgBtnAlertView.m in Sources */,
 				3D41DE7325199DEE000CA1D6 /* VIPDSBUsrModel.m in Sources */,
 				3DC14E4C25FB561000D6DB85 /* BYOldMyWalletView.m in Sources */,
@@ -6655,7 +6631,6 @@
 				0487CA0D24D3CC380013715A /* CNFeedBackVC.m in Sources */,
 				3DBA55DB2570D188009A2B71 /* BetAmountModel.m in Sources */,
 				048A0EE024C832F800411819 /* CNElectronicVC.m in Sources */,
-				3D97243D26300D98005E930C /* BYRechargeUsdtVC.m in Sources */,
 				042372A324CE65A000D37B9C /* CNSettingVC.m in Sources */,
 				0487CA0624D3BAB90013715A /* CNInviteFriendVC.m in Sources */,
 				3D564E2024F3C02C006846DD /* MessageBoxModel.m in Sources */,
@@ -6730,7 +6705,6 @@
 				3D9700222599D8D4003238C4 /* HYDSBSlideUpView.m in Sources */,
 				E98BEF1724D2AF9B00E6B0C8 /* HYWithdrawViewController.m in Sources */,
 				0487C96E24CE9A630013715A /* BRDatePickerView.m in Sources */,
-				3DB600B62627FB5C002278F8 /* HYNewUsrMissonAlertView.m in Sources */,
 				E9063B9324D6F3480000273A /* HYNewCTZNCell.m in Sources */,
 				3D643F9B24F396BC00B9AAA7 /* GameLineModel.m in Sources */,
 				3DBA55E42578EFCC009A2B71 /* CNDashenBoardVC.m in Sources */,
@@ -6937,7 +6911,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 103;
+				CURRENT_PROJECT_VERSION = 104;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = 29V6J8T68S;
 				ENABLE_BITCODE = NO;
@@ -6979,7 +6953,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.11;
+				MARKETING_VERSION = 3.7.12;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-geh";
 				PRODUCT_NAME = "币游_dev";
@@ -6998,7 +6972,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游Release.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 103;
+				CURRENT_PROJECT_VERSION = 104;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = JW7F38ZMYT;
 				ENABLE_BITCODE = NO;
@@ -7039,7 +7013,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.11;
+				MARKETING_VERSION = 3.7.12;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
 				PRODUCT_NAME = "币游";
