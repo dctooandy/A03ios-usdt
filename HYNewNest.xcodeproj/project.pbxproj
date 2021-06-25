@@ -3903,14 +3903,14 @@
 			isa = PBXGroup;
 			children = (
 				3DC840F12682F75100AEB1B6 /* BYNewbieMissionVC.h */,
-				3DC840F22682F75100AEB1B6 /* BYMissionCompleteVC.xib */,
+				3DC840F92682F75200AEB1B6 /* BYNewbieMissionVC.m */,
 				3DC840F32682F75200AEB1B6 /* BYNewbieMissionVC.xib */,
+				3DC840F22682F75100AEB1B6 /* BYMissionCompleteVC.xib */,
 				3DC840F42682F75200AEB1B6 /* BYMissionCompleteVC.m */,
 				3DC840F52682F75200AEB1B6 /* BYNewbieCashGiftAlertVC.h */,
 				3DC840F62682F75200AEB1B6 /* BYNewbieCashGiftAlertVC.xib */,
 				3DC840F72682F75200AEB1B6 /* BYNewbieAlertVC.xib */,
 				3DC840F82682F75200AEB1B6 /* BYNewbieAlertVC.m */,
-				3DC840F92682F75200AEB1B6 /* BYNewbieMissionVC.m */,
 				3DC840FA2682F75200AEB1B6 /* BYMissionCompleteVC.h */,
 				3DC840FB2682F75200AEB1B6 /* BYNewbieCashGiftAlertVC.m */,
 				3DC840FC2682F75200AEB1B6 /* BYNewbieAlertVC.h */,
@@ -6937,7 +6937,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 102;
+				CURRENT_PROJECT_VERSION = 103;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = 29V6J8T68S;
 				ENABLE_BITCODE = NO;
@@ -6979,7 +6979,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.10;
+				MARKETING_VERSION = 3.7.11;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-geh";
 				PRODUCT_NAME = "币游_dev";
@@ -6998,7 +6998,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游Release.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 102;
+				CURRENT_PROJECT_VERSION = 103;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = JW7F38ZMYT;
 				ENABLE_BITCODE = NO;
@@ -7039,7 +7039,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.10;
+				MARKETING_VERSION = 3.7.11;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-ivx";
 				PRODUCT_NAME = "币游";
