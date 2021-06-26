@@ -37,14 +37,16 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRemoteNotification) name:BYDidEnterHomePageNoti object:nil];
     
     // 3S 统计
-#if DEBUG
+#ifdef DEBUG
     [CNTimeLog debugEnable:YES];
 #endif
     [CNTimeLog debugEnable:NO];
     [CNTimeLog configProduct:@"A03"];
     
     // 天网埋点
+#ifndef RELEASE
     [IVLAManager setLogEnabled:YES];
+#endif
     [IVLAManager needUploadWithNewDomain:NO];
     [IVLAManager setPayegisSDKDomain:@"http://115.84.241.53/did/"];
     [IVLAManager startWithProductId:@"A03"           //产品ID
@@ -62,11 +64,6 @@
         return [CNUserManager shareManager].userInfo.loginName;
     }];
     
-    // pages
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.rootViewController = [[SplashViewController alloc] init];
-    [self.window makeKeyAndVisible];
-    
     // Keyboard
     [self setupKeyboard];
     
@@ -79,6 +76,11 @@
 #else
     [YJChat initChatWithProductId:@"A03" env:2];
 #endif
+    
+    // pages
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.rootViewController = [[SplashViewController alloc] init];
+    [self.window makeKeyAndVisible];
     
     //这个是应用未启动但是通过点击通知的横幅来启动应用的时候
     NSDictionary *userInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];

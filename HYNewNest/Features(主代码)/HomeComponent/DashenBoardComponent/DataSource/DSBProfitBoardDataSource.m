@@ -289,6 +289,7 @@ NSString *const ProfitHeaderId = @"DSBProfitHeader";
             // setup webSocket
             [self setupWebSocket];
             
+            self->_retryTimes = 0;
             self->_isAsking = NO;
             
         } else {

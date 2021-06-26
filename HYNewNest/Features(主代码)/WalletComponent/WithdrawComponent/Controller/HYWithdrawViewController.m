@@ -291,6 +291,9 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 - (void)sumbimtWithdrawAmount:(NSString *)amout pwd:(NSString *)pwd{
     // 请求最后一步的闭包
     WEAKSELF_DEFINE
+    if (self.elecCardsArr.count == 0) {
+        return;
+    }
     AccountModel *model = self.elecCardsArr[self.selectedIdx];
     NSNumber *amount = [NSNumber numberWithDouble:[amout doubleValue]];
     
