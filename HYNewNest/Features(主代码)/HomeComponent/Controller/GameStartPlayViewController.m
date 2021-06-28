@@ -91,7 +91,7 @@ form.submit();\
 
 - (void)refresh{
     if ([self isAGQJGame] == true) {
-        [CNTimeLog startRecordTime:CNEventAGQJLaunch];
+        [CNTimeLog AGQJReLoad];
     }
     
     [self.webView reload];
@@ -108,8 +108,6 @@ form.submit();\
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _launchDate = [NSDate date];
-
     if ([self isAGQJGame] == true) {
         [CNTimeLog AGQJFirstLoad];
     }

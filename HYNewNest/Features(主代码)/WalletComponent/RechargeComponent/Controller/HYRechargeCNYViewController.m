@@ -68,7 +68,6 @@
 #pragma mark - View life cycle
 
 - (instancetype)init {
-    _launchDate = [NSDate date];
     [CNTimeLog startRecordTime:CNEventPayLaunch];
     if (self = [super init]) {
     }
@@ -81,7 +80,6 @@
     [self addNaviRightItemWithImageName:@"kf"];
     
     _selcPayWayIdx = 0;
-    _launchDate = [NSDate date];
     
     [self setupEmptyView];
     [self setupSubmitBtn];
