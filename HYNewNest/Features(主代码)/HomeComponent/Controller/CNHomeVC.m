@@ -228,7 +228,6 @@
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         __block NSString *nowDateStr = [dateFormatter stringFromDate:nowDate];
 
-        // 筛选等级
         if ([agoDateStr isEqualToString:nowDateStr]) {
             MyLog(@"弹窗盒子一天就显示一次");
         }else{
@@ -263,7 +262,7 @@
                     }
                 }];
                 self.msgBoxModels = models;
-                if (imgs.count) {
+                if (imgs.count > 0 && imgs.count == models.count) {
                     [CNMessageBoxView showMessageBoxWithImages:imgs onView:self.view tapBlock:^(int idx) {
                         MessageBoxModel *m = self.msgBoxModels[idx];
                         [NNPageRouter jump2HTMLWithStrURL:m.link title:@"活动" needPubSite:NO];
