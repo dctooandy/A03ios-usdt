@@ -39,8 +39,9 @@
     // 3S 统计
 #ifdef DEBUG
     [CNTimeLog debugEnable:YES];
-#endif
+#else
     [CNTimeLog debugEnable:NO];
+#endif
     [CNTimeLog configProduct:@"A03"];
     
     // 天网埋点
@@ -93,11 +94,12 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-//    [IN3SAnalytics exitApp];
+    [CNTimeLog exitApp];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     application.applicationIconBadgeNumber = 0;
+    [CNTimeLog endRecordTime:CNEventAppLaunch];
 }
 
 

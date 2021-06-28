@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CNBaseVC : UIViewController
 {
     BOOL _hasRecord;     //第一次进入页面 手动赋值  用于记录
-    NSDate *_launchDate; //刚进入页面时间 手动赋值  用于计时
 }
 -(void)addNaviLeftItemNil;
 /// 导航栏右边按钮图片和事件，事件需重写
