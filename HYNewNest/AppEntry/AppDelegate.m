@@ -51,7 +51,7 @@
     [IVLAManager needUploadWithNewDomain:NO];
     [IVLAManager setPayegisSDKDomain:@"http://115.84.241.53/did/"];
     [IVLAManager startWithProductId:@"A03"           //产品ID
-                        productName:@"hyyl"          //产品Name
+                        productName:@"hy"          //产品Name
                           channelId:@""     //渠道号
                               appId:@"5308e20b"      //分配的appId
                              appKey:@"5308e20b"      //分配的appKey

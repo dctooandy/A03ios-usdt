@@ -49,7 +49,7 @@
             if ([[responseObj allKeys] containsObject:@"referenceId"]) {
                 dispatch_async(dispatch_queue_create(0, 0), ^{
                     // 取款成功埋点
-                    [IVLAManager singleEventId:@"A03_withdraw_create" errorCode:@"" errorMsg:@"" customsData:@{@"requestId":responseObj[@"referenceId"]}];
+                    [IVLAManager singleEventId:@"A03_withdraw_create" errorCode:@"3846" errorMsg:@"" customsData:@{@"requestId":responseObj[@"referenceId"]}];
                 });
             }
         }
