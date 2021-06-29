@@ -23,6 +23,39 @@
         // Fallback on earlier versions
     }
     self.view.backgroundColor = kHexColor(0x10101C); //主暗蓝色背景色
+    self.automaticallyAdjustsScrollViewInsets = false;//  防止状态栏向下偏移
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (self.navigationController) {
+        // 背景色
+         if (self.bgColor)
+         {
+             self.view.backgroundColor = self.bgColor;
+         }
+        //隐藏导航栏
+        if (self.hideNavgation) {
+            self.navigationController.navigationBar.translucent = YES;
+            [self.navigationController setNavigationBarHidden:YES animated:YES];
+        } else {
+            self.navigationController.navigationBar.translucent = NO;
+            [self.navigationController setNavigationBarHidden:NO animated:YES];
+        }
+        // vc的view去掉导航栏的边距，但是保留导航栏的NavBar
+        if (self.makeTranslucent) {
+            self.navigationController.navigationBar.translucent = YES;
+        } else {
+            self.navigationController.navigationBar.translucent = NO;
+        }
+        // 导航栏背景透明 但是不隐藏导航栏(保留按钮&功能)
+        if (self.navBarTransparent) {
+            [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+        } else {
+            [self.navigationController.navigationBar setBackgroundImage:[UIImage jk_imageWithColor:kHexColor(0x1A1A2C)] forBarMetrics:UIBarMetricsDefault];
+        }
+    }
 }
 
 -(void)addNaviLeftItemNil{
