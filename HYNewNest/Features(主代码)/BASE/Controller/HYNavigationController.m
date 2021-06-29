@@ -30,22 +30,19 @@
 }
 
 - (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)setupAppearance {
     
     [self setNeedsStatusBarAppearanceUpdate];
     
-    [self.navigationBar setShadowImage:[[UIImage alloc]init]];
-//    if ([CNSkinManager currSkinType] == SKinTypeBlack) {
+    [self.navigationBar setShadowImage:[UIImage new]];
         
-        [self.navigationBar setBackgroundImage:[UIImage jk_imageWithColor:kHexColor(0x1A1A2C)] forBarMetrics:UIBarMetricsDefault];
-        [self.navigationBar setBarTintColor:[UIColor whiteColor]];
-        [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName: [UIFont fontPFSB18]}];
-//    } else {
-//        // 白色主题
-//    }
+    self.navigationBar.translucent = NO;
+    [self.navigationBar setBackgroundImage:[UIImage jk_imageWithColor:kHexColor(0x1A1A2C)] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationBar setBarTintColor:[UIColor whiteColor]];
+    [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName: [UIFont fontPFSB18]}];
     
 }
 
@@ -125,33 +122,15 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
 }
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    viewController.automaticallyAdjustsScrollViewInsets = false;//  防止状态栏向下偏移
-    // 背景色
-     if (viewController.bgColor)
-     {
-         viewController.view.backgroundColor = viewController.bgColor;
-     }
+    // 不知道为什么首页缺少这里 导航栏还是会出现
     // 隐藏导航栏
      if (viewController.hideNavgation) {
          self.navigationBar.translucent = YES;
-         [self setNavigationBarHidden:YES animated:NO];
+         [self setNavigationBarHidden:YES animated:YES];
      } else {
          self.navigationBar.translucent = NO;
-         [self setNavigationBarHidden:NO animated:NO];
+         [self setNavigationBarHidden:NO animated:YES];
      }
-    // vc的view去掉导航栏的边距，但是保留导航栏的NavBar
-     if (viewController.makeTranslucent) {
-         self.navigationBar.translucent = YES;
-     } else {
-         self.navigationBar.translucent = NO;
-     }
-    // 导航栏背景透明 但是不隐藏导航栏(保留按钮&功能)
-    if (viewController.navBarTransparent) {
-        [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    } else {
-        [self.navigationBar setBackgroundImage:[UIImage jk_imageWithColor:kHexColor(0x1A1A2C)] forBarMetrics:UIBarMetricsDefault];
-    }
-
     
 }
 
