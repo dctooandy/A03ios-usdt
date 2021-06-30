@@ -123,14 +123,15 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     // 不知道为什么首页缺少这里 导航栏还是会出现
+    // 首頁的ChildVC 未設定 hideNavgation = true 因此導航欄還是會出現
     // 隐藏导航栏
-     if (viewController.hideNavgation) {
-         self.navigationBar.translucent = YES;
-         [self setNavigationBarHidden:YES animated:YES];
-     } else {
-         self.navigationBar.translucent = NO;
-         [self setNavigationBarHidden:NO animated:YES];
-     }
+//     if (viewController.hideNavgation) {
+//         self.navigationBar.translucent = YES;
+//         [self setNavigationBarHidden:YES animated:YES];
+//     } else {
+//         self.navigationBar.translucent = NO;
+//         [self setNavigationBarHidden:NO animated:YES];
+//     }
     
 }
 
