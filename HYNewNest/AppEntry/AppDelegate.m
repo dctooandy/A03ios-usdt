@@ -45,11 +45,9 @@
     [CNTimeLog configProduct:@"A03"];
     
     // 天网埋点
-#ifndef RELEASE
+#ifdef DEBUG
     [IVLAManager setLogEnabled:YES];
 #endif
-    [IVLAManager needUploadWithNewDomain:NO];
-    [IVLAManager setPayegisSDKDomain:@"http://115.84.241.53/did/"];
     [IVLAManager startWithProductId:@"A03"           //产品ID
                         productName:@"hy"          //产品Name
                           channelId:@""     //渠道号
