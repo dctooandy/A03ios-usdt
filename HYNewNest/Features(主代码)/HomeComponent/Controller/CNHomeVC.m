@@ -204,12 +204,14 @@
         [CNChessVC new],
     ];
     for (CNBaseVC *vc in childVCs) {
+        vc.hideNavgation = true;
         [self addChildViewController:vc];
         [self.pageView addSubview:vc.view];
     }
     
     // 大神榜
     CNDashenBoardVC *vc = [CNDashenBoardVC new];
+    vc.hideNavgation = true;
     vc.delegate = self;
     [self addChildViewController:vc];
     [self.dashenView addSubview:vc.view];
