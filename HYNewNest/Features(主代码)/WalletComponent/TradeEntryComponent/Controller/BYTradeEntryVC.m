@@ -136,7 +136,20 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
     [BYTradeEntryRequest fetchTradeHandler:^(id responseObj, NSString *errorMsg) {
         STRONGSELF_DEFINE
         if (!errorMsg) {
-            BYTradeEntryModel *model = [BYTradeEntryModel cn_parse:responseObj][self.type == TradeEntryTypeDeposit ? 0 : 1];
+            NSArray<BYTradeEntryModel *> *models = [BYTradeEntryModel cn_parse:responseObj];
+            __block BYTradeEntryModel *model;
+
+            [models enumerateObjectsUsingBlock:^(BYTradeEntryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (weakSelf.type == TradeEntryTypeDeposit && [obj.type isEqualToString:@"充值"]) {
+                    model = obj;
+                    *stop = true;
+                }
+                else if (weakSelf.type == TradeEntryTypeWithdraw && [obj.type isEqualToString:@"提现"]) {
+                    model = obj;
+                    *stop = true;
+                }
+            }];
+            
             NSArray *banners = [BYJSONHelper dictOrArrayWithJsonString:model.banner][@"h5"];
             strongSelf.bannerModels = [[NSMutableArray alloc] init];
 
