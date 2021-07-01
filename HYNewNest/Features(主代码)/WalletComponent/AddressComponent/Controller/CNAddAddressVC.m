@@ -205,7 +205,6 @@
     [self configUI];
 }
 
-// 去下载
 - (IBAction)submit:(id)sender {
     
     switch (_addrType) {
@@ -218,7 +217,7 @@
                                                    isOneKey:NO
                                                  validateId:self.codeInputView.smsModel.validateId
                                                   messageId:self.codeInputView.smsModel.messageId
-                                                    smsCode:nil
+                                                    smsCode:self.codeInputView.code
                                                     handler:^(id responseObj, NSString *errorMsg) {
                 if (!errorMsg) {
                     [CNTOPHUB showSuccess:@"小金库添加成功"];
@@ -236,6 +235,7 @@
                                                  bankAlias:self.platformInputView.text
                                                 validateId:self.codeInputView.smsModel.validateId
                                                  messageId:self.codeInputView.smsModel.messageId
+                                                   smsCode:self.codeInputView.code
                                                    handler:^(id responseObj, NSString *errorMsg) {
                 if (!errorMsg) {
                     [CNTOPHUB showSuccess:@"地址添加成功"];

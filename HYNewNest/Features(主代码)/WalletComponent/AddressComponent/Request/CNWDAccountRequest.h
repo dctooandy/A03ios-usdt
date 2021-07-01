@@ -85,6 +85,7 @@ typedef enum : NSUInteger {
                          bankAlias:(NSString *)bankAlias
                         validateId:(nullable NSString *)validateId
                          messageId:(nullable NSString *)messageId
+                           smsCode:(nullable NSString *)smsCode
                            handler:(HandlerBlock)handler;
 
 
