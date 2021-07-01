@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param accountId 账户ID mode=0时必传
 /// @param handler 回调
 + (void)withdrawCalculatorMode:(NSNumber *)mode
-                        amount:(nullable NSNumber *)amount
+                        amount:(nullable NSString *)amount
                      accountId:(nullable NSString *)accountId
                        handler:(HandlerBlock)handler ;
 
@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param remarks 备注
 /// @param subWallAccountId 子账户ID (CNY转账才需要传)
 /// @param handler 回调
-+ (void)submitWithdrawRequestAmount:(NSNumber *)amount
++ (void)submitWithdrawRequestAmount:(NSString *)amount
                           accountId:(NSString *)accountId
                            protocol:(NSString *)protocol
                             remarks:(NSString *)remarks
