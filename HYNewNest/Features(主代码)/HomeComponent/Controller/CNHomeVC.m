@@ -95,7 +95,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
-    
+      
     [self userDidLogin];
     [self requestAnnouncement];
     [self requestCDNAndDomain];
@@ -170,7 +170,7 @@
     self.dashenView.backgroundColor = self.pageView.backgroundColor = self.scrollContentView.backgroundColor = self.view.backgroundColor;
     self.scrollContentW.constant = kScreenWidth;
     
-//    [self setupBBSEntryBallView];
+    [self setupBBSEntryBallView];
     
     // 配置游戏和大神榜子控制器内容
     [self initSubVcAndAddSubVcViews];
@@ -185,7 +185,7 @@
 }
 
 - (void)setupBBSEntryBallView {
-    WMDragView *bbsBall = [[WMDragView alloc] initWithFrame:CGRectMake(0, kScreenHeight *0.75, 40, 40)];
+    WMDragView *bbsBall = [[WMDragView alloc] initWithFrame:CGRectMake(kScreenWidth-60, kScreenHeight *0.65, 60, 60)];
     bbsBall.backgroundColor = [UIColor clearColor];
     bbsBall.freeRect = CGRectMake(0, kStatusBarHeight, kScreenWidth, kScreenHeight-kTabBarHeight-kStatusBarHeight);
     bbsBall.isKeepBounds = YES;
