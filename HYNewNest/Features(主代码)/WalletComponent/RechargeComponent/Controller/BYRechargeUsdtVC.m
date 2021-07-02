@@ -53,7 +53,6 @@ static NSString * const cellName = @"BYRechargeUSDTTopView";
 #pragma mark - VIEW LIFE CYCLE
 
 - (instancetype)init {
-    _launchDate = [NSDate date];
     [CNTimeLog startRecordTime:CNEventPayLaunch];
     if (self = [super init]) {
     }

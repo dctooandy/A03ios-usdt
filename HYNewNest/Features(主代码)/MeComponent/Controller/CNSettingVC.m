@@ -36,6 +36,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
         [self.headerIV sd_setImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userDetail.avatar]];
         if ([[CNUserManager shareManager].userDetail.gender isEqualToString:@"F"]) {
