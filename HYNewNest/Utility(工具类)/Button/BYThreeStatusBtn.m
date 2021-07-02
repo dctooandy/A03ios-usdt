@@ -47,6 +47,9 @@
     self.layer.masksToBounds = YES;
 }
 
+- (void)dealloc {
+    [self removeObserver:self forKeyPath:@"highlighted"];
+}
 
 #pragma mark - Setter
 

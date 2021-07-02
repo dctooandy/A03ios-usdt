@@ -398,7 +398,10 @@
             for (Result *result in limitTask.result) {
                 [receivedId appendString:[NSString stringWithFormat:@"%@;", result.ID]];
             }
-            [receivedId deleteCharactersInRange:NSMakeRange(receivedId.length - 1, 1)];
+            if ([receivedId hasSuffix:@";"] && receivedId.length > 1) {
+                [receivedId deleteCharactersInRange:NSMakeRange(receivedId.length - 1, 1)];
+            }
+
             
             [self getRewardWithReceivedId:receivedId andCode:limitTask.result.firstObject.prizeCode];
             break;
