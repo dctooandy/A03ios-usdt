@@ -10,6 +10,13 @@
 
 @implementation CNHomeRequest
 
+//+ (void)test{
+//    
+//    [self POST:kGatewayExtraPath(@"test") parameters:@{} completionHandler:^(id responseObj, NSString *errorMsg) {
+//        
+//    }];
+//}
+
 + (void)queryMessageBoxHandler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];

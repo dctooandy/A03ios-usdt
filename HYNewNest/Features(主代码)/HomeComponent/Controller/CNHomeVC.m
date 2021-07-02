@@ -99,6 +99,8 @@
     [self userDidLogin];
     [self requestAnnouncement];
     [self requestCDNAndDomain];
+    
+//    [CNHomeRequest test];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYSwitchAcoutSuccNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYLoginSuccessNotification object:nil];

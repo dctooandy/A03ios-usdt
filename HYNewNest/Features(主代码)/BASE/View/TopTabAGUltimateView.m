@@ -180,6 +180,18 @@
         [kCurNavVC popToRootViewControllerAnimated:YES];
         [NNControllerHelper currentTabBarController].selectedIndex = 0;
         
+    }else if ([url hasPrefix:@"hy://profit"]){
+        //优惠
+        decisionHandler(WKNavigationActionPolicyCancel);
+        [kCurNavVC popToRootViewControllerAnimated:YES];
+        [NNControllerHelper currentTabBarController].selectedIndex = 2;
+        
+    }else if ([url hasPrefix:@"hy://user"]){
+        //个人中心
+        decisionHandler(WKNavigationActionPolicyCancel);
+        [kCurNavVC popToRootViewControllerAnimated:YES];
+        [NNControllerHelper currentTabBarController].selectedIndex = 4;
+        
     }else if ([url hasPrefix:@"hy://withdraw"]){
         //提现
         decisionHandler(WKNavigationActionPolicyCancel);
