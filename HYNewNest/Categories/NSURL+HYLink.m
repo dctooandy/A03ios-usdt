@@ -65,9 +65,9 @@
     }
     
     if ([strUrl containsString:@"?"]) {
-        strUrl = [NSString stringWithFormat:@"%@&appid=%@",strUrl,[IVHttpManager shareManager].appId];
+        strUrl = [NSString stringWithFormat:@"%@&appid=A03DS02",strUrl];
     }else{
-        strUrl = [NSString stringWithFormat:@"%@?appid=%@",strUrl,[IVHttpManager shareManager].appId];
+        strUrl = [NSString stringWithFormat:@"%@?appid=A03DS02",strUrl];
     }
     
     if ([CNUserManager shareManager].isLogin) {
@@ -78,11 +78,11 @@
         strUrl = [NSString stringWithFormat:@"%@&ticket=%@",strUrl,ticket];
     }
     //dark light
-    if ([CNSkinManager currSkinType] == SKinTypeBlack) {
-        strUrl = [NSString stringWithFormat:@"%@&theme=dark",strUrl];
-    }else{
-        strUrl = [NSString stringWithFormat:@"%@&theme=light",strUrl];
-    }
+//    if ([CNSkinManager currSkinType] == SKinTypeBlack) {
+//        strUrl = [NSString stringWithFormat:@"%@&theme=dark",strUrl];
+//    }else{
+//        strUrl = [NSString stringWithFormat:@"%@&theme=light",strUrl];
+//    }
     
     return strUrl;
 }
@@ -95,11 +95,11 @@
     }
     NSString *strUrl = [NSString stringWithFormat:@"%@/detailsPage?id=%@&appid=%@",[IVHttpManager shareManager].domain, ID, [IVHttpManager shareManager].appId];
     //dark light
-    if ([CNSkinManager currSkinType] == SKinTypeBlack) {
-        strUrl = [NSString stringWithFormat:@"%@&theme=dark",strUrl];
-    }else{
-        strUrl = [NSString stringWithFormat:@"%@&theme=light",strUrl];
-    }
+//    if ([CNSkinManager currSkinType] == SKinTypeBlack) {
+//        strUrl = [NSString stringWithFormat:@"%@&theme=dark",strUrl];
+//    }else{
+//        strUrl = [NSString stringWithFormat:@"%@&theme=light",strUrl];
+//    }
     strUrl = [strUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     return strUrl;
 }

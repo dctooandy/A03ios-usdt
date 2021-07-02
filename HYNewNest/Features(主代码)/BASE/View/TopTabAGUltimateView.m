@@ -386,9 +386,9 @@
 
 -(void)loadWebViewWithURL:(NSString*)webUrl{
     if ([webUrl containsString:@"http"]) {
-        NSString *agwebUrl = [NSString stringWithFormat:@"%@&webApp=%@",webUrl,@"true"];
-        _webUrl = [agwebUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-        [self.wkWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.webUrl]]];
+//        NSString *agwebUrl = [NSString stringWithFormat:@"%@&webApp=%@",webUrl,@"true"];
+        _webUrl = [webUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        [self.wkWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_webUrl]]];
     }
 }
 
