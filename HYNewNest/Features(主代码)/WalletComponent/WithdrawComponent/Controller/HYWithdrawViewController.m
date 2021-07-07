@@ -36,7 +36,9 @@
 #import "BalanceManager.h"
 #import <IVLoganAnalysis/IVLAManager.h>
 
-@interface HYWithdrawViewController () <UITableViewDelegate, UITableViewDataSource>
+#import "BYWithdrawConfirmVC.h"
+
+@interface HYWithdrawViewController () <UITableViewDelegate, UITableViewDataSource, BYWithdrawDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *withdrawAmoutLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *sumitBtn;
@@ -65,7 +67,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 #pragma mark - Lazy
 - (HYDownloadLinkView *)linkView {
     if (!_linkView) {
-        HYDownloadLinkView *linkView = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(80, 0, 200, 30) normalText:@"提现需要资金密码，" tapableText:@"前往设置" tapColor:kHexColor(0x3176F0) hasUnderLine:YES urlValue:nil];
+        HYDownloadLinkView *linkView = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(80, 0, 240, 30) normalText:@"提现需要资金密码，" tapableText:@"前往设置" tapColor:kHexColor(0x3176F0) hasUnderLine:YES urlValue:nil];
         linkView.tapBlock = ^{
 //            [strongSelf.navigationController pushViewController:[BYChangeFundPwdVC new] animated:YES];
             [BYChangeFundPwdVC modalVc];
@@ -193,13 +195,26 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         [CNTOPHUB showError:@"未能获取到可提余额，请下拉刷新试试"];
         return;
     }
-    WEAKSELF_DEFINE
-    HYWithdrawComfirmView *view = [[HYWithdrawComfirmView alloc] initWithAmountModel:self.moneyModel needPwd:self.needWithdrawPwd sumbitBlock:^(NSString * withdrawAmout, NSString *pwdText) {
-        STRONGSELF_DEFINE
-        [strongSelf sumbimtWithdrawAmount:withdrawAmout pwd:[CNEncrypt encryptString:pwdText]];
-    }];
-    self.comfirmView = view;
-    [self.view addSubview:view];
+    
+    if ([CNUserManager shareManager].isUsdtMode) {
+        BYWithdrawConfirmVC *vc = [[BYWithdrawConfirmVC alloc] initWithDelegate:self
+                                                            selectedBankAccount:self.elecCardsArr[self.selectedIdx]
+                                                            andAvailableBalance:self.moneyModel];
+
+        vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+        [NNControllerHelper getCurrentViewController].definesPresentationContext = YES;
+        vc.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+        [kCurNavVC presentViewController:vc animated:YES completion:nil];
+    }
+    else {
+        WEAKSELF_DEFINE
+        HYWithdrawComfirmView *view = [[HYWithdrawComfirmView alloc] initWithAmountModel:self.moneyModel needPwd:self.needWithdrawPwd sumbitBlock:^(NSString * withdrawAmout, NSString *pwdText) {
+            STRONGSELF_DEFINE
+            [strongSelf sumbimtWithdrawAmount:withdrawAmout pwd:[CNEncrypt encryptString:pwdText]];
+        }];
+        self.comfirmView = view;
+        [self.view addSubview:view];
+    }
 }
 
 - (void)didTapNewCNYRule {
@@ -438,6 +453,10 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 //    [tableView reloadData];
 }
 
-
+#pragma mark -
+#pragma mark BYWithdrawDelegate
+- (void)sumitWithdrawSuccess {
+    [self requestBalance];
+}
 
 @end

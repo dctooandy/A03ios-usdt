@@ -104,7 +104,6 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Nh5-Kr-QD0"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="dzl-57-vHi"/>
                     </constraints>
                 </view>
             </subviews>
