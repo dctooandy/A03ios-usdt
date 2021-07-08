@@ -103,9 +103,8 @@
 #pragma mark -
 #pragma mark Withdraw
 - (void)submitWithdraw {
-    NSNumber *amount = [NSNumber numberWithDouble:[self.amountInputView.money doubleValue]];
     WEAKSELF_DEFINE
-    [CNWithdrawRequest submitWithdrawRequestAmount:amount
+    [CNWithdrawRequest submitWithdrawRequestAmount:self.amountInputView.money
                                          accountId:self.account.accountId
                                           protocol:self.account.protocol
                                            remarks:@""
