@@ -24,6 +24,7 @@ typedef enum : NSInteger {
 - (void)buttonArrayAction:(CNActionType)type;
 - (void)loginAction;
 - (void)registerAction;
+- (void)questionAction;
 @end
 
 NS_ASSUME_NONNULL_BEGIN

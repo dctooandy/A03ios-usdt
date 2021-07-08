@@ -141,7 +141,7 @@
     [self requestHomeBanner];
     
     if ([CNUserManager shareManager].isLogin) {
-        self.infoViewH.constant = 110;
+        self.infoViewH.constant = 114;
         // 弹窗盒子
          [self requestNewsBox];
         // 游戏线路
@@ -458,6 +458,9 @@
     [self.navigationController pushViewController:[CNLoginRegisterVC registerVC] animated:YES];
 }
 
+- (void)questionAction {
+    NSLog(@"弹窗");
+}
 
 #pragma mark - GameBtnsStackViewDelegate 游戏切换业务
 

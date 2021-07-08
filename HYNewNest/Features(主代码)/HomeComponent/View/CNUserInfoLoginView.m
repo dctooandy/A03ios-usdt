@@ -18,7 +18,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *vipImgv;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLb;
 @property (weak, nonatomic) IBOutlet UILabel *currencyLb;
-@property (weak, nonatomic) IBOutlet UIButton *switchModeBtn;
+@property (weak, nonatomic) IBOutlet UIButton *questionBtn;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *switchModeSegc;
+@property (weak, nonatomic) IBOutlet UILabel *usrNameLb;
+
 @property (weak, nonatomic) IBOutlet UIButton *withdrawCNYBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *usdtADImgv;
 
@@ -34,9 +37,23 @@
 - (void)loadViewFromXib {
     [super loadViewFromXib];
 
+    [self editSegmentControlUIStatus];
     [self refreshBottomBtnsStatus];
     // 提现右上角NEW
 //    [self.withdrawCNYBtn showRightTopImageName:@"new_txgb" size:CGSizeMake(30, 14) offsetX:-30 offsetYMultiple:0];
+}
+
+- (void)editSegmentControlUIStatus {
+    UIColor *gdColor = [UIColor gradientColorImageFromColors:@[kHexColor(0x19CECE),kHexColor(0x10B4DD)] gradientType:GradientTypeUprightToLowleft imgSize:CGSizeMake(55, 26)];
+    if (@available(iOS 13.0, *)) {
+        [_switchModeSegc setSelectedSegmentTintColor:gdColor];
+    } else {
+        [_switchModeSegc setTintColor:gdColor];
+    }
+    [_switchModeSegc setBackgroundColor:kHexColor(0x3c3d62)];
+    [_switchModeSegc setTitleTextAttributes:@{NSForegroundColorAttributeName:gdColor} forState:UIControlStateNormal];
+    [_switchModeSegc setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
+    
 }
 
 - (void)updateLoginStatusUIIsRefreshing:(BOOL)isRefreshing {
@@ -50,14 +67,6 @@
                 float amount = model.yebAmount.floatValue + model.yebInterest.floatValue + model.balance.floatValue;
                 [self.moneyLb hideIndicatorWithText:[@(amount) jk_toDisplayNumberWithDigit:2]];
             }];
-        }
-        
-        if ([CNUserManager shareManager].isUiModeHasOptions) {
-            self.switchModeBtn.hidden = NO;
-            self.vipImgv.hidden = YES;
-        } else {
-            self.switchModeBtn.hidden = YES;
-            self.vipImgv.hidden = NO;
         }
     } else {
         [self configLogoutUI];
@@ -79,8 +88,16 @@
     UIImage *img = [UIImage imageNamed:[NSString stringWithFormat:@"vip%ld", (long)level]];
     self.vipImgv.image = img;
     
+    self.usrNameLb.text = [CNUserManager shareManager].printedloginName;
     self.currencyLb.text = [CNUserManager shareManager].isUsdtMode?@"USDT":@"CNY";
-
+    
+    if ([CNUserManager shareManager].isUiModeHasOptions) {
+        _switchModeSegc.hidden = NO;
+        _questionBtn.hidden = NO;
+    } else {
+        _switchModeSegc.hidden = YES;
+        _questionBtn.hidden = YES;
+    }
 }
 
 - (void)reloadBalance{
@@ -90,7 +107,7 @@
         [[BalanceManager shareManager] requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
             [self.moneyLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.switchModeBtn setEnabled:YES];
+                [self.switchModeSegc setEnabled:YES];
             });
         }];
     }
@@ -104,14 +121,14 @@
 
 - (void)refreshBottomBtnsStatus {
     if ([CNUserManager shareManager].isUsdtMode) {
-        self.switchModeBtn.selected = NO;
+        _switchModeSegc.selectedSegmentIndex = 1;
         self.currencyLb.text = @"USDT";
         if ([CNUserManager shareManager].userInfo.starLevel == 0) {
             self.usdtADImgv.hidden = NO;
         }
 
     } else {
-        self.switchModeBtn.selected = YES;
+        _switchModeSegc.selectedSegmentIndex = 0;
         self.currencyLb.text = @"CNY";
         self.usdtADImgv.hidden = YES;
     }
@@ -122,6 +139,17 @@
     [sender setEnabled:false];
     if (_delegate && [_delegate respondsToSelector:@selector(switchAccountAction)]) {
         [_delegate switchAccountAction];
+    }
+}
+- (IBAction)switchAccountWhileClik:(UISegmentedControl *)sender {
+    if (_delegate && [_delegate respondsToSelector:@selector(switchAccountAction)]) {
+        [_delegate switchAccountAction];
+    }
+}
+
+- (IBAction)didTapQuestion:(id)sender {
+    if (_delegate && [_delegate respondsToSelector:@selector(questionAction)]) {
+        [_delegate questionAction];
     }
 }
 
