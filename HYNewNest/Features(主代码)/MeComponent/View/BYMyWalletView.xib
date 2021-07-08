@@ -119,7 +119,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ss-1p-Dq3" userLabel="line_separator">
-                            <rect key="frame" x="331.5" y="37.5" width="0.5" height="12"/>
+                            <rect key="frame" x="331.5" y="47.5" width="0.5" height="12"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10160661610000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="12" id="aQo-Zz-hiO"/>
@@ -127,7 +127,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h1M-gD-2lc" userLabel="line_separator">
-                            <rect key="frame" x="165.5" y="37.5" width="0.5" height="12"/>
+                            <rect key="frame" x="165.5" y="47.5" width="0.5" height="12"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10160661610000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="0.5" id="Aa7-XJ-Mng"/>
@@ -142,20 +142,20 @@
                         <constraint firstItem="DZd-fW-uuX" firstAttribute="leading" secondItem="h1M-gD-2lc" secondAttribute="trailing" id="33c-We-DgJ"/>
                         <constraint firstItem="hw0-Jx-CzQ" firstAttribute="leading" secondItem="grQ-Q9-5Gb" secondAttribute="leading" constant="17.5" id="6kv-Gf-u24"/>
                         <constraint firstItem="DZd-fW-uuX" firstAttribute="top" secondItem="hw0-Jx-CzQ" secondAttribute="bottom" id="7gC-o9-DU6"/>
-                        <constraint firstItem="3Ss-1p-Dq3" firstAttribute="centerY" secondItem="grQ-Q9-5Gb" secondAttribute="centerY" id="ADY-wP-fGB"/>
                         <constraint firstItem="DZd-fW-uuX" firstAttribute="bottom" secondItem="grQ-Q9-5Gb" secondAttribute="bottom" id="D0w-tf-v1K"/>
                         <constraint firstItem="9Jm-zC-q4P" firstAttribute="trailing" secondItem="grQ-Q9-5Gb" secondAttribute="trailing" id="GqP-hs-J3z"/>
                         <constraint firstItem="WA6-rK-o0i" firstAttribute="leading" secondItem="grQ-Q9-5Gb" secondAttribute="leading" id="NiP-of-IQA"/>
                         <constraint firstAttribute="trailing" secondItem="hw0-Jx-CzQ" secondAttribute="trailing" constant="17.5" id="RBI-T5-hBG"/>
                         <constraint firstItem="hw0-Jx-CzQ" firstAttribute="top" secondItem="grQ-Q9-5Gb" secondAttribute="top" constant="20" id="XaU-XX-gqc"/>
                         <constraint firstItem="9Jm-zC-q4P" firstAttribute="bottom" secondItem="grQ-Q9-5Gb" secondAttribute="bottom" id="eBh-nV-Obc"/>
+                        <constraint firstItem="3Ss-1p-Dq3" firstAttribute="centerY" secondItem="h1M-gD-2lc" secondAttribute="centerY" id="fdD-Iy-FGu"/>
                         <constraint firstItem="h1M-gD-2lc" firstAttribute="centerX" secondItem="grQ-Q9-5Gb" secondAttribute="centerX" multiplier="0.66" id="l7i-vI-xSO"/>
                         <constraint firstItem="h1M-gD-2lc" firstAttribute="leading" secondItem="WA6-rK-o0i" secondAttribute="trailing" id="oCM-bo-rVK"/>
                         <constraint firstItem="9Jm-zC-q4P" firstAttribute="top" secondItem="hw0-Jx-CzQ" secondAttribute="bottom" id="qKe-4y-GIZ"/>
                         <constraint firstItem="3Ss-1p-Dq3" firstAttribute="leading" secondItem="DZd-fW-uuX" secondAttribute="trailing" id="qLV-eU-jTh"/>
                         <constraint firstItem="9Jm-zC-q4P" firstAttribute="leading" secondItem="3Ss-1p-Dq3" secondAttribute="trailing" id="tK8-gF-efH"/>
                         <constraint firstItem="WA6-rK-o0i" firstAttribute="top" secondItem="hw0-Jx-CzQ" secondAttribute="bottom" id="yxK-qU-NlH"/>
-                        <constraint firstItem="h1M-gD-2lc" firstAttribute="centerY" secondItem="grQ-Q9-5Gb" secondAttribute="centerY" id="zVE-N4-IrD"/>
+                        <constraint firstItem="h1M-gD-2lc" firstAttribute="centerY" secondItem="grQ-Q9-5Gb" secondAttribute="centerY" constant="10" id="zVE-N4-IrD"/>
                     </constraints>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hdm-kv-q1Y">
@@ -465,7 +465,7 @@
                 <constraint firstItem="1AI-F3-gMh" firstAttribute="leading" secondItem="Mxp-iV-Gwm" secondAttribute="leading" id="z1A-Jn-ppV"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-679" y="-203"/>
+            <point key="canvasLocation" x="-363" y="-187"/>
         </view>
     </objects>
     <resources>
