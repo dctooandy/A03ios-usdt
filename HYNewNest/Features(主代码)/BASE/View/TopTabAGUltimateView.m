@@ -180,6 +180,18 @@
         [kCurNavVC popToRootViewControllerAnimated:YES];
         [NNControllerHelper currentTabBarController].selectedIndex = 0;
         
+    }else if ([url hasPrefix:@"hy://profit"]){
+        //优惠
+        decisionHandler(WKNavigationActionPolicyCancel);
+        [kCurNavVC popToRootViewControllerAnimated:YES];
+        [NNControllerHelper currentTabBarController].selectedIndex = 2;
+        
+    }else if ([url hasPrefix:@"hy://user"]){
+        //个人中心
+        decisionHandler(WKNavigationActionPolicyCancel);
+        [kCurNavVC popToRootViewControllerAnimated:YES];
+        [NNControllerHelper currentTabBarController].selectedIndex = 4;
+        
     }else if ([url hasPrefix:@"hy://withdraw"]){
         //提现
         decisionHandler(WKNavigationActionPolicyCancel);
@@ -374,9 +386,9 @@
 
 -(void)loadWebViewWithURL:(NSString*)webUrl{
     if ([webUrl containsString:@"http"]) {
-        NSString *agwebUrl = [NSString stringWithFormat:@"%@&webApp=%@",webUrl,@"true"];
-        _webUrl = [agwebUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-        [self.wkWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.webUrl]]];
+//        NSString *agwebUrl = [NSString stringWithFormat:@"%@&webApp=%@",webUrl,@"true"];
+        _webUrl = [webUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        [self.wkWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_webUrl]]];
     }
 }
 

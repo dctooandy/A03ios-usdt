@@ -95,10 +95,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
-    
+      
     [self userDidLogin];
     [self requestAnnouncement];
     [self requestCDNAndDomain];
+    
+//    [CNHomeRequest test];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYSwitchAcoutSuccNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYLoginSuccessNotification object:nil];
@@ -183,7 +185,7 @@
 }
 
 - (void)setupBBSEntryBallView {
-    WMDragView *bbsBall = [[WMDragView alloc] initWithFrame:CGRectMake(0, kScreenHeight *0.75, 40, 40)];
+    WMDragView *bbsBall = [[WMDragView alloc] initWithFrame:CGRectMake(kScreenWidth-60, kScreenHeight *0.65, 60, 60)];
     bbsBall.backgroundColor = [UIColor clearColor];
     bbsBall.freeRect = CGRectMake(0, kStatusBarHeight, kScreenWidth, kScreenHeight-kTabBarHeight-kStatusBarHeight);
     bbsBall.isKeepBounds = YES;

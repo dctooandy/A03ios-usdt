@@ -1015,7 +1015,13 @@
 		F786E583268063C8008B7DDE /* BYTradeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F786E582268063C8008B7DDE /* BYTradeTableViewCell.xib */; };
 		F7A75F1F264E405600D933D7 /* BYBorderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F1E264E405600D933D7 /* BYBorderButton.m */; };
 		F7A75F22264E507200D933D7 /* BYBorderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F21264E507200D933D7 /* BYBorderLabel.m */; };
-		F7C4CB5526832C6600EBA3B4 /* BYChangeFundPwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D57EF112668ED0A00A5CCC6 /* BYChangeFundPwdVC.xib */; };
+		F7AF80EA268DB0B90048DBD8 /* BYChangeFundPwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D57EF112668ED0A00A5CCC6 /* BYChangeFundPwdVC.xib */; };
+		F7CA9C53264E66D500410BB3 /* BYNewbieAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CA9C51264E66D500410BB3 /* BYNewbieAlertVC.m */; };
+		F7CA9C54264E66D500410BB3 /* BYNewbieAlertVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7CA9C52264E66D500410BB3 /* BYNewbieAlertVC.xib */; };
+		F7CA9C5A264E784200410BB3 /* BYNewbieCashGiftAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CA9C58264E784200410BB3 /* BYNewbieCashGiftAlertVC.m */; };
+		F7CA9C5B264E784200410BB3 /* BYNewbieCashGiftAlertVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7CA9C59264E784200410BB3 /* BYNewbieCashGiftAlertVC.xib */; };
+		F7CF5416264CBDF300AC8F04 /* BYNewbieMissionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CF5414264CBDF300AC8F04 /* BYNewbieMissionVC.m */; };
+		F7CF5417264CBDF300AC8F04 /* BYNewbieMissionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7CF5415264CBDF300AC8F04 /* BYNewbieMissionVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -5571,7 +5577,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7C4CB5526832C6600EBA3B4 /* BYChangeFundPwdVC.xib in Resources */,
+				F7AF80EA268DB0B90048DBD8 /* BYChangeFundPwdVC.xib in Resources */,
 				D5A446D424F3941400014DC6 /* 合成 1_00048.png in Resources */,
 				D5A4463324F393E500014DC6 /* 足球_00048.png in Resources */,
 				D5A4456F24F393AC00014DC6 /* 棋牌_00092.png in Resources */,

@@ -290,7 +290,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 }
 
 // 取款返利规则
-- (void)requestCNYWithdrawNewRuleAmount:(nullable NSNumber *)amount AccountId:(nullable NSString *)accountId handler:(void(^)(void))handler {
+- (void)requestCNYWithdrawNewRuleAmount:(nullable NSString *)amount AccountId:(nullable NSString *)accountId handler:(void(^)(void))handler {
     [CNWithdrawRequest withdrawCalculatorMode:accountId?@0:@1
                                        amount:amount
                                     accountId:accountId
@@ -310,11 +310,11 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         return;
     }
     AccountModel *model = self.elecCardsArr[self.selectedIdx];
-    NSNumber *amount = [NSNumber numberWithDouble:[amout doubleValue]];
+//    NSNumber *amount = [NSNumber numberWithDouble:[amout doubleValue]];
     
     /// ------ USDT提现
     if ([CNUserManager shareManager].isUsdtMode) {
-        [CNWithdrawRequest submitWithdrawRequestAmount:amount
+        [CNWithdrawRequest submitWithdrawRequestAmount:amout
                                              accountId:model.accountId
                                               protocol:model.protocol
                                                remarks:@""
@@ -340,7 +340,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
             [self.comfirmView hideView];
             
             // 计算接口 保存数据 -> 提现明细 -> 选择钱包/转USDT余额 -> 弹窗。。
-            [self requestCNYWithdrawNewRuleAmount:amount
+            [self requestCNYWithdrawNewRuleAmount:amout
                                         AccountId:model.accountId
                                           handler:^(){
                 
@@ -361,7 +361,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                         }
                         
                         MyLog(@"选好子钱包了");
-                        [CNWithdrawRequest submitWithdrawRequestAmount:amount
+                        [CNWithdrawRequest submitWithdrawRequestAmount:amout
                                                              accountId:model.accountId
                                                               protocol:model.protocol
                                                                remarks:@""
@@ -386,7 +386,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
             }];
             
         } else { //走正常流程
-            [CNWithdrawRequest submitWithdrawRequestAmount:amount
+            [CNWithdrawRequest submitWithdrawRequestAmount:amout
                                                  accountId:model.accountId
                                                   protocol:model.protocol
                                                    remarks:@""

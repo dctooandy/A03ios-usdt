@@ -16,7 +16,7 @@
 }
 
 + (void)withdrawCalculatorMode:(NSNumber *)mode
-                        amount:(nullable NSNumber *)amount
+                        amount:(nullable NSString *)amount
                      accountId:(nullable NSString *)accountId
                        handler:(HandlerBlock)handler {
     NSMutableDictionary *param = [kNetworkMgr baseParam];
@@ -27,7 +27,7 @@
     [self POST:(config_calculateSeparate) parameters:param completionHandler:handler];
 }
 
-+ (void)submitWithdrawRequestAmount:(NSNumber *)amount
++ (void)submitWithdrawRequestAmount:(NSString *)amount
                           accountId:(NSString *)accountId
                            protocol:(NSString *)protocol
                             remarks:(NSString *)remarks

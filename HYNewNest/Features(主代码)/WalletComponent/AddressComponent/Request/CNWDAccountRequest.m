@@ -96,6 +96,7 @@
                          bankAlias:(NSString *)bankAlias
                         validateId:(nullable NSString *)validateId
                          messageId:(nullable NSString *)messageId
+                           smsCode:(nullable NSString *)smsCode
                            handler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
@@ -112,6 +113,9 @@
     }
     if (messageId) {
         param[@"messageId"] = messageId;
+    }
+    if (smsCode) {
+        param[@"smsCode"] = smsCode;
     }
 
     [self POST:(config_create) parameters:param completionHandler:handler];

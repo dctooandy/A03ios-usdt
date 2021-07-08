@@ -17,6 +17,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CNHomeRequest : CNBaseNetworking
+//+ (void)test;
 
 /// 弹窗盒子
 + (void)queryMessageBoxHandler:(HandlerBlock)handler;
