@@ -57,6 +57,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *explanationButton;
 @property (weak, nonatomic) IBOutlet UIButton *transferYEBButton;
+@property (weak, nonatomic) IBOutlet UILabel *withdrawableLb;
 
 @end
 
@@ -80,7 +81,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 #pragma mark - View Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title =  @"提现";
+    self.title = @"提现";
+    self.withdrawableLb.text = [CNUserManager shareManager].isUsdtMode ? @"可提现金额 (USDT)" : @"可提现金额 (CNY)";
     [self.sumitBtn setTitle:@"提现" forState:UIControlStateNormal];
     [self addNaviRightItemWithImageName:@"kf"];
     
@@ -253,7 +255,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     [CNWDAccountRequest queryAccountHandler:^(id responseObj, NSString *errorMsg) {
         [self.tableView.mj_header endRefreshing];
         STRONGSELF_DEFINE
-        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             
             // 子账户钱包是否有值 CNYyong
             if (responseObj[@"subWalletAccounts"]) {
@@ -295,13 +297,14 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                                        amount:amount
                                     accountId:accountId
                                       handler:^(id responseObj, NSString *errorMsg) {
-        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             self.giftCalculatorModel = [WithdrawCalculateModel cn_parse:responseObj];
             !handler?:handler();
         }
     }];
 }
 
+/// ------ CNY提现
 // 提交取款金额
 - (void)sumbimtWithdrawAmount:(NSString *)amout pwd:(NSString *)pwd{
     // 请求最后一步的闭包
@@ -310,10 +313,59 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         return;
     }
     AccountModel *model = self.elecCardsArr[self.selectedIdx];
-//    NSNumber *amount = [NSNumber numberWithDouble:[amout doubleValue]];
     
-    /// ------ USDT提现
-    if ([CNUserManager shareManager].isUsdtMode) {
+    __block NSString *giftAmount;
+    //判断该用户是否需要拆分
+    if (self.calculatorModel && self.calculatorModel.creditExchangeFlag) {
+        [self.comfirmView hideView];
+        
+        // 计算接口 保存数据 -> 提现明细 -> 选择钱包/转USDT余额 -> 弹窗。。
+        [self requestCNYWithdrawNewRuleAmount:amout
+                                    AccountId:model.accountId
+                                      handler:^(){
+            
+            [HYWithdrawCalculatorComView showWithCalculatorModel:self.giftCalculatorModel
+                                        exchangeRatioOfAllAmount:self.calculatorModel.creditExchangeRatio
+                                                   submitHandler:^(BOOL isComfirm, id  _Nonnull args, ...){
+                if (!isComfirm) {
+                    [self.comfirmView removeView];
+                    return;
+                }
+                giftAmount = args;
+                
+                MyLog(@"点击了下一步");
+                [HYWithdrawChooseWallectComView showWithAmount:self.giftCalculatorModel.promoInfo.refAmount subWalAccountsModel:self.subWalletAccounts submitHandler:^(BOOL isComfirm, id  _Nonnull args, ...) {
+                    if (!isComfirm) {
+                        [self.comfirmView removeView];
+                        return;
+                    }
+                    
+                    MyLog(@"选好子钱包了");
+                    [CNWithdrawRequest submitWithdrawRequestAmount:amout
+                                                         accountId:model.accountId
+                                                          protocol:model.protocol
+                                                           remarks:@""
+                                                  subWallAccountId:[NSString stringWithFormat:@"%@", args]
+                                                          password:pwd
+                                                           handler:^(id responseObj, NSString *errorMsg) {
+                        STRONGSELF_DEFINE
+                        if (!errorMsg) {
+                            [strongSelf.comfirmView showSuccessWithdrawCNYExUSDT:self.giftCalculatorModel.promoInfo.refAmount dismissBlock:^{
+                                MyLog(@"点击了关闭");
+                                [HYWithdrawActivityAlertView showHandedOutGiftUSDTAmount:giftAmount handler:^{
+                                    [strongSelf requestBalance];
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil]; // 让首页和我的余额刷新
+                                }];
+                            }];
+                        } else {
+                            [strongSelf.comfirmView removeView];
+                        }
+                    }];
+                }];
+            }];
+        }];
+        
+    } else { //走正常流程
         [CNWithdrawRequest submitWithdrawRequestAmount:amout
                                              accountId:model.accountId
                                               protocol:model.protocol
@@ -322,89 +374,16 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                                               password:pwd
                                                handler:^(id responseObj, NSString *errorMsg) {
             STRONGSELF_DEFINE
-            if (KIsEmptyString(errorMsg)) {
+            if (!errorMsg) {
                 [strongSelf.comfirmView showSuccessWithdraw];
                 [strongSelf requestBalance];
                 [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil]; // 让首页和我的余额刷新
             } else {
-                //
-//                [strongSelf.comfirmView showForgetPWDButton];
+                [strongSelf.comfirmView removeView];
             }
         }];
-        
-    /// ------ CNY提现
-    } else {
-        __block NSString *giftAmount;
-        //判断该用户是否需要拆分
-        if (self.calculatorModel && self.calculatorModel.creditExchangeFlag) {
-            [self.comfirmView hideView];
-            
-            // 计算接口 保存数据 -> 提现明细 -> 选择钱包/转USDT余额 -> 弹窗。。
-            [self requestCNYWithdrawNewRuleAmount:amout
-                                        AccountId:model.accountId
-                                          handler:^(){
-                
-                [HYWithdrawCalculatorComView showWithCalculatorModel:self.giftCalculatorModel
-                                            exchangeRatioOfAllAmount:self.calculatorModel.creditExchangeRatio
-                                                       submitHandler:^(BOOL isComfirm, id  _Nonnull args, ...){
-                    if (!isComfirm) {
-                        [self.comfirmView removeView];
-                        return;
-                    }
-                    giftAmount = args;
-                    
-                    MyLog(@"点击了下一步");
-                    [HYWithdrawChooseWallectComView showWithAmount:self.giftCalculatorModel.promoInfo.refAmount subWalAccountsModel:self.subWalletAccounts submitHandler:^(BOOL isComfirm, id  _Nonnull args, ...) {
-                        if (!isComfirm) {
-                            [self.comfirmView removeView];
-                            return;
-                        }
-                        
-                        MyLog(@"选好子钱包了");
-                        [CNWithdrawRequest submitWithdrawRequestAmount:amout
-                                                             accountId:model.accountId
-                                                              protocol:model.protocol
-                                                               remarks:@""
-                                                      subWallAccountId:[NSString stringWithFormat:@"%@", args]
-                                                              password:pwd
-                                                               handler:^(id responseObj, NSString *errorMsg) {
-                            STRONGSELF_DEFINE
-                            if (KIsEmptyString(errorMsg)) {
-                                [strongSelf.comfirmView showSuccessWithdrawCNYExUSDT:self.giftCalculatorModel.promoInfo.refAmount dismissBlock:^{
-                                    MyLog(@"点击了关闭");
-                                    [HYWithdrawActivityAlertView showHandedOutGiftUSDTAmount:giftAmount handler:^{
-                                        [strongSelf requestBalance];
-                                        [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil]; // 让首页和我的余额刷新
-                                    }];
-                                }];
-                            } else {
-                                [strongSelf.comfirmView removeView];
-                            }
-                        }];
-                    }];
-                }];
-            }];
-            
-        } else { //走正常流程
-            [CNWithdrawRequest submitWithdrawRequestAmount:amout
-                                                 accountId:model.accountId
-                                                  protocol:model.protocol
-                                                   remarks:@""
-                                          subWallAccountId:nil
-                                                  password:pwd
-                                                   handler:^(id responseObj, NSString *errorMsg) {
-                STRONGSELF_DEFINE
-                if (KIsEmptyString(errorMsg)) {
-                    [strongSelf.comfirmView showSuccessWithdraw];
-                    [strongSelf requestBalance];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil]; // 让首页和我的余额刷新
-                } else {
-                    [strongSelf.comfirmView removeView];
-                }
-            }];
-        }
-        
     }
+
 
 }
 
