@@ -32,8 +32,12 @@
     }
     self.numLb.text = model.accountNo;
     
-    [self.titleLb setupGradientColorFrom:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE)];
-    [self.numLb setupGradientColorFrom:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE)];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self.titleLb setupGradientColorDirection:BYLblGrdtColorDirectionTopRightBtmLeft From:kHexColor(0x19CECE) toColor:kHexColor(0x10B4DD)];
+    [self.numLb setupGradientColorDirection:BYLblGrdtColorDirectionTopRightBtmLeft From:kHexColor(0x19CECE) toColor:kHexColor(0x10B4DD)];
 }
 
 - (IBAction)delete:(id)sender {

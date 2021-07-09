@@ -11,7 +11,6 @@
 #import "CNCodeInputView.h"
 #import "NSString+Validation.h"
 #import <IVLoganAnalysis/IVLAManager.h>
-#import "CNCompleteInfoVC.h"
 #import "BYModifyPhoneVC.h"
 #import "HYDownloadLinkView.h"
 #import "ABCOneKeyRegisterBFBHelper.h"

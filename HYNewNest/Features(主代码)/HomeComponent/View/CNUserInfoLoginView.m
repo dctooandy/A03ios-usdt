@@ -86,17 +86,10 @@
     NSInteger level = [CNUserManager shareManager].userInfo.starLevel;
     UIImage *img = [UIImage imageNamed:[NSString stringWithFormat:@"vip%ld", (long)level]];
     self.vipImgv.image = img;
-    
+     
     self.usrNameLb.text = [CNUserManager shareManager].printedloginName;
     self.currencyLb.text = [CNUserManager shareManager].isUsdtMode?@"USDT":@"CNY";
     
-    if ([CNUserManager shareManager].isUiModeHasOptions) {
-        _switchModeSegc.hidden = NO;
-        _questionBtn.hidden = NO;
-    } else {
-        _switchModeSegc.hidden = YES;
-        _questionBtn.hidden = YES;
-    }
 }
 
 - (void)reloadBalance{

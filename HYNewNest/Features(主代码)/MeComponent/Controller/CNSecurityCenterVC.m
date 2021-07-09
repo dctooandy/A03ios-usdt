@@ -73,8 +73,6 @@
 
 // 修改资金密码
 - (IBAction)changeFundPWD:(id)sender {
-//    BYChangeFundPwdVC *vc = [BYChangeFundPwdVC new];
-//    [self.navigationController pushViewController:vc animated:YES];
     [BYChangeFundPwdVC modalVc];
 }
 

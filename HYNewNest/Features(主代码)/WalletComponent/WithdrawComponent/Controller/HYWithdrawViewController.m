@@ -10,7 +10,6 @@
 #import "HYTabBarViewController.h"
 #import "CNTradeRecodeVC.h"
 #import "BYModifyPhoneVC.h"
-#import "CNCompleteInfoVC.h"
 
 #import "HYXiMaTopView.h"
 #import "CNTwoStatusBtn.h"

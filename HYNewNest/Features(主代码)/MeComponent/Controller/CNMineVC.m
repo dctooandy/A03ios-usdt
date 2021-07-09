@@ -284,8 +284,6 @@
 - (void)switchCurrencyUI {
     
     // 1.不同货币模式UI变化
-    self.switchModeSegc.hidden = ![CNUserManager shareManager].isUiModeHasOptions;
-    
     BOOL isUsdtMode = [CNUserManager shareManager].isUsdtMode;
     BOOL isNewWallet = [CNUserManager shareManager].userInfo.newWalletFlag;
     self.switchModeSegc.selectedSegmentIndex = isUsdtMode;
