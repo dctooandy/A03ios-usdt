@@ -44,15 +44,14 @@
 }
 
 - (void)editSegmentControlUIStatus {
-    UIColor *gdColor = [UIColor gradientColorImageFromColors:@[kHexColor(0x19CECE),kHexColor(0x10B4DD)] gradientType:GradientTypeUprightToLowleft imgSize:CGSizeMake(55, 26)];
+    UIColor *gdColor = [UIColor gradientColorImageFromColors:@[kHexColor(0x19CECE),kHexColor(0x10B4DD)] gradientType:GradientTypeUprightToLowleft imgSize:CGSizeMake(50, 24)];
     if (@available(iOS 13.0, *)) {
         [_switchModeSegc setSelectedSegmentTintColor:gdColor];
     } else {
         [_switchModeSegc setTintColor:gdColor];
     }
     [_switchModeSegc setBackgroundColor:kHexColor(0x3c3d62)];
-    [_switchModeSegc setTitleTextAttributes:@{NSForegroundColorAttributeName:gdColor} forState:UIControlStateNormal];
-    [_switchModeSegc setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
+    [_switchModeSegc setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     
 }
 
@@ -135,12 +134,6 @@
 }
 
 // 切换账户货币
-- (IBAction)switchAccount:(UIButton *)sender {
-    [sender setEnabled:false];
-    if (_delegate && [_delegate respondsToSelector:@selector(switchAccountAction)]) {
-        [_delegate switchAccountAction];
-    }
-}
 - (IBAction)switchAccountWhileClik:(UISegmentedControl *)sender {
     if (_delegate && [_delegate respondsToSelector:@selector(switchAccountAction)]) {
         [_delegate switchAccountAction];

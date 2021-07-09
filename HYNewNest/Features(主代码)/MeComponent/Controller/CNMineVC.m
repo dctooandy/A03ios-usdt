@@ -80,7 +80,8 @@
 
 #pragma mark CNY和USDT区别
 /// CNY和USDT 切换按钮
-@property (weak, nonatomic) IBOutlet UIButton *switchBtn;
+@property (weak, nonatomic) IBOutlet UIButton *questionBtn;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *switchModeSegc;
 @property (weak, nonatomic) IBOutlet UIStackView *USDTBusinessView;
 @property (weak, nonatomic) IBOutlet UIView *lastEntryView;
 @property (weak, nonatomic) IBOutlet UIView *bottomMidleView;
@@ -137,6 +138,7 @@
         [wSelf requestOtherAppData];
     }];
    
+    [self configUI];
     [self switchCurrencyUI];
     [self requestOtherAppData];
     
@@ -153,20 +155,34 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    [self configUI];
+    self.scrollContentW.constant = kScreenWidth;
 }
 
 - (void)configUI {
-    self.scrollContentW.constant = kScreenWidth;
-    // 按钮边框颜色
     self.downLoadBtn.layer.borderColor = kHexColor(0x19CECE).CGColor;
     self.downLoadBtn.layer.borderWidth = 1;
-    self.switchBtn.layer.borderColor = kHexColor(0x19CECE).CGColor;
-    self.switchBtn.layer.borderWidth = 1;
+    [self editSegmentControlUIStatus];
+    
+}
+
+- (void)editSegmentControlUIStatus {
+    UIColor *gdColor = [UIColor gradientColorImageFromColors:@[kHexColor(0x19CECE),kHexColor(0x10B4DD)] gradientType:GradientTypeUprightToLowleft imgSize:CGSizeMake(55, 26)];
+    if (@available(iOS 13.0, *)) {
+        [_switchModeSegc setSelectedSegmentTintColor:gdColor];
+    } else {
+        [_switchModeSegc setTintColor:gdColor];
+    }
+    [_switchModeSegc setBackgroundColor:kHexColor(0x3c3d62)];
+    [_switchModeSegc setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     
 }
 
 #pragma mark - 按钮事件
+
+/// 弹窗
+- (IBAction)didTapAskBtn:(id)sender {
+    
+}
 
 // 设置
 - (IBAction)setting:(id)sender {
@@ -255,8 +271,7 @@
 
 #pragma mark - 货币界面业务切换
 
-- (IBAction)switchCurrency:(UIButton *)sender {
-    
+- (IBAction)segmentValueDidChange:(id)sender {
     [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {
 //        if (!errorMsg) { //已经有监听通知了
 //            [self switchCurrencyUI];
@@ -268,11 +283,11 @@
 - (void)switchCurrencyUI {
     
     // 1.不同货币模式UI变化
-    self.switchBtn.hidden = ![CNUserManager shareManager].isUiModeHasOptions;
+    self.switchModeSegc.hidden = ![CNUserManager shareManager].isUiModeHasOptions;
     
     BOOL isUsdtMode = [CNUserManager shareManager].isUsdtMode;
     BOOL isNewWallet = [CNUserManager shareManager].userInfo.newWalletFlag;
-    self.switchBtn.selected = !isUsdtMode;
+    self.switchModeSegc.selectedSegmentIndex = isUsdtMode;
     
     self.lastEntryView.alpha = isNewWallet?1:0;
     self.bottomMidleView.alpha = isNewWallet?1:0;
