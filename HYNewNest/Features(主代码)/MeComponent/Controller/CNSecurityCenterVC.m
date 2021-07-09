@@ -14,11 +14,14 @@
 #import "CNUserCenterRequest.h"
 #import "BYChangeFundPwdVC.h"
 #import "BYModifyPhoneVC.h"
+#import "HYWideOneBtnAlertView.h"
+#import "BYBindRealNameVC.h"
 
 @interface CNSecurityCenterVC ()
 @property (weak, nonatomic) IBOutlet CNBaseTF *phoneTF;
 @property (weak, nonatomic) IBOutlet CNBaseTF *weixinTF;
 @property (weak, nonatomic) IBOutlet CNBaseTF *emailTF;
+@property (weak, nonatomic) IBOutlet UILabel *weixinLabel;
 
 @end
 
@@ -30,6 +33,16 @@
     self.title = @"安全中心";
     [self getUserProfile];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserProfile) name:BYDidUpdateUserProfileNoti object:nil];
+    
+    if ([CNUserManager shareManager].isUsdtMode == true) {
+        [self.weixinLabel setText:@"微信号"];
+        [self.weixinTF setPlaceholder:@"请填写您的微信号"];
+    }
+    else {
+        [self.weixinLabel setText:@"付款人姓名"];
+        [self.weixinTF setPlaceholder:@"请填写付款人姓名"];
+    }
+    
 }
 
 - (void)getUserProfile {
@@ -41,10 +54,11 @@
 }
 
 - (void)updateData {
-    NSString *phone = [CNUserManager shareManager].userDetail.mobileNo;
+    CNUserDetailModel *userDetail = [CNUserManager shareManager].userDetail;
+    NSString *phone = userDetail.mobileNo;
     self.phoneTF.text = [phone stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];;
-    self.weixinTF.text = [CNUserManager shareManager].userDetail.onlineMessenger2;
-    self.emailTF.text = [CNUserManager shareManager].userDetail.email;
+    self.weixinTF.text = [CNUserManager shareManager].isUsdtMode ? userDetail.onlineMessenger2 : userDetail.realName;
+    self.emailTF.text = userDetail.email;
 }
 
 // 修改手机号
@@ -65,12 +79,23 @@
 }
 
 - (IBAction)showBindView:(UIButton *)sender {
-    WEAKSELF_DEFINE
-    MineBindView *bind = [[MineBindView alloc] initWithBindType:sender.tag?HYBindTypeEMail: HYBindTypeWechat comfirmBlock:^(NSString * _Nonnull text) {
-        STRONGSELF_DEFINE
-        [strongSelf submitBindAccount:text isEMail:sender.tag];
-    }];
-    [self.view addSubview:bind];
+    
+    if ([CNUserManager shareManager].isUsdtMode == true || sender.tag == 1 )    {
+        WEAKSELF_DEFINE
+        MineBindView *bind = [[MineBindView alloc] initWithBindType:sender.tag?HYBindTypeEMail: HYBindTypeWechat comfirmBlock:^(NSString * _Nonnull text) {
+            STRONGSELF_DEFINE
+            [strongSelf submitBindAccount:text isEMail:sender.tag];
+        }];
+        [self.view addSubview:bind];
+    }
+    else if (KIsEmptyString([CNUserManager shareManager].userDetail.realName)){
+        [HYWideOneBtnAlertView showWithTitle:@"" content:@"为了您的资金安全，请完善本人姓名\n提交后不可修改，存取款需与本人姓名一致" comfirmText:@"绑定付款人姓名" comfirmHandler:^{
+            [BYBindRealNameVC modalVCBindRealName];
+        }];
+    }
+    else {
+        [BYBindRealNameVC modalVCBindRealName];
+    }
 }
 
 - (void)submitBindAccount:(NSString *)account isEMail:(BOOL)isEMail {

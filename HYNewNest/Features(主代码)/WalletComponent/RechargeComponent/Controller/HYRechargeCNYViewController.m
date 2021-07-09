@@ -22,6 +22,8 @@
 #import "UIView+Empty.h"
 #import "HYTabBarViewController.h"
 #import <IN3SAnalytics/CNTimeLog.h>
+#import "HYWideOneBtnAlertView.h"
+#import "BYBindRealNameVC.h"
 
 @interface HYRechargeCNYViewController () <HYRechargeCNYEditViewDelegate>
 @property (nonatomic, assign) NSInteger selcPayWayIdx;
@@ -246,12 +248,16 @@
  */
 - (void)submitRechargeRequest {
     if (KIsEmptyString([CNUserManager shareManager].userDetail.realName)) {
-        WEAKSELF_DEFINE
-        [self.view addSubview:[[HYWithdrawComfirmView alloc] initRealNameSubmitBlock:^(NSString * _Nonnull realName) {
-            STRONGSELF_DEFINE
-            [strongSelf bindRealName:realName];
-        }]];
-        return;
+//        WEAKSELF_DEFINE
+//        [self.view addSubview:[[HYWithdrawComfirmView alloc] initRealNameSubmitBlock:^(NSString * _Nonnull realName) {
+//            STRONGSELF_DEFINE
+//            [strongSelf bindRealName:realName];
+//        }]];
+//        return;
+        [HYWideOneBtnAlertView showWithTitle:@"" content:@"为了您的资金安全，请完善本人姓名\n提交后不可修改，存取款需与本人姓名一致" comfirmText:@"绑定付款人姓名" comfirmHandler:^{
+            [BYBindRealNameVC modalVCBindRealName];
+        }];
+        return;;
     }
     
     __block PayWayV3PayTypeItem *item = self.paytypeList[_selcPayWayIdx];

@@ -205,8 +205,9 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 
         vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         [NNControllerHelper getCurrentViewController].definesPresentationContext = YES;
-        vc.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-        [kCurNavVC presentViewController:vc animated:YES completion:nil];
+        [kCurNavVC presentViewController:vc animated:YES completion:^{
+            vc.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+        }];
     }
     else {
         WEAKSELF_DEFINE
