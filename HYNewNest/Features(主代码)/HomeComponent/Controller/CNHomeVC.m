@@ -26,6 +26,7 @@
 #import "HYWideOneBtnAlertView.h"
 #import "CNGameBtnsStackView.h"
 #import "WMDragView.h"
+#import "BYMultiAccountRuleView.h"
 
 #import "CNHomeRequest.h"
 #import "CNUserCenterRequest.h"
@@ -459,7 +460,7 @@
 }
 
 - (void)questionAction {
-    NSLog(@"弹窗");
+    [BYMultiAccountRuleView showRuleWithLocatedY:self.infoView.bottom-15];
 }
 
 #pragma mark - GameBtnsStackViewDelegate 游戏切换业务

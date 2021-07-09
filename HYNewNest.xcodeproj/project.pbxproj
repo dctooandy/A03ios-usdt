@@ -343,6 +343,7 @@
 		3DC8411B2682F8C800AEB1B6 /* CNTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC841192682F8C800AEB1B6 /* CNTaskModel.m */; };
 		3DC8411E2682F91C00AEB1B6 /* CNTaskRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC8411D2682F91C00AEB1B6 /* CNTaskRequest.m */; };
 		3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC87A50253967DC0032ED1B /* BuyECoinModel.m */; };
+		3DCE56FC2698155200BEADD9 /* BYMultiAccountRuleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCE56FB2698155200BEADD9 /* BYMultiAccountRuleView.m */; };
 		3DCFEA9A25050AD90071F356 /* 方正兰亭大黑_GBK.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFEA9925050AD90071F356 /* 方正兰亭大黑_GBK.ttf */; };
 		3DCFEAA1250624CD0071F356 /* TAExampleDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFEA9F250624CD0071F356 /* TAExampleDotView.m */; };
 		3DD05E822681817B004B1062 /* BYDepositUsdtEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD05E812681817B004B1062 /* BYDepositUsdtEditorView.m */; };
@@ -1018,6 +1019,7 @@
 		F7AF80EA268DB0B90048DBD8 /* BYChangeFundPwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D57EF112668ED0A00A5CCC6 /* BYChangeFundPwdVC.xib */; };
 		F7D6625C2697ED0B00655DE3 /* BYBindRealNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D6625A2697ED0B00655DE3 /* BYBindRealNameVC.m */; };
 		F7D6625D2697ED0B00655DE3 /* BYBindRealNameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7D6625B2697ED0B00655DE3 /* BYBindRealNameVC.xib */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1629,6 +1631,8 @@
 		3DC8411D2682F91C00AEB1B6 /* CNTaskRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNTaskRequest.m; sourceTree = "<group>"; };
 		3DC87A4F253967DC0032ED1B /* BuyECoinModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyECoinModel.h; sourceTree = "<group>"; };
 		3DC87A50253967DC0032ED1B /* BuyECoinModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyECoinModel.m; sourceTree = "<group>"; };
+		3DCE56FA2698155200BEADD9 /* BYMultiAccountRuleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYMultiAccountRuleView.h; sourceTree = "<group>"; };
+		3DCE56FB2698155200BEADD9 /* BYMultiAccountRuleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYMultiAccountRuleView.m; sourceTree = "<group>"; };
 		3DCFEA9925050AD90071F356 /* 方正兰亭大黑_GBK.ttf */ = {isa = PBXFileReference; lastKnownFileType = text; path = "方正兰亭大黑_GBK.ttf"; sourceTree = "<group>"; };
 		3DCFEA9F250624CD0071F356 /* TAExampleDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAExampleDotView.m; sourceTree = "<group>"; };
 		3DCFEAA0250624CD0071F356 /* TAExampleDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAExampleDotView.h; sourceTree = "<group>"; };
@@ -5076,6 +5080,8 @@
 				3D972435262E96B1005E930C /* HYSuperCopartnerAlertView.m */,
 				3DED18BB266232F500823BD7 /* BYYuEBaoTransAlertView.h */,
 				3DED18BC266232F600823BD7 /* BYYuEBaoTransAlertView.m */,
+				3DCE56FA2698155200BEADD9 /* BYMultiAccountRuleView.h */,
+				3DCE56FB2698155200BEADD9 /* BYMultiAccountRuleView.m */,
 			);
 			path = HYAlertView;
 			sourceTree = "<group>";
@@ -6566,6 +6572,7 @@
 				3DF43D4525943D1F0087F26A /* BYMultiDataSourceTableView.m in Sources */,
 				E98BEEDC24CFF17500E6B0C8 /* HYBonusCell.m in Sources */,
 				3DF03207258DF6E500AF7A36 /* SCMyBonusModel.m in Sources */,
+				3DCE56FC2698155200BEADD9 /* BYMultiAccountRuleView.m in Sources */,
 				04C0F10324C58A52007F1420 /* NSObject+CNParse.m in Sources */,
 				E98BEEEB24D023B200E6B0C8 /* LYEmptyView.m in Sources */,
 				04935BE324D8FC5B007A33EF /* CNElectrionHallCCell.m in Sources */,
