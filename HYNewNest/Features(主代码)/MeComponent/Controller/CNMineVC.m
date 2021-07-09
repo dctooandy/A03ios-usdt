@@ -32,6 +32,7 @@
 #import "HYWideOneBtnAlertView.h"
 #import "BYOldMyWalletView.h"
 #import "BYMyWalletView.h"
+#import "BYMultiAccountRuleView.h"
 
 #import "CNUserCenterRequest.h"
 #import "CNLoginRequest.h"
@@ -181,7 +182,7 @@
 
 /// 弹窗
 - (IBAction)didTapAskBtn:(id)sender {
-    
+    [BYMultiAccountRuleView showRuleWithLocatedY:kNavPlusStaBarHeight+10];
 }
 
 // 设置
