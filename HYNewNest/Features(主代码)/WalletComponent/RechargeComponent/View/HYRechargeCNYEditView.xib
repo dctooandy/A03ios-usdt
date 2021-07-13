@@ -24,6 +24,7 @@
                 <outlet property="depositIdBtnsContainH" destination="eUq-JN-okh" id="5T5-UF-YrA"/>
                 <outlet property="depositorTfView" destination="Zc7-TC-fEF" id="Hxw-XK-WfP"/>
                 <outlet property="lblPayWayName" destination="RwZ-pY-ihD" id="WTN-ri-oqv"/>
+                <outlet property="warningLabel" destination="ZoM-2s-QMT" id="95A-42-5jk"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -153,14 +154,22 @@
                         <constraint firstItem="0R4-Rk-TFf" firstAttribute="leading" secondItem="SCp-Gt-sFU" secondAttribute="leading" id="zlV-j9-Izx"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZoM-2s-QMT">
+                    <rect key="frame" x="14" y="353.5" width="0.0" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="AdS-ha-nqn" firstAttribute="top" secondItem="9sI-aL-Ark" secondAttribute="bottom" id="1PR-XB-Hcy"/>
+                <constraint firstItem="ZoM-2s-QMT" firstAttribute="leading" secondItem="Zc7-TC-fEF" secondAttribute="leading" id="4tX-Fv-arA"/>
                 <constraint firstItem="NQW-EM-t1q" firstAttribute="leading" secondItem="Zc7-TC-fEF" secondAttribute="leading" id="7n2-cA-Z9u"/>
                 <constraint firstItem="AdS-ha-nqn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8v9-MN-1or"/>
                 <constraint firstItem="NQW-EM-t1q" firstAttribute="trailing" secondItem="Zc7-TC-fEF" secondAttribute="trailing" id="AyK-W6-RC9"/>
+                <constraint firstItem="ZoM-2s-QMT" firstAttribute="top" secondItem="Zc7-TC-fEF" secondAttribute="bottom" constant="5" id="EaS-3U-3Sh"/>
                 <constraint firstItem="AdS-ha-nqn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="EgN-DA-lXL"/>
                 <constraint firstItem="9sI-aL-Ark" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="LBq-tP-Ryu"/>
                 <constraint firstItem="2Cf-84-UbO" firstAttribute="leading" secondItem="Zc7-TC-fEF" secondAttribute="leading" id="NNZ-Yl-8lV"/>

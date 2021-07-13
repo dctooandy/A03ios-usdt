@@ -448,6 +448,8 @@
         if (!errorMsg) {
             [self.infoView switchAccountUIChange];
         }
+    } faileHandler:^{
+        [self.infoView refreshBottomBtnsStatus];
     }];
 }
 

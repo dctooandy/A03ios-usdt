@@ -273,10 +273,13 @@
 #pragma mark - 货币界面业务切换
 
 - (IBAction)segmentValueDidChange:(id)sender {
+    WEAKSELF_DEFINE
     [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {
 //        if (!errorMsg) { //已经有监听通知了
 //            [self switchCurrencyUI];
 //        }
+    } faileHandler:^{
+        [weakSelf switchCurrencyUI];
     }];
 }
 

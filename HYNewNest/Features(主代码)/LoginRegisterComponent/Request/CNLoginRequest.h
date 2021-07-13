@@ -227,7 +227,8 @@ typedef NS_ENUM(NSUInteger, CNSMSCodeType) {
 //+ (void)checkTopDomainSuccessHandler:(nullable HandlerBlock)completionHandler;
 
 /// 切换影子账户
-+ (void)switchAccountSuccessHandler:(HandlerBlock)completionHandler;
++ (void)switchAccountSuccessHandler:(HandlerBlock)completionHandler faileHandler:(void (^)(void))faileHandloer;
+
 
 
 @end

@@ -35,8 +35,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)editAble:(BOOL)editable;
 ///设定字体颜色
 - (void)setTextColor:(UIColor *)color;
-
+///回复预设值
 - (void)setStatusToNormal;
+///设定输入框背景色
+- (void)setInputBackgoundColor: (UIColor *)color;
 
 @end
 

@@ -39,6 +39,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateLoginStatusUIIsRefreshing:(BOOL)isRefreshing;
 // 切换模式UI改
 - (void)switchAccountUIChange;
+//刷新
+- (void)refreshBottomBtnsStatus;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -94,6 +94,13 @@
     [self.inputTF setTextColor:color];
 }
 
+- (void)setInputBackgoundColor: (UIColor *)color {
+    UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, CGRectGetHeight(self.inputTF.frame))];
+    [leftView setBackgroundColor:[UIColor clearColor]];
+    [self.inputTF setLeftView:leftView];
+    [self.inputTF setBackgroundColor:color];
+}
+
 - (void)setStatusToNormal {
     self.wrongAccout = false;
     self.lineView.backgroundColor = self.hilghtColor;

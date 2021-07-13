@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet CNNormalInputView *depositorTfView;
 @property (weak, nonatomic) IBOutlet UIView *depositIdBtnsContain;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *depositIdBtnsContainH;
+@property (weak, nonatomic) IBOutlet UILabel *warningLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *btmBankSelcView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btmBankSelcViewH;
@@ -56,20 +57,28 @@
     self.contentView.backgroundColor = kHexColor(0x212137);
     [self.contentView addCornerAndShadow];
     
-//    [self.depositorTfView setPlaceholder:@"请输入付款人姓名"];
-//    self.depositorTfView.delegate = self;
-    self.depositorTfView.text = [NSString stringWithFormat:@"付款人姓名： %@",[[CNUserManager shareManager] userDetail].realName];
+    [self.depositorTfView setPlaceholder:@"请输入付款人姓名"];
+    self.depositorTfView.delegate = self;
     [self.depositorTfView setTextColor:kHexColorAlpha(0xFFFFFF, 0.5)];
-    self.depositor = self.depositorTfView.text;
-    self.depositorId = @"";
-    [self.depositorTfView editAble:false];
     
-    
+    [self.amountTfView setInputBackgoundColor:kHexColor(0x16162C)];
     self.amountTfView.delegate = self;
     [self.amountTfView setKeyboardType:UIKeyboardTypeNumberPad];
+        
+    if ([[CNUserManager shareManager] userDetail].depositLevel == 0) {
+        self.warningLabel.attributedText = ({
+            UIColor *gdColor = [UIColor gradientFromColor:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE) withWidth:280];
+            NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:@" CNY充值时，付款人姓名必须和银行卡绑定姓名一致" attributes:@{NSFontAttributeName:[UIFont fontPFR12], NSForegroundColorAttributeName:gdColor}];
+            NSTextAttachment *attch = [[NSTextAttachment alloc] init];
+            attch.image = [UIImage imageNamed:@"yellow exclamation"];
+            attch.bounds = CGRectMake(0, 0, 14, 15);
+            NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attch];
+            [attrStr insertAttributedString:string atIndex:0];
+            attrStr;
+        });
+    }
+    
 }
-
-
 
 #pragma mark - SET & GET
 - (void)setupBQBankModel:(BQBankModel *)model {
