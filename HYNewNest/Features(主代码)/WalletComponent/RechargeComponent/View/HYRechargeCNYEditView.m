@@ -54,7 +54,7 @@
 - (void)loadViewFromXib {
     [super loadViewFromXib];
     
-    self.contentView.backgroundColor = kHexColor(0x212137);
+    self.contentView.backgroundColor = kHexColor(0x272749);
     [self.contentView addCornerAndShadow];
     
     [self.depositorTfView setPlaceholder:@"请输入付款人姓名"];
@@ -128,6 +128,8 @@
             proBtn.frame = CGRectMake((ItemMargin + ItemWidht) * (i%3), (i/3) * (ItemHeight+ItemMargin), ItemWidht, ItemHeight);
             [proBtn setBackgroundImage:[UIColor gradientImageFromColors:@[kHexColor(0x10B4DD), kHexColor(0x19CECE)] gradientType:GradientTypeLeftToRight imgSize:proBtn.frame.size]
                               forState:UIControlStateSelected];
+            [proBtn setTitleColor:kHexColor(0x11B5DD) forState:UIControlStateNormal];
+            [proBtn setTitleColor:kHexColor(0xFFFFFF) forState:UIControlStateSelected];
             proBtn.layer.borderColor = kHexColor(0x10B4DD).CGColor;
             proBtn.layer.borderWidth = 1.f;
             proBtn.layer.cornerRadius = 4;

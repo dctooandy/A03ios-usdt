@@ -95,10 +95,12 @@
 }
 
 - (void)setInputBackgoundColor: (UIColor *)color {
-    UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, CGRectGetHeight(self.inputTF.frame))];
+    UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, CGRectGetHeight(self.inputTF.frame))];
     [leftView setBackgroundColor:[UIColor clearColor]];
     [self.inputTF setLeftView:leftView];
     [self.inputTF setBackgroundColor:color];
+    self.inputTF.layer.cornerRadius = 4;
+    [self.inputTF setLeftViewMode:UITextFieldViewModeAlways];
 }
 
 - (void)setStatusToNormal {
