@@ -13,12 +13,13 @@
 #import "NSURL+HYLink.h"
 #import "HYRechargeHelper.h"
 #import <UIImageView+WebCache.h>
+#import "UIColor+Gradient.h"
 
 @interface HYRechargeCNYEditView () <CNNormalInputViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *contentView;
-@property (weak, nonatomic) IBOutlet UIImageView *imgvIcon;
+//@property (weak, nonatomic) IBOutlet UIImageView *imgvIcon;
 @property (weak, nonatomic) IBOutlet UILabel *lblPayWayName;
-@property (weak, nonatomic) IBOutlet UILabel *lblPayWayLimit;
+//@property (weak, nonatomic) IBOutlet UILabel *lblPayWayLimit;
 
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *amountBtnsTopMargin;
@@ -55,8 +56,15 @@
     self.contentView.backgroundColor = kHexColor(0x212137);
     [self.contentView addCornerAndShadow];
     
-    [self.depositorTfView setPlaceholder:@"请输入付款人姓名"];
-    self.depositorTfView.delegate = self;
+//    [self.depositorTfView setPlaceholder:@"请输入付款人姓名"];
+//    self.depositorTfView.delegate = self;
+    self.depositorTfView.text = [NSString stringWithFormat:@"付款人姓名： %@",[[CNUserManager shareManager] userDetail].realName];
+    [self.depositorTfView setTextColor:kHexColorAlpha(0xFFFFFF, 0.5)];
+    self.depositor = self.depositorTfView.text;
+    self.depositorId = @"";
+    [self.depositorTfView editAble:false];
+    
+    
     self.amountTfView.delegate = self;
     [self.amountTfView setKeyboardType:UIKeyboardTypeNumberPad];
 }
@@ -81,12 +89,12 @@
     _amountModel = amountModel;
     
     /// 顶上信息
-    [self.imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:itemModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
+//    [self.imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:itemModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
     self.lblPayWayName.text = itemModel.payTypeName;
-    self.lblPayWayLimit.text = [NSString stringWithFormat:@"(%@)", [HYRechargeHelper amountTip:itemModel]];
+//    self.lblPayWayLimit.text = [NSString stringWithFormat:@"(%@)", [HYRechargeHelper amountTip:itemModel]];
     
     /// 金额选择按钮
-    for (HYRechProcButton *btn in self.amountBtnsContain.subviews) {
+    for (UIButton *btn in self.amountBtnsContain.subviews) {
         [btn performSelector:@selector(removeFromSuperview)];
     }
     CGFloat ItemMargin = 16;
@@ -102,13 +110,19 @@
         for (__block int i=0; i<amoArr.count; i++) {
             NSNumber *amoTit = amoArr[i];
 
-            HYRechProcButton *proBtn = [[HYRechProcButton alloc] init];
+            UIButton *proBtn = [[UIButton alloc] init];
             [proBtn setTitle:[NSString stringWithFormat:@"%@", amoTit] forState:UIControlStateNormal];
             [proBtn addTarget:self action:@selector(amountBtnSelected:) forControlEvents:UIControlEventTouchUpInside];
             proBtn.tag = i;
 
             [self.amountBtnsContain addSubview:proBtn];
             proBtn.frame = CGRectMake((ItemMargin + ItemWidht) * (i%3), (i/3) * (ItemHeight+ItemMargin), ItemWidht, ItemHeight);
+            [proBtn setBackgroundImage:[UIColor gradientImageFromColors:@[kHexColor(0x10B4DD), kHexColor(0x19CECE)] gradientType:GradientTypeLeftToRight imgSize:proBtn.frame.size]
+                              forState:UIControlStateSelected];
+            proBtn.layer.borderColor = kHexColor(0x10B4DD).CGColor;
+            proBtn.layer.borderWidth = 1.f;
+            proBtn.layer.cornerRadius = 4;
+            proBtn.layer.masksToBounds = true;
 
         }
         self.amountBtnsContain.hidden = NO;
@@ -182,8 +196,9 @@
     btn.selected = YES;
     self.rechargeAmount = btn.titleLabel.text;
     self.amountTfView.text = btn.titleLabel.text;
+    [self.amountTfView setStatusToNormal];
     [self endEditing:YES];
-    
+
     [self checkEnableStatus];
 }
 
@@ -232,10 +247,8 @@
             view.wrongAccout = NO;
             self.rechargeAmount = view.text;
         }
-        if (view.text.length > 0) {
-            for (UIButton *btn in self.amountBtnsContain.subviews) {
-                btn.selected = NO;
-            }
+        for (UIButton *btn in self.amountBtnsContain.subviews) {
+            btn.selected = NO;
         }
     } else if (view == self.depositorTfView) {
         if (![view.text validationType:ValidationTypeRealName]) {

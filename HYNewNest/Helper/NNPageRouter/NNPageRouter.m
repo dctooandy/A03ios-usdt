@@ -170,9 +170,8 @@
     //    如果完整地址是 @"http://m3.wancity.net/_glaxy_a5b04c_/liveChatAddressOCSS"
     info.baseUrl = [IVHttpManager shareManager].gateway;//客服后台配置的接口域名
 
-    [CSVisitChatmanager startServiceWithSuperVC:[NNControllerHelper currentTabBarController]
-                                       chatInfo:info
-                                         finish:^(CSServiceCode errCode) {
+    [CSVisitChatmanager startWithSuperVC:[NNControllerHelper currentTabBarController]
+                                chatInfo:info finish:^(CSServiceCode errCode) {
         if (errCode != CSServiceCode_Request_Suc) {
             [CNTOPHUB showError:@"系统错误，请稍后再试"];
         }

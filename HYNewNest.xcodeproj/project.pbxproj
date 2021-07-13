@@ -1019,7 +1019,6 @@
 		F7AF80EA268DB0B90048DBD8 /* BYChangeFundPwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D57EF112668ED0A00A5CCC6 /* BYChangeFundPwdVC.xib */; };
 		F7D6625C2697ED0B00655DE3 /* BYBindRealNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D6625A2697ED0B00655DE3 /* BYBindRealNameVC.m */; };
 		F7D6625D2697ED0B00655DE3 /* BYBindRealNameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7D6625B2697ED0B00655DE3 /* BYBindRealNameVC.xib */; };
-
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -5325,10 +5324,10 @@
 				0487C97A24CEB2710013715A /* CNChoseImageVC.xib */,
 				0487C9AF24CFF3170013715A /* CNSecurityCenterVC.h */,
 				0487C9B024CFF3170013715A /* CNSecurityCenterVC.m */,
+				0487C9B124CFF3170013715A /* CNSecurityCenterVC.xib */,
 				F7D662592697ED0B00655DE3 /* BYBindRealNameVC.h */,
 				F7D6625A2697ED0B00655DE3 /* BYBindRealNameVC.m */,
 				F7D6625B2697ED0B00655DE3 /* BYBindRealNameVC.xib */,
-				0487C9B124CFF3170013715A /* CNSecurityCenterVC.xib */,
 				0487C9B624D005D20013715A /* CNChangePwdVC.h */,
 				0487C9B424D005D20013715A /* CNChangePwdVC.m */,
 				0487C9B524D005D20013715A /* CNChangePwdVC.xib */,

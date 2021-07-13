@@ -14,7 +14,6 @@
 #import "ChargeManualMessgeView.h"
 #import "CNTradeRecodeVC.h"
 #import "HYRechargeCNYEditView.h"
-#import "HYRechargePayWayController.h"
 #import "HYWithdrawComfirmView.h"
 #import "CNUserCenterRequest.h"
 #import "CNRechargeChosePayTypeVC.h"
@@ -78,7 +77,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"充值";
+    self.title = @"CNY充值";
     [self addNaviRightItemWithImageName:@"kf"];
     
     _selcPayWayIdx = 0;

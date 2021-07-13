@@ -47,7 +47,7 @@
 
 - (void)textFieldChange:(UITextField *)textField {
     // 只要已修改就去掉错误提示
-//    self.wrongAccout = NO;
+    //    self.wrongAccout = NO;
     self.lineView.backgroundColor = self.hilghtColor;
     self.tipLb.textColor = self.hilghtColor;
     self.tipLb.text = self.inputTF.placeholder;
@@ -85,4 +85,20 @@
 - (void)setKeyboardType:(UIKeyboardType)keyboardType {
     self.inputTF.keyboardType = keyboardType;
 }
+
+- (void)editAble:(BOOL)editable {
+    [self.inputTF setUserInteractionEnabled:false];
+}
+
+- (void)setTextColor:(UIColor *)color {
+    [self.inputTF setTextColor:color];
+}
+
+- (void)setStatusToNormal {
+    self.wrongAccout = false;
+    self.lineView.backgroundColor = self.hilghtColor;
+    self.tipLb.textColor = self.hilghtColor;
+    self.tipLb.text = self.inputTF.placeholder;
+}
+
 @end
