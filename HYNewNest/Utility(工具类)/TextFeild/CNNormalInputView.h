@@ -40,6 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
 ///设定输入框背景色
 - (void)setInputBackgoundColor: (UIColor *)color;
 
+- (void)setPrefixText: (NSString *)text;
+
 @end
 
 NS_ASSUME_NONNULL_END

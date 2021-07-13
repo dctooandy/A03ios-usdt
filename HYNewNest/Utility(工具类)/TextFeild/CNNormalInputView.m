@@ -110,4 +110,13 @@
     self.tipLb.text = self.inputTF.placeholder;
 }
 
+- (void)setPrefixText: (NSString *)text {
+    UILabel *prefixLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, CGRectGetHeight(self.inputTF.frame))];
+    [prefixLabel setTextColor:kHexColorAlpha(0xFFFFFF, 0.5)];
+    [prefixLabel setFont:[UIFont fontPFM16]];
+    [prefixLabel setText:text];
+    [self.inputTF setLeftViewMode:UITextFieldViewModeAlways];
+    [self.inputTF setLeftView:prefixLabel];
+}
+
 @end

@@ -60,10 +60,12 @@
     [self.depositorTfView setPlaceholder:@"请输入付款人姓名"];
     self.depositorTfView.delegate = self;
     [self.depositorTfView setTextColor:kHexColorAlpha(0xFFFFFF, 0.5)];
+    [self.depositorTfView setPrefixText:@"付款人姓名: "];
     
     [self.amountTfView setInputBackgoundColor:kHexColor(0x16162C)];
     self.amountTfView.delegate = self;
     [self.amountTfView setKeyboardType:UIKeyboardTypeNumberPad];
+    
         
     if ([[CNUserManager shareManager] userDetail].depositLevel == 0) {
         self.warningLabel.attributedText = ({
