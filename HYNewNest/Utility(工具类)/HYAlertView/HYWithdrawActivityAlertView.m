@@ -183,7 +183,7 @@
 }
 
 - (void)record {
-    [[NSUserDefaults standardUserDefaults] setBool:self.btnNowShow.selected forKey:HYNotShowCTZNEUserDefaultKey];
+    [[NSUserDefaults standardUserDefaults] setBool:self.btnNowShow.selected forKey:HYNotShowQKFLUserDefaultKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
         
 
