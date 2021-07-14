@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BYBindRealNameVC">
             <connections>
-                <outlet property="confirmRealNameInputView" destination="Fp0-Lg-nmj" id="RNp-YQ-zBK"/>
                 <outlet property="modifyRealNameWarningLabel" destination="PKM-Tu-54C" id="YII-b7-MSF"/>
                 <outlet property="realNameInputView" destination="t8V-uv-ckN" id="zH8-Gl-HhV"/>
                 <outlet property="submitButton" destination="kCh-I1-ZvX" id="lk3-hH-khF"/>
@@ -25,10 +24,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xme-8d-lPB" customClass="BYGradientView">
-                    <rect key="frame" x="0.0" y="521" width="414" height="375"/>
+                    <rect key="frame" x="0.0" y="596" width="414" height="300"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kCh-I1-ZvX" customClass="CNTwoStatusBtn">
-                            <rect key="frame" x="30" y="292" width="354" height="48"/>
+                            <rect key="frame" x="30" y="217" width="354" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="7Yc-go-b1L"/>
                             </constraints>
@@ -46,7 +45,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mx6-Bf-Rxc">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mx6-Bf-Rxc" userLabel="lineView">
                             <rect key="frame" x="0.0" y="62" width="414" height="0.5"/>
                             <color key="backgroundColor" white="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -54,7 +53,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5VF-HB-t9B">
-                            <rect key="frame" x="0.0" y="62.5" width="414" height="229.5"/>
+                            <rect key="frame" x="0.0" y="62.5" width="414" height="154.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="付款人姓名必須和銀行卡一致，请认真填写" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfQ-Id-Ptf">
                                     <rect key="frame" x="0.0" y="18" width="414" height="12"/>
@@ -72,29 +71,19 @@
                                         <constraint firstAttribute="height" constant="89" id="58V-ir-zNS"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fp0-Lg-nmj" customClass="CNNormalInputView">
-                                    <rect key="frame" x="30" y="119" width="354" height="89"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="89" id="Sd3-uh-HVU"/>
-                                    </constraints>
-                                </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="AfQ-Id-Ptf" secondAttribute="trailing" id="73J-7u-fh3"/>
-                                <constraint firstItem="Fp0-Lg-nmj" firstAttribute="leading" secondItem="5VF-HB-t9B" secondAttribute="leading" constant="30" id="F8c-gR-gfo"/>
                                 <constraint firstItem="AfQ-Id-Ptf" firstAttribute="leading" secondItem="5VF-HB-t9B" secondAttribute="leading" id="Gf8-HL-RMs"/>
                                 <constraint firstAttribute="trailing" secondItem="t8V-uv-ckN" secondAttribute="trailing" constant="30" id="GmZ-CI-CAB"/>
                                 <constraint firstItem="t8V-uv-ckN" firstAttribute="leading" secondItem="5VF-HB-t9B" secondAttribute="leading" constant="30" id="I6C-SG-zJs"/>
                                 <constraint firstItem="AfQ-Id-Ptf" firstAttribute="top" secondItem="5VF-HB-t9B" secondAttribute="top" constant="18" id="gaU-bm-KUH"/>
-                                <constraint firstAttribute="trailing" secondItem="Fp0-Lg-nmj" secondAttribute="trailing" constant="30" id="oHE-dh-RZx"/>
-                                <constraint firstItem="Fp0-Lg-nmj" firstAttribute="top" secondItem="t8V-uv-ckN" secondAttribute="bottom" id="s9X-WO-MnF"/>
                                 <constraint firstItem="t8V-uv-ckN" firstAttribute="top" secondItem="AfQ-Id-Ptf" secondAttribute="bottom" id="xuk-AL-tDv"/>
                             </constraints>
                         </view>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="付款人姓名需要联系客服修改" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKM-Tu-54C">
-                            <rect key="frame" x="0.0" y="62.5" width="414" height="229.5"/>
+                            <rect key="frame" x="0.0" y="62.5" width="414" height="154.5"/>
                             <color key="backgroundColor" red="0.15294117647058825" green="0.15294117647058825" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -117,7 +106,7 @@
                         <constraint firstItem="Mx6-Bf-Rxc" firstAttribute="top" secondItem="VhE-wW-ksf" secondAttribute="bottom" id="ArB-4a-Hdr"/>
                         <constraint firstItem="5VF-HB-t9B" firstAttribute="leading" secondItem="Xme-8d-lPB" secondAttribute="leading" id="Aze-d5-i79"/>
                         <constraint firstItem="VhE-wW-ksf" firstAttribute="top" secondItem="Xme-8d-lPB" secondAttribute="top" id="CWh-Bv-hPt"/>
-                        <constraint firstAttribute="height" constant="375" id="CbE-Y0-Rnx"/>
+                        <constraint firstAttribute="height" constant="300" id="CbE-Y0-Rnx"/>
                         <constraint firstItem="VhE-wW-ksf" firstAttribute="leading" secondItem="Xme-8d-lPB" secondAttribute="leading" id="Db3-On-GMB"/>
                         <constraint firstAttribute="trailing" secondItem="VhE-wW-ksf" secondAttribute="trailing" id="FdK-rY-5md"/>
                         <constraint firstItem="PKM-Tu-54C" firstAttribute="bottom" secondItem="5VF-HB-t9B" secondAttribute="bottom" id="L4a-Yf-Dg6"/>

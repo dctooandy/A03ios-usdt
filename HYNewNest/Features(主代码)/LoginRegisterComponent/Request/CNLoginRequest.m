@@ -447,7 +447,7 @@
     }];
 }
 
-+ (void)switchAccountSuccessHandler:(HandlerBlock)completionHandler faileHandler:(void (^)(void))faileHandloer{
++ (void)switchAccountSuccessHandler:(HandlerBlock)completionHandler faileHandler:(void (^ _Nullable)(void))faileHandloer{
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     //1 主账户 2 USDT 在这里usdtmodeon已经打开了
 //    [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@2 forKey:@"accountType"]; //废弃

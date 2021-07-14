@@ -1014,6 +1014,7 @@
 		F783972D2673360600AB8BE6 /* BYRegisterSuccessVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F783972B2673360600AB8BE6 /* BYRegisterSuccessVC.xib */; };
 		F786E5812680609C008B7DDE /* BYTradeEntryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F786E5802680609C008B7DDE /* BYTradeEntryModel.m */; };
 		F786E583268063C8008B7DDE /* BYTradeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F786E582268063C8008B7DDE /* BYTradeTableViewCell.xib */; };
+		F791E24E269E7B44002D6648 /* BYCNYRechargeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = F791E24D269E7B44002D6648 /* BYCNYRechargeAlertView.m */; };
 		F7A75F1F264E405600D933D7 /* BYBorderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F1E264E405600D933D7 /* BYBorderButton.m */; };
 		F7A75F22264E507200D933D7 /* BYBorderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F21264E507200D933D7 /* BYBorderLabel.m */; };
 		F7AF80EA268DB0B90048DBD8 /* BYChangeFundPwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D57EF112668ED0A00A5CCC6 /* BYChangeFundPwdVC.xib */; };
@@ -2452,6 +2453,8 @@
 		F786E57F2680609C008B7DDE /* BYTradeEntryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYTradeEntryModel.h; sourceTree = "<group>"; };
 		F786E5802680609C008B7DDE /* BYTradeEntryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYTradeEntryModel.m; sourceTree = "<group>"; };
 		F786E582268063C8008B7DDE /* BYTradeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BYTradeTableViewCell.xib; sourceTree = "<group>"; };
+		F791E24C269E7B44002D6648 /* BYCNYRechargeAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYCNYRechargeAlertView.h; sourceTree = "<group>"; };
+		F791E24D269E7B44002D6648 /* BYCNYRechargeAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYCNYRechargeAlertView.m; sourceTree = "<group>"; };
 		F7A75F1D264E405600D933D7 /* BYBorderButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYBorderButton.h; sourceTree = "<group>"; };
 		F7A75F1E264E405600D933D7 /* BYBorderButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYBorderButton.m; sourceTree = "<group>"; };
 		F7A75F20264E507200D933D7 /* BYBorderLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYBorderLabel.h; sourceTree = "<group>"; };
@@ -5081,6 +5084,8 @@
 				3DED18BC266232F600823BD7 /* BYYuEBaoTransAlertView.m */,
 				3DCE56FA2698155200BEADD9 /* BYMultiAccountRuleView.h */,
 				3DCE56FB2698155200BEADD9 /* BYMultiAccountRuleView.m */,
+				F791E24C269E7B44002D6648 /* BYCNYRechargeAlertView.h */,
+				F791E24D269E7B44002D6648 /* BYCNYRechargeAlertView.m */,
 			);
 			path = HYAlertView;
 			sourceTree = "<group>";
@@ -6743,6 +6748,7 @@
 				3D31B94425399CB7005275BD /* HYBuyECoinComfirmView.m in Sources */,
 				3DC14E3F25F8DC0D00D6DB85 /* BYVocherTableVC.m in Sources */,
 				F70128C4269544CD00ED6509 /* BYWithdrawConfirmVC.m in Sources */,
+				F791E24E269E7B44002D6648 /* BYCNYRechargeAlertView.m in Sources */,
 				E986A18F24CA8DB9000F9CFF /* ChooseAvatarsModel.m in Sources */,
 				3DA4F18924B317E40039123F /* WMDragView.m in Sources */,
 				E986A1A324CB37C3000F9CFF /* HYBaseAlertView.m in Sources */,

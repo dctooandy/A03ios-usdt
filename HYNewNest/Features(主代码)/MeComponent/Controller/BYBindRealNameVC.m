@@ -15,7 +15,6 @@
 @interface BYBindRealNameVC ()
 @property (weak, nonatomic) IBOutlet UILabel *warningLabel;
 @property (weak, nonatomic) IBOutlet CNNormalInputView *realNameInputView;
-@property (weak, nonatomic) IBOutlet CNNormalInputView *confirmRealNameInputView;
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *submitButton;
 @property (weak, nonatomic) IBOutlet UILabel *modifyRealNameWarningLabel;
 
@@ -50,53 +49,30 @@
 #pragma mark -
 #pragma mark InputViewDelegate
 - (void)inputViewTextChange:(CNNormalInputView *)view {
-    
-    BOOL submitEnable = false;
-    if ([view.text validationType:ValidationTypeRealName] == true && [self.realNameInputView.text isEqualToString:self.confirmRealNameInputView.text]) {
-        view.wrongAccout = false;
-        submitEnable = true;
-    }
-    else if (view == self.confirmRealNameInputView && [self.realNameInputView.text isEqualToString:view.text] == false) {
-        [view showWrongMsg:@"您两次的输入不一致"];
-        view.wrongAccout = true;
-    }
-    else if (view == self.realNameInputView) {
-        self.confirmRealNameInputView.wrongAccout = false;
-        self.confirmRealNameInputView.text = @"";
-    }
-    else if ([view.text validationType:ValidationTypeRealName] == false) {
-        [view showWrongMsg:@"您输入的真实姓名有误"];
-        view.wrongAccout = true;
-    }
-    else if ([view.text validationType:ValidationTypeRealName] == true) {
-        view.wrongAccout = false;
-    }
-    
-    self.submitButton.enabled = submitEnable;
+    BOOL valid = [view.text validationType:ValidationTypeRealName];
+    self.submitButton.enabled = valid;
+    view.wrongAccout = !valid;
     
 }
 #pragma mark -
 #pragma mark Custom Method
 - (void)setupUI {
-    if (KIsEmptyString([CNUserManager shareManager].userDetail.realName)) {
+//    if (KIsEmptyString([CNUserManager shareManager].userDetail.realName)) {
         [self.warningLabel setupGradientColorFrom:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE)];
         
         [self.realNameInputView setPlaceholder:@"请输入新付款人姓名"];
         [self.realNameInputView setDelegate:self];
         
-        [self.confirmRealNameInputView setPlaceholder:@"确认新付款人姓名"];
-        [self.confirmRealNameInputView setDelegate:self];
-        
         [self.submitButton setTitle:@"提交" forState:UIControlStateNormal];
         
         [self.modifyRealNameWarningLabel setHidden:true];
-    }
-    else {
-        [self.submitButton setTitle:@"联系客服" forState:UIControlStateNormal];
-        [self.submitButton setEnabled:true];
-        
-        [self.modifyRealNameWarningLabel setHidden:false];
-    }
+//    }
+//    else {
+//        [self.submitButton setTitle:@"联系客服" forState:UIControlStateNormal];
+//        [self.submitButton setEnabled:true];
+//
+//        [self.modifyRealNameWarningLabel setHidden:false];
+//    }
 }
 
 #pragma mark -
