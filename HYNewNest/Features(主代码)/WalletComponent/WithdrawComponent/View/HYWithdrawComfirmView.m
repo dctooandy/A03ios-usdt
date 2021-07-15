@@ -88,33 +88,6 @@
     }];
 }
 
-/// 输入真名
-- (instancetype)initRealNameSubmitBlock:(void (^)(NSString * _Nonnull))block {
-    self = [super init];
-    self.frame = [UIScreen mainScreen].bounds;
-    
-    self.easyBlock = block;
-    [self commonViewsSetup];
-    
-    // lable
-    UILabel *lblMon = [[UILabel alloc] init];
-    lblMon.text = @"首次转账支付，需绑定您的真实姓名，绑定后不可修改，且必须和提款银行卡姓名一致";
-    lblMon.frame = CGRectMake(23, CGRectGetMaxY(self.lblTitle.frame)+24, AD(329), AD(50));
-    lblMon.textColor = kHexColorAlpha(0xFFFFFF, 0.5);
-    lblMon.font = [UIFont fontPFR14];
-    lblMon.numberOfLines = 2;
-    [self.mainView addSubview:lblMon];
-    
-    // input
-    CNNormalInputView *inputView = [[CNNormalInputView alloc] initWithFrame:CGRectMake(30, lblMon.bottom + 9, kScreenWidth-60, 89)];
-    self.nameTF = inputView;
-    inputView.delegate = self;
-    [inputView setPlaceholder:@"请输入您的真实姓名"];
-    [self.mainView addSubview:inputView];
-    
-    return self;
-}
-
 /// 输入金额
 - (instancetype)initWithAmountModel:(nullable AccountMoneyDetailModel *)amoutModel
                             needPwd:(BOOL)needPwd

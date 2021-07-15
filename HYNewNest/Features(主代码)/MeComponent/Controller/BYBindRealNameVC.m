@@ -57,22 +57,22 @@
 #pragma mark -
 #pragma mark Custom Method
 - (void)setupUI {
-//    if (KIsEmptyString([CNUserManager shareManager].userDetail.realName)) {
-        [self.warningLabel setupGradientColorFrom:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE)];
+    if (KIsEmptyString([CNUserManager shareManager].userDetail.realName)) {
+//        [self.warningLabel setupGradientColorFrom:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE)];
         
-        [self.realNameInputView setPlaceholder:@"请输入新付款人姓名"];
+        [self.realNameInputView setPlaceholder:@"请输入您的真实姓名"];
         [self.realNameInputView setDelegate:self];
         
         [self.submitButton setTitle:@"提交" forState:UIControlStateNormal];
         
         [self.modifyRealNameWarningLabel setHidden:true];
-//    }
-//    else {
-//        [self.submitButton setTitle:@"联系客服" forState:UIControlStateNormal];
-//        [self.submitButton setEnabled:true];
-//
-//        [self.modifyRealNameWarningLabel setHidden:false];
-//    }
+    }
+    else {
+        [self.submitButton setTitle:@"联系客服" forState:UIControlStateNormal];
+        [self.submitButton setEnabled:true];
+
+        [self.modifyRealNameWarningLabel setHidden:false];
+    }
 }
 
 #pragma mark -

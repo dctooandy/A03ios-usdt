@@ -15,9 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 提现金额 & 提现确认 & 支付等待 & 真实姓名绑定 -> 分开。。。
 @interface HYWithdrawComfirmView : UIView
 
-/// 真实姓名绑定
-- (instancetype)initRealNameSubmitBlock:(void(^)(NSString *realName))block;
-
 /// 金额输入
 - (instancetype)initWithAmountModel:(nullable AccountMoneyDetailModel *)amoutModel
                             needPwd:(BOOL)needPwd
