@@ -13,6 +13,7 @@
 #import "HYVIPViewController.h"
 #import "HYBonusViewController.h"
 #import "HYGloryViewController.h"
+#import "BYGloryVC.h"
 #import "CNMineVC.h"
 
 #import "UIImage+ESUtilities.h"
@@ -94,10 +95,16 @@
                                                                                           selectedImage:[UIImage imageNamed:@"youhui_s"]];
     [vcs addObject:bonusNav];
    
-    HYNavigationController *gloryNav = [HYNavigationController navigationControllerWithController:[HYGloryViewController class]
-                                                                      tabBarTitle:@"风采"
-                                                                      normalImage:[UIImage imageNamed:@"Fengcai"]
-                                                                    selectedImage:[UIImage imageNamed:@"Fengcai_s"]];
+//    HYNavigationController *gloryNav = [HYNavigationController navigationControllerWithController:[HYGloryViewController class]
+//                                                                      tabBarTitle:@"风采"
+//                                                                      normalImage:[UIImage imageNamed:@"Fengcai"]
+//                                                                    selectedImage:[UIImage imageNamed:@"Fengcai_s"]];
+//    [vcs addObject:gloryNav];
+    
+    HYNavigationController *gloryNav = [HYNavigationController navigationControllerWithController:[BYGloryVC class]
+                                                                                      tabBarTitle:@"风采"
+                                                                                      normalImage:[UIImage imageNamed:@"Fengcai"]
+                                                                                    selectedImage:[UIImage imageNamed:@"Fengcai_s"]];
     [vcs addObject:gloryNav];
     
     HYNavigationController *mineNav = [HYNavigationController navigationControllerWithController:[CNMineVC class]

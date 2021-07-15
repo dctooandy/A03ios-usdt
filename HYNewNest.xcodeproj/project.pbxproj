@@ -994,6 +994,10 @@
 		F765F0F126525F5800F15747 /* BYFirstFillBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F765F0F026525F5800F15747 /* BYFirstFillBannerView.xib */; };
 		F765F0F4265268D000F15747 /* BYMoreCompleteMissionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F765F0F3265268D000F15747 /* BYMoreCompleteMissionView.m */; };
 		F765F0F6265268E200F15747 /* BYMoreCompleteMissionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F765F0F5265268E200F15747 /* BYMoreCompleteMissionView.xib */; };
+		F772EC5F269FF97E00F786C7 /* BYGloryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F772EC5D269FF97E00F786C7 /* BYGloryVC.m */; };
+		F772EC60269FF97E00F786C7 /* BYGloryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F772EC5E269FF97E00F786C7 /* BYGloryVC.xib */; };
+		F772EC64269FFBED00F786C7 /* BYGloryHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F772EC62269FFBED00F786C7 /* BYGloryHeaderTableViewCell.m */; };
+		F772EC65269FFBED00F786C7 /* BYGloryHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F772EC63269FFBED00F786C7 /* BYGloryHeaderTableViewCell.xib */; };
 		F774CDA9264CF2960062F6A2 /* BYGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = F774CDA8264CF2960062F6A2 /* BYGradientView.m */; };
 		F783972C2673360600AB8BE6 /* BYRegisterSuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F783972A2673360600AB8BE6 /* BYRegisterSuccessVC.m */; };
 		F783972D2673360600AB8BE6 /* BYRegisterSuccessVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F783972B2673360600AB8BE6 /* BYRegisterSuccessVC.xib */; };
@@ -2402,6 +2406,12 @@
 		F765F0F2265268D000F15747 /* BYMoreCompleteMissionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYMoreCompleteMissionView.h; sourceTree = "<group>"; };
 		F765F0F3265268D000F15747 /* BYMoreCompleteMissionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYMoreCompleteMissionView.m; sourceTree = "<group>"; };
 		F765F0F5265268E200F15747 /* BYMoreCompleteMissionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYMoreCompleteMissionView.xib; sourceTree = "<group>"; };
+		F772EC5C269FF97E00F786C7 /* BYGloryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGloryVC.h; sourceTree = "<group>"; };
+		F772EC5D269FF97E00F786C7 /* BYGloryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGloryVC.m; sourceTree = "<group>"; };
+		F772EC5E269FF97E00F786C7 /* BYGloryVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYGloryVC.xib; sourceTree = "<group>"; };
+		F772EC61269FFBED00F786C7 /* BYGloryHeaderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGloryHeaderTableViewCell.h; sourceTree = "<group>"; };
+		F772EC62269FFBED00F786C7 /* BYGloryHeaderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGloryHeaderTableViewCell.m; sourceTree = "<group>"; };
+		F772EC63269FFBED00F786C7 /* BYGloryHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYGloryHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		F774CDA7264CF2960062F6A2 /* BYGradientView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGradientView.h; sourceTree = "<group>"; };
 		F774CDA8264CF2960062F6A2 /* BYGradientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGradientView.m; sourceTree = "<group>"; };
 		F78397292673360600AB8BE6 /* BYRegisterSuccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYRegisterSuccessVC.h; sourceTree = "<group>"; };
@@ -5154,6 +5164,9 @@
 				E9B5497124CF0467002CE6EF /* HYArticalCell.xib */,
 				E9B5497524CF110B002CE6EF /* StrengthVideoTableViewCell.h */,
 				E9B5497424CF110B002CE6EF /* StrengthVideoTableViewCell.m */,
+				F772EC61269FFBED00F786C7 /* BYGloryHeaderTableViewCell.h */,
+				F772EC62269FFBED00F786C7 /* BYGloryHeaderTableViewCell.m */,
+				F772EC63269FFBED00F786C7 /* BYGloryHeaderTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5186,6 +5199,9 @@
 				E9D9447924C1F39C00252222 /* HYGloryViewController.m */,
 				E9B5496B24CEE34F002CE6EF /* HYArticalTableViewController.h */,
 				E9B5496C24CEE34F002CE6EF /* HYArticalTableViewController.m */,
+				F772EC5C269FF97E00F786C7 /* BYGloryVC.h */,
+				F772EC5D269FF97E00F786C7 /* BYGloryVC.m */,
+				F772EC5E269FF97E00F786C7 /* BYGloryVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5387,7 +5403,7 @@
 				3D13384F24AD8F9B00B29783 /* Resources */,
 				C08FB099C221193B86170E0B /* [CP] Embed Pods Frameworks */,
 				3DFF702F261EF93900801654 /* IconVersioning Script */,
-				63671F048E6A74AC574C9631 /* [CP] Copy Pods Resources */,
+				4316AD8ECC69BBD8FC3CDFC3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5426,7 +5442,7 @@
 				3D13387424AD8F9C00B29783 /* Frameworks */,
 				3D13387524AD8F9C00B29783 /* Resources */,
 				28822A1001555599A37308F2 /* [CP] Embed Pods Frameworks */,
-				279B8EEC2C1352B540FDA6A5 /* [CP] Copy Pods Resources */,
+				B656E4D892DF0F9222BD89BD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5549,6 +5565,7 @@
 				D5A4464E24F393E500014DC6 /* 足球_0004.png in Resources */,
 				D5A4458A24F393AD00014DC6 /* 棋牌_00033.png in Resources */,
 				D5A4457A24F393AD00014DC6 /* 棋牌_00052.png in Resources */,
+				F772EC60269FF97E00F786C7 /* BYGloryVC.xib in Resources */,
 				D5A446EF24F3941400014DC6 /* 合成 1_00021.png in Resources */,
 				D5A443FE24F37A9E00014DC6 /* 彩票_0003.png in Resources */,
 				D5A443FB24F37A9E00014DC6 /* 彩票_0007.png in Resources */,
@@ -5904,6 +5921,7 @@
 				D5A4447124F3932400014DC6 /* 数字7_00060.png in Resources */,
 				D5A4457424F393AD00014DC6 /* 棋牌_00044.png in Resources */,
 				D5A4447324F3932400014DC6 /* 数字7_00048.png in Resources */,
+				F772EC65269FFBED00F786C7 /* BYGloryHeaderTableViewCell.xib in Resources */,
 				D5A446C624F3941400014DC6 /* 合成 1_00073.png in Resources */,
 				3D31B9632542EA64005275BD /* HYTapHanImageCodeView.xib in Resources */,
 				D5A4438F24F378CD00014DC6 /* 彩票_00092.png in Resources */,
@@ -6154,23 +6172,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		279B8EEC2C1352B540FDA6A5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		28822A1001555599A37308F2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -6206,7 +6207,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n$SRCROOT/HYNewNest/Other/LLIconVersioning.sh\n";
 		};
-		63671F048E6A74AC574C9631 /* [CP] Copy Pods Resources */ = {
+		4316AD8ECC69BBD8FC3CDFC3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -6221,6 +6222,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B656E4D892DF0F9222BD89BD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C08FB099C221193B86170E0B /* [CP] Embed Pods Frameworks */ = {
@@ -6350,6 +6368,7 @@
 				048A0EEF24C921F100411819 /* CNElResentPlayCCell.m in Sources */,
 				3DBA55EC2578F23E009A2B71 /* CNGameBtnsStackView.m in Sources */,
 				E9B5496D24CEE34F002CE6EF /* HYArticalTableViewController.m in Sources */,
+				F772EC64269FFBED00F786C7 /* BYGloryHeaderTableViewCell.m in Sources */,
 				3D41DE7A25199DEE000CA1D6 /* VIPChartDSBCell.m in Sources */,
 				E986A1C324CC7F2B000F9CFF /* SDCollectionViewCell.m in Sources */,
 				E98BEF0A24D25F6E00E6B0C8 /* HYXiMaCell.m in Sources */,
@@ -6476,6 +6495,7 @@
 				3D9700262599DB2A003238C4 /* HYDSBSlideUpViewCell.m in Sources */,
 				3D3A9B6A24FA3696003FB33C /* DXRadianLayerView.m in Sources */,
 				0487C9CD24D133270013715A /* CNRecordTypeSelectorView.m in Sources */,
+				F772EC5F269FF97E00F786C7 /* BYGloryVC.m in Sources */,
 				3DE3CA9324ED5CFC00D591C4 /* HYUpdateAlertView.m in Sources */,
 				3D41DEA8251B4A45000CA1D6 /* HYVIPReceiveAlertView.m in Sources */,
 				E98BEEE824D023B200E6B0C8 /* LYEmptyBaseView.m in Sources */,
