@@ -10,7 +10,6 @@
 #import "CNSettingVC.h"
 #import "CNSecurityCenterVC.h"
 #import "CNTradeRecodeVC.h"
-#import "HYNewCTZNViewController.h"
 #import "HYXiMaViewController.h"
 #import "CNMessageCenterVC.h"
 #import "CNDownloadVC.h"
@@ -192,15 +191,6 @@
 
 /// 充提洗
 - (IBAction)didClickMCTMBtns:(UIButton *)sender {
-    //???: 充提指南 逻辑怎么处理?
-    //移除充題指南
-//    if ([CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userInfo.starLevel == 0 && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
-//        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
-//        vc.type = sender.tag;
-//        [self presentViewController:vc animated:YES completion:nil];
-//        return;
-//    }
-//
     if (sender.tag == 0) { // 充值
         [NNPageRouter jump2Deposit];        
     } else if (sender.tag == 1) { // 提现

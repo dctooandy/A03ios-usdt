@@ -21,7 +21,6 @@
 #import "HYWithdrawCalculatorComView.h"
 #import "HYWithdrawChooseWallectComView.h"
 #import "HYWithdrawActivityAlertView.h"
-#import "BYCTZNBannerView.h"
 #import "HYOneImgBtnAlertView.h"
 #import "HYTextAlertView.h"
 #import "HYDownloadLinkView.h"
@@ -132,17 +131,6 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 
 - (void)rightItemAction {
     [NNPageRouter presentOCSS_VC];
-}
-
-- (void)setupBanner {
-    BYCTZNBannerView *imgv = [[BYCTZNBannerView alloc] init];
-    [self.view addSubview:imgv];
-    [imgv mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(15);
-        make.right.equalTo(self.view).offset(-15);
-        make.height.equalTo(imgv.mas_width).multipliedBy(115/345.0);
-        make.bottom.equalTo(self.view).offset(-40);
-    }];
 }
 
 - (void)setupTableView {

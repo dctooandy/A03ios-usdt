@@ -85,7 +85,7 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
     [btnNotShow addTarget:self action:@selector(didClickNotShow:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnNotShow];
     self.btnNowShow = btnNotShow;
-    self.btnNowShow.selected = [[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey];
+//    self.btnNowShow.selected = [[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey];
     
     [self.view addSubview:self.tableView];
 }
@@ -149,8 +149,8 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
 - (void)dismissSelf:(nullable void(^)(void))handler {
     [self dismissViewControllerAnimated:YES completion:^{
         
-        [[NSUserDefaults standardUserDefaults] setBool:self.btnNowShow.selected forKey:HYNotShowCTZNEUserDefaultKey];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+//        [[NSUserDefaults standardUserDefaults] setBool:self.btnNowShow.selected forKey:HYNotShowCTZNEUserDefaultKey];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
         
         if (handler) {
             handler();
