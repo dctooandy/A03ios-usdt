@@ -19,6 +19,7 @@ target 'HYNewNest' do
   pod 'FCUUID'
   pod 'SJVideoPlayer'
   pod 'JKCategories'
+  pod 'JXCategoryView'
   # webSocket
   pod 'SocketRocket'
   pod 'CocoaAsyncSocket'

@@ -25,15 +25,26 @@
                             <constraint firstAttribute="width" secondItem="ypI-H0-gW2" secondAttribute="height" multiplier="16:9" id="DJm-9z-dbw"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b5U-nK-1Pr" customClass="JXCategoryTitleImageView">
+                        <rect key="frame" x="20" y="211" width="335" height="80"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="xrD-6I-Q0g"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ypI-H0-gW2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9tc-aL-jLT"/>
+                    <constraint firstAttribute="trailing" secondItem="b5U-nK-1Pr" secondAttribute="trailing" constant="20" id="CUP-cZ-iwK"/>
+                    <constraint firstItem="b5U-nK-1Pr" firstAttribute="top" secondItem="ypI-H0-gW2" secondAttribute="bottom" id="PBG-Ks-3m4"/>
+                    <constraint firstItem="b5U-nK-1Pr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Ye1-kM-hsi"/>
                     <constraint firstItem="ypI-H0-gW2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ctS-5P-wJ7"/>
                     <constraint firstAttribute="trailing" secondItem="ypI-H0-gW2" secondAttribute="trailing" id="nw3-Iq-19B"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="gloryTabView" destination="b5U-nK-1Pr" id="06S-3q-dYD"/>
                 <outlet property="videoBackground" destination="ypI-H0-gW2" id="KaQ-TS-iF0"/>
             </connections>
             <point key="canvasLocation" x="323.91304347826087" y="271.54017857142856"/>

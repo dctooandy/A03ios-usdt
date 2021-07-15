@@ -11,9 +11,11 @@
 #import <SJVideoPlayer/SJVideoPlayer.h>
 #import "NSURL+HYLink.h"
 #import <UIImageView+WebCache.h>
+#import <JXCategoryView/JXCategoryView.h>
 
 @interface BYGloryHeaderTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIView *videoBackground;
+@property (weak, nonatomic) IBOutlet JXCategoryTitleImageView *gloryTabView;
 
 @property (nonatomic, strong) SJVideoPlayer *player;
 
@@ -36,5 +38,7 @@
 #pragma mark -
 #pragma mark Custom Method
 - (void)setupCellUI {
+    
 }
+
 @end
