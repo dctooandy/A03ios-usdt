@@ -101,23 +101,24 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
 
 - (void)playTurtorialVideosWithType:(NSString *)type {
     HYCTZNPlayerViewController *playVC = [[HYCTZNPlayerViewController alloc] init];
-    if ([type isEqualToString:@"TB"]) {
+    if ([type isEqualToString:@"TB"] && !KIsEmptyString(self.tutorialsVideos[@"h5tibi"])) {
         playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5tibi"]];
         playVC.tit = @"提币教学";
     }
-    else if ([type isEqualToString:@"MB"]) {
+    else if ([type isEqualToString:@"MB"] && !KIsEmptyString(self.tutorialsVideos[@"h5maibi"])) {
         playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5maibi"]];
         playVC.tit = @"卖币教学";
     }
-    else if ([type isEqualToString:@"RMB"]) {
+    else if ([type isEqualToString:@"RMB"] && !KIsEmptyString(self.tutorialsVideos[@"h5maibi"])) {
         playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5maibi"]];
         playVC.tit = @"RMB直充教学";
     }
-    else if ([type isEqualToString:@"USDT"]) {
+    else if ([type isEqualToString:@"USDT"] && !KIsEmptyString(self.tutorialsVideos[@"h5chongbi"])) {
         playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5chongbi"]];
         playVC.tit = @"数字货币充值教学";
     }
     else {
+        [CNTOPHUB showWaiting:@"视频制作中 敬请期待"];
         return;
     }
     
@@ -210,7 +211,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
         [self.navigationController pushViewController:[BYYuEBaoVC new] animated:YES];
     }
     else if ([setTypeItem.type isEqualToString:@"TB"]) { //提幣
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowWithdrawUserDefaultKey] == false) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowWithdrawUserDefaultKey] == false && [CNUserManager shareManager].userInfo.starLevel == 0 && !KIsEmptyString(self.tutorialsVideos[@"h5tibi"])) {
             [[NSUserDefaults standardUserDefaults] setBool:true forKey:HYNotShowWithdrawUserDefaultKey];
             [self playTurtorialVideosWithType:setTypeItem.type];
             return;
@@ -219,7 +220,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
         [self.navigationController pushViewController:[HYWithdrawViewController new] animated:YES];
     }
     else if ([setTypeItem.type isEqualToString:@"MB"]) { //賣幣
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowSellUserDefaultKey] == false) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowSellUserDefaultKey] == false && [CNUserManager shareManager].userInfo.starLevel == 0 && !KIsEmptyString(self.tutorialsVideos[@"h5maibi"])) {
             [[NSUserDefaults standardUserDefaults] setBool:true forKey:HYNotShowSellUserDefaultKey];
             [self playTurtorialVideosWithType:setTypeItem.type];
             return;
@@ -230,7 +231,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
         }];
     }
     else if ([setTypeItem.type isEqualToString:@"RMB"]) { //人民幣直充
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowRMBRechrageUserDefaultKey] == false) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowRMBRechrageUserDefaultKey] == false && [CNUserManager shareManager].userInfo.starLevel == 0 && !KIsEmptyString(self.tutorialsVideos[@"h5maibi"])) {
             [[NSUserDefaults standardUserDefaults] setBool:true forKey:HYNotShowRMBRechrageUserDefaultKey];
             [self playTurtorialVideosWithType:setTypeItem.type];
             return;
@@ -239,7 +240,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
         [NNPageRouter jump2BuyECoin];
     }
     else if ([setTypeItem.type isEqualToString:@"USDT"]) {  //數位貨幣充值
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowDigitRechargeUserDefaultKey] == false) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowDigitRechargeUserDefaultKey] == false && [CNUserManager shareManager].userInfo.starLevel == 0 && !KIsEmptyString(self.tutorialsVideos[@"h5chongbi"])) {
             [[NSUserDefaults standardUserDefaults] setBool:true forKey:HYNotShowDigitRechargeUserDefaultKey];
             [self playTurtorialVideosWithType:setTypeItem.type];
             return;
