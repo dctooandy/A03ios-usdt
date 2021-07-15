@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *closeBtn;
 @property (nonatomic, copy) NSArray *images;
 @property (nonatomic, copy) void(^tapBlock)(int idx);
+@property (nonatomic, copy) void(^ tapClose)(void);
 @property (nonatomic, strong) VIPGuideModel *model;
 @end
 
@@ -35,7 +36,7 @@
 
 #pragma mark - 弹窗盒子
 
-+ (void)showMessageBoxWithImages:(NSArray *)images onView:(UIView *)onView tapBlock:(void(^)(int idx))tapBlock {
++ (void)showMessageBoxWithImages:(NSArray *)images onView:(UIView *)onView tapBlock:(void(^)(int idx))tapBlock tapClose:(void (^)(void))tapClose{
     
     CNMessageBoxView *alert = [[CNMessageBoxView alloc] init];
     alert.frame = onView.bounds;
@@ -43,6 +44,7 @@
     
     alert.images = images;
     alert.tapBlock = tapBlock;
+    alert.tapClose = tapClose;
     [alert configUI];
     
     if ([[NNControllerHelper currentRootVcOfNavController] isKindOfClass:NSClassFromString(@"CNHomeVC")]) {
@@ -112,6 +114,10 @@
 - (IBAction)close:(id)sender {
     [self removeFromSuperview];
     [NNControllerHelper currentTabBarController].tabBar.hidden = NO;
+    if (self.tapClose) {
+        self.tapClose();
+    }
+    
 }
 
 

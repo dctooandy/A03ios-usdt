@@ -35,3 +35,6 @@ UIKIT_EXTERN NSString * const HYNotShowSellUserDefaultKey;
 UIKIT_EXTERN NSString * const HYNotShowRMBRechrageUserDefaultKey;
 /// 數字貨幣充值指南
 UIKIT_EXTERN NSString * const HYNotShowDigitRechargeUserDefaultKey;
+/// 帐户说明
+UIKIT_EXTERN NSString * const BYShowTwoAccountDefaultKey;
+
