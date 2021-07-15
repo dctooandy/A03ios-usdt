@@ -176,9 +176,7 @@
 //    } else {
     if (KIsEmptyString([CNUserManager shareManager].userDetail.realName)) { // 实名认证
         [self.navigationController popViewControllerAnimated:YES];
-        [HYWideOneBtnAlertView showWithTitle:@"" content:@"为了您的资金安全，请完善本人姓名\n提交后不可修改，存取款需与本人姓名一致" comfirmText:@"绑定付款人姓名" comfirmHandler:^{
-            [BYBindRealNameVC modalVCBindRealName];
-        }];
+        [BYBindRealNameVC modalVCBindRealName];
     }
     else if (![CNUserManager shareManager].userDetail.mobileNoBind) { // 绑定手机
         [HYTextAlertView showWithTitle:@"手机绑定" content:@"对不起！系统发现您还没有绑定手机，建议您完成手机绑定流程，再进行添加地址操作。" comfirmText:@"确定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {

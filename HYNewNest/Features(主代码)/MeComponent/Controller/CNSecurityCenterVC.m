@@ -80,14 +80,7 @@
 }
 
 - (IBAction)bindRealNameClicked:(id)sender {
-    if (KIsEmptyString([CNUserManager shareManager].userDetail.realName)){
-       [HYWideOneBtnAlertView showWithTitle:@"" content:@"为了您的资金安全，请完善本人姓名\n提交后不可修改，存取款需与本人姓名一致" comfirmText:@"绑定付款人姓名" comfirmHandler:^{
-           [BYBindRealNameVC modalVCBindRealName];
-       }];
-   }
-   else {
-       [BYBindRealNameVC modalVCBindRealName];
-   }
+    [BYBindRealNameVC modalVCBindRealName];
 }
 
 - (void)submitBindAccount:(NSString *)account isEMail:(BOOL)isEMail {
