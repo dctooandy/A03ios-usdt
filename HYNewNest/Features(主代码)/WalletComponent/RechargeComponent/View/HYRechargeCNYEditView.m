@@ -195,7 +195,7 @@
     
     // 调整高度
     [self mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.btmBankSelcView).offset(20);
+        make.bottom.equalTo(self.btmBankSelcView).offset(40);
     }];
 }
 

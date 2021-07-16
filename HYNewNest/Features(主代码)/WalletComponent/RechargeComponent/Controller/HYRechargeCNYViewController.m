@@ -243,15 +243,7 @@
  */
 - (void)submitRechargeRequest {
     if (KIsEmptyString([CNUserManager shareManager].userDetail.realName)) {
-//        WEAKSELF_DEFINE
-//        [self.view addSubview:[[HYWithdrawComfirmView alloc] initRealNameSubmitBlock:^(NSString * _Nonnull realName) {
-//            STRONGSELF_DEFINE
-//            [strongSelf bindRealName:realName];
-//        }]];
-//        return;
-        [HYWideOneBtnAlertView showWithTitle:@"" content:@"为了您的资金安全，请完善本人姓名\n提交后不可修改，存取款需与本人姓名一致" comfirmText:@"绑定付款人姓名" comfirmHandler:^{
-            [BYBindRealNameVC modalVCBindRealName];
-        }];
+        [BYBindRealNameVC modalVCBindRealName];
         return;;
     }
     
@@ -307,13 +299,6 @@
     }
 }
 
-- (void)bindRealName:(NSString *)realName {
-    [CNUserCenterRequest modifyUserRealName:realName gender:nil birth:nil avatar:nil onlineMessenger2:nil email:nil handler:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg) {
-            [CNTOPHUB showSuccess:@"实名认证成功"];
-        }
-    }];
-}
 
 
 @end

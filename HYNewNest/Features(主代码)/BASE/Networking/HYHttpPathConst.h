@@ -31,7 +31,7 @@
 #define config_callBackPhone   @"callback"  //消息中心电话回访
 #define config_home_otherGame @"83e6dy/home/other" //获取其他游戏列表
 #define config_areaLimit @"areaLimit" // 地区限制
-//#define config_liveChatAddress @"liveChatAddress" //live800 客服
+#define config_liveChatAddress @"liveChatAddressOCSS" //客服
 #define config_dynamicQuery @"dynamic/query" //获取动态表单数据 （live800客服，充提指南...）
 #define config_switchAccount @"customer/switchAccount"    //切换子账号 USDT<-->人民币
 //#define config_getTopDomain  @"a03/getTopDomainAddress" //white list

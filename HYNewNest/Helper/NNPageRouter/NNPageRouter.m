@@ -155,27 +155,28 @@
 + (void)presentOCSS_VC {
     // 打开新客服入口
     MyLog(@"新客服版本：%@",[CSVisitChatmanager getVersion]);
+
     CSChatInfo *info = [[CSChatInfo alloc]init];
+    info.productId = [IVHttpManager shareManager].productId;//产品ID
+    info.loginName = [IVHttpManager shareManager].loginName?:@"";//网站用户名，你们app的用户名
+    info.token = [IVHttpManager shareManager].userToken?:@"";//网站登陆后的token,你们app的token
+    info.domainName = [IVHttpManager shareManager].domain;//网站域名
+    info.appid = [IVHttpManager shareManager].appId;//AppID
+    info.uuid = [KeyChain getKeychainIdentifierUUID];//设备id，不穿 会默认生成
+    info.baseUrl = [IVHttpManager shareManager].gateway;//app网关地址
+
+    //导航栏设置
+    info.title = @"在线客服";//导航栏标题
     info.backColor = [UIColor lightGrayColor];
     info.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontPFSB18]};
     info.barTintColor = kHexColor(0x1A1A2C);
-
-    info.productId = [IVHttpManager shareManager].productId;//产品ID，你们app的产品id
-    info.loginName = [IVHttpManager shareManager].loginName?:@"";//网站用户名，你们app的用户名
-    info.token = [IVHttpManager shareManager].userToken?:@"";//网站登陆后的token,你们app的token
-    info.domainName = [IVHttpManager shareManager].domain;//网站域名，你们app的网站域名
-    info.appid = [IVHttpManager shareManager].appId;//AppID，你们app的appid
-    info.title = @"在线客服";//导航栏标题
-    info.uuid = [KeyChain getKeychainIdentifierUUID];//用户uuid
-    //    如果完整地址是 @"http://m3.wancity.net/_glaxy_a5b04c_/liveChatAddressOCSS"
-    info.baseUrl = [IVHttpManager shareManager].gateway;//客服后台配置的接口域名
-
-    [CSVisitChatmanager startWithSuperVC:[NNControllerHelper currentTabBarController]
-                                chatInfo:info finish:^(CSServiceCode errCode) {
+    
+    [CSVisitChatmanager startServiceWithSuperVC:[NNControllerHelper currentTabBarController] chatInfo:info finish:^(CSServiceCode errCode) {
         if (errCode != CSServiceCode_Request_Suc) {
             [CNTOPHUB showError:@"系统错误，请稍后再试"];
         }
     }];
+
 }
 
 + (void)presentWMQCustomerService {
