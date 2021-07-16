@@ -1001,6 +1001,8 @@
 		F774CDA9264CF2960062F6A2 /* BYGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = F774CDA8264CF2960062F6A2 /* BYGradientView.m */; };
 		F783972C2673360600AB8BE6 /* BYRegisterSuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F783972A2673360600AB8BE6 /* BYRegisterSuccessVC.m */; };
 		F783972D2673360600AB8BE6 /* BYRegisterSuccessVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F783972B2673360600AB8BE6 /* BYRegisterSuccessVC.xib */; };
+		F784BA7B26A139F200280F66 /* BYGloryHeaderContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F784BA7A26A139F200280F66 /* BYGloryHeaderContentView.m */; };
+		F784BA7D26A139FA00280F66 /* BYGloryHeaderContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F784BA7C26A139F900280F66 /* BYGloryHeaderContentView.xib */; };
 		F7A75F1C264E140500D933D7 /* BYGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F1B264E140500D933D7 /* BYGradientButton.m */; };
 		F7A75F1F264E405600D933D7 /* BYBorderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F1E264E405600D933D7 /* BYBorderButton.m */; };
 		F7A75F22264E507200D933D7 /* BYBorderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F21264E507200D933D7 /* BYBorderLabel.m */; };
@@ -2417,6 +2419,9 @@
 		F78397292673360600AB8BE6 /* BYRegisterSuccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYRegisterSuccessVC.h; sourceTree = "<group>"; };
 		F783972A2673360600AB8BE6 /* BYRegisterSuccessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYRegisterSuccessVC.m; sourceTree = "<group>"; };
 		F783972B2673360600AB8BE6 /* BYRegisterSuccessVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYRegisterSuccessVC.xib; sourceTree = "<group>"; };
+		F784BA7926A139F200280F66 /* BYGloryHeaderContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGloryHeaderContentView.h; sourceTree = "<group>"; };
+		F784BA7A26A139F200280F66 /* BYGloryHeaderContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGloryHeaderContentView.m; sourceTree = "<group>"; };
+		F784BA7C26A139F900280F66 /* BYGloryHeaderContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYGloryHeaderContentView.xib; sourceTree = "<group>"; };
 		F78F827B2673435200871BE4 /* BYMissionBannerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYMissionBannerDelegate.h; sourceTree = "<group>"; };
 		F7A75F1A264E140500D933D7 /* BYGradientButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGradientButton.h; sourceTree = "<group>"; };
 		F7A75F1B264E140500D933D7 /* BYGradientButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGradientButton.m; sourceTree = "<group>"; };
@@ -5167,6 +5172,9 @@
 				F772EC61269FFBED00F786C7 /* BYGloryHeaderTableViewCell.h */,
 				F772EC62269FFBED00F786C7 /* BYGloryHeaderTableViewCell.m */,
 				F772EC63269FFBED00F786C7 /* BYGloryHeaderTableViewCell.xib */,
+				F784BA7926A139F200280F66 /* BYGloryHeaderContentView.h */,
+				F784BA7A26A139F200280F66 /* BYGloryHeaderContentView.m */,
+				F784BA7C26A139F900280F66 /* BYGloryHeaderContentView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5592,6 +5600,7 @@
 				D5A446E424F3941400014DC6 /* 合成 1_00032.png in Resources */,
 				D5A446DF24F3941400014DC6 /* 合成 1_00028.png in Resources */,
 				D5A4454B24F393AC00014DC6 /* 棋牌_00058.png in Resources */,
+				F784BA7D26A139FA00280F66 /* BYGloryHeaderContentView.xib in Resources */,
 				D5A446F924F3941400014DC6 /* 合成 1_00051.png in Resources */,
 				D5A4461A24F393E500014DC6 /* 足球_00081.png in Resources */,
 				D5A4461424F393E500014DC6 /* 足球_00094.png in Resources */,
@@ -6498,6 +6507,7 @@
 				F772EC5F269FF97E00F786C7 /* BYGloryVC.m in Sources */,
 				3DE3CA9324ED5CFC00D591C4 /* HYUpdateAlertView.m in Sources */,
 				3D41DEA8251B4A45000CA1D6 /* HYVIPReceiveAlertView.m in Sources */,
+				F784BA7B26A139F200280F66 /* BYGloryHeaderContentView.m in Sources */,
 				E98BEEE824D023B200E6B0C8 /* LYEmptyBaseView.m in Sources */,
 				044DC69124DD01AA005CB550 /* CNShareView.m in Sources */,
 				04C6E1E624D4029D006F4DAC /* CNAddressManagerVC.m in Sources */,
