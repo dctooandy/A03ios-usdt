@@ -48,6 +48,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 查询是否需要资金密码
 + (void)checkIsNeedWithdrawPwdHandler:(HandlerBlock)handler;
 
+/// 查询CNY取款黑名单等级
++ (void)checkCNYBlacklistDepositLevelHandler:(HandlerBlock)handler;
+
 /// 查询所有钱包额度
 + (void)getBalancesHandler:(HandlerBlock)handler;
 

@@ -87,6 +87,14 @@
     }];
 }
 
++ (void)checkCNYBlacklistDepositLevelHandler:(HandlerBlock)handler {
+    NSDictionary *param = @{@"bizCode" : @"WITHDRAW_BLACKLIST"};
+    [self POST:(config_dynamicQuery) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+            handler(responseObj[@"data"], errorMsg);
+        }
+    }];
+}
 
 
 @end

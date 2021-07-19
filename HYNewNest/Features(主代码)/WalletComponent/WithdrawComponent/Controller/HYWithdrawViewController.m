@@ -37,6 +37,9 @@
 #import "BYWithdrawConfirmVC.h"
 
 @interface HYWithdrawViewController () <UITableViewDelegate, UITableViewDataSource, BYWithdrawDelegate>
+{
+    BOOL _isCNYBlockLevel;
+}
 @property (weak, nonatomic) IBOutlet UILabel *withdrawAmoutLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *sumitBtn;
@@ -117,14 +120,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
         [self requestBalance];
         [self requestWithdrawAddress];
-        // 负信用等级不能取rmb
-        if (![CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userDetail.depositLevel < 0) {
-            [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"为保障您的资金安全，\n详情联系客服咨询" btnText:@"联系客服" handler:^(BOOL isComfirm) {
-                if (isComfirm) {
-                    [NNPageRouter presentOCSS_VC];
-                }
-            }];
-            return;
+        if (![CNUserManager shareManager].isUsdtMode) {
+            [self checkBlackListLevel];
         }
     }];
 }
@@ -165,12 +162,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     }
     
     // 负信用等级不能取rmb
-    if (![CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userDetail.depositLevel < 0) {
-        [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"为保障您的资金安全，\n详情联系客服咨询" btnText:@"联系客服" handler:^(BOOL isComfirm) {
-            if (isComfirm) {
-                [NNPageRouter presentOCSS_VC];
-            }
-        }];
+    if (self->_isCNYBlockLevel) {
+        [self showCNYBandAlert];
         return;
     }
     
@@ -226,7 +219,32 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     }];
 }
 
+- (void)showCNYBandAlert {
+    [HYOneImgBtnAlertView showWithImgName:@"img-warning" contentString:@"为保障您的资金安全，\n详情联系客服咨询" btnText:@"联系客服" handler:^(BOOL isComfirm) {
+        if (isComfirm) {
+            [NNPageRouter presentOCSS_VC];
+        }
+    }];
+}
+
 #pragma mark - REQUEST
+- (void)checkBlackListLevel {
+    [CNWithdrawRequest checkCNYBlacklistDepositLevelHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            NSDictionary *dic = responseObj[0];
+            NSString *blocks = dic[@"block_list"];
+            NSArray *list = [blocks componentsSeparatedByString:@";"];
+            NSString *depLev = [NSString stringWithFormat:@"%ld",[CNUserManager shareManager].userDetail.depositLevel];
+            // 负信用等级不能取rmb
+            if ([list containsObject:depLev]) {
+                self->_isCNYBlockLevel = YES;
+                [self showCNYBandAlert];
+                return;
+            }
+        }
+    }];
+}
+
 - (void)requestBalance {
     [self.withdrawAmoutLabel showIndicatorIsBig:YES];
     [BalanceManager requestWithdrawAbleBalanceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
