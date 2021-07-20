@@ -8,10 +8,12 @@
 
 #import "CNBaseXibView.h"
 #import <JXCategoryView/JXCategoryView.h>
+#import "BYGloryModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BYGloryHeaderContentView : CNBaseXibView <JXCategoryListContentViewDelegate>
+@interface BYGloryHeaderContentItem : CNBaseXibView <JXCategoryListContentViewDelegate>
+- (void)setupGloryBanner:(GloryBannerModel *)model;
 
 @end
 

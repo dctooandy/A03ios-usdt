@@ -77,6 +77,7 @@
 +(UIFont *)fontPFR18;
 
 +(UIFont *)fontPFM10;
++(UIFont *)fontPFM11;
 +(UIFont *)fontPFM12;
 +(UIFont *)fontPFM13;
 +(UIFont *)fontPFM14;

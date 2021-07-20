@@ -18,6 +18,8 @@
 #define H5URL_Pub_Starall       @"/pub_site/starall"       // 星级特权
 #define H5URL_Pub_Coin          @"/pub_site/coin"          // 首存活動
 #define H5URL_Pub_yeb           @"/pub_site/yeb"           // 余额宝
+#define H5URL_Pub_VIP           @"/pub_site/vip"
+#define H5URL_Pub_Share         @"/pub_site/share"
 
 #pragma mark - API PATH
 
@@ -129,6 +131,7 @@
 
 #pragma mark 风采
 #define config_getArticels  @"83e6dy/getArticles" //查询投注详情  电游投注详情用
+#define config_getAGDynamic(productId) [NSString stringWithFormat:@"%@/queryAgDynamic", productId]
 
 #pragma mark 交易记录
 //#define config_queryTransWithCheck @"deposit/queryTransWithCheck" //废弃

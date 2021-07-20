@@ -86,6 +86,7 @@
 +(UIFont *)fontPFR18{ return [UIFont fontWithName:@"PingFangSC-Regular" size:18]; }
 
 +(UIFont *)fontPFM10{ return [UIFont fontWithName:@"PingFangSC-Medium" size:10]; }
++(UIFont *)fontPFM11{ return [UIFont fontWithName:@"PingFangSC-Medium" size:11]; }
 +(UIFont *)fontPFM12{ return [UIFont fontWithName:@"PingFangSC-Medium" size:12]; }
 +(UIFont *)fontPFM13{ return [UIFont fontWithName:@"PingFangSC-Medium" size:13]; }
 +(UIFont *)fontPFM14{ return [UIFont fontWithName:@"PingFangSC-Medium" size:14]; }
