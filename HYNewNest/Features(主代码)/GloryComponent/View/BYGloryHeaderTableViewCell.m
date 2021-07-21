@@ -16,6 +16,7 @@
 #import "BYGloryHeaderContentItem.h"
 #import "BYGloryModel.h"
 
+
 @interface BYGloryHeaderTableViewCell () <JXCategoryViewDelegate, JXCategoryListContainerViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *videoBackground;
 @property (weak, nonatomic) IBOutlet JXCategoryTitleImageView *gloryTabView;
@@ -95,6 +96,8 @@
     };
         
     self.player.URLAsset = [[SJVideoPlayerURLAsset alloc] initWithURL:[NSURL URLWithString:@"https://hwvod.yzbabyu.com:8443/vod-play/83e6dy/fengcai.mp4"]];
+    [self.player.presentView.placeholderImageView setImage:[UIImage imageNamed:@"pic_conver"]];
+    self.player.hiddenPlaceholderImageViewWhenPlayerIsReadyForDisplay = false;
     
     [self.videoBackground addSubview:self.player.view];
     [self.player.view mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -115,14 +118,18 @@
     }];
     [videoPlayBtn addTarget:self action:@selector(videoClick:) forControlEvents:UIControlEventTouchUpInside];
     self.playVideoButton = videoPlayBtn;
-
+    
+    
 }
 
 -(void)videoClick:(UIButton *)btn{
     btn.selected = !btn.selected;
     if(btn.selected){
         [self.player play];
-    }else{
+        [self.player.presentView.placeholderImageView setImage:nil];
+
+    }
+    else{
         [self.player pause];
     }
 }

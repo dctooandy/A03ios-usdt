@@ -11,6 +11,7 @@
 #import "BYGloryHeaderTableViewCell.h"
 #import "BYGloryTimelineTableViewCell.h"
 #import "BYGloryModel.h"
+#import <MJRefresh.h>
 
 @interface BYGloryVC () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *gloryTableView;
@@ -28,20 +29,8 @@ static NSString *const kBYGloryTimelineCell = @"BYGloryTimelineCell";
     // Do any additional setup after loading the view from its nib.
     [self.gloryTableView registerNib:[UINib nibWithNibName:NSStringFromClass([BYGloryHeaderTableViewCell class]) bundle:nil] forCellReuseIdentifier:kBYGloryHeaderCell];
     [self.gloryTableView registerNib:[UINib nibWithNibName:NSStringFromClass([BYGloryTimelineTableViewCell class]) bundle:nil] forCellReuseIdentifier:kBYGloryTimelineCell];
-    
-    WEAKSELF_DEFINE
-    [BYGloryRequest getAgDynamic:^(id responseObj, NSString *errorMsg) {
-        STRONGSELF_DEFINE
-        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-            NSArray *models = responseObj[@"objs"];
-            strongSelf.gloryModels = [[NSMutableArray alloc] init];
-            for (BYGloryModel *model in models) {
-                [strongSelf.gloryModels addObject:[BYGloryModel cn_parse:model]];
-            }
-            
-            [weakSelf.gloryTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
-        }
-    }];
+    self.gloryTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshTable)];
+    [self refreshTable];
     
 }
 
@@ -59,6 +48,23 @@ static NSString *const kBYGloryTimelineCell = @"BYGloryTimelineCell";
 - (CGFloat)triggerFadeinY {
     BYGloryTimelineTableViewCell *firstCell = [self.gloryTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
     return CGRectGetMinY(firstCell.frame) - CGRectGetHeight(firstCell.frame);
+}
+
+- (void)refreshTable {
+    WEAKSELF_DEFINE
+    [BYGloryRequest getAgDynamic:^(id responseObj, NSString *errorMsg) {
+        STRONGSELF_DEFINE
+        [strongSelf.gloryTableView.mj_header endRefreshing];
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+            NSArray *models = responseObj[@"objs"];
+            strongSelf.gloryModels = [[NSMutableArray alloc] init];
+            for (BYGloryModel *model in models) {
+                [strongSelf.gloryModels addObject:[BYGloryModel cn_parse:model]];
+            }
+            
+            [weakSelf.gloryTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    }];
 }
 
 #pragma mark -
