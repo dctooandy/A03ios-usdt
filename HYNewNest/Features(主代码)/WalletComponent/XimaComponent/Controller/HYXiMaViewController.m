@@ -160,12 +160,6 @@ static NSString * const KXiMaCell = @"HYXiMaCell";
         }
         self.xmPlfListItems = allItem; //下个方法就无用了
         
-        // 洗码提示弹窗
-        if (![CNUserManager shareManager].isUsdtMode) {
-            [HYTextAlertView showWithTitle:@"温馨提示" content:@"您洗码成功后额度将会添加至USDT模式的钱包，请切换模式查收" comfirmText:@"确认" cancelText:nil comfirmHandler:^(BOOL isComfirm) {
-            }];
-        }
-        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
             [CNXiMaRequest xmCalcAmountV3WithXmTypes:allType.copy handler:^(id responseObj, NSString *errorMsg) {

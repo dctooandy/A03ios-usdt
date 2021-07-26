@@ -36,7 +36,7 @@ target 'HYNewNest' do
   # 天网埋点
   pod 'IVLoganAnalysis',:git =>'http://10.66.72.115/mobile-iOS-library/IVLoganAnalysis.git'
   # OCSS客服
-  pod 'CSSerVice',:git =>'http://10.66.72.115/mobile-iOS-library/ocss-webview-sdk-demo-ios.git'
+  pod 'CSSerVice',:git =>'http://10.66.72.115/mobile-iOS-library/ocss-webview-sdk-demo-ios.git' ,:tag=>'0.1.9.3'
   # 微脉圈
   pod 'IVCustomerServiceLibrary',:git =>'http://10.66.72.115/mobile-iOS-library/IVCustomerServiceLibrary'
   pod 'IVIMPublicLibrary',:git =>'http://10.66.72.115/mobile-iOS-library/IVIMPublicLibrary.git'

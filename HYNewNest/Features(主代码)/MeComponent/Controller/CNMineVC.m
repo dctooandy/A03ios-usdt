@@ -10,7 +10,6 @@
 #import "CNSettingVC.h"
 #import "CNSecurityCenterVC.h"
 #import "CNTradeRecodeVC.h"
-#import "HYNewCTZNViewController.h"
 #import "HYXiMaViewController.h"
 #import "CNMessageCenterVC.h"
 #import "CNDownloadVC.h"
@@ -32,9 +31,12 @@
 #import "HYWideOneBtnAlertView.h"
 #import "BYOldMyWalletView.h"
 #import "BYMyWalletView.h"
+#import "BYMultiAccountRuleView.h"
 
 #import "CNUserCenterRequest.h"
 #import "CNLoginRequest.h"
+
+#import "BYTradeEntryVC.h"
 
 @interface CNMineVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -63,8 +65,6 @@
 #pragma mark 中间入口部分
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *entryIconBtns;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *entryIconLbs;
-@property (weak, nonatomic) IBOutlet UIStackView *thirdStackView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *entryStackViewHeightConst;
 
 #pragma mark 底部单个下载
 /// App图片
@@ -80,13 +80,11 @@
 
 #pragma mark CNY和USDT区别
 /// CNY和USDT 切换按钮
-@property (weak, nonatomic) IBOutlet UIButton *switchBtn;
-/// CNY
-@property (weak, nonatomic) IBOutlet UIView *CNYBusinessView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *CNYBusinessViewH;
-/// USDT
+@property (weak, nonatomic) IBOutlet UIButton *questionBtn;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *switchModeSegc;
 @property (weak, nonatomic) IBOutlet UIStackView *USDTBusinessView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *USDTBusinessViewH;
+@property (weak, nonatomic) IBOutlet UIView *lastEntryView;
+@property (weak, nonatomic) IBOutlet UIView *bottomMidleView;
 
 @end
 
@@ -95,25 +93,31 @@
 - (NSArray *)getCurrentFastEntryName {
     if ([CNUserManager shareManager].userInfo.newWalletFlag) {
         if ([CNUserManager shareManager].isUsdtMode) {
-            return @[@"优惠券", @"洗码", @"余额宝", @"消息中心", @"提币地址", @"安全中心", @"交易记录"];
+//            return @[@"优惠券", @"余额宝", @"交易记录", @"消息中心", @"提币地址", @"安全中心"];
+            return @[@"余额宝", @"优惠券", @"消息中心", @"提币地址", @"安全中心", @"交易记录"];
+
         } else {
-            return @[@"优惠券", @"洗码", @"交易记录", @"消息中心", @"银行卡", @"安全中心"];
+            return @[@"优惠券", @"交易记录", @"消息中心", @"银行卡", @"安全中心", @"意见反馈"];
         }
         
     } else {
-        return @[@"洗码", @"交易记录", @"消息中心", [CNUserManager shareManager].isUsdtMode?@"提币地址":@"银行卡", @"安全中心", @"反馈意见"];
+//        return @[@"交易记录", @"消息中心", [CNUserManager shareManager].isUsdtMode?@"提币地址":@"银行卡", @"安全中心", @"意见反馈"];
+        return @[@"消息中心", [CNUserManager shareManager].isUsdtMode?@"提币地址":@"银行卡", @"安全中心", @"交易记录"];
+
     }
 }
 
 - (NSArray *)getCurrentFastEntryIconName {
     if ([CNUserManager shareManager].userInfo.newWalletFlag) {
         if ([CNUserManager shareManager].isUsdtMode) {
-            return @[@"yhq", @"xm", @"yeb", @"xx", @"yhk", @"aq", @"jl"];
+//            return @[@"yhq", @"yeb", @"jl", @"xx", @"yhk", @"aq",];
+            return @[@"yeb", @"yhq", @"xx", @"yhk", @"aq", @"jl",];
         } else {
-            return @[@"yhq", @"xm", @"jl", @"xx", @"yhk", @"aq"];
+            return @[@"yhq", @"jl", @"xx", @"yhk", @"aq", @"yjfk"];
         }
     } else {
-        return @[@"xm", @"jl", @"xx", @"yhk", @"aq", @"yjfk"];
+//        return @[@"jl", @"xx", @"yhk", @"aq", @"yjfk"];
+        return @[@"xx", @"yhk", @"aq", @"jl"];
     }
 }
 
@@ -134,6 +138,7 @@
         [wSelf requestOtherAppData];
     }];
    
+    [self configUI];
     [self switchCurrencyUI];
     [self requestOtherAppData];
     
@@ -150,48 +155,48 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    [self configUI];
+    self.scrollContentW.constant = kScreenWidth;
 }
 
 - (void)configUI {
-    self.scrollContentW.constant = kScreenWidth;
-    // 按钮边框颜色
     self.downLoadBtn.layer.borderColor = kHexColor(0x19CECE).CGColor;
     self.downLoadBtn.layer.borderWidth = 1;
-    self.switchBtn.layer.borderColor = kHexColor(0x19CECE).CGColor;
-    self.switchBtn.layer.borderWidth = 1;
+    [self editSegmentControlUIStatus];
+    
+}
+
+- (void)editSegmentControlUIStatus {
+    UIColor *gdColor = [UIColor gradientColorImageFromColors:@[kHexColor(0x19CECE),kHexColor(0x10B4DD)] gradientType:GradientTypeUprightToLowleft imgSize:CGSizeMake(55, 26)];
+    if (@available(iOS 13.0, *)) {
+        [_switchModeSegc setSelectedSegmentTintColor:gdColor];
+    } else {
+        [_switchModeSegc setTintColor:gdColor];
+    }
+    [_switchModeSegc setBackgroundColor:kHexColor(0x3c3d62)];
+    [_switchModeSegc setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     
 }
 
 #pragma mark - 按钮事件
+
+/// 弹窗
+- (IBAction)didTapAskBtn:(id)sender {
+    [BYMultiAccountRuleView showRuleWithLocatedY:kNavPlusStaBarHeight+10];
+}
 
 // 设置
 - (IBAction)setting:(id)sender {
     [self.navigationController pushViewController:[CNSettingVC new] animated:YES];
 }
 
-/// 买充提卖
+/// 充提洗
 - (IBAction)didClickMCTMBtns:(UIButton *)sender {
-    if ([CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userInfo.starLevel == 0 && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
-        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
-        vc.type = sender.tag;
-        [self presentViewController:vc animated:YES completion:nil];
-        return;
-    }
-    
-    if (sender.tag == 0) { // 买币
-        [NNPageRouter jump2BuyECoin];
-        
-    } else if (sender.tag == 1) { // 充值
-        [NNPageRouter jump2Deposit];
-        
-    } else if (sender.tag == 2) { // 提现
-        [NNPageRouter jump2Withdraw];
-        
-    } else { //卖币
-        [HYWideOneBtnAlertView showWithTitle:@"卖币跳转" content:@"正在为您跳转..请稍后。\n在交易所卖币数字货币，买家会将金额支付到您的银行卡，方便快捷。" comfirmText:@"我知道了，帮我跳转" comfirmHandler:^{
-            [NNPageRouter openExchangeElecCurrencyPage];
-        }];
+    if (sender.tag == 0) { // 充值
+        [NNPageRouter jump2Deposit];        
+    } else if (sender.tag == 1) { // 提现
+        [NNPageRouter jump2Withdraw];        
+    } else { //洗码
+        [self.navigationController pushViewController:[HYXiMaViewController new] animated:YES];
     }
 }
 
@@ -209,7 +214,7 @@
         [self.navigationController pushViewController:[CNAddressManagerVC new] animated:YES];
     } else if ([name isEqualToString:@"安全中心"]) {
         [self.navigationController pushViewController:[CNSecurityCenterVC new] animated:YES];
-    } else if ([name isEqualToString:@"反馈意见"]) {
+    } else if ([name isEqualToString:@"意见反馈"]) {
         [self.navigationController pushViewController:[CNFeedBackVC new] animated:YES];
     } else if ([name isEqualToString:@"余额宝"]) {
         [self.navigationController pushViewController:[BYYuEBaoVC new] animated:YES];
@@ -225,9 +230,6 @@
 
 // 下载APP
 - (IBAction)doloadApp:(id)sender {
-    // !!!: 调试入口
-    //    BYNewUsrMissionVC *vc = [BYNewUsrMissionVC new];
-    //    [self.navigationController pushViewController:vc animated:YES];
     
     if (!_otherApps || _otherApps.count == 0) {
         [kKeywindow jk_makeToast:@"正在请求更多APP数据 请稍后.." duration:3 position:JKToastPositionCenter];
@@ -260,12 +262,14 @@
 
 #pragma mark - 货币界面业务切换
 
-- (IBAction)switchCurrency:(UIButton *)sender {
-    
+- (IBAction)segmentValueDidChange:(id)sender {
+    WEAKSELF_DEFINE
     [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {
 //        if (!errorMsg) { //已经有监听通知了
 //            [self switchCurrencyUI];
 //        }
+    } faileHandler:^{
+        [weakSelf switchCurrencyUI];
     }];
 }
 
@@ -273,24 +277,14 @@
 - (void)switchCurrencyUI {
     
     // 1.不同货币模式UI变化
-//    self.switchBtn.hidden = [CNUserManager shareManager].userDetail.newAccountFlag;
-    self.switchBtn.hidden = ![CNUserManager shareManager].isUiModeHasOptions;
-    
     BOOL isUsdtMode = [CNUserManager shareManager].isUsdtMode;
     BOOL isNewWallet = [CNUserManager shareManager].userInfo.newWalletFlag;
-    self.switchBtn.selected = !isUsdtMode;
+    self.switchModeSegc.selectedSegmentIndex = isUsdtMode;
     
-    self.USDTBusinessView.hidden = !isUsdtMode;
-    self.USDTBusinessViewH.constant = isUsdtMode ? 80: 0;
-    self.CNYBusinessView.hidden = isUsdtMode;
-    self.CNYBusinessViewH.constant = isUsdtMode ? 0: 80;
-        
+    self.lastEntryView.alpha = isNewWallet?1:0;
+    self.bottomMidleView.alpha = isNewWallet?1:0;
     self.shareBgView.hidden = !isUsdtMode;
     self.shareBgViewH.constant = isUsdtMode?AD(90):0;
-    
-    // 只有新钱包+usdt模式有优惠券
-    self.thirdStackView.hidden = !(isUsdtMode && isNewWallet);
-    self.entryStackViewHeightConst.constant = (isUsdtMode && isNewWallet)?255:(255-15-75);
     
     [self setUpUserInfoAndBalaces];
     
@@ -304,6 +298,7 @@
             if (idx < arr.count) {
                 obj.text = arr[idx];
             }
+            
         }];
         [self.entryIconBtns enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSArray *arr = [self getCurrentFastEntryIconName];
@@ -328,7 +323,7 @@
             if (!self.walletContainerView.subviews.count || [self.walletView isMemberOfClass:[BYOldMyWalletView class]]) {
                 [self.walletView removeFromSuperview];
                 self.walletView = [BYMyWalletView new];
-                self.walletContainerHeightCons.constant = 67+11;
+                self.walletContainerHeightCons.constant = 67;
                 [self.walletContainerView addSubview:self.walletView];
                 [self.walletView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.right.top.equalTo(self.walletContainerView);
@@ -338,12 +333,12 @@
                 view.expandBlock = ^(BOOL isExpand) {
                     if (isExpand) {
                         if ([CNUserManager shareManager].isUsdtMode) {
-                            self.walletContainerHeightCons.constant = 67*3+1;
+                            self.walletContainerHeightCons.constant = 67*3;
                         } else {
-                            self.walletContainerHeightCons.constant = 67*2+1;
+                            self.walletContainerHeightCons.constant = 67*2;
                         }
                     } else {
-                        self.walletContainerHeightCons.constant = 67+11;
+                        self.walletContainerHeightCons.constant = 67;
                     }
                 };
             }

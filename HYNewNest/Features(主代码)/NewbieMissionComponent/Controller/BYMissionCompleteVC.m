@@ -9,7 +9,6 @@
 #import "BYMissionCompleteVC.h"
 #import "BYFirstFillBannerView.h"
 #import "UILabel+Gradient.h"
-#import "BYMoreCompleteMissionView.h"
 #import "NNPageRouter.h"
 #import "CNTaskRequest.h"
 #import "CNTaskModel.h"

@@ -23,6 +23,8 @@ typedef NS_ENUM(NSUInteger, CNCodeType) {
     CNCodeTypeOldFundPwd,       //资金密码旧
     CNCodeTypeNewFundPwd,       //资金密码
     CNCodeTypeFundPwdSMS,       //发送资金密码短信验证码
+    CNCodeTypeUnbind,           //修改手机1
+    CNCodeTypeChangePhone       //修改手机2
 };
 
 @class CNCodeInputView;
@@ -37,8 +39,11 @@ typedef NS_ENUM(NSUInteger, CNCodeType) {
 @property (nonatomic, readonly) NSString *code;
 /// 密码输入是否符合规则
 @property (nonatomic, assign) BOOL correct;
-/// 传入的账号/手机号
+/// 传入的账号/手机号 登录用
 @property (nonatomic, copy) NSString *account;
+/// 非登录用
+@property (nonatomic, copy) NSString *mobileNum;
+@property (copy,nonatomic) NSString *validateId; //!<修改手机第二次发送短信需要传这个
 
 @property (nonatomic, strong) SmsCodeModel *smsModel;
 

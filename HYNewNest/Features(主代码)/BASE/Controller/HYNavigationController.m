@@ -68,7 +68,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
 #pragma mark - PUSH & POP
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     // 防止重复push
-    if ([self.topViewController isKindOfClass:viewController.class] && ![viewController isKindOfClass:[NSClassFromString(@"CNBindPhoneVC") class]]) {
+    if ([self.topViewController isKindOfClass:viewController.class]) {
         return;
     }
     

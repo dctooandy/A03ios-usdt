@@ -13,12 +13,13 @@
 #import "NSURL+HYLink.h"
 #import "HYRechargeHelper.h"
 #import <UIImageView+WebCache.h>
+#import "UIColor+Gradient.h"
 
 @interface HYRechargeCNYEditView () <CNNormalInputViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *contentView;
-@property (weak, nonatomic) IBOutlet UIImageView *imgvIcon;
+//@property (weak, nonatomic) IBOutlet UIImageView *imgvIcon;
 @property (weak, nonatomic) IBOutlet UILabel *lblPayWayName;
-@property (weak, nonatomic) IBOutlet UILabel *lblPayWayLimit;
+//@property (weak, nonatomic) IBOutlet UILabel *lblPayWayLimit;
 
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *amountBtnsTopMargin;
@@ -29,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet CNNormalInputView *depositorTfView;
 @property (weak, nonatomic) IBOutlet UIView *depositIdBtnsContain;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *depositIdBtnsContainH;
+@property (weak, nonatomic) IBOutlet UILabel *warningLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *btmBankSelcView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btmBankSelcViewH;
@@ -52,16 +54,33 @@
 - (void)loadViewFromXib {
     [super loadViewFromXib];
     
-    self.contentView.backgroundColor = kHexColor(0x212137);
+    self.contentView.backgroundColor = kHexColor(0x272749);
     [self.contentView addCornerAndShadow];
     
     [self.depositorTfView setPlaceholder:@"请输入付款人姓名"];
     self.depositorTfView.delegate = self;
+    [self.depositorTfView setTextColor:kHexColorAlpha(0xFFFFFF, 0.5)];
+    [self.depositorTfView setPrefixText:@"付款人姓名: "];
+    
+    [self.amountTfView setInputBackgoundColor:kHexColor(0x16162C)];
     self.amountTfView.delegate = self;
     [self.amountTfView setKeyboardType:UIKeyboardTypeNumberPad];
+    
+        
+    if ([[CNUserManager shareManager] userDetail].depositLevel == 0) {
+        self.warningLabel.attributedText = ({
+            UIColor *gdColor = [UIColor gradientFromColor:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE) withWidth:280];
+            NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:@" CNY充值时，付款人姓名必须和银行卡绑定姓名一致" attributes:@{NSFontAttributeName:[UIFont fontPFR12], NSForegroundColorAttributeName:gdColor}];
+            NSTextAttachment *attch = [[NSTextAttachment alloc] init];
+            attch.image = [UIImage imageNamed:@"yellow exclamation"];
+            attch.bounds = CGRectMake(0, 0, 14, 15);
+            NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attch];
+            [attrStr insertAttributedString:string atIndex:0];
+            attrStr;
+        });
+    }
+    
 }
-
-
 
 #pragma mark - SET & GET
 - (void)setupBQBankModel:(BQBankModel *)model {
@@ -81,12 +100,12 @@
     _amountModel = amountModel;
     
     /// 顶上信息
-    [self.imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:itemModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
+//    [self.imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:itemModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
     self.lblPayWayName.text = itemModel.payTypeName;
-    self.lblPayWayLimit.text = [NSString stringWithFormat:@"(%@)", [HYRechargeHelper amountTip:itemModel]];
+//    self.lblPayWayLimit.text = [NSString stringWithFormat:@"(%@)", [HYRechargeHelper amountTip:itemModel]];
     
     /// 金额选择按钮
-    for (HYRechProcButton *btn in self.amountBtnsContain.subviews) {
+    for (UIButton *btn in self.amountBtnsContain.subviews) {
         [btn performSelector:@selector(removeFromSuperview)];
     }
     CGFloat ItemMargin = 16;
@@ -102,13 +121,21 @@
         for (__block int i=0; i<amoArr.count; i++) {
             NSNumber *amoTit = amoArr[i];
 
-            HYRechProcButton *proBtn = [[HYRechProcButton alloc] init];
+            UIButton *proBtn = [[UIButton alloc] init];
             [proBtn setTitle:[NSString stringWithFormat:@"%@", amoTit] forState:UIControlStateNormal];
             [proBtn addTarget:self action:@selector(amountBtnSelected:) forControlEvents:UIControlEventTouchUpInside];
             proBtn.tag = i;
 
             [self.amountBtnsContain addSubview:proBtn];
             proBtn.frame = CGRectMake((ItemMargin + ItemWidht) * (i%3), (i/3) * (ItemHeight+ItemMargin), ItemWidht, ItemHeight);
+            [proBtn setBackgroundImage:[UIColor gradientImageFromColors:@[kHexColor(0x10B4DD), kHexColor(0x19CECE)] gradientType:GradientTypeLeftToRight imgSize:proBtn.frame.size]
+                              forState:UIControlStateSelected];
+            [proBtn setTitleColor:kHexColor(0x11B5DD) forState:UIControlStateNormal];
+            [proBtn setTitleColor:kHexColor(0xFFFFFF) forState:UIControlStateSelected];
+            proBtn.layer.borderColor = kHexColor(0x10B4DD).CGColor;
+            proBtn.layer.borderWidth = 1.f;
+            proBtn.layer.cornerRadius = 4;
+            proBtn.layer.masksToBounds = true;
 
         }
         self.amountBtnsContain.hidden = NO;
@@ -168,7 +195,7 @@
     
     // 调整高度
     [self mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.btmBankSelcView).offset(20);
+        make.bottom.equalTo(self.btmBankSelcView).offset(40);
     }];
 }
 
@@ -182,8 +209,9 @@
     btn.selected = YES;
     self.rechargeAmount = btn.titleLabel.text;
     self.amountTfView.text = btn.titleLabel.text;
+    [self.amountTfView setStatusToNormal];
     [self endEditing:YES];
-    
+
     [self checkEnableStatus];
 }
 
@@ -232,10 +260,8 @@
             view.wrongAccout = NO;
             self.rechargeAmount = view.text;
         }
-        if (view.text.length > 0) {
-            for (UIButton *btn in self.amountBtnsContain.subviews) {
-                btn.selected = NO;
-            }
+        for (UIButton *btn in self.amountBtnsContain.subviews) {
+            btn.selected = NO;
         }
     } else if (view == self.depositorTfView) {
         if (![view.text validationType:ValidationTypeRealName]) {

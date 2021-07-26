@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CNServiceRequest : CNBaseNetworking
 
+
++ (void)liveChatAddressOCSSHandler:(HandlerBlock)handler;
+
 /// 是否开启微脉圈
 + (void)queryIsOpenWMQHandler:(HandlerBlock)handler;
 

@@ -9,7 +9,7 @@
 #import "CNAddressManagerVC.h"
 #import "CNAddAddressVC.h"
 #import "CNAddBankCardVC.h"
-#import "CNBindPhoneVC.h"
+#import "BYModifyPhoneVC.h"
 
 #import "CNAddressAddTCell.h"
 #define kCNAddressAddTCellID  @"CNAddressAddTCell"
@@ -35,7 +35,9 @@
 /// 卡列表
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+// 底部提示文字
 @property (nonatomic, strong) UIView *btmBFBTipLb;
+@property (strong,nonatomic) UIView *btmBankTipLb;
 
 /// 区分当前是小金库地址还是其他地址
 @property (nonatomic, assign) HYAddressType addrType;
@@ -47,9 +49,10 @@
 
 @implementation CNAddressManagerVC
 
+#pragma mark - LazyLoad
+
 - (UIView *)btmBFBTipLb {
     if (!_btmBFBTipLb) {
-        
         UILabel *btmBFBTipLb = [UILabel new];
         btmBFBTipLb.numberOfLines = 0;
         btmBFBTipLb.textColor = kHexColor(0x656565);
@@ -70,21 +73,52 @@
     return _btmBFBTipLb;
 }
 
+- (UIView *)btmBankTipLb {
+    if (!_btmBankTipLb) {
+        UILabel *attrLb = [UILabel new];
+        attrLb.numberOfLines = 0;
+        UIColor *gdColor = [UIColor gradientFromColor:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE) withWidth:280];
+        NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:@" CNY充值时，付款人姓名必须和银行卡绑定姓名一致" attributes:@{NSFontAttributeName:[UIFont fontPFR12], NSForegroundColorAttributeName:gdColor}];
+        
+        NSTextAttachment *attch = [[NSTextAttachment alloc] init];
+        attch.image = [UIImage imageNamed:@"yellow exclamation"];
+        attch.bounds = CGRectMake(0, 0, 12, 12);
+        NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attch];
+        [attrStr insertAttributedString:string atIndex:0];
+        
+        attrLb.attributedText = attrStr;
+        [attrLb sizeToFit];
+        attrLb.frame = CGRectMake(30, 0, kScreenWidth-60, 60);
+        
+        UIView *bgv = [UIView new];
+        bgv.backgroundColor = [UIColor clearColor];
+        bgv.frame = CGRectMake(0, 0, kScreenWidth, 60);
+        [bgv addSubview:attrLb];
+        
+        _btmBankTipLb = bgv;
+    }
+    return _btmBankTipLb;
+}
+
+#pragma mark - ViewLifeCycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = [CNUserManager shareManager].isUsdtMode ? @"提币地址管理" : @"银行卡管理";
-    [self addNaviRightItemWithImageName:@"service"];
+    [self addNaviRightItemWithImageName:@"kf"];
     
     [self configUI];
     
     if ([CNUserManager shareManager].isUsdtMode) {
         //usdt模式
         self.addrType = HYAddressTypeDCBOX;
+        self.tableView.tableFooterView = self.btmBFBTipLb;
     } else {
         //RMB模式
         self.addrType = HYAddressTypeBANKCARD;
         self.segmentView.hidden = YES;
         self.segmentViewH.constant = 0;
+        self.tableView.tableFooterView = self.btmBankTipLb;
     }
 }
 
@@ -102,7 +136,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:kCNAddressAddTCellID bundle:nil] forCellReuseIdentifier:kCNAddressAddTCellID];
     [self.tableView registerNib:[UINib nibWithNibName:kCNAddressInfoTCellID bundle:nil] forCellReuseIdentifier:kCNAddressInfoTCellID];
     [self.tableView registerNib:[UINib nibWithNibName:kCNAddressDownloadTCellID bundle:nil] forCellReuseIdentifier:kCNAddressDownloadTCellID];
-    self.tableView.tableFooterView = self.btmBFBTipLb;
+    
 }
  
 // 小金库地址
@@ -309,9 +343,7 @@
                     if (![CNUserManager shareManager].userDetail.mobileNoBind) {
                         [HYTextAlertView showWithTitle:@"手机绑定" content:@"对不起！系统发现您还没有绑定手机，请先完成手机绑定流程，再进行添加地址操作。" comfirmText:@"确定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
                             if (isComfirm) {
-                                CNBindPhoneVC *vc = [CNBindPhoneVC new];
-                                vc.bindType = CNSMSCodeTypeBindPhone;
-                                [self.navigationController pushViewController:vc animated:YES];
+                                [BYModifyPhoneVC modalVcWithSMSCodeType:CNSMSCodeTypeBindPhone];
                             }
                         }];
                         

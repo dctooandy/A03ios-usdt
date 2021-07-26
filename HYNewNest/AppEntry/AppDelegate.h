@@ -15,6 +15,6 @@
 @property (copy, nonatomic) NSString *token;
 
 - (void)changeRootViewController:(UIViewController*)viewController;
-
+- (void)initSDKNetWork;
 @end
 

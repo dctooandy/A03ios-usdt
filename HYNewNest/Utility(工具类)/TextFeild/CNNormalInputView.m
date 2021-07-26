@@ -47,7 +47,7 @@
 
 - (void)textFieldChange:(UITextField *)textField {
     // 只要已修改就去掉错误提示
-//    self.wrongAccout = NO;
+    //    self.wrongAccout = NO;
     self.lineView.backgroundColor = self.hilghtColor;
     self.tipLb.textColor = self.hilghtColor;
     self.tipLb.text = self.inputTF.placeholder;
@@ -85,4 +85,38 @@
 - (void)setKeyboardType:(UIKeyboardType)keyboardType {
     self.inputTF.keyboardType = keyboardType;
 }
+
+- (void)editAble:(BOOL)editable {
+    [self.inputTF setUserInteractionEnabled:false];
+}
+
+- (void)setTextColor:(UIColor *)color {
+    [self.inputTF setTextColor:color];
+}
+
+- (void)setInputBackgoundColor: (UIColor *)color {
+    UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, CGRectGetHeight(self.inputTF.frame))];
+    [leftView setBackgroundColor:[UIColor clearColor]];
+    [self.inputTF setLeftView:leftView];
+    [self.inputTF setBackgroundColor:color];
+    self.inputTF.layer.cornerRadius = 4;
+    [self.inputTF setLeftViewMode:UITextFieldViewModeAlways];
+}
+
+- (void)setStatusToNormal {
+    self.wrongAccout = false;
+    self.lineView.backgroundColor = self.hilghtColor;
+    self.tipLb.textColor = self.hilghtColor;
+    self.tipLb.text = self.inputTF.placeholder;
+}
+
+- (void)setPrefixText: (NSString *)text {
+    UILabel *prefixLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, CGRectGetHeight(self.inputTF.frame))];
+    [prefixLabel setTextColor:kHexColorAlpha(0xFFFFFF, 0.5)];
+    [prefixLabel setFont:[UIFont fontPFM16]];
+    [prefixLabel setText:text];
+    [self.inputTF setLeftViewMode:UITextFieldViewModeAlways];
+    [self.inputTF setLeftView:prefixLabel];
+}
+
 @end

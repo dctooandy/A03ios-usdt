@@ -11,8 +11,7 @@
 #import "CNTwoStatusBtn.h"
 #import "CNUserCenterRequest.h"
 #import "UILabel+Gradient.h"
-//#import "HYRechargeViewController.h"
-#import "BYRechargeUsdtVC.h"
+#import "BYDepositUsdtVC.h"
 #import "HYRechargeCNYViewController.h"
 #import "BYYuEBaoVC.h"
 
@@ -233,8 +232,7 @@
 - (IBAction)btmButtonClick:(id)sender {
     if (self.detailType == CNRecordTypeDeposit) {
         if ([CNUserManager shareManager].isUsdtMode) {
-//            [self.navigationController pushViewController:[HYRechargeViewController new] animated:YES];
-            [self.navigationController pushViewController:[BYRechargeUsdtVC new] animated:YES];
+            [self.navigationController pushViewController:[BYDepositUsdtVC new] animated:YES];
         } else {
             [self.navigationController pushViewController:[HYRechargeCNYViewController new] animated:YES];
         }

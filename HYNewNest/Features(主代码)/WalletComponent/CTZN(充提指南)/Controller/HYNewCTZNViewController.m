@@ -10,7 +10,7 @@
 #import "HYNewCTZNCell.h"
 #import "CNBaseNetworking.h"
 #import "CTZNModel.h"
-#import "BYRechargeUsdtVC.h"
+//#import "BYRechargeUsdtVC.h"
 #import "HYWithdrawViewController.h"
 #import "HYWideOneBtnAlertView.h"
 #import "HYCTZNPlayerViewController.h"
@@ -85,7 +85,7 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
     [btnNotShow addTarget:self action:@selector(didClickNotShow:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnNotShow];
     self.btnNowShow = btnNotShow;
-    self.btnNowShow.selected = [[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey];
+//    self.btnNowShow.selected = [[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey];
     
     [self.view addSubview:self.tableView];
 }
@@ -149,8 +149,8 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
 - (void)dismissSelf:(nullable void(^)(void))handler {
     [self dismissViewControllerAnimated:YES completion:^{
         
-        [[NSUserDefaults standardUserDefaults] setBool:self.btnNowShow.selected forKey:HYNotShowCTZNEUserDefaultKey];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+//        [[NSUserDefaults standardUserDefaults] setBool:self.btnNowShow.selected forKey:HYNotShowCTZNEUserDefaultKey];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
         
         if (handler) {
             handler();
@@ -181,7 +181,7 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
     cell.actionBlock = ^(NSString * _Nonnull type) {
         if ([type isEqualToString:@"充币"]) {
             [self dismissSelf:^{
-                [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[BYRechargeUsdtVC new] animated:YES];
+//                [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[BYRechargeUsdtVC new] animated:YES];
             }];
             
         } else if ([type isEqualToString:@"买币"]) {

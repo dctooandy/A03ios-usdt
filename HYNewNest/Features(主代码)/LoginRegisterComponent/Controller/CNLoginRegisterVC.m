@@ -411,7 +411,6 @@
         if (!errorMsg) {
             [CNTOPHUB showSuccess:@"注册成功"];
             CNBindPhoneVC *vc = [CNBindPhoneVC new];
-            vc.bindType = CNSMSCodeTypeRegister;
             [self.navigationController pushViewController:vc animated:YES];
         } else {
             [self.regHanImgCodeView getImageCodeForceRefresh:YES];

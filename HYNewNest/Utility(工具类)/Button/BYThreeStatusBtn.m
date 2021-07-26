@@ -43,7 +43,11 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.layer.cornerRadius = self.height*0.5;
+    if (self.cornerRadius > 0) {
+        self.layer.cornerRadius = self.cornerRadius;
+    }else{
+        self.layer.cornerRadius = self.height*0.5;
+    }
     self.layer.masksToBounds = YES;
 }
 
@@ -74,6 +78,7 @@
     if (self.status == CNThreeStaBtnStatusGradientBorder) {
         CGFloat txtWidth = [self.titleLabel.text jk_widthWithFont:self.titleLabel.font constrainedToHeight:self.height];
         UIColor *gradColor = [UIColor gradientFromColor:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE) withWidth:txtWidth];
+        
         [self setTitleColor:gradColor forState:UIControlStateNormal];
         self.layer.borderColor = gradColor.CGColor;
         self.layer.borderWidth = 1.0;
@@ -82,7 +87,13 @@
     } else if (self.status == CNThreeStaBtnStatusGradientBackground) {
         [self setTitleColor:kHexColorAlpha(0xFFFFFF, 1.0) forState:UIControlStateNormal];
         self.layer.borderWidth = 0.0;
-        [self setBackgroundImage:[UIImage imageNamed:@"l_btn_select"] forState:UIControlStateNormal]; // 渐变色背景
+        // 渐变色背景
+        if (self.cornerRadius > 0) {
+            UIImage *bgimg = [UIColor gradientImageFromColors:@[kHexColor(0x19CECE),kHexColor(0x10B4DD)] gradientType:GradientTypeUprightToLowleft imgSize:CGSizeMake(self.width, self.height)];
+            [self setBackgroundImage:bgimg forState:UIControlStateNormal];
+        } else {
+            [self setBackgroundImage:[UIImage imageNamed:@"l_btn_select"] forState:UIControlStateNormal];
+        }
         
     } else {
         [self setTitleColor:kHexColorAlpha(0xFFFFFF, 0.3) forState:UIControlStateNormal];

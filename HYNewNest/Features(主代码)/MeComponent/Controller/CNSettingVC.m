@@ -33,6 +33,7 @@
     [super viewDidLoad];
     self.title = @"个人设置";
     self.btmVersionLb.text = [NSString stringWithFormat:@"版本号：%@\nCOPYRIGHT © 2028 币游国际. ALL RIGHTS RESERVED.\n币游集团版权所有", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

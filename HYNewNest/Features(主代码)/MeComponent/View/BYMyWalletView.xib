@@ -438,9 +438,9 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSi-cK-xwv">
-                    <rect key="frame" x="198.5" y="56" width="106.5" height="22"/>
-                    <state key="normal" image="DOWN"/>
-                    <state key="selected" image="UP"/>
+                    <rect key="frame" x="210" y="56" width="83" height="22"/>
+                    <state key="normal" image="icon_down"/>
+                    <state key="selected" image="icon_up"/>
                     <connections>
                         <action selector="didTapExpandBtn:" destination="-1" eventType="touchUpInside" id="yY7-0Y-cXm"/>
                     </connections>
@@ -469,8 +469,8 @@
         </view>
     </objects>
     <resources>
-        <image name="DOWN" width="106.5" height="16.5"/>
-        <image name="UP" width="106.5" height="16.5"/>
+        <image name="icon_down" width="83" height="11"/>
+        <image name="icon_up" width="83" height="11"/>
         <image name="next" width="5" height="10"/>
         <image name="疑问" width="16" height="16"/>
     </resources>

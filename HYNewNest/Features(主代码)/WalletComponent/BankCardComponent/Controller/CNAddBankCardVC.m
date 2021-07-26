@@ -11,7 +11,7 @@
 #import "BRPickerView.h"
 #import "NSString+Validation.h"
 #import "CNBankVerifySmsView.h"
-#import "CNCompleteInfoVC.h"
+//#import "CNCompleteInfoVC.h"
 #import "CNWDAccountRequest.h"
 #import "CNLoginRequest.h"
 #import "NSURL+HYLink.h"
@@ -19,6 +19,9 @@
 #import <IVLoganAnalysis/IVLAManager.h>
 #import "CNWithdrawRequest.h"
 #import "HYTextAlertView.h"
+#import "HYWideOneBtnAlertView.h"
+#import "BYBindRealNameVC.h"
+#import "BYModifyPhoneVC.h"
 
 @interface CNAddBankCardVC () <CNNormalInputViewDelegate>
 /// 账户名
@@ -41,6 +44,8 @@
 @property (weak, nonatomic) IBOutlet CNNormalInputView *subBankName;
 /// 提交按钮
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
+/// 底部提示
+@property (weak, nonatomic) IBOutlet UILabel *btmtipsLb;
 
 /// 模型
 @property (nonatomic, strong) SmsCodeModel *smsModel;
@@ -68,6 +73,17 @@
     [self.cardView setKeyboardType:UIKeyboardTypeNumberPad];
     [self.subBankName setPlaceholder:@"请输入您开卡银行（支行）名称"];
     [self setBankLogo:nil];
+    
+    self.btmtipsLb.attributedText = ({
+        UIColor *gdColor = [UIColor gradientFromColor:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE) withWidth:280];
+        NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:@" CNY充值时，付款人姓名必须和银行卡绑定姓名一致" attributes:@{NSFontAttributeName:[UIFont fontPFR12], NSForegroundColorAttributeName:gdColor}];
+        NSTextAttachment *attch = [[NSTextAttachment alloc] init];
+        attch.image = [UIImage imageNamed:@"yellow exclamation"];
+        attch.bounds = CGRectMake(0, 0, 14, 15);
+        NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attch];
+        [attrStr insertAttributedString:string atIndex:0];
+        attrStr;
+    });
     
     // 修改默认颜色
     if ([self.bankNameTF respondsToSelector:@selector(setAttributedPlaceholder:)]) {
@@ -148,16 +164,28 @@
 
 // 提交
 - (IBAction)submit:(id)sender {
-    if (![CNUserManager shareManager].userDetail.mobileNoBind || KIsEmptyString([CNUserManager shareManager].userDetail.realName)) {
-        [HYTextAlertView showWithTitle:@"完善信息" content:@"对不起！系统发现您还没有完成实名认证，请先完成实名认证，再进行绑卡操作。" comfirmText:@"确定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
+//    if (![CNUserManager shareManager].userDetail.mobileNoBind || KIsEmptyString([CNUserManager shareManager].userDetail.realName)) {
+//        [HYTextAlertView showWithTitle:@"完善信息" content:@"对不起！系统发现您还没有完成实名认证，请先完成实名认证，再进行绑卡操作。" comfirmText:@"确定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
+//            if (isComfirm) {
+//                [self.navigationController pushViewController:[CNCompleteInfoVC new] animated:YES];
+//            } else {
+//                [self.navigationController popViewControllerAnimated:YES];
+//            }
+//        }];
+//
+//    } else {
+    if (KIsEmptyString([CNUserManager shareManager].userDetail.realName)) { // 实名认证
+        [self.navigationController popViewControllerAnimated:YES];
+        [BYBindRealNameVC modalVCBindRealName];
+    }
+    else if (![CNUserManager shareManager].userDetail.mobileNoBind) { // 绑定手机
+        [HYTextAlertView showWithTitle:@"手机绑定" content:@"对不起！系统发现您还没有绑定手机，建议您完成手机绑定流程，再进行添加地址操作。" comfirmText:@"确定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
             if (isComfirm) {
-                [self.navigationController pushViewController:[CNCompleteInfoVC new] animated:YES];
-            } else {
-                [self.navigationController popViewControllerAnimated:YES];
+                [BYModifyPhoneVC modalVcWithSMSCodeType:CNSMSCodeTypeBindPhone];
             }
         }];
-        
-    } else {
+    }
+    else {
         // 获取验证码
         [CNBankVerifySmsView showPhone:[CNUserManager shareManager].userDetail.mobileNo
                                 finish:^(CNBankVerifySmsView * _Nonnull view, SmsCodeModel *smsModel) {

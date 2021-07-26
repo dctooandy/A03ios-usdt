@@ -14,7 +14,6 @@
 #import "ChargeManualMessgeView.h"
 #import "CNTradeRecodeVC.h"
 #import "HYRechargeCNYEditView.h"
-#import "HYRechargePayWayController.h"
 #import "HYWithdrawComfirmView.h"
 #import "CNUserCenterRequest.h"
 #import "CNRechargeChosePayTypeVC.h"
@@ -22,6 +21,10 @@
 #import "UIView+Empty.h"
 #import "HYTabBarViewController.h"
 #import <IN3SAnalytics/CNTimeLog.h>
+#import "HYWideOneBtnAlertView.h"
+#import "BYBindRealNameVC.h"
+#import "BYCNYRechargeAlertView.h"
+#import "CNLoginRequest.h"
 
 @interface HYRechargeCNYViewController () <HYRechargeCNYEditViewDelegate>
 @property (nonatomic, assign) NSInteger selcPayWayIdx;
@@ -76,12 +79,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"充值";
+    self.title = @"CNY充值";
     [self addNaviRightItemWithImageName:@"kf"];
     
     _selcPayWayIdx = 0;
     
-    [self setupEmptyView];
     [self setupSubmitBtn];
     [self queryCNYPayways];
 }
@@ -96,16 +98,6 @@
 
 - (void)rightItemAction {
     [NNPageRouter presentOCSS_VC];
-}
-
-- (void)setupEmptyView {
-    LYEmptyView *empView = [LYEmptyView emptyActionViewWithImage:[UIImage imageNamed:@"kongduixiang"] titleStr:@"" detailStr:@"暂无充值方式提供" btnTitleStr:@"刷新试试" btnClickBlock:^{
-        [self queryCNYPayways];
-    }];
-    empView.actionBtnBackGroundColor = kHexColor(0x2B2B45);
-    empView.actionBtnCornerRadius = 10;
-    empView.actionBtnTitleColor = [UIColor lightGrayColor];
-    self.view.ly_emptyView = empView;
 }
 
 - (void)setupMainEditView {
@@ -191,10 +183,15 @@
             
             self.paytypeList = (NSArray<PayWayV3PayTypeItem *> *)[NSArray arrayWithArray:tmp];
             [self refreshQueryData];
-            
-            [self.view ly_hideEmptyView];
         } else {
-            [self.view ly_showEmptyView];
+            [BYCNYRechargeAlertView showAlertWithContent:@"CNY通道维护中\n建议切换使用USDT账户" cancelText:@"我知道了" confirmText:@"切换USDT账户" comfirmHandler:^(BOOL isComfirm) {
+                WEAKSELF_DEFINE
+                [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {
+                    if (!errorMsg) {
+                        [weakSelf.navigationController popToRootViewControllerAnimated:true];
+                    }
+                } faileHandler:nil];
+            }];
         }
         
     }];
@@ -246,12 +243,8 @@
  */
 - (void)submitRechargeRequest {
     if (KIsEmptyString([CNUserManager shareManager].userDetail.realName)) {
-        WEAKSELF_DEFINE
-        [self.view addSubview:[[HYWithdrawComfirmView alloc] initRealNameSubmitBlock:^(NSString * _Nonnull realName) {
-            STRONGSELF_DEFINE
-            [strongSelf bindRealName:realName];
-        }]];
-        return;
+        [BYBindRealNameVC modalVCBindRealName];
+        return;;
     }
     
     __block PayWayV3PayTypeItem *item = self.paytypeList[_selcPayWayIdx];
@@ -306,13 +299,6 @@
     }
 }
 
-- (void)bindRealName:(NSString *)realName {
-    [CNUserCenterRequest modifyUserRealName:realName gender:nil birth:nil avatar:nil onlineMessenger2:nil email:nil handler:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg) {
-            [CNTOPHUB showSuccess:@"实名认证成功"];
-        }
-    }];
-}
 
 
 @end

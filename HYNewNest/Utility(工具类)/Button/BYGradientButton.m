@@ -37,6 +37,11 @@
                                              gradientType:GradientTypeLeftToRight
                                                   imgSize:self.frame.size];
         [self setBackgroundImage:image forState:UIControlStateNormal];
+        
+        image = [UIColor gradientImageFromColors:@[[self.startColor colorWithAlphaComponent:0.8], [self.endColor colorWithAlphaComponent:0.8]]
+                                    gradientType:GradientTypeLeftToRight
+                                         imgSize:self.frame.size];
+        [self setBackgroundImage:image forState:UIControlStateDisabled];
     }
 }
 
@@ -48,6 +53,10 @@
                                                   imgSize:self.frame.size];
         [self setBackgroundImage:image forState:UIControlStateNormal];
         
+        image = [UIColor gradientImageFromColors:@[[self.startColor colorWithAlphaComponent:0.8], [self.endColor colorWithAlphaComponent:0.8]]
+                                    gradientType:GradientTypeLeftToRight
+                                         imgSize:self.frame.size];
+        [self setBackgroundImage:image forState:UIControlStateDisabled];
     }
 }
 

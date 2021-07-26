@@ -13,7 +13,7 @@
 #import "BYNewbieCashGiftAlertVC.h"
 #import "BYMissionCompleteVC.h"
 #import "BYGradientButton.h"
-#import "CNBindPhoneVC.h"
+#import "BYModifyPhoneVC.h"
 #import "CNUserManager.h"
 #import "CNTaskRequest.h"
 #import "CNTaskModel.h"
@@ -373,10 +373,10 @@
 #pragma mark IBAction
 - (IBAction)bindingPhoneClicked:(id)sender {
     if ([self checkUserLogin] == true) {
-        CNBindPhoneVC *bindPhoneVC = [[CNBindPhoneVC alloc] init];
-        bindPhoneVC.bindType = CNSMSCodeTypeBindPhone;
-        [self.navigationController pushViewController:bindPhoneVC animated:true];
-        
+//        CNBindPhoneVC *bindPhoneVC = [[CNBindPhoneVC alloc] init];
+//        bindPhoneVC.bindType = CNSMSCodeTypeBindPhone;
+//        [self.navigationController pushViewController:bindPhoneVC animated:true];
+        [BYModifyPhoneVC modalVcWithSMSCodeType:CNSMSCodeTypeBindPhone];
     }
     
 }
@@ -401,7 +401,6 @@
             if ([receivedId hasSuffix:@";"] && receivedId.length > 1) {
                 [receivedId deleteCharactersInRange:NSMakeRange(receivedId.length - 1, 1)];
             }
-
             
             [self getRewardWithReceivedId:receivedId andCode:limitTask.result.firstObject.prizeCode];
             break;

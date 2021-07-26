@@ -7,18 +7,21 @@
 //
 
 #import "CNSecurityCenterVC.h"
-#import "CNBindPhoneVC.h"
 #import "CNForgotCodeVC.h"
 #import "CNChangePwdVC.h"
 #import "CNBaseTF.h"
 #import "MineBindView.h"
 #import "CNUserCenterRequest.h"
 #import "BYChangeFundPwdVC.h"
+#import "BYModifyPhoneVC.h"
+#import "HYWideOneBtnAlertView.h"
+#import "BYBindRealNameVC.h"
 
 @interface CNSecurityCenterVC ()
 @property (weak, nonatomic) IBOutlet CNBaseTF *phoneTF;
 @property (weak, nonatomic) IBOutlet CNBaseTF *weixinTF;
 @property (weak, nonatomic) IBOutlet CNBaseTF *emailTF;
+@property (weak, nonatomic) IBOutlet CNBaseTF *realNameTF;
 
 @end
 
@@ -26,7 +29,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.title = @"安全中心";
+    [self getUserProfile];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserProfile) name:BYDidUpdateUserProfileNoti object:nil];
+    
+}
+
+- (void)getUserProfile {
     [LoadingView show];
     [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
         [LoadingView hide];
@@ -35,49 +45,42 @@
 }
 
 - (void)updateData {
-    NSString *phone = [CNUserManager shareManager].userDetail.mobileNo;
+    CNUserDetailModel *userDetail = [CNUserManager shareManager].userDetail;
+    NSString *phone = userDetail.mobileNo;
     self.phoneTF.text = [phone stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];;
-    self.weixinTF.text = [CNUserManager shareManager].userDetail.onlineMessenger2;
-    self.emailTF.text = [CNUserManager shareManager].userDetail.email;
+    self.weixinTF.text = userDetail.onlineMessenger2;
+    self.realNameTF.text = userDetail.realName;
+    self.emailTF.text = userDetail.email;
 }
 
 // 修改手机号
 - (IBAction)changePhoneNum:(id)sender {
-//    if (self.phoneTF.text.length > 0) {
-//        // 已经绑定手机号，走解绑
-//        CNForgotCodeVC *vc = [CNForgotCodeVC new];
-//        vc.bindType = CNSMSCodeTypeChangePhone;
-//        [self.navigationController pushViewController:vc animated:YES];
-//    } else {
-//        // 未绑定的直接去绑定
-//        CNBindPhoneVC *vc = [CNBindPhoneVC new];
-//        vc.bindType = CNSMSCodeTypeBindPhone;
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
-    CNBindPhoneVC *vc = [CNBindPhoneVC new];
-    vc.bindType = self.phoneTF.text.length > 0 ? CNSMSCodeTypeUnbind : CNSMSCodeTypeBindPhone;
-    [self.navigationController pushViewController:vc animated:YES];
+    [BYModifyPhoneVC modalVcWithSMSCodeType:(self.phoneTF.text.length > 0 ? CNSMSCodeTypeUnbind : CNSMSCodeTypeBindPhone)];
 }
 
 // 修改密码
 - (IBAction)changePWD:(id)sender {
-    CNChangePwdVC *vc = [CNChangePwdVC new];
-    [self.navigationController pushViewController:vc animated:YES];
+    [CNChangePwdVC modalVc];
 }
 
 // 修改资金密码
 - (IBAction)changeFundPWD:(id)sender {
-    BYChangeFundPwdVC *vc = [BYChangeFundPwdVC new];
-    [self.navigationController pushViewController:vc animated:YES];
+    [BYChangeFundPwdVC modalVc];
 }
 
 - (IBAction)showBindView:(UIButton *)sender {
-    WEAKSELF_DEFINE
-    MineBindView *bind = [[MineBindView alloc] initWithBindType:sender.tag?HYBindTypeEMail: HYBindTypeWechat comfirmBlock:^(NSString * _Nonnull text) {
-        STRONGSELF_DEFINE
-        [strongSelf submitBindAccount:text isEMail:sender.tag];
-    }];
-    [self.view addSubview:bind];
+    
+        WEAKSELF_DEFINE
+        MineBindView *bind = [[MineBindView alloc] initWithBindType:sender.tag?HYBindTypeEMail: HYBindTypeWechat comfirmBlock:^(NSString * _Nonnull text) {
+            STRONGSELF_DEFINE
+            [strongSelf submitBindAccount:text isEMail:sender.tag];
+        }];
+        [self.view addSubview:bind];
+    
+}
+
+- (IBAction)bindRealNameClicked:(id)sender {
+    [BYBindRealNameVC modalVCBindRealName];
 }
 
 - (void)submitBindAccount:(NSString *)account isEMail:(BOOL)isEMail {

@@ -19,14 +19,14 @@ typedef NS_ENUM(NSUInteger, PaywayType) {
 
 @interface HYRechargePayWayController : CNBaseVC
 
-- (instancetype)initWithDepositModels:(NSArray<DepositsBankModel *> *)models
-                              selcIdx:(NSInteger)selcIdx;
+//- (instancetype)initWithDepositModels:(NSArray<DepositsBankModel *> *)models
+//                              selcIdx:(NSInteger)selcIdx;
 
 - (instancetype)initWithPaywayItems:(NSArray<PayWayV3PayTypeItem *> *)models
                             selcIdx:(NSInteger)selcIdx;
 
-- (instancetype)initWithBQbanks:(NSArray<BQBankModel *> *)models
-                        selcIdx:(NSInteger)selcIdx;
+//- (instancetype)initWithBQbanks:(NSArray<BQBankModel *> *)models
+//                        selcIdx:(NSInteger)selcIdx;
 
 @end
 

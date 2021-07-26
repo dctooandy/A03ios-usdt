@@ -13,6 +13,9 @@
 #import "CNPushRequest.h"
 #import <IN3SAnalytics/CNTimeLog.h>
 #import <YJChat.h>
+#import <CSCustomSerVice/CSCustomSerVice.h>
+#import "KeyChain.h"
+#import "CNServiceRequest.h"
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 #import <UserNotifications/UserNotifications.h>

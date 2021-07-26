@@ -22,15 +22,15 @@
 @implementation HYRechargePayWayController
 static NSString *const KRechargeCell = @"HYRechargePayWayCell";
 
-- (instancetype)initWithDepositModels:(NSArray<DepositsBankModel *> *)models
-                              selcIdx:(NSInteger)selcIdx {
-    self = [super init];
-    self.title = @"选择支付方式";
-    self.type = PaywayTypeDepositBank;
-    self.depositModels = models;
-    self.selcPayWayIdx = selcIdx;
-    return self;
-}
+//- (instancetype)initWithDepositModels:(NSArray<DepositsBankModel *> *)models
+//                              selcIdx:(NSInteger)selcIdx {
+//    self = [super init];
+//    self.title = @"选择支付方式";
+//    self.type = PaywayTypeDepositBank;
+//    self.depositModels = models;
+//    self.selcPayWayIdx = selcIdx;
+//    return self;
+//}
 
 - (instancetype)initWithPaywayItems:(NSArray<PayWayV3PayTypeItem *> *)models
                             selcIdx:(NSInteger)selcIdx {
@@ -41,21 +41,21 @@ static NSString *const KRechargeCell = @"HYRechargePayWayCell";
     self.selcPayWayIdx = selcIdx;
     return self;
 }
-
-- (instancetype)initWithBQbanks:(NSArray<BQBankModel *> *)models
-                        selcIdx:(NSInteger)selcIdx {
-    self = [super init];
-    self.title = @"选择收款银行";
-    self.type = PaywayTypeBQBank;
-    self.bqBanks = models;
-    self.selcPayWayIdx = selcIdx;
-    return self;
-}
+//
+//- (instancetype)initWithBQbanks:(NSArray<BQBankModel *> *)models
+//                        selcIdx:(NSInteger)selcIdx {
+//    self = [super init];
+//    self.title = @"选择收款银行";
+//    self.type = PaywayTypeBQBank;
+//    self.bqBanks = models;
+//    self.selcPayWayIdx = selcIdx;
+//    return self;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self addNaviRightItemWithImageName:@"service"];
+    [self addNaviRightItemWithImageName:@"kf"];
     
     [self setupTableView];
 }

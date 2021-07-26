@@ -10,6 +10,14 @@
 
 @implementation CNServiceRequest
 
++ (void)liveChatAddressOCSSHandler:(HandlerBlock)handler {
+    [self POST:config_liveChatAddress parameters:@{} completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+            handler(responseObj[@"body"], errorMsg);
+        }
+    }];
+}
+
 + (void)queryIsOpenWMQHandler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];

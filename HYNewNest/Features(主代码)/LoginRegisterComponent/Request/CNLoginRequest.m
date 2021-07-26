@@ -44,7 +44,12 @@
     paras[@"use"] = @(type);
     paras[@"mobileNo"] = [CNEncrypt encryptString:phone];
     
-    [self POST:(config_SendCodePhone) parameters:paras completionHandler:completionHandler];
+    [self POST:(config_SendCodePhone) parameters:paras completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            [kKeywindow jk_makeToast:[NSString stringWithFormat:@"向手机%@\n发送了一条验证码", phone] duration:2 position:JKToastPositionCenter];
+        }
+        completionHandler(responseObj, errorMsg);
+    }];
 }
 
 + (void)getSMSCodeWithType:(CNSMSCodeType)type
@@ -57,7 +62,12 @@
     paras[@"mobileNo"] = [CNEncrypt encryptString:phone];
     paras[@"validateId"] = vId;
     
-    [self POST:(config_SendCodePhone) parameters:paras completionHandler:completionHandler];
+    [self POST:(config_SendCodePhone) parameters:paras completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            [kKeywindow jk_makeToast:[NSString stringWithFormat:@"向手机%@\n发送了一条验证码", phone] duration:2 position:JKToastPositionCenter];
+        }
+        completionHandler(responseObj, errorMsg);
+    }];
 }
 
 + (void)getSMSCodeByLoginNameType:(CNSMSCodeType)type   completionHandler:(HandlerBlock)completionHandler {
@@ -401,7 +411,7 @@
 //    }];
 //}
 
-+ (void)switchAccountSuccessHandler:(HandlerBlock)completionHandler {
++ (void)switchAccountSuccessHandler:(HandlerBlock)completionHandler{
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     //1 主账户 2 USDT 在这里usdtmodeon已经打开了
 //    [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@2 forKey:@"accountType"]; //废弃
@@ -433,7 +443,46 @@
                 !completionHandler?:completionHandler(responseObj, errorMsg);
             }
         }
+        
     }];
 }
 
++ (void)switchAccountSuccessHandler:(HandlerBlock)completionHandler faileHandler:(void (^ _Nullable)(void))faileHandloer{
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    //1 主账户 2 USDT 在这里usdtmodeon已经打开了
+//    [param setObject:[CNUserManager shareManager].isUsdtMode?@1:@2 forKey:@"accountType"]; //废弃
+    param[@"uiMode"] = [CNUserManager shareManager].isUsdtMode?@"CNY":@"USDT";
+    
+    [self POST:(config_switchAccount) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            if (responseObj[@"loginName"]) {
+                CNUserModel *userInfo = [CNUserManager shareManager].userInfo;
+                userInfo.loginName = responseObj[@"loginName"];
+                userInfo.subAccountFlag = responseObj[@"subAccountFlag"];
+                if (![userInfo.loginName hasSuffix:@"usdt"]) {
+                    userInfo.currency = @"CNY";
+                    userInfo.uiMode = @"CNY";
+                } else {
+                    userInfo.currency = @"USDT";
+                    userInfo.uiMode = @"USDT";
+                }
+                NSDictionary *newUIF = [userInfo yy_modelToJSONObject];
+                [[CNUserManager shareManager] saveUserInfo:newUIF];
+                [[CNUserManager shareManager] deleteWebCache];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil];
+                if ([CNUserManager shareManager].isUsdtMode) {
+                    [CNTOPHUB showSuccess:@"切换到了USDT模式"];
+                } else {
+                    [CNTOPHUB showSuccess:@"切换到了CNY模式"];
+                }
+                !completionHandler?:completionHandler(responseObj, errorMsg);
+            }
+        }
+        else {
+            faileHandloer();
+        }
+        
+    }];
+}
 @end

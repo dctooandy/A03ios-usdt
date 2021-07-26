@@ -17,40 +17,41 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblProtocol;
 @property (weak, nonatomic) IBOutlet UILabel *lblCardAddr;
+@property (weak, nonatomic) IBOutlet UIImageView *selectedImageView;
 
-@property (nonatomic, strong) CAShapeLayer *triangleLy;
-@property (nonatomic, strong) UIImageView *gougou;
+//@property (nonatomic, strong) CAShapeLayer *triangleLy;
+//@property (nonatomic, strong) UIImageView *gougou;
 @end
 
 @implementation HYWithdrawCardCell
 
-- (CAShapeLayer *)triangleLy {
-    if (!_triangleLy) {
-        CAShapeLayer *trangle = [CAShapeLayer layer];
-        UIBezierPath *path = [UIBezierPath bezierPath];
-        [path moveToPoint:CGPointMake(kScreenWidth-60-24, 86)];
-        [path addLineToPoint:CGPointMake(kScreenWidth-60, 86-24)];
-        [path addLineToPoint:CGPointMake(kScreenWidth-60, 86)];
-        [path addLineToPoint:CGPointMake(kScreenWidth-60-24, 86)];
-        trangle.path = path.CGPath;
-        UIColor *color = [UIColor jk_gradientFromColor:kHexColor(0x19CECE) toColor:kHexColor(0x10B4DD) withHeight:self.bgView.height];
-        trangle.fillColor = color.CGColor;
-        [self.bgView.layer addSublayer:trangle];
-        _triangleLy = trangle;
-    }
-    return _triangleLy;
-}
+//- (CAShapeLayer *)triangleLy {
+//    if (!_triangleLy) {
+//        CAShapeLayer *trangle = [CAShapeLayer layer];
+//        UIBezierPath *path = [UIBezierPath bezierPath];
+//        [path moveToPoint:CGPointMake(kScreenWidth-30-24, 86)];
+//        [path addLineToPoint:CGPointMake(kScreenWidth-30, 86-24)];
+//        [path addLineToPoint:CGPointMake(kScreenWidth-30, 86)];
+//        [path addLineToPoint:CGPointMake(kScreenWidth-30-24, 86)];
+//        trangle.path = path.CGPath;
+//        UIColor *color = [UIColor jk_gradientFromColor:kHexColor(0x19CECE) toColor:kHexColor(0x10B4DD) withHeight:self.bgView.height];
+//        trangle.fillColor = color.CGColor;
+//        [self.bgView.layer addSublayer:trangle];
+//        _triangleLy = trangle;
+//    }
+//    return _triangleLy;
+//}
 
-- (UIImageView *)gougou {
-    if (!_gougou) {
-        UIImageView *gougou = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth-60-16, 86-16, 16, 16)];
-        gougou.image = [UIImage imageNamed:@"icon-choosen"];
-        gougou.contentMode = UIViewContentModeCenter;
-        [self.bgView addSubview:gougou];
-        _gougou = gougou;
-    }
-    return _gougou;
-}
+//- (UIImageView *)gougou {
+//    if (!_gougou) {
+//        UIImageView *gougou = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth-30-16, 86-16, 16, 16)];
+//        gougou.image = [UIImage imageNamed:@"icon-choosen"];
+//        gougou.contentMode = UIViewContentModeCenter;
+//        [self.bgView addSubview:gougou];
+//        _gougou = gougou;
+//    }
+//    return _gougou;
+//}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -58,9 +59,9 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.backgroundColor = [UIColor clearColor];
     
-    self.bgView.backgroundColor = kHexColor(0x10101C);
+    self.bgView.backgroundColor = kHexColor(0x272749);
     self.bgView.layer.cornerRadius = 10;
-    self.bgView.layer.borderWidth = AD(1);
+//    self.bgView.layer.borderWidth = AD(1);
     self.bgView.layer.masksToBounds = YES;
     
     
@@ -76,11 +77,11 @@
         self.bgView.layer.borderColor = color.CGColor;
         [self.lblTitle setupGradientColorFrom:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE)];
         self.lblCardAddr.textColor = kHexColor(0x19CECE);
-        self.lblProtocol.textColor = kHexColorAlpha(0xFFFFFF, 0.8);
+        self.lblProtocol.textColor = kHexColorAlpha(0xFFFFFF, 0.4);
         
-        self.triangleLy.hidden = NO;
-        self.gougou.hidden = NO;
-        
+//        self.triangleLy.hidden = NO;
+//        self.gougou.hidden = NO;
+        self.selectedImageView.hidden = false;
         
     } else {
         self.bgView.layer.borderColor = kHexColor(0x6D778B).CGColor;
@@ -88,8 +89,9 @@
         self.lblCardAddr.textColor = kHexColorAlpha(0x10B4DD, 0.5);
         self.lblProtocol.textColor = kHexColorAlpha(0xFFFFFF, 0.5);
         
-        self.triangleLy.hidden = YES;
-        self.gougou.hidden = YES;
+//        self.triangleLy.hidden = YES;
+//        self.gougou.hidden = YES;
+        self.selectedImageView.hidden = true;
     }
 }
 

@@ -23,9 +23,17 @@
 
 @implementation CNChangePwdVC
 
++ (void)modalVc {
+    CNChangePwdVC *vc = [CNChangePwdVC new];
+    vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [NNControllerHelper getCurrentViewController].definesPresentationContext = YES;
+    [kCurNavVC presentViewController:vc animated:YES completion:^{
+        vc.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"修改密码";
     [self configUI];
     [self setDelegate];
 }
@@ -37,6 +45,13 @@
     self.oldeCodeView.codeType = CNCodeTypeOldPwd;
     self.codeView.codeType = CNCodeTypeNewPwd;
     self.reCodeView.codeType = CNCodeTypeNewPwd;
+}
+
+
+#pragma mark - Action
+- (IBAction)dismissBtnClicked:(nullable id)sender {
+    self.view.backgroundColor = [UIColor clearColor];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - InputViewDelegate
@@ -62,11 +77,16 @@
                        newPassword:self.codeView.code
                  completionHandler:^(id responseObj, NSString *errorMsg) {
         
-        [self.navigationController popViewControllerAnimated:YES];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[CNLoginRegisterVC loginVC] animated:YES];
+        [self dismissViewControllerAnimated:YES completion:^{
             [CNTOPHUB showSuccess:@"密码修改成功 请重新登录"];
-        });
+            [CNLoginRequest logoutHandler:^(id responseObj, NSString *errorMsg) {
+                [[CNUserManager shareManager] cleanUserInfo];
+                [kCurNavVC popToRootViewControllerAnimated:YES];
+                [NNControllerHelper currentTabBarController].selectedIndex = 0;
+                [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[CNLoginRegisterVC loginVC] animated:YES];
+            }];
+            
+        }];
 
     }];
     

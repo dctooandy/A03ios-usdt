@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BYDepositUsdtEditorView">
+            <connections>
+                <outlet property="amountTipsLb" destination="dID-ZL-Lni" id="7AH-7q-rKr"/>
+                <outlet property="protocolContainer" destination="ocF-yA-ncw" id="fqm-Lb-swz"/>
+                <outlet property="protocolQuestBtn" destination="oxL-Yi-2TB" id="DfX-eo-SSJ"/>
+                <outlet property="tfAmount" destination="9QB-qy-vQJ" id="Meq-MS-1Su"/>
+                <outletCollection property="shortCutAmountBtns" destination="X0A-ff-r3Q" id="OtB-Um-Hyi"/>
+                <outletCollection property="shortCutAmountBtns" destination="Pub-DM-tSB" id="Em8-6d-zVg"/>
+                <outletCollection property="shortCutAmountBtns" destination="OGD-wc-ino" id="cUL-Mb-jSI"/>
+                <outletCollection property="shortCutAmountBtns" destination="hqS-jo-WIi" id="fym-KN-kvw"/>
+                <outletCollection property="shortCutAmountBtns" destination="nA0-EW-BS5" id="sXY-iF-gd0"/>
+                <outletCollection property="shortCutAmountBtns" destination="Fhe-L7-7IV" id="8uA-Lk-jSU"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="oWr-RK-Naw">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxL-Yi-2TB">
+                    <rect key="frame" x="15" y="16" width="86" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="UEY-cg-owQ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                    <state key="normal" title=" 选择协议" image="疑问">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapQuestion:" destination="-1" eventType="touchUpInside" id="PX5-7d-FoO"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="he1-a4-RWz">
+                    <rect key="frame" x="0.0" y="53" width="414" height="1"/>
+                    <color key="backgroundColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="xLJ-iD-vGm"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ocF-yA-ncw">
+                    <rect key="frame" x="234" y="0.0" width="160" height="53"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="160" id="1fZ-qF-N94"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fmr-9n-U4Z">
+                    <rect key="frame" x="28" y="69" width="358" height="90"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lUW-dc-nYG">
+                            <rect key="frame" x="0.0" y="0.0" width="358" height="40"/>
+                            <subviews>
+                                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X0A-ff-r3Q" customClass="BYThreeStatusBtn">
+                                    <rect key="frame" x="0.0" y="0.0" width="112.5" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="kMD-SJ-fVd"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
+                                    <state key="normal" title="20"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="ibStatus">
+                                            <integer key="value" value="-1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="didTapShortCutAmountBtn:" destination="-1" eventType="touchUpInside" id="ZW3-K5-Q2I"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pub-DM-tSB" customClass="BYThreeStatusBtn">
+                                    <rect key="frame" x="122.5" y="0.0" width="113" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="dmF-xY-GFl"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
+                                    <state key="normal" title="100"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="ibStatus">
+                                            <integer key="value" value="-1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="didTapShortCutAmountBtn:" destination="-1" eventType="touchUpInside" id="Cpq-FT-qH7"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGD-wc-ino" customClass="BYThreeStatusBtn">
+                                    <rect key="frame" x="245.5" y="0.0" width="112.5" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="44Y-gP-A1f"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
+                                    <state key="normal" title="200"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="ibStatus">
+                                            <integer key="value" value="-1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="didTapShortCutAmountBtn:" destination="-1" eventType="touchUpInside" id="GOM-8m-yE8"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fID-qA-Gne">
+                            <rect key="frame" x="0.0" y="50" width="358" height="40"/>
+                            <subviews>
+                                <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqS-jo-WIi" customClass="BYThreeStatusBtn">
+                                    <rect key="frame" x="0.0" y="0.0" width="112.5" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="wRI-mA-uvJ"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
+                                    <state key="normal" title="500"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="ibStatus">
+                                            <integer key="value" value="-1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="didTapShortCutAmountBtn:" destination="-1" eventType="touchUpInside" id="jSP-WB-jeN"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nA0-EW-BS5" customClass="BYThreeStatusBtn">
+                                    <rect key="frame" x="122.5" y="0.0" width="113" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="S8k-Sr-09S"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
+                                    <state key="normal" title="1000"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="ibStatus">
+                                            <integer key="value" value="-1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="didTapShortCutAmountBtn:" destination="-1" eventType="touchUpInside" id="gR0-Xa-Cna"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="105" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fhe-L7-7IV" customClass="BYThreeStatusBtn">
+                                    <rect key="frame" x="245.5" y="0.0" width="112.5" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="Cpx-IZ-GyR"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
+                                    <state key="normal" title="2000"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="ibStatus">
+                                            <integer key="value" value="-1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="didTapShortCutAmountBtn:" destination="-1" eventType="touchUpInside" id="uZ5-nr-aZ2"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="lUW-dc-nYG" firstAttribute="leading" secondItem="Fmr-9n-U4Z" secondAttribute="leading" id="AK3-11-c97"/>
+                        <constraint firstAttribute="height" constant="90" id="CUH-ro-mXA"/>
+                        <constraint firstAttribute="trailing" secondItem="lUW-dc-nYG" secondAttribute="trailing" id="G48-wP-j0K"/>
+                        <constraint firstAttribute="bottom" secondItem="fID-qA-Gne" secondAttribute="bottom" id="LK5-yt-qn9"/>
+                        <constraint firstItem="lUW-dc-nYG" firstAttribute="top" secondItem="Fmr-9n-U4Z" secondAttribute="top" id="iWo-um-pyz"/>
+                        <constraint firstAttribute="trailing" secondItem="fID-qA-Gne" secondAttribute="trailing" id="lf6-tr-OeG"/>
+                        <constraint firstItem="fID-qA-Gne" firstAttribute="leading" secondItem="Fmr-9n-U4Z" secondAttribute="leading" id="m5s-M7-qCh"/>
+                        <constraint firstItem="fID-qA-Gne" firstAttribute="top" secondItem="lUW-dc-nYG" secondAttribute="bottom" constant="10" id="mTA-hb-8Od"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Rl-hz-5hK">
+                    <rect key="frame" x="28" y="174" width="358" height="40"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="充币金额：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SmD-ua-Szy">
+                            <rect key="frame" x="10" y="11" width="76.5" height="18"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入金额" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9QB-qy-vQJ">
+                            <rect key="frame" x="96.5" y="10" width="204" height="20.5"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USDT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Md-f5-OIH">
+                            <rect key="frame" x="310.5" y="11.5" width="37.5" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="6RP-7N-aCS"/>
+                        <constraint firstItem="2Md-f5-OIH" firstAttribute="leading" secondItem="9QB-qy-vQJ" secondAttribute="trailing" constant="10" id="QLG-Vg-E9q"/>
+                        <constraint firstItem="SmD-ua-Szy" firstAttribute="centerY" secondItem="6Rl-hz-5hK" secondAttribute="centerY" id="k1f-e8-Tc6"/>
+                        <constraint firstItem="2Md-f5-OIH" firstAttribute="centerY" secondItem="6Rl-hz-5hK" secondAttribute="centerY" id="s9K-tV-xSO"/>
+                        <constraint firstItem="9QB-qy-vQJ" firstAttribute="centerY" secondItem="6Rl-hz-5hK" secondAttribute="centerY" id="wOA-Iy-pfN"/>
+                        <constraint firstAttribute="trailing" secondItem="2Md-f5-OIH" secondAttribute="trailing" constant="10" id="wgL-dh-sQq"/>
+                        <constraint firstItem="9QB-qy-vQJ" firstAttribute="leading" secondItem="SmD-ua-Szy" secondAttribute="trailing" constant="10" id="yVp-MH-6cC"/>
+                        <constraint firstItem="SmD-ua-Szy" firstAttribute="leading" secondItem="6Rl-hz-5hK" secondAttribute="leading" constant="10" id="z53-Hp-Z4J"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yellow exclamation" translatesAutoresizingMaskIntoConstraints="NO" id="LPf-v9-q9u">
+                    <rect key="frame" x="28" y="227" width="14" height="15"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1USDT起充，最多1000万USDT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dID-ZL-Lni">
+                    <rect key="frame" x="47" y="227.5" width="172.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="bMF-GY-S9D"/>
+            <color key="backgroundColor" red="0.15294117647058825" green="0.15294117647058825" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="dID-ZL-Lni" firstAttribute="centerY" secondItem="LPf-v9-q9u" secondAttribute="centerY" id="0BJ-NM-9EB"/>
+                <constraint firstItem="oxL-Yi-2TB" firstAttribute="leading" secondItem="oWr-RK-Naw" secondAttribute="leading" constant="15" id="2Ln-F9-PsF"/>
+                <constraint firstItem="he1-a4-RWz" firstAttribute="leading" secondItem="oWr-RK-Naw" secondAttribute="leading" id="4jv-Ij-TVo"/>
+                <constraint firstItem="Fmr-9n-U4Z" firstAttribute="leading" secondItem="oWr-RK-Naw" secondAttribute="leading" constant="28" id="BgD-GV-zQz"/>
+                <constraint firstItem="6Rl-hz-5hK" firstAttribute="trailing" secondItem="Fmr-9n-U4Z" secondAttribute="trailing" id="LkV-Rw-Knc"/>
+                <constraint firstItem="6Rl-hz-5hK" firstAttribute="leading" secondItem="Fmr-9n-U4Z" secondAttribute="leading" id="MRu-0c-Iia"/>
+                <constraint firstItem="bMF-GY-S9D" firstAttribute="bottom" secondItem="LPf-v9-q9u" secondAttribute="bottom" constant="18" id="NY1-yb-xa7"/>
+                <constraint firstItem="6Rl-hz-5hK" firstAttribute="top" secondItem="Fmr-9n-U4Z" secondAttribute="bottom" constant="15" id="P5c-pD-pqB"/>
+                <constraint firstItem="dID-ZL-Lni" firstAttribute="leading" secondItem="LPf-v9-q9u" secondAttribute="trailing" constant="5" id="S8q-6w-8p7"/>
+                <constraint firstItem="he1-a4-RWz" firstAttribute="top" secondItem="ocF-yA-ncw" secondAttribute="bottom" id="bn8-lP-GNT"/>
+                <constraint firstAttribute="trailing" secondItem="ocF-yA-ncw" secondAttribute="trailing" constant="20" id="cZ7-9Q-7Ay"/>
+                <constraint firstAttribute="trailing" secondItem="Fmr-9n-U4Z" secondAttribute="trailing" constant="28" id="fgR-2b-urd"/>
+                <constraint firstItem="LPf-v9-q9u" firstAttribute="leading" secondItem="6Rl-hz-5hK" secondAttribute="leading" id="gMQ-11-AJg"/>
+                <constraint firstAttribute="trailing" secondItem="he1-a4-RWz" secondAttribute="trailing" id="lgP-ka-Top"/>
+                <constraint firstItem="ocF-yA-ncw" firstAttribute="top" secondItem="oWr-RK-Naw" secondAttribute="top" id="rrB-Ik-U2m"/>
+                <constraint firstItem="Fmr-9n-U4Z" firstAttribute="top" secondItem="he1-a4-RWz" secondAttribute="bottom" constant="15" id="u1h-Qg-EJD"/>
+                <constraint firstItem="he1-a4-RWz" firstAttribute="top" secondItem="oxL-Yi-2TB" secondAttribute="bottom" constant="15" id="xdX-GA-RQt"/>
+                <constraint firstItem="oxL-Yi-2TB" firstAttribute="top" secondItem="oWr-RK-Naw" secondAttribute="top" constant="16" id="yRs-tP-SK2"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="6"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="200" y="-38"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="yellow exclamation" width="14" height="15"/>
+        <image name="疑问" width="16" height="16"/>
+    </resources>
+</document>

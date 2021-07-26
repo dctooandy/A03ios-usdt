@@ -14,6 +14,8 @@
 #import "CNLoginRequest.h"
 
 @interface BYChangeFundPwdVC () <CNCodeInputViewDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *tipsLb;
+@property (weak, nonatomic) IBOutlet UILabel *titleLb;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *oldCodeViewHightConst;
 @property (weak, nonatomic) IBOutlet CNCodeInputView *oldeCodeView;
 @property (weak, nonatomic) IBOutlet CNCodeInputView *codeView; //密码
@@ -24,32 +26,39 @@
 
 @implementation BYChangeFundPwdVC
 
++ (void)modalVc {
+    BYChangeFundPwdVC *vc = [BYChangeFundPwdVC new];
+    vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [NNControllerHelper getCurrentViewController].definesPresentationContext = YES;
+    [kCurNavVC presentViewController:vc animated:YES completion:^{
+        vc.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     if ([CNUserManager shareManager].userDetail.withdralPwdFlag) {
         self.title = @"修改资金密码";
+        _tipsLb.hidden = YES;
     } else {
         self.title = @"资金密码";
         _oldeCodeView.hidden = YES;
-        _oldCodeViewHightConst.constant = 0;
+        _oldCodeViewHightConst.constant = 30;
+        _tipsLb.hidden = NO;
     }
     
     if (![CNUserManager shareManager].userDetail.mobileNoBind) {
         [HYOneBtnAlertView showWithTitle:@"温馨提示" content:@"请先绑定手机号码再设置资金密码" comfirmText:@"好的" comfirmHandler:^{
-            [self.navigationController popViewControllerAnimated:YES];
+//            [self.navigationController popViewControllerAnimated:YES];
+            [self dismissBtnClicked:nil];
         }];
         return;
     }
     
-    [self addNaviRightItemWithImageName:@"service"];
     [self configUI];
     [self setDelegate];
-}
-
-- (void)rightItemAction {
-    [NNPageRouter presentOCSS_VC];
 }
 
 - (void)configUI {
@@ -75,6 +84,7 @@
     self.codeInputView.delegate = self;
 }
 
+
 #pragma mark - Action
 - (IBAction)didTapSubmitBtn:(id)sender {
     // 校验 两次输入
@@ -93,11 +103,17 @@
         if (!errorMsg) {
             [CNTOPHUB showSuccess:@"资金密码设置成功！"];
             [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
+                [self dismissBtnClicked:nil];
             }];
-            [self.navigationController popViewControllerAnimated:YES];
         }
     }];
 }
+
+- (IBAction)dismissBtnClicked:(nullable id)sender {
+    self.view.backgroundColor = [UIColor clearColor];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 #pragma mark - delegate
 - (void)codeInputViewTextChange:(CNCodeInputView *)view {

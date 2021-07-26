@@ -10,10 +10,10 @@
 
 
 typedef enum : NSInteger {
-    CNActionTypeBuy = 0,        //买
-    CNActionTypeDeposit,    //充
+//    CNActionTypeBuy = 0,        //买
+    CNActionTypeDeposit = 0,    //充
     CNActionTypeWithdraw,   //提
-    CNActionTypeSell,       //卖
+//    CNActionTypeSell,       //卖
     CNActionTypeXima,       //洗
 } CNActionType;
 
@@ -24,6 +24,7 @@ typedef enum : NSInteger {
 - (void)buttonArrayAction:(CNActionType)type;
 - (void)loginAction;
 - (void)registerAction;
+- (void)questionAction;
 @end
 
 NS_ASSUME_NONNULL_BEGIN
@@ -38,6 +39,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateLoginStatusUIIsRefreshing:(BOOL)isRefreshing;
 // 切换模式UI改
 - (void)switchAccountUIChange;
+//刷新
+- (void)refreshBottomBtnsStatus;
+
 @end
 
 NS_ASSUME_NONNULL_END

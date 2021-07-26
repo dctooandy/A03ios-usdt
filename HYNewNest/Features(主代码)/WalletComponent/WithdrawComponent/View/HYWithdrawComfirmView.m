@@ -21,7 +21,8 @@
 @property (weak, nonatomic) CNAmountInputView *inputTF;
 @property (weak,nonatomic) CNCodeInputView *codeTF;
 @property (nonatomic, weak) CNTwoStatusBtn *btn;
-@property (assign,nonatomic) BOOL needPwd; 
+@property (assign,nonatomic) BOOL needPwd;
+@property (nonatomic, assign) BOOL showForgetPwd;
 // UI2
 @property (weak, nonatomic) CNNormalInputView *nameTF;
 // DATA
@@ -76,7 +77,7 @@
     [mainView addSubview:btnCancle];
     
     //btn
-    CNTwoStatusBtn *btn = [[CNTwoStatusBtn alloc] initWithFrame:CGRectMake(30, 272, kScreenWidth - 60, 60)];
+    CNTwoStatusBtn *btn = [[CNTwoStatusBtn alloc] initWithFrame:CGRectMake(AD(30), AD(272), kScreenWidth - AD(60), 48)];
     self.btn = btn;
     [btn setTitle:@"提交" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(submitClick) forControlEvents:UIControlEventTouchUpInside];
@@ -85,33 +86,6 @@
     [UIView animateWithDuration:0.25 animations:^{
         mainView.y = kScreenHeight-kNavPlusStaBarHeight - 345 - kSafeAreaHeight;
     }];
-}
-
-/// 输入真名
-- (instancetype)initRealNameSubmitBlock:(void (^)(NSString * _Nonnull))block {
-    self = [super init];
-    self.frame = [UIScreen mainScreen].bounds;
-    
-    self.easyBlock = block;
-    [self commonViewsSetup];
-    
-    // lable
-    UILabel *lblMon = [[UILabel alloc] init];
-    lblMon.text = @"首次转账支付，需绑定您的真实姓名，绑定后不可修改，且必须和提款银行卡姓名一致";
-    lblMon.frame = CGRectMake(23, CGRectGetMaxY(self.lblTitle.frame)+24, AD(329), AD(50));
-    lblMon.textColor = kHexColorAlpha(0xFFFFFF, 0.5);
-    lblMon.font = [UIFont fontPFR14];
-    lblMon.numberOfLines = 2;
-    [self.mainView addSubview:lblMon];
-    
-    // input
-    CNNormalInputView *inputView = [[CNNormalInputView alloc] initWithFrame:CGRectMake(30, lblMon.bottom + 9, kScreenWidth-60, 89)];
-    self.nameTF = inputView;
-    inputView.delegate = self;
-    [inputView setPlaceholder:@"请输入您的真实姓名"];
-    [self.mainView addSubview:inputView];
-    
-    return self;
 }
 
 /// 输入金额
@@ -174,20 +148,12 @@
     [self.mainView addSubview:inputView];
     
     if (needPwd) {
-        CNCodeInputView *codeView = [[CNCodeInputView alloc] initWithFrame:CGRectMake(30, inputView.bottom, kScreenWidth-60-110, 89)];
+        CNCodeInputView *codeView = [[CNCodeInputView alloc] initWithFrame:CGRectMake(30, inputView.bottom, kScreenWidth-60, 89)];
         self.codeTF = codeView;
         codeView.delegate = self;
         codeView.codeType = CNCodeTypeOldFundPwd;
-        [codeView setPlaceholder:@"请输入6位数字资金密码"];
+        [codeView setPlaceholder:@"请输入资金密码"];
         [self.mainView addSubview:codeView];
-        
-        UIButton *changBtn = [[UIButton alloc] init];
-        [changBtn setTitle:@"修改资金密码" forState:UIControlStateNormal];
-        [changBtn setTitleColor:kHexColor(0x10B4DD) forState:UIControlStateNormal];
-        changBtn.titleLabel.font = [UIFont fontPFR15];
-        changBtn.frame = CGRectMake(codeView.right+20, codeView.bottom - 57, 90, 57);
-        [changBtn addTarget:self action:@selector(jump2ModifyFundPwd) forControlEvents:UIControlEventTouchUpInside];
-        [self.mainView addSubview:changBtn];
         
         self.btn.top = codeView.bottom + 40;
     }
@@ -196,8 +162,7 @@
 }
 
 - (void)jump2ModifyFundPwd {
-    BYChangeFundPwdVC *vc = [BYChangeFundPwdVC new];
-    [kCurNavVC pushViewController:vc animated:YES];
+    [BYChangeFundPwdVC modalVc];
     [self removeView];
 }
 
@@ -232,9 +197,56 @@
 }
 
 - (void)showSuccessWithdraw {
-    [self showStatusCommonViews];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.mainView.y -= 81;
+    }];
     
-    self.lblTitle.text = @"提币成功";
+    UIView *succView = [[UIView alloc] init];
+    succView.backgroundColor = kHexColor(0x212137);
+    succView.frame = CGRectMake(0, 50, kScreenWidth, 426 + kSafeAreaHeight-50);
+    self.succView = succView;
+    [self.mainView addSubview:succView];
+    
+    UIImageView *imgv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 205)];
+    imgv.contentMode = UIViewContentModeCenter;
+    imgv.image = [UIImage imageNamed:@"cg"];
+    self.depositSuccssImgv = imgv;
+    [succView addSubview:imgv];
+    
+    
+    // 俩按钮
+    CGFloat LRMargin = 40;
+    CGFloat BtnMargin = 30;
+    CGFloat BtnWIdth = (kScreenWidth - LRMargin*2 - BtnMargin)*0.5;
+    
+    CNTwoStatusBtn *topBtn = [[CNTwoStatusBtn alloc] initWithFrame:CGRectMake(kScreenWidth-LRMargin-BtnWIdth, succView.height-kSafeAreaHeight-24-48, BtnWIdth, 48)];
+    [topBtn setTitle:@"我知道了" forState:UIControlStateNormal];
+    topBtn.titleLabel.font = [UIFont fontPFM18];
+    topBtn.tag = 1;
+    [topBtn addTarget:self action:@selector(removeView) forControlEvents:UIControlEventTouchUpInside];
+    topBtn.enabled = YES;
+    [succView addSubview:topBtn];
+    self.secondBtn = topBtn;
+      
+    UIButton *botoomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [botoomBtn setTitle:@"联系客服" forState:UIControlStateNormal];
+    [botoomBtn.titleLabel setFont: [UIFont fontPFM18]];
+    [botoomBtn setTitleColor:kHexColor(0xFFFFFF) forState:UIControlStateNormal];
+    botoomBtn.frame = CGRectMake(LRMargin, topBtn.y, BtnWIdth, 48);
+    botoomBtn.tag = 0;
+    botoomBtn.layer.cornerRadius = 24;
+    botoomBtn.layer.masksToBounds = true;
+    [botoomBtn setBackgroundImage:[UIImage jk_imageWithColor:kHexColor(0x38385C)] forState:UIControlStateNormal];
+    [botoomBtn addTarget:self action:@selector(jump2Kefu) forControlEvents:UIControlEventTouchUpInside];
+    [succView addSubview:botoomBtn];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{ @autoreleasepool {
+        [UIView animateWithDuration:0.2 animations:^{
+            self.mainView.y = kScreenHeight-kNavPlusStaBarHeight - 345 - kSafeAreaHeight - 81;
+        }];
+    }});
+    
+    self.lblTitle.text = @"提现成功";
     
     UILabel *contentLb = [[UILabel alloc] init];
     contentLb.textAlignment = NSTextAlignmentCenter;
@@ -320,7 +332,6 @@
     [botoomBtn addTarget:self action:@selector(jump2Kefu) forControlEvents:UIControlEventTouchUpInside];
     [succView addSubview:botoomBtn];
 }
-
 
 - (void)submitClick {
     if (self.easyBlock) {

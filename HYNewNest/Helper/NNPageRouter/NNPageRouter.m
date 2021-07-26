@@ -14,7 +14,8 @@
 
 #import "GameStartPlayViewController.h"
 #import "HYWithdrawViewController.h"
-#import "BYRechargeUsdtVC.h"
+#import "BYDepositUsdtVC.h"
+#import "BYTradeEntryVC.h"
 #import "HYRechargeCNYViewController.h"
 #import "CNLoginRegisterVC.h"
 #import "CNBindPhoneVC.h"
@@ -65,7 +66,8 @@
 
 + (void)jump2Deposit {
     if ([CNUserManager shareManager].isUsdtMode) {
-        [kCurNavVC pushViewController:[BYRechargeUsdtVC new] animated:YES];
+        BYTradeEntryVC *tradeVC = [[BYTradeEntryVC alloc] initWithType:TradeEntryTypeDeposit];
+        [kCurNavVC pushViewController:tradeVC animated:true];
     } else {
         [kCurNavVC pushViewController:[HYRechargeCNYViewController new] animated:YES];
     }
@@ -73,7 +75,7 @@
 
 + (void)jump2DepositWithSuggestAmount:(int)amount {
     if ([CNUserManager shareManager].isUsdtMode) {
-        BYRechargeUsdtVC *vc = [[BYRechargeUsdtVC alloc] init];
+        BYDepositUsdtVC *vc = [[BYDepositUsdtVC alloc] init];
         vc.suggestRecharge = amount;
         [kCurNavVC pushViewController:vc animated:true];
     }
@@ -86,17 +88,19 @@
     
     [LoadingView show];
     [CNWithdrawRequest getUserMobileStatusCompletionHandler:^(id responseObj, NSString *errorMsg) {
-        CNUserDetailModel *model = [CNUserDetailModel cn_parse:responseObj];
         [LoadingView hide];
-        if (!model.mobileNoBind) { // 没有绑定手机 -> 跳到手机绑定
-            CNBindPhoneVC *vc = [CNBindPhoneVC new];
-            vc.bindType = CNSMSCodeTypeBindPhone;
-            [kCurNavVC pushViewController:vc animated:YES];
-            return;
-        }
+//        CNUserDetailModel *model = [CNUserDetailModel cn_parse:responseObj];
+//        if (!model.mobileNoBind) { // 没有绑定手机 -> 跳到手机绑定
+//            CNBindPhoneVC *vc = [CNBindPhoneVC new];
+//            vc.bindType = CNSMSCodeTypeBindPhone;
+//            [kCurNavVC pushViewController:vc animated:YES];
+//            return;
+//        }
         
         if ([CNUserManager shareManager].isUsdtMode) {
-            [kCurNavVC pushViewController:[HYWithdrawViewController new] animated:YES];
+//            [kCurNavVC pushViewController:[HYWithdrawViewController new] animated:YES];
+            BYTradeEntryVC *tradeVC = [[BYTradeEntryVC alloc] initWithType:TradeEntryTypeWithdraw];
+            [kCurNavVC pushViewController:tradeVC animated:true];
             
         } else {
             
@@ -151,28 +155,28 @@
 + (void)presentOCSS_VC {
     // 打开新客服入口
     MyLog(@"新客服版本：%@",[CSVisitChatmanager getVersion]);
+
     CSChatInfo *info = [[CSChatInfo alloc]init];
+    info.productId = [IVHttpManager shareManager].productId;//产品ID
+    info.loginName = [IVHttpManager shareManager].loginName?:@"";//网站用户名，你们app的用户名
+    info.token = [IVHttpManager shareManager].userToken?:@"";//网站登陆后的token,你们app的token
+    info.domainName = [IVHttpManager shareManager].domain;//网站域名
+    info.appid = [IVHttpManager shareManager].appId;//AppID
+    info.uuid = [KeyChain getKeychainIdentifierUUID];//设备id，不穿 会默认生成
+    info.baseUrl = [IVHttpManager shareManager].gateway;//app网关地址
+
+    //导航栏设置
+    info.title = @"在线客服";//导航栏标题
     info.backColor = [UIColor lightGrayColor];
     info.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontPFSB18]};
     info.barTintColor = kHexColor(0x1A1A2C);
-
-    info.productId = [IVHttpManager shareManager].productId;//产品ID，你们app的产品id
-    info.loginName = [IVHttpManager shareManager].loginName?:@"";//网站用户名，你们app的用户名
-    info.token = [IVHttpManager shareManager].userToken?:@"";//网站登陆后的token,你们app的token
-    info.domainName = [IVHttpManager shareManager].domain;//网站域名，你们app的网站域名
-    info.appid = [IVHttpManager shareManager].appId;//AppID，你们app的appid
-    info.title = @"在线客服";//导航栏标题
-    info.uuid = [KeyChain getKeychainIdentifierUUID];//用户uuid
-    //    如果完整地址是 @"http://m3.wancity.net/_glaxy_a5b04c_/liveChatAddressOCSS"
-    info.baseUrl = [IVHttpManager shareManager].gateway;//客服后台配置的接口域名
-
-    [CSVisitChatmanager startWithSuperVC:[NNControllerHelper currentTabBarController]
-                                chatInfo:info
-                                  finish:^(CSServiceCode errCode) {
+    
+    [CSVisitChatmanager startServiceWithSuperVC:[NNControllerHelper currentTabBarController] chatInfo:info finish:^(CSServiceCode errCode) {
         if (errCode != CSServiceCode_Request_Suc) {
             [CNTOPHUB showError:@"系统错误，请稍后再试"];
         }
     }];
+
 }
 
 + (void)presentWMQCustomerService {

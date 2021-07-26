@@ -16,7 +16,6 @@
 #import "CNMessageCenterVC.h"
 #import "HYXiMaViewController.h"
 #import "CNDashenBoardVC.h"
-#import "HYNewCTZNViewController.h"
 #import "BYNewbieMissionVC.h"
 
 #import "CNUserInfoLoginView.h"
@@ -26,6 +25,7 @@
 #import "HYWideOneBtnAlertView.h"
 #import "CNGameBtnsStackView.h"
 #import "WMDragView.h"
+#import "BYMultiAccountRuleView.h"
 
 #import "CNHomeRequest.h"
 #import "CNUserCenterRequest.h"
@@ -95,13 +95,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
-      
+    
     [self userDidLogin];
     [self requestAnnouncement];
     [self requestCDNAndDomain];
     
-//    [CNHomeRequest test];
-
+    //    [CNHomeRequest test];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYSwitchAcoutSuccNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:HYLogoutSuccessNotification object:nil];
@@ -127,7 +127,7 @@
     [CNSplashRequest queryNewVersion:^(BOOL isHardUpdate) {
     }];
     
- 
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -141,9 +141,9 @@
     [self requestHomeBanner];
     
     if ([CNUserManager shareManager].isLogin) {
-        self.infoViewH.constant = 110;
+        self.infoViewH.constant = 114;
         // 弹窗盒子
-         [self requestNewsBox];
+        [self requestNewsBox];
         // 游戏线路
         [[HYInGameHelper sharedInstance] queryHomeInGamesStatus];
         // 最近玩过的电游
@@ -152,6 +152,7 @@
                 [(CNElectronicVC *)vc queryRecentGames];
             }
         }
+        
     } else {
         self.infoViewH.constant = 140;
     }
@@ -170,13 +171,13 @@
     self.dashenView.backgroundColor = self.pageView.backgroundColor = self.scrollContentView.backgroundColor = self.view.backgroundColor;
     self.scrollContentW.constant = kScreenWidth;
     
-//    [self setupBBSEntryBallView];
+    //    [self setupBBSEntryBallView];
     
     // 配置游戏和大神榜子控制器内容
     [self initSubVcAndAddSubVcViews];
     // 默认选择第一个
     [self didTapGameBtnsIndex:0];
-
+    
     __weak typeof(self) wSelf = self;
     self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [wSelf userDidLogin];
@@ -219,21 +220,30 @@
     [self.dashenView addSubview:vc.view];
 }
 
+- (void)showAccountTutorials {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:HYDidShowTJTCUserDefaultKey] == false) {
+        [[NSUserDefaults standardUserDefaults] setBool:true forKey:HYDidShowTJTCUserDefaultKey];
+        [self questionAction];
+    }
+}
 
 #pragma mark - REQUEST
 - (void)requestNewsBox {
     if ([CNUserManager shareManager].isLogin) {
         NSDate *nowDate = [NSDate date];
         NSString *agoDateStr = [[NSUserDefaults standardUserDefaults] stringForKey:HYHomeMessageBoxLastimeDate];
-
+        
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         __block NSString *nowDateStr = [dateFormatter stringFromDate:nowDate];
-
+        
         if ([agoDateStr isEqualToString:nowDateStr]) {
             MyLog(@"弹窗盒子一天就显示一次");
-        }else{
+            [self showAccountTutorials];
+        }
+        else{
             // 需要执行的方法写在这里
+            WEAKSELF_DEFINE
             [CNHomeRequest queryMessageBoxHandler:^(id responseObj, NSString *errorMsg) {
                 
                 NSMutableArray<MessageBoxModel *> *models = [[MessageBoxModel cn_parse:responseObj] mutableCopy];
@@ -265,12 +275,18 @@
                 }];
                 self.msgBoxModels = models;
                 if (imgs.count > 0 && imgs.count == models.count) {
-                    [CNMessageBoxView showMessageBoxWithImages:imgs onView:self.view tapBlock:^(int idx) {
+                    [CNMessageBoxView showMessageBoxWithImages:imgs onView:self.view
+                                                      tapBlock:^(int idx) {
                         MessageBoxModel *m = self.msgBoxModels[idx];
                         [NNPageRouter jump2HTMLWithStrURL:m.link title:@"活动" needPubSite:NO];
+                    } tapClose:^{
+                        [weakSelf showAccountTutorials];
                     }];
                     [[NSUserDefaults standardUserDefaults] setObject:nowDateStr forKey:HYHomeMessageBoxLastimeDate];
                     [[NSUserDefaults standardUserDefaults] synchronize];
+                }
+                else {
+                    [weakSelf showAccountTutorials];
                 }
             }];
         }
@@ -405,38 +421,20 @@
 #pragma mark - CNUserInfoLoginViewDelegate
 
 - (void)buttonArrayAction:(CNActionType)type {
-    //usdt模式下 未选择“不再提醒”充提指南 的0星级别用户 => 进充提指南
-    if ([CNUserManager shareManager].isUsdtMode && [CNUserManager shareManager].userInfo.starLevel == 0 && ![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowCTZNEUserDefaultKey]) {
-        HYNewCTZNViewController *vc = [HYNewCTZNViewController new];
-        vc.type = (NSInteger)type;
-        [self presentViewController:vc animated:YES completion:nil];
+    switch (type) {
+        case CNActionTypeDeposit: //充
+            [NNPageRouter jump2Deposit];
+            break;
+            
+        case CNActionTypeWithdraw: //提
+            [NNPageRouter jump2Withdraw];
+            break;
 
-    } else {
-        switch (type) {
-            case CNActionTypeBuy: //买
-                [NNPageRouter jump2BuyECoin];
-                break;
-                
-            case CNActionTypeDeposit: //充
-                [NNPageRouter jump2Deposit];
-                break;
-                
-            case CNActionTypeWithdraw: //提
-                [NNPageRouter jump2Withdraw];
-                break;
-                
-            case CNActionTypeSell: //卖
-                [HYWideOneBtnAlertView showWithTitle:@"卖币跳转" content:@"正在为您跳转..请稍后。\n在交易所卖币数字货币，买家会将金额支付到您的银行卡，方便快捷。" comfirmText:@"我知道了，帮我跳转" comfirmHandler:^{
-                    [NNPageRouter openExchangeElecCurrencyPage];
-                }];
-                break;
-                
-            case CNActionTypeXima: //洗
-                [self.navigationController pushViewController:[HYXiMaViewController new] animated:YES];
-                break;
-        }
+        case CNActionTypeXima: //洗
+            [self.navigationController pushViewController:[HYXiMaViewController new] animated:YES];
+            break;
     }
-    
+ 
 }
 
 - (void)switchAccountAction {
@@ -444,6 +442,8 @@
         if (!errorMsg) {
             [self.infoView switchAccountUIChange];
         }
+    } faileHandler:^{
+        [self.infoView refreshBottomBtnsStatus];
     }];
 }
 
@@ -455,6 +455,9 @@
     [self.navigationController pushViewController:[CNLoginRegisterVC registerVC] animated:YES];
 }
 
+- (void)questionAction {
+    [BYMultiAccountRuleView showRuleWithLocatedY:self.infoView.bottom-15];
+}
 
 #pragma mark - GameBtnsStackViewDelegate 游戏切换业务
 
