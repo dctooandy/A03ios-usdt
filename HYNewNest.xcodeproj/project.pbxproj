@@ -1001,37 +1001,6 @@
 		E9D9449E24C5735B00252222 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9449C24C5735B00252222 /* SplashViewController.m */; };
 		E9D944A124C5759400252222 /* UpdateVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D944A024C5759400252222 /* UpdateVersionModel.m */; };
 		E9E9590124D41BC400E866B6 /* CreditQueryResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E9590024D41BC400E866B6 /* CreditQueryResultModel.m */; };
-		F765F0EA265250FD00F15747 /* BYMissionCompleteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F765F0E8265250FD00F15747 /* BYMissionCompleteVC.m */; };
-		F765F0EB265250FD00F15747 /* BYMissionCompleteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F765F0E9265250FD00F15747 /* BYMissionCompleteVC.xib */; };
-		F765F0EF26525F4C00F15747 /* BYFirstFillBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F765F0EE26525F4C00F15747 /* BYFirstFillBannerView.m */; };
-		F765F0F126525F5800F15747 /* BYFirstFillBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F765F0F026525F5800F15747 /* BYFirstFillBannerView.xib */; };
-		F765F0F4265268D000F15747 /* BYMoreCompleteMissionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F765F0F3265268D000F15747 /* BYMoreCompleteMissionView.m */; };
-		F765F0F6265268E200F15747 /* BYMoreCompleteMissionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F765F0F5265268E200F15747 /* BYMoreCompleteMissionView.xib */; };
-		F772EC5F269FF97E00F786C7 /* BYGloryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F772EC5D269FF97E00F786C7 /* BYGloryVC.m */; };
-		F772EC60269FF97E00F786C7 /* BYGloryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F772EC5E269FF97E00F786C7 /* BYGloryVC.xib */; };
-		F772EC64269FFBED00F786C7 /* BYGloryHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F772EC62269FFBED00F786C7 /* BYGloryHeaderTableViewCell.m */; };
-		F772EC65269FFBED00F786C7 /* BYGloryHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F772EC63269FFBED00F786C7 /* BYGloryHeaderTableViewCell.xib */; };
-		F774CDA9264CF2960062F6A2 /* BYGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = F774CDA8264CF2960062F6A2 /* BYGradientView.m */; };
-		F783972C2673360600AB8BE6 /* BYRegisterSuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F783972A2673360600AB8BE6 /* BYRegisterSuccessVC.m */; };
-		F783972D2673360600AB8BE6 /* BYRegisterSuccessVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F783972B2673360600AB8BE6 /* BYRegisterSuccessVC.xib */; };
-		F784BA7B26A139F200280F66 /* BYGloryHeaderContentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F784BA7A26A139F200280F66 /* BYGloryHeaderContentItem.m */; };
-		F784BA7D26A139FA00280F66 /* BYGloryHeaderContentItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = F784BA7C26A139F900280F66 /* BYGloryHeaderContentItem.xib */; };
-		F78BB0F626A171F2003EAB31 /* BYGloryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F78BB0F526A171F2003EAB31 /* BYGloryModel.m */; };
-		F7A75F1C264E140500D933D7 /* BYGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F1B264E140500D933D7 /* BYGradientButton.m */; };
-		F7A75F1F264E405600D933D7 /* BYBorderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F1E264E405600D933D7 /* BYBorderButton.m */; };
-		F7A75F22264E507200D933D7 /* BYBorderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F21264E507200D933D7 /* BYBorderLabel.m */; };
-		F7AF80EA268DB0B90048DBD8 /* BYChangeFundPwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D57EF112668ED0A00A5CCC6 /* BYChangeFundPwdVC.xib */; };
-		F7B61ED526A66FED00943B93 /* BYGloryRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B61ED426A66FED00943B93 /* BYGloryRequest.m */; };
-		F7BBAE6226A5262000D07B21 /* BYGloryTimelineHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7BBAE6126A5262000D07B21 /* BYGloryTimelineHeader.xib */; };
-		F7BBAE6926A529D300D07B21 /* BYGloryTimelineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7BBAE6726A529D300D07B21 /* BYGloryTimelineTableViewCell.m */; };
-		F7BBAE6A26A529D300D07B21 /* BYGloryTimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7BBAE6826A529D300D07B21 /* BYGloryTimelineTableViewCell.xib */; };
-		F7BBAE6D26A53DE800D07B21 /* BYDottedLine.m in Sources */ = {isa = PBXBuildFile; fileRef = F7BBAE6C26A53DE800D07B21 /* BYDottedLine.m */; };
-		F7CA9C53264E66D500410BB3 /* BYNewbieAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CA9C51264E66D500410BB3 /* BYNewbieAlertVC.m */; };
-		F7CA9C54264E66D500410BB3 /* BYNewbieAlertVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7CA9C52264E66D500410BB3 /* BYNewbieAlertVC.xib */; };
-		F7CA9C5A264E784200410BB3 /* BYNewbieCashGiftAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CA9C58264E784200410BB3 /* BYNewbieCashGiftAlertVC.m */; };
-		F7CA9C5B264E784200410BB3 /* BYNewbieCashGiftAlertVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7CA9C59264E784200410BB3 /* BYNewbieCashGiftAlertVC.xib */; };
-		F7CF5416264CBDF300AC8F04 /* BYNewbieMissionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CF5414264CBDF300AC8F04 /* BYNewbieMissionVC.m */; };
-		F7CF5417264CBDF300AC8F04 /* BYNewbieMissionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7CF5415264CBDF300AC8F04 /* BYNewbieMissionVC.xib */; };
 		F70128C4269544CD00ED6509 /* BYWithdrawConfirmVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F70128C2269544CD00ED6509 /* BYWithdrawConfirmVC.m */; };
 		F70128C5269544CD00ED6509 /* BYWithdrawConfirmVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70128C3269544CD00ED6509 /* BYWithdrawConfirmVC.xib */; };
 		F73857D2267B18E200768D14 /* BYGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F73857D0267B18E200768D14 /* BYGradientButton.m */; };
@@ -1040,14 +1009,26 @@
 		F76BEC30267AE85800577547 /* BYTradeEntryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F76BEC2E267AE85800577547 /* BYTradeEntryVC.xib */; };
 		F76BEC34267AF16E00577547 /* BYTradeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F76BEC32267AF16E00577547 /* BYTradeTableViewCell.m */; };
 		F76D2FF2268059FE00B5BE84 /* BYTradeEntryRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F76D2FF1268059FE00B5BE84 /* BYTradeEntryRequest.m */; };
+		F772EC5F269FF97E00F786C7 /* BYGloryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F772EC5D269FF97E00F786C7 /* BYGloryVC.m */; };
+		F772EC60269FF97E00F786C7 /* BYGloryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F772EC5E269FF97E00F786C7 /* BYGloryVC.xib */; };
+		F772EC64269FFBED00F786C7 /* BYGloryHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F772EC62269FFBED00F786C7 /* BYGloryHeaderTableViewCell.m */; };
+		F772EC65269FFBED00F786C7 /* BYGloryHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F772EC63269FFBED00F786C7 /* BYGloryHeaderTableViewCell.xib */; };
 		F783972C2673360600AB8BE6 /* BYRegisterSuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F783972A2673360600AB8BE6 /* BYRegisterSuccessVC.m */; };
 		F783972D2673360600AB8BE6 /* BYRegisterSuccessVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F783972B2673360600AB8BE6 /* BYRegisterSuccessVC.xib */; };
+		F784BA7B26A139F200280F66 /* BYGloryHeaderContentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F784BA7A26A139F200280F66 /* BYGloryHeaderContentItem.m */; };
+		F784BA7D26A139FA00280F66 /* BYGloryHeaderContentItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = F784BA7C26A139F900280F66 /* BYGloryHeaderContentItem.xib */; };
 		F786E5812680609C008B7DDE /* BYTradeEntryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F786E5802680609C008B7DDE /* BYTradeEntryModel.m */; };
 		F786E583268063C8008B7DDE /* BYTradeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F786E582268063C8008B7DDE /* BYTradeTableViewCell.xib */; };
+		F78BB0F626A171F2003EAB31 /* BYGloryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F78BB0F526A171F2003EAB31 /* BYGloryModel.m */; };
 		F791E24E269E7B44002D6648 /* BYCNYRechargeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = F791E24D269E7B44002D6648 /* BYCNYRechargeAlertView.m */; };
 		F7A75F1F264E405600D933D7 /* BYBorderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F1E264E405600D933D7 /* BYBorderButton.m */; };
 		F7A75F22264E507200D933D7 /* BYBorderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F21264E507200D933D7 /* BYBorderLabel.m */; };
 		F7AF80EA268DB0B90048DBD8 /* BYChangeFundPwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D57EF112668ED0A00A5CCC6 /* BYChangeFundPwdVC.xib */; };
+		F7B61ED526A66FED00943B93 /* BYGloryRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B61ED426A66FED00943B93 /* BYGloryRequest.m */; };
+		F7BBAE6226A5262000D07B21 /* BYGloryTimelineHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7BBAE6126A5262000D07B21 /* BYGloryTimelineHeader.xib */; };
+		F7BBAE6926A529D300D07B21 /* BYGloryTimelineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7BBAE6726A529D300D07B21 /* BYGloryTimelineTableViewCell.m */; };
+		F7BBAE6A26A529D300D07B21 /* BYGloryTimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7BBAE6826A529D300D07B21 /* BYGloryTimelineTableViewCell.xib */; };
+		F7BBAE6D26A53DE800D07B21 /* BYDottedLine.m in Sources */ = {isa = PBXBuildFile; fileRef = F7BBAE6C26A53DE800D07B21 /* BYDottedLine.m */; };
 		F7D6625C2697ED0B00655DE3 /* BYBindRealNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D6625A2697ED0B00655DE3 /* BYBindRealNameVC.m */; };
 		F7D6625D2697ED0B00655DE3 /* BYBindRealNameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7D6625B2697ED0B00655DE3 /* BYBindRealNameVC.xib */; };
 /* End PBXBuildFile section */
@@ -2468,25 +2449,6 @@
 		F765F0F026525F5800F15747 /* BYFirstFillBannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYFirstFillBannerView.xib; sourceTree = "<group>"; };
 		F765F0F3265268D000F15747 /* BYMoreCompleteMissionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYMoreCompleteMissionView.m; sourceTree = "<group>"; };
 		F765F0F5265268E200F15747 /* BYMoreCompleteMissionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYMoreCompleteMissionView.xib; sourceTree = "<group>"; };
-		F772EC5C269FF97E00F786C7 /* BYGloryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGloryVC.h; sourceTree = "<group>"; };
-		F772EC5D269FF97E00F786C7 /* BYGloryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGloryVC.m; sourceTree = "<group>"; };
-		F772EC5E269FF97E00F786C7 /* BYGloryVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYGloryVC.xib; sourceTree = "<group>"; };
-		F772EC61269FFBED00F786C7 /* BYGloryHeaderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGloryHeaderTableViewCell.h; sourceTree = "<group>"; };
-		F772EC62269FFBED00F786C7 /* BYGloryHeaderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGloryHeaderTableViewCell.m; sourceTree = "<group>"; };
-		F772EC63269FFBED00F786C7 /* BYGloryHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYGloryHeaderTableViewCell.xib; sourceTree = "<group>"; };
-		F774CDA7264CF2960062F6A2 /* BYGradientView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGradientView.h; sourceTree = "<group>"; };
-		F774CDA8264CF2960062F6A2 /* BYGradientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGradientView.m; sourceTree = "<group>"; };
-		F78397292673360600AB8BE6 /* BYRegisterSuccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYRegisterSuccessVC.h; sourceTree = "<group>"; };
-		F783972A2673360600AB8BE6 /* BYRegisterSuccessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYRegisterSuccessVC.m; sourceTree = "<group>"; };
-		F783972B2673360600AB8BE6 /* BYRegisterSuccessVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYRegisterSuccessVC.xib; sourceTree = "<group>"; };
-		F784BA7926A139F200280F66 /* BYGloryHeaderContentItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGloryHeaderContentItem.h; sourceTree = "<group>"; };
-		F784BA7A26A139F200280F66 /* BYGloryHeaderContentItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGloryHeaderContentItem.m; sourceTree = "<group>"; };
-		F784BA7C26A139F900280F66 /* BYGloryHeaderContentItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYGloryHeaderContentItem.xib; sourceTree = "<group>"; };
-		F78BB0F426A171F2003EAB31 /* BYGloryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGloryModel.h; sourceTree = "<group>"; };
-		F78BB0F526A171F2003EAB31 /* BYGloryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGloryModel.m; sourceTree = "<group>"; };
-		F78F827B2673435200871BE4 /* BYMissionBannerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYMissionBannerDelegate.h; sourceTree = "<group>"; };
-		F7A75F1A264E140500D933D7 /* BYGradientButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGradientButton.h; sourceTree = "<group>"; };
-		F7A75F1B264E140500D933D7 /* BYGradientButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGradientButton.m; sourceTree = "<group>"; };
 		F76BEC2C267AE85800577547 /* BYTradeEntryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYTradeEntryVC.h; sourceTree = "<group>"; };
 		F76BEC2D267AE85800577547 /* BYTradeEntryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYTradeEntryVC.m; sourceTree = "<group>"; };
 		F76BEC2E267AE85800577547 /* BYTradeEntryVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYTradeEntryVC.xib; sourceTree = "<group>"; };
@@ -2494,12 +2456,23 @@
 		F76BEC32267AF16E00577547 /* BYTradeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYTradeTableViewCell.m; sourceTree = "<group>"; };
 		F76D2FF0268059FE00B5BE84 /* BYTradeEntryRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYTradeEntryRequest.h; sourceTree = "<group>"; };
 		F76D2FF1268059FE00B5BE84 /* BYTradeEntryRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYTradeEntryRequest.m; sourceTree = "<group>"; };
+		F772EC5C269FF97E00F786C7 /* BYGloryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGloryVC.h; sourceTree = "<group>"; };
+		F772EC5D269FF97E00F786C7 /* BYGloryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGloryVC.m; sourceTree = "<group>"; };
+		F772EC5E269FF97E00F786C7 /* BYGloryVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYGloryVC.xib; sourceTree = "<group>"; };
+		F772EC61269FFBED00F786C7 /* BYGloryHeaderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGloryHeaderTableViewCell.h; sourceTree = "<group>"; };
+		F772EC62269FFBED00F786C7 /* BYGloryHeaderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGloryHeaderTableViewCell.m; sourceTree = "<group>"; };
+		F772EC63269FFBED00F786C7 /* BYGloryHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYGloryHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		F78397292673360600AB8BE6 /* BYRegisterSuccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYRegisterSuccessVC.h; sourceTree = "<group>"; };
 		F783972A2673360600AB8BE6 /* BYRegisterSuccessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYRegisterSuccessVC.m; sourceTree = "<group>"; };
 		F783972B2673360600AB8BE6 /* BYRegisterSuccessVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYRegisterSuccessVC.xib; sourceTree = "<group>"; };
+		F784BA7926A139F200280F66 /* BYGloryHeaderContentItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGloryHeaderContentItem.h; sourceTree = "<group>"; };
+		F784BA7A26A139F200280F66 /* BYGloryHeaderContentItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGloryHeaderContentItem.m; sourceTree = "<group>"; };
+		F784BA7C26A139F900280F66 /* BYGloryHeaderContentItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYGloryHeaderContentItem.xib; sourceTree = "<group>"; };
 		F786E57F2680609C008B7DDE /* BYTradeEntryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYTradeEntryModel.h; sourceTree = "<group>"; };
 		F786E5802680609C008B7DDE /* BYTradeEntryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYTradeEntryModel.m; sourceTree = "<group>"; };
 		F786E582268063C8008B7DDE /* BYTradeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BYTradeTableViewCell.xib; sourceTree = "<group>"; };
+		F78BB0F426A171F2003EAB31 /* BYGloryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGloryModel.h; sourceTree = "<group>"; };
+		F78BB0F526A171F2003EAB31 /* BYGloryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGloryModel.m; sourceTree = "<group>"; };
 		F791E24C269E7B44002D6648 /* BYCNYRechargeAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYCNYRechargeAlertView.h; sourceTree = "<group>"; };
 		F791E24D269E7B44002D6648 /* BYCNYRechargeAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYCNYRechargeAlertView.m; sourceTree = "<group>"; };
 		F7A75F1D264E405600D933D7 /* BYBorderButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYBorderButton.h; sourceTree = "<group>"; };
@@ -2514,15 +2487,6 @@
 		F7BBAE6826A529D300D07B21 /* BYGloryTimelineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYGloryTimelineTableViewCell.xib; sourceTree = "<group>"; };
 		F7BBAE6B26A53DE800D07B21 /* BYDottedLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYDottedLine.h; sourceTree = "<group>"; };
 		F7BBAE6C26A53DE800D07B21 /* BYDottedLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYDottedLine.m; sourceTree = "<group>"; };
-		F7CA9C50264E66D500410BB3 /* BYNewbieAlertVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYNewbieAlertVC.h; sourceTree = "<group>"; };
-		F7CA9C51264E66D500410BB3 /* BYNewbieAlertVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYNewbieAlertVC.m; sourceTree = "<group>"; };
-		F7CA9C52264E66D500410BB3 /* BYNewbieAlertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYNewbieAlertVC.xib; sourceTree = "<group>"; };
-		F7CA9C57264E784200410BB3 /* BYNewbieCashGiftAlertVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYNewbieCashGiftAlertVC.h; sourceTree = "<group>"; };
-		F7CA9C58264E784200410BB3 /* BYNewbieCashGiftAlertVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYNewbieCashGiftAlertVC.m; sourceTree = "<group>"; };
-		F7CA9C59264E784200410BB3 /* BYNewbieCashGiftAlertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYNewbieCashGiftAlertVC.xib; sourceTree = "<group>"; };
-		F7CF5413264CBDF300AC8F04 /* BYNewbieMissionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYNewbieMissionVC.h; sourceTree = "<group>"; };
-		F7CF5414264CBDF300AC8F04 /* BYNewbieMissionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYNewbieMissionVC.m; sourceTree = "<group>"; };
-		F7CF5415264CBDF300AC8F04 /* BYNewbieMissionVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYNewbieMissionVC.xib; sourceTree = "<group>"; };
 		F7D662592697ED0B00655DE3 /* BYBindRealNameVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYBindRealNameVC.h; sourceTree = "<group>"; };
 		F7D6625A2697ED0B00655DE3 /* BYBindRealNameVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYBindRealNameVC.m; sourceTree = "<group>"; };
 		F7D6625B2697ED0B00655DE3 /* BYBindRealNameVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYBindRealNameVC.xib; sourceTree = "<group>"; };
@@ -5571,7 +5535,7 @@
 				3D13384F24AD8F9B00B29783 /* Resources */,
 				C08FB099C221193B86170E0B /* [CP] Embed Pods Frameworks */,
 				3DFF702F261EF93900801654 /* IconVersioning Script */,
-				4316AD8ECC69BBD8FC3CDFC3 /* [CP] Copy Pods Resources */,
+				176159D3E15795EEC9F63B6B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5610,7 +5574,7 @@
 				3D13387424AD8F9C00B29783 /* Frameworks */,
 				3D13387524AD8F9C00B29783 /* Resources */,
 				28822A1001555599A37308F2 /* [CP] Embed Pods Frameworks */,
-				B656E4D892DF0F9222BD89BD /* [CP] Copy Pods Resources */,
+				F923FE614842CE79A859EA9E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -6347,6 +6311,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		176159D3E15795EEC9F63B6B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		28822A1001555599A37308F2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -6381,40 +6362,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n$SRCROOT/HYNewNest/Other/LLIconVersioning.sh\n";
-		};
-		4316AD8ECC69BBD8FC3CDFC3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest/Pods-HYNewNest-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B656E4D892DF0F9222BD89BD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		C08FB099C221193B86170E0B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -6453,6 +6400,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F923FE614842CE79A859EA9E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F9F6491387A6732DA715C6CA /* [CP] Check Pods Manifest.lock */ = {
