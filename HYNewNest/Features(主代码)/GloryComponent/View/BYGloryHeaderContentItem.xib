@@ -34,20 +34,33 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="psb-hF-t7g">
-                    <rect key="frame" x="10" y="30" width="368" height="46"/>
+                    <rect key="frame" x="10" y="30" width="368" height="40"/>
                     <string key="text">content
 content</string>
                     <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="12"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yri-0P-rqe">
-                    <rect key="frame" x="10" y="76" width="55" height="24"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yri-0P-rqe" customClass="BYGradientButton">
+                    <rect key="frame" x="10" y="70" width="80" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="55" id="WOw-VW-sKH"/>
-                        <constraint firstAttribute="height" constant="24" id="g8M-sg-sne"/>
+                        <constraint firstAttribute="width" constant="80" id="WOw-VW-sKH"/>
+                        <constraint firstAttribute="height" constant="30" id="g8M-sg-sne"/>
                     </constraints>
-                    <state key="normal" backgroundImage="button_clicked"/>
+                    <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="14"/>
+                    <state key="normal" title="点击查看"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                            <color key="value" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                            <color key="value" red="0.098039215686274508" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="jumpHmltClicked:" destination="-1" eventType="touchUpInside" id="DM2-ns-Qc1"/>
                     </connections>
@@ -69,10 +82,7 @@ content</string>
                 <constraint firstItem="9dB-Th-uRp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="j4c-Gj-8Cd"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="328.26086956521743" y="688.05803571428567"/>
+            <point key="canvasLocation" x="-48" y="685"/>
         </view>
     </objects>
-    <resources>
-        <image name="button_clicked" width="78" height="34"/>
-    </resources>
 </document>

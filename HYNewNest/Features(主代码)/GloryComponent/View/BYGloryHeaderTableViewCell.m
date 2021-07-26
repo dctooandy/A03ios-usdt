@@ -35,9 +35,9 @@
     [super awakeFromNib];
     // Initialization code
     
-    self.banners = [[NSArray alloc] initWithObjects:[[GloryBannerModel alloc] initWithTitle:@"星级身分" content:@"新人大礼包｜晋级礼金｜洗码返水｜月月分红\n馀额理财|返利日大回馈｜小姐姐陪玩" imageName:@"banner_star" hideButton:false webURL:H5URL_Pub_Starall]
-                    , [[GloryBannerModel alloc] initWithTitle:@"私享会俱乐部" content:@"抽大金劳｜玩小明星\n奢侈品任抽｜豪华订制游" imageName:@"banner_shareclub" hideButton:false webURL:H5URL_Pub_VIP]
-                    , [[GloryBannerModel alloc] initWithTitle:@"超级合伙" content:@"推荐礼金月月领\n洗码佣金无限返" imageName:@"banner_partner" hideButton:false webURL:H5URL_Pub_Share]
+    self.banners = [[NSArray alloc] initWithObjects:[[GloryBannerModel alloc] initWithTitle:@"星级身分" content:@"新人大礼包｜晋级礼金｜洗码返水｜月月分红\n馀额理财|返利日大回馈｜小姐姐陪玩" imageName:@"banner_star" hideButton:false webURL:H5URL_Pub_Star]
+                    , [[GloryBannerModel alloc] initWithTitle:@"私享会俱乐部" content:@"抽大金劳｜玩小明星\n奢侈品任抽｜豪华订制游" imageName:@"banner_shareclub" hideButton:false webURL:H5URL_VIP]
+                    , [[GloryBannerModel alloc] initWithTitle:@"超级合伙" content:@"推荐礼金月月领\n洗码佣金无限返" imageName:@"banner_partner" hideButton:false webURL:H5URL_Share]
                     , [[GloryBannerModel alloc] initWithTitle:@"节日赠礼" content:@"订制节日礼品" imageName:@"banner_gift" hideButton:true webURL:@""], nil];
     
     [self setupCellUI];
@@ -82,6 +82,8 @@
     self.player.controlLayerAppearManager.interval = 5; // 设置控制层隐藏间隔
     self.player.defaultEdgeControlLayer.hiddenBackButtonWhenOrientationIsPortrait = YES;
     self.player.rotationManager.disabledAutorotation = YES;
+    self.player.showMoreItemToTopControlLayer = false;
+    self.player.muted = true;
     
     WEAKSELF_DEFINE
     self.player.playbackObserver.timeControlStatusDidChangeExeBlock = ^(__kindof SJBaseVideoPlayer * _Nonnull player) {
@@ -119,7 +121,21 @@
     [videoPlayBtn addTarget:self action:@selector(videoClick:) forControlEvents:UIControlEventTouchUpInside];
     self.playVideoButton = videoPlayBtn;
     
+    UIButton *muteButton = [[UIButton alloc] initWithFrame:CGRectZero];
+    [muteButton setSelected:true];
+    [self.player.view addSubview:muteButton];
     
+    
+    [muteButton setBackgroundImage:[UIImage imageNamed:@"icon_volume_on"] forState:UIControlStateNormal];
+    [muteButton setBackgroundImage:[UIImage imageNamed:@"icon_volume_off"] forState:UIControlStateSelected];
+    [muteButton addTarget:self action:@selector(muteClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [muteButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(20);
+        make.height.mas_equalTo(20);
+        make.top.equalTo(self.player.view.mas_top).offset(15);
+        make.trailing.equalTo(self.player.view.mas_trailing).offset(-15);
+    }];
 }
 
 -(void)videoClick:(UIButton *)btn{
@@ -132,6 +148,13 @@
     else{
         [self.player pause];
     }
+}
+
+- (void)muteClicked:(UIButton *)btn {
+    self.player.muted = !btn.selected;
+    btn.selected = !btn.selected;
+    
+    [CNTOPHUB showAlert:[NSString stringWithFormat:@"声音已%@", btn.selected == true ? @"关闭" : @"开启"]];
 }
 
 #pragma mark -

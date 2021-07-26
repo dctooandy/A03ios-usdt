@@ -18,9 +18,9 @@
 #define H5URL_Pub_Starall       @"/pub_site/starall"       // 星级特权
 #define H5URL_Pub_Coin          @"/pub_site/coin"          // 首存活動
 #define H5URL_Pub_yeb           @"/pub_site/yeb"           // 余额宝
-#define H5URL_Pub_VIP           @"/pub_site/vip"
-#define H5URL_Pub_Share         @"/pub_site/share"
-
+#define H5URL_VIP               @"/vip"
+#define H5URL_Share             @"/share"
+#define H5URL_Pub_Star          @"/pub_site/giftDetails?tab=0"            //星级身分
 #pragma mark - API PATH
 
 /// 拼接path部分    glaxy_a03 -> glaxy_83e6dy
