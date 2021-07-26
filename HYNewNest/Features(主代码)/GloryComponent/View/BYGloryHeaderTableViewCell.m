@@ -122,7 +122,6 @@
     self.playVideoButton = videoPlayBtn;
     
     UIButton *muteButton = [[UIButton alloc] initWithFrame:CGRectZero];
-    [muteButton setSelected:true];
     [self.player.view addSubview:muteButton];
     
     
@@ -151,10 +150,10 @@
 }
 
 - (void)muteClicked:(UIButton *)btn {
-    self.player.muted = !btn.selected;
     btn.selected = !btn.selected;
     
-    [CNTOPHUB showAlert:[NSString stringWithFormat:@"声音已%@", btn.selected == true ? @"关闭" : @"开启"]];
+    self.player.muted = !btn.selected;
+    [CNTOPHUB showAlert:[NSString stringWithFormat:@"声音已%@", btn.selected == true ? @"开启" : @"关闭"]];
 }
 
 #pragma mark -
