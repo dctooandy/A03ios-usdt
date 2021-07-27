@@ -32,6 +32,7 @@
 @property (nonatomic, strong) NSDictionary *tutorialsVideos;
 
 @property (nonatomic, strong) NSString *h5Root;
+@property (nonatomic, strong) NSString *videoRoot;
 @property (nonatomic, copy) NSString *amount_list; //快捷输入金额
 @end
 
@@ -102,19 +103,19 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
 - (void)playTurtorialVideosWithType:(NSString *)type {
     HYCTZNPlayerViewController *playVC = [[HYCTZNPlayerViewController alloc] init];
     if ([type isEqualToString:@"TB"] && !KIsEmptyString(self.tutorialsVideos[@"h5tibi"])) {
-        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5tibi"]];
+        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.videoRoot, self.tutorialsVideos[@"h5tibi"]];
         playVC.tit = @"提币教学";
     }
     else if ([type isEqualToString:@"MB"] && !KIsEmptyString(self.tutorialsVideos[@"h5maibi"])) {
-        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5maibi"]];
+        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.videoRoot, self.tutorialsVideos[@"h5maibi"]];
         playVC.tit = @"卖币教学";
     }
     else if ([type isEqualToString:@"RMB"] && !KIsEmptyString(self.tutorialsVideos[@"h5maibi"])) {
-        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5maibi"]];
+        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.videoRoot, self.tutorialsVideos[@"h5maibi"]];
         playVC.tit = @"RMB直充教学";
     }
     else if ([type isEqualToString:@"USDT"] && !KIsEmptyString(self.tutorialsVideos[@"h5chongbi"])) {
-        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.h5Root, self.tutorialsVideos[@"h5chongbi"]];
+        playVC.sourceUrl = [NSString stringWithFormat:@"%@%@",self.videoRoot, self.tutorialsVideos[@"h5chongbi"]];
         playVC.tit = @"数字货币充值教学";
     }
     else {
@@ -166,6 +167,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
             
             strongSelf.tutorialsVideos = [BYJSONHelper dictOrArrayWithJsonString:model.video];
             strongSelf.h5Root = model.h5_root;
+            strongSelf.videoRoot = model.video_root;
             strongSelf.amount_list = model.amount_list;
                 
             dispatch_async(dispatch_get_main_queue(), ^{
