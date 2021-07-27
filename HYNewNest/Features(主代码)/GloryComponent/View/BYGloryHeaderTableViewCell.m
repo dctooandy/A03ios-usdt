@@ -83,7 +83,9 @@
     self.player.defaultEdgeControlLayer.hiddenBackButtonWhenOrientationIsPortrait = YES;
     self.player.rotationManager.disabledAutorotation = YES;
     [self.player.defaultEdgeControlLayer.topAdapter setHidden:true];
+    self.player.defaultEdgeControlLayer.hiddenBottomProgressIndicator = true;
     self.player.muted = true;
+    
     
     WEAKSELF_DEFINE
     self.player.playbackObserver.timeControlStatusDidChangeExeBlock = ^(__kindof SJBaseVideoPlayer * _Nonnull player) {
