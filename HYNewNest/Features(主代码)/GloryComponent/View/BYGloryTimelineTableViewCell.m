@@ -8,6 +8,7 @@
 
 #import "BYGloryTimelineTableViewCell.h"
 #import "BYDottedLine.h"
+#import "NSURL+HYLink.h"
 #import <UIImageView+WebCache.h>
 
 @interface BYGloryTimelineTableViewCell ()
@@ -34,8 +35,8 @@
 }
 
 - (void)setupCell:(BYGloryModel *)model {
-    [self.contentLabel setText:model.abstractName];
-    [self.timelineImageView sd_setImageWithURL:[NSURL URLWithString:model.bannerUrl]];
+    [self.contentLabel setText: KIsEmptyString(model.abstractName)?model.titleName:model.abstractName];
+    [self.timelineImageView sd_setImageWithURL:[NSURL getUrlWithString:model.bannerUrl]];
     [self.timelineLabel setText:model.publishDate];
     [self hideDottedline:false];
     [self setToDefault];

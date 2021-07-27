@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BYGloryModel : CNBaseModel
+@property (nonatomic, copy) NSString *titleName;
 @property (nonatomic, copy) NSString *abstractName;
 @property (nonatomic, copy) NSString *bannerUrl;
 @property (nonatomic, copy) NSString *publishDate;
