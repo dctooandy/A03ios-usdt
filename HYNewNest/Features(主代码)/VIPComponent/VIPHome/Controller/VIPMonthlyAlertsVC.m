@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = kHexColorAlpha(0x000000, 0.8);
+    self.view.backgroundColor = kHexColorAlpha(0x000000, 0.7);
     
     // 月报
     [CNVIPRequest vipsxhMonthReportHandler:^(id responseObj, NSString *errorMsg) {

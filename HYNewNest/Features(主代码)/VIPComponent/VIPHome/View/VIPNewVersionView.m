@@ -40,12 +40,12 @@
             self.contentTv.text = @"福利加码\n 赌尊降临";
             [self.btmBtn setTitle:@"查看详情" forState:UIControlStateNormal];
             break;
-        case 1:
+        case 2:
             attrStr = [[NSMutableAttributedString alloc] initWithString:@"累计身份\n最高领百万" attributes:@{NSFontAttributeName:kGBKFont(24), NSForegroundColorAttributeName:kRedColor}];
             self.contentTv.text = [NSString stringWithFormat:@"累计私享会身份可领取礼品\n最少%ld次就可领\n%ld重超值礼品等您来拿\n最高可领百万大奖",self.model.applyTimes,self.model.prizeCount];
             [self.btmBtn setTitle:@"福利月" forState:UIControlStateNormal];
             break;
-        case 2:
+        case 1:
             attrStr = [[NSMutableAttributedString alloc] initWithString:@"全新赌尊等级\n享受更高权益" attributes:@{NSFontAttributeName:kGBKFont(24), NSForegroundColorAttributeName:kRedColor}];
             self.contentTv.text = [NSString stringWithFormat:@"入会礼金  %ld%@\n转盘次数 %ld次\n月分红 %ld%@",(long)self.model.maxRhlj,self.model.currency.lowercaseString,self.model.maxZpTimes,self.model.maxYdfh,self.model.currency.lowercaseString];
             [self.btmBtn setTitle:@"累计身份" forState:UIControlStateNormal];
