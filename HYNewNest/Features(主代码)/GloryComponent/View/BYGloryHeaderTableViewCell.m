@@ -124,9 +124,8 @@
     UIButton *muteButton = [[UIButton alloc] initWithFrame:CGRectZero];
     [self.player.view addSubview:muteButton];
     
-    
-    [muteButton setBackgroundImage:[UIImage imageNamed:@"icon_volume_on"] forState:UIControlStateNormal];
-    [muteButton setBackgroundImage:[UIImage imageNamed:@"icon_volume_off"] forState:UIControlStateSelected];
+    [muteButton setBackgroundImage:[UIImage imageNamed:@"icon_volume_off"] forState:UIControlStateNormal];
+    [muteButton setBackgroundImage:[UIImage imageNamed:@"icon_volume_on"] forState:UIControlStateSelected];
     [muteButton addTarget:self action:@selector(muteClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     [muteButton mas_makeConstraints:^(MASConstraintMaker *make) {
