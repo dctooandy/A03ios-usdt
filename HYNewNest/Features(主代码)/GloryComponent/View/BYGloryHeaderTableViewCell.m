@@ -82,7 +82,7 @@
     self.player.controlLayerAppearManager.interval = 5; // 设置控制层隐藏间隔
     self.player.defaultEdgeControlLayer.hiddenBackButtonWhenOrientationIsPortrait = YES;
     self.player.rotationManager.disabledAutorotation = YES;
-    self.player.showMoreItemToTopControlLayer = false;
+    [self.player.defaultEdgeControlLayer.topAdapter setHidden:true];
     self.player.muted = true;
     
     WEAKSELF_DEFINE
