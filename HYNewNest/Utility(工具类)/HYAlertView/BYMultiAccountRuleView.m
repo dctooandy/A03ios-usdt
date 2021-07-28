@@ -36,7 +36,7 @@
     [self.bgView addSubview:btn];
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(imgv);
-        make.width.mas_equalTo(AD(305));
+        make.width.mas_equalTo(305);
         make.height.mas_equalTo(48);
         make.bottom.equalTo(imgv).offset(-20);
     }];

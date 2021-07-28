@@ -19,7 +19,6 @@
 #import "CNRechargeChosePayTypeVC.h"
 #import "LYEmptyView.h"
 #import "UIView+Empty.h"
-#import "HYTabBarViewController.h"
 #import <IN3SAnalytics/CNTimeLog.h>
 #import "HYWideOneBtnAlertView.h"
 #import "BYBindRealNameVC.h"
@@ -80,7 +79,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"CNY充值";
-    [self addNaviRightItemWithImageName:@"kf"];
+    [self addNaviRightItemWithImageName:@"icon_jl"];
+    [[NNControllerHelper currentTabBarController] performSelector:@selector(showSuspendBall)];
     
     _selcPayWayIdx = 0;
     
@@ -97,7 +97,8 @@
 }
 
 - (void)rightItemAction {
-    [NNPageRouter presentOCSS_VC];
+//    [NNPageRouter presentOCSS_VC];
+    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
 }
 
 - (void)setupMainEditView {

@@ -64,7 +64,8 @@
     [super viewDidLoad];
     
     self.title = @"充币";
-    [self addNaviRightItemWithImageName:@"kf"];
+    [self addNaviRightItemWithImageName:@"icon_jl"];
+    [[NNControllerHelper currentTabBarController] performSelector:@selector(showSuspendBall)];
     
     _selIdx = 0;
     _editorView.delegate = self;
@@ -90,7 +91,8 @@
 }
 
 - (void)rightItemAction {
-    [NNPageRouter presentOCSS_VC];
+//    [NNPageRouter presentOCSS_VC];
+    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
 }
 
 
@@ -110,9 +112,11 @@
 
 - (void)setSelIdx:(NSInteger)selIdx {
     _selIdx = selIdx;
-    _editorView.deposModel = self.depositModels[_selIdx];
-    if (self.suggestRecharge != 0) {
-        _editorView.rechargeAmount = [NSString stringWithFormat:@"%i", self.suggestRecharge];
+    if (self.depositModels.count) {
+        _editorView.deposModel = self.depositModels[_selIdx];
+        if (self.suggestRecharge != 0) {
+            _editorView.rechargeAmount = [NSString stringWithFormat:@"%i", self.suggestRecharge];
+        }
     }
 }
 
@@ -185,8 +189,12 @@ USDT支付渠道
         if (xjkIdx != 0) {
             [models exchangeObjectAtIndex:0 withObjectAtIndex:xjkIdx];
         }
-        
+        if (models.count == 0) {
+            [CNTOPHUB showAlert:@"暂无可用充值渠道"];
+            return;
+        }
         self.depositModels = models;
+        
         [self didTapTopDepositWayBtn:self->_xjkBtn];
     }];
 }
