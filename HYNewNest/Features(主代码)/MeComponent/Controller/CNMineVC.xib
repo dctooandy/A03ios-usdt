@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,7 +21,6 @@
                 <outlet property="headerIV" destination="L6F-j7-MKh" id="uK4-96-f0z"/>
                 <outlet property="lastEntryView" destination="U2j-wv-NmD" id="tVj-TZ-mmd"/>
                 <outlet property="nickNameLb" destination="tmG-wz-MyA" id="FTr-ZY-OBC"/>
-                <outlet property="questionBtn" destination="kUK-dZ-C0a" id="9yf-aF-G8U"/>
                 <outlet property="scrollContentView" destination="z1O-DJ-YiD" id="F61-Sd-Lfz"/>
                 <outlet property="scrollContentW" destination="KQo-6S-o1P" id="DHY-yA-IOa"/>
                 <outlet property="scrollView" destination="9b1-FJ-wgg" id="ZWZ-2P-1Go"/>
@@ -106,15 +105,8 @@
                                                 <action selector="setting:" destination="-1" eventType="touchUpInside" id="JCk-Im-ReS"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kUK-dZ-C0a">
-                                            <rect key="frame" x="320" y="11.666666666666671" width="14" height="22"/>
-                                            <state key="normal" image="ico_quesmark"/>
-                                            <connections>
-                                                <action selector="didTapAskBtn:" destination="-1" eventType="touchUpInside" id="boW-65-Xay"/>
-                                            </connections>
-                                        </button>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="H09-RP-Bv9">
-                                            <rect key="frame" x="206" y="9.6666666666666643" width="109" height="27"/>
+                                            <rect key="frame" x="225" y="9.6666666666666643" width="109" height="27"/>
                                             <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="26" id="ybT-3N-yPb"/>
@@ -134,13 +126,11 @@
                                     <constraints>
                                         <constraint firstItem="ld2-C6-ZZl" firstAttribute="centerY" secondItem="WnY-VM-pN0" secondAttribute="centerY" id="1f0-VJ-QCJ"/>
                                         <constraint firstItem="Bbn-ee-Rg1" firstAttribute="leading" secondItem="L6F-j7-MKh" secondAttribute="trailing" constant="8" id="4mR-P0-bej"/>
-                                        <constraint firstItem="kUK-dZ-C0a" firstAttribute="centerY" secondItem="H09-RP-Bv9" secondAttribute="centerY" id="FkZ-Bm-RWh"/>
                                         <constraint firstItem="L6F-j7-MKh" firstAttribute="top" secondItem="WnY-VM-pN0" secondAttribute="top" id="GJ1-gd-YoF"/>
-                                        <constraint firstItem="kUK-dZ-C0a" firstAttribute="leading" secondItem="H09-RP-Bv9" secondAttribute="trailing" constant="5" id="Gcy-Fj-FWe"/>
                                         <constraint firstAttribute="bottom" secondItem="tmG-wz-MyA" secondAttribute="bottom" id="OAY-Pe-MiN"/>
-                                        <constraint firstItem="ld2-C6-ZZl" firstAttribute="leading" secondItem="kUK-dZ-C0a" secondAttribute="trailing" constant="15" id="Ve4-do-7u9"/>
                                         <constraint firstItem="tmG-wz-MyA" firstAttribute="top" secondItem="Bbn-ee-Rg1" secondAttribute="bottom" id="Xjg-hI-oIv"/>
                                         <constraint firstItem="Bbn-ee-Rg1" firstAttribute="top" secondItem="WnY-VM-pN0" secondAttribute="top" id="aJz-ld-l9U"/>
+                                        <constraint firstItem="ld2-C6-ZZl" firstAttribute="leading" secondItem="H09-RP-Bv9" secondAttribute="trailing" constant="15" id="aMs-SZ-S2Y"/>
                                         <constraint firstAttribute="bottom" secondItem="L6F-j7-MKh" secondAttribute="bottom" id="ap4-xC-sB8"/>
                                         <constraint firstAttribute="trailing" secondItem="ld2-C6-ZZl" secondAttribute="trailing" constant="5" id="csk-RB-UcI"/>
                                         <constraint firstItem="tmG-wz-MyA" firstAttribute="leading" secondItem="Bbn-ee-Rg1" secondAttribute="leading" id="suv-GP-qYM"/>
@@ -710,7 +700,6 @@
         <image name="2" width="114" height="106"/>
         <image name="aq" width="24" height="24"/>
         <image name="cz_mine" width="30" height="30"/>
-        <image name="ico_quesmark" width="14" height="16"/>
         <image name="icon" width="42" height="42"/>
         <image name="jl" width="24" height="24"/>
         <image name="l_btn_line" width="315" height="48"/>

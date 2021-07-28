@@ -19,6 +19,7 @@
 #import "NNPageRouter.h"
 #import "HYWideOneBtnAlertView.h"
 #import "BYDepositUsdtVC.h"
+#import "CNTradeRecodeVC.h"
 
 @interface BYTradeEntryVC () <UITableViewDataSource, UITableViewDelegate, SDCycleScrollViewDelegate>
 
@@ -88,7 +89,8 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
     [self.tableView.tableHeaderView addSubview:self.bannerView];
     [self.tableView registerNib:[UINib nibWithNibName:@"BYTradeTableViewCell" bundle:nil]
          forCellReuseIdentifier:kTradeEntryCell];
-    [self addNaviRightItemWithImageName:@"kf"];
+    [self addNaviRightItemWithImageName:@"icon_jl"];
+    [[NNControllerHelper currentTabBarController] performSelector:@selector(showSuspendBall)];
 }
 
 - (void)setupBanner {
@@ -277,7 +279,8 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
 }
 
 - (void)rightItemAction {
-    [NNPageRouter presentOCSS_VC];
+//    [NNPageRouter presentOCSS_VC];
+    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
 }
 
 

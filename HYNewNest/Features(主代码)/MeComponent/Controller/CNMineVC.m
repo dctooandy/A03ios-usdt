@@ -80,7 +80,6 @@
 
 #pragma mark CNY和USDT区别
 /// CNY和USDT 切换按钮
-@property (weak, nonatomic) IBOutlet UIButton *questionBtn;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *switchModeSegc;
 @property (weak, nonatomic) IBOutlet UIStackView *USDTBusinessView;
 @property (weak, nonatomic) IBOutlet UIView *lastEntryView;
@@ -179,11 +178,6 @@
 
 #pragma mark - 按钮事件
 
-/// 弹窗
-- (IBAction)didTapAskBtn:(id)sender {
-    [BYMultiAccountRuleView showRuleWithLocatedY:kNavPlusStaBarHeight+10];
-}
-
 // 设置
 - (IBAction)setting:(id)sender {
     [self.navigationController pushViewController:[CNSettingVC new] animated:YES];
@@ -265,9 +259,12 @@
 - (IBAction)segmentValueDidChange:(id)sender {
     WEAKSELF_DEFINE
     [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {
-//        if (!errorMsg) { //已经有监听通知了
+        if (!errorMsg) { //已经有监听通知了
 //            [self switchCurrencyUI];
-//        }
+            BOOL isUSDT = [CNUserManager shareManager].isUsdtMode;
+            CGPoint p = CGPointMake(isUSDT?(kScreenWidth-15-40-(109/4.0)):(kScreenWidth-15-40-(109*3/4.0)), self.switchModeSegc.bottom+kStatusBarHeight+15);
+            [BYMultiAccountRuleView showRuleWithLocatedPoint:p];
+        }
     } faileHandler:^{
         [weakSelf switchCurrencyUI];
     }];

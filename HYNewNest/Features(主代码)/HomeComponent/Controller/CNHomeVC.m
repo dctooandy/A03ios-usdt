@@ -171,7 +171,7 @@
     self.dashenView.backgroundColor = self.pageView.backgroundColor = self.scrollContentView.backgroundColor = self.view.backgroundColor;
     self.scrollContentW.constant = kScreenWidth;
     
-    //    [self setupBBSEntryBallView];
+    [self setupBBSEntryBallView];
     
     // 配置游戏和大神榜子控制器内容
     [self initSubVcAndAddSubVcViews];
@@ -220,12 +220,12 @@
     [self.dashenView addSubview:vc.view];
 }
 
-- (void)showAccountTutorials {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:HYDidShowTJTCUserDefaultKey] == false) {
-        [[NSUserDefaults standardUserDefaults] setBool:true forKey:HYDidShowTJTCUserDefaultKey];
-        [self questionAction];
-    }
-}
+//- (void)showAccountTutorials {
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:HYDidShowTJTCUserDefaultKey] == false) {
+//        [[NSUserDefaults standardUserDefaults] setBool:true forKey:HYDidShowTJTCUserDefaultKey];
+//        [self questionAction];
+//    }
+//}
 
 #pragma mark - REQUEST
 - (void)requestNewsBox {
@@ -239,7 +239,7 @@
         
         if ([agoDateStr isEqualToString:nowDateStr]) {
             MyLog(@"弹窗盒子一天就显示一次");
-            [self showAccountTutorials];
+//            [self showAccountTutorials];
         }
         else{
             // 需要执行的方法写在这里
@@ -280,13 +280,13 @@
                         MessageBoxModel *m = self.msgBoxModels[idx];
                         [NNPageRouter jump2HTMLWithStrURL:m.link title:@"活动" needPubSite:NO];
                     } tapClose:^{
-                        [weakSelf showAccountTutorials];
+//                        [weakSelf showAccountTutorials];
                     }];
                     [[NSUserDefaults standardUserDefaults] setObject:nowDateStr forKey:HYHomeMessageBoxLastimeDate];
                     [[NSUserDefaults standardUserDefaults] synchronize];
                 }
                 else {
-                    [weakSelf showAccountTutorials];
+//                    [weakSelf showAccountTutorials];
                 }
             }];
         }
@@ -441,6 +441,9 @@
     [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
             [self.infoView switchAccountUIChange];
+            BOOL isUSDT = [CNUserManager shareManager].isUsdtMode;
+            CGPoint p = CGPointMake(isUSDT?(kScreenWidth-15-24-(109/4.0)):(kScreenWidth-15-24-(109*3/4.0)), self.infoView.bottom-50+kStatusBarHeight);
+            [BYMultiAccountRuleView showRuleWithLocatedPoint:p];
         }
     } faileHandler:^{
         [self.infoView refreshBottomBtnsStatus];
@@ -455,9 +458,6 @@
     [self.navigationController pushViewController:[CNLoginRegisterVC registerVC] animated:YES];
 }
 
-- (void)questionAction {
-    [BYMultiAccountRuleView showRuleWithLocatedY:self.infoView.bottom-15];
-}
 
 #pragma mark - GameBtnsStackViewDelegate 游戏切换业务
 

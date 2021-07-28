@@ -65,7 +65,6 @@
     
     self.title = @"充币";
     [self addNaviRightItemWithImageName:@"icon_jl"];
-    [[NNControllerHelper currentTabBarController] performSelector:@selector(showSuspendBall)];
     
     _selIdx = 0;
     _editorView.delegate = self;

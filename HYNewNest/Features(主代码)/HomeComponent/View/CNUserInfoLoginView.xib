@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,7 +15,6 @@
                 <outlet property="headerIcon" destination="UML-xs-Jw0" id="FeG-lZ-mt2"/>
                 <outlet property="loginView" destination="bWe-Js-K1F" id="5y4-ts-Wf5"/>
                 <outlet property="moneyLb" destination="oAS-o1-hZh" id="Faf-IR-ofN"/>
-                <outlet property="questionBtn" destination="0Rc-PC-Myw" id="jYR-cE-rgK"/>
                 <outlet property="switchModeSegc" destination="WLz-tL-cWV" id="xim-H6-rAY"/>
                 <outlet property="usdtADImgv" destination="gdW-q9-I6I" id="ZDU-6E-PTm"/>
                 <outlet property="usrNameLb" destination="vHg-RI-kbC" id="i2h-ua-uj4"/>
@@ -63,18 +62,12 @@
                             <color key="textColor" red="0.098039215686274508" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Rc-PC-Myw">
-                            <rect key="frame" x="385" y="25" width="14" height="22"/>
-                            <state key="normal" image="ico_quesmark"/>
-                            <connections>
-                                <action selector="didTapQuestion:" destination="-1" eventType="touchUpInside" id="dWp-vU-ySa"/>
-                            </connections>
-                        </button>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WLz-tL-cWV">
                             <rect key="frame" x="271" y="23" width="109" height="27"/>
                             <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="26" id="qiC-ap-cyS"/>
+                                <constraint firstAttribute="width" constant="109" id="zK5-9F-OWg"/>
                             </constraints>
                             <segments>
                                 <segment title="CNY"/>
@@ -89,6 +82,7 @@
                     </subviews>
                     <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="WLz-tL-cWV" secondAttribute="trailing" constant="24" id="196-DC-TlJ"/>
                         <constraint firstItem="oAS-o1-hZh" firstAttribute="bottom" secondItem="UML-xs-Jw0" secondAttribute="bottom" constant="-1" id="1qL-aY-jEl"/>
                         <constraint firstItem="oAS-o1-hZh" firstAttribute="leading" secondItem="UML-xs-Jw0" secondAttribute="trailing" constant="15" id="3C5-MN-txA"/>
                         <constraint firstItem="e1n-OH-5Tm" firstAttribute="centerY" secondItem="vHg-RI-kbC" secondAttribute="centerY" constant="-2" id="3vP-Zg-aMr"/>
@@ -96,12 +90,9 @@
                         <constraint firstItem="otD-ws-LfD" firstAttribute="centerY" secondItem="oAS-o1-hZh" secondAttribute="centerY" constant="2" id="7jH-qS-Ljq"/>
                         <constraint firstItem="UML-xs-Jw0" firstAttribute="leading" secondItem="sLZ-3h-qrV" secondAttribute="leading" constant="20" id="HjJ-HP-e44"/>
                         <constraint firstItem="vHg-RI-kbC" firstAttribute="leading" secondItem="oAS-o1-hZh" secondAttribute="leading" id="QIa-sq-ACe"/>
-                        <constraint firstItem="0Rc-PC-Myw" firstAttribute="leading" secondItem="WLz-tL-cWV" secondAttribute="trailing" constant="5" id="Tbh-sD-akH"/>
                         <constraint firstItem="e1n-OH-5Tm" firstAttribute="leading" secondItem="vHg-RI-kbC" secondAttribute="trailing" constant="5" id="gVi-NO-SLZ"/>
-                        <constraint firstItem="0Rc-PC-Myw" firstAttribute="centerY" secondItem="WLz-tL-cWV" secondAttribute="centerY" id="q14-S7-Vp9"/>
                         <constraint firstItem="UML-xs-Jw0" firstAttribute="top" secondItem="sLZ-3h-qrV" secondAttribute="top" constant="15" id="roJ-sw-cXv"/>
                         <constraint firstItem="otD-ws-LfD" firstAttribute="leading" secondItem="oAS-o1-hZh" secondAttribute="trailing" constant="3" id="tPn-WL-mX0"/>
-                        <constraint firstAttribute="trailing" secondItem="0Rc-PC-Myw" secondAttribute="trailing" constant="5" id="v5b-dS-wMp"/>
                         <constraint firstItem="vHg-RI-kbC" firstAttribute="top" secondItem="UML-xs-Jw0" secondAttribute="top" constant="-2" id="x9R-H1-htJ"/>
                     </constraints>
                 </view>
@@ -269,7 +260,6 @@
         <image name="btn_login" width="141" height="38"/>
         <image name="btn_regsiter" width="141" height="38"/>
         <image name="cz_home" width="20" height="20"/>
-        <image name="ico_quesmark" width="14" height="16"/>
         <image name="icon" width="42" height="42"/>
         <image name="imageView:UML-xs-Jw0:image" width="42" height="42">
             <mutableData key="keyedArchiveRepresentation">

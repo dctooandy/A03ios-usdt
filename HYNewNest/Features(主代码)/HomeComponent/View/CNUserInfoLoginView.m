@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *vipImgv;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLb;
 @property (weak, nonatomic) IBOutlet UILabel *currencyLb;
-@property (weak, nonatomic) IBOutlet UIButton *questionBtn;
+//@property (weak, nonatomic) IBOutlet UIButton *questionBtn;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *switchModeSegc;
 @property (weak, nonatomic) IBOutlet UILabel *usrNameLb;
 
@@ -133,11 +133,11 @@
     }
 }
 
-- (IBAction)didTapQuestion:(id)sender {
-    if (_delegate && [_delegate respondsToSelector:@selector(questionAction)]) {
-        [_delegate questionAction];
-    }
-}
+//- (IBAction)didTapQuestion:(id)sender {
+//    if (_delegate && [_delegate respondsToSelector:@selector(questionAction)]) {
+//        [_delegate questionAction];
+//    }
+//}
 
 - (IBAction)bottomBtnAction:(UIButton *)sender {
     if (_delegate && [_delegate respondsToSelector:@selector(buttonArrayAction:)]) {
