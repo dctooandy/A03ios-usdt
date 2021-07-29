@@ -40,6 +40,7 @@
         make.height.mas_equalTo(48);
         make.bottom.equalTo(imgv).offset(-20);
     }];
+
 }
 
 

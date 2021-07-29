@@ -171,7 +171,7 @@
     self.dashenView.backgroundColor = self.pageView.backgroundColor = self.scrollContentView.backgroundColor = self.view.backgroundColor;
     self.scrollContentW.constant = kScreenWidth;
     
-    //    [self setupBBSEntryBallView];
+    [self setupBBSEntryBallView];
     
     // 配置游戏和大神榜子控制器内容
     [self initSubVcAndAddSubVcViews];
@@ -190,7 +190,7 @@
     bbsBall.backgroundColor = [UIColor clearColor];
     bbsBall.freeRect = CGRectMake(0, kStatusBarHeight, kScreenWidth, kScreenHeight-kTabBarHeight-kStatusBarHeight);
     bbsBall.isKeepBounds = YES;
-    [bbsBall.button setImage:[UIImage imageNamed:@"bbs_icon"] forState:UIControlStateNormal];
+    [bbsBall.button setImage:[UIImage imageNamed:@"icon_lt"] forState:UIControlStateNormal];
     bbsBall.clickDragViewBlock = ^(WMDragView *dragView) {
         [NNPageRouter jump2HTMLWithStrURL:H5URL_BBS title:@"币游论坛" needPubSite:NO];
     };

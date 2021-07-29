@@ -165,19 +165,15 @@
     info.uuid = [KeyChain getKeychainIdentifierUUID];//设备id，不穿 会默认生成
     info.baseUrl = [IVHttpManager shareManager].gateway;//app网关地址
 
-//<<<<<<< HEAD
-    [CSVisitChatmanager startWithSuperVC:[NNControllerHelper currentTabBarController]
-                                chatInfo:info
-                                  finish:^(CSServiceCode errCode) {
-//=======
-//    //导航栏设置
-//    info.title = @"在线客服";//导航栏标题
-//    info.backColor = [UIColor lightGrayColor];
-//    info.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontPFSB18]};
-//    info.barTintColor = kHexColor(0x1A1A2C);
-//
-//    [CSVisitChatmanager startServiceWithSuperVC:[NNControllerHelper currentTabBarController] chatInfo:info finish:^(CSServiceCode errCode) {
-//>>>>>>> develop
+    //导航栏设置
+    info.title = @"在线客服";//导航栏标题
+    info.backColor = [UIColor lightGrayColor];
+    info.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontPFSB18]};
+    info.barTintColor = kHexColor(0x1A1A2C);
+
+    [CSVisitChatmanager startServiceWithSuperVC:[NNControllerHelper currentTabBarController]
+                                       chatInfo:info
+                                         finish:^(CSServiceCode errCode) {
         if (errCode != CSServiceCode_Request_Suc) {
             [CNTOPHUB showError:@"系统错误，请稍后再试"];
         }
