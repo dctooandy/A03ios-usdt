@@ -41,6 +41,12 @@
 
 static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[NNControllerHelper currentTabBarController] performSelector:@selector(showSuspendBall)];
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -90,7 +96,6 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
     [self.tableView registerNib:[UINib nibWithNibName:@"BYTradeTableViewCell" bundle:nil]
          forCellReuseIdentifier:kTradeEntryCell];
     [self addNaviRightItemWithImageName:@"icon_jl"];
-    [[NNControllerHelper currentTabBarController] performSelector:@selector(showSuspendBall)];
 }
 
 - (void)setupBanner {

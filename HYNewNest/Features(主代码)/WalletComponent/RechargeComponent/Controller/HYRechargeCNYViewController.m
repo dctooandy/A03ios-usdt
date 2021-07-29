@@ -79,8 +79,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"CNY充值";
-    [self addNaviRightItemWithImageName:@"icon_jl"];
-    [[NNControllerHelper currentTabBarController] performSelector:@selector(showSuspendBall)];
+    [self addNaviRightItemWithImageName:@"kf"];
+//    [[NNControllerHelper currentTabBarController] performSelector:@selector(showSuspendBall)];
     
     _selcPayWayIdx = 0;
     
@@ -97,8 +97,8 @@
 }
 
 - (void)rightItemAction {
-//    [NNPageRouter presentOCSS_VC];
-    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
+    [NNPageRouter presentOCSS_VC];
+//    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
 }
 
 - (void)setupMainEditView {

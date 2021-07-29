@@ -11,15 +11,23 @@
 @implementation CreditQueryDataModel
 
 - (UIColor *)statsColor {
-    if ([self.flagDesc containsString:@"等待"] || [self.flagDesc containsString:@"待核"] || self.status == 0) {
-        return kHexColor(0xAEA876);
-    } else if ([self.flagDesc containsString:@"完成"] || [self.flagDesc containsString:@"已到账"] || [self.flagDesc containsString:@"批准"] || self.status == 1) {
-        return kHexColor(0x5A9F7C);
-    } else if ([self.flagDesc containsString:@"失效"] || [self.flagDesc containsString:@"取消"] || [self.flagDesc containsString:@"拒绝"] || self.status == -1 || self.status == -9) {
-        return kHexColor(0xBD4848);
+    if ((([self.flagDesc containsString:@"等待"] || [self.flagDesc containsString:@"待核"]) && !(self.type == transactionRecord_yuEBaoDeposit || self.type == TransactionRecord_yuEBaoWithdraw)) || (self.status == 0 && (self.type == transactionRecord_yuEBaoDeposit || self.type == TransactionRecord_yuEBaoWithdraw))) {
+        return kHexColor(0xF1B753);
+    } else if ((([self.flagDesc containsString:@"完成"] || [self.flagDesc containsString:@"已到账"] || [self.flagDesc containsString:@"批准"]) && !(self.type == transactionRecord_yuEBaoDeposit || self.type == TransactionRecord_yuEBaoWithdraw)) || (self.status == 1 && (self.type == transactionRecord_yuEBaoDeposit || self.type == TransactionRecord_yuEBaoWithdraw))) {
+        return kHexColor(0x67C047);
+    } else if ((([self.flagDesc containsString:@"失效"] || [self.flagDesc containsString:@"取消"] || [self.flagDesc containsString:@"拒绝"]) && !(self.type == transactionRecord_yuEBaoDeposit || self.type == TransactionRecord_yuEBaoWithdraw)) || ((self.status == -1 || self.status == -9) && (self.type == transactionRecord_yuEBaoDeposit || self.type == TransactionRecord_yuEBaoWithdraw))){
+        return kHexColor(0xF12C4C);
     } else {
         return kHexColor(0xADBACD);
     }
+}
+
+- (BOOL)isWaitingStatus {
+    if ((([self.flagDesc containsString:@"等待"] || [self.flagDesc containsString:@"待核"]) && !(self.type == transactionRecord_yuEBaoDeposit || self.type == TransactionRecord_yuEBaoWithdraw)) || (self.status == 0 && (self.type == transactionRecord_yuEBaoDeposit || self.type == TransactionRecord_yuEBaoWithdraw))) {
+        return true;
+    }
+    
+    return false;
 }
 
 - (NSString *)yebStatusTxt {

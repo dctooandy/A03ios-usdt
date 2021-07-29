@@ -64,7 +64,7 @@
     [super viewDidLoad];
     
     self.title = @"充币";
-    [self addNaviRightItemWithImageName:@"icon_jl"];
+    [self addNaviRightItemWithImageName:@"kf"];
     
     _selIdx = 0;
     _editorView.delegate = self;
@@ -90,8 +90,8 @@
 }
 
 - (void)rightItemAction {
-//    [NNPageRouter presentOCSS_VC];
-    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
+    [NNPageRouter presentOCSS_VC];
+//    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
 }
 
 

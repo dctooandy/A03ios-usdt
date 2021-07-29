@@ -71,6 +71,7 @@ typedef NS_ENUM(NSInteger,TransactionProgressState) {
 @interface CreditQueryDataModel : CNBaseModel
 /** 自定义参数 */
 @property (nonatomic, strong, readonly) UIColor *statsColor;
+@property (nonatomic, assign, readonly) BOOL isWaitingStatus;
 @property (nonatomic, copy, readonly) NSString *gameKindName;
 @property (nonatomic, copy, readonly) NSString *gamePlatName;
 

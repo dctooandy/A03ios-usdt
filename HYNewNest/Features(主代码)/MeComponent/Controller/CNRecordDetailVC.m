@@ -14,6 +14,8 @@
 #import "BYDepositUsdtVC.h"
 #import "HYRechargeCNYViewController.h"
 #import "BYYuEBaoVC.h"
+#import "BYBorderButton.h"
+#import "HYTextAlertView.h"
 
 #define kCNXimaRecordTCellID  @"CNXimaRecordTCell"
 
@@ -42,7 +44,11 @@
 /// 洗码列表视图高（不带标题，仅内容）
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *xiMaContentH;
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *btnBtm;
+@property (weak, nonatomic) IBOutlet BYBorderButton *cancelButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cancelButtonConstraint;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *statusViewConstriant;
+@property (weak, nonatomic) IBOutlet UIView *statusView;
 
 #pragma - mark 数据展示
 /// 单位
@@ -102,6 +108,20 @@
     self.tradeTypeLb.text = self.model.title;
     self.flowLb.text = self.model.referenceId?:self.model.requestId;
     self.timeLb.text = self.model.createDate?:self.model.createdTime;
+    
+    if ((self.model.type == transactionRecord_XMType || self.model.type == transactionRecord_withdrawType || self.model.type == transactionRecord_rechargeType) && self.model.isWaitingStatus == true) {
+        [self.cancelButton setTitle:@"取消订单" forState:UIControlStateNormal];
+
+    }
+    else if ((self.model.type == transactionRecord_XMType || self.model.type == transactionRecord_withdrawType || self.model.type == transactionRecord_rechargeType) && self.model.isWaitingStatus == false) {
+        [self.cancelButton setTitle:@"删除记录" forState:UIControlStateNormal];
+    }
+    else {
+        [self.cancelButton setHidden:true];
+        self.cancelButtonConstraint.constant = 0;
+        
+    }
+    
     
     // 存取款才有
     NSString *flag = @"";
@@ -166,7 +186,7 @@
             
             if (self.model.flag == transactionProgress_waitCheckState ||
                 self.model.flag == transactionProgress_waitPayState) {
-                [self.btnBtm setTitle:@"取消订单" forState:UIControlStateNormal];
+                [self.btnBtm setTitle:@"继续充值" forState:UIControlStateNormal];
                 self.btnBtm.hidden = NO;
                 self.btnBtm.enabled = YES;
             }
@@ -206,6 +226,9 @@
             self.processView.hidden = YES;
             self.processViewH.constant = 0;
             
+            self.statusViewConstriant.constant = 0;
+            [self.statusView setHidden:true];
+            
             // 投注的数据不同
             self.tradeTypeLb.text = _model.gameKindName;
             self.timeLb.text = _model.billTime;
@@ -229,6 +252,34 @@
     }
 }
 
+- (IBAction)cancelClicked:(id)sender {
+    WEAKSELF_DEFINE
+    if (self.model.isWaitingStatus == true) {
+        [HYTextAlertView showWithTitle:@"" content:@"确认取消订单吗？" comfirmText:@"确认" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm){
+            if (isComfirm) {
+                [CNUserCenterRequest cancelWithdrawBillRequestId:self.model.requestId handler:^(id responseObj, NSString *errorMsg) {
+                    if (KIsEmptyString(errorMsg)) {
+                        [CNTOPHUB showSuccess:@"订单取消成功"];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil]; // 让首页和我的余额刷新
+                        weakSelf.btnBtm.enabled = NO;
+                        weakSelf.navPopupBlock(@(1)); //需要刷新
+                    }
+                }];
+            }
+        }];
+    }
+    else {
+        [HYTextAlertView showWithTitle:@"" content:@"确认删除此笔记录吗？" comfirmText:@"确认" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm){
+            if (isComfirm) {
+//                [strongSelf requestDeleteModelRow:indexPath.row];
+            }
+        }];
+    }
+    
+    
+    
+}
+
 - (IBAction)btmButtonClick:(id)sender {
     if (self.detailType == CNRecordTypeDeposit) {
         if ([CNUserManager shareManager].isUsdtMode) {
@@ -237,20 +288,18 @@
             [self.navigationController pushViewController:[HYRechargeCNYViewController new] animated:YES];
         }
         
-    } else if (self.detailType == CNRecordTypeWithdraw || self.detailType == CNRecordTypeYEBWithdraw) {
-        //TODO: 不知道能不能取消 等接口数据出来
-        [CNUserCenterRequest cancelWithdrawBillRequestId:self.model.requestId handler:^(id responseObj, NSString *errorMsg) {
-            if (KIsEmptyString(errorMsg)) {
-                [CNTOPHUB showSuccess:@"订单取消成功"];
-                [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil]; // 让首页和我的余额刷新
-                self.btnBtm.enabled = NO;
-                self.navPopupBlock(@(1)); //需要刷新
-            }
-        }];
-        
+//    } else if (self.detailType == CNRecordTypeWithdraw || self.detailType == CNRecordTypeYEBWithdraw) {
+//        //TODO: 不知道能不能取消 等接口数据出来
+//        [CNUserCenterRequest cancelWithdrawBillRequestId:self.model.requestId handler:^(id responseObj, NSString *errorMsg) {
+//            if (KIsEmptyString(errorMsg)) {
+//                [CNTOPHUB showSuccess:@"订单取消成功"];
+//                [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil]; // 让首页和我的余额刷新
+//                self.btnBtm.enabled = NO;
+//                self.navPopupBlock(@(1)); //需要刷新
+//            }
+//        }];
     } else if (self.detailType == CNRecordTypeYEBDeposit) {
         [self.navigationController pushViewController:[BYYuEBaoVC new] animated:YES];
-        
     }
 }
 
