@@ -190,7 +190,7 @@
     bbsBall.backgroundColor = [UIColor clearColor];
     bbsBall.freeRect = CGRectMake(0, kStatusBarHeight, kScreenWidth, kScreenHeight-kTabBarHeight-kStatusBarHeight);
     bbsBall.isKeepBounds = YES;
-    [bbsBall.button setImage:[UIImage imageNamed:@"bbs_icon"] forState:UIControlStateNormal];
+    [bbsBall.button setImage:[UIImage imageNamed:@"icon_lt"] forState:UIControlStateNormal];
     bbsBall.clickDragViewBlock = ^(WMDragView *dragView) {
         [NNPageRouter jump2HTMLWithStrURL:H5URL_BBS title:@"币游论坛" needPubSite:NO];
     };

@@ -150,8 +150,6 @@
         make.centerX.equalTo(self.contentView);
         make.bottom.equalTo(btn.mas_top).offset(-15);
     }];
-    
-    
 }
 
 
