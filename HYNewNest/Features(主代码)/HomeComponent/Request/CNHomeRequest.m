@@ -46,6 +46,10 @@
     [self POST:(config_queryAnnoumces) parameters:[kNetworkMgr baseParam] completionHandler:handler];
 }
 
++ (void)requestNightCityHandler:(HandlerBlock)handler {
+    NSMutableDictionary *param = @{@"customerId":[CNUserManager shareManager].userInfo.customerId};
+    [self POST:kGatewayExtraPath(config_nightCityUsrType) parameters:param completionHandler:handler];
+}
 
 #pragma mark - 游戏
 

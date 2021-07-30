@@ -18,7 +18,7 @@
 - (UIView *)bgView {
     if (!_bgView) {
         _bgView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        _bgView.backgroundColor = kHexColorAlpha(0x000000, 0.6);
+        _bgView.backgroundColor = kHexColorAlpha(0x000000, 0.7);
         _bgView.alpha = 0;
     }
     return _bgView;
@@ -56,7 +56,7 @@
     [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.bgView.alpha = 0;
         self.contentView.alpha = 0;
-        self.contentView.transform = CGAffineTransformMakeScale(0.2, 0.2);;
+        self.contentView.transform = CGAffineTransformMakeScale(0.2, 0.2);
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];

@@ -21,6 +21,7 @@
 #define H5URL_VIP               @"/vip"
 #define H5URL_Share             @"/share"
 #define H5URL_Pub_Star          @"/pub_site/giftDetails?tab=0"            //星级身分
+#define H5URL_Pub_NightCity     @"/pub_site/nightCity"
 #pragma mark - API PATH
 
 /// 拼接path部分    glaxy_a03 -> glaxy_83e6dy
@@ -187,5 +188,8 @@
 #define config_yebTransferOut   @"yeb/transferOut"  // 转出
 #define config_yebTransferLogs  @"yeb/yebTransferLogs" // 余额宝交易记录
 #define config_yebConfig        @"yeb/yebConfig" // 查询余额宝配置
+
+#pragma mark night city
+#define config_nightCityUsrType @"83e6dy/activity/newapi/nightCity/getUserType"
 
 #endif /* HYHttpPathConst_h */

@@ -185,6 +185,7 @@
 		3D3A9B6424F90666003FB33C /* UIWindow+Motion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B6324F90666003FB33C /* UIWindow+Motion.m */; };
 		3D3A9B6A24FA3696003FB33C /* DXRadianLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B6824FA3696003FB33C /* DXRadianLayerView.m */; };
 		3D3A9B7324FA7DA5003FB33C /* CNVIPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A9B7224FA7DA5003FB33C /* CNVIPRequest.m */; };
+		3D3D647626B4088200ECE9AA /* BYNightCityGiftAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3D647526B4088200ECE9AA /* BYNightCityGiftAlertView.m */; };
 		3D4179D82669BFE0003928F0 /* BYChangeFundPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4179D62669BFE0003928F0 /* BYChangeFundPwdVC.m */; };
 		3D41DE6D25199DEE000CA1D6 /* HYVIPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D41DE4725199DEE000CA1D6 /* HYVIPViewController.xib */; };
 		3D41DE6E25199DEE000CA1D6 /* JLXUICollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D41DE4825199DEE000CA1D6 /* JLXUICollectionViewFlowLayout.m */; };
@@ -1355,6 +1356,8 @@
 		3D3A9B6924FA3696003FB33C /* DXRadianLayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXRadianLayerView.h; sourceTree = "<group>"; };
 		3D3A9B7124FA7DA5003FB33C /* CNVIPRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNVIPRequest.h; sourceTree = "<group>"; };
 		3D3A9B7224FA7DA5003FB33C /* CNVIPRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNVIPRequest.m; sourceTree = "<group>"; };
+		3D3D647426B4088200ECE9AA /* BYNightCityGiftAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYNightCityGiftAlertView.h; sourceTree = "<group>"; };
+		3D3D647526B4088200ECE9AA /* BYNightCityGiftAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYNightCityGiftAlertView.m; sourceTree = "<group>"; };
 		3D4179D62669BFE0003928F0 /* BYChangeFundPwdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BYChangeFundPwdVC.m; sourceTree = "<group>"; };
 		3D4179D72669BFE0003928F0 /* BYChangeFundPwdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BYChangeFundPwdVC.h; sourceTree = "<group>"; };
 		3D41DE4325199DEE000CA1D6 /* HYVIPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYVIPViewController.h; sourceTree = "<group>"; };
@@ -5118,6 +5121,8 @@
 				3DCE56FB2698155200BEADD9 /* BYMultiAccountRuleView.m */,
 				F791E24C269E7B44002D6648 /* BYCNYRechargeAlertView.h */,
 				F791E24D269E7B44002D6648 /* BYCNYRechargeAlertView.m */,
+				3D3D647426B4088200ECE9AA /* BYNightCityGiftAlertView.h */,
+				3D3D647526B4088200ECE9AA /* BYNightCityGiftAlertView.m */,
 			);
 			path = HYAlertView;
 			sourceTree = "<group>";
@@ -6762,6 +6767,7 @@
 				3D41DE7425199DEE000CA1D6 /* VIPHomeUserModel.m in Sources */,
 				D571B1AB24C03D790087B5EC /* CNStatementView.m in Sources */,
 				F7BBAE6926A529D300D07B21 /* BYGloryTimelineTableViewCell.m in Sources */,
+				3D3D647626B4088200ECE9AA /* BYNightCityGiftAlertView.m in Sources */,
 				04C6E1DF24D3E995006F4DAC /* CNFeedBackLeftTCell.m in Sources */,
 				3D2B0873264FC4560008BB5F /* CNYuEBaoConfigModel.m in Sources */,
 				3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */,
@@ -6999,7 +7005,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 109;
+				CURRENT_PROJECT_VERSION = 110;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = 29V6J8T68S;
 				ENABLE_BITCODE = NO;
@@ -7041,7 +7047,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.17;
+				MARKETING_VERSION = 3.7.18;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-geh";
 				PRODUCT_NAME = "币游_dev";
@@ -7060,7 +7066,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游Release.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 109;
+				CURRENT_PROJECT_VERSION = 110;
 				DEVELOPMENT_ASSET_PATHS = HYNewNest/Resources/Preview.xcassets;
 				DEVELOPMENT_TEAM = 29V6J8T68S;
 				ENABLE_BITCODE = NO;
@@ -7101,7 +7107,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.17;
+				MARKETING_VERSION = 3.7.18;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hy.HYNewNest-geh";
 				PRODUCT_NAME = "币游";

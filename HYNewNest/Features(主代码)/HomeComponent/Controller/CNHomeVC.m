@@ -26,6 +26,7 @@
 #import "CNGameBtnsStackView.h"
 #import "WMDragView.h"
 #import "BYMultiAccountRuleView.h"
+#import "BYNightCityGiftAlertView.h"
 
 #import "CNHomeRequest.h"
 #import "CNUserCenterRequest.h"
@@ -142,6 +143,7 @@
     
     if ([CNUserManager shareManager].isLogin) {
         self.infoViewH.constant = 114;
+        [self requestNightCity];
         // 弹窗盒子
         [self requestNewsBox];
         // 游戏线路
@@ -228,6 +230,20 @@
 //}
 
 #pragma mark - REQUEST
+- (void)requestNightCity {
+    [CNHomeRequest requestNightCityHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+            if ([responseObj[@"activeType"] integerValue] == 2 && [responseObj[@"customerLevel"] integerValue] >= 1) {
+                [BYNightCityGiftAlertView showAlertViewHandler:^(BOOL isComfirm) {
+                    if (isComfirm) {
+                        [NNPageRouter jump2HTMLWithStrURL:H5URL_Pub_NightCity title:@"币游不夜城" needPubSite:NO];
+                    }
+                }];
+            }
+        }
+    }];
+}
+
 - (void)requestNewsBox {
     if ([CNUserManager shareManager].isLogin) {
         NSDate *nowDate = [NSDate date];

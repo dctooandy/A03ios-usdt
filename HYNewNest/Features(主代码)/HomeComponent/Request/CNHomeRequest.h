@@ -35,6 +35,9 @@ typedef NS_ENUM(NSUInteger, BannerWhere) {
 ///获取公告
 + (void)requestGetAnnouncesHandler:(HandlerBlock)handler;
 
+///
++ (void)requestNightCityHandler:(HandlerBlock)handler;
+
 
 #pragma mark - 游戏
 
