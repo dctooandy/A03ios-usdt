@@ -150,6 +150,15 @@
         make.centerX.equalTo(self.contentView);
         make.bottom.equalTo(btn.mas_top).offset(-15);
     }];
+    
+    UIImageView *imgv = [UIImageView new];
+    imgv.image = [UIImage imageNamed:@"yellow exclamation"];
+    [self.contentView addSubview:imgv];
+    [imgv mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(gLb);
+        make.right.equalTo(gLb.mas_left).offset(-3);
+        make.width.height.mas_equalTo(12);
+    }];
 }
 
 
