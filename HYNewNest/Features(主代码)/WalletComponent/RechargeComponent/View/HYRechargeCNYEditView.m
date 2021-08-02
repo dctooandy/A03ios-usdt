@@ -20,6 +20,7 @@
 //@property (weak, nonatomic) IBOutlet UIImageView *imgvIcon;
 @property (weak, nonatomic) IBOutlet UILabel *lblPayWayName;
 //@property (weak, nonatomic) IBOutlet UILabel *lblPayWayLimit;
+@property (weak, nonatomic) IBOutlet UILabel *tipLbl;
 
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *amountBtnsTopMargin;
@@ -102,6 +103,21 @@
     /// 顶上信息
 //    [self.imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:itemModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
     self.lblPayWayName.text = itemModel.payTypeName;
+    if ([self.lblPayWayName.text containsString:@"支付宝"] || [self.lblPayWayName.text containsString:@"微信"]) {
+        self.tipLbl.attributedText = ({
+            UIColor *gdColor = kHexColor(0x999999);
+            NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:@" 如果出现风控提示，建议使用银行卡转账" attributes:@{NSFontAttributeName:[UIFont fontPFR12], NSForegroundColorAttributeName:gdColor}];
+            NSTextAttachment *attch = [[NSTextAttachment alloc] init];
+            attch.image = [UIImage imageNamed:@"yellow exclamation"];
+            attch.bounds = CGRectMake(0, 0, 12, 12);
+            NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attch];
+            [attrStr insertAttributedString:string atIndex:0];
+            attrStr;
+        });
+        self.tipLbl.hidden = NO;
+    } else {
+        self.tipLbl.hidden = YES;
+    }
 //    self.lblPayWayLimit.text = [NSString stringWithFormat:@"(%@)", [HYRechargeHelper amountTip:itemModel]];
     
     /// 金额选择按钮

@@ -164,10 +164,11 @@
     if (@available(iOS 13.0, *)) {
         [_switchModeSegc setSelectedSegmentTintColor:gdColor];
     } else {
-        [_switchModeSegc setTintColor:gdColor];
+        [_switchModeSegc setTintColor:kHexColor(0x19CECE)];
     }
     [_switchModeSegc setBackgroundColor:kHexColor(0x3c3d62)];
-    [_switchModeSegc setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    [_switchModeSegc setTitleTextAttributes:@{NSForegroundColorAttributeName:gdColor} forState:UIControlStateNormal];
+    [_switchModeSegc setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
     
 }
 

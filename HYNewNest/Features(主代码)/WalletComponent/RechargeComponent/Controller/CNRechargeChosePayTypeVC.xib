@@ -24,6 +24,7 @@
                 <outlet property="subBankNameLb" destination="G2f-sB-U20" id="803-ep-K1P"/>
                 <outlet property="tagsView" destination="ChX-dJ-hqB" id="kvn-9U-Jcs"/>
                 <outlet property="tagsViewH" destination="W9E-ne-uRo" id="nYh-r4-q3f"/>
+                <outlet property="thitdView" destination="kl0-Ke-1oT" id="32l-UC-G5X"/>
                 <outlet property="timeLb" destination="SOb-Z3-dea" id="uRp-lg-fMG"/>
                 <outlet property="tipLb" destination="1ut-IQ-JWT" id="gCU-4l-DkX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -347,7 +348,7 @@
                 <constraint firstItem="h6a-AQ-DIv" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="pci-zy-VFZ"/>
                 <constraint firstItem="TJW-im-lJv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wev-gt-raj"/>
             </constraints>
-            <point key="canvasLocation" x="216" y="179"/>
+            <point key="canvasLocation" x="141" y="177"/>
         </view>
     </objects>
     <resources>

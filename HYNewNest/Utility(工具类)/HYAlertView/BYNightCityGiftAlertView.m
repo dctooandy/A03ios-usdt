@@ -60,7 +60,7 @@
     }];
     
     UILabel *contet = [UILabel new];
-    contet.text = @"送您1张币游福利庄园抽奖券";
+    contet.text = @"送您1张币游不夜城抽奖券";
     contet.textColor = kHexColor(0x000000);
     contet.font = [UIFont fontPFR12];
     [contet sizeToFit];

@@ -40,6 +40,7 @@
 @property (weak, nonatomic) IBOutlet UIView *bankView;
 @property (weak, nonatomic) IBOutlet UIButton *btnSubmit;
 @property (weak, nonatomic) IBOutlet UILabel *tipLb;
+@property (weak, nonatomic) IBOutlet UIView *thitdView;
 
 @property (nonatomic, strong) BQPaymentModel *model;
 @property (nonatomic, strong) NSTimer *timer;
@@ -96,7 +97,11 @@
     [self.bankLogoIV sd_setImageWithURL:[NSURL getUrlWithString:_model.bankIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
     self.cardNoLb.text = _model.accountNo;
     self.accountNameLb.text = _model.accountName;
-    self.subBankNameLb.text = _model.bankBranchName;
+    if (!KIsEmptyString(_model.bankBranchName)) {
+        self.subBankNameLb.text = _model.bankBranchName;
+    } else {
+        self.thitdView.hidden = YES;
+    }
     
     if (!KIsEmptyString(_model.qrCode)) {
         self.qrIcon.image = [SGQRCodeGenerateManager generateWithDefaultQRCodeData:_model.qrCode imageViewWidth:self.qrIcon.height];
