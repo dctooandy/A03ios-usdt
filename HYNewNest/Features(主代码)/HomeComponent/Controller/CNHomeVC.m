@@ -262,6 +262,7 @@
             WEAKSELF_DEFINE
             [CNHomeRequest queryMessageBoxHandler:^(id responseObj, NSString *errorMsg) {
                 
+                STRONGSELF_DEFINE
                 NSMutableArray<MessageBoxModel *> *models = [[MessageBoxModel cn_parse:responseObj] mutableCopy];
                 if (models.count == 0) { return; }
                 
@@ -289,11 +290,11 @@
                         [imgs addObject:url];
                     }
                 }];
-                self.msgBoxModels = models;
+                strongSelf.msgBoxModels = models;
                 if (imgs.count > 0 && imgs.count == models.count) {
-                    [CNMessageBoxView showMessageBoxWithImages:imgs onView:self.view
+                    [CNMessageBoxView showMessageBoxWithImages:imgs onView:weakSelf.view
                                                       tapBlock:^(int idx) {
-                        MessageBoxModel *m = self.msgBoxModels[idx];
+                        MessageBoxModel *m = strongSelf.msgBoxModels[idx];
                         [NNPageRouter jump2HTMLWithStrURL:m.link title:@"活动" needPubSite:NO];
                     } tapClose:^{
 //                        [weakSelf showAccountTutorials];
