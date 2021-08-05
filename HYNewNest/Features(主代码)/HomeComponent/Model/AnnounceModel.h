@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSString *createDate;
 @property (copy, nonatomic) NSString *announceID;
 @property (copy, nonatomic) NSString *title;
+@property (assign, nonatomic) BOOL isRead;
+@property (assign, nonatomic) BOOL flag;
 @end
 
 NS_ASSUME_NONNULL_END

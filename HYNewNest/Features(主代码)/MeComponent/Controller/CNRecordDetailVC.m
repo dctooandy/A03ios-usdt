@@ -17,6 +17,7 @@
 #import "BYBorderButton.h"
 #import "HYTextAlertView.h"
 
+
 #define kCNXimaRecordTCellID  @"CNXimaRecordTCell"
 
 @interface CNRecordDetailVC () <UITableViewDataSource>
@@ -108,10 +109,11 @@
     self.tradeTypeLb.text = self.model.title;
     self.flowLb.text = self.model.referenceId?:self.model.requestId;
     self.timeLb.text = self.model.createDate?:self.model.createdTime;
-    
-    if ((self.model.type == transactionRecord_XMType || self.model.type == transactionRecord_withdrawType || self.model.type == transactionRecord_rechargeType) && self.model.isWaitingStatus == true) {
-        [self.cancelButton setTitle:@"取消订单" forState:UIControlStateNormal];
 
+    //馀额宝不确定能共用提币API与否
+    if (self.model.type == transactionRecord_withdrawType && self.model.isWaitingStatus == true) {
+//    if ((self.model.type == transactionRecord_withdrawType || self.model.type == TransactionRecord_yuEBaoWithdraw) && self.model.isWaitingStatus == true) {
+        [self.cancelButton setTitle:@"取消订单" forState:UIControlStateNormal];
     }
     else if ((self.model.type == transactionRecord_XMType || self.model.type == transactionRecord_withdrawType || self.model.type == transactionRecord_rechargeType) && self.model.isWaitingStatus == false) {
         [self.cancelButton setTitle:@"删除记录" forState:UIControlStateNormal];
@@ -119,7 +121,6 @@
     else {
         [self.cancelButton setHidden:true];
         self.cancelButtonConstraint.constant = 0;
-        
     }
     
     
@@ -260,7 +261,7 @@
                 [CNUserCenterRequest cancelWithdrawBillRequestId:self.model.requestId handler:^(id responseObj, NSString *errorMsg) {
                     if (KIsEmptyString(errorMsg)) {
                         [CNTOPHUB showSuccess:@"订单取消成功"];
-                        [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil]; // 让首页和我的余额刷新
+                        [[NSNotificationCenter defaultCenter] postNotificationName:BYRefreshBalanceNotification object:nil]; // 让首页和我的余额刷新
                         weakSelf.btnBtm.enabled = NO;
                         weakSelf.navPopupBlock(@(1)); //需要刷新
                     }
@@ -271,7 +272,24 @@
     else {
         [HYTextAlertView showWithTitle:@"" content:@"确认删除此笔记录吗？" comfirmText:@"确认" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm){
             if (isComfirm) {
-//                [strongSelf requestDeleteModelRow:indexPath.row];
+                NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
+                [paramDic setObject:@[self.model.requestId] forKey:@"requestIds"];
+                
+                // 充 提 洗 三个不同接口
+                NSString *URLPath = config_deleteTrans;
+                if (self.detailType == transactionRecord_XMType) {
+                    URLPath = config_xmdeleteRequest;
+                } else if (self.detailType == transactionRecord_withdrawType) {
+                    URLPath = config_deleteWithdraw;
+                }
+                
+                [CNBaseNetworking POST:URLPath parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
+                    if (KIsEmptyString(errorMsg)) {
+                        [CNTOPHUB showSuccess:@"记录已删除"];
+                        [weakSelf.navigationController popViewControllerAnimated:true];
+                    }
+                }];
+                
             }
         }];
     }

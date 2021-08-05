@@ -72,7 +72,7 @@
 - (void)removeRedPoint{
     //按照tag值進行移除
     for (UIView *subView in self.subviews) {
-        if (subView.tag == 998 || subView.tag == 999) {
+        if (subView.tag == 997 || subView.tag == 998 || subView.tag == 999) {
             [subView removeFromSuperview];
         }
     }
@@ -80,15 +80,20 @@
 
 
 - (void)showRedPoint:(CGPoint)point value:(NSInteger )value {
-    CGFloat viewWidth = 18;
+    [self removeRedPoint];
+    CGFloat viewWidth = 20;
+    if (value > 100) {
+        viewWidth = 25;
+    }
     UILabel *valueLbl = [[UILabel alloc]initWithFrame:CGRectMake(point.x-viewWidth*0.5, point.y-viewWidth*0.5, viewWidth, viewWidth)];
-    valueLbl.text = [NSString stringWithFormat:@"%ld", value];
+    valueLbl.text = [NSString stringWithFormat:@"%ld%@", value, viewWidth > 100 ? @"+" : @""];
     valueLbl.font = [UIFont fontPFR12];
     valueLbl.textColor = [UIColor whiteColor];
     valueLbl.textAlignment = NSTextAlignmentCenter;
     valueLbl.backgroundColor = [UIColor redColor];
     valueLbl.clipsToBounds = YES;
     valueLbl.layer.cornerRadius = viewWidth*0.5;
+    valueLbl.tag = 997;
     [self addSubview:valueLbl];
 }
 

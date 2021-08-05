@@ -37,7 +37,7 @@
 
 #import <MJRefresh/MJRefresh.h>
 #import "NSURL+HYLink.h"
-
+#import "HYTabBarViewController.h"
 
 @interface CNHomeVC () <CNUserInfoLoginViewDelegate,  SDCycleScrollViewDelegate, UUMarqueeViewDelegate, GameBtnsStackViewDelegate, DashenBoardAutoHeightDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -101,9 +101,7 @@
     [self requestAnnouncement];
     [self requestCDNAndDomain];
     
-    //    [CNHomeRequest test];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYSwitchAcoutSuccNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:BYRefreshBalanceNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:HYLogoutSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:BYDidEnterHomePageNoti object:nil];
@@ -158,11 +156,16 @@
     } else {
         self.infoViewH.constant = 140;
     }
+    
+    [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] performSelector:@selector(fetchUnreadCount)];
 }
 
 - (void)userDidLogout {
     [self.infoView updateLoginStatusUIIsRefreshing:NO];
     self.infoViewH.constant = 140;
+    
+    [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] performSelector:@selector(setUnreadToDefault)];
+
 }
 
 - (void)configUI {
@@ -461,6 +464,8 @@
             BOOL isUSDT = [CNUserManager shareManager].isUsdtMode;
             CGPoint p = CGPointMake(isUSDT?(kScreenWidth-15-24-(109/4.0)):(kScreenWidth-15-24-(109*3/4.0)), self.infoView.bottom-50+kStatusBarHeight);
             [BYMultiAccountRuleView showRuleWithLocatedPoint:p];
+            //Reset UnreadMessage
+            [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] performSelector:@selector(fetchUnreadCount)];
         }
     } faileHandler:^{
         [self.infoView refreshBottomBtnsStatus];

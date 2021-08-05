@@ -63,8 +63,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)queryLetterPageNo:(NSInteger)pageNo
                  pageSize:(NSInteger)pageSize
                   handler:(HandlerBlock)handler;
+///设站内信已读
++ (void)setLetterReadWithId:(NSArray *)ids
+                    handler:(HandlerBlock)handler;
 
-
+///获取站内信Unread
++ (void)queryLetterUnreadCountHandler:(HandlerBlock)handler;
 /// 查询用户订阅
 /// @param handler 回调
 + (void)queryUserSubscribHandler:(HandlerBlock)handler;

@@ -23,6 +23,8 @@
 #import "HYTextAlertView.h"
 #import <YJChat.h>
 
+#import "CNUserCenterRequest.h"
+
 @interface HYTabBarViewController ()<UITabBarControllerDelegate, SuspendBallDelegte, CNServerViewDelegate>
 @property (nonatomic, strong) SuspendBall *suspendBall;
 @property (assign, nonatomic) BOOL isOpenWMQ; //!<是否开启微脉圈
@@ -36,11 +38,14 @@
     [self setupControllers];
     [self setupAppearance];
     [self checkWMQStatus];
+    [self fetchUnreadCount];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkWMQStatus) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkWMQStatus) name:HYLogoutSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchUnreadCount) name:BYDidReadMessageNotificaiton object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupAppearance) name:CNSkinChangeNotification object:nil];
-
+    
+    
 }
 
 - (void)setupAppearance{
@@ -173,7 +178,6 @@
 #pragma mark  UITabBarControllerDelegate
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
-    
     HYNavigationController *curNav = (HYNavigationController *)viewController;
     if ([curNav.jk_rootViewController isKindOfClass:[CNMineVC class]] && ![CNUserManager shareManager].isLogin) {
 
@@ -285,5 +289,29 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark -
+#pragma mark Fetch Unread Message
+- (void)fetchUnreadCount {
+    [self setUnreadToDefault];
+    if ([CNUserManager shareManager].isLogin == false) {
+        return;
+    }
+    
+    WEAKSELF_DEFINE
+    [CNUserCenterRequest queryLetterUnreadCountHandler:^(id responseObj, NSString *errorMsg) {
+        NSInteger unread = [responseObj[@"totalRow"] intValue];
+        weakSelf.unreadMessage = unread;
+
+        UITabBarItem *item = self.tabBar.items.lastObject;
+        item.badgeValue = unread > 0 ? @"": nil;
+        [[NSNotificationCenter defaultCenter] postNotificationName:BYMessageCountDidLoadNotificaiton object:nil];
+    }];
+}
+
+- (void)setUnreadToDefault {
+    self.unreadMessage = 0;
+    [self.tabBar.items.lastObject setBadgeValue:nil];
+}
 
 @end

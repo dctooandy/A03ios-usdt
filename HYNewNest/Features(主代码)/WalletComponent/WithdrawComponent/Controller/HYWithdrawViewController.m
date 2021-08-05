@@ -360,7 +360,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                                 MyLog(@"点击了关闭");
                                 [HYWithdrawActivityAlertView showHandedOutGiftUSDTAmount:giftAmount handler:^{
                                     [strongSelf requestBalance];
-                                    [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil]; // 让首页和我的余额刷新
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:BYRefreshBalanceNotification object:nil]; // 让首页和我的余额刷新
                                 }];
                             }];
                         } else {
@@ -383,7 +383,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
             if (!errorMsg) {
                 [strongSelf.comfirmView showSuccessWithdraw];
                 [strongSelf requestBalance];
-                [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil]; // 让首页和我的余额刷新
+                [[NSNotificationCenter defaultCenter] postNotificationName:BYRefreshBalanceNotification object:nil]; // 让首页和我的余额刷新
             } else {
                 [strongSelf.comfirmView removeView];
             }

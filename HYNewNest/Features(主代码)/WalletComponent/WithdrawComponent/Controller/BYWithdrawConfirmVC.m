@@ -123,7 +123,7 @@
                 weakSelf.successView.alpha = 1;
             }];
 
-            [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil]; // 让首页和我的余额刷新
+            [[NSNotificationCenter defaultCenter] postNotificationName:BYRefreshBalanceNotification object:nil]; // 让首页和我的余额刷新
         }
     }];
 }

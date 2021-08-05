@@ -35,11 +35,12 @@
 
 - (void)loadViewFromXib {
     [super loadViewFromXib];
-
+    
     [self editSegmentControlUIStatus];
     [self refreshBottomBtnsStatus];
     // 提现右上角NEW
 //    [self.withdrawCNYBtn showRightTopImageName:@"new_txgb" size:CGSizeMake(30, 14) offsetX:-30 offsetYMultiple:0];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshBalance) name:BYRefreshBalanceNotification object:nil];
 }
 
 - (void)editSegmentControlUIStatus {
@@ -54,7 +55,12 @@
     [_switchModeSegc setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
 }
 
+- (void)refreshBalance {
+    [self updateLoginStatusUIIsRefreshing:true];
+}
+
 - (void)updateLoginStatusUIIsRefreshing:(BOOL)isRefreshing {
+    
     if ([CNUserManager shareManager].isLogin) {
         [self configLogInUI];
         if (isRefreshing) {

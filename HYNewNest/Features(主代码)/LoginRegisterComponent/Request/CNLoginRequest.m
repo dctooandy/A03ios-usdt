@@ -434,7 +434,7 @@
                 [[CNUserManager shareManager] saveUserInfo:newUIF];
                 [[CNUserManager shareManager] deleteWebCache];
                 
-                [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil];
+//                [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil];
                 if ([CNUserManager shareManager].isUsdtMode) {
                     [CNTOPHUB showSuccess:@"切换到了USDT模式"];
                 } else {
@@ -470,7 +470,7 @@
                 [[CNUserManager shareManager] saveUserInfo:newUIF];
                 [[CNUserManager shareManager] deleteWebCache];
                 
-                [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil];
+//                [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil];
                 if ([CNUserManager shareManager].isUsdtMode) {
                     [CNTOPHUB showSuccess:@"切换到了USDT模式"];
                 } else {

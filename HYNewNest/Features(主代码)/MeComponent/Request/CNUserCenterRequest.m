@@ -86,6 +86,20 @@
     [self POST:(config_letter_query) parameters:param completionHandler:handler];
 }
 
++ (void)setLetterReadWithId:(NSArray *)ids
+                    handler:(HandlerBlock)handler {
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"ids"] = ids;
+    [self POST:(config_letter_read) parameters:param completionHandler:handler];
+}
+
++ (void)queryLetterUnreadCountHandler:(HandlerBlock)handler {
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"flag"] = @(0);
+    param[@"onlyCount"] = @(1);
+    [self POST:(config_letter_query) parameters:param completionHandler:handler];
+}
+
 + (void)queryUserSubscribHandler:(HandlerBlock)handler {
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"type"] = @(1); //订阅类型[1:短信; 2:邮件; 3:站内信][暂时只支持短信]

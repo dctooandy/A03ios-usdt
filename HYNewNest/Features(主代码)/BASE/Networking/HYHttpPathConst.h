@@ -88,6 +88,7 @@
 #define config_queryAnnoumces  @"message/queryAnnounces"  //获取公告
 #define config_subscrib_query   @"subscribe/query" //查询会员通知设置
 #define config_letter_query  @"letter/query" //查询站内信 查询未读数
+#define config_letter_read @"letter/batchViewLetter" //设站内信已读
 #define config_subscrib_modify  @"subscribe/modify" //修改员订阅设置
 
 #pragma mark 游戏

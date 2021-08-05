@@ -37,6 +37,8 @@
 #import "CNLoginRequest.h"
 
 #import "BYTradeEntryVC.h"
+#import "UIView+Badge.h"
+#import "HYTabBarViewController.h"
 
 @interface CNMineVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -137,7 +139,8 @@
     [self requestOtherAppData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchCurrencyUI) name:HYLoginSuccessNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchCurrencyUI) name:HYSwitchAcoutSuccNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchCurrencyUI) name:BYRefreshBalanceNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(configUnreadMessage) name:BYMessageCountDidLoadNotificaiton object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -145,6 +148,11 @@
     
 //    [self requestAccountBalances:NO];
     [self.walletView requestAccountBalances:NO];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self configUnreadMessage];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -170,6 +178,22 @@
     [_switchModeSegc setTitleTextAttributes:@{NSForegroundColorAttributeName:gdColor} forState:UIControlStateNormal];
     [_switchModeSegc setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
     
+}
+
+- (void)configUnreadMessage {
+    [self.entryIconLbs enumerateObjectsUsingBlock:^(UILabel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIView *msgView = [obj superview];
+        [msgView hideRedPoint];
+        if ([obj.text isEqualToString:@"消息中心"]) {
+            NSInteger unread = [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] unreadMessage];
+            if (unread == 0) {
+                [msgView hideRedPoint];
+            }
+            else {
+                [msgView showRedPoint:CGPointMake(CGRectGetWidth(msgView.frame) - 18, 15) value:unread];
+            }
+        }
+    }];
 }
 
 #pragma mark - 按钮事件
@@ -260,6 +284,8 @@
             BOOL isUSDT = [CNUserManager shareManager].isUsdtMode;
             CGPoint p = CGPointMake(isUSDT?(kScreenWidth-15-40-(109/4.0)):(kScreenWidth-15-40-(109*3/4.0)), self.switchModeSegc.bottom+kStatusBarHeight+15);
             [BYMultiAccountRuleView showRuleWithLocatedPoint:p];
+            //Reset UnreadMessage
+            [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] performSelector:@selector(fetchUnreadCount)];
         }
     } faileHandler:^{
         [weakSelf switchCurrencyUI];

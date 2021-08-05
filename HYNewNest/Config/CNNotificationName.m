@@ -11,10 +11,13 @@
 NSNotificationName const HYLoginSuccessNotification             = @"HYLoginSuccessNotification";
 NSNotificationName const HYLogoutSuccessNotification            = @"HYLogoutSuccessNotification";
 NSNotificationName const HYSwitchAcoutSuccNotification          = @"HYSwitchAcoutSuccNotification";
+NSNotificationName const BYRefreshBalanceNotification           = @"BYRefreshBalanceNotification";
 NSNotificationName const BYWebSocketDidOpenNoti                 = @"BYWebSocketDidOpenNoti";
 NSNotificationName const BYWebSocketDidReceivedNoti             = @"BYWebSocketDidReceivedNoti";
 NSNotificationName const BYDidEnterHomePageNoti                 = @"BYDidEnterHomePageNoti";
 NSNotificationName const BYDidUpdateUserProfileNoti             = @"BYDidUpdateUserProfileNoti";
+NSNotificationName const BYDidReadMessageNotificaiton           = @"BYDidReadMessageNotification";
+NSNotificationName const BYMessageCountDidLoadNotificaiton      = @"BYMessageCountDidLoadNotificaiton";
 
 
 NSString * const HYNotShowQKFLUserDefaultKey                    = @"HYNotShowQKFLUserDefaultKey";

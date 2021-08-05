@@ -13,6 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface HYTabBarViewController : UITabBarController
 -(void)hideSuspendBall;
 -(void)showSuspendBall;
+- (void)fetchUnreadCount;
+- (void)setUnreadToDefault;
+@property (nonatomic, assign) NSInteger unreadMessage;
+
 @end
 
 NS_ASSUME_NONNULL_END

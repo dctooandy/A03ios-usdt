@@ -7,6 +7,7 @@
 //
 
 #import "CNMessageTCell.h"
+#import "UIColor+Gradient.h"
 
 @implementation CNMessageTCell
 
@@ -15,6 +16,9 @@
     // Initialization code
     
     self.contentLb.font = [UIFont systemFontOfSize:AD(12)];
+    self.markLabel.backgroundColor = [UIColor gradientFromColor:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE) withWidth:CGRectGetWidth(self.markLabel.frame)];
+    self.markLabel.layer.cornerRadius = 5;
+    self.markLabel.layer.masksToBounds = true;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
