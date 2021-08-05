@@ -18,8 +18,9 @@
     formatter.dateFormat = @"YYYY-MM-dd HH:mm:ss";
     NSDate *announceDate = [formatter dateFromString:self.createDate];
     //两天内
-    NSDate *currentDate = [[NSDate date] dateByAddingTimeInterval:-60 * 60 * 24 * 2];
-    return [announceDate earlierDate:currentDate];
+    NSDate *compareDate = [[NSDate date] dateByAddingTimeInterval:-60 * 60 * 24 * 2];
+    
+    return !([announceDate compare:compareDate] == NSOrderedDescending && [announceDate compare:[NSDate date]]);
 }
 
 @end

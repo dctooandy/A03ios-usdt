@@ -105,7 +105,7 @@
         [self.messageBtn setJk_badgeValue:[NSString stringWithFormat:@"%li", unread]];
     }
     
-    [self.messageBtn setJk_badgeOriginX:CGRectGetWidth(self.messageBtn.frame) - 32];
+    [self.messageBtn setJk_badgeOriginX:CGRectGetWidth(self.messageBtn.frame) - 50];
     [self.messageBtn setJk_badgeOriginY:5];
 
 }

@@ -150,14 +150,12 @@
     [self.walletView requestAccountBalances:NO];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self configUnreadMessage];
-}
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     self.scrollContentW.constant = kScreenWidth;
+    [self configUnreadMessage];
+
 }
 
 - (void)configUI {
