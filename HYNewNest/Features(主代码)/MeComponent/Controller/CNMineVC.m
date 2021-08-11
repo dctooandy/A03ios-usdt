@@ -195,6 +195,10 @@
 }
 
 #pragma mark - 按钮事件
+/// 弹窗
+- (IBAction)didTapAskBtn:(id)sender {
+    [BYMultiAccountRuleView showRuleWithLocatedY:kNavPlusStaBarHeight+10];
+}
 
 // 设置
 - (IBAction)setting:(id)sender {
@@ -279,9 +283,9 @@
     [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) { //已经有监听通知了
 //            [self switchCurrencyUI];
-            BOOL isUSDT = [CNUserManager shareManager].isUsdtMode;
-            CGPoint p = CGPointMake(isUSDT?(kScreenWidth-15-40-(109/4.0)):(kScreenWidth-15-40-(109*3/4.0)), self.switchModeSegc.bottom+kStatusBarHeight+15);
-            [BYMultiAccountRuleView showRuleWithLocatedPoint:p];
+//            BOOL isUSDT = [CNUserManager shareManager].isUsdtMode;
+//            CGPoint p = CGPointMake(isUSDT?(kScreenWidth-15-40-(109/4.0)):(kScreenWidth-15-40-(109*3/4.0)), self.switchModeSegc.bottom+kStatusBarHeight+15);
+//            [BYMultiAccountRuleView showRuleWithLocatedPoint:p];
             //Reset UnreadMessage
             [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] performSelector:@selector(fetchUnreadCount)];
         }

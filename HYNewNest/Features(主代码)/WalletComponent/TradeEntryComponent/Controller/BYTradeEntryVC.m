@@ -95,7 +95,9 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
     [self.tableView.tableHeaderView addSubview:self.bannerView];
     [self.tableView registerNib:[UINib nibWithNibName:@"BYTradeTableViewCell" bundle:nil]
          forCellReuseIdentifier:kTradeEntryCell];
-    [self addNaviRightItemWithImageName:@"icon_jl"];
+//  Request on hold
+//    [self addNaviRightItemWithImageName:@"icon_jl"];
+    [self addNaviRightItemWithImageName:@"kf"];
 }
 
 - (void)setupBanner {
@@ -284,8 +286,9 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
 }
 
 - (void)rightItemAction {
-//    [NNPageRouter presentOCSS_VC];
-    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
+    //Request on hole
+    [NNPageRouter presentOCSS_VC];
+//    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
 }
 
 

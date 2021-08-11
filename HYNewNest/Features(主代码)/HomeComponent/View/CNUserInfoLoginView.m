@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *usdtADImgv;
 
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (weak, nonatomic) IBOutlet UIButton *questionBtn;
 
 #pragma - mark 未登录属性
 @property (weak, nonatomic) IBOutlet UIView *loginView;
@@ -153,6 +154,12 @@
 - (IBAction)regist:(id)sender {
     if (_delegate && [_delegate respondsToSelector:@selector(registerAction)]) {
         [_delegate registerAction];
+    }
+}
+
+- (IBAction)didTapQuestion:(id)sender {
+    if (_delegate && [_delegate respondsToSelector:@selector(questionAction)]) {
+        [_delegate questionAction];
     }
 }
 

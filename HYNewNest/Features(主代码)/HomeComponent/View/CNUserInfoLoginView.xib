@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,6 +15,7 @@
                 <outlet property="headerIcon" destination="UML-xs-Jw0" id="FeG-lZ-mt2"/>
                 <outlet property="loginView" destination="bWe-Js-K1F" id="5y4-ts-Wf5"/>
                 <outlet property="moneyLb" destination="oAS-o1-hZh" id="Faf-IR-ofN"/>
+                <outlet property="questionBtn" destination="okc-dh-cyP" id="9xa-GM-fPY"/>
                 <outlet property="switchModeSegc" destination="WLz-tL-cWV" id="xim-H6-rAY"/>
                 <outlet property="usdtADImgv" destination="gdW-q9-I6I" id="ZDU-6E-PTm"/>
                 <outlet property="usrNameLb" destination="vHg-RI-kbC" id="i2h-ua-uj4"/>
@@ -63,7 +64,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WLz-tL-cWV">
-                            <rect key="frame" x="271" y="23" width="109" height="27"/>
+                            <rect key="frame" x="264" y="23" width="109" height="27"/>
                             <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="26" id="qiC-ap-cyS"/>
@@ -79,17 +80,30 @@
                                 <action selector="switchAccountWhileClik:" destination="-1" eventType="valueChanged" id="8UV-Eu-n9v"/>
                             </connections>
                         </segmentedControl>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="okc-dh-cyP">
+                            <rect key="frame" x="378" y="28" width="16" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="16" id="9Cf-QX-aKT"/>
+                                <constraint firstAttribute="height" constant="16" id="fmU-uL-gC7"/>
+                            </constraints>
+                            <state key="normal" image="ico_quesmark"/>
+                            <connections>
+                                <action selector="didTapQuestion:" destination="-1" eventType="touchUpInside" id="hct-bL-HID"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="WLz-tL-cWV" secondAttribute="trailing" constant="24" id="196-DC-TlJ"/>
                         <constraint firstItem="oAS-o1-hZh" firstAttribute="bottom" secondItem="UML-xs-Jw0" secondAttribute="bottom" constant="-1" id="1qL-aY-jEl"/>
                         <constraint firstItem="oAS-o1-hZh" firstAttribute="leading" secondItem="UML-xs-Jw0" secondAttribute="trailing" constant="15" id="3C5-MN-txA"/>
                         <constraint firstItem="e1n-OH-5Tm" firstAttribute="centerY" secondItem="vHg-RI-kbC" secondAttribute="centerY" constant="-2" id="3vP-Zg-aMr"/>
                         <constraint firstItem="WLz-tL-cWV" firstAttribute="centerY" secondItem="UML-xs-Jw0" secondAttribute="centerY" id="5Fc-bN-RfF"/>
                         <constraint firstItem="otD-ws-LfD" firstAttribute="centerY" secondItem="oAS-o1-hZh" secondAttribute="centerY" constant="2" id="7jH-qS-Ljq"/>
                         <constraint firstItem="UML-xs-Jw0" firstAttribute="leading" secondItem="sLZ-3h-qrV" secondAttribute="leading" constant="20" id="HjJ-HP-e44"/>
+                        <constraint firstItem="okc-dh-cyP" firstAttribute="centerY" secondItem="WLz-tL-cWV" secondAttribute="centerY" id="IOe-9S-kT9"/>
                         <constraint firstItem="vHg-RI-kbC" firstAttribute="leading" secondItem="oAS-o1-hZh" secondAttribute="leading" id="QIa-sq-ACe"/>
+                        <constraint firstAttribute="trailing" secondItem="okc-dh-cyP" secondAttribute="trailing" constant="10" id="aH1-9A-xLz"/>
+                        <constraint firstItem="okc-dh-cyP" firstAttribute="leading" secondItem="WLz-tL-cWV" secondAttribute="trailing" constant="5" id="e9l-Wr-c4f"/>
                         <constraint firstItem="e1n-OH-5Tm" firstAttribute="leading" secondItem="vHg-RI-kbC" secondAttribute="trailing" constant="5" id="gVi-NO-SLZ"/>
                         <constraint firstItem="UML-xs-Jw0" firstAttribute="top" secondItem="sLZ-3h-qrV" secondAttribute="top" constant="15" id="roJ-sw-cXv"/>
                         <constraint firstItem="otD-ws-LfD" firstAttribute="leading" secondItem="oAS-o1-hZh" secondAttribute="trailing" constant="3" id="tPn-WL-mX0"/>
@@ -260,6 +274,7 @@
         <image name="btn_login" width="141" height="38"/>
         <image name="btn_regsiter" width="141" height="38"/>
         <image name="cz_home" width="20" height="20"/>
+        <image name="ico_quesmark" width="14" height="16"/>
         <image name="icon" width="42" height="42"/>
         <image name="tx_home" width="21" height="20"/>
         <image name="vip0" width="43" height="18"/>

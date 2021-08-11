@@ -48,6 +48,11 @@
     [self setUnreadMessage:unread];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:BYDidReadMessageNotificaiton object:nil];
+}
+
 //- (void)rightItemAction {
 //    [self.navigationController pushViewController:[CNNotifySettingVC new] animated:YES];
 //}

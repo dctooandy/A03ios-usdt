@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BYMultiAccountRuleView : HYBaseAlertView
++ (void)showRuleWithLocatedY:(CGFloat)y;
 
 + (void)showRuleWithLocatedPoint:(CGPoint)p;
 
