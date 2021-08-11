@@ -191,6 +191,7 @@
 #define config_yebConfig        @"yeb/yebConfig" // 查询余额宝配置
 
 #pragma mark night city
-#define config_nightCityUsrType @"83e6dy/activity/newapi/nightCity/getUserType"
+//#define config_nightCityUsrType @"83e6dy/activity/newapi/nightCity/getUserType"
+#define config_nightCityUsrType @"83e6dy/activity/newapi/nightCity/checkSilenceMemberRecallTicket"
 
 #endif /* HYHttpPathConst_h */

@@ -1020,6 +1020,7 @@
 		F784BA7D26A139FA00280F66 /* BYGloryHeaderContentItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = F784BA7C26A139F900280F66 /* BYGloryHeaderContentItem.xib */; };
 		F786E5812680609C008B7DDE /* BYTradeEntryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F786E5802680609C008B7DDE /* BYTradeEntryModel.m */; };
 		F786E583268063C8008B7DDE /* BYTradeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F786E582268063C8008B7DDE /* BYTradeTableViewCell.xib */; };
+		F787DB1826C371F700AF7133 /* NSDateFormatter+BYDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F787DB1726C371F700AF7133 /* NSDateFormatter+BYDateFormatter.m */; };
 		F78BB0F626A171F2003EAB31 /* BYGloryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F78BB0F526A171F2003EAB31 /* BYGloryModel.m */; };
 		F791E24E269E7B44002D6648 /* BYCNYRechargeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = F791E24D269E7B44002D6648 /* BYCNYRechargeAlertView.m */; };
 		F7A75F1F264E405600D933D7 /* BYBorderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F1E264E405600D933D7 /* BYBorderButton.m */; };
@@ -2474,6 +2475,8 @@
 		F786E57F2680609C008B7DDE /* BYTradeEntryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYTradeEntryModel.h; sourceTree = "<group>"; };
 		F786E5802680609C008B7DDE /* BYTradeEntryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYTradeEntryModel.m; sourceTree = "<group>"; };
 		F786E582268063C8008B7DDE /* BYTradeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BYTradeTableViewCell.xib; sourceTree = "<group>"; };
+		F787DB1626C371F700AF7133 /* NSDateFormatter+BYDateFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+BYDateFormatter.h"; sourceTree = "<group>"; };
+		F787DB1726C371F700AF7133 /* NSDateFormatter+BYDateFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+BYDateFormatter.m"; sourceTree = "<group>"; };
 		F78BB0F426A171F2003EAB31 /* BYGloryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGloryModel.h; sourceTree = "<group>"; };
 		F78BB0F526A171F2003EAB31 /* BYGloryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGloryModel.m; sourceTree = "<group>"; };
 		F791E24C269E7B44002D6648 /* BYCNYRechargeAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYCNYRechargeAlertView.h; sourceTree = "<group>"; };
@@ -3115,6 +3118,7 @@
 		3D13389924AF2D1900B29783 /* Utility(工具类) */ = {
 			isa = PBXGroup;
 			children = (
+				F787DB1126C3719300AF7133 /* New Group */,
 				F73857D3267B18E700768D14 /* View */,
 				3DBA55C5256FA6D3009A2B71 /* Button */,
 				3DBA55BF256FA6D3009A2B71 /* TextFeild */,
@@ -3210,6 +3214,7 @@
 		3D13389D24AF2D1900B29783 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				F787DB1226C371BC00AF7133 /* NSDateFormatter */,
 				3D5B259A25C01E7A00FD23F0 /* JSONHelper */,
 				3D65D1132568E1EC00917E1B /* WebSocket */,
 				3D643F7924F29F3600B9AAA7 /* Push */,
@@ -5527,6 +5532,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		F787DB1126C3719300AF7133 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		F787DB1226C371BC00AF7133 /* NSDateFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				F787DB1626C371F700AF7133 /* NSDateFormatter+BYDateFormatter.h */,
+				F787DB1726C371F700AF7133 /* NSDateFormatter+BYDateFormatter.m */,
+			);
+			path = NSDateFormatter;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -6727,6 +6748,7 @@
 				E98BEF1C24D2BCA400E6B0C8 /* HYWithdrawCardCell.m in Sources */,
 				E9AE9F0424DAAF4500E8F4D8 /* ABCOneKeyRegisterBFBHelper.m in Sources */,
 				E969EB3824E2427900D58FE9 /* HYRechargeCNYViewController.m in Sources */,
+				F787DB1826C371F700AF7133 /* NSDateFormatter+BYDateFormatter.m in Sources */,
 				E98BEEF824D0341A00E6B0C8 /* HYCTZNPlayerViewController.m in Sources */,
 				E986A1AA24CBCD39000F9CFF /* CNLoginSuccChooseAccountVC.m in Sources */,
 				0487C9F924D2CCED0013715A /* CNDownloadVC.m in Sources */,

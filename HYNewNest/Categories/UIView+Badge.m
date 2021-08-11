@@ -80,13 +80,27 @@
 
 
 - (void)showRedPoint:(CGPoint)point value:(NSInteger )value {
-    [self removeRedPoint];
-    CGFloat viewWidth = 20;
+    [self showRedPoint:point value:value withWidth:18 mutiPoint:true];
+}
+
+- (void)showRedPoint:(CGPoint)point value:(NSInteger)value withWidth:(CGFloat)width mutiPoint:(BOOL)muti{
+    CGFloat viewWidth = width;
     if (value > 100) {
         viewWidth = 25;
     }
+    
+    if (muti == false) {
+        [self removeRedPoint];
+    }
+    
     UILabel *valueLbl = [[UILabel alloc]initWithFrame:CGRectMake(point.x-viewWidth*0.5, point.y-viewWidth*0.5, viewWidth, viewWidth)];
-    valueLbl.text = [NSString stringWithFormat:@"%ld%@", value, viewWidth > 100 ? @"+" : @""];
+    if (value > 99) {
+        valueLbl.text = [NSString stringWithFormat:@"99+"];
+    }
+    else {
+        valueLbl.text = [NSString stringWithFormat:@"%ld", value];
+
+    }
     valueLbl.font = [UIFont fontPFR12];
     valueLbl.textColor = [UIColor whiteColor];
     valueLbl.textAlignment = NSTextAlignmentCenter;

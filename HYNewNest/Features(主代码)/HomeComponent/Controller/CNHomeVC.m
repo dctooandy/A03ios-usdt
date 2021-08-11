@@ -236,7 +236,7 @@
 - (void)requestNightCity {
     [CNHomeRequest requestNightCityHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-            if ([responseObj[@"activeType"] integerValue] == 2 && [responseObj[@"customerLevel"] integerValue] >= 1) {
+            if ([responseObj[@"popup"] boolValue] == true) {
                 [BYNightCityGiftAlertView showAlertViewHandler:^(BOOL isComfirm) {
                     if (isComfirm) {
                         [NNPageRouter jump2HTMLWithStrURL:H5URL_Pub_NightCity title:@"币游不夜城" needPubSite:NO];

@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 - (void)showRedPoint:(CGPoint)point value:(NSInteger )value;
-
+- (void)showRedPoint:(CGPoint)point value:(NSInteger)value withWidth:(CGFloat)width mutiPoint:(BOOL)muti;
 @end
 
 NS_ASSUME_NONNULL_END

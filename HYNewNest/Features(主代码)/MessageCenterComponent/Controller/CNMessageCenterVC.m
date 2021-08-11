@@ -87,7 +87,7 @@
     //after confirm reload tableview finish set message to read
     [CATransaction begin];
     [CATransaction setCompletionBlock:^{
-        [self setMessageRead];
+        [self performSelector:@selector(setMessageRead) withObject:nil afterDelay:1.f];
     }];
     [self.tableView reloadData];
     [CATransaction commit];
@@ -170,7 +170,8 @@
                 //after confirm reload tableview finish set message to read
                 [CATransaction begin];
                 [CATransaction setCompletionBlock:^{
-                    [self setMessageRead];
+//                    [self setMessageRead];
+                    [self performSelector:@selector(setMessageRead) withObject:nil afterDelay:1.f];
                 }];
                 [self.tableView reloadData];
                 [CATransaction commit];

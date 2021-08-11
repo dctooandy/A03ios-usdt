@@ -7,6 +7,7 @@
 //
 
 #import "CNHomeRequest.h"
+#import "NSDateFormatter+BYDateFormatter.h"
 
 @implementation CNHomeRequest
 
@@ -47,8 +48,15 @@
 }
 
 + (void)requestNightCityHandler:(HandlerBlock)handler {
-    NSMutableDictionary *param = @{@"customerId":[CNUserManager shareManager].userInfo.customerId};
-    [self POST:kGatewayExtraPath(config_nightCityUsrType) parameters:param completionHandler:handler];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    
+    NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
+    paramDic[@"currency"] = @"USDT";
+    paramDic[@"beginDate"] = [formatter monthOfFirstDate];
+    paramDic[@"endDate"] = [formatter monthOfEndDate];
+    
+    [self POST:kGatewayExtraPath(config_nightCityUsrType) parameters:paramDic completionHandler:handler];
 }
 
 #pragma mark - 游戏

@@ -188,7 +188,7 @@
                 [msgView hideRedPoint];
             }
             else {
-                [msgView showRedPoint:CGPointMake(CGRectGetWidth(msgView.frame) - 18, 15) value:unread];
+                [msgView showRedPoint:CGPointMake(CGRectGetWidth(msgView.frame) - 18, 15) value:unread withWidth:25 mutiPoint:false];
             }
         }
     }];
