@@ -109,20 +109,20 @@
     self.tradeTypeLb.text = self.model.title;
     self.flowLb.text = self.model.referenceId?:self.model.requestId;
     self.timeLb.text = self.model.createDate?:self.model.createdTime;
-
-    //馀额宝不确定能共用提币API与否
-    if (self.model.type == transactionRecord_withdrawType && self.model.isWaitingStatus == true) {
-//    if ((self.model.type == transactionRecord_withdrawType || self.model.type == TransactionRecord_yuEBaoWithdraw) && self.model.isWaitingStatus == true) {
-        [self.cancelButton setTitle:@"取消订单" forState:UIControlStateNormal];
-    }
-    else if ((self.model.type == transactionRecord_XMType || self.model.type == transactionRecord_withdrawType || self.model.type == transactionRecord_rechargeType) && self.model.isWaitingStatus == false) {
-        [self.cancelButton setTitle:@"删除记录" forState:UIControlStateNormal];
-    }
-    else {
-        [self.cancelButton setHidden:true];
-        self.cancelButtonConstraint.constant = 0;
-    }
-    
+//
+//    //馀额宝不确定能共用提币API与否
+//    if (self.model.type == transactionRecord_withdrawType && self.model.isWaitingStatus == true) {
+////    if ((self.model.type == transactionRecord_withdrawType || self.model.type == TransactionRecord_yuEBaoWithdraw) && self.model.isWaitingStatus == true) {
+//        [self.cancelButton setTitle:@"取消订单" forState:UIControlStateNormal];
+//    }
+//    else if ((self.model.type == transactionRecord_XMType || self.model.type == transactionRecord_withdrawType || self.model.type == transactionRecord_rechargeType) && self.model.isWaitingStatus == false) {
+//        [self.cancelButton setTitle:@"删除记录" forState:UIControlStateNormal];
+//    }
+//    else {
+//        [self.cancelButton setHidden:true];
+//        self.cancelButtonConstraint.constant = 0;
+//    }
+//
     
     // 存取款才有
     NSString *flag = @"";
@@ -187,7 +187,7 @@
             
             if (self.model.flag == transactionProgress_waitCheckState ||
                 self.model.flag == transactionProgress_waitPayState) {
-                [self.btnBtm setTitle:@"继续充值" forState:UIControlStateNormal];
+                [self.btnBtm setTitle:@"取消订单" forState:UIControlStateNormal];
                 self.btnBtm.hidden = NO;
                 self.btnBtm.enabled = YES;
             }
@@ -226,9 +226,6 @@
             
             self.processView.hidden = YES;
             self.processViewH.constant = 0;
-            
-            self.statusViewConstriant.constant = 0;
-            [self.statusView setHidden:true];
             
             // 投注的数据不同
             self.tradeTypeLb.text = _model.gameKindName;
@@ -306,18 +303,20 @@
             [self.navigationController pushViewController:[HYRechargeCNYViewController new] animated:YES];
         }
         
-//    } else if (self.detailType == CNRecordTypeWithdraw || self.detailType == CNRecordTypeYEBWithdraw) {
-//        //TODO: 不知道能不能取消 等接口数据出来
-//        [CNUserCenterRequest cancelWithdrawBillRequestId:self.model.requestId handler:^(id responseObj, NSString *errorMsg) {
-//            if (KIsEmptyString(errorMsg)) {
-//                [CNTOPHUB showSuccess:@"订单取消成功"];
-//                [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil]; // 让首页和我的余额刷新
-//                self.btnBtm.enabled = NO;
-//                self.navPopupBlock(@(1)); //需要刷新
-//            }
-//        }];
+    } else if (self.detailType == CNRecordTypeWithdraw || self.detailType == CNRecordTypeYEBWithdraw) {
+        //TODO: 不知道能不能取消 等接口数据出来
+        [CNUserCenterRequest cancelWithdrawBillRequestId:self.model.requestId handler:^(id responseObj, NSString *errorMsg) {
+            if (KIsEmptyString(errorMsg)) {
+                [CNTOPHUB showSuccess:@"订单取消成功"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil]; // 让首页和我的余额刷新
+                self.btnBtm.enabled = NO;
+                self.navPopupBlock(@(1)); //需要刷新
+            }
+        }];
+        
     } else if (self.detailType == CNRecordTypeYEBDeposit) {
         [self.navigationController pushViewController:[BYYuEBaoVC new] animated:YES];
+        
     }
 }
 

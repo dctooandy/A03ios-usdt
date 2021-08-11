@@ -221,19 +221,16 @@
             self.resultModel = resultModel;
             
             // 洗码不显示 等待&拒绝
-            
-            NSMutableArray *arr = [resultModel.data mutableCopy];
-            WEAKSELF_DEFINE
-            [arr enumerateObjectsUsingBlock:^(CreditQueryDataModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                NSString *flag = obj.flagDesc;
-                obj.type = weakSelf.recoType;
-                if (weakSelf.recoType == transactionRecord_XMType && ([flag isEqualToString:@"等待"] || [flag containsString:@"拒绝"])) {
-                    [arr removeObject:obj];
-                    
-                }
-                
-            }];
-            resultModel.data = arr.copy;
+            if (self.recoType == transactionRecord_XMType) {
+                NSMutableArray *arr = [resultModel.data mutableCopy];
+                [arr enumerateObjectsUsingBlock:^(CreditQueryDataModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    NSString *flag = obj.flagDesc;
+                    if ([flag isEqualToString:@"等待"] || [flag containsString:@"拒绝"]) {
+                        [arr removeObject:obj];
+                    }
+                }];
+                resultModel.data = arr.copy;
+            }
             
             if (self.currentPage == 1) {
                 self.dataList = [resultModel.data mutableCopy];
@@ -446,7 +443,7 @@
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     WEAKSELF_DEFINE
     UITableViewRowAction *delAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@" 删除 " handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        [HYTextAlertView showWithTitle:@"" content:@"确认删除此笔记录吗？" comfirmText:@"确认" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm){
+        [HYTextAlertView showWithTitle:@"确定删除吗?" content:@"仅会删除该条记录" comfirmText:@"确认" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm){
             STRONGSELF_DEFINE
             if (isComfirm) {
                 [strongSelf requestDeleteModelRow:indexPath.row];
@@ -460,7 +457,7 @@
 - (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){
     WEAKSELF_DEFINE
     UIContextualAction * delAct = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"删除" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
-        [HYTextAlertView showWithTitle:@"" content:@"确认删除此笔记录吗？" comfirmText:@"确认" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm){
+        [HYTextAlertView showWithTitle:@"确定删除吗?" content:@"仅会删除该条记录" comfirmText:@"确认" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm){
             STRONGSELF_DEFINE
             if (isComfirm) {
                 [strongSelf requestDeleteModelRow:indexPath.row];
