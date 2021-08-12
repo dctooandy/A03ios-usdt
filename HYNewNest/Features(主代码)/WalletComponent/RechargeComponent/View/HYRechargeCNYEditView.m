@@ -156,7 +156,7 @@
         }
         self.amountBtnsContain.hidden = NO;
         self.amountBtnsContainH.constant = ItemHeight + ((amoArr.count-1)/3)*(ItemHeight+ItemMargin);;
-        self.amountBtnsTopMargin.constant = 22;
+        self.amountBtnsTopMargin.constant = 22 + (self.tipLbl.isHidden ? 0 : 20);
     } else {
         self.amountBtnsContain.hidden = YES;
         self.amountBtnsContainH.constant = 0;
