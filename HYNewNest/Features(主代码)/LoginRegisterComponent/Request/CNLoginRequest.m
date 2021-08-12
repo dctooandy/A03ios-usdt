@@ -312,7 +312,7 @@
                     completionHandler:(HandlerBlock)completionHandler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"use"] = @(2);
+    param[@"use"] = @(11);
     param[@"smsCode"] = smsCode;
     param[@"messageId"] = messageId;
     param[@"phone"] = phone;
@@ -330,7 +330,7 @@
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
     paramDic[@"loginName"] = loginName;
     paramDic[@"type"] = @2;
-    paramDic[@"use"] = @2;
+    paramDic[@"use"] = @4;
     paramDic[@"newPassword"] = [CNEncrypt encryptString:newPassword];
     paramDic[@"smsCode"] = smsCode;
     paramDic[@"validateId"] = validateId;
@@ -338,7 +338,6 @@
     
     [self POST:(config_modifyPwdBySmsCode) parameters:paramDic completionHandler:completionHandler];
 }
-
 
 + (void)requestPhoneBind:(NSString*)smsCode
                messageId:(NSString *)messageId

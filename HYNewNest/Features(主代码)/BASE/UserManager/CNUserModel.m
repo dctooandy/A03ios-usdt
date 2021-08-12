@@ -13,8 +13,9 @@
 
 @implementation SamePhoneLoginNameModel
 + (NSDictionary<NSString *,id> *)modelContainerPropertyGenericClass {
-    return @{@"samePhoneLoginNames":[SamePhoneLoginNameItem class]};
+    return @{@"samePhoneLoginNames":[SamePhoneLoginNameItem class], @"loginNames":[SamePhoneLoginNameItem class]};
 }
+
 @end
 
 @implementation CNUserModel

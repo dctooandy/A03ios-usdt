@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * messageId;
 @property (nonatomic , copy) NSString              * validateId;
 @property (nonatomic , copy) NSArray<SamePhoneLoginNameItem *> * samePhoneLoginNames;
+@property (nonatomic , copy) NSArray<SamePhoneLoginNameItem *> * loginNames;
 @end
 
 @interface CNUserModel : CNBaseModel

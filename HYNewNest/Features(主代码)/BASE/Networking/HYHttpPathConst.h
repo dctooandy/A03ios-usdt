@@ -62,7 +62,7 @@
 
 #define config_registUserName   @"customer/createRealAccount"  //用户名注册
 #define config_loginMessageIdAndLoginName     @"customer/loginByValidateId" //用户名登录
-#define config_forgetPassword_validate   @"customer/preForgetPwdByMobileNo" //忘记密码第一步-验证
+#define config_forgetPassword_validate   @"phone/checkCustomerBySmsCode" //忘记密码第一步-验证
 
 #define config_logout          @"customer/logout"
 #define config_getByLoginName    @"customer/getByLoginName"  //根据token获取会员信息
