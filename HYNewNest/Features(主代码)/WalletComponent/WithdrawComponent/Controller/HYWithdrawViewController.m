@@ -121,8 +121,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         [self requestBalance];
         [self requestWithdrawAddress];
         
-        if ([CNUserManager shareManager].isUsdtMode == false
-            && !(([CNUserManager shareManager].userDetail.depositLevel == -11 && [CNUserManager shareManager].userDetail.starLevel > 1) || ([CNUserManager shareManager].userDetail.depositLevel == -13))) {
+        if ([CNUserManager shareManager].isUsdtMode == false) {
             [self checkBlackListLevel];
         }
 
@@ -238,8 +237,9 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
             NSString *blocks = dic[@"block_list"];
             NSArray *list = [blocks componentsSeparatedByString:@";"];
             NSString *depLev = [NSString stringWithFormat:@"%ld",[CNUserManager shareManager].userDetail.depositLevel];
+
             // 负信用等级不能取rmb
-            if ([list containsObject:depLev]) {
+            if ([list containsObject:depLev] && !(([CNUserManager shareManager].userDetail.starLevel > 1 && [depLev isEqualToString:@"-11"]) || [depLev isEqualToString:@"-13"])) {
                 self->_isCNYBlockLevel = YES;
                 [self showCNYBandAlert];
                 return;
