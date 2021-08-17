@@ -171,7 +171,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8p-M8-PNu" customClass="BYGradientView">
-                                            <rect key="frame" x="0.0" y="40" width="360" height="238"/>
+                                            <rect key="frame" x="0.0" y="40" width="360" height="218"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自注册日起，限时第7天完成" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shK-Ym-pKC">
                                                     <rect key="frame" x="92.333333333333329" y="12.000000000000002" width="175.66666666666669" height="19.666666666666671"/>
@@ -226,13 +226,13 @@
                                                                     </connections>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="绑定手机 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQj-Fj-ThI">
-                                                                    <rect key="frame" x="4.6666666666666643" y="65.999999999999943" width="52" height="34"/>
+                                                                    <rect key="frame" x="4.6666666666666643" y="65.999999999999943" width="52" height="17.333333333333329"/>
                                                                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                                                                     <color key="textColor" red="0.062745098039215685" green="0.043137254901960784" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gou" translatesAutoresizingMaskIntoConstraints="NO" id="EIJ-uP-Vvz">
-                                                                    <rect key="frame" x="19.666666666666671" y="104.99999999999994" width="22" height="23"/>
+                                                                    <rect key="frame" x="19.666666666666671" y="88.333333333333314" width="22" height="23"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -259,13 +259,13 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下载登陆APP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ok7-gi-M7W">
-                                                                    <rect key="frame" x="-5.3333333333333144" y="65.999999999999943" width="71.333333333333329" height="34"/>
+                                                                    <rect key="frame" x="-5.3333333333333144" y="65.999999999999943" width="71.333333333333329" height="17.333333333333329"/>
                                                                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                                                                     <color key="textColor" red="0.062745098040000002" green="0.043137254899999998" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gou" translatesAutoresizingMaskIntoConstraints="NO" id="LlT-bb-N57">
-                                                                    <rect key="frame" x="19.333333333333343" y="104.99999999999994" width="22" height="23"/>
+                                                                    <rect key="frame" x="19.333333333333343" y="88.333333333333314" width="22" height="23"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -292,16 +292,14 @@
                                                                         <outletCollection property="gestureRecognizers" destination="gua-E2-MSF" appends="YES" id="Vgb-aO-fC3"/>
                                                                     </connections>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aF-7F-bhw">
-                                                                    <rect key="frame" x="-8.3333333333333144" y="65.999999999999943" width="77.666666666666671" height="33.666666666666657"/>
-                                                                    <string key="text">首存≥15USDT
-或105CNY</string>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="首存≥15USDT" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aF-7F-bhw">
+                                                                    <rect key="frame" x="-8.3333333333333144" y="65.999999999999943" width="77.666666666666671" height="17"/>
                                                                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                                                                     <color key="textColor" red="0.062745098040000002" green="0.043137254899999998" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gou" translatesAutoresizingMaskIntoConstraints="NO" id="uvg-MI-zPt">
-                                                                    <rect key="frame" x="19.666666666666686" y="104.66666666666669" width="22" height="23"/>
+                                                                    <rect key="frame" x="19.666666666666686" y="87.999999999999943" width="22" height="23"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -334,7 +332,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="2Ms-zK-uo8" secondAttribute="trailing" constant="30" id="GDI-ka-xFT"/>
                                                 <constraint firstItem="shK-Ym-pKC" firstAttribute="top" secondItem="k8p-M8-PNu" secondAttribute="top" constant="12" id="Mxw-BN-pdN"/>
                                                 <constraint firstItem="FQO-s5-lfV" firstAttribute="top" secondItem="shK-Ym-pKC" secondAttribute="bottom" constant="10" id="Nqo-g8-ALD"/>
-                                                <constraint firstAttribute="height" constant="238" id="Z44-FB-1jn"/>
+                                                <constraint firstAttribute="height" constant="218" id="Z44-FB-1jn"/>
                                                 <constraint firstItem="2Ms-zK-uo8" firstAttribute="top" secondItem="FQO-s5-lfV" secondAttribute="bottom" constant="7" id="bUq-1c-fil"/>
                                                 <constraint firstItem="shK-Ym-pKC" firstAttribute="centerX" secondItem="k8p-M8-PNu" secondAttribute="centerX" id="xyB-zH-wrh"/>
                                             </constraints>
@@ -354,7 +352,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LuN-KM-PxX" customClass="BYGradientButton">
-                                            <rect key="frame" x="72.666666666666686" y="258" width="215" height="48"/>
+                                            <rect key="frame" x="72.666666666666686" y="238" width="215" height="48"/>
                                             <color key="backgroundColor" systemColor="systemPinkColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="48" id="WYo-G6-FgS"/>
@@ -432,8 +430,8 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfs-1b-VcL" customClass="BYGradientView">
                                             <rect key="frame" x="0.0" y="40" width="360" height="217"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每日累计充值15USDT或105CNY即可自动签到" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20I-Xi-VF9">
-                                                    <rect key="frame" x="37.333333333333343" y="12.000000000000002" width="285.66666666666663" height="19.666666666666671"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每日累计充值15USDT即可自动签到" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20I-Xi-VF9">
+                                                    <rect key="frame" x="70.333333333333329" y="12.000000000000002" width="219.66666666666669" height="19.666666666666671"/>
                                                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                                                     <color key="textColor" red="0.062745098040000002" green="0.043137254899999998" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -889,8 +887,8 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="44" id="KnG-b8-X91"/>
                                             </constraints>
-                                            <string key="text">  Lv.1 累计充值600USDT/4,200CNY或  
-  累计投注额≥5,000USDT/35,000CNY  </string>
+                                            <string key="text">  Lv.1 累计充值600USDT或  
+  累计投注额≥5,000USDT </string>
                                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="10"/>
                                             <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.51764705882352935" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
@@ -911,8 +909,8 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="44" id="PFC-Zz-rt0"/>
                                             </constraints>
-                                            <string key="text">  Lv.2 累计充值5,000USDT/35,000CNY或
-  累计投注额≥40,000USDT/280,000CNY</string>
+                                            <string key="text">  Lv.2 累计充值5,000USDT或
+  累计投注额≥40,000USDT </string>
                                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="10"/>
                                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
