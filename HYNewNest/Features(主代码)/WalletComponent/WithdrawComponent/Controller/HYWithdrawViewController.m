@@ -120,9 +120,12 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
         [self requestBalance];
         [self requestWithdrawAddress];
-        if (![CNUserManager shareManager].isUsdtMode) {
+        
+        if ([CNUserManager shareManager].isUsdtMode == false
+            && !(([CNUserManager shareManager].userDetail.depositLevel == -11 && [CNUserManager shareManager].userDetail.starLevel > 1) || ([CNUserManager shareManager].userDetail.depositLevel == -13))) {
             [self checkBlackListLevel];
         }
+
     }];
 }
 

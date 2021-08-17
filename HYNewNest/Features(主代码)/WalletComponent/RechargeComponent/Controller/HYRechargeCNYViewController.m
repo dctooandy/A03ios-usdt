@@ -84,8 +84,21 @@
     
     _selcPayWayIdx = 0;
     
-    [self setupSubmitBtn];
-    [self queryCNYPayways];
+    if ([CNUserManager shareManager].isUsdtMode == false && [[CNUserManager shareManager] userDetail].depositLevel == -11 && [[CNUserManager shareManager] userDetail].starLevel < 2) {
+        [BYCNYRechargeAlertView showAlertWithContent:@"CNY通道维护中\n建议切换使用USDT账户" cancelText:@"我知道了" confirmText:@"切换USDT账户" comfirmHandler:^(BOOL isComfirm) {
+            WEAKSELF_DEFINE
+            [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {
+                if (!errorMsg) {
+                    [weakSelf.navigationController popToRootViewControllerAnimated:true];
+                }
+            } faileHandler:nil];
+        }];
+        [self setupSubmitBtnWithHidden:false];
+    }
+    else {
+        [self setupSubmitBtn];
+        [self queryCNYPayways];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -122,6 +135,10 @@
 }
 
 - (void)setupSubmitBtn {
+    [self setupSubmitBtnWithHidden:false];
+}
+
+- (void)setupSubmitBtnWithHidden:(BOOL)hidden {
     CNTwoStatusBtn *subBtn = [[CNTwoStatusBtn alloc] init];
     [subBtn setTitle:@"提交" forState:UIControlStateNormal];
     [subBtn addTarget:self action:@selector(submitRechargeRequest) forControlEvents:UIControlEventTouchUpInside];
@@ -133,8 +150,8 @@
         make.height.mas_equalTo(48);
     }];
     self.btnSubmit = subBtn;
+    self.btnSubmit.hidden = hidden;
 }
-
 
 #pragma mark - HYRechargeCNYEditViewDelegate
 

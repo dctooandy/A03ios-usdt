@@ -300,12 +300,14 @@
     
     WEAKSELF_DEFINE
     [CNUserCenterRequest queryLetterUnreadCountHandler:^(id responseObj, NSString *errorMsg) {
-        NSInteger unread = [responseObj[@"totalRow"] intValue];
-        weakSelf.unreadMessage = unread;
-
-        UITabBarItem *item = self.tabBar.items.lastObject;
-        item.badgeValue = unread > 0 ? @"": nil;
-        [[NSNotificationCenter defaultCenter] postNotificationName:BYMessageCountDidLoadNotificaiton object:nil];
+        if (!errorMsg) {
+            NSInteger unread = [responseObj[@"totalRow"] intValue];
+            weakSelf.unreadMessage = unread;
+            
+            UITabBarItem *item = self.tabBar.items.lastObject;
+            item.badgeValue = unread > 0 ? @"": nil;
+            [[NSNotificationCenter defaultCenter] postNotificationName:BYMessageCountDidLoadNotificaiton object:nil];
+        }
     }];
 }
 
