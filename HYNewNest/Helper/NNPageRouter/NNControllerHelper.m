@@ -39,7 +39,7 @@
     if ([rootVC isKindOfClass:[UINavigationController class]]) {
         return (UINavigationController *)rootVC;
     }else if([rootVC isKindOfClass:[UITabBarController class]]){
-        UITabBarController *tabarController = [self currentTabBarController];
+        UITabBarController *tabarController = (UITabBarController *)rootVC;
         UINavigationController *selectedNV = (UINavigationController *)tabarController.selectedViewController;
         if ([selectedNV isKindOfClass:[UINavigationController class]]) {
             return selectedNV;

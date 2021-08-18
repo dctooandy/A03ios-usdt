@@ -82,10 +82,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
         
         // 控制客服球
         [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] hideSuspendBall];
-        
-    } else {
-        // 控制客服球
-        [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] showSuspendBall];
+    
     }
     
     //  push入栈
