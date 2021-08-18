@@ -25,6 +25,8 @@
 
 #import "CNUserCenterRequest.h"
 
+#import "PPBadgeView.h"
+
 @interface HYTabBarViewController ()<UITabBarControllerDelegate, SuspendBallDelegte, CNServerViewDelegate>
 @property (nonatomic, strong) SuspendBall *suspendBall;
 @property (assign, nonatomic) BOOL isOpenWMQ; //!<是否开启微脉圈
@@ -305,7 +307,12 @@
             weakSelf.unreadMessage = unread;
             
             UITabBarItem *item = self.tabBar.items.lastObject;
-            item.badgeValue = unread > 0 ? @"": nil;
+            if (unread == 0) {
+                [item pp_hiddenBadge];
+            }
+            else {
+                [item pp_addDotWithColor:[UIColor redColor]];
+            }
             [[NSNotificationCenter defaultCenter] postNotificationName:BYMessageCountDidLoadNotificaiton object:nil];
         }
     }];
@@ -313,7 +320,7 @@
 
 - (void)setUnreadToDefault {
     self.unreadMessage = 0;
-    [self.tabBar.items.lastObject setBadgeValue:nil];
+    [self.tabBar.items.lastObject pp_hiddenBadge];
 }
 
 @end
