@@ -261,12 +261,13 @@
 
 - (void)jump2H5Pay {
     NSString *urlStr = self.addressText;
-    //replace to https://app.dcusdt.com/pay?
+    //replace to https://app.dcusdt.com/pay
     if ([urlStr hasPrefix:@"dcbox://pay"]) {
-        urlStr = [urlStr stringByReplacingOccurrencesOfString:@"dcbox://pay" withString:@"https://app.dcusdt.com/pay?"];
+        urlStr = [urlStr stringByReplacingOccurrencesOfString:@"dcbox://pay" withString:@"https://app.dcusdt.com/pay"];
     } else if ([urlStr hasPrefix:@"dcusdt://pay"]) {
-        urlStr = [urlStr stringByReplacingOccurrencesOfString:@"dcusdt://pay" withString:@"https://app.dcusdt.com/pay?"];
+        urlStr = [urlStr stringByReplacingOccurrencesOfString:@"dcusdt://pay" withString:@"https://app.dcusdt.com/pay"];
     }
+    
     NSURL *url = [NSURL URLWithString:urlStr];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
