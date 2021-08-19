@@ -27,6 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 拨打客服电话
 + (void)call400;
 
+/**
+ *取得OCSSDomain
+ */
++ (void)queryOCSSDomainHandler:(HandlerBlock)handler;
+
 @end
 
 NS_ASSUME_NONNULL_END

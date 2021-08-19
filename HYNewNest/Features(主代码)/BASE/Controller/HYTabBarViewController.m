@@ -23,6 +23,8 @@
 #import "HYTextAlertView.h"
 #import <YJChat.h>
 
+#import <CSCustomSerVice/CSCustomSerVice.h>
+#import "KeyChain.h"
 #import "CNUserCenterRequest.h"
 
 #import "PPBadgeView.h"
@@ -41,9 +43,10 @@
     [self setupAppearance];
     [self checkWMQStatus];
     [self fetchUnreadCount];
+    [self initOCSSSDKShouldReload:false];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkWMQStatus) name:HYLoginSuccessNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkWMQStatus) name:HYLogoutSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginStatusChanged) name:HYLoginSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginStatusChanged) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchUnreadCount) name:BYDidReadMessageNotificaiton object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupAppearance) name:CNSkinChangeNotification object:nil];
     
@@ -175,6 +178,11 @@
 - (void)setIsOpenWMQ:(BOOL)isOpenWMQ {
     _isOpenWMQ = isOpenWMQ;
     [self setupCSSuspendBall];
+}
+
+- (void)userLoginStatusChanged {
+    [self initOCSSSDKShouldReload:false];
+    [self checkWMQStatus];
 }
 
 #pragma mark  UITabBarControllerDelegate
@@ -323,4 +331,48 @@
     [self.tabBar.items.lastObject pp_hiddenBadge];
 }
 
+/**
+ *初始化/Reload OCSS
+ */
+- (void)reloadOCSSSDK {
+    [self initOCSSSDKShouldReload:true];
+}
+- (void)initOCSSSDKShouldReload:(BOOL)reload{
+    CSChatInfo *info = [[CSChatInfo alloc]init];
+    info.productId = [IVHttpManager shareManager].productId;//产品ID
+    info.loginName = [IVHttpManager shareManager].loginName?:@"";//网站用户名，你们app的用户名
+    info.token = [IVHttpManager shareManager].userToken?:@"";//网站登陆后的token,你们app的token
+    info.domainName = [IVHttpManager shareManager].domain;//网站域名
+    info.appid = [IVHttpManager shareManager].appId;//AppID
+    info.uuid = [KeyChain getKeychainIdentifierUUID];//设备id，不穿 会默认生成
+    info.baseUrl = [IVHttpManager shareManager].gateway;//app网关地址
+    
+    //导航栏设置
+    info.title = @"在线客服";//导航栏标题
+    info.backColor = [UIColor lightGrayColor];
+    info.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontPFSB18]};
+    info.barTintColor = kHexColor(0x1A1A2C);
+    
+    [CNServiceRequest queryOCSSDomainHandler:^(id responseObj, NSString *errorMsg) {
+        info.response = responseObj;
+        info.domainBakList = responseObj[@"domainBakList"];
+        if (reload) {
+            [CSVisitChatmanager reloadSDK:info finish:^(CSServiceCode errCode) {
+                if (errCode == CSServiceCode_Request_NoIniting) {
+                    //初始化失败时重新初始化;
+                    [self initOCSSSDKShouldReload:reload];
+                }
+            }];
+        }
+        else {
+            [CSVisitChatmanager initSDK:info finish:^(CSServiceCode errCode) {
+                if (errCode == CSServiceCode_Request_NoIniting) {
+                    //初始化失败时重新初始化;
+                    [self initOCSSSDKShouldReload:reload];
+                }
+            } appearblock:nil disbock:nil];
+        }
+    }];
+
+}
 @end

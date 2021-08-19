@@ -32,6 +32,7 @@
 #define config_welcome  @"welcome"
 #define config_upgradeApp      @"upgrade"   //检测版本更新
 #define config_callBackPhone   @"callback"  //消息中心电话回访
+#define config_ocssAdress      @"liveChatAddressOCSS" //取得OCSS位置
 #define config_home_otherGame @"83e6dy/home/other" //获取其他游戏列表
 #define config_areaLimit @"areaLimit" // 地区限制
 #define config_liveChatAddress @"liveChatAddressOCSS" //客服

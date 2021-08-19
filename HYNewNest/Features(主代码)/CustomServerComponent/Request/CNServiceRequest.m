@@ -51,4 +51,8 @@
     }];
 }
 
++ (void)queryOCSSDomainHandler:(HandlerBlock)handler {
+    [self POST:(config_ocssAdress) parameters:[kNetworkMgr baseParam] completionHandler:handler];
+}
+
 @end
