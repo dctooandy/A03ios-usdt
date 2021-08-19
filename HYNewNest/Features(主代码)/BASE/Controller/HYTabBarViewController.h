@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)showSuspendBall;
 - (void)fetchUnreadCount;
 - (void)setUnreadToDefault;
+- (void)reloadOCSSSDK;
 @property (nonatomic, assign) NSInteger unreadMessage;
 
 @end

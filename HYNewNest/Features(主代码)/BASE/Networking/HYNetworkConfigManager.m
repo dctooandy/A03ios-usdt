@@ -11,6 +11,7 @@
 #import "CNTOPHUB.h"
 #import "CNSplashRequest.h"
 #import "HYInGameHelper.h"
+#import "HYTabBarViewController.h"
 
 @interface HYNetworkConfigManager ()
 @property (nonatomic, assign, readwrite) IVNEnvironment environment;
@@ -72,6 +73,9 @@
         [IVHttpManager shareManager].cdn = cdnAddr;
         [IVHttpManager shareManager].domain = h5Addr;
     }];
+    
+    // 重新加载OCSS
+    [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] performSelector:@selector(reloadOCSSSDK)];
 
 #endif
 }
