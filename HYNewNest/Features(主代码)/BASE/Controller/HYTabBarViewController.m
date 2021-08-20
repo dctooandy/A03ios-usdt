@@ -360,7 +360,9 @@
             [CSVisitChatmanager reloadSDK:info finish:^(CSServiceCode errCode) {
                 if (errCode == CSServiceCode_Request_NoIniting) {
                     //初始化失败时重新初始化;
-                    [self initOCSSSDKShouldReload:reload];
+                    [self jk_performAfter:3 block:^{
+                        [self initOCSSSDKShouldReload:reload];
+                    }];
                 }
             }];
         }
@@ -368,7 +370,9 @@
             [CSVisitChatmanager initSDK:info finish:^(CSServiceCode errCode) {
                 if (errCode == CSServiceCode_Request_NoIniting) {
                     //初始化失败时重新初始化;
-                    [self initOCSSSDKShouldReload:reload];
+                    [self jk_performAfter:3 block:^{
+                        [self initOCSSSDKShouldReload:reload];
+                    }];
                 }
             } appearblock:nil disbock:nil];
         }

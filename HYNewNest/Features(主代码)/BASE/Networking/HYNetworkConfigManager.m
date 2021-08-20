@@ -75,7 +75,7 @@
     }];
     
     // 重新加载OCSS
-    [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] performSelector:@selector(reloadOCSSSDK)];
+    [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] initOCSSSDKShouldReload:NO];
 
 #endif
 }
