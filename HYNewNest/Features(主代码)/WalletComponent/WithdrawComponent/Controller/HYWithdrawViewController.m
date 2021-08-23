@@ -239,7 +239,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
             NSString *depLev = [NSString stringWithFormat:@"%ld",[CNUserManager shareManager].userDetail.depositLevel];
 
             // 负信用等级不能取rmb
-            if ([list containsObject:depLev] && !(([CNUserManager shareManager].userDetail.starLevel > 1 && [depLev isEqualToString:@"-11"]) || [depLev isEqualToString:@"-13"])) {
+            if ([list containsObject:depLev] && !(([CNUserManager shareManager].userInfo.starLevel > 1 && [depLev isEqualToString:@"-11"]) || [depLev isEqualToString:@"-13"])) {
                 self->_isCNYBlockLevel = YES;
                 [self showCNYBandAlert];
                 return;

@@ -84,7 +84,7 @@
     
     _selcPayWayIdx = 0;
     
-    if ([CNUserManager shareManager].isUsdtMode == false && [[CNUserManager shareManager] userDetail].depositLevel == -11 && [[CNUserManager shareManager] userDetail].starLevel < 2) {
+    if ([CNUserManager shareManager].isUsdtMode == false && [[CNUserManager shareManager] userDetail].depositLevel == -11 && [[CNUserManager shareManager] userInfo].starLevel < 2) {
         [BYCNYRechargeAlertView showAlertWithContent:@"CNY通道维护中\n建议切换使用USDT账户" cancelText:@"我知道了" confirmText:@"切换USDT账户" comfirmHandler:^(BOOL isComfirm) {
             WEAKSELF_DEFINE
             [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {

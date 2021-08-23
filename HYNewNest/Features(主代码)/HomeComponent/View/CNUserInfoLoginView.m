@@ -14,7 +14,9 @@
 #import "UIView+Badge.h"
 
 @interface CNUserInfoLoginView ()
-@property (weak, nonatomic) IBOutlet UIImageView *headerIcon;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *vipImageConstraint;
+@property (weak, nonatomic) IBOutlet UIImageView *clubImageView;
+@property (weak, nonatomic) IBOutlet UILabel *vipLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *vipImgv;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLb;
 @property (weak, nonatomic) IBOutlet UILabel *currencyLb;
@@ -80,18 +82,64 @@
 
 - (void)configLogoutUI {
     self.loginView.hidden = NO;
-    self.headerIcon.image = nil;
     self.usdtADImgv.hidden = YES;
 }
 
 - (void)configLogInUI {
     self.loginView.hidden = YES;
     [self refreshBottomBtnsStatus];
-    [self.headerIcon sd_setImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userDetail.avatar] placeholderImage:[UIImage imageNamed:@"icon"]];
 
     NSInteger level = [CNUserManager shareManager].userInfo.starLevel;
-    UIImage *img = [UIImage imageNamed:[NSString stringWithFormat:@"vip%ld", (long)level]];
-    self.vipImgv.image = img;
+    self.vipLabel.text = [NSString stringWithFormat:@"VIP%ld", (long)level];
+    
+    NSInteger clubLV = [[CNUserManager shareManager].userDetail.clubLevel intValue];
+    
+    switch (level) {
+        case 0:
+            self.vipImgv.image = [UIImage imageNamed:@"icon_vip0"];
+            break;
+        case 1 ... 3:
+            self.vipImgv.image = [UIImage imageNamed:@"icon_vip1-3"];
+            break;
+        case 4 ... 6:
+            self.vipImgv.image = [UIImage imageNamed:@"icon_vip4-6"];
+            break;
+        case 7 ... 9:
+            self.vipImgv.image = [UIImage imageNamed:@"icon_vip7-9"];
+            break;
+        default:
+            self.vipImgv.image = [UIImage imageNamed:@"icon_vip10up"];
+            break;
+    }
+    
+    //Set To Default
+    self.vipImageConstraint.constant = 24;
+    [self.clubImageView setHidden:false];
+    
+    switch (clubLV) {
+        case 2:
+            [self.clubImageView setImage:[UIImage imageNamed:@"icon_vvip-level1"]];
+            break;
+        case 3:
+            [self.clubImageView setImage:[UIImage imageNamed:@"icon_vvip-level2"]];
+            break;
+        case 4:
+            [self.clubImageView setImage:[UIImage imageNamed:@"icon_vvip-level3"]];
+            break;
+        case 5:
+            [self.clubImageView setImage:[UIImage imageNamed:@"icon_vvip-level4"]];
+            break;
+        case 6:
+            [self.clubImageView setImage:[UIImage imageNamed:@"icon_vvip-level5"]];
+            break;
+        case 7:
+            [self.clubImageView setImage:[UIImage imageNamed:@"icon_vvip-level6"]];
+            break;
+        default:
+            self.vipImageConstraint.constant = 5;
+            [self.clubImageView setHidden:true];
+            break;
+    }
      
     self.usrNameLb.text = [CNUserManager shareManager].printedloginName;
     self.currencyLb.text = [CNUserManager shareManager].isUsdtMode?@"USDT":@"CNY";

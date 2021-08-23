@@ -84,11 +84,8 @@
     }
 }
 
-+ (void)jump2Withdraw {
-    
-    [LoadingView show];
++ (void)jump2Withdraw {    
     [CNWithdrawRequest getUserMobileStatusCompletionHandler:^(id responseObj, NSString *errorMsg) {
-        [LoadingView hide];
 //        CNUserDetailModel *model = [CNUserDetailModel cn_parse:responseObj];
 //        if (!model.mobileNoBind) { // 没有绑定手机 -> 跳到手机绑定
 //            CNBindPhoneVC *vc = [CNBindPhoneVC new];
