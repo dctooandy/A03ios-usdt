@@ -465,9 +465,25 @@
                     userInfo.currency = @"USDT";
                     userInfo.uiMode = @"USDT";
                 }
+                /*
+                CNUserDetailModel *userDetail = [CNUserManager shareManager].userDetail;
+                
+                if ([responseObj[@"starLevel"] intValue]) {
+                    userInfo.starLevel = [responseObj[@"starLevel"] intValue];
+                    userDetail.starLevel = [responseObj[@"starLevel"] intValue];
+                }
+                
+                if (responseObj[@"clubLevel"]) {
+                    userDetail.clubLevel = responseObj[@"clubLevel"];
+                }
+                */
                 NSDictionary *newUIF = [userInfo yy_modelToJSONObject];
                 [[CNUserManager shareManager] saveUserInfo:newUIF];
+                /*
+                NSDictionary *newUserDetail = [userInfo yy_modelToJSONObject];
+                [[CNUserManager shareManager] saveUserDetail:newUserDetail];
                 [[CNUserManager shareManager] deleteWebCache];
+                 */
                 
 //                [[NSNotificationCenter defaultCenter] postNotificationName:HYSwitchAcoutSuccNotification object:nil];
                 if ([CNUserManager shareManager].isUsdtMode) {
