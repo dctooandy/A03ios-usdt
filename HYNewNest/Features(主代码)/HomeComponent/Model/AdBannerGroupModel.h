@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 首页banner模型
 @interface AdBannerGroupModel : CNBaseModel
 
-@property(nonatomic,copy)   NSString *customerId;
+@property(nonatomic,copy)   NSString *rfCode;
 @property(nonatomic,copy)   NSString *domainName; //图片url头
 @property(nonatomic,strong) NSArray <AdBannerModel *> *bannersModel;
 
@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 电游banner模型
 @interface DYAdBannerGroupModel : CNBaseModel
 
-@property(nonatomic,copy)   NSString *customerId;
+@property(nonatomic,copy)   NSString *rfCode;
 @property(nonatomic,copy)   NSString *domainName; //图片url头
 @property(nonatomic,strong) NSArray <AdBannerModel *> *bannersModel;
 
@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 好友推荐
 @interface FriendShareGroupModel : CNBaseModel
 
-@property(nonatomic,copy)   NSString *customerId;
+@property(nonatomic,copy)   NSString *rfCode;
 @property(nonatomic,copy)   NSString *domainName; //url头
 @property(nonatomic,strong) NSArray <AdBannerModel *> *bannersModel;
 

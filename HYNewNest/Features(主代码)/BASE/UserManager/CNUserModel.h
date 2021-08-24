@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *avatar;
 @property (nonatomic, copy)NSString *beforeLoginDate;
 @property (nonatomic, copy)NSString *currency; //账号上分货币
-@property (nonatomic, copy)NSString *customerId;
+@property (nonatomic, copy)NSString *rfCode;
 @property (nonatomic, assign)BOOL customerType; // 会员类型：YES 真钱，NO 试玩
 @property (nonatomic, copy)NSString *loginName;
 @property (nonatomic, copy)NSString *maxCustLevel; //？

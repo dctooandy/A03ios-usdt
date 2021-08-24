@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * avatar;
 @property (nonatomic , assign) NSInteger              blackFlag;
 @property (nonatomic , copy) NSString              * clubLevel;
-@property (nonatomic , copy) NSString              * customerId;
+@property (nonatomic , copy) NSString              * rfCode;
 @property (nonatomic , assign) NSInteger              customerType;
 /// 会员信用等级
 @property (nonatomic , assign) NSInteger              depositLevel;

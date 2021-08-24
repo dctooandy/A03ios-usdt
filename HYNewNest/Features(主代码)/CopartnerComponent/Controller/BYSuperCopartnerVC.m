@@ -96,7 +96,7 @@
 // 链接和二维码
 - (void)updateShare {
     AdBannerModel *model = self.shareModel.bannersModel.firstObject;
-    NSString *shareLink = [NSString stringWithFormat:@"%@%@", model.linkUrl, [CNUserManager shareManager].userInfo.customerId];
+    NSString *shareLink = [NSString stringWithFormat:@"%@%@", model.linkUrl, [CNUserManager shareManager].userInfo.rfCode];
     self.linkLb.text = shareLink;
     
     UIImage *img = [SGQRCodeGenerateManager generateWithDefaultQRCodeData:shareLink imageViewWidth:101];
