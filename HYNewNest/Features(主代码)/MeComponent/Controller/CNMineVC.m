@@ -202,7 +202,7 @@
 #pragma mark - 按钮事件
 /// 弹窗
 - (IBAction)didTapAskBtn:(id)sender {
-    [BYMultiAccountRuleView showRuleWithLocatedY:kNavPlusStaBarHeight+10];
+    [BYMultiAccountRuleView showRuleWithLocatedY:kNavPlusStaBarHeight+30];
 }
 
 // 设置
