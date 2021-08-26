@@ -24,6 +24,7 @@
 #import "BYBindRealNameVC.h"
 #import "BYCNYRechargeAlertView.h"
 #import "CNLoginRequest.h"
+#import "BYLargeAmountView.h"
 
 @interface HYRechargeCNYViewController () <HYRechargeCNYEditViewDelegate>
 @property (nonatomic, assign) NSInteger selcPayWayIdx;
@@ -34,6 +35,7 @@
 @property (nonatomic, strong) CNTwoStatusBtn *btnSubmit;
 @property (nonatomic, strong) UIScrollView *scrollContainer;
 @property (nonatomic, strong) HYRechargeCNYEditView *editView;
+@property (nonatomic, strong) BYLargeAmountView *largeAmountView;
 @end
 
 @implementation HYRechargeCNYViewController
@@ -55,6 +57,14 @@
         [self.scrollContainer addSubview:_editView];
     }
     return _editView;
+}
+
+- (BYLargeAmountView *)largeAmountView {
+    if (!_largeAmountView) {
+        _largeAmountView = [BYLargeAmountView new];
+        [self.scrollContainer addSubview:_largeAmountView];
+    }
+    return _largeAmountView;
 }
 
 #pragma mark - Setter
@@ -89,8 +99,11 @@
             WEAKSELF_DEFINE
             [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {
                 if (!errorMsg) {
-                    [weakSelf.navigationController popToRootViewControllerAnimated:true];
-                }
+                    [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
+                        if (!errorMsg) {
+                            [weakSelf.navigationController popToRootViewControllerAnimated:true];
+                        }
+                    }];                }
             } faileHandler:nil];
         }];
         [self setupSubmitBtnWithHidden:false];
@@ -121,13 +134,31 @@
         make.bottom.equalTo(self.btnSubmit.mas_top).offset(-30);
     }];
     
-    [self.editView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.scrollContainer).offset(15);
-        make.top.equalTo(self.scrollContainer).offset(15);
-        make.height.mas_equalTo(510).priority(MASLayoutPriorityDefaultLow);
-        make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
-    }];
     
+    if ([CNUserManager shareManager].isUsdtMode == false && [CNUserManager shareManager].userDetail.depositLevel == 30) {
+        [self.largeAmountView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.scrollContainer).offset(15);
+            make.top.equalTo(self.scrollContainer).offset(15);
+            make.height.mas_equalTo(120);
+            make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
+        }];
+        
+        [self.editView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.scrollContainer).offset(15);
+            make.top.equalTo(self.largeAmountView.mas_bottom).offset(15);
+            make.height.mas_equalTo(510).priority(MASLayoutPriorityDefaultLow);
+            make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
+        }];
+    }
+    else {
+        [self.editView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.scrollContainer).offset(15);
+            make.top.equalTo(self.scrollContainer).offset(15);
+            make.height.mas_equalTo(510).priority(MASLayoutPriorityDefaultLow);
+            make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
+        }];
+    }
+
     [self.editView setupPayTypeItem:self.paytypeList[_selcPayWayIdx]
                           bankModel:self.curOnliBankModel
                         amountModel:self.curAmountModel];
@@ -206,7 +237,11 @@
                 WEAKSELF_DEFINE
                 [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {
                     if (!errorMsg) {
-                        [weakSelf.navigationController popToRootViewControllerAnimated:true];
+                        [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
+                            if (!errorMsg) {
+                                [weakSelf.navigationController popToRootViewControllerAnimated:true];
+                            }
+                        }];
                     }
                 } faileHandler:nil];
             }];

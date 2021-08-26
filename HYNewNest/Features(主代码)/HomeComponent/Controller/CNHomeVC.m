@@ -469,12 +469,16 @@
 - (void)switchAccountAction {
     [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
-            [self.infoView switchAccountUIChange];
 //            BOOL isUSDT = [CNUserManager shareManager].isUsdtMode;
 //            CGPoint p = CGPointMake(isUSDT?(kScreenWidth-15-24-(109/4.0)):(kScreenWidth-15-24-(109*3/4.0)), self.infoView.bottom-50+kStatusBarHeight);
 //            [BYMultiAccountRuleView showRuleWithLocatedPoint:p];
             //Reset UnreadMessage
             [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] performSelector:@selector(fetchUnreadCount)];
+            [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
+                if (!errorMsg) {
+                    [self.infoView switchAccountUIChange];
+                }
+            }];
         }
     } faileHandler:^{
         [self.infoView refreshBottomBtnsStatus];

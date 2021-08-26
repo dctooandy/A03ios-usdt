@@ -1006,6 +1006,7 @@
 		F70128C5269544CD00ED6509 /* BYWithdrawConfirmVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70128C3269544CD00ED6509 /* BYWithdrawConfirmVC.xib */; };
 		F73857D2267B18E200768D14 /* BYGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F73857D0267B18E200768D14 /* BYGradientButton.m */; };
 		F73857D6267B18F300768D14 /* BYGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = F73857D4267B18F300768D14 /* BYGradientView.m */; };
+		F746163126D787F000673601 /* BYLargeAmountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F746163026D787F000673601 /* BYLargeAmountView.xib */; };
 		F76BEC2F267AE85800577547 /* BYTradeEntryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F76BEC2D267AE85800577547 /* BYTradeEntryVC.m */; };
 		F76BEC30267AE85800577547 /* BYTradeEntryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F76BEC2E267AE85800577547 /* BYTradeEntryVC.xib */; };
 		F76BEC34267AF16E00577547 /* BYTradeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F76BEC32267AF16E00577547 /* BYTradeTableViewCell.m */; };
@@ -1021,6 +1022,7 @@
 		F786E5812680609C008B7DDE /* BYTradeEntryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F786E5802680609C008B7DDE /* BYTradeEntryModel.m */; };
 		F786E583268063C8008B7DDE /* BYTradeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F786E582268063C8008B7DDE /* BYTradeTableViewCell.xib */; };
 		F787DB1826C371F700AF7133 /* NSDateFormatter+BYDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F787DB1726C371F700AF7133 /* NSDateFormatter+BYDateFormatter.m */; };
+		F78B303126D7869B00D2385A /* BYLargeAmountView.m in Sources */ = {isa = PBXBuildFile; fileRef = F78B303026D7869B00D2385A /* BYLargeAmountView.m */; };
 		F78BB0F626A171F2003EAB31 /* BYGloryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F78BB0F526A171F2003EAB31 /* BYGloryModel.m */; };
 		F791E24E269E7B44002D6648 /* BYCNYRechargeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = F791E24D269E7B44002D6648 /* BYCNYRechargeAlertView.m */; };
 		F7A75F1F264E405600D933D7 /* BYBorderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A75F1E264E405600D933D7 /* BYBorderButton.m */; };
@@ -2449,6 +2451,7 @@
 		F73857D1267B18E200768D14 /* BYGradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BYGradientButton.h; sourceTree = "<group>"; };
 		F73857D4267B18F300768D14 /* BYGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BYGradientView.m; sourceTree = "<group>"; };
 		F73857D5267B18F300768D14 /* BYGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BYGradientView.h; sourceTree = "<group>"; };
+		F746163026D787F000673601 /* BYLargeAmountView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYLargeAmountView.xib; sourceTree = "<group>"; };
 		F765F0EE26525F4C00F15747 /* BYFirstFillBannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYFirstFillBannerView.m; sourceTree = "<group>"; };
 		F765F0F026525F5800F15747 /* BYFirstFillBannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYFirstFillBannerView.xib; sourceTree = "<group>"; };
 		F765F0F3265268D000F15747 /* BYMoreCompleteMissionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYMoreCompleteMissionView.m; sourceTree = "<group>"; };
@@ -2477,6 +2480,8 @@
 		F786E582268063C8008B7DDE /* BYTradeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BYTradeTableViewCell.xib; sourceTree = "<group>"; };
 		F787DB1626C371F700AF7133 /* NSDateFormatter+BYDateFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+BYDateFormatter.h"; sourceTree = "<group>"; };
 		F787DB1726C371F700AF7133 /* NSDateFormatter+BYDateFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+BYDateFormatter.m"; sourceTree = "<group>"; };
+		F78B302F26D7869B00D2385A /* BYLargeAmountView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYLargeAmountView.h; sourceTree = "<group>"; };
+		F78B303026D7869B00D2385A /* BYLargeAmountView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYLargeAmountView.m; sourceTree = "<group>"; };
 		F78BB0F426A171F2003EAB31 /* BYGloryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYGloryModel.h; sourceTree = "<group>"; };
 		F78BB0F526A171F2003EAB31 /* BYGloryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYGloryModel.m; sourceTree = "<group>"; };
 		F791E24C269E7B44002D6648 /* BYCNYRechargeAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYCNYRechargeAlertView.h; sourceTree = "<group>"; };
@@ -4995,6 +5000,9 @@
 				3DD05E802681817B004B1062 /* BYDepositUsdtEditorView.h */,
 				3DD05E812681817B004B1062 /* BYDepositUsdtEditorView.m */,
 				3DD05E832681819B004B1062 /* BYDepositUsdtEditorView.xib */,
+				F78B302F26D7869B00D2385A /* BYLargeAmountView.h */,
+				F78B303026D7869B00D2385A /* BYLargeAmountView.m */,
+				F746163026D787F000673601 /* BYLargeAmountView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6259,6 +6267,7 @@
 				3DD05E842681819B004B1062 /* BYDepositUsdtEditorView.xib in Resources */,
 				0487C9E224D27B960013715A /* CNNotifySettingVC.xib in Resources */,
 				048A0EE124C832F800411819 /* CNElectronicVC.xib in Resources */,
+				F746163126D787F000673601 /* BYLargeAmountView.xib in Resources */,
 				D5A4455D24F393AC00014DC6 /* 棋牌_00043.png in Resources */,
 				D5A446C224F3941400014DC6 /* 合成 1_00065.png in Resources */,
 				D5A4470224F3941400014DC6 /* 合成 1_00085.png in Resources */,
@@ -6541,6 +6550,7 @@
 				0487C9AD24CFBA6A0013715A /* JJCollectionViewRoundFlowLayout.m in Sources */,
 				3DDEBA37264A78D20014EB87 /* BYYuEBaoTransferVC.m in Sources */,
 				0487C97B24CEB2710013715A /* CNChoseImageVC.m in Sources */,
+				F78B303126D7869B00D2385A /* BYLargeAmountView.m in Sources */,
 				3DC841142682F75200AEB1B6 /* BYMoreCompleteMissionView.m in Sources */,
 				D5FBFE2D24BC05E400BBCAD8 /* CNLoginRegisterVC.m in Sources */,
 				04C0F12D24C7D20C007F1420 /* CNRealPersonVC.m in Sources */,

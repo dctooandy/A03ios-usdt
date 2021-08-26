@@ -288,6 +288,11 @@
 //            [BYMultiAccountRuleView showRuleWithLocatedPoint:p];
             //Reset UnreadMessage
             [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] performSelector:@selector(fetchUnreadCount)];
+            [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
+                if (!errorMsg) {
+                    [self switchCurrencyUI];
+                }
+            }];
         }
     } faileHandler:^{
         [weakSelf switchCurrencyUI];

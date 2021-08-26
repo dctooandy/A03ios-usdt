@@ -35,7 +35,7 @@
         return NO;
     }
     self.userInfo = [CNUserModel cn_parse:userInfo];
-    [[NSNotificationCenter defaultCenter] postNotificationName:HYLoginSuccessNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:HYLoginSuccessNotification object:nil];
     return [self saveUerInfoToSandBox];
 }
 
@@ -48,6 +48,8 @@
         return NO;
     }
     self.userDetail = [CNUserDetailModel cn_parse:userDetail];
+    //确保取得所有资料后才发通知
+    [[NSNotificationCenter defaultCenter] postNotificationName:HYLoginSuccessNotification object:nil];
     return [self saveUerDetailToSandBox];
 }
 
