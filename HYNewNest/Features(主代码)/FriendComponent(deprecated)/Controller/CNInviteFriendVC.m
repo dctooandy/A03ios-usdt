@@ -75,7 +75,7 @@
 - (void)updateShare {
     // 链接和链接图
     AdBannerModel *model = self.shareModel.bannersModel.firstObject;
-    NSString *shareLink = [NSString stringWithFormat:@"%@%@", model.linkUrl, [CNUserManager shareManager].userInfo.customerId];
+    NSString *shareLink = [NSString stringWithFormat:@"%@%@", model.linkUrl, [CNUserManager shareManager].userInfo.rfCode];
     self.linkLb.text = shareLink;
     UIImage *img = [SGQRCodeGenerateManager generateWithDefaultQRCodeData:shareLink imageViewWidth:self.linkIV.width];
     self.linkIV.image = img;

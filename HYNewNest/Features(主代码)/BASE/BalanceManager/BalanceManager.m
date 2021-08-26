@@ -32,7 +32,7 @@
 
 - (void)setBalanceDetailModel:(AccountMoneyDetailModel *)balanceDetailModel {
     _balanceDetailModel = balanceDetailModel;
-    _balanceDetailModel.primaryKey = [CNUserManager shareManager].userInfo.customerId;
+    _balanceDetailModel.primaryKey = [CNUserManager shareManager].userInfo.rfCode;
     [_balanceDetailModel bg_saveOrUpdate];
 }
 
@@ -41,7 +41,7 @@
         return _balanceDetailModel;
     } else {
         MyLog(@"XXXX 返回余额数据库的数据 XXXX");
-        NSString* where = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"primaryKey"),[CNUserManager shareManager].userInfo.customerId];
+        NSString* where = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"primaryKey"),[CNUserManager shareManager].userInfo.rfCode];
         NSArray* arr = [AccountMoneyDetailModel bg_find:DBName_AccountBalance where:where];
         if (arr.count > 0) {
             return arr.firstObject;

@@ -53,7 +53,7 @@
             
         case CNShareTypeSMS: {
             AdBannerModel *model = self.shareModel.bannersModel.firstObject;
-            NSString *shareLink = [NSString stringWithFormat:@"%@%@", model.linkUrl, [CNUserManager shareManager].userInfo.customerId];
+            NSString *shareLink = [NSString stringWithFormat:@"%@%@", model.linkUrl, [CNUserManager shareManager].userInfo.rfCode];
             
             [self showMessageView:nil title:@"" body:[NSString stringWithFormat:@"铁子，来币游国际一起领USDT，点击链接参与游戏赢大奖：%@", shareLink]];
             

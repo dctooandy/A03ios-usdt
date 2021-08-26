@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * createdDateBegin;
 @property (nonatomic , copy) NSString              * createdDateEnd;
 @property (nonatomic , copy) NSString              * currency;
-@property (nonatomic , assign) NSInteger              customerId;
+@property (nonatomic , assign) NSInteger              rfCode;
 @property (nonatomic , assign) NSInteger              customerLevel;
 @property (nonatomic , copy) NSString              * headshot;
 //deposit

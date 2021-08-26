@@ -51,7 +51,7 @@
     __block NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"appId"] = [IVHttpManager shareManager].appId;//A03DS02
     param[@"bundleId"] = [[NSBundle mainBundle] bundleIdentifier];//传从签名后的
-    param[@"customerId"] = [CNUserManager shareManager].userInfo.customerId;
+    param[@"rfCode"] = [CNUserManager shareManager].userInfo.rfCode;
     if ([kAppDelegate token].length > 0) {
         param[@"deviceToken"] = [kAppDelegate token];//deviceToken
     } else {
