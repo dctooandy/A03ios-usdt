@@ -89,8 +89,11 @@
             WEAKSELF_DEFINE
             [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {
                 if (!errorMsg) {
-                    [weakSelf.navigationController popToRootViewControllerAnimated:true];
-                }
+                    [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
+                        if (!errorMsg) {
+                            [weakSelf.navigationController popToRootViewControllerAnimated:true];
+                        }
+                    }];                }
             } faileHandler:nil];
         }];
         [self setupSubmitBtnWithHidden:false];
@@ -206,7 +209,11 @@
                 WEAKSELF_DEFINE
                 [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {
                     if (!errorMsg) {
-                        [weakSelf.navigationController popToRootViewControllerAnimated:true];
+                        [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
+                            if (!errorMsg) {
+                                [weakSelf.navigationController popToRootViewControllerAnimated:true];
+                            }
+                        }];
                     }
                 } faileHandler:nil];
             }];

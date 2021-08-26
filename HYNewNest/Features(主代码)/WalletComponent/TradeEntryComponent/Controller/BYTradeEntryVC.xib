@@ -31,7 +31,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <view key="tableFooterView" contentMode="scaleToFill" id="A8u-eY-AEj">
-                        <rect key="frame" x="0.0" y="978.0000010403719" width="375" height="130"/>
+                        <rect key="frame" x="0.0" y="970.3636370572176" width="375" height="130"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPQ-my-Q5w" customClass="BYGradientButton">
