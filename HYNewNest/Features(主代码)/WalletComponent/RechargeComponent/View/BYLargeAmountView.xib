@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BYLargeAmountView">
+            <connections>
+                <outlet property="customServiceButton" destination="nfU-95-YO9" id="cdv-s2-UNM"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="345" height="120"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_right" translatesAutoresizingMaskIntoConstraints="NO" id="XsL-X8-H4c">
+                    <rect key="frame" x="0.0" y="0.0" width="105" height="120"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_left" translatesAutoresizingMaskIntoConstraints="NO" id="Y7w-hW-O4s">
+                    <rect key="frame" x="310" y="88" width="35" height="32"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfU-95-YO9" customClass="CNTwoStatusBtn">
+                    <rect key="frame" x="245" y="45" width="90" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Kol-BS-oZm"/>
+                        <constraint firstAttribute="width" constant="90" id="rUN-3e-E4c"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                    <state key="normal" title="前往客服">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="customClicked:" destination="-1" eventType="touchUpInside" id="RVJ-yU-yT6"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIP专享存款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0O-Wi-sBQ">
+                    <rect key="frame" x="113" y="10" width="121.5" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="KKa-Gi-ISV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="22"/>
+                    <color key="textColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ii-AD-bsa">
+                    <rect key="frame" x="113" y="47" width="121.5" height="68"/>
+                    <attributedString key="attributedText">
+                        <fragment>
+                            <string key="content">一对一服务
+20万以上起存
+存款成功率</string>
+                            <attributes>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="12" name="PingFangSC-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="100%">
+                            <attributes>
+                                <color key="NSColor" red="0.94117647058823528" green="1" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="12" name="PingFangSC-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="12" name="PingFangSC-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="XsL-X8-H4c" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0lg-Xm-7Xb"/>
+                <constraint firstAttribute="trailing" secondItem="Y7w-hW-O4s" secondAttribute="trailing" id="1BD-SD-krC"/>
+                <constraint firstItem="9ii-AD-bsa" firstAttribute="top" secondItem="n0O-Wi-sBQ" secondAttribute="bottom" constant="5" id="D86-se-q9c"/>
+                <constraint firstAttribute="bottom" secondItem="XsL-X8-H4c" secondAttribute="bottom" id="EDc-pa-sro"/>
+                <constraint firstItem="9ii-AD-bsa" firstAttribute="leading" secondItem="n0O-Wi-sBQ" secondAttribute="leading" id="Ie4-cd-ofa"/>
+                <constraint firstItem="XsL-X8-H4c" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LcG-Or-1fv"/>
+                <constraint firstAttribute="bottom" secondItem="Y7w-hW-O4s" secondAttribute="bottom" id="Oua-NQ-6Un"/>
+                <constraint firstAttribute="bottom" secondItem="9ii-AD-bsa" secondAttribute="bottom" constant="5" id="Tta-WS-Qb5"/>
+                <constraint firstItem="n0O-Wi-sBQ" firstAttribute="leading" secondItem="XsL-X8-H4c" secondAttribute="trailing" constant="8" id="Whn-9O-6sC"/>
+                <constraint firstAttribute="trailing" secondItem="nfU-95-YO9" secondAttribute="trailing" constant="10" id="rIl-VU-7AH"/>
+                <constraint firstItem="nfU-95-YO9" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ubo-Fu-Z2D"/>
+                <constraint firstItem="n0O-Wi-sBQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="xkl-AD-Fdo"/>
+                <constraint firstItem="9ii-AD-bsa" firstAttribute="trailing" secondItem="n0O-Wi-sBQ" secondAttribute="trailing" id="yUQ-bW-yNE"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-336.95652173913044" y="228.34821428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bg_left" width="35" height="32"/>
+        <image name="bg_right" width="105" height="120"/>
+    </resources>
+</document>

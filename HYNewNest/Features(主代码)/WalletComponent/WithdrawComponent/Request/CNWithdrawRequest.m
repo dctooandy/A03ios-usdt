@@ -96,5 +96,13 @@
     }];
 }
 
++ (void)checkUSDTDepositAvailable:(HandlerBlock)handler {
+    //config_queryUSDTAvailable
+    [self POST:(kGatewayExtraPath(config_queryUSDTAvailable)) parameters:[kNetworkMgr baseParam] completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+            handler(responseObj, errorMsg);
+        }
+    }];
+}
 
 @end

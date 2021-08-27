@@ -156,6 +156,8 @@
 #define config_queryOnlineBanks    @"deposit/queryOnlineBanks"  //查询在线银行卡，在线支付，银行，扫码支付
 #define config_queryAmountList    @"deposit/queryAmountList" // 查询手动BQ和手动银行存款限额列表
 
+#define config_queryUSDTAvailable @"83e6dy/deposit/USDT/authenticator" //验证用户USDT资格
+
 #define config_BQPayment        @"deposit/BQPayment"  //支付宝支付
 #define config_deleteTrans      @"deposit/deleteTrans" //交易记录 删除充值
 #define config_queryDepositBankInfos @"deposit/queryDepositBankInfos"  //查询电子货币渠道
