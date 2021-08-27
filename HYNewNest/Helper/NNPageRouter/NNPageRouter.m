@@ -31,8 +31,9 @@
 #import <CSCustomSerVice/CSCustomSerVice.h>
 #import "KeyChain.h"
 #import <YJChat.h>
-
 #import "HYXiMaViewController.h"
+#import "CNLoginRequest.h"
+#import "BYUSDTRechargeAlertView.h"
 
 @implementation NNPageRouter
 
@@ -66,8 +67,27 @@
 
 + (void)jump2Deposit {
     if ([CNUserManager shareManager].isUsdtMode) {
-        BYTradeEntryVC *tradeVC = [[BYTradeEntryVC alloc] initWithType:TradeEntryTypeDeposit];
-        [kCurNavVC pushViewController:tradeVC animated:true];
+        [CNWithdrawRequest checkUSDTDepositAvailable:^(id responseObj, NSString *errorMsg) {
+            if (!errorMsg) {
+//                if ([responseObj[@"result"] boolValue] == true) {
+//                    BYTradeEntryVC *tradeVC = [[BYTradeEntryVC alloc] initWithType:TradeEntryTypeDeposit];
+//                    [kCurNavVC pushViewController:tradeVC animated:true];
+//                }
+//                else {
+                    [BYUSDTRechargeAlertView showAlertWithContent:@"USDT通道维护中\n建议切换使用CNY账户" confirmText:@"切换CNY账户" comfirmHandler:^(BOOL isComfirm) {
+                        [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {
+                            if (!errorMsg) {
+                                [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
+                                    if (!errorMsg) {
+                                        [kCurNavVC popToRootViewControllerAnimated:true];
+                                    }
+                                }];
+                            }
+                        } faileHandler:nil];
+                    }];
+//                }
+            }
+        }];
     } else {
         [kCurNavVC pushViewController:[HYRechargeCNYViewController new] animated:YES];
     }

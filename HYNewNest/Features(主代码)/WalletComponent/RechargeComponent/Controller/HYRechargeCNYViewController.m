@@ -103,7 +103,8 @@
                         if (!errorMsg) {
                             [weakSelf.navigationController popToRootViewControllerAnimated:true];
                         }
-                    }];                }
+                    }];
+                }
             } faileHandler:nil];
         }];
         [self setupSubmitBtnWithHidden:false];

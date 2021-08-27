@@ -1007,6 +1007,7 @@
 		F73857D2267B18E200768D14 /* BYGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F73857D0267B18E200768D14 /* BYGradientButton.m */; };
 		F73857D6267B18F300768D14 /* BYGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = F73857D4267B18F300768D14 /* BYGradientView.m */; };
 		F746163126D787F000673601 /* BYLargeAmountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F746163026D787F000673601 /* BYLargeAmountView.xib */; };
+		F749383E26D8917E008F0BD4 /* BYUSDTRechargeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = F749383D26D8917E008F0BD4 /* BYUSDTRechargeAlertView.m */; };
 		F76BEC2F267AE85800577547 /* BYTradeEntryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F76BEC2D267AE85800577547 /* BYTradeEntryVC.m */; };
 		F76BEC30267AE85800577547 /* BYTradeEntryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F76BEC2E267AE85800577547 /* BYTradeEntryVC.xib */; };
 		F76BEC34267AF16E00577547 /* BYTradeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F76BEC32267AF16E00577547 /* BYTradeTableViewCell.m */; };
@@ -2452,6 +2453,8 @@
 		F73857D4267B18F300768D14 /* BYGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BYGradientView.m; sourceTree = "<group>"; };
 		F73857D5267B18F300768D14 /* BYGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BYGradientView.h; sourceTree = "<group>"; };
 		F746163026D787F000673601 /* BYLargeAmountView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYLargeAmountView.xib; sourceTree = "<group>"; };
+		F749383C26D8917E008F0BD4 /* BYUSDTRechargeAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYUSDTRechargeAlertView.h; sourceTree = "<group>"; };
+		F749383D26D8917E008F0BD4 /* BYUSDTRechargeAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYUSDTRechargeAlertView.m; sourceTree = "<group>"; };
 		F765F0EE26525F4C00F15747 /* BYFirstFillBannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYFirstFillBannerView.m; sourceTree = "<group>"; };
 		F765F0F026525F5800F15747 /* BYFirstFillBannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYFirstFillBannerView.xib; sourceTree = "<group>"; };
 		F765F0F3265268D000F15747 /* BYMoreCompleteMissionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYMoreCompleteMissionView.m; sourceTree = "<group>"; };
@@ -5134,6 +5137,8 @@
 				3DCE56FB2698155200BEADD9 /* BYMultiAccountRuleView.m */,
 				F791E24C269E7B44002D6648 /* BYCNYRechargeAlertView.h */,
 				F791E24D269E7B44002D6648 /* BYCNYRechargeAlertView.m */,
+				F749383C26D8917E008F0BD4 /* BYUSDTRechargeAlertView.h */,
+				F749383D26D8917E008F0BD4 /* BYUSDTRechargeAlertView.m */,
 				3D3D647426B4088200ECE9AA /* BYNightCityGiftAlertView.h */,
 				3D3D647526B4088200ECE9AA /* BYNightCityGiftAlertView.m */,
 			);
@@ -6791,6 +6796,7 @@
 				3DD05E822681817B004B1062 /* BYDepositUsdtEditorView.m in Sources */,
 				3DC14E4725FB52DE00D6DB85 /* BYMyWalletView.m in Sources */,
 				E98BEF2524D2C40100E6B0C8 /* HYWithdrawAddCardFooter.m in Sources */,
+				F749383E26D8917E008F0BD4 /* BYUSDTRechargeAlertView.m in Sources */,
 				3DDEBA32264A4E4D0014EB87 /* BYYuEBaoVC.m in Sources */,
 				3D41DEB9251F1A20000CA1D6 /* WSLPhotoZoom.m in Sources */,
 				040A08D124E114A900FBD534 /* OCBarrageDescriptor.m in Sources */,

@@ -226,7 +226,7 @@
                         <fragment content="CNY充值时，付款人姓名必须和银行卡绑定姓名一致">
                             <attributes>
                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                <font key="NSFont" size="12" name="PingFangSC"/>
+                                <font key="NSFont" metaFont="cellTitle"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
