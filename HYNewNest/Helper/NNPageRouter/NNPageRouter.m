@@ -66,6 +66,10 @@
 }
 
 + (void)jump2Deposit {
+    [NNPageRouter jump2DepositWithSuggestAmount:0];
+}
+
++ (void)jump2DepositWithSuggestAmount:(int)amount {
     if ([CNUserManager shareManager].isUsdtMode) {
         [CNWithdrawRequest checkUSDTDepositAvailable:^(id responseObj, NSString *errorMsg) {
             if (!errorMsg) {
@@ -77,11 +81,7 @@
                     [BYUSDTRechargeAlertView showAlertWithContent:@"USDT通道维护中\n建议切换使用CNY账户" confirmText:@"切换CNY账户" comfirmHandler:^(BOOL isComfirm) {
                         [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {
                             if (!errorMsg) {
-                                [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
-                                    if (!errorMsg) {
-                                        [kCurNavVC popToRootViewControllerAnimated:true];
-                                    }
-                                }];
+                                [CNLoginRequest getUserInfoByTokenCompletionHandler:nil];
                             }
                         } faileHandler:nil];
                     }];
@@ -89,17 +89,6 @@
             }
         }];
     } else {
-        [kCurNavVC pushViewController:[HYRechargeCNYViewController new] animated:YES];
-    }
-}
-
-+ (void)jump2DepositWithSuggestAmount:(int)amount {
-    if ([CNUserManager shareManager].isUsdtMode) {
-        BYDepositUsdtVC *vc = [[BYDepositUsdtVC alloc] init];
-        vc.suggestRecharge = amount;
-        [kCurNavVC pushViewController:vc animated:true];
-    }
-    else {
         [kCurNavVC pushViewController:[HYRechargeCNYViewController new] animated:YES];
     }
 }

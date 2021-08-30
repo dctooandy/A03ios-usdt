@@ -256,6 +256,9 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
         }
         BYDepositUsdtVC *vc = [BYDepositUsdtVC new];
         vc.amount_list = self.amount_list;
+        if (self.suggestRecharge > 0) {
+            vc.suggestRecharge = self.suggestRecharge;
+        }
         [self.navigationController pushViewController:vc animated:YES];
     }
     

@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BYTradeEntryVC : CNBaseVC
 - (instancetype)initWithType:(TradeEntryType)type;
 
+@property (nonatomic, assign) int suggestRecharge;
 @end
 
 NS_ASSUME_NONNULL_END
