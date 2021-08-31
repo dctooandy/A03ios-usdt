@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)fetchUnreadCount;
 - (void)setUnreadToDefault;
 - (void)initOCSSSDKShouldReload:(BOOL)reload;
+
 @property (nonatomic, assign) NSInteger unreadMessage;
 
 @end

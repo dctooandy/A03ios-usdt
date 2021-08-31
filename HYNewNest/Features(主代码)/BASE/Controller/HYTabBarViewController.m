@@ -46,7 +46,7 @@
     [self initOCSSSDKShouldReload:false];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginStatusChanged) name:HYLoginSuccessNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginStatusChanged) name:HYLoginSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginStatusChanged) name:HYLogoutSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchUnreadCount) name:BYDidReadMessageNotificaiton object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupAppearance) name:CNSkinChangeNotification object:nil];
     
@@ -337,6 +337,7 @@
 - (void)reloadOCSSSDK {
     [self initOCSSSDKShouldReload:true];
 }
+
 - (void)initOCSSSDKShouldReload:(BOOL)reload{
     CSChatInfo *info = [[CSChatInfo alloc]init];
     info.productId = [IVHttpManager shareManager].productId;//产品ID
@@ -353,9 +354,14 @@
     info.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontPFSB18]};
     info.barTintColor = kHexColor(0x1A1A2C);
     
+    if (reload) {
+        [CSVisitChatmanager cleanSDK];
+    }
+    
     [CNServiceRequest queryOCSSDomainHandler:^(id responseObj, NSString *errorMsg) {
         info.response = responseObj;
         info.domainBakList = responseObj[@"domainBakList"];
+        
         if (reload) {
             [CSVisitChatmanager reloadSDK:info finish:^(CSServiceCode errCode) {
                 if (errCode == CSServiceCode_Request_NoIniting) {

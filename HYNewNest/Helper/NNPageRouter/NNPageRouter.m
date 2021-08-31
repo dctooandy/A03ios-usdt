@@ -160,13 +160,26 @@
 
 + (void)presentOCSS_VC {
     // 打开新客服入口
-    MyLog(@"新客服版本：%@",[CSVisitChatmanager getVersion]);
-    [CSVisitChatmanager startWithSuperVC:[NNControllerHelper currentTabBarController] finish:^(CSServiceCode errCode) {
-        if (errCode != CSServiceCode_Request_Suc) {
-            [CNTOPHUB showError:@"系统错误，请稍后再试"];
-        }
-    }];
+    [NNPageRouter presentOCSS_VC:false];
+}
 
++ (void)presentOCSS_VC:(BOOL)hugeAmount {
+    // 打开新客服入口
+    MyLog(@"新客服版本：%@",[CSVisitChatmanager getVersion]);
+    if (hugeAmount) {
+        [CSVisitChatmanager startWithSuperVC:[NNControllerHelper currentTabBarController] extraParam:@{@"userTextTag":@"我要大额存款"} finish:^(CSServiceCode errCode) {
+            if (errCode != CSServiceCode_Request_Suc) {
+                [CNTOPHUB showError:@"系统错误，请稍后再试"];
+            }
+        }];
+    }
+    else {
+        [CSVisitChatmanager startWithSuperVC:[NNControllerHelper currentTabBarController] finish:^(CSServiceCode errCode) {
+            if (errCode != CSServiceCode_Request_Suc) {
+                [CNTOPHUB showError:@"系统错误，请稍后再试"];
+            }
+        }];
+    }
 }
 
 + (void)presentWMQCustomerService {

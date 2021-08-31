@@ -42,7 +42,7 @@
 }
 
 - (IBAction)customClicked:(id)sender {
-    [NNPageRouter presentOCSS_VC];
+    [NNPageRouter presentOCSS_VC:true];
 }
 
 @end

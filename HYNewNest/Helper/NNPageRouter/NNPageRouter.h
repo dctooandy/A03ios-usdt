@@ -42,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 跳转到客服
 + (void)presentOCSS_VC;
 
++ (void)presentOCSS_VC:(BOOL)hugeAmount;
+
 /// 跳转到微脉圈
 + (void)presentWMQCustomerService;
 
