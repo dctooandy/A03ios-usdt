@@ -117,24 +117,28 @@
         paras[@"captcha"] = imageCode;
         paras[@"captchaId"] = imageCodeId;
     }
-
+    
     [self POST:(config_LoginEx) parameters:paras completionHandler:^(NSDictionary *responseObj, NSString *errorMsg) {
         if ([responseObj isKindOfClass:[NSDictionary class]] && [responseObj.allKeys containsObject:@"samePhoneLoginNames"]) {
             completionHandler(responseObj, errorMsg);
         } else {
             if (!errorMsg) {
                 [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
-                [CNLoginRequest getUserInfoByTokenCompletionHandler:nil]; // 请求详细信息
-//                [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
                 // 推送相关    (登录后才能获取到udid)
                 [CNPushRequest GetUDIDHandler:^(id responseObj, NSString *errorMsg) {
                     [CNPushRequest GTInterfaceHandler:nil];
                 }];
                 
+                [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id response, NSString *error) {
+                    completionHandler(responseObj, errorMsg);
+                }]; // 请求详细信息
+                
+                //                [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
             }
-            completionHandler(responseObj, errorMsg);
+//            completionHandler(responseObj, errorMsg);
         }
     }];
+
 }
 
 + (void)mulLoginSelectedLoginName:(NSString *)loginName
