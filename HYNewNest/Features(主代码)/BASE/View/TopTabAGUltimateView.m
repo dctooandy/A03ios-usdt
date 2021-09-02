@@ -13,7 +13,7 @@
 #import "BYNewbieMissionVC.h"
 #import "BYYuEBaoTransferVC.h"
 
-@interface TopTabAGUltimateView()<WKNavigationDelegate, WKUIDelegate> //WKScriptMessageHandler  要加协议
+@interface TopTabAGUltimateView()<WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandler> //WKScriptMessageHandler  要加协议
 
 @property (strong, nonatomic) WKWebViewConfiguration *webConfig;
 
@@ -34,7 +34,7 @@
 }
 
 - (void)setupView{
-   
+    
     _wkWebView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:self.webConfig];
     _wkWebView.scrollView.scrollEnabled = YES;
     _wkWebView.opaque = NO;
@@ -45,7 +45,7 @@
         make.bottom.equalTo(self);
         //make.bottom.equalTo(self).offset(STATUS_HEIGHT + 30);
     }];
-   
+    
     _wkWebView.allowsBackForwardNavigationGestures = YES;
     self.wkWebView.scrollView.bounces = true;
     _wkWebView.navigationDelegate = self;
@@ -57,9 +57,9 @@
                         options:NSKeyValueObservingOptionNew
                         context:nil];
     [self.wkWebView addObserver:self
-    forKeyPath:@"title"
-       options:NSKeyValueObservingOptionNew
-       context:nil];
+                     forKeyPath:@"title"
+                        options:NSKeyValueObservingOptionNew
+                        context:nil];
     self.progressView = [[UIProgressView alloc] init];
     self.progressView.tintColor = kHexColor(0x02EED9);
     
@@ -68,6 +68,7 @@
         make.left.top.right.equalTo(self.wkWebView);
         make.height.mas_equalTo(2);
     }];
+    
 }
 
 
@@ -98,19 +99,19 @@
     //js 里面的alert实现，如果不实现，网页的alert函数无效  ,
     
     /*
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message
-                                                                             message:nil
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"确定"
-                                                        style:UIAlertActionStyleDefault
-                                                      handler:^(UIAlertAction *action) {
-                                                          completionHandler(YES);
-                                                      }]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"取消"
-                                                        style:UIAlertActionStyleCancel
-                                                      handler:^(UIAlertAction *action){
-                                                          completionHandler(NO);
-                                                      }]];
+     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message
+     message:nil
+     preferredStyle:UIAlertControllerStyleAlert];
+     [alertController addAction:[UIAlertAction actionWithTitle:@"确定"
+     style:UIAlertActionStyleDefault
+     handler:^(UIAlertAction *action) {
+     completionHandler(YES);
+     }]];
+     [alertController addAction:[UIAlertAction actionWithTitle:@"取消"
+     style:UIAlertActionStyleCancel
+     handler:^(UIAlertAction *action){
+     completionHandler(NO);
+     }]];
      */
 }
 
@@ -132,14 +133,14 @@
             self.landScapeStateChange(YES);
         }
     }
-//    if ([absoluteString containsString:@"portrait.html"]) {
-//        //说明进AG旗舰大厅了
-//        self.isLandScape = NO;
-//        if (self.landScapeStateChange) {
-//            self.landScapeStateChange(NO);
-//        }
-//        [[CNTimeLog shareInstance] endRecordTime:CNEventAGQJLaunch];
-//    }
+    //    if ([absoluteString containsString:@"portrait.html"]) {
+    //        //说明进AG旗舰大厅了
+    //        self.isLandScape = NO;
+    //        if (self.landScapeStateChange) {
+    //            self.landScapeStateChange(NO);
+    //        }
+    //        [[CNTimeLog shareInstance] endRecordTime:CNEventAGQJLaunch];
+    //    }
     
     if ([absoluteString containsString:@"disconnect.html"]) {
         //说明失去连接了
@@ -165,9 +166,9 @@
         decisionHandler(WKNavigationActionPolicyCancel);
         [self registerClick];
         
-//    }else if ([url hasPrefix:@"hy://share"]){
+        //    }else if ([url hasPrefix:@"hy://share"]){
         //分享
-//        [ShareListPopView show];
+        //        [ShareListPopView show];
         
     }else if ([url hasPrefix:@"hy://kefu"]){
         //客服
@@ -201,7 +202,7 @@
         // 买币指南
         decisionHandler(WKNavigationActionPolicyCancel);
         [NNPageRouter jump2BuyECoin];
-    
+        
     }else if ([url hasPrefix:@"hy://deposit"]){
         //充值
         decisionHandler(WKNavigationActionPolicyCancel);
@@ -211,24 +212,24 @@
         //AG旗舰
         decisionHandler(WKNavigationActionPolicyCancel);
         [self btnAGqjClick];
-
-//    }else if ([url hasPrefix:@"hy://score"]){
+        
+        //    }else if ([url hasPrefix:@"hy://score"]){
         //积分兑换
-//        IntegralViewController *vc = [[IntegralViewController alloc] init];
-//        UIViewController *topVC = [UIViewController topViewController];
-//        [topVC.navigationController pushViewController:vc animated:YES];
+        //        IntegralViewController *vc = [[IntegralViewController alloc] init];
+        //        UIViewController *topVC = [UIViewController topViewController];
+        //        [topVC.navigationController pushViewController:vc animated:YES];
         
-//    }else if ([url hasPrefix:@"hy://settings/info"]){
+        //    }else if ([url hasPrefix:@"hy://settings/info"]){
         //个人资料
-//        PersonInfoViewController *vc = [[PersonInfoViewController alloc] init];
-//        UIViewController *topVC = [UIViewController topViewController];
-//        [topVC.navigationController pushViewController:vc animated:YES];
+        //        PersonInfoViewController *vc = [[PersonInfoViewController alloc] init];
+        //        UIViewController *topVC = [UIViewController topViewController];
+        //        [topVC.navigationController pushViewController:vc animated:YES];
         
-//    }else if ([url hasPrefix:@"hy://videogame"]){
+        //    }else if ([url hasPrefix:@"hy://videogame"]){
         //电子游戏
-//        DYViewController *vc = [[DYViewController alloc] init];
-//        UIViewController *topVC = [UIViewController topViewController];
-//        [topVC.navigationController pushViewController:vc animated:YES];
+        //        DYViewController *vc = [[DYViewController alloc] init];
+        //        UIViewController *topVC = [UIViewController topViewController];
+        //        [topVC.navigationController pushViewController:vc animated:YES];
         
     }else if ([url containsString:@"/share?"]) {
         //好友推荐
@@ -241,17 +242,17 @@
         decisionHandler(WKNavigationActionPolicyCancel);
         [kCurNavVC popToRootViewControllerAnimated:NO];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [NNControllerHelper currentTabBarController].selectedIndex = 1;
+            [NNControllerHelper currentTabBarController].selectedIndex = 1;
         });
         
     }
-//    else if ([url containsString:@"/noviceTask?"]) {
-//        //新手任务
-//        decisionHandler(WKNavigationActionPolicyCancel);
-//        [kCurNavVC popToRootViewControllerAnimated:NO];
-//        [kCurNavVC pushViewController:[BYNewUsrMissionVC new] animated:YES];
-//
-//    }
+    //    else if ([url containsString:@"/noviceTask?"]) {
+    //        //新手任务
+    //        decisionHandler(WKNavigationActionPolicyCancel);
+    //        [kCurNavVC popToRootViewControllerAnimated:NO];
+    //        [kCurNavVC pushViewController:[BYNewUsrMissionVC new] animated:YES];
+    //
+    //    }
     else if ([url containsString:@"/noviceTask?"]){
         //新手任務v2
         decisionHandler(WKNavigationActionPolicyCancel);
@@ -263,7 +264,14 @@
         BYYuEBaoTransferVC *vc = [[BYYuEBaoTransferVC alloc] initWithType:YEBTransferTypeDeposit configModel:nil];
         [kCurNavVC pushViewController:vc animated:YES];
         
-    }else {
+    }
+    else if ([url hasPrefix:@"hy://byebye"]) {
+        // Token失效
+        decisionHandler(WKNavigationActionPolicyCancel);
+        [CNTOPHUB showError:@"令牌失效，请稍后重试"];
+        [kCurNavVC popViewControllerAnimated:true];
+    }
+    else {
         decisionHandler(WKNavigationActionPolicyAllow);
     }
 }
@@ -287,10 +295,10 @@
             if (self.landScapeStateChange) {
                 self.landScapeStateChange(NO);
             }
-//            RechargeViewController *vc = [[RechargeViewController alloc] init];
-//            UIViewController *topVC = [UIViewController topViewController];
-//            [topVC.navigationController pushViewController:vc animated:YES];
-           
+            //            RechargeViewController *vc = [[RechargeViewController alloc] init];
+            //            UIViewController *topVC = [UIViewController topViewController];
+            //            [topVC.navigationController pushViewController:vc animated:YES];
+            
         } else if ([absoluteString containsString:@"method=wd"]) {
             
             //取款
@@ -300,7 +308,7 @@
             [self wdrawClick];
             
         } else if ([absoluteString containsString:@"method=pcs"] || [absoluteString containsString:@"method=cs"]) {
-             
+            
             //在线客服
             if (self.landScapeStateChange) {
                 self.landScapeStateChange(NO);
@@ -310,11 +318,11 @@
         } else if ([absoluteString containsString:@"method=rg"]) {
             
             //开户
-           
+            
         } else if ([absoluteString containsString:@"method=pm"]) {
             
             //优惠
-           
+            
         } else if ([absoluteString containsString:@"method=fu"]) {
             
             //论坛
@@ -342,14 +350,29 @@
     //decisionHandler(WKNavigationResponsePolicyCancel);
 }
 
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
+    if ([message.name isEqualToString:@"h5RefreshTicket"]) {
+        [NNPageRouter requestH5TicketHandler:^(NSString * ticket, NSString *errorMsg) {
+            NSString *jsScript = [NSString stringWithFormat:@"appGetTicket('%@')", ticket];
+            [self.wkWebView evaluateJavaScript:jsScript completionHandler:^(NSString *result , NSError * _Nullable error) {
+                if (error){
+                    [CNTOPHUB showError:error.localizedDescription];
+                }
+            }];
+        }];
+        
+    }
+    
+}
+
 #pragma mark GET SET
 - (WKWebViewConfiguration *)webConfig {
     if(!_webConfig){
         _webConfig = [[WKWebViewConfiguration alloc] init];
         _webConfig.preferences = [[WKPreferences alloc] init];
-       //_webConfig.preferences.minimumFontSize = 10;
+        //_webConfig.preferences.minimumFontSize = 10;
         _webConfig.preferences.javaScriptEnabled = YES;
-       //_webConfig.preferences.javaScriptCanOpenWindowsAutomatically = NO;
+        //_webConfig.preferences.javaScriptCanOpenWindowsAutomatically = NO;
         _webConfig.allowsInlineMediaPlayback = YES;
         _webConfig.mediaTypesRequiringUserActionForPlayback = YES;
         //在iOS上默认为NO，表示不能自动通过窗口打开
@@ -357,7 +380,7 @@
         _webConfig.processPool = [[WKProcessPool alloc] init];
         
         
-//        _webConfig.userContentController = [[WKUserContentController alloc] init];
+        //        _webConfig.userContentController = [[WKUserContentController alloc] init];
         //禁止长按弹出 UIMenuController 相关
         //禁止选择 css 配置相关
         NSString*css = @"body{-webkit-user-select:none;-webkit-user-drag:none;}";
@@ -374,19 +397,20 @@
         WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript
                                                                 injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
                                                              forMainFrameOnly:YES];
-        WKUserContentController*userContentController = [[WKUserContentController alloc] init];
+        WKUserContentController *userContentController = [[WKUserContentController alloc] init];
         [userContentController addUserScript:noneSelectScript];
+        [userContentController addScriptMessageHandler:self name:@"h5RefreshTicket"];
         WKWebViewConfiguration*configuration = [[WKWebViewConfiguration alloc] init];
         configuration.userContentController = userContentController;
         _webConfig.userContentController = userContentController;
-
+        
     }
     return _webConfig;
 }
 
 -(void)loadWebViewWithURL:(NSString*)webUrl{
     if ([webUrl containsString:@"http"]) {
-//        NSString *agwebUrl = [NSString stringWithFormat:@"%@&webApp=%@",webUrl,@"true"];
+        //        NSString *agwebUrl = [NSString stringWithFormat:@"%@&webApp=%@",webUrl,@"true"];
         _webUrl = [webUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         [self.wkWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_webUrl]]];
     }

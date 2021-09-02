@@ -136,7 +136,10 @@
     }];
     
     
-    if ([CNUserManager shareManager].isUsdtMode == false && [CNUserManager shareManager].userDetail.depositLevel == 30) {
+    if ([CNUserManager shareManager].isUsdtMode == false
+        && ([CNUserManager shareManager].userDetail.depositLevel == 30
+            || ([CNUserManager shareManager].userDetail.depositLevel >=5 && [CNUserManager shareManager].userDetail.depositLevel <= 10 && [CNUserManager shareManager].userDetail.starLevel >= 5))) {
+        
         [self.largeAmountView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.scrollContainer).offset(15);
             make.top.equalTo(self.scrollContainer).offset(15);
