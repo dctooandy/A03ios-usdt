@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSArray<SamePhoneLoginNameItem *> * loginNames;
 @end
 
-@interface CNUserModel : CNBaseModel
+@interface CNUserModel : CNBaseModel <NSSecureCoding>
 
 @property (nonatomic, copy)NSString *avatar;
 @property (nonatomic, copy)NSString *beforeLoginDate;

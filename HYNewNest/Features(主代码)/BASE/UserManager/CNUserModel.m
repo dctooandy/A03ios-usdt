@@ -19,5 +19,8 @@
 @end
 
 @implementation CNUserModel
-
+kHYCodingDesc
++ (BOOL)supportsSecureCoding {
+    return true;
+}
 @end
