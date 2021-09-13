@@ -105,7 +105,7 @@
         }
         
     } else {
-        return @[@"消息中心", [CNUserManager shareManager].isUsdtMode?@"提币地址":@"银行卡", @"安全中心", @"交易记录"];
+        return @[@"消息中心", [CNUserManager shareManager].isUsdtMode ? @"提币地址":@"银行卡", @"安全中心", @"交易记录"];
 
     }
 }
@@ -231,7 +231,7 @@
         [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
     } else if ([name isEqualToString:@"消息中心"]) {
         [self.navigationController pushViewController:[CNMessageCenterVC new] animated:YES];
-    } else if ([name isEqualToString:@"提币地址"] || [name isEqualToString:@"银行卡"]) {
+    } else if ([name isEqualToString:@"提币地址"] || [name isEqualToString:@"银行卡"] || [name isEqualToString:@"提现地址"]) {
         [self.navigationController pushViewController:[CNAddressManagerVC new] animated:YES];
     } else if ([name isEqualToString:@"安全中心"]) {
         [self.navigationController pushViewController:[CNSecurityCenterVC new] animated:YES];
