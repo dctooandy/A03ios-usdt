@@ -157,7 +157,6 @@
 		167E2F2A00629D00667FC492 /* Pods_HYNewNestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */; };
 		3D13387124AD8F9C00B29783 /* HYNewNestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D13387024AD8F9C00B29783 /* HYNewNestTests.m */; };
 		3D13387C24AD8F9C00B29783 /* HYNewNestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D13387B24AD8F9C00B29783 /* HYNewNestUITests.m */; };
-		3D13389224AF28D700B29783 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D13388A24AF28D600B29783 /* Assets.xcassets */; };
 		3D13389324AF28D700B29783 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D13388B24AF28D600B29783 /* LaunchScreen.storyboard */; };
 		3D1338A324AF2E5200B29783 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1338A024AF2E5200B29783 /* main.m */; };
 		3D1338A424AF2E5200B29783 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1338A124AF2E5200B29783 /* AppDelegate.m */; };
@@ -368,7 +367,6 @@
 		3DF43D312592EE8B0087F26A /* V_SlideCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D2E2592EE8B0087F26A /* V_SlideCardCell.m */; };
 		3DF43D342592F3020087F26A /* tingyunApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D31B96425467131005275BD /* tingyunApp.framework */; };
 		3DF43D382592F5630087F26A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF43D372592F5620087F26A /* libc++.tbd */; };
-		3DF43D3A2593184A0087F26A /* Preview.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DF43D392593184A0087F26A /* Preview.xcassets */; };
 		3DF43D4525943D1F0087F26A /* BYMultiDataSourceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D4425943D1E0087F26A /* BYMultiDataSourceTableView.m */; };
 		3DF43D482594614D0087F26A /* DSBProfitBoardDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D472594614D0087F26A /* DSBProfitBoardDataSource.m */; };
 		3DF43D4C25946AED0087F26A /* DSBProfitBoardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D4A25946AED0087F26A /* DSBProfitBoardCell.m */; };
@@ -377,6 +375,7 @@
 		3DF6E7BD267B1DA800911FC8 /* BYModifyPhoneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF6E7BB267B1DA800911FC8 /* BYModifyPhoneVC.xib */; };
 		3DFF702E261EF92E00801654 /* LLIconVersioning.sh in Resources */ = {isa = PBXBuildFile; fileRef = 3DFF702D261EF92E00801654 /* LLIconVersioning.sh */; };
 		5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */; };
+		76F8643826EF652600320B60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D13388A24AF28D600B29783 /* Assets.xcassets */; };
 		D571B19624BE9F120087B5EC /* CNLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19524BE9F120087B5EC /* CNLineView.m */; };
 		D571B1AA24C03D790087B5EC /* CNStatementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D571B1A724C03D790087B5EC /* CNStatementView.xib */; };
 		D571B1AB24C03D790087B5EC /* CNStatementView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B1A924C03D790087B5EC /* CNStatementView.m */; };
@@ -6006,7 +6005,6 @@
 				D5A4449424F3932400014DC6 /* 数字7_00037.png in Resources */,
 				D5A446FD24F3941400014DC6 /* 合成 1_00093.png in Resources */,
 				D5A443D324F378CD00014DC6 /* 彩票_00029.png in Resources */,
-				3D13389224AF28D700B29783 /* Assets.xcassets in Resources */,
 				D5A445FA24F393E500014DC6 /* 足球_00034.png in Resources */,
 				D5A443C924F378CD00014DC6 /* 彩票_00010.png in Resources */,
 				E9A269D824D80D8700B512FF /* HYRechargePayWayController.xib in Resources */,
@@ -6236,12 +6234,12 @@
 				D5A4446D24F3932400014DC6 /* 数字7_00088.png in Resources */,
 				D5A444AF24F3932400014DC6 /* 数字7_00097.png in Resources */,
 				D5A4457C24F393AD00014DC6 /* 棋牌_00047.png in Resources */,
+				76F8643826EF652600320B60 /* Assets.xcassets in Resources */,
 				04C6E1E724D4029D006F4DAC /* CNAddressManagerVC.xib in Resources */,
 				048A0EF024C921F100411819 /* CNElResentPlayCCell.xib in Resources */,
 				D5A446FB24F3941400014DC6 /* 合成 1_00044.png in Resources */,
 				D5A4458024F393AD00014DC6 /* 棋牌_00034.png in Resources */,
 				D5A4439824F378CD00014DC6 /* 彩票_00072.png in Resources */,
-				3DF43D3A2593184A0087F26A /* Preview.xcassets in Resources */,
 				04935BDA24D7D45E007A33EF /* CNElectrionHallVC.xib in Resources */,
 				D5A4447924F3932400014DC6 /* 数字7_00071.png in Resources */,
 				D5A446E824F3941400014DC6 /* 合成 1_00031.png in Resources */,
