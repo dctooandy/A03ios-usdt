@@ -16,7 +16,6 @@
 #import "UILabel+Gradient.h"
 #import "ChargeManualMessgeView.h"
 #import "CNTradeRecodeVC.h"
-#import "HYDownloadLinkView.h"
 
 @interface BYDepositUsdtVC () <BYDepositUsdtEditorDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *xjkBtn;
@@ -26,7 +25,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *qtqb;
 @property (weak, nonatomic) IBOutlet BYDepositUsdtEditorView *editorView;
 @property (weak, nonatomic) IBOutlet CNTwoStatusBtn *depoBtn;
-@property (strong,nonatomic) HYDownloadLinkView *linkView;
 
 @property (assign,nonatomic) NSInteger selIdx; //!<选中行
 @property (nonatomic, strong) NSArray<DepositsBankModel *> *depositModels;
@@ -34,23 +32,6 @@
 @end
 
 @implementation BYDepositUsdtVC
-
-- (HYDownloadLinkView *)linkView {
-    if (!_linkView) {
-        HYDownloadLinkView *linkView = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(90, self.editorView.bottom+17, 200, 30) normalText:@"没有小金库？" tapableText:@"去下载" tapColor:kHexColor(0x11B5DD) hasUnderLine:YES urlValue:nil];
-        linkView.tapBlock = ^{
-            NSURL *url = [NSURL URLWithString:kDownload_XJK_Address];
-            if ([[UIApplication sharedApplication] canOpenURL:url]) {
-                [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
-                    [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
-                }];
-            }
-        };
-        _linkView = linkView;
-    }
-    return _linkView;
-}
-
 
 #pragma mark - VIEW LIFE CYCLE
 - (instancetype)init {
@@ -86,12 +67,10 @@
         [CNTimeLog endRecordTime:CNEventPayLaunch];
         _hasRecord = YES;
     }
-    [self.view addSubview:self.linkView];
 }
 
 - (void)rightItemAction {
     [NNPageRouter presentOCSS_VC];
-//    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
 }
 
 
@@ -101,11 +80,9 @@
     if (sender.tag == 0) {
         _qtqbBg.backgroundColor = kHexColor(0x1C1C36);
         _xjkBg.backgroundColor = kHexColor(0x272749);
-        _linkView.hidden = NO;
     } else {
         _qtqbBg.backgroundColor = kHexColor(0x272749);
         _xjkBg.backgroundColor = kHexColor(0x1C1C36);
-        _linkView.hidden = YES;
     }
 }
 

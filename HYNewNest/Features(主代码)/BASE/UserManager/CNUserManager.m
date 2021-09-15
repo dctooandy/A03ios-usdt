@@ -29,7 +29,6 @@
         
         data = [NSMutableData dataWithContentsOfFile:manager.modelFile2];
         manager.userDetail = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSObject class] fromData:data error:nil];
-        NSLog(@"%@", manager.userDetail);
 #else
         manager.userInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:manager.modelFile];
         manager.userDetail = [NSKeyedUnarchiver unarchiveObjectWithFile:manager.modelFile2];

@@ -315,7 +315,7 @@
         STRONGSELF_DEFINE
         if (!errorMsg) {
             // 判断多账号调用多账号登录
-            if (responseObj[@"samePhoneLoginNames"]) {
+            if (responseObj[@"samePhoneLoginNames"] || responseObj[@"loginNames"]) {
                 CNLoginSuccChooseAccountVC *vc = [CNLoginSuccChooseAccountVC new];
                 vc.samePhoneLogNameModel = [SamePhoneLoginNameModel cn_parse:responseObj];
                 [strongSelf.navigationController pushViewController:vc animated:YES];
