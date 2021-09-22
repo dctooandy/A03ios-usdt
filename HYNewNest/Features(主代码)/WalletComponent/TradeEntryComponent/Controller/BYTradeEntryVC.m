@@ -20,6 +20,7 @@
 #import "HYWideOneBtnAlertView.h"
 #import "BYDepositUsdtVC.h"
 #import "CNTradeRecodeVC.h"
+#import "CNWithdrawRequest.h"
 
 @interface BYTradeEntryVC () <UITableViewDataSource, UITableViewDelegate, SDCycleScrollViewDelegate>
 
@@ -44,7 +45,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[NNControllerHelper currentTabBarController] performSelector:@selector(showSuspendBall)];
-
+    
 }
 
 - (void)viewDidLoad {
@@ -52,7 +53,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
     // Do any additional setup after loading the view from its nib.
     [self setupUI];
     [self fetchData];
-
+    
 }
 
 - (instancetype)initWithType:(TradeEntryType)type {
@@ -62,14 +63,14 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark -
 #pragma mark Custom Method
@@ -103,7 +104,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
     for (TradeBannerItem *banner in self.bannerModels) {
         [h5Images addObject:[NSString stringWithFormat:@"%@%@", self.h5Root, banner.img]];
     }
-
+    
     [self.bannerView setImageURLStringsGroup:h5Images];
 }
 
@@ -141,49 +142,78 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
     self.bannerModels = [[NSMutableArray alloc] init];
     self.setTypeModels = [[NSMutableArray alloc] init];
     
-    WEAKSELF_DEFINE
-    [BYTradeEntryRequest fetchTradeHandler:^(id responseObj, NSString *errorMsg) {
-        STRONGSELF_DEFINE
-        if (!errorMsg) {
-            NSArray<BYTradeEntryModel *> *models = [BYTradeEntryModel cn_parse:responseObj];
-            __block BYTradeEntryModel *model;
-
-            [models enumerateObjectsUsingBlock:^(BYTradeEntryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if (weakSelf.type == TradeEntryTypeDeposit && [obj.type isEqualToString:@"充值"]) {
-                    model = obj;
-                    *stop = true;
-                }
-                else if (weakSelf.type == TradeEntryTypeWithdraw && [obj.type isEqualToString:@"提现"]) {
-                    model = obj;
-                    *stop = true;
-                }
-            }];
-            
-            NSArray *banners = [BYJSONHelper dictOrArrayWithJsonString:model.banner][@"h5"];
-            strongSelf.bannerModels = [[NSMutableArray alloc] init];
-
-            for (NSDictionary *dict in banners) {
-                [strongSelf.bannerModels addObject:[TradeBannerItem cn_parse:dict]];
-            }
-            
-            NSArray *setTypes = [BYJSONHelper dictOrArrayWithJsonString:model.setType];
-            for (NSMutableDictionary *dict in setTypes) {
-                dict[@"icon"] = [NSString stringWithFormat:@"icon_%@_", strongSelf.type == TradeEntryTypeWithdraw ? @"withdraw" : @"deposit"];
-                [strongSelf.setTypeModels addObject:[TradeEntrySetTypeItem cn_parse:dict]];
-            }
-            
-            strongSelf.tutorialsVideos = [BYJSONHelper dictOrArrayWithJsonString:model.video];
-            strongSelf.h5Root = model.h5_root;
-            strongSelf.videoRoot = model.video_root;
-            strongSelf.amount_list = model.amount_list;
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        WEAKSELF_DEFINE
+        [BYTradeEntryRequest fetchTradeHandler:^(id responseObj, NSString *errorMsg) {
+            STRONGSELF_DEFINE
+            if (!errorMsg) {
+                NSArray<BYTradeEntryModel *> *models = [BYTradeEntryModel cn_parse:responseObj];
+                __block BYTradeEntryModel *model;
                 
+                [models enumerateObjectsUsingBlock:^(BYTradeEntryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if (weakSelf.type == TradeEntryTypeDeposit && [obj.type isEqualToString:@"充值"]) {
+                        model = obj;
+                        *stop = true;
+                    }
+                    else if (weakSelf.type == TradeEntryTypeWithdraw && [obj.type isEqualToString:@"提现"]) {
+                        model = obj;
+                        *stop = true;
+                    }
+                }];
+                
+                NSArray *banners = [BYJSONHelper dictOrArrayWithJsonString:model.banner][@"h5"];
+                strongSelf.bannerModels = [[NSMutableArray alloc] init];
+                
+                for (NSDictionary *dict in banners) {
+                    [strongSelf.bannerModels addObject:[TradeBannerItem cn_parse:dict]];
+                }
+                
+                NSArray *setTypes = [BYJSONHelper dictOrArrayWithJsonString:model.setType];
+                for (NSMutableDictionary *dict in setTypes) {
+                    dict[@"icon"] = [NSString stringWithFormat:@"icon_%@_", strongSelf.type == TradeEntryTypeWithdraw ? @"withdraw" : @"deposit"];
+                    [strongSelf.setTypeModels addObject:[TradeEntrySetTypeItem cn_parse:dict]];
+                }
+                
+                strongSelf.tutorialsVideos = [BYJSONHelper dictOrArrayWithJsonString:model.video];
+                strongSelf.h5Root = model.h5_root;
+                strongSelf.videoRoot = model.video_root;
+                strongSelf.amount_list = model.amount_list;
+            }
+        }];
+    });
+    
+    
+    
+    dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        if (self.type == TradeEntryTypeWithdraw) {
+            WEAKSELF_DEFINE
+            [CNWithdrawRequest checkUSDTDepositAvailable:^(id responseObj, NSString *errorMsg) {
+                STRONGSELF_DEFINE
+                if (!errorMsg && [responseObj[@"result"] boolValue] == false) {
+                    [strongSelf.setTypeModels enumerateObjectsUsingBlock:^(TradeEntrySetTypeItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        if ([obj.type isEqualToString:@"MB"]) {
+                            [strongSelf.setTypeModels removeObject:obj];
+                            *stop = true;
+                        }
+                    }];
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf.tableView reloadData];
+                    [weakSelf setupBanner];
+                });
+            }];
+        }
+        else {
+            WEAKSELF_DEFINE
             dispatch_async(dispatch_get_main_queue(), ^{
-                [strongSelf.tableView reloadData];
-                [strongSelf setupBanner];
+                [weakSelf.tableView reloadData];
+                [weakSelf setupBanner];
             });
         }
-    }];
-
+    });
+    
 }
 
 #pragma mark -
@@ -215,7 +245,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     TradeEntrySetTypeItem *setTypeItem = self.setTypeModels[indexPath.row];
-
+    
     if ([setTypeItem.type isEqualToString:@"YEB"]) { //餘額寶
         [self.navigationController pushViewController:[BYYuEBaoVC new] animated:YES];
     }
@@ -288,7 +318,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
 
 - (void)rightItemAction {
     //Request on hole
-//    [NNPageRouter presentOCSS_VC];
+    //    [NNPageRouter presentOCSS_VC];
     [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
 }
 

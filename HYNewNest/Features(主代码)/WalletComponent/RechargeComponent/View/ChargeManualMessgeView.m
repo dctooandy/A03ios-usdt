@@ -28,39 +28,39 @@
     self = [super init];
     if (self) {
         
-      self.frame = [UIScreen mainScreen].bounds;
+        self.frame = [UIScreen mainScreen].bounds;
         
         self.addressText = address;
         self.retellingText = retelling;
         
         // 半透明背景
-      UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-      bgView.backgroundColor = kHexColorAlpha(0x000000, 0.4);
-      [self addSubview:bgView];
+        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+        bgView.backgroundColor = kHexColorAlpha(0x000000, 0.4);
+        [self addSubview:bgView];
         
         // 主背景
-    UIView *mainView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, AD(682))];
-      mainView.tag = 150;
-      mainView.backgroundColor = kHexColor(0x212137);
+        UIView *mainView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, AD(682))];
+        mainView.tag = 150;
+        mainView.backgroundColor = kHexColor(0x212137);
         [mainView jk_setRoundedCorners:UIRectCornerTopLeft | UIRectCornerTopRight radius:20];
-      [self addSubview:mainView];
+        [self addSubview:mainView];
         
         // 标题
-      UILabel *lblSex = [[UILabel alloc] init];
-      lblSex.frame = CGRectMake(0, 0, kScreenWidth, AD(50));
-      lblSex.text = @"地址详情";
+        UILabel *lblSex = [[UILabel alloc] init];
+        lblSex.frame = CGRectMake(0, 0, kScreenWidth, AD(50));
+        lblSex.text = @"地址详情";
         lblSex.textAlignment = NSTextAlignmentCenter;
-      lblSex.font = [UIFont fontPFSB16];
-      lblSex.textColor = [UIColor whiteColor];
-      [mainView addSubview:lblSex];
+        lblSex.font = [UIFont fontPFSB16];
+        lblSex.textColor = [UIColor whiteColor];
+        [mainView addSubview:lblSex];
         [lblSex addLineDirection:LineDirectionBottom color:kHexColorAlpha(0xFFFFFF, 0.3) width:0.5];
-      
+        
         // 关闭按钮
-      UIButton *btnCancle = [UIButton buttonWithType:UIButtonTypeCustom];
-      [btnCancle setImage:[UIImage imageNamed:@"tips-close"] forState:UIControlStateNormal];
-      btnCancle.frame = CGRectMake(CGRectGetWidth(bgView.frame)-AD(30)-25, AD(12), AD(30), AD(30));
-      [btnCancle addTarget:self action:@selector(cancleClick) forControlEvents:UIControlEventTouchUpInside];
-      [mainView addSubview:btnCancle];
+        UIButton *btnCancle = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnCancle setImage:[UIImage imageNamed:@"tips-close"] forState:UIControlStateNormal];
+        btnCancle.frame = CGRectMake(CGRectGetWidth(bgView.frame)-AD(30)-25, AD(12), AD(30), AD(30));
+        [btnCancle addTarget:self action:@selector(cancleClick) forControlEvents:UIControlEventTouchUpInside];
+        [mainView addSubview:btnCancle];
         
         CGFloat maxY = 50;
         if (chargeType == ChargeMsgTypeDCBOX) {
@@ -77,7 +77,7 @@
             maxY = CGRectGetMaxY(btnBanner.frame) + AD(38);
             //细节
             UILabel *lbXjk = [[UILabel alloc] init];
-            lbXjk.text = @"小金库";
+            lbXjk.text = @"小金库APP";
             lbXjk.textColor = kHexColor(0xFFFFFF);
             lbXjk.font = [UIFont fontPFSB21];
             lbXjk.frame = CGRectMake(AD(152), AD(14), AD(70), AD(29));
@@ -116,10 +116,10 @@
             [copyBtn setTitleColor:kHexColor(0xFFFFFF) forState:UIControlStateNormal];
             copyBtn.backgroundColor = kHexColor(0x2B2B45);
             [copyBtn jk_setRoundedCorners:UIRectCornerTopRight | UIRectCornerBottomRight radius:10];
-//            copyBtn.layer.cornerRadius = 5;
+            //            copyBtn.layer.cornerRadius = 5;
             copyBtn.layer.masksToBounds = YES;
             [copyBtn addTarget:self action:@selector(copyCllick) forControlEvents:UIControlEventTouchUpInside];
-
+            
             UILabel *lblGrey = [[UILabel alloc] init];
             lblGrey.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
             lblGrey.frame = CGRectMake(30, CGRectGetMaxY(copyBtn.frame) + 11, mainView.width - 30, AD(14));
@@ -140,7 +140,7 @@
         [attrTxt addAttribute:NSFontAttributeName value:[UIFont fontPFR18] range:rang];
         amountLb.attributedText = attrTxt;
         [mainView addSubview:amountLb];
-//        [amountLb jk_setRoundedCorners:UIRectCornerTopLeft|UIRectCornerTopRight radius:10];
+        //        [amountLb jk_setRoundedCorners:UIRectCornerTopLeft|UIRectCornerTopRight radius:10];
         maxY = CGRectGetMaxY(amountLb.frame);
         
         // 二维码处理
@@ -148,28 +148,28 @@
         qrCodeImgv.backgroundColor = [UIColor redColor];
         [mainView addSubview:qrCodeImgv];
         qrCodeImgv.userInteractionEnabled = YES;
-//        [qrCodeImgv jk_setRoundedCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight radius:10];
-//        qrCodeImgv.layer.masksToBounds = YES;
+        //        [qrCodeImgv jk_setRoundedCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight radius:10];
+        //        qrCodeImgv.layer.masksToBounds = YES;
         self.qrCodeImgv = qrCodeImgv;
         maxY = CGRectGetMaxY(qrCodeImgv.frame);
         
         NSString *url = address;
-//        if (url && chargeType == ChargeMsgTypeDCBOX) {
-//            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:url]]) {
-//                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{} completionHandler:^(BOOL success) {
-//                    [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
-//                }];
-//            }
-//        else {
-//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                    [HYTextAlertView showWithTitle:@"温馨提示" content:@"您还未安装小金库APP" comfirmText:@"立即安装" cancelText:nil comfirmHandler:^(BOOL isComfirm){
-//                        if (isComfirm) {
-//                            [self downLoadXJKJump];
-//                        }
-//                    }];
-//                });
-//            }
-//        }
+        //        if (url && chargeType == ChargeMsgTypeDCBOX) {
+        //            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:url]]) {
+        //                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{} completionHandler:^(BOOL success) {
+        //                    [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
+        //                }];
+        //            }
+        //        else {
+        //                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //                    [HYTextAlertView showWithTitle:@"温馨提示" content:@"您还未安装小金库APP" comfirmText:@"立即安装" cancelText:nil comfirmHandler:^(BOOL isComfirm){
+        //                        if (isComfirm) {
+        //                            [self downLoadXJKJump];
+        //                        }
+        //                    }];
+        //                });
+        //            }
+        //        }
         qrCodeImgv.image = [SGQRCodeGenerateManager generateWithDefaultQRCodeData:url imageViewWidth:AD(176)];
         
         UILongPressGestureRecognizer *longPGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(saveQrCodeImg)];
@@ -213,7 +213,7 @@
         if (chargeType != ChargeMsgTypeManual) {
             
             CNTwoStatusBtn *topBtn = [[CNTwoStatusBtn alloc] initWithFrame:CGRectMake(AD(30), maxY+AD(30), kScreenWidth-AD(30)*2, AD(48))];
-        
+            
             [topBtn setTitle:(chargeType == ChargeMsgTypeDCBOX)?@"前往H5網頁版進行支付":@"遇到问题？联系客服" forState:UIControlStateNormal];
             topBtn.layer.cornerRadius = AD(24);
             topBtn.layer.masksToBounds = YES;
@@ -226,7 +226,7 @@
             }
             topBtn.enabled = YES;
             [mainView addSubview:topBtn];
-
+            
             UIButton *botoomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             [botoomBtn setTitle:@"我已支付,查询订单" forState:UIControlStateNormal];
             [botoomBtn.titleLabel setFont: [UIFont fontPFM16]];
@@ -238,7 +238,7 @@
             botoomBtn.frame = CGRectMake(topBtn.x, topBtn.bottom+AD(26), topBtn.width, topBtn.height);
             botoomBtn.tag = 0;
             [botoomBtn addTarget:self action:@selector(topBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-
+            
             [mainView addSubview:botoomBtn];
             
             maxY = CGRectGetMaxY(botoomBtn.frame);
@@ -262,16 +262,16 @@
 }
 
 - (void)jump2H5Pay {
-//    NSString *urlStr = self.addressText;
+    //    NSString *urlStr = self.addressText;
     NSString *urlStr = @"https://h5dcpay.com/";
     //replace to https://h5dcpay.com/
-//    if ([urlStr hasPrefix:@"dcbox://pay"]) {
-////        urlStr = [urlStr stringByReplacingOccurrencesOfString:@"dcbox://pay" withString:@"https://h5dcpay.com/pay"];
-//        urlStr = @"https://h5dcpay.com/";
-//    } else if ([urlStr hasPrefix:@"dcusdt://pay"]) {
-////        urlStr = [urlStr stringByReplacingOccurrencesOfString:@"dcusdt://pay" withString:@"https://h5dcpay.com/pay"];
-//
-//    }
+    //    if ([urlStr hasPrefix:@"dcbox://pay"]) {
+    ////        urlStr = [urlStr stringByReplacingOccurrencesOfString:@"dcbox://pay" withString:@"https://h5dcpay.com/pay"];
+    //        urlStr = @"https://h5dcpay.com/";
+    //    } else if ([urlStr hasPrefix:@"dcusdt://pay"]) {
+    ////        urlStr = [urlStr stringByReplacingOccurrencesOfString:@"dcusdt://pay" withString:@"https://h5dcpay.com/pay"];
+    //
+    //    }
     NSURL *url = [NSURL URLWithString:urlStr];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
@@ -310,12 +310,12 @@
     [HYOneBtnAlertView showWithTitle:@"保存支付二维码到相册" content:@"若第一次保存请允许访问权限弹窗，否则小游无法为您保存图片哦~" comfirmText:@"好的" comfirmHandler:^{
         UIImageWriteToSavedPhotosAlbum(self.qrCodeImgv.image, self,@selector(image:didFinishSavingWithError:contextInfo:),nil);
         // 私有api
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"photos-redirect://"] options:@{} completionHandler:nil];
+        //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"photos-redirect://"] options:@{} completionHandler:nil];
     }];
 }
 
 - (void)image:(UIImage*)image didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo {
-
+    
     if(error) {
         [CNTOPHUB showError:[NSString stringWithFormat:@"保存失败: %@",error.localizedDescription]];
     }else{
@@ -338,7 +338,7 @@
     [UIView animateWithDuration:0.25 animations:^{
         mainView.y = kScreenHeight;
     } completion:^(BOOL finished) {
-       [self removeFromSuperview];
+        [self removeFromSuperview];
     }];
 }
 
