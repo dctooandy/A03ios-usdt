@@ -143,45 +143,45 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
     self.setTypeModels = [[NSMutableArray alloc] init];
     
     dispatch_group_t group = dispatch_group_create();
-    dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        WEAKSELF_DEFINE
-        [BYTradeEntryRequest fetchTradeHandler:^(id responseObj, NSString *errorMsg) {
-            STRONGSELF_DEFINE
-            if (!errorMsg) {
-                NSArray<BYTradeEntryModel *> *models = [BYTradeEntryModel cn_parse:responseObj];
-                __block BYTradeEntryModel *model;
-                
-                [models enumerateObjectsUsingBlock:^(BYTradeEntryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    if (weakSelf.type == TradeEntryTypeDeposit && [obj.type isEqualToString:@"充值"]) {
-                        model = obj;
-                        *stop = true;
-                    }
-                    else if (weakSelf.type == TradeEntryTypeWithdraw && [obj.type isEqualToString:@"提现"]) {
-                        model = obj;
-                        *stop = true;
-                    }
-                }];
-                
-                NSArray *banners = [BYJSONHelper dictOrArrayWithJsonString:model.banner][@"h5"];
-                strongSelf.bannerModels = [[NSMutableArray alloc] init];
-                
-                for (NSDictionary *dict in banners) {
-                    [strongSelf.bannerModels addObject:[TradeBannerItem cn_parse:dict]];
+    dispatch_group_enter(group);
+    WEAKSELF_DEFINE
+    [BYTradeEntryRequest fetchTradeHandler:^(id responseObj, NSString *errorMsg) {
+        STRONGSELF_DEFINE
+        if (!errorMsg) {
+            NSArray<BYTradeEntryModel *> *models = [BYTradeEntryModel cn_parse:responseObj];
+            __block BYTradeEntryModel *model;
+            
+            [models enumerateObjectsUsingBlock:^(BYTradeEntryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (weakSelf.type == TradeEntryTypeDeposit && [obj.type isEqualToString:@"充值"]) {
+                    model = obj;
+                    *stop = true;
                 }
-                
-                NSArray *setTypes = [BYJSONHelper dictOrArrayWithJsonString:model.setType];
-                for (NSMutableDictionary *dict in setTypes) {
-                    dict[@"icon"] = [NSString stringWithFormat:@"icon_%@_", strongSelf.type == TradeEntryTypeWithdraw ? @"withdraw" : @"deposit"];
-                    [strongSelf.setTypeModels addObject:[TradeEntrySetTypeItem cn_parse:dict]];
+                else if (weakSelf.type == TradeEntryTypeWithdraw && [obj.type isEqualToString:@"提现"]) {
+                    model = obj;
+                    *stop = true;
                 }
-                
-                strongSelf.tutorialsVideos = [BYJSONHelper dictOrArrayWithJsonString:model.video];
-                strongSelf.h5Root = model.h5_root;
-                strongSelf.videoRoot = model.video_root;
-                strongSelf.amount_list = model.amount_list;
+            }];
+            
+            NSArray *banners = [BYJSONHelper dictOrArrayWithJsonString:model.banner][@"h5"];
+            strongSelf.bannerModels = [[NSMutableArray alloc] init];
+            
+            for (NSDictionary *dict in banners) {
+                [strongSelf.bannerModels addObject:[TradeBannerItem cn_parse:dict]];
             }
-        }];
-    });
+            
+            NSArray *setTypes = [BYJSONHelper dictOrArrayWithJsonString:model.setType];
+            for (NSMutableDictionary *dict in setTypes) {
+                dict[@"icon"] = [NSString stringWithFormat:@"icon_%@_", strongSelf.type == TradeEntryTypeWithdraw ? @"withdraw" : @"deposit"];
+                [strongSelf.setTypeModels addObject:[TradeEntrySetTypeItem cn_parse:dict]];
+            }
+            
+            strongSelf.tutorialsVideos = [BYJSONHelper dictOrArrayWithJsonString:model.video];
+            strongSelf.h5Root = model.h5_root;
+            strongSelf.videoRoot = model.video_root;
+            strongSelf.amount_list = model.amount_list;
+        }
+        dispatch_group_leave(group);
+    }];
     
     
     
