@@ -365,7 +365,6 @@
 		3DF03207258DF6E500AF7A36 /* SCMyBonusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF03206258DF6E500AF7A36 /* SCMyBonusModel.m */; };
 		3DF43D302592EE8B0087F26A /* V_SlideCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D2D2592EE8B0087F26A /* V_SlideCard.m */; };
 		3DF43D312592EE8B0087F26A /* V_SlideCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D2E2592EE8B0087F26A /* V_SlideCardCell.m */; };
-		3DF43D342592F3020087F26A /* tingyunApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D31B96425467131005275BD /* tingyunApp.framework */; };
 		3DF43D382592F5630087F26A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF43D372592F5620087F26A /* libc++.tbd */; };
 		3DF43D4525943D1F0087F26A /* BYMultiDataSourceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D4425943D1E0087F26A /* BYMultiDataSourceTableView.m */; };
 		3DF43D482594614D0087F26A /* DSBProfitBoardDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF43D472594614D0087F26A /* DSBProfitBoardDataSource.m */; };
@@ -1350,7 +1349,6 @@
 		3D31B95F2542E97D005275BD /* HYTapHanImageCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYTapHanImageCodeView.h; sourceTree = "<group>"; };
 		3D31B9602542E97D005275BD /* HYTapHanImageCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYTapHanImageCodeView.m; sourceTree = "<group>"; };
 		3D31B9622542EA64005275BD /* HYTapHanImageCodeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYTapHanImageCodeView.xib; sourceTree = "<group>"; };
-		3D31B96425467131005275BD /* tingyunApp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = tingyunApp.framework; sourceTree = "<group>"; };
 		3D31B9682553B65C005275BD /* HYBuyECoinCheckboxTag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYBuyECoinCheckboxTag.h; sourceTree = "<group>"; };
 		3D31B9692553B65C005275BD /* HYBuyECoinCheckboxTag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYBuyECoinCheckboxTag.m; sourceTree = "<group>"; };
 		3D3A9B6224F90666003FB33C /* UIWindow+Motion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Motion.h"; sourceTree = "<group>"; };
@@ -2513,7 +2511,6 @@
 			files = (
 				3DC516CD25DE5AD800A238D4 /* libresolv.9.tbd in Frameworks */,
 				3DF43D382592F5630087F26A /* libc++.tbd in Frameworks */,
-				3DF43D342592F3020087F26A /* tingyunApp.framework in Frameworks */,
 				017D1772491556C809C97BCD /* Pods_HYNewNest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3249,7 +3246,6 @@
 			isa = PBXGroup;
 			children = (
 				3DF43D2A2592EE8B0087F26A /* SlideCard */,
-				3D31B96425467131005275BD /* tingyunApp.framework */,
 				3D41DEB4251F1A20000CA1D6 /* WSLPictureBrowserView */,
 				E9B5496424CECE23002CE6EF /* LTSegmentedBar */,
 				040A08B724E114A900FBD534 /* OCBarrage(弹幕) */,
