@@ -359,28 +359,30 @@
     }
     
     [CNServiceRequest queryOCSSDomainHandler:^(id responseObj, NSString *errorMsg) {
-        info.response = responseObj;
-        info.domainBakList = responseObj[@"domainBakList"];
-        
-        if (reload) {
-            [CSVisitChatmanager reloadSDK:info finish:^(CSServiceCode errCode) {
-                if (errCode == CSServiceCode_Request_NoIniting) {
-                    //初始化失败时重新初始化;
-                    [self jk_performAfter:3 block:^{
-                        [self initOCSSSDKShouldReload:reload];
-                    }];
-                }
-            }];
-        }
-        else {
-            [CSVisitChatmanager initSDK:info finish:^(CSServiceCode errCode) {
-                if (errCode == CSServiceCode_Request_NoIniting) {
-                    //初始化失败时重新初始化;
-                    [self jk_performAfter:3 block:^{
-                        [self initOCSSSDKShouldReload:reload];
-                    }];
-                }
-            } appearblock:nil disbock:nil];
+        if (!errorMsg) {
+            info.response = responseObj;
+            info.domainBakList = responseObj[@"domainBakList"];
+            
+            if (reload) {
+                [CSVisitChatmanager reloadSDK:info finish:^(CSServiceCode errCode) {
+                    if (errCode == CSServiceCode_Request_NoIniting) {
+                        //初始化失败时重新初始化;
+                        [self jk_performAfter:3 block:^{
+                            [self initOCSSSDKShouldReload:reload];
+                        }];
+                    }
+                }];
+            }
+            else {
+                [CSVisitChatmanager initSDK:info finish:^(CSServiceCode errCode) {
+                    if (errCode == CSServiceCode_Request_NoIniting) {
+                        //初始化失败时重新初始化;
+                        [self jk_performAfter:3 block:^{
+                            [self initOCSSSDKShouldReload:reload];
+                        }];
+                    }
+                } appearblock:nil disbock:nil];
+            }
         }
     }];
 
