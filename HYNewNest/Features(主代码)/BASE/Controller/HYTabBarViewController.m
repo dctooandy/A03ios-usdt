@@ -165,7 +165,7 @@
         NSString *level = dict[@"lev"];
         if (level.integerValue == 1) {
             [YJChat checkManagerWithUser:[CNUserManager shareManager].printedloginName
-                                   level:[NSString stringWithFormat:@"%ld",[CNUserManager shareManager].userInfo.starLevel]
+                                   level:[NSString stringWithFormat:@"%ld",[CNUserManager shareManager].userDetail.starLevel]
                               customerId:[CNUserManager shareManager].userInfo.rfCode
                               complation:^(BOOL success, NSString * _Nonnull message) {
                 STRONGSELF_DEFINE

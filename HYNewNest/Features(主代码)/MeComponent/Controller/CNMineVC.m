@@ -340,7 +340,7 @@
         }];
         
         // 2.用户信息
-        NSInteger level = [CNUserManager shareManager].userInfo.starLevel;
+        NSInteger level = [CNUserManager shareManager].userDetail.starLevel;
         self.vipLabel.text = [NSString stringWithFormat:@"VIP%ld", (long)level];
         
         NSInteger clubLV = [[CNUserManager shareManager].userDetail.clubLevel intValue];

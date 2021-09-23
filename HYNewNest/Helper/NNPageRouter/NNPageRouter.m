@@ -185,7 +185,7 @@
 + (void)presentWMQCustomerService {
     [LoadingView show];
     [YJChat connectToUser:[CNUserManager shareManager].printedloginName
-                    level:[NSString stringWithFormat:@"%ld",[CNUserManager shareManager].userInfo.starLevel]
+                    level:[NSString stringWithFormat:@"%ld",[CNUserManager shareManager].userDetail.starLevel]
                customerId:[CNUserManager shareManager].userInfo.rfCode
                complation:^(BOOL success, NSString * _Nonnull message) {
         [LoadingView hide];

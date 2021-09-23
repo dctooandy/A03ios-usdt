@@ -284,14 +284,14 @@
                     // 筛选等级：固定
                     if (obj.fixedLevel) {
                         NSArray *levs = [obj.fixedLevel componentsSeparatedByString:@","];
-                        if (![levs containsObject:[NSString stringWithFormat:@"%ld", [CNUserManager shareManager].userInfo.starLevel]]) {
+                        if (![levs containsObject:[NSString stringWithFormat:@"%ld", [CNUserManager shareManager].userDetail.starLevel]]) {
                             [models removeObject:obj];
                             flag = NO;
                         }
                     }
                     // 筛选等级：大于等于
                     if (obj.level) {
-                        if (obj.level.integerValue > [CNUserManager shareManager].userInfo.starLevel) {
+                        if (obj.level.integerValue > [CNUserManager shareManager].userDetail.starLevel) {
                             [models removeObject:obj];
                             flag = NO;
                         }

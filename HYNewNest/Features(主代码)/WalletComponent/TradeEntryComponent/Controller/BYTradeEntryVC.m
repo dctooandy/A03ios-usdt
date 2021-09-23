@@ -250,7 +250,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
         [self.navigationController pushViewController:[BYYuEBaoVC new] animated:YES];
     }
     else if ([setTypeItem.type isEqualToString:@"TB"]) { //提幣
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowWithdrawUserDefaultKey] == false && [CNUserManager shareManager].userInfo.starLevel == 0 && !KIsEmptyString(self.tutorialsVideos[@"h5tibi"])) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowWithdrawUserDefaultKey] == false && [CNUserManager shareManager].userDetail.starLevel == 0 && !KIsEmptyString(self.tutorialsVideos[@"h5tibi"])) {
             [[NSUserDefaults standardUserDefaults] setBool:true forKey:HYNotShowWithdrawUserDefaultKey];
             [self playTurtorialVideosWithType:setTypeItem.type];
             return;
@@ -259,7 +259,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
         [self.navigationController pushViewController:[HYWithdrawViewController new] animated:YES];
     }
     else if ([setTypeItem.type isEqualToString:@"MB"]) { //賣幣
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowSellUserDefaultKey] == false && [CNUserManager shareManager].userInfo.starLevel == 0 && !KIsEmptyString(self.tutorialsVideos[@"h5maibi"])) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowSellUserDefaultKey] == false && [CNUserManager shareManager].userDetail.starLevel == 0 && !KIsEmptyString(self.tutorialsVideos[@"h5maibi"])) {
             [[NSUserDefaults standardUserDefaults] setBool:true forKey:HYNotShowSellUserDefaultKey];
             [self playTurtorialVideosWithType:setTypeItem.type];
             return;
@@ -270,7 +270,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
         }];
     }
     else if ([setTypeItem.type isEqualToString:@"RMB"]) { //人民幣直充
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowRMBRechrageUserDefaultKey] == false && [CNUserManager shareManager].userInfo.starLevel == 0 && !KIsEmptyString(self.tutorialsVideos[@"h5maibi"])) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowRMBRechrageUserDefaultKey] == false && [CNUserManager shareManager].userDetail.starLevel == 0 && !KIsEmptyString(self.tutorialsVideos[@"h5maibi"])) {
             [[NSUserDefaults standardUserDefaults] setBool:true forKey:HYNotShowRMBRechrageUserDefaultKey];
             [self playTurtorialVideosWithType:setTypeItem.type];
             return;
@@ -279,7 +279,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
         [NNPageRouter jump2BuyECoin];
     }
     else if ([setTypeItem.type isEqualToString:@"USDT"]) {  //數位貨幣充值
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowDigitRechargeUserDefaultKey] == false && [CNUserManager shareManager].userInfo.starLevel == 0 && !KIsEmptyString(self.tutorialsVideos[@"h5chongbi"])) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowDigitRechargeUserDefaultKey] == false && [CNUserManager shareManager].userDetail.starLevel == 0 && !KIsEmptyString(self.tutorialsVideos[@"h5chongbi"])) {
             [[NSUserDefaults standardUserDefaults] setBool:true forKey:HYNotShowDigitRechargeUserDefaultKey];
             [self playTurtorialVideosWithType:setTypeItem.type];
             return;

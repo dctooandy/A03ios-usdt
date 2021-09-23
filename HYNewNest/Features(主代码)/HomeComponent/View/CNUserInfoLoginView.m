@@ -89,7 +89,7 @@
     self.loginView.hidden = YES;
     [self refreshBottomBtnsStatus];
 
-    NSInteger level = [CNUserManager shareManager].userInfo.starLevel;
+    NSInteger level = [CNUserManager shareManager].userDetail.starLevel;
     self.vipLabel.text = [NSString stringWithFormat:@"VIP%ld", (long)level];
     
     NSInteger clubLV = [[CNUserManager shareManager].userDetail.clubLevel intValue];
@@ -169,7 +169,7 @@
     if ([CNUserManager shareManager].isUsdtMode) {
         _switchModeSegc.selectedSegmentIndex = 1;
         self.currencyLb.text = @"USDT";
-        if ([CNUserManager shareManager].userInfo.starLevel == 0) {
+        if ([CNUserManager shareManager].userDetail.starLevel == 0) {
             self.usdtADImgv.hidden = NO;
         }
 
