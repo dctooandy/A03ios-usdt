@@ -48,7 +48,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginStatusChanged) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginStatusChanged) name:HYLogoutSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchUnreadCount) name:BYDidReadMessageNotificaiton object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupAppearance) name:CNSkinChangeNotification object:nil];
+    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupAppearance) name:CNSkinChangeNotification object:nil];
     
     
 }
@@ -60,15 +60,15 @@
         // 设置背景
         UIImage *bgimg = [UIImage createImageWithRadius:0 Color:KColorRGB(12, 11, 17) bounds:CGRectMake(0, 0, kScreenWidth, kTabBarHeight)];
         appearance.backgroundImage = bgimg;
-//        if (CNSkinManager.currSkinType == SKinTypeBlack) { //没效果？
-//            appearance.backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-//        } else {
-            appearance.backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-//        }
+        //        if (CNSkinManager.currSkinType == SKinTypeBlack) { //没效果？
+        //            appearance.backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        //        } else {
+        appearance.backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        //        }
         appearance.backgroundColor = [UIColor clearColor];
         // 去除分割线
-//        appearance.shadowImage = [UIImage new];
-//        appearance.shadowColor = [UIColor clearColor];
+        //        appearance.shadowImage = [UIImage new];
+        //        appearance.shadowColor = [UIColor clearColor];
         // 选中字体颜色
         self.tabBar.tintColor = kHexColor(0x0FB4DD);
         self.tabBar.standardAppearance = appearance;
@@ -77,7 +77,7 @@
         // 设置背景色
         [[UITabBar appearance] setBarTintColor:KColorRGB(12, 11, 17)];
         // 去除分割线
-//        self.tabBar.shadowImage = [UIImage new];
+        //        self.tabBar.shadowImage = [UIImage new];
         // 选中字体颜色
         self.tabBar.tintColor = kHexColor(0x0FB4DD);
         [UITabBar appearance].translucent = YES;
@@ -88,28 +88,28 @@
     
     NSMutableArray *vcs = @[].mutableCopy;
     HYNavigationController *homeNav = [HYNavigationController navigationControllerWithController:[CNHomeVC class]
-                                                                   tabBarTitle:@"大厅"
-                                                                   normalImage:[UIImage imageNamed:@"Home"]
-                                                                 selectedImage:[UIImage imageNamed:@"Home_s"]];
+                                                                                     tabBarTitle:@"大厅"
+                                                                                     normalImage:[UIImage imageNamed:@"Home"]
+                                                                                   selectedImage:[UIImage imageNamed:@"Home_s"]];
     [vcs addObject:homeNav];
     
     HYNavigationController *vipNav = [HYNavigationController navigationControllerWithController:[HYVIPViewController class]
-                                                                                        tabBarTitle:@"VIP"
-                                                                                        normalImage:[UIImage imageNamed:@"vip"]
-                                                                                      selectedImage:[UIImage imageNamed:@"vip_s"]];
+                                                                                    tabBarTitle:@"VIP"
+                                                                                    normalImage:[UIImage imageNamed:@"vip"]
+                                                                                  selectedImage:[UIImage imageNamed:@"vip_s"]];
     [vcs addObject:vipNav];
     
     HYNavigationController *bonusNav = [HYNavigationController navigationControllerWithController:[HYBonusViewController class]
-                                                                                            tabBarTitle:@"优惠"
-                                                                                            normalImage:[UIImage imageNamed:@"youhui"]
-                                                                                          selectedImage:[UIImage imageNamed:@"youhui_s"]];
+                                                                                      tabBarTitle:@"优惠"
+                                                                                      normalImage:[UIImage imageNamed:@"youhui"]
+                                                                                    selectedImage:[UIImage imageNamed:@"youhui_s"]];
     [vcs addObject:bonusNav];
-   
-//    HYNavigationController *gloryNav = [HYNavigationController navigationControllerWithController:[HYGloryViewController class]
-//                                                                      tabBarTitle:@"风采"
-//                                                                      normalImage:[UIImage imageNamed:@"Fengcai"]
-//                                                                    selectedImage:[UIImage imageNamed:@"Fengcai_s"]];
-//    [vcs addObject:gloryNav];
+    
+    //    HYNavigationController *gloryNav = [HYNavigationController navigationControllerWithController:[HYGloryViewController class]
+    //                                                                      tabBarTitle:@"风采"
+    //                                                                      normalImage:[UIImage imageNamed:@"Fengcai"]
+    //                                                                    selectedImage:[UIImage imageNamed:@"Fengcai_s"]];
+    //    [vcs addObject:gloryNav];
     
     HYNavigationController *gloryNav = [HYNavigationController navigationControllerWithController:[BYGloryVC class]
                                                                                       tabBarTitle:@"风采"
@@ -118,9 +118,9 @@
     [vcs addObject:gloryNav];
     
     HYNavigationController *mineNav = [HYNavigationController navigationControllerWithController:[CNMineVC class]
-                                                                   tabBarTitle:@"我的"
-                                                                   normalImage:[UIImage imageNamed:@"Wode"]
-                                                                 selectedImage:[UIImage imageNamed:@"Wode_s"]];
+                                                                                     tabBarTitle:@"我的"
+                                                                                     normalImage:[UIImage imageNamed:@"Wode"]
+                                                                                   selectedImage:[UIImage imageNamed:@"Wode_s"]];
     [vcs addObject:mineNav];
     
     
@@ -190,7 +190,7 @@
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
     HYNavigationController *curNav = (HYNavigationController *)viewController;
     if ([curNav.jk_rootViewController isKindOfClass:[CNMineVC class]] && ![CNUserManager shareManager].isLogin) {
-
+        
         [HYTextAlertView showWithTitle:@"温馨提示" content:@"我的页面有很多资金信息，登录后才可以查看哦" comfirmText:@"登录" cancelText:@"注册" comfirmHandler:^(BOOL isComfirm) {
             if (isComfirm) {
                 [NNPageRouter jump2Login];
@@ -198,10 +198,10 @@
                 [NNPageRouter jump2Register];
             }
         }];
-
+        
         return NO;
     }
-
+    
     return YES;
 }
 
@@ -245,9 +245,9 @@
 
 - (void)serverView:(CNServerView *)server callBack:(NSString *)phone code:(NSString *)code messageId:(NSString *)messageId {
     [CNServiceRequest callCenterCallBackMessageId:messageId
-                                       smsCode:code
-                                      mobileNo:phone
-                                       handler:^(id responseObj, NSString *errorMsg) {
+                                          smsCode:code
+                                         mobileNo:phone
+                                          handler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
             [kKeywindow jk_makeToast:@"客户代表将于1-10分钟内为您致电，请保持电话畅通哦 (^o^)" duration:4 position:JKToastPositionCenter];
         }
@@ -256,9 +256,9 @@
 
 - (void)serverViewWillDialBindedPhone {
     [CNServiceRequest callCenterCallBackMessageId:nil
-                                       smsCode:nil
-                                      mobileNo:nil
-                                       handler:^(id responseObj, NSString *errorMsg) {
+                                          smsCode:nil
+                                         mobileNo:nil
+                                          handler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
             [kKeywindow jk_makeToast:@"客户代表将于1-10分钟内为您致电，请保持电话畅通哦 (^o^)" duration:4 position:JKToastPositionCenter];
         }
@@ -291,14 +291,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark -
 #pragma mark Fetch Unread Message
@@ -359,30 +359,32 @@
     }
     
     [CNServiceRequest queryOCSSDomainHandler:^(id responseObj, NSString *errorMsg) {
-        info.response = responseObj;
-        info.domainBakList = responseObj[@"domainBakList"];
-        
-        if (reload) {
-            [CSVisitChatmanager reloadSDK:info finish:^(CSServiceCode errCode) {
-                if (errCode == CSServiceCode_Request_NoIniting) {
-                    //初始化失败时重新初始化;
-                    [self jk_performAfter:3 block:^{
-                        [self initOCSSSDKShouldReload:reload];
-                    }];
-                }
-            }];
-        }
-        else {
-            [CSVisitChatmanager initSDK:info finish:^(CSServiceCode errCode) {
-                if (errCode == CSServiceCode_Request_NoIniting) {
-                    //初始化失败时重新初始化;
-                    [self jk_performAfter:3 block:^{
-                        [self initOCSSSDKShouldReload:reload];
-                    }];
-                }
-            } appearblock:nil disbock:nil];
+        if (!errorMsg) {
+            info.response = responseObj;
+            info.domainBakList = responseObj[@"domainBakList"];
+            
+            if (reload) {
+                [CSVisitChatmanager reloadSDK:info finish:^(CSServiceCode errCode) {
+                    if (errCode == CSServiceCode_Request_NoIniting) {
+                        //初始化失败时重新初始化;
+                        [self jk_performAfter:3 block:^{
+                            [self initOCSSSDKShouldReload:reload];
+                        }];
+                    }
+                }];
+            }
+            else {
+                [CSVisitChatmanager initSDK:info finish:^(CSServiceCode errCode) {
+                    if (errCode == CSServiceCode_Request_NoIniting) {
+                        //初始化失败时重新初始化;
+                        [self jk_performAfter:3 block:^{
+                            [self initOCSSSDKShouldReload:reload];
+                        }];
+                    }
+                } appearblock:nil disbock:nil];
+            }
         }
     }];
-
+    
 }
 @end

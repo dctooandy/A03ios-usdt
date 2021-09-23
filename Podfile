@@ -21,7 +21,7 @@ target 'HYNewNest' do
   pod 'JKCategories'
   pod 'JXCategoryView'
   # webSocket
-  pod 'SocketRocket'
+  pod 'SocketRocket', '~> 0.5.1'
   pod 'CocoaAsyncSocket'
   pod 'LookinServer', :configurations => ['Debug']
   

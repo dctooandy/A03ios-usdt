@@ -110,8 +110,10 @@
     
     NSMutableDictionary *paras = [kNetworkMgr baseParam];
     paras[@"messageId"] = messageId;
-    paras[@"loginName"] = [CNEncrypt encryptString:account];
-    paras[@"verifyStr"] = [CNEncrypt encryptString:password];
+//    paras[@"loginName"] = [CNEncrypt encryptString:account];
+//    paras[@"verifyStr"] = [CNEncrypt encryptString:password];
+    paras[@"loginName"] = account;
+    paras[@"verifyStr"] = password;
 
     if (!KIsEmptyString(imageCode)) {
         paras[@"captcha"] = imageCode;

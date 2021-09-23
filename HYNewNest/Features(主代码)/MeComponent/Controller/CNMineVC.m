@@ -312,7 +312,7 @@
     BOOL isNewWallet = [CNUserManager shareManager].userInfo.newWalletFlag;
     self.switchModeSegc.selectedSegmentIndex = isUsdtMode;
     
-    self.lastEntryView.alpha = isUsdtMode?1:0;
+    self.lastEntryView.alpha = isNewWallet?1:0;
     self.bottomMidleView.alpha = isNewWallet?1:0;
     self.shareBgView.hidden = !isUsdtMode;
     self.shareBgViewH.constant = isUsdtMode?AD(90):0;

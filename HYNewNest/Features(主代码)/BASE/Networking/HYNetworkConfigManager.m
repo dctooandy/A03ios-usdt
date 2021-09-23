@@ -37,10 +37,10 @@
         _configManager.environment = IVNEnvironmentPublish;
 #endif
         [IVHttpManager shareManager].environment = _configManager.environment;
-        [IVHttpManager shareManager].appId = @"ffb53e87cc3b433e91ad9e71qsi45d12";//A03DS02
-        [IVHttpManager shareManager].productId = @"bb1f67de91gf74e54b31c96e8h5ft0c3";//A03
+        [IVHttpManager shareManager].appId = @"dzqAQAGPCjn1kUqzeiHsUTy57sFVTNQs";//A01NEWAPP02
+        [IVHttpManager shareManager].productId = @"1682d3a2ee0c4ee8acbe58a5c39bb888";//A03
         [IVHttpManager shareManager].parentId = @"";//???: 渠道号
-        [IVHttpManager shareManager].globalHeaders = @{@"pid": @"bb1f67de91gf74e54b31c96e8h5ft0c3",
+        [IVHttpManager shareManager].globalHeaders = @{@"pid": @"1682d3a2ee0c4ee8acbe58a5c39bb888",
                                                        @"Authorization": @"Bearer"};
         [IVHttpManager shareManager].userToken = [CNUserManager shareManager].userInfo.token;
         [IVHttpManager shareManager].loginName = [CNUserManager shareManager].userInfo.loginName;
@@ -101,11 +101,12 @@
         case IVNEnvironmentDevelop:
         {
             envName = @"本地环境";
-            [IVHttpManager shareManager].gateway = @"http://10.66.72.156/_glaxy_83e6dy_/";//m.a03musdt.com  10.66.72.123
-            [IVHttpManager shareManager].gateways = @[@"http://10.66.72.156/_glaxy_83e6dy_/"];
+//            [IVHttpManager shareManager].gateway = @"http://10.66.72.156/_glaxy_83e6dy_/";//m.a03musdt.com  10.66.72.123
+//            [IVHttpManager shareManager].gateways = @[@"http://10.66.72.156/_glaxy_83e6dy_/"];
 //            [IVHttpManager shareManager].gateway = @"http://10.86.64.5:8081/_glaxy_83e6dy_/";      //https://api.a03.app 10.86.64.5:8081 TW本地环境
 //            [IVHttpManager shareManager].gateways = @[@"http://10.86.64.5:8081/_glaxy_83e6dy_/"];
-            
+            [IVHttpManager shareManager].gateway = @"http://www.pt-gateway.com/_glaxy_1e3c3b_/";
+            [IVHttpManager shareManager].gateways = @[@"http://www.pt-gateway.com/_glaxy_1e3c3b_/"];
             break;
         }
         case IVNEnvironmentTest:
