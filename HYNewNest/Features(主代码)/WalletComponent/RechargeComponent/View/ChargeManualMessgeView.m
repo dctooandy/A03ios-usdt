@@ -222,7 +222,7 @@
             [mainView addSubview:topBtn];
             
             UIButton *botoomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [botoomBtn setTitle:(chargeType == ChargeMsgTypeDCBOX)?@"唤醒APP异常，前往H5支付":@"遇到问题？联系客服" forState:UIControlStateNormal];
+            [botoomBtn setTitle:(chargeType == ChargeMsgTypeDCBOX)?@"唤醒APP异常，前往网页版支付":@"遇到问题？联系客服" forState:UIControlStateNormal];
             [botoomBtn.titleLabel setFont: [UIFont fontPFM16]];
             UIColor *gColor = [UIColor jk_gradientFromColor:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE) withHeight:AD(48)];
             [botoomBtn setTitleColor:gColor forState:UIControlStateNormal];
@@ -261,12 +261,12 @@
 - (void)jump2H5Pay {
     NSString *urlStr = self.addressText;
     //replace to https://app.dcusdt.com/pay
-    if ([urlStr hasPrefix:@"dcbox://pay"]) {
-        urlStr = [urlStr stringByReplacingOccurrencesOfString:@"dcbox://pay" withString:@"https://app.dcusdt.com/pay"];
-    } else if ([urlStr hasPrefix:@"dcusdt://pay"]) {
-        urlStr = [urlStr stringByReplacingOccurrencesOfString:@"dcusdt://pay" withString:@"https://app.dcusdt.com/pay"];
-    }
-    
+//    if ([urlStr hasPrefix:@"dcbox://pay"]) {
+//        urlStr = [urlStr stringByReplacingOccurrencesOfString:@"dcbox://pay" withString:@"https://app.dcusdt.com/pay"];
+//    } else if ([urlStr hasPrefix:@"dcusdt://pay"]) {
+//        urlStr = [urlStr stringByReplacingOccurrencesOfString:@"dcusdt://pay" withString:@"https://app.dcusdt.com/pay"];
+//    }
+    urlStr = @"https://h5dcpay.com/";
     NSURL *url = [NSURL URLWithString:urlStr];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {

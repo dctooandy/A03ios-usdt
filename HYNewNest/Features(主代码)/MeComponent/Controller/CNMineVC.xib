@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,7 +29,6 @@
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="vipImageConstraint" destination="ZjR-M5-Oef" id="bLn-EV-2Ex"/>
                 <outlet property="vipImageView" destination="rKx-yl-vng" id="mfI-3U-x7W"/>
-                <outlet property="vipLabel" destination="Bt0-xe-Cce" id="BV6-AC-mWO"/>
                 <outlet property="walletContainerHeightCons" destination="asK-DL-nJz" id="SCb-1W-TGy"/>
                 <outlet property="walletContainerView" destination="eZN-cq-pbU" id="252-1K-ZZQ"/>
                 <outletCollection property="entryIconBtns" destination="DeT-Cl-v4A" id="Z4P-Hs-gZn"/>
@@ -119,14 +118,12 @@
                                             </constraints>
                                         </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_vip0" translatesAutoresizingMaskIntoConstraints="NO" id="rKx-yl-vng">
-                                            <rect key="frame" x="91" y="11.666666666666671" width="60" height="20"/>
+                                            <rect key="frame" x="91" y="11.666666666666671" width="50" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="OqS-rx-MXF"/>
+                                                <constraint firstAttribute="height" constant="20" id="VrZ-Wk-IEd"/>
+                                            </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIP01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bt0-xe-Cce">
-                                            <rect key="frame" x="112.99999999999999" y="13.333333333333329" width="30.333333333333329" height="17"/>
-                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wg1-tR-x2x">
                                             <rect key="frame" x="360" y="0.0" width="24" height="26"/>
                                             <state key="normal" image="icon_question"/>
@@ -141,7 +138,6 @@
                                         <constraint firstAttribute="bottom" secondItem="tmG-wz-MyA" secondAttribute="bottom" id="OAY-Pe-MiN"/>
                                         <constraint firstItem="QYY-UG-u9c" firstAttribute="leading" secondItem="tmG-wz-MyA" secondAttribute="leading" id="Qkz-zK-RLD"/>
                                         <constraint firstItem="ld2-C6-ZZl" firstAttribute="leading" secondItem="tmG-wz-MyA" secondAttribute="trailing" constant="3" id="Qy3-HX-9OH"/>
-                                        <constraint firstItem="Bt0-xe-Cce" firstAttribute="centerY" secondItem="rKx-yl-vng" secondAttribute="centerY" id="RdL-SA-Lax"/>
                                         <constraint firstItem="wg1-tR-x2x" firstAttribute="top" secondItem="WnY-VM-pN0" secondAttribute="top" id="Udk-EB-KuY"/>
                                         <constraint firstItem="ld2-C6-ZZl" firstAttribute="centerY" secondItem="tmG-wz-MyA" secondAttribute="centerY" id="Xxb-Em-VKb"/>
                                         <constraint firstItem="tmG-wz-MyA" firstAttribute="leading" secondItem="L6F-j7-MKh" secondAttribute="trailing" constant="5" id="YTq-N6-S5X"/>
@@ -151,7 +147,6 @@
                                         <constraint firstItem="tmG-wz-MyA" firstAttribute="top" secondItem="QYY-UG-u9c" secondAttribute="bottom" constant="5" id="ocC-Ao-jIr"/>
                                         <constraint firstItem="tmG-wz-MyA" firstAttribute="top" secondItem="rKx-yl-vng" secondAttribute="bottom" constant="5" id="qCk-Xu-gPn"/>
                                         <constraint firstItem="L6F-j7-MKh" firstAttribute="leading" secondItem="WnY-VM-pN0" secondAttribute="leading" constant="5" id="t61-5P-bVq"/>
-                                        <constraint firstItem="Bt0-xe-Cce" firstAttribute="leading" secondItem="rKx-yl-vng" secondAttribute="leading" constant="22" id="uha-T4-YRn"/>
                                         <constraint firstAttribute="trailing" secondItem="H09-RP-Bv9" secondAttribute="trailing" id="wZi-JP-p8N"/>
                                         <constraint firstItem="H09-RP-Bv9" firstAttribute="centerY" secondItem="ld2-C6-ZZl" secondAttribute="centerY" id="zec-5k-UYa"/>
                                     </constraints>
@@ -725,7 +720,7 @@
         <image name="cz_mine" width="30" height="30"/>
         <image name="icon" width="42" height="42"/>
         <image name="icon_question" width="24" height="26"/>
-        <image name="icon_vip0" width="60" height="20"/>
+        <image name="icon_vip0" width="92" height="40"/>
         <image name="icon_vvip-level1" width="40" height="40"/>
         <image name="jl" width="24" height="24"/>
         <image name="l_btn_line" width="315" height="48"/>
