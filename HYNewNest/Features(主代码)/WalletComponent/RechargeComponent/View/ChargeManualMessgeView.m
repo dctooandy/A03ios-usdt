@@ -77,7 +77,7 @@
             maxY = CGRectGetMaxY(btnBanner.frame) + AD(38);
             //细节
             UILabel *lbXjk = [[UILabel alloc] init];
-            lbXjk.text = @"小金库APP";
+            lbXjk.text = @"小金库";
             lbXjk.textColor = kHexColor(0xFFFFFF);
             lbXjk.font = [UIFont fontPFSB21];
             lbXjk.frame = CGRectMake(AD(152), AD(14), AD(70), AD(29));
@@ -154,29 +154,28 @@
         maxY = CGRectGetMaxY(qrCodeImgv.frame);
         
         NSString *url = address;
-        //        if (url && chargeType == ChargeMsgTypeDCBOX) {
-        //            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:url]]) {
-        //                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{} completionHandler:^(BOOL success) {
-        //                    [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
-        //                }];
-        //            }
-        //        else {
-        //                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //                    [HYTextAlertView showWithTitle:@"温馨提示" content:@"您还未安装小金库APP" comfirmText:@"立即安装" cancelText:nil comfirmHandler:^(BOOL isComfirm){
-        //                        if (isComfirm) {
-        //                            [self downLoadXJKJump];
-        //                        }
-        //                    }];
-        //                });
-        //            }
-        //        }
+        if (url && chargeType == ChargeMsgTypeDCBOX) {
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:url]]) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{} completionHandler:^(BOOL success) {
+                    [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
+                }];
+            } else {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [HYTextAlertView showWithTitle:@"温馨提示" content:@"您还未安装小金库APP" comfirmText:@"立即安装" cancelText:nil comfirmHandler:^(BOOL isComfirm){
+                        if (isComfirm) {
+                            [self downLoadXJKJump];
+                        }
+                    }];
+                });
+            }
+        }
         qrCodeImgv.image = [SGQRCodeGenerateManager generateWithDefaultQRCodeData:url imageViewWidth:AD(176)];
         
         UILongPressGestureRecognizer *longPGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(saveQrCodeImg)];
         [qrCodeImgv addGestureRecognizer:longPGes];
         
         
-        UILabel *lblTip = [[UILabel alloc] initWithFrame:CGRectMake(0, maxY+AD(23) , kScreenWidth, 20)];
+        UILabel *lblTip = [[UILabel alloc] initWithFrame:CGRectMake(0, maxY+AD(23), kScreenWidth, 20)];
         lblTip.text = chargeType==ChargeMsgTypeDCBOX?@"长按保存二维码，请使用小金库扫码支付":@"或使用任意数字货币钱包扫码支付";
         lblTip.textColor = kHexColorAlpha(0xFFFFFF, 0.6);
         lblTip.font = [UIFont fontPFR14];
@@ -213,22 +212,17 @@
         if (chargeType != ChargeMsgTypeManual) {
             
             CNTwoStatusBtn *topBtn = [[CNTwoStatusBtn alloc] initWithFrame:CGRectMake(AD(30), maxY+AD(30), kScreenWidth-AD(30)*2, AD(48))];
-            
-            [topBtn setTitle:(chargeType == ChargeMsgTypeDCBOX)?@"前往H5網頁版進行支付":@"遇到问题？联系客服" forState:UIControlStateNormal];
+            [topBtn setTitle:@"我已支付,查询订单" forState:UIControlStateNormal];
             topBtn.layer.cornerRadius = AD(24);
             topBtn.layer.masksToBounds = YES;
             topBtn.titleLabel.font = [UIFont fontPFM16];
             topBtn.tag = 1;
-            if (chargeType == ChargeMsgTypeDCBOX) {
-                [topBtn addTarget:self action:@selector(jump2H5Pay) forControlEvents:UIControlEventTouchUpInside];
-            } else {
-                [topBtn addTarget:self action:@selector(jump2Kefu) forControlEvents:UIControlEventTouchUpInside];
-            }
+            [topBtn addTarget:self action:@selector(topBtnAction:) forControlEvents:UIControlEventTouchUpInside];
             topBtn.enabled = YES;
             [mainView addSubview:topBtn];
             
             UIButton *botoomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [botoomBtn setTitle:@"我已支付,查询订单" forState:UIControlStateNormal];
+            [botoomBtn setTitle:(chargeType == ChargeMsgTypeDCBOX)?@"唤醒APP异常，前往H5支付":@"遇到问题？联系客服" forState:UIControlStateNormal];
             [botoomBtn.titleLabel setFont: [UIFont fontPFM16]];
             UIColor *gColor = [UIColor jk_gradientFromColor:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE) withHeight:AD(48)];
             [botoomBtn setTitleColor:gColor forState:UIControlStateNormal];
@@ -237,8 +231,11 @@
             botoomBtn.layer.borderColor = gColor.CGColor;
             botoomBtn.frame = CGRectMake(topBtn.x, topBtn.bottom+AD(26), topBtn.width, topBtn.height);
             botoomBtn.tag = 0;
-            [botoomBtn addTarget:self action:@selector(topBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-            
+            if (chargeType == ChargeMsgTypeDCBOX) {
+                [botoomBtn addTarget:self action:@selector(jump2H5Pay) forControlEvents:UIControlEventTouchUpInside];
+            } else {
+                [botoomBtn addTarget:self action:@selector(jump2Kefu) forControlEvents:UIControlEventTouchUpInside];
+            }
             [mainView addSubview:botoomBtn];
             
             maxY = CGRectGetMaxY(botoomBtn.frame);
@@ -262,16 +259,14 @@
 }
 
 - (void)jump2H5Pay {
-    //    NSString *urlStr = self.addressText;
-    NSString *urlStr = @"https://h5dcpay.com/";
-    //replace to https://h5dcpay.com/
-    //    if ([urlStr hasPrefix:@"dcbox://pay"]) {
-    ////        urlStr = [urlStr stringByReplacingOccurrencesOfString:@"dcbox://pay" withString:@"https://h5dcpay.com/pay"];
-    //        urlStr = @"https://h5dcpay.com/";
-    //    } else if ([urlStr hasPrefix:@"dcusdt://pay"]) {
-    ////        urlStr = [urlStr stringByReplacingOccurrencesOfString:@"dcusdt://pay" withString:@"https://h5dcpay.com/pay"];
-    //
-    //    }
+    NSString *urlStr = self.addressText;
+    //replace to https://app.dcusdt.com/pay
+    if ([urlStr hasPrefix:@"dcbox://pay"]) {
+        urlStr = [urlStr stringByReplacingOccurrencesOfString:@"dcbox://pay" withString:@"https://app.dcusdt.com/pay"];
+    } else if ([urlStr hasPrefix:@"dcusdt://pay"]) {
+        urlStr = [urlStr stringByReplacingOccurrencesOfString:@"dcusdt://pay" withString:@"https://app.dcusdt.com/pay"];
+    }
+    
     NSURL *url = [NSURL URLWithString:urlStr];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
