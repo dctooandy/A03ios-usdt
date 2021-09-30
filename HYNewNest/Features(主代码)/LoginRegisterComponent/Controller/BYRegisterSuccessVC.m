@@ -41,6 +41,7 @@
 
 - (IBAction)didTapGoAround:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.tabBarController.tabBar setHidden:false];
 }
 
 @end

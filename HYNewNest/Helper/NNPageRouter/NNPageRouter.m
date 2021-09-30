@@ -71,23 +71,23 @@
 
 + (void)jump2DepositWithSuggestAmount:(int)amount {
     if ([CNUserManager shareManager].isUsdtMode) {
-//        [CNWithdrawRequest checkUSDTDepositAvailable:^(id responseObj, NSString *errorMsg) {
-//            if (!errorMsg) {
-//                if ([responseObj[@"result"] boolValue]) {
+        [CNWithdrawRequest checkUSDTDepositAvailable:^(id responseObj, NSString *errorMsg) {
+            if (!errorMsg) {
+                if ([responseObj[@"result"] boolValue]) {
                     BYTradeEntryVC *tradeVC = [[BYTradeEntryVC alloc] initWithType:TradeEntryTypeDeposit];
                     [kCurNavVC pushViewController:tradeVC animated:true];
-//                }
-//                else {
-//                    [BYUSDTRechargeAlertView showAlertWithContent:@"USDT通道维护中\n建议切换使用CNY账户" confirmText:@"切换CNY账户" comfirmHandler:^(BOOL isComfirm) {
-//                        [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {
-//                            if (!errorMsg) {
-//                                [CNLoginRequest getUserInfoByTokenCompletionHandler:nil];
-//                            }
-//                        } faileHandler:nil];
-//                    }];
-//                }
-//            }
-//        }];
+                }
+                else {
+                    [BYUSDTRechargeAlertView showAlertWithContent:@"USDT通道维护中\n建议切换使用CNY账户" confirmText:@"切换CNY账户" comfirmHandler:^(BOOL isComfirm) {
+                        [CNLoginRequest switchAccountSuccessHandler:^(id responseObj, NSString *errorMsg) {
+                            if (!errorMsg) {
+                                [CNLoginRequest getUserInfoByTokenCompletionHandler:nil];
+                            }
+                        } faileHandler:nil];
+                    }];
+                }
+            }
+        }];
     } else {
         [kCurNavVC pushViewController:[HYRechargeCNYViewController new] animated:YES];
     }
