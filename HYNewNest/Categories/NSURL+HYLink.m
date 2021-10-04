@@ -65,9 +65,10 @@
     }
     
     if ([strUrl containsString:@"?"]) {
-        strUrl = [NSString stringWithFormat:@"%@&appid=A03DS02",strUrl];
+        //appid = A03DS02
+        strUrl = [NSString stringWithFormat:@"%@&appid=A01NEWAPP02",strUrl];
     }else{
-        strUrl = [NSString stringWithFormat:@"%@?appid=A03DS02",strUrl];
+        strUrl = [NSString stringWithFormat:@"%@?appid=A01NEWAPP02",strUrl];
     }
     
     if ([CNUserManager shareManager].isLogin) {

@@ -26,21 +26,21 @@
 
 /// 拼接path部分    glaxy_a03 -> glaxy_83e6dy
 //#define kGatewayPath(api)       [NSString stringWithFormat:@"%@", api]  //基础网关
-#define kGatewayExtraPath(api)  [NSString stringWithFormat:@"_extra_/%@", api]  //产品网关
+#define kGatewayExtraPath(api)  [NSString stringWithFormat:@"by/_extra_/%@", api]  //产品网关
 
 #pragma mark 公共
 #define config_welcome  @"welcome"
 #define config_upgradeApp      @"upgrade"   //检测版本更新
 #define config_callBackPhone   @"callback"  //消息中心电话回访
 #define config_ocssAdress      @"liveChatAddressOCSS" //取得OCSS位置
-#define config_home_otherGame @"83e6dy/home/other" //获取其他游戏列表
+#define config_home_otherGame @"1e3c3b/home/other" //获取其他游戏列表
 #define config_areaLimit @"areaLimit" // 地区限制
 #define config_liveChatAddress @"liveChatAddressOCSS" //客服
 #define config_dynamicQuery @"dynamic/query" //获取动态表单数据 （live800客服，充提指南...）
 #define config_switchAccount @"customer/switchAccount"    //切换子账号 USDT<-->人民币
 //#define config_getTopDomain  @"a03/getTopDomainAddress" //white list
 
-#define config_queryDSBRank @"83e6dy/activity/queryBaijialeRank" //首页大神榜
+#define config_queryDSBRank @"1e3c3b/activity/queryBaijialeRank" //首页大神榜
 
 #define config_createUdid    @"customer/createCustomerUdid"  //创建自定义udid
 #define config_superSignSend     @"ips/ipsSuperSignSend"         //超级签名个推
@@ -71,19 +71,19 @@
 #define config_createTryAccount   @"customer/createTryAccount"  //试玩登录
 //#define config_autoLoginByToken  @"customer/getByToken"   //自动登录
 
-#define config_new_requestAvatars @"83e6dy/queryAvatars" //修改头像时 请求头像列表
+#define config_new_requestAvatars @"1e3c3b/queryAvatars" //修改头像时 请求头像列表
 
-#define config_new_queryMyBonus @"83e6dy/promo/a03MyPromo"  //获取我的红利列表
+#define config_new_queryMyBonus @"1e3c3b/promo/a03MyPromo"  //获取我的红利列表
 
-#define config_new_queryImageList @"83e6dy/queryImageList" //通用查询接口 用于查询图片组及每个图片的附属信息
+#define config_new_queryImageList @"1e3c3b/queryImageList" //通用查询接口 用于查询图片组及每个图片的附属信息
 
-#define config_betAmountLevel @"83e6dy/getBetAmountLevelConfig" //获取投注额
+#define config_betAmountLevel @"1e3c3b/getBetAmountLevelConfig" //获取投注额
 #define config_getBalanceInfo @"customer/getBalance" //获取用户额度信息
 //#define config_getByLoginNameEx @"customer/getByLoginNameEx"  //获取用户信息
 
 #pragma mark 好友推荐
-#define config_queryAgentRecord  @"83e6dy/agentRecodTotalSum"  //获取好友推荐所有消息
-#define config_superCopartnerActy @"83e6dy/activity/newapi/tjhy"
+#define config_queryAgentRecord  @"1e3c3b/agentRecodTotalSum"  //获取好友推荐所有消息
+#define config_superCopartnerActy @"1e3c3b/activity/newapi/tjhy"
 
 #pragma mark 站内信
 #define config_queryAnnoumces  @"message/queryAnnounces"  //获取公告
@@ -100,7 +100,7 @@
 #define config_sugestion  @"createSuggest" //用户意见反馈
 #define config_querySugestion  @"querySuggests" //查询意见反馈
 #define config_changeLimitBonus  @"limitRed/modify" //修改限红
-#define config_new_queryByKeyList  @"83e6dy/queryByKeyList" //获取体育竞猜广告图片  查询游戏平台platform AG TTG
+#define config_new_queryByKeyList  @"1e3c3b/queryByKeyList" //获取体育竞猜广告图片  查询游戏平台platform AG TTG
 
 #pragma mark 提现地址管理
 #define config_getRealNamePhone @"customer/modifyCustomerRealNamePhone" //修改手机和姓名
@@ -119,7 +119,7 @@
 #define config_xmCalcAmountV3     @"xm/calcAmountV3"   // 查询洗码平台类型额度列表
 #define config_xmcreateRequest     @"xm/createRequest" // 创建洗码提案
 #define config_xmdeleteRequest     @"xm/deleteRequest" // 删除洗码记录
-#define config_xmCheckIsCanXm      @"83e6dy/szsc/isxm"    // 查询是否可以洗码
+#define config_xmCheckIsCanXm      @"1e3c3b/szsc/isxm"    // 查询是否可以洗码
 
 #pragma mark 取款
 #define config_drawCreateRequest  @"withdraw/createRequest"   //取款 提现接口
@@ -130,10 +130,10 @@
 
 #pragma mark 新钱包
 #define config_getBalances       @"getBalances" //主账号查询子账号额度
-#define config_walletCoupon      @"83e6dy/proxy/wallet/coupon" // 获取优惠券列表
+#define config_walletCoupon      @"1e3c3b/proxy/wallet/coupon" // 获取优惠券列表
 
 #pragma mark 风采
-#define config_getArticels  @"83e6dy/getArticles" //查询投注详情  电游投注详情用
+#define config_getArticels  @"1e3c3b/getArticles" //查询投注详情  电游投注详情用
 #define config_getAGDynamic(productId) [NSString stringWithFormat:@"%@/queryAgDynamic", productId]
 
 #pragma mark 交易记录
@@ -156,7 +156,7 @@
 #define config_queryOnlineBanks    @"deposit/queryOnlineBanks"  //查询在线银行卡，在线支付，银行，扫码支付
 #define config_queryAmountList    @"deposit/queryAmountList" // 查询手动BQ和手动银行存款限额列表
 
-#define config_queryUSDTAvailable @"83e6dy/deposit/USDT/authenticator" //验证用户USDT资格
+#define config_queryUSDTAvailable @"1e3c3b/deposit/USDT/authenticator" //验证用户USDT资格
 
 #define config_BQPayment        @"deposit/BQPayment"  //支付宝支付
 #define config_deleteTrans      @"deposit/deleteTrans" //交易记录 删除充值
@@ -173,21 +173,21 @@
 #define config_queryFavoriteGame  @"game/queryFavorite"  //查询游戏收藏
 
 #pragma mark VIP私享会
-#define activity_vipSxhReport   @"83e6dy/activity/vipsxh/war/report" //月报-个人战报
-#define activity_vipSxhHome     @"83e6dy/activity/vipsxh/home" //私享会首页
-#define activity_vipSxhRank     @"83e6dy/activity/vipsxh/rank" //大神榜
-#define activity_vipSxhDraw     @"promo/83e6dy/draw" //领取入会礼金
-#define activity_vipSxhFrame    @"83e6dy/activity/vipsxh/frame" //是否弹窗月报
-#define activity_vipSxhIdentity @"83e6dy/activity/vipsxh/identity" //累计身份
-#define activity_vipSxhApply    @"83e6dy/activity/vipsxh/apply" //领取礼物 （累计身份和大转盘）
-#define activity_vipSxhReceiveAward     @"promo/83e6dy/common/receive/award" //领取记录
-#define activity_vipSxhAwardDetail      @"83e6dy/activity/vipsxh/detail" //礼物详情
+#define activity_vipSxhReport   @"1e3c3b/activity/vipsxh/war/report" //月报-个人战报
+#define activity_vipSxhHome     @"1e3c3b/activity/vipsxh/home" //私享会首页
+#define activity_vipSxhRank     @"1e3c3b/activity/vipsxh/rank" //大神榜
+#define activity_vipSxhDraw     @"promo/1e3c3b/draw" //领取入会礼金
+#define activity_vipSxhFrame    @"1e3c3b/activity/vipsxh/frame" //是否弹窗月报
+#define activity_vipSxhIdentity @"1e3c3b/activity/vipsxh/identity" //累计身份
+#define activity_vipSxhApply    @"1e3c3b/activity/vipsxh/apply" //领取礼物 （累计身份和大转盘）
+#define activity_vipSxhReceiveAward     @"promo/1e3c3b/common/receive/award" //领取记录
+#define activity_vipSxhAwardDetail      @"1e3c3b/activity/vipsxh/detail" //礼物详情
 
 #pragma mark 新手任务
-#define config_newapiTask       @"83e6dy/activity/newapi/task" //新手任务
+#define config_newapiTask       @"1e3c3b/activity/newapi/task" //新手任务
 
 #pragma mark 余额宝
-#define config_yebPromo         @"83e6dy/activity/newapi/promo" //昨日收益和季度利息 & 存送券
+#define config_yebPromo         @"1e3c3b/activity/newapi/promo" //昨日收益和季度利息 & 存送券
 #define config_yebTransferIn    @"yeb/transferIn"   // 转入
 #define config_yebTransferOut   @"yeb/transferOut"  // 转出
 #define config_yebTransferLogs  @"yeb/yebTransferLogs" // 余额宝交易记录
@@ -195,6 +195,6 @@
 
 #pragma mark night city
 //#define config_nightCityUsrType @"83e6dy/activity/newapi/nightCity/getUserType"
-#define config_nightCityUsrType @"83e6dy/activity/newapi/nightCity/checkSilenceMemberRecallTicket"
+#define config_nightCityUsrType @"1e3c3b/activity/newapi/nightCity/checkSilenceMemberRecallTicket"
 
 #endif /* HYHttpPathConst_h */
