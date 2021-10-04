@@ -96,7 +96,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                                                            withWidth:self.explanationButton.size.width]
                                  forState:UIControlStateNormal];
     
-    [self.transferYEBButton setHidden:[CNUserManager shareManager].isUsdtMode ? false : true];
+//    [self.transferYEBButton setHidden:[CNUserManager shareManager].isUsdtMode ? false : true];
+    [self.transferYEBButton setHidden:true];
     
     // 动态表单
     [CNWithdrawRequest checkIsNeedWithdrawPwdHandler:^(id responseObj, NSString *errorMsg) {
