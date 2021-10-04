@@ -90,31 +90,15 @@
     [self refreshBottomBtnsStatus];
 
     NSInteger level = [CNUserManager shareManager].userDetail.starLevel;
-    self.vipLabel.text = [NSString stringWithFormat:@"VIP%ld", (long)level];
-    
-    NSInteger clubLV = [[CNUserManager shareManager].userDetail.clubLevel intValue];
-    
-    switch (level) {
-        case 0:
-            self.vipImgv.image = [UIImage imageNamed:@"icon_vip0"];
-            break;
-        case 1 ... 3:
-            self.vipImgv.image = [UIImage imageNamed:@"icon_vip1-3"];
-            break;
-        case 4 ... 6:
-            self.vipImgv.image = [UIImage imageNamed:@"icon_vip4-6"];
-            break;
-        case 7 ... 9:
-            self.vipImgv.image = [UIImage imageNamed:@"icon_vip7-9"];
-            break;
-        default:
-            self.vipImgv.image = [UIImage imageNamed:@"icon_vip10up"];
-            break;
+    if (level <= 6) {
+        self.vipImgv.image = [UIImage imageNamed:[NSString stringWithFormat:@"icon_vip%li", level]];
     }
     
     //Set To Default
     self.vipImageConstraint.constant = 24;
     [self.clubImageView setHidden:false];
+    
+    NSInteger clubLV = [[CNUserManager shareManager].userDetail.clubLevel intValue];
     
     switch (clubLV) {
         case 2:

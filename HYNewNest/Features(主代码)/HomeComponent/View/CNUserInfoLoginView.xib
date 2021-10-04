@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +21,6 @@
                 <outlet property="usrNameLb" destination="vHg-RI-kbC" id="i2h-ua-uj4"/>
                 <outlet property="vipImageConstraint" destination="IEk-91-10r" id="omc-gd-eaJ"/>
                 <outlet property="vipImgv" destination="e1n-OH-5Tm" id="UaW-f4-JWT"/>
-                <outlet property="vipLabel" destination="Jo2-Hc-dFh" id="2gH-NO-Q8e"/>
                 <outlet property="withdrawCNYBtn" destination="2cK-kw-z7Y" id="LQG-uM-Yp8"/>
             </connections>
         </placeholder>
@@ -46,10 +45,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_vip0" translatesAutoresizingMaskIntoConstraints="NO" id="e1n-OH-5Tm">
-                            <rect key="frame" x="82" y="13.5" width="64" height="20"/>
+                            <rect key="frame" x="82" y="13.5" width="50" height="20"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="64" id="Glo-nW-mGn"/>
-                                <constraint firstAttribute="height" constant="20" id="pJb-7G-oQu"/>
+                                <constraint firstAttribute="width" constant="50" id="Nw9-dt-HHP"/>
+                                <constraint firstAttribute="height" constant="20" id="dpZ-Qt-hMB"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHg-RI-kbC">
@@ -86,12 +85,6 @@
                                 <action selector="didTapQuestion:" destination="-1" eventType="touchUpInside" id="hct-bL-HID"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIP10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jo2-Hc-dFh">
-                            <rect key="frame" x="106" y="15" width="30.5" height="17"/>
-                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_vvip-level1" translatesAutoresizingMaskIntoConstraints="NO" id="Bhe-nV-yzF">
                             <rect key="frame" x="63" y="13.5" width="20" height="20"/>
                             <constraints>
@@ -102,9 +95,7 @@
                     </subviews>
                     <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="Jo2-Hc-dFh" firstAttribute="centerY" secondItem="e1n-OH-5Tm" secondAttribute="centerY" id="0pR-Y2-zzE"/>
                         <constraint firstItem="oAS-o1-hZh" firstAttribute="top" secondItem="vHg-RI-kbC" secondAttribute="bottom" constant="8" id="1AN-0g-nLM"/>
-                        <constraint firstItem="Jo2-Hc-dFh" firstAttribute="leading" secondItem="e1n-OH-5Tm" secondAttribute="leading" constant="24" id="3jB-cR-75v"/>
                         <constraint firstItem="e1n-OH-5Tm" firstAttribute="centerY" secondItem="vHg-RI-kbC" secondAttribute="centerY" id="3vP-Zg-aMr"/>
                         <constraint firstItem="okc-dh-cyP" firstAttribute="centerY" secondItem="sLZ-3h-qrV" secondAttribute="centerY" id="4XG-9y-oUz"/>
                         <constraint firstItem="otD-ws-LfD" firstAttribute="centerY" secondItem="oAS-o1-hZh" secondAttribute="centerY" constant="2" id="7jH-qS-Ljq"/>
@@ -286,7 +277,7 @@
         <image name="cz_home" width="20" height="20"/>
         <image name="ico_quesmark" width="26" height="25"/>
         <image name="icon" width="42" height="42"/>
-        <image name="icon_vip0" width="60" height="20"/>
+        <image name="icon_vip0" width="92" height="40"/>
         <image name="icon_vvip-level1" width="40" height="40"/>
         <image name="tx_home" width="21" height="20"/>
         <image name="xm_home" width="20" height="20"/>
