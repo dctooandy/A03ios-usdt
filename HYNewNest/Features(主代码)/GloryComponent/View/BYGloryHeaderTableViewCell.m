@@ -65,6 +65,7 @@
     self.gloryTabView.cellSpacing = 0;
     self.gloryTabView.imageTypes = @[@(JXCategoryTitleImageType_TopImage), @(JXCategoryTitleImageType_TopImage), @(JXCategoryTitleImageType_TopImage), @(JXCategoryTitleImageType_TopImage)];
     
+    
     JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
     lineView.indicatorColor = [UIColor gradientFromColor:kHexColor(0x19CECE) toColor:kHexColor(0x10B4DD) withWidth:1];
     lineView.indicatorWidth = JXCategoryViewAutomaticDimension;
@@ -163,7 +164,9 @@
     if (!_listContainerView) {
         _listContainerView = [[JXCategoryListContainerView alloc] initWithType:JXCategoryListContainerType_CollectionView delegate:self];
         _listContainerView.backgroundColor = [UIColor clearColor];
-        _listContainerView.listCellBackgroundColor = [UIColor clearColor];
+//        _listContainerView.listCellBackgroundColor = [UIColor clearColor];
+        _listContainerView.listCellBackgroundColor = kHexColor(0x10101C);
+        
     }
     return _listContainerView;
 }
