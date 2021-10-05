@@ -9,5 +9,8 @@
 #import "CNUserDetailModel.h"
 
 @implementation CNUserDetailModel
-
+kHYCodingDesc
++ (BOOL)supportsSecureCoding {
+    return true;
+}
 @end
