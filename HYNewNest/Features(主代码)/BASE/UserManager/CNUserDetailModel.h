@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CNUserDetailModel : CNBaseModel
+@interface CNUserDetailModel : CNBaseModel <NSSecureCoding>
 /// 绑定比特币账户数量
 @property (nonatomic , assign) NSInteger              btcNum;
 /// 绑定银行卡数量
