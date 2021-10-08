@@ -35,9 +35,9 @@
     [super awakeFromNib];
     // Initialization code
     
-    self.banners = [[NSArray alloc] initWithObjects:[[GloryBannerModel alloc] initWithTitle:@"星级身分" content:@"新人大礼包｜晋级礼金｜洗码返水｜月月分红\n馀额理财|返利日大回馈｜小姐姐陪玩" imageName:@"banner_star" hideButton:false webURL:H5URL_Pub_Star]
+    self.banners = [[NSArray alloc] initWithObjects:[[GloryBannerModel alloc] initWithTitle:@"星级身分" content:@"新人大礼包｜晋级礼金｜洗码返水｜月月分红\n馀额理财|返利日大回馈｜小姐姐陪玩" imageName:@"banner_star" hideButton:false webURLs:@[H5URL_CNY_Pub_Star, H5URL_USDT_Pub_Star]]
                     , [[GloryBannerModel alloc] initWithTitle:@"私享会俱乐部" content:@"抽大金劳｜玩小明星\n奢侈品任抽｜豪华订制游" imageName:@"banner_shareclub" hideButton:false webURL:H5URL_VIP]
-                    , [[GloryBannerModel alloc] initWithTitle:@"超级合伙" content:@"推荐礼金月月领\n洗码佣金无限返" imageName:@"banner_partner" hideButton:false webURL:H5URL_Share]
+//                    , [[GloryBannerModel alloc] initWithTitle:@"超级合伙" content:@"推荐礼金月月领\n洗码佣金无限返" imageName:@"banner_partner" hideButton:false webURL:H5URL_Share]
                     , [[GloryBannerModel alloc] initWithTitle:@"节日赠礼" content:@"订制节日礼品" imageName:@"banner_gift" hideButton:true webURL:@""], nil];
     
     [self setupCellUI];
@@ -52,18 +52,18 @@
 #pragma mark -
 #pragma mark Custom Method
 - (void)setupCellUI {
-    self.gloryTabView.titles = @[@"星级身分", @"私享会俱乐部", @"超级合伙", @"节日赠礼"];
+    self.gloryTabView.titles = @[@"星级身分", @"私享会俱乐部"/*, @"超级合伙"*/, @"节日赠礼"];
     self.gloryTabView.titleColor = kHexColor(0x8F8F8F);
     self.gloryTabView.titleSelectedColor = kHexColor(0x0FB4DD);
-    self.gloryTabView.imageNames = @[@"icon_star", @"icon_shareclub", @"icon_partner", @"icon_gift"];
-    self.gloryTabView.selectedImageNames = @[@"icon_star_selected", @"icon_shareclub_selected", @"icon_partner_selected", @"icon_gift_selected"];
+    self.gloryTabView.imageNames = @[@"icon_star", @"icon_shareclub"/*, @"icon_partner"*/, @"icon_gift"];
+    self.gloryTabView.selectedImageNames = @[@"icon_star_selected", @"icon_shareclub_selected"/*, @"icon_partner_selected"*/, @"icon_gift_selected"];
     self.gloryTabView.delegate = self;
     self.gloryTabView.defaultSelectedIndex = 0;
     self.gloryTabView.imageSize = CGSizeMake(20, 20);
     self.gloryTabView.titleFont = [UIFont fontPFM11];
     self.gloryTabView.cellWidth = 83 * (kScreenWidth / 375) - 5;
     self.gloryTabView.cellSpacing = 0;
-    self.gloryTabView.imageTypes = @[@(JXCategoryTitleImageType_TopImage), @(JXCategoryTitleImageType_TopImage), @(JXCategoryTitleImageType_TopImage), @(JXCategoryTitleImageType_TopImage)];
+    self.gloryTabView.imageTypes = @[@(JXCategoryTitleImageType_TopImage), @(JXCategoryTitleImageType_TopImage)/*, @(JXCategoryTitleImageType_TopImage)*/, @(JXCategoryTitleImageType_TopImage)];
     
     
     JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
@@ -186,7 +186,7 @@
 }
 
 - (NSInteger)numberOfListsInlistContainerView:(JXCategoryListContainerView *)listContainerView {
-    return 4;
+    return 3;
 }
 
 @end

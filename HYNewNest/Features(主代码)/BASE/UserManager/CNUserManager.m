@@ -23,16 +23,16 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [[CNUserManager alloc] init];
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 12
-        NSMutableData *data = [NSMutableData dataWithContentsOfFile:manager.modelFile];
-        manager.userInfo = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSObject class] fromData:data error:nil];
-        
-        data = [NSMutableData dataWithContentsOfFile:manager.modelFile2];
-        manager.userDetail = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSObject class] fromData:data error:nil];
-#else
+//#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 12
+//        NSMutableData *data = [NSMutableData dataWithContentsOfFile:manager.modelFile];
+//        manager.userInfo = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSObject class] fromData:data error:nil];
+//
+//        data = [NSMutableData dataWithContentsOfFile:manager.modelFile2];
+//        manager.userDetail = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSObject class] fromData:data error:nil];
+//#else
         manager.userInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:manager.modelFile];
         manager.userDetail = [NSKeyedUnarchiver unarchiveObjectWithFile:manager.modelFile2];
-#endif
+//#endif
     });
     return manager;
 }
@@ -47,12 +47,12 @@
 }
 
 - (BOOL)saveUerInfoToSandBox {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 12
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.userInfo requiringSecureCoding:true error:nil];
-    return [data writeToFile:self.modelFile atomically:true];
-#else
+//#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 12
+//    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.userInfo requiringSecureCoding:true error:nil];
+//    return [data writeToFile:self.modelFile atomically:true];
+//#else
     return [NSKeyedArchiver archiveRootObject:self.userInfo toFile:self.modelFile];
-#endif
+//#endif
 }
 
 - (BOOL)saveUserDetail:(NSDictionary *)userDetail {
@@ -77,12 +77,12 @@
 }
 
 - (BOOL)saveUerDetailToSandBox {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 12
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.userDetail requiringSecureCoding:true error:nil];
-    return [data writeToFile:self.modelFile2 atomically:true];
-#else
+//#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 12
+//    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.userDetail requiringSecureCoding:true error:nil];
+//    return [data writeToFile:self.modelFile2 atomically:true];
+//#else
     return [NSKeyedArchiver archiveRootObject:self.userDetail toFile:self.modelFile2];
-#endif
+//#endif
 }
 
 - (BOOL)cleanUserInfo {

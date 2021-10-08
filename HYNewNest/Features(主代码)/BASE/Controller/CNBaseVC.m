@@ -46,14 +46,50 @@
         // vc的view去掉导航栏的边距，但是保留导航栏的NavBar
         if (self.makeTranslucent) {
             self.navigationController.navigationBar.translucent = YES;
+            
         } else {
             self.navigationController.navigationBar.translucent = NO;
         }
         // 导航栏背景透明 但是不隐藏导航栏(保留按钮&功能)
         if (self.navBarTransparent) {
-            [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+            if (@available(iOS 13.0, *)) {
+                UINavigationBarAppearance *app = [UINavigationBarAppearance new];
+                [app configureWithTransparentBackground];
+                app.backgroundImage = nil;
+                app.shadowColor = [UIColor clearColor];
+                app.backgroundColor = [UIColor clearColor];
+                [app setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                             [UIColor whiteColor], NSForegroundColorAttributeName,
+                                             [UIFont fontPFSB18],    NSFontAttributeName,
+                                             nil]];
+                
+                self.navigationController.navigationBar.scrollEdgeAppearance = self.navigationController.navigationBar.standardAppearance = app;
+            } else {
+                [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+                
+                self.navigationController.navigationBar.translucent = NO;
+                [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+                [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+                [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName: [UIFont fontPFSB18]}];
+            }
         } else {
-            [self.navigationController.navigationBar setBackgroundImage:[UIImage jk_imageWithColor:kHexColor(0x1A1A2C)] forBarMetrics:UIBarMetricsDefault];
+            if (@available(iOS 13.0, *)) {
+                UINavigationBarAppearance *app = [UINavigationBarAppearance new];
+                [app configureWithOpaqueBackground];
+                app.backgroundImage = [UIImage jk_imageWithColor:kHexColor(0x1A1A2C)];
+                [app setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                             [UIColor whiteColor], NSForegroundColorAttributeName,
+                                             [UIFont fontPFSB18],    NSFontAttributeName,
+                                             nil]];
+                self.navigationController.navigationBar.scrollEdgeAppearance = self.navigationController.navigationBar.standardAppearance = app;
+            } else {
+                [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+                
+                self.navigationController.navigationBar.translucent = NO;
+                [self.navigationController.navigationBar setBackgroundImage:[UIImage jk_imageWithColor:kHexColor(0x1A1A2C)] forBarMetrics:UIBarMetricsDefault];
+                [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+                [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName: [UIFont fontPFSB18]}];
+            }
         }
     }
 }

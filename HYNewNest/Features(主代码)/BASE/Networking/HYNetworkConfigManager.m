@@ -38,7 +38,7 @@
 #endif
         [IVHttpManager shareManager].environment = _configManager.environment;
         [IVHttpManager shareManager].appId = @"dzqAQAGPCjn1kUqzeiHsUTy57sFVTNQs";//A01NEWAPP02
-        [IVHttpManager shareManager].productId = @"1682d3a2ee0c4ee8acbe58a5c39bb888";//A03
+        [IVHttpManager shareManager].productId = @"1682d3a2ee0c4ee8acbe58a5c39bb888";//A01
         [IVHttpManager shareManager].parentId = @"";//???: 渠道号
         [IVHttpManager shareManager].globalHeaders = @{@"pid": @"1682d3a2ee0c4ee8acbe58a5c39bb888",
                                                        @"Authorization": @"Bearer"};

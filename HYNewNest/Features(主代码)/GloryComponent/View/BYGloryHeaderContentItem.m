@@ -33,6 +33,7 @@
 }
 
 - (IBAction)jumpHmltClicked:(id)sender {
+    
     [NNPageRouter jump2HTMLWithStrURL:self.model.webURL title:self.model.title needPubSite:false];
 }
 

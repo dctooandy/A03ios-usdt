@@ -24,7 +24,7 @@
     self.interactivePopGestureRecognizer.delegate = self;
     self.delegate = self;
     
-    [self setupAppearance];
+//    [self setupAppearance];
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupAppearance) name:CNSkinChangeNotification object:nil];
 }
@@ -43,28 +43,7 @@
     [self.navigationBar setBackgroundImage:[UIImage jk_imageWithColor:kHexColor(0x1A1A2C)] forBarMetrics:UIBarMetricsDefault];
     [self.navigationBar setBarTintColor:[UIColor whiteColor]];
     [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName: [UIFont fontPFSB18]}];
-     
-    /*
-    [self setNeedsStatusBarAppearanceUpdate];
     
-    if (@available(iOS 13.0, *)) {
-        UINavigationBarAppearance *app = [UINavigationBarAppearance new];
-        [app configureWithOpaqueBackground];
-        app.backgroundImage = [UIImage jk_imageWithColor:kHexColor(0x1A1A2C)];
-        [app setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                     [UIColor whiteColor], NSForegroundColorAttributeName,
-                                     [UIFont fontPFSB18],    NSFontAttributeName,
-                                     nil]];
-        self.navigationBar.scrollEdgeAppearance = self.navigationBar.standardAppearance = app;
-    } else {
-        [self.navigationBar setShadowImage:[UIImage new]];
-        
-        self.navigationBar.translucent = NO;
-        [self.navigationBar setBackgroundImage:[UIImage jk_imageWithColor:kHexColor(0x1A1A2C)] forBarMetrics:UIBarMetricsDefault];
-        [self.navigationBar setBarTintColor:[UIColor whiteColor]];
-        [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName: [UIFont fontPFSB18]}];
-    }
-    */
 }
 
 #pragma mark - GESTURE

@@ -174,11 +174,14 @@ static NSString * const KXiMaCell = @"HYXiMaCell";
                 NSMutableArray *allTypeItem = @[].mutableCopy;
                 NSInteger i = 0;
                 for (XmListItem *listItem in amoutModel.xmList) {
-                    for (XmTypesItem *typeItem in listItem.xmTypes) {
-                        XmPlatformListItem *item = self.xmPlfListItems[i];
-                        typeItem.xmName = item.xmName;
-                        [allTypeItem addObject:typeItem];
-                        i ++;
+                    //避免Server资料错误
+                    if (listItem.xmTypes != nil && self.xmPlfListItems.count > 0) {
+                        for (XmTypesItem *typeItem in listItem.xmTypes) {
+                            XmPlatformListItem *item = self.xmPlfListItems[i];
+                            typeItem.xmName = item.xmName;
+                            [allTypeItem addObject:typeItem];
+                            i ++;
+                        }
                     }
                 }
                 //有金额的排到前面

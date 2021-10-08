@@ -80,6 +80,10 @@ typedef NS_ENUM(NSInteger, ValidationType) {
      * 真实姓名
      */
     ValidationTypeRealName,
+    /**
+     * 登入帐号
+     */
+    ValidationTypeLoginName,    
 };
 @interface NSString (Validation)
 /**

@@ -24,7 +24,8 @@
 - (CGFloat)totalHeight {
     // 2个模块，间隔 16
     CGFloat itemHeight = (kScreenWidth - 15*2) * 115/345.0;
-    return  (itemHeight + 16) * 2;
+//    return  (itemHeight + 16) * 2;
+    return (itemHeight + 16);
 }
 
 // AG彩票

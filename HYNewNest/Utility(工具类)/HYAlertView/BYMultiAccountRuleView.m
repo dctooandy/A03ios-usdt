@@ -178,7 +178,7 @@
         make.width.mas_equalTo(AD(345));
         make.height.mas_equalTo(AD(267));
     }];
-    
+
     CNTwoStatusBtn *btn = btn = [[CNTwoStatusBtn alloc] init];
     [btn setTitle:@"我知道了" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];

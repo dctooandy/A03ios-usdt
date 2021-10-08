@@ -28,7 +28,8 @@
     [self.congrsLb setupGradientColorFrom:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE)];
     NSNumber *num = [NSNumber jk_numberWithCGFloat:self.totalAmount];
     NSString *numStr = [num jk_toDisplayNumberWithDigit:2];
-    self.successLb.text = [NSString stringWithFormat:@"成功洗码，到账%@USDT", numStr];
+    
+    self.successLb.text = [NSString stringWithFormat:@"成功洗码，到账%@ %@", numStr, [CNUserManager shareManager].isUsdtMode ? @"USDT" : @"CNY"];
 }
 
 - (void)rightItemAction {

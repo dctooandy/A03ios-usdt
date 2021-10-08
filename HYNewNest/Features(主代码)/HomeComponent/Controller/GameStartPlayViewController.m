@@ -76,10 +76,11 @@ form.submit();\
     [super viewWillAppear:animated];
     [[IQKeyboardManager sharedManager] setEnable:NO];
     [self popGestureClose];
+
     if ([self.gameUrl containsString:@"callbackUrl"] && ![self.gameName isEqualToString:@"AS真人棋牌"]) {
-        self.hideNavgation = YES;
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
     } else {
-        self.hideNavgation = NO;
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
         self.navigationItem.title = self.gameName;
         [self addNaviRightItemWithImageName:@"shuaxin"];
     }

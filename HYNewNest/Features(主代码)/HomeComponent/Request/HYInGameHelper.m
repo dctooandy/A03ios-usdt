@@ -14,16 +14,16 @@
 
 /// gameCode对应表
 NSString *const InGameTypeString[] = {
-    [InGameTypeAGQJ]    = @"A03003",
-    [InGameTypeAGIN]    = @"A03026",
-    [InGameTypeAGBY]    = @"A03026",
-    [InGameTypeSHABA]   = @"A03031",
-    [InGameTypeYSB]     = @"A03068",
-    [InGameTypeHYTY]    = @"A03062",
-    [InGameTypeKENO]    = @"A03004",
-    [InGameTypeQG]      = @"A03080",
-    [InGameTypeAGSTAR]  = @"A03064",
-    [InGameTypeAGEG]    = @"A03026"
+    [InGameTypeAGQJ]    = @"A01003",
+    [InGameTypeAGIN]    = @"A01026",
+    [InGameTypeAGBY]    = @"A01026",
+    [InGameTypeSHABA]   = @"A01031",
+    [InGameTypeYSB]     = @"A01068",
+    [InGameTypeHYTY]    = @"A01062",
+    [InGameTypeKENO]    = @"A01004",
+    [InGameTypeQG]      = @"A01080",
+    [InGameTypeAGSTAR]  = @"A01064",
+    [InGameTypeAGEG]    = @"A01026"
 };
 
 @interface HYInGameHelper ()
@@ -166,8 +166,8 @@ NSString *const InGameTypeString[] = {
         for (NSDictionary *dict in gameLines) {
             GameLineModel *model = [GameLineModel cn_parse:dict];
             // 这里AGIN需要区分是真人还是电游
-            if ([gameCode isEqualToString:@"A03026"]) {
-                if (gameId.length>0 && [model.gameKind isEqualToString:@"5"]) { //捕鱼&电游
+            if ([gameCode isEqualToString:@"A01026"]) {
+                if (gameId.length>0 && ([gameType isEqualToString:@"500"] || [gameType isEqualToString:@"6"])) { //捕鱼&电游
                     if ([model.platformCurrency isEqualToString:@"CNY"]) {
                         hasCNY = YES;
                         MyLog(@"捕鱼 - 有CNY");
@@ -175,7 +175,7 @@ NSString *const InGameTypeString[] = {
                         hasUSDT = YES;
                         MyLog(@"捕鱼 - 有USDT");
                     }
-                } else if (gameId.length==0 && [model.gameKind isEqualToString:@"3"]) { // 真人
+                } else if (gameId.length==0 && [gameType isEqualToString:@"BAC"]) { // 真人
                     if ([model.platformCurrency isEqualToString:@"CNY"]) {
                         hasCNY = YES;
                         MyLog(@"真人 - 有CNY");
@@ -197,8 +197,8 @@ NSString *const InGameTypeString[] = {
         }
         
         // 手动去掉A03
-        if ([gameCode hasPrefix:@"A03"]) {
-            gameCode = [gameCode stringByReplacingOccurrencesOfString:@"A03" withString:@""];
+        if ([gameCode hasPrefix:@"A01"]) {
+            gameCode = [gameCode stringByReplacingOccurrencesOfString:@"A01" withString:@""];
         }
         
         [CNGameLineView choseCnyLineHandler:hasCNY?^{
@@ -233,10 +233,10 @@ NSString *const InGameTypeString[] = {
     
     // 手动拼接A03 用于匹配查询而已
     NSString *fullGameCode;
-    if ([gameCode hasPrefix:@"A03"]) {
+    if ([gameCode hasPrefix:@"A01"]) {
         fullGameCode = gameCode;
     }else{
-        fullGameCode = [NSString stringWithFormat:@"A03%@", gameCode];
+        fullGameCode = [NSString stringWithFormat:@"A01%@", gameCode];
     }
     
     MyLog(@"===> name:%@, type:%@, gameId:%@, gameCode:%@", gameName, gameType, gameId, fullGameCode);
@@ -249,8 +249,8 @@ NSString *const InGameTypeString[] = {
         BOOL hasUSDT = NO;
         for (NSDictionary *dict in gameLines) {
             GameLineModel *model = [GameLineModel cn_parse:dict];
-            if ([gameCode isEqualToString:@"026"]) { //进入的电游是捕鱼
-                if ([model.gameKind isEqualToString:@"5"]) { //模型是捕鱼
+            if ([gameCode isEqualToString:@"A01026"]) { //进入的电游是捕鱼
+                if ([gameType isEqualToString:@"6"]) { //模型是捕鱼
                     if ([model.platformCurrency isEqualToString:@"CNY"]) {
                         hasCNY = YES;
                         MyLog(@"捕鱼 - 有CNY");
@@ -272,8 +272,8 @@ NSString *const InGameTypeString[] = {
         }
         
         // 手动去掉A03
-        if ([gameCode hasPrefix:@"A03"]) {
-            gameCode = [gameCode stringByReplacingOccurrencesOfString:@"A03" withString:@""];
+        if ([gameCode hasPrefix:@"A01"]) {
+            gameCode = [gameCode stringByReplacingOccurrencesOfString:@"A01" withString:@""];
         }
         
         [CNGameLineView choseCnyLineHandler:hasCNY?^{

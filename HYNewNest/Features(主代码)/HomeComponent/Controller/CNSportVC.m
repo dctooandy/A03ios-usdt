@@ -22,7 +22,8 @@
 - (CGFloat)totalHeight {
     // 3个模块，间隔 16
     CGFloat itemHeight = (kScreenWidth - 15*2) * 115/345.0;
-    return  (itemHeight + 16) * 3;
+//    return  (itemHeight + 16) * 3;
+    return (itemHeight + 16) * 2;
 }
 
 // 进入沙巴

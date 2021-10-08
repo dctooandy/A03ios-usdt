@@ -13,6 +13,10 @@
 #import "AppDelegate.h"
 #import "NXPingManager.h"
 
+//should remove after 4.0.0 upload for archvie/unarchive bug
+#import "CNWithdrawRequest.h"
+//should remove after 4.0.0 upload
+
 @implementation CNSplashRequest
 
 + (void)queryNewVersion:(void(^)(BOOL isHardUpdate))handler {
@@ -32,7 +36,18 @@
 //                if (!KIsEmptyString(host)) {
 //                    [self downloadWithModel:updateVersion fastHost:host handler:handler];
 //                } else {
+            
+            //should remove after 4.0.0 upload
+            if ([CNUserManager shareManager].isLogin) {
+                [CNWithdrawRequest getUserMobileStatusCompletionHandler:nil];
+            }
+            //should remove after 4.0.0 upload
+            
+            
                     [self downloadWithModel:updateVersion fastHost:nil handler:handler];
+            
+            
+            
 //                }
 //            }];
         }

@@ -59,12 +59,16 @@
             [self showWrongMsg:@"您输入的手机不符合规则"];
         }
     } else { //结束编辑时校验不根据长度
-        self.correct = [textField.text validationType:ValidationTypeUserName];
-        if (!self.correct) {
-            if (self.isRegister) {
+        if (self.isRegister) {
+            self.correct = [textField.text validationType:ValidationTypeUserName];
+            if (self.correct == false) {
                 [self showWrongMsg:@"f开头的5-11位数字+字母组合"];
-            } else {
-                [self showWrongMsg:@"f开头的5-11位数字+字母组合 或 11位手机号码"];
+            }
+        }
+        else {
+            self.correct = [textField.text validationType:ValidationTypeLoginName];
+            if (self.correct == false) {
+                [self showWrongMsg:@"f开头的5-13位数字+字母组合 或 11位手机号码"];
             }
         }
     }
@@ -80,9 +84,16 @@
 - (void)textFieldChange:(UITextField *)textField {
     
     // 长度优先
-    if (textField.text.length > 11) {
+    if (textField.text.length > 13 && self.isRegister == false && [textField.text hasPrefix:@"f"]) {
+        textField.text = [textField.text substringToIndex:13];
+    }
+    else if (textField.text.length > 11 && (self.isRegister == true || (self.isRegister == false && [textField.text hasPrefix:@"1"]))) {
         textField.text = [textField.text substringToIndex:11];
     }
+    
+    
+    
+    
     NSString *text = textField.text;
         
     self.lineView.backgroundColor = self.hilghtColor;
@@ -106,12 +117,16 @@
         }
     // 用户名
     } else if (text.length >= 5 && !self.fromServer){
-        self.correct = [textField.text validationType:ValidationTypeUserName];
-        if (!self.correct) {
-            if (self.isRegister) {
+        if (self.isRegister) {
+            self.correct = [textField.text validationType:ValidationTypeUserName];
+            if (self.correct == false) {
                 [self showWrongMsg:@"f开头的5-11位数字+字母组合"];
-            } else {
-                [self showWrongMsg:@"f开头的5-11位数字+字母组合 或 11位手机号码"];
+            }
+        }
+        else {
+            self.correct = [textField.text validationType:ValidationTypeLoginName];
+            if (self.correct == false) {
+                [self showWrongMsg:@"f开头的5-13位数字+字母组合 或 11位手机号码"];
             }
         }
     } else {

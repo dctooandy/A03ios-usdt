@@ -25,7 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *webURL;
 @property (nonatomic, assign) BOOL hideButton;
 
-- (instancetype)initWithTitle:(NSString *)title content:(NSString *)content imageName:(NSString *)imageName hideButton:(BOOL)hideButton webURL:(NSString *)webURL;
+- (instancetype)initWithTitle:(NSString *)title content:(NSString *)content imageName:(NSString *)imageName hideButton:(BOOL)hideButton webURL:(NSString *)webUrl;
+- (instancetype)initWithTitle:(NSString *)title content:(NSString *)content imageName:(NSString *)imageName hideButton:(BOOL)hideButton webURLs:(NSArray<NSString *> *)webUrls;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -20,8 +20,10 @@
 #define H5URL_Pub_yeb           @"/pub_site/yeb"           // 余额宝
 #define H5URL_VIP               @"/vip"
 #define H5URL_Share             @"/share"
-#define H5URL_Pub_Star          @"/pub_site/giftDetails?tab=0"            //星级身分
+#define H5URL_USDT_Pub_Star     @"/pub_site/giftDetails?tab=0"            //星级身分
+#define H5URL_CNY_Pub_Star      @"/pub_site/giftActivity"
 #define H5URL_Pub_NightCity     @"/pub_site/nightCity"
+
 #pragma mark - API PATH
 
 /// 拼接path部分    glaxy_a03 -> glaxy_83e6dy
@@ -116,7 +118,7 @@
 
 #pragma mark 洗码
 #define config_xmQueryXmpPlatform @"xm/queryXmpPlatformRequest"   //最新的查询洗码类型对应的厅列表
-#define config_xmCalcAmountV3     @"xm/calcAmountV3"   // 查询洗码平台类型额度列表
+#define config_xmCalcAmountV3     @"xm/calcAmountV2"   // 查询洗码平台类型额度列表
 #define config_xmcreateRequest     @"xm/createRequest" // 创建洗码提案
 #define config_xmdeleteRequest     @"xm/deleteRequest" // 删除洗码记录
 #define config_xmCheckIsCanXm      @"1e3c3b/szsc/isxm"    // 查询是否可以洗码

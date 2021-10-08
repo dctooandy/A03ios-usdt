@@ -314,8 +314,12 @@
     
     self.lastEntryView.alpha = isNewWallet?1:0;
     self.bottomMidleView.alpha = isNewWallet?1:0;
-    self.shareBgView.hidden = !isUsdtMode;
-    self.shareBgViewH.constant = isUsdtMode?AD(90):0;
+    //暂时移除超级合夥人
+//    self.shareBgView.hidden = !isUsdtMode;
+//    self.shareBgViewH.constant = isUsdtMode?AD(90):0;
+    self.shareBgView.hidden = true;
+    self.shareBgViewH.constant = 0;
+    
     
     [self setUpUserInfoAndBalaces];
     
