@@ -187,8 +187,22 @@
         if (KIsEmptyString(errorMsg)) {
             CNResetPwdVC *vc = [CNResetPwdVC new];
             vc.smsCode = strongSelf.smsModel.smsCode;
-            vc.fpwdModel = [SamePhoneLoginNameModel cn_parse:responseObj];
-            [strongSelf.navigationController pushViewController:vc animated:YES];
+            
+            SamePhoneLoginNameModel *model = [SamePhoneLoginNameModel cn_parse:responseObj];
+            NSMutableArray *names = model.loginNames.mutableCopy;
+            for (SamePhoneLoginNameItem *item in model.loginNames) {
+                if ([item.loginName hasPrefix:@"g"] || [item.loginName hasPrefix:@"G"]) {
+                    [names removeObject:item];
+                }
+            }
+            if (names.count > 0){
+                model.loginNames = names;
+                vc.fpwdModel = model;
+                [strongSelf.navigationController pushViewController:vc animated:YES];
+            }
+            else {
+                [CNTOPHUB showError:@"短信验证失败"];
+            }
         }
     }];
 

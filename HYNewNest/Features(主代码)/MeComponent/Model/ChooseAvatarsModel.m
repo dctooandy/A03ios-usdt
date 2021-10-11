@@ -24,20 +24,21 @@
     self.groups = [NSMutableArray array];
     [self.groupTitles addObject:@"全部"];
     
-    NSArray *sortedKeys=[[self.types allKeys]sortedArrayUsingSelector:@selector(compare:)];
-    for (NSString *key in sortedKeys) {
-        NSString *title = self.types[key];
-        if ([title containsString:@"女郎"]) {
-            title = @"女郎";
+    NSArray *sortedKeys= [[self.types allKeys]sortedArrayUsingSelector:@selector(compare:)];
+    if (self.avatars.count > 0) {
+        for (NSString *key in sortedKeys) {
+            NSString *title = self.types[key];
+            if ([title containsString:@"女郎"]) {
+                title = @"女郎";
+            }
+            [self.groupTitles addObject:[NSString stringWithFormat:@"%@",title]];
+            
+            AvatarGroupModel *group = [[AvatarGroupModel alloc]init];
+            group.groupId = [NSString stringWithFormat:@"%@",key];
+            group.groupName = [NSString stringWithFormat:@"%@",title];
+            group.imgs = [NSArray arrayWithArray:self.avatars[group.groupId]];
+            [self.groups addObject:group];
         }
-        [self.groupTitles addObject:[NSString stringWithFormat:@"%@",title]];
-        
-        AvatarGroupModel *group = [[AvatarGroupModel alloc]init];
-        group.groupId = [NSString stringWithFormat:@"%@",key];
-        group.groupName = [NSString stringWithFormat:@"%@",title];
-        group.imgs = [NSArray arrayWithArray:self.avatars[group.groupId]];
-        [self.groups addObject:group];
-        
     }
     
     //插入系统默认头像组到第一组

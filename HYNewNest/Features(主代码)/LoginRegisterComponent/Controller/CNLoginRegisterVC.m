@@ -316,10 +316,37 @@
         if (!errorMsg) {
             // 判断多账号调用多账号登录
             if (responseObj[@"samePhoneLoginNames"] || responseObj[@"loginNames"]) {
-                CNLoginSuccChooseAccountVC *vc = [CNLoginSuccChooseAccountVC new];
-                vc.samePhoneLogNameModel = [SamePhoneLoginNameModel cn_parse:responseObj];
-                [strongSelf.navigationController pushViewController:vc animated:YES];
-                
+                SamePhoneLoginNameModel *model = [SamePhoneLoginNameModel cn_parse:responseObj];
+                NSMutableArray *names = model.samePhoneLoginNames.mutableCopy;
+                for (SamePhoneLoginNameItem *item in model.samePhoneLoginNames) {
+                    if ([item.loginName hasPrefix:@"g"] || [item.loginName hasPrefix:@"G"]) {
+                        [names removeObject:item];
+                    }
+                }
+
+                model.samePhoneLoginNames = names;
+                if (model.samePhoneLoginNames.count == 0){
+                    [CNTOPHUB showError:@"短信验证失败"];
+                    [weakSelf preLoginAction];
+                }
+                else if (model.samePhoneLoginNames.count > 1) {
+                    CNLoginSuccChooseAccountVC *vc = [CNLoginSuccChooseAccountVC new];
+                    vc.samePhoneLogNameModel = model;
+                    [strongSelf.navigationController pushViewController:vc animated:YES];
+                }
+                else {
+                    [CNLoginRequest mulLoginSelectedLoginName:model.samePhoneLoginNames.firstObject.loginName
+                                                    messageId:model.messageId
+                                                   validateId:model.validateId
+                                            completionHandler:^(id responseObj, NSString *errorMsg) {
+                        if (!errorMsg) {
+                            if ([NNControllerHelper pop2ViewControllerClassString:@"CNHomeVC"]) { // 如果无法pop回homepage 则直接pop回上一级
+                                [[NNControllerHelper currentTabBarController] performSelector:@selector(showSuspendBall)];
+                            } else {
+                                [strongSelf.navigationController popViewControllerAnimated:YES];
+                            }
+                        }
+                    }];                }
             } else {
                 [CNTOPHUB showSuccess:@"登录成功"];
                 if ([NNControllerHelper pop2ViewControllerClassString:@"CNHomeVC"]) { // 如果无法pop回homepage 则直接pop回上一级

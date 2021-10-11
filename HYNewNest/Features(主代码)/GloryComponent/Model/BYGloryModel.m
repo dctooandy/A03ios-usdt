@@ -52,7 +52,11 @@
     if (self.webURLs == nil) {
         return _webURL;
     }
-
+    
+    if ([CNUserManager shareManager].isLogin == false) {
+        return self.webURLs[0];
+    }
+    
     return [CNUserManager shareManager].isUsdtMode ? self.webURLs[1] : self.webURLs[0];
 }
 

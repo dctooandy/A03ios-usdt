@@ -203,7 +203,7 @@ static NSString * const KXiMaCell = @"HYXiMaCell";
 #pragma mark - TABLEVIEW
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.xmPlfListItems.count;
+    return self.xmTypeItems.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

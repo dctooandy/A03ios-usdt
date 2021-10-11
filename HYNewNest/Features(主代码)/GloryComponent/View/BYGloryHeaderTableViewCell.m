@@ -61,7 +61,7 @@
     self.gloryTabView.defaultSelectedIndex = 0;
     self.gloryTabView.imageSize = CGSizeMake(20, 20);
     self.gloryTabView.titleFont = [UIFont fontPFM11];
-    self.gloryTabView.cellWidth = 83 * (kScreenWidth / 375) - 5;
+    self.gloryTabView.cellWidth = 110 * (kScreenWidth / 375) - 5;
     self.gloryTabView.cellSpacing = 0;
     self.gloryTabView.imageTypes = @[@(JXCategoryTitleImageType_TopImage), @(JXCategoryTitleImageType_TopImage)/*, @(JXCategoryTitleImageType_TopImage)*/, @(JXCategoryTitleImageType_TopImage)];
     

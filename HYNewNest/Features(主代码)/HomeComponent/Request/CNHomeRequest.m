@@ -153,7 +153,7 @@
         default:
             break;
     }
-    [self POST:(config_queryElecGame) parameters:paramDic completionHandler:handler];
+    [self POST:kGatewayExtraPath(config_queryElecGame) parameters:paramDic completionHandler:handler];
 }
 
 + (void)searchElecGameName:(NSString *)gameName
@@ -166,7 +166,7 @@
     paramDic[@"pageSize"] = @(100);
     paramDic[@"gameName"] = [gameName stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    [self POST:(config_queryElecGame) parameters:paramDic completionHandler:handler];
+    [self POST:kGatewayExtraPath(config_queryElecGame) parameters:paramDic completionHandler:handler];
 }
 
 /**{
@@ -203,7 +203,7 @@
         paramDic[@"payLines"] = payLines;//赔付线
     }
     
-    [self POST:(config_queryElecGame) parameters:paramDic completionHandler:handler];
+    [self POST:kGatewayExtraPath(config_queryElecGame) parameters:paramDic completionHandler:handler];
 }
 
 
