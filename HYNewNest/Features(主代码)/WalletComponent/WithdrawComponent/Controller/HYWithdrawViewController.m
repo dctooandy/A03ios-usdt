@@ -96,8 +96,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                                                            withWidth:self.explanationButton.size.width]
                                  forState:UIControlStateNormal];
     
-    [self.transferYEBButton setHidden:[CNUserManager shareManager].isUsdtMode ? false : true];
-//    [self.transferYEBButton setHidden:true];
+//    [self.transferYEBButton setHidden:[CNUserManager shareManager].isUsdtMode ? false : true];
+    [self.transferYEBButton setHidden:true];
     
     // 动态表单
     [CNWithdrawRequest checkIsNeedWithdrawPwdHandler:^(id responseObj, NSString *errorMsg) {
@@ -294,6 +294,11 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                 } else if (!([subModel.bankName isEqualToString:@"USDT"] || [subModel.bankName isEqualToString:@"DCBOX"] || [subModel.bankName isEqualToString:@"BITOLL"])
                            && ![CNUserManager shareManager].isUsdtMode) {
                     [strongSelf.elecCardsArr addObject:subModel];
+                    if (strongSelf.elecCardsArr.count == 3) {
+                        weakSelf.tableView.tableFooterView = nil;
+                    }
+                    
+                    
                 }
             }
             [self.tableView reloadData];

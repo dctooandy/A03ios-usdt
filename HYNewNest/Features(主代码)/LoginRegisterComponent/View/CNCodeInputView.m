@@ -137,7 +137,13 @@ int TotalSecond = 60;
 }
 
 - (void)textFieldChange:(UITextField *)textField {
-    if (textField.text.length >= 16) {
+    
+    if (self.codeType == CNCodeTypeNewFundPwd || self.codeType == CNCodeTypeOldFundPwd) {
+        if (textField.text.length >= 6) {
+            textField.text = [textField.text substringToIndex:6];
+        }
+    }
+    else if (textField.text.length >= 16) {
         textField.text = [textField.text substringToIndex:16];
     }
     NSString *text = textField.text;

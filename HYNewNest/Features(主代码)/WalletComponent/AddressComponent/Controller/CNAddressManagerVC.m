@@ -242,7 +242,7 @@
     switch (_addrType) {
         case HYAddressTypeBANKCARD:
             //有卡：显示卡和添加；无卡：显示添加
-            return self.bankAccounts.count>0 ? self.bankAccounts.count+1 : 1;
+            return self.bankAccounts.count > 0 ? (self.bankAccounts.count < 3 ? self.bankAccounts.count + 1 : self.bankAccounts.count) : 1;
             break;
         case HYAddressTypeDCBOX:
             //有卡：显示卡和添加和下载，有三张卡：没有添加；无卡：显示一键绑定和下载

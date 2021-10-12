@@ -326,7 +326,7 @@
 
                 model.samePhoneLoginNames = names;
                 if (model.samePhoneLoginNames.count == 0){
-                    [CNTOPHUB showError:@"短信验证失败"];
+                    [CNTOPHUB showError:@"该帐号类型禁止登录"];
                     [weakSelf preLoginAction];
                 }
                 else if (model.samePhoneLoginNames.count > 1) {

@@ -195,13 +195,14 @@
                     [names removeObject:item];
                 }
             }
+            
             if (names.count > 0){
                 model.loginNames = names;
                 vc.fpwdModel = model;
                 [strongSelf.navigationController pushViewController:vc animated:YES];
             }
             else {
-                [CNTOPHUB showError:@"短信验证失败"];
+                [CNTOPHUB showError:@"该账号类型禁止登录"];
             }
         }
     }];
