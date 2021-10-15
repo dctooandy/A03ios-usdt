@@ -110,30 +110,30 @@
             
         } else {
             
-            __block void(^jumpWithdrawBlock)(WithdrawCalculateModel* ) = ^(WithdrawCalculateModel * model) {
+//            __block void(^jumpWithdrawBlock)(WithdrawCalculateModel* ) = ^(WithdrawCalculateModel * model) {
                 HYWithdrawViewController *vc = [HYWithdrawViewController new];
-                vc.calculatorModel = model;
+//                vc.calculatorModel = model;
                 [kCurNavVC pushViewController:vc animated:YES];
-            };
+//            };
             
-            [CNWithdrawRequest withdrawCalculatorMode:@1 amount:nil accountId:nil handler:^(id responseObj, NSString *errorMsg) {
-                
-                if (!errorMsg && responseObj ) {
-                    WithdrawCalculateModel *model = [WithdrawCalculateModel cn_parse:responseObj];
-                    
-                    if (![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowQKFLUserDefaultKey] && model.creditExchangeFlag) {
-                        
-                        [HYWithdrawActivityAlertView showWithAmountPercent:model.creditExchangeRatio
-                                                               giftPercent:model.promoInfo.promoRatio
-                                                                mostAmount:model.promoInfo.maxAmount handler:^{
-                            jumpWithdrawBlock(model);
-                            
-                        }];
-                    } else {
-                        jumpWithdrawBlock(model);
-                    }
-                }
-            }];
+//            [CNWithdrawRequest withdrawCalculatorMode:@1 amount:nil accountId:nil handler:^(id responseObj, NSString *errorMsg) {
+//
+//                if (!errorMsg && responseObj ) {
+//                    WithdrawCalculateModel *model = [WithdrawCalculateModel cn_parse:responseObj];
+//
+//                    if (![[NSUserDefaults standardUserDefaults] boolForKey:HYNotShowQKFLUserDefaultKey] && model.creditExchangeFlag) {
+//
+//                        [HYWithdrawActivityAlertView showWithAmountPercent:model.creditExchangeRatio
+//                                                               giftPercent:model.promoInfo.promoRatio
+//                                                                mostAmount:model.promoInfo.maxAmount handler:^{
+//                            jumpWithdrawBlock(model);
+//
+//                        }];
+//                    } else {
+//                        jumpWithdrawBlock(model);
+//                    }
+//                }
+//            }];
         }
     }];
     

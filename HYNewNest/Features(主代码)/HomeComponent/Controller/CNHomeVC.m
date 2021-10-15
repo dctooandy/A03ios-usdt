@@ -141,7 +141,7 @@
     
     if ([CNUserManager shareManager].isLogin) {
         self.infoViewH.constant = 114;
-        [self requestNightCity];
+//        [self requestNightCity];
         // 弹窗盒子
         [self requestNewsBox];
         // 游戏线路

@@ -171,8 +171,8 @@
 #pragma mark 电游
 #define config_queryPlayLog      @"queryPlayLog" //获取最近玩过的游戏
 #define config_queryElecGame      @"game/queryGameList" //获取其电子游戏分页列表
-#define config_updateFavorite     @"game/updateFavorite"  //修改游戏收藏
-#define config_queryFavoriteGame  @"game/queryFavorite"  //查询游戏收藏
+#define config_updateFavorite     @"game/gameFavor"  //修改游戏收藏
+#define config_queryFavoriteGame  @"game/queryGameFavorList"  //查询游戏收藏
 
 #pragma mark VIP私享会
 #define activity_vipSxhReport   @"1e3c3b/activity/vipsxh/war/report" //月报-个人战报

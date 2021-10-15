@@ -108,21 +108,21 @@
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
     [paramDic setObject:@"1" forKey:@"flag"];
     
-    [self POST:(config_queryFavoriteGame) parameters:paramDic completionHandler:handler];
+    [self POST:kGatewayExtraPath(config_queryFavoriteGame) parameters:paramDic completionHandler:handler];
 }
 
 + (void)updateFavoriteElecGameId:(NSString *)gameId
                     platformCode:(NSString *)platformCode
+                    platformName:(NSString *)platformName
                             flag:(ElecGameFavoriteFlag)flag
                          handler:(HandlerBlock)handler {
-    
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
     paramDic[@"gameId"] = gameId;
     paramDic[@"platformCode"] = platformCode;
+    paramDic[@"platformName"] = platformName;
     paramDic[@"flag"] = @(flag);
-    
-    [self POST:(config_updateFavorite) parameters:paramDic completionHandler:handler];
-}
+
+    [self POST:kGatewayExtraPath(config_updateFavorite) parameters:paramDic completionHandler:handler];}
 
 + (void)queryElecGamesOneOfThreeType:(ElecGame3Type)type
                              handler:(HandlerBlock)handler {

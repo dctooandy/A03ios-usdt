@@ -70,6 +70,7 @@
     //修改收藏
     [CNHomeRequest updateFavoriteElecGameId:model.gameId
                                platformCode:model.platformCode
+                               platformName:model.platformName
                                        flag:isSelect?ElecGameFavoriteFlagAdd:ElecGameFavoriteFlagDel
                                     handler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {

@@ -162,8 +162,8 @@ typedef enum : NSUInteger {
             }
         }
     }];
-
-
+    
+    
 }
 
 - (void)requestGJCGames {
@@ -202,13 +202,64 @@ typedef enum : NSUInteger {
     // 收藏的游戏
     [CNHomeRequest queryFavoriteElecHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
-            NSArray *models = [ElecGameModel cn_parse:responseObj];
+            NSArray *models = [ElecGameModel cn_parse:responseObj[@"data"]];
             // 神他妈的数据
             for (ElecGameModel *m in models) {
                 m.isFavorite = YES;
             }
             self.favoGames = models;
             [self.filterCollectionView reloadData];
+            
+            [self.highGames enumerateObjectsUsingBlock:^(ElecGameModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                for (ElecGameModel *m in models) {
+                    if ([m.platformCode isEqualToString:obj.platformCode] && [m.gameId isEqualToString:obj.gameId]) {
+                        obj.isFavorite = true;
+                    }
+                    else {
+                        obj.isFavorite = false;
+                    }
+                }
+            }];
+            
+            [self.poolGames enumerateObjectsUsingBlock:^(ElecGameModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                for (ElecGameModel *m in models) {
+                    if ([m.platformCode isEqualToString:obj.platformCode] && [m.gameId isEqualToString:obj.gameId]) {
+                        obj.isFavorite = true;
+                    }
+                    else {
+                        obj.isFavorite = false;
+                    }
+                }
+            }];
+            
+            [self.payoutGames enumerateObjectsUsingBlock:^(ElecGameModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                for (ElecGameModel *m in models) {
+                    if ([m.platformCode isEqualToString:obj.platformCode] && [m.gameId isEqualToString:obj.gameId]) {
+                        obj.isFavorite = true;
+                    }
+                    else {
+                        obj.isFavorite = false;
+                    }
+                }
+            }];
+            
+            [self.filtedGames enumerateObjectsUsingBlock:^(ElecGameModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                for (ElecGameModel *m in models) {
+                    if ([m.platformCode isEqualToString:obj.platformCode] && [m.gameId isEqualToString:obj.gameId]) {
+                        obj.isFavorite = true;
+                    }
+                    else {
+                        obj.isFavorite = false;
+                    }
+                }
+            }];
+            
+            if (self.currentType == CNELTypeCollection) {
+                [self.baoJiangCV reloadData];
+                [self.jiangChiCV reloadData];
+                [self.paiCaiCV reloadData];
+            }
+         
         }
     }];
 }
@@ -217,6 +268,7 @@ typedef enum : NSUInteger {
     //修改收藏
     [CNHomeRequest updateFavoriteElecGameId:model.gameId
                                platformCode:model.platformCode
+                               platformName:model.platformName
                                        flag:isSelect?ElecGameFavoriteFlagAdd:ElecGameFavoriteFlagDel
                                     handler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
@@ -431,9 +483,9 @@ typedef enum : NSUInteger {
             cell.model = self.payoutGames[indexPath.row];
         }
     } else if (self.currentType == CNELTypeFilter) { //筛选
-       if (self.filtedGames.count > 0) {
-           cell.model = self.filtedGames[indexPath.row];
-       }
+        if (self.filtedGames.count > 0) {
+            cell.model = self.filtedGames[indexPath.row];
+        }
     } else if (self.currentType == CNELTypeCollection) { //收藏
         if (self.favoGames.count > 0) {
             cell.model = self.favoGames[indexPath.row];
@@ -483,7 +535,7 @@ typedef enum : NSUInteger {
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     if (self.bannModels.count > 0 && self.bannModels.count-1 >= index) {
         AdBannerModel *model = self.bannModels[index];
-//        [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"活动" needPubSite:NO];
+        //        [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"活动" needPubSite:NO];
         
         if ([model.linkUrl containsString:@"detailsPage?id="]) { // 跳文章
             NSString *articalId = [model.linkUrl componentsSeparatedByString:@"="].lastObject;

@@ -64,20 +64,22 @@ typedef NS_ENUM(NSUInteger, BannerWhere) {
 + (void)queryFavoriteElecHandler:(HandlerBlock)handler;
 
 typedef NS_ENUM(NSInteger, ElecGameFavoriteFlag) {
-    ElecGameFavoriteFlagDel = -1,
+    ElecGameFavoriteFlagDel = 0,
     ElecGameFavoriteFlagAdd = 1
 };
 
 /// 电游--修改是否收藏
 /// @param gameId 模型中取
 /// @param platformCode 模型中取
+/// @param platformName 模型中取
 /// @param flag 删除还是添加
 /// @param handler 回调
+///
 + (void)updateFavoriteElecGameId:(NSString *)gameId
                     platformCode:(NSString *)platformCode
+                    platformName:(NSString *)platformName
                             flag:(ElecGameFavoriteFlag)flag
                          handler:(HandlerBlock)handler;
-
 ///电游--获取电子游戏列表
 
 /// 游戏特性

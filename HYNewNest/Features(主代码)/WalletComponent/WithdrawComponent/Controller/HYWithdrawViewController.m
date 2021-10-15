@@ -329,8 +329,10 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     }
     AccountModel *model = self.elecCardsArr[self.selectedIdx];
     
+    /*
     __block NSString *giftAmount;
     //判断该用户是否需要拆分
+    
     if (self.calculatorModel && self.calculatorModel.creditExchangeFlag) {
         [self.comfirmView hideView];
         
@@ -380,7 +382,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
             }];
         }];
         
-    } else { //走正常流程
+    } else { //走正常流程*/
         [CNWithdrawRequest submitWithdrawRequestAmount:amout
                                              accountId:model.accountId
                                               protocol:model.protocol
@@ -397,7 +399,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                 [strongSelf.comfirmView removeView];
             }
         }];
-    }
+//    }
 
 
 }
