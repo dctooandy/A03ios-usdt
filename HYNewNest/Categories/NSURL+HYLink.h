@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSURL (HYLink)
+//银行卡，付款方式
++ (NSURL *)getBankIconWithString:(NSString *)strUrl;
 
 + (NSURL *)getUrlWithString:(NSString *)strUrl;
 

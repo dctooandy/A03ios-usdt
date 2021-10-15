@@ -25,7 +25,7 @@
 - (void)setDeposModel:(DepositsBankModel *)deposModel {
     _deposModel = deposModel;
     
-    [_imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:deposModel.bankIcon] placeholderImage:[UIImage imageNamed:@"Exchanges-logo-1"]];
+    [_imgvIcon sd_setImageWithURL:[NSURL getBankIconWithString:deposModel.bankIcon] placeholderImage:[UIImage imageNamed:@"Exchanges-logo-1"]];
     if ([deposModel.bankname caseInsensitiveCompare:@"dcbox"] == NSOrderedSame) {
         _lblTitle.text = @"小金库";
     } else if ([HYRechargeHelper isUSDTOtherBankModel:deposModel]){
@@ -40,7 +40,7 @@
 - (void)setPaywayModel:(PayWayV3PayTypeItem *)paywayModel {
     _paywayModel = paywayModel;
     
-    [_imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:paywayModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
+    [_imgvIcon sd_setImageWithURL:[NSURL getBankIconWithString:paywayModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
     _lblTitle.text = paywayModel.payTypeName;
     _lblAmountRange.text = [NSString stringWithFormat:@"(%@)", [HYRechargeHelper amountTip:paywayModel]];
     
@@ -49,7 +49,8 @@
 - (void)setBqBank:(BQBankModel *)bqBank {
     _bqBank = bqBank;
     
-    [_imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:bqBank.bankIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
+//    [_imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:bqBank.bankIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
+    [self.imgvIcon sd_setImageWithURL:[NSURL getBankIconWithString:bqBank.bankIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
     _lblTitle.text = bqBank.bankName;
     _lblAmountRange.text = @"";
 

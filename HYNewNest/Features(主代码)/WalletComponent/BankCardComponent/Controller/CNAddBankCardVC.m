@@ -226,7 +226,7 @@
             strongSelf.bankNameTF.text = cardModel.bankName;
             strongSelf.cardTypeTF.text = cardModel.cardTypeDesc;
             [strongSelf setBankLogo:[UIImage imageNamed:@"Icon Bankcard"]];
-            [strongSelf.cardIcon sd_setImageWithURL:[NSURL getUrlWithString:cardModel.bankIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
+            [strongSelf.cardIcon sd_setImageWithURL:[NSURL getBankIconWithString:cardModel.bankIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
         } else {
             [strongSelf.cardView showWrongMsg:errorMsg];
         }

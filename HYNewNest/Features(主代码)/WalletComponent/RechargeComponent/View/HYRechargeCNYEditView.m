@@ -87,7 +87,7 @@
 - (void)setupBQBankModel:(BQBankModel *)model {
     _bqBankModel = model;
     
-    [self.bankIcon sd_setImageWithURL:[NSURL getUrlWithString:model.bankIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
+    [self.bankIcon sd_setImageWithURL:[NSURL getBankIconWithString:model.bankIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
     self.bankTf.text = model.bankName;
     
     [self checkEnableStatus];

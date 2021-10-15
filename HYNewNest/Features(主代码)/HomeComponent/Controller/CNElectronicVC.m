@@ -32,10 +32,10 @@
     
     [self reloadCollectionViewData];
     
-    // 已登录 获取最近玩过的游戏
-    if ([CNUserManager shareManager].isLogin) {
-        [self queryRecentGames];
-    }
+//    // 已登录 获取最近玩过的游戏
+//    if ([CNUserManager shareManager].isLogin) {
+//        [self queryRecentGames];
+//    }
 }
 
 

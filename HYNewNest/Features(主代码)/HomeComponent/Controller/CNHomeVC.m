@@ -147,11 +147,11 @@
         // 游戏线路
         [[HYInGameHelper sharedInstance] queryHomeInGamesStatus];
         // 最近玩过的电游
-        for (CNBaseVC *vc in self.childViewControllers) {
-            if ([vc isKindOfClass:[CNElectronicVC class]]) {
-                [(CNElectronicVC *)vc queryRecentGames];
-            }
-        }
+//        for (CNBaseVC *vc in self.childViewControllers) {
+//            if ([vc isKindOfClass:[CNElectronicVC class]]) {
+//                [(CNElectronicVC *)vc queryRecentGames];
+//            }
+//        }
         
     } else {
         self.infoViewH.constant = 140;

@@ -94,7 +94,7 @@
     
     self.amountLb.text = [NSString stringWithFormat:@"%@", _model.amount];
     self.bankNameLb.text = _model.bankName;
-    [self.bankLogoIV sd_setImageWithURL:[NSURL getUrlWithString:_model.bankIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
+    [self.bankLogoIV sd_setImageWithURL:[NSURL getBankIconWithString:_model.bankIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
     self.cardNoLb.text = _model.accountNo;
     self.accountNameLb.text = _model.accountName;
     if (!KIsEmptyString(_model.bankBranchName)) {
