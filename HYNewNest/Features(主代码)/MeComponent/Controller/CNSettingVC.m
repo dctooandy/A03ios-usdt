@@ -17,6 +17,7 @@
 #import <UIImageView+WebCache.h>
 #import "CNUserCenterRequest.h"
 #import "CNLoginRequest.h"
+#import "NSURL+HYLink.h"
 
 @interface CNSettingVC ()
 @property (weak, nonatomic) IBOutlet UIImageView *headerIV;
@@ -39,7 +40,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
-        [self.headerIV sd_setImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userDetail.avatar]];
+        [self.headerIV sd_setImageWithURL:[NSURL getProfileIconWithString:[CNUserManager shareManager].userDetail.avatar]];
         if ([[CNUserManager shareManager].userDetail.gender isEqualToString:@"F"]) {
             self.sexTF.text = @"女";
         } else if ([[CNUserManager shareManager].userDetail.gender isEqualToString:@"M"]) {

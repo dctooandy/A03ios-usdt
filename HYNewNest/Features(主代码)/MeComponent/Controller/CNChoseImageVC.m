@@ -14,6 +14,7 @@
 #import "CNChoseImageCCell.h"
 #define kCNChoseImageCCellID  @"CNChoseImageCCell"
 #import <UIImageView+WebCache.h>
+#import "NSURL+HYLink.h"
 
 #import "JJCollectionViewRoundFlowLayout.h"
 
@@ -124,8 +125,9 @@
     CNChoseImageCCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCNChoseImageCCellID forIndexPath:indexPath];
     AvatarGroupModel *groupModel = self.avModel.groups[indexPath.section];
     NSString *imgUrl = groupModel.imgs[indexPath.row];
-    NSString *fullURL = [self.avModel.baseUrl stringByAppendingString:imgUrl];
-    [cell.imageV sd_setImageWithURL:[NSURL URLWithString:fullURL]];
+//    NSString *fullURL = [self.avModel.baseUrl stringByAppendingString:imgUrl];
+//    [cell.imageV sd_setImageWithURL:[NSURL URLWithString:fullURL]];
+    [cell.imageV sd_setImageWithURL:[NSURL getProfileIconWithString:imgUrl]];
     if ([self.selcIdxPath isEqual:indexPath]) {
         cell.selected = YES;
     } else {

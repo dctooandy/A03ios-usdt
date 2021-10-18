@@ -136,7 +136,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    /*
     ElecLogGameModel *model = self.dataSource[indexPath.row];
     
 //    [NNPageRouter jump2GameName:model.gameName
@@ -146,10 +146,11 @@
 //               platformCurrency:nil];
     
     [[HYInGameHelper sharedInstance] inElecGameGameName:model.gameName
+                                             gameNameEn:model.gameNameEN
                                                gameType:model.gameParam.gameType
                                                  gameId:model.gameParam.gameId
                                                gameCode:model.gameParam.gameCode
-                                platformSupportCurrency:nil];
+                                platformSupportCurrency:nil];*/
 }
 
 @end

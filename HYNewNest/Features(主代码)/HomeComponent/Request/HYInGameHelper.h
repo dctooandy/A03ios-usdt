@@ -40,9 +40,11 @@ typedef NS_ENUM(NSUInteger, InGameType) {
 /// 进入电游
 // platformSupportCurrency(支持的货币渠道)可能是：1."";2."CNY";3."USDT";4."CNY,USDT"
 - (void)inElecGameGameName:(NSString *)gameName
+                gameNameEn:(NSString *)gameNameEn
                   gameType:(NSString *)gameType
                     gameId:(NSString *)gameId
                   gameCode:(NSString *)gameCode
+              platformCode:(NSString *)platformCode
    platformSupportCurrency:(nullable NSString *)platformSupportCurrency;
 
 @end

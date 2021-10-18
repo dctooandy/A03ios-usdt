@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 //银行卡，付款方式
 + (NSURL *)getBankIconWithString:(NSString *)strUrl;
 
++ (NSURL *)getProfileIconWithString:(NSString *)strUrl;
+
 + (NSURL *)getUrlWithString:(NSString *)strUrl;
 
 + (NSString *)getStrUrlWithString:(NSString *)strUrl;

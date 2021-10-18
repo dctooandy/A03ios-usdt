@@ -14,6 +14,7 @@
 #import "CNUserCenterRequest.h"
 #import "CNBaseTF.h"
 #import <UIImageView+WebCache.h>
+#import "NSURL+HYLink.h"
 
 @interface CNFeedBackVC () <UITableViewDataSource>
 // 底部间隔，随键盘而起
@@ -88,7 +89,7 @@
         CNFeedBackRightTCell *cell = [tableView dequeueReusableCellWithIdentifier:kCNFeedBackRightTCellID forIndexPath:indexPath];
         cell.timeLb.text = model.createdDate;
         cell.contentLb.text = model.content;
-        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userDetail.avatar] placeholderImage:[UIImage imageNamed:@"2"]];
+        [cell.imageV sd_setImageWithURL:[NSURL getProfileIconWithString:[CNUserManager shareManager].userDetail.avatar] placeholderImage:[UIImage imageNamed:@"2"]];
         return cell;
     } else {
         CNFeedBackLeftTCell *cell = [tableView dequeueReusableCellWithIdentifier:kCNFeedBackLeftTCellID forIndexPath:indexPath];

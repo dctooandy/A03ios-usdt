@@ -215,9 +215,11 @@ NSString *const InGameTypeString[] = {
 }
 
 - (void)inElecGameGameName:(NSString *)gameName
+                gameNameEn:(NSString *)gameNameEn
                   gameType:(NSString *)gameType
                     gameId:(NSString *)gameId
                   gameCode:(NSString *)gameCode
+              platformCode:(NSString *)platformCode
    platformSupportCurrency:(nullable NSString *)platformSupportCurrency {
     
     if (!self.inGameDict) {
@@ -277,14 +279,14 @@ NSString *const InGameTypeString[] = {
         }
         
         [CNGameLineView choseCnyLineHandler:hasCNY?^{
-            [HYInGameHelper jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:@"CNY"];
+            [HYInGameHelper jump2ElecGameName:gameName gameNameEn:gameNameEn gameType:gameType gameId:gameId gameCode:gameCode platformCode:platformCode platformCurrency:@"CNY"];
         }:nil choseUsdtLineHandler:hasUSDT?^{
-            [HYInGameHelper jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:@"USDT"];
+            [HYInGameHelper jump2ElecGameName:gameName gameNameEn:gameNameEn gameType:gameType gameId:gameId gameCode:gameCode platformCode:platformCode platformCurrency:@"USDT"];
         }:nil];
         
         // 容错
     } else {
-        [HYInGameHelper jump2ElecGameName:gameName gameType:gameType gameId:gameId gameCode:gameCode platformCurrency:nil];
+        [HYInGameHelper jump2ElecGameName:gameName gameNameEn:gameNameEn gameType:gameType gameId:gameId gameCode:gameCode platformCode:platformCode platformCurrency:nil];
     }
 }
 
@@ -305,6 +307,8 @@ NSString *const InGameTypeString[] = {
     [CNHomeRequest requestInGameUrlGameType:gameType
                                      gameId:gameId
                                    gameCode:gameCode
+                                   gameName:nil
+                               platformCode:nil
                            platformCurrency:platformCurrency
                                     handler:^(id responseObj, NSString *errorMsg) {
         
@@ -331,14 +335,18 @@ NSString *const InGameTypeString[] = {
 
 /// 跳到电子游戏
 + (void)jump2ElecGameName:(NSString *)gameName
+               gameNameEn:(NSString *)gameNameEn
                  gameType:(NSString *)gameType
                    gameId:(NSString *)gameId
                  gameCode:(NSString *)gameCode
+             platformCode:(NSString *)platformCode
          platformCurrency:(NSString *)platformCurrency {
     
     [CNHomeRequest requestInGameUrlGameType:gameType
                                      gameId:gameId
                                    gameCode:gameCode
+                                   gameName:gameNameEn
+                               platformCode:(NSString *)platformCode
                            platformCurrency:platformCurrency handler:^(id responseObj, NSString *errorMsg) {
         
         GameModel *gameModel = [GameModel cn_parse:responseObj];

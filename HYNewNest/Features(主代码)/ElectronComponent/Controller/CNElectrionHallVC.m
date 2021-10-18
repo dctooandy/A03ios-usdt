@@ -523,9 +523,11 @@ typedef enum : NSUInteger {
     }
     
     [[HYInGameHelper sharedInstance] inElecGameGameName:model.gameName
+                                             gameNameEn:model.gameNameEn
                                                gameType:model.gameType
                                                  gameId:model.gameId
                                                gameCode:model.platformCode
+                                           platformCode:model.platformCode
                                 platformSupportCurrency:model.platformSupportCurrency];
     
 }

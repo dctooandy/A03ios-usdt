@@ -45,6 +45,8 @@ typedef NS_ENUM(NSUInteger, BannerWhere) {
 +(void)requestInGameUrlGameType:(NSString *)gameType
                          gameId:(NSString *)gameId
                        gameCode:(NSString *)gameCode
+                       gameName:(nullable NSString *)gameName
+                   platformCode:(nullable NSString *)platformCode
                platformCurrency:(nullable NSString *)platformCurrency
                         handler:(HandlerBlock)handler;
 

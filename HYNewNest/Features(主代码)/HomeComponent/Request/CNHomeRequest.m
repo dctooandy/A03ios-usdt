@@ -64,6 +64,8 @@
 + (void)requestInGameUrlGameType:(NSString *)gameType
                           gameId:(NSString *)gameId
                         gameCode:(NSString *)gameCode
+                        gameName:(nullable NSString *)gameName
+                    platformCode:(nullable NSString *)platformCode
                 platformCurrency:(nullable NSString *)platformCurrency
                          handler:(HandlerBlock)handler {
     
@@ -72,9 +74,30 @@
     param[@"gameType"] = gameType;
     param[@"gameId"] = gameId.length > 0 ? gameId : @"";
     param[@"platformCurrency"] = platformCurrency;
+    if (gameName != nil) {
+        param[@"gameName"] = gameName;
+    }
+    
+    if (platformCode != nil) {
+        param[@"platformCode"] = platformCode;
+    }
     
     [self POST:(config_inGame) parameters:param completionHandler:handler];
 }
+
+//+ (void)requestInGameUrlGameType:(NSString *)gameType
+//                          gameId:(NSString *)gameId
+//                        gameCode:(NSString *)gameCode
+//                platformCurrency:(nullable NSString *)platformCurrency
+//                         handler:(HandlerBlock)handler{
+//    NSMutableDictionary *param = [kNetworkMgr baseParam];
+//    param[@"gameCode"] = gameCode;
+//    param[@"gameType"] = gameType;
+//    param[@"gameId"] = gameId.length > 0 ? gameId : @"";
+//    param[@"platformCurrency"] = platformCurrency;
+//
+//    [self POST:(config_inGame) parameters:param completionHandler:handler];
+//}
 
 + (void)requestBACInGameUrlTableCode:(NSString *)tableCode handler:(HandlerBlock)handler {
     

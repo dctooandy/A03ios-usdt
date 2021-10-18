@@ -112,10 +112,8 @@
         case IVNEnvironmentTest:
         {
             envName = @"运测环境";
-//            [IVHttpManager shareManager].gateway = @"http://h5.918rr.com/_glaxy_1e3c3b_/";
-//            [IVHttpManager shareManager].gateways = @[@"http://h5.918rr.com/_glaxy_1e3c3b_/"];
-            [IVHttpManager shareManager].gateway = @"https://179bi.com/_glaxy_1e3c3b_/";
-            [IVHttpManager shareManager].gateways = @[@"https://179bi.com/_glaxy_1e3c3b_/"];
+            [IVHttpManager shareManager].gateway = @"http://h5.918rr.com/_glaxy_1e3c3b_/";
+            [IVHttpManager shareManager].gateways = @[@"http://h5.918rr.com/_glaxy_1e3c3b_/"];
 //            [IVHttpManager shareManager].gateways = @[@"https://usdtm.hwx22.com", @"https://usdtw.hwx22.com", @"https://usdtmp.hwx22.com", @"https://usdtwp.hwx22.com"];
             break;
         }
@@ -129,8 +127,11 @@
         case IVNEnvironmentPublish:
         {
             envName = @"运营环境";
-            [IVHttpManager shareManager].gateway = @"https://www.wang568.com/_glaxy_83e6dy_/";
-            [IVHttpManager shareManager].gateways = @[@"https://www.wang568.com/_glaxy_83e6dy_/", @"https://www.sheng1568.com/_glaxy_83e6dy_/", @"https://www.cai1568.com/_glaxy_83e6dy_/"];
+//            [IVHttpManager shareManager].gateway = @"https://www.wang568.com/_glaxy_83e6dy_/";
+//            [IVHttpManager shareManager].gateways = @[@"https://www.wang568.com/_glaxy_83e6dy_/", @"https://www.sheng1568.com/_glaxy_83e6dy_/", @"https://www.cai1568.com/_glaxy_83e6dy_/"];
+            [IVHttpManager shareManager].gateway = @"https://179bi.com/_glaxy_1e3c3b_/";
+            [IVHttpManager shareManager].gateways = @[@"https://179bi.com/_glaxy_1e3c3b_/"];
+
             break;
         }
         default:

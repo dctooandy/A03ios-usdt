@@ -384,7 +384,7 @@
         [self.nickNameLb sizeToFit];
         [self.nickNameLb setupGradientColorFrom:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE)];
         
-        [self.headerIV sd_setBackgroundImageWithURL:[NSURL URLWithString:[CNUserManager shareManager].userDetail.avatar] forState:UIControlStateNormal];
+        [self.headerIV sd_setBackgroundImageWithURL:[NSURL getProfileIconWithString:[CNUserManager shareManager].userDetail.avatar] forState:UIControlStateNormal];
         
         // 3.加载WalletView YES
         // 判断用户是新钱包还是旧钱包

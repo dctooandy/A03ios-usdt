@@ -11,7 +11,24 @@
 
 
 @implementation NSURL (HYLink)
-+ (NSURL *)getBankIconWithString:(NSString *)strUrl {
++(NSURL *)getProfileIconWithString:(NSString *)strUrl {
+    if (strUrl.length == 0) {
+        return nil;
+    }
+    
+    NSURL *url;
+    strUrl = [strUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+
+    if ([strUrl hasPrefix:@"http"]) {
+        url = [NSURL URLWithString:strUrl];
+    }else{
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/cdn/1e3c3bM/externals/img/_wms/icon/%@",[IVHttpManager shareManager].cdn,strUrl]];
+    }
+    
+    return url;
+}
+
++(NSURL *)getBankIconWithString:(NSString *)strUrl {
     if (strUrl.length == 0) {
         return nil;
     }
