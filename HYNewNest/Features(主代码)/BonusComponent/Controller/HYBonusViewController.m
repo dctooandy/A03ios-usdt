@@ -10,6 +10,7 @@
 #import "LTSegmentedBarViewController.h"
 #import "HYBonusTableViewController.h"
 #import "CNBonusRequest.h"
+#import "UIImage+ESUtilities.h"
 
 @interface HYBonusViewController () <BonusTableViewDelegate>
 @property (nonatomic, strong) LTSegmentedBarViewController *segBarVC;
@@ -113,7 +114,7 @@
         segBarVC.segmentedBar.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44);
         self.navigationItem.titleView = segBarVC.segmentedBar;
         
-        segBarVC.view.frame = self.view.frame;
+        segBarVC.view.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - CGRectGetHeight(self.tabBarController.tabBar.frame));
         [self addChildViewController:segBarVC];
         [self.view addSubview:segBarVC.view];
         _segBarVC = segBarVC;
