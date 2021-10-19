@@ -127,10 +127,10 @@
         case IVNEnvironmentPublish:
         {
             envName = @"运营环境";
-//            [IVHttpManager shareManager].gateway = @"https://www.wang568.com/_glaxy_83e6dy_/";
-//            [IVHttpManager shareManager].gateways = @[@"https://www.wang568.com/_glaxy_83e6dy_/", @"https://www.sheng1568.com/_glaxy_83e6dy_/", @"https://www.cai1568.com/_glaxy_83e6dy_/"];
-            [IVHttpManager shareManager].gateway = @"https://179bi.com/_glaxy_1e3c3b_/";
-            [IVHttpManager shareManager].gateways = @[@"https://179bi.com/_glaxy_1e3c3b_/"];
+            [IVHttpManager shareManager].gateway =  @"https://179bi.com/_glaxy_1e3c3b_/";
+            [IVHttpManager shareManager].gateways = @[@"https://www.wang568.com/_glaxy_1e3c3b_/", @"https://www.sheng1568.com/_glaxy_1e3c3b_/", @"https://www.cai1568.com/_glaxy_1e3c3b_/", @"https://179bi.com/_glaxy_1e3c3b_/"];
+//            [IVHttpManager shareManager].gateway = @"https://179bi.com/_glaxy_1e3c3b_/";
+//            [IVHttpManager shareManager].gateways = @[@"https://179bi.com/_glaxy_1e3c3b_/"];
 
             break;
         }
