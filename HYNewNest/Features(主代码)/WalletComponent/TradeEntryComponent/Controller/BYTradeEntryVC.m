@@ -176,7 +176,7 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
             }
             
             strongSelf.tutorialsVideos = [BYJSONHelper dictOrArrayWithJsonString:model.video];
-            strongSelf.h5Root = model.h5_root;
+            strongSelf.h5Root = [NSString stringWithFormat:@"%@%@", [IVHttpManager shareManager].domain ,model.h5_root];
             strongSelf.videoRoot = model.video_root;
             strongSelf.amount_list = model.amount_list;
         }
