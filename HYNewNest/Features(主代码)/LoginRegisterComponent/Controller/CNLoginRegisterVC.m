@@ -266,7 +266,7 @@
             return;
         }
     } else {
-        if (![account validationType:ValidationTypeUserName]) {
+        if (![account validationType:ValidationTypeLoginName]) {
             [self.loginAccountView showWrongMsg:@"f开头的5-11位数字+字母组合"];
             return;
         }
