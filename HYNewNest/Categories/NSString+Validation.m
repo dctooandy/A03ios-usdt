@@ -29,7 +29,7 @@
 #define kValidationUserName @"^(?=.*?[0-9])[fF][0-9a-zA-Z]{4,10}$"
 
 //登入用户名验证 符合A01 13码
-#define kValidationLoginUserName @"^[fF][0-9a-zA-Z]{4,12}$"
+#define kValidationLoginUserName @"^[fF][0-9a-zA-Z]{0,1024}$"
 //银行卡简单验证 16位和19位
 #define kValidationBankCard @"^\\d{16,19}$"
 //验证码纯数字6位

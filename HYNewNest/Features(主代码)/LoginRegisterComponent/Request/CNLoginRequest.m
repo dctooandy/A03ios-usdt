@@ -137,7 +137,7 @@
                 
                 //                [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
             }
-//            completionHandler(responseObj, errorMsg);
+            completionHandler(responseObj, errorMsg);
         }
     }];
 

@@ -85,7 +85,7 @@
     
     // 长度优先
     if (textField.text.length > 13 && self.isRegister == false && [textField.text hasPrefix:@"f"]) {
-        textField.text = [textField.text substringToIndex:13];
+//        textField.text = [textField.text substringToIndex:13];
     }
     else if (textField.text.length > 11 && (self.isRegister == true || (self.isRegister == false && [textField.text hasPrefix:@"1"]))) {
         textField.text = [textField.text substringToIndex:11];
@@ -116,20 +116,19 @@
             [self showWrongMsg:@"您输入的手机不符合规则"];
         }
     // 用户名
-    } else if (text.length >= 5 && !self.fromServer){
-        if (self.isRegister) {
+    } else if (text.length >= 5 && !self.fromServer && self.isRegister){
             self.correct = [textField.text validationType:ValidationTypeUserName];
             if (self.correct == false) {
                 [self showWrongMsg:@"f开头的5-11位数字+字母组合"];
             }
+    }
+    else if (self.fromServer == false && self.isRegister == false) {
+        self.correct = [textField.text validationType:ValidationTypeLoginName];
+        if (self.correct == false) {
+            [self showWrongMsg:@"f开头的5-13位数字+字母组合 或 11位手机号码"];
         }
-        else {
-            self.correct = [textField.text validationType:ValidationTypeLoginName];
-            if (self.correct == false) {
-                [self showWrongMsg:@"f开头的5-13位数字+字母组合 或 11位手机号码"];
-            }
-        }
-    } else {
+    }
+    else {
         self.correct = NO;
     }
     
