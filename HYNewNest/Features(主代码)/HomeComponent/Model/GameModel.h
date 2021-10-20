@@ -18,6 +18,17 @@
 
 @end
 
+@interface PostMapNewModel : CNBaseModel
+
+@property(nonatomic,copy) NSString *client;
+@property(nonatomic,copy) NSString *game;
+@property(nonatomic,copy) NSString *gameType;
+@property(nonatomic,copy) NSString *lang;
+@property(nonatomic,copy) NSString *mode;
+@property(nonatomic,copy) NSString *password;
+@property(nonatomic,copy) NSString *username;
+
+@end
 
 /// InGame 接口获取到的游戏模型
 @interface GameModel : CNBaseModel
@@ -25,6 +36,7 @@
 @property(nonatomic,copy) NSString *url;
 @property(nonatomic,copy) NSString *formMethod;
 @property(nonatomic,strong) PostMapModel *postMap;
+@property(nonatomic,strong) PostMapNewModel *postMapNew;
 
 @end
 
