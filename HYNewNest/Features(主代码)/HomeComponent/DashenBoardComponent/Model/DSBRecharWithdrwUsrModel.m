@@ -17,7 +17,16 @@
         return VIPRankString[self.clubLevel];
     } else {
         // 返回 VIPn
-        return [NSString stringWithFormat:@"VIP%ld", self.customerLevel];
+        if (self.customerLevel == 5)
+        {
+            return @"钻石VIP";
+        }else if (self.customerLevel == 6)
+        {
+            return @"至尊VIP";
+        }else
+        {
+            return [NSString stringWithFormat:@"VIP%ld", self.customerLevel];
+        }
     }
 }
 
