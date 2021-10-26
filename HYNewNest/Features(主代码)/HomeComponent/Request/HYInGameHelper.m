@@ -359,7 +359,10 @@ NSString *const InGameTypeString[] = {
             if (![gameUrl containsString:@"?"]) {
                 [gameUrl appendString:@"?"];
             }
-            [gameUrl appendFormat:@"gameID=%@&gameType=%@&username=%@&password=%@", gameModel.postMap.gameID, gameModel.postMap.gameType, gameModel.postMap.username, gameModel.postMap.password];
+            //舊PT
+//            [gameUrl appendFormat:@"gameID=%@&gameType=%@&username=%@&password=%@", gameModel.postMap.gameID, gameModel.postMap.gameType, gameModel.postMap.username, gameModel.postMap.password];
+            //新PT
+            [gameUrl appendFormat:@"client=%@&game=%@&gameType=%@&lang=%@&mode=%@&password=%@&username=%@", gameModel.postMapNew.client, gameModel.postMapNew.game, gameModel.postMapNew.gameType, gameModel.postMapNew.lang,gameModel.postMapNew.mode, gameModel.postMapNew.password, gameModel.postMapNew.username];
         }
         GameStartPlayViewController *vc = [[GameStartPlayViewController alloc] initGameWithGameUrl:gameUrl.copy title:gameName];
         [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:vc animated:YES];

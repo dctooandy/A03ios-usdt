@@ -89,7 +89,16 @@ NSString *const HeaderID = @"DSBRchrWthdrwHeader";
     if (model.clubLevel > 1) {
         rank = VIPRankString[model.clubLevel];
     } else {
-        rank = [NSString stringWithFormat:@"VIP%ld", model.customerLevel];
+        if (model.customerLevel == 5)
+        {
+            rank = @"钻石VIP";
+        }else if (model.customerLevel == 6)
+        {
+            rank = @"至尊VIP";
+        }else
+        {
+            rank = [NSString stringWithFormat:@"VIP%ld", model.customerLevel];
+        }
     }
     NSString *amount = [model.totalAmount jk_toDisplayNumberWithDigit:0];
     strArr = @[model.loginName, rank, amount, time, model.headshot].mutableCopy;

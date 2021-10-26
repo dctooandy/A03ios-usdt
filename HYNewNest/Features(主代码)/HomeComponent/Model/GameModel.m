@@ -11,11 +11,14 @@
 @implementation PostMapModel
 
 @end
+@implementation PostMapNewModel
 
+@end
 @implementation GameModel
 
 + (NSDictionary<NSString *,id> *)modelContainerPropertyGenericClass {
-    return @{@"postMap":[PostMapModel class]};
+//    return @{@"postMap":[PostMapModel class]};
+    return @{@"postMapNew":[PostMapNewModel class]};
 }
 
 @end
