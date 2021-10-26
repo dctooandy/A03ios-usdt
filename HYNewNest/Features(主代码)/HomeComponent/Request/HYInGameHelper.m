@@ -351,16 +351,22 @@ NSString *const InGameTypeString[] = {
         
         GameModel *gameModel = [GameModel cn_parse:responseObj];
         NSMutableString *gameUrl = gameModel.url.mutableCopy;
+//        NSMutableString *gameUrl = [NSMutableString stringWithFormat:@"%@game_pt.html?",[IVHttpManager shareManager].domain] ;
         if (KIsEmptyString(gameUrl)) {
            [kKeywindow jk_makeToast:@"获取游戏数据为空" duration:1.5 position:JKToastPositionCenter];
            return;
         }
-        if (gameModel.postMap) {
+//        if (gameModel.postMap) {
+//            if (![gameUrl containsString:@"?"]) {
+//                [gameUrl appendString:@"?"];
+//            }
+//            //舊PT
+//            [gameUrl appendFormat:@"gameID=%@&gameType=%@&username=%@&password=%@", gameModel.postMap.gameID, gameModel.postMap.gameType, gameModel.postMap.username, gameModel.postMap.password];
+//        }
+        if (gameModel.postMapNew) {
             if (![gameUrl containsString:@"?"]) {
                 [gameUrl appendString:@"?"];
             }
-            //舊PT
-//            [gameUrl appendFormat:@"gameID=%@&gameType=%@&username=%@&password=%@", gameModel.postMap.gameID, gameModel.postMap.gameType, gameModel.postMap.username, gameModel.postMap.password];
             //新PT
             [gameUrl appendFormat:@"client=%@&game=%@&gameType=%@&lang=%@&mode=%@&password=%@&username=%@", gameModel.postMapNew.client, gameModel.postMapNew.game, gameModel.postMapNew.gameType, gameModel.postMapNew.lang,gameModel.postMapNew.mode, gameModel.postMapNew.password, gameModel.postMapNew.username];
         }
