@@ -77,6 +77,9 @@
     
     // 默认调用一个数据源 来设定_tableViewHCons高度并触发代理回调
     [self.tableView changeDataSourceDelegate:self.proTbDataSource type:DashenBoardTypeProfitBoard];
+    // 滚动&高亮
+    NSIndexPath *idxPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:idxPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
     
 }
 

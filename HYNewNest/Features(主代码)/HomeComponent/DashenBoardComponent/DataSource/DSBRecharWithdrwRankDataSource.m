@@ -131,7 +131,7 @@ NSString *const HeaderID = @"DSBRchrWthdrwHeader";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 215;
+    return 198;
 }
 
 
