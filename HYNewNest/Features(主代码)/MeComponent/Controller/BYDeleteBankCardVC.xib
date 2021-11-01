@@ -25,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYl-7F-a6E">
-                    <rect key="frame" x="0.0" y="368" width="414" height="588"/>
+                    <rect key="frame" x="0.0" y="473" width="414" height="483"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="删除银行卡" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xno-ty-bb2">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
@@ -55,7 +55,7 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zK8-V8-lo0" customClass="CNTwoStatusBtn">
-                            <rect key="frame" x="30" y="405" width="354" height="48"/>
+                            <rect key="frame" x="30" y="300" width="354" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="0G4-c8-o3F"/>
                             </constraints>
@@ -78,21 +78,21 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nvP-L2-R4Y" customClass="CNAccountInputView">
-                            <rect key="frame" x="30" y="165" width="354" height="75"/>
+                            <rect key="frame" x="30" y="60" width="354" height="75"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="75" id="jB8-e8-T9Q"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GSX-M0-B3O" customClass="CNCodeInputView">
-                            <rect key="frame" x="30" y="270" width="354" height="75"/>
+                            <rect key="frame" x="30" y="165" width="354" height="75"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="75" id="cmr-te-68A"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nh-xi-cc8">
-                            <rect key="frame" x="103.5" y="462" width="207" height="31"/>
+                            <rect key="frame" x="103.5" y="357" width="207" height="31"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="在线客服">
                                 <color key="baseForegroundColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -104,7 +104,6 @@
                     </subviews>
                     <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="nvP-L2-R4Y" firstAttribute="top" secondItem="rYY-ya-75d" secondAttribute="bottom" priority="750" constant="30" id="06P-rk-S4K"/>
                         <constraint firstAttribute="trailing" secondItem="Bze-zj-7sA" secondAttribute="trailing" constant="-60" id="0Or-gy-Rdq"/>
                         <constraint firstItem="nvP-L2-R4Y" firstAttribute="leading" secondItem="GSX-M0-B3O" secondAttribute="leading" id="0uz-gO-QWE"/>
                         <constraint firstItem="GSX-M0-B3O" firstAttribute="top" secondItem="nvP-L2-R4Y" secondAttribute="bottom" constant="30" id="35F-IK-Imy"/>
@@ -114,11 +113,14 @@
                         <constraint firstAttribute="trailing" secondItem="Xno-ty-bb2" secondAttribute="trailing" id="6Ne-uk-b7D"/>
                         <constraint firstItem="Xno-ty-bb2" firstAttribute="leading" secondItem="uYl-7F-a6E" secondAttribute="leading" id="Jza-Jc-u5T"/>
                         <constraint firstItem="Xno-ty-bb2" firstAttribute="top" secondItem="uYl-7F-a6E" secondAttribute="top" id="KZv-Rn-g7d"/>
+                        <constraint firstItem="nvP-L2-R4Y" firstAttribute="top" secondItem="uYl-7F-a6E" secondAttribute="top" constant="60" id="KqT-iF-KG7"/>
+                        <constraint firstItem="nvP-L2-R4Y" firstAttribute="leading" secondItem="uYl-7F-a6E" secondAttribute="leading" constant="30" id="NHt-hb-FE6"/>
                         <constraint firstItem="rYY-ya-75d" firstAttribute="leading" secondItem="uYl-7F-a6E" secondAttribute="leading" constant="30" id="PGX-YD-mcE"/>
                         <constraint firstItem="rYY-ya-75d" firstAttribute="top" secondItem="uYl-7F-a6E" secondAttribute="top" constant="60" id="PMZ-kp-72b"/>
                         <constraint firstAttribute="trailing" secondItem="xdd-Oz-o20" secondAttribute="trailing" id="Qeg-g1-AQF"/>
                         <constraint firstAttribute="trailing" secondItem="rYY-ya-75d" secondAttribute="trailing" constant="30" id="URl-sl-uJ7"/>
                         <constraint firstItem="zK8-V8-lo0" firstAttribute="leading" secondItem="uYl-7F-a6E" secondAttribute="leading" constant="30" id="We5-bH-lld"/>
+                        <constraint firstAttribute="trailing" secondItem="nvP-L2-R4Y" secondAttribute="trailing" constant="30" id="ZsO-Az-ebd"/>
                         <constraint firstItem="nvP-L2-R4Y" firstAttribute="trailing" secondItem="rYY-ya-75d" secondAttribute="trailing" id="aW5-nt-785"/>
                         <constraint firstAttribute="trailing" secondItem="zK8-V8-lo0" secondAttribute="trailing" constant="30" id="eVA-Py-uIQ"/>
                         <constraint firstItem="Bze-zj-7sA" firstAttribute="bottom" secondItem="Xno-ty-bb2" secondAttribute="bottom" id="gFe-3j-lh0"/>
@@ -133,6 +135,11 @@
                             <integer key="value" value="20"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <variation key="default">
+                        <mask key="subviews">
+                            <exclude reference="rYY-ya-75d"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
