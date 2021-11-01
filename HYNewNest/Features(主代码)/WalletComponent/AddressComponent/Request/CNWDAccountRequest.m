@@ -27,6 +27,19 @@
     [self POST:(config_deleteAccount) parameters:param completionHandler:handler];
 }
 
++ (void)deleteAccountId:(NSString *)accountId
+           smsCodeModel:(SmsCodeModel *)smsCodeModel
+                handler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"accountId"] = accountId;
+    param[@"messageId"] = smsCodeModel.messageId;
+    param[@"validateId"] = smsCodeModel.validateId;
+    param[@"smsCode"] = smsCodeModel.smsCode;
+    
+    [self POST:(config_deleteAccount) parameters:param completionHandler:handler];
+}
+
 + (void)getBankCardBinByBankCardNo:(NSString *)bankCardNo   handler:(HandlerBlock)handler {
     kPreventRepeatTime(0.5);
     

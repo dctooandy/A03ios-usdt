@@ -9,6 +9,7 @@
 #import "CNBaseNetworking.h"
 #import "AccountModel.h"
 #import "CardBinTypeModel.h"
+#import "SmsCodeModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -33,6 +34,14 @@ typedef enum : NSUInteger {
 /// @param handler 回调
 + (void)deleteAccountId:(NSString *)accountId
                 handler:(HandlerBlock)handler;
+
+/// 删银行卡
+/// @param accountId 卡ID
+/// @param smsCodeModel sms Model
+/// @param handler 回调
++ (void)deleteAccountId:(NSString *)accountId
+           smsCodeModel:(SmsCodeModel *)smsCodeModel
+                handler:(HandlerBlock)handler ;
 
 
 #pragma mark - 绑卡
