@@ -27,8 +27,9 @@
     
     self.bgView.layer.cornerRadius = AD(10);
     [self.addBtn setTitle:[CNUserManager shareManager].isUsdtMode?@"添加地址":@"添加银行卡" forState:UIControlStateNormal];
-    [self.addBtn setTitleColor:[UIColor gradientFromColor:kHexColor(0x19CECE) toColor:kHexColor(0x10B4DD) withWidth:CGRectGetWidth(self.addBtn.frame)] forState:UIControlStateNormal];
-    [self.addBtn setTintColor:[UIColor gradientFromColor:kHexColor(0x19CECE) toColor:kHexColor(0x10B4DD) withWidth:CGRectGetWidth(self.addBtn.frame)]];
+    UIColor * tempColor = [UIColor gradientFromColor:kHexColor(0x19CECE) toColor:kHexColor(0x10B4DD) withWidth:CGRectGetWidth(self.addBtn.frame)];
+    [self.addBtn setTitleColor:kHexColor(0x19CECE) forState:UIControlStateNormal];
+    [self.addBtn setTintColor:tempColor];
     [self dottedLineBorderWithView:self.bgView borderColor:kHexColor(0x6D778B) fillColor:kHexColor(0x212137)];
 }
 
