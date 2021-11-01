@@ -31,7 +31,7 @@
         self.descLb.text = model.accountType;
     }
     self.numLb.text = model.accountNo;
-//    [_deleteButton setHidden:!sender];
+    [_deleteButton setHidden:!sender];
 }
 - (void)setModel:(AccountModel *)model {
     _model = model;
