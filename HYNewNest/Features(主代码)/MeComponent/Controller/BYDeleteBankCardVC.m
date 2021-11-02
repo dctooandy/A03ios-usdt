@@ -137,7 +137,7 @@
 - (void)codeInputViewTextChange:(CNCodeInputView *)view {
     // 按钮可点击条件
     if ([CNUserManager shareManager].userDetail.withdralPwdFlag) {
-        self.submitBtn.enabled = self.oldeCodeView.correct && self.accountInputView.correct && self.codeInputView.correct;
+        self.submitBtn.enabled = self.accountInputView.correct && self.codeInputView.correct;
     } else {
         self.submitBtn.enabled = self.accountInputView.correct && self.codeInputView.correct;
     }
