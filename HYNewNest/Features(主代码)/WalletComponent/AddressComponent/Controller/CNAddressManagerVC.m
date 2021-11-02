@@ -24,6 +24,8 @@
 #import "ABCOneKeyRegisterBFBHelper.h"
 #import <IVLoganAnalysis/IVLAManager.h>
 
+#import "BYDeleteBankCardVC.h"
+
 @interface CNAddressManagerVC () <UITableViewDelegate, UITableViewDataSource>
 // 顶部页签
 @property (weak, nonatomic) IBOutlet UIButton *goldBtn;
@@ -198,33 +200,56 @@
 }
 
 - (void)deleteAccountIdx:(NSInteger)idx {
-    [HYTextAlertView showWithTitle:@"确定删除？" content:@"删除后不可恢复，只能重新添加" comfirmText:@"删除" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm){
-        if (!isComfirm) {
-            return;
+    AccountModel *model;
+    switch (self.addrType) {
+        case HYAddressTypeBANKCARD:
+            model = self.bankAccounts[idx];
+            break;
+        case HYAddressTypeDCBOX:
+            model = self.dcboxAccounts[idx];
+            break;
+        case HYAddressTypeUSDT:
+            model = self.usdtAccounts[idx];
+            break;
+    }
+    
+    [BYDeleteBankCardVC modalVcWithBankModel:model handler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            [CNTOPHUB showSuccess:@"删除成功"];
+            [self queryAccounts];
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                [IVLAManager singleEventId:@"A03_bankcard_update"];
+            });
+            
         }
-        AccountModel *model;
-        switch (self.addrType) {
-            case HYAddressTypeBANKCARD:
-                model = self.bankAccounts[idx];
-                break;
-            case HYAddressTypeDCBOX:
-                model = self.dcboxAccounts[idx];
-                break;
-            case HYAddressTypeUSDT:
-                model = self.usdtAccounts[idx];
-                break;
-        }
-        [CNWDAccountRequest deleteAccountId:model.accountId handler:^(id responseObj, NSString *errorMsg) {
-            if (!errorMsg) {
-                [CNTOPHUB showSuccess:@"删除成功"];
-                [self queryAccounts];
-                dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                    [IVLAManager singleEventId:@"A03_bankcard_update"];
-                });
-            }
-        }];
-        
     }];
+//    [HYTextAlertView showWithTitle:@"确定删除？" content:@"删除后不可恢复，只能重新添加" comfirmText:@"删除" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm){
+//        if (!isComfirm) {
+//            return;
+//        }
+//        // 先封印,之后回来解开,要先绑架到另一个VC去
+//        AccountModel *model;
+//        switch (self.addrType) {
+//            case HYAddressTypeBANKCARD:
+//                model = self.bankAccounts[idx];
+//                break;
+//            case HYAddressTypeDCBOX:
+//                model = self.dcboxAccounts[idx];
+//                break;
+//            case HYAddressTypeUSDT:
+//                model = self.usdtAccounts[idx];
+//                break;
+//        }
+//        [CNWDAccountRequest deleteAccountId:model.accountId handler:^(id responseObj, NSString *errorMsg) {
+//            if (!errorMsg) {
+//                [CNTOPHUB showSuccess:@"删除成功"];
+//                [self queryAccounts];
+//                dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//                    [IVLAManager singleEventId:@"A03_bankcard_update"];
+//                });
+//            }
+//        }];
+//    }];
 }
 
 
@@ -270,8 +295,10 @@
                 
             } else {
                 AccountModel *model = self.bankAccounts[indexPath.row];
+                BOOL isShowButton = (self.bankAccounts.count > 1 ? YES : NO);
                 CNAddressInfoTCell *infoCell = [tableView dequeueReusableCellWithIdentifier:kCNAddressInfoTCellID forIndexPath:indexPath];
-                infoCell.model = model;
+                [infoCell setConfig:model withShowDeleteButtonFlag:isShowButton];
+//                infoCell.model = model;
                 infoCell.deleteBlock = ^{
                     [self deleteAccountIdx:indexPath.row];
                 };

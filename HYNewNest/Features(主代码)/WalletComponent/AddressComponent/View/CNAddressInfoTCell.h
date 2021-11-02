@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CNAddressInfoTCell : UITableViewCell
 @property (nonatomic, strong) AccountModel *model;
 @property (nonatomic, copy) dispatch_block_t deleteBlock;
+- (void)setConfig:(AccountModel *)model withShowDeleteButtonFlag:(BOOL)sender;
 @end
 
 NS_ASSUME_NONNULL_END

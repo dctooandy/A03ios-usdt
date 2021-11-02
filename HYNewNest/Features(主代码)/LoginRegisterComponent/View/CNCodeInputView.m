@@ -76,6 +76,7 @@ int TotalSecond = 60;
         case CNCodeTypeFundPwdSMS:
         case CNCodeTypeUnbind:
         case CNCodeTypeChangePhone:
+        case CNCodeTypecModifyBankCard:
             self.tipLb.text = @"验证码*";
             break;
         case CNCodeTypeNewPwd:
@@ -109,6 +110,7 @@ int TotalSecond = 60;
         case CNCodeTypeFundPwdSMS:
         case CNCodeTypeUnbind:
         case CNCodeTypeChangePhone:
+        case CNCodeTypecModifyBankCard:
             self.correct = (text.length >= 6);
             wrongTip = @"请输入6位数字验证码";
             break;
@@ -173,6 +175,7 @@ int TotalSecond = 60;
         case CNCodeTypeFundPwdSMS:
         case CNCodeTypeUnbind:
         case CNCodeTypeChangePhone:
+        case CNCodeTypecModifyBankCard:
             if (textField.text.length >= 6) {
                 self.correct = [text validationType:ValidationTypePhoneCode];
                 if (!self.correct) {
@@ -291,7 +294,15 @@ int TotalSecond = 60;
             self.smsModel = smsModel;
             [self callBlock];
         }];
-    } else {
+    } else if (self.codeType == CNCodeTypecModifyBankCard) { //删除银行卡
+        [CNLoginRequest getSMSCodeByLoginNameType:CNSMSCodeTypeChangeBank
+                                completionHandler:^(id responseObj, NSString *errorMsg) {
+            SmsCodeModel *smsModel = [SmsCodeModel cn_parse: responseObj];
+            self.smsModel = smsModel;
+            [self callBlock];
+        }];
+    }
+    else {
         // 发送验证码请求
         [CNLoginRequest getSMSCodeWithType:CNSMSCodeTypeLogin
                                      phone:self.account
@@ -323,6 +334,7 @@ int TotalSecond = 60;
         case CNCodeTypeFundPwdSMS:
         case CNCodeTypeUnbind:
         case CNCodeTypeChangePhone:
+        case CNCodeTypecModifyBankCard:
             self.inputTrailing.constant = 100;
             self.inputTF.placeholder = @"请输入验证码";
             self.eyeBtn.hidden = YES;
