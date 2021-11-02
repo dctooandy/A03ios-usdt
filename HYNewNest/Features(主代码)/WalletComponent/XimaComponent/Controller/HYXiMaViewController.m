@@ -55,11 +55,11 @@ static NSString * const KXiMaCell = @"HYXiMaCell";
     self.topView.lblTitle.text = @"洗码总额";
     self.topView.clickBlock = ^{
         NSString *content;
-        if ([CNUserManager shareManager].isUsdtMode) {
-            content = @"1. 洗码金额不足1 USDT不予添加；\n\n2. 周一16点之前系统会自动结算洗码；\n\n3. 新会员首次需由系统自动洗码，不能手动洗码；\n\n4. 洗码金额无需流水即可提款；\n\n5. 币游保留对洗码优惠的最终解释权，一旦发现套利行为，币游有权扣除其所得额度。";
-        } else {
-            content = @"1. 洗码金额不足5元无法洗出，周洗码不足1元不予添加；\n\n2. 周一16点之前系统会自动结算洗码；\n\n3. 新会员首次需由系统自动洗码，不能手动洗码；\n\n4. 所有游戏都需满足1倍流水才能提币；\n\n5. 币游保留对洗码优惠的最终解释权，一旦发现套利行为，币游有权扣除其所得额度。";
-        }
+        content = @"1. 洗码金额≥ (1 CNY 或 1 USDT) 可自助提交添加 ;\n\n2. 系统自动添加周洗码时间：每周一17:00之前，结算完毕并添加到游戏账号；\n\n3. 新会员首次需由系统自动洗码，不能手动洗码；\n\n4. 洗码金额无需流水即可提款；\n\n5. 币游保留对洗码优惠的最终解释权，一旦发现套利行为，币游有权扣除其所得额度。";
+//        if ([CNUserManager shareManager].isUsdtMode) {
+//        } else {
+//            content = @"1. 洗码金额不足5元无法洗出，周洗码不足1元不予添加；\n\n2. 周一16点之前系统会自动结算洗码；\n\n3. 新会员首次需由系统自动洗码，不能手动洗码；\n\n4. 所有游戏都需满足1倍流水才能提币；\n\n5. 币游保留对洗码优惠的最终解释权，一旦发现套利行为，币游有权扣除其所得额度。";
+//        }
         [HYWideOneBtnAlertView showWithTitle:@"洗码规则" content:content comfirmText:@"我知道了" comfirmHandler:^{
         }];
     };
