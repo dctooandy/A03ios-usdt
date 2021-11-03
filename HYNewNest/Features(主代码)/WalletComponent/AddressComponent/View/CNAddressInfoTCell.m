@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *descLb;
 @property (weak, nonatomic) IBOutlet UILabel *numLb;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet UILabel *flagLabel;
 @end
 
 @implementation CNAddressInfoTCell
@@ -31,7 +32,15 @@
         self.descLb.text = model.accountType;
     }
     self.numLb.text = model.accountNo;
-    [_deleteButton setHidden:!sender];
+    if (![model.flag isEqualToString:@"1"])
+    {
+        [_flagLabel setHidden:NO];
+        [_deleteButton setHidden:YES];
+    }else
+    {
+        [_flagLabel setHidden:YES];
+        [_deleteButton setHidden:!sender];
+    }
 }
 - (void)setModel:(AccountModel *)model {
     _model = model;

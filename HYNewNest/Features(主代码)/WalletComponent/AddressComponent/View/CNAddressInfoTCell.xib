@@ -63,9 +63,19 @@
                                     <action selector="delete:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="mOx-8n-K0l"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="审核中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9al-Mg-SKA">
+                                <rect key="frame" x="279.5" y="8.5" width="70.5" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="9al-Mg-SKA" secondAttribute="height" multiplier="2:1" id="TQm-li-oNZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.15294117647058825" green="0.15294117647058825" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="9al-Mg-SKA" firstAttribute="trailing" secondItem="Mea-i1-otM" secondAttribute="trailing" id="2Yi-eu-qpP"/>
                             <constraint firstAttribute="trailing" secondItem="Mea-i1-otM" secondAttribute="trailing" constant="10" id="40O-LK-Sy9"/>
                             <constraint firstItem="SHy-aG-Yee" firstAttribute="leading" secondItem="vRI-w6-Xe1" secondAttribute="trailing" constant="15" id="9am-nX-x5k"/>
                             <constraint firstItem="BlP-P6-cJn" firstAttribute="top" secondItem="SHy-aG-Yee" secondAttribute="bottom" constant="10" id="9pP-T9-19j"/>
@@ -75,6 +85,8 @@
                             <constraint firstItem="vRI-w6-Xe1" firstAttribute="leading" secondItem="FtS-E6-UJo" secondAttribute="leading" constant="15" id="cqc-3M-2ry"/>
                             <constraint firstItem="vRI-w6-Xe1" firstAttribute="centerY" secondItem="FtS-E6-UJo" secondAttribute="centerY" id="eXl-lb-n3Y"/>
                             <constraint firstItem="BlP-P6-cJn" firstAttribute="leading" secondItem="SHy-aG-Yee" secondAttribute="leading" id="lIP-9l-tN7"/>
+                            <constraint firstItem="9al-Mg-SKA" firstAttribute="height" secondItem="Mea-i1-otM" secondAttribute="height" multiplier="1.1" id="ljZ-fE-zaQ"/>
+                            <constraint firstItem="9al-Mg-SKA" firstAttribute="centerY" secondItem="Mea-i1-otM" secondAttribute="centerY" id="mqc-GB-Dzt"/>
                             <constraint firstItem="SHy-aG-Yee" firstAttribute="top" secondItem="vRI-w6-Xe1" secondAttribute="top" id="o4g-hu-nym"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -97,6 +109,7 @@
             <connections>
                 <outlet property="deleteButton" destination="Mea-i1-otM" id="6re-xz-s8C"/>
                 <outlet property="descLb" destination="RDr-tA-a6q" id="Sa8-Uk-Wym"/>
+                <outlet property="flagLabel" destination="9al-Mg-SKA" id="uOy-tJ-xb9"/>
                 <outlet property="imageV" destination="vRI-w6-Xe1" id="T0g-Sh-0mk"/>
                 <outlet property="numLb" destination="BlP-P6-cJn" id="J3r-ZO-rLy"/>
                 <outlet property="titleLb" destination="SHy-aG-Yee" id="H0j-MB-eAD"/>
