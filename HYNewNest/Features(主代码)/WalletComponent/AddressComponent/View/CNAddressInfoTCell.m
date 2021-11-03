@@ -16,10 +16,32 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLb;
 @property (weak, nonatomic) IBOutlet UILabel *descLb;
 @property (weak, nonatomic) IBOutlet UILabel *numLb;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet UILabel *flagLabel;
 @end
 
 @implementation CNAddressInfoTCell
-
+- (void)setConfig:(AccountModel *)model withShowDeleteButtonFlag:(BOOL)sender {
+    _model = model;
+    
+    [self.imageV sd_setImageWithURL:[NSURL getUrlWithString:model.bankIcon]];
+    self.titleLb.text = model.bankName;
+    if ([CNUserManager shareManager].isUsdtMode) {
+        self.descLb.text = model.protocol;
+    } else {
+        self.descLb.text = model.accountType;
+    }
+    self.numLb.text = model.accountNo;
+    if (![model.flag isEqualToString:@"1"])
+    {
+        [_flagLabel setHidden:NO];
+        [_deleteButton setHidden:YES];
+    }else
+    {
+        [_flagLabel setHidden:YES];
+        [_deleteButton setHidden:!sender];
+    }
+}
 - (void)setModel:(AccountModel *)model {
     _model = model;
     

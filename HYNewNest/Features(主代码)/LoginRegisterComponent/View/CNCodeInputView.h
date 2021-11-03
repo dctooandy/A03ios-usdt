@@ -24,7 +24,8 @@ typedef NS_ENUM(NSUInteger, CNCodeType) {
     CNCodeTypeNewFundPwd,       //资金密码
     CNCodeTypeFundPwdSMS,       //发送资金密码短信验证码
     CNCodeTypeUnbind,           //修改手机1
-    CNCodeTypeChangePhone       //修改手机2
+    CNCodeTypeChangePhone,     //修改手机2
+    CNCodeTypecModifyBankCard   //修正银行卡短信验证码
 };
 
 @class CNCodeInputView;
