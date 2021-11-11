@@ -289,6 +289,7 @@ int TotalSecond = 60;
     } else if (self.codeType == CNCodeTypeBindPhone) { //绑定
         [CNLoginRequest getSMSCodeWithType:CNSMSCodeTypeBindPhone
                                      phone:self.mobileNum
+                                validateId:self.validateId?:@""
                          completionHandler:^(id responseObj, NSString *errorMsg) {
             SmsCodeModel *smsModel = [SmsCodeModel cn_parse:responseObj];
             self.smsModel = smsModel;
