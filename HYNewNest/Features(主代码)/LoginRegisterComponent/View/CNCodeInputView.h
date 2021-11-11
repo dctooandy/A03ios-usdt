@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, CNCodeType) {
     CNCodeTypeOldPwd,           //旧密码
     CNCodeTypeBankCard,         //绑定提现地址短信验证码
     CNCodeTypeBindPhone,        //绑定手机
+    CNCodeTypeBindPhoneWithPhone,//用LoginName绑定手机
     CNCodeTypeOldFundPwd,       //资金密码旧
     CNCodeTypeNewFundPwd,       //资金密码
     CNCodeTypeFundPwdSMS,       //发送资金密码短信验证码

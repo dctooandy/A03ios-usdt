@@ -70,6 +70,17 @@
                 self.codeInputView.mobileNum = mobileNo;
             }
             break;
+        case CNSMSCodeTypeBindPhoneWithLoginName:
+            self.titleLb.text = @"绑定手机号";
+            self.codeInputView.codeType = CNCodeTypeBindPhoneWithPhone;
+            // 如果有已有手机号则设置
+            if ([CNUserManager shareManager].userDetail.mobileNo.length) {
+                self.accountInputView.account = mobileNo;
+                self.accountInputView.correct = YES;
+                self.accountInputView.userInteractionEnabled = NO;
+                self.codeInputView.mobileNum = mobileNo;
+            }
+            break;
         // 安全中心来的 解绑
         case CNSMSCodeTypeUnbind:
             self.titleLb.text = @"手机号修改";
@@ -101,6 +112,20 @@
     }
     if (self.bindType == CNSMSCodeTypeBindPhone) {
 
+        [CNLoginRequest requestPhoneBind:self.codeInputView.code
+                               messageId:self.codeInputView.smsModel.messageId
+                       completionHandler:^(id responseObj, NSString *errorMsg) {
+            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+                // 更新信息
+                [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id responseObj, NSString *errorMsg) {
+                    [CNTOPHUB showSuccess:@"绑定成功"];
+                    [self didTapCloseBtn:nil];
+                }];
+            }
+        }];
+    
+    }else if (self.bindType == CNSMSCodeTypeBindPhoneWithLoginName) {
+        
         [CNLoginRequest requestPhoneBind:self.codeInputView.code
                                messageId:self.codeInputView.smsModel.messageId
                        completionHandler:^(id responseObj, NSString *errorMsg) {

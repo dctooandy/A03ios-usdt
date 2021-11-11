@@ -71,6 +71,7 @@ int TotalSecond = 60;
             self.inputTF.placeholder = @"请输入密码或手机验证码";
             break;
         case CNCodeTypeBindPhone:
+        case CNCodeTypeBindPhoneWithPhone:
         case CNCodeTypePhoneLogin:
         case CNCodeTypeBankCard:
         case CNCodeTypeFundPwdSMS:
@@ -105,6 +106,7 @@ int TotalSecond = 60;
     NSString *wrongTip = @"请输入8-16位数字及字母的组合";
     switch (_codeType) {
         case CNCodeTypeBindPhone:
+        case CNCodeTypeBindPhoneWithPhone:
         case CNCodeTypePhoneLogin:
         case CNCodeTypeBankCard:
         case CNCodeTypeFundPwdSMS:
@@ -170,6 +172,7 @@ int TotalSecond = 60;
             break;
         // 验证码校验
         case CNCodeTypeBindPhone:
+        case CNCodeTypeBindPhoneWithPhone:
         case CNCodeTypePhoneLogin:
         case CNCodeTypeBankCard:
         case CNCodeTypeFundPwdSMS:
@@ -289,8 +292,14 @@ int TotalSecond = 60;
     } else if (self.codeType == CNCodeTypeBindPhone) { //绑定
         [CNLoginRequest getSMSCodeWithType:CNSMSCodeTypeBindPhone
                                      phone:self.mobileNum
-                                validateId:self.validateId?:@""
                          completionHandler:^(id responseObj, NSString *errorMsg) {
+            SmsCodeModel *smsModel = [SmsCodeModel cn_parse:responseObj];
+            self.smsModel = smsModel;
+            [self callBlock];
+        }];
+    } else if (self.codeType == CNCodeTypeBindPhoneWithPhone) { //用LoginName绑定
+        [CNLoginRequest getSMSCodeByLoginNameType:CNSMSCodeTypeBindPhone
+                                completionHandler:^(id responseObj, NSString *errorMsg) {
             SmsCodeModel *smsModel = [SmsCodeModel cn_parse:responseObj];
             self.smsModel = smsModel;
             [self callBlock];
@@ -330,6 +339,7 @@ int TotalSecond = 60;
             self.inputTrailing.constant = 50;
             break;
         case CNCodeTypeBindPhone:
+        case CNCodeTypeBindPhoneWithPhone:
         case CNCodeTypePhoneLogin:
         case CNCodeTypeBankCard:
         case CNCodeTypeFundPwdSMS:

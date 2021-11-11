@@ -24,6 +24,7 @@ typedef NS_ENUM(NSUInteger, CNSMSCodeType) {
     CNSMSCodeTypeRegister = 1,
     CNSMSCodeTypeLogin = 2,
     CNSMSCodeTypeBindPhone = 3,
+    CNSMSCodeTypeBindPhoneWithLoginName = 33,
     CNSMSCodeTypeForgotPassword = 4, //找回密码
     CNSMSCodeTypeChangePhone = 5, //手机修改
     CNSMSCodeTypeUnbind = 6, //手机解绑
