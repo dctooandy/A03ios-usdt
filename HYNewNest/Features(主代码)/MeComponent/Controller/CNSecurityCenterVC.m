@@ -16,6 +16,7 @@
 #import "BYModifyPhoneVC.h"
 #import "HYWideOneBtnAlertView.h"
 #import "BYBindRealNameVC.h"
+#import "HYTextAlertView.h"
 
 @interface CNSecurityCenterVC ()
 @property (weak, nonatomic) IBOutlet CNBaseTF *phoneTF;
@@ -55,7 +56,23 @@
 
 // 修改手机号
 - (IBAction)changePhoneNum:(id)sender {
-    [BYModifyPhoneVC modalVcWithSMSCodeType:(self.phoneTF.text.length > 0 ? CNSMSCodeTypeUnbind : CNSMSCodeTypeBindPhone)];
+    if (![CNUserManager shareManager].userDetail.mobileNoBind) {
+        [HYTextAlertView showWithTitle:@"手机绑定" content:@"对不起！系统发现您还没有绑定手机，请先完成手机绑定流程，再进行添加地址操作。" comfirmText:@"确定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
+            if (isComfirm) {
+                if ([CNUserManager shareManager].userDetail.mobileNo)
+                {
+                    [BYModifyPhoneVC modalVcWithSMSCodeType:CNSMSCodeTypeBindPhoneWithLoginName];
+                }else
+                {
+                    [BYModifyPhoneVC modalVcWithSMSCodeType:CNSMSCodeTypeBindPhone];
+                }
+            }
+        }];
+        
+    } else {
+        [BYModifyPhoneVC modalVcWithSMSCodeType:(self.phoneTF.text.length > 0 ? CNSMSCodeTypeUnbind : CNSMSCodeTypeBindPhone)];
+    }
+//    [BYModifyPhoneVC modalVcWithSMSCodeType:(self.phoneTF.text.length > 0 ? CNSMSCodeTypeUnbind : CNSMSCodeTypeBindPhone)];
 }
 
 // 修改密码
