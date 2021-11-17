@@ -81,7 +81,7 @@
             [CNTOPHUB showSuccess:@"密码修改成功 请重新登录"];
             [CNLoginRequest logoutHandler:^(id responseObj, NSString *errorMsg) {
                 [[CNUserManager shareManager] cleanUserInfo];
-                [kCurNavVC popToRootViewControllerAnimated:YES];
+//                [kCurNavVC popToRootViewControllerAnimated:YES];//导致换完密码,下面tabbar 消失的主凶
                 [NNControllerHelper currentTabBarController].selectedIndex = 0;
                 [[NNControllerHelper currentTabbarSelectedNavigationController] pushViewController:[CNLoginRegisterVC loginVC] animated:YES];
             }];
