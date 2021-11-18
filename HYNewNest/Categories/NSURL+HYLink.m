@@ -92,7 +92,10 @@
             if (![strUrl hasPrefix:@"/"]) {
                 strUrl = [NSString stringWithFormat:@"/%@", strUrl];
             }
-            strUrl = [NSString stringWithFormat:@"%@%@",[IVHttpManager shareManager].domain,strUrl];
+            if ([strUrl containsString:@"/share"])
+            {
+                strUrl = [NSString stringWithFormat:@"%@/share?appid=A01NEWAPP02",[IVHttpManager shareManager].domain];
+            }
         }
     }
     
