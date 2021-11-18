@@ -36,7 +36,7 @@
 #define config_callBackPhone   @"callback"  //消息中心电话回访
 #define config_ocssAdress      @"liveChatAddressOCSS" //取得OCSS位置
 #define config_home_otherGame @"1e3c3b/home/other" //获取其他游戏列表
-#define config_areaLimit @"areaLimit" // 地区限制
+#define config_areaLimit @"areaLimitV2" // 地区限制
 #define config_liveChatAddress @"liveChatAddressOCSS" //客服
 #define config_dynamicQuery @"dynamic/query" //获取动态表单数据 （live800客服，充提指南...）
 #define config_switchAccount @"customer/switchAccount"    //切换子账号 USDT<-->人民币
@@ -49,25 +49,25 @@
 
 #pragma mark 登录注册/用户
 #define config_h5Ticket @"createH5TempTicket"
-#define config_bindMobileNoV2 @"customer/bindMobileNoV2" //绑定手机号v2
-#define config_SendCodePhone @"phone/sendCode"  //请求手机号验证码  1.注册 2.登录 3.手机绑定 4.找回密码 5.手机修改 7.资料修改 9.常规验证 11.找回账号
+#define config_bindMobileNoV2 @"phone/bind" //绑定手机号v2
+#define config_SendCodePhone @"phone/sendCode"   //请求手机号验证码  1.注册 2.登录 3.手机绑定 4.找回密码 5.手机修改 7.资料修改 9.常规验证 11.找回账号
 #define config_preLogin  @"customer/preLogin"   //登录前查询是否需要图形验证码
 #define config_generateCaptcha   @"captcha/generate"   //生成图片验证码
 #define config_generateHanCaptcha   @"captcha/generateCaptcha"   //生成汉字图片验证码
 #define config_validateHanCaptcha   @"captcha/validateCaptcha"   //校验汉字图片验证码
 
 #define config_LoginEx @"customer/loginEx"  //模糊登录
-#define config_sendCodeByLoginName  @"sms/sendCodeByLoginName"  // 通过用户名发送验证码
-#define config_modifyPwdBySmsCode   @"customer/modifyPwdBySmsCode"  //确认修改密码
+#define config_sendCodeByLoginName  @"phone/sendCodeByLoginName"  //通过用户名发送验证码
+#define config_modifyPwdBySmsCode   @"customer/modifyPwdByCode"  //确认修改密码
 #define config_modifyPwd   @"customer/modifyPwd"  //修改密码
-#define config_reBindMobileNoV2 @"customer/reBindMobileNoV2"  //重新绑定手机号v2
+#define config_reBindMobileNoV2 @"phone/updateBind"  //重新绑定手机号v2
 #define config_loginWith2FA @"customer/loginWith2FA" //异地登陆验证
 
 #define config_registUserName   @"customer/createRealAccount"  //用户名注册
 #define config_loginMessageIdAndLoginName     @"customer/loginByValidateId" //用户名登录
 #define config_forgetPassword_validate   @"phone/checkCustomerBySmsCode" //忘记密码第一步-验证
 
-#define config_logout          @"customer/logout"
+#define config_logout          @"customer/logoutV2"
 #define config_getByLoginName    @"customer/getByLoginName"  //根据token获取会员信息
 
 #define config_createTryAccount   @"customer/createTryAccount"  //试玩登录
@@ -106,13 +106,13 @@
 
 #pragma mark 提现地址管理
 #define config_getRealNamePhone @"customer/modifyCustomerRealNamePhone" //修改手机和姓名
-#define config_createBank      @"account/createBank"    //添加银行卡号
+#define config_createBank      @"account/create"    //添加银行卡号
 #define config_createBitCoin   @"account/createBtc"   //添加比特币账户
 #define config_create          @"account/create"    //添加小金库账户
 #define config_createGoldAccount @"account/createGoldAccount" //创建小金库账户
 #define config_getQueryCard    @"account/query" //查询有多少卡绑定， 银行卡管理界面
 #define config_deleteAccount   @"account/delete"  //删除银行卡
-#define config_verifySmsCode   @"phone/verifySmsCode" //获取validateId
+#define config_verifySmsCode   @"phone/verifySmsCode"  //获取validateId
 #define config_modifyUserInfo  @"customer/modify" //绑定真实姓名
 #define config_getByCardBin    @"getByCardBin" //获取银行名称
 

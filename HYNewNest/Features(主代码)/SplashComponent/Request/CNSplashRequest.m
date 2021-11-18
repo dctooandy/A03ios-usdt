@@ -131,7 +131,13 @@
     NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
     paramDic[@"deviceId"] = [FCUUID uuidForDevice];
     [self POST:(config_areaLimit) parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
-        handler([responseObj boolValue]);
+        if ([responseObj isKindOfClass:[NSNumber class]])
+        {
+            handler([responseObj boolValue]);
+        }else
+        {
+            handler([responseObj[@"allowAccess"] boolValue]);
+        }
     }];
 }
 
