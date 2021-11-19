@@ -95,8 +95,10 @@
             if ([strUrl containsString:@"/share"])
             {
                 strUrl = [NSString stringWithFormat:@"%@/share",[IVHttpManager shareManager].domain];
+            }else
+            {
+                strUrl = [NSString stringWithFormat:@"%@%@",[IVHttpManager shareManager].domain,strUrl];
             }
-            strUrl = [NSString stringWithFormat:@"%@%@",[IVHttpManager shareManager].domain,strUrl];
         }
     }
     
