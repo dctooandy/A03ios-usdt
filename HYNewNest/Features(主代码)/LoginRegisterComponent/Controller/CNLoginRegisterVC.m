@@ -315,7 +315,7 @@
         STRONGSELF_DEFINE
         if (!errorMsg) {
             // 判断多账号调用多账号登录
-            if (responseObj[@"samePhoneLoginNames"] || responseObj[@"loginNames"]) {
+            if (responseObj[@"samePhoneLoginNames"] || responseObj[@"loginNames"] || responseObj[@"loginName"]) {
                 SamePhoneLoginNameModel *model = [SamePhoneLoginNameModel cn_parse:responseObj];
                 NSMutableArray *names = model.samePhoneLoginNames.mutableCopy;
                 for (SamePhoneLoginNameItem *item in model.samePhoneLoginNames) {
