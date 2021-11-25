@@ -127,13 +127,14 @@
             if (!errorMsg) {
 //                [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
                 // 推送相关    (登录后才能获取到udid)
-                [CNPushRequest GetUDIDHandler:^(id responseObj, NSString *errorMsg) {
-                    [CNPushRequest GTInterfaceHandler:nil];
-                }];
-                
-                [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id response, NSString *error) {
+//                [CNPushRequest GetUDIDHandler:^(id responseObj, NSString *errorMsg) {
+//                    [CNPushRequest GTInterfaceHandler:nil];
+//                }];
+//
+//                [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id response, NSString *error) {
                     completionHandler(responseObj, errorMsg);
-                }]; // 请求详细信息
+//                }];
+                // 请求详细信息
                 
                 //                [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
             }else

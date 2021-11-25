@@ -27,6 +27,7 @@
 
 #import "ApiErrorCodeConst.h"
 #import "UILabel+Gradient.h"
+#import "CNPushRequest.h"
 
 @interface CNLoginRegisterVC () <CNAccountInputViewDelegate, CNCodeInputViewDelegate, HYTapHanImgCodeViewDelegate, UIScrollViewDelegate>
 
@@ -356,21 +357,31 @@
                 {
                     [CNTOPHUB showSuccess:@"登录成功"];
                     [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
-                    if ([NNControllerHelper pop2ViewControllerClassString:@"CNHomeVC"]) { // 如果无法pop回homepage 则直接pop回上一级
-                        [[NNControllerHelper currentTabBarController] performSelector:@selector(showSuspendBall)];
-                    } else {
-                        [strongSelf.navigationController popViewControllerAnimated:YES];
-                    }
+                    [CNPushRequest GetUDIDHandler:^(id responseObj, NSString *errorMsg) {
+                        [CNPushRequest GTInterfaceHandler:nil];
+                    }];
+                    [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id response, NSString *error) {
+                        if ([NNControllerHelper pop2ViewControllerClassString:@"CNHomeVC"]) { // 如果无法pop回homepage 则直接pop回上一级
+                            [[NNControllerHelper currentTabBarController] performSelector:@selector(showSuspendBall)];
+                        } else {
+                            [strongSelf.navigationController popViewControllerAnimated:YES];
+                        }                        
+                    }];
                 }
             }else
             {
                 [CNTOPHUB showSuccess:@"登录成功"];
                 [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
-                if ([NNControllerHelper pop2ViewControllerClassString:@"CNHomeVC"]) { // 如果无法pop回homepage 则直接pop回上一级
-                    [[NNControllerHelper currentTabBarController] performSelector:@selector(showSuspendBall)];
-                } else {
-                    [strongSelf.navigationController popViewControllerAnimated:YES];
-                }
+                [CNPushRequest GetUDIDHandler:^(id responseObj, NSString *errorMsg) {
+                    [CNPushRequest GTInterfaceHandler:nil];
+                }];
+                [CNLoginRequest getUserInfoByTokenCompletionHandler:^(id response, NSString *error) {
+                    if ([NNControllerHelper pop2ViewControllerClassString:@"CNHomeVC"]) { // 如果无法pop回homepage 则直接pop回上一级
+                        [[NNControllerHelper currentTabBarController] performSelector:@selector(showSuspendBall)];
+                    } else {
+                        [strongSelf.navigationController popViewControllerAnimated:YES];
+                    }                    
+                }];
             }
             
         } else {
