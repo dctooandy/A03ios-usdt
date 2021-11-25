@@ -315,7 +315,7 @@
         STRONGSELF_DEFINE
         if (!errorMsg) {
             // 判断多账号调用多账号登录
-            if (responseObj[@"samePhoneLoginNames"] || responseObj[@"loginNames"] || responseObj[@"loginName"]) {
+            if (responseObj[@"samePhoneLoginNames"] || responseObj[@"loginNames"] ) {
                 SamePhoneLoginNameModel *model = [SamePhoneLoginNameModel cn_parse:responseObj];
                 NSMutableArray *names = model.samePhoneLoginNames.mutableCopy;
                 for (SamePhoneLoginNameItem *item in model.samePhoneLoginNames) {
@@ -347,8 +347,25 @@
                             }
                         }
                     }];                }
-            } else {
+            } else if (responseObj[@"loginName"]) {
+                NSString *loginString = responseObj[@"loginName"];
+                if ([loginString hasPrefix:@"g"] || [loginString hasPrefix:@"G"]) {
+                    [CNTOPHUB showError:@"该帐号类型禁止登录"];
+                    [weakSelf preLoginAction];
+                }else
+                {
+                    [CNTOPHUB showSuccess:@"登录成功"];
+                    [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
+                    if ([NNControllerHelper pop2ViewControllerClassString:@"CNHomeVC"]) { // 如果无法pop回homepage 则直接pop回上一级
+                        [[NNControllerHelper currentTabBarController] performSelector:@selector(showSuspendBall)];
+                    } else {
+                        [strongSelf.navigationController popViewControllerAnimated:YES];
+                    }
+                }
+            }else
+            {
                 [CNTOPHUB showSuccess:@"登录成功"];
+                [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
                 if ([NNControllerHelper pop2ViewControllerClassString:@"CNHomeVC"]) { // 如果无法pop回homepage 则直接pop回上一级
                     [[NNControllerHelper currentTabBarController] performSelector:@selector(showSuspendBall)];
                 } else {

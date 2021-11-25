@@ -125,7 +125,7 @@
             completionHandler(responseObj, errorMsg);
         } else {
             if (!errorMsg) {
-                [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
+//                [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
                 // 推送相关    (登录后才能获取到udid)
                 [CNPushRequest GetUDIDHandler:^(id responseObj, NSString *errorMsg) {
                     [CNPushRequest GTInterfaceHandler:nil];
