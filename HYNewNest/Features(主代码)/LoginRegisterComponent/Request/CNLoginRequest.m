@@ -136,8 +136,10 @@
                 }]; // 请求详细信息
                 
                 //                [self checkTopDomainSuccessHandler:nil]; //查询是否白名单用户
+            }else
+            {
+                completionHandler(responseObj, errorMsg);
             }
-            completionHandler(responseObj, errorMsg);
         }
     }];
 
