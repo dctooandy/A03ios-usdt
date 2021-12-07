@@ -16,6 +16,7 @@
                 <outlet property="loginView" destination="bWe-Js-K1F" id="5y4-ts-Wf5"/>
                 <outlet property="moneyLb" destination="oAS-o1-hZh" id="Faf-IR-ofN"/>
                 <outlet property="questionBtn" destination="okc-dh-cyP" id="9xa-GM-fPY"/>
+                <outlet property="shapeView" destination="Sim-dp-tCw" id="Jk0-um-HgH"/>
                 <outlet property="switchModeSegc" destination="WLz-tL-cWV" id="xim-H6-rAY"/>
                 <outlet property="usdtADImgv" destination="gdW-q9-I6I" id="ZDU-6E-PTm"/>
                 <outlet property="usrNameLb" destination="vHg-RI-kbC" id="i2h-ua-uj4"/>
