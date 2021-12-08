@@ -376,6 +376,9 @@
 		5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */; };
 		7636AE6E272BC4C70072AB0E /* BYDeleteBankCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7636AE6C272BC4C70072AB0E /* BYDeleteBankCardVC.m */; };
 		7636AE71272BC5940072AB0E /* BYDeleteBankCardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7636AE70272BC5940072AB0E /* BYDeleteBankCardVC.xib */; };
+		76B499E727608DAE003CD35B /* AppdelegateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E627608DAE003CD35B /* AppdelegateManager.m */; };
+		76B499EA27609237003CD35B /* A03CheckDomainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E927609237003CD35B /* A03CheckDomainModel.m */; };
+		76B499EE276094B9003CD35B /* AppSettingRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499ED276094B9003CD35B /* AppSettingRequest.m */; };
 		76F8643826EF652600320B60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D13388A24AF28D600B29783 /* Assets.xcassets */; };
 		D571B19624BE9F120087B5EC /* CNLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19524BE9F120087B5EC /* CNLineView.m */; };
 		D571B1AA24C03D790087B5EC /* CNStatementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D571B1A724C03D790087B5EC /* CNStatementView.xib */; };
@@ -1704,6 +1707,12 @@
 		7636AE6B272BC4C70072AB0E /* BYDeleteBankCardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYDeleteBankCardVC.h; sourceTree = "<group>"; };
 		7636AE6C272BC4C70072AB0E /* BYDeleteBankCardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYDeleteBankCardVC.m; sourceTree = "<group>"; };
 		7636AE70272BC5940072AB0E /* BYDeleteBankCardVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BYDeleteBankCardVC.xib; sourceTree = "<group>"; };
+		76B499E527608DAE003CD35B /* AppdelegateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppdelegateManager.h; sourceTree = "<group>"; };
+		76B499E627608DAE003CD35B /* AppdelegateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppdelegateManager.m; sourceTree = "<group>"; };
+		76B499E827609237003CD35B /* A03CheckDomainModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = A03CheckDomainModel.h; sourceTree = "<group>"; };
+		76B499E927609237003CD35B /* A03CheckDomainModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A03CheckDomainModel.m; sourceTree = "<group>"; };
+		76B499EC276094B9003CD35B /* AppSettingRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppSettingRequest.h; sourceTree = "<group>"; };
+		76B499ED276094B9003CD35B /* AppSettingRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppSettingRequest.m; sourceTree = "<group>"; };
 		9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.debug.xcconfig"; sourceTree = "<group>"; };
 		A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF7A2146C28453736D5663C /* Pods_HYNewNest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2970,6 +2979,8 @@
 				04C0F10E24C59298007F1420 /* CNBaseNetworking.m */,
 				E9D9448E24C5454F00252222 /* HYNetworkConfigManager.h */,
 				E9D9448F24C5454F00252222 /* HYNetworkConfigManager.m */,
+				76B499E527608DAE003CD35B /* AppdelegateManager.h */,
+				76B499E627608DAE003CD35B /* AppdelegateManager.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -3669,6 +3680,7 @@
 		3DA4F19E24B3199A0039123F /* BASE */ = {
 			isa = PBXGroup;
 			children = (
+				76B499EB27609487003CD35B /* Request */,
 				3D18CFAA260883C600E6642E /* NXPingManager */,
 				3DBA55D5256FA720009A2B71 /* BalanceManager */,
 				04C0F10D24C59298007F1420 /* Networking */,
@@ -4076,6 +4088,15 @@
 				A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		76B499EB27609487003CD35B /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				76B499EC276094B9003CD35B /* AppSettingRequest.h */,
+				76B499ED276094B9003CD35B /* AppSettingRequest.m */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 		D5A4425724F36F4200014DC6 /* Gif */ = {
@@ -4723,6 +4744,8 @@
 			children = (
 				D5FBFE7324BC28B100BBCAD8 /* CNBaseModel.h */,
 				D5FBFE7424BC28B100BBCAD8 /* CNBaseModel.m */,
+				76B499E827609237003CD35B /* A03CheckDomainModel.h */,
+				76B499E927609237003CD35B /* A03CheckDomainModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6688,6 +6711,7 @@
 				F784BA7B26A139F200280F66 /* BYGloryHeaderContentItem.m in Sources */,
 				E98BEEE824D023B200E6B0C8 /* LYEmptyBaseView.m in Sources */,
 				044DC69124DD01AA005CB550 /* CNShareView.m in Sources */,
+				76B499E727608DAE003CD35B /* AppdelegateManager.m in Sources */,
 				04C6E1E624D4029D006F4DAC /* CNAddressManagerVC.m in Sources */,
 				3D41DE7525199DEE000CA1D6 /* VIPRewardAnocModel.m in Sources */,
 				3D8A3B3A264E4DEA00AA9AB7 /* CNYuEBaoRequest.m in Sources */,
@@ -6702,6 +6726,7 @@
 				E98BEF1224D2A32700E6B0C8 /* HYXiMaSuccViewController.m in Sources */,
 				E986A17F24C97B21000F9CFF /* CNWDAccountRequest.m in Sources */,
 				3D4179D82669BFE0003928F0 /* BYChangeFundPwdVC.m in Sources */,
+				76B499EE276094B9003CD35B /* AppSettingRequest.m in Sources */,
 				D5FBFE4224BC05E400BBCAD8 /* CNCodeInputView.m in Sources */,
 				E986A0FD24C6D1F9000F9CFF /* CNUserDetailModel.m in Sources */,
 				F76D2FF2268059FE00B5BE84 /* BYTradeEntryRequest.m in Sources */,
@@ -6717,6 +6742,7 @@
 				D5FBFE8D24BC28B200BBCAD8 /* CNBaseVC.m in Sources */,
 				3D41DEA5251AF662000CA1D6 /* VIPCumulateIdButton.m in Sources */,
 				3D41DE9A2519F996000CA1D6 /* VIPCumulateIdHeader.m in Sources */,
+				76B499EA27609237003CD35B /* A03CheckDomainModel.m in Sources */,
 				3DB600B32627E7C9002278F8 /* HYOneImgBtnAlertView.m in Sources */,
 				3D41DE7325199DEE000CA1D6 /* VIPDSBUsrModel.m in Sources */,
 				3DC14E4C25FB561000D6DB85 /* BYOldMyWalletView.m in Sources */,
