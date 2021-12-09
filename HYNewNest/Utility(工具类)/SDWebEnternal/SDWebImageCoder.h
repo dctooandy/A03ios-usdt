@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SDWebImageCompat.h"
-//#import "NSData+ImageContentType.h"
-#import "NSData+ImageContentTypeTwo.h"
+#import "NSData+ImageContentType.h"
 
 /**
  A Boolean value indicating whether to scale down large images during decompressing. (NSNumber)
@@ -77,7 +76,7 @@ CG_EXTERN BOOL SDCGImageRefContainsAlpha(_Nullable CGImageRef imageRef);
  @param format The image format
  @return YES if this coder can encode the image, NO otherwise
  */
-- (BOOL)canEncodeToFormat:(SDImageFormatTwo)format;
+- (BOOL)canEncodeToFormat:(SDImageFormat)format;
 
 /**
  Encode the image to image data.
@@ -86,7 +85,7 @@ CG_EXTERN BOOL SDCGImageRefContainsAlpha(_Nullable CGImageRef imageRef);
  @param format The image format to encode, you should note `SDImageFormatUndefined` format is also  possible
  @return The encoded image data
  */
-- (nullable NSData *)encodedDataWithImage:(nullable UIImage *)image format:(SDImageFormatTwo)format;
+- (nullable NSData *)encodedDataWithImage:(nullable UIImage *)image format:(SDImageFormat)format;
 
 @end
 

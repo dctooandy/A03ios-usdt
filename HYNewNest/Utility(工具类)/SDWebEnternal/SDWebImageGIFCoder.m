@@ -9,8 +9,7 @@
 #import "SDWebImageGIFCoder.h"
 #import "NSImage+WebCache.h"
 #import <ImageIO/ImageIO.h>
-//#import "NSData+ImageContentType.h"
-#import "NSData+ImageContentTypeTwo.h"
+#import "NSData+ImageContentType.h"
 #import "UIImage+MultiFormat.h"
 #import "SDWebImageCoderHelper.h"
 #import "SDAnimatedImageRep.h"
@@ -28,7 +27,7 @@
 
 #pragma mark - Decode
 - (BOOL)canDecodeFromData:(nullable NSData *)data {
-    return ([NSData sd_imageFormatForImageData:data] == SDImageFormatGIF2);
+    return ([NSData sd_imageFormatForImageData:data] == SDImageFormatGIF);
 }
 
 - (UIImage *)decodedImageWithData:(NSData *)data {
@@ -82,7 +81,7 @@
         
         animatedImage = [SDWebImageCoderHelper animatedImageWithFrames:frames];
         animatedImage.sd_imageLoopCount = loopCount;
-        animatedImage.sd_imageFormat = SDImageFormatGIF2;
+        animatedImage.sd_imageFormat = SDImageFormatGIF;
     }
     
     CFRelease(source);
@@ -131,21 +130,21 @@
 }
 
 #pragma mark - Encode
-- (BOOL)canEncodeToFormat:(SDImageFormatTwo)format {
-    return (format == SDImageFormatGIF2);
+- (BOOL)canEncodeToFormat:(SDImageFormat)format {
+    return (format == SDImageFormatGIF);
 }
 
-- (NSData *)encodedDataWithImage:(UIImage *)image format:(SDImageFormatTwo)format {
+- (NSData *)encodedDataWithImage:(UIImage *)image format:(SDImageFormat)format {
     if (!image) {
         return nil;
     }
     
-    if (format != SDImageFormatGIF2) {
+    if (format != SDImageFormatGIF) {
         return nil;
     }
     
     NSMutableData *imageData = [NSMutableData data];
-    CFStringRef imageUTType = [NSData sd_UTTypeFromSDImageFormat:SDImageFormatGIF2];
+    CFStringRef imageUTType = [NSData sd_UTTypeFromImageFormat:SDImageFormatGIF];
     NSArray<SDWebImageFrame *> *frames = [SDWebImageCoderHelper framesFromAnimatedImage:image];
     
     // Create an image destination. GIF does not support EXIF image orientation

@@ -7,8 +7,7 @@
  */
 
 #import "SDWebImageCompat.h"
-//#import "NSData+ImageContentType.h"
-#import "NSData+ImageContentTypeTwo.h"
+#import "NSData+ImageContentType.h"
 
 @interface UIImage (MultiFormat)
 
@@ -29,10 +28,10 @@
  * If you don't manually specify a format, this information is retrieve from CGImage using `CGImageGetUTType`, which may return nil for non-CG based image. At this time it will return `SDImageFormatUndefined` as default value.
  * @note Note that because of the limitations of categories this property can get out of sync if you create another instance with CGImage or other methods.
  */
-@property (nonatomic, assign) SDImageFormatTwo sd_imageFormat;
+@property (nonatomic, assign) SDImageFormat sd_imageFormat;
 
 + (nullable UIImage *)sd_imageWithData:(nullable NSData *)data;
 - (nullable NSData *)sd_imageData;
-- (nullable NSData *)sd_imageDataAsFormat:(SDImageFormatTwo)imageFormat;
+- (nullable NSData *)sd_imageDataAsFormat:(SDImageFormat)imageFormat;
 
 @end

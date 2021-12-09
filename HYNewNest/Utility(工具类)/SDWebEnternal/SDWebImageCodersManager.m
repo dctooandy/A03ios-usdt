@@ -87,7 +87,7 @@
     return NO;
 }
 
-- (BOOL)canEncodeToFormat:(SDImageFormatTwo)format {
+- (BOOL)canEncodeToFormat:(SDImageFormat)format {
     LOCK(self.codersLock);
     NSArray<id<SDWebImageCoder>> *coders = self.coders;
     UNLOCK(self.codersLock);
@@ -130,7 +130,7 @@
     return nil;
 }
 
-- (NSData *)encodedDataWithImage:(UIImage *)image format:(SDImageFormatTwo)format {
+- (NSData *)encodedDataWithImage:(UIImage *)image format:(SDImageFormat)format {
     if (!image) {
         return nil;
     }

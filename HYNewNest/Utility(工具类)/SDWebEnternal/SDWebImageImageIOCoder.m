@@ -10,8 +10,7 @@
 #import "SDWebImageCoderHelper.h"
 #import "NSImage+WebCache.h"
 #import <ImageIO/ImageIO.h>
-//#import "NSData+ImageContentType.h"
-#import "NSData+ImageContentTypeTwo.h"
+#import "NSData+ImageContentType.h"
 #import "UIImage+MultiFormat.h"
 
 #if SD_UIKIT || SD_WATCH
@@ -69,13 +68,13 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
 #pragma mark - Decode
 - (BOOL)canDecodeFromData:(nullable NSData *)data {
     switch ([NSData sd_imageFormatForImageData:data]) {
-        case SDImageFormatWebP2:
+        case SDImageFormatWebP:
             // Do not support WebP decoding
             return NO;
-        case SDImageFormatHEIC2:
+        case SDImageFormatHEIC:
             // Check HEIC decoding compatibility
             return [[self class] canDecodeFromHEICFormat];
-        case SDImageFormatHEIF2:
+        case SDImageFormatHEIF:
             // Check HEIF decoding compatibility
             return [[self class] canDecodeFromHEIFFormat];
         default:
@@ -85,13 +84,13 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
 
 - (BOOL)canIncrementallyDecodeFromData:(NSData *)data {
     switch ([NSData sd_imageFormatForImageData:data]) {
-        case SDImageFormatWebP2:
+        case SDImageFormatWebP:
             // Do not support WebP progressive decoding
             return NO;
-        case SDImageFormatHEIC2:
+        case SDImageFormatHEIC:
             // Check HEIC decoding compatibility
             return [[self class] canDecodeFromHEICFormat];
-        case SDImageFormatHEIF2:
+        case SDImageFormatHEIF:
             // Check HEIF decoding compatibility
             return [[self class] canDecodeFromHEIFFormat];
         default:
@@ -192,7 +191,7 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
         UIImage *scaledDownImage = [self sd_decompressedAndScaledDownImageWithImage:image];
         if (scaledDownImage && !CGSizeEqualToSize(scaledDownImage.size, image.size)) {
             // if the image is scaled down, need to modify the data pointer as well
-            SDImageFormatTwo format = [NSData sd_imageFormatForImageData:*data];
+            SDImageFormat format = [NSData sd_imageFormatForImageData:*data];
             NSData *imageData = [self encodedDataWithImage:scaledDownImage format:format];
             if (imageData) {
                 *data = imageData;
@@ -371,15 +370,15 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
 #endif
 
 #pragma mark - Encode
-- (BOOL)canEncodeToFormat:(SDImageFormatTwo)format {
+- (BOOL)canEncodeToFormat:(SDImageFormat)format {
     switch (format) {
-        case SDImageFormatWebP2:
+        case SDImageFormatWebP:
             // Do not support WebP encoding
             return NO;
-        case SDImageFormatHEIC2:
+        case SDImageFormatHEIC:
             // Check HEIC encoding compatibility
             return [[self class] canEncodeToHEICFormat];
-        case SDImageFormatHEIF2:
+        case SDImageFormatHEIF:
             // Check HEIF encoding compatibility
             return [[self class] canEncodeToHEIFFormat];
         default:
@@ -387,17 +386,17 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
     }
 }
 
-- (NSData *)encodedDataWithImage:(UIImage *)image format:(SDImageFormatTwo)format {
+- (NSData *)encodedDataWithImage:(UIImage *)image format:(SDImageFormat)format {
     if (!image) {
         return nil;
     }
     
-    if (format == SDImageFormatUndefined2) {
+    if (format == SDImageFormatUndefined) {
         BOOL hasAlpha = SDCGImageRefContainsAlpha(image.CGImage);
         if (hasAlpha) {
-            format = SDImageFormatPNG2;
+            format = SDImageFormatPNG;
         } else {
-            format = SDImageFormatJPEG2;
+            format = SDImageFormatJPEG;
         }
     }
     
@@ -450,7 +449,7 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
     static BOOL canDecode = NO;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        CFStringRef imageUTType = [NSData sd_UTTypeFromSDImageFormat:SDImageFormatHEIC2];
+        CFStringRef imageUTType = [NSData sd_UTTypeFromSDImageFormat:SDImageFormatHEIC];
         NSArray *imageUTTypes = (__bridge_transfer NSArray *)CGImageSourceCopyTypeIdentifiers();
         if ([imageUTTypes containsObject:(__bridge NSString *)(imageUTType)]) {
             canDecode = YES;
@@ -463,7 +462,7 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
     static BOOL canDecode = NO;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        CFStringRef imageUTType = [NSData sd_UTTypeFromSDImageFormat:SDImageFormatHEIF2];
+        CFStringRef imageUTType = [NSData sd_UTTypeFromSDImageFormat:SDImageFormatHEIF];
         NSArray *imageUTTypes = (__bridge_transfer NSArray *)CGImageSourceCopyTypeIdentifiers();
         if ([imageUTTypes containsObject:(__bridge NSString *)(imageUTType)]) {
             canDecode = YES;
@@ -477,7 +476,7 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSMutableData *imageData = [NSMutableData data];
-        CFStringRef imageUTType = [NSData sd_UTTypeFromSDImageFormat:SDImageFormatHEIC2];
+        CFStringRef imageUTType = [NSData sd_UTTypeFromSDImageFormat:SDImageFormatHEIC];
         
         // Create an image destination.
         CGImageDestinationRef imageDestination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)imageData, imageUTType, 1, NULL);
@@ -498,7 +497,7 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSMutableData *imageData = [NSMutableData data];
-        CFStringRef imageUTType = [NSData sd_UTTypeFromSDImageFormat:SDImageFormatHEIF2];
+        CFStringRef imageUTType = [NSData sd_UTTypeFromSDImageFormat:SDImageFormatHEIF];
         
         // Create an image destination.
         CGImageDestinationRef imageDestination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)imageData, imageUTType, 1, NULL);
