@@ -57,7 +57,8 @@
 + (void)jump2BuyECoin {
 //    NSInteger depositLevel = [CNUserManager shareManager].userDetail.depositLevel;
 //    if (depositLevel > 1) {
-        [NNPageRouter openExchangeElecCurrencyPage];
+//        [NNPageRouter openExchangeElecCurrencyPage];
+    [NNPageRouter openExchangeElecCurrencyPageWithType:BuyCoin];
 //    } else { // 小于一星级
 //        HYBuyECoinGuideVC *vc = [HYBuyECoinGuideVC new];
 //        [kCurNavVC pushViewController:vc animated:YES];
@@ -157,7 +158,25 @@
         }
     }];
 }
-
++ (void)openExchangeElecCurrencyPageWithType:(QueryDepositType)type
+{
+    [CNRechargeRequest queryUSDTCounterWithType:type Handler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+            NSString *urlStr = responseObj[@"payUrl"];
+            if (!KIsEmptyString(urlStr)) {
+                urlStr = [urlStr stringByReplacingOccurrencesOfString:@"/list" withString:@""];
+                NSURL *url = [NSURL URLWithString:urlStr];
+                if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+                        [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
+                    }];
+                } else {
+                    [CNTOPHUB showError:@"PayURL错误 请联系客服"];
+                }
+            }
+        }
+    }];
+}
 + (void)presentOCSS_VC {
     // 打开新客服入口
     [NNPageRouter presentOCSS_VC:false];

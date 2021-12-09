@@ -321,7 +321,8 @@
     // bitbase + 去注册 == 就走外部跳转
     if ([model.name caseInsensitiveCompare:@"dexchange"] == NSOrderedSame) {
         [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
-        [NNPageRouter openExchangeElecCurrencyPage];
+//        [NNPageRouter openExchangeElecCurrencyPage];
+        [NNPageRouter openExchangeElecCurrencyPageWithType:SkipOut];
     } else {
         NSURL *url = [NSURL URLWithString:model.registerUrl];
         if ([[UIApplication sharedApplication] canOpenURL:url]) {
