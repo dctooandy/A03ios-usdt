@@ -55,24 +55,12 @@
 - (void)switchEnvirnment {
 #ifdef DEBUG
     // 切换环境 保存
-    __block NSMutableDictionary *eventDict = @{}.mutableCopy;
-    [eventDict setValue:[IVHttpManager shareManager].gateway forKey:@"from"];
     self.environment += 1;
     if (self.environment > 2) {
         self.environment = 0;
     }
+    [IVHttpManager shareManager].gateways = nil;
     [[AppdelegateManager shareManager] checkDomainHandler:^{
-        //通知外部
-        [eventDict setValue:[IVHttpManager shareManager].gateway forKey:@"to"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:IVNGatewaySwitchNotification object:nil userInfo:eventDict.copy];
-        
-    #ifdef DEBUG
-        [kKeywindow jk_makeToast:[IVHttpManager shareManager].gateway
-                        duration:4
-                        position:JKToastPositionCenter
-                           title:[NSString stringWithFormat:@"😄当前是%ld --【%@】",(long)self.environment ,self.envName]];
-    #endif
-        
         [[NSUserDefaults standardUserDefaults] setInteger:self.environment forKey:@"IVNEnvironment"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
@@ -122,19 +110,19 @@
 //            [IVHttpManager shareManager].gateways = @[@"http://10.66.72.156/_glaxy_83e6dy_/"];
 //            [IVHttpManager shareManager].gateway = @"http://10.86.64.5:8081/_glaxy_83e6dy_/";      //https://api.a03.app 10.86.64.5:8081 TW本地环境
 //            [IVHttpManager shareManager].gateways = @[@"http://10.86.64.5:8081/_glaxy_83e6dy_/"];
-//            [IVHttpManager shareManager].gateway = @"http://www.pt-gateway.com/_glaxy_1e3c3b_/"
-//            [IVHttpManager shareManager].gateways = @[@"http://www.pt-gateway.com/_glaxy_1e3c3b_/"];
-            [IVHttpManager shareManager].gateway = nil;
-            [IVHttpManager shareManager].gateways = [[AppdelegateManager shareManager] gateways];
+            [IVHttpManager shareManager].gateway = @"http://www.pt-gateway.com/_glaxy_1e3c3b_/";
+            [IVHttpManager shareManager].gateways = @[@"http://www.pt-gateway.com/_glaxy_1e3c3b_/"];
+//            [IVHttpManager shareManager].gateway = nil;
+//            [IVHttpManager shareManager].gateways = [[AppdelegateManager shareManager] gateways];
             break;
         }
         case IVNEnvironmentTest:
         {
             self.envName = @"运测环境";
-//            [IVHttpManager shareManager].gateway = @"http://h5.918rr.com/_glaxy_1e3c3b_/";
-//            [IVHttpManager shareManager].gateways = @[@"http://h5.918rr.com/_glaxy_1e3c3b_/"];
-            [IVHttpManager shareManager].gateway = nil;
-            [IVHttpManager shareManager].gateways = [[AppdelegateManager shareManager] gateways];
+            [IVHttpManager shareManager].gateway = @"http://h5.918rr.com/_glaxy_1e3c3b_/";
+            [IVHttpManager shareManager].gateways = @[@"http://h5.918rr.com/_glaxy_1e3c3b_/"];
+//            [IVHttpManager shareManager].gateway = nil;
+//            [IVHttpManager shareManager].gateways = [[AppdelegateManager shareManager] gateways];
 //            [IVHttpManager shareManager].gateways = @[@"https://usdtm.hwx22.com", @"https://usdtw.hwx22.com", @"https://usdtmp.hwx22.com", @"https://usdtwp.hwx22.com"];
             break;
         }
@@ -150,10 +138,10 @@
             self.envName = @"运营环境";
 //            [IVHttpManager shareManager].gateway =  @"https://wu7018.com/_glaxy_1e3c3b_/";
 //            [IVHttpManager shareManager].gateways = @[@"https://wu7021.com/_glaxy_1e3c3b_/", @"https://wu7020.com/_glaxy_1e3c3b_/", @"https://wu7018.com/_glaxy_1e3c3b_/", @"https://www.wang568.com/_glaxy_1e3c3b_/", @"https://www.sheng1568.com/_glaxy_1e3c3b_/", @"https://www.cai1568.com/_glaxy_1e3c3b_/", @"https://179bi.com/_glaxy_1e3c3b_/"];
-            [IVHttpManager shareManager].gateway = nil;
-            [IVHttpManager shareManager].gateways = [[AppdelegateManager shareManager] gateways];
-//            [IVHttpManager shareManager].gateway = @"https://179bi.com/_glaxy_1e3c3b_/";
-//            [IVHttpManager shareManager].gateways = @[@"https://179bi.com/_glaxy_1e3c3b_/"];
+            [IVHttpManager shareManager].gateway = @"https://179bi.com/_glaxy_1e3c3b_/";
+            [IVHttpManager shareManager].gateways = @[@"https://179bi.com/_glaxy_1e3c3b_/"];
+            //            [IVHttpManager shareManager].gateway = nil;
+            //            [IVHttpManager shareManager].gateways = [[AppdelegateManager shareManager] gateways];
 
             break;
         }
