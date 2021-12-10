@@ -322,7 +322,7 @@
     if ([model.name caseInsensitiveCompare:@"dexchange"] == NSOrderedSame) {
         [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
 //        [NNPageRouter openExchangeElecCurrencyPage];
-        [NNPageRouter openExchangeElecCurrencyPageWithType:SkipOut];
+        [NNPageRouter openExchangeElecCurrencyPageWithType:BuyCoin];
     } else {
         NSURL *url = [NSURL URLWithString:model.registerUrl];
         if ([[UIApplication sharedApplication] canOpenURL:url]) {
