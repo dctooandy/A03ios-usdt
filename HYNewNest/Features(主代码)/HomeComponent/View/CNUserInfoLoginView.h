@@ -28,6 +28,7 @@ typedef enum : NSInteger {
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CNUserInfoLoginView : CNBaseXibView
+typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
 @property (nonatomic, weak) id delegate;
 
 

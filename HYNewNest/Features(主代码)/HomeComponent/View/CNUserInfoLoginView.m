@@ -12,6 +12,7 @@
 #import "CNUserModel.h"
 #import <UIImageView+WebCache.h>
 #import "UIView+Badge.h"
+#import "SDWebImageGIFCoder.h"
 
 @interface CNUserInfoLoginView ()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *vipImageConstraint;
@@ -31,6 +32,7 @@
 
 #pragma - mark 未登录属性
 @property (weak, nonatomic) IBOutlet UIView *loginView;
+@property (weak, nonatomic) IBOutlet UIImageView *shapeView;
 
 @end
 
@@ -44,6 +46,55 @@
     // 提现右上角NEW
 //    [self.withdrawCNYBtn showRightTopImageName:@"new_txgb" size:CGSizeMake(30, 14) offsetX:-30 offsetYMultiple:0];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshBalance) name:BYRefreshBalanceNotification object:nil];
+    [self serverTime:^(NSString * _Nonnull timeStr) {
+        if (timeStr.length > 0) {
+            NSString * pathStr = @"";
+            //手動輸入要更換的日期
+            if ([self checkProductDate:@"2022-01-11" serverTime:timeStr]) {
+                pathStr = @"03Gif2022";////双但
+            }
+            if (pathStr.length > 0) {
+                NSString *path = [[NSBundle mainBundle] pathForResource:pathStr ofType:@"gif"];
+                NSData *data = [NSData dataWithContentsOfFile:path];
+                UIImageView * img = [[UIImageView alloc] init];
+                img.image = [[SDWebImageGIFCoder sharedCoder] decodedImageWithData:data];
+                [self.loginView addSubview:img];
+                [self.loginView sendSubviewToBack:img];
+                [self.loginView sendSubviewToBack:self.shapeView];
+                [img mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.bottom.right.left.equalTo(self.loginView);
+                }];
+            }
+        }
+    }];
+}
+-(BOOL)checkProductDate:(NSString *)tempDate serverTime:(NSString *)serverTime {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [dateFormatter dateFromString:tempDate];
+    NSDate *serverDate = [dateFormatter dateFromString:serverTime];
+    // 判断是否大于server时间
+    if ([date earlierDate:serverDate] != date) {
+        return true;
+    } else {
+        return false;
+    }
+}
+-(void)serverTime:(ServerTimeCompleteBlock)completeBlock {
+    
+    NSString *time = [self getUTCTimeWithTimeInterval:[NSDate date].timeIntervalSince1970];
+    completeBlock(time);
+}
+//UTC时间
+- (NSString *)getUTCTimeWithTimeInterval:(NSTimeInterval)interval {
+    NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:interval];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    [dateFormatter setTimeZone:timeZone];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateString = [dateFormatter stringFromDate:date];
+    return dateString;
 }
 
 - (void)editSegmentControlUIStatus {
