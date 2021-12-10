@@ -388,14 +388,18 @@
         } else {
             if ([errorMsg isEqualToString:LoginRegionRisk_ErroCode]) {
                self.diffRgonSmsModel = [SmsCodeModel cn_parse:responseObj]; //异地登录验证码
-               
-               [CNVerifyMsgAlertView showRegionPhone:self.diffRgonSmsModel.mobileNo
-                                          reSendCode:^{
-                   [self sendDiffRegionVerifyCode]; // 重新发送
-               } finish:^(NSString * _Nonnull smsCode) {
-                   self.diffRgonSmsModel.smsCode = smsCode;
-                   [self verifyRegionCode]; //校验验证码
-               }];
+                CNVerifyMsgAlertView * alertView = [CNVerifyMsgAlertView showRegionPhone:self.diffRgonSmsModel.mobileNo
+                                                                              reSendCode:^{
+                    [self sendDiffRegionVerifyCode]; // 重新发送
+                } finish:^(NSString * _Nonnull smsCode) {
+                    self.diffRgonSmsModel.smsCode = smsCode;
+                    [self verifyRegionCode]; //校验验证码
+                }];
+                alertView.onCancelAction = ^{
+                    self.hanImgCodeViewH.constant = 95;
+                    [self.hanImgCodeView getImageCodeForceRefresh:YES];
+                };
+              
                
             } else if ([responseObj isEqualToString:LoginPassExpired_ErrorCode]) {
                 [HYTextAlertView showWithTitle:@"账号激活" content:@"由于我们检测到您的该账号长时间没有登录，请您修改密码。" comfirmText:@"修改密码" cancelText:nil comfirmHandler:^(BOOL isComfirm) {

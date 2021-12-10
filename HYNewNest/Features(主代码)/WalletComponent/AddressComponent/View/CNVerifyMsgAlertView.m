@@ -167,6 +167,10 @@
 
 // 关闭页面
 - (IBAction)close:(id)sender {
+    if (self.onCancelAction)
+    {
+        self.onCancelAction();
+    }
     [self removeFromSuperview];
 }
 
