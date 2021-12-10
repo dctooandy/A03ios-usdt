@@ -67,6 +67,13 @@
     [self POST:(config_queryDepositCounter) parameters:parm completionHandler:handler];
 }
 
++ (void)queryUSDTCounterWithType:(QueryDepositType)type Handler:(HandlerBlock)handler
+{
+    NSMutableDictionary *parm = [kNetworkMgr baseParam];
+    parm[@"transferType"] = [NSString stringWithFormat:@"%ld",(long)type];
+    [self POST:(config_queryDepositCounter) parameters:parm completionHandler:handler];
+}
+
 + (void)queryOnlineBanksPayType:(NSString *)payType
                    usdtProtocol:(nullable NSString *)usdtProtocol
                         handler:(HandlerBlock)handler {

@@ -12,6 +12,11 @@
 #import "NNControllerHelper.h"
 
 NS_ASSUME_NONNULL_BEGIN
+typedef NS_ENUM(NSInteger, QueryDepositType) {
+    BuyCoin = 0, // 买币
+    SellCoin, // 卖币
+    SkipOut, // 跳转
+};
 
 @interface NNPageRouter : NSObject
 
@@ -37,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 一键【买/卖】币（外部跳转dexchange）
 + (void)openExchangeElecCurrencyPage;
+/// type : 0：买币,1：卖币,2:跳转支付存款小助手
++ (void)openExchangeElecCurrencyPageWithType:(QueryDepositType)type;
 
 
 /// 跳转到客服

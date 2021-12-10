@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 查询USDT收银台 （买卖币跳转）
 + (void)queryUSDTCounterHandler:(HandlerBlock)handler;
 
+/// 查询USDT收银台 （买卖币跳转）
++ (void)queryUSDTCounterWithType:(QueryDepositType)type Handler:(HandlerBlock)handler;
+
 
 #pragma mark - 查询充值渠道信息（选中充值渠道后调用）
 

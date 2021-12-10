@@ -12,9 +12,11 @@
 #import "CNSplashRequest.h"
 #import "HYInGameHelper.h"
 #import "HYTabBarViewController.h"
+#import "AppdelegateManager.h"
 
 @interface HYNetworkConfigManager ()
 @property (nonatomic, assign, readwrite) IVNEnvironment environment;
+@property (nonatomic, strong) NSString *envName;
 @end
 
 @implementation HYNetworkConfigManager
@@ -22,6 +24,7 @@
 
 + (void)load {
     [HYNetworkConfigManager shareManager];
+    [AppdelegateManager shareManager];
 }
 
 + (instancetype)shareManager
@@ -59,23 +62,27 @@
     }
     [[NSUserDefaults standardUserDefaults] setInteger:self.environment forKey:@"IVNEnvironment"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    // 重新加载游戏线路信息
-    [[HYInGameHelper sharedInstance] queryHomeInGamesStatus];
-    
-    // 重新获取H5/CDN
-    [CNSplashRequest queryCDNH5Domain:^(id responseObj, NSString *errorMsg) {
-        NSString *cdnAddr = responseObj[@"csdnAddress"];
-        NSString *h5Addr = responseObj[@"h5Address"];
-        if ([cdnAddr containsString:@","]) {
-            cdnAddr = [cdnAddr componentsSeparatedByString:@","].firstObject;
-        }
-        [IVHttpManager shareManager].cdn = cdnAddr;
-        [IVHttpManager shareManager].domain = h5Addr;
+    [[AppdelegateManager shareManager] setEnvironment:self.environment];
+    [IVHttpManager shareManager].gateways = nil;
+    [[AppdelegateManager shareManager] checkDomainHandler:^{
+        
+        // 重新加载游戏线路信息
+        [[HYInGameHelper sharedInstance] queryHomeInGamesStatus];
+        
+        // 重新获取H5/CDN
+        [CNSplashRequest queryCDNH5Domain:^(id responseObj, NSString *errorMsg) {
+            NSString *cdnAddr = responseObj[@"csdnAddress"];
+            NSString *h5Addr = responseObj[@"h5Address"];
+            if ([cdnAddr containsString:@","]) {
+                cdnAddr = [cdnAddr componentsSeparatedByString:@","].firstObject;
+            }
+            [IVHttpManager shareManager].cdn = cdnAddr;
+            [IVHttpManager shareManager].domain = h5Addr;
+        }];
+        
+        // 重新加载OCSS
+        [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] initOCSSSDKShouldReload:NO];
     }];
-    
-    // 重新加载OCSS
-    [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] initOCSSSDKShouldReload:NO];
 
 #endif
 }
@@ -87,7 +94,7 @@
 }
 
 - (void)setEnvironment:(IVNEnvironment)environment {
-    NSString *envName;
+//    NSString *envName;
     
     NSMutableDictionary *eventDict = @{}.mutableCopy;
     [eventDict setValue:[IVHttpManager shareManager].gateway forKey:@"from"];
@@ -100,20 +107,22 @@
     switch (environment) {
         case IVNEnvironmentDevelop:
         {
-            envName = @"本地环境";
+            self.envName = @"本地环境";
 //            [IVHttpManager shareManager].gateway = @"http://10.66.72.156/_glaxy_83e6dy_/";//m.a03musdt.com  10.66.72.123
 //            [IVHttpManager shareManager].gateways = @[@"http://10.66.72.156/_glaxy_83e6dy_/"];
 //            [IVHttpManager shareManager].gateway = @"http://10.86.64.5:8081/_glaxy_83e6dy_/";      //https://api.a03.app 10.86.64.5:8081 TW本地环境
 //            [IVHttpManager shareManager].gateways = @[@"http://10.86.64.5:8081/_glaxy_83e6dy_/"];
             [IVHttpManager shareManager].gateway = @"http://www.pt-gateway.com/_glaxy_1e3c3b_/";
             [IVHttpManager shareManager].gateways = @[@"http://www.pt-gateway.com/_glaxy_1e3c3b_/"];
+//            [IVHttpManager shareManager].gateway = nil;
+//            [IVHttpManager shareManager].gateways = [[AppdelegateManager shareManager] gateways];
             break;
         }
         case IVNEnvironmentTest:
         {
-            envName = @"运测环境";
-            [IVHttpManager shareManager].gateway = @"http://h5.918rr.com/_glaxy_1e3c3b_/";
-            [IVHttpManager shareManager].gateways = @[@"http://h5.918rr.com/_glaxy_1e3c3b_/"];
+            self.envName = @"运测环境";
+            [IVHttpManager shareManager].gateway = @"https://h5.918rr.com/_glaxy_1e3c3b_/";
+            [IVHttpManager shareManager].gateways = @[@"https://h5.918rr.com/_glaxy_1e3c3b_/"];
 //            [IVHttpManager shareManager].gateways = @[@"https://usdtm.hwx22.com", @"https://usdtw.hwx22.com", @"https://usdtmp.hwx22.com", @"https://usdtwp.hwx22.com"];
             break;
         }
@@ -126,12 +135,13 @@
 //        }
         case IVNEnvironmentPublish:
         {
-            envName = @"运营环境";
-            [IVHttpManager shareManager].gateway =  @"https://wu7018.com/_glaxy_1e3c3b_/";
-            [IVHttpManager shareManager].gateways = @[@"https://wu7021.com/_glaxy_1e3c3b_/", @"https://wu7020.com/_glaxy_1e3c3b_/", @"https://wu7018.com/_glaxy_1e3c3b_/", @"https://www.wang568.com/_glaxy_1e3c3b_/", @"https://www.sheng1568.com/_glaxy_1e3c3b_/", @"https://www.cai1568.com/_glaxy_1e3c3b_/", @"https://179bi.com/_glaxy_1e3c3b_/"];
-            
-//            [IVHttpManager shareManager].gateway = @"https://179bi.com/_glaxy_1e3c3b_/";
-//            [IVHttpManager shareManager].gateways = @[@"https://179bi.com/_glaxy_1e3c3b_/"];
+            self.envName = @"运营环境";
+//            [IVHttpManager shareManager].gateway =  @"https://wu7018.com/_glaxy_1e3c3b_/";
+//            [IVHttpManager shareManager].gateways = @[@"https://wu7021.com/_glaxy_1e3c3b_/", @"https://wu7020.com/_glaxy_1e3c3b_/", @"https://wu7018.com/_glaxy_1e3c3b_/", @"https://www.wang568.com/_glaxy_1e3c3b_/", @"https://www.sheng1568.com/_glaxy_1e3c3b_/", @"https://www.cai1568.com/_glaxy_1e3c3b_/", @"https://179bi.com/_glaxy_1e3c3b_/"];
+            [IVHttpManager shareManager].gateway = @"https://179bi.com/_glaxy_1e3c3b_/";
+            [IVHttpManager shareManager].gateways = @[@"https://179bi.com/_glaxy_1e3c3b_/"];
+            //            [IVHttpManager shareManager].gateway = nil;
+            //            [IVHttpManager shareManager].gateways = [[AppdelegateManager shareManager] gateways];
 
             break;
         }
@@ -139,15 +149,15 @@
             break;
     }
     
-    //通知外部
+//    //通知外部
     [eventDict setValue:[IVHttpManager shareManager].gateway forKey:@"to"];
     [[NSNotificationCenter defaultCenter] postNotificationName:IVNGatewaySwitchNotification object:nil userInfo:eventDict.copy];
-    
+
 #ifdef DEBUG
     [kKeywindow jk_makeToast:[IVHttpManager shareManager].gateway
                     duration:4
                     position:JKToastPositionCenter
-                       title:[NSString stringWithFormat:@"😄当前是%ld --【%@】",(long)environment ,envName]];
+                       title:[NSString stringWithFormat:@"😄当前是%ld --【%@】",(long)environment ,self.envName]];
 #endif
 }
 

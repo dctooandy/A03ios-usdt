@@ -16,6 +16,7 @@
 #import <CSCustomSerVice/CSCustomSerVice.h>
 #import "KeyChain.h"
 #import "CNServiceRequest.h"
+#import "AppdelegateManager.h"
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 #import <UserNotifications/UserNotifications.h>
@@ -30,6 +31,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [[AppdelegateManager shareManager] checkDomainHandler:^{
+        
+    }];
     // URLCache
     NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
                                                          diskCapacity:20 * 1024 * 1024

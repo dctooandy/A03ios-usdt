@@ -266,7 +266,8 @@ static NSString * const kTradeEntryCell = @"BYTradeEntryCellID";
         }
         
         [HYWideOneBtnAlertView showWithTitle:@"卖币跳转" content:@"正在为您跳转..请稍后。\n在交易所卖币数字货币，买家会将金额支付到您的银行卡，方便快捷。" comfirmText:@"我知道了，帮我跳转" comfirmHandler:^{
-            [NNPageRouter openExchangeElecCurrencyPage];
+//            [NNPageRouter openExchangeElecCurrencyPage];
+            [NNPageRouter openExchangeElecCurrencyPageWithType:SellCoin];
         }];
     }
     else if ([setTypeItem.type isEqualToString:@"RMB"]) { //人民幣直充

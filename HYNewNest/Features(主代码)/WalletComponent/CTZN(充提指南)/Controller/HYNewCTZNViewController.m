@@ -186,7 +186,8 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
             
         } else if ([type isEqualToString:@"买币"]) {
             [self dismissSelf:^{
-                [NNPageRouter openExchangeElecCurrencyPage];
+//                [NNPageRouter openExchangeElecCurrencyPage];
+                [NNPageRouter openExchangeElecCurrencyPageWithType:BuyCoin];
             }];
             
         } else if ([type isEqualToString:@"提币"]) {
@@ -198,7 +199,8 @@ static NSString * const KCTZNCELL = @"HYNewCTZNCell";
             [HYWideOneBtnAlertView showWithTitle:@"卖币跳转" content:@"在交易所卖出数字货币，买家会将金额支付到您的银行卡，方便快捷。" comfirmText:@"我知道了，帮我跳转" comfirmHandler:^{
                 
                 [self dismissSelf:^{
-                    [NNPageRouter openExchangeElecCurrencyPage];
+//                    [NNPageRouter openExchangeElecCurrencyPage];
+                    [NNPageRouter openExchangeElecCurrencyPageWithType:SellCoin];
                 }];
             }];
         }
