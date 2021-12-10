@@ -50,7 +50,7 @@
         if (timeStr.length > 0) {
             NSString * pathStr = @"";
             //手動輸入要更換的日期
-            if ([self checksStartDate:@"2021-12-12" EndDate:@"2022-01-11" serverTime:timeStr])
+            if ([self checksStartDate:@"2021-12-12" EndDate:@"2022-01-10" serverTime:timeStr])
             {
                 pathStr = @"03Gif2022";////双但
             }
