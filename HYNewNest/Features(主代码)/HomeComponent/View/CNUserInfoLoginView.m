@@ -50,7 +50,8 @@
         if (timeStr.length > 0) {
             NSString * pathStr = @"";
             //手動輸入要更換的日期
-            if ([self checkProductDate:@"2022-01-11" serverTime:timeStr]) {
+            if ([self checksStartDate:@"2021-12-12" EndDate:@"2022-01-11" serverTime:timeStr])
+            {
                 pathStr = @"03Gif2022";////双但
             }
             if (pathStr.length > 0) {
@@ -68,13 +69,15 @@
         }
     }];
 }
--(BOOL)checkProductDate:(NSString *)tempDate serverTime:(NSString *)serverTime {
+-(BOOL)checksStartDate:(NSString *)startTime EndDate:(NSString *)endTime serverTime:(NSString *)serverTime {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate *date = [dateFormatter dateFromString:tempDate];
+    NSDate *startDate = [dateFormatter dateFromString:startTime];
+    NSDate *endDate = [dateFormatter dateFromString:endTime];
     NSDate *serverDate = [dateFormatter dateFromString:serverTime];
     // 判断是否大于server时间
-    if ([date earlierDate:serverDate] != date) {
+    if (([startDate earlierDate:serverDate] == startDate) &&
+        ([serverDate earlierDate:endDate] == serverDate)) {
         return true;
     } else {
         return false;
