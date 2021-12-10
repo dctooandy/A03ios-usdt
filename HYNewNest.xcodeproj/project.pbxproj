@@ -1717,6 +1717,12 @@
 		7636AE6C272BC4C70072AB0E /* BYDeleteBankCardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYDeleteBankCardVC.m; sourceTree = "<group>"; };
 		7636AE70272BC5940072AB0E /* BYDeleteBankCardVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BYDeleteBankCardVC.xib; sourceTree = "<group>"; };
 		76B4998A275F6415003CD35B /* 03Gif2022.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 03Gif2022.gif; sourceTree = "<group>"; };
+		76B499E527608DAE003CD35B /* AppdelegateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppdelegateManager.h; sourceTree = "<group>"; };
+		76B499E627608DAE003CD35B /* AppdelegateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppdelegateManager.m; sourceTree = "<group>"; };
+		76B499E827609237003CD35B /* A03CheckDomainModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = A03CheckDomainModel.h; sourceTree = "<group>"; };
+		76B499E927609237003CD35B /* A03CheckDomainModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A03CheckDomainModel.m; sourceTree = "<group>"; };
+		76B499EC276094B9003CD35B /* AppSettingRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppSettingRequest.h; sourceTree = "<group>"; };
+		76B499ED276094B9003CD35B /* AppSettingRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppSettingRequest.m; sourceTree = "<group>"; };
 		76FC861E27622519005710FD /* SDWebImageGIFCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageGIFCoder.m; sourceTree = "<group>"; };
 		76FC861F27622519005710FD /* SDWebImageGIFCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageGIFCoder.h; sourceTree = "<group>"; };
 		76FC8621276225A1005710FD /* SDWebImageCodersManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageCodersManager.m; sourceTree = "<group>"; };
@@ -1733,12 +1739,6 @@
 		76FC863127622690005710FD /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MultiFormat.h"; sourceTree = "<group>"; };
 		76FC86392762288C005710FD /* SDWebImageImageIOCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDWebImageImageIOCoder.m; path = ../../../../A01Nike_iOS/Hybird_1e3c3b/Public/Tools/ThirdParty/SDWebImage/SDWebImageImageIOCoder.m; sourceTree = "<group>"; };
 		76FC863A2762288C005710FD /* SDWebImageImageIOCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDWebImageImageIOCoder.h; path = ../../../../A01Nike_iOS/Hybird_1e3c3b/Public/Tools/ThirdParty/SDWebImage/SDWebImageImageIOCoder.h; sourceTree = "<group>"; };
-		76B499E527608DAE003CD35B /* AppdelegateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppdelegateManager.h; sourceTree = "<group>"; };
-		76B499E627608DAE003CD35B /* AppdelegateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppdelegateManager.m; sourceTree = "<group>"; };
-		76B499E827609237003CD35B /* A03CheckDomainModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = A03CheckDomainModel.h; sourceTree = "<group>"; };
-		76B499E927609237003CD35B /* A03CheckDomainModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A03CheckDomainModel.m; sourceTree = "<group>"; };
-		76B499EC276094B9003CD35B /* AppSettingRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppSettingRequest.h; sourceTree = "<group>"; };
-		76B499ED276094B9003CD35B /* AppSettingRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppSettingRequest.m; sourceTree = "<group>"; };
 		9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.debug.xcconfig"; sourceTree = "<group>"; };
 		A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF7A2146C28453736D5663C /* Pods_HYNewNest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4117,6 +4117,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		76B499EB27609487003CD35B /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				76B499EC276094B9003CD35B /* AppSettingRequest.h */,
+				76B499ED276094B9003CD35B /* AppSettingRequest.m */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 		76FC861D276224F5005710FD /* SDWebEnternal */ = {
 			isa = PBXGroup;
 			children = (
@@ -4138,15 +4147,6 @@
 				76FC86392762288C005710FD /* SDWebImageImageIOCoder.m */,
 			);
 			path = SDWebEnternal;
-               sourceTree = "<group>";
-        };
-		76B499EB27609487003CD35B /* Request */ = {
-			isa = PBXGroup;
-			children = (
-				76B499EC276094B9003CD35B /* AppSettingRequest.h */,
-				76B499ED276094B9003CD35B /* AppSettingRequest.m */,
-			);
-			path = Request;
 			sourceTree = "<group>";
 		};
 		D5A4425724F36F4200014DC6 /* Gif */ = {
@@ -7176,7 +7176,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.60;
+				MARKETING_VERSION = 3.7.61;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.1e3c3biphone01.btt01;
 				PRODUCT_NAME = "币游_dev";
@@ -7237,7 +7237,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.60;
+				MARKETING_VERSION = 3.7.61;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.1e3c3biphone01.btt01;
 				PRODUCT_NAME = "币游";
