@@ -88,7 +88,7 @@
                 return @[@"http://www.pt-gateway.com/_glaxy_1e3c3b_/"];
                 break;
             case IVNEnvironmentTest://运测
-                return @[@"http://h5.918rr.com/_glaxy_1e3c3b_/"];
+                return @[@"https://h5.918rr.com/_glaxy_1e3c3b_/"];
                 break;
             case IVNEnvironmentPublish:
                 return  @[@"https://wu7021.com/_glaxy_1e3c3b_/", @"https://wu7020.com/_glaxy_1e3c3b_/", @"https://wu7018.com/_glaxy_1e3c3b_/", @"https://www.wang568.com/_glaxy_1e3c3b_/", @"https://www.sheng1568.com/_glaxy_1e3c3b_/", @"https://www.cai1568.com/_glaxy_1e3c3b_/", @"https://179bi.com/_glaxy_1e3c3b_/"];
