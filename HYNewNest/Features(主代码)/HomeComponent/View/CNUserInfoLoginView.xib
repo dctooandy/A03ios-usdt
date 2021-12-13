@@ -288,11 +288,6 @@
                 <constraint firstItem="3hg-uc-S9h" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wPz-U7-XYj"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="bWe-Js-K1F"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="-510.14492753623193" y="-21.428571428571427"/>
         </view>
     </objects>
