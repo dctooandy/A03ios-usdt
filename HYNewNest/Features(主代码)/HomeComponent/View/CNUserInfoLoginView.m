@@ -33,6 +33,7 @@
 #pragma - mark 未登录属性
 @property (weak, nonatomic) IBOutlet UIView *loginView;
 @property (weak, nonatomic) IBOutlet UIImageView *shapeView;
+@property (weak, nonatomic) IBOutlet UIImageView *regisBackImageView;
 
 @end
 
@@ -45,6 +46,7 @@
     [self refreshBottomBtnsStatus];
     // 提现右上角NEW
 //    [self.withdrawCNYBtn showRightTopImageName:@"new_txgb" size:CGSizeMake(30, 14) offsetX:-30 offsetYMultiple:0];
+    WEAKSELF_DEFINE
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshBalance) name:BYRefreshBalanceNotification object:nil];
     [self serverTime:^(NSString * _Nonnull timeStr) {
         if (timeStr.length > 0) {
@@ -52,18 +54,19 @@
             //手動輸入要更換的日期
             if ([self checksStartDate:@"2021-12-12" EndDate:@"2022-01-10" serverTime:timeStr])
             {
-                pathStr = @"03Gif2022";////双但
+                pathStr = @"degg03";////双但
             }
             if (pathStr.length > 0) {
                 NSString *path = [[NSBundle mainBundle] pathForResource:pathStr ofType:@"gif"];
                 NSData *data = [NSData dataWithContentsOfFile:path];
                 UIImageView * img = [[UIImageView alloc] init];
                 img.image = [[SDWebImageGIFCoder sharedCoder] decodedImageWithData:data];
-                [self.loginView addSubview:img];
-                [self.loginView sendSubviewToBack:img];
-                [self.loginView sendSubviewToBack:self.shapeView];
+                weakSelf.regisBackImageView.image = [[SDWebImageGIFCoder sharedCoder] decodedImageWithData:data];
+                [weakSelf.loginView addSubview:img];
+                [weakSelf.loginView sendSubviewToBack:img];
+                [weakSelf.loginView sendSubviewToBack:weakSelf.shapeView];
                 [img mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.bottom.right.left.equalTo(self.loginView);
+                    make.top.bottom.right.left.equalTo(weakSelf.loginView);
                 }];
             }
         }
