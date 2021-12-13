@@ -389,6 +389,7 @@
 		76FC862F27622620005710FD /* SDWebImageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FC862E27622620005710FD /* SDWebImageFrame.m */; };
 		76FC863227622691005710FD /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FC863027622690005710FD /* UIImage+MultiFormat.m */; };
 		76FC863B2762288C005710FD /* SDWebImageImageIOCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FC86392762288C005710FD /* SDWebImageImageIOCoder.m */; };
+		76FC864B27671349005710FD /* degg03.gif in Resources */ = {isa = PBXBuildFile; fileRef = 76FC864A27671348005710FD /* degg03.gif */; };
 		D571B19624BE9F120087B5EC /* CNLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19524BE9F120087B5EC /* CNLineView.m */; };
 		D571B1AA24C03D790087B5EC /* CNStatementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D571B1A724C03D790087B5EC /* CNStatementView.xib */; };
 		D571B1AB24C03D790087B5EC /* CNStatementView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B1A924C03D790087B5EC /* CNStatementView.m */; };
@@ -1739,6 +1740,7 @@
 		76FC863127622690005710FD /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MultiFormat.h"; sourceTree = "<group>"; };
 		76FC86392762288C005710FD /* SDWebImageImageIOCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDWebImageImageIOCoder.m; path = ../../../../A01Nike_iOS/Hybird_1e3c3b/Public/Tools/ThirdParty/SDWebImage/SDWebImageImageIOCoder.m; sourceTree = "<group>"; };
 		76FC863A2762288C005710FD /* SDWebImageImageIOCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDWebImageImageIOCoder.h; path = ../../../../A01Nike_iOS/Hybird_1e3c3b/Public/Tools/ThirdParty/SDWebImage/SDWebImageImageIOCoder.h; sourceTree = "<group>"; };
+		76FC864A27671348005710FD /* degg03.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = degg03.gif; sourceTree = "<group>"; };
 		9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.debug.xcconfig"; sourceTree = "<group>"; };
 		A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF7A2146C28453736D5663C /* Pods_HYNewNest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4153,6 +4155,7 @@
 			isa = PBXGroup;
 			children = (
 				76B4998A275F6415003CD35B /* 03Gif2022.gif */,
+				76FC864A27671348005710FD /* degg03.gif */,
 				D5A4465924F3941300014DC6 /* live */,
 				D5A444CB24F393AC00014DC6 /* chess */,
 				D5A4440424F3932400014DC6 /* slot */,
@@ -6148,6 +6151,7 @@
 				0405FF6C24D3DAE400AC46D2 /* CNFeedBackLeftTCell.xib in Resources */,
 				D5A446DC24F3941400014DC6 /* 合成 1_00039.png in Resources */,
 				F70128C5269544CD00ED6509 /* BYWithdrawConfirmVC.xib in Resources */,
+				76FC864B27671349005710FD /* degg03.gif in Resources */,
 				D5A4464124F393E500014DC6 /* 足球_00058.png in Resources */,
 				D5A4465524F393E500014DC6 /* 足球_0003.png in Resources */,
 				E98BEF1324D2A32700E6B0C8 /* HYXiMaSuccViewController.xib in Resources */,
@@ -7176,7 +7180,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.41;
+				MARKETING_VERSION = 3.7.66;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.1e3c3biphone01.btt01;
 				PRODUCT_NAME = "币游_dev";
@@ -7237,7 +7241,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.41;
+				MARKETING_VERSION = 3.7.66;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.1e3c3biphone01.btt01;
 				PRODUCT_NAME = "币游";

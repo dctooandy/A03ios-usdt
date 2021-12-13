@@ -140,7 +140,7 @@
     [self requestHomeBanner];
     
     if ([CNUserManager shareManager].isLogin) {
-        self.infoViewH.constant = 114;
+        self.infoViewH.constant = 140;
 //        [self requestNightCity];
         // 弹窗盒子
         [self requestNewsBox];
