@@ -11,6 +11,7 @@
 #import "HYHttpPathConst.h"
 #import "A03CheckDomainModel.h"
 #import "AppSettingRequest.h"
+#import "IVCheckNetworkWrapper.h"
 
 @implementation AppdelegateManager
 @synthesize gateways = _gateways;
@@ -30,6 +31,60 @@
 #endif
     });
     return _manager;
+}
+- (void)setGateways:(NSArray *)gateways
+{
+    _gateways = gateways;
+}
+- (NSArray *)gateways
+{
+    if (!_gateways) {
+        switch (_environment) {
+            case IVNEnvironmentDevelop://本地
+                return @[@"http://www.pt-gateway.com/_glaxy_1e3c3b_/"];
+                break;
+            case IVNEnvironmentTest://运测
+                return @[@"https://h5.918rr.com/_glaxy_1e3c3b_/"];
+                break;
+            case IVNEnvironmentPublish:
+                return  @[@"https://wrd.58baili.com/pro/_glaxy_1e3c3b_/", @"https://m.jkfjdfe.com:9188/_glaxy_1e3c3b_/", @"https://m.zncjdhvs.com:9188/_glaxy_1e3c3b_/", @"https://m.pkyorjhn.com:9188/_glaxy_1e3c3b_/"];
+                break;
+            default:
+                return @[@"http://www.pt-gateway.com/_glaxy_1e3c3b_/"];
+                break;
+        }
+    }
+    return _gateways;
+}
+- (void)setWebsides:(NSArray *)websides
+{
+    _websides = websides;
+}
+- (NSArray *)websides
+{
+    if (!_websides)
+    {
+        switch (_environment) {
+            case IVNEnvironmentDevelop:
+                return @[@"https://m.ag800.com"];
+                break;
+            case IVNEnvironmentTest:
+                return @[@"https://m.ag800.com"];
+                break;
+            case IVNEnvironmentPublish:
+                return @[@"https://m.ag800.com"];
+                break;
+            default:
+                return @[@"https://m.ag800.com"];
+                break;
+        }
+    }
+    return _websides;
+}
+- (IVNEnvironment)environment
+{
+    IVNEnvironment environment = [[NSUserDefaults standardUserDefaults] integerForKey:@"IVNEnvironment"];
+    return environment;
 }
 - (void)checkDomainHandler:(void (^)(void))handler  {
     
@@ -71,58 +126,45 @@
     }];
  
 }
-- (IVNEnvironment)environment
+
+- (void)recheckDomainWithTestSpeed
 {
-    IVNEnvironment environment = [[NSUserDefaults standardUserDefaults] integerForKey:@"IVNEnvironment"];
-    return environment;
-}
-- (void)setGateways:(NSArray *)gateways
-{
-    _gateways = gateways;
-}
-- (NSArray *)gateways
-{
-    if (!_gateways) {
-        switch (_environment) {
-            case IVNEnvironmentDevelop://本地
-                return @[@"http://www.pt-gateway.com/_glaxy_1e3c3b_/"];
-                break;
-            case IVNEnvironmentTest://运测
-                return @[@"https://h5.918rr.com/_glaxy_1e3c3b_/"];
-                break;
-            case IVNEnvironmentPublish:
-                return  @[@"https://wu7021.com/_glaxy_1e3c3b_/", @"https://wu7020.com/_glaxy_1e3c3b_/", @"https://wu7018.com/_glaxy_1e3c3b_/", @"https://www.wang568.com/_glaxy_1e3c3b_/", @"https://www.sheng1568.com/_glaxy_1e3c3b_/", @"https://www.cai1568.com/_glaxy_1e3c3b_/", @"https://179bi.com/_glaxy_1e3c3b_/"];
-                break;
-            default:
-                return @[@"http://www.pt-gateway.com/_glaxy_1e3c3b_/"];
-                break;
+    [AppSettingRequest getAppSettingTask:^(id responseObj, NSString *errorMsg) {
+//        IVJResponseObject *result = responseObj;
+        if (!errorMsg) {
+            A03CheckDomainModel *model = [A03CheckDomainModel cn_parse:responseObj];
+            NSMutableArray * tempGetArr = [NSMutableArray new];
+            NSMutableArray * tempWebArr = [NSMutableArray new];
+            for (NSString *getway in model.getways) {
+                if ([[getway substringFromIndex:getway.length-1] isEqualToString:@"/"]) {
+                    [tempGetArr addObject:[NSString stringWithFormat:@"%@_glaxy_1e3c3b_/", getway]];
+                } else {
+                    [tempGetArr addObject:[NSString stringWithFormat:@"%@/_glaxy_1e3c3b_/", getway]];
+                }
+            }
+           
+            for (NSString *websit in model.websides) {
+                if ([[websit substringFromIndex:websit.length-1] isEqualToString:@"/"]) {
+                    [tempWebArr addObject:websit];
+                } else {
+                    [tempWebArr addObject:[NSString stringWithFormat:@"%@/", websit]];
+                }
+            }
+            [[AppdelegateManager shareManager] setGateways:tempGetArr];
+            [[AppdelegateManager shareManager] setWebsides:tempWebArr];
+        }else
+        {
+            [[AppdelegateManager shareManager] setGateways:nil];
+            [[AppdelegateManager shareManager] setWebsides:nil];
         }
-    }
-    return _gateways;
-}
-- (void)setWebsides:(NSArray *)websides
-{
-    _websides = websides;
-}
-- (NSArray *)websides
-{
-    if (!_websides)
-    {
-        switch (_environment) {
-            case IVNEnvironmentDevelop:
-                return @[@"https://m.ag800.com"];
-                break;
-            case IVNEnvironmentTest:
-                return @[@"https://m.ag800.com"];
-                break;
-            case IVNEnvironmentPublish:
-                return @[@"https://m.ag800.com"];
-                break;
-            default:
-                return @[@"https://m.ag800.com"];
-                break;
-        }
-    }
-    return _websides;
+        [IVHttpManager shareManager].gateways = [[AppdelegateManager shareManager] gateways];  // 网关列表
+        [IVHttpManager shareManager].domains = [[AppdelegateManager shareManager] websides];
+        
+        [IVCheckNetworkWrapper getOptimizeUrlWithArray:[IVHttpManager shareManager].gateways
+                                                isAuto:YES
+                                                  type:IVKCheckNetworkTypeGateway
+                                              progress:nil completion:nil];
+    }];
+
 }
 @end

@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) NSArray *websides;
 + (instancetype)shareManager ;
 - (void)checkDomainHandler:(void (^)(void))handler ;
+- (void)recheckDomainWithTestSpeed;
 @end
 
 NS_ASSUME_NONNULL_END

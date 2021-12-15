@@ -38,6 +38,7 @@
 #import <MJRefresh/MJRefresh.h>
 #import "NSURL+HYLink.h"
 #import "HYTabBarViewController.h"
+#import "AppdelegateManager.h"
 
 @interface CNHomeVC () <CNUserInfoLoginViewDelegate,  SDCycleScrollViewDelegate, UUMarqueeViewDelegate, GameBtnsStackViewDelegate, DashenBoardAutoHeightDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -133,7 +134,13 @@
     [super viewDidDisappear:animated];
     self.bannerView.autoScroll = NO;
 }
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[AppdelegateManager shareManager] recheckDomainWithTestSpeed];
+    [self userDidLogin];
+    [self requestAnnouncement];
+}
 - (void)userDidLogin {
     [self.infoView updateLoginStatusUIIsRefreshing:YES];
     
@@ -185,6 +192,7 @@
     
     __weak typeof(self) wSelf = self;
     self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [[AppdelegateManager shareManager] recheckDomainWithTestSpeed];
         [wSelf userDidLogin];
         [wSelf requestAnnouncement];
     }];
