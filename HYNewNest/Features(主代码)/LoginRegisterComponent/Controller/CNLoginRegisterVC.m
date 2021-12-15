@@ -29,7 +29,6 @@
 #import "UILabel+Gradient.h"
 #import "CNPushRequest.h"
 
-
 @interface CNLoginRegisterVC () <CNAccountInputViewDelegate, CNCodeInputViewDelegate, HYTapHanImgCodeViewDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, assign) BOOL isLeftRightScroll;
