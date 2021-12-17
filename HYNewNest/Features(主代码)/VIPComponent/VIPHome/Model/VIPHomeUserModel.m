@@ -13,6 +13,14 @@
 
 
 @implementation EquityDataItem
+- (NSNumber*)ydfhCnyAmount
+{
+    return [NSNumber numberWithInt:(_ydfhAmount.intValue * 7)];
+}
+- (NSNumber*)rhljCnyAmount
+{
+    return [NSNumber numberWithInt:(_rhljAmount.intValue * 7)];
+}
 @end
 
 

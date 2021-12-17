@@ -51,7 +51,7 @@ static NSString * const VIPDSBChartHeader = @"VIPChartDSBHeaderView";//头部标
     // Do any additional setup after loading the view from its nib.
     self.tableView.backgroundColor = kHexColor(0x0A1D25);
     if (_type == VIPChartTypeRankRight) {
-        self.lbTitle.text = @"等级特权(usdt)";
+        self.lbTitle.text = @"等级特权";
         [self.tableView registerNib:[UINib nibWithNibName:VIPDJTQCell bundle:nil] forCellReuseIdentifier:VIPDJTQCell];
         [self.tableView registerNib:[UINib nibWithNibName:VIPDJTQChartHeader bundle:nil] forHeaderFooterViewReuseIdentifier:VIPDJTQChartHeader];
         [self.tableView reloadData];
@@ -94,8 +94,8 @@ static NSString * const VIPDSBChartHeader = @"VIPChartDSBHeaderView";//头部标
         
         VIPChartDJTQCell *cell = (VIPChartDJTQCell *)[tableView dequeueReusableCellWithIdentifier:VIPDJTQCell];
         cell.lbFirst.text = dict[item.clubLevel];
-        cell.lbSecond.text = [item.rhljAmount jk_toDisplayNumberWithDigit:0];
-        cell.lbThird.text = [item.ydfhAmount jk_toDisplayNumberWithDigit:0];
+        cell.lbSecond.text = [NSString stringWithFormat:@"%@ / %@",[item.rhljCnyAmount jk_toDisplayNumberWithDigit:0],[item.rhljAmount jk_toDisplayNumberWithDigit:0]];
+        cell.lbThird.text = [NSString stringWithFormat:@"%@ / %@",[item.ydfhCnyAmount jk_toDisplayNumberWithDigit:0],[item.ydfhAmount jk_toDisplayNumberWithDigit:0]];
         cell.lbFourth.text = item.zzzpTime;
         return cell;
         

@@ -28,8 +28,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSNumber              * depositAmount;
 @property (nonatomic , strong) NSNumber              * betAmount;
 @property (nonatomic , strong) NSNumber              * ydfhAmount;
+@property (nonatomic , strong) NSNumber              * ydfhCnyAmount;
 @property (nonatomic , copy) NSString              * clubLevel;
 @property (nonatomic , strong) NSNumber              * rhljAmount;
+@property (nonatomic , strong) NSNumber              * rhljCnyAmount;
 @property (nonatomic , copy) NSString              * currency;
 @property (nonatomic , copy) NSString              * zzzpTime;
 @end
