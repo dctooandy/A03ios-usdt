@@ -84,7 +84,8 @@
 }
 
 - (NSString *)gamePlatName {
-    NSDictionary * gamePlatDict = @{@"035":@"MG厅",@"027":@"TTG厅",@"051":@"BSG厅",@"052":@"PNG厅",@"039":@"PT厅",@"017":@"BBIN厅",@"065":@"NT厅",@"067":@"PP厅",@"026":@"AG厅"};
+//    NSDictionary * gamePlatDict = @{@"035":@"MG厅",@"027":@"TTG厅",@"051":@"BSG厅",@"052":@"PNG厅",@"039":@"PT厅",@"017":@"BBIN厅",@"065":@"NT厅",@"067":@"PP厅",@"026":@"AG厅"};
+    NSDictionary * gamePlatDict = @{@"035":@"MG厅",@"027":@"TTG厅",@"051":@"BSG厅",@"052":@"PNG厅",@"039":@"PT厅",@"017":@"BBIN厅",@"067":@"PP厅",@"026":@"AG厅"};
     if (self.platformId) {
         if ([gamePlatDict.allKeys containsObject:self.platformId]) {
             return gamePlatDict[self.platformId];
