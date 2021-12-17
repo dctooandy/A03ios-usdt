@@ -310,7 +310,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
             }
         }
         [CNVIPRequest vipsxhIsShowReportHandler:^(id responseObj, NSString *errorMsg) {
-            if (!errorMsg && [responseObj[@"flag"] integerValue] == 1 && self.childViewControllers.count == 0) {
+            if (!errorMsg && [responseObj[@"flag"] integerValue] == 0 && self.childViewControllers.count == 0) {
                 VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
                 vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
                 //添加子控制器 该方法调用了willMoveToParentViewController：方法
@@ -457,8 +457,8 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     // 修改入会礼金 等级要求流水和存款
     if (item) {
         self.lbVipRight.text = [NSString stringWithFormat:@"会员权益: 入会礼金%@usdt", [item.rhljAmount jk_toDisplayNumberWithDigit:0]];
-        self.lblNextLevelAmount.text = [[item.betAmount jk_toDisplayNumberWithDigit:2] stringByAppendingFormat:@" usdt"];
-        self.lblNextLevelDeposit.text = [[item.depositAmount jk_toDisplayNumberWithDigit:2] stringByAppendingFormat:@" usdt"];
+        self.lblNextLevelAmount.text = [[item.betAmount jk_toDisplayNumberWithDigit:2] stringByAppendingFormat:@" %@", item.currency];
+        self.lblNextLevelDeposit.text = [[item.depositAmount jk_toDisplayNumberWithDigit:2] stringByAppendingFormat:@" %@", item.currency];
         
         float amoutPrgs = [_sxhModel.totalBetAmount floatValue] / [item.betAmount floatValue];
         self.prgsViewAmount.progress = amoutPrgs;

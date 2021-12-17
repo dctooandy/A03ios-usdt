@@ -57,7 +57,7 @@
 + (void)vipsxhDrawGiftMoneyLevelStatus:(NSString *)levelStatus handler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"currency"] = @"USDT";
+    param[@"currency"] = [CNUserManager shareManager].userInfo.currency ? [CNUserManager shareManager].userInfo.currency : @"CNY";
     param[@"promoCode"] = @"VIPSXH";
     param[@"levelStatus"] = levelStatus;
     

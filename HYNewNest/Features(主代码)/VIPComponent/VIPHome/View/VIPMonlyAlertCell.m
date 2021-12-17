@@ -68,7 +68,7 @@
     btmColorLb.numberOfLines = 2;
     btmColorLb.textAlignment = NSTextAlignmentCenter;
     btmColorLb.frame = CGRectMake(0, self.rankImgv.bottom+AD(6), self.contentView.width, AD(40));
-    btmColorLb.text = @"齐齐哈尔王会员荣膺“赌尊”\n(流水120,340usdt-充值120,540usdt)";
+    btmColorLb.text = @"齐齐哈尔王会员荣膺“赌尊”\n(流水120,340CNY-充值120,540CNY)";
     [self.contentView addSubview:btmColorLb];
     self.btmColorLb = btmColorLb;
     
@@ -99,7 +99,7 @@
             if (model.vipRhqk) {
                 self.topSubLb.text = [NSString stringWithFormat:@"( %ld月累计入会%ld名,祝贺他们! ) ",(long)model.lastMonth , model.vipRhqk.betCount];
                 self.rankImgv.hidden = NO;
-                self.btmColorLb.text = [NSString stringWithFormat:@"%@ 会员荣膺“赌尊”\n(流水%@usdt-充值%@usdt)", model.vipRhqk.betZunName,  [model.vipRhqk.betAmount jk_toDisplayNumberWithDigit:0], [model.vipRhqk.depositAmount jk_toDisplayNumberWithDigit:0]];
+                self.btmColorLb.text = [NSString stringWithFormat:@"%@ 会员荣膺“赌尊”\n(流水%@CNY-充值%@CNY)", model.vipRhqk.betZunName,  [model.vipRhqk.betAmount jk_toDisplayNumberWithDigit:0], [model.vipRhqk.depositAmount jk_toDisplayNumberWithDigit:0]];
             }
             
             UIView *framk = [UIView new];
@@ -170,13 +170,13 @@
             NSArray *leftText = @[@"入会礼金",@"月度分红",@"至尊转盘",@"累计身份",@"累计送出"];
             NSArray *rightNum;
             if (model.vipScjz) {
-                rightNum = @[[[model.vipScjz.rhlj jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" usdt"],
-                             [[model.vipScjz.ydfh jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" usdt"],
+                rightNum = @[[[model.vipScjz.rhlj jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"],
+                             [[model.vipScjz.ydfh jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"],
                              [[model.vipScjz.zzzp jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" 次"],
-                             [[model.vipScjz.ljsf jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" usdt"],
-                             [[model.vipScjz.ljsc jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" usdt"]];
+                             [[model.vipScjz.ljsf jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"],
+                             [[model.vipScjz.ljsc jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"]];
             } else {
-                rightNum = @[@"0 usdt",@"0 usdt",@"0 usdt",@"0 usdt",@"0 usdt"];
+                rightNum = @[@"0 CNY",@"0 CNY",@"0 CNY",@"0 CNY",@"0 CNY"];
             }
             
             // 线的路径 横线
@@ -234,7 +234,7 @@
             self.bgView.height = AD(237);
             self.btmButton.hidden = NO;
             self.btmButton.y = self.bgView.bottom + AD(10);
-            self.topSubLb.text = [NSString stringWithFormat:@"( 您的战绩：流水%@usdt-充值%@usdt )", [model.totalBetAmount jk_toDisplayNumberWithDigit:0], [model.totalDepositAmount jk_toDisplayNumberWithDigit:0]];
+            self.topSubLb.text = [NSString stringWithFormat:@"( 您的战绩：流水%@CNY-充值%@CNY )", [model.totalBetAmount jk_toDisplayNumberWithDigit:0], [model.totalDepositAmount jk_toDisplayNumberWithDigit:0]];
             
             self.rankImgv.hidden = NO;
             self.rankImgv.contentMode = UIViewContentModeCenter;
@@ -246,7 +246,8 @@
             BOOL isCanRank = model.clubLevel && [@[@2,@3,@4,@5,@6,@7] containsObject:model.clubLevel];
             if (isCanRank) {
                 self.rankImgv.image = [UIImage imageNamed:[NSString stringWithFormat:@"rank_%@", model.clubLevel]];
-                self.btmColorLb.text = [NSString stringWithFormat:@"恭喜您荣膺%@\n小游送你入会礼金%@usdt", model.betName, model.preRequest?model.preRequest[@"amount"]:@"0"];
+                self.btmColorLb.text = [NSString stringWithFormat:@"恭喜您荣膺%@\n小游送你入会礼金\n%@ CNY", model.betName, model.preRequest?model.preRequest[@"amount"]:@"0"];
+                //12/17 需求: 下方使用双币种显示 , 文案改为上下排版
                 [self.btmButton setTitle:@"领取" forState:UIControlStateNormal];
                 if (!model.preRequest) self.btmButton.enabled = NO;
             } else {
