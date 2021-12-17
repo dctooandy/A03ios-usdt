@@ -200,5 +200,6 @@
 #pragma mark night city
 //#define config_nightCityUsrType @"83e6dy/activity/newapi/nightCity/getUserType"
 #define config_nightCityUsrType @"1e3c3b/activity/newapi/nightCity/checkSilenceMemberRecallTicket"
+#define A03CheckPopView                            @"_extra_/api/v1/activity/common-window/window-popup"
 
 #endif /* HYHttpPathConst_h */
