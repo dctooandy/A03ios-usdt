@@ -8,6 +8,7 @@
 
 #import "HYVIPCumulateIdVC.h"
 #import "VIPCumulateIdCell.h"
+#import "NewVIPCumulateIdCell.h"
 #import "VIPCumulateIdHeader.h"
 #import "HYVIPRuleAlertView.h"
 #import "CNVIPRequest.h"
@@ -16,7 +17,8 @@
 #import "VIPReceiveRecordVC.h"
 #import "VIPGiftTableView.h"
 
-static NSString * const CUMIDCELL = @"VIPCumulateIdCell";
+//static NSString * const CUMIDCELL = @"VIPCumulateIdCell";
+static NSString * const CUMIDCELL = @"NewVIPCumulateIdCell";
 static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 
 @interface HYVIPCumulateIdVC () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
@@ -92,6 +94,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 }
 
 - (void)setupUI {
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.navBarTransparent = YES;
@@ -184,7 +187,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    VIPCumulateIdCell *cell = [tableView dequeueReusableCellWithIdentifier:CUMIDCELL];
+    NewVIPCumulateIdCell *cell = [tableView dequeueReusableCellWithIdentifier:CUMIDCELL];
     __block VIPIdentityModel *model = self.giftListDict[@(_selIdx)][indexPath.row];
     cell.model = model;
     
@@ -207,7 +210,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
         
     };
     
-    cell.expandBlcok = ^(VIPCumulateIdCell *c ,UIImageView *imgv){
+    cell.expandBlcok = ^(NewVIPCumulateIdCell *c ,UIImageView *imgv){
         STRONGSELF_DEFINE
         // 自己做的破转场动画
         UIImageView *animImgv = [[UIImageView alloc] initWithImage:imgv.image];

@@ -228,7 +228,10 @@
             NSString *urlString = array[i];
             [photoZoomView.imageView sd_setImageWithURL:[NSURL getUrlWithString:urlString] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                 photoZoomView.imageNormalWidth = kScreenWidth;
-                photoZoomView.imageNormalHeight = image.size.height * kScreenWidth / image.size.width;
+                if (image)
+                {
+                    photoZoomView.imageNormalHeight = image.size.height * kScreenWidth / image.size.width;                    
+                }
                 
                 NSData *data = [NSData dataWithContentsOfURL:imageURL];
                 if (data) {

@@ -376,6 +376,8 @@
 		5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */; };
 		7636AE6E272BC4C70072AB0E /* BYDeleteBankCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7636AE6C272BC4C70072AB0E /* BYDeleteBankCardVC.m */; };
 		7636AE71272BC5940072AB0E /* BYDeleteBankCardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7636AE70272BC5940072AB0E /* BYDeleteBankCardVC.xib */; };
+		763A2D79276C942A00CDD969 /* NewVIPCumulateIdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 763A2D77276C942900CDD969 /* NewVIPCumulateIdCell.m */; };
+		763A2D7A276C942A00CDD969 /* NewVIPCumulateIdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 763A2D78276C942900CDD969 /* NewVIPCumulateIdCell.xib */; };
 		76B4998B275F6415003CD35B /* 03Gif2022.gif in Resources */ = {isa = PBXBuildFile; fileRef = 76B4998A275F6415003CD35B /* 03Gif2022.gif */; };
 		76B499E727608DAE003CD35B /* AppdelegateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E627608DAE003CD35B /* AppdelegateManager.m */; };
 		76B499EA27609237003CD35B /* A03CheckDomainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E927609237003CD35B /* A03CheckDomainModel.m */; };
@@ -1717,6 +1719,9 @@
 		7636AE6B272BC4C70072AB0E /* BYDeleteBankCardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYDeleteBankCardVC.h; sourceTree = "<group>"; };
 		7636AE6C272BC4C70072AB0E /* BYDeleteBankCardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYDeleteBankCardVC.m; sourceTree = "<group>"; };
 		7636AE70272BC5940072AB0E /* BYDeleteBankCardVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BYDeleteBankCardVC.xib; sourceTree = "<group>"; };
+		763A2D76276C942900CDD969 /* NewVIPCumulateIdCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewVIPCumulateIdCell.h; sourceTree = "<group>"; };
+		763A2D77276C942900CDD969 /* NewVIPCumulateIdCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewVIPCumulateIdCell.m; sourceTree = "<group>"; };
+		763A2D78276C942900CDD969 /* NewVIPCumulateIdCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewVIPCumulateIdCell.xib; sourceTree = "<group>"; };
 		76B4998A275F6415003CD35B /* 03Gif2022.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 03Gif2022.gif; sourceTree = "<group>"; };
 		76B499E527608DAE003CD35B /* AppdelegateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppdelegateManager.h; sourceTree = "<group>"; };
 		76B499E627608DAE003CD35B /* AppdelegateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppdelegateManager.m; sourceTree = "<group>"; };
@@ -3544,6 +3549,9 @@
 				3D41DE932519E9D0000CA1D6 /* VIPCumulateIdCell.h */,
 				3D41DE942519E9D0000CA1D6 /* VIPCumulateIdCell.m */,
 				3D41DE952519E9D0000CA1D6 /* VIPCumulateIdCell.xib */,
+				763A2D76276C942900CDD969 /* NewVIPCumulateIdCell.h */,
+				763A2D77276C942900CDD969 /* NewVIPCumulateIdCell.m */,
+				763A2D78276C942900CDD969 /* NewVIPCumulateIdCell.xib */,
 				3D41DE982519F996000CA1D6 /* VIPCumulateIdHeader.h */,
 				3D41DE992519F996000CA1D6 /* VIPCumulateIdHeader.m */,
 				3D41DE9B2519F9C6000CA1D6 /* VIPCumulateIdHeader.xib */,
@@ -6249,6 +6257,7 @@
 				0487C9E824D27BDD0013715A /* CNNotifySettingTCell.xib in Resources */,
 				D5A4461024F393E500014DC6 /* 足球_00041.png in Resources */,
 				D5A4460024F393E500014DC6 /* 足球_00025.png in Resources */,
+				763A2D7A276C942A00CDD969 /* NewVIPCumulateIdCell.xib in Resources */,
 				D5A446FE24F3941400014DC6 /* 合成 1_00087.png in Resources */,
 				D5A4439424F378CD00014DC6 /* 彩票_00040.png in Resources */,
 				3D16F10125381EEC00FE0212 /* HYBuyECoinGuideVC.xib in Resources */,
@@ -6875,6 +6884,7 @@
 				E9063B8F24D6ED6E0000273A /* HYNewCTZNViewController.m in Sources */,
 				E98BEF0E24D274F700E6B0C8 /* UILabel+Gradient.m in Sources */,
 				3DA4F16B24B312BE0039123F /* UIViewController+Extension.m in Sources */,
+				763A2D79276C942A00CDD969 /* NewVIPCumulateIdCell.m in Sources */,
 				E98BEEFE24D1815200E6B0C8 /* HYXiMaViewController.m in Sources */,
 				3DBB590E26787A2400F5A759 /* CNServiceRequest.m in Sources */,
 				E986A13124C7FC0E000F9CFF /* ArticalModel.m in Sources */,
