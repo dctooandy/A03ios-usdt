@@ -300,7 +300,7 @@
                     }];
                 }else
                 {
-                    [self showAccountTutorials];
+                    [weakSelf showAccountTutorials];
                 }
             }];
         }
