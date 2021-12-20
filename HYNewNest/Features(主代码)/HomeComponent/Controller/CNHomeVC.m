@@ -104,7 +104,7 @@
     [self requestCDNAndDomain];
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:BYRefreshBalanceNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYLoginSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLoginByNoti) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:HYLogoutSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:BYDidEnterHomePageNoti object:nil];
     
@@ -139,14 +139,21 @@
 {
     [super viewWillAppear:animated];
     [[AppdelegateManager shareManager] recheckDomainWithTestSpeed];
-    [self userDidLogin];
+    [self popupSetting];
     [self requestAnnouncement];
+}
+- (void)userDidLoginByNoti
+{
+    [self userDidLogin];
+    [self popupSetting];
 }
 - (void)userDidLogin {
     [self.infoView updateLoginStatusUIIsRefreshing:YES];
-    
     [self requestHomeBanner];
-    
+    [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] performSelector:@selector(fetchUnreadCount)];
+}
+- (void) popupSetting
+{
     if ([CNUserManager shareManager].isLogin) {
         self.infoViewH.constant = 140;
 //        [self requestNightCity];
@@ -164,10 +171,7 @@
     } else {
         self.infoViewH.constant = 140;
     }
-    
-    [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] performSelector:@selector(fetchUnreadCount)];
 }
-
 - (void)userDidLogout {
     [self.infoView updateLoginStatusUIIsRefreshing:NO];
     self.infoViewH.constant = 140;
@@ -195,6 +199,7 @@
     self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [[AppdelegateManager shareManager] recheckDomainWithTestSpeed];
         [wSelf userDidLogin];
+        [wSelf popupSetting];
         [wSelf requestAnnouncement];
     }];
 }
@@ -279,6 +284,8 @@
             [self showAccountTutorials];
         }
         else{
+            [[NSUserDefaults standardUserDefaults] setObject:nowDateStr forKey:HYHomeMessageBoxLastimeDate];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             // 需要执行的方法写在这里
             WEAKSELF_DEFINE
             [[A03ActivityManager sharedInstance] checkPopViewWithCompletionBlock:^(A03PopViewModel * _Nullable response, NSString * _Nullable error) {
@@ -291,8 +298,6 @@
                     } tapClose:^{
                         [weakSelf showAccountTutorials];
                     }];
-                    [[NSUserDefaults standardUserDefaults] setObject:nowDateStr forKey:HYHomeMessageBoxLastimeDate];
-                    [[NSUserDefaults standardUserDefaults] synchronize];
                 }else
                 {
                     [self showAccountTutorials];

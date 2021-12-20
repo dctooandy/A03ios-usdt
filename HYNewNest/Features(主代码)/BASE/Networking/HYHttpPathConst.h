@@ -30,7 +30,7 @@
 //#define kGatewayPath(api)       [NSString stringWithFormat:@"%@", api]  //基础网关
 #define kGatewayExtraPath(api)  [NSString stringWithFormat:@"by/_extra_/%@", api]  //产品网关
 //網關域名
-#define A03AppSetting                              @"_extra_/api/v1/getAppSetting"
+#define A03AppSetting                              @"getAppSetting"
 
 #pragma mark 公共
 #define config_welcome  @"welcome"
