@@ -381,7 +381,14 @@
                     continue;
                 }
             }
-            NSString *fullUrl = [groupModel.domainName stringByAppendingString:model.imgUrl];
+            NSString *fullUrl;
+            if ([groupModel.domainName isEqualToString:@""] && ![model.imgUrl hasPrefix:@"http"])
+            {
+                fullUrl = [NSString stringWithFormat:@"%@%@",[IVHttpManager shareManager].cdn,model.imgUrl];
+            }else
+            {
+                fullUrl = [groupModel.domainName stringByAppendingString:model.imgUrl];
+            }
             [imgUrls addObject:fullUrl];
             [modArr addObject:model];
         }
