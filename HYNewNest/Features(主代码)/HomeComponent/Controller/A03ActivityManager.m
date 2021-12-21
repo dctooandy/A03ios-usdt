@@ -48,7 +48,7 @@ static A03ActivityManager * sharedSingleton;
                     completionBlock(weakSelf.popModel,nil);
                     break;
                 case 2://活动彈窗
-                    completionBlock(nil,nil);
+                    completionBlock(weakSelf.popModel,nil);
                     break;
                 case 3://不在预热也不在活动, 但有配置
                     completionBlock(nil,nil);
