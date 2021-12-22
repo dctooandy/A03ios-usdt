@@ -16,6 +16,8 @@ typedef void(^PopViewCallBack)(A03PopViewModel * _Nullable response, NSString * 
 
 //检查wms弹窗API
 - (void)checkPopViewWithCompletionBlock:(PopViewCallBack _Nullable)completionBlock;
+// 自动配出现在的CDN+URLPath
+- (NSString *)nowCDNString:(NSString *)cdnString WithUrl:(NSString *)url;
 @end
 
 NS_ASSUME_NONNULL_END
