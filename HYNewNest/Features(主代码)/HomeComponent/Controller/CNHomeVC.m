@@ -100,6 +100,7 @@
     [self configUI];
     
     [self userDidLogin];
+    [self popupSetting];
     [self requestAnnouncement];
     [self requestCDNAndDomain];
     
@@ -107,7 +108,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLoginByNoti) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:HYLogoutSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:BYDidEnterHomePageNoti object:nil];
-    
 }
 
 //可以在首页的该方法中调用
@@ -139,7 +139,6 @@
 {
     [super viewWillAppear:animated];
     [[AppdelegateManager shareManager] recheckDomainWithTestSpeed];
-    [self popupSetting];
     [self requestAnnouncement];
 }
 - (void)userDidLoginByNoti
@@ -151,26 +150,42 @@
     [self.infoView updateLoginStatusUIIsRefreshing:YES];
     [self requestHomeBanner];
     [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] performSelector:@selector(fetchUnreadCount)];
-}
-- (void) popupSetting
-{
     if ([CNUserManager shareManager].isLogin) {
         self.infoViewH.constant = 140;
-//        [self requestNightCity];
-        // 弹窗盒子
-        [self requestNewsBox];
+        //        [self requestNightCity];
         // 游戏线路
         [[HYInGameHelper sharedInstance] queryHomeInGamesStatus];
         // 最近玩过的电游
-//        for (CNBaseVC *vc in self.childViewControllers) {
-//            if ([vc isKindOfClass:[CNElectronicVC class]]) {
-//                [(CNElectronicVC *)vc queryRecentGames];
-//            }
-//        }
+        //        for (CNBaseVC *vc in self.childViewControllers) {
+        //            if ([vc isKindOfClass:[CNElectronicVC class]]) {
+        //                [(CNElectronicVC *)vc queryRecentGames];
+        //            }
+        //        }
         
     } else {
         self.infoViewH.constant = 140;
     }
+}
+- (void) popupSetting
+{
+    // 弹窗盒子
+    // 新的方法
+    WEAKSELF_DEFINE
+    [[A03ActivityManager sharedInstance] checkPopViewWithCompletionBlock:^(A03PopViewModel * _Nullable response, NSString * _Nullable error) {
+        if (response)
+        {
+            [CNMessageBoxView showMessageBoxWithImages:@[response.image].mutableCopy
+                                                onView:weakSelf.view
+                                              tapBlock:^(int idx) {
+                [NNPageRouter jump2HTMLWithStrURL:response.link title:response.title needPubSite:NO];
+            } tapClose:^{
+                [weakSelf showAccountTutorials];
+            }];
+        }else
+        {
+            [weakSelf showAccountTutorials];
+        }
+    }];
 }
 - (void)userDidLogout {
     [self.infoView updateLoginStatusUIIsRefreshing:NO];
@@ -271,40 +286,25 @@
 }
 
 - (void)requestNewsBox {
-    if ([CNUserManager shareManager].isLogin) {
-        NSDate *nowDate = [NSDate date];
-        NSString *agoDateStr = [[NSUserDefaults standardUserDefaults] stringForKey:HYHomeMessageBoxLastimeDate];
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        __block NSString *nowDateStr = [dateFormatter stringFromDate:nowDate];
-        
-        if ([agoDateStr isEqualToString:nowDateStr]) {
-            MyLog(@"弹窗盒子一天就显示一次");
-            [self showAccountTutorials];
-        }
-        else{
-            [[NSUserDefaults standardUserDefaults] setObject:nowDateStr forKey:HYHomeMessageBoxLastimeDate];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            // 需要执行的方法写在这里
-            WEAKSELF_DEFINE
-            [[A03ActivityManager sharedInstance] checkPopViewWithCompletionBlock:^(A03PopViewModel * _Nullable response, NSString * _Nullable error) {
-                if (response)
-                {
-                    [CNMessageBoxView showMessageBoxWithImages:@[response.image].mutableCopy
-                                                        onView:weakSelf.view
-                                                      tapBlock:^(int idx) {
-                        [NNPageRouter jump2HTMLWithStrURL:response.link title:response.title needPubSite:NO];
-                    } tapClose:^{
-                        [weakSelf showAccountTutorials];
-                    }];
-                }else
-                {
-                    [weakSelf showAccountTutorials];
-                }
-            }];
-        }
-    }
+//    if ([CNUserManager shareManager].isLogin) {
+//        NSDate *nowDate = [NSDate date];
+//        NSString *agoDateStr = [[NSUserDefaults standardUserDefaults] stringForKey:HYHomeMessageBoxLastimeDate];
+//        
+//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+//        __block NSString *nowDateStr = [dateFormatter stringFromDate:nowDate];
+//        
+//        if ([agoDateStr isEqualToString:nowDateStr]) {
+//            MyLog(@"弹窗盒子一天就显示一次");
+//            [self showAccountTutorials];
+//        }
+//        else{
+//            [[NSUserDefaults standardUserDefaults] setObject:nowDateStr forKey:HYHomeMessageBoxLastimeDate];
+//            [[NSUserDefaults standardUserDefaults] synchronize];
+//            // 需要执行的方法写在这里
+//        }
+//    }
+   
     //        else{
     //            // 需要执行的方法写在这里
     //            WEAKSELF_DEFINE
