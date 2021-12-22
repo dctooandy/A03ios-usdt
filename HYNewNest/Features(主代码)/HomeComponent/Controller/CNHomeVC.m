@@ -379,24 +379,48 @@
                     continue;
                 }
             }
-            NSString *fullUrl;
-            if ([groupModel.domainName isEqualToString:@""] && ![model.imgUrl hasPrefix:@"http"])
+            NSString *domainUrl = nil;
+            NSString *fullUrl = nil;
+            BOOL urlHttpStr = [model.imgUrl hasPrefix:@"http"];
+            BOOL urlPathStr = [model.imgUrl hasPrefix:@"/"];
+            domainUrl = [groupModel.domainName isEqualToString:@""] ? [IVHttpManager shareManager].cdn : groupModel.domainName ;
+            BOOL cdn = [domainUrl hasSuffix:@"/"];
+            if (cdn) {
+                fullUrl = [domainUrl substringToIndex:domainUrl.length - 1];
+            } else {
+                fullUrl = domainUrl;
+            }
+            if (urlHttpStr)
             {
-                NSRange rang = NSMakeRange([IVHttpManager shareManager].cdn.length - 1, 1);
-                NSString *str = [[IVHttpManager shareManager].cdn substringWithRange:rang];
-                if ([str isEqualToString:@"/"])
-                {
-                    NSRange subRang = NSMakeRange(0, [IVHttpManager shareManager].cdn.length - 1);
-                    NSString *newStr = [[IVHttpManager shareManager].cdn substringWithRange:subRang];
-                    fullUrl = [NSString stringWithFormat:@"%@%@",newStr,model.imgUrl];
-                }else
-                {
-                    fullUrl = [NSString stringWithFormat:@"%@%@",[IVHttpManager shareManager].cdn,model.imgUrl];
-                }
+                fullUrl = model.imgUrl;
             }else
             {
-                fullUrl = [groupModel.domainName stringByAppendingString:model.imgUrl];
+                if (urlPathStr)
+                {
+                    fullUrl = [NSString stringWithFormat:@"%@/%@",fullUrl,[model.imgUrl substringFromIndex:1]];
+                }else
+                {
+                    fullUrl = [NSString stringWithFormat:@"%@/%@",fullUrl,model.imgUrl];
+                }
             }
+//            NSString *fullUrl;
+//            if ([groupModel.domainName isEqualToString:@""] && ![model.imgUrl hasPrefix:@"http"])
+//            {
+//                NSRange rang = NSMakeRange([IVHttpManager shareManager].cdn.length - 1, 1);
+//                NSString *str = [[IVHttpManager shareManager].cdn substringWithRange:rang];
+//                if ([str isEqualToString:@"/"])
+//                {
+//                    NSRange subRang = NSMakeRange(0, [IVHttpManager shareManager].cdn.length - 1);
+//                    NSString *newStr = [[IVHttpManager shareManager].cdn substringWithRange:subRang];
+//                    fullUrl = [NSString stringWithFormat:@"%@%@",newStr,model.imgUrl];
+//                }else
+//                {
+//                    fullUrl = [NSString stringWithFormat:@"%@%@",[IVHttpManager shareManager].cdn,model.imgUrl];
+//                }
+//            }else
+//            {
+//                fullUrl = [groupModel.domainName stringByAppendingString:model.imgUrl];
+//            }
             [imgUrls addObject:fullUrl];
             [modArr addObject:model];
         }
