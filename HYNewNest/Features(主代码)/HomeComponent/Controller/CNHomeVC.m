@@ -214,7 +214,6 @@
     self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [[AppdelegateManager shareManager] recheckDomainWithTestSpeed];
         [wSelf userDidLogin];
-        [wSelf popupSetting];
         [wSelf requestAnnouncement];
     }];
 }

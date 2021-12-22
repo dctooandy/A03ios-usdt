@@ -216,6 +216,10 @@ typedef NS_ENUM(NSUInteger, CNSMSCodeType) {
 ** 根据token获取用户信息
 */
 + (void)getUserInfoByTokenCompletionHandler:(nullable HandlerBlock)completionHandler;
+/*
+** 根据token获取用户信息
+*/
++ (void)getUserInfoByTokenWithoutNotiCompletionHandler:(nullable HandlerBlock)completionHandler;
 
 /*
  ** 登出
