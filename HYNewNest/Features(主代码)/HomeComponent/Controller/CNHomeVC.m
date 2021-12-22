@@ -304,59 +304,58 @@
                 }
             }];
         }
-
-//        else{
-//            // 需要执行的方法写在这里
-//            WEAKSELF_DEFINE
-//            [CNHomeRequest queryMessageBoxHandler:^(id responseObj, NSString *errorMsg) {
-//
-//                STRONGSELF_DEFINE
-//                NSMutableArray<MessageBoxModel *> *models = [[MessageBoxModel cn_parse:responseObj] mutableCopy];
-//                if (models.count == 0) { return; }
-//
-//                NSMutableArray *imgs = @[].mutableCopy;
-//                [models enumerateObjectsUsingBlock:^(MessageBoxModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//                    BOOL flag = YES; // 用来判定是否 没有被筛出
-//                    // 筛选等级：固定
-//                    if (obj.fixedLevel) {
-//                        NSArray *levs = [obj.fixedLevel componentsSeparatedByString:@","];
-//                        if (![levs containsObject:[NSString stringWithFormat:@"%ld", [CNUserManager shareManager].userDetail.starLevel]]) {
-//                            [models removeObject:obj];
-//                            flag = NO;
-//                        }
-//                    }
-//                    // 筛选等级：大于等于
-//                    if (obj.level) {
-//                        if (obj.level.integerValue > [CNUserManager shareManager].userDetail.starLevel) {
-//                            [models removeObject:obj];
-//                            flag = NO;
-//                        }
-//                    }
-//                    if (flag) {
-//                        // 图片数组
-//                        NSString *url = [NSURL getStrUrlWithString: obj.imgUrl];
-//                        [imgs addObject:url];
-//                    }
-//                }];
-//                strongSelf.msgBoxModels = models;
-//                if (imgs.count > 0 && imgs.count == models.count) {
-//                    [CNMessageBoxView showMessageBoxWithImages:imgs
-//                                                        onView:weakSelf.view
-//                                                      tapBlock:^(int idx) {
-//                        MessageBoxModel *m = strongSelf.msgBoxModels[idx];
-//                        [NNPageRouter jump2HTMLWithStrURL:m.link title:@"活动" needPubSite:NO];
-//                    } tapClose:^{
-//                        [weakSelf showAccountTutorials];
-//                    }];
-//                    [[NSUserDefaults standardUserDefaults] setObject:nowDateStr forKey:HYHomeMessageBoxLastimeDate];
-//                    [[NSUserDefaults standardUserDefaults] synchronize];
-//                }
-//                else {
-//                    [weakSelf showAccountTutorials];
-//                }
-//            }];
-//        }
     }
+    //        else{
+    //            // 需要执行的方法写在这里
+    //            WEAKSELF_DEFINE
+    //            [CNHomeRequest queryMessageBoxHandler:^(id responseObj, NSString *errorMsg) {
+    //
+    //                STRONGSELF_DEFINE
+    //                NSMutableArray<MessageBoxModel *> *models = [[MessageBoxModel cn_parse:responseObj] mutableCopy];
+    //                if (models.count == 0) { return; }
+    //
+    //                NSMutableArray *imgs = @[].mutableCopy;
+    //                [models enumerateObjectsUsingBlock:^(MessageBoxModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    //                    BOOL flag = YES; // 用来判定是否 没有被筛出
+    //                    // 筛选等级：固定
+    //                    if (obj.fixedLevel) {
+    //                        NSArray *levs = [obj.fixedLevel componentsSeparatedByString:@","];
+    //                        if (![levs containsObject:[NSString stringWithFormat:@"%ld", [CNUserManager shareManager].userDetail.starLevel]]) {
+    //                            [models removeObject:obj];
+    //                            flag = NO;
+    //                        }
+    //                    }
+    //                    // 筛选等级：大于等于
+    //                    if (obj.level) {
+    //                        if (obj.level.integerValue > [CNUserManager shareManager].userDetail.starLevel) {
+    //                            [models removeObject:obj];
+    //                            flag = NO;
+    //                        }
+    //                    }
+    //                    if (flag) {
+    //                        // 图片数组
+    //                        NSString *url = [NSURL getStrUrlWithString: obj.imgUrl];
+    //                        [imgs addObject:url];
+    //                    }
+    //                }];
+    //                strongSelf.msgBoxModels = models;
+    //                if (imgs.count > 0 && imgs.count == models.count) {
+    //                    [CNMessageBoxView showMessageBoxWithImages:imgs
+    //                                                        onView:weakSelf.view
+    //                                                      tapBlock:^(int idx) {
+    //                        MessageBoxModel *m = strongSelf.msgBoxModels[idx];
+    //                        [NNPageRouter jump2HTMLWithStrURL:m.link title:@"活动" needPubSite:NO];
+    //                    } tapClose:^{
+    //                        [weakSelf showAccountTutorials];
+    //                    }];
+    //                    [[NSUserDefaults standardUserDefaults] setObject:nowDateStr forKey:HYHomeMessageBoxLastimeDate];
+    //                    [[NSUserDefaults standardUserDefaults] synchronize];
+    //                }
+    //                else {
+    //                    [weakSelf showAccountTutorials];
+    //                }
+    //            }];
+    //        }
 }
 
 - (void)requestHomeBanner {
@@ -384,7 +383,17 @@
             NSString *fullUrl;
             if ([groupModel.domainName isEqualToString:@""] && ![model.imgUrl hasPrefix:@"http"])
             {
-                fullUrl = [NSString stringWithFormat:@"%@%@",[IVHttpManager shareManager].cdn,model.imgUrl];
+                NSRange rang = NSMakeRange([IVHttpManager shareManager].cdn.length - 1, 1);
+                NSString *str = [[IVHttpManager shareManager].cdn substringWithRange:rang];
+                if ([str isEqualToString:@"/"])
+                {
+                    NSRange subRang = NSMakeRange(0, [IVHttpManager shareManager].cdn.length - 1);
+                    NSString *newStr = [[IVHttpManager shareManager].cdn substringWithRange:subRang];
+                    fullUrl = [NSString stringWithFormat:@"%@%@",newStr,model.imgUrl];
+                }else
+                {
+                    fullUrl = [NSString stringWithFormat:@"%@%@",[IVHttpManager shareManager].cdn,model.imgUrl];
+                }
             }else
             {
                 fullUrl = [groupModel.domainName stringByAppendingString:model.imgUrl];
