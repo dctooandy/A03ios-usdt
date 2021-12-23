@@ -190,9 +190,8 @@
 - (void)userDidLogout {
     [self.infoView updateLoginStatusUIIsRefreshing:NO];
     self.infoViewH.constant = 140;
-    
     [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] performSelector:@selector(setUnreadToDefault)];
-
+    [self popupSetting];
 }
 
 - (void)configUI {
