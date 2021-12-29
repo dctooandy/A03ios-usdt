@@ -345,7 +345,7 @@
         
         // 2.用户信息
         NSInteger level = [CNUserManager shareManager].userDetail.starLevel;
-        if (level <= 6) {
+        if (level <= 7) {
             self.vipImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"icon_vip%li", level]];
         }
         
