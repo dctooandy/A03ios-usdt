@@ -376,6 +376,10 @@
 		5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */; };
 		7636AE6E272BC4C70072AB0E /* BYDeleteBankCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7636AE6C272BC4C70072AB0E /* BYDeleteBankCardVC.m */; };
 		7636AE71272BC5940072AB0E /* BYDeleteBankCardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7636AE70272BC5940072AB0E /* BYDeleteBankCardVC.xib */; };
+		765C64E32782B4ED00A6BC34 /* BTTAnimationPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 765C64E22782B4ED00A6BC34 /* BTTAnimationPopView.m */; };
+		765C64E92782B71700A6BC34 /* BTTBaseAnimationPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 765C64E82782B71700A6BC34 /* BTTBaseAnimationPopView.m */; };
+		765C64F22782C82B00A6BC34 /* RedPacketsRainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 765C64EF2782C82A00A6BC34 /* RedPacketsRainView.xib */; };
+		765C64F32782C82B00A6BC34 /* RedPacketsRainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 765C64F12782C82A00A6BC34 /* RedPacketsRainView.m */; };
 		76B4998B275F6415003CD35B /* 03Gif2022.gif in Resources */ = {isa = PBXBuildFile; fileRef = 76B4998A275F6415003CD35B /* 03Gif2022.gif */; };
 		76B499E727608DAE003CD35B /* AppdelegateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E627608DAE003CD35B /* AppdelegateManager.m */; };
 		76B499EA27609237003CD35B /* A03CheckDomainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E927609237003CD35B /* A03CheckDomainModel.m */; };
@@ -1717,6 +1721,13 @@
 		7636AE6B272BC4C70072AB0E /* BYDeleteBankCardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYDeleteBankCardVC.h; sourceTree = "<group>"; };
 		7636AE6C272BC4C70072AB0E /* BYDeleteBankCardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYDeleteBankCardVC.m; sourceTree = "<group>"; };
 		7636AE70272BC5940072AB0E /* BYDeleteBankCardVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BYDeleteBankCardVC.xib; sourceTree = "<group>"; };
+		765C64E12782B4ED00A6BC34 /* BTTAnimationPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTAnimationPopView.h; sourceTree = "<group>"; };
+		765C64E22782B4ED00A6BC34 /* BTTAnimationPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTAnimationPopView.m; sourceTree = "<group>"; };
+		765C64E72782B71700A6BC34 /* BTTBaseAnimationPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTBaseAnimationPopView.h; sourceTree = "<group>"; };
+		765C64E82782B71700A6BC34 /* BTTBaseAnimationPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTBaseAnimationPopView.m; sourceTree = "<group>"; };
+		765C64EF2782C82A00A6BC34 /* RedPacketsRainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketsRainView.xib; sourceTree = "<group>"; };
+		765C64F02782C82A00A6BC34 /* RedPacketsRainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketsRainView.h; sourceTree = "<group>"; };
+		765C64F12782C82A00A6BC34 /* RedPacketsRainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketsRainView.m; sourceTree = "<group>"; };
 		76B4998A275F6415003CD35B /* 03Gif2022.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 03Gif2022.gif; sourceTree = "<group>"; };
 		76B499E527608DAE003CD35B /* AppdelegateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppdelegateManager.h; sourceTree = "<group>"; };
 		76B499E627608DAE003CD35B /* AppdelegateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppdelegateManager.m; sourceTree = "<group>"; };
@@ -3166,6 +3177,7 @@
 		3D13389924AF2D1900B29783 /* Utility(工具类) */ = {
 			isa = PBXGroup;
 			children = (
+				765C64E02782B4ED00A6BC34 /* BTTAnimationPopView */,
 				76FC861D276224F5005710FD /* SDWebEnternal */,
 				F787DB1126C3719300AF7133 /* New Group */,
 				F73857D3267B18E700768D14 /* View */,
@@ -4117,6 +4129,20 @@
 				A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		765C64E02782B4ED00A6BC34 /* BTTAnimationPopView */ = {
+			isa = PBXGroup;
+			children = (
+				765C64E12782B4ED00A6BC34 /* BTTAnimationPopView.h */,
+				765C64E22782B4ED00A6BC34 /* BTTAnimationPopView.m */,
+				765C64E72782B71700A6BC34 /* BTTBaseAnimationPopView.h */,
+				765C64E82782B71700A6BC34 /* BTTBaseAnimationPopView.m */,
+				765C64F02782C82A00A6BC34 /* RedPacketsRainView.h */,
+				765C64F12782C82A00A6BC34 /* RedPacketsRainView.m */,
+				765C64EF2782C82A00A6BC34 /* RedPacketsRainView.xib */,
+			);
+			path = BTTAnimationPopView;
 			sourceTree = "<group>";
 		};
 		76B499EB27609487003CD35B /* Request */ = {
@@ -5833,6 +5859,7 @@
 				D5A443C124F378CD00014DC6 /* 彩票_00028.png in Resources */,
 				D5A4460824F393E500014DC6 /* 足球_00033.png in Resources */,
 				D5A4456B24F393AC00014DC6 /* 棋牌_00041.png in Resources */,
+				765C64F22782C82B00A6BC34 /* RedPacketsRainView.xib in Resources */,
 				D5FBFDF824B59DB100BBCAD8 /* SkinMapValue.plist in Resources */,
 				D5A4449D24F3932400014DC6 /* 数字7_00033.png in Resources */,
 				D5A4456D24F393AC00014DC6 /* 棋牌_00082.png in Resources */,
@@ -6650,6 +6677,7 @@
 				3D9DA66E25918DF0003C3F28 /* DSBWeekMonthListCell.m in Sources */,
 				E97054AD24DC4C0E0007F845 /* CNImageCodeModel.m in Sources */,
 				3DA4F1A124B3199A0039123F /* HYNavigationController.m in Sources */,
+				765C64E32782B4ED00A6BC34 /* BTTAnimationPopView.m in Sources */,
 				D5FBFE8B24BC28B200BBCAD8 /* CNBaseModel.m in Sources */,
 				0487C9F424D2AADC0013715A /* CNMessageTCell.m in Sources */,
 				3D41DECA2521CDE7000CA1D6 /* VIPRecordSelectorView.m in Sources */,
@@ -6851,6 +6879,7 @@
 				042372A324CE65A000D37B9C /* CNSettingVC.m in Sources */,
 				0487CA0624D3BAB90013715A /* CNInviteFriendVC.m in Sources */,
 				3D564E2024F3C02C006846DD /* MessageBoxModel.m in Sources */,
+				765C64F32782C82B00A6BC34 /* RedPacketsRainView.m in Sources */,
 				E98BEF1C24D2BCA400E6B0C8 /* HYWithdrawCardCell.m in Sources */,
 				E9AE9F0424DAAF4500E8F4D8 /* ABCOneKeyRegisterBFBHelper.m in Sources */,
 				E969EB3824E2427900D58FE9 /* HYRechargeCNYViewController.m in Sources */,
@@ -6929,6 +6958,7 @@
 				3D9700222599D8D4003238C4 /* HYDSBSlideUpView.m in Sources */,
 				E98BEF1724D2AF9B00E6B0C8 /* HYWithdrawViewController.m in Sources */,
 				0487C96E24CE9A630013715A /* BRDatePickerView.m in Sources */,
+				765C64E92782B71700A6BC34 /* BTTBaseAnimationPopView.m in Sources */,
 				E9063B9324D6F3480000273A /* HYNewCTZNCell.m in Sources */,
 				3D643F9B24F396BC00B9AAA7 /* GameLineModel.m in Sources */,
 				3DBA55E42578EFCC009A2B71 /* CNDashenBoardVC.m in Sources */,
