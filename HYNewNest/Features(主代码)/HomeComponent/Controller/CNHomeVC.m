@@ -39,7 +39,8 @@
 #import "NSURL+HYLink.h"
 #import "HYTabBarViewController.h"
 #import "AppdelegateManager.h"
-
+#import "RedPacketsRainView.h"
+#import "BTTAnimationPopView.h"
 @interface CNHomeVC () <CNUserInfoLoginViewDelegate,  SDCycleScrollViewDelegate, UUMarqueeViewDelegate, GameBtnsStackViewDelegate, DashenBoardAutoHeightDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 /// 滚动视图
@@ -106,7 +107,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:HYLogoutSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:BYDidEnterHomePageNoti object:nil];
-    
+    [self showRedPacketsRainView];
 }
 
 //可以在首页的该方法中调用
@@ -541,6 +542,24 @@
     }
     return _marqueeView;
 }
-
+- (void)showRedPacketsRainView
+{
+    RedPacketsRainView *alertView = [RedPacketsRainView viewFromXib];
+    
+    BTTAnimationPopView *popView = [[BTTAnimationPopView alloc] initWithCustomView:alertView popStyle:BTTAnimationPopStyleNO dismissStyle:BTTAnimationDismissStyleNO];
+    
+    popView.isClickBGDismiss = YES;
+    [popView pop];
+    
+    [alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
+    alertView.dismissBlock = ^{
+        [popView dismiss];
+    };
+    alertView.btnBlock = ^(UIButton * _Nullable btn) {
+        [popView dismiss];
+    };
+}
 
 @end

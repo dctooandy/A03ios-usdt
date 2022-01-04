@@ -35,5 +35,16 @@
 #ifdef DEBUG
 #import "UIWindow+Motion.h" //Lookin摇一摇功能
 #endif
-
+// 屏幕大小、宽、高
+#ifndef SCREEN_BOUNDS
+#define SCREEN_BOUNDS [UIScreen mainScreen].bounds
+#endif
+#ifndef SCREEN_WIDTH
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#endif
+#ifndef SCREEN_HEIGHT
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+#endif
+//带有RGBA的颜色设置
+#define COLOR_RGBA(R, G, B, A) [UIColor colorWithRed:R / 255.0 green:G / 255.0 blue:B / 255.0 alpha:A]
 #endif /* PrefixHeader_pch */

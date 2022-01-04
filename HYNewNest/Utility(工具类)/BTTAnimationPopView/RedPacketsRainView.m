@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) CALayer *moveLayer;
 @property (nonatomic, assign) NSInteger redPacketsResultCount;
+@property (nonatomic, assign) NSInteger selectedRedPacketNum;
 @end
 
 @implementation RedPacketsRainView
@@ -23,6 +24,7 @@
     self.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickRed:)];
     [self addGestureRecognizer:tap];
+    self.selectedRedPacketNum = 0;
     [self startTime];
 }
 - (IBAction)closeBtnAction:(UIButton *)sender {
@@ -62,7 +64,7 @@
     [self.timer fire];
     //红包下落10秒倒数
     self.titleLabel.text = @"红包结束倒数计时";
-    __block int timeout = 10;
+    __block int timeout = 60;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
@@ -109,7 +111,7 @@
     moveAnimation.duration = arc4random() % 200 / 100.0 + 3.5;
     moveAnimation.repeatCount = 1;
     moveAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-    [self.moveLayer addAnimation:moveAnimation forKey:nil];
+    [self.moveLayer addAnimation:moveAnimation forKey:@"p"];
     
     CAKeyframeAnimation * tranAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
     CATransform3D r0 = CATransform3DMakeRotation(M_PI/180 * (arc4random() % 360 ) , 0, 0, -1);
@@ -142,28 +144,37 @@
 - (void)clickRed:(UITapGestureRecognizer *)sender
 {
     CGPoint point = [sender locationInView:self];
+    
     for (int i = 0 ; i < self.layer.sublayers.count ; i ++)
     {
         CALayer * layer = self.layer.sublayers[i];
-        if ([[layer presentationLayer] hitTest:point] != nil)
+        if ([[layer presentationLayer] hitTest:point] != nil && self.selectedRedPacketNum != i)
         {
             NSLog(@"%d",i);
-            
-            BOOL hasRedPacketd = !(i % 3) ;
-            
+            self.selectedRedPacketNum = i;
+//            BOOL hasRedPacketd = !(i % 3) ;
+            BOOL hasRedPacketd = YES ;
             UIImageView * newPacketIV = [UIImageView new];
             if (hasRedPacketd)
             {
                 newPacketIV.image = [UIImage imageNamed:@"dsb_content_108"];
-                newPacketIV.frame = CGRectMake(0, 0, 63.5, 74);
+                newPacketIV.frame = CGRectMake(0, 0, 44 , 62.5);
             }
             else
             {
                 newPacketIV.image = [UIImage imageNamed:@"dsb_rb_close"];
                 newPacketIV.frame = CGRectMake(0, 0, 45.5, 76.5);
             }
-            
-            layer.contents = (id)newPacketIV.image.CGImage;
+//            layer.contents = (id)newPacketIV.image.CGImage;
+            [layer removeAnimationForKey:@"p"];
+            CAKeyframeAnimation * moveAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+            NSValue * A = [NSValue valueWithCGPoint:CGPointMake(point.x, point.y)];
+            NSValue * B = [NSValue valueWithCGPoint:CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT)];
+            moveAnimation.values = @[A,B];
+            moveAnimation.duration = 1.0;
+            moveAnimation.repeatCount = 1;
+            moveAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+            [layer addAnimation:moveAnimation forKey:@"p"];
             
             UIView * alertView = [UIView new];
             alertView.layer.cornerRadius = 5;
@@ -207,6 +218,7 @@
             [UIView animateWithDuration:1 animations:^{
                 alertView.alpha = 0;
                 alertView.frame = CGRectMake(point.x- 50, point.y - 100, 100, 30);
+//                layer.opacity = 0;
             } completion:^(BOOL finished) {
                 [alertView removeFromSuperview];
             }];
