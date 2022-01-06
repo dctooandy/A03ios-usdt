@@ -378,6 +378,8 @@
 		7636AE71272BC5940072AB0E /* BYDeleteBankCardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7636AE70272BC5940072AB0E /* BYDeleteBankCardVC.xib */; };
 		763A2D79276C942A00CDD969 /* NewVIPCumulateIdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 763A2D77276C942900CDD969 /* NewVIPCumulateIdCell.m */; };
 		763A2D7A276C942A00CDD969 /* NewVIPCumulateIdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 763A2D78276C942900CDD969 /* NewVIPCumulateIdCell.xib */; };
+		766A6EC6276B3E37007DC6A1 /* A03ActivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 766A6EC5276B3E36007DC6A1 /* A03ActivityManager.m */; };
+		766A6EC9276B3F4A007DC6A1 /* A03PopViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 766A6EC8276B3F4A007DC6A1 /* A03PopViewModel.m */; };
 		76B4998B275F6415003CD35B /* 03Gif2022.gif in Resources */ = {isa = PBXBuildFile; fileRef = 76B4998A275F6415003CD35B /* 03Gif2022.gif */; };
 		76B499E727608DAE003CD35B /* AppdelegateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E627608DAE003CD35B /* AppdelegateManager.m */; };
 		76B499EA27609237003CD35B /* A03CheckDomainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E927609237003CD35B /* A03CheckDomainModel.m */; };
@@ -1722,6 +1724,10 @@
 		763A2D76276C942900CDD969 /* NewVIPCumulateIdCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewVIPCumulateIdCell.h; sourceTree = "<group>"; };
 		763A2D77276C942900CDD969 /* NewVIPCumulateIdCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewVIPCumulateIdCell.m; sourceTree = "<group>"; };
 		763A2D78276C942900CDD969 /* NewVIPCumulateIdCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewVIPCumulateIdCell.xib; sourceTree = "<group>"; };
+		766A6EC4276B3E36007DC6A1 /* A03ActivityManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = A03ActivityManager.h; sourceTree = "<group>"; };
+		766A6EC5276B3E36007DC6A1 /* A03ActivityManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A03ActivityManager.m; sourceTree = "<group>"; };
+		766A6EC7276B3F4A007DC6A1 /* A03PopViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = A03PopViewModel.h; sourceTree = "<group>"; };
+		766A6EC8276B3F4A007DC6A1 /* A03PopViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A03PopViewModel.m; sourceTree = "<group>"; };
 		76B4998A275F6415003CD35B /* 03Gif2022.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 03Gif2022.gif; sourceTree = "<group>"; };
 		76B499E527608DAE003CD35B /* AppdelegateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppdelegateManager.h; sourceTree = "<group>"; };
 		76B499E627608DAE003CD35B /* AppdelegateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppdelegateManager.m; sourceTree = "<group>"; };
@@ -5531,6 +5537,10 @@
 			children = (
 				E986A11C24C7E08F000F9CFF /* GameStartPlayViewController.h */,
 				E986A11D24C7E08F000F9CFF /* GameStartPlayViewController.m */,
+				766A6EC4276B3E36007DC6A1 /* A03ActivityManager.h */,
+				766A6EC5276B3E36007DC6A1 /* A03ActivityManager.m */,
+				766A6EC7276B3F4A007DC6A1 /* A03PopViewModel.h */,
+				766A6EC8276B3F4A007DC6A1 /* A03PopViewModel.m */,
 				04C0F12024C69738007F1420 /* CNHomeVC.h */,
 				04C0F12124C69738007F1420 /* CNHomeVC.m */,
 				04C0F12224C69738007F1420 /* CNHomeVC.xib */,
@@ -6725,6 +6735,7 @@
 				044DC68B24DBB420005CB550 /* CNVerifyMsgAlertView.m in Sources */,
 				D571B19624BE9F120087B5EC /* CNLineView.m in Sources */,
 				0487C99924CEDE6B0013715A /* CNChoseImageCCell.m in Sources */,
+				766A6EC9276B3F4A007DC6A1 /* A03PopViewModel.m in Sources */,
 				3D1338A424AF2E5200B29783 /* AppDelegate.m in Sources */,
 				3DC841172682F75200AEB1B6 /* BYFirstFillBannerView.m in Sources */,
 				E986A18924C9CF36000F9CFF /* XmPlatformModel.m in Sources */,
@@ -6911,6 +6922,7 @@
 				7636AE6E272BC4C70072AB0E /* BYDeleteBankCardVC.m in Sources */,
 				04C6E1DF24D3E995006F4DAC /* CNFeedBackLeftTCell.m in Sources */,
 				3D2B0873264FC4560008BB5F /* CNYuEBaoConfigModel.m in Sources */,
+				766A6EC6276B3E37007DC6A1 /* A03ActivityManager.m in Sources */,
 				3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */,
 				3D41DE7825199DEE000CA1D6 /* VIPChartDSBHeaderView.m in Sources */,
 				3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */,
@@ -7190,7 +7202,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.43;
+				MARKETING_VERSION = 3.7.44;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.1e3c3biphone01.btt01;
 				PRODUCT_NAME = "币游_dev";
@@ -7251,7 +7263,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.43;
+				MARKETING_VERSION = 3.7.44;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.1e3c3biphone01.btt01;
 				PRODUCT_NAME = "币游";

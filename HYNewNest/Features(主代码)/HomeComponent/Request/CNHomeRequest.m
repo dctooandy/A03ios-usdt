@@ -18,6 +18,16 @@
 //    }];
 //}
 
++ (void)checkPopviewHandler:(HandlerBlock)handler {
+    
+    NSMutableDictionary *param = [kNetworkMgr baseParam];    
+    [self POST:(kGatewayExtraPath(A03CheckPopView)) parameters:param completionHandler:^(id responseObj, NSString *errorMsg) {
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            handler(responseObj, errorMsg);
+        }
+    }];
+}
+
 + (void)queryMessageBoxHandler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];

@@ -111,5 +111,11 @@
 
     // Configure the view for the selected state
 }
+- (IBAction)tapMoreAction:(id)sender {
+    if (self.tapMoreAction)
+    {
+        self.tapMoreAction();
+    }
+}
 
 @end

@@ -12,6 +12,7 @@
 #import "A03CheckDomainModel.h"
 #import "AppSettingRequest.h"
 #import "IVCheckNetworkWrapper.h"
+#import "IVCacheWrapper.h"
 
 @implementation AppdelegateManager
 @synthesize gateways = _gateways;
@@ -35,23 +36,31 @@
 - (void)setGateways:(NSArray *)gateways
 {
     _gateways = gateways;
+    [IVCacheWrapper setObject: gateways ? gateways:@[] forKey:IVCacheAllGatewayKey];
 }
 - (NSArray *)gateways
 {
     if (!_gateways) {
-        switch (_environment) {
-            case IVNEnvironmentDevelop://本地
-                return @[@"http://www.pt-gateway.com/_glaxy_1e3c3b_/"];
-                break;
-            case IVNEnvironmentTest://运测
-                return @[@"https://h5.918rr.com/_glaxy_1e3c3b_/"];
-                break;
-            case IVNEnvironmentPublish:
-                return @[@"https://wrd.58baili.com/pro/_glaxy_1e3c3b_/", @"https://m.pkyorjhn.com:9188/_glaxy_1e3c3b_/"];
-                break;
-            default:
-                return @[@"http://www.pt-gateway.com/_glaxy_1e3c3b_/"];
-                break;
+        _gateways = [IVCacheWrapper objectForKey:IVCacheAllGatewayKey];
+        if (_gateways.count > 0)
+        {
+            return _gateways;
+        }else
+        {
+            switch (_environment) {
+                case IVNEnvironmentDevelop://本地
+                    _gateways = @[@"http://www.pt-gateway.com/_glaxy_1e3c3b_/"];
+                    break;
+                case IVNEnvironmentTest://运测
+                    _gateways = @[@"https://h5.918rr.com/_glaxy_1e3c3b_/"];
+                    break;
+                case IVNEnvironmentPublish:
+                    _gateways = @[@"https://wrd.58baili.com/pro/_glaxy_1e3c3b_/", @"https://m.pkyorjhn.com:9188/_glaxy_1e3c3b_/"];
+                    break;
+                default:
+                    _gateways = @[@"http://www.pt-gateway.com/_glaxy_1e3c3b_/"];
+                    break;
+            }
         }
     }
     return _gateways;
@@ -59,24 +68,32 @@
 - (void)setWebsides:(NSArray *)websides
 {
     _websides = websides;
+    [IVCacheWrapper setObject:_websides ? _websides : @[] forKey:IVCacheAllH5DomainsKey];
 }
 - (NSArray *)websides
 {
     if (!_websides)
     {
-        switch (_environment) {
-            case IVNEnvironmentDevelop:
-                return @[@"https://m.ag800.com"];
-                break;
-            case IVNEnvironmentTest:
-                return @[@"https://m.ag800.com"];
-                break;
-            case IVNEnvironmentPublish:
-                return @[@"https://m.ag800.com"];
-                break;
-            default:
-                return @[@"https://m.ag800.com"];
-                break;
+        _websides = [IVCacheWrapper objectForKey:IVCacheAllH5DomainsKey];
+        if (_websides.count > 0)
+        {
+            return _websides;
+        }else
+        {
+            switch (_environment) {
+                case IVNEnvironmentDevelop:
+                    _websides = @[@"https://m.ag800.com"];
+                    break;
+                case IVNEnvironmentTest:
+                    _websides = @[@"https://m.ag800.com"];
+                    break;
+                case IVNEnvironmentPublish:
+                    _websides = @[@"https://m.ag800.com"];
+                    break;
+                default:
+                    _websides = @[@"https://m.ag800.com"];
+                    break;
+            }
         }
     }
     return _websides;

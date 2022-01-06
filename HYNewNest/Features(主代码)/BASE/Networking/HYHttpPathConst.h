@@ -30,7 +30,7 @@
 //#define kGatewayPath(api)       [NSString stringWithFormat:@"%@", api]  //基础网关
 #define kGatewayExtraPath(api)  [NSString stringWithFormat:@"by/_extra_/%@", api]  //产品网关
 //網關域名
-#define A03AppSetting                              @"_extra_/api/v1/getAppSetting"
+#define A03AppSetting                              @"getAppSetting"
 
 #pragma mark 公共
 #define config_welcome  @"welcome"
@@ -200,5 +200,6 @@
 #pragma mark night city
 //#define config_nightCityUsrType @"83e6dy/activity/newapi/nightCity/getUserType"
 #define config_nightCityUsrType @"1e3c3b/activity/newapi/nightCity/checkSilenceMemberRecallTicket"
+#define A03CheckPopView                            @"activity/common-window/window-popup"
 
 #endif /* HYHttpPathConst_h */

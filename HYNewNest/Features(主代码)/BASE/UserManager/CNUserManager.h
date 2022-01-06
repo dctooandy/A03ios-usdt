@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 存储根据token获取到的用户详细信息
 /// @param userDetail 用户详细信息
 - (BOOL)saveUserDetail:(NSDictionary *)userDetail;
-
+- (BOOL)saveUserDetailWithoutNoti:(NSDictionary *)userDetail;
 /// 存储用户手机状态
 - (BOOL)saveUserMobileStatus:(NSDictionary *)mobileStatus;
 

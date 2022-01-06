@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HYBonusCell : UITableViewCell
+@property (nonatomic, copy) void(^tapMoreAction)(void);
 @property (nonatomic, strong) MyPromoItem *model;
 @end
 
