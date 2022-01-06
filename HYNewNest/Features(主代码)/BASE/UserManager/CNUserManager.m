@@ -54,7 +54,13 @@
     return [NSKeyedArchiver archiveRootObject:self.userInfo toFile:self.modelFile];
 //#endif
 }
-
+- (BOOL)saveUserDetailWithoutNoti:(NSDictionary *)userDetail {
+    if (![userDetail isKindOfClass:[NSDictionary class]]) {
+        return NO;
+    }
+    self.userDetail = [CNUserDetailModel cn_parse:userDetail];
+    return [self saveUerDetailToSandBox];
+}
 - (BOOL)saveUserDetail:(NSDictionary *)userDetail {
     if (![userDetail isKindOfClass:[NSDictionary class]]) {
         return NO;

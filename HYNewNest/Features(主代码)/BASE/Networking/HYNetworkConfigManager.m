@@ -13,7 +13,7 @@
 #import "HYInGameHelper.h"
 #import "HYTabBarViewController.h"
 #import "AppdelegateManager.h"
-
+#import "IVCacheWrapper.h"
 @interface HYNetworkConfigManager ()
 @property (nonatomic, assign, readwrite) IVNEnvironment environment;
 @property (nonatomic, strong) NSString *envName;
@@ -56,6 +56,13 @@
 - (void)switchEnvirnment {
 #ifdef DEBUG
     // 切换环境 保存
+    [IVHttpManager shareManager].gateway = nil;
+    [IVHttpManager shareManager].domain = nil;
+    [IVHttpManager shareManager].gateways = nil;
+    [IVHttpManager shareManager].domains = nil;
+    [AppdelegateManager shareManager].gateways = nil;
+    [AppdelegateManager shareManager].websides = nil;
+    [IVCacheWrapper clearCache];
     self.environment += 1;
     if (self.environment > 2) {
         self.environment = 0;
@@ -63,9 +70,14 @@
     [[NSUserDefaults standardUserDefaults] setInteger:self.environment forKey:@"IVNEnvironment"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[AppdelegateManager shareManager] setEnvironment:self.environment];
-    [IVHttpManager shareManager].gateways = nil;
+    WEAKSELF_DEFINE
     [[AppdelegateManager shareManager] checkDomainHandler:^{
-        
+#ifdef DEBUG
+    [kKeywindow jk_makeToast:[IVHttpManager shareManager].gateway
+                    duration:4
+                    position:JKToastPositionCenter
+                       title:[NSString stringWithFormat:@"😄当前是%ld --【%@】",(long)weakSelf.environment ,weakSelf.envName]];
+#endif
         // 重新加载游戏线路信息
         [[HYInGameHelper sharedInstance] queryHomeInGamesStatus];
         
@@ -103,26 +115,33 @@
     [IVHttpManager shareManager].environment = environment;
     [IVHttpManager shareManager].domain = @"https://m.ag800.com"; //H5
     [IVHttpManager shareManager].cdn = @"https://a03front.58baili.com"; //cdn
-    
-    switch (environment) {
+    [self getEnvName];
+//    //通知外部
+    [eventDict setValue:[IVHttpManager shareManager].gateway forKey:@"to"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:IVNGatewaySwitchNotification object:nil userInfo:eventDict.copy];
+}
+
+- (void)getEnvName
+{
+    switch (self.environment) {
         case IVNEnvironmentDevelop:
         {
-            self.envName = @"本地环境";
+            _envName = @"本地环境";
 //            [IVHttpManager shareManager].gateway = @"http://10.66.72.156/_glaxy_83e6dy_/";//m.a03musdt.com  10.66.72.123
 //            [IVHttpManager shareManager].gateways = @[@"http://10.66.72.156/_glaxy_83e6dy_/"];
 //            [IVHttpManager shareManager].gateway = @"http://10.86.64.5:8081/_glaxy_83e6dy_/";      //https://api.a03.app 10.86.64.5:8081 TW本地环境
 //            [IVHttpManager shareManager].gateways = @[@"http://10.86.64.5:8081/_glaxy_83e6dy_/"];
-            [IVHttpManager shareManager].gateway = @"http://www.pt-gateway.com/_glaxy_1e3c3b_/";
-            [IVHttpManager shareManager].gateways = @[@"http://www.pt-gateway.com/_glaxy_1e3c3b_/"];
+//            [IVHttpManager shareManager].gateway = @"http://www.pt-gateway.com/_glaxy_1e3c3b_/";
+//            [IVHttpManager shareManager].gateways = @[@"http://www.pt-gateway.com/_glaxy_1e3c3b_/"];
 //            [IVHttpManager shareManager].gateway = nil;
 //            [IVHttpManager shareManager].gateways = [[AppdelegateManager shareManager] gateways];
             break;
         }
         case IVNEnvironmentTest:
         {
-            self.envName = @"运测环境";
-            [IVHttpManager shareManager].gateway = @"https://h5.918rr.com/_glaxy_1e3c3b_/";
-            [IVHttpManager shareManager].gateways = @[@"https://h5.918rr.com/_glaxy_1e3c3b_/"];
+            _envName = @"运测环境";
+//            [IVHttpManager shareManager].gateway = @"https://h5.918rr.com/_glaxy_1e3c3b_/";
+//            [IVHttpManager shareManager].gateways = @[@"https://h5.918rr.com/_glaxy_1e3c3b_/"];
 //            [IVHttpManager shareManager].gateways = @[@"https://usdtm.hwx22.com", @"https://usdtw.hwx22.com", @"https://usdtmp.hwx22.com", @"https://usdtwp.hwx22.com"];
             break;
         }
@@ -135,11 +154,11 @@
 //        }
         case IVNEnvironmentPublish:
         {
-            self.envName = @"运营环境";
+            _envName = @"运营环境";
 //            [IVHttpManager shareManager].gateway =  @"https://wu7018.com/_glaxy_1e3c3b_/";
 //            [IVHttpManager shareManager].gateways = @[@"https://wu7021.com/_glaxy_1e3c3b_/", @"https://wu7020.com/_glaxy_1e3c3b_/", @"https://wu7018.com/_glaxy_1e3c3b_/", @"https://www.wang568.com/_glaxy_1e3c3b_/", @"https://www.sheng1568.com/_glaxy_1e3c3b_/", @"https://www.cai1568.com/_glaxy_1e3c3b_/", @"https://179bi.com/_glaxy_1e3c3b_/"];
-            [IVHttpManager shareManager].gateway = @"https://wrd.58baili.com/pro/_glaxy_1e3c3b_/";
-            [IVHttpManager shareManager].gateways = @[@"https://wrd.58baili.com/pro/_glaxy_1e3c3b_/", @"https://m.pkyorjhn.com:9188/_glaxy_1e3c3b_/"];
+//            [IVHttpManager shareManager].gateway = @"https://wrd.58baili.com/pro/_glaxy_1e3c3b_/";
+//            [IVHttpManager shareManager].gateways = @[@"https://wrd.58baili.com/pro/_glaxy_1e3c3b_/", @"https://m.pkyorjhn.com:9188/_glaxy_1e3c3b_/"];
             //            [IVHttpManager shareManager].gateway = nil;
             //            [IVHttpManager shareManager].gateways = [[AppdelegateManager shareManager] gateways];
 
@@ -148,17 +167,6 @@
         default:
             break;
     }
-    
-//    //通知外部
-    [eventDict setValue:[IVHttpManager shareManager].gateway forKey:@"to"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:IVNGatewaySwitchNotification object:nil userInfo:eventDict.copy];
-
-#ifdef DEBUG
-    [kKeywindow jk_makeToast:[IVHttpManager shareManager].gateway
-                    duration:4
-                    position:JKToastPositionCenter
-                       title:[NSString stringWithFormat:@"😄当前是%ld --【%@】",(long)environment ,self.envName]];
-#endif
 }
 
 - (NSMutableDictionary *)baseParam {
