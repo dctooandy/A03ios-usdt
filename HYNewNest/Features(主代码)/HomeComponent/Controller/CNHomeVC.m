@@ -38,6 +38,7 @@
 #import <MJRefresh/MJRefresh.h>
 #import "NSURL+HYLink.h"
 #import "HYTabBarViewController.h"
+#import "A03ActivityManager.h"
 #import "AppdelegateManager.h"
 #import "RedPacketsRainView.h"
 #import "BTTAnimationPopView.h"
@@ -100,11 +101,12 @@
     [self configUI];
     
     [self userDidLogin];
+    [self popupSetting];
     [self requestAnnouncement];
     [self requestCDNAndDomain];
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:BYRefreshBalanceNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:HYLoginSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLoginByNoti) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:HYLogoutSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:BYDidEnterHomePageNoti object:nil];
     [self showRedPacketsRainView];
@@ -139,41 +141,59 @@
 {
     [super viewWillAppear:animated];
     [[AppdelegateManager shareManager] recheckDomainWithTestSpeed];
-    [self userDidLogin];
     [self requestAnnouncement];
+}
+- (void)userDidLoginByNoti
+{
+    [self userDidLogin];
+    [self popupSetting];
 }
 - (void)userDidLogin {
     [self.infoView updateLoginStatusUIIsRefreshing:YES];
-    
     [self requestHomeBanner];
-    
+    [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] performSelector:@selector(fetchUnreadCount)];
     if ([CNUserManager shareManager].isLogin) {
         self.infoViewH.constant = 140;
-//        [self requestNightCity];
-        // 弹窗盒子
-        [self requestNewsBox];
+        //        [self requestNightCity];
         // 游戏线路
         [[HYInGameHelper sharedInstance] queryHomeInGamesStatus];
         // 最近玩过的电游
-//        for (CNBaseVC *vc in self.childViewControllers) {
-//            if ([vc isKindOfClass:[CNElectronicVC class]]) {
-//                [(CNElectronicVC *)vc queryRecentGames];
-//            }
-//        }
+        //        for (CNBaseVC *vc in self.childViewControllers) {
+        //            if ([vc isKindOfClass:[CNElectronicVC class]]) {
+        //                [(CNElectronicVC *)vc queryRecentGames];
+        //            }
+        //        }
         
     } else {
         self.infoViewH.constant = 140;
     }
-    
-    [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] performSelector:@selector(fetchUnreadCount)];
 }
-
+- (void) popupSetting
+{
+    // 弹窗盒子
+    // 新的方法
+    WEAKSELF_DEFINE
+    [[A03ActivityManager sharedInstance] checkPopViewWithCompletionBlock:^(A03PopViewModel * _Nullable response, NSString * _Nullable error) {
+        if (response)
+        {
+            [CNMessageBoxView showMessageBoxWithImages:@[response.image].mutableCopy
+                                                onView:weakSelf.view
+                                              tapBlock:^(int idx) {
+                [NNPageRouter jump2HTMLWithStrURL:response.link title:response.title needPubSite:NO];
+            } tapClose:^{
+                [weakSelf showAccountTutorials];
+            }];
+        }else
+        {
+            [weakSelf showAccountTutorials];
+        }
+    }];
+}
 - (void)userDidLogout {
     [self.infoView updateLoginStatusUIIsRefreshing:NO];
     self.infoViewH.constant = 140;
-    
     [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] performSelector:@selector(setUnreadToDefault)];
-
+    [self popupSetting];
 }
 
 - (void)configUI {
@@ -266,69 +286,76 @@
 }
 
 - (void)requestNewsBox {
-    if ([CNUserManager shareManager].isLogin) {
-        NSDate *nowDate = [NSDate date];
-        NSString *agoDateStr = [[NSUserDefaults standardUserDefaults] stringForKey:HYHomeMessageBoxLastimeDate];
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        __block NSString *nowDateStr = [dateFormatter stringFromDate:nowDate];
-        
-        if ([agoDateStr isEqualToString:nowDateStr]) {
-            MyLog(@"弹窗盒子一天就显示一次");
-            [self showAccountTutorials];
-        }
-        else{
-            // 需要执行的方法写在这里
-            WEAKSELF_DEFINE
-            [CNHomeRequest queryMessageBoxHandler:^(id responseObj, NSString *errorMsg) {
-                
-                STRONGSELF_DEFINE
-                NSMutableArray<MessageBoxModel *> *models = [[MessageBoxModel cn_parse:responseObj] mutableCopy];
-                if (models.count == 0) { return; }
-                
-                NSMutableArray *imgs = @[].mutableCopy;
-                [models enumerateObjectsUsingBlock:^(MessageBoxModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    BOOL flag = YES; // 用来判定是否 没有被筛出
-                    // 筛选等级：固定
-                    if (obj.fixedLevel) {
-                        NSArray *levs = [obj.fixedLevel componentsSeparatedByString:@","];
-                        if (![levs containsObject:[NSString stringWithFormat:@"%ld", [CNUserManager shareManager].userDetail.starLevel]]) {
-                            [models removeObject:obj];
-                            flag = NO;
-                        }
-                    }
-                    // 筛选等级：大于等于
-                    if (obj.level) {
-                        if (obj.level.integerValue > [CNUserManager shareManager].userDetail.starLevel) {
-                            [models removeObject:obj];
-                            flag = NO;
-                        }
-                    }
-                    if (flag) {
-                        // 图片数组
-                        NSString *url = [NSURL getStrUrlWithString: obj.imgUrl];
-                        [imgs addObject:url];
-                    }
-                }];
-                strongSelf.msgBoxModels = models;
-                if (imgs.count > 0 && imgs.count == models.count) {
-                    [CNMessageBoxView showMessageBoxWithImages:imgs onView:weakSelf.view
-                                                      tapBlock:^(int idx) {
-                        MessageBoxModel *m = strongSelf.msgBoxModels[idx];
-                        [NNPageRouter jump2HTMLWithStrURL:m.link title:@"活动" needPubSite:NO];
-                    } tapClose:^{
-                        [weakSelf showAccountTutorials];
-                    }];
-                    [[NSUserDefaults standardUserDefaults] setObject:nowDateStr forKey:HYHomeMessageBoxLastimeDate];
-                    [[NSUserDefaults standardUserDefaults] synchronize];
-                }
-                else {
-                    [weakSelf showAccountTutorials];
-                }
-            }];
-        }
-    }
+//    if ([CNUserManager shareManager].isLogin) {
+//        NSDate *nowDate = [NSDate date];
+//        NSString *agoDateStr = [[NSUserDefaults standardUserDefaults] stringForKey:HYHomeMessageBoxLastimeDate];
+//        
+//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+//        __block NSString *nowDateStr = [dateFormatter stringFromDate:nowDate];
+//        
+//        if ([agoDateStr isEqualToString:nowDateStr]) {
+//            MyLog(@"弹窗盒子一天就显示一次");
+//            [self showAccountTutorials];
+//        }
+//        else{
+//            [[NSUserDefaults standardUserDefaults] setObject:nowDateStr forKey:HYHomeMessageBoxLastimeDate];
+//            [[NSUserDefaults standardUserDefaults] synchronize];
+//            // 需要执行的方法写在这里
+//        }
+//    }
+   
+    //        else{
+    //            // 需要执行的方法写在这里
+    //            WEAKSELF_DEFINE
+    //            [CNHomeRequest queryMessageBoxHandler:^(id responseObj, NSString *errorMsg) {
+    //
+    //                STRONGSELF_DEFINE
+    //                NSMutableArray<MessageBoxModel *> *models = [[MessageBoxModel cn_parse:responseObj] mutableCopy];
+    //                if (models.count == 0) { return; }
+    //
+    //                NSMutableArray *imgs = @[].mutableCopy;
+    //                [models enumerateObjectsUsingBlock:^(MessageBoxModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    //                    BOOL flag = YES; // 用来判定是否 没有被筛出
+    //                    // 筛选等级：固定
+    //                    if (obj.fixedLevel) {
+    //                        NSArray *levs = [obj.fixedLevel componentsSeparatedByString:@","];
+    //                        if (![levs containsObject:[NSString stringWithFormat:@"%ld", [CNUserManager shareManager].userDetail.starLevel]]) {
+    //                            [models removeObject:obj];
+    //                            flag = NO;
+    //                        }
+    //                    }
+    //                    // 筛选等级：大于等于
+    //                    if (obj.level) {
+    //                        if (obj.level.integerValue > [CNUserManager shareManager].userDetail.starLevel) {
+    //                            [models removeObject:obj];
+    //                            flag = NO;
+    //                        }
+    //                    }
+    //                    if (flag) {
+    //                        // 图片数组
+    //                        NSString *url = [NSURL getStrUrlWithString: obj.imgUrl];
+    //                        [imgs addObject:url];
+    //                    }
+    //                }];
+    //                strongSelf.msgBoxModels = models;
+    //                if (imgs.count > 0 && imgs.count == models.count) {
+    //                    [CNMessageBoxView showMessageBoxWithImages:imgs
+    //                                                        onView:weakSelf.view
+    //                                                      tapBlock:^(int idx) {
+    //                        MessageBoxModel *m = strongSelf.msgBoxModels[idx];
+    //                        [NNPageRouter jump2HTMLWithStrURL:m.link title:@"活动" needPubSite:NO];
+    //                    } tapClose:^{
+    //                        [weakSelf showAccountTutorials];
+    //                    }];
+    //                    [[NSUserDefaults standardUserDefaults] setObject:nowDateStr forKey:HYHomeMessageBoxLastimeDate];
+    //                    [[NSUserDefaults standardUserDefaults] synchronize];
+    //                }
+    //                else {
+    //                    [weakSelf showAccountTutorials];
+    //                }
+    //            }];
+    //        }
 }
 
 - (void)requestHomeBanner {
@@ -353,15 +380,13 @@
                     continue;
                 }
             }
-            NSString *fullUrl = [groupModel.domainName stringByAppendingString:model.imgUrl];
+            NSString *fullUrl = [[A03ActivityManager sharedInstance] nowCDNString:groupModel.domainName WithUrl:model.imgUrl];
             [imgUrls addObject:fullUrl];
             [modArr addObject:model];
         }
         strongSelf.bannerView.imageURLStringsGroup = imgUrls;
         strongSelf.bannModels = modArr;
-        
     }];
-    
 }
 
 - (void)requestAnnouncement {

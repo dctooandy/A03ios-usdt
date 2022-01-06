@@ -84,11 +84,19 @@ static NSString *const KBonusCell = @"HYBonusCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MyPromoItem *item = self.promos[indexPath.row];
     HYBonusCell *cell = (HYBonusCell *)[tableView dequeueReusableCellWithIdentifier:KBonusCell forIndexPath:indexPath];
+    WEAKSELF_DEFINE
+    cell.tapMoreAction = ^{
+        [weakSelf jumpToHtmlWithIndexPath:indexPath];
+    };
     cell.model = item;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self jumpToHtmlWithIndexPath:indexPath];
+}
+-(void)jumpToHtmlWithIndexPath:(NSIndexPath *)indexPath
+{
     MyPromoItem *item = self.promos[indexPath.row];
     if (!KIsEmptyString(item.linkUrl)) {
         [NNPageRouter jump2HTMLWithStrURL:item.linkUrl
@@ -96,5 +104,4 @@ static NSString *const KBonusCell = @"HYBonusCell";
                               needPubSite:NO];
     }
 }
-
 @end
