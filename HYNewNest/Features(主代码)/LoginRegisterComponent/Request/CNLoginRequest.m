@@ -395,6 +395,28 @@
     }];
 }
 
++ (void)getUserInfoByTokenWithoutNotiCompletionHandler:(nullable HandlerBlock)completionHandler
+{
+    NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
+    paramDic[@"inclMobileNo"] = @(1);
+    paramDic[@"inclMobileNoBind"] = @(1);
+    paramDic[@"inclRealName"] = @(1);
+    paramDic[@"inclVerifyCode"] = @(1);
+    paramDic[@"inclBankAccount"] = @(1);
+    paramDic[@"inclOnlineMessenger2"] = @(1);
+    paramDic[@"inclEmail"] = @(1);
+    paramDic[@"inclExistsWithdralPwd"] = @1;       //是否设置了资金密码
+//    paramDic[@"inclPromoAmountByMonth"] = @(1); // 本月优惠
+//    paramDic[@"inclRebatedAmountByMonth"] = @(1); // 本月洗码
+
+    [self POST:(config_getByLoginName) parameters:paramDic completionHandler:^(id responseObj, NSString *errorMsg) {
+        [[CNUserManager shareManager] saveUserDetailWithoutNoti:responseObj];
+        if (completionHandler) {
+            completionHandler(responseObj, errorMsg);
+        }
+    }];
+}
+
 + (void)logoutHandler:(HandlerBlock)completionHandler{
     [self POST:(config_logout) parameters:[kNetworkMgr baseParam] completionHandler:^(id responseObj, NSString *errorMsg) {
         [[CNUserManager shareManager] cleanUserInfo];

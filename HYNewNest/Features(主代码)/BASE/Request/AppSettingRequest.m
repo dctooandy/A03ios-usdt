@@ -20,6 +20,6 @@
     params[@"productId"] = [IVHttpManager shareManager].productId;
     params[@"productCodeExt"] = @"FM";
     params[@"productCode"] = @"";
-    [self POST:A03AppSetting parameters:params completionHandler:handler];
+    [self POST:kGatewayExtraPath(A03AppSetting) parameters:params completionHandler:handler];
 }
 @end
