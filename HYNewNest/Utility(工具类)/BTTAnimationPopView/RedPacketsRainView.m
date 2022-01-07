@@ -22,6 +22,8 @@
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 @end
 
+#define RedPacketCountDown     2
+#define RedPacketDuration      2
 @implementation RedPacketsRainView
 
 - (void)awakeFromNib {
@@ -76,7 +78,7 @@
 {
     weakSelf(weakSelf)
     self.titleLabel.text = @"抢红包啦";
-    __block int timeout = 1;
+    __block int timeout = RedPacketDuration;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
@@ -110,7 +112,7 @@
     self.titleLabel.text = @"红包结束倒数计时";
     
     weakSelf(weakSelf)
-    __block int timeout = 10;
+    __block int timeout = RedPacketCountDown;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
