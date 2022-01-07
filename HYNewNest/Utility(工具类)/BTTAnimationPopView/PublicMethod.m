@@ -1295,4 +1295,56 @@ void ProviderReleaseData (void *info, const void *data, size_t size){
         return false;
     }
 }
++(NSString *)serverTime {
+    NSDate *timeDate = [NSDate new];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    return [dateFormatter stringFromDate:timeDate];
+}
+//检查红包雨是否在期间
++(NSArray *)redPacketDuracionCheck
+{
+    BOOL isBeforeDuration = [PublicMethod checksStartDate:@"2021-01-01" EndDate:BeforeStartDate serverTime:[PublicMethod serverTime]];
+    BOOL isActivityDuration = [PublicMethod checksStartDate:RedPacketStartDate EndDate:@"2022-02-07" serverTime:[PublicMethod serverTime]];
+    return @[[NSNumber numberWithBool:isBeforeDuration] ,[NSNumber numberWithBool:isActivityDuration]];
+}
+//返回下一场次红包雨的时间
++(int)countDownIntervalWithDurationTag:(BOOL)isActivityDuration
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSDate *startDate;
+    NSTimeInterval startDateTime = 0;
+    NSTimeInterval secondStartDateTime = 0;
+    NSTimeInterval countDownInterval = 0;
+    if (!isActivityDuration)
+    {
+        // 不到时间,预热
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        startDate = [dateFormatter dateFromString:RedPacketStartDate];
+        startDateTime = [[NSDate date] timeIntervalSinceDate:startDate];
+        countDownInterval = -startDateTime;
+    }else
+    {
+        // 活动期间
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+        startDate = [dateFormatter dateFromString:RedPacketFirstStartTime];// 第一天早上10点
+        startDateTime = (int)[[NSDate date] timeIntervalSinceDate:startDate] % (60 * 60 * 24);
+        secondStartDateTime = startDateTime - (60 * 60 * 4);
+        
+        if (startDateTime < 0)
+        {
+            //早于10点
+            countDownInterval = -startDateTime;
+        } else if (secondStartDateTime < 0)
+        {
+            //介于10点到14点
+            countDownInterval = -secondStartDateTime;
+        }else
+        {
+            //晚于14点
+            countDownInterval = (60*60*24 - secondStartDateTime);
+        }
+    }
+    return countDownInterval;
+}
 @end

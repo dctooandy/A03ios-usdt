@@ -130,46 +130,12 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
     [self serverTime:^(NSString *timeStr) {
         if (timeStr.length > 0)
         {
-            BOOL isBeforeDuration = [PublicMethod checksStartDate:@"2021-01-01" EndDate:@"2022-01-31" serverTime:timeStr];
-            BOOL isActivityDuration = [PublicMethod checksStartDate:@"2022-02-01" EndDate:@"2022-02-07" serverTime:timeStr];
-            
+            NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
+            BOOL isBeforeDuration = [duractionArray[0] boolValue];
+            BOOL isActivityDuration = [duractionArray[1] boolValue];
             if (isBeforeDuration || isActivityDuration)
             {
-                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                NSDate *startDate;
-                NSTimeInterval startDateTime = 0;
-                NSTimeInterval secondStartDateTime = 0;
-                NSTimeInterval countDownInterval = 0;
-                if (!isActivityDuration)
-                {
-                    // 不到时间,预热
-                    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-                    startDate = [dateFormatter dateFromString:@"2022-02-01"];
-                    startDateTime = [[NSDate date] timeIntervalSinceDate:startDate];
-                    countDownInterval = -startDateTime;
-                }else
-                {
-                    // 活动期间
-                    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-                    startDate = [dateFormatter dateFromString:@"2022-02-01 10:00"];// 第一天早上10点
-                    startDateTime = (int)[[NSDate date] timeIntervalSinceDate:startDate] % (60 * 60 * 24);
-                    secondStartDateTime = startDateTime - (60 * 60 * 4);
-
-                    if (startDateTime < 0)
-                    {
-                        //早于10点
-                        countDownInterval = -startDateTime;
-                    } else if (secondStartDateTime < 0)
-                    {
-                        //介于10点到14点
-                        countDownInterval = -secondStartDateTime;
-                    }else
-                    {
-                        //晚于14点
-                        countDownInterval = (60*60*24 - secondStartDateTime);
-                    }
-                }
-                __block int timeout = countDownInterval;
+                __block int timeout = [PublicMethod countDownIntervalWithDurationTag:isActivityDuration];
                 dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
                 dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
                 dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
@@ -178,8 +144,8 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
                     {
                         dispatch_source_cancel(_timer);
                         dispatch_async(dispatch_get_main_queue(), ^{
-            //                [weakSelf startRedPackerts];
-            //                [weakSelf.tapGesture setEnabled:YES];
+                            //                [weakSelf startRedPackerts];
+                            //                [weakSelf.tapGesture setEnabled:YES];
                         });
                     }
                     else

@@ -34,13 +34,13 @@
     _tapGesture = tap;
     [self.tapGesture setEnabled:NO];
 }
-- (void)configForRedPocketsView:(RedPocketsViewStyle)style
+- (void)configForRedPocketsView:(RedPocketsViewStyle)style withDuration:(int)duration
 {
     _viewStyle = style;
     switch (self.viewStyle) {
         case RedPocketsViewBegin:
             self.selectedRedPacketNum = 0;
-            [self startTime];
+            [self startTimeWithDuration:duration];
             break;
         case RedPocketsViewResult:
             [self.tapGesture setEnabled:NO];
@@ -74,11 +74,11 @@
     
 }
 
-- (void)startTime
+- (void)startTimeWithDuration:(int)timeValue
 {
     weakSelf(weakSelf)
     self.titleLabel.text = @"抢红包啦";
-    __block int timeout = RedPacketDuration;
+    __block int timeout = timeValue;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);

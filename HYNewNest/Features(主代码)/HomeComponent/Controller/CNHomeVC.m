@@ -45,7 +45,7 @@
 #import <UIImageView+WebCache.h>
 #import "AssistiveButton.h"
 #import "UIImage+GIF.h"
-
+#import "PublicMethod.h"
 typedef void(^ButtonCallBack)(void);
 
 @interface CNHomeVC () <CNUserInfoLoginViewDelegate,  SDCycleScrollViewDelegate, UUMarqueeViewDelegate, GameBtnsStackViewDelegate, DashenBoardAutoHeightDelegate>
@@ -208,9 +208,14 @@ typedef void(^ButtonCallBack)(void);
         if ([response isEqualToString:@"1"])
         {
             // 活动期
+            [weakSelf popupTenSecondView];
         }else
         {
             // 预热
+            //暂时让他出来
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf showRedPacketsRainViewWithDuration:10];
+            });
         }
     } WithDefaultCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
         // 一般活动
@@ -224,14 +229,14 @@ typedef void(^ButtonCallBack)(void);
         if (timeStr.length > 0) {
             if ([self checksStartDate:@"10:00" EndDate:@"10:01" serverTime:timeStr])
             {
-                [self showRedPacketsRainView];
+                
             }else if ([self checksStartDate:@"14:00" EndDate:@"14:01" serverTime:timeStr])
             {
-                [self showRedPacketsRainView];
+                
             }else
             {
                 /// 不到时间
-                [self showRedPacketsRainView];
+                
             }
         }
     }];
@@ -645,10 +650,40 @@ typedef void(^ButtonCallBack)(void);
     }
     return _marqueeView;
 }
-- (void)showRedPacketsRainView
+- (void)popupTenSecondView
+{
+    WEAKSELF_DEFINE
+    __block int timeout = [PublicMethod countDownIntervalWithDurationTag:YES] - RedPacketDuration;//倒数10秒前
+    if (timeout <= 0)//刚好在这10秒钟
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf showRedPacketsRainViewWithDuration:(timeout == 0 ? 0: -timeout)];
+        });
+    }else
+    {
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+        dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+        dispatch_source_set_event_handler(_timer, ^{
+            if ( timeout <= 0 )
+            {
+                dispatch_source_cancel(_timer);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf showRedPacketsRainViewWithDuration:RedPacketDuration];
+                });
+            }
+            else
+            {
+                timeout--;
+            }
+        });
+        dispatch_resume(_timer);
+    }
+}
+- (void)showRedPacketsRainViewWithDuration:(int)duration
 {
     RedPacketsRainView *alertView = [RedPacketsRainView viewFromXib];
-    [alertView configForRedPocketsView:RedPocketsViewBegin];
+    [alertView configForRedPocketsView:RedPocketsViewBegin withDuration:duration];
     BTTAnimationPopView *popView = [[BTTAnimationPopView alloc] initWithCustomView:alertView popStyle:BTTAnimationPopStyleNO dismissStyle:BTTAnimationDismissStyleNO];
     
     popView.isClickBGDismiss = YES;

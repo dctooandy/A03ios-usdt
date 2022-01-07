@@ -52,3 +52,10 @@
 // 是否为iPhoneX
 #define KIsiPhoneX                       (((int)((SCREEN_HEIGHT / SCREEN_WIDTH) * 100) == 216) ? YES : NO)
 #endif /* PrefixHeader_pch */
+// 红包雨
+#define BeforeStartDate                 @"2022-01-31"
+#define RedPacketStartDate              @"2022-02-01"
+#define RedPacketFirstStartTime         @"2022-02-07 10:00"
+#define RedPacketDuration               10 // 倒数前10秒
+#define RedPacketCountDown              60 // 下雨60秒
+

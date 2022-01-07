@@ -254,6 +254,9 @@ NS_ASSUME_NONNULL_BEGIN
 +(BOOL)checkProductDate:(NSString *)tempDate serverTime:(NSString *)serverTime;
 
 +(BOOL)checksStartDate:(NSString *)startTime EndDate:(NSString *)endTime serverTime:(NSString *)serverTime;
++(NSString *)serverTime ;
++(NSArray *)redPacketDuracionCheck;
++(int)countDownIntervalWithDurationTag:(BOOL)isActivityDuration;
 @end
 
 NS_ASSUME_NONNULL_END

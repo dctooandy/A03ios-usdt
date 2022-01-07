@@ -35,19 +35,16 @@ static A03ActivityManager * sharedSingleton;
     [self serverTime:^(NSString *timeStr) {
         if (timeStr.length > 0)
         {
-            if ([PublicMethod checksStartDate:@"2021-02-01" EndDate:@"2022-02-07" serverTime:timeStr])
+            NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
+            BOOL isBeforeDuration = [duractionArray[0] boolValue];
+            BOOL isActivityDuration = [duractionArray[1] boolValue];
+            if (isBeforeDuration || isActivityDuration)
             {
-                //不到时间,预热
-                if (redPacketBlock)
-                {
-                    redPacketBlock(nil,nil);
-                }
-            }else if ([PublicMethod checksStartDate:@"2022-02-01" EndDate:@"2022-02-07" serverTime:timeStr])
-            {
+                // 不到时间,预热
                 // 活动期间
                 if (redPacketBlock)
                 {
-                    redPacketBlock(@"1",nil);
+                    redPacketBlock(isActivityDuration ? @"1" : nil,nil);
                 }
             }else
             {

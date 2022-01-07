@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, RedPocketsViewPosition) {
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RedPacketsRainView : BTTBaseAnimationPopView
-- (void)configForRedPocketsView:(RedPocketsViewStyle)style;
+- (void)configForRedPocketsView:(RedPocketsViewStyle)style withDuration:(int)duration;
 @end
 
 NS_ASSUME_NONNULL_END
