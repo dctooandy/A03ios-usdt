@@ -376,9 +376,9 @@
 		5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */; };
 		7636AE6E272BC4C70072AB0E /* BYDeleteBankCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7636AE6C272BC4C70072AB0E /* BYDeleteBankCardVC.m */; };
 		7636AE71272BC5940072AB0E /* BYDeleteBankCardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7636AE70272BC5940072AB0E /* BYDeleteBankCardVC.xib */; };
+		76485F1F2786EDE9004EA51E /* RedPacketsRainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76485F1E2786EDE9004EA51E /* RedPacketsRainView.xib */; };
 		765C64E32782B4ED00A6BC34 /* BTTAnimationPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 765C64E22782B4ED00A6BC34 /* BTTAnimationPopView.m */; };
 		765C64E92782B71700A6BC34 /* BTTBaseAnimationPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 765C64E82782B71700A6BC34 /* BTTBaseAnimationPopView.m */; };
-		765C64F22782C82B00A6BC34 /* RedPacketsRainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 765C64EF2782C82A00A6BC34 /* RedPacketsRainView.xib */; };
 		765C64F32782C82B00A6BC34 /* RedPacketsRainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 765C64F12782C82A00A6BC34 /* RedPacketsRainView.m */; };
 		766A6EC6276B3E37007DC6A1 /* A03ActivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 766A6EC5276B3E36007DC6A1 /* A03ActivityManager.m */; };
 		766A6EC9276B3F4A007DC6A1 /* A03PopViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 766A6EC8276B3F4A007DC6A1 /* A03PopViewModel.m */; };
@@ -1723,11 +1723,11 @@
 		7636AE6B272BC4C70072AB0E /* BYDeleteBankCardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYDeleteBankCardVC.h; sourceTree = "<group>"; };
 		7636AE6C272BC4C70072AB0E /* BYDeleteBankCardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYDeleteBankCardVC.m; sourceTree = "<group>"; };
 		7636AE70272BC5940072AB0E /* BYDeleteBankCardVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BYDeleteBankCardVC.xib; sourceTree = "<group>"; };
+		76485F1E2786EDE9004EA51E /* RedPacketsRainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketsRainView.xib; sourceTree = "<group>"; };
 		765C64E12782B4ED00A6BC34 /* BTTAnimationPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTAnimationPopView.h; sourceTree = "<group>"; };
 		765C64E22782B4ED00A6BC34 /* BTTAnimationPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTAnimationPopView.m; sourceTree = "<group>"; };
 		765C64E72782B71700A6BC34 /* BTTBaseAnimationPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTBaseAnimationPopView.h; sourceTree = "<group>"; };
 		765C64E82782B71700A6BC34 /* BTTBaseAnimationPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTBaseAnimationPopView.m; sourceTree = "<group>"; };
-		765C64EF2782C82A00A6BC34 /* RedPacketsRainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketsRainView.xib; sourceTree = "<group>"; };
 		765C64F02782C82A00A6BC34 /* RedPacketsRainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketsRainView.h; sourceTree = "<group>"; };
 		765C64F12782C82A00A6BC34 /* RedPacketsRainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketsRainView.m; sourceTree = "<group>"; };
 		766A6EC4276B3E36007DC6A1 /* A03ActivityManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = A03ActivityManager.h; sourceTree = "<group>"; };
@@ -4146,7 +4146,7 @@
 				765C64E82782B71700A6BC34 /* BTTBaseAnimationPopView.m */,
 				765C64F02782C82A00A6BC34 /* RedPacketsRainView.h */,
 				765C64F12782C82A00A6BC34 /* RedPacketsRainView.m */,
-				765C64EF2782C82A00A6BC34 /* RedPacketsRainView.xib */,
+				76485F1E2786EDE9004EA51E /* RedPacketsRainView.xib */,
 			);
 			path = BTTAnimationPopView;
 			sourceTree = "<group>";
@@ -5869,7 +5869,7 @@
 				D5A443C124F378CD00014DC6 /* 彩票_00028.png in Resources */,
 				D5A4460824F393E500014DC6 /* 足球_00033.png in Resources */,
 				D5A4456B24F393AC00014DC6 /* 棋牌_00041.png in Resources */,
-				765C64F22782C82B00A6BC34 /* RedPacketsRainView.xib in Resources */,
+				76485F1F2786EDE9004EA51E /* RedPacketsRainView.xib in Resources */,
 				D5FBFDF824B59DB100BBCAD8 /* SkinMapValue.plist in Resources */,
 				D5A4449D24F3932400014DC6 /* 数字7_00033.png in Resources */,
 				D5A4456D24F393AC00014DC6 /* 棋牌_00082.png in Resources */,
