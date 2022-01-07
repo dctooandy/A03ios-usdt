@@ -106,18 +106,11 @@ typedef void(^ButtonCallBack)(void);
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
-    
     [self userDidLogin];
     [self popupSetting];
     [self requestAnnouncement];
     [self requestCDNAndDomain];
-    WEAKSELF_DEFINE
-    [self setUpCustomAssistiveButtonCompleted:^{
-        if (self.redPocketsAssistiveButton != nil) {
-            [weakSelf.view addSubview:weakSelf.redPocketsAssistiveButton];
-        }
-    }];
-    [self checkTimeForRedPoickets];
+    [self assistiveBtnAndActivitySetting];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:BYRefreshBalanceNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLoginByNoti) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:HYLogoutSuccessNotification object:nil];
@@ -199,6 +192,30 @@ typedef void(^ButtonCallBack)(void);
         {
             [weakSelf showAccountTutorials];
         }
+    }];
+}
+- (void)assistiveBtnAndActivitySetting
+{
+    WEAKSELF_DEFINE
+    [[A03ActivityManager sharedInstance] checkTimeRedPacketRainWithCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
+        // 悬浮按钮
+        [weakSelf setUpCustomAssistiveButtonCompleted:^{
+            if (weakSelf.redPocketsAssistiveButton != nil) {
+                [weakSelf.view addSubview:weakSelf.redPocketsAssistiveButton];
+            }
+        }];
+        // 红包雨活动
+        if ([response isEqualToString:@"1"])
+        {
+            // 活动期
+        }else
+        {
+            // 预热
+        }
+    } WithDefaultCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
+        // 一般活动
+        // 悬浮按钮设定
+        
     }];
 }
 - (void)checkTimeForRedPoickets

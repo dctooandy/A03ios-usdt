@@ -8,6 +8,7 @@
 
 #import "A03ActivityManager.h"
 #import "CNHomeRequest.h"
+#import "PublicMethod.h"
 
 @interface A03ActivityManager()
 @property(nonatomic,strong)A03PopViewModel * popModel;
@@ -26,6 +27,38 @@ static A03ActivityManager * sharedSingleton;
 }
 + (A03ActivityManager *)sharedInstance {
     return sharedSingleton;
+}
+- (void)checkTimeRedPacketRainWithCompletion:(RedPacketCallBack _Nullable)redPacketBlock
+                       WithDefaultCompletion:(RedPacketCallBack _Nullable)defaultBlock
+{
+    WEAKSELF_DEFINE
+    [self serverTime:^(NSString *timeStr) {
+        if (timeStr.length > 0)
+        {
+            if ([PublicMethod checksStartDate:@"2021-02-01" EndDate:@"2022-02-07" serverTime:timeStr])
+            {
+                //不到时间,预热
+                if (redPacketBlock)
+                {
+                    redPacketBlock(nil,nil);
+                }
+            }else if ([PublicMethod checksStartDate:@"2022-02-01" EndDate:@"2022-02-07" serverTime:timeStr])
+            {
+                // 活动期间
+                if (redPacketBlock)
+                {
+                    redPacketBlock(@"1",nil);
+                }
+            }else
+            {
+                // 过了活动期
+                if (defaultBlock)
+                {
+                    defaultBlock(nil,nil);
+                }
+            }
+        }
+    }];
 }
 - (void)checkPopViewWithCompletionBlock:(PopViewCallBack _Nullable)completionBlock {
     
@@ -87,5 +120,10 @@ static A03ActivityManager * sharedSingleton;
     }
     return str;
 }
-
+-(void)serverTime:(CheckTimeCompleteBlock)completeBlock {
+    NSDate *timeDate = [NSDate new];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    completeBlock([dateFormatter stringFromDate:timeDate]);
+}
 @end

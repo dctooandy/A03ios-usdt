@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "A03PopViewModel.h"
 NS_ASSUME_NONNULL_BEGIN
+typedef void (^CheckTimeCompleteBlock)(NSString * timeStr);
+typedef void(^RedPacketCallBack)(NSString * _Nullable response, NSString * _Nullable error);
 typedef void(^PopViewCallBack)(A03PopViewModel * _Nullable response, NSString * _Nullable error);
 @interface A03ActivityManager : NSObject
 
@@ -16,6 +18,8 @@ typedef void(^PopViewCallBack)(A03PopViewModel * _Nullable response, NSString * 
 
 //检查wms弹窗API
 - (void)checkPopViewWithCompletionBlock:(PopViewCallBack _Nullable)completionBlock;
+// 检查客制活动期间
+- (void)checkTimeRedPacketRainWithCompletion:(RedPacketCallBack _Nullable)redPacketBlock WithDefaultCompletion:(RedPacketCallBack _Nullable)defaultBlock;
 // 自动配出现在的CDN+URLPath
 - (NSString *)nowCDNString:(NSString *)cdnString WithUrl:(NSString *)url;
 @end

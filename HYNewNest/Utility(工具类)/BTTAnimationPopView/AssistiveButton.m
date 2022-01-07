@@ -117,7 +117,12 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     completeBlock([dateFormatter stringFromDate:timeDate]);
-
+}
+-(NSString *)serverHourTime{
+    NSDate *timeDate = [NSDate new];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    return [dateFormatter stringFromDate:timeDate];
 }
 - (void)startTime
 {
@@ -125,15 +130,45 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
     [self serverTime:^(NSString *timeStr) {
         if (timeStr.length > 0)
         {
-            if ([PublicMethod checksStartDate:@"2021-02-01" EndDate:@"2022-02-07" serverTime:timeStr])
+            BOOL isBeforeDuration = [PublicMethod checksStartDate:@"2021-01-01" EndDate:@"2022-01-31" serverTime:timeStr];
+            BOOL isActivityDuration = [PublicMethod checksStartDate:@"2022-02-01" EndDate:@"2022-02-07" serverTime:timeStr];
+            
+            if (isBeforeDuration || isActivityDuration)
             {
-                //不到时间,预热
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-                NSDate *startDate = [dateFormatter dateFromString:@"2022-02-01"];
-                NSTimeInterval startDateTime = [[NSDate date] timeIntervalSinceDate:startDate];
-                NSTimeInterval countDownInterval = -startDateTime;
-                
+                NSDate *startDate;
+                NSTimeInterval startDateTime = 0;
+                NSTimeInterval secondStartDateTime = 0;
+                NSTimeInterval countDownInterval = 0;
+                if (!isActivityDuration)
+                {
+                    // 不到时间,预热
+                    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                    startDate = [dateFormatter dateFromString:@"2022-02-01"];
+                    startDateTime = [[NSDate date] timeIntervalSinceDate:startDate];
+                    countDownInterval = -startDateTime;
+                }else
+                {
+                    // 活动期间
+                    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+                    startDate = [dateFormatter dateFromString:@"2022-02-01 10:00"];// 第一天早上10点
+                    startDateTime = (int)[[NSDate date] timeIntervalSinceDate:startDate] % (60 * 60 * 24);
+                    secondStartDateTime = startDateTime - (60 * 60 * 4);
+
+                    if (startDateTime < 0)
+                    {
+                        //早于10点
+                        countDownInterval = -startDateTime;
+                    } else if (secondStartDateTime < 0)
+                    {
+                        //介于10点到14点
+                        countDownInterval = -secondStartDateTime;
+                    }else
+                    {
+                        //晚于14点
+                        countDownInterval = (60*60*24 - secondStartDateTime);
+                    }
+                }
                 __block int timeout = countDownInterval;
                 dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
                 dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
@@ -154,7 +189,14 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
                         int hInt = (int)leftTime / 3600;            //剩馀时数
                         int mInt = (int)leftTime / 60 % 60;         //剩馀分数
                         int sInt = (int)leftTime % 60;              //剩馀秒数
-                        NSString * titleStr = [NSString stringWithFormat:@"%d天%d小时%d分%d秒",dInt,hInt,mInt,sInt];
+                        NSString * titleStr;
+                        if (isActivityDuration)
+                        {
+                            titleStr = [NSString stringWithFormat:@"%d小时%d分%d秒",hInt,mInt,sInt];
+                        }else
+                        {
+                            titleStr = [NSString stringWithFormat:@"%d天%d小时%d分%d秒",dInt,hInt,mInt,sInt];
+                        }
                         dispatch_async(dispatch_get_main_queue(), ^{
                             weakSelf.countdownLab.text = titleStr;
                         });
@@ -162,10 +204,6 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
                     }
                 });
                 dispatch_resume(_timer);
-                
-            }else if ([PublicMethod checksStartDate:@"2022-02-01" EndDate:@"2022-02-07" serverTime:timeStr])
-            {
-                // 活动期间
             }else
             {
                 // 过了活动期
