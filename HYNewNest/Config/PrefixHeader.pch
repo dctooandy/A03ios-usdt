@@ -47,4 +47,8 @@
 #endif
 //带有RGBA的颜色设置
 #define COLOR_RGBA(R, G, B, A) [UIColor colorWithRed:R / 255.0 green:G / 255.0 blue:B / 255.0 alpha:A]
+// tabbar 适配iPhone X
+#define kTabbarHeight                    (KIsiPhoneX ? (34 + 49) : 49)
+// 是否为iPhoneX
+#define KIsiPhoneX                       (((int)((SCREEN_HEIGHT / SCREEN_WIDTH) * 100) == 216) ? YES : NO)
 #endif /* PrefixHeader_pch */

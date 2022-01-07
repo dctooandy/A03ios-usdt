@@ -42,6 +42,12 @@
 #import "AppdelegateManager.h"
 #import "RedPacketsRainView.h"
 #import "BTTAnimationPopView.h"
+#import <UIImageView+WebCache.h>
+#import "AssistiveButton.h"
+#import "UIImage+GIF.h"
+
+typedef void(^ButtonCallBack)(void);
+
 @interface CNHomeVC () <CNUserInfoLoginViewDelegate,  SDCycleScrollViewDelegate, UUMarqueeViewDelegate, GameBtnsStackViewDelegate, DashenBoardAutoHeightDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 /// 滚动视图
@@ -75,6 +81,7 @@
 @property (weak, nonatomic) IBOutlet UIView *dashenView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *boredViewH;
 @property (nonatomic, assign) NSInteger currBordPage;
+@property (nonatomic, strong) AssistiveButton * redPocketsAssistiveButton;
 @end
 
 @implementation CNHomeVC
@@ -104,7 +111,13 @@
     [self popupSetting];
     [self requestAnnouncement];
     [self requestCDNAndDomain];
-    
+    WEAKSELF_DEFINE
+    [self setUpCustomAssistiveButtonCompleted:^{
+        if (self.redPocketsAssistiveButton != nil) {
+            [weakSelf.view addSubview:weakSelf.redPocketsAssistiveButton];
+        }
+    }];
+    [self checkTimeForRedPoickets];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:BYRefreshBalanceNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLoginByNoti) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:HYLogoutSuccessNotification object:nil];
@@ -187,7 +200,6 @@
             [weakSelf showAccountTutorials];
         }
     }];
-    [self checkTimeForRedPoickets];
 }
 - (void)checkTimeForRedPoickets
 {
@@ -635,5 +647,31 @@
         [popView dismiss];
     };
 }
-
+// 悬浮按钮
+-(void)setUpCustomAssistiveButtonCompleted:(ButtonCallBack _Nullable)completionBlock
+{
+    UIImageView *imageView = [[UIImageView alloc] init];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:@"default4"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if ([imageURL.description containsString:@"gif"])
+        {
+            NSData *imageData = UIImagePNGRepresentation(image);
+            UIImage * backgroundImage = [UIImage sd_animatedGIFWithData:imageData];
+            self.redPocketsAssistiveButton = [[AssistiveButton alloc] initMainBtnWithCustomImage:backgroundImage highlightImage:nil];
+        }else
+        {
+            self.redPocketsAssistiveButton = [[AssistiveButton alloc] initMainBtnWithCustomImage:imageView.image highlightImage:nil];
+        }
+        //主按鈕可移動或移動後回彈跟不可移動
+        self.redPocketsAssistiveButton.positionMode = SpreadPositionModeNone;
+        weakSelf(weakSelf);
+        [self.redPocketsAssistiveButton setMainButtonClickActionBlock:^{
+            weakSelf.redPocketsAssistiveButton.hidden = true;
+            [NNPageRouter jump2HTMLWithStrURL:@"/pub_site/twinFight" title:@"过夜利息" needPubSite:NO];
+        }];
+        [self.redPocketsAssistiveButton setCloseBtnActionBlock:^{
+            [weakSelf.redPocketsAssistiveButton removeFromSuperview];
+        }];
+        completionBlock();
+    }];
+}
 @end
