@@ -415,7 +415,19 @@ NSString * const ID = @"SDCycleScrollViewCell";
             _pageControl = pageControl;
         }
             break;
-            
+        case SDCycleScrollViewPageContolStyleDefault:
+        {
+            TAPageControl *pageControl = [[TAPageControl alloc] init];
+            pageControl.dotViewClass = [TAExampleDotView class];
+            pageControl.numberOfPages = self.imagePathsGroup.count;
+            pageControl.dotColor = self.currentPageDotColor;
+            pageControl.userInteractionEnabled = NO;
+            pageControl.currentPage = indexOnPageControl;
+//            pageControl.dotSize = CGSizeMake(5, 5);
+            [self addSubview:pageControl];
+            [self setNeedsLayout];
+            _pageControl = pageControl;
+        }
         case SDCycleScrollViewPageContolStyleBiyou:
         {
             TAPageControl *pageControl = [[TAPageControl alloc] init];

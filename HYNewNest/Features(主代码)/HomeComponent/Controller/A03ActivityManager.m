@@ -31,7 +31,6 @@ static A03ActivityManager * sharedSingleton;
 - (void)checkTimeRedPacketRainWithCompletion:(RedPacketCallBack _Nullable)redPacketBlock
                        WithDefaultCompletion:(RedPacketCallBack _Nullable)defaultBlock
 {
-    WEAKSELF_DEFINE
     [self serverTime:^(NSString *timeStr) {
         if (timeStr.length > 0)
         {
@@ -57,6 +56,13 @@ static A03ActivityManager * sharedSingleton;
         }
     }];
 }
+-(void)serverTime:(CheckTimeCompleteBlock)completeBlock {
+    NSDate *timeDate = [NSDate new];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    completeBlock([dateFormatter stringFromDate:timeDate]);
+}
+
 - (void)checkPopViewWithCompletionBlock:(PopViewCallBack _Nullable)completionBlock {
     
     WEAKSELF_DEFINE
@@ -117,10 +123,5 @@ static A03ActivityManager * sharedSingleton;
     }
     return str;
 }
--(void)serverTime:(CheckTimeCompleteBlock)completeBlock {
-    NSDate *timeDate = [NSDate new];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    completeBlock([dateFormatter stringFromDate:timeDate]);
-}
+
 @end

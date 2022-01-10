@@ -41,6 +41,7 @@
 #import "A03ActivityManager.h"
 #import "AppdelegateManager.h"
 #import "RedPacketsRainView.h"
+#import "RedPacketsPreView.h"
 #import "BTTAnimationPopView.h"
 #import <UIImageView+WebCache.h>
 #import "AssistiveButton.h"
@@ -194,35 +195,7 @@ typedef void(^ButtonCallBack)(void);
         }
     }];
 }
-- (void)assistiveBtnAndActivitySetting
-{
-    WEAKSELF_DEFINE
-    [[A03ActivityManager sharedInstance] checkTimeRedPacketRainWithCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
-        // 悬浮按钮
-        [weakSelf setUpCustomAssistiveButtonCompleted:^{
-            if (weakSelf.redPocketsAssistiveButton != nil) {
-                [weakSelf.view addSubview:weakSelf.redPocketsAssistiveButton];
-            }
-        }];
-        // 红包雨活动
-        if ([response isEqualToString:@"1"])
-        {
-            // 活动期
-            [weakSelf popupTenSecondView];
-        }else
-        {
-            // 预热
-            //暂时让他出来
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf showRedPacketsRainViewWithDuration:10];
-            });
-        }
-    } WithDefaultCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
-        // 一般活动
-        // 悬浮按钮设定
-        
-    }];
-}
+
 - (void)checkTimeForRedPoickets
 {
     [self checkTime:^(NSString * _Nonnull timeStr) {
@@ -650,6 +623,36 @@ typedef void(^ButtonCallBack)(void);
     }
     return _marqueeView;
 }
+- (void)assistiveBtnAndActivitySetting
+{
+    WEAKSELF_DEFINE
+    [[A03ActivityManager sharedInstance] checkTimeRedPacketRainWithCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
+        // 悬浮按钮
+        [weakSelf setUpCustomAssistiveButtonCompleted:^{
+            if (weakSelf.redPocketsAssistiveButton != nil) {
+                [weakSelf.view addSubview:weakSelf.redPocketsAssistiveButton];
+            }
+        }];
+        // 红包雨活动
+        if (response != nil)
+        {
+            // 活动期
+            [weakSelf popupTenSecondView];
+        }else
+        {
+            // 预热
+            //暂时让他出来
+            dispatch_async(dispatch_get_main_queue(), ^{
+//                [weakSelf showRedPacketsPreViewWithDuration:10];
+                [weakSelf showRedPacketsRainViewWithDuration:10];
+            });
+        }
+    } WithDefaultCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
+        // 一般活动
+        // 悬浮按钮设定
+        
+    }];
+}
 - (void)popupTenSecondView
 {
     WEAKSELF_DEFINE
@@ -657,7 +660,7 @@ typedef void(^ButtonCallBack)(void);
     if (timeout <= 0)//刚好在这10秒钟
     {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf showRedPacketsRainViewWithDuration:(timeout == 0 ? 0: -timeout)];
+            [weakSelf showRedPacketsPreViewWithDuration:(timeout == 0 ? 0: -timeout)];
         });
     }else
     {
@@ -669,7 +672,7 @@ typedef void(^ButtonCallBack)(void);
             {
                 dispatch_source_cancel(_timer);
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakSelf showRedPacketsRainViewWithDuration:RedPacketDuration];
+                    [weakSelf showRedPacketsPreViewWithDuration:RedPacketDuration];
                 });
             }
             else
@@ -679,6 +682,31 @@ typedef void(^ButtonCallBack)(void);
         });
         dispatch_resume(_timer);
     }
+}
+#pragma mark - 10s倒计时弹窗
+- (void)showRedPacketsPreViewWithDuration:(int)duration
+{
+    weakSelf(weakSelf)
+    RedPacketsPreView *alertView = [RedPacketsPreView viewFromXib];
+    [alertView configForRedPocketsViewWithDuration:duration];
+    BTTAnimationPopView *popView = [[BTTAnimationPopView alloc] initWithCustomView:alertView popStyle:BTTAnimationPopStyleNO dismissStyle:BTTAnimationDismissStyleNO];
+    popView.isClickBGDismiss = YES;
+    [popView pop];
+    
+    [alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
+    }];
+    alertView.dismissBlock = ^{
+        [popView dismiss];
+    };
+    alertView.btnBlock = ^(UIButton * _Nullable btn) {
+        [popView dismiss];
+    };
+    alertView.getRedBlock = ^{
+        [popView dismiss];
+        __block int timeout = [PublicMethod countDownIntervalWithDurationTag:YES];
+        [weakSelf showRedPacketsRainViewWithDuration:timeout];
+    };
 }
 - (void)showRedPacketsRainViewWithDuration:(int)duration
 {
@@ -699,6 +727,7 @@ typedef void(^ButtonCallBack)(void);
         [popView dismiss];
     };
 }
+
 // 悬浮按钮
 -(void)setUpCustomAssistiveButtonCompleted:(ButtonCallBack _Nullable)completionBlock
 {
@@ -717,8 +746,18 @@ typedef void(^ButtonCallBack)(void);
         self.redPocketsAssistiveButton.positionMode = SpreadPositionModeNone;
         weakSelf(weakSelf);
         [self.redPocketsAssistiveButton setMainButtonClickActionBlock:^{
-            weakSelf.redPocketsAssistiveButton.hidden = true;
-            [NNPageRouter jump2HTMLWithStrURL:@"/pub_site/twinFight" title:@"过夜利息" needPubSite:NO];
+            NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
+            BOOL isBeforeDuration = [duractionArray[0] boolValue];
+            BOOL isActivityDuration = [duractionArray[1] boolValue];
+            if (isBeforeDuration || isActivityDuration)
+            {
+                __block int timeout = [PublicMethod countDownIntervalWithDurationTag:isActivityDuration];
+                [weakSelf showRedPacketsRainViewWithDuration:timeout];
+            }else
+            {//跳去活动结束画面
+                weakSelf.redPocketsAssistiveButton.hidden = true;
+                [NNPageRouter jump2HTMLWithStrURL:@"/pub_site/twinFight" title:@"过夜利息" needPubSite:NO];
+            }
         }];
         [self.redPocketsAssistiveButton setCloseBtnActionBlock:^{
             [weakSelf.redPocketsAssistiveButton removeFromSuperview];

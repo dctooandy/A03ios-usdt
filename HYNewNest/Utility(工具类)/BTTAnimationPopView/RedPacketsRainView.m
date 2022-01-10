@@ -5,25 +5,29 @@
 //  Created by RM03 on 2022/1/3.
 //  Copyright © 2022 BTT. All rights reserved.
 //
-
+#import "PublicMethod.h"
 #import "RedPacketsRainView.h"
-@interface RedPacketsRainView()
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+#import "SDCycleScrollView.h"
+#import <Masonry/Masonry.h>
+@interface RedPacketsRainView()<SDCycleScrollViewDelegate>
+@property (weak, nonatomic) IBOutlet UIView *labelBackgroundView;
 @property (weak, nonatomic) IBOutlet UILabel *countdownLab;
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
+@property (weak, nonatomic) IBOutlet UIView *rainBackgroundView;
 @property (weak, nonatomic) IBOutlet UIView *redPocketsRainView;
 @property (weak, nonatomic) IBOutlet UIView *cardsBonusView;
 @property (weak, nonatomic) IBOutlet UIButton *showCardsButton;
+@property (weak, nonatomic) IBOutlet UIView *activityRuleView;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) CALayer *moveLayer;
 @property (nonatomic, assign) NSInteger redPacketsResultCount;
 @property (nonatomic, assign) NSInteger selectedRedPacketNum;
 @property (nonatomic, assign) RedPocketsViewStyle viewStyle;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
+
+@property (nonatomic, strong) SDCycleScrollView *bannerView;
 @end
 
-#define RedPacketCountDown     2
-#define RedPacketDuration      2
 @implementation RedPacketsRainView
 
 - (void)awakeFromNib {
@@ -41,6 +45,7 @@
         case RedPocketsViewBegin:
             self.selectedRedPacketNum = 0;
             [self startTimeWithDuration:duration];
+            [self setupImageGroup];
             break;
         case RedPocketsViewResult:
             [self.tapGesture setEnabled:NO];
@@ -52,33 +57,67 @@
             break;
     }
 }
+-(void)setupImageGroup
+{
+//    FiveStarCopy
+//    FourStarCopy
+    NSMutableArray *h5Images = [[NSMutableArray alloc] initWithObjects:@"赌侠",@"赌神", nil];
+    
+    self.bannerView.imageURLStringsGroup = h5Images;
+}
+// 开启规则画面
+- (IBAction)showRulesAction:(id)sender {
+    if (self.activityRuleView.alpha == 0)
+    {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.activityRuleView.alpha = 1;
+        }];
+    }
+}
+// 关闭规则画面
+- (IBAction)dismissRulesView {
+    if (self.activityRuleView.alpha == 1)
+    {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.activityRuleView.alpha = 0;
+        }];
+    }
+}
+// 关闭活动画面
 - (IBAction)closeBtnAction:(UIButton *)sender {
     if (self.dismissBlock) {
         self.dismissBlock();
     }
 }
+// 开启集福卡画面
 - (IBAction)showCardsBonus:(UIButton*)sender {
     [UIView animateWithDuration:0.3 animations:^{
         [self.cardsBonusView setAlpha:(sender.tag == 1) ? 1.0 : 0.0];
-        [self.redPocketsRainView setAlpha:(sender.tag == 1) ? 0.0 : 1.0];
+        [self.rainBackgroundView setAlpha:(sender.tag == 1) ? 0.0 : 1.0];
+        [self.labelBackgroundView setAlpha:(sender.tag == 1) ? 0.0 : 1.0];
+        [self dismissRulesView];
     }];
 //    if (sender.tag == 1)
 //    {
-//        [self switchWithView:self.redPocketsRainView withPosition:RedPocketsViewToBack];
-//        [self switchWithView:self.cardsBonusView withPosition:RedPocketsViewToFront];
+//    [self switchWithView:self.labelBackgroundView withPosition:RedPocketsViewToBack];
+//    [self switchWithView:self.rainBackgroundView withPosition:RedPocketsViewToBack];
+//    [self switchWithView:self.cardsBonusView withPosition:RedPocketsViewToFront];
 //    }else
 //    {
-//        [self switchWithView:self.redPocketsRainView withPosition:RedPocketsViewToFront];
-//        [self switchWithView:self.cardsBonusView withPosition:RedPocketsViewToBack];
+//    [self switchWithView:self.labelBackgroundView withPosition:RedPocketsViewToFront];
+//    [self switchWithView:self.labelBackgroundView withPosition:RedPocketsViewToFront];
+//    [self switchWithView:self.cardsBonusView withPosition:RedPocketsViewToBack];
 //    }
-    
 }
 
 - (void)startTimeWithDuration:(int)timeValue
 {
     weakSelf(weakSelf)
-    self.titleLabel.text = @"抢红包啦";
+
     __block int timeout = timeValue;
+    NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
+    BOOL isBeforeDuration = [duractionArray[0] boolValue];
+    BOOL isActivityDuration = [duractionArray[1] boolValue];
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
@@ -93,7 +132,19 @@
         }
         else
         {
-            NSString * titleStr = [NSString stringWithFormat:@"%d",timeout];
+            int dInt = (int)timeout / (3600 * 24);      //剩馀天数
+            int leftTime = timeout - (dInt * 3600 * 24);
+            int hInt = (int)leftTime / 3600;            //剩馀时数
+            int mInt = (int)leftTime / 60 % 60;         //剩馀分数
+            int sInt = (int)leftTime % 60;              //剩馀秒数
+            NSString * titleStr;
+            if (isActivityDuration)
+            {
+                titleStr = [NSString stringWithFormat:@"%d小时%d分%d秒",hInt,mInt,sInt];
+            }else
+            {
+                titleStr = [NSString stringWithFormat:@"%d天%d小时%d分%d秒",dInt,hInt,mInt,sInt];
+            }
             dispatch_async(dispatch_get_main_queue(), ^{
                 weakSelf.countdownLab.text = titleStr;
             });
@@ -108,9 +159,8 @@
     float t = (arc4random() % 10) + 5;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:(1/t) target:self selector:@selector(showRain) userInfo:nil repeats:YES];
     [self.timer fire];
-    //红包下落10秒倒数
-    self.titleLabel.text = @"红包结束倒数计时";
     
+    //红包下落10秒倒数
     weakSelf(weakSelf)
     __block int timeout = RedPacketCountDown;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -185,12 +235,7 @@
 -(void)showResult
 {
     [self.closeButton setHidden:NO];
-    WEAKSELF_DEFINE
-    dispatch_async(dispatch_get_main_queue(), ^{
-        weakSelf.titleLabel.text = @"红包加总";
-        weakSelf.countdownLab.text = [NSString stringWithFormat:@"+%ld金币",(long)self.redPacketsResultCount];
-        
-    });
+    self.countdownLab.text = [NSString stringWithFormat:@"+%ld金币",(long)self.redPacketsResultCount];
     [self.showCardsButton setHidden:NO];
 }
 - (void)clickRed:(UITapGestureRecognizer *)sender
@@ -342,5 +387,26 @@
     {
         [self bringSubviewToFront:currentView];
     }
+}
+
+#pragma mark Lazy Load
+- (SDCycleScrollView *)bannerView {
+    if (!_bannerView) {
+        SDCycleScrollView *bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"3"]];
+        [self.activityRuleView addSubview:bannerView];
+        [bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.right.mas_equalTo(self.activityRuleView);
+            make.height.equalTo(self.activityRuleView).multipliedBy(0.85);
+        }];
+        bannerView.layer.cornerRadius = 10;
+        bannerView.layer.masksToBounds = true;
+        bannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+        bannerView.pageControlStyle = SDCycleScrollViewPageContolStyleDefault;
+        bannerView.pageControlDotSize = CGSizeMake(6, 6);
+//        bannerView.autoScrollTimeInterval = 0;
+        bannerView.autoScroll = false;
+        _bannerView = bannerView;
+    }
+    return _bannerView;
 }
 @end
