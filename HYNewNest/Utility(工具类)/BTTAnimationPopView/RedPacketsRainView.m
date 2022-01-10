@@ -9,7 +9,8 @@
 #import "RedPacketsRainView.h"
 #import "SDCycleScrollView.h"
 #import <Masonry/Masonry.h>
-@interface RedPacketsRainView()<SDCycleScrollViewDelegate>
+#import "QBulletScreenView.h"
+@interface RedPacketsRainView()<SDCycleScrollViewDelegate , QBulletScreenViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *labelBackgroundView;
 @property (weak, nonatomic) IBOutlet UILabel *countdownLab;
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
@@ -26,6 +27,8 @@
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 
 @property (nonatomic, strong) SDCycleScrollView *bannerView;
+
+@property (nonatomic, strong) NSMutableArray *bulletViewsArr;
 @end
 
 @implementation RedPacketsRainView
@@ -33,6 +36,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.userInteractionEnabled = YES;
+    self.bulletViewsArr = [[NSMutableArray alloc] init];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickRed:)];
     
     _tapGesture = tap;
@@ -46,6 +50,7 @@
             self.selectedRedPacketNum = 0;
             [self startTimeWithDuration:duration];
             [self setupImageGroup];
+            [self setupDataForSortArray];
             break;
         case RedPocketsViewResult:
             [self.tapGesture setEnabled:NO];
@@ -408,5 +413,49 @@
         _bannerView = bannerView;
     }
     return _bannerView;
+}
+- (void)setupDataForSortArray
+{
+    NSArray * tempArray = [[NSArray alloc] initWithObjects:@"111111",@"222222",@"33333", nil];
+    [self sortArray:tempArray];
+}
+- (void)sortArray:(NSArray *)array {
+    if (array.count <= 0) {
+        return;
+    }
+    NSInteger rowCount = 3.0;
+    NSInteger count = ceil(array.count/floor(rowCount));
+    for (int i = 0; i < rowCount; i++) {
+        NSMutableArray * strArray = [[NSMutableArray alloc] init];
+        for (int j = 0; j < count; j++) {
+            NSInteger a = (i * count) + j;
+            if (a <= array.count-1) {
+                [strArray addObject:array[a]];
+            } else {
+                break;
+            }
+        }
+        NSInteger randomNum = random() % 5;
+        dispatch_time_t dipatchTime = dispatch_time(DISPATCH_TIME_NOW, ((randomNum == 0 ? 1:randomNum) * NSEC_PER_SEC));
+        dispatch_after(dipatchTime, dispatch_get_main_queue(), ^{
+            [self setBulletScreen:strArray positionY: (KIsiPhoneX ? 34 + 50 : 50) + i * 32.0];
+        });
+    }
+}
+- (void)setBulletScreen:(NSArray *)array positionY:(CGFloat)positionY {
+    // 创建弹幕视图控件
+    // 设置动画时间 animationDuration
+    // 设置动画方向 animationDirection ex: QBulletScreenViewDirectionLeft
+    UIImage * img = [UIImage imageNamed:@"ic_new_year_pop_btn"];
+    img = [img resizableImageWithCapInsets:UIEdgeInsetsMake(20, 15, 120, 40)];
+    QBulletScreenView *bulletScreenView = [QBulletScreenView q_bulletScreenWithFrame:CGRectMake(0, positionY, 0, 25) texts:array color:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:14] icon:nil direction:QBulletScreenViewDirectionLeft duration:5.0 target:self backgroundImg:img];
+    [self.rainBackgroundView addSubview:bulletScreenView];
+    [self.bulletViewsArr addObject:bulletScreenView];
+    // 开始滚动
+    [bulletScreenView q_startAnimation];
+}
+- (void)didClickContentAtIndex:(NSInteger)index
+{
+    
 }
 @end

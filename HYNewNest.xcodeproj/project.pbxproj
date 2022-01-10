@@ -382,6 +382,7 @@
 		76519928278C107F006A59BF /* RedPacketsPreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76519926278C107F006A59BF /* RedPacketsPreView.xib */; };
 		76519929278C107F006A59BF /* RedPacketsPreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76519927278C107F006A59BF /* RedPacketsPreView.m */; };
 		7651992B278C1585006A59BF /* RedPacketsRainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7651992A278C1585006A59BF /* RedPacketsRainView.xib */; };
+		76519932278C2BE5006A59BF /* QBulletScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76519930278C2BE5006A59BF /* QBulletScreenView.m */; };
 		765C64E32782B4ED00A6BC34 /* BTTAnimationPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 765C64E22782B4ED00A6BC34 /* BTTAnimationPopView.m */; };
 		765C64E92782B71700A6BC34 /* BTTBaseAnimationPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 765C64E82782B71700A6BC34 /* BTTBaseAnimationPopView.m */; };
 		765C64F32782C82B00A6BC34 /* RedPacketsRainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 765C64F12782C82A00A6BC34 /* RedPacketsRainView.m */; };
@@ -1738,6 +1739,8 @@
 		76519926278C107F006A59BF /* RedPacketsPreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketsPreView.xib; sourceTree = "<group>"; };
 		76519927278C107F006A59BF /* RedPacketsPreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketsPreView.m; sourceTree = "<group>"; };
 		7651992A278C1585006A59BF /* RedPacketsRainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketsRainView.xib; sourceTree = "<group>"; };
+		76519930278C2BE5006A59BF /* QBulletScreenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBulletScreenView.m; sourceTree = "<group>"; };
+		76519931278C2BE5006A59BF /* QBulletScreenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBulletScreenView.h; sourceTree = "<group>"; };
 		765C64E12782B4ED00A6BC34 /* BTTAnimationPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTAnimationPopView.h; sourceTree = "<group>"; };
 		765C64E22782B4ED00A6BC34 /* BTTAnimationPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTAnimationPopView.m; sourceTree = "<group>"; };
 		765C64E72782B71700A6BC34 /* BTTBaseAnimationPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTBaseAnimationPopView.h; sourceTree = "<group>"; };
@@ -4170,6 +4173,8 @@
 				76485F232787D4FB004EA51E /* PublicMethod.m */,
 				76485F272787D777004EA51E /* UIImage+GIF.h */,
 				76485F262787D776004EA51E /* UIImage+GIF.m */,
+				76519931278C2BE5006A59BF /* QBulletScreenView.h */,
+				76519930278C2BE5006A59BF /* QBulletScreenView.m */,
 			);
 			path = BTTAnimationPopView;
 			sourceTree = "<group>";
@@ -6869,6 +6874,7 @@
 				3D41DE9A2519F996000CA1D6 /* VIPCumulateIdHeader.m in Sources */,
 				76B499EA27609237003CD35B /* A03CheckDomainModel.m in Sources */,
 				3DB600B32627E7C9002278F8 /* HYOneImgBtnAlertView.m in Sources */,
+				76519932278C2BE5006A59BF /* QBulletScreenView.m in Sources */,
 				3D41DE7325199DEE000CA1D6 /* VIPDSBUsrModel.m in Sources */,
 				3DC14E4C25FB561000D6DB85 /* BYOldMyWalletView.m in Sources */,
 				76485F222787D384004EA51E /* AssistiveButton.m in Sources */,
