@@ -31,20 +31,26 @@
                         <constraint firstItem="5lj-Xy-MVW" firstAttribute="leading" secondItem="lLp-Md-ud5" secondAttribute="leading" constant="20" id="Jeo-ei-WVy"/>
                     </constraints>
                 </view>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H7g-Yz-Bzf">
+                    <rect key="frame" x="50" y="200" width="314" height="496"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQT-Dz-Xcs">
+                            <rect key="frame" x="138" y="458" width="38" height="38"/>
+                            <state key="normal" image="ic_new_year_pop_close_btn"/>
+                            <connections>
+                                <action selector="dismissRulesView" destination="iN0-l3-epB" eventType="touchUpInside" id="tuE-TG-nh1"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="aQT-Dz-Xcs" secondAttribute="bottom" id="6XH-PR-pCz"/>
+                        <constraint firstItem="aQT-Dz-Xcs" firstAttribute="centerX" secondItem="H7g-Yz-Bzf" secondAttribute="centerX" id="RRM-Ks-Qna"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5W-E5-F5r">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
-                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eqy-K3-5tk">
-                            <rect key="frame" x="20" y="50" width="92" height="34"/>
-                            <state key="normal" title="集福卡大奖"/>
-                            <connections>
-                                <action selector="showCardsBonus:" destination="iN0-l3-epB" eventType="touchUpInside" id="4aA-Yh-2p3"/>
-                            </connections>
-                        </button>
-                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5j4-AX-VrT">
-                            <rect key="frame" x="40" y="100" width="334" height="696"/>
-                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uZJ-LJ-69R">
                             <rect key="frame" x="87" y="248" width="240" height="400"/>
                             <subviews>
@@ -71,6 +77,10 @@
                                 <constraint firstItem="1Yw-XU-u7W" firstAttribute="centerY" secondItem="uZJ-LJ-69R" secondAttribute="centerY" constant="-35" id="tXj-C4-290"/>
                             </constraints>
                         </view>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5j4-AX-VrT">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iIQ-1T-EZ8">
                             <rect key="frame" x="326" y="778" width="38" height="38"/>
                             <state key="normal" image="ic_new_year_pop_close_btn"/>
@@ -90,38 +100,28 @@
                                 <action selector="showRulesAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="iZj-JP-hry"/>
                             </connections>
                         </button>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eqy-K3-5tk">
+                            <rect key="frame" x="20" y="50" width="92" height="34"/>
+                            <state key="normal" title="集福卡大奖"/>
+                            <connections>
+                                <action selector="showCardsBonus:" destination="iN0-l3-epB" eventType="touchUpInside" id="4aA-Yh-2p3"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="vvp-tm-3gR" secondAttribute="trailing" constant="50" id="7NP-hh-ITK"/>
-                        <constraint firstItem="5j4-AX-VrT" firstAttribute="top" secondItem="Z5W-E5-F5r" secondAttribute="top" constant="100" id="8Ri-E1-ZII"/>
+                        <constraint firstItem="5j4-AX-VrT" firstAttribute="top" secondItem="Z5W-E5-F5r" secondAttribute="top" id="8Ri-E1-ZII"/>
                         <constraint firstItem="Eqy-K3-5tk" firstAttribute="top" secondItem="Z5W-E5-F5r" secondAttribute="top" constant="50" id="BaU-Jv-8wF"/>
-                        <constraint firstItem="5j4-AX-VrT" firstAttribute="leading" secondItem="Z5W-E5-F5r" secondAttribute="leading" constant="40" id="J7L-uY-Irx"/>
+                        <constraint firstItem="5j4-AX-VrT" firstAttribute="leading" secondItem="Z5W-E5-F5r" secondAttribute="leading" id="J7L-uY-Irx"/>
                         <constraint firstItem="vvp-tm-3gR" firstAttribute="top" secondItem="Z5W-E5-F5r" secondAttribute="top" constant="50" id="JGU-Oe-Yx4"/>
                         <constraint firstItem="uZJ-LJ-69R" firstAttribute="centerY" secondItem="Z5W-E5-F5r" secondAttribute="centerY" id="Ogg-p7-EqK"/>
                         <constraint firstItem="Eqy-K3-5tk" firstAttribute="leading" secondItem="Z5W-E5-F5r" secondAttribute="leading" constant="20" id="TrT-u6-LNg"/>
                         <constraint firstAttribute="bottom" secondItem="iIQ-1T-EZ8" secondAttribute="bottom" constant="80" id="bi5-Tj-egh"/>
-                        <constraint firstAttribute="trailing" secondItem="5j4-AX-VrT" secondAttribute="trailing" constant="40" id="k4U-QU-dcJ"/>
-                        <constraint firstAttribute="bottom" secondItem="5j4-AX-VrT" secondAttribute="bottom" constant="100" id="lwJ-Tr-eJC"/>
+                        <constraint firstAttribute="trailing" secondItem="5j4-AX-VrT" secondAttribute="trailing" id="k4U-QU-dcJ"/>
+                        <constraint firstAttribute="bottom" secondItem="5j4-AX-VrT" secondAttribute="bottom" id="lwJ-Tr-eJC"/>
                         <constraint firstAttribute="trailing" secondItem="iIQ-1T-EZ8" secondAttribute="trailing" constant="50" id="sGE-9J-Ay2"/>
                         <constraint firstItem="uZJ-LJ-69R" firstAttribute="centerX" secondItem="Z5W-E5-F5r" secondAttribute="centerX" id="upb-8d-hBq"/>
-                    </constraints>
-                </view>
-                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H7g-Yz-Bzf">
-                    <rect key="frame" x="50" y="200" width="314" height="496"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQT-Dz-Xcs">
-                            <rect key="frame" x="138" y="458" width="38" height="38"/>
-                            <state key="normal" image="ic_new_year_pop_close_btn"/>
-                            <connections>
-                                <action selector="dismissRulesView" destination="iN0-l3-epB" eventType="touchUpInside" id="tuE-TG-nh1"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="aQT-Dz-Xcs" secondAttribute="bottom" id="6XH-PR-pCz"/>
-                        <constraint firstItem="aQT-Dz-Xcs" firstAttribute="centerX" secondItem="H7g-Yz-Bzf" secondAttribute="centerX" id="RRM-Ks-Qna"/>
                     </constraints>
                 </view>
             </subviews>

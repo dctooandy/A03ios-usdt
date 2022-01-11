@@ -74,6 +74,7 @@
 - (IBAction)showRulesAction:(id)sender {
     if (self.activityRuleView.alpha == 0)
     {
+        [self bringSubviewToFront:self.activityRuleView];
         [UIView animateWithDuration:0.3 animations:^{
             self.activityRuleView.alpha = 1;
         }];
@@ -85,6 +86,8 @@
     {
         [UIView animateWithDuration:0.3 animations:^{
             self.activityRuleView.alpha = 0;
+        } completion:^(BOOL finished) {
+            [self sendSubviewToBack:self.activityRuleView];
         }];
     }
 }
@@ -131,6 +134,7 @@
         {
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.labelBackgroundView setAlpha:0.0];
                 [weakSelf startRedPackerts];
                 [weakSelf.tapGesture setEnabled:YES];
             });
@@ -177,6 +181,7 @@
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf endAnimation];
+                [weakSelf.labelBackgroundView setAlpha:1.0];
             });
         }
         else
@@ -257,74 +262,74 @@
             self.selectedRedPacketNum = i;
 //            BOOL hasRedPacketd = !(i % 3) ;
             BOOL hasRedPacketd = YES ;
-            UIImageView * newPacketIV = [UIImageView new];
-            if (hasRedPacketd)
-            {
-                newPacketIV.image = [UIImage imageNamed:@"dsb_content_108"];
-                newPacketIV.frame = CGRectMake(0, 0, 44 , 62.5);
-            }
-            else
-            {
-                newPacketIV.image = [UIImage imageNamed:@"dsb_rb_close"];
-                newPacketIV.frame = CGRectMake(0, 0, 45.5, 76.5);
-            }
-            layer.contents = (id)newPacketIV.image.CGImage;
+//            UIImageView * newPacketIV = [UIImageView new];
+//            if (hasRedPacketd)
+//            {
+//                newPacketIV.image = [UIImage imageNamed:@"dsb_content_108"];
+//                newPacketIV.frame = CGRectMake(0, 0, 44 , 62.5);
+//            }
+//            else
+//            {
+//                newPacketIV.image = [UIImage imageNamed:@"dsb_rb_close"];
+//                newPacketIV.frame = CGRectMake(0, 0, 45.5, 76.5);
+//            }
+//            layer.contents = (id)newPacketIV.image.CGImage;
             [layer removeAnimationForKey:@"p"];
             CAKeyframeAnimation * moveAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
             NSValue * A = [NSValue valueWithCGPoint:CGPointMake(point.x, point.y)];
-            NSValue * B = [NSValue valueWithCGPoint:CGPointMake(self.width/2, self.height)];
+            NSValue * B = [NSValue valueWithCGPoint:CGPointMake(self.width/5, self.height)];
             moveAnimation.values = @[A,B];
-            moveAnimation.duration = 1.0;
+            moveAnimation.duration = 0.5;
             moveAnimation.repeatCount = 1;
             moveAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
             [layer addAnimation:moveAnimation forKey:@"p"];
             
-            UIView * alertView = [UIView new];
-            alertView.layer.cornerRadius = 5;
-            alertView.frame = CGRectMake(point.x - 50, point.y, 100, 30);
-            [self.redPocketsRainView addSubview:alertView];
-            
-            UILabel * label = [UILabel new];
-            label.font = [UIFont systemFontOfSize:17];
+//            UIView * alertView = [UIView new];
+//            alertView.layer.cornerRadius = 5;
+//            alertView.frame = CGRectMake(point.x - 50, point.y, 100, 30);
+//            [self.redPocketsRainView addSubview:alertView];
+//
+//            UILabel * label = [UILabel new];
+//            label.font = [UIFont systemFontOfSize:17];
             
             if (!hasRedPacketd)
             {
-                label.text = @"旺旺年！人旺旺";
-                label.textColor = [UIColor whiteColor];
+//                label.text = @"旺旺年！人旺旺";
+//                label.textColor = [UIColor whiteColor];
             }
             else
             {
                 self.redPacketsResultCount += i;
-                NSString * string = [NSString stringWithFormat:@"+%d金币",i];
-                NSString * iString = [NSString stringWithFormat:@"%d",i];
-                NSMutableAttributedString * attributedStr = [[NSMutableAttributedString alloc]initWithString:string];
-                
-                [attributedStr addAttribute:NSFontAttributeName
-                                      value:[UIFont systemFontOfSize:27]
-                                      range:NSMakeRange(0, 1)];
-                [attributedStr addAttribute:NSFontAttributeName
-                                      value:[UIFont fontWithName:@"PingFangTC-Semibold" size:32]
-                                      range:NSMakeRange(1, iString.length)];
-                [attributedStr addAttribute:NSFontAttributeName
-                                      value:[UIFont systemFontOfSize:17]
-                                      range:NSMakeRange(1 + iString.length, 2)];
-                label.attributedText = attributedStr;
-                label.textColor = COLOR_RGBA(255,223,14, 1);
+//                NSString * string = [NSString stringWithFormat:@"+%d金币",i];
+//                NSString * iString = [NSString stringWithFormat:@"%d",i];
+//                NSMutableAttributedString * attributedStr = [[NSMutableAttributedString alloc]initWithString:string];
+//
+//                [attributedStr addAttribute:NSFontAttributeName
+//                                      value:[UIFont systemFontOfSize:27]
+//                                      range:NSMakeRange(0, 1)];
+//                [attributedStr addAttribute:NSFontAttributeName
+//                                      value:[UIFont fontWithName:@"PingFangTC-Semibold" size:32]
+//                                      range:NSMakeRange(1, iString.length)];
+//                [attributedStr addAttribute:NSFontAttributeName
+//                                      value:[UIFont systemFontOfSize:17]
+//                                      range:NSMakeRange(1 + iString.length, 2)];
+//                label.attributedText = attributedStr;
+//                label.textColor = COLOR_RGBA(255,223,14, 1);
             }
             
-            [alertView addSubview:label];
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerX.equalTo(alertView.mas_centerX);
-                make.centerY.equalTo(alertView.mas_centerY);
-            }];
-            
-            [UIView animateWithDuration:1 animations:^{
-                alertView.alpha = 0;
-                alertView.frame = CGRectMake(point.x- 50, point.y - 100, 100, 30);
-//                layer.opacity = 0;
-            } completion:^(BOOL finished) {
-                [alertView removeFromSuperview];
-            }];
+//            [alertView addSubview:label];
+//            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.centerX.equalTo(alertView.mas_centerX);
+//                make.centerY.equalTo(alertView.mas_centerY);
+//            }];
+//            
+//            [UIView animateWithDuration:1 animations:^{
+//                alertView.alpha = 0;
+//                alertView.frame = CGRectMake(point.x- 50, point.y - 100, 100, 30);
+////                layer.opacity = 0;
+//            } completion:^(BOOL finished) {
+//                [alertView removeFromSuperview];
+//            }];
         }
     }
 }
