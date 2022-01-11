@@ -28,6 +28,7 @@
 
 @property (nonatomic, strong) SDCycleScrollView *bannerView;
 
+@property (nonatomic, strong) SDCycleScrollView *giftBannerView;
 @property (nonatomic, strong) NSMutableArray *bulletViewsArr;
 @end
 
@@ -70,6 +71,23 @@
     
     self.bannerView.imageURLStringsGroup = h5Images;
 }
+- (void)setupGiftBannerGroup
+{
+    NSMutableArray *h5Images = [[NSMutableArray alloc] initWithObjects:@"FiveStarCopy",@"FourStarCopy", nil];
+    
+    self.giftBannerView.localizationImageNamesGroup = h5Images;
+    NSArray * nameArray = @[@[@"g****8",@"g****9",@"g****86",@"g****81",@"g****88",@"g****81"],@[@"g****8",@"g****88",@"g****86",@"g****87",@"g****81",@"g****81"]];
+    NSMutableArray *descriptionArray = [[NSMutableArray alloc] init];
+    for (NSArray * subNameArray in nameArray) {
+        NSString *totalString = @"";
+        for (int i = 0 ; i < subNameArray.count ; i++) {
+            totalString = [totalString stringByAppendingString:[NSString stringWithFormat:@"%@%@%@",(i == 0 ? @"恭喜":@""),subNameArray[i],(i == (subNameArray.count - 1) ? @"会员获得该奖品" : @"、")]];
+        }
+        [descriptionArray addObject:totalString];
+    }
+    self.giftBannerView.descriptionGroup = descriptionArray;
+}
+
 // 开启规则画面
 - (IBAction)showRulesAction:(id)sender {
     if (self.activityRuleView.alpha == 0)
@@ -99,6 +117,7 @@
 }
 // 开启集福卡画面
 - (IBAction)showCardsBonus:(UIButton*)sender {
+    [self setupGiftBannerGroup];
     [UIView animateWithDuration:0.3 animations:^{
         [self.cardsBonusView setAlpha:(sender.tag == 1) ? 1.0 : 0.0];
         [self.rainBackgroundView setAlpha:(sender.tag == 1) ? 0.0 : 1.0];
@@ -322,7 +341,7 @@
 //                make.centerX.equalTo(alertView.mas_centerX);
 //                make.centerY.equalTo(alertView.mas_centerY);
 //            }];
-//            
+//
 //            [UIView animateWithDuration:1 animations:^{
 //                alertView.alpha = 0;
 //                alertView.frame = CGRectMake(point.x- 50, point.y - 100, 100, 30);
@@ -418,6 +437,26 @@
         _bannerView = bannerView;
     }
     return _bannerView;
+}
+- (SDCycleScrollView *)giftBannerView {
+    if (!_giftBannerView) {
+        SDCycleScrollView *giftBannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"3"]];
+        [self.cardsBonusView addSubview:giftBannerView];
+        [giftBannerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.mas_equalTo(self.cardsBonusView);
+            make.top.equalTo(@50);
+            make.height.equalTo(self.cardsBonusView).multipliedBy(0.20);
+        }];
+        giftBannerView.layer.cornerRadius = 10;
+        giftBannerView.layer.masksToBounds = true;
+        giftBannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+        giftBannerView.pageControlStyle = SDCycleScrollViewPageContolStyleDefault;
+        giftBannerView.pageControlDotSize = CGSizeMake(6, 6);
+//        bannerView.autoScrollTimeInterval = 0;
+        giftBannerView.autoScroll = false;
+        _giftBannerView = giftBannerView;
+    }
+    return _giftBannerView;
 }
 - (void)setupDataForSortArray
 {

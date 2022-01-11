@@ -36,6 +36,8 @@
 
 @property (weak, nonatomic) UIImageView *imageView;
 @property (copy, nonatomic) NSString *title;
+@property (copy, nonatomic) NSString *descriptionString;
+
 
 @property (nonatomic, strong) UIColor *titleLabelTextColor;
 @property (nonatomic, strong) UIFont *titleLabelTextFont;

@@ -36,6 +36,7 @@
 @implementation SDCollectionViewCell
 {
     __weak UILabel *_titleLabel;
+    __weak UILabel *_descriptionLabel;
 }
 
 
@@ -44,6 +45,7 @@
     if (self = [super initWithFrame:frame]) {
         [self setupImageView];
         [self setupTitleLabel];
+        [self setupDescriptionLabel];
     }
     
     return self;
@@ -81,6 +83,14 @@
     _titleLabel.hidden = YES;
     [self.contentView addSubview:titleLabel];
 }
+- (void)setupDescriptionLabel
+{
+    UILabel *descriptionLabel = [[UILabel alloc] init];
+    descriptionLabel.numberOfLines = 2;
+    _descriptionLabel = descriptionLabel;
+    _descriptionLabel.hidden = YES;
+    [self.contentView addSubview:descriptionLabel];
+}
 
 - (void)setTitle:(NSString *)title
 {
@@ -90,11 +100,20 @@
         _titleLabel.hidden = NO;
     }
 }
+- (void)setDescriptionString:(NSString *)descriptionString
+{
+    _descriptionString = [descriptionString copy];
+    _descriptionLabel.text = [NSString stringWithFormat:@"%@", descriptionString];
+    if (_descriptionLabel.hidden) {
+        _descriptionLabel.hidden = NO;
+    }
+}
 
 -(void)setTitleLabelTextAlignment:(NSTextAlignment)titleLabelTextAlignment
 {
     _titleLabelTextAlignment = titleLabelTextAlignment;
     _titleLabel.textAlignment = titleLabelTextAlignment;
+    _descriptionLabel.textAlignment = NSTextAlignmentCenter;
 }
 
 - (void)layoutSubviews
@@ -103,6 +122,11 @@
     
     if (self.onlyDisplayText) {
         _titleLabel.frame = self.bounds;
+        CGFloat descriptionLabelW = self.sd_width - 40;
+        CGFloat descriptionLabelH = self.bounds.size.height * 0.3;
+        CGFloat descriptionLabelX = 20;
+        CGFloat descriptionLabelY = self.bounds.size.height / 2;//self.sd_height - titleLabelH;
+        _descriptionLabel.frame = CGRectMake(descriptionLabelX, descriptionLabelY, descriptionLabelW, descriptionLabelH);
     } else {
         _imageView.frame = self.bounds;
         CGFloat titleLabelW = self.sd_width;
@@ -110,6 +134,12 @@
         CGFloat titleLabelX = 0;
         CGFloat titleLabelY = self.sd_height - titleLabelH;
         _titleLabel.frame = CGRectMake(titleLabelX, titleLabelY, titleLabelW, titleLabelH);
+        CGFloat descriptionLabelW = self.sd_width - 40;
+        CGFloat descriptionLabelH = self.bounds.size.height * 0.3;
+        CGFloat descriptionLabelX = 20;
+        CGFloat descriptionLabelY = self.bounds.size.height * 0.6;//self.sd_height - titleLabelH;
+        _descriptionLabel.frame = CGRectMake(descriptionLabelX, descriptionLabelY, descriptionLabelW, descriptionLabelH);
+        [self.contentView bringSubviewToFront:_descriptionLabel];
     }
 }
 

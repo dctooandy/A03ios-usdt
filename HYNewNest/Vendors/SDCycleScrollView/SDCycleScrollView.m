@@ -353,6 +353,19 @@ NSString * const ID = @"SDCycleScrollViewCell";
         self.imageURLStringsGroup = [temp copy];
     }
 }
+- (void)setDescriptionGroup:(NSArray *)descriptionGroup
+{
+    _descriptionGroup = descriptionGroup;
+    if (self.onlyDisplayText)
+    {
+        NSMutableArray *temp = [NSMutableArray new];
+        for (int i = 0; i < _descriptionGroup.count; i++) {
+            [temp addObject:@""];
+        }
+        self.backgroundColor = [UIColor clearColor];
+        self.imageURLStringsGroup = [temp copy];
+    }
+}
 
 - (void)disableScrollGesture {
     self.mainView.canCancelContentTouches = NO;
@@ -635,7 +648,10 @@ NSString * const ID = @"SDCycleScrollViewCell";
     if (_titlesGroup.count && itemIndex < _titlesGroup.count) {
         cell.title = _titlesGroup[itemIndex];
     }
-    
+    if (_descriptionGroup.count && itemIndex < _descriptionGroup.count) {
+        cell.descriptionString = _descriptionGroup[itemIndex];
+    }
+
     if (!cell.hasConfigured) {
         cell.titleLabelBackgroundColor = self.titleLabelBackgroundColor;
         cell.titleLabelHeight = self.titleLabelHeight;

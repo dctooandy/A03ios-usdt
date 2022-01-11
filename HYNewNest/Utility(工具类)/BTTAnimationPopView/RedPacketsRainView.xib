@@ -16,19 +16,28 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lLp-Md-ud5">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                     <subviews>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5lj-Xy-MVW">
-                            <rect key="frame" x="20" y="50" width="37" height="34"/>
+                            <rect key="frame" x="20" y="6" width="37" height="34"/>
                             <state key="normal" title="返回"/>
                             <connections>
                                 <action selector="showCardsBonus:" destination="iN0-l3-epB" eventType="touchUpInside" id="DLK-wl-3lB"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="集福卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sG-49-mbF">
+                            <rect key="frame" x="172" y="9" width="70" height="28"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemPinkColor"/>
+                    <color key="backgroundColor" red="0.49803921569999998" green="0.52549019610000003" blue="0.60392156860000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstItem="5sG-49-mbF" firstAttribute="centerY" secondItem="5lj-Xy-MVW" secondAttribute="centerY" id="ISD-El-dFn"/>
                         <constraint firstItem="5lj-Xy-MVW" firstAttribute="leading" secondItem="lLp-Md-ud5" secondAttribute="leading" constant="20" id="Jeo-ei-WVy"/>
+                        <constraint firstItem="5lj-Xy-MVW" firstAttribute="top" secondItem="lLp-Md-ud5" secondAttribute="top" constant="6" id="b47-Lk-JPW"/>
+                        <constraint firstItem="5sG-49-mbF" firstAttribute="centerX" secondItem="lLp-Md-ud5" secondAttribute="centerX" id="gH0-mW-bxU"/>
                     </constraints>
                 </view>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H7g-Yz-Bzf">
@@ -134,10 +143,9 @@
                 <constraint firstItem="lLp-Md-ud5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Cdf-w0-Lzx"/>
                 <constraint firstItem="H7g-Yz-Bzf" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Qzv-Cq-G1g"/>
                 <constraint firstAttribute="trailing" secondItem="Z5W-E5-F5r" secondAttribute="trailing" id="R9f-UL-pH9"/>
-                <constraint firstItem="5lj-Xy-MVW" firstAttribute="top" secondItem="Eqy-K3-5tk" secondAttribute="top" id="Rmc-ci-eFI"/>
                 <constraint firstAttribute="bottom" secondItem="lLp-Md-ud5" secondAttribute="bottom" id="U8c-hX-IG9"/>
                 <constraint firstItem="Z5W-E5-F5r" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XxZ-RO-ruL"/>
-                <constraint firstItem="lLp-Md-ud5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="YyI-dt-NFZ"/>
+                <constraint firstItem="lLp-Md-ud5" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="YyI-dt-NFZ"/>
                 <constraint firstAttribute="trailing" secondItem="lLp-Md-ud5" secondAttribute="trailing" id="bdj-Yf-2II"/>
                 <constraint firstItem="Z5W-E5-F5r" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="giC-8f-6kE"/>
                 <constraint firstItem="H7g-Yz-Bzf" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.553571" id="vsw-en-FDP"/>
@@ -160,9 +168,6 @@
         <image name="ic_new_year_pop_close_btn" width="38" height="38"/>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
