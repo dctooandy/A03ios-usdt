@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIView *activityRuleView;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) CALayer *moveLayer;
+@property (nonatomic, strong) CALayer *bagMoveLayer;
 @property (nonatomic, assign) NSInteger redPacketsResultCount;
 @property (nonatomic, assign) NSInteger selectedRedPacketNum;
 @property (nonatomic, assign) RedPocketsViewStyle viewStyle;
@@ -52,6 +53,7 @@
             [self startTimeWithDuration:duration];
             [self setupImageGroup];
             [self setupDataForSortArray];
+            [self startGiftBag];
             break;
         case RedPocketsViewResult:
             [self.tapGesture setEnabled:NO];
@@ -73,7 +75,7 @@
 }
 - (void)setupGiftBannerGroup
 {
-    NSMutableArray *h5Images = [[NSMutableArray alloc] initWithObjects:@"FiveStarCopy",@"FourStarCopy", nil];
+    NSMutableArray *h5Images = [[NSMutableArray alloc] initWithObjects:@"赌侠",@"赌神", nil];
     
     self.giftBannerView.localizationImageNamesGroup = h5Images;
     NSArray * nameArray = @[@[@"g****8",@"g****9",@"g****86",@"g****81",@"g****88",@"g****81"],@[@"g****8",@"g****88",@"g****86",@"g****87",@"g****81",@"g****81"]];
@@ -214,6 +216,10 @@
     });
     dispatch_resume(_timer);
 }
+- (void)setBag
+{
+    [self startGiftBag];
+}
 - (void)showRain
 {
     UIImageView * imageV = [UIImageView new];
@@ -226,6 +232,31 @@
     self.moveLayer.contents = (id)imageV.image.CGImage;
     [self.redPocketsRainView.layer addSublayer:self.moveLayer];
     [self addAnimation];
+}
+- (void)startGiftBag
+{
+    UIImageView * imageV = [UIImageView new];
+    imageV.image = [UIImage imageNamed:@"dsb_rb_bg"];
+    imageV.frame = CGRectMake(0, 0, 100 , 100 );
+    self.bagMoveLayer = [CALayer new];
+    self.bagMoveLayer.bounds = imageV.frame;
+    self.bagMoveLayer.anchorPoint = CGPointMake(0, 1);
+    self.bagMoveLayer.position = CGPointMake(0, SCREEN_HEIGHT );
+    self.bagMoveLayer.contents = (id)imageV.image.CGImage;
+    [self.rainBackgroundView.layer addSublayer:self.bagMoveLayer];
+    
+    CAKeyframeAnimation * bagTranAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    CATransform3D br0 = CATransform3DMakeRotation((-14) / 180.0 * M_PI, 0, 0, -1);
+    CATransform3D br1 = CATransform3DMakeRotation((0) / 180.0 * M_PI , 0, 0, -1);
+    bagTranAnimation.values = @[[NSValue valueWithCATransform3D:br0],[NSValue valueWithCATransform3D:br1]];
+    bagTranAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    bagTranAnimation.duration = 1;
+    bagTranAnimation.repeatCount = NSIntegerMax;
+    bagTranAnimation.autoreverses = true;
+    //为了避免旋转动画完成后再次回到初始状态。
+    [bagTranAnimation setFillMode:kCAFillModeForwards];
+    [bagTranAnimation setRemovedOnCompletion:NO];
+    [self.bagMoveLayer addAnimation:bagTranAnimation forKey:@"bag"];
 }
 - (void)addAnimation
 {
@@ -253,11 +284,32 @@
 {
     [self.timer invalidate];
     [self.tapGesture setEnabled:NO];
-    for (NSInteger i = 0; i < self.layer.sublayers.count ; i ++)
+    for (NSInteger i = 0; i < self.redPocketsRainView.layer.sublayers.count ; i ++)
     {
         CALayer * layer = self.redPocketsRainView.layer.sublayers[i];
         [layer setHidden:YES];
         [layer removeAllAnimations];
+    }
+    for (NSInteger i = 0; i < self.rainBackgroundView.layer.sublayers.count ; i ++)
+    {
+        CALayer * layer = self.rainBackgroundView.layer.sublayers[i];
+        if ([layer animationForKey:@"bag"])
+        {
+//            [layer setHidden:YES];
+            NSInteger scaleValue = 3;
+            [layer removeAnimationForKey:@"bag"];
+            CAKeyframeAnimation * moveAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+            NSValue * A = [NSValue valueWithCGPoint:CGPointMake(0, SCREEN_HEIGHT-100)];
+            NSValue * B = [NSValue valueWithCGPoint:CGPointMake(SCREEN_WIDTH/2 - (100 / 2 * scaleValue), SCREEN_HEIGHT/2)];
+            moveAnimation.values = @[A,B];
+            moveAnimation.duration = 0.3;
+            moveAnimation.repeatCount = 0;
+            moveAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+            [moveAnimation setFillMode:kCAFillModeForwards];
+            [moveAnimation setRemovedOnCompletion:NO];
+            [layer addAnimation:moveAnimation forKey:@"bagFly"];
+            layer.transform = CATransform3DMakeScale(scaleValue, scaleValue, 1);
+        }
     }
     [self showResult];
 }
