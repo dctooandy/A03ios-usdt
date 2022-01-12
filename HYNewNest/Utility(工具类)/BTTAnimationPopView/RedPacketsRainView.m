@@ -28,9 +28,12 @@
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 
 @property (nonatomic, strong) SDCycleScrollView *bannerView;
-
 @property (nonatomic, strong) SDCycleScrollView *giftBannerView;
 @property (nonatomic, strong) NSMutableArray *bulletViewsArr;
+@property (weak, nonatomic) IBOutlet UIView *bagView;
+@property (weak, nonatomic) IBOutlet UIButton *openGiftBagButton;
+@property (weak, nonatomic) IBOutlet UIButton *closeGiftBagButton;
+
 @end
 
 @implementation RedPacketsRainView
@@ -53,7 +56,7 @@
             [self startTimeWithDuration:duration];
             [self setupImageGroup];
             [self setupDataForSortArray];
-            [self startGiftBag];
+            [self setupGiftBag];
             break;
         case RedPocketsViewResult:
             [self.tapGesture setEnabled:NO];
@@ -90,136 +93,6 @@
     self.giftBannerView.descriptionGroup = descriptionArray;
 }
 
-// 开启规则画面
-- (IBAction)showRulesAction:(id)sender {
-    if (self.activityRuleView.alpha == 0)
-    {
-        [self bringSubviewToFront:self.activityRuleView];
-        [UIView animateWithDuration:0.3 animations:^{
-            self.activityRuleView.alpha = 1;
-        }];
-    }
-}
-// 关闭规则画面
-- (IBAction)dismissRulesView {
-    if (self.activityRuleView.alpha == 1)
-    {
-        [UIView animateWithDuration:0.3 animations:^{
-            self.activityRuleView.alpha = 0;
-        } completion:^(BOOL finished) {
-            [self sendSubviewToBack:self.activityRuleView];
-        }];
-    }
-}
-// 关闭活动画面
-- (IBAction)closeBtnAction:(UIButton *)sender {
-    if (self.dismissBlock) {
-        self.dismissBlock();
-    }
-}
-// 开启集福卡画面
-- (IBAction)showCardsBonus:(UIButton*)sender {
-    [self setupGiftBannerGroup];
-    [UIView animateWithDuration:0.3 animations:^{
-        [self.cardsBonusView setAlpha:(sender.tag == 1) ? 1.0 : 0.0];
-        [self.rainBackgroundView setAlpha:(sender.tag == 1) ? 0.0 : 1.0];
-        [self.labelBackgroundView setAlpha:(sender.tag == 1) ? 0.0 : 1.0];
-        [self dismissRulesView];
-    }];
-//    if (sender.tag == 1)
-//    {
-//    [self switchWithView:self.labelBackgroundView withPosition:RedPocketsViewToBack];
-//    [self switchWithView:self.rainBackgroundView withPosition:RedPocketsViewToBack];
-//    [self switchWithView:self.cardsBonusView withPosition:RedPocketsViewToFront];
-//    }else
-//    {
-//    [self switchWithView:self.labelBackgroundView withPosition:RedPocketsViewToFront];
-//    [self switchWithView:self.labelBackgroundView withPosition:RedPocketsViewToFront];
-//    [self switchWithView:self.cardsBonusView withPosition:RedPocketsViewToBack];
-//    }
-}
-
-- (void)startTimeWithDuration:(int)timeValue
-{
-    weakSelf(weakSelf)
-
-    __block int timeout = timeValue;
-    NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
-    BOOL isBeforeDuration = [duractionArray[0] boolValue];
-    BOOL isActivityDuration = [duractionArray[1] boolValue];
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
-    dispatch_source_set_event_handler(_timer, ^{
-        if ( timeout <= 0 )
-        {
-            dispatch_source_cancel(_timer);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.labelBackgroundView setAlpha:0.0];
-                [weakSelf startRedPackerts];
-                [weakSelf.tapGesture setEnabled:YES];
-            });
-        }
-        else
-        {
-            int dInt = (int)timeout / (3600 * 24);      //剩馀天数
-            int leftTime = timeout - (dInt * 3600 * 24);
-            int hInt = (int)leftTime / 3600;            //剩馀时数
-            int mInt = (int)leftTime / 60 % 60;         //剩馀分数
-            int sInt = (int)leftTime % 60;              //剩馀秒数
-            NSString * titleStr;
-            if (isActivityDuration)
-            {
-                titleStr = [NSString stringWithFormat:@"%d小时%d分%d秒",hInt,mInt,sInt];
-            }else
-            {
-                titleStr = [NSString stringWithFormat:@"%d天%d小时%d分%d秒",dInt,hInt,mInt,sInt];
-            }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                weakSelf.countdownLab.text = titleStr;
-            });
-            timeout--;
-        }
-    });
-    dispatch_resume(_timer);
-}
-- (void)startRedPackerts
-{
-    [self.redPocketsRainView addGestureRecognizer:self.tapGesture];
-    float t = (arc4random() % 10) + 5;
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:(1/t) target:self selector:@selector(showRain) userInfo:nil repeats:YES];
-    [self.timer fire];
-    
-    //红包下落10秒倒数
-    weakSelf(weakSelf)
-    __block int timeout = RedPacketCountDown;
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
-    dispatch_source_set_event_handler(_timer, ^{
-        if ( timeout <= 0 )
-        {
-            dispatch_source_cancel(_timer);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf endAnimation];
-                [weakSelf.labelBackgroundView setAlpha:1.0];
-            });
-        }
-        else
-        {
-            NSString * titleStr = [NSString stringWithFormat:@"%d",timeout];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                weakSelf.countdownLab.text = titleStr;
-            });
-            timeout--;
-        }
-    });
-    dispatch_resume(_timer);
-}
-- (void)setBag
-{
-    [self startGiftBag];
-}
 - (void)showRain
 {
     UIImageView * imageV = [UIImageView new];
@@ -231,9 +104,9 @@
     self.moveLayer.position = CGPointMake(0, -75 );
     self.moveLayer.contents = (id)imageV.image.CGImage;
     [self.redPocketsRainView.layer addSublayer:self.moveLayer];
-    [self addAnimation];
+    [self addRainAnimation];
 }
-- (void)startGiftBag
+- (void)setupGiftBag
 {
     UIImageView * imageV = [UIImageView new];
     imageV.image = [UIImage imageNamed:@"dsb_rb_bg"];
@@ -244,7 +117,10 @@
     self.bagMoveLayer.position = CGPointMake(0, SCREEN_HEIGHT );
     self.bagMoveLayer.contents = (id)imageV.image.CGImage;
     [self.rainBackgroundView.layer addSublayer:self.bagMoveLayer];
-    
+    [self addGiftBagAnimation];
+}
+- (void)addGiftBagAnimation
+{
     CAKeyframeAnimation * bagTranAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
     CATransform3D br0 = CATransform3DMakeRotation((-14) / 180.0 * M_PI, 0, 0, -1);
     CATransform3D br1 = CATransform3DMakeRotation((0) / 180.0 * M_PI , 0, 0, -1);
@@ -258,7 +134,7 @@
     [bagTranAnimation setRemovedOnCompletion:NO];
     [self.bagMoveLayer addAnimation:bagTranAnimation forKey:@"bag"];
 }
-- (void)addAnimation
+- (void)addRainAnimation
 {
     CAKeyframeAnimation * moveAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     NSValue * A = [NSValue valueWithCGPoint:CGPointMake(arc4random() % (int)self.width, 0)];
@@ -300,7 +176,7 @@
             [layer removeAnimationForKey:@"bag"];
             CAKeyframeAnimation * moveAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
             NSValue * A = [NSValue valueWithCGPoint:CGPointMake(0, SCREEN_HEIGHT-100)];
-            NSValue * B = [NSValue valueWithCGPoint:CGPointMake(SCREEN_WIDTH/2 - (100 / 2 * scaleValue), SCREEN_HEIGHT/2)];
+            NSValue * B = [NSValue valueWithCGPoint:CGPointMake(SCREEN_WIDTH/2 - (100 / 2 * scaleValue), SCREEN_HEIGHT * 0.6)];
             moveAnimation.values = @[A,B];
             moveAnimation.duration = 0.3;
             moveAnimation.repeatCount = 0;
@@ -318,6 +194,7 @@
     [self.closeButton setHidden:NO];
     self.countdownLab.text = [NSString stringWithFormat:@"+%ld金币",(long)self.redPacketsResultCount];
     [self.showCardsButton setHidden:NO];
+    [self showOpenGiftBagButton];
 }
 - (void)clickRed:(UITapGestureRecognizer *)sender
 {
@@ -470,46 +347,6 @@
     }
 }
 
-#pragma mark Lazy Load
-- (SDCycleScrollView *)bannerView {
-    if (!_bannerView) {
-        SDCycleScrollView *bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"3"]];
-        [self.activityRuleView addSubview:bannerView];
-        [bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.left.right.mas_equalTo(self.activityRuleView);
-            make.height.equalTo(self.activityRuleView).multipliedBy(0.85);
-        }];
-        bannerView.layer.cornerRadius = 10;
-        bannerView.layer.masksToBounds = true;
-        bannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-        bannerView.pageControlStyle = SDCycleScrollViewPageContolStyleDefault;
-        bannerView.pageControlDotSize = CGSizeMake(6, 6);
-//        bannerView.autoScrollTimeInterval = 0;
-        bannerView.autoScroll = false;
-        _bannerView = bannerView;
-    }
-    return _bannerView;
-}
-- (SDCycleScrollView *)giftBannerView {
-    if (!_giftBannerView) {
-        SDCycleScrollView *giftBannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"3"]];
-        [self.cardsBonusView addSubview:giftBannerView];
-        [giftBannerView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.mas_equalTo(self.cardsBonusView);
-            make.top.equalTo(@50);
-            make.height.equalTo(self.cardsBonusView).multipliedBy(0.20);
-        }];
-        giftBannerView.layer.cornerRadius = 10;
-        giftBannerView.layer.masksToBounds = true;
-        giftBannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-        giftBannerView.pageControlStyle = SDCycleScrollViewPageContolStyleDefault;
-        giftBannerView.pageControlDotSize = CGSizeMake(6, 6);
-//        bannerView.autoScrollTimeInterval = 0;
-        giftBannerView.autoScroll = false;
-        _giftBannerView = giftBannerView;
-    }
-    return _giftBannerView;
-}
 - (void)setupDataForSortArray
 {
     NSArray * tempArray = [[NSArray alloc] initWithObjects:@"111111",@"222222",@"33333", nil];
@@ -554,4 +391,207 @@
 {
     
 }
+#pragma mark Timer
+- (void)startTimeWithDuration:(int)timeValue
+{
+    weakSelf(weakSelf)
+    __block int timeout = timeValue;
+    NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
+    BOOL isBeforeDuration = [duractionArray[0] boolValue];
+    BOOL isActivityDuration = [duractionArray[1] boolValue];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(_timer, ^{
+        if ( timeout <= 0 )
+        {
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+//                [weakSelf.labelBackgroundView setAlpha:0.0];
+                [weakSelf startRedPackerts];
+                [weakSelf.tapGesture setEnabled:YES];
+            });
+        }
+        else
+        {
+            int dInt = (int)timeout / (3600 * 24);      //剩馀天数
+            int leftTime = timeout - (dInt * 3600 * 24);
+            int hInt = (int)leftTime / 3600;            //剩馀时数
+            int mInt = (int)leftTime / 60 % 60;         //剩馀分数
+            int sInt = (int)leftTime % 60;              //剩馀秒数
+            NSString * titleStr;
+            if (isActivityDuration)
+            {
+                titleStr = [NSString stringWithFormat:@"%d小时%d分%d秒",hInt,mInt,sInt];
+            }else
+            {
+                titleStr = [NSString stringWithFormat:@"%d天%d小时%d分%d秒",dInt,hInt,mInt,sInt];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                weakSelf.countdownLab.text = titleStr;
+            });
+            timeout--;
+        }
+    });
+    dispatch_resume(_timer);
+}
+- (void)startRedPackerts
+{
+    [self.redPocketsRainView addGestureRecognizer:self.tapGesture];
+    float t = (arc4random() % 10) + 5;
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:(1/t) target:self selector:@selector(showRain) userInfo:nil repeats:YES];
+    [self.timer fire];
+    
+    //红包下落10秒倒数
+    weakSelf(weakSelf)
+    __block int timeout = RedPacketCountDown;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(_timer, ^{
+        if ( timeout <= 0 )
+        {
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf endAnimation];
+            });
+        }
+        else
+        {
+            NSString * titleStr = [NSString stringWithFormat:@"%d",timeout];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                weakSelf.countdownLab.text = titleStr;
+            });
+            timeout--;
+        }
+    });
+    dispatch_resume(_timer);
+}
+- (void)showOpenGiftBagButton
+{
+    [self.bagView setHidden:NO];
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.bagView setAlpha:1.0];
+    }];
+    //红包袋开启倒数60秒
+    weakSelf(weakSelf)
+    __block int timeout = 2;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(_timer, ^{
+        if ( timeout <= 0 )
+        {
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf openGiftBagAction];
+            });
+        }
+        else
+        {
+            timeout--;
+        }
+    });
+    dispatch_resume(_timer);
+}
+#pragma mark IBAction
+// 开启规则画面
+- (IBAction)showRulesAction:(id)sender {
+    if (self.activityRuleView.alpha == 0)
+    {
+        [self bringSubviewToFront:self.activityRuleView];
+        [UIView animateWithDuration:0.3 animations:^{
+            self.activityRuleView.alpha = 1;
+        }];
+    }
+}
+// 关闭规则画面
+- (IBAction)dismissRulesView {
+    if (self.activityRuleView.alpha == 1)
+    {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.activityRuleView.alpha = 0;
+        } completion:^(BOOL finished) {
+            [self sendSubviewToBack:self.activityRuleView];
+        }];
+    }
+}
+// 关闭活动画面
+- (IBAction)closeBtnAction:(UIButton *)sender {
+    if (self.dismissBlock) {
+        self.dismissBlock();
+    }
+}
+// 开启集福卡画面
+- (IBAction)showCardsBonus:(UIButton*)sender {
+    [self setupGiftBannerGroup];
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.cardsBonusView setAlpha:(sender.tag == 1) ? 1.0 : 0.0];
+        [self.rainBackgroundView setAlpha:(sender.tag == 1) ? 0.0 : 1.0];
+        [self.labelBackgroundView setAlpha:(sender.tag == 1) ? 0.0 : 1.0];
+        [self dismissRulesView];
+    }];
+//    if (sender.tag == 1)
+//    {
+//    [self switchWithView:self.labelBackgroundView withPosition:RedPocketsViewToBack];
+//    [self switchWithView:self.rainBackgroundView withPosition:RedPocketsViewToBack];
+//    [self switchWithView:self.cardsBonusView withPosition:RedPocketsViewToFront];
+//    }else
+//    {
+//    [self switchWithView:self.labelBackgroundView withPosition:RedPocketsViewToFront];
+//    [self switchWithView:self.labelBackgroundView withPosition:RedPocketsViewToFront];
+//    [self switchWithView:self.cardsBonusView withPosition:RedPocketsViewToBack];
+//    }
+}
+- (IBAction)openGiftBagAction{
+    [self.closeGiftBagButton setHidden:NO];
+    [self.openGiftBagButton setHidden:YES];
+}
+- (IBAction)closeGiftBagAction:(id)sender {
+    [self.bagView setHidden:YES];
+    [self.bagView setAlpha:0.0];
+    [self.closeGiftBagButton setHidden:YES];
+    [self.bagMoveLayer removeFromSuperlayer];
+}
+#pragma mark Lazy Load
+- (SDCycleScrollView *)bannerView {
+    if (!_bannerView) {
+        SDCycleScrollView *bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"3"]];
+        [self.activityRuleView addSubview:bannerView];
+        [bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.right.mas_equalTo(self.activityRuleView);
+            make.height.equalTo(self.activityRuleView).multipliedBy(0.85);
+        }];
+        bannerView.layer.cornerRadius = 10;
+        bannerView.layer.masksToBounds = true;
+        bannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+        bannerView.pageControlStyle = SDCycleScrollViewPageContolStyleDefault;
+        bannerView.pageControlDotSize = CGSizeMake(6, 6);
+//        bannerView.autoScrollTimeInterval = 0;
+        bannerView.autoScroll = false;
+        _bannerView = bannerView;
+    }
+    return _bannerView;
+}
+- (SDCycleScrollView *)giftBannerView {
+    if (!_giftBannerView) {
+        SDCycleScrollView *giftBannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"3"]];
+        [self.cardsBonusView addSubview:giftBannerView];
+        [giftBannerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.mas_equalTo(self.cardsBonusView);
+            make.top.equalTo(@50);
+            make.height.equalTo(self.cardsBonusView).multipliedBy(0.20);
+        }];
+        giftBannerView.layer.cornerRadius = 10;
+        giftBannerView.layer.masksToBounds = true;
+        giftBannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+        giftBannerView.pageControlStyle = SDCycleScrollViewPageContolStyleDefault;
+        giftBannerView.pageControlDotSize = CGSizeMake(6, 6);
+//        bannerView.autoScrollTimeInterval = 0;
+        giftBannerView.autoScroll = false;
+        _giftBannerView = giftBannerView;
+    }
+    return _giftBannerView;
+}
+
 @end

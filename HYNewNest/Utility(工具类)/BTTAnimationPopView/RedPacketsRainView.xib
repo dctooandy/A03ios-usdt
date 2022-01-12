@@ -133,29 +133,68 @@
                         <constraint firstItem="uZJ-LJ-69R" firstAttribute="centerX" secondItem="Z5W-E5-F5r" secondAttribute="centerX" id="upb-8d-hBq"/>
                     </constraints>
                 </view>
+                <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uSV-gi-6bB">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dTK-EY-egz">
+                            <rect key="frame" x="188" y="550.5" width="38" height="38"/>
+                            <state key="normal" image="ic_new_year_pop_close_btn"/>
+                            <connections>
+                                <action selector="closeGiftBagAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="FMt-3t-Td6"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c5z-eb-JH3">
+                            <rect key="frame" x="103.5" y="387.5" width="207" height="43"/>
+                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="立即开启" titleAlignment="center">
+                                <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
+                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="openGiftBagAction" destination="iN0-l3-epB" eventType="touchUpInside" id="SI1-uU-Io6"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="c5z-eb-JH3" firstAttribute="centerX" secondItem="uSV-gi-6bB" secondAttribute="centerX" id="Cf4-E0-Vi0"/>
+                        <constraint firstItem="dTK-EY-egz" firstAttribute="top" secondItem="c5z-eb-JH3" secondAttribute="bottom" constant="120" id="GNg-yA-M82"/>
+                        <constraint firstItem="dTK-EY-egz" firstAttribute="centerX" secondItem="uSV-gi-6bB" secondAttribute="centerX" id="KaS-ik-R23"/>
+                        <constraint firstItem="c5z-eb-JH3" firstAttribute="centerY" secondItem="uSV-gi-6bB" secondAttribute="centerY" id="YLj-wW-Orr"/>
+                        <constraint firstItem="c5z-eb-JH3" firstAttribute="width" secondItem="uSV-gi-6bB" secondAttribute="width" multiplier="0.5" id="wDd-XA-kKJ"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.14349870492290978" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="H7g-Yz-Bzf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="322-rp-yOd"/>
                 <constraint firstAttribute="bottom" secondItem="Z5W-E5-F5r" secondAttribute="bottom" id="452-NS-vdb"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="uSV-gi-6bB" secondAttribute="trailing" id="AQK-le-V6U"/>
                 <constraint firstItem="H7g-Yz-Bzf" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.758454" id="BIW-WC-0Zr"/>
                 <constraint firstItem="lLp-Md-ud5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Cdf-w0-Lzx"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="uSV-gi-6bB" secondAttribute="bottom" id="D2d-TI-o4r"/>
                 <constraint firstItem="H7g-Yz-Bzf" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Qzv-Cq-G1g"/>
                 <constraint firstAttribute="trailing" secondItem="Z5W-E5-F5r" secondAttribute="trailing" id="R9f-UL-pH9"/>
+                <constraint firstItem="uSV-gi-6bB" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Tzu-kP-ZO7"/>
                 <constraint firstAttribute="bottom" secondItem="lLp-Md-ud5" secondAttribute="bottom" id="U8c-hX-IG9"/>
                 <constraint firstItem="Z5W-E5-F5r" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XxZ-RO-ruL"/>
                 <constraint firstItem="lLp-Md-ud5" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="YyI-dt-NFZ"/>
+                <constraint firstItem="uSV-gi-6bB" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="bNj-3H-AwN"/>
                 <constraint firstAttribute="trailing" secondItem="lLp-Md-ud5" secondAttribute="trailing" id="bdj-Yf-2II"/>
                 <constraint firstItem="Z5W-E5-F5r" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="giC-8f-6kE"/>
                 <constraint firstItem="H7g-Yz-Bzf" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.553571" id="vsw-en-FDP"/>
             </constraints>
             <connections>
                 <outlet property="activityRuleView" destination="H7g-Yz-Bzf" id="4rO-7h-E14"/>
+                <outlet property="bagView" destination="uSV-gi-6bB" id="XTu-0a-HMM"/>
                 <outlet property="cardsBonusView" destination="lLp-Md-ud5" id="MFh-Rc-dIl"/>
                 <outlet property="closeButton" destination="iIQ-1T-EZ8" id="bq9-Fl-P0L"/>
+                <outlet property="closeGiftBagButton" destination="dTK-EY-egz" id="Tfa-RY-47f"/>
                 <outlet property="countdownLab" destination="c8d-eI-hg0" id="weW-1S-jhW"/>
                 <outlet property="labelBackgroundView" destination="uZJ-LJ-69R" id="Ou6-EY-sW5"/>
+                <outlet property="openGiftBagButton" destination="c5z-eb-JH3" id="UDk-FY-yKF"/>
                 <outlet property="rainBackgroundView" destination="Z5W-E5-F5r" id="UnI-5z-k2h"/>
                 <outlet property="redPocketsRainView" destination="5j4-AX-VrT" id="t8Q-i3-s8u"/>
                 <outlet property="showCardsButton" destination="Eqy-K3-5tk" id="6VY-QL-mwo"/>
