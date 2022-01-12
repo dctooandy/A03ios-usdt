@@ -17,11 +17,14 @@
 @property (weak, nonatomic) IBOutlet UIView *rainBackgroundView;
 @property (weak, nonatomic) IBOutlet UIView *redPocketsRainView;
 @property (weak, nonatomic) IBOutlet UIView *cardsBonusView;
+@property (weak, nonatomic) IBOutlet UIImageView *showCardsImageView;
 @property (weak, nonatomic) IBOutlet UIButton *showCardsButton;
 @property (weak, nonatomic) IBOutlet UIView *activityRuleView;
+@property (weak, nonatomic) IBOutlet UIButton *backToRedPacketsViewBtn;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) CALayer *moveLayer;
 @property (nonatomic, strong) CALayer *bagMoveLayer;
+@property (nonatomic, strong) CALayer *btnMoveLayer;
 @property (nonatomic, assign) NSInteger redPacketsResultCount;
 @property (nonatomic, assign) NSInteger selectedRedPacketNum;
 @property (nonatomic, assign) RedPocketsViewStyle viewStyle;
@@ -57,6 +60,7 @@
             [self setupImageGroup];
             [self setupDataForSortArray];
             [self setupGiftBag];
+            [self setupShowGiftBagButtonAnimation];
             break;
         case RedPocketsViewResult:
             [self.tapGesture setEnabled:NO];
@@ -118,6 +122,14 @@
     self.bagMoveLayer.contents = (id)imageV.image.CGImage;
     [self.rainBackgroundView.layer addSublayer:self.bagMoveLayer];
     [self addGiftBagAnimation];
+}
+- (void)setupShowGiftBagButtonAnimation
+{
+    CGRect originButton = self.showCardsImageView.frame;
+    originButton.origin.y = originButton.origin.y + 5;
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse animations:^{
+        [self.showCardsImageView setFrame:originButton];
+    } completion:nil];
 }
 - (void)addGiftBagAnimation
 {
@@ -189,11 +201,27 @@
     }
     [self showResult];
 }
+- (void)setupGiftBagButtonAnimation
+{
+    CAKeyframeAnimation * tranAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    CATransform3D r0 = CATransform3DMakeRotation(M_PI/180 * (arc4random() % 360 ) , 0, 0, -1);
+    CATransform3D r1 = CATransform3DMakeRotation(M_PI/180 * (arc4random() % 360 ) , 0, 0, -1);
+    tranAnimation.values = @[[NSValue valueWithCATransform3D:r0],[NSValue valueWithCATransform3D:r1]];
+    tranAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    tranAnimation.duration = arc4random() % 200 / 100.0 + 13.5;
+    //为了避免旋转动画完成后再次回到初始状态。
+    [tranAnimation setFillMode:kCAFillModeForwards];
+    [tranAnimation setRemovedOnCompletion:NO];
+    [self.btnMoveLayer addAnimation:tranAnimation forKey:@"bag"];
+//    layer.transform = CATransform3DMakeScale(scaleValue, scaleValue, 1);
+}
 -(void)showResult
 {
     [self.closeButton setHidden:NO];
     self.countdownLab.text = [NSString stringWithFormat:@"+%ld金币",(long)self.redPacketsResultCount];
     [self.showCardsButton setHidden:NO];
+    [self.showCardsImageView setHidden:NO];
+    [self setupShowGiftBagButtonAnimation];
     [self showOpenGiftBagButton];
 }
 - (void)clickRed:(UITapGestureRecognizer *)sender
@@ -371,7 +399,7 @@
         NSInteger randomNum = random() % 5;
         dispatch_time_t dipatchTime = dispatch_time(DISPATCH_TIME_NOW, ((randomNum == 0 ? 1:randomNum) * NSEC_PER_SEC));
         dispatch_after(dipatchTime, dispatch_get_main_queue(), ^{
-            [self setBulletScreen:strArray positionY: (KIsiPhoneX ? 34 + 150 : 150) + i * 32.0];
+            [self setBulletScreen:strArray positionY: (KIsiPhoneX ? 34 + 180 : 180) + i * 32.0];
         });
     }
 }
@@ -381,7 +409,7 @@
     // 设置动画方向 animationDirection ex: QBulletScreenViewDirectionLeft
     UIImage * img = [PublicMethod createImageWithColor:COLOR_RGBA(0, 0, 0, 0.3)];
 //    img = [img resizableImageWithCapInsets:UIEdgeInsetsMake(20, 15, 20, 15)];
-    QBulletScreenView *bulletScreenView = [QBulletScreenView q_bulletScreenWithFrame:CGRectMake(0, positionY, 0, 25) texts:array color:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:14] icon:nil direction:QBulletScreenViewDirectionLeft duration:5.0 target:self backgroundImg:img];
+    QBulletScreenView *bulletScreenView = [QBulletScreenView q_bulletScreenWithFrame:CGRectMake(0, positionY, 0, 23) texts:array color:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:10] icon:nil direction:QBulletScreenViewDirectionLeft duration:5.0 target:self backgroundImg:img];
     [self.rainBackgroundView addSubview:bulletScreenView];
     [self.bulletViewsArr addObject:bulletScreenView];
     // 开始滚动
@@ -437,6 +465,16 @@
 }
 - (void)startRedPackerts
 {
+    // 集福卡隐藏
+    [self.showCardsButton setHidden:YES];
+    [self.showCardsImageView setHidden:YES];
+    // 跑马灯关掉
+    for (UIView * view in self.rainBackgroundView.subviews) {
+        if ([view isKindOfClass:[QBulletScreenView class]])
+        {
+            [view removeFromSuperview];
+        }
+    }
     [self.redPocketsRainView addGestureRecognizer:self.tapGesture];
     float t = (arc4random() % 10) + 5;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:(1/t) target:self selector:@selector(showRain) userInfo:nil repeats:YES];
@@ -472,6 +510,7 @@
     [self.bagView setHidden:NO];
     [UIView animateWithDuration:0.3 animations:^{
         [self.bagView setAlpha:1.0];
+        [self.labelBackgroundView setAlpha:0.0];
     }];
     //红包袋开启倒数60秒
     weakSelf(weakSelf)
@@ -546,12 +585,21 @@
 - (IBAction)openGiftBagAction{
     [self.closeGiftBagButton setHidden:NO];
     [self.openGiftBagButton setHidden:YES];
+    [self.bagMoveLayer removeFromSuperlayer];
 }
 - (IBAction)closeGiftBagAction:(id)sender {
     [self.bagView setHidden:YES];
     [self.bagView setAlpha:0.0];
     [self.closeGiftBagButton setHidden:YES];
-    [self.bagMoveLayer removeFromSuperlayer];
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.labelBackgroundView setAlpha:1.0];
+    }];
+    __block int timeout = [PublicMethod countDownIntervalWithDurationTag:YES];
+//    [self configForRedPocketsView:RedPocketsViewBegin withDuration:timeout];
+    [self startTimeWithDuration:timeout];
+    [self setupDataForSortArray];
+    [self setupGiftBag];
+//    [self.bagMoveLayer removeFromSuperlayer];
 }
 #pragma mark Lazy Load
 - (SDCycleScrollView *)bannerView {
@@ -579,8 +627,8 @@
         [self.cardsBonusView addSubview:giftBannerView];
         [giftBannerView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(self.cardsBonusView);
-            make.top.equalTo(@50);
-            make.height.equalTo(self.cardsBonusView).multipliedBy(0.20);
+            make.top.mas_equalTo(self.backToRedPacketsViewBtn.mas_bottom).offset(10);
+            make.height.equalTo(self.cardsBonusView).multipliedBy(0.28);
         }];
         giftBannerView.layer.cornerRadius = 10;
         giftBannerView.layer.masksToBounds = true;

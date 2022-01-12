@@ -644,7 +644,7 @@ typedef void(^ButtonCallBack)(void);
             //暂时让他出来
             dispatch_async(dispatch_get_main_queue(), ^{
 //                [weakSelf showRedPacketsPreViewWithDuration:10];
-                [weakSelf showRedPacketsRainViewWithDuration:10];
+                [weakSelf showRedPacketsRainViewWithDuration:5];
             });
         }
     } WithDefaultCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
