@@ -120,6 +120,8 @@ NS_ASSUME_NONNULL_BEGIN
         self.backgrondImgView = [[UIImageView alloc] initWithFrame:iconFrame];
         self.backgrondImgView.backgroundColor = [UIColor clearColor];
         self.backgrondImgView.image = self.backgroundImg;
+        self.backgrondImgView.layer.cornerRadius = 5;
+        self.backgrondImgView.layer.masksToBounds = YES;
         [self addSubview:self.backgrondImgView];
         
         [self.backgrondImgView addSubview:self.contentLabel];
@@ -165,7 +167,8 @@ NS_ASSUME_NONNULL_BEGIN
         }
         
         if (self.animationDirection > 1) {  // 左右滚动
-            duration = self.animationDuration * currentContentWidth / 150;
+            CGFloat tempWidth = (currentContentWidth + arc4random() % 50) / 2 ;
+            duration = self.animationDuration * tempWidth / 150;
         } else {    // 垂直滚动
             duration = self.animationDuration;
         }

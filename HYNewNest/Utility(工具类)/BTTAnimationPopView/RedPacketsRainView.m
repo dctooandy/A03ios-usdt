@@ -349,14 +349,14 @@
 
 - (void)setupDataForSortArray
 {
-    NSArray * tempArray = [[NSArray alloc] initWithObjects:@"111111",@"222222",@"33333", nil];
+    NSArray * tempArray = [[NSArray alloc] initWithObjects:@"恭喜111111会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜222222会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜3333333会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜44444444会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜55555555会员齐集福卡获得: 索尼PS5游戏机 国行光驱版", nil];
     [self sortArray:tempArray];
 }
 - (void)sortArray:(NSArray *)array {
     if (array.count <= 0) {
         return;
     }
-    NSInteger rowCount = 3.0;
+    NSInteger rowCount = 2.0;
     NSInteger count = ceil(array.count/floor(rowCount));
     for (int i = 0; i < rowCount; i++) {
         NSMutableArray * strArray = [[NSMutableArray alloc] init];
@@ -371,7 +371,7 @@
         NSInteger randomNum = random() % 5;
         dispatch_time_t dipatchTime = dispatch_time(DISPATCH_TIME_NOW, ((randomNum == 0 ? 1:randomNum) * NSEC_PER_SEC));
         dispatch_after(dipatchTime, dispatch_get_main_queue(), ^{
-            [self setBulletScreen:strArray positionY: (KIsiPhoneX ? 34 + 50 : 50) + i * 32.0];
+            [self setBulletScreen:strArray positionY: (KIsiPhoneX ? 34 + 150 : 150) + i * 32.0];
         });
     }
 }
@@ -379,8 +379,8 @@
     // 创建弹幕视图控件
     // 设置动画时间 animationDuration
     // 设置动画方向 animationDirection ex: QBulletScreenViewDirectionLeft
-    UIImage * img = [UIImage imageNamed:@"ic_new_year_pop_btn"];
-    img = [img resizableImageWithCapInsets:UIEdgeInsetsMake(20, 15, 120, 40)];
+    UIImage * img = [PublicMethod createImageWithColor:COLOR_RGBA(0, 0, 0, 0.3)];
+//    img = [img resizableImageWithCapInsets:UIEdgeInsetsMake(20, 15, 20, 15)];
     QBulletScreenView *bulletScreenView = [QBulletScreenView q_bulletScreenWithFrame:CGRectMake(0, positionY, 0, 25) texts:array color:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:14] icon:nil direction:QBulletScreenViewDirectionLeft duration:5.0 target:self backgroundImg:img];
     [self.rainBackgroundView addSubview:bulletScreenView];
     [self.bulletViewsArr addObject:bulletScreenView];
@@ -475,7 +475,7 @@
     }];
     //红包袋开启倒数60秒
     weakSelf(weakSelf)
-    __block int timeout = 2;
+    __block int timeout = RedPacketCountDown;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
