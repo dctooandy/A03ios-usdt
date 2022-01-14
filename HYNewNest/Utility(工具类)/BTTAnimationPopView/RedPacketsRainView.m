@@ -10,21 +10,33 @@
 #import "SDCycleScrollView.h"
 #import <Masonry/Masonry.h>
 #import "QBulletScreenView.h"
+
+#import "UIImage+GIF.h"
 @interface RedPacketsRainView()<SDCycleScrollViewDelegate , QBulletScreenViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *labelBackgroundView;
+@property (weak, nonatomic) IBOutlet UIImageView *centerGiftBagImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *mammonImageView;
+
 @property (weak, nonatomic) IBOutlet UILabel *countdownLab;
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
 @property (weak, nonatomic) IBOutlet UIView *rainBackgroundView;
+@property (weak, nonatomic) IBOutlet UIImageView *rainBackgroundImageView;
 @property (weak, nonatomic) IBOutlet UIView *redPocketsRainView;
 @property (weak, nonatomic) IBOutlet UIView *cardsBonusView;
 @property (weak, nonatomic) IBOutlet UIImageView *showCardsImageView;
 @property (weak, nonatomic) IBOutlet UIButton *showCardsButton;
 @property (weak, nonatomic) IBOutlet UIView *activityRuleView;
 @property (weak, nonatomic) IBOutlet UIButton *backToRedPacketsViewBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *countDownLabelCenter;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *countDownLabelTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *mammonTop;
+@property (weak, nonatomic) IBOutlet UIView *labelMaskView;
+@property (weak, nonatomic) IBOutlet UILabel *countDownTitleLabel;
+
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) NSTimer *autoOpenBagTimer;
 @property (nonatomic, strong) CALayer *moveLayer;
 @property (nonatomic, strong) CALayer *bagMoveLayer;
-@property (nonatomic, strong) CALayer *btnMoveLayer;
 @property (nonatomic, assign) NSInteger redPacketsResultCount;
 @property (nonatomic, assign) NSInteger selectedRedPacketNum;
 @property (nonatomic, assign) RedPocketsViewStyle viewStyle;
@@ -34,6 +46,7 @@
 @property (nonatomic, strong) SDCycleScrollView *giftBannerView;
 @property (nonatomic, strong) NSMutableArray *bulletViewsArr;
 @property (weak, nonatomic) IBOutlet UIView *bagView;
+@property (weak, nonatomic) IBOutlet UIView *bagResultView;
 @property (weak, nonatomic) IBOutlet UIButton *openGiftBagButton;
 @property (weak, nonatomic) IBOutlet UIButton *closeGiftBagButton;
 
@@ -46,9 +59,10 @@
     self.userInteractionEnabled = YES;
     self.bulletViewsArr = [[NSMutableArray alloc] init];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickRed:)];
-    
     _tapGesture = tap;
     [self.tapGesture setEnabled:NO];
+    self.openGiftBagButton.layer.borderColor = COLOR_RGBA(219, 168, 143, 1).CGColor;
+    self.openGiftBagButton.layer.borderWidth = 1;
 }
 - (void)configForRedPocketsView:(RedPocketsViewStyle)style withDuration:(int)duration
 {
@@ -59,7 +73,6 @@
             [self startTimeWithDuration:duration];
             [self setupImageGroup];
             [self setupDataForSortArray];
-            [self setupGiftBag];
             [self setupShowGiftBagButtonAnimation];
             break;
         case RedPocketsViewResult:
@@ -99,9 +112,24 @@
 
 - (void)showRain
 {
+    int hasRedPacket = (arc4random() % 3);
     UIImageView * imageV = [UIImageView new];
-    imageV.image = [UIImage imageNamed:@"dsb_rb_bg"];
-    imageV.frame = CGRectMake(0, -75, 44 , 62.5 );
+    switch (hasRedPacket) {
+        case 0:
+            imageV.image = [UIImage imageNamed:@"img_coin"];
+            imageV.frame = CGRectMake(0, 0, 34 , 26 );
+            break;
+        case 1:
+            imageV.image = [UIImage imageNamed:@"img_goldingots"];
+            imageV.frame = CGRectMake(0, 0, 46 , 29 );
+            break;
+        case 2:
+            imageV.image = [UIImage imageNamed:@"img_redenvelope_default"];
+            imageV.frame = CGRectMake(0, 0, 44 , 62.5 );
+            break;
+        default:
+            break;
+    }
     self.moveLayer = [CALayer new];
     self.moveLayer.bounds = imageV.frame;
     self.moveLayer.anchorPoint = CGPointMake(0, 0);
@@ -113,12 +141,12 @@
 - (void)setupGiftBag
 {
     UIImageView * imageV = [UIImageView new];
-    imageV.image = [UIImage imageNamed:@"dsb_rb_bg"];
-    imageV.frame = CGRectMake(0, 0, 100 , 100 );
+    imageV.image = [UIImage imageNamed:@"img_redbag"];
+    imageV.frame = CGRectMake(0, 0, 200 , 200 );
     self.bagMoveLayer = [CALayer new];
     self.bagMoveLayer.bounds = imageV.frame;
     self.bagMoveLayer.anchorPoint = CGPointMake(0, 1);
-    self.bagMoveLayer.position = CGPointMake(0, SCREEN_HEIGHT );
+    self.bagMoveLayer.position = CGPointMake(-50, SCREEN_HEIGHT );
     self.bagMoveLayer.contents = (id)imageV.image.CGImage;
     [self.rainBackgroundView.layer addSublayer:self.bagMoveLayer];
     [self addGiftBagAnimation];
@@ -183,46 +211,53 @@
         CALayer * layer = self.rainBackgroundView.layer.sublayers[i];
         if ([layer animationForKey:@"bag"])
         {
-//            [layer setHidden:YES];
-            NSInteger scaleValue = 3;
-            [layer removeAnimationForKey:@"bag"];
+            CGFloat scaleValue = 1.4;
+            [layer removeAnimationForKey:@"bag"];//红包福袋消失
+            [layer removeFromSuperlayer];
             CAKeyframeAnimation * moveAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-            NSValue * A = [NSValue valueWithCGPoint:CGPointMake(0, SCREEN_HEIGHT-100)];
-            NSValue * B = [NSValue valueWithCGPoint:CGPointMake(SCREEN_WIDTH/2 - (100 / 2 * scaleValue), SCREEN_HEIGHT * 0.6)];
+            NSValue * A = [NSValue valueWithCGPoint:CGPointMake(0, SCREEN_HEIGHT-200)];
+            NSValue * B = [NSValue valueWithCGPoint:CGPointMake(SCREEN_WIDTH/2 - (200 * scaleValue)/2 , SCREEN_HEIGHT * 0.65)];
+            UIImageView * newPacketIV = [UIImageView new];
+            newPacketIV.image = [UIImage imageNamed:@"img_yellowbag_game_popup"];
+            newPacketIV.frame = CGRectMake(0, 0, 200 * scaleValue , 200 * scaleValue);
             moveAnimation.values = @[A,B];
             moveAnimation.duration = 0.3;
             moveAnimation.repeatCount = 0;
             moveAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
             [moveAnimation setFillMode:kCAFillModeForwards];
             [moveAnimation setRemovedOnCompletion:NO];
-            [layer addAnimation:moveAnimation forKey:@"bagFly"];
-            layer.transform = CATransform3DMakeScale(scaleValue, scaleValue, 1);
+//            layer.contents = (id)newPacketIV.image.CGImage;
+//            [layer addAnimation:moveAnimation forKey:@"bagFly"];// 红包福袋移动到中间上面
+//            layer.transform = CATransform3DMakeScale(scaleValue, scaleValue, 1);// 红包福袋放大
+            self.bagMoveLayer = [CALayer new];
+            UIImageView * imageV = [UIImageView new];
+            imageV.image = [UIImage imageNamed:@"img_redbag"];
+            imageV.frame = CGRectMake(0, 0, 200 , 200 );
+            self.bagMoveLayer.bounds = imageV.frame;
+            self.bagMoveLayer.anchorPoint = CGPointMake(0, 1);
+            self.bagMoveLayer.position = CGPointMake(-50, SCREEN_HEIGHT );
+            self.bagMoveLayer.contents = (id)newPacketIV.image.CGImage;
+            [self.bagMoveLayer addAnimation:moveAnimation forKey:@"bagFly"];// 红包福袋移动到中间上面
+            self.bagMoveLayer.transform = CATransform3DMakeScale(scaleValue, scaleValue, 1);// 红包福袋放大
+            [self.bagView.layer addSublayer:self.bagMoveLayer];
         }
     }
     [self showResult];
 }
-- (void)setupGiftBagButtonAnimation
-{
-    CAKeyframeAnimation * tranAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
-    CATransform3D r0 = CATransform3DMakeRotation(M_PI/180 * (arc4random() % 360 ) , 0, 0, -1);
-    CATransform3D r1 = CATransform3DMakeRotation(M_PI/180 * (arc4random() % 360 ) , 0, 0, -1);
-    tranAnimation.values = @[[NSValue valueWithCATransform3D:r0],[NSValue valueWithCATransform3D:r1]];
-    tranAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    tranAnimation.duration = arc4random() % 200 / 100.0 + 13.5;
-    //为了避免旋转动画完成后再次回到初始状态。
-    [tranAnimation setFillMode:kCAFillModeForwards];
-    [tranAnimation setRemovedOnCompletion:NO];
-    [self.btnMoveLayer addAnimation:tranAnimation forKey:@"bag"];
-//    layer.transform = CATransform3DMakeScale(scaleValue, scaleValue, 1);
-}
+
 -(void)showResult
 {
     [self.closeButton setHidden:NO];
     self.countdownLab.text = [NSString stringWithFormat:@"+%ld金币",(long)self.redPacketsResultCount];
     [self.showCardsButton setHidden:NO];
     [self.showCardsImageView setHidden:NO];
-    [self setupShowGiftBagButtonAnimation];
-    [self showOpenGiftBagButton];
+    [self setupShowGiftBagButtonAnimation];// 集幅卡按钮动画启动
+    [self showOpenGiftBagButton];// 显示集幅卡按钮
+    [self autoOpenGiftBagAction];// 自动打开红包袋
+    // 背景图置换
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.rainBackgroundImageView setImage:ImageNamed((@"bg_img1"))];
+    }];
 }
 - (void)clickRed:(UITapGestureRecognizer *)sender
 {
@@ -232,32 +267,37 @@
     {
         CALayer * layer = self.redPocketsRainView.layer.sublayers[i];
         
-        if ([[layer presentationLayer] hitTest:point] != nil && self.selectedRedPacketNum != i && ![layer isKindOfClass:[UILabel layerClass]])
+        if ([[layer presentationLayer] hitTest:point] != nil &&
+            self.selectedRedPacketNum != i &&
+            ![layer isKindOfClass:[UILabel layerClass]] &&
+            (layer.bounds.size.width == 44))
         {
             NSLog(@"%d",i);
             self.selectedRedPacketNum = i;
 //            BOOL hasRedPacketd = !(i % 3) ;
             BOOL hasRedPacketd = YES ;
-//            UIImageView * newPacketIV = [UIImageView new];
+            UIImageView * newPacketIV = [UIImageView new];
 //            if (hasRedPacketd)
 //            {
-//                newPacketIV.image = [UIImage imageNamed:@"dsb_content_108"];
-//                newPacketIV.frame = CGRectMake(0, 0, 44 , 62.5);
+            newPacketIV.image = [UIImage imageNamed:@"img_redenvelope_click"];
+            newPacketIV.frame = CGRectMake(0, 0, 44 , 62.5);
 //            }
 //            else
 //            {
 //                newPacketIV.image = [UIImage imageNamed:@"dsb_rb_close"];
 //                newPacketIV.frame = CGRectMake(0, 0, 45.5, 76.5);
 //            }
-//            layer.contents = (id)newPacketIV.image.CGImage;
+            layer.contents = (id)newPacketIV.image.CGImage;
             [layer removeAnimationForKey:@"p"];
             CAKeyframeAnimation * moveAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
             NSValue * A = [NSValue valueWithCGPoint:CGPointMake(point.x, point.y)];
             NSValue * B = [NSValue valueWithCGPoint:CGPointMake(self.width/5, self.height)];
             moveAnimation.values = @[A,B];
-            moveAnimation.duration = 0.5;
+            moveAnimation.duration = 1.0;
             moveAnimation.repeatCount = 1;
-            moveAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+            moveAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+            [moveAnimation setFillMode:kCAFillModeForwards];
+            [moveAnimation setRemovedOnCompletion:NO];
             [layer addAnimation:moveAnimation forKey:@"p"];
             
 //            UIView * alertView = [UIView new];
@@ -425,7 +465,7 @@
     weakSelf(weakSelf)
     __block int timeout = timeValue;
     NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
-    BOOL isBeforeDuration = [duractionArray[0] boolValue];
+//    BOOL isBeforeDuration = [duractionArray[0] boolValue];
     BOOL isActivityDuration = [duractionArray[1] boolValue];
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
@@ -435,8 +475,9 @@
         {
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf moveLabelToTop]; // 移动倒数LAbel到上面
 //                [weakSelf.labelBackgroundView setAlpha:0.0];
-                [weakSelf startRedPackerts];
+                [weakSelf startRedPackerts]; // 开始下红包雨
                 [weakSelf.tapGesture setEnabled:YES];
             });
         }
@@ -463,6 +504,44 @@
     });
     dispatch_resume(_timer);
 }
+- (void)moveLabelToTop
+{
+    // 移动
+    self.countDownTitleLabel.text = @"倒计时";
+    self.countDownTitleLabel.font = [UIFont systemFontOfSize:24.0];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.mammonTop.constant += 50;
+        self.countDownLabelTop.constant = 0.0;
+        self.countDownLabelCenter.constant += 100;
+        self.labelBackgroundView.transform = CGAffineTransformMakeTranslation(0, -(CGRectGetMinY(self.labelBackgroundView.frame) - 50 + CGRectGetHeight(self.labelBackgroundView.frame)/4));
+        self.labelBackgroundView.transform = self.labelBackgroundView.transform = CGAffineTransformScale(self.labelBackgroundView.transform, 0.50f, 0.50f);
+        self.labelMaskView.transform =  CGAffineTransformMakeTranslation(0,  -CGRectGetHeight(self.labelMaskView.frame)/4);
+        self.labelMaskView.transform = self.labelMaskView.transform = CGAffineTransformScale(self.labelMaskView.transform, 1.0f, 0.20f);
+        [self.centerGiftBagImageView setAlpha:0.0];
+        [self.centerGiftBagImageView setHidden:YES];
+        // 加入Gif
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"degg03" ofType:@"gif"];
+        NSData *data = [NSData dataWithContentsOfFile:path];
+        self.mammonImageView.image = [UIImage sd_animatedGIFWithData:data];
+    }];
+}
+- (void)moveLabelToCenter
+{
+    [self.centerGiftBagImageView setHidden:NO];
+    self.countDownTitleLabel.text = @"红包雨倒计时:";
+    self.countDownTitleLabel.font = [UIFont systemFontOfSize:17.0];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.mammonTop.constant -= 50;
+        self.countDownLabelTop.constant = 30.0;
+        self.countDownLabelCenter.constant -= 100;
+        self.labelBackgroundView.transform = CGAffineTransformIdentity;
+        self.labelMaskView.transform = CGAffineTransformIdentity;
+        [self.centerGiftBagImageView setAlpha:1.0];
+        //财神图换回不会动的
+        self.mammonImageView.image = ImageNamed(@"mammon1");
+    }];
+}
 - (void)startRedPackerts
 {
     // 集福卡隐藏
@@ -475,12 +554,19 @@
             [view removeFromSuperview];
         }
     }
+    // 左下幅袋出现
+    [self setupGiftBag];
+    // 背景图置换
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.rainBackgroundImageView setImage:ImageNamed((@"bg_img2"))];
+    }];
     [self.redPocketsRainView addGestureRecognizer:self.tapGesture];
     float t = (arc4random() % 10) + 5;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:(1/t) target:self selector:@selector(showRain) userInfo:nil repeats:YES];
     [self.timer fire];
     
-    //红包下落10秒倒数
+    __block bool changeRedBagToGold = NO;
+    //红包下落秒倒数
     weakSelf(weakSelf)
     __block int timeout = RedPacketCountDown;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -491,11 +577,19 @@
         {
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf endAnimation];
+                [weakSelf endAnimation]; // 红包雨动画结束
             });
         }
         else
         {
+            if (timeout > 0 && timeout <= (RedPacketCountDown/2))
+            {
+                if (changeRedBagToGold == NO)
+                {
+                    changeRedBagToGold = YES;
+                    [weakSelf changeBagColor];
+                }
+            }
             NSString * titleStr = [NSString stringWithFormat:@"%d",timeout];
             dispatch_async(dispatch_get_main_queue(), ^{
                 weakSelf.countdownLab.text = titleStr;
@@ -505,6 +599,17 @@
     });
     dispatch_resume(_timer);
 }
+- (void)changeBagColor
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.1 animations:^{
+            UIImageView * imageV = [UIImageView new];
+            imageV.image = [UIImage imageNamed:@"img_yellowbag_game_popup"];
+            imageV.frame = CGRectMake(0, 0, 200 , 200 );
+            self.bagMoveLayer.contents = (id)imageV.image.CGImage;
+        }];
+    });
+}
 - (void)showOpenGiftBagButton
 {
     [self.bagView setHidden:NO];
@@ -512,26 +617,34 @@
         [self.bagView setAlpha:1.0];
         [self.labelBackgroundView setAlpha:0.0];
     }];
+}
+- (void)autoOpenGiftBagAction
+{
     //红包袋开启倒数60秒
-    weakSelf(weakSelf)
-    __block int timeout = RedPacketCountDown;
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
-    dispatch_source_set_event_handler(_timer, ^{
-        if ( timeout <= 0 )
-        {
-            dispatch_source_cancel(_timer);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf openGiftBagAction];
-            });
-        }
-        else
-        {
-            timeout--;
-        }
-    });
-    dispatch_resume(_timer);
+//    weakSelf(weakSelf)
+//    __block int timeout = RedPacketCountDown;
+//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+//    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+//    dispatch_source_set_event_handler(_timer, ^{
+//        if ( timeout <= 0 )
+//        {
+//            dispatch_source_cancel(_timer);
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [weakSelf openGiftBagAction];
+//            });
+//        }
+//        else
+//        {
+//            timeout--;
+//        }
+//    });
+//    dispatch_resume(_timer);
+    self.autoOpenBagTimer = [NSTimer scheduledTimerWithTimeInterval:RedPacketCountDown target:self selector:@selector(showGiftBag) userInfo:nil repeats:NO];
+}
+- (void)showGiftBag
+{
+    [self openGiftBagAction];
 }
 #pragma mark IBAction
 // 开启规则画面
@@ -583,13 +696,16 @@
 //    }
 }
 - (IBAction)openGiftBagAction{
+    [self.autoOpenBagTimer invalidate];
     [self.closeGiftBagButton setHidden:NO];
     [self.openGiftBagButton setHidden:YES];
+    [self.bagResultView setHidden:NO];
     [self.bagMoveLayer removeFromSuperlayer];
 }
 - (IBAction)closeGiftBagAction:(id)sender {
     [self.bagView setHidden:YES];
     [self.bagView setAlpha:0.0];
+    [self.bagResultView setHidden:YES];
     [self.closeGiftBagButton setHidden:YES];
     [UIView animateWithDuration:0.3 animations:^{
         [self.labelBackgroundView setAlpha:1.0];
@@ -598,7 +714,8 @@
 //    [self configForRedPocketsView:RedPocketsViewBegin withDuration:timeout];
     [self startTimeWithDuration:timeout];
     [self setupDataForSortArray];
-    [self setupGiftBag];
+    [self moveLabelToCenter];
+//    [self setupGiftBag];
 //    [self.bagMoveLayer removeFromSuperlayer];
 }
 #pragma mark Lazy Load
