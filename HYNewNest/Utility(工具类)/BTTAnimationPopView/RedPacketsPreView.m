@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *countDownSenondLabel;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 @property (weak, nonatomic) IBOutlet UIView *backgroundView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @end
 @implementation RedPacketsPreView
 - (void)awakeFromNib {
@@ -70,5 +71,13 @@
         self.dismissBlock();
     }
 }
-
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    UIImage *myGradient = [UIColor gradientImageFromColors:@[kHexColor(0xEB7A73), kHexColor(0xFFEACA), kHexColor(0xFFEC85)]
+                        gradientType:GradientTypeTopToBottom
+                             imgSize:self.titleLabel.frame.size];
+    self.titleLabel.textColor = [UIColor colorWithPatternImage:myGradient];
+    self.countDownSenondLabel.textColor = [UIColor colorWithPatternImage:myGradient];
+}
 @end

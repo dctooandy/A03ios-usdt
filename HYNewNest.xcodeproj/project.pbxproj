@@ -379,7 +379,6 @@
 		76485F222787D384004EA51E /* AssistiveButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 76485F212787D383004EA51E /* AssistiveButton.m */; };
 		76485F252787D4FB004EA51E /* PublicMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 76485F232787D4FB004EA51E /* PublicMethod.m */; };
 		76485F282787D777004EA51E /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 76485F262787D776004EA51E /* UIImage+GIF.m */; };
-		76519928278C107F006A59BF /* RedPacketsPreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76519926278C107F006A59BF /* RedPacketsPreView.xib */; };
 		76519929278C107F006A59BF /* RedPacketsPreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76519927278C107F006A59BF /* RedPacketsPreView.m */; };
 		76519932278C2BE5006A59BF /* QBulletScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76519930278C2BE5006A59BF /* QBulletScreenView.m */; };
 		765C64E32782B4ED00A6BC34 /* BTTAnimationPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 765C64E22782B4ED00A6BC34 /* BTTAnimationPopView.m */; };
@@ -390,6 +389,7 @@
 		767DF24A27914F7500F50520 /* RedPacketsRainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 767DF24927914F7500F50520 /* RedPacketsRainView.xib */; };
 		767DF24D27914FB700F50520 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 767DF24C27914FB700F50520 /* UIView+Frame.m */; };
 		7682A78327915183001AC772 /* mammon2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7682A78227915183001AC772 /* mammon2.gif */; };
+		7682A78527915CE1001AC772 /* RedPacketsPreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7682A78427915CE1001AC772 /* RedPacketsPreView.xib */; };
 		76B4998B275F6415003CD35B /* 03Gif2022.gif in Resources */ = {isa = PBXBuildFile; fileRef = 76B4998A275F6415003CD35B /* 03Gif2022.gif */; };
 		76B499E727608DAE003CD35B /* AppdelegateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E627608DAE003CD35B /* AppdelegateManager.m */; };
 		76B499EA27609237003CD35B /* A03CheckDomainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E927609237003CD35B /* A03CheckDomainModel.m */; };
@@ -1738,7 +1738,6 @@
 		76485F262787D776004EA51E /* UIImage+GIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GIF.m"; sourceTree = "<group>"; };
 		76485F272787D777004EA51E /* UIImage+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIF.h"; sourceTree = "<group>"; };
 		76519925278C107F006A59BF /* RedPacketsPreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketsPreView.h; sourceTree = "<group>"; };
-		76519926278C107F006A59BF /* RedPacketsPreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketsPreView.xib; sourceTree = "<group>"; };
 		76519927278C107F006A59BF /* RedPacketsPreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketsPreView.m; sourceTree = "<group>"; };
 		76519930278C2BE5006A59BF /* QBulletScreenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBulletScreenView.m; sourceTree = "<group>"; };
 		76519931278C2BE5006A59BF /* QBulletScreenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBulletScreenView.h; sourceTree = "<group>"; };
@@ -1756,6 +1755,7 @@
 		767DF24B27914FB700F50520 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		767DF24C27914FB700F50520 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		7682A78227915183001AC772 /* mammon2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = mammon2.gif; sourceTree = "<group>"; };
+		7682A78427915CE1001AC772 /* RedPacketsPreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketsPreView.xib; sourceTree = "<group>"; };
 		76B4998A275F6415003CD35B /* 03Gif2022.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 03Gif2022.gif; sourceTree = "<group>"; };
 		76B499E527608DAE003CD35B /* AppdelegateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppdelegateManager.h; sourceTree = "<group>"; };
 		76B499E627608DAE003CD35B /* AppdelegateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppdelegateManager.m; sourceTree = "<group>"; };
@@ -4173,7 +4173,7 @@
 				767DF24927914F7500F50520 /* RedPacketsRainView.xib */,
 				76519925278C107F006A59BF /* RedPacketsPreView.h */,
 				76519927278C107F006A59BF /* RedPacketsPreView.m */,
-				76519926278C107F006A59BF /* RedPacketsPreView.xib */,
+				7682A78427915CE1001AC772 /* RedPacketsPreView.xib */,
 				76485F202787D383004EA51E /* AssistiveButton.h */,
 				76485F212787D383004EA51E /* AssistiveButton.m */,
 				76485F242787D4FB004EA51E /* PublicMethod.h */,
@@ -6255,7 +6255,6 @@
 				D5A4457424F393AD00014DC6 /* 棋牌_00044.png in Resources */,
 				D5A4447324F3932400014DC6 /* 数字7_00048.png in Resources */,
 				F772EC65269FFBED00F786C7 /* BYGloryHeaderTableViewCell.xib in Resources */,
-				76519928278C107F006A59BF /* RedPacketsPreView.xib in Resources */,
 				D5A446C624F3941400014DC6 /* 合成 1_00073.png in Resources */,
 				3D31B9632542EA64005275BD /* HYTapHanImageCodeView.xib in Resources */,
 				D5A4438F24F378CD00014DC6 /* 彩票_00092.png in Resources */,
@@ -6416,6 +6415,7 @@
 				E969EB3D24E2757400D58FE9 /* HYRechargeCNYEditView.xib in Resources */,
 				D5A444C924F3932500014DC6 /* 数字7_00090.png in Resources */,
 				042372A424CE65A000D37B9C /* CNSettingVC.xib in Resources */,
+				7682A78527915CE1001AC772 /* RedPacketsPreView.xib in Resources */,
 				D5A4457224F393AC00014DC6 /* 棋牌_00051.png in Resources */,
 				D5A443EE24F378CD00014DC6 /* 彩票_00093.png in Resources */,
 				D5FBFE3B24BC05E400BBCAD8 /* CNAccountInputView.xib in Resources */,
