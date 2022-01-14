@@ -643,8 +643,8 @@ typedef void(^ButtonCallBack)(void);
             // 预热
             //暂时让他出来
             dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf showRedPacketsPreViewWithDuration:10];
-//                [weakSelf showRedPacketsRainViewWithDuration:RedPacketDuration];
+//                [weakSelf showRedPacketsPreViewWithDuration:10];
+                [weakSelf showRedPacketsRainViewwWithStyle:RedPocketsViewPrefix];
             });
         }
     } WithDefaultCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
@@ -705,13 +705,13 @@ typedef void(^ButtonCallBack)(void);
     alertView.getRedBlock = ^{
         [popView dismiss];
         __block int timeout = [PublicMethod countDownIntervalWithDurationTag:YES];
-        [weakSelf showRedPacketsRainViewWithDuration:timeout];
+        [weakSelf showRedPacketsRainViewwWithStyle:RedPocketsViewBegin];
     };
 }
-- (void)showRedPacketsRainViewWithDuration:(int)duration
+- (void)showRedPacketsRainViewwWithStyle:(RedPocketsViewStyle)currentStyle
 {
     RedPacketsRainView *alertView = [RedPacketsRainView viewFromXib];
-    [alertView configForRedPocketsView:RedPocketsViewBegin withDuration:duration];
+    [alertView configForRedPocketsViewWithStyle:currentStyle];
     BTTAnimationPopView *popView = [[BTTAnimationPopView alloc] initWithCustomView:alertView popStyle:BTTAnimationPopStyleNO dismissStyle:BTTAnimationDismissStyleNO];
     
     popView.isClickBGDismiss = YES;
@@ -752,12 +752,11 @@ typedef void(^ButtonCallBack)(void);
             BOOL isActivityDuration = [duractionArray[1] boolValue];
             if (isBeforeDuration || isActivityDuration)
             {
-                __block int timeout = [PublicMethod countDownIntervalWithDurationTag:isActivityDuration];
-                [weakSelf showRedPacketsRainViewWithDuration:timeout];
+                [weakSelf showRedPacketsRainViewwWithStyle:(isActivityDuration ? RedPocketsViewBegin: RedPocketsViewPrefix)];
             }else
             {//跳去活动结束画面
                 weakSelf.redPocketsAssistiveButton.hidden = true;
-                [NNPageRouter jump2HTMLWithStrURL:@"/pub_site/twinFight" title:@"过夜利息" needPubSite:NO];
+//                [NNPageRouter jump2HTMLWithStrURL:@"/pub_site/twinFight" title:@"过夜利息" needPubSite:NO];
             }
         }];
         [self.redPocketsAssistiveButton setCloseBtnActionBlock:^{

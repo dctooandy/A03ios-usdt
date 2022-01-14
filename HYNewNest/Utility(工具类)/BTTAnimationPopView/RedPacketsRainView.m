@@ -38,7 +38,6 @@
 @property (nonatomic, strong) NSTimer *autoOpenBagTimer;
 @property (nonatomic, strong) CALayer *moveLayer;
 @property (nonatomic, strong) CALayer *bagMoveLayer;
-@property (nonatomic, assign) NSInteger redPacketsResultCount;
 @property (nonatomic, assign) NSInteger selectedRedPacketNum;
 @property (nonatomic, assign) RedPocketsViewStyle viewStyle;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
@@ -52,6 +51,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *openGiftBagButton;
 @property (weak, nonatomic) IBOutlet UIButton *closeGiftBagButton;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *flyingRedPacketsArray;
 
 @end
 
@@ -67,33 +67,48 @@
     self.openGiftBagButton.layer.borderColor = COLOR_RGBA(219, 168, 143, 1).CGColor;
     self.openGiftBagButton.layer.borderWidth = 1;
 }
-- (void)configForRedPocketsView:(RedPocketsViewStyle)style withDuration:(int)duration
+- (void)configForRedPocketsViewWithStyle:(RedPocketsViewStyle)style
 {
     _viewStyle = style;
+    [self setuprRuleImageBannerGroup];// 游戏规则资料
     switch (self.viewStyle) {
-        case RedPocketsViewBegin:
+        case RedPocketsViewBegin:// 活动开始
             self.selectedRedPacketNum = 0;
-            [self startTimeWithDuration:duration];
-            [self setupImageGroup];
+            //开始红包雨倒数
+            [self startTimeWithDuration:[PublicMethod countDownIntervalWithDurationTag:YES]];
+            // 活动开始中奖名单跑马灯
             [self setupDataForSortArray];
-            [self setupShowGiftBagButtonAnimation];
+            // 集福卡开启
+            [self showCardsButtonSetHidden:NO];
+            // 背景图置换
+            [self changeBGImageViewWithStyle:RedPocketsViewBegin];
+            // 中间福袋展现
+            [self centerGiftBagAndFlyBagSetHidden:NO];
             break;
-        case RedPocketsViewResult:
+        case RedPocketsViewrRaining:// 活动中
+            break;
+        case RedPocketsViewResult:// 活动结果
+            break;
+        case RedPocketsViewPrefix:// 活动预热
             [self.tapGesture setEnabled:NO];
-            self.redPacketsResultCount = 0;
-            [self showResult];
+            //开始红包雨倒数
+            [self startTimeWithDuration:[PublicMethod countDownIntervalWithDurationTag:NO]];
+            // 集福卡隐藏
+            [self showCardsButtonSetHidden:YES];
+            // 左下幅袋出现
+            [self setupGiftBag];
+            // 背景图置换
+            [self changeBGImageViewWithStyle:RedPocketsViewPrefix];
+            // 中间福袋隐藏
+            [self centerGiftBagAndFlyBagSetHidden:YES];
             break;
-            
         default:
             break;
     }
 }
--(void)setupImageGroup
+-(void)setuprRuleImageBannerGroup
 {
-//    FiveStarCopy
-//    FourStarCopy
     NSMutableArray *h5Images = [[NSMutableArray alloc] initWithObjects:@"popup1",@"popup2", nil];
-    
     self.bannerView.imageURLStringsGroup = h5Images;
 }
 - (void)setupGiftBannerGroup
@@ -152,9 +167,9 @@
 //    self.bagMoveLayer.position = CGPointMake(-50, SCREEN_HEIGHT );
 //    self.bagMoveLayer.contents = (id)self.bagImageView.image.CGImage;
 //    [self.rainBackgroundView.layer addSublayer:self.bagMoveLayer];
-    [self addGiftBagAnimation];
+    [self.bagImageView setHidden:NO];
 }
-- (void)setupShowGiftBagButtonAnimation
+- (void)setupShowCardsButtonAnimation
 {
     CGRect originButton = self.showCardsImageView.frame;
     originButton.origin.y = originButton.origin.y + 5;
@@ -176,15 +191,18 @@
 //    [bagTranAnimation setFillMode:kCAFillModeForwards];
 //    [bagTranAnimation setRemovedOnCompletion:NO];
 //    [self.bagMoveLayer addAnimation:bagTranAnimation forKey:@"bag"];
-    [self.bagImageView setHidden:NO];
-    CGRect originButton = self.bagImageView.frame;
-    originButton.size.width = originButton.size.width + 10;
-    originButton.size.height = originButton.size.height + 10;
-    originButton.origin.x = originButton.origin.x + 5;
-    originButton.origin.y = originButton.origin.y - 5;
-    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse animations:^{
-        [self.bagImageView setFrame:originButton];
-    } completion:nil];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.bagImageView.layer removeAllAnimations];
+        CGRect originButton = self.bagImageView.frame;
+        originButton.size.width = originButton.size.width + 10;
+        originButton.size.height = originButton.size.height + 10;
+        originButton.origin.x = originButton.origin.x + 5;
+        originButton.origin.y = originButton.origin.y - 5;
+        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse animations:^{
+            [self.bagImageView setFrame:originButton];
+        } completion:nil];
+    });
 }
 - (void)addRainAnimation
 {
@@ -262,16 +280,12 @@
 -(void)showResult
 {
     [self.closeButton setHidden:NO];
-    self.countdownLab.text = [NSString stringWithFormat:@"+%ld金币",(long)self.redPacketsResultCount];
-    [self.showCardsButton setHidden:NO];
-    [self.showCardsImageView setHidden:NO];
-    [self setupShowGiftBagButtonAnimation];// 集幅卡按钮动画启动
+    // 集福卡开启
+    [self showCardsButtonSetHidden:NO];
     [self showOpenGiftBagButton];// 显示集幅卡按钮
     [self autoOpenGiftBagAction];// 自动打开红包袋
     // 背景图置换
-    [UIView animateWithDuration:0.2 animations:^{
-        [self.rainBackgroundImageView setImage:ImageNamed((@"bg_img1"))];
-    }];
+    [self changeBGImageViewWithStyle:RedPocketsViewResult];
 }
 - (void)clickRed:(UITapGestureRecognizer *)sender
 {
@@ -326,7 +340,6 @@
             }
             else
             {
-                self.redPacketsResultCount += 1;
 //                NSString * string = [NSString stringWithFormat:@"+%d金币",1];
 //                NSString * iString = [NSString stringWithFormat:@"%d",1];
 //                NSMutableAttributedString * attributedStr = [[NSMutableAttributedString alloc]initWithString:string];
@@ -545,7 +558,7 @@
     self.countDownTitleLabel.font = [UIFont systemFontOfSize:17.0];
     [UIView animateWithDuration:0.3 animations:^{
         self.mammonTop.constant -= 50;
-        self.countDownLabelTop.constant = 30.0;
+        self.countDownLabelTop.constant = 50.0;
         self.countDownLabelCenter.constant -= 100;
         self.labelBackgroundView.transform = CGAffineTransformIdentity;
         self.labelMaskView.transform = CGAffineTransformIdentity;
@@ -556,9 +569,6 @@
 }
 - (void)startRedPackerts
 {
-    // 集福卡隐藏
-    [self.showCardsButton setHidden:YES];
-    [self.showCardsImageView setHidden:YES];
     // 跑马灯关掉
     for (UIView * view in self.rainBackgroundView.subviews) {
         if ([view isKindOfClass:[QBulletScreenView class]])
@@ -566,12 +576,12 @@
             [view removeFromSuperview];
         }
     }
-    // 左下幅袋出现
+    // 左下福袋出现
     [self setupGiftBag];
+    // 左下福袋动画启动
+    [self addGiftBagAnimation];
     // 背景图置换
-    [UIView animateWithDuration:0.2 animations:^{
-        [self.rainBackgroundImageView setImage:ImageNamed((@"bg_img2"))];
-    }];
+    [self changeBGImageViewWithStyle:RedPocketsViewrRaining];
     [self.redPocketsRainView addGestureRecognizer:self.tapGesture];
     float t = (arc4random() % 7) + 6;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:(1/t) target:self selector:@selector(showRain) userInfo:nil repeats:YES];
@@ -723,8 +733,6 @@
     [self startTimeWithDuration:timeout];
     [self setupDataForSortArray];
     [self moveLabelToCenter];
-//    [self setupGiftBag];
-//    [self.bagMoveLayer removeFromSuperlayer];
 }
 
 #pragma mark Lazy Load
@@ -769,5 +777,27 @@
         _giftBannerView = giftBannerView;
     }
     return _giftBannerView;
+}
+- (void)showCardsButtonSetHidden:(BOOL)sender
+{
+    [self.showCardsButton setHidden:sender];
+    [self.showCardsImageView setHidden:sender];
+    if (sender == NO)
+    {
+        [self setupShowCardsButtonAnimation];// 集幅卡按钮动画启动
+    }
+}
+- (void)changeBGImageViewWithStyle:(RedPocketsViewStyle)currentStyle
+{
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.rainBackgroundImageView setImage:(currentStyle == RedPocketsViewrRaining ? ImageNamed(@"bg_img1"):ImageNamed(@"bg_img2"))];
+    }];
+}
+-(void)centerGiftBagAndFlyBagSetHidden:(BOOL)sender
+{
+    [self.centerGiftBagImageView setHidden:sender];
+    for (UIImageView * imageView in self.flyingRedPacketsArray) {
+        [imageView setHidden:!sender];
+    }
 }
 @end

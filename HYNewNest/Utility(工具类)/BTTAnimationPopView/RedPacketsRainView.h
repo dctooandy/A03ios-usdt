@@ -13,8 +13,10 @@
  显示时动画弹框样式
  */
 typedef NS_ENUM(NSInteger, RedPocketsViewStyle) {
-    RedPocketsViewBegin = 0,
-    RedPocketsViewResult
+    RedPocketsViewBegin = 0,    //活动开始
+    RedPocketsViewrRaining,     //活动中
+    RedPocketsViewResult,       //活动结果
+    RedPocketsViewPrefix        //活动预热
 };
 typedef NS_ENUM(NSInteger, RedPocketsViewPosition) {
     RedPocketsViewToFront = 0,
@@ -23,7 +25,7 @@ typedef NS_ENUM(NSInteger, RedPocketsViewPosition) {
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RedPacketsRainView : BTTBaseAnimationPopView
-- (void)configForRedPocketsView:(RedPocketsViewStyle)style withDuration:(int)duration;
+- (void)configForRedPocketsViewWithStyle:(RedPocketsViewStyle)style;
 @end
 
 NS_ASSUME_NONNULL_END
