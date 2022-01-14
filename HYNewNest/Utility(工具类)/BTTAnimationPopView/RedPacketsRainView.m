@@ -5,6 +5,7 @@
 //  Created by RM03 on 2022/1/3.
 //  Copyright © 2022 BTT. All rights reserved.
 //
+
 #import "PublicMethod.h"
 #import "RedPacketsRainView.h"
 #import "SDCycleScrollView.h"
@@ -47,6 +48,8 @@
 @property (nonatomic, strong) NSMutableArray *bulletViewsArr;
 @property (weak, nonatomic) IBOutlet UIView *bagView;
 @property (weak, nonatomic) IBOutlet UIView *bagResultView;
+@property (weak, nonatomic) IBOutlet UIImageView *bagImageView;
+
 @property (weak, nonatomic) IBOutlet UIButton *openGiftBagButton;
 @property (weak, nonatomic) IBOutlet UIButton *closeGiftBagButton;
 
@@ -89,13 +92,13 @@
 {
 //    FiveStarCopy
 //    FourStarCopy
-    NSMutableArray *h5Images = [[NSMutableArray alloc] initWithObjects:@"赌侠",@"赌神", nil];
+    NSMutableArray *h5Images = [[NSMutableArray alloc] initWithObjects:@"popup1",@"popup2", nil];
     
     self.bannerView.imageURLStringsGroup = h5Images;
 }
 - (void)setupGiftBannerGroup
 {
-    NSMutableArray *h5Images = [[NSMutableArray alloc] initWithObjects:@"赌侠",@"赌神", nil];
+    NSMutableArray *h5Images = [[NSMutableArray alloc] initWithObjects:@"FiveStarCopy",@"FourStarCopy", nil];
     
     self.giftBannerView.localizationImageNamesGroup = h5Images;
     NSArray * nameArray = @[@[@"g****8",@"g****9",@"g****86",@"g****81",@"g****88",@"g****81"],@[@"g****8",@"g****88",@"g****86",@"g****87",@"g****81",@"g****81"]];
@@ -140,15 +143,15 @@
 }
 - (void)setupGiftBag
 {
-    UIImageView * imageV = [UIImageView new];
-    imageV.image = [UIImage imageNamed:@"img_redbag"];
-    imageV.frame = CGRectMake(0, 0, 200 , 200 );
-    self.bagMoveLayer = [CALayer new];
-    self.bagMoveLayer.bounds = imageV.frame;
-    self.bagMoveLayer.anchorPoint = CGPointMake(0, 1);
-    self.bagMoveLayer.position = CGPointMake(-50, SCREEN_HEIGHT );
-    self.bagMoveLayer.contents = (id)imageV.image.CGImage;
-    [self.rainBackgroundView.layer addSublayer:self.bagMoveLayer];
+//    UIImageView * imageV = [UIImageView new];
+//    imageV.image = [UIImage imageNamed:@"img_redbag"];
+//    imageV.frame = CGRectMake(0, 0, 200 , 200 );
+//    self.bagMoveLayer = [CALayer new];
+//    self.bagMoveLayer.bounds = self.bagImageView.frame;
+//    self.bagMoveLayer.anchorPoint = CGPointMake(0, 1);
+//    self.bagMoveLayer.position = CGPointMake(-50, SCREEN_HEIGHT );
+//    self.bagMoveLayer.contents = (id)self.bagImageView.image.CGImage;
+//    [self.rainBackgroundView.layer addSublayer:self.bagMoveLayer];
     [self addGiftBagAnimation];
 }
 - (void)setupShowGiftBagButtonAnimation
@@ -161,18 +164,27 @@
 }
 - (void)addGiftBagAnimation
 {
-    CAKeyframeAnimation * bagTranAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
-    CATransform3D br0 = CATransform3DMakeRotation((-14) / 180.0 * M_PI, 0, 0, -1);
-    CATransform3D br1 = CATransform3DMakeRotation((0) / 180.0 * M_PI , 0, 0, -1);
-    bagTranAnimation.values = @[[NSValue valueWithCATransform3D:br0],[NSValue valueWithCATransform3D:br1]];
-    bagTranAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    bagTranAnimation.duration = 1;
-    bagTranAnimation.repeatCount = NSIntegerMax;
-    bagTranAnimation.autoreverses = true;
-    //为了避免旋转动画完成后再次回到初始状态。
-    [bagTranAnimation setFillMode:kCAFillModeForwards];
-    [bagTranAnimation setRemovedOnCompletion:NO];
-    [self.bagMoveLayer addAnimation:bagTranAnimation forKey:@"bag"];
+//    CAKeyframeAnimation * bagTranAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+//    CATransform3D br0 = CATransform3DMakeRotation((-14) / 180.0 * M_PI, 0, 0, -1);
+//    CATransform3D br1 = CATransform3DMakeRotation((0) / 180.0 * M_PI , 0, 0, -1);
+//    bagTranAnimation.values = @[[NSValue valueWithCATransform3D:br0],[NSValue valueWithCATransform3D:br1]];
+//    bagTranAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    bagTranAnimation.duration = 1;
+//    bagTranAnimation.repeatCount = NSIntegerMax;
+//    bagTranAnimation.autoreverses = true;
+//    //为了避免旋转动画完成后再次回到初始状态。
+//    [bagTranAnimation setFillMode:kCAFillModeForwards];
+//    [bagTranAnimation setRemovedOnCompletion:NO];
+//    [self.bagMoveLayer addAnimation:bagTranAnimation forKey:@"bag"];
+    [self.bagImageView setHidden:NO];
+    CGRect originButton = self.bagImageView.frame;
+    originButton.size.width = originButton.size.width + 10;
+    originButton.size.height = originButton.size.height + 10;
+    originButton.origin.x = originButton.origin.x + 5;
+    originButton.origin.y = originButton.origin.y - 5;
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse animations:^{
+        [self.bagImageView setFrame:originButton];
+    } completion:nil];
 }
 - (void)addRainAnimation
 {
@@ -200,26 +212,27 @@
 {
     [self.timer invalidate];
     [self.tapGesture setEnabled:NO];
+    [self.bagImageView setHidden:YES];
     for (NSInteger i = 0; i < self.redPocketsRainView.layer.sublayers.count ; i ++)
     {
         CALayer * layer = self.redPocketsRainView.layer.sublayers[i];
-        [layer setHidden:YES];
+        
         [layer removeAllAnimations];
     }
-    for (NSInteger i = 0; i < self.rainBackgroundView.layer.sublayers.count ; i ++)
-    {
-        CALayer * layer = self.rainBackgroundView.layer.sublayers[i];
-        if ([layer animationForKey:@"bag"])
-        {
+//    for (NSInteger i = 0; i < self.rainBackgroundView.layer.sublayers.count ; i ++)
+//    {
+//        CALayer * layer = self.rainBackgroundView.layer.sublayers[i];
+//        if ([layer animationForKey:@"bag"])
+//        {
             CGFloat scaleValue = 1.4;
-            [layer removeAnimationForKey:@"bag"];//红包福袋消失
-            [layer removeFromSuperlayer];
+//            [layer removeAnimationForKey:@"bag"];//红包福袋消失
+//            [layer removeFromSuperlayer];
             CAKeyframeAnimation * moveAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-            NSValue * A = [NSValue valueWithCGPoint:CGPointMake(0, SCREEN_HEIGHT-200)];
-            NSValue * B = [NSValue valueWithCGPoint:CGPointMake(SCREEN_WIDTH/2 - (200 * scaleValue)/2 , SCREEN_HEIGHT * 0.65)];
+            NSValue * A = [NSValue valueWithCGPoint:CGPointMake(0, SCREEN_HEIGHT-SCREEN_WIDTH * (200.0/414.0))];
+            NSValue * B = [NSValue valueWithCGPoint:CGPointMake(SCREEN_WIDTH/2 - (SCREEN_WIDTH * (200.0/414.0) * scaleValue)/2 , SCREEN_HEIGHT * 0.65)];
             UIImageView * newPacketIV = [UIImageView new];
             newPacketIV.image = [UIImage imageNamed:@"img_yellowbag_game_popup"];
-            newPacketIV.frame = CGRectMake(0, 0, 200 * scaleValue , 200 * scaleValue);
+            newPacketIV.frame = CGRectMake(0, 0, SCREEN_WIDTH * (200.0/414.0) * scaleValue , SCREEN_WIDTH * (200.0/414.0) * scaleValue);
             moveAnimation.values = @[A,B];
             moveAnimation.duration = 0.3;
             moveAnimation.repeatCount = 0;
@@ -232,7 +245,8 @@
             self.bagMoveLayer = [CALayer new];
             UIImageView * imageV = [UIImageView new];
             imageV.image = [UIImage imageNamed:@"img_redbag"];
-            imageV.frame = CGRectMake(0, 0, 200 , 200 );
+            
+            imageV.frame = CGRectMake(0, 0, SCREEN_WIDTH * (200.0/414.0) , SCREEN_WIDTH * (200.0/414.0));
             self.bagMoveLayer.bounds = imageV.frame;
             self.bagMoveLayer.anchorPoint = CGPointMake(0, 1);
             self.bagMoveLayer.position = CGPointMake(-50, SCREEN_HEIGHT );
@@ -240,8 +254,8 @@
             [self.bagMoveLayer addAnimation:moveAnimation forKey:@"bagFly"];// 红包福袋移动到中间上面
             self.bagMoveLayer.transform = CATransform3DMakeScale(scaleValue, scaleValue, 1);// 红包福袋放大
             [self.bagView.layer addSublayer:self.bagMoveLayer];
-        }
-    }
+//        }
+//    }
     [self showResult];
 }
 
@@ -261,7 +275,7 @@
 }
 - (void)clickRed:(UITapGestureRecognizer *)sender
 {
-    CGPoint point = [sender locationInView:self];
+    CGPoint point = [sender locationInView:self.redPocketsRainView];
     
     for (int i = 0 ; i < self.redPocketsRainView.layer.sublayers.count ; i ++)
     {
@@ -279,8 +293,8 @@
             UIImageView * newPacketIV = [UIImageView new];
 //            if (hasRedPacketd)
 //            {
-            newPacketIV.image = [UIImage imageNamed:@"img_redenvelope_click"];
-            newPacketIV.frame = CGRectMake(0, 0, 44 , 62.5);
+                newPacketIV.image = [UIImage imageNamed:@"img_redenvelope_click"];
+                newPacketIV.frame = CGRectMake(0, 0, 44 , 62.5);
 //            }
 //            else
 //            {
@@ -299,15 +313,12 @@
             [moveAnimation setFillMode:kCAFillModeForwards];
             [moveAnimation setRemovedOnCompletion:NO];
             [layer addAnimation:moveAnimation forKey:@"p"];
-            
 //            UIView * alertView = [UIView new];
 //            alertView.layer.cornerRadius = 5;
 //            alertView.frame = CGRectMake(point.x - 50, point.y, 100, 30);
 //            [self.redPocketsRainView addSubview:alertView];
-//
 //            UILabel * label = [UILabel new];
 //            label.font = [UIFont systemFontOfSize:17];
-            
             if (!hasRedPacketd)
             {
 //                label.text = @"旺旺年！人旺旺";
@@ -315,9 +326,9 @@
             }
             else
             {
-                self.redPacketsResultCount += i;
-//                NSString * string = [NSString stringWithFormat:@"+%d金币",i];
-//                NSString * iString = [NSString stringWithFormat:@"%d",i];
+                self.redPacketsResultCount += 1;
+//                NSString * string = [NSString stringWithFormat:@"+%d金币",1];
+//                NSString * iString = [NSString stringWithFormat:@"%d",1];
 //                NSMutableAttributedString * attributedStr = [[NSMutableAttributedString alloc]initWithString:string];
 //
 //                [attributedStr addAttribute:NSFontAttributeName
@@ -342,7 +353,6 @@
 //            [UIView animateWithDuration:1 animations:^{
 //                alertView.alpha = 0;
 //                alertView.frame = CGRectMake(point.x- 50, point.y - 100, 100, 30);
-////                layer.opacity = 0;
 //            } completion:^(BOOL finished) {
 //                [alertView removeFromSuperview];
 //            }];
@@ -459,6 +469,8 @@
 {
     
 }
+
+
 #pragma mark Timer
 - (void)startTimeWithDuration:(int)timeValue
 {
@@ -517,11 +529,11 @@
         self.labelBackgroundView.transform = CGAffineTransformMakeTranslation(0, -(CGRectGetMinY(self.labelBackgroundView.frame) - 50 + CGRectGetHeight(self.labelBackgroundView.frame)/4));
         self.labelBackgroundView.transform = self.labelBackgroundView.transform = CGAffineTransformScale(self.labelBackgroundView.transform, 0.50f, 0.50f);
         self.labelMaskView.transform =  CGAffineTransformMakeTranslation(0,  -CGRectGetHeight(self.labelMaskView.frame)/4);
-        self.labelMaskView.transform = self.labelMaskView.transform = CGAffineTransformScale(self.labelMaskView.transform, 1.0f, 0.20f);
+        self.labelMaskView.transform = self.labelMaskView.transform = CGAffineTransformScale(self.labelMaskView.transform, 1.0f, 0.30f);
         [self.centerGiftBagImageView setAlpha:0.0];
         [self.centerGiftBagImageView setHidden:YES];
         // 加入Gif
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"degg03" ofType:@"gif"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"mammon2" ofType:@"gif"];
         NSData *data = [NSData dataWithContentsOfFile:path];
         self.mammonImageView.image = [UIImage sd_animatedGIFWithData:data];
     }];
@@ -561,7 +573,7 @@
         [self.rainBackgroundImageView setImage:ImageNamed((@"bg_img2"))];
     }];
     [self.redPocketsRainView addGestureRecognizer:self.tapGesture];
-    float t = (arc4random() % 10) + 5;
+    float t = (arc4random() % 7) + 6;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:(1/t) target:self selector:@selector(showRain) userInfo:nil repeats:YES];
     [self.timer fire];
     
@@ -602,12 +614,27 @@
 - (void)changeBagColor
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:0.1 animations:^{
-            UIImageView * imageV = [UIImageView new];
-            imageV.image = [UIImage imageNamed:@"img_yellowbag_game_popup"];
-            imageV.frame = CGRectMake(0, 0, 200 , 200 );
-            self.bagMoveLayer.contents = (id)imageV.image.CGImage;
-        }];
+        [self.bagImageView.layer removeAllAnimations];
+        CGRect originFrame = self.bagImageView.frame;
+        originFrame.size.width = SCREEN_WIDTH * (247.0/414.0);
+        originFrame.size.height = SCREEN_WIDTH * (289.0/414.0);
+        [self.bagImageView setFrame:originFrame];
+//        [self.bagImageView setFrame:];
+        CGRect newFrame = CGRectMake(self.bagImageView.origin.x, self.bagImageView.origin.y, SCREEN_WIDTH * (247.0/414.0) , SCREEN_WIDTH * (289.0/414.0) );
+        newFrame.size.width += 20;
+        newFrame.size.height += 20;
+//        newFrame.origin.x += 30;
+        newFrame.origin.y -= 10;
+        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse animations:^{
+            self.bagImageView.image = [UIImage imageNamed:@"img_yellowbag_game"];
+            [self.bagImageView setFrame:newFrame];
+//            UIImageView * imageV = [UIImageView new];
+//            imageV.image = [UIImage imageNamed:@"img_yellowbag_game_popup"];
+//            imageV.frame = CGRectMake(0, 0, SCREEN_WIDTH * (247.0/414.0) , SCREEN_WIDTH * (289.0/414.0) );
+////            imageV.frame = CGRectMake(0, 0, 247 , 289 );
+//            self.bagMoveLayer.bounds = imageV.frame;
+//            self.bagMoveLayer.contents = (id)imageV.image.CGImage;
+        } completion:nil];
     });
 }
 - (void)showOpenGiftBagButton
@@ -621,25 +648,6 @@
 - (void)autoOpenGiftBagAction
 {
     //红包袋开启倒数60秒
-//    weakSelf(weakSelf)
-//    __block int timeout = RedPacketCountDown;
-//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-//    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
-//    dispatch_source_set_event_handler(_timer, ^{
-//        if ( timeout <= 0 )
-//        {
-//            dispatch_source_cancel(_timer);
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [weakSelf openGiftBagAction];
-//            });
-//        }
-//        else
-//        {
-//            timeout--;
-//        }
-//    });
-//    dispatch_resume(_timer);
     self.autoOpenBagTimer = [NSTimer scheduledTimerWithTimeInterval:RedPacketCountDown target:self selector:@selector(showGiftBag) userInfo:nil repeats:NO];
 }
 - (void)showGiftBag
@@ -718,15 +726,19 @@
 //    [self setupGiftBag];
 //    [self.bagMoveLayer removeFromSuperlayer];
 }
+
 #pragma mark Lazy Load
 - (SDCycleScrollView *)bannerView {
     if (!_bannerView) {
         SDCycleScrollView *bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"3"]];
         [self.activityRuleView addSubview:bannerView];
         [bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.left.right.mas_equalTo(self.activityRuleView);
-            make.height.equalTo(self.activityRuleView).multipliedBy(0.85);
+            make.centerX.mas_equalTo(self.activityRuleView.mas_centerX);
+            make.centerY.mas_equalTo(self.activityRuleView.mas_centerY);
+            make.height.equalTo(self.activityRuleView).multipliedBy((595.0/813.0));
+            make.width.equalTo(self.activityRuleView).multipliedBy((340.0/414.0));
         }];
+        bannerView.backgroundColor = [UIColor clearColor];
         bannerView.layer.cornerRadius = 10;
         bannerView.layer.masksToBounds = true;
         bannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
@@ -758,5 +770,4 @@
     }
     return _giftBannerView;
 }
-
 @end

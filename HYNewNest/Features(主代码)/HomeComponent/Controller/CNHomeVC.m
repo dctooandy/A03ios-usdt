@@ -732,7 +732,7 @@ typedef void(^ButtonCallBack)(void);
 -(void)setUpCustomAssistiveButtonCompleted:(ButtonCallBack _Nullable)completionBlock
 {
     UIImageView *imageView = [[UIImageView alloc] init];
-    [imageView sd_setImageWithURL:[NSURL URLWithString:@"default4"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [imageView sd_setImageWithURL:[NSURL URLWithString:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if ([imageURL.description containsString:@"gif"])
         {
             NSData *imageData = UIImagePNGRepresentation(image);
@@ -740,7 +740,8 @@ typedef void(^ButtonCallBack)(void);
             self.redPocketsAssistiveButton = [[AssistiveButton alloc] initMainBtnWithCustomImage:backgroundImage highlightImage:nil];
         }else
         {
-            self.redPocketsAssistiveButton = [[AssistiveButton alloc] initMainBtnWithCustomImage:imageView.image highlightImage:nil];
+            UIImage * backgroundImage = ImageNamed(@"popup-3");
+            self.redPocketsAssistiveButton = [[AssistiveButton alloc] initMainBtnWithCustomImage:backgroundImage highlightImage:nil];
         }
         //主按鈕可移動或移動後回彈跟不可移動
         self.redPocketsAssistiveButton.positionMode = SpreadPositionModeNone;

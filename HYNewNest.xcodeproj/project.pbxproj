@@ -387,7 +387,9 @@
 		765C64F32782C82B00A6BC34 /* RedPacketsRainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 765C64F12782C82A00A6BC34 /* RedPacketsRainView.m */; };
 		766A6EC6276B3E37007DC6A1 /* A03ActivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 766A6EC5276B3E36007DC6A1 /* A03ActivityManager.m */; };
 		766A6EC9276B3F4A007DC6A1 /* A03PopViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 766A6EC8276B3F4A007DC6A1 /* A03PopViewModel.m */; };
-		767DF2462790164800F50520 /* RedPacketsRainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 767DF2452790164800F50520 /* RedPacketsRainView.xib */; };
+		767DF24A27914F7500F50520 /* RedPacketsRainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 767DF24927914F7500F50520 /* RedPacketsRainView.xib */; };
+		767DF24D27914FB700F50520 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 767DF24C27914FB700F50520 /* UIView+Frame.m */; };
+		7682A78327915183001AC772 /* mammon2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7682A78227915183001AC772 /* mammon2.gif */; };
 		76B4998B275F6415003CD35B /* 03Gif2022.gif in Resources */ = {isa = PBXBuildFile; fileRef = 76B4998A275F6415003CD35B /* 03Gif2022.gif */; };
 		76B499E727608DAE003CD35B /* AppdelegateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E627608DAE003CD35B /* AppdelegateManager.m */; };
 		76B499EA27609237003CD35B /* A03CheckDomainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E927609237003CD35B /* A03CheckDomainModel.m */; };
@@ -1750,7 +1752,10 @@
 		766A6EC5276B3E36007DC6A1 /* A03ActivityManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A03ActivityManager.m; sourceTree = "<group>"; };
 		766A6EC7276B3F4A007DC6A1 /* A03PopViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = A03PopViewModel.h; sourceTree = "<group>"; };
 		766A6EC8276B3F4A007DC6A1 /* A03PopViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A03PopViewModel.m; sourceTree = "<group>"; };
-		767DF2452790164800F50520 /* RedPacketsRainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketsRainView.xib; sourceTree = "<group>"; };
+		767DF24927914F7500F50520 /* RedPacketsRainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketsRainView.xib; sourceTree = "<group>"; };
+		767DF24B27914FB700F50520 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		767DF24C27914FB700F50520 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		7682A78227915183001AC772 /* mammon2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = mammon2.gif; sourceTree = "<group>"; };
 		76B4998A275F6415003CD35B /* 03Gif2022.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 03Gif2022.gif; sourceTree = "<group>"; };
 		76B499E527608DAE003CD35B /* AppdelegateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppdelegateManager.h; sourceTree = "<group>"; };
 		76B499E627608DAE003CD35B /* AppdelegateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppdelegateManager.m; sourceTree = "<group>"; };
@@ -4157,13 +4162,15 @@
 		765C64E02782B4ED00A6BC34 /* BTTAnimationPopView */ = {
 			isa = PBXGroup;
 			children = (
+				767DF24B27914FB700F50520 /* UIView+Frame.h */,
+				767DF24C27914FB700F50520 /* UIView+Frame.m */,
 				765C64E12782B4ED00A6BC34 /* BTTAnimationPopView.h */,
 				765C64E22782B4ED00A6BC34 /* BTTAnimationPopView.m */,
 				765C64E72782B71700A6BC34 /* BTTBaseAnimationPopView.h */,
 				765C64E82782B71700A6BC34 /* BTTBaseAnimationPopView.m */,
 				765C64F02782C82A00A6BC34 /* RedPacketsRainView.h */,
 				765C64F12782C82A00A6BC34 /* RedPacketsRainView.m */,
-				767DF2452790164800F50520 /* RedPacketsRainView.xib */,
+				767DF24927914F7500F50520 /* RedPacketsRainView.xib */,
 				76519925278C107F006A59BF /* RedPacketsPreView.h */,
 				76519927278C107F006A59BF /* RedPacketsPreView.m */,
 				76519926278C107F006A59BF /* RedPacketsPreView.xib */,
@@ -4214,6 +4221,7 @@
 		D5A4425724F36F4200014DC6 /* Gif */ = {
 			isa = PBXGroup;
 			children = (
+				7682A78227915183001AC772 /* mammon2.gif */,
 				76B4998A275F6415003CD35B /* 03Gif2022.gif */,
 				76FC864A27671348005710FD /* degg03.gif */,
 				D5A4465924F3941300014DC6 /* live */,
@@ -5963,7 +5971,7 @@
 				D5A444BF24F3932400014DC6 /* 数字7_00044.png in Resources */,
 				D5A443BE24F378CD00014DC6 /* 彩票_00058.png in Resources */,
 				D5A446EC24F3941400014DC6 /* 合成 1_00018.png in Resources */,
-				767DF2462790164800F50520 /* RedPacketsRainView.xib in Resources */,
+				767DF24A27914F7500F50520 /* RedPacketsRainView.xib in Resources */,
 				D5A443AE24F378CD00014DC6 /* 彩票_00082.png in Resources */,
 				3DBA55E025763C19009A2B71 /* HYBalancesDetailView.xib in Resources */,
 				04C0F0E424C2B282007F1420 /* CNTOPHUB.xib in Resources */,
@@ -6341,6 +6349,7 @@
 				04935BD224D7B662007A33EF /* CNAddressDownloadTCell.xib in Resources */,
 				D5A443DA24F378CD00014DC6 /* 彩票_00094.png in Resources */,
 				D5A443CE24F378CD00014DC6 /* 彩票_00044.png in Resources */,
+				7682A78327915183001AC772 /* mammon2.gif in Resources */,
 				D5A4453524F393AC00014DC6 /* 棋牌_00013.png in Resources */,
 				D5A4471224F3941400014DC6 /* 合成 1_00095.png in Resources */,
 				D5A443E724F378CD00014DC6 /* 彩票_00076.png in Resources */,
@@ -6684,6 +6693,7 @@
 				0487C9BC24D01DDE0013715A /* CNTradeRecodeVC.m in Sources */,
 				3D41DE7625199DEE000CA1D6 /* VIPGuideModel.m in Sources */,
 				3D31B95E2542D4BF005275BD /* PreLoginModel.m in Sources */,
+				767DF24D27914FB700F50520 /* UIView+Frame.m in Sources */,
 				E9B5495324CDB646002CE6EF /* UUMarqueeView.m in Sources */,
 				E986A18C24C9D39B000F9CFF /* XmCalcAmountModel.m in Sources */,
 				3D41DE8325199DEE000CA1D6 /* VIPChartDJTQCell.m in Sources */,

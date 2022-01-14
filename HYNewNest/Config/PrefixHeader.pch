@@ -34,6 +34,7 @@
 
 #ifdef DEBUG
 #import "UIWindow+Motion.h" //Lookin摇一摇功能
+#import "UIView+Frame.h"
 #endif
 // 屏幕大小、宽、高
 #ifndef SCREEN_BOUNDS

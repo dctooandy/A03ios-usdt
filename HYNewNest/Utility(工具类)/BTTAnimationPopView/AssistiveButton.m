@@ -54,17 +54,17 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
 {
     self = [super init];
     if (self) {
-        UIImage * closeImage = [UIImage imageNamed:@"ic_new_year_pop_close_btn"];
-        CGFloat assistiveBtnHeight = 132 + [UIImage imageNamed:@"ic_new_year_pop_close_btn"].size.height;
+        UIImage * closeImage = [UIImage imageNamed:@"assisClose"];
+        CGFloat assistiveBtnHeight = 190 + 30;
         CGFloat loginBtnViewHeight = 87;
         CGFloat postionY = SCREEN_HEIGHT - kTabbarHeight - assistiveBtnHeight/2 - loginBtnViewHeight;
         CGPoint position = CGPointMake( assistiveBtnHeight/2 + 10, postionY);
-        self.mainFrame = CGRectMake(position.x, position.y, 132, 132);
+        self.mainFrame = CGRectMake(position.x, position.y, 180, 190);
         self.superViewRelativePosition = position;
         
         //main Button
 //        self.powerButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height)];
-        self.powerButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 132, 132)];
+        self.powerButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 180, 190)];
         [self.powerButton setBackgroundImage:backgroundImage forState:UIControlStateNormal];
         self.powerButton.tag = 0;
         self.powerButton.adjustsImageWhenHighlighted = NO;
@@ -72,36 +72,24 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
         [self addSubview:_powerButton];
         
 //        UIButton * closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(backgroundImage.size.width-closeImage.size.width, 0, closeImage.size.width, closeImage.size.height)];
-        UIButton * closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(132-closeImage.size.width, 0, closeImage.size.width, closeImage.size.height)];
+        UIButton * closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(180 - 30, 0, 30, 30)];
         [closeBtn setBackgroundImage:closeImage forState:UIControlStateNormal];
         [closeBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
         closeBtn.tag = 1;
         closeBtn.adjustsImageWhenHighlighted = NO;
         [self addSubview:closeBtn];
         
-        UILabel *countDownTopLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0 , self.powerButton.size.width, 20)];
-        UILabel *countDownMiddleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.powerButton.size.height * 0.25, self.powerButton.size.width, 20)];
-        UILabel *countDownBottomLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.powerButton.size.height * 0.50, self.powerButton.size.width, 20)];
-        UILabel *countDownLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.powerButton.size.height * 0.75, self.powerButton.size.width, 20)];
-        countDownTopLabel.textAlignment = NSTextAlignmentCenter;
-        countDownMiddleLabel.textAlignment = NSTextAlignmentCenter;
-        countDownBottomLabel.textAlignment = NSTextAlignmentCenter;
-        countDownLabel.textAlignment = NSTextAlignmentCenter;
-        countDownTopLabel.textColor = [UIColor redColor];
-        countDownMiddleLabel.textColor = [UIColor redColor];
-        countDownBottomLabel.textColor = [UIColor redColor];
-        countDownLabel.textColor = [UIColor redColor];
-        countDownTopLabel.font = [UIFont systemFontOfSize:12];
-        countDownMiddleLabel.font = [UIFont systemFontOfSize:12];
-        countDownBottomLabel.font = [UIFont systemFontOfSize:12];
-        countDownLabel.font = [UIFont systemFontOfSize:12];
-        countDownTopLabel.text = @"虎福贺新春";
-        countDownMiddleLabel.text = @"天降红包雨";
-        countDownBottomLabel.text = @"倒计时：";
+
+        UILabel *countDownLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, self.powerButton.size.height * 0.80, self.powerButton.size.width - 5, 20)];
+
+        countDownLabel.textAlignment = NSTextAlignmentLeft;
+
+        countDownLabel.textColor = kHexColorAlpha(0xFFEC85, 1.0);
+
+        countDownLabel.font = [UIFont systemFontOfSize:13];
+
         countDownLabel.text = @"5天23小时12分30秒";
-        [self addSubview:countDownTopLabel];
-        [self addSubview:countDownMiddleLabel];
-        [self addSubview:countDownBottomLabel];
+
         [self addSubview:countDownLabel];
         _countdownLab = countDownLabel;
         [self startTime];
