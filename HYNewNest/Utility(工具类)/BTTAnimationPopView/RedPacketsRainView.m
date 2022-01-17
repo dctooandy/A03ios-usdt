@@ -52,6 +52,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *openGiftBagButton;
 @property (weak, nonatomic) IBOutlet UIButton *closeGiftBagButton;
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *flyingRedPacketsArray;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *tigerImageViewArray;
 
 @end
 
@@ -101,6 +102,19 @@
             [self changeBGImageViewWithStyle:RedPocketsViewPrefix];
             // 中间福袋隐藏
             [self centerGiftBagAndFlyBagSetHidden:YES];
+            break;
+        case RedPocketsViewDev:// 活动结果
+            self.selectedRedPacketNum = 0;
+            //开始红包雨倒数
+            [self startTimeWithDuration:10];
+            // 活动开始中奖名单跑马灯
+            [self setupDataForSortArray];
+            // 集福卡开启
+            [self showCardsButtonSetHidden:NO];
+            // 背景图置换
+            [self changeBGImageViewWithStyle:RedPocketsViewBegin];
+            // 中间福袋展现
+            [self centerGiftBagAndFlyBagSetHidden:NO];
             break;
         default:
             break;
@@ -319,7 +333,7 @@
             [layer removeAnimationForKey:@"p"];
             CAKeyframeAnimation * moveAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
             NSValue * A = [NSValue valueWithCGPoint:CGPointMake(point.x, point.y)];
-            NSValue * B = [NSValue valueWithCGPoint:CGPointMake(self.width/5, self.height)];
+            NSValue * B = [NSValue valueWithCGPoint:CGPointMake(self.width*0.1, self.height*0.9)];
             moveAnimation.values = @[A,B];
             moveAnimation.duration = 1.0;
             moveAnimation.repeatCount = 1;
@@ -582,6 +596,8 @@
     [self addGiftBagAnimation];
     // 背景图置换
     [self changeBGImageViewWithStyle:RedPocketsViewrRaining];
+    // 集福卡隐藏
+    [self showCardsButtonSetHidden:YES];
     [self.redPocketsRainView addGestureRecognizer:self.tapGesture];
     float t = (arc4random() % 7) + 6;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:(1/t) target:self selector:@selector(showRain) userInfo:nil repeats:YES];
@@ -789,8 +805,53 @@
 }
 - (void)changeBGImageViewWithStyle:(RedPocketsViewStyle)currentStyle
 {
+    for (UIImageView * imageView in self.tigerImageViewArray) {
+        switch (currentStyle) {
+            case RedPocketsViewrRaining:
+            case RedPocketsViewPrefix:
+            {
+                if (imageView.tag == 1)
+                {
+                    [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                        [imageView setAlpha:0.0];
+                    } completion:^(BOOL finished) {
+                        [imageView setHidden:YES];
+                    }];
+                }else
+                {
+                    [imageView setHidden:NO];
+                    [UIView animateWithDuration:0.2 animations:^{
+                        [imageView setAlpha:1.0];
+                    }];
+                }
+            }
+                break;
+                
+            default:
+            {
+                if (imageView.tag == 1)
+                {
+                    [imageView setHidden:NO];
+                    [UIView animateWithDuration:0.2 animations:^{
+                        [imageView setAlpha:1.0];
+                    }];
+                }else
+                {
+                    [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                        [imageView setAlpha:0.0];
+                    } completion:^(BOOL finished) {
+                        [imageView setHidden:YES];
+                    }];
+                }
+            }
+                break;
+        }
+
+    }
+//        [self.rainBackgroundImageView setImage:(currentStyle == RedPocketsViewrRaining ? ImageNamed(@"bg_img1"):ImageNamed(@"bg_img2"))];
+    
     [UIView animateWithDuration:0.2 animations:^{
-        [self.rainBackgroundImageView setImage:(currentStyle == RedPocketsViewrRaining ? ImageNamed(@"bg_img1"):ImageNamed(@"bg_img2"))];
+//        [self.rainBackgroundImageView setImage:(currentStyle == RedPocketsViewrRaining ? ImageNamed(@"bg_img1"):ImageNamed(@"bg_img2"))];
     }];
 }
 -(void)centerGiftBagAndFlyBagSetHidden:(BOOL)sender
