@@ -75,8 +75,8 @@
 {
     [super layoutSubviews];
     UIImage *myGradient = [UIColor gradientImageFromColors:@[kHexColor(0xEB7A73), kHexColor(0xFFEACA), kHexColor(0xFFEC85)]
-                        gradientType:GradientTypeTopToBottom
-                             imgSize:self.titleLabel.frame.size];
+                                              gradientType:GradientTypeTopToBottom
+                                                   imgSize:self.titleLabel.frame.size];
     self.titleLabel.textColor = [UIColor colorWithPatternImage:myGradient];
     self.countDownSenondLabel.textColor = [UIColor colorWithPatternImage:myGradient];
 }
