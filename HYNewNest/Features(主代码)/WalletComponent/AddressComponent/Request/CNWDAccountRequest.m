@@ -10,6 +10,12 @@
 
 @implementation CNWDAccountRequest
 
++(void)getWallet:(HandlerBlock)handler {
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    param[@"bizCode"] = @"WALLET_TYPE";
+    [self POST:(config_dynamicQuery) parameters:param completionHandler:handler];
+}
+
 + (void)queryAccountHandler:(HandlerBlock)handler {
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     // 0 仅查询银行账户  1 查询当前账户和子账户(usdt)列表  2 仅查询子账户列表
@@ -107,6 +113,8 @@
 
 + (void)createAccountUSDTAccountNo:(NSString *)accountNo
                          bankAlias:(NSString *)bankAlias
+                          bankName:(NSString *)bankName
+                          protocol:(NSString *)protocol
                         validateId:(nullable NSString *)validateId
                          messageId:(nullable NSString *)messageId
                            smsCode:(nullable NSString *)smsCode
@@ -119,7 +127,8 @@
     param[@"accountType"] = @"USDT";
     param[@"walletType"] = @"USDT";
     param[@"accountName"] = [CNUserManager shareManager].printedloginName;
-    param[@"protocol"] = [self autoUsdtProtocolAccountNo:accountNo];
+    param[@"bankName"] = bankName;
+    param[@"protocol"] = protocol;
     [param setObject:@2 forKey:@"flag"];
     if (validateId) {
         param[@"validateId"] = validateId;

@@ -25,6 +25,8 @@ typedef enum : NSUInteger {
 
 #pragma mark - 卡列表
 
++(void)getWallet:(HandlerBlock)handler;
+
 /// 获取所有提现地址（银行卡，小金库，加密货币钱包）
 + (void)queryAccountHandler:(HandlerBlock)handler;
 
@@ -88,10 +90,14 @@ typedef enum : NSUInteger {
 /// 绑定USDT地址
 /// @param accountNo 地址
 /// @param bankAlias 别名
+/// @param bankName 銀行名code
+/// @param protocol 協議
 /// @param validateId SmsCodeModel.validateId
 /// @param handler 回调
 + (void)createAccountUSDTAccountNo:(NSString *)accountNo
                          bankAlias:(NSString *)bankAlias
+                          bankName:(NSString *)bankName
+                          protocol:(NSString *)protocol
                         validateId:(nullable NSString *)validateId
                          messageId:(nullable NSString *)messageId
                            smsCode:(nullable NSString *)smsCode

@@ -16,6 +16,7 @@
 #import "ABCOneKeyRegisterBFBHelper.h"
 #import "CNWithdrawRequest.h"
 #import "HYTextAlertView.h"
+#import "LoadingView.h"
 
 @interface CNAddAddressVC () <CNNormalInputViewDelegate, CNCodeInputViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *goldBtn;
@@ -27,9 +28,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *btomTipsTitle;
 @property (weak, nonatomic) IBOutlet UILabel *btomTipsLb;
 @property (weak, nonatomic) IBOutlet CNNormalInputView *platformInputView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *addressTopLayout;
+@property (weak, nonatomic) IBOutlet CNNormalInputView *protocolInputView;
 @property (weak, nonatomic) IBOutlet CNNormalInputView *linkInputView;
 @property (weak, nonatomic) IBOutlet CNCodeInputView *codeInputView;
-
+@property (nonatomic, strong) NSMutableArray * walletArr;
+@property (nonatomic, strong) NSMutableArray * walletNameArr;
+@property (nonatomic, copy) NSString *bankName;
 @property (strong,nonatomic) HYDownloadLinkView *linkView;
 @end
 
@@ -92,14 +97,15 @@
             break;
             
         case HYAddressTypeDCBOX: {
-            self.goldBtn.selected = YES;
-            self.otherBtn.selected = NO;
-            self.title = @"添加小金库";
             // 小金库
-            self.borderLineCenterX.constant = 0;
             [self.platformInputView setPlaceholder:@"请输入您的小金库钱包账号"];
+            [self.platformInputView removeTap];
+            self.platformInputView.text = @"";
             [self.linkInputView setPlaceholder:@"请再次输入金库号"];
+            self.linkInputView.text = @"";
             [self.codeInputView setPlaceholder:@"请输入验证码"];
+            self.protocolInputView.hidden = true;
+            self.addressTopLayout.constant = 0;
             [self.submitBtn setTitle:@"添加小金库钱包" forState:UIControlStateNormal];
             self.btomTipsTitle.hidden = YES;
             self.btomTipsLb.hidden = YES;
@@ -109,31 +115,58 @@
         }
             
         case HYAddressTypeUSDT:
-            self.goldBtn.selected = NO;
-            self.otherBtn.selected = YES;
-            self.title = @"添加USDT地址";
+        {
             // 其他地址
-            self.borderLineCenterX.constant = kScreenWidth * 0.5;
-            [self.platformInputView setPlaceholder:@"请输入平台地址名称"];
+            [self.platformInputView setPlaceholder:@"请选择钱包"];
+            [self.platformInputView setPicker:@"请选择钱包" arr:self.walletNameArr];
+            self.platformInputView.text = @"";
+            [self.protocolInputView setPlaceholder:@"请选择协议"];
+            self.protocolInputView.text = @"";
+            self.protocolInputView.hidden = true;
+            self.addressTopLayout.constant = 0;
             [self.linkInputView setPlaceholder:@"请输入或粘贴钱包地址"];
+            self.linkInputView.text = @"";
             [self.codeInputView setPlaceholder:@"请输入验证码"];
             [self.submitBtn setTitle:@"添加USDT钱包" forState:UIControlStateNormal];
             self.btomTipsTitle.hidden = NO;
             self.btomTipsLb.hidden = NO;
             break;
-            
+        }
         default:
             break;
     }
-
+    
 }
-
 #pragma mark - InputViewDelegate
 
 - (void)setDelegate {
     self.platformInputView.delegate = self;
+    self.protocolInputView.delegate = self;
     self.linkInputView.delegate = self;
     self.codeInputView.delegate = self;
+}
+
+-(void)pickerViewDidEndEditing:(CNNormalInputView *)view index:(NSInteger)index {
+    switch (_addrType) {
+        case HYAddressTypeBANKCARD:
+            
+            break;
+        case HYAddressTypeDCBOX:
+            break;
+        case HYAddressTypeUSDT:
+            if (self.platformInputView == view) {
+                self.protocolInputView.hidden = false;
+                self.addressTopLayout.constant = 75;
+                self.bankName = self.walletArr[index][@"code"];
+                NSString * protocolStr = self.walletArr[index][@"protocol"];
+                NSArray * protocolArr = [protocolStr componentsSeparatedByString:@";"];
+                [self.protocolInputView setPicker:@"请选择协议" arr:protocolArr];
+            }
+            break;
+        default:
+            break;
+    }
+    
 }
 
 - (void)inputViewTextChange:(CNNormalInputView *)view {
@@ -164,42 +197,69 @@
         default:
             break;
     }
-
-    // 按钮可点击条件
-    self.submitBtn.enabled = (!self.platformInputView.wrongAccout)
-    && (!self.linkInputView.wrongAccout)
-    && (self.codeInputView.correct)
-    && (self.platformInputView.text.length > 0)
-        && (self.linkInputView.text.length > 0)
-        && (self.codeInputView.correct);
-}
-
-- (void)codeInputViewTextChange:(CNCodeInputView *)view {
-//    if (![view.code validationType:ValidationTypePhoneCode]) {
-//        [view showWrongMsg:@"请输入6位数字验证码"];
-//    } else {
-//        view.wrongCode = NO;
-//    }
     
     // 按钮可点击条件
     self.submitBtn.enabled = (!self.platformInputView.wrongAccout)
     && (!self.linkInputView.wrongAccout)
     && (self.codeInputView.correct)
     && (self.platformInputView.text.length > 0)
-        && (self.linkInputView.text.length > 0)
-        && (self.codeInputView.correct);
+    && (self.linkInputView.text.length > 0)
+    && (self.codeInputView.correct);
+}
+
+- (void)codeInputViewTextChange:(CNCodeInputView *)view {
+    //    if (![view.code validationType:ValidationTypePhoneCode]) {
+    //        [view showWrongMsg:@"请输入6位数字验证码"];
+    //    } else {
+    //        view.wrongCode = NO;
+    //    }
+    
+    // 按钮可点击条件
+    self.submitBtn.enabled = (!self.platformInputView.wrongAccout)
+    && (!self.linkInputView.wrongAccout)
+    && (self.codeInputView.correct)
+    && (self.platformInputView.text.length > 0)
+    && (self.linkInputView.text.length > 0)
+    && (self.codeInputView.correct);
 }
 
 // 小金库地址
 - (IBAction)goldAddress:(UIButton *)sender {
     self.addrType = HYAddressTypeDCBOX;
+    self.goldBtn.selected = YES;
+    self.otherBtn.selected = NO;
+    self.borderLineCenterX.constant = 0;
+    self.title = @"添加小金库";
+    [self.view endEditing:true];
     [self configUI];
 }
 
 // 其他地址
 - (IBAction)otherAddress:(UIButton *)sender {
     self.addrType = HYAddressTypeUSDT;
-    [self configUI];
+    self.goldBtn.selected = NO;
+    self.otherBtn.selected = YES;
+    self.title = @"添加USDT地址";
+    self.borderLineCenterX.constant = kScreenWidth * 0.5;
+    [self.view endEditing:true];
+    [LoadingView show];
+    self.walletNameArr = [[NSMutableArray alloc] init];
+    self.walletArr = [[NSMutableArray alloc] init];
+    [CNWDAccountRequest getWallet:^(id responseObj, NSString *errorMsg) {
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            [LoadingView showSuccess];
+            for (NSDictionary * dict in responseObj[@"data"]) {
+                if (![dict[@"code"] isEqualToString:@"bitoll"] &&
+                    ![dict[@"code"] isEqualToString:@"DCBOX"] &&
+                    ![dict[@"code"] isEqualToString:@"Bitbase"] &&
+                    ![dict[@"code"] isEqualToString:@"ICHIPAY"]) {
+                    [self.walletArr addObject:dict];
+                    [self.walletNameArr addObject:dict[@"name"]];
+                }
+            }
+            [self configUI];
+        }
+    }];
 }
 
 - (IBAction)submit:(id)sender {
@@ -230,6 +290,8 @@
         case HYAddressTypeUSDT: {
             [CNWDAccountRequest createAccountUSDTAccountNo:self.linkInputView.text
                                                  bankAlias:self.platformInputView.text
+                                                  bankName:self.bankName
+                                                  protocol:self.protocolInputView.text
                                                 validateId:self.codeInputView.smsModel.validateId
                                                  messageId:self.codeInputView.smsModel.messageId
                                                    smsCode:self.codeInputView.code
