@@ -491,7 +491,7 @@ typedef void(^ButtonCallBack)(void);
                 }];
             }
         } else { // 跳活动
-            [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"电游活动" needPubSite:NO];
+            [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"" needPubSite:NO];
         }
     }
 }
@@ -654,35 +654,39 @@ typedef void(^ButtonCallBack)(void);
 }
 - (void)popupTenSecondView
 {
-    // 游戏中不弹窗，活动页面不弹，主页的四个导航页面弹窗
-    WEAKSELF_DEFINE
-    __block BOOL canPop = YES;
-    UIViewController *topVC = [PublicMethod currentViewController];
-    if ([topVC isKindOfClass:[CNLoginRegisterVC class]]
-        || [topVC isKindOfClass:[GameStartPlayViewController class]]
-//        || [topVC isKindOfClass:[BTTAGGJViewController class]]
-//        || [topVC isKindOfClass:[IVOtherGameController class]]
-        ) {
-        
-    }else
+    if ([CNUserManager shareManager].isLogin)
     {
+        // 游戏中不弹窗，活动页面不弹，主页的四个导航页面弹窗
+        WEAKSELF_DEFINE
+        __block BOOL canPop = YES;
+        UIViewController *topVC = [PublicMethod currentViewController];
+        if ([topVC isKindOfClass:[CNLoginRegisterVC class]]
+            || [topVC isKindOfClass:[GameStartPlayViewController class]]
+    //        || [topVC isKindOfClass:[BTTAGGJViewController class]]
+    //        || [topVC isKindOfClass:[IVOtherGameController class]]
+            ) {
+            
+        }else
+        {
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSArray * viewsArray = [[[UIApplication sharedApplication] keyWindow] subviews];
-            for (UIView * currentView in viewsArray) {
-                if ([currentView isKindOfClass:[BTTAnimationPopView class]]) {
-                    canPop = NO;
-                    break;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSArray * viewsArray = [[[UIApplication sharedApplication] keyWindow] subviews];
+                for (UIView * currentView in viewsArray) {
+                    if ([currentView isKindOfClass:[BTTAnimationPopView class]]) {
+                        canPop = NO;
+                        break;
+                    }
                 }
-            }
-            if (canPop)
-            {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakSelf showRedPacketsPreViewWithDuration:RedPacketDuration];
-                });
-            }
-        });
+                if (canPop)
+                {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [weakSelf showRedPacketsPreViewWithDuration:RedPacketDuration];
+                    });
+                }
+            });
+        }
     }
+   
 }
 #pragma mark - 10s倒计时弹窗
 - (void)showRedPacketsPreViewWithDuration:(int)duration
@@ -712,24 +716,29 @@ typedef void(^ButtonCallBack)(void);
 #pragma mark - 红包雨 预热/活动弹窗
 - (void)showRedPacketsRainViewwWithStyle:(RedPocketsViewStyle)currentStyle
 {
-    [[A03ActivityManager sharedInstance] checkTimeRedPacketRainWithCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
-        RedPacketsRainView *alertView = [RedPacketsRainView viewFromXib];
-        [alertView configForRedPocketsViewWithStyle:currentStyle];
-        BTTAnimationPopView *popView = [[BTTAnimationPopView alloc] initWithCustomView:alertView popStyle:BTTAnimationPopStyleNO dismissStyle:BTTAnimationDismissStyleNO];
-        popView.isClickBGDismiss = YES;
-        [popView pop];
-        
-        [alertView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
-        }];
-        alertView.dismissBlock = ^{
-            [popView dismiss];
-        };
-        alertView.btnBlock = ^(UIButton * _Nullable btn) {
-            [popView dismiss];
-        };
-    } WithDefaultCompletion:nil];
-
+    if ([CNUserManager shareManager].isLogin)
+    {
+        [[A03ActivityManager sharedInstance] checkTimeRedPacketRainWithCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
+            RedPacketsRainView *alertView = [RedPacketsRainView viewFromXib];
+            [alertView configForRedPocketsViewWithStyle:currentStyle];
+            BTTAnimationPopView *popView = [[BTTAnimationPopView alloc] initWithCustomView:alertView popStyle:BTTAnimationPopStyleNO dismissStyle:BTTAnimationDismissStyleNO];
+            popView.isClickBGDismiss = YES;
+            [popView pop];
+            
+            [alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
+            }];
+            alertView.dismissBlock = ^{
+                [popView dismiss];
+            };
+            alertView.btnBlock = ^(UIButton * _Nullable btn) {
+                [popView dismiss];
+            };
+        } WithDefaultCompletion:nil];
+    }else
+    {
+        [self loginAction];
+    }
 }
 
 // 悬浮按钮

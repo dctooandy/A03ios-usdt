@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RedPacketsRequest : CNBaseNetworking
 + (void)getRainInfoTask:(HandlerBlock)handler;
++ (void)getRainIdentifyTask:(HandlerBlock)handler;
++ (void)getRainOpenTask:(HandlerBlock)handler;
 @end
 
 NS_ASSUME_NONNULL_END

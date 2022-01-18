@@ -15,7 +15,8 @@
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+Add.h"
 #import "A03ActivityManager.h"
-
+#import "RedPacketsRequest.h"
+#import "RedPacketsIdentifyModel.h"
 //#import "GradientImage.h"
 @interface RedPacketsRainView()<SDCycleScrollViewDelegate , QBulletScreenViewDelegate>
 // 按照页面顺序
@@ -66,7 +67,8 @@
 @property (nonatomic, strong) SDCycleScrollView *bannerView;
 @property (nonatomic, strong) SDCycleScrollView *giftBannerView;
 @property (nonatomic, strong) NSMutableArray *bulletViewsArr;
-
+@property (nonatomic, assign) NSInteger fetchRedPacketsNum;
+@property(nonatomic,strong)RedPacketsIdentifyModel * redPacketIdentifyModel;
 @end
 
 @implementation RedPacketsRainView
@@ -152,6 +154,37 @@
 //    [self.backToRedPacketsViewBtn setImage:[[UIImage imageNamed:@"navi_back_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateHighlighted];
 //    [self.backToRedPacketsViewBtn.imageView setTintColor:[UIColor whiteColor]];
 }
+- (void)gotoGetIdentify
+{
+    WEAKSELF_DEFINE
+    [RedPacketsRequest getRainIdentifyTask:^(id responseObj, NSString *errorMsg) {
+        weakSelf.redPacketIdentifyModel = [RedPacketsIdentifyModel cn_parse:responseObj];
+        NSString *codeString = weakSelf.redPacketIdentifyModel.code;
+        NSString *messageString = weakSelf.redPacketIdentifyModel.message;
+        if ([codeString isEqual:@"200"])
+        {
+            [[NSUserDefaults standardUserDefaults] setObject:weakSelf.redPacketIdentifyModel.identify forKey:RedPacketIdentify];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [weakSelf moveLabelToTop]; // 移动倒数LAbel到上面
+            [weakSelf startRedPackerts]; // 开始下红包雨
+            [weakSelf.tapGesture setEnabled:YES];
+        }else
+        {
+            [MBProgressHUD showError:messageString toView:nil];
+             
+            [self.closeGiftBagButton setHidden:YES];
+            weakSelf.countdownLab.text = @"";
+            
+            [[A03ActivityManager sharedInstance] checkTimeRedPacketRainWithCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    int timeout = [PublicMethod countDownIntervalWithDurationTag:YES];
+                    [weakSelf startTimeWithDuration:timeout];
+                });
+            } WithDefaultCompletion:nil];
+        }
+    }];
+}
+
 - (void)startTimeWithDuration:(int)timeValue
 {
     weakSelf(weakSelf)
@@ -167,10 +200,7 @@
         {
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf moveLabelToTop]; // 移动倒数LAbel到上面
-//                [weakSelf.labelBackgroundView setAlpha:0.0];
-                [weakSelf startRedPackerts]; // 开始下红包雨
-                [weakSelf.tapGesture setEnabled:YES];
+                [weakSelf gotoGetIdentify];
             });
         }
         else
@@ -442,6 +472,8 @@
             [self.bagView.layer addSublayer:self.bagMoveLayer];
 //        }
 //    }
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%ld",(long)self.fetchRedPacketsNum] forKey:RedPacketNum];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [self showResult];
 }
 
@@ -469,6 +501,7 @@
             (layer.bounds.size.width == 44))
         {
             NSLog(@"%d",i);
+            self.fetchRedPacketsNum ++;
             self.selectedRedPacketNum = i;
 //            BOOL hasRedPacketd = !(i % 3) ;
             BOOL hasRedPacketd = YES ;
@@ -687,6 +720,8 @@
 
 - (void)startRedPackerts
 {
+    // 红包重置
+    self.fetchRedPacketsNum = 0;
     // 跑马灯关掉
     for (UIView * view in self.rainBackgroundView.subviews) {
         if ([view isKindOfClass:[QBulletScreenView class]])
@@ -782,7 +817,22 @@
 }
 - (void)showGiftBag
 {
-    [self openGiftBagAction];
+    WEAKSELF_DEFINE
+    NSString *identifyString = [[[NSUserDefaults standardUserDefaults] objectForKey:RedPacketIdentify] stringValue];
+    NSString *numString = [[[NSUserDefaults standardUserDefaults] objectForKey:RedPacketNum] stringValue];
+    if (KIsEmptyString(identifyString) || KIsEmptyString(numString))
+    {
+        [MBProgressHUD showError:@"参数异常" toView:nil];
+    }else
+    {
+        [RedPacketsRequest getRainOpenTask:^(id responseObj, NSString *errorMsg) {
+            [[NSUserDefaults standardUserDefaults] setObject:nil forKey:RedPacketIdentify];
+            [[NSUserDefaults standardUserDefaults] setObject:nil forKey:RedPacketNum];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [weakSelf openGiftBagAction];
+            
+        }];
+    }
 }
 - (BOOL)checkCardsCombineAvailable
 {

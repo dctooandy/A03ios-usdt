@@ -15,4 +15,19 @@
     
     [self POST:kGatewayExtraPath(A03RainInfo) parameters:params completionHandler:handler];
 }
++ (void)getRainIdentifyTask:(HandlerBlock)handler
+{
+    NSMutableDictionary *params = @{}.mutableCopy;
+    
+    [self POST:kGatewayExtraPath(A03RainCreate) parameters:params completionHandler:handler];
+}
++ (void)getRainOpenTask:(HandlerBlock)handler
+{
+    NSString *identifyString = [[[NSUserDefaults standardUserDefaults] objectForKey:RedPacketIdentify] stringValue];
+    NSString *numString = [[[NSUserDefaults standardUserDefaults] objectForKey:RedPacketNum] stringValue];
+    NSMutableDictionary *params = @{}.mutableCopy;
+    params[@"identify"] = identifyString;
+    params[@"times"] = numString;
+    [self POST:kGatewayExtraPath(A03RainOpen) parameters:params completionHandler:handler];
+}
 @end

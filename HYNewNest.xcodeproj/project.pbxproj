@@ -393,6 +393,7 @@
 		7682A78F27956675001AC772 /* RedPacketsRainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7682A78E27956674001AC772 /* RedPacketsRainView.xib */; };
 		7682A796279687D5001AC772 /* RedPacketsInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A794279687D5001AC772 /* RedPacketsInfoModel.m */; };
 		7682A79927968AAE001AC772 /* RedPacketsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A79827968AAE001AC772 /* RedPacketsRequest.m */; };
+		7682A79C2796B525001AC772 /* RedPacketsIdentifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A79B2796B525001AC772 /* RedPacketsIdentifyModel.m */; };
 		76B4998B275F6415003CD35B /* 03Gif2022.gif in Resources */ = {isa = PBXBuildFile; fileRef = 76B4998A275F6415003CD35B /* 03Gif2022.gif */; };
 		76B499E727608DAE003CD35B /* AppdelegateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E627608DAE003CD35B /* AppdelegateManager.m */; };
 		76B499EA27609237003CD35B /* A03CheckDomainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E927609237003CD35B /* A03CheckDomainModel.m */; };
@@ -1765,6 +1766,8 @@
 		7682A795279687D5001AC772 /* RedPacketsInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketsInfoModel.h; sourceTree = "<group>"; };
 		7682A79727968AAE001AC772 /* RedPacketsRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedPacketsRequest.h; sourceTree = "<group>"; };
 		7682A79827968AAE001AC772 /* RedPacketsRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedPacketsRequest.m; sourceTree = "<group>"; };
+		7682A79A2796B525001AC772 /* RedPacketsIdentifyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedPacketsIdentifyModel.h; sourceTree = "<group>"; };
+		7682A79B2796B525001AC772 /* RedPacketsIdentifyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedPacketsIdentifyModel.m; sourceTree = "<group>"; };
 		76B4998A275F6415003CD35B /* 03Gif2022.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 03Gif2022.gif; sourceTree = "<group>"; };
 		76B499E527608DAE003CD35B /* AppdelegateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppdelegateManager.h; sourceTree = "<group>"; };
 		76B499E627608DAE003CD35B /* AppdelegateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppdelegateManager.m; sourceTree = "<group>"; };
@@ -4195,6 +4198,8 @@
 				76519930278C2BE5006A59BF /* QBulletScreenView.m */,
 				7682A795279687D5001AC772 /* RedPacketsInfoModel.h */,
 				7682A794279687D5001AC772 /* RedPacketsInfoModel.m */,
+				7682A79A2796B525001AC772 /* RedPacketsIdentifyModel.h */,
+				7682A79B2796B525001AC772 /* RedPacketsIdentifyModel.m */,
 				7682A79727968AAE001AC772 /* RedPacketsRequest.h */,
 				7682A79827968AAE001AC772 /* RedPacketsRequest.m */,
 			);
@@ -6699,6 +6704,7 @@
 				048A168F24CACABF00411819 /* CNAlertPickerView.m in Sources */,
 				E986A1C524CC7F2B000F9CFF /* TAPageControl.m in Sources */,
 				3DF6E7BC267B1DA800911FC8 /* BYModifyPhoneVC.m in Sources */,
+				7682A79C2796B525001AC772 /* RedPacketsIdentifyModel.m in Sources */,
 				3D41DEAE251CC6FD000CA1D6 /* UIColor+Gradient.m in Sources */,
 				3DA4F15524B30A090039123F /* SGQRCodeScanManager.m in Sources */,
 				E9B5496924CECE23002CE6EF /* LTSegmentedBar.m in Sources */,
