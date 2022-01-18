@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "A03PopViewModel.h"
+#import "RedPacketsInfoModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 typedef void (^CheckTimeCompleteBlock)(NSString * timeStr);
 typedef void(^RedPacketCallBack)(NSString * _Nullable response, NSString * _Nullable error);
 typedef void(^PopViewCallBack)(A03PopViewModel * _Nullable response, NSString * _Nullable error);
 @interface A03ActivityManager : NSObject
-
+@property(nonatomic,strong)RedPacketsInfoModel * redPacketInfoModel;
 + (A03ActivityManager *)sharedInstance;
 
 //检查wms弹窗API

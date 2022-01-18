@@ -8,7 +8,7 @@
 
 #import "AssistiveButton.h"
 #import "PublicMethod.h"
-
+#import "A03ActivityManager.h"
 typedef void (^TimeCompleteBlock)(NSString * timeStr);
 @interface AssistiveButton () <CAAnimationDelegate>
 @property (strong, nonatomic) UIDynamicAnimator *animator;
@@ -79,10 +79,9 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
         closeBtn.adjustsImageWhenHighlighted = NO;
         [self addSubview:closeBtn];
         
+        UILabel *countDownLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, self.powerButton.size.height * 0.80, self.powerButton.size.width*0.7, 20)];
 
-        UILabel *countDownLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, self.powerButton.size.height * 0.80, self.powerButton.size.width - 5, 20)];
-
-        countDownLabel.textAlignment = NSTextAlignmentLeft;
+        countDownLabel.textAlignment = NSTextAlignmentCenter;
 
         countDownLabel.textColor = kHexColorAlpha(0xFFEC85, 1.0);
 
@@ -92,7 +91,7 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
 
         [self addSubview:countDownLabel];
         _countdownLab = countDownLabel;
-        [self startTime];
+        [self startCountDownTime];
         //configuration
         [self configureDefaultValue];
         [self setFrame:_mainFrame];
@@ -112,7 +111,16 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     return [dateFormatter stringFromDate:timeDate];
 }
-- (void)startTime
+- (void)reStartCountTime
+{
+    WEAKSELF_DEFINE
+    [[A03ActivityManager sharedInstance] checkTimeRedPacketRainWithCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
+       
+        [weakSelf startCountDownTime];
+    } WithDefaultCompletion:nil];
+}
+
+- (void)startCountDownTime
 {
     WEAKSELF_DEFINE
     [self serverTime:^(NSString *timeStr) {
@@ -132,12 +140,18 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
                     {
                         dispatch_source_cancel(_timer);
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            //                [weakSelf startRedPackerts];
-                            //                [weakSelf.tapGesture setEnabled:YES];
+                            [weakSelf reStartCountTime];
                         });
                     }
                     else
                     {
+                        if (timeout == 10)
+                        {
+                            if (weakSelf.tenSecondActionBlock)
+                            {
+                                weakSelf.tenSecondActionBlock();
+                            }
+                        }
                         int dInt = (int)timeout / (3600 * 24);      //剩馀天数
                         int leftTime = timeout - (dInt * 3600 * 24);
                         int hInt = (int)leftTime / 3600;            //剩馀时数
@@ -161,6 +175,7 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
             }else
             {
                 // 过了活动期
+                weakSelf.countdownLab.text = @"活动已过";
             }
         }
     }];

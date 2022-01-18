@@ -47,6 +47,7 @@
 #import "AssistiveButton.h"
 #import "UIImage+GIF.h"
 #import "PublicMethod.h"
+#import "GameStartPlayViewController.h"
 typedef void(^ButtonCallBack)(void);
 
 @interface CNHomeVC () <CNUserInfoLoginViewDelegate,  SDCycleScrollViewDelegate, UUMarqueeViewDelegate, GameBtnsStackViewDelegate, DashenBoardAutoHeightDelegate>
@@ -637,17 +638,14 @@ typedef void(^ButtonCallBack)(void);
         if (response != nil)
         {
             // 活动期
-            [weakSelf popupTenSecondView];
         }else
         {
             // 预热
-            //暂时让他出来
-            dispatch_async(dispatch_get_main_queue(), ^{
-//                [weakSelf showRedPacketsPreViewWithDuration:10];
-//                [weakSelf showRedPacketsRainViewwWithStyle:RedPocketsViewPrefix];
-                [weakSelf showRedPacketsRainViewwWithStyle:RedPocketsViewDev];
-            });
         }
+        //暂时让他出来
+        dispatch_async(dispatch_get_main_queue(), ^{
+//            [weakSelf showRedPacketsRainViewwWithStyle:RedPocketsViewDev];
+        });
     } WithDefaultCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
         // 一般活动
         // 悬浮按钮设定
@@ -656,32 +654,34 @@ typedef void(^ButtonCallBack)(void);
 }
 - (void)popupTenSecondView
 {
+    // 游戏中不弹窗，活动页面不弹，主页的四个导航页面弹窗
     WEAKSELF_DEFINE
-    __block int timeout = [PublicMethod countDownIntervalWithDurationTag:YES] - RedPacketDuration;//倒数10秒前
-    if (timeout <= 0)//刚好在这10秒钟
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf showRedPacketsPreViewWithDuration:(timeout == 0 ? 0: -timeout)];
-        });
+    __block BOOL canPop = YES;
+    UIViewController *topVC = [PublicMethod currentViewController];
+    if ([topVC isKindOfClass:[CNLoginRegisterVC class]]
+        || [topVC isKindOfClass:[GameStartPlayViewController class]]
+//        || [topVC isKindOfClass:[BTTAGGJViewController class]]
+//        || [topVC isKindOfClass:[IVOtherGameController class]]
+        ) {
+        
     }else
     {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-        dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
-        dispatch_source_set_event_handler(_timer, ^{
-            if ( timeout <= 0 )
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSArray * viewsArray = [[[UIApplication sharedApplication] keyWindow] subviews];
+            for (UIView * currentView in viewsArray) {
+                if ([currentView isKindOfClass:[BTTAnimationPopView class]]) {
+                    canPop = NO;
+                    break;
+                }
+            }
+            if (canPop)
             {
-                dispatch_source_cancel(_timer);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [weakSelf showRedPacketsPreViewWithDuration:RedPacketDuration];
                 });
             }
-            else
-            {
-                timeout--;
-            }
         });
-        dispatch_resume(_timer);
     }
 }
 #pragma mark - 10s倒计时弹窗
@@ -709,24 +709,27 @@ typedef void(^ButtonCallBack)(void);
         [weakSelf showRedPacketsRainViewwWithStyle:RedPocketsViewBegin];
     };
 }
+#pragma mark - 红包雨 预热/活动弹窗
 - (void)showRedPacketsRainViewwWithStyle:(RedPocketsViewStyle)currentStyle
 {
-    RedPacketsRainView *alertView = [RedPacketsRainView viewFromXib];
-    [alertView configForRedPocketsViewWithStyle:currentStyle];
-    BTTAnimationPopView *popView = [[BTTAnimationPopView alloc] initWithCustomView:alertView popStyle:BTTAnimationPopStyleNO dismissStyle:BTTAnimationDismissStyleNO];
-    
-    popView.isClickBGDismiss = YES;
-    [popView pop];
-    
-    [alertView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
-    }];
-    alertView.dismissBlock = ^{
-        [popView dismiss];
-    };
-    alertView.btnBlock = ^(UIButton * _Nullable btn) {
-        [popView dismiss];
-    };
+    [[A03ActivityManager sharedInstance] checkTimeRedPacketRainWithCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
+        RedPacketsRainView *alertView = [RedPacketsRainView viewFromXib];
+        [alertView configForRedPocketsViewWithStyle:currentStyle];
+        BTTAnimationPopView *popView = [[BTTAnimationPopView alloc] initWithCustomView:alertView popStyle:BTTAnimationPopStyleNO dismissStyle:BTTAnimationDismissStyleNO];
+        popView.isClickBGDismiss = YES;
+        [popView pop];
+        
+        [alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
+        }];
+        alertView.dismissBlock = ^{
+            [popView dismiss];
+        };
+        alertView.btnBlock = ^(UIButton * _Nullable btn) {
+            [popView dismiss];
+        };
+    } WithDefaultCompletion:nil];
+
 }
 
 // 悬浮按钮
@@ -747,6 +750,9 @@ typedef void(^ButtonCallBack)(void);
         //主按鈕可移動或移動後回彈跟不可移動
         self.redPocketsAssistiveButton.positionMode = SpreadPositionModeNone;
         weakSelf(weakSelf);
+        [self.redPocketsAssistiveButton setTenSecondActionBlock:^{
+            [weakSelf popupTenSecondView];
+        }];
         [self.redPocketsAssistiveButton setMainButtonClickActionBlock:^{
             NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
             BOOL isBeforeDuration = [duractionArray[0] boolValue];

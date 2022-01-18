@@ -46,7 +46,9 @@
         {
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
-                
+                if (weakSelf.dismissBlock) {
+                    weakSelf.dismissBlock();
+                }
             });
         }
         else

@@ -9,6 +9,7 @@
 #import "A03ActivityManager.h"
 #import "CNHomeRequest.h"
 #import "PublicMethod.h"
+#import "RedPacketsRequest.h"
 
 @interface A03ActivityManager()
 @property(nonatomic,strong)A03PopViewModel * popModel;
@@ -31,29 +32,33 @@ static A03ActivityManager * sharedSingleton;
 - (void)checkTimeRedPacketRainWithCompletion:(RedPacketCallBack _Nullable)redPacketBlock
                        WithDefaultCompletion:(RedPacketCallBack _Nullable)defaultBlock
 {
-    [self serverTime:^(NSString *timeStr) {
-        if (timeStr.length > 0)
-        {
-            NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
-            BOOL isBeforeDuration = [duractionArray[0] boolValue];
-            BOOL isActivityDuration = [duractionArray[1] boolValue];
-            if (isBeforeDuration || isActivityDuration)
+    WEAKSELF_DEFINE
+    [RedPacketsRequest getRainInfoTask:^(id responseObj, NSString *errorMsg) {
+        weakSelf.redPacketInfoModel = [RedPacketsInfoModel cn_parse:responseObj];
+        [weakSelf serverTime:^(NSString *timeStr) {
+            if (timeStr.length > 0)
             {
-                // 不到时间,预热
-                // 活动期间
-                if (redPacketBlock)
+                NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
+                BOOL isBeforeDuration = [duractionArray[0] boolValue];
+                BOOL isActivityDuration = [duractionArray[1] boolValue];
+                if (isBeforeDuration || isActivityDuration)
                 {
-                    redPacketBlock(isActivityDuration ? @"1" : nil,nil);
-                }
-            }else
-            {
-                // 过了活动期
-                if (defaultBlock)
+                    // 不到时间,预热
+                    // 活动期间
+                    if (redPacketBlock)
+                    {
+                        redPacketBlock(isActivityDuration ? @"1" : nil,nil);
+                    }
+                }else
                 {
-                    defaultBlock(nil,nil);
+                    // 过了活动期
+                    if (defaultBlock)
+                    {
+                        defaultBlock(nil,nil);
+                    }
                 }
             }
-        }
+        }];
     }];
 }
 -(void)serverTime:(CheckTimeCompleteBlock)completeBlock {

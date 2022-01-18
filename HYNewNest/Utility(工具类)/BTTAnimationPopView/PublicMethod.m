@@ -9,6 +9,8 @@
 #import "PublicMethod.h"
 #import "AppDelegate.h"
 #import <CoreImage/CoreImage.h>
+#import "RedPacketsInfoModel.h"
+#import "A03ActivityManager.h"
 
 @implementation PublicMethod
 
@@ -1304,8 +1306,8 @@ void ProviderReleaseData (void *info, const void *data, size_t size){
 //检查红包雨是否在期间
 +(NSArray *)redPacketDuracionCheck
 {
-    BOOL isBeforeDuration = [PublicMethod checksStartDate:@"2021-01-01" EndDate:BeforeStartDate serverTime:[PublicMethod serverTime]];
-    BOOL isActivityDuration = [PublicMethod checksStartDate:RedPacketStartDate EndDate:@"2022-02-07" serverTime:[PublicMethod serverTime]];
+    BOOL isBeforeDuration = [[[[A03ActivityManager sharedInstance] redPacketInfoModel] preStatus]  isEqual: @"1"] ? YES:NO;
+    BOOL isActivityDuration = [[[[A03ActivityManager sharedInstance] redPacketInfoModel] status]  isEqual: @"1"] ? YES:NO;
     return @[[NSNumber numberWithBool:isBeforeDuration] ,[NSNumber numberWithBool:isActivityDuration]];
 }
 //返回下一场次红包雨的时间
@@ -1316,34 +1318,52 @@ void ProviderReleaseData (void *info, const void *data, size_t size){
     NSTimeInterval startDateTime = 0;
     NSTimeInterval secondStartDateTime = 0;
     NSTimeInterval countDownInterval = 0;
+    RedPacketsInfoModel * model = [[A03ActivityManager sharedInstance] redPacketInfoModel];
+    NSInteger totalPlusTimer = 0;
+    NSArray * plusTimer = [[model firstStartAt] componentsSeparatedByString:@":"];
+    if (plusTimer.count == 3)
+    {
+        NSInteger hourS = [(NSString *)[plusTimer firstObject] integerValue];
+        NSInteger minS = [(NSString *)plusTimer[1] integerValue];
+        NSInteger secS = [(NSString *)[plusTimer lastObject] integerValue];
+        totalPlusTimer = hourS * 3600 + minS * 60 + secS;
+    }else
+    {
+        
+    }
     if (!isActivityDuration)
     {
         // 不到时间,预热
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        startDate = [dateFormatter dateFromString:RedPacketStartDate];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+//        startDate = [dateFormatter dateFromString:RedPacketFirstStartTime];
+        startDate = [dateFormatter dateFromString:model.startAt];
         startDateTime = [[NSDate date] timeIntervalSinceDate:startDate];
-        countDownInterval = -startDateTime;
+//        countDownInterval = -startDateTime;
+        countDownInterval = -startDateTime + totalPlusTimer;
+
     }else
     {
         // 活动期间
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-        startDate = [dateFormatter dateFromString:RedPacketFirstStartTime];// 第一天早上10点
-        startDateTime = (int)[[NSDate date] timeIntervalSinceDate:startDate] % (60 * 60 * 24);
-        secondStartDateTime = startDateTime - (60 * 60 * 4);
-        
-        if (startDateTime < 0)
-        {
-            //早于10点
-            countDownInterval = -startDateTime;
-        } else if (secondStartDateTime < 0)
-        {
-            //介于10点到14点
-            countDownInterval = -secondStartDateTime;
-        }else
-        {
-            //晚于14点
-            countDownInterval = (60*60*24 - secondStartDateTime);
-        }
+//        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+//        startDate = [dateFormatter dateFromString:RedPacketFirstStartTime];// 第一天早上10点
+//        startDateTime = (int)[[NSDate date] timeIntervalSinceDate:startDate] % (60 * 60 * 24);
+//        secondStartDateTime = startDateTime - (60 * 60 * 4);
+//
+//        if (startDateTime < 0)
+//        {
+//            //早于10点
+//            countDownInterval = -startDateTime;
+//        } else if (secondStartDateTime < 0)
+//        {
+//            //介于10点到14点
+//            countDownInterval = -secondStartDateTime;
+//        }else
+//        {
+//            //晚于14点
+//            countDownInterval = (60*60*24 - secondStartDateTime);
+//        }
+        countDownInterval = [model.leftTime integerValue];
+
     }
     return countDownInterval;
 }

@@ -391,6 +391,8 @@
 		7682A78527915CE1001AC772 /* RedPacketsPreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7682A78427915CE1001AC772 /* RedPacketsPreView.xib */; };
 		7682A78D2795654E001AC772 /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A78B2795654E001AC772 /* MBProgressHUD+Add.m */; };
 		7682A78F27956675001AC772 /* RedPacketsRainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7682A78E27956674001AC772 /* RedPacketsRainView.xib */; };
+		7682A796279687D5001AC772 /* RedPacketsInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A794279687D5001AC772 /* RedPacketsInfoModel.m */; };
+		7682A79927968AAE001AC772 /* RedPacketsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A79827968AAE001AC772 /* RedPacketsRequest.m */; };
 		76B4998B275F6415003CD35B /* 03Gif2022.gif in Resources */ = {isa = PBXBuildFile; fileRef = 76B4998A275F6415003CD35B /* 03Gif2022.gif */; };
 		76B499E727608DAE003CD35B /* AppdelegateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E627608DAE003CD35B /* AppdelegateManager.m */; };
 		76B499EA27609237003CD35B /* A03CheckDomainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E927609237003CD35B /* A03CheckDomainModel.m */; };
@@ -1759,6 +1761,10 @@
 		7682A78B2795654E001AC772 /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
 		7682A78C2795654E001AC772 /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
 		7682A78E27956674001AC772 /* RedPacketsRainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketsRainView.xib; sourceTree = "<group>"; };
+		7682A794279687D5001AC772 /* RedPacketsInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketsInfoModel.m; sourceTree = "<group>"; };
+		7682A795279687D5001AC772 /* RedPacketsInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketsInfoModel.h; sourceTree = "<group>"; };
+		7682A79727968AAE001AC772 /* RedPacketsRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedPacketsRequest.h; sourceTree = "<group>"; };
+		7682A79827968AAE001AC772 /* RedPacketsRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedPacketsRequest.m; sourceTree = "<group>"; };
 		76B4998A275F6415003CD35B /* 03Gif2022.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 03Gif2022.gif; sourceTree = "<group>"; };
 		76B499E527608DAE003CD35B /* AppdelegateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppdelegateManager.h; sourceTree = "<group>"; };
 		76B499E627608DAE003CD35B /* AppdelegateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppdelegateManager.m; sourceTree = "<group>"; };
@@ -4187,6 +4193,10 @@
 				76485F262787D776004EA51E /* UIImage+GIF.m */,
 				76519931278C2BE5006A59BF /* QBulletScreenView.h */,
 				76519930278C2BE5006A59BF /* QBulletScreenView.m */,
+				7682A795279687D5001AC772 /* RedPacketsInfoModel.h */,
+				7682A794279687D5001AC772 /* RedPacketsInfoModel.m */,
+				7682A79727968AAE001AC772 /* RedPacketsRequest.h */,
+				7682A79827968AAE001AC772 /* RedPacketsRequest.m */,
 			);
 			path = BTTAnimationPopView;
 			sourceTree = "<group>";
@@ -6650,6 +6660,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7682A79927968AAE001AC772 /* RedPacketsRequest.m in Sources */,
 				3DF43D4C25946AED0087F26A /* DSBProfitBoardCell.m in Sources */,
 				04C0F11B24C68715007F1420 /* CNUserInfoLoginView.m in Sources */,
 				0405FF6B24D3DAE400AC46D2 /* CNFeedBackRightTCell.m in Sources */,
@@ -6699,6 +6710,7 @@
 				3D41DE7625199DEE000CA1D6 /* VIPGuideModel.m in Sources */,
 				3D31B95E2542D4BF005275BD /* PreLoginModel.m in Sources */,
 				767DF24D27914FB700F50520 /* UIView+Frame.m in Sources */,
+				7682A796279687D5001AC772 /* RedPacketsInfoModel.m in Sources */,
 				E9B5495324CDB646002CE6EF /* UUMarqueeView.m in Sources */,
 				E986A18C24C9D39B000F9CFF /* XmCalcAmountModel.m in Sources */,
 				3D41DE8325199DEE000CA1D6 /* VIPChartDJTQCell.m in Sources */,
