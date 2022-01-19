@@ -716,7 +716,10 @@ typedef void(^ButtonCallBack)(void);
 #pragma mark - 红包雨 预热/活动弹窗
 - (void)showRedPacketsRainViewwWithStyle:(RedPocketsViewStyle)currentStyle
 {
-    if ([CNUserManager shareManager].isLogin)
+    if (![CNUserManager shareManager].isLogin && currentStyle == RedPocketsViewBegin)
+    {
+        [self loginAction];
+    }else
     {
         [[A03ActivityManager sharedInstance] checkTimeRedPacketRainWithCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
             RedPacketsRainView *alertView = [RedPacketsRainView viewFromXib];
@@ -735,9 +738,6 @@ typedef void(^ButtonCallBack)(void);
                 [popView dismiss];
             };
         } WithDefaultCompletion:nil];
-    }else
-    {
-        [self loginAction];
     }
 }
 

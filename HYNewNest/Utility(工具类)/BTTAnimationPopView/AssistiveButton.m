@@ -85,7 +85,7 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
 
         countDownLabel.textColor = kHexColorAlpha(0xFFEC85, 1.0);
 
-        countDownLabel.font = [UIFont systemFontOfSize:13];
+        countDownLabel.font = [UIFont systemFontOfSize:11];
 
         countDownLabel.text = @"5天23小时12分30秒";
 
