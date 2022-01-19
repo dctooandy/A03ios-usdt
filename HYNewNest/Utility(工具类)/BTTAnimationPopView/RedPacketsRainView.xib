@@ -489,7 +489,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8d-eI-hg0">
-                                    <rect key="frame" x="147.5" y="80" width="15" height="30.5"/>
+                                    <rect key="frame" x="147.5" y="75" width="15" height="30.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -506,7 +506,7 @@
                                 <constraint firstItem="mxD-Mn-LdH" firstAttribute="leading" secondItem="uZJ-LJ-69R" secondAttribute="leading" id="A6z-YA-Wtf"/>
                                 <constraint firstItem="1Yw-XU-u7W" firstAttribute="centerX" secondItem="uZJ-LJ-69R" secondAttribute="centerX" id="DA9-oQ-w7S"/>
                                 <constraint firstItem="c8d-eI-hg0" firstAttribute="height" secondItem="1Yw-XU-u7W" secondAttribute="height" multiplier="1.2" id="LGd-Xd-7wg"/>
-                                <constraint firstItem="c8d-eI-hg0" firstAttribute="top" secondItem="1Yw-XU-u7W" secondAttribute="top" constant="50" id="McL-9z-U10"/>
+                                <constraint firstItem="c8d-eI-hg0" firstAttribute="top" secondItem="1Yw-XU-u7W" secondAttribute="top" constant="45" id="McL-9z-U10"/>
                                 <constraint firstItem="1Yw-XU-u7W" firstAttribute="top" secondItem="uZJ-LJ-69R" secondAttribute="top" constant="30" id="NCh-80-lva"/>
                                 <constraint firstItem="5Bq-Wp-Eej" firstAttribute="height" secondItem="uZJ-LJ-69R" secondAttribute="height" multiplier="0.616333" id="TNO-Ok-z6W"/>
                                 <constraint firstItem="mxD-Mn-LdH" firstAttribute="height" secondItem="uZJ-LJ-69R" secondAttribute="height" multiplier="0.55" id="Ti5-Fh-I91"/>
