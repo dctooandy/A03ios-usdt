@@ -19,6 +19,9 @@
 #import "RedPacketsIdentifyModel.h"
 //#import "GradientImage.h"
 #import "LuckyBagModel.h"
+#import "GiftCardModel.h"
+#import "PrizeRecordModel.h"
+#import "PrizeNamesModel.h"
 @interface RedPacketsRainView()<SDCycleScrollViewDelegate , QBulletScreenViewDelegate>
 // 按照页面顺序
 @property (weak, nonatomic) IBOutlet UIView *cardsBonusView;
@@ -71,7 +74,10 @@
 @property (nonatomic, strong) SDCycleScrollView *giftBannerView;
 @property (nonatomic, strong) NSMutableArray *bulletViewsArr;
 @property (nonatomic, assign) NSInteger fetchRedPacketsNum;
-@property(nonatomic,strong)LuckyBagModel * luckyBagModel;
+@property (nonatomic, strong) LuckyBagModel * luckyBagModel;
+@property (nonatomic, strong) NSArray<GiftCardModel *>* giftCardArray;
+@property (nonatomic, strong) NSArray<PrizeRecordModel *>* prizeRecordArray;
+@property (nonatomic, strong) NSArray<PrizeNamesModel *>* prizeNamesArray;
 @property(nonatomic,strong)RedPacketsIdentifyModel * redPacketIdentifyModel;
 @end
 
@@ -86,6 +92,9 @@
     [self.tapGesture setEnabled:NO];
     self.openGiftBagButton.layer.borderColor = COLOR_RGBA(219, 168, 143, 1).CGColor;
     self.openGiftBagButton.layer.borderWidth = 1;
+    self.giftCardArray = @[];
+    self.prizeRecordArray = @[];
+    self.prizeNamesArray = @[];
 }
 
 - (void)configForRedPocketsViewWithStyle:(RedPocketsViewStyle)style
@@ -99,7 +108,8 @@
             //开始红包雨倒数
             [self startTimeWithDuration:[PublicMethod countDownIntervalWithDurationTag:YES]];
             // 活动开始中奖名单跑马灯
-            [self setupDataForSortArray];
+            [self fetchPrizeRecords];
+//            [self setupDataForSortArray];
             // 集福卡开启
             [self showCardsButtonSetHidden:NO];
             // 背景图置换
@@ -129,7 +139,8 @@
             //开始红包雨倒数
             [self startTimeWithDuration:10];
             // 活动开始中奖名单跑马灯
-            [self setupDataForSortArray];
+            [self fetchPrizeRecords];
+//            [self setupDataForSortArray];
             // 集福卡开启
             [self showCardsButtonSetHidden:NO];
             // 背景图置换
@@ -235,34 +246,90 @@
     });
     dispatch_resume(_timer);
 }
+- (void)fetchPrizeRecords
+{
+    WEAKSELF_DEFINE
+    [RedPacketsRequest getRainInKindPrizeTask:^(id responseObj, NSString *errorMsg) {
+        weakSelf.prizeRecordArray = [PrizeRecordModel cn_parse:responseObj];
+        [weakSelf setupDataForSortArray];
+    }];
+}
 - (void)setupDataForSortArray
 {
-    NSArray * tempArray = [[NSArray alloc] initWithObjects:@"恭喜111111会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜222222会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜3333333会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜44444444会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜55555555会员齐集福卡获得: 索尼PS5游戏机 国行光驱版", nil];
-    [self sortArray:tempArray];
+//    NSArray * tempArray = [[NSArray alloc] initWithObjects:@"恭喜111111会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜222222会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜3333333会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜44444444会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜55555555会员齐集福卡获得: 索尼PS5游戏机 国行光驱版", nil];
+    NSMutableArray * totalArray = [[NSMutableArray alloc] init];
+    for (PrizeRecordModel * subModel in self.prizeRecordArray) {
+        [totalArray addObject:[NSString stringWithFormat:@"恭喜%@会员齐集福卡获得: %@",subModel.loginName,subModel.prizeName]];
+    }
+    [self sortArray:totalArray];
 }
 - (void)setupGiftBannerGroup
 {
-    NSMutableArray *h5Images = [[NSMutableArray alloc] initWithObjects:@"img_401as",
-                                @"img_dysonV10",
-                                @"img_GalaxyZFold3",
-                                @"img_HZC302W",
-                                @"img_MacBook13",
-                                @"img_PS5",
-                                @"img_SKG",
-                                @"img_sonya7m4", nil];
-    
-    NSArray * nameArray = @[@[@"g****18",@"g****9",@"g****86",@"g****81",@"g****88",@"g****81"],@[@"g****28",@"g****88",@"g****86",@"g****87",@"g****81",@"g****81"],@[@"g****38",@"g****88",@"g****86",@"g****87",@"g****81",@"g****81"],@[@"g****48",@"g****88",@"g****86",@"g****87",@"g****81",@"g****81"],@[@"g****58",@"g****88",@"g****86",@"g****87",@"g****81",@"g****81"],@[@"g****68",@"g****88",@"g****86",@"g****87",@"g****81",@"g****81"],@[@"g****78",@"g****88",@"g****86",@"g****87",@"g****81",@"g****81"],@[@"g****88",@"g****88",@"g****86",@"g****87",@"g****81",@"g****81"]];
+//    NSMutableArray *h5Images = [[NSMutableArray alloc] initWithObjects:@"img_401as",
+//                                @"img_dysonV10",
+//                                @"img_GalaxyZFold3",
+//                                @"img_HZC302W",
+//                                @"img_MacBook13",
+//                                @"img_PS5",
+//                                @"img_SKG",
+//                                @"img_sonya7m4", nil];
+//    NSArray * nameArray = @[@[@"g****18",@"g****9",@"g****86",@"g****81",@"g****88",@"g****81"],@[@"g****28",@"g****88",@"g****86",@"g****87",@"g****81",@"g****81"],@[@"g****38",@"g****88",@"g****86",@"g****87",@"g****81",@"g****81"],@[@"g****48",@"g****88",@"g****86",@"g****87",@"g****81",@"g****81"],@[@"g****58",@"g****88",@"g****86",@"g****87",@"g****81",@"g****81"],@[@"g****68",@"g****88",@"g****86",@"g****87",@"g****81",@"g****81"],@[@"g****78",@"g****88",@"g****86",@"g****87",@"g****81",@"g****81"],@[@"g****88",@"g****88",@"g****86",@"g****87",@"g****81",@"g****81"]];
+    NSMutableArray *imageArray = [[NSMutableArray alloc] init];
+    NSMutableArray *userNamesArray = [[NSMutableArray alloc] init];
+    for (PrizeNamesModel * subModel in self.prizeNamesArray) {
+        if ([subModel.prizeName containsString:@"海尔除螨仪"])
+        {
+            [imageArray addObject:@"img_HZC302W"];
+            [userNamesArray addObject:subModel.users];
+        }
+        if ([subModel.prizeName containsString:@"SKG颈部"])
+        {
+            [imageArray addObject:@"img_SKG"];
+            [userNamesArray addObject:subModel.users];
+        }
+        if ([subModel.prizeName containsString:@"奥玛仕"])
+        {
+            [imageArray addObject:@"img_401as"];
+            [userNamesArray addObject:subModel.users];
+        }
+        if ([subModel.prizeName containsString:@"戴森吸"])
+        {
+            [imageArray addObject:@"img_dysonV10"];
+            [userNamesArray addObject:subModel.users];
+        }
+        if ([subModel.prizeName containsString:@"PS5"])
+        {
+            [imageArray addObject:@"img_PS5"];
+            [userNamesArray addObject:subModel.users];
+        }
+        if ([subModel.prizeName containsString:@"苹果"])
+        {
+            [imageArray addObject:@"img_MacBook13"];
+            [userNamesArray addObject:subModel.users];
+        }
+        if ([subModel.prizeName containsString:@"三星"])
+        {
+            [imageArray addObject:@"img_GalaxyZFold3"];
+            [userNamesArray addObject:subModel.users];
+        }
+        if ([subModel.prizeName containsString:@"a7m4"])
+        {
+            [imageArray addObject:@"img_sonya7m4"];
+            [userNamesArray addObject:subModel.users];
+        }
+    }
+
     NSMutableArray *descriptionArray = [[NSMutableArray alloc] init];
-    for (NSArray * subNameArray in nameArray) {
+    for (NSArray * subNameArray in userNamesArray) {
         NSString *totalString = @"";
         for (int i = 0 ; i < subNameArray.count ; i++) {
             totalString = [totalString stringByAppendingString:[NSString stringWithFormat:@"%@%@%@",(i == 0 ? @"恭喜\n":@""),subNameArray[i],(i == (subNameArray.count - 1) ? @"\n会员获得该奖品" : @"、")]];
         }
         [descriptionArray addObject:totalString];
     }
-    h5Images = @[].mutableCopy;
-    descriptionArray = @[].mutableCopy;
-    self.giftBannerView.localizationImageNamesGroup = h5Images;
+//    h5Images = @[].mutableCopy;
+//    descriptionArray = @[].mutableCopy;
+    self.giftBannerView.localizationImageNamesGroup = imageArray.mutableCopy;
     self.giftBannerView.descriptionGroup = descriptionArray;
 }
 - (void)showCardsButtonSetHidden:(BOOL)sender
@@ -330,8 +397,37 @@
 - (void)setupCardsAmounts
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        for (UILabel * cardAmountLabel in self.cardsAmountLabelArray) {
-            cardAmountLabel.text = [NSString stringWithFormat:@"%u张",arc4random() % 6];
+        NSMutableArray * resultArray = [[NSMutableArray alloc] initWithObjects:@"0张",@"0张",@"0张",@"0张",@"0张",@"0张", nil];
+        for (int i = 0; i < self.giftCardArray.count; i ++) {
+            GiftCardModel *subModel = self.giftCardArray[i];
+            if ([subModel.cardName isEqualToString:@"龙腾虎跃"])
+            {
+                [resultArray replaceObjectAtIndex:0 withObject:[NSString stringWithFormat:@"%@张",subModel.count]];
+            }
+            if ([subModel.cardName isEqualToString:@"藏龙卧虎"])
+            {
+                [resultArray replaceObjectAtIndex:1 withObject:[NSString stringWithFormat:@"%@张",subModel.count]];
+            }
+            if ([subModel.cardName isEqualToString:@"人中龙虎"])
+            {
+                [resultArray replaceObjectAtIndex:2 withObject:[NSString stringWithFormat:@"%@张",subModel.count]];
+            }
+            if ([subModel.cardName isEqualToString:@"如虎生翼"])
+            {
+                [resultArray replaceObjectAtIndex:3 withObject:[NSString stringWithFormat:@"%@张",subModel.count]];
+            }
+            if ([subModel.cardName isEqualToString:@"生龙活虎"])
+            {
+                [resultArray replaceObjectAtIndex:4 withObject:[NSString stringWithFormat:@"%@张",subModel.count]];
+            }
+            if ([subModel.cardName isEqualToString:@"虎虎生威"])
+            {
+                [resultArray replaceObjectAtIndex:5 withObject:[NSString stringWithFormat:@"%@张",subModel.count]];
+            }
+        }
+        for (int i = 1; i < self.cardsAmountLabelArray.count; i++) {
+            UILabel * cardAmountLabel = self.cardsAmountLabelArray[i];
+            cardAmountLabel.text = resultArray[i];
         }
     });
 }
@@ -913,14 +1009,32 @@
 }
 // 开启集福卡画面
 - (IBAction)showCardsBonus:(UIButton*)sender {
-    [self setupGiftBannerGroup];
-    [self setupCardsAmounts];
-    [UIView animateWithDuration:0.3 animations:^{
-        [self.cardsBonusView setAlpha:(sender.tag == 1) ? 1.0 : 0.0];
-        [self.rainBackgroundView setAlpha:(sender.tag == 1) ? 0.0 : 1.0];
-        [self.labelBackgroundView setAlpha:(sender.tag == 1) ? 0.0 : 1.0];
-        [self dismissRulesView];
-    }];
+//    [self setupGiftBannerGroup];
+//    [self setupCardsAmounts];
+//    [UIView animateWithDuration:0.3 animations:^{
+//        [self.cardsBonusView setAlpha:(sender.tag == 1) ? 1.0 : 0.0];
+//        [self.rainBackgroundView setAlpha:(sender.tag == 1) ? 0.0 : 1.0];
+//        [self.labelBackgroundView setAlpha:(sender.tag == 1) ? 0.0 : 1.0];
+//        [self dismissRulesView];
+//    }];
+    WEAKSELF_DEFINE
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_queue_create("fetchDatas", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_group_enter(group);
+    [weakSelf fetchBlessingCardData:group];
+    dispatch_group_enter(group);
+    [weakSelf fetchGroupPrizeNameData:group];
+    dispatch_group_notify(group,queue, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.3 animations:^{
+                [weakSelf.cardsBonusView setAlpha:(sender.tag == 1) ? 1.0 : 0.0];
+                [weakSelf.rainBackgroundView setAlpha:(sender.tag == 1) ? 0.0 : 1.0];
+                [weakSelf.labelBackgroundView setAlpha:(sender.tag == 1) ? 0.0 : 1.0];
+                [weakSelf dismissRulesView];
+            }];
+        });
+    });
+
 //    if (sender.tag == 1)
 //    {
 //    [self switchWithView:self.labelBackgroundView withPosition:RedPocketsViewToBack];
@@ -933,6 +1047,25 @@
 //    [self switchWithView:self.cardsBonusView withPosition:RedPocketsViewToBack];
 //    }
 }
+- (void)fetchGroupPrizeNameData:(dispatch_group_t)group
+{
+    WEAKSELF_DEFINE
+    [RedPacketsRequest getRainGroupTask:^(id responseObj, NSString *errorMsg) {
+        weakSelf.prizeNamesArray = [PrizeNamesModel cn_parse:responseObj];
+        [weakSelf setupGiftBannerGroup];
+    }];
+    dispatch_group_leave(group);
+}
+- (void)fetchBlessingCardData:(dispatch_group_t)group
+{
+    WEAKSELF_DEFINE
+    [RedPacketsRequest getRainQueryTask:^(id responseObj, NSString *errorMsg) {
+        weakSelf.giftCardArray = [GiftCardModel cn_parse:responseObj];
+        [weakSelf setupCardsAmounts];
+    }];
+    dispatch_group_leave(group);
+}
+
 - (IBAction)openGiftBagAction{
     [self fetchOpenLuckyBagData];
 }
@@ -949,7 +1082,8 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             int timeout = [PublicMethod countDownIntervalWithDurationTag:YES];
             [weakSelf startTimeWithDuration:timeout];
-            [weakSelf setupDataForSortArray];
+//            [weakSelf setupDataForSortArray];
+            [weakSelf fetchPrizeRecords];
             [weakSelf moveLabelToCenter];
         });
     } WithDefaultCompletion:nil];
@@ -986,7 +1120,7 @@
         bannerView.layer.cornerRadius = 10;
         bannerView.layer.masksToBounds = true;
         bannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-        bannerView.pageControlStyle = SDCycleScrollViewPageContolStyleDefault;
+        bannerView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
         bannerView.pageControlDotSize = CGSizeMake(6, 6);
 //        bannerView.autoScrollTimeInterval = 0;
         bannerView.autoScroll = false;
@@ -1007,7 +1141,7 @@
 //        giftBannerView.layer.cornerRadius = 10;
 //        giftBannerView.layer.masksToBounds = true;
         giftBannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-        giftBannerView.pageControlStyle = SDCycleScrollViewPageContolStyleDefault;
+        giftBannerView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
         giftBannerView.pageControlDotSize = CGSizeMake(6, 6);
 //        bannerView.autoScrollTimeInterval = 0;
         giftBannerView.autoScroll = false;

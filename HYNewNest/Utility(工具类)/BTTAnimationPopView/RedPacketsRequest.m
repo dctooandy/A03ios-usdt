@@ -30,4 +30,22 @@
     params[@"times"] = numString;
     [self POST:kGatewayExtraPath(A03RainOpen) parameters:params completionHandler:handler];
 }
++ (void)getRainQueryTask:(HandlerBlock)handler
+{
+    NSMutableDictionary *params = @{}.mutableCopy;
+    
+    [self POST:kGatewayExtraPath(A03RainQuery) parameters:params completionHandler:handler];
+}
++ (void)getRainInKindPrizeTask:(HandlerBlock)handler
+{
+    NSMutableDictionary *params = @{}.mutableCopy;
+    
+    [self POST:kGatewayExtraPath(A03RainInKindPrize) parameters:params completionHandler:handler];
+}
++ (void)getRainGroupTask:(HandlerBlock)handler
+{
+    NSMutableDictionary *params = @{}.mutableCopy;
+    
+    [self POST:kGatewayExtraPath(A03RainGroup) parameters:params completionHandler:handler];
+}
 @end

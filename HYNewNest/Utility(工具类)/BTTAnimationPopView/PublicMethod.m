@@ -1323,10 +1323,10 @@ void ProviderReleaseData (void *info, const void *data, size_t size){
     NSArray * plusTimer = [[model firstStartAt] componentsSeparatedByString:@":"];
     if (plusTimer.count == 3)
     {
-        NSInteger hourS = [(NSString *)[plusTimer firstObject] integerValue];
-        NSInteger minS = [(NSString *)plusTimer[1] integerValue];
-        NSInteger secS = [(NSString *)[plusTimer lastObject] integerValue];
-        totalPlusTimer = hourS * 3600 + minS * 60 + secS;
+//        NSInteger hourS = [(NSString *)[plusTimer firstObject] integerValue];
+//        NSInteger minS = [(NSString *)plusTimer[1] integerValue];
+//        NSInteger secS = [(NSString *)[plusTimer lastObject] integerValue];
+//        totalPlusTimer = hourS * 3600 + minS * 60 + secS;
     }else
     {
         

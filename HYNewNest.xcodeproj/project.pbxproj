@@ -395,6 +395,9 @@
 		7682A79C2796B525001AC772 /* RedPacketsIdentifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A79B2796B525001AC772 /* RedPacketsIdentifyModel.m */; };
 		7682A7A72797AE9F001AC772 /* LuckyBagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A7A62797AE9F001AC772 /* LuckyBagModel.m */; };
 		7682A7AC2797E577001AC772 /* RedPacketsRainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7682A7AB2797E577001AC772 /* RedPacketsRainView.xib */; };
+		7682A7B92797FD8C001AC772 /* GiftCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A7B82797FD8C001AC772 /* GiftCardModel.m */; };
+		7682A7BC2797FDA0001AC772 /* PrizeRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A7BB2797FDA0001AC772 /* PrizeRecordModel.m */; };
+		7682A7BF2797FDAF001AC772 /* PrizeNamesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A7BE2797FDAF001AC772 /* PrizeNamesModel.m */; };
 		76B4998B275F6415003CD35B /* 03Gif2022.gif in Resources */ = {isa = PBXBuildFile; fileRef = 76B4998A275F6415003CD35B /* 03Gif2022.gif */; };
 		76B499E727608DAE003CD35B /* AppdelegateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E627608DAE003CD35B /* AppdelegateManager.m */; };
 		76B499EA27609237003CD35B /* A03CheckDomainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E927609237003CD35B /* A03CheckDomainModel.m */; };
@@ -1771,6 +1774,12 @@
 		7682A7A52797AE9F001AC772 /* LuckyBagModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuckyBagModel.h; sourceTree = "<group>"; };
 		7682A7A62797AE9F001AC772 /* LuckyBagModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuckyBagModel.m; sourceTree = "<group>"; };
 		7682A7AB2797E577001AC772 /* RedPacketsRainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketsRainView.xib; sourceTree = "<group>"; };
+		7682A7B72797FD8C001AC772 /* GiftCardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GiftCardModel.h; sourceTree = "<group>"; };
+		7682A7B82797FD8C001AC772 /* GiftCardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GiftCardModel.m; sourceTree = "<group>"; };
+		7682A7BA2797FDA0001AC772 /* PrizeRecordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrizeRecordModel.h; sourceTree = "<group>"; };
+		7682A7BB2797FDA0001AC772 /* PrizeRecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrizeRecordModel.m; sourceTree = "<group>"; };
+		7682A7BD2797FDAF001AC772 /* PrizeNamesModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrizeNamesModel.h; sourceTree = "<group>"; };
+		7682A7BE2797FDAF001AC772 /* PrizeNamesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrizeNamesModel.m; sourceTree = "<group>"; };
 		76B4998A275F6415003CD35B /* 03Gif2022.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 03Gif2022.gif; sourceTree = "<group>"; };
 		76B499E527608DAE003CD35B /* AppdelegateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppdelegateManager.h; sourceTree = "<group>"; };
 		76B499E627608DAE003CD35B /* AppdelegateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppdelegateManager.m; sourceTree = "<group>"; };
@@ -4205,6 +4214,12 @@
 				7682A79B2796B525001AC772 /* RedPacketsIdentifyModel.m */,
 				7682A7A52797AE9F001AC772 /* LuckyBagModel.h */,
 				7682A7A62797AE9F001AC772 /* LuckyBagModel.m */,
+				7682A7B72797FD8C001AC772 /* GiftCardModel.h */,
+				7682A7B82797FD8C001AC772 /* GiftCardModel.m */,
+				7682A7BA2797FDA0001AC772 /* PrizeRecordModel.h */,
+				7682A7BB2797FDA0001AC772 /* PrizeRecordModel.m */,
+				7682A7BD2797FDAF001AC772 /* PrizeNamesModel.h */,
+				7682A7BE2797FDAF001AC772 /* PrizeNamesModel.m */,
 				7682A79727968AAE001AC772 /* RedPacketsRequest.h */,
 				7682A79827968AAE001AC772 /* RedPacketsRequest.m */,
 			);
@@ -6928,6 +6943,7 @@
 				3DA4F15F24B30D610039123F /* GTMBase64.m in Sources */,
 				3D31B947253ACEF8005275BD /* HYWithdrawActivityAlertView.m in Sources */,
 				3D16F10025381EEC00FE0212 /* HYBuyECoinGuideVC.m in Sources */,
+				7682A7BC2797FDA0001AC772 /* PrizeRecordModel.m in Sources */,
 				3D16F0F825369CE100FE0212 /* VIPGiftTableView.m in Sources */,
 				E9D9449D24C5735B00252222 /* HY403ViewController.m in Sources */,
 				E98BEEFA24D0341A00E6B0C8 /* CTZNModel.m in Sources */,
@@ -6965,6 +6981,7 @@
 				765C64F32782C82B00A6BC34 /* RedPacketsRainView.m in Sources */,
 				E98BEF1C24D2BCA400E6B0C8 /* HYWithdrawCardCell.m in Sources */,
 				E9AE9F0424DAAF4500E8F4D8 /* ABCOneKeyRegisterBFBHelper.m in Sources */,
+				7682A7B92797FD8C001AC772 /* GiftCardModel.m in Sources */,
 				E969EB3824E2427900D58FE9 /* HYRechargeCNYViewController.m in Sources */,
 				F787DB1826C371F700AF7133 /* NSDateFormatter+BYDateFormatter.m in Sources */,
 				76FC8628276225A1005710FD /* SDWebImageCoderHelper.m in Sources */,
@@ -7015,6 +7032,7 @@
 				3D2B0873264FC4560008BB5F /* CNYuEBaoConfigModel.m in Sources */,
 				766A6EC6276B3E37007DC6A1 /* A03ActivityManager.m in Sources */,
 				3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */,
+				7682A7BF2797FDAF001AC772 /* PrizeNamesModel.m in Sources */,
 				3D41DE7825199DEE000CA1D6 /* VIPChartDSBHeaderView.m in Sources */,
 				3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */,
 				E98BEF3F24D3E99000E6B0C8 /* CNAmountInputView.m in Sources */,
