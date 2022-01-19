@@ -7144,6 +7144,7 @@
 			baseConfigurationReference = 9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -7191,7 +7192,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.71;
+				MARKETING_VERSION = 3.7.45;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.1e3c3biphone01.btt01;
 				PRODUCT_NAME = "币游_dev";
@@ -7205,6 +7206,7 @@
 			baseConfigurationReference = F7369947BD28FDAEFDBB6399 /* Pods-HYNewNest.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_OPTIMIZATION = space;
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游Release.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -7251,7 +7253,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.71;
+				MARKETING_VERSION = 3.7.45;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.1e3c3biphone01.btt01;
 				PRODUCT_NAME = "币游";
