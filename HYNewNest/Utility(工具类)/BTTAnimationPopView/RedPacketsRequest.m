@@ -48,4 +48,10 @@
     
     [self POST:kGatewayExtraPath(A03RainGroup) parameters:params completionHandler:handler];
 }
++ (void)getRainFusingTask:(HandlerBlock)handler
+{
+    NSMutableDictionary *params = @{}.mutableCopy;
+    
+    [self POST:kGatewayExtraPath(A03RainFusing) parameters:params completionHandler:handler];
+}
 @end

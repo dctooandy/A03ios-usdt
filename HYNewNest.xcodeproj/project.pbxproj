@@ -394,10 +394,11 @@
 		7682A79927968AAE001AC772 /* RedPacketsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A79827968AAE001AC772 /* RedPacketsRequest.m */; };
 		7682A79C2796B525001AC772 /* RedPacketsIdentifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A79B2796B525001AC772 /* RedPacketsIdentifyModel.m */; };
 		7682A7A72797AE9F001AC772 /* LuckyBagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A7A62797AE9F001AC772 /* LuckyBagModel.m */; };
-		7682A7AC2797E577001AC772 /* RedPacketsRainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7682A7AB2797E577001AC772 /* RedPacketsRainView.xib */; };
 		7682A7B92797FD8C001AC772 /* GiftCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A7B82797FD8C001AC772 /* GiftCardModel.m */; };
 		7682A7BC2797FDA0001AC772 /* PrizeRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A7BB2797FDA0001AC772 /* PrizeRecordModel.m */; };
 		7682A7BF2797FDAF001AC772 /* PrizeNamesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A7BE2797FDAF001AC772 /* PrizeNamesModel.m */; };
+		7682A7C52798144A001AC772 /* FusingBlessingCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A7C42798144A001AC772 /* FusingBlessingCardModel.m */; };
+		7682A7C727981786001AC772 /* RedPacketsRainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7682A7C627981786001AC772 /* RedPacketsRainView.xib */; };
 		76B4998B275F6415003CD35B /* 03Gif2022.gif in Resources */ = {isa = PBXBuildFile; fileRef = 76B4998A275F6415003CD35B /* 03Gif2022.gif */; };
 		76B499E727608DAE003CD35B /* AppdelegateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E627608DAE003CD35B /* AppdelegateManager.m */; };
 		76B499EA27609237003CD35B /* A03CheckDomainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E927609237003CD35B /* A03CheckDomainModel.m */; };
@@ -1773,13 +1774,15 @@
 		7682A79B2796B525001AC772 /* RedPacketsIdentifyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedPacketsIdentifyModel.m; sourceTree = "<group>"; };
 		7682A7A52797AE9F001AC772 /* LuckyBagModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuckyBagModel.h; sourceTree = "<group>"; };
 		7682A7A62797AE9F001AC772 /* LuckyBagModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuckyBagModel.m; sourceTree = "<group>"; };
-		7682A7AB2797E577001AC772 /* RedPacketsRainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketsRainView.xib; sourceTree = "<group>"; };
 		7682A7B72797FD8C001AC772 /* GiftCardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GiftCardModel.h; sourceTree = "<group>"; };
 		7682A7B82797FD8C001AC772 /* GiftCardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GiftCardModel.m; sourceTree = "<group>"; };
 		7682A7BA2797FDA0001AC772 /* PrizeRecordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrizeRecordModel.h; sourceTree = "<group>"; };
 		7682A7BB2797FDA0001AC772 /* PrizeRecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrizeRecordModel.m; sourceTree = "<group>"; };
 		7682A7BD2797FDAF001AC772 /* PrizeNamesModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrizeNamesModel.h; sourceTree = "<group>"; };
 		7682A7BE2797FDAF001AC772 /* PrizeNamesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrizeNamesModel.m; sourceTree = "<group>"; };
+		7682A7C32798144A001AC772 /* FusingBlessingCardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FusingBlessingCardModel.h; sourceTree = "<group>"; };
+		7682A7C42798144A001AC772 /* FusingBlessingCardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FusingBlessingCardModel.m; sourceTree = "<group>"; };
+		7682A7C627981786001AC772 /* RedPacketsRainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketsRainView.xib; sourceTree = "<group>"; };
 		76B4998A275F6415003CD35B /* 03Gif2022.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 03Gif2022.gif; sourceTree = "<group>"; };
 		76B499E527608DAE003CD35B /* AppdelegateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppdelegateManager.h; sourceTree = "<group>"; };
 		76B499E627608DAE003CD35B /* AppdelegateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppdelegateManager.m; sourceTree = "<group>"; };
@@ -4196,7 +4199,7 @@
 				765C64E82782B71700A6BC34 /* BTTBaseAnimationPopView.m */,
 				765C64F02782C82A00A6BC34 /* RedPacketsRainView.h */,
 				765C64F12782C82A00A6BC34 /* RedPacketsRainView.m */,
-				7682A7AB2797E577001AC772 /* RedPacketsRainView.xib */,
+				7682A7C627981786001AC772 /* RedPacketsRainView.xib */,
 				76519925278C107F006A59BF /* RedPacketsPreView.h */,
 				76519927278C107F006A59BF /* RedPacketsPreView.m */,
 				7682A78427915CE1001AC772 /* RedPacketsPreView.xib */,
@@ -4220,6 +4223,8 @@
 				7682A7BB2797FDA0001AC772 /* PrizeRecordModel.m */,
 				7682A7BD2797FDAF001AC772 /* PrizeNamesModel.h */,
 				7682A7BE2797FDAF001AC772 /* PrizeNamesModel.m */,
+				7682A7C32798144A001AC772 /* FusingBlessingCardModel.h */,
+				7682A7C42798144A001AC772 /* FusingBlessingCardModel.m */,
 				7682A79727968AAE001AC772 /* RedPacketsRequest.h */,
 				7682A79827968AAE001AC772 /* RedPacketsRequest.m */,
 			);
@@ -5892,7 +5897,7 @@
 				D5A443E924F378CD00014DC6 /* 彩票_00037.png in Resources */,
 				E98BEF0424D1AF5800E6B0C8 /* HYXiMaTopView.xib in Resources */,
 				D5A4458524F393AD00014DC6 /* 棋牌_00037.png in Resources */,
-				7682A7AC2797E577001AC772 /* RedPacketsRainView.xib in Resources */,
+				7682A7C727981786001AC772 /* RedPacketsRainView.xib in Resources */,
 				3DBF5FB62680A0A800C246A9 /* BYDepositUsdtVC.xib in Resources */,
 				D5A4462024F393E500014DC6 /* 足球_00047.png in Resources */,
 				044DC69624DD1A35005CB550 /* CNShareCopyView.xib in Resources */,
@@ -6881,6 +6886,7 @@
 				76FC862F27622620005710FD /* SDWebImageFrame.m in Sources */,
 				3DCE56FC2698155200BEADD9 /* BYMultiAccountRuleView.m in Sources */,
 				04C0F10324C58A52007F1420 /* NSObject+CNParse.m in Sources */,
+				7682A7C52798144A001AC772 /* FusingBlessingCardModel.m in Sources */,
 				E98BEEEB24D023B200E6B0C8 /* LYEmptyView.m in Sources */,
 				04935BE324D8FC5B007A33EF /* CNElectrionHallCCell.m in Sources */,
 				3DA4F15424B30A090039123F /* SGQRCodeScanningView.m in Sources */,
@@ -7314,7 +7320,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.82;
+				MARKETING_VERSION = 3.7.83;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.1e3c3biphone01.btt01;
 				PRODUCT_NAME = "币游_dev";
@@ -7375,7 +7381,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.82;
+				MARKETING_VERSION = 3.7.83;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.1e3c3biphone01.btt01;
 				PRODUCT_NAME = "币游";

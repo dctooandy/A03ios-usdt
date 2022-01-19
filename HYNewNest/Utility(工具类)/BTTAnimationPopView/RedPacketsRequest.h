@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)getRainQueryTask:(HandlerBlock)handler;
 + (void)getRainInKindPrizeTask:(HandlerBlock)handler;
 + (void)getRainGroupTask:(HandlerBlock)handler;
++ (void)getRainFusingTask:(HandlerBlock)handler;
 @end
 
 NS_ASSUME_NONNULL_END
