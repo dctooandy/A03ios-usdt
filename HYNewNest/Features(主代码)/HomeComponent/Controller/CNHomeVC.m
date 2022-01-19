@@ -644,7 +644,7 @@ typedef void(^ButtonCallBack)(void);
         }
         //暂时让他出来
         dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf showRedPacketsRainViewwWithStyle:RedPocketsViewDev];
+//            [weakSelf showRedPacketsRainViewwWithStyle:RedPocketsViewDev];
         });
     } WithDefaultCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
         // 一般活动

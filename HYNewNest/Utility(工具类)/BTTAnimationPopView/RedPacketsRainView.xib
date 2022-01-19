@@ -593,10 +593,16 @@
                                 <action selector="closeBtnAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Nxa-bR-Ku7"/>
                             </connections>
                         </button>
-                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_redbag_game" translatesAutoresizingMaskIntoConstraints="NO" id="Hzl-9X-Vwu">
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_redbag_game" translatesAutoresizingMaskIntoConstraints="NO" id="Hzl-9X-Vwu">
                             <rect key="frame" x="-30" y="670.5" width="240" height="285.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="Hzl-9X-Vwu" secondAttribute="height" multiplier="216:257" id="NQz-CQ-8AC"/>
+                            </constraints>
+                        </imageView>
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_yellowbag_game" translatesAutoresizingMaskIntoConstraints="NO" id="NqF-Mh-1Kr">
+                            <rect key="frame" x="-40" y="658.5" width="260" height="309"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="NqF-Mh-1Kr" secondAttribute="height" multiplier="216:257" id="k0Z-FA-w2N"/>
                             </constraints>
                         </imageView>
                     </subviews>
@@ -609,6 +615,7 @@
                         <constraint firstItem="KM6-iW-BSr" firstAttribute="top" secondItem="uZJ-LJ-69R" secondAttribute="top" constant="-50" id="BSO-vp-cBo"/>
                         <constraint firstItem="uZJ-LJ-69R" firstAttribute="width" secondItem="Z5W-E5-F5r" secondAttribute="width" multiplier="0.75" id="CfL-PI-D7X"/>
                         <constraint firstItem="SuI-Re-pzy" firstAttribute="height" secondItem="Z5W-E5-F5r" secondAttribute="height" multiplier="0.160714" id="G2g-wt-sKR"/>
+                        <constraint firstItem="NqF-Mh-1Kr" firstAttribute="centerX" secondItem="Hzl-9X-Vwu" secondAttribute="centerX" id="GDL-S8-9oM"/>
                         <constraint firstItem="6r7-hV-H7p" firstAttribute="top" secondItem="iIQ-1T-EZ8" secondAttribute="top" id="I1q-Bg-xes"/>
                         <constraint firstItem="5j4-AX-VrT" firstAttribute="leading" secondItem="Z5W-E5-F5r" secondAttribute="leading" id="J7L-uY-Irx"/>
                         <constraint firstAttribute="trailing" secondItem="SuI-Re-pzy" secondAttribute="trailing" id="JCG-CY-YeA"/>
@@ -624,9 +631,11 @@
                         <constraint firstItem="SuI-Re-pzy" firstAttribute="bottom" secondItem="uZJ-LJ-69R" secondAttribute="bottom" constant="-50" id="bUZ-GW-DUg"/>
                         <constraint firstAttribute="trailing" secondItem="957-0o-zq3" secondAttribute="trailing" constant="-10" id="fUE-iz-5VB"/>
                         <constraint firstItem="KM6-iW-BSr" firstAttribute="height" secondItem="Z5W-E5-F5r" secondAttribute="height" multiplier="0.160714" id="gd2-Dm-Tmv"/>
+                        <constraint firstItem="NqF-Mh-1Kr" firstAttribute="width" secondItem="NqF-Mh-1Kr" secondAttribute="height" multiplier="216:257" id="i0t-I1-vad"/>
                         <constraint firstAttribute="trailing" secondItem="5j4-AX-VrT" secondAttribute="trailing" id="k4U-QU-dcJ"/>
                         <constraint firstAttribute="bottom" secondItem="5j4-AX-VrT" secondAttribute="bottom" id="lwJ-Tr-eJC"/>
                         <constraint firstItem="4ai-aZ-ASY" firstAttribute="top" secondItem="Z5W-E5-F5r" secondAttribute="top" id="pXh-3Y-jSM"/>
+                        <constraint firstItem="NqF-Mh-1Kr" firstAttribute="centerY" secondItem="Hzl-9X-Vwu" secondAttribute="centerY" id="pgZ-sy-cPb"/>
                         <constraint firstAttribute="trailing" secondItem="4ai-aZ-ASY" secondAttribute="trailing" id="rU2-R3-3Xn"/>
                         <constraint firstAttribute="bottom" secondItem="Hzl-9X-Vwu" secondAttribute="bottom" constant="-60" id="t8D-U1-jQd"/>
                         <constraint firstItem="957-0o-zq3" firstAttribute="width" secondItem="Z5W-E5-F5r" secondAttribute="width" multiplier="0.429952" id="tWf-tS-Jlt"/>
@@ -1106,6 +1115,7 @@
                 <outlet property="redPocketsRainView" destination="5j4-AX-VrT" id="t8Q-i3-s8u"/>
                 <outlet property="showCardsButton" destination="Eqy-K3-5tk" id="6VY-QL-mwo"/>
                 <outlet property="showCardsImageView" destination="CPE-GX-UqE" id="GhT-u6-7AR"/>
+                <outlet property="yellowBagImageView" destination="NqF-Mh-1Kr" id="Vlb-fa-GGe"/>
                 <outletCollection property="flyingRedPacketsArray" destination="KM6-iW-BSr" id="iwN-hy-x2K"/>
                 <outletCollection property="flyingRedPacketsArray" destination="SuI-Re-pzy" id="SlQ-rh-1EZ"/>
                 <outletCollection property="tigerImageViewArray" destination="yop-nb-ipe" id="Y4e-7Y-9jk"/>
@@ -1154,6 +1164,7 @@
         <image name="img_redenvelope_click" width="97" height="144"/>
         <image name="img_tiger1" width="210" height="220"/>
         <image name="img_tiger2" width="178" height="186"/>
+        <image name="img_yellowbag_game" width="254" height="309"/>
         <image name="mammon1" width="702" height="394"/>
         <image name="popup_price1" width="148" height="148"/>
         <systemColor name="systemBackgroundColor">
