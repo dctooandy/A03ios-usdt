@@ -14,7 +14,7 @@
  */
 typedef NS_ENUM(NSInteger, RedPocketsViewStyle) {
     RedPocketsViewBegin = 0,    //活动开始
-    RedPocketsViewrRaining,     //活动中
+    RedPocketsViewRainning,     //活动中
     RedPocketsViewResult,       //活动结果
     RedPocketsViewPrefix,        //活动预热
     RedPocketsViewDev        //活动測試,倒數10秒前

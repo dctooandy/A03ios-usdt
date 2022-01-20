@@ -35,6 +35,6 @@ typedef void (^TenSecondActionBlock)(void);
 @property (copy, nonatomic) TenSecondActionBlock tenSecondActionBlock;
 -(instancetype)initMainBtnWithBackgroundImage:(UIImage *)backgroundImage highlightImage:(UIImage *)highlightImage position:(CGPoint)position;
 -(instancetype)initMainBtnWithCustomImage:(UIImage *)backgroundImage highlightImage:(UIImage *)highlightImage;
-
+- (void)refetchTimeForRainning;
 @end
 

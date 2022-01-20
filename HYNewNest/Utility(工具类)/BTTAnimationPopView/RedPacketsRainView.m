@@ -97,6 +97,7 @@
     self.giftCardArray = @[];
     self.prizeRecordArray = @[];
     self.prizeNamesArray = @[];
+    self.countDownLabelTop.constant = SCREEN_HEIGHT * 0.05;
 }
 
 - (void)configForRedPocketsViewWithStyle:(RedPocketsViewStyle)style
@@ -119,7 +120,19 @@
             // 中间福袋展现
             [self centerGiftBagAndFlyBagSetHidden:NO];
             break;
-        case RedPocketsViewrRaining:// 活动中
+        case RedPocketsViewRainning:// 活动中
+            self.selectedRedPacketNum = 0;
+            //开始红包雨倒数
+            [self startTimeWithDuration:1];
+            // 活动开始中奖名单跑马灯
+            [self fetchPrizeRecords];
+//            [self setupDataForSortArray];
+            // 集福卡开启
+            [self showCardsButtonSetHidden:NO];
+            // 背景图置换
+            [self changeBGImageViewWithStyle:RedPocketsViewBegin];
+            // 中间福袋展现
+            [self centerGiftBagAndFlyBagSetHidden:NO];
             break;
         case RedPocketsViewResult:// 活动结果
             break;
@@ -182,6 +195,7 @@
         {
             [[NSUserDefaults standardUserDefaults] setObject:weakSelf.redPacketIdentifyModel.identify forKey:RedPacketIdentify];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            weakSelf.viewStyle = RedPocketsViewRainning;
             [weakSelf moveLabelToTop]; // 移动倒数LAbel到上面
             [weakSelf startRedPackerts]; // 开始下红包雨
             [weakSelf.tapGesture setEnabled:YES];
@@ -190,6 +204,7 @@
             //测试用
 //            [[NSUserDefaults standardUserDefaults] setObject:@"asdnsmcls" forKey:RedPacketIdentify];
 //            [[NSUserDefaults standardUserDefaults] synchronize];
+//            weakSelf.viewStyle = RedPocketsViewRainning;
 //            [weakSelf moveLabelToTop]; // 移动倒数LAbel到上面
 //            [weakSelf startRedPackerts]; // 开始下红包雨
 //            [weakSelf.tapGesture setEnabled:YES];
@@ -233,12 +248,22 @@
             int mInt = (int)leftTime / 60 % 60;         //剩馀分数
             int sInt = (int)leftTime % 60;              //剩馀秒数
             NSString * titleStr;
+            NSString * dayString = (dInt == 0 ? @"" : [NSString stringWithFormat:@"%d天",dInt]);
+            NSString * hourString = ((hInt == 0 && dInt == 0) ? @"" : [NSString stringWithFormat:@"%d小时",hInt]);
+            NSString * minString = ((mInt == 0 && hInt == 0 && dInt == 0) ? @"" : [NSString stringWithFormat:@"%d分",mInt]);
             if (isActivityDuration)
             {
-                titleStr = [NSString stringWithFormat:@"%d小时%d分%d秒",hInt,mInt,sInt];
+                titleStr = [NSString stringWithFormat:@"%@%@%d秒",
+                            hourString
+                            ,minString
+                            ,sInt];
             }else
             {
-                titleStr = [NSString stringWithFormat:@"%d天%d小时%d分%d秒",dInt,hInt,mInt,sInt];
+                titleStr = [NSString stringWithFormat:@"%@%@%@%d秒",
+                            dayString
+                            ,hourString
+                            ,minString
+                            ,sInt];
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 weakSelf.countdownLab.text = titleStr;
@@ -258,12 +283,15 @@
 }
 - (void)setupDataForSortArray
 {
-//    NSArray * tempArray = [[NSArray alloc] initWithObjects:@"恭喜111111会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜222222会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜3333333会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜44444444会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜55555555会员齐集福卡获得: 索尼PS5游戏机 国行光驱版", nil];
-    NSMutableArray * totalArray = [[NSMutableArray alloc] init];
-    for (PrizeRecordModel * subModel in self.prizeRecordArray) {
-        [totalArray addObject:[NSString stringWithFormat:@"恭喜%@会员齐集福卡获得: %@",subModel.loginName,subModel.prizeName]];
+    if (self.viewStyle != RedPocketsViewRainning)
+    {
+        NSMutableArray * totalArray = [[NSMutableArray alloc] init];
+        for (PrizeRecordModel * subModel in self.prizeRecordArray) {
+            [totalArray addObject:[NSString stringWithFormat:@"恭喜%@会员齐集福卡获得: %@",subModel.loginName,subModel.prizeName]];
+        }
+        //    NSArray * tempArray = [[NSArray alloc] initWithObjects:@"恭喜111111会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜222222会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜3333333会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜44444444会员齐集福卡获得: 索尼PS5游戏机 国行光驱版",@"恭喜55555555会员齐集福卡获得: 索尼PS5游戏机 国行光驱版", nil];
+        [self sortArray:totalArray];
     }
-    [self sortArray:totalArray];
 }
 - (void)setupGiftBannerGroup
 {
@@ -347,7 +375,7 @@
 {
         for (UIImageView * imageView in self.tigerImageViewArray) {
             switch (currentStyle) {
-                case RedPocketsViewrRaining:
+                case RedPocketsViewRainning:
                 case RedPocketsViewPrefix:
                 {
                     if (imageView.tag == 1)
@@ -535,6 +563,7 @@
 }
 - (void)endAnimation
 {
+    self.viewStyle = RedPocketsViewBegin;
     [self.timer invalidate];
     [self.tapGesture setEnabled:NO];
     [self.bagImageView setHidden:YES];
@@ -756,6 +785,10 @@
         return;
     }
     NSInteger rowCount = 2.0;
+    if (array.count < 2)
+    {
+        rowCount = array.count;
+    }
     NSInteger count = ceil(array.count/floor(rowCount));
     for (int i = 0; i < rowCount; i++) {
         NSMutableArray * strArray = [[NSMutableArray alloc] init];
@@ -820,7 +853,7 @@
     self.countDownTitleLabel.font = [UIFont systemFontOfSize:17.0];
     [UIView animateWithDuration:0.3 animations:^{
         self.mammonTop.constant -= 50;
-        self.countDownLabelTop.constant = 50.0;
+        self.countDownLabelTop.constant = SCREEN_HEIGHT * 0.05;
         self.countDownLabelCenter.constant -= 100;
         self.labelBackgroundView.transform = CGAffineTransformIdentity;
         self.labelMaskView.transform = CGAffineTransformIdentity;
@@ -846,7 +879,7 @@
     // 左下福袋动画启动
     [self addGiftBagAnimation];
     // 背景图置换
-    [self changeBGImageViewWithStyle:RedPocketsViewrRaining];
+    [self changeBGImageViewWithStyle:RedPocketsViewRainning];
     // 集福卡隐藏
     [self showCardsButtonSetHidden:YES];
     [self.redPocketsRainView addGestureRecognizer:self.tapGesture];

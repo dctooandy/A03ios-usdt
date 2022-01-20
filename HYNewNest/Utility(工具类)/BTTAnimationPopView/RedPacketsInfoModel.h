@@ -31,6 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *leftTime;
 //leftTime值的格式化
 @property (nonatomic, copy) NSString *leftTimeStr;
+// server Time
+@property (nonatomic, copy) NSString *serverTimestamp;
+
+@property (nonatomic, assign) BOOL isRainningTime;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -1334,13 +1334,13 @@ void ProviderReleaseData (void *info, const void *data, size_t size){
     if (!isActivityDuration)
     {
         // 不到时间,预热
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-//        startDate = [dateFormatter dateFromString:RedPacketFirstStartTime];
-        startDate = [dateFormatter dateFromString:model.startAt];
-        startDateTime = [[NSDate date] timeIntervalSinceDate:startDate];
-//        countDownInterval = -startDateTime;
-        countDownInterval = -startDateTime + totalPlusTimer;
-
+//        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+////        startDate = [dateFormatter dateFromString:RedPacketFirstStartTime];
+//        startDate = [dateFormatter dateFromString:model.startAt];
+//        startDateTime = [[NSDate date] timeIntervalSinceDate:startDate];
+////        countDownInterval = -startDateTime;
+//        countDownInterval = -startDateTime + totalPlusTimer;
+        countDownInterval = [model.leftTime integerValue];
     }else
     {
         // 活动期间

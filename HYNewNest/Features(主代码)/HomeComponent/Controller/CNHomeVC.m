@@ -149,6 +149,7 @@ typedef void(^ButtonCallBack)(void);
     [super viewWillAppear:animated];
     [[AppdelegateManager shareManager] recheckDomainWithTestSpeed];
     [self requestAnnouncement];
+    [self.redPocketsAssistiveButton refetchTimeForRainning];
 }
 - (void)userDidLoginByNoti
 {
@@ -642,9 +643,9 @@ typedef void(^ButtonCallBack)(void);
         {
             // 预热
         }
-        //暂时让他出来
+        //测试用
         dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf showRedPacketsRainViewwWithStyle:RedPocketsViewDev];
+//            [weakSelf showRedPacketsRainViewwWithStyle:RedPocketsViewDev];
         });
     } WithDefaultCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
         // 一般活动
@@ -703,19 +704,20 @@ typedef void(^ButtonCallBack)(void);
     }];
     alertView.dismissBlock = ^{
         [popView dismiss];
+        [weakSelf.redPocketsAssistiveButton refetchTimeForRainning];
     };
     alertView.btnBlock = ^(UIButton * _Nullable btn) {
         [popView dismiss];
     };
     alertView.getRedBlock = ^{
-        [popView dismiss];
-        __block int timeout = [PublicMethod countDownIntervalWithDurationTag:YES];
         [weakSelf showRedPacketsRainViewwWithStyle:RedPocketsViewBegin];
+        [popView dismiss];
     };
 }
 #pragma mark - 红包雨 预热/活动弹窗
 - (void)showRedPacketsRainViewwWithStyle:(RedPocketsViewStyle)currentStyle
 {
+    weakSelf(weakSelf)
     if (![CNUserManager shareManager].isLogin && currentStyle == RedPocketsViewBegin)
     {
         [self loginAction];
@@ -732,6 +734,7 @@ typedef void(^ButtonCallBack)(void);
                 make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
             }];
             alertView.dismissBlock = ^{
+                [weakSelf.redPocketsAssistiveButton refetchTimeForRainning];
                 [popView dismiss];
             };
             alertView.btnBlock = ^(UIButton * _Nullable btn) {
