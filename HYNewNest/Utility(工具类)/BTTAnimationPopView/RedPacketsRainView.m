@@ -890,7 +890,20 @@
     // 集福卡隐藏
     [self showCardsButtonSetHidden:YES];
     [self.redPocketsRainView addGestureRecognizer:self.tapGesture];
-    float t = (arc4random() % 7) + 6;
+//    float t = (arc4random() % 7) + 6;
+    float t = 13;
+    if ([CNUserManager shareManager].userDetail.starLevel <= 2)
+    {
+        t = 13;// 1-2星级
+    }else if(([CNUserManager shareManager].userDetail.starLevel == 3) ||
+           ([CNUserManager shareManager].userDetail.starLevel == 4) ||
+           ([CNUserManager shareManager].userDetail.starLevel == 7))
+    {
+        t = 15;// 347星级
+    }else
+    {
+        t = 16;// 5-6星级
+    }
     self.timer = [NSTimer scheduledTimerWithTimeInterval:(1/t) target:self selector:@selector(showRain) userInfo:nil repeats:YES];
     [self.timer fire];
     

@@ -59,8 +59,8 @@
 #define BeforeStartDate                 @"2022-01-31"
 #define RedPacketStartDate              @"2022-02-01"
 #define RedPacketFirstStartTime         @"2022-02-01 10:00"
-#define RedPacketDuration               5 // 倒数前10秒
-#define RedPacketCountDown              10 // 下雨60秒
+#define RedPacketDuration               10 // 倒数前10秒
+#define RedPacketCountDown              60 // 下雨60秒
 #define RedPacketIdentify               @"RedPacketIdentify" // 开启红包雨之前的验证
 #define RedPacketNum                    @"RedPacketNum" // 红包数量
 
