@@ -172,9 +172,9 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
                 __block int timeout = [PublicMethod countDownIntervalWithDurationTag:isActivityDuration];
                 dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 //                dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-                _assistiveTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-                dispatch_source_set_timer(_assistiveTimer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
-                dispatch_source_set_event_handler(_assistiveTimer, ^{
+                weakSelf.assistiveTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+                dispatch_source_set_timer(weakSelf.assistiveTimer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+                dispatch_source_set_event_handler(weakSelf.assistiveTimer, ^{
                     if ( timeout <= 0 )
                     {
                         dispatch_source_cancel(weakSelf.assistiveTimer);
@@ -197,9 +197,13 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
                         int mInt = (int)leftTime / 60 % 60;         //剩馀分数
                         int sInt = (int)leftTime % 60;              //剩馀秒数
                         NSString * titleStr;
-                        NSString * dayString = (dInt == 0 ? @"" : [NSString stringWithFormat:@"%d天",dInt]);
-                        NSString * hourString = ((hInt == 0 && dInt == 0) ? @"" : [NSString stringWithFormat:@"%d小时",hInt]);
-                        NSString * minString = ((mInt == 0 && hInt == 0 && dInt == 0) ? @"" : [NSString stringWithFormat:@"%d分",mInt]);
+//                        NSString * dayString = (dInt == 0 ? @"" : [NSString stringWithFormat:@"%d天",dInt]);
+//                        NSString * hourString = ((hInt == 0 && dInt == 0) ? @"" : [NSString stringWithFormat:@"%d小时",hInt]);
+//                        NSString * minString = ((mInt == 0 && hInt == 0 && dInt == 0) ? @"" : [NSString stringWithFormat:@"%d分",mInt]);
+                        NSString * dayString = [NSString stringWithFormat:@"%d天",dInt];
+                        NSString * hourString = [NSString stringWithFormat:@"%d小时",hInt];
+                        NSString * minString = [NSString stringWithFormat:@"%d分",mInt];
+
                         if (isActivityDuration)
                         {
                             titleStr = [NSString stringWithFormat:@"%@%@%d秒",
@@ -220,7 +224,7 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
                         timeout--;
                     }
                 });
-                dispatch_resume(_assistiveTimer);
+                dispatch_resume(weakSelf.assistiveTimer);
             }else
             {
                 // 过了活动期

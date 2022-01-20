@@ -718,7 +718,9 @@ typedef void(^ButtonCallBack)(void);
 - (void)showRedPacketsRainViewwWithStyle:(RedPocketsViewStyle)currentStyle
 {
     weakSelf(weakSelf)
-    if (![CNUserManager shareManager].isLogin && currentStyle == RedPocketsViewBegin)
+    if (![CNUserManager shareManager].isLogin && (currentStyle == RedPocketsViewBegin ||
+                                                  currentStyle == RedPocketsViewRainning ||
+                                                  currentStyle == RedPocketsViewDev))
     {
         [self loginAction];
     }else
