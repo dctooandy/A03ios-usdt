@@ -187,7 +187,16 @@ typedef void(^ButtonCallBack)(void);
             [CNMessageBoxView showMessageBoxWithImages:@[response.image].mutableCopy
                                                 onView:weakSelf.view
                                               tapBlock:^(int idx) {
-                [NNPageRouter jump2HTMLWithStrURL:response.link title:response.title needPubSite:NO];
+                NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
+                BOOL isBeforeDuration = [duractionArray[0] boolValue];
+                BOOL isActivityDuration = [duractionArray[1] boolValue];
+                if (isBeforeDuration || isActivityDuration)
+                {
+                    [weakSelf showRedPacketsRainViewwWithStyle:(isActivityDuration ? RedPocketsViewBegin: RedPocketsViewPrefix)];
+                }else
+                {
+                    [NNPageRouter jump2HTMLWithStrURL:response.link title:response.title needPubSite:NO];
+                }
             } tapClose:^{
                 [weakSelf showAccountTutorials];
             }];
