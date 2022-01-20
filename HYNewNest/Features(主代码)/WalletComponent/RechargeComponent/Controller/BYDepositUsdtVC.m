@@ -180,25 +180,34 @@ USDT支付渠道
  */
 - (IBAction)startDepositAction:(id)sender {
     DepositsBankModel *model = self.depositModels[_selIdx];
-    [CNRechargeRequest submitOnlinePayOrderV2Amount:self.editorView.rechargeAmount
-                                           currency:model.currency
-                                       usdtProtocol:self.editorView.selectedProtocol
-                                            payType:model.payType
-                                            handler:^(id responseObj, NSString *errorMsg) {
-        
-        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-            ChargeManualMessgeView *view;
-            if ([HYRechargeHelper isUSDTOtherBankModel:model]) {
-                view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"address"] amount:self.editorView.rechargeAmount retelling:nil type:ChargeMsgTypeOTHERS];
-            } else {
+    if ([model.bankname isEqualToString:@"dcbox"]) {
+        [CNRechargeRequest submitOnlinePayOrderV2Amount:self.editorView.rechargeAmount
+                                               currency:model.currency
+                                           usdtProtocol:self.editorView.selectedProtocol
+                                                payType:model.payType
+                                                handler:^(id responseObj, NSString *errorMsg) {
+            
+            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+                ChargeManualMessgeView *view;
                 view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"address"] amount:self.editorView.rechargeAmount retelling:nil type:ChargeMsgTypeDCBOX];
+                view.clickBlock = ^(BOOL isSure) {
+                    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
+                };
+                [kKeywindow addSubview:view];
             }
-            view.clickBlock = ^(BOOL isSure) {
-                [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
-            };
-            [kKeywindow addSubview:view];
-        }
-    }];
+        }];
+    } else {
+        [CNRechargeRequest submitOtherUsdtPayment:self.editorView.selectedProtocol amount:self.editorView.rechargeAmount handler:^(id responseObj, NSString *errorMsg) {
+            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+                ChargeManualMessgeView *view;
+                view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"address"] amount:self.editorView.rechargeAmount retelling:nil type:ChargeMsgTypeOTHERS];
+                view.clickBlock = ^(BOOL isSure) {
+                    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
+                };
+                [kKeywindow addSubview:view];
+            }
+        }];
+    }
 }
 
 

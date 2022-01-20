@@ -109,7 +109,6 @@
 		048A168E24CACABF00411819 /* CNAlertPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048A168B24CACABF00411819 /* CNAlertPickerView.xib */; };
 		048A168F24CACABF00411819 /* CNAlertPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A168D24CACABF00411819 /* CNAlertPickerView.m */; };
 		048A169824CBD44700411819 /* CNVIPLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A169724CBD44700411819 /* CNVIPLabel.m */; };
-		04935BC724D56793007A33EF /* CNAddAddressVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04935BC424D56793007A33EF /* CNAddAddressVC.xib */; };
 		04935BC824D56793007A33EF /* CNAddAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935BC624D56793007A33EF /* CNAddAddressVC.m */; };
 		04935BD124D7B662007A33EF /* CNAddressDownloadTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935BCF24D7B662007A33EF /* CNAddressDownloadTCell.m */; };
 		04935BD224D7B662007A33EF /* CNAddressDownloadTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04935BD024D7B662007A33EF /* CNAddressDownloadTCell.xib */; };
@@ -373,6 +372,7 @@
 		3DF6E7BC267B1DA800911FC8 /* BYModifyPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E7BA267B1DA800911FC8 /* BYModifyPhoneVC.m */; };
 		3DF6E7BD267B1DA800911FC8 /* BYModifyPhoneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF6E7BB267B1DA800911FC8 /* BYModifyPhoneVC.xib */; };
 		3DFF702E261EF92E00801654 /* LLIconVersioning.sh in Resources */ = {isa = PBXBuildFile; fileRef = 3DFF702D261EF92E00801654 /* LLIconVersioning.sh */; };
+		414B89D4279596F300AF45CA /* CNAddAddressVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 414B89D3279596F300AF45CA /* CNAddAddressVC.xib */; };
 		5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */; };
 		7636AE6E272BC4C70072AB0E /* BYDeleteBankCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7636AE6C272BC4C70072AB0E /* BYDeleteBankCardVC.m */; };
 		7636AE71272BC5940072AB0E /* BYDeleteBankCardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7636AE70272BC5940072AB0E /* BYDeleteBankCardVC.xib */; };
@@ -1261,7 +1261,6 @@
 		048A168D24CACABF00411819 /* CNAlertPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNAlertPickerView.m; sourceTree = "<group>"; };
 		048A169624CBD44700411819 /* CNVIPLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNVIPLabel.h; sourceTree = "<group>"; };
 		048A169724CBD44700411819 /* CNVIPLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNVIPLabel.m; sourceTree = "<group>"; };
-		04935BC424D56793007A33EF /* CNAddAddressVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNAddAddressVC.xib; sourceTree = "<group>"; };
 		04935BC524D56793007A33EF /* CNAddAddressVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNAddAddressVC.h; sourceTree = "<group>"; };
 		04935BC624D56793007A33EF /* CNAddAddressVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNAddAddressVC.m; sourceTree = "<group>"; };
 		04935BCE24D7B662007A33EF /* CNAddressDownloadTCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNAddressDownloadTCell.h; sourceTree = "<group>"; };
@@ -1736,6 +1735,7 @@
 		3DF6E7BA267B1DA800911FC8 /* BYModifyPhoneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYModifyPhoneVC.m; sourceTree = "<group>"; };
 		3DF6E7BB267B1DA800911FC8 /* BYModifyPhoneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYModifyPhoneVC.xib; sourceTree = "<group>"; };
 		3DFF702D261EF92E00801654 /* LLIconVersioning.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = LLIconVersioning.sh; sourceTree = "<group>"; };
+		414B89D3279596F300AF45CA /* CNAddAddressVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNAddAddressVC.xib; sourceTree = "<group>"; };
 		62DF1724D3A54A4E27D4B55B /* Pods-HYNewNest-HYNewNestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; path = "Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7636AE6B272BC4C70072AB0E /* BYDeleteBankCardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYDeleteBankCardVC.h; sourceTree = "<group>"; };
 		7636AE6C272BC4C70072AB0E /* BYDeleteBankCardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYDeleteBankCardVC.m; sourceTree = "<group>"; };
@@ -3122,7 +3122,7 @@
 				04C6E1E524D4029D006F4DAC /* CNAddressManagerVC.xib */,
 				04935BC524D56793007A33EF /* CNAddAddressVC.h */,
 				04935BC624D56793007A33EF /* CNAddAddressVC.m */,
-				04935BC424D56793007A33EF /* CNAddAddressVC.xib */,
+				414B89D3279596F300AF45CA /* CNAddAddressVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -6343,7 +6343,6 @@
 				D5A4471424F3941400014DC6 /* 合成 1_0005.png in Resources */,
 				D5A446DE24F3941400014DC6 /* 合成 1_00029.png in Resources */,
 				D5A4453324F393AC00014DC6 /* 棋牌_00016.png in Resources */,
-				04935BC724D56793007A33EF /* CNAddAddressVC.xib in Resources */,
 				04C0F12E24C7D20C007F1420 /* CNRealPersonVC.xib in Resources */,
 				D5A4465224F393E500014DC6 /* 足球_00039.png in Resources */,
 				04C0F0DD24C29FFD007F1420 /* CNBindPhoneVC.xib in Resources */,
@@ -6397,6 +6396,7 @@
 				D5A4453524F393AC00014DC6 /* 棋牌_00013.png in Resources */,
 				D5A4471224F3941400014DC6 /* 合成 1_00095.png in Resources */,
 				D5A443E724F378CD00014DC6 /* 彩票_00076.png in Resources */,
+				414B89D4279596F300AF45CA /* CNAddAddressVC.xib in Resources */,
 				D5A4457724F393AD00014DC6 /* 棋牌_00087.png in Resources */,
 				D5A444AE24F3932400014DC6 /* 数字7_00081.png in Resources */,
 				D5A4463D24F393E500014DC6 /* 足球_00066.png in Resources */,
@@ -7272,7 +7272,7 @@
 			baseConfigurationReference = 9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Debug";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";

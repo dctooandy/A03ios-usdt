@@ -182,6 +182,7 @@
 #define config_queryDepositBankInfos @"deposit/queryDepositBankInfos"  //查询电子货币渠道
 #define config_createOnlineOrder   @"deposit/createOnlineOrder"  // 创建订单（网银在线 扫码支付 比特币支付 币付宝 小金库）
 #define config_createOnlineOrderV2   @"deposit/createOnlineOrderV2"
+#define config_rechargeUSDTQrcode    @"deposit/createCryptoCoinDepositOrder"
 #define config_createManualDepositRequest @"deposit/createManualDepositRequest" //创建手动支付订单（USDT公链）
 #define config_queryDepositCounter @"deposit/queryDepositCounter"   //查询存款收银台地址接口
 
