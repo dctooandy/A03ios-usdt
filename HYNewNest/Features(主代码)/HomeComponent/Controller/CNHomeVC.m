@@ -490,18 +490,27 @@ typedef void(^ButtonCallBack)(void);
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     if (self.bannModels.count > 0 && self.bannModels.count-1 >= index) {
         AdBannerModel *model = self.bannModels[index];
-        if ([model.linkUrl containsString:@"detailsPage?id="]) { // 跳文章
-            NSString *articalId = [model.linkUrl componentsSeparatedByString:@"="].lastObject;
-            [NNPageRouter jump2ArticalWithArticalId:articalId title:@"文章"];
-        } else if ([model.linkUrl hasPrefix:@"http"]) { // 跳外链
-            NSURL *URL = [NSURL URLWithString:model.linkUrl];
-            if ([[UIApplication sharedApplication] canOpenURL:URL]) {
-                [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:^(BOOL success) {
-                    [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
-                }];
+        NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
+        BOOL isBeforeDuration = [duractionArray[0] boolValue];
+        BOOL isActivityDuration = [duractionArray[1] boolValue];
+        if ((isBeforeDuration || isActivityDuration)&& ([model.linkUrl containsString:@"tiger_red_envelope"]))
+        {
+            [self showRedPacketsRainViewwWithStyle:(isActivityDuration ? RedPocketsViewBegin: RedPocketsViewPrefix)];
+        }else
+        {
+            if ([model.linkUrl containsString:@"detailsPage?id="]) { // 跳文章
+                NSString *articalId = [model.linkUrl componentsSeparatedByString:@"="].lastObject;
+                [NNPageRouter jump2ArticalWithArticalId:articalId title:@"文章"];
+            } else if ([model.linkUrl hasPrefix:@"http"]) { // 跳外链
+                NSURL *URL = [NSURL URLWithString:model.linkUrl];
+                if ([[UIApplication sharedApplication] canOpenURL:URL]) {
+                    [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:^(BOOL success) {
+                        [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
+                    }];
+                }
+            } else { // 跳活动
+                [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"" needPubSite:NO];
             }
-        } else { // 跳活动
-            [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"" needPubSite:NO];
         }
     }
 }

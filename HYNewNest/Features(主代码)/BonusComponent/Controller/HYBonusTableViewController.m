@@ -11,7 +11,11 @@
 #import "HYBonusCell.h"
 #import "LYEmptyView.h"
 #import "UIView+Empty.h"
-
+#import "PublicMethod.h"
+#import "RedPacketsRainView.h"
+#import "CNLoginRegisterVC.h"
+#import "A03ActivityManager.h"
+#import "BTTAnimationPopView.h"
 static NSString *const KBonusCell = @"HYBonusCell";
 
 @interface HYBonusTableViewController ()
@@ -98,10 +102,47 @@ static NSString *const KBonusCell = @"HYBonusCell";
 -(void)jumpToHtmlWithIndexPath:(NSIndexPath *)indexPath
 {
     MyPromoItem *item = self.promos[indexPath.row];
-    if (!KIsEmptyString(item.linkUrl)) {
-        [NNPageRouter jump2HTMLWithStrURL:item.linkUrl
-                                    title:item.title.length>0?item.title:@"优惠"
-                              needPubSite:NO];
+    NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
+    BOOL isBeforeDuration = [duractionArray[0] boolValue];
+    BOOL isActivityDuration = [duractionArray[1] boolValue];
+    if ((isBeforeDuration || isActivityDuration)&& ([item.linkUrl containsString:@"tiger_red_envelope"]))
+    {
+        [self bonusShowRedPacketsRainViewwWithStyle:(isActivityDuration ? RedPocketsViewBegin: RedPocketsViewPrefix)];
+    }else
+    {
+        if (!KIsEmptyString(item.linkUrl)) {
+            [NNPageRouter jump2HTMLWithStrURL:item.linkUrl
+                                        title:item.title.length>0?item.title:@"优惠"
+                                  needPubSite:NO];
+    }
+    }
+}
+- (void)bonusShowRedPacketsRainViewwWithStyle:(RedPocketsViewStyle)currentStyle
+{
+    if (![CNUserManager shareManager].isLogin && (currentStyle == RedPocketsViewBegin ||
+                                                  currentStyle == RedPocketsViewRainning ||
+                                                  currentStyle == RedPocketsViewDev))
+    {
+        [self.navigationController pushViewController:[CNLoginRegisterVC loginVC] animated:YES];
+    }else
+    {
+        [[A03ActivityManager sharedInstance] checkTimeRedPacketRainWithCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
+            RedPacketsRainView *alertView = [RedPacketsRainView viewFromXib];
+            [alertView configForRedPocketsViewWithStyle:currentStyle];
+            BTTAnimationPopView *popView = [[BTTAnimationPopView alloc] initWithCustomView:alertView popStyle:BTTAnimationPopStyleNO dismissStyle:BTTAnimationDismissStyleNO];
+            popView.isClickBGDismiss = YES;
+            [popView pop];
+            
+            [alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
+            }];
+            alertView.dismissBlock = ^{
+                [popView dismiss];
+            };
+            alertView.btnBlock = ^(UIButton * _Nullable btn) {
+                [popView dismiss];
+            };
+        } WithDefaultCompletion:nil];
     }
 }
 @end
