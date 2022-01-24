@@ -33,7 +33,6 @@
 @property (weak, nonatomic) IBOutlet UIView *giftView;
 @property (weak, nonatomic) IBOutlet UIImageView *giftImageView;
 @property (weak, nonatomic) IBOutlet UILabel *giftTitleLabel;
-@property (weak, nonatomic) IBOutlet UIView *giftBannerHeightView;
 
 @property (weak, nonatomic) IBOutlet UIView *activityRuleView;
 
@@ -1257,9 +1256,9 @@
         [giftBannerView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(self.cardsBonusView);
             make.top.mas_equalTo(self.backToRedPacketsViewBtn.mas_bottom).offset(10);
-            make.height.equalTo(self.giftBannerHeightView);
+            make.height.equalTo(self.cardsBonusView).multipliedBy(220.0/813.0);
         }];
-        giftBannerView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
+        giftBannerView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
 //        giftBannerView.layer.cornerRadius = 10;
 //        giftBannerView.layer.masksToBounds = true;
         giftBannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
