@@ -989,7 +989,7 @@
 //    WEAKSELF_DEFINE
     NSString *identifyString = [[NSUserDefaults standardUserDefaults] objectForKey:RedPacketIdentify];
     NSString *numString = [[NSUserDefaults standardUserDefaults] objectForKey:RedPacketNum];
-    if ([NSString isBlankString:identifyString] || [NSString isBlankString:numString])
+    if (KIsEmptyString(identifyString) || KIsEmptyString(numString))
     {
         [MBProgressHUD showError:@"参数异常" toView:nil];
         [[NSUserDefaults standardUserDefaults] setObject:nil forKey:RedPacketIdentify];

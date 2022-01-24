@@ -15,36 +15,72 @@
 - (BOOL)isRainningTime
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"HH"];
+    [dateFormatter setDateFormat:@"HH:mm:ss"];
     NSDate *serverDate = [NSDate dateWithTimeIntervalSince1970:[self.serverTimestamp intValue]];
     NSString *stringFromDate = [dateFormatter stringFromDate:serverDate];
+    NSString *serverStartHour = [stringFromDate substringToIndex:2];
+    NSString *serverStartMins = [stringFromDate substringWithRange:NSMakeRange(3, 2)];
+    NSString *serverStartSec = [stringFromDate substringWithRange:NSMakeRange(6, 2)];
+    
     NSString *firstStartHour = [self.firstStartAt substringToIndex:2];
     NSString *firstStartMins = [self.firstStartAt substringWithRange:NSMakeRange(3, 2)];
     NSString *firstStartSec = [self.firstStartAt substringWithRange:NSMakeRange(6, 2)];
+    
+    NSString *firstEndHour = [self.firstEndAt substringToIndex:2];
+    NSString *firstEndMins = [self.firstEndAt substringWithRange:NSMakeRange(3, 2)];
+    NSString *firstEndSec = [self.firstEndAt substringWithRange:NSMakeRange(6, 2)];
+    
     NSString *secondStartHour = [self.secondStartAt substringToIndex:2];
     NSString *secondStartMins = [self.secondStartAt substringWithRange:NSMakeRange(3, 2)];
     NSString *secondStartSec = [self.secondStartAt substringWithRange:NSMakeRange(6, 2)];
-    int isFirstToSecond = ([secondStartHour intValue] * 3600 + [secondStartMins intValue] * 60 + [secondStartSec intValue] -
-                           ([firstStartHour intValue] * 3600 + [firstStartMins intValue] * 60 + [firstStartSec intValue]));
     
-    int isSecondToFirst = 24 * 3600 - ([secondStartHour intValue] * 3600 + [secondStartMins intValue] * 60 + [secondStartSec intValue]) +
-    ([firstStartHour intValue] * 3600 + [firstStartMins intValue] * 60 + [firstStartSec intValue]);
+    NSString *secondEndHour = [self.secondEndAt substringToIndex:2];
+    NSString *secondEndMins = [self.secondEndAt substringWithRange:NSMakeRange(3, 2)];
+    NSString *secondEndSec = [self.secondEndAt substringWithRange:NSMakeRange(6, 2)];
+    
+    int nowSeconds = [serverStartHour intValue] * 3600 + [serverStartMins intValue] * 60 + [serverStartSec intValue];
+    int firstStartSeconds = [firstStartHour intValue] * 3600 + [firstStartMins intValue] * 60 + [firstStartSec intValue];
+    int firstEndSeconds = [firstEndHour intValue] * 3600 + [firstEndMins intValue] * 60 + [firstEndSec intValue];
+    
+    int secondStartSeconds = [secondStartHour intValue] * 3600 + [secondStartMins intValue] * 60 + [secondStartSec intValue];
+    int secondEndSeconds = [secondEndHour intValue] * 3600 + [secondEndMins intValue] * 60 + [secondEndSec intValue];
+    
+    int isFirstToSecond = secondStartSeconds - firstEndSeconds;
+    int isSecondToFirst = 24 * 3600 - secondEndSeconds + firstStartSeconds;
     if ([self.status isEqualToString:@"1"])
     {
-        if ([stringFromDate intValue] < [firstStartHour intValue])
+        if ([self.leftTime intValue] <= firstStartSeconds)
         {
             // 目前时间于第一场红包雨之前
-            return NO;
-        }else if ([stringFromDate intValue] < [secondStartHour intValue])
+            if ([self.leftTime intValue] == firstStartSeconds)
+            {
+                return YES;
+            }else
+            {
+                return NO;
+            }
+        }else if ([self.leftTime intValue] <= firstEndSeconds)
+        {
+            //第一场红包雨
+            return YES;
+        }else if ([self.leftTime intValue] <= secondStartSeconds)
         {
             // 介于第一场之后跟第二场之间
-            // 剩馀时间 大于等于 第一场跟第二场之间的秒数少60 ,亦即下雨期
-            return [self.leftTime intValue] >= (isFirstToSecond - 60);
+            if ([self.leftTime intValue] == secondStartSeconds)
+            {
+                return YES;
+            }else
+            {
+                return NO;
+            }
+        }else if ([self.leftTime intValue] <= secondEndSeconds)
+        {
+            //第二场红包雨
+            return YES;
         }else
         {
             // 处于第二场之后到下一个第一场之间
-            // 剩馀时间 大于等于 第二场到下一个第一场之间的秒数少60 ,亦即下雨期
-            return [self.leftTime intValue] >= (isSecondToFirst - 60);
+            return NO;
         }
     }else
     {
