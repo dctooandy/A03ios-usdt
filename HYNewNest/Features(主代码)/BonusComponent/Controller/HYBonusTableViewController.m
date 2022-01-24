@@ -105,9 +105,10 @@ static NSString *const KBonusCell = @"HYBonusCell";
     NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
     BOOL isBeforeDuration = [duractionArray[0] boolValue];
     BOOL isActivityDuration = [duractionArray[1] boolValue];
+    BOOL isRainningTime = [duractionArray[2] boolValue];
     if ((isBeforeDuration || isActivityDuration)&& ([item.linkUrl containsString:@"tiger_red_envelope"]))
     {
-        [self bonusShowRedPacketsRainViewwWithStyle:(isActivityDuration ? RedPocketsViewBegin: RedPocketsViewPrefix)];
+        [self bonusShowRedPacketsRainViewwWithStyle:(isActivityDuration ? (isRainningTime ? RedPocketsViewRainning : RedPocketsViewBegin): RedPocketsViewPrefix)];
     }else
     {
         if (!KIsEmptyString(item.linkUrl)) {

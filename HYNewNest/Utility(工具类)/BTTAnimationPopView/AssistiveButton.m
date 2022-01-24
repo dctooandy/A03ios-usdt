@@ -116,8 +116,11 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
 }
 -(void)refetchTimeForRainning
 {
-    if (_assistiveTimer) dispatch_source_cancel(_assistiveTimer);
-    [self reStartCountTime];
+    if (![[[A03ActivityManager sharedInstance] redPacketInfoModel] isRainningTime])
+    {
+        if (_assistiveTimer) dispatch_source_cancel(_assistiveTimer);
+        [self reStartCountTime];
+    }
 }
 - (void)reStartCountTime
 {

@@ -23,6 +23,8 @@
 #import "PrizeRecordModel.h"
 #import "PrizeNamesModel.h"
 #import "FusingBlessingCardModel.h"
+#import "NSString+Font.h"
+
 @interface RedPacketsRainView()<SDCycleScrollViewDelegate , QBulletScreenViewDelegate>
 // 按照页面顺序
 @property (weak, nonatomic) IBOutlet UIView *cardsBonusView;
@@ -31,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIView *giftView;
 @property (weak, nonatomic) IBOutlet UIImageView *giftImageView;
 @property (weak, nonatomic) IBOutlet UILabel *giftTitleLabel;
+@property (weak, nonatomic) IBOutlet UIView *giftBannerHeightView;
 
 @property (weak, nonatomic) IBOutlet UIView *activityRuleView;
 
@@ -111,7 +114,13 @@
             case RedPocketsViewBegin:// 活动开始
                 weakSelf.selectedRedPacketNum = 0;
                 //开始红包雨倒数
-                [weakSelf startTimeWithDuration:[PublicMethod countDownIntervalWithDurationTag:YES]];
+                if ([[[A03ActivityManager sharedInstance] redPacketInfoModel] isRainningTime])
+                {
+                    [weakSelf startTimeWithDuration:1];
+                }else
+                {
+                    [weakSelf startTimeWithDuration:[PublicMethod countDownIntervalWithDurationTag:YES]];
+                }
                 // 活动开始中奖名单跑马灯
                 [weakSelf fetchPrizeRecords];
                 //            [self setupDataForSortArray];
@@ -981,7 +990,7 @@
 //    WEAKSELF_DEFINE
     NSString *identifyString = [[NSUserDefaults standardUserDefaults] objectForKey:RedPacketIdentify];
     NSString *numString = [[NSUserDefaults standardUserDefaults] objectForKey:RedPacketNum];
-    if (KIsEmptyString(identifyString) || KIsEmptyString(numString))
+    if ([NSString isBlankString:identifyString] || [NSString isBlankString:numString])
     {
         [MBProgressHUD showError:@"参数异常" toView:nil];
         [[NSUserDefaults standardUserDefaults] setObject:nil forKey:RedPacketIdentify];
@@ -1248,9 +1257,9 @@
         [giftBannerView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(self.cardsBonusView);
             make.top.mas_equalTo(self.backToRedPacketsViewBtn.mas_bottom).offset(10);
-            make.height.equalTo(self.cardsBonusView).multipliedBy(220.0/813.0);
+            make.height.equalTo(self.giftBannerHeightView);
         }];
-        giftBannerView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
+        giftBannerView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
 //        giftBannerView.layer.cornerRadius = 10;
 //        giftBannerView.layer.masksToBounds = true;
         giftBannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
