@@ -76,44 +76,32 @@
                 return NO;
             }
         }
-//        if (([self.leftTime intValue] <= _firstStartSeconds) && _nowSeconds < _firstStartSeconds)
-//        {
-//            // 目前时间于第一场红包雨之前
-//            if ([self.leftTime intValue] == _firstStartSeconds)
-//            {
-//                return YES;
-//            }else
-//            {
-//                return NO;
-//            }
-//        }else if ([self.leftTime intValue] <= firstEndSeconds)
-//        {
-//            //第一场红包雨
-//            return YES;
-//        }else if ([self.leftTime intValue] <= _secondStartSeconds)
-//        {
-//            // 介于第一场之后跟第二场之间
-//            if ([self.leftTime intValue] == _secondStartSeconds)
-//            {
-//                return YES;
-//            }else
-//            {
-//                return NO;
-//            }
-//        }else if ([self.leftTime intValue] <= secondEndSeconds)
-//        {
-//            //第二场红包雨
-//            return YES;
-//        }else
-//        {
-//            // 处于第二场之后到下一个第一场之间
-//            return NO;
-//        }
     }else
     {
         return NO;
     }
 }
+- (void)setFirstStartAt:(NSString *)firstStartAt
+{
+    _isDev = YES;
+    _firstStartAt = firstStartAt;
+}
+- (void)setFirstEndAt:(NSString *)firstEndAt
+{
+    _isDev = YES;
+    _firstEndAt = firstEndAt;
+}
+- (void)setSecondStartAt:(NSString *)secondStartAt
+{
+    _isDev = YES;
+    _secondStartAt = secondStartAt;
+}
+- (void)setSecondEndAt:(NSString *)secondEndAt
+{
+    _isDev = YES;
+    _secondEndAt = secondEndAt;
+}
+
 - (NSString*)leftTime
 {
     if (_isDev)
