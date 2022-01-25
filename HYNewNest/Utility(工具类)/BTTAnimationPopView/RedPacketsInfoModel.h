@@ -35,6 +35,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *serverTimestamp;
 
 @property (nonatomic, assign) BOOL isRainningTime;
+@property (nonatomic, assign) BOOL isDev;
+// 测试用
+@property (nonatomic, assign) int nowSeconds;
+@property (nonatomic, assign) int firstStartSeconds;
+@property (nonatomic, assign) int secondStartSeconds;
+@property (nonatomic, assign) int isSecondToFirstSecond;
 
 @end
 

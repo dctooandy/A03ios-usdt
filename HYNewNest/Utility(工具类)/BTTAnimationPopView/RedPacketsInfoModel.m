@@ -38,53 +38,92 @@
     NSString *secondEndMins = [self.secondEndAt substringWithRange:NSMakeRange(3, 2)];
     NSString *secondEndSec = [self.secondEndAt substringWithRange:NSMakeRange(6, 2)];
     
-    int nowSeconds = [serverStartHour intValue] * 3600 + [serverStartMins intValue] * 60 + [serverStartSec intValue];
-    int firstStartSeconds = [firstStartHour intValue] * 3600 + [firstStartMins intValue] * 60 + [firstStartSec intValue];
+    _nowSeconds = [serverStartHour intValue] * 3600 + [serverStartMins intValue] * 60 + [serverStartSec intValue];
+    _firstStartSeconds = [firstStartHour intValue] * 3600 + [firstStartMins intValue] * 60 + [firstStartSec intValue];
     int firstEndSeconds = [firstEndHour intValue] * 3600 + [firstEndMins intValue] * 60 + [firstEndSec intValue];
     
-    int secondStartSeconds = [secondStartHour intValue] * 3600 + [secondStartMins intValue] * 60 + [secondStartSec intValue];
+    _secondStartSeconds = [secondStartHour intValue] * 3600 + [secondStartMins intValue] * 60 + [secondStartSec intValue];
     int secondEndSeconds = [secondEndHour intValue] * 3600 + [secondEndMins intValue] * 60 + [secondEndSec intValue];
     
-    int isFirstToSecond = secondStartSeconds - firstEndSeconds;
-    int isSecondToFirst = 24 * 3600 - secondEndSeconds + firstStartSeconds;
+    int isFirstToSecond = _secondStartSeconds - firstEndSeconds;
+    _isSecondToFirstSecond = 24 * 3600 - _nowSeconds + _firstStartSeconds;
     if ([self.status isEqualToString:@"1"])
     {
-        if ([self.leftTime intValue] <= firstStartSeconds)
+        if (_nowSeconds < _firstStartSeconds)
         {
             // 目前时间于第一场红包雨之前
-            if ([self.leftTime intValue] == firstStartSeconds)
+            return NO;
+        }else if (_nowSeconds < _secondStartSeconds)
+        {
+            if (_nowSeconds < firstEndSeconds)
             {
+                //第一场红包雨
                 return YES;
             }else
             {
+                // 介于第一场之后跟第二场之间
                 return NO;
             }
-        }else if ([self.leftTime intValue] <= firstEndSeconds)
-        {
-            //第一场红包雨
-            return YES;
-        }else if ([self.leftTime intValue] <= secondStartSeconds)
-        {
-            // 介于第一场之后跟第二场之间
-            if ([self.leftTime intValue] == secondStartSeconds)
-            {
-                return YES;
-            }else
-            {
-                return NO;
-            }
-        }else if ([self.leftTime intValue] <= secondEndSeconds)
-        {
-            //第二场红包雨
-            return YES;
         }else
         {
-            // 处于第二场之后到下一个第一场之间
-            return NO;
+            if (_nowSeconds < secondEndSeconds)
+            {
+                //第二场红包雨
+                return YES;
+            }else
+            {
+                // 处于第二场之后到下一个第一场之间
+                return NO;
+            }
         }
+//        if (([self.leftTime intValue] <= _firstStartSeconds) && _nowSeconds < _firstStartSeconds)
+//        {
+//            // 目前时间于第一场红包雨之前
+//            if ([self.leftTime intValue] == _firstStartSeconds)
+//            {
+//                return YES;
+//            }else
+//            {
+//                return NO;
+//            }
+//        }else if ([self.leftTime intValue] <= firstEndSeconds)
+//        {
+//            //第一场红包雨
+//            return YES;
+//        }else if ([self.leftTime intValue] <= _secondStartSeconds)
+//        {
+//            // 介于第一场之后跟第二场之间
+//            if ([self.leftTime intValue] == _secondStartSeconds)
+//            {
+//                return YES;
+//            }else
+//            {
+//                return NO;
+//            }
+//        }else if ([self.leftTime intValue] <= secondEndSeconds)
+//        {
+//            //第二场红包雨
+//            return YES;
+//        }else
+//        {
+//            // 处于第二场之后到下一个第一场之间
+//            return NO;
+//        }
     }else
     {
         return NO;
+    }
+}
+- (NSString*)leftTime
+{
+    if (_isDev)
+    {
+        int firstSecondValue = _nowSeconds - _firstStartSeconds;
+        int secondSecondValue = _nowSeconds - _secondStartSeconds;
+        return [NSString stringWithFormat:@"%d",firstSecondValue < 0 ? abs(firstSecondValue): (secondSecondValue < 0 ? abs(secondSecondValue): _isSecondToFirstSecond )];
+    }else
+    {
+        return _leftTime;
     }
 }
 @end
