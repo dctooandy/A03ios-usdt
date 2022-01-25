@@ -1307,7 +1307,7 @@
         }];
         giftBannerView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
 //        giftBannerView.layer.cornerRadius = 10;
-//        giftBannerView.layer.masksToBounds = true;
+        giftBannerView.layer.masksToBounds = true;
         giftBannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
         giftBannerView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
         giftBannerView.pageControlDotSize = CGSizeMake(6, 6);
