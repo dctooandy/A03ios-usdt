@@ -1034,6 +1034,7 @@
     WEAKSELF_DEFINE
     [self goToOpenBagWithCompletionBlock:^(id responseObj, NSString *errorMsg) {
         weakSelf.luckyBagModel = [LuckyBagModel cn_parse:responseObj];
+        weakSelf.luckyBagModel.data = [LuckyBagDetailModel cn_parse:responseObj[@"data"]];
         NSString *codeString = weakSelf.luckyBagModel.code;
         NSString *messageString = weakSelf.luckyBagModel.message;
         if ([codeString isEqual:@"200"])
@@ -1302,7 +1303,7 @@
         [giftBannerView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(self.cardsBonusView);
             make.top.mas_equalTo(self.backToRedPacketsViewBtn.mas_bottom).offset(10);
-            make.height.equalTo(self.cardsBonusView).multipliedBy(220.0/813.0);
+            make.height.equalTo(self.cardsBonusView).multipliedBy(0.25);
         }];
         giftBannerView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
 //        giftBannerView.layer.cornerRadius = 10;

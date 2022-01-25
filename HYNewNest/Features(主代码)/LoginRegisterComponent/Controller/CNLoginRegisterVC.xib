@@ -62,9 +62,6 @@
                                     <subviews>
                                         <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="log_logo" translatesAutoresizingMaskIntoConstraints="NO" id="MdU-No-lZJ">
                                             <rect key="frame" x="0.0" y="0.0" width="88" height="93"/>
-                                            <connections>
-                                                <outletCollection property="gestureRecognizers" destination="HUG-Tm-283" appends="YES" id="ZfI-5a-ROa"/>
-                                            </connections>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -355,11 +352,6 @@
         <tapGestureRecognizer numberOfTapsRequired="3" id="2hd-fn-Epo">
             <connections>
                 <action selector="switchEnvironmentTap:" destination="-1" id="syq-DQ-cdB"/>
-            </connections>
-        </tapGestureRecognizer>
-        <tapGestureRecognizer numberOfTapsRequired="2" id="HUG-Tm-283">
-            <connections>
-                <action selector="showPickerViewAction:" destination="-1" id="eyL-bh-f8e"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

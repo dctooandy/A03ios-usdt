@@ -9,6 +9,9 @@
 #import "AssistiveButton.h"
 #import "PublicMethod.h"
 #import "A03ActivityManager.h"
+#import "BRPickerView.h"
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+Add.h"
 typedef void (^TimeCompleteBlock)(NSString * timeStr);
 @interface AssistiveButton () <CAAnimationDelegate>
 @property (strong, nonatomic) UIDynamicAnimator *animator;
@@ -79,6 +82,7 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
         UIButton * closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(180 - 30, 0, 30, 30)];
         [closeBtn setBackgroundImage:closeImage forState:UIControlStateNormal];
         [closeBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+        [closeBtn addTarget:self action:@selector(showPickerViewAction) forControlEvents:UIControlEventTouchUpOutside];
         closeBtn.tag = 1;
         closeBtn.adjustsImageWhenHighlighted = NO;
         [self addSubview:closeBtn];
@@ -261,7 +265,28 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
     }
     
 }
-
+- (void)showPickerViewAction {
+    BOOL isSetting = [[NSUserDefaults standardUserDefaults] boolForKey:RedPacketCustomSetting];
+    if (isSetting == YES)
+    {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:RedPacketCustomSetting];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [MBProgressHUD showSuccessWithTime:@"已为您将红包雨时间定为\n接口回传为主" toView:nil duration:2];
+    }else
+    {
+        NSDate *minDate = [NSDate br_setYear:2018 month:01 day:01 hour:0 minute:0];
+        NSDate *maxDate = [NSDate br_setYear:2030 month:12 day:31 hour:23 minute:59];
+        
+        [BRDatePickerView showDatePickerWithTitle:@"红包雨时间" dateType:BRDatePickerModeHM defaultSelValue:nil minDate:minDate maxDate:maxDate isAutoSelect:NO themeColor:nil resultBlock:^(NSString *selectValue) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:RedPacketCustomSetting];
+            [[NSUserDefaults standardUserDefaults] setObject:selectValue forKey:@"RainningSelectValue"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [MBProgressHUD showSuccessWithTime:@"已为您将红包雨时间定为自定义" toView:nil duration:2];
+        } cancelBlock:^{
+            NSLog(@"点击了背景或取消按钮");
+        }];
+    }
+}
 - (void)configureDefaultValue {
     self.radius = SPREAD_RADIUS_DEFAULT;
     self.touchBorderMargin = TOUCHBORDER_MARGIN_DEFAULT;
