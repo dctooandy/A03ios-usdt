@@ -63,5 +63,6 @@
 #define RedPacketCountDown              60 // 下雨60秒
 #define RedPacketIdentify               @"RedPacketIdentify" // 开启红包雨之前的验证
 #define RedPacketNum                    @"RedPacketNum" // 红包数量
+#define RedPacketCustomSetting          @"RedPacketCustomSetting" // 红包雨自设定
 
 

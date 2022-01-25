@@ -19,10 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *startAt;//开始时间,格式:Y-m-d H:i:s
 @property (nonatomic, copy) NSString *endAt;//结束时间,格式:Y-m-d H:i:s
 
+@property (nonatomic, copy) NSString *firstRainStatus;//第一次红包雨状态(0 未开始;1 进行中,2 已结束)
 @property (nonatomic, copy) NSString *firstStartAt;//第一次红包雨开始的时间点,格式:H:i:s
 @property (nonatomic, copy) NSString *firstEndAt;//第一次红包雨结束的时间点,格式:H:i:s
 @property (nonatomic, copy) NSString *firstLatestOpeningAt;//第一次红包雨打开红包的最晚时间点,格式:H:i:s
 
+@property (nonatomic, copy) NSString *secondRainStatus;//第二次红包雨状态(0 未开始;1 进行中,2 已结束)
 @property (nonatomic, copy) NSString *secondStartAt;//第二次红包雨开始的时间点,格式:H:i:s
 @property (nonatomic, copy) NSString *secondEndAt;//第二次红包雨结束的时间点,格式:H:i:s
 @property (nonatomic, copy) NSString *secondLatestOpeningAt;//第二次红包雨打开红包的最晚时间点,格式:H:i:s

@@ -35,7 +35,7 @@ static A03ActivityManager * sharedSingleton;
     WEAKSELF_DEFINE
     [RedPacketsRequest getRainInfoTask:^(id responseObj, NSString *errorMsg) {
         weakSelf.redPacketInfoModel = [RedPacketsInfoModel cn_parse:responseObj];
-//        weakSelf.redPacketInfoModel.isDev = YES;
+        weakSelf.redPacketInfoModel.isDev = NO;
 //        weakSelf.redPacketInfoModel.firstStartAt = @"10:00:00";
 //        weakSelf.redPacketInfoModel.firstEndAt = @"10:01:00";
 //        weakSelf.redPacketInfoModel.secondStartAt = @"10:03:00";

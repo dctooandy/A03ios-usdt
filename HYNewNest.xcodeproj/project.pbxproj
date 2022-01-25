@@ -399,7 +399,7 @@
 		7682A7BC2797FDA0001AC772 /* PrizeRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A7BB2797FDA0001AC772 /* PrizeRecordModel.m */; };
 		7682A7BF2797FDAF001AC772 /* PrizeNamesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A7BE2797FDAF001AC772 /* PrizeNamesModel.m */; };
 		7682A7C52798144A001AC772 /* FusingBlessingCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A7C42798144A001AC772 /* FusingBlessingCardModel.m */; };
-		76A5BAD12799345700E85398 /* RedPacketsRainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76A5BAD02799345700E85398 /* RedPacketsRainView.xib */; };
+		76B16905279FD61C0033F301 /* RedPacketsRainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76B16904279FD61C0033F301 /* RedPacketsRainView.xib */; };
 		76B4998B275F6415003CD35B /* 03Gif2022.gif in Resources */ = {isa = PBXBuildFile; fileRef = 76B4998A275F6415003CD35B /* 03Gif2022.gif */; };
 		76B499E727608DAE003CD35B /* AppdelegateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E627608DAE003CD35B /* AppdelegateManager.m */; };
 		76B499EA27609237003CD35B /* A03CheckDomainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E927609237003CD35B /* A03CheckDomainModel.m */; };
@@ -1784,7 +1784,7 @@
 		7682A7BE2797FDAF001AC772 /* PrizeNamesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrizeNamesModel.m; sourceTree = "<group>"; };
 		7682A7C32798144A001AC772 /* FusingBlessingCardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FusingBlessingCardModel.h; sourceTree = "<group>"; };
 		7682A7C42798144A001AC772 /* FusingBlessingCardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FusingBlessingCardModel.m; sourceTree = "<group>"; };
-		76A5BAD02799345700E85398 /* RedPacketsRainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketsRainView.xib; sourceTree = "<group>"; };
+		76B16904279FD61C0033F301 /* RedPacketsRainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketsRainView.xib; sourceTree = "<group>"; };
 		76B4998A275F6415003CD35B /* 03Gif2022.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 03Gif2022.gif; sourceTree = "<group>"; };
 		76B499E527608DAE003CD35B /* AppdelegateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppdelegateManager.h; sourceTree = "<group>"; };
 		76B499E627608DAE003CD35B /* AppdelegateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppdelegateManager.m; sourceTree = "<group>"; };
@@ -4201,7 +4201,7 @@
 				765C64E82782B71700A6BC34 /* BTTBaseAnimationPopView.m */,
 				765C64F02782C82A00A6BC34 /* RedPacketsRainView.h */,
 				765C64F12782C82A00A6BC34 /* RedPacketsRainView.m */,
-				76A5BAD02799345700E85398 /* RedPacketsRainView.xib */,
+				76B16904279FD61C0033F301 /* RedPacketsRainView.xib */,
 				76519925278C107F006A59BF /* RedPacketsPreView.h */,
 				76519927278C107F006A59BF /* RedPacketsPreView.m */,
 				7682A78427915CE1001AC772 /* RedPacketsPreView.xib */,
@@ -5900,7 +5900,6 @@
 				D5A443E924F378CD00014DC6 /* 彩票_00037.png in Resources */,
 				E98BEF0424D1AF5800E6B0C8 /* HYXiMaTopView.xib in Resources */,
 				D5A4458524F393AD00014DC6 /* 棋牌_00037.png in Resources */,
-				76A5BAD12799345700E85398 /* RedPacketsRainView.xib in Resources */,
 				3DBF5FB62680A0A800C246A9 /* BYDepositUsdtVC.xib in Resources */,
 				D5A4462024F393E500014DC6 /* 足球_00047.png in Resources */,
 				044DC69624DD1A35005CB550 /* CNShareCopyView.xib in Resources */,
@@ -6074,6 +6073,7 @@
 				3DCFEA9A25050AD90071F356 /* 方正兰亭大黑_GBK.ttf in Resources */,
 				D5A443B424F378CD00014DC6 /* 彩票_00071.png in Resources */,
 				048A168924CA712700411819 /* CNServerView.xib in Resources */,
+				76B16905279FD61C0033F301 /* RedPacketsRainView.xib in Resources */,
 				D5A4455C24F393AC00014DC6 /* 棋牌_00057.png in Resources */,
 				D5A444A424F3932400014DC6 /* 数字7_00030.png in Resources */,
 				D5A443DE24F378CD00014DC6 /* 彩票_00049.png in Resources */,

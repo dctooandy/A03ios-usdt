@@ -83,6 +83,9 @@
 @property (nonatomic, strong) NSArray<PrizeNamesModel *>* prizeNamesArray;
 @property (nonatomic, strong) FusingBlessingCardModel * fusingBlessingCardModel;
 @property(nonatomic,strong)RedPacketsIdentifyModel * redPacketIdentifyModel;
+//点了第一个红包
+@property (nonatomic, assign) BOOL isSelectFirstRedPacket;
+
 @end
 
 @implementation RedPacketsRainView
@@ -100,13 +103,14 @@
     self.prizeRecordArray = @[];
     self.prizeNamesArray = @[];
     self.countDownLabelTop.constant = SCREEN_HEIGHT * 0.05;
+    self.isSelectFirstRedPacket = NO;
 }
 
 - (void)configForRedPocketsViewWithStyle:(RedPocketsViewStyle)style
 {
     _viewStyle = style;
     weakSelf(weakSelf)
-    [self goToOpenBagWithCompletionBlock:^(id responseObj, NSString *errorMsg) {
+    [self goToCheckIdentifyWithCompletionBlock:^{
         [weakSelf setuprRuleImageBannerGroup];// 游戏规则资料
         [weakSelf setupCardsImageView];//设定集福卡页面背景渐层
         switch (weakSelf.viewStyle) {
@@ -206,10 +210,10 @@
         {
             [[NSUserDefaults standardUserDefaults] setObject:weakSelf.redPacketIdentifyModel.identify forKey:RedPacketIdentify];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            weakSelf.viewStyle = RedPocketsViewRainning;
-            [weakSelf moveLabelToTop]; // 移动倒数LAbel到上面
-            [weakSelf startRedPackerts]; // 开始下红包雨
-            [weakSelf.tapGesture setEnabled:YES];
+//            weakSelf.viewStyle = RedPocketsViewRainning;
+//            [weakSelf moveLabelToTop]; // 移动倒数LAbel到上面
+//            [weakSelf startRedPackerts]; // 开始下红包雨
+//            [weakSelf.tapGesture setEnabled:YES];
         }else
         {
             //测试用
@@ -220,17 +224,25 @@
 //            [weakSelf startRedPackerts]; // 开始下红包雨
 //            [weakSelf.tapGesture setEnabled:YES];
             // 不成功
-            [MBProgressHUD showError:messageString toView:nil];
-            [self.closeGiftBagButton setHidden:YES];
-            weakSelf.countdownLab.text = @"";
-            [[A03ActivityManager sharedInstance] checkTimeRedPacketRainWithCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    int timeout = [PublicMethod countDownIntervalWithDurationTag:YES];
-                    [weakSelf startTimeWithDuration:timeout];
-                });
-            } WithDefaultCompletion:nil];
+//            [MBProgressHUD showError:messageString toView:nil];
+            [MBProgressHUD showError:@"您暂无抽红包机会" toView:nil];
+//            [self.closeGiftBagButton setHidden:YES];
+//            weakSelf.countdownLab.text = @"";
+//            [[A03ActivityManager sharedInstance] checkTimeRedPacketRainWithCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    int timeout = [PublicMethod countDownIntervalWithDurationTag:YES];
+//                    [weakSelf startTimeWithDuration:timeout];
+//                });
+//            } WithDefaultCompletion:nil];
         }
     }];
+}
+- (void)rainningAction
+{
+    self.viewStyle = RedPocketsViewRainning;
+    [self moveLabelToTop]; // 移动倒数LAbel到上面
+    [self startRedPackerts]; // 开始下红包雨
+    [self.tapGesture setEnabled:YES];
 }
 
 - (void)startTimeWithDuration:(int)timeValue
@@ -248,7 +260,8 @@
         {
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf gotoGetIdentify];
+//                [weakSelf gotoGetIdentify];
+                [weakSelf rainningAction];
             });
         }
         else
@@ -636,15 +649,34 @@
 -(void)showResult
 {
     [self.closeButton setHidden:NO];
-    // 集福卡开启
-    [self showCardsButtonSetHidden:NO];
-    [self showOpenGiftBagButton];// 显示集幅卡按钮
-    [self autoOpenGiftBagAction];// 自动打开红包袋
+    NSString *identifyString = [[NSUserDefaults standardUserDefaults] objectForKey:RedPacketIdentify];
+    NSString *numString = [[NSUserDefaults standardUserDefaults] objectForKey:RedPacketNum];
+    if (KIsEmptyString(identifyString) || KIsEmptyString(numString))
+    {
+        [MBProgressHUD showSuccess:@"谢谢参与" toView:nil];
+        [self.autoOpenBagTimer invalidate];
+        [self closeGiftBagAction:nil];
+    }else
+    {
+        // 集福卡开启
+        [self showCardsButtonSetHidden:NO];
+        [self showOpenGiftBagButton];// 显示集幅卡按钮
+        [self autoOpenGiftBagAction];// 自动打开红包袋
+    }
     // 背景图置换
     [self changeBGImageViewWithStyle:RedPocketsViewResult];
 }
 - (void)clickRed:(UITapGestureRecognizer *)sender
 {
+    if (self.isSelectFirstRedPacket == NO)
+    {
+        self.isSelectFirstRedPacket = YES;
+        NSString *identifyString = [[NSUserDefaults standardUserDefaults] objectForKey:RedPacketIdentify];
+        if (KIsEmptyString(identifyString))
+        {
+            [self gotoGetIdentify];
+        }
+    }
     CGPoint point = [sender locationInView:self.redPocketsRainView];
     
     for (int i = 0 ; i < self.redPocketsRainView.layer.sublayers.count ; i ++)
@@ -656,7 +688,6 @@
             ![layer isKindOfClass:[UILabel layerClass]] &&
             (layer.bounds.size.width == 44))
         {
-            NSLog(@"%d",i);
             self.fetchRedPacketsNum ++;
             self.selectedRedPacketNum = i;
 //            BOOL hasRedPacketd = !(i % 3) ;
@@ -984,23 +1015,18 @@
     self.autoOpenBagTimer = [NSTimer scheduledTimerWithTimeInterval:RedPacketCountDown target:self selector:@selector(fetchOpenLuckyBagData) userInfo:nil repeats:NO];
 
 }
-- (void)goToOpenBagWithCompletionBlock:(HandlerBlock)completionBlock
+- (void)goToCheckIdentifyWithCompletionBlock:(void(^)(void))completionBlock
 {
-//    WEAKSELF_DEFINE
-    NSString *identifyString = [[NSUserDefaults standardUserDefaults] objectForKey:RedPacketIdentify];
-    NSString *numString = [[NSUserDefaults standardUserDefaults] objectForKey:RedPacketNum];
-    if (KIsEmptyString(identifyString) || KIsEmptyString(numString))
+    if ([[[[A03ActivityManager sharedInstance] redPacketInfoModel] firstRainStatus] isEqualToString:@"1"] ||
+        [[[[A03ActivityManager sharedInstance] redPacketInfoModel] secondRainStatus] isEqualToString:@"1"])
     {
-        [MBProgressHUD showError:@"参数异常" toView:nil];
+        completionBlock();
+    }else
+    {
         [[NSUserDefaults standardUserDefaults] setObject:nil forKey:RedPacketIdentify];
         [[NSUserDefaults standardUserDefaults] setObject:nil forKey:RedPacketNum];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        completionBlock(nil,nil);
-    }else
-    {
-        [RedPacketsRequest getRainOpenTask:^(id responseObj, NSString *errorMsg) {
-            completionBlock(responseObj,errorMsg);
-        }];
+        completionBlock();
     }
 }
 - (void)fetchOpenLuckyBagData
@@ -1015,16 +1041,36 @@
             [[NSUserDefaults standardUserDefaults] setObject:nil forKey:RedPacketIdentify];
             [[NSUserDefaults standardUserDefaults] setObject:nil forKey:RedPacketNum];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            [weakSelf showBagWithData];
+            [weakSelf.autoOpenBagTimer invalidate];
+            [weakSelf closeGiftBagAction:nil];
         }else
         {
             [MBProgressHUD showError:messageString toView:nil];
             [[NSUserDefaults standardUserDefaults] setObject:nil forKey:RedPacketIdentify];
             [[NSUserDefaults standardUserDefaults] setObject:nil forKey:RedPacketNum];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            [weakSelf showBagWithData];
+            [weakSelf.autoOpenBagTimer invalidate];
+            [weakSelf closeGiftBagAction:nil];
         }
     }];
+}
+- (void)goToOpenBagWithCompletionBlock:(HandlerBlock)completionBlock
+{
+    NSString *identifyString = [[NSUserDefaults standardUserDefaults] objectForKey:RedPacketIdentify];
+    NSString *numString = [[NSUserDefaults standardUserDefaults] objectForKey:RedPacketNum];
+    if (KIsEmptyString(identifyString) || KIsEmptyString(numString))
+    {
+        // 可能是第一次参与活动
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:RedPacketIdentify];
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:RedPacketNum];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        completionBlock(nil,nil);
+    }else
+    {
+        [RedPacketsRequest getRainOpenTask:^(id responseObj, NSString *errorMsg) {
+            completionBlock(responseObj,errorMsg);
+        }];
+    }
 }
 
 - (void)showBagWithData
@@ -1181,7 +1227,7 @@
 - (IBAction)openGiftBagAction{
     [self fetchOpenLuckyBagData];
 }
-- (IBAction)closeGiftBagAction:(id)sender {
+- (IBAction)closeGiftBagAction:(nullable id)sender {
     [self.bagView setHidden:YES];
     [self.bagView setAlpha:0.0];
     [self.bagResultView setHidden:YES];

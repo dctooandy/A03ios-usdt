@@ -537,25 +537,6 @@
                                 <constraint firstAttribute="trailing" secondItem="mxD-Mn-LdH" secondAttribute="trailing" id="yaE-i9-OWg"/>
                             </constraints>
                         </view>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mammon1" translatesAutoresizingMaskIntoConstraints="NO" id="6r7-hV-H7p">
-                            <rect key="frame" x="32" y="50" width="350" height="196"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="196" id="846-4s-83D"/>
-                                <constraint firstAttribute="width" constant="350" id="Za1-m3-dnc"/>
-                            </constraints>
-                        </imageView>
-                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_redenvelope_click" translatesAutoresizingMaskIntoConstraints="NO" id="KM6-iW-BSr">
-                            <rect key="frame" x="0.0" y="271.5" width="97" height="144"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="KM6-iW-BSr" secondAttribute="height" multiplier="97:144" id="LQw-e9-kp5"/>
-                            </constraints>
-                        </imageView>
-                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_redenvelope_click" translatesAutoresizingMaskIntoConstraints="NO" id="SuI-Re-pzy">
-                            <rect key="frame" x="319" y="452" width="95" height="144"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="SuI-Re-pzy" secondAttribute="height" multiplier="95:144" id="ewn-wW-mGd"/>
-                            </constraints>
-                        </imageView>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5j4-AX-VrT">
                             <rect key="frame" x="0.0" y="196" width="414" height="700"/>
                             <subviews>
@@ -587,6 +568,25 @@
                                 <constraint firstItem="CPE-GX-UqE" firstAttribute="top" secondItem="Eqy-K3-5tk" secondAttribute="top" id="gxu-H7-tcW"/>
                             </constraints>
                         </view>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mammon1" translatesAutoresizingMaskIntoConstraints="NO" id="6r7-hV-H7p">
+                            <rect key="frame" x="32" y="50" width="350" height="196"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="196" id="846-4s-83D"/>
+                                <constraint firstAttribute="width" constant="350" id="Za1-m3-dnc"/>
+                            </constraints>
+                        </imageView>
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_redenvelope_click" translatesAutoresizingMaskIntoConstraints="NO" id="KM6-iW-BSr">
+                            <rect key="frame" x="0.0" y="271.5" width="97" height="144"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="KM6-iW-BSr" secondAttribute="height" multiplier="97:144" id="LQw-e9-kp5"/>
+                            </constraints>
+                        </imageView>
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_redenvelope_click" translatesAutoresizingMaskIntoConstraints="NO" id="SuI-Re-pzy">
+                            <rect key="frame" x="319" y="452" width="95" height="144"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="SuI-Re-pzy" secondAttribute="height" multiplier="95:144" id="ewn-wW-mGd"/>
+                            </constraints>
+                        </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvp-tm-3gR">
                             <rect key="frame" x="354" y="48" width="40" height="40"/>
                             <constraints>
