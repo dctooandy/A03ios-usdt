@@ -28,6 +28,9 @@
 #import "ApiErrorCodeConst.h"
 #import "UILabel+Gradient.h"
 #import "CNPushRequest.h"
+#import "BRPickerView.h"
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+Add.h"
 
 @interface CNLoginRegisterVC () <CNAccountInputViewDelegate, CNCodeInputViewDelegate, HYTapHanImgCodeViewDelegate, UIScrollViewDelegate>
 
@@ -183,6 +186,28 @@
 /// DEBUG 环境 点击三次切换Domain
 - (IBAction)switchEnvironmentTap:(UITapGestureRecognizer *)sender {
     [[HYNetworkConfigManager shareManager] switchEnvirnment];
+}
+- (IBAction)showPickerViewAction:(id)sender {
+    BOOL isSetting = [[NSUserDefaults standardUserDefaults] boolForKey:RedPacketCustomSetting];
+    if (isSetting == YES)
+    {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:RedPacketCustomSetting];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [MBProgressHUD showSuccessWithTime:@"已为您将红包雨时间定为\n接口回传为主" toView:nil duration:2];
+    }else
+    {
+        NSDate *minDate = [NSDate br_setYear:2018 month:01 day:01 hour:0 minute:0];
+        NSDate *maxDate = [NSDate br_setYear:2030 month:12 day:31 hour:23 minute:59];
+        
+        [BRDatePickerView showDatePickerWithTitle:@"红包雨时间" dateType:BRDatePickerModeHM defaultSelValue:nil minDate:minDate maxDate:maxDate isAutoSelect:NO themeColor:nil resultBlock:^(NSString *selectValue) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:RedPacketCustomSetting];
+            [[NSUserDefaults standardUserDefaults] setObject:selectValue forKey:@"RainningSelectValue"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [MBProgressHUD showSuccessWithTime:@"已为您将红包雨时间定为自定义" toView:nil duration:2];
+        } cancelBlock:^{
+            NSLog(@"点击了背景或取消按钮");
+        }];
+    }
 }
 
 /// 切换页面

@@ -658,11 +658,11 @@
         [self closeGiftBagAction:nil];
     }else
     {
-        // 集福卡开启
-        [self showCardsButtonSetHidden:NO];
         [self showOpenGiftBagButton];// 显示集幅卡按钮
         [self autoOpenGiftBagAction];// 自动打开红包袋
     }
+    // 集福卡开启
+    [self showCardsButtonSetHidden:NO];
     // 背景图置换
     [self changeBGImageViewWithStyle:RedPocketsViewResult];
 }

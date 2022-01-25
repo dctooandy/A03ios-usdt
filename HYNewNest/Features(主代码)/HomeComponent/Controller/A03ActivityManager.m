@@ -36,10 +36,26 @@ static A03ActivityManager * sharedSingleton;
     [RedPacketsRequest getRainInfoTask:^(id responseObj, NSString *errorMsg) {
         weakSelf.redPacketInfoModel = [RedPacketsInfoModel cn_parse:responseObj];
         weakSelf.redPacketInfoModel.isDev = NO;
-//        weakSelf.redPacketInfoModel.firstStartAt = @"10:00:00";
-//        weakSelf.redPacketInfoModel.firstEndAt = @"10:01:00";
-//        weakSelf.redPacketInfoModel.secondStartAt = @"10:03:00";
-//        weakSelf.redPacketInfoModel.secondEndAt = @"10:04:00";
+#ifdef DEBUG
+        BOOL isRainningSetting = [[NSUserDefaults standardUserDefaults] boolForKey:RedPacketCustomSetting];
+        if (isRainningSetting == YES)
+        {
+            NSString *selectString = [[NSUserDefaults standardUserDefaults] objectForKey:RedPacketRainningSelectValue];
+            NSArray * timeArray = [selectString componentsSeparatedByString:@":"];
+            int firstStartHour = [[timeArray firstObject] intValue];
+            int firstStartMins = [[timeArray lastObject] intValue];
+            int firstEndHour = (firstStartMins + 1) < 60 ? firstStartHour : (firstStartHour + 1);
+            int firstEndMins = (firstStartMins + 1) < 60 ? (firstStartMins + 1) : 0;
+            int secondStartHour = (firstEndMins + 1 < 60 ? firstEndHour : (firstEndHour + 1));
+            int secondStartMins = firstEndMins + 1;
+            int secondEndHour = (secondStartMins + 1 < 60 ? secondStartHour : (secondStartHour + 1));
+            int secondEndMins = secondStartMins + 1;
+            weakSelf.redPacketInfoModel.firstStartAt = [NSString stringWithFormat:@"%d:%d:00",firstStartHour,firstStartMins];
+            weakSelf.redPacketInfoModel.firstEndAt =  [NSString stringWithFormat:@"%d:%d:00",firstEndHour,firstEndMins];
+            weakSelf.redPacketInfoModel.secondStartAt =  [NSString stringWithFormat:@"%d:%d:00",secondStartHour,secondStartMins];
+            weakSelf.redPacketInfoModel.secondEndAt =  [NSString stringWithFormat:@"%d:%d:00",secondEndHour,secondEndMins];
+        }
+#endif
         [weakSelf serverTime:^(NSString *timeStr) {
             if (timeStr.length > 0)
             {
