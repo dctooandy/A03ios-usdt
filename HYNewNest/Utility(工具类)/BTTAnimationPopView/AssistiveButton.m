@@ -62,16 +62,18 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
     if (self) {
         self.isRainning = NO;
         UIImage * closeImage = [UIImage imageNamed:@"assisClose"];
-        CGFloat assistiveBtnHeight = 190 + 30;
-        CGFloat loginBtnViewHeight = 87;
+        float defaultWidth = SCREEN_WIDTH / 3.0;
+        float defaultHeight = defaultWidth * 1.05;
+        CGFloat assistiveBtnHeight = defaultHeight + 30;
+        CGFloat loginBtnViewHeight = 0;
         CGFloat postionY = SCREEN_HEIGHT - kTabbarHeight - assistiveBtnHeight/2 - loginBtnViewHeight;
-        CGPoint position = CGPointMake( assistiveBtnHeight/2 + 10, postionY);
-        self.mainFrame = CGRectMake(position.x, position.y, 180, 190);
+        CGPoint position = CGPointMake( assistiveBtnHeight/2.5 + 10, postionY);
+        self.mainFrame = CGRectMake(position.x, position.y, defaultHeight, defaultHeight);
         self.superViewRelativePosition = position;
         
         //main Button
 //        self.powerButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height)];
-        self.powerButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 180, 190)];
+        self.powerButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, defaultWidth, defaultHeight)];
         [self.powerButton setBackgroundImage:backgroundImage forState:UIControlStateNormal];
         self.powerButton.tag = 0;
         self.powerButton.adjustsImageWhenHighlighted = NO;
@@ -79,7 +81,7 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
         [self addSubview:_powerButton];
         
 //        UIButton * closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(backgroundImage.size.width-closeImage.size.width, 0, closeImage.size.width, closeImage.size.height)];
-        UIButton * closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(180 - 30, 0, 30, 30)];
+        UIButton * closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(defaultWidth - 30, 0, 30, 30)];
         [closeBtn setBackgroundImage:closeImage forState:UIControlStateNormal];
         [closeBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
         [closeBtn addTarget:self action:@selector(showPickerViewAction) forControlEvents:UIControlEventTouchUpOutside];
@@ -93,7 +95,7 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
 
         countDownLabel.textColor = kHexColorAlpha(0xFFEC85, 1.0);
 
-        countDownLabel.font = [UIFont systemFontOfSize:11];
+        countDownLabel.font = [UIFont systemFontOfSize:9];
 
         countDownLabel.text = @"5天23小时12分30秒";
 
