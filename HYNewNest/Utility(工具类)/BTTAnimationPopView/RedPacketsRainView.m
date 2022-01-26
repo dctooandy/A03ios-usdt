@@ -199,44 +199,7 @@
 //    [self.backToRedPacketsViewBtn setImage:[[UIImage imageNamed:@"navi_back_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateHighlighted];
 //    [self.backToRedPacketsViewBtn.imageView setTintColor:[UIColor whiteColor]];
 }
-- (void)gotoGetIdentify
-{
-    WEAKSELF_DEFINE
-    [RedPacketsRequest getRainIdentifyTask:^(id responseObj, NSString *errorMsg) {
-        weakSelf.redPacketIdentifyModel = [RedPacketsIdentifyModel cn_parse:responseObj];
-        NSString *codeString = weakSelf.redPacketIdentifyModel.code;
-        NSString *messageString = weakSelf.redPacketIdentifyModel.message;
-        if ([codeString isEqual:@"200"])
-        {
-            [[NSUserDefaults standardUserDefaults] setObject:weakSelf.redPacketIdentifyModel.identify forKey:RedPacketIdentify];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-//            weakSelf.viewStyle = RedPocketsViewRainning;
-//            [weakSelf moveLabelToTop]; // 移动倒数LAbel到上面
-//            [weakSelf startRedPackerts]; // 开始下红包雨
-//            [weakSelf.tapGesture setEnabled:YES];
-        }else
-        {
-            //测试用
-//            [[NSUserDefaults standardUserDefaults] setObject:@"asdnsmcls" forKey:RedPacketIdentify];
-//            [[NSUserDefaults standardUserDefaults] synchronize];
-//            weakSelf.viewStyle = RedPocketsViewRainning;
-//            [weakSelf moveLabelToTop]; // 移动倒数LAbel到上面
-//            [weakSelf startRedPackerts]; // 开始下红包雨
-//            [weakSelf.tapGesture setEnabled:YES];
-            // 不成功
-//            [MBProgressHUD showError:messageString toView:nil];
-            [MBProgressHUD showError:@"您暂无抽红包机会" toView:nil];
-//            [self.closeGiftBagButton setHidden:YES];
-//            weakSelf.countdownLab.text = @"";
-//            [[A03ActivityManager sharedInstance] checkTimeRedPacketRainWithCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    int timeout = [PublicMethod countDownIntervalWithDurationTag:YES];
-//                    [weakSelf startTimeWithDuration:timeout];
-//                });
-//            } WithDefaultCompletion:nil];
-        }
-    }];
-}
+
 - (void)rainningAction
 {
     self.viewStyle = RedPocketsViewRainning;
@@ -301,14 +264,7 @@
     });
     dispatch_resume(_timer);
 }
-- (void)fetchPrizeRecords
-{
-    WEAKSELF_DEFINE
-    [RedPacketsRequest getRainInKindPrizeTask:^(id responseObj, NSString *errorMsg) {
-        weakSelf.prizeRecordArray = [PrizeRecordModel cn_parse:responseObj];
-        [weakSelf setupDataForSortArray];
-    }];
-}
+
 - (void)setupDataForSortArray
 {
     if (self.viewStyle != RedPocketsViewRainning)
@@ -1038,22 +994,32 @@
 {
     WEAKSELF_DEFINE
     [self goToOpenBagWithCompletionBlock:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg) {
-            weakSelf.luckyBagModel = [LuckyBagModel cn_parse:responseObj];
-            weakSelf.luckyBagModel.data = [LuckyBagDetailModel cn_parse:responseObj[@"data"]];
-            NSString *codeString = weakSelf.luckyBagModel.code;
-            NSString *messageString = weakSelf.luckyBagModel.message;
-            if ([codeString isEqual:@"200"])
-            {
-                [weakSelf setDataNil];
-                [weakSelf.autoOpenBagTimer invalidate];
-                [weakSelf showBagWithData];
-            }else
-            {
-                [MBProgressHUD showError:messageString toView:nil];
-                [weakSelf setDataNil];
-                [weakSelf.autoOpenBagTimer invalidate];
-                [weakSelf closeGiftBagAction:nil];
+        if (RedPacketIsDev == YES)
+        {
+            weakSelf.luckyBagModel = [LuckyBagModel new];
+            weakSelf.luckyBagModel.data = @[[LuckyBagDetailModel new]];
+            [weakSelf setDataNil];
+            [weakSelf.autoOpenBagTimer invalidate];
+            [weakSelf showBagWithData];
+        }else
+        {
+            if (!errorMsg) {
+                weakSelf.luckyBagModel = [LuckyBagModel cn_parse:responseObj];
+                weakSelf.luckyBagModel.data = [LuckyBagDetailModel cn_parse:responseObj[@"data"]];
+                NSString *codeString = weakSelf.luckyBagModel.code;
+                NSString *messageString = weakSelf.luckyBagModel.message;
+                if ([codeString isEqual:@"200"])
+                {
+                    [weakSelf setDataNil];
+                    [weakSelf.autoOpenBagTimer invalidate];
+                    [weakSelf showBagWithData];
+                }else
+                {
+                    [MBProgressHUD showError:messageString toView:nil];
+                    [weakSelf setDataNil];
+                    [weakSelf.autoOpenBagTimer invalidate];
+                    [weakSelf closeGiftBagAction:nil];
+                }
             }
         }
     }];
@@ -1068,7 +1034,10 @@
         completionBlock(nil,nil);
     }else
     {
-        [RedPacketsRequest getRainOpenTask:^(id responseObj, NSString *errorMsg) {
+        NSMutableDictionary *params = @{}.mutableCopy;
+        params[@"identify"] = identifyString;
+        params[@"times"] = numString;
+        [self fetchOpenBagDataWithParameters:params WithBlock:^(id responseObj, NSString *errorMsg) {
             completionBlock(responseObj,errorMsg);
         }];
     }
@@ -1206,24 +1175,6 @@
 //    [self switchWithView:self.cardsBonusView withPosition:RedPocketsViewToBack];
 //    }
 }
-- (void)fetchGroupPrizeNameData:(dispatch_group_t)group
-{
-    WEAKSELF_DEFINE
-    [RedPacketsRequest getRainGroupTask:^(id responseObj, NSString *errorMsg) {
-        weakSelf.prizeNamesArray = [PrizeNamesModel cn_parse:responseObj];
-        [weakSelf setupGiftBannerGroup];
-    }];
-    dispatch_group_leave(group);
-}
-- (void)fetchBlessingCardData:(dispatch_group_t)group
-{
-    WEAKSELF_DEFINE
-    [RedPacketsRequest getRainQueryTask:^(id responseObj, NSString *errorMsg) {
-        weakSelf.giftCardArray = [GiftCardModel cn_parse:responseObj];
-        [weakSelf setupCardsAmounts];
-    }];
-    dispatch_group_leave(group);
-}
 
 - (IBAction)openGiftBagAction{
     [self fetchOpenLuckyBagData];
@@ -1248,22 +1199,7 @@
     } WithDefaultCompletion:nil];
 }
 - (IBAction)combineCardsAction:(id)sender {
-    WEAKSELF_DEFINE
-    [RedPacketsRequest getRainFusingTask:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]])
-        {
-            NSString *codeString = responseObj[@"code"];
-            NSString *messageString = responseObj[@"message"];
-            if ([codeString isEqual:@"200"])
-            {
-                weakSelf.fusingBlessingCardModel = [FusingBlessingCardModel cn_parse:responseObj[@"data"]];
-                [self showGiftViewWithData:weakSelf.fusingBlessingCardModel.prizeName];
-            }else
-            {
-                [MBProgressHUD showError:messageString toView:nil];
-            }
-        }
-    }];
+    [self fetchFusingData];
 }
 - (IBAction)dismissGiftView:(id)sender {
     
@@ -1323,4 +1259,83 @@
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:RedPacketNum];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+#pragma mark Fetch Data
+- (void)fetchPrizeRecords
+{
+    WEAKSELF_DEFINE
+    [RedPacketsRequest getRainInKindPrizeTask:^(id responseObj, NSString *errorMsg) {
+        weakSelf.prizeRecordArray = [PrizeRecordModel cn_parse:responseObj];
+        [weakSelf setupDataForSortArray];
+    }];
+}
+- (void)gotoGetIdentify
+{
+    WEAKSELF_DEFINE
+    [RedPacketsRequest getRainIdentifyTask:^(id responseObj, NSString *errorMsg) {
+        weakSelf.redPacketIdentifyModel = [RedPacketsIdentifyModel cn_parse:responseObj];
+        NSString *codeString = weakSelf.redPacketIdentifyModel.code;
+        if ([codeString isEqual:@"200"])
+        {
+            [[NSUserDefaults standardUserDefaults] setObject:weakSelf.redPacketIdentifyModel.identify forKey:RedPacketIdentify];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }else
+        {
+            if (RedPacketIsDev == YES)
+            {
+                //测试用
+                [[NSUserDefaults standardUserDefaults] setObject:@"asdnsmcls" forKey:RedPacketIdentify];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                [MBProgressHUD showError:@"您暂有抽红包机会" toView:nil];
+            }else
+            {
+                // 不成功
+                [MBProgressHUD showError:@"您暂无抽红包机会" toView:nil];
+            }
+        }
+    }];
+}
+- (void)fetchOpenBagDataWithParameters:(NSMutableDictionary *)params WithBlock:(HandlerBlock)completionBlock
+{
+    [RedPacketsRequest getRainOpenTask:^(id responseObj, NSString *errorMsg) {
+        completionBlock(responseObj,errorMsg);
+    }];
+}
+- (void)fetchGroupPrizeNameData:(dispatch_group_t)group
+{
+    WEAKSELF_DEFINE
+    [RedPacketsRequest getRainGroupTask:^(id responseObj, NSString *errorMsg) {
+        weakSelf.prizeNamesArray = [PrizeNamesModel cn_parse:responseObj];
+        [weakSelf setupGiftBannerGroup];
+    }];
+    dispatch_group_leave(group);
+}
+- (void)fetchBlessingCardData:(dispatch_group_t)group
+{
+    WEAKSELF_DEFINE
+    [RedPacketsRequest getRainQueryTask:^(id responseObj, NSString *errorMsg) {
+        weakSelf.giftCardArray = [GiftCardModel cn_parse:responseObj];
+        [weakSelf setupCardsAmounts];
+    }];
+    dispatch_group_leave(group);
+}
+- (void)fetchFusingData
+{
+    WEAKSELF_DEFINE
+    [RedPacketsRequest getRainFusingTask:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]])
+        {
+            NSString *codeString = responseObj[@"code"];
+            NSString *messageString = responseObj[@"message"];
+            if ([codeString isEqual:@"200"])
+            {
+                weakSelf.fusingBlessingCardModel = [FusingBlessingCardModel cn_parse:responseObj[@"data"]];
+                [self showGiftViewWithData:weakSelf.fusingBlessingCardModel.prizeName];
+            }else
+            {
+                [MBProgressHUD showError:messageString toView:nil];
+            }
+        }
+    }];
+}
+
 @end

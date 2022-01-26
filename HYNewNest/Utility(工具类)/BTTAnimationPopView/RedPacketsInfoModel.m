@@ -111,6 +111,26 @@
     _secondEndAt = secondEndAt;
 }
 
+- (NSString *)firstRainStatus
+{
+    if (_isDev == YES)
+    {
+        return self.isRainningTime ? @"1":@"2";
+    }else
+    {
+        return _firstRainStatus;
+    }
+}
+- (NSString *)secondRainStatus
+{
+    if (_isDev == YES)
+    {
+        return self.isRainningTime ? @"1":@"2";
+    }else
+    {
+        return _secondRainStatus;
+    }
+}
 - (NSString*)leftTime
 {
     if (_isDev)
