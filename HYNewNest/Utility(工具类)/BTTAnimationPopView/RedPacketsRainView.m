@@ -1080,7 +1080,7 @@
     }
     if ([imageData containsString:@"PS5"])
     {
-        imageString = @"img_PS5";
+        imageString = @"popup_price5";
     }
     if ([imageData containsString:@"苹果"])
     {
@@ -1317,22 +1317,28 @@
 }
 - (void)fetchFusingData
 {
-    WEAKSELF_DEFINE
-    [RedPacketsRequest getRainFusingTask:^(id responseObj, NSString *errorMsg) {
-        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]])
-        {
-            NSString *codeString = responseObj[@"code"];
-            NSString *messageString = responseObj[@"message"];
-            if ([codeString isEqual:@"200"])
+    if (RedPacketIsDev == YES)
+    {
+        [self showGiftViewWithData:@"PS5"];
+    }else
+    {
+        WEAKSELF_DEFINE
+        [RedPacketsRequest getRainFusingTask:^(id responseObj, NSString *errorMsg) {
+            if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]])
             {
-                weakSelf.fusingBlessingCardModel = [FusingBlessingCardModel cn_parse:responseObj[@"data"]];
-                [self showGiftViewWithData:weakSelf.fusingBlessingCardModel.prizeName];
-            }else
-            {
-                [MBProgressHUD showError:messageString toView:nil];
+                NSString *codeString = responseObj[@"code"];
+                NSString *messageString = responseObj[@"message"];
+                if ([codeString isEqual:@"200"])
+                {
+                    weakSelf.fusingBlessingCardModel = [FusingBlessingCardModel cn_parse:responseObj[@"data"]];
+                    [self showGiftViewWithData:weakSelf.fusingBlessingCardModel.prizeName];
+                }else
+                {
+                    [MBProgressHUD showError:messageString toView:nil];
+                }
             }
-        }
-    }];
+        }];
+    }
 }
 
 @end
