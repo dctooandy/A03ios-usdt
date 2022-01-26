@@ -1135,22 +1135,8 @@
 }
 // 开启集福卡画面
 - (IBAction)showCardsBonus:(UIButton*)sender {
-//    [self setupGiftBannerGroup];
-//    [self setupCardsAmounts];
-//    [UIView animateWithDuration:0.3 animations:^{
-//        [self.cardsBonusView setAlpha:(sender.tag == 1) ? 1.0 : 0.0];
-//        [self.rainBackgroundView setAlpha:(sender.tag == 1) ? 0.0 : 1.0];
-//        [self.labelBackgroundView setAlpha:(sender.tag == 1) ? 0.0 : 1.0];
-//        [self dismissRulesView];
-//    }];
     WEAKSELF_DEFINE
-    dispatch_group_t group = dispatch_group_create();
-    dispatch_queue_t queue = dispatch_queue_create("fetchDatas", DISPATCH_QUEUE_CONCURRENT);
-    dispatch_group_enter(group);
-    [weakSelf fetchBlessingCardData:group];
-    dispatch_group_enter(group);
-    [weakSelf fetchGroupPrizeNameData:group];
-    dispatch_group_notify(group,queue, ^{
+    [self fetchCombineDatasForFusingWithComplete:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.3 animations:^{
                 [weakSelf.cardsBonusView setAlpha:(sender.tag == 1) ? 1.0 : 0.0];
@@ -1159,7 +1145,7 @@
                 [weakSelf dismissRulesView];
             }];
         });
-    });
+    }];
 
 //    if (sender.tag == 1)
 //    {
@@ -1173,7 +1159,23 @@
 //    [self switchWithView:self.cardsBonusView withPosition:RedPocketsViewToBack];
 //    }
 }
-
+- (void)fetchCombineDatasForFusingWithComplete:(nullable void(^)(void))complete
+{
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_queue_create("fetchDatas", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_group_enter(group);
+    [self fetchBlessingCardData:group];
+    dispatch_group_enter(group);
+    [self fetchGroupPrizeNameData:group];
+    dispatch_group_notify(group,queue, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (complete)
+            {
+                complete();
+            }
+        });
+    });
+}
 - (IBAction)openGiftBagAction{
     [self fetchOpenLuckyBagData];
 }
@@ -1319,7 +1321,8 @@
 {
     if (RedPacketIsDev == YES)
     {
-        [self showGiftViewWithData:@"PS5"];
+        [self fetchCombineDatasForFusingWithComplete:nil];
+        [self showGiftViewWithData:@"苹果MacBook13英寸M1芯片256G"];
     }else
     {
         WEAKSELF_DEFINE
@@ -1331,7 +1334,8 @@
                 if ([codeString isEqual:@"200"])
                 {
                     weakSelf.fusingBlessingCardModel = [FusingBlessingCardModel cn_parse:responseObj[@"data"]];
-                    [self showGiftViewWithData:weakSelf.fusingBlessingCardModel.prizeName];
+                    [weakSelf fetchCombineDatasForFusingWithComplete:nil];
+                    [weakSelf showGiftViewWithData:weakSelf.fusingBlessingCardModel.prizeName];
                 }else
                 {
                     [MBProgressHUD showError:messageString toView:nil];

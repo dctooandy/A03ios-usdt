@@ -362,8 +362,8 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="抽中索尼PS5游戏机 国行光驱版" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fl3-dA-t0Y">
-                                    <rect key="frame" x="92.5" y="266.5" width="229.5" height="19.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="抽中索尼PS5游戏机 国行光驱版" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fl3-dA-t0Y">
+                                    <rect key="frame" x="68" y="266.5" width="278" height="19.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -372,6 +372,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="DRu-W9-Wj0" firstAttribute="centerX" secondItem="KTS-jC-bbb" secondAttribute="centerX" id="31T-82-mjM"/>
+                                <constraint firstItem="Fl3-dA-t0Y" firstAttribute="trailing" secondItem="hCt-iT-F6e" secondAttribute="trailing" id="4M4-4j-Vgd"/>
                                 <constraint firstItem="DRu-W9-Wj0" firstAttribute="width" secondItem="KTS-jC-bbb" secondAttribute="width" multiplier="0.357488" id="78V-h3-7FK"/>
                                 <constraint firstItem="wyj-C7-c1e" firstAttribute="centerY" secondItem="hCt-iT-F6e" secondAttribute="centerY" multiplier="0.7" id="Aw5-Oz-Owi"/>
                                 <constraint firstItem="hCt-iT-F6e" firstAttribute="centerX" secondItem="KTS-jC-bbb" secondAttribute="centerX" id="Dmq-wf-z6D"/>
@@ -383,6 +384,7 @@
                                 <constraint firstItem="wyj-C7-c1e" firstAttribute="centerX" secondItem="KTS-jC-bbb" secondAttribute="centerX" id="cI8-re-rKa"/>
                                 <constraint firstItem="wyj-C7-c1e" firstAttribute="leading" secondItem="KTS-jC-bbb" secondAttribute="leading" id="cnU-JE-4ZN"/>
                                 <constraint firstItem="hCt-iT-F6e" firstAttribute="width" secondItem="KTS-jC-bbb" secondAttribute="width" multiplier="0.671498" id="g9O-VU-KfZ"/>
+                                <constraint firstItem="Fl3-dA-t0Y" firstAttribute="leading" secondItem="hCt-iT-F6e" secondAttribute="leading" id="nnD-am-3NG"/>
                                 <constraint firstItem="MoP-IR-Axi" firstAttribute="top" secondItem="hCt-iT-F6e" secondAttribute="bottom" constant="30" id="o7y-pc-ieV"/>
                                 <constraint firstItem="Fl3-dA-t0Y" firstAttribute="centerX" secondItem="wyj-C7-c1e" secondAttribute="centerX" id="p4B-4c-DfS"/>
                                 <constraint firstItem="DRu-W9-Wj0" firstAttribute="centerY" secondItem="hCt-iT-F6e" secondAttribute="centerY" multiplier="1.09" id="rFO-aT-vPR"/>
