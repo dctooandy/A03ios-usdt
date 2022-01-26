@@ -915,8 +915,6 @@
         {
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
-                [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%ld",weakSelf.fetchRedPacketsNum] forKey:RedPacketNum];
-                [[NSUserDefaults standardUserDefaults] synchronize];
                 [weakSelf endAnimation]; // 红包雨动画结束
             });
         }
@@ -1066,19 +1064,19 @@
     NSString *imageString = @"";
     if ([imageData containsString:@"海尔除螨仪"])
     {
-        imageString = @"img_HZC302W";
+        imageString = @"popup_price6";
     }
     if ([imageData containsString:@"SKG颈部"])
     {
-        imageString = @"img_SKG";
+        imageString = @"popup_price2";
     }
     if ([imageData containsString:@"奥玛仕"])
     {
-        imageString = @"img_401as";
+        imageString = @"popup_price4";
     }
     if ([imageData containsString:@"戴森吸"])
     {
-        imageString = @"img_dysonV10";
+        imageString = @"popup_price3";
     }
     if ([imageData containsString:@"PS5"])
     {
@@ -1086,15 +1084,15 @@
     }
     if ([imageData containsString:@"苹果"])
     {
-        imageString = @"img_MacBook13";
+        imageString = @"popup_price1";
     }
     if ([imageData containsString:@"三星"])
     {
-        imageString = @"img_GalaxyZFold3";
+        imageString = @"popup_price7";
     }
     if ([imageData containsString:@"a7m4"])
     {
-        imageString = @"img_sonya7m4";
+        imageString = @"popup_price8";
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         self.giftImageView.image = ImageNamed(imageString);
@@ -1192,11 +1190,10 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             int timeout = [PublicMethod countDownIntervalWithDurationTag:YES];
             [weakSelf startTimeWithDuration:timeout];
-//            [weakSelf setupDataForSortArray];
-            [weakSelf fetchPrizeRecords];
-            [weakSelf moveLabelToCenter];
         });
     } WithDefaultCompletion:nil];
+    [self fetchPrizeRecords];
+    [self moveLabelToCenter];
 }
 - (IBAction)combineCardsAction:(id)sender {
     [self fetchFusingData];
