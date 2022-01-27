@@ -86,17 +86,17 @@
 }
 - (BOOL)isRainningTime
 {
-    if ([self.firstRainStatus isEqualToString:@"1"] || [self.secondRainStatus isEqualToString:@"1"])
+    if (_isDev == YES)
     {
-        return YES;
+        return [self currentTimeCheckRainningTime];
     }else
     {
-        if ([self currentTimeCheckRainningTime] == YES)
+        if ([self.firstRainStatus isEqualToString:@"1"] || [self.secondRainStatus isEqualToString:@"1"])
         {
             return YES;
         }else
         {
-            return NO;
+            return [self currentTimeCheckRainningTime];
         }
     }
 }
