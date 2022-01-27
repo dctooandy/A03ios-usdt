@@ -50,6 +50,7 @@ static A03ActivityManager * sharedSingleton;
             int secondStartMins = firstEndMins + 1;
             int secondEndHour = (secondStartMins + 1 < 60 ? secondStartHour : (secondStartHour + 1));
             int secondEndMins = secondStartMins + 1;
+            weakSelf.redPacketInfoModel.isDev = YES;
             weakSelf.redPacketInfoModel.firstStartAt = [NSString stringWithFormat:@"%d:%d:00",firstStartHour,firstStartMins];
             weakSelf.redPacketInfoModel.firstEndAt =  [NSString stringWithFormat:@"%d:%d:00",firstEndHour,firstEndMins];
             weakSelf.redPacketInfoModel.secondStartAt =  [NSString stringWithFormat:@"%d:%d:00",secondStartHour,secondStartMins];

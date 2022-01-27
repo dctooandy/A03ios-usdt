@@ -68,6 +68,7 @@
 // 普通参数
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) NSTimer *autoOpenBagTimer;
+@property (nonatomic, strong) dispatch_source_t rainTimer;
 @property (nonatomic, strong) CALayer *moveLayer;
 @property (nonatomic, strong) CALayer *bagMoveLayer;
 @property (nonatomic, assign) NSInteger selectedRedPacketNum;
@@ -608,7 +609,7 @@
     NSString *numString = [[NSUserDefaults standardUserDefaults] objectForKey:RedPacketNum];
     if (KIsEmptyString(identifyString) || KIsEmptyString(numString))
     {
-        [MBProgressHUD showSuccess:@"谢谢参与" toView:nil];
+        [MBProgressHUD showSuccess:@"谢谢参与" toView:self];
         [self.autoOpenBagTimer invalidate];
         [self closeGiftBagAction:nil];
     }else
@@ -908,12 +909,12 @@
     weakSelf(weakSelf)
     __block int timeout = RedPacketCountDown;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
-    dispatch_source_set_event_handler(_timer, ^{
+    _rainTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(self.rainTimer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(self.rainTimer, ^{
         if ( timeout <= 0 )
         {
-            dispatch_source_cancel(_timer);
+            dispatch_source_cancel(weakSelf.rainTimer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf endAnimation]; // 红包雨动画结束
             });
@@ -935,7 +936,7 @@
             timeout--;
         }
     });
-    dispatch_resume(_timer);
+    dispatch_resume(_rainTimer);
 }
 - (void)changeBagColor
 {
@@ -1015,7 +1016,7 @@
                     [weakSelf showBagWithData];
                 }else
                 {
-                    [MBProgressHUD showError:messageString toView:nil];
+                    [MBProgressHUD showError:messageString toView:self];
                     [weakSelf setDataNil];
                     [weakSelf.autoOpenBagTimer invalidate];
                     [weakSelf closeGiftBagAction:nil];
@@ -1288,11 +1289,11 @@
                 //测试用
                 [[NSUserDefaults standardUserDefaults] setObject:@"asdnsmcls" forKey:RedPacketIdentify];
                 [[NSUserDefaults standardUserDefaults] synchronize];
-                [MBProgressHUD showError:@"您暂有抽红包机会" toView:nil];
+                [MBProgressHUD showError:@"您暂有抽红包机会" toView:self];
             }else
             {
                 // 不成功
-                [MBProgressHUD showError:@"您暂无抽红包机会" toView:nil];
+                [MBProgressHUD showError:@"您暂无抽红包机会" toView:self];
             }
         }
     }];
@@ -1345,7 +1346,7 @@
                     [weakSelf showGiftViewWithData:weakSelf.fusingBlessingCardModel.prizeName];
                 }else
                 {
-                    [MBProgressHUD showError:messageString toView:nil];
+                    [MBProgressHUD showError:messageString toView:self];
                 }
             }
         }];
@@ -1356,6 +1357,10 @@
     if (self.autoOpenBagTimer)
     {
         [self.autoOpenBagTimer invalidate];
+    }
+    if (self.rainTimer)
+    {
+        dispatch_source_cancel(self.rainTimer);
     }
 }
 @end
