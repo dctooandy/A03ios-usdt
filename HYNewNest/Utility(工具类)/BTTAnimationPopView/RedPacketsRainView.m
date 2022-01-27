@@ -984,6 +984,7 @@
         // 如果有存在cache
         [self goToOpenBagWithCompletionBlock:^(id responseObj, NSString *errorMsg) {
             [weakSelf setDataNil];
+            [MBProgressHUD hideHUDForView:self animated:YES];
             completionBlock();
         }];
     }
@@ -992,6 +993,7 @@
 {
     WEAKSELF_DEFINE
     [self goToOpenBagWithCompletionBlock:^(id responseObj, NSString *errorMsg) {
+        [MBProgressHUD hideHUDForView:self animated:YES];
         if (RedPacketIsDev == YES)
         {
             weakSelf.luckyBagModel = [LuckyBagModel new];
@@ -1135,9 +1137,11 @@
 }
 // 开启集福卡画面
 - (IBAction)showCardsBonus:(UIButton*)sender {
+    [MBProgressHUD showLoadingSingleInView:self animated:YES];
     WEAKSELF_DEFINE
     [self fetchCombineDatasForFusingWithComplete:^{
         dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self animated:YES];
             [UIView animateWithDuration:0.3 animations:^{
                 [weakSelf.cardsBonusView setAlpha:(sender.tag == 1) ? 1.0 : 0.0];
                 [weakSelf.rainBackgroundView setAlpha:(sender.tag == 1) ? 0.0 : 1.0];
@@ -1295,6 +1299,7 @@
 }
 - (void)fetchOpenBagDataWithParameters:(NSMutableDictionary *)params WithBlock:(HandlerBlock)completionBlock
 {
+    [MBProgressHUD showLoadingSingleInView:self animated:YES];
     [RedPacketsRequest getRainOpenTask:^(id responseObj, NSString *errorMsg) {
         completionBlock(responseObj,errorMsg);
     }];
@@ -1325,8 +1330,10 @@
         [self showGiftViewWithData:@"苹果MacBook13英寸M1芯片256G"];
     }else
     {
+        [MBProgressHUD showLoadingSingleInView:self animated:YES];
         WEAKSELF_DEFINE
         [RedPacketsRequest getRainFusingTask:^(id responseObj, NSString *errorMsg) {
+            [MBProgressHUD hideHUDForView:self animated:NO];
             if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]])
             {
                 NSString *codeString = responseObj[@"code"];
@@ -1344,5 +1351,11 @@
         }];
     }
 }
-
+- (void)didMoveToWindow
+{
+    if (self.autoOpenBagTimer)
+    {
+        [self.autoOpenBagTimer invalidate];
+    }
+}
 @end

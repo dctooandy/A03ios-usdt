@@ -14,7 +14,7 @@
 {
     NSMutableArray * resultArray = [[NSMutableArray alloc] initWithObjects:@"共计:0￥",@"0张",@"0张",@"0张",@"0张",@"0张",@"0张", nil];
     for (LuckyBagDetailModel * subModel in self.data) {
-        if ([subModel.amount isEqualToString:@"0"])
+        if (![subModel.count isEqualToString:@"0"])
         {
             // 福卡红包
             if ([subModel.prizeName isEqualToString:@"龙腾虎跃"])

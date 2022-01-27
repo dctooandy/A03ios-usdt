@@ -160,7 +160,7 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
             int leftTime = timeout - (dInt * 3600 * 24);
             int sInt = (int)leftTime % 60;              //剩馀秒数
             NSString * titleStr;
-            titleStr = [NSString stringWithFormat:@"红包雨剩馀%d秒",sInt];
+            titleStr = [NSString stringWithFormat:@"红包雨剩余%d秒",sInt];
             dispatch_async(dispatch_get_main_queue(), ^{
                 weakSelf.countdownLab.text = titleStr;
             });
