@@ -1308,7 +1308,8 @@ void ProviderReleaseData (void *info, const void *data, size_t size){
 {
     BOOL isBeforeDuration = [[[[A03ActivityManager sharedInstance] redPacketInfoModel] preStatus]  isEqual: @"1"] ? YES:NO;
     BOOL isActivityDuration = [[[[A03ActivityManager sharedInstance] redPacketInfoModel] status]  isEqual: @"1"] ? YES:NO;
-    return @[[NSNumber numberWithBool:isBeforeDuration] ,[NSNumber numberWithBool:isActivityDuration]];
+    BOOL isRainningTime = [[[A03ActivityManager sharedInstance] redPacketInfoModel] isRainningTime];
+    return @[[NSNumber numberWithBool:isBeforeDuration] ,[NSNumber numberWithBool:isActivityDuration],[NSNumber numberWithBool:isRainningTime]];
 }
 //返回下一场次红包雨的时间
 +(int)countDownIntervalWithDurationTag:(BOOL)isActivityDuration

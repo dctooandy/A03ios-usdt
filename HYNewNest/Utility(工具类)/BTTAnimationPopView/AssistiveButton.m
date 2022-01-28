@@ -9,12 +9,16 @@
 #import "AssistiveButton.h"
 #import "PublicMethod.h"
 #import "A03ActivityManager.h"
+#import "BRPickerView.h"
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+Add.h"
 typedef void (^TimeCompleteBlock)(NSString * timeStr);
 @interface AssistiveButton () <CAAnimationDelegate>
 @property (strong, nonatomic) UIDynamicAnimator *animator;
 @property (weak, nonatomic) UILabel *countdownLab;
 @property (assign, nonatomic) BOOL isRainning;
 @property (nonatomic, strong) dispatch_source_t assistiveTimer;      //位置弹窗计时器
+@property (nonatomic, strong) dispatch_source_t rainningTimer;      //下雨时计时器
 @end
 
 @implementation AssistiveButton
@@ -58,16 +62,18 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
     if (self) {
         self.isRainning = NO;
         UIImage * closeImage = [UIImage imageNamed:@"assisClose"];
-        CGFloat assistiveBtnHeight = 190 + 30;
-        CGFloat loginBtnViewHeight = 87;
+        float defaultWidth = SCREEN_WIDTH / 3.0;
+        float defaultHeight = defaultWidth * 1.05;
+        CGFloat assistiveBtnHeight = defaultHeight + 30;
+        CGFloat loginBtnViewHeight = 0;
         CGFloat postionY = SCREEN_HEIGHT - kTabbarHeight - assistiveBtnHeight/2 - loginBtnViewHeight;
-        CGPoint position = CGPointMake( assistiveBtnHeight/2 + 10, postionY);
-        self.mainFrame = CGRectMake(position.x, position.y, 180, 190);
+        CGPoint position = CGPointMake( assistiveBtnHeight/2.5 + 10, postionY);
+        self.mainFrame = CGRectMake(position.x, position.y, defaultHeight, defaultHeight);
         self.superViewRelativePosition = position;
         
         //main Button
 //        self.powerButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height)];
-        self.powerButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 180, 190)];
+        self.powerButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, defaultWidth, defaultHeight)];
         [self.powerButton setBackgroundImage:backgroundImage forState:UIControlStateNormal];
         self.powerButton.tag = 0;
         self.powerButton.adjustsImageWhenHighlighted = NO;
@@ -75,9 +81,10 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
         [self addSubview:_powerButton];
         
 //        UIButton * closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(backgroundImage.size.width-closeImage.size.width, 0, closeImage.size.width, closeImage.size.height)];
-        UIButton * closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(180 - 30, 0, 30, 30)];
+        UIButton * closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(defaultWidth - 30, 0, 30, 30)];
         [closeBtn setBackgroundImage:closeImage forState:UIControlStateNormal];
         [closeBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+        [closeBtn addTarget:self action:@selector(showPickerViewAction) forControlEvents:UIControlEventTouchUpOutside];
         closeBtn.tag = 1;
         closeBtn.adjustsImageWhenHighlighted = NO;
         [self addSubview:closeBtn];
@@ -88,7 +95,7 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
 
         countDownLabel.textColor = kHexColorAlpha(0xFFEC85, 1.0);
 
-        countDownLabel.font = [UIFont systemFontOfSize:11];
+        countDownLabel.font = [UIFont systemFontOfSize:9];
 
         countDownLabel.text = @"5天23小时12分30秒";
 
@@ -116,8 +123,12 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
 }
 -(void)refetchTimeForRainning
 {
-    if (_assistiveTimer) dispatch_source_cancel(_assistiveTimer);
-    [self reStartCountTime];
+    if (![[[A03ActivityManager sharedInstance] redPacketInfoModel] isRainningTime])
+    {
+        if (_assistiveTimer) dispatch_source_cancel(_assistiveTimer);
+        if (_rainningTimer) dispatch_source_cancel(_rainningTimer);
+        [self reStartCountTime];
+    }
 }
 - (void)reStartCountTime
 {
@@ -133,12 +144,12 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
     WEAKSELF_DEFINE
     __block int timeout = 60;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
-    dispatch_source_set_event_handler(_timer, ^{
+    _rainningTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_rainningTimer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(_rainningTimer, ^{
         if ( timeout <= 0 )
         {
-            dispatch_source_cancel(_timer);
+            dispatch_source_cancel(weakSelf.rainningTimer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf reStartCountTime];//访问剩馀秒数再开始倒数
             });
@@ -149,14 +160,14 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
             int leftTime = timeout - (dInt * 3600 * 24);
             int sInt = (int)leftTime % 60;              //剩馀秒数
             NSString * titleStr;
-            titleStr = [NSString stringWithFormat:@"红包雨剩馀%d秒",sInt];
+            titleStr = [NSString stringWithFormat:@"红包雨剩余%d秒",sInt];
             dispatch_async(dispatch_get_main_queue(), ^{
                 weakSelf.countdownLab.text = titleStr;
             });
             timeout--;
         }
     });
-    dispatch_resume(_timer);
+    dispatch_resume(_rainningTimer);
 }
 - (void)startCountDownTime
 {
@@ -256,7 +267,28 @@ typedef void (^TimeCompleteBlock)(NSString * timeStr);
     }
     
 }
-
+- (void)showPickerViewAction {
+    BOOL isSetting = [[NSUserDefaults standardUserDefaults] boolForKey:RedPacketCustomSetting];
+    if (isSetting == YES)
+    {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:RedPacketCustomSetting];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [MBProgressHUD showSuccessWithTime:@"已为您将红包雨时间定为\n接口回传为主" toView:nil duration:2];
+    }else
+    {
+        NSDate *minDate = [NSDate br_setYear:2018 month:01 day:01 hour:0 minute:0];
+        NSDate *maxDate = [NSDate br_setYear:2030 month:12 day:31 hour:23 minute:59];
+        
+        [BRDatePickerView showDatePickerWithTitle:@"红包雨时间" dateType:BRDatePickerModeHM defaultSelValue:nil minDate:minDate maxDate:maxDate isAutoSelect:NO themeColor:nil resultBlock:^(NSString *selectValue) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:RedPacketCustomSetting];
+            [[NSUserDefaults standardUserDefaults] setObject:selectValue forKey:@"RainningSelectValue"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [MBProgressHUD showSuccessWithTime:@"已为您将红包雨时间定为自定义" toView:nil duration:2];
+        } cancelBlock:^{
+            NSLog(@"点击了背景或取消按钮");
+        }];
+    }
+}
 - (void)configureDefaultValue {
     self.radius = SPREAD_RADIUS_DEFAULT;
     self.touchBorderMargin = TOUCHBORDER_MARGIN_DEFAULT;

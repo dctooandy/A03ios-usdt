@@ -23,8 +23,8 @@
 }
 + (void)getRainOpenTask:(HandlerBlock)handler
 {
-    NSString *identifyString = [[[NSUserDefaults standardUserDefaults] objectForKey:RedPacketIdentify] stringValue];
-    NSString *numString = [[[NSUserDefaults standardUserDefaults] objectForKey:RedPacketNum] stringValue];
+    NSString *identifyString = [[NSUserDefaults standardUserDefaults] objectForKey:RedPacketIdentify];
+    NSString *numString = [[NSUserDefaults standardUserDefaults] objectForKey:RedPacketNum];
     NSMutableDictionary *params = @{}.mutableCopy;
     params[@"identify"] = identifyString;
     params[@"times"] = numString;

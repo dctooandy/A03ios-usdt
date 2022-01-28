@@ -190,9 +190,10 @@ typedef void(^ButtonCallBack)(void);
                 NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
                 BOOL isBeforeDuration = [duractionArray[0] boolValue];
                 BOOL isActivityDuration = [duractionArray[1] boolValue];
+                BOOL isRainningTime = [duractionArray[2] boolValue];
                 if (isBeforeDuration || isActivityDuration)
                 {
-                    [weakSelf showRedPacketsRainViewwWithStyle:(isActivityDuration ? RedPocketsViewBegin: RedPocketsViewPrefix)];
+                    [weakSelf showRedPacketsRainViewwWithStyle:(isActivityDuration ? (isRainningTime ? RedPocketsViewRainning : RedPocketsViewBegin): RedPocketsViewPrefix)];
                 }else
                 {
                     [NNPageRouter jump2HTMLWithStrURL:response.link title:response.title needPubSite:NO];
@@ -493,9 +494,10 @@ typedef void(^ButtonCallBack)(void);
         NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
         BOOL isBeforeDuration = [duractionArray[0] boolValue];
         BOOL isActivityDuration = [duractionArray[1] boolValue];
+        BOOL isRainningTime = [duractionArray[2] boolValue];
         if ((isBeforeDuration || isActivityDuration)&& ([model.linkUrl containsString:@"tiger_red_envelope"]))
         {
-            [self showRedPacketsRainViewwWithStyle:(isActivityDuration ? RedPocketsViewBegin: RedPocketsViewPrefix)];
+            [self showRedPacketsRainViewwWithStyle:(isActivityDuration ? (isRainningTime ? RedPocketsViewRainning : RedPocketsViewBegin): RedPocketsViewPrefix)];
         }else
         {
             if ([model.linkUrl containsString:@"detailsPage?id="]) { // 跳文章
@@ -789,9 +791,10 @@ typedef void(^ButtonCallBack)(void);
             NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
             BOOL isBeforeDuration = [duractionArray[0] boolValue];
             BOOL isActivityDuration = [duractionArray[1] boolValue];
+            BOOL isRainningTime = [duractionArray[2] boolValue];
             if (isBeforeDuration || isActivityDuration)
             {
-                [weakSelf showRedPacketsRainViewwWithStyle:(isActivityDuration ? RedPocketsViewBegin: RedPocketsViewPrefix)];
+                [weakSelf showRedPacketsRainViewwWithStyle:(isActivityDuration ? (isRainningTime ? RedPocketsViewRainning : RedPocketsViewBegin): RedPocketsViewPrefix)];
             }else
             {//跳去活动结束画面
                 weakSelf.redPocketsAssistiveButton.hidden = true;

@@ -9,39 +9,144 @@
 #import "RedPacketsInfoModel.h"
 
 @implementation RedPacketsInfoModel
-+ (BOOL)propertyIsOptional:(NSString*)propertyName {
-    return YES;
-}
-- (BOOL)isRainningTime
+- (BOOL)currentTimeCheckRainningTime
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"HH"];
+    [dateFormatter setDateFormat:@"HH:mm:ss"];
     NSDate *serverDate = [NSDate dateWithTimeIntervalSince1970:[self.serverTimestamp intValue]];
     NSString *stringFromDate = [dateFormatter stringFromDate:serverDate];
-    NSString *firstStartHour = [self.firstStartAt substringToIndex:2];
-    NSString *secondStartHour = [self.secondStartAt substringToIndex:2];
-    int isFirstToSecond = ([secondStartHour intValue] - [firstStartHour intValue]) * 3600;
-    int isSecondToFirst = (24 - [secondStartHour intValue] + [firstStartHour intValue]) * 3600;
+    NSArray * stringFromDateArray = [stringFromDate componentsSeparatedByString:@":"];
+    NSArray * firstStartAtArray = [self.firstStartAt componentsSeparatedByString:@":"];
+    NSArray * firstEndAtArray = [self.firstEndAt componentsSeparatedByString:@":"];
+    NSArray * secondStartAtArray = [self.secondStartAt componentsSeparatedByString:@":"];
+    NSArray * secondEndAtArray = [self.secondEndAt componentsSeparatedByString:@":"];
+    NSString *serverStartHour = stringFromDateArray.firstObject;
+    NSString *serverStartMins = stringFromDateArray[1];
+    NSString *serverStartSec = stringFromDateArray.lastObject;
+    
+    
+    NSString *firstStartHour = firstStartAtArray.firstObject;
+    NSString *firstStartMins = firstStartAtArray[1];
+    NSString *firstStartSec = firstStartAtArray.lastObject;
+    
+    NSString *firstEndHour = firstEndAtArray.firstObject;
+    NSString *firstEndMins = firstEndAtArray[1];
+    NSString *firstEndSec = firstEndAtArray.lastObject;
+    
+    NSString *secondStartHour = secondStartAtArray.firstObject;
+    NSString *secondStartMins = secondStartAtArray[1];
+    NSString *secondStartSec = secondStartAtArray.lastObject;
+    
+    NSString *secondEndHour = secondEndAtArray.firstObject;
+    NSString *secondEndMins = secondEndAtArray[1];
+    NSString *secondEndSec = secondEndAtArray.lastObject;
+    
+    _nowSeconds = [serverStartHour intValue] * 3600 + [serverStartMins intValue] * 60 + [serverStartSec intValue];
+    _firstStartSeconds = [firstStartHour intValue] * 3600 + [firstStartMins intValue] * 60 + [firstStartSec intValue];
+    int firstEndSeconds = [firstEndHour intValue] * 3600 + [firstEndMins intValue] * 60 + [firstEndSec intValue];
+    
+    _secondStartSeconds = [secondStartHour intValue] * 3600 + [secondStartMins intValue] * 60 + [secondStartSec intValue];
+    int secondEndSeconds = [secondEndHour intValue] * 3600 + [secondEndMins intValue] * 60 + [secondEndSec intValue];
+    
+    int isFirstToSecond = _secondStartSeconds - firstEndSeconds;
+    _isSecondToFirstSecond = 24 * 3600 - _nowSeconds + _firstStartSeconds;
     if ([self.status isEqualToString:@"1"])
     {
-        if ([stringFromDate intValue] < [firstStartHour intValue])
+        if (_nowSeconds < _firstStartSeconds)
         {
             // 目前时间于第一场红包雨之前
             return NO;
-        }else if ([stringFromDate intValue] < [secondStartHour intValue])
+        }else if (_nowSeconds < _secondStartSeconds)
         {
-            // 介于第一场之后跟第二场之间
-            // 剩馀时间 大于等于 第一场跟第二场之间的秒数少60 ,亦即下雨期
-            return [self.leftTime intValue] >= (isFirstToSecond - 60);
+            if (_nowSeconds < firstEndSeconds)
+            {
+                //第一场红包雨
+                return YES;
+            }else
+            {
+                // 介于第一场之后跟第二场之间
+                return NO;
+            }
         }else
         {
-            // 处于第二场之后到下一个第一场之间
-            // 剩馀时间 大于等于 第二场到下一个第一场之间的秒数少60 ,亦即下雨期
-            return [self.leftTime intValue] >= (isSecondToFirst - 60);
+            if (_nowSeconds < secondEndSeconds)
+            {
+                //第二场红包雨
+                return YES;
+            }else
+            {
+                // 处于第二场之后到下一个第一场之间
+                return NO;
+            }
         }
     }else
     {
         return NO;
+    }
+}
+- (BOOL)isRainningTime
+{
+    if (_isDev == YES)
+    {
+        return [self currentTimeCheckRainningTime];
+    }else
+    {
+        if ([self.firstRainStatus isEqualToString:@"1"] || [self.secondRainStatus isEqualToString:@"1"])
+        {
+            return YES;
+        }else
+        {
+            return [self currentTimeCheckRainningTime];
+        }
+    }
+}
+- (void)setFirstStartAt:(NSString *)firstStartAt
+{
+    _firstStartAt = firstStartAt;
+}
+- (void)setFirstEndAt:(NSString *)firstEndAt
+{
+    _firstEndAt = firstEndAt;
+}
+- (void)setSecondStartAt:(NSString *)secondStartAt
+{
+    _secondStartAt = secondStartAt;
+}
+- (void)setSecondEndAt:(NSString *)secondEndAt
+{
+    _secondEndAt = secondEndAt;
+}
+
+- (NSString *)firstRainStatus
+{
+    if (_isDev == YES)
+    {
+        return self.isRainningTime ? @"1":@"2";
+    }else
+    {
+        return _firstRainStatus;
+    }
+}
+- (NSString *)secondRainStatus
+{
+    if (_isDev == YES)
+    {
+        return self.isRainningTime ? @"1":@"2";
+    }else
+    {
+        return _secondRainStatus;
+    }
+}
+- (NSString*)leftTime
+{
+    if (_isDev == YES)
+    {
+        int firstSecondValue = _nowSeconds - _firstStartSeconds;
+        int secondSecondValue = _nowSeconds - _secondStartSeconds;
+        return [NSString stringWithFormat:@"%d",firstSecondValue < 0 ? abs(firstSecondValue): (secondSecondValue < 0 ? abs(secondSecondValue): _isSecondToFirstSecond )];
+    }else
+    {
+        return _leftTime;
     }
 }
 @end
