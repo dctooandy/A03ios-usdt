@@ -550,7 +550,7 @@ typedef enum : NSUInteger {
                 }];
             }
         } else { // 跳活动
-            [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"电游活动" needPubSite:NO];
+            [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"" needPubSite:NO];
         }
     }
 }

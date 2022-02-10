@@ -9,7 +9,7 @@
 #import "CNBaseVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+typedef void (^CheckTimeCompleteBlock)(NSString * timeStr);
 @interface CNHomeVC : CNBaseVC
 
 @end

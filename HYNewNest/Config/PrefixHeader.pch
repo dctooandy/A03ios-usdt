@@ -34,6 +34,36 @@
 
 #ifdef DEBUG
 #import "UIWindow+Motion.h" //Lookin摇一摇功能
+#import "UIView+Frame.h"
 #endif
-
+// 屏幕大小、宽、高
+#ifndef SCREEN_BOUNDS
+#define SCREEN_BOUNDS [UIScreen mainScreen].bounds
+#endif
+#ifndef SCREEN_WIDTH
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#endif
+#ifndef SCREEN_HEIGHT
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+#endif
+//带有RGBA的颜色设置
+#define COLOR_RGBA(R, G, B, A) [UIColor colorWithRed:R / 255.0 green:G / 255.0 blue:B / 255.0 alpha:A]
+// tabbar 适配iPhone X
+#define kTabbarHeight                    (KIsiPhoneX ? (34 + 49) : 49)
+// 是否为iPhoneX
+#define KIsiPhoneX                       (((int)((SCREEN_HEIGHT / SCREEN_WIDTH) * 100) == 216) ? YES : NO)
 #endif /* PrefixHeader_pch */
+//定义UIImage对象
+#define ImageNamed(A)          [UIImage imageNamed:A]
+// 红包雨
+#define BeforeStartDate                 @"2022-01-31"
+#define RedPacketStartDate              @"2022-02-01"
+#define RedPacketFirstStartTime         @"2022-02-01 10:00"
+#define RedPacketDuration               10 // 倒数前10秒
+#define RedPacketCountDown              RedPacketIsDev ? 6 : 60 // 下雨60秒
+#define RedPacketIdentify               @"RedPacketIdentify" // 开启红包雨之前的验证
+#define RedPacketNum                    @"RedPacketNum" // 红包数量
+#define RedPacketCustomSetting          @"RedPacketCustomSetting" // 红包雨自设定
+#define RedPacketRainningSelectValue    @"RainningSelectValue" // 红包雨自设定时间
+#define RedPacketIsDev                  [[NSUserDefaults standardUserDefaults] boolForKey:RedPacketCustomSetting]
+

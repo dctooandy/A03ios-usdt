@@ -40,6 +40,15 @@
 #import "HYTabBarViewController.h"
 #import "A03ActivityManager.h"
 #import "AppdelegateManager.h"
+#import "RedPacketsRainView.h"
+#import "RedPacketsPreView.h"
+#import "BTTAnimationPopView.h"
+#import <UIImageView+WebCache.h>
+#import "AssistiveButton.h"
+#import "UIImage+GIF.h"
+#import "PublicMethod.h"
+#import "GameStartPlayViewController.h"
+typedef void(^ButtonCallBack)(void);
 
 @interface CNHomeVC () <CNUserInfoLoginViewDelegate,  SDCycleScrollViewDelegate, UUMarqueeViewDelegate, GameBtnsStackViewDelegate, DashenBoardAutoHeightDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -74,6 +83,7 @@
 @property (weak, nonatomic) IBOutlet UIView *dashenView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *boredViewH;
 @property (nonatomic, assign) NSInteger currBordPage;
+@property (nonatomic, strong) AssistiveButton * redPocketsAssistiveButton;
 @end
 
 @implementation CNHomeVC
@@ -98,12 +108,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
-    
     [self userDidLogin];
     [self popupSetting];
     [self requestAnnouncement];
     [self requestCDNAndDomain];
-    
+    [self assistiveBtnAndActivitySetting];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:BYRefreshBalanceNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLoginByNoti) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:HYLogoutSuccessNotification object:nil];
@@ -140,6 +149,7 @@
     [super viewWillAppear:animated];
     [[AppdelegateManager shareManager] recheckDomainWithTestSpeed];
     [self requestAnnouncement];
+    [self.redPocketsAssistiveButton refetchTimeForRainning];
 }
 - (void)userDidLoginByNoti
 {
@@ -177,7 +187,17 @@
             [CNMessageBoxView showMessageBoxWithImages:@[response.image].mutableCopy
                                                 onView:weakSelf.view
                                               tapBlock:^(int idx) {
-                [NNPageRouter jump2HTMLWithStrURL:response.link title:response.title needPubSite:NO];
+                NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
+                BOOL isBeforeDuration = [duractionArray[0] boolValue];
+                BOOL isActivityDuration = [duractionArray[1] boolValue];
+                BOOL isRainningTime = [duractionArray[2] boolValue];
+                if (isBeforeDuration || isActivityDuration)
+                {
+                    [weakSelf showRedPacketsRainViewwWithStyle:(isActivityDuration ? (isRainningTime ? RedPocketsViewRainning : RedPocketsViewBegin): RedPocketsViewPrefix)];
+                }else
+                {
+                    [NNPageRouter jump2HTMLWithStrURL:response.link title:response.title needPubSite:NO];
+                }
             } tapClose:^{
                 [weakSelf showAccountTutorials];
             }];
@@ -186,6 +206,56 @@
             [weakSelf showAccountTutorials];
         }
     }];
+}
+
+- (void)checkTimeForRedPoickets
+{
+    [self checkTime:^(NSString * _Nonnull timeStr) {
+        if (timeStr.length > 0) {
+            if ([self checksStartDate:@"10:00" EndDate:@"10:01" serverTime:timeStr])
+            {
+                
+            }else if ([self checksStartDate:@"14:00" EndDate:@"14:01" serverTime:timeStr])
+            {
+                
+            }else
+            {
+                /// 不到时间
+                
+            }
+        }
+    }];
+}
+-(BOOL)checksStartDate:(NSString *)startTime EndDate:(NSString *)endTime serverTime:(NSString *)serverTime {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm"];
+    NSDate *startDate = [dateFormatter dateFromString:startTime];
+    NSDate *endDate = [dateFormatter dateFromString:endTime];
+    NSDate *serverDate = [dateFormatter dateFromString:serverTime];
+    // 判断是否大于server时间
+    if (([startDate earlierDate:serverDate] == startDate) &&
+        ([serverDate earlierDate:endDate] == serverDate)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+-(void)checkTime:(CheckTimeCompleteBlock)completeBlock {
+    NSDate *timeDate = [NSDate new];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"hh:mm"];
+    completeBlock([dateFormatter stringFromDate:timeDate]);
+//    [IVNetwork requestPostWithUrl:BTTServerTime paramters:nil completionBlock:^(id  _Nullable response, NSError * _Nullable error) {
+//        IVJResponseObject *result = response;
+//        if ([result.head.errCode isEqualToString:@"0000"]) {
+//            NSDate *timeDate = [[NSDate alloc]initWithTimeIntervalSince1970:[result.body longLongValue]];
+//            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+//            completeBlock([dateFormatter stringFromDate:timeDate]);
+//        } else {
+//            completeBlock(@"");
+//        }
+//    }];
 }
 - (void)userDidLogout {
     [self.infoView updateLoginStatusUIIsRefreshing:NO];
@@ -421,18 +491,28 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     if (self.bannModels.count > 0 && self.bannModels.count-1 >= index) {
         AdBannerModel *model = self.bannModels[index];
-        if ([model.linkUrl containsString:@"detailsPage?id="]) { // 跳文章
-            NSString *articalId = [model.linkUrl componentsSeparatedByString:@"="].lastObject;
-            [NNPageRouter jump2ArticalWithArticalId:articalId title:@"文章"];
-        } else if ([model.linkUrl hasPrefix:@"http"]) { // 跳外链
-            NSURL *URL = [NSURL URLWithString:model.linkUrl];
-            if ([[UIApplication sharedApplication] canOpenURL:URL]) {
-                [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:^(BOOL success) {
-                    [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
-                }];
+        NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
+        BOOL isBeforeDuration = [duractionArray[0] boolValue];
+        BOOL isActivityDuration = [duractionArray[1] boolValue];
+        BOOL isRainningTime = [duractionArray[2] boolValue];
+        if ((isBeforeDuration || isActivityDuration)&& ([model.linkUrl containsString:@"tiger_red_envelope"]))
+        {
+            [self showRedPacketsRainViewwWithStyle:(isActivityDuration ? (isRainningTime ? RedPocketsViewRainning : RedPocketsViewBegin): RedPocketsViewPrefix)];
+        }else
+        {
+            if ([model.linkUrl containsString:@"detailsPage?id="]) { // 跳文章
+                NSString *articalId = [model.linkUrl componentsSeparatedByString:@"="].lastObject;
+                [NNPageRouter jump2ArticalWithArticalId:articalId title:@"文章"];
+            } else if ([model.linkUrl hasPrefix:@"http"]) { // 跳外链
+                NSURL *URL = [NSURL URLWithString:model.linkUrl];
+                if ([[UIApplication sharedApplication] canOpenURL:URL]) {
+                    [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:^(BOOL success) {
+                        [CNTOPHUB showSuccess:@"请在外部浏览器查看"];
+                    }];
+                }
+            } else { // 跳活动
+                [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"" needPubSite:NO];
             }
-        } else { // 跳活动
-            [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"电游活动" needPubSite:NO];
         }
     }
 }
@@ -565,6 +645,166 @@
     }
     return _marqueeView;
 }
+- (void)assistiveBtnAndActivitySetting
+{
+    WEAKSELF_DEFINE
+    [[A03ActivityManager sharedInstance] checkTimeRedPacketRainWithCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
+        // 悬浮按钮
+        [weakSelf setUpCustomAssistiveButtonCompleted:^{
+            if (weakSelf.redPocketsAssistiveButton != nil) {
+                [weakSelf.view addSubview:weakSelf.redPocketsAssistiveButton];
+            }
+        }];
+        // 红包雨活动
+        if (response != nil)
+        {
+            // 活动期
+        }else
+        {
+            // 预热
+        }
+        //测试用
+        dispatch_async(dispatch_get_main_queue(), ^{
+//            [weakSelf showRedPacketsRainViewwWithStyle:RedPocketsViewDev];
+        });
+    } WithDefaultCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
+        // 一般活动
+        // 悬浮按钮设定
+        
+    }];
+}
+- (void)popupTenSecondView
+{
+    if ([CNUserManager shareManager].isLogin)
+    {
+        // 游戏中不弹窗，活动页面不弹，主页的四个导航页面弹窗
+        WEAKSELF_DEFINE
+        __block BOOL canPop = YES;
+        UIViewController *topVC = [PublicMethod currentViewController];
+        if ([topVC isKindOfClass:[CNLoginRegisterVC class]]
+            || [topVC isKindOfClass:[GameStartPlayViewController class]]
+    //        || [topVC isKindOfClass:[BTTAGGJViewController class]]
+    //        || [topVC isKindOfClass:[IVOtherGameController class]]
+            ) {
+            
+        }else
+        {
 
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSArray * viewsArray = [[[UIApplication sharedApplication] keyWindow] subviews];
+                for (UIView * currentView in viewsArray) {
+                    if ([currentView isKindOfClass:[BTTAnimationPopView class]]) {
+                        canPop = NO;
+                        break;
+                    }
+                }
+                if (canPop)
+                {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [weakSelf showRedPacketsPreViewWithDuration:RedPacketDuration];
+                    });
+                }
+            });
+        }
+    }
+   
+}
+#pragma mark - 10s倒计时弹窗
+- (void)showRedPacketsPreViewWithDuration:(int)duration
+{
+    weakSelf(weakSelf)
+    RedPacketsPreView *alertView = [RedPacketsPreView viewFromXib];
+    [alertView configForRedPocketsViewWithDuration:duration];
+    BTTAnimationPopView *popView = [[BTTAnimationPopView alloc] initWithCustomView:alertView popStyle:BTTAnimationPopStyleNO dismissStyle:BTTAnimationDismissStyleNO];
+    popView.isClickBGDismiss = YES;
+    [popView pop];
+    
+    [alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
+    }];
+    alertView.dismissBlock = ^{
+        [popView dismiss];
+        [weakSelf.redPocketsAssistiveButton refetchTimeForRainning];
+    };
+    alertView.btnBlock = ^(UIButton * _Nullable btn) {
+        [popView dismiss];
+    };
+    alertView.getRedBlock = ^{
+        [weakSelf showRedPacketsRainViewwWithStyle:RedPocketsViewBegin];
+        [popView dismiss];
+    };
+}
+#pragma mark - 红包雨 预热/活动弹窗
+- (void)showRedPacketsRainViewwWithStyle:(RedPocketsViewStyle)currentStyle
+{
+    weakSelf(weakSelf)
+    if (![CNUserManager shareManager].isLogin && (currentStyle == RedPocketsViewBegin ||
+                                                  currentStyle == RedPocketsViewRainning ||
+                                                  currentStyle == RedPocketsViewDev))
+    {
+        [self loginAction];
+    }else
+    {
+        [[A03ActivityManager sharedInstance] checkTimeRedPacketRainWithCompletion:^(NSString * _Nullable response, NSString * _Nullable error) {
+            RedPacketsRainView *alertView = [RedPacketsRainView viewFromXib];
+            [alertView configForRedPocketsViewWithStyle:currentStyle];
+            BTTAnimationPopView *popView = [[BTTAnimationPopView alloc] initWithCustomView:alertView popStyle:BTTAnimationPopStyleNO dismissStyle:BTTAnimationDismissStyleNO];
+            popView.isClickBGDismiss = YES;
+            [popView pop];
+            
+            [alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
+            }];
+            alertView.dismissBlock = ^{
+                [weakSelf.redPocketsAssistiveButton refetchTimeForRainning];
+                [popView dismiss];
+            };
+            alertView.btnBlock = ^(UIButton * _Nullable btn) {
+                [popView dismiss];
+            };
+        } WithDefaultCompletion:nil];
+    }
+}
 
+// 悬浮按钮
+-(void)setUpCustomAssistiveButtonCompleted:(ButtonCallBack _Nullable)completionBlock
+{
+    UIImageView *imageView = [[UIImageView alloc] init];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if ([imageURL.description containsString:@"gif"])
+        {
+            NSData *imageData = UIImagePNGRepresentation(image);
+            UIImage * backgroundImage = [UIImage sd_animatedGIFWithData:imageData];
+            self.redPocketsAssistiveButton = [[AssistiveButton alloc] initMainBtnWithCustomImage:backgroundImage highlightImage:nil];
+        }else
+        {
+            UIImage * backgroundImage = ImageNamed(@"popup-3");
+            self.redPocketsAssistiveButton = [[AssistiveButton alloc] initMainBtnWithCustomImage:backgroundImage highlightImage:nil];
+        }
+        //主按鈕可移動或移動後回彈跟不可移動
+        self.redPocketsAssistiveButton.positionMode = SpreadPositionModeNone;
+        weakSelf(weakSelf);
+        [self.redPocketsAssistiveButton setTenSecondActionBlock:^{
+            [weakSelf popupTenSecondView];
+        }];
+        [self.redPocketsAssistiveButton setMainButtonClickActionBlock:^{
+            NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
+            BOOL isBeforeDuration = [duractionArray[0] boolValue];
+            BOOL isActivityDuration = [duractionArray[1] boolValue];
+            BOOL isRainningTime = [duractionArray[2] boolValue];
+            if (isBeforeDuration || isActivityDuration)
+            {
+                [weakSelf showRedPacketsRainViewwWithStyle:(isActivityDuration ? (isRainningTime ? RedPocketsViewRainning : RedPocketsViewBegin): RedPocketsViewPrefix)];
+            }else
+            {//跳去活动结束画面
+                weakSelf.redPocketsAssistiveButton.hidden = true;
+//                [NNPageRouter jump2HTMLWithStrURL:@"/pub_site/twinFight" title:@"过夜利息" needPubSite:NO];
+            }
+        }];
+        [self.redPocketsAssistiveButton setCloseBtnActionBlock:^{
+            [weakSelf.redPocketsAssistiveButton removeFromSuperview];
+        }];
+        completionBlock();
+    }];
+}
 @end

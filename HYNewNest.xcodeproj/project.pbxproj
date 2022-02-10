@@ -109,7 +109,6 @@
 		048A168E24CACABF00411819 /* CNAlertPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048A168B24CACABF00411819 /* CNAlertPickerView.xib */; };
 		048A168F24CACABF00411819 /* CNAlertPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A168D24CACABF00411819 /* CNAlertPickerView.m */; };
 		048A169824CBD44700411819 /* CNVIPLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A169724CBD44700411819 /* CNVIPLabel.m */; };
-		04935BC724D56793007A33EF /* CNAddAddressVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04935BC424D56793007A33EF /* CNAddAddressVC.xib */; };
 		04935BC824D56793007A33EF /* CNAddAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935BC624D56793007A33EF /* CNAddAddressVC.m */; };
 		04935BD124D7B662007A33EF /* CNAddressDownloadTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935BCF24D7B662007A33EF /* CNAddressDownloadTCell.m */; };
 		04935BD224D7B662007A33EF /* CNAddressDownloadTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04935BD024D7B662007A33EF /* CNAddressDownloadTCell.xib */; };
@@ -373,11 +372,34 @@
 		3DF6E7BC267B1DA800911FC8 /* BYModifyPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E7BA267B1DA800911FC8 /* BYModifyPhoneVC.m */; };
 		3DF6E7BD267B1DA800911FC8 /* BYModifyPhoneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF6E7BB267B1DA800911FC8 /* BYModifyPhoneVC.xib */; };
 		3DFF702E261EF92E00801654 /* LLIconVersioning.sh in Resources */ = {isa = PBXBuildFile; fileRef = 3DFF702D261EF92E00801654 /* LLIconVersioning.sh */; };
+		414B89D4279596F300AF45CA /* CNAddAddressVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 414B89D3279596F300AF45CA /* CNAddAddressVC.xib */; };
+		41859B02279A94D300AB84FB /* newYear.gif in Resources */ = {isa = PBXBuildFile; fileRef = 41859B01279A94D300AB84FB /* newYear.gif */; };
 		5D89EDD4863F4328F6126B58 /* Pods_HYNewNest_HYNewNestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */; };
 		7636AE6E272BC4C70072AB0E /* BYDeleteBankCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7636AE6C272BC4C70072AB0E /* BYDeleteBankCardVC.m */; };
 		7636AE71272BC5940072AB0E /* BYDeleteBankCardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7636AE70272BC5940072AB0E /* BYDeleteBankCardVC.xib */; };
+		76485F222787D384004EA51E /* AssistiveButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 76485F212787D383004EA51E /* AssistiveButton.m */; };
+		76485F252787D4FB004EA51E /* PublicMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 76485F232787D4FB004EA51E /* PublicMethod.m */; };
+		76485F282787D777004EA51E /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 76485F262787D776004EA51E /* UIImage+GIF.m */; };
+		76519929278C107F006A59BF /* RedPacketsPreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76519927278C107F006A59BF /* RedPacketsPreView.m */; };
+		76519932278C2BE5006A59BF /* QBulletScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76519930278C2BE5006A59BF /* QBulletScreenView.m */; };
+		765C64E32782B4ED00A6BC34 /* BTTAnimationPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 765C64E22782B4ED00A6BC34 /* BTTAnimationPopView.m */; };
+		765C64E92782B71700A6BC34 /* BTTBaseAnimationPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 765C64E82782B71700A6BC34 /* BTTBaseAnimationPopView.m */; };
+		765C64F32782C82B00A6BC34 /* RedPacketsRainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 765C64F12782C82A00A6BC34 /* RedPacketsRainView.m */; };
 		766A6EC6276B3E37007DC6A1 /* A03ActivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 766A6EC5276B3E36007DC6A1 /* A03ActivityManager.m */; };
 		766A6EC9276B3F4A007DC6A1 /* A03PopViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 766A6EC8276B3F4A007DC6A1 /* A03PopViewModel.m */; };
+		767DF24D27914FB700F50520 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 767DF24C27914FB700F50520 /* UIView+Frame.m */; };
+		7682A78327915183001AC772 /* mammon2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7682A78227915183001AC772 /* mammon2.gif */; };
+		7682A78527915CE1001AC772 /* RedPacketsPreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7682A78427915CE1001AC772 /* RedPacketsPreView.xib */; };
+		7682A78D2795654E001AC772 /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A78B2795654E001AC772 /* MBProgressHUD+Add.m */; };
+		7682A796279687D5001AC772 /* RedPacketsInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A794279687D5001AC772 /* RedPacketsInfoModel.m */; };
+		7682A79927968AAE001AC772 /* RedPacketsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A79827968AAE001AC772 /* RedPacketsRequest.m */; };
+		7682A79C2796B525001AC772 /* RedPacketsIdentifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A79B2796B525001AC772 /* RedPacketsIdentifyModel.m */; };
+		7682A7A72797AE9F001AC772 /* LuckyBagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A7A62797AE9F001AC772 /* LuckyBagModel.m */; };
+		7682A7B92797FD8C001AC772 /* GiftCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A7B82797FD8C001AC772 /* GiftCardModel.m */; };
+		7682A7BC2797FDA0001AC772 /* PrizeRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A7BB2797FDA0001AC772 /* PrizeRecordModel.m */; };
+		7682A7BF2797FDAF001AC772 /* PrizeNamesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A7BE2797FDAF001AC772 /* PrizeNamesModel.m */; };
+		7682A7C52798144A001AC772 /* FusingBlessingCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7682A7C42798144A001AC772 /* FusingBlessingCardModel.m */; };
+		76B1691A27A14AA10033F301 /* RedPacketsRainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76B1691927A14AA00033F301 /* RedPacketsRainView.xib */; };
 		76B4998B275F6415003CD35B /* 03Gif2022.gif in Resources */ = {isa = PBXBuildFile; fileRef = 76B4998A275F6415003CD35B /* 03Gif2022.gif */; };
 		76B499E727608DAE003CD35B /* AppdelegateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E627608DAE003CD35B /* AppdelegateManager.m */; };
 		76B499EA27609237003CD35B /* A03CheckDomainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B499E927609237003CD35B /* A03CheckDomainModel.m */; };
@@ -1240,7 +1262,6 @@
 		048A168D24CACABF00411819 /* CNAlertPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNAlertPickerView.m; sourceTree = "<group>"; };
 		048A169624CBD44700411819 /* CNVIPLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNVIPLabel.h; sourceTree = "<group>"; };
 		048A169724CBD44700411819 /* CNVIPLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNVIPLabel.m; sourceTree = "<group>"; };
-		04935BC424D56793007A33EF /* CNAddAddressVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNAddAddressVC.xib; sourceTree = "<group>"; };
 		04935BC524D56793007A33EF /* CNAddAddressVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNAddAddressVC.h; sourceTree = "<group>"; };
 		04935BC624D56793007A33EF /* CNAddAddressVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNAddAddressVC.m; sourceTree = "<group>"; };
 		04935BCE24D7B662007A33EF /* CNAddressDownloadTCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNAddressDownloadTCell.h; sourceTree = "<group>"; };
@@ -1715,14 +1736,55 @@
 		3DF6E7BA267B1DA800911FC8 /* BYModifyPhoneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYModifyPhoneVC.m; sourceTree = "<group>"; };
 		3DF6E7BB267B1DA800911FC8 /* BYModifyPhoneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BYModifyPhoneVC.xib; sourceTree = "<group>"; };
 		3DFF702D261EF92E00801654 /* LLIconVersioning.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = LLIconVersioning.sh; sourceTree = "<group>"; };
+		414B89D3279596F300AF45CA /* CNAddAddressVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNAddAddressVC.xib; sourceTree = "<group>"; };
+		41859B01279A94D300AB84FB /* newYear.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = newYear.gif; sourceTree = "<group>"; };
 		62DF1724D3A54A4E27D4B55B /* Pods-HYNewNest-HYNewNestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; path = "Target Support Files/Pods-HYNewNest-HYNewNestUITests/Pods-HYNewNest-HYNewNestUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7636AE6B272BC4C70072AB0E /* BYDeleteBankCardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYDeleteBankCardVC.h; sourceTree = "<group>"; };
 		7636AE6C272BC4C70072AB0E /* BYDeleteBankCardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYDeleteBankCardVC.m; sourceTree = "<group>"; };
 		7636AE70272BC5940072AB0E /* BYDeleteBankCardVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BYDeleteBankCardVC.xib; sourceTree = "<group>"; };
+		76485F202787D383004EA51E /* AssistiveButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssistiveButton.h; sourceTree = "<group>"; };
+		76485F212787D383004EA51E /* AssistiveButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssistiveButton.m; sourceTree = "<group>"; };
+		76485F232787D4FB004EA51E /* PublicMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicMethod.m; sourceTree = "<group>"; };
+		76485F242787D4FB004EA51E /* PublicMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicMethod.h; sourceTree = "<group>"; };
+		76485F262787D776004EA51E /* UIImage+GIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GIF.m"; sourceTree = "<group>"; };
+		76485F272787D777004EA51E /* UIImage+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIF.h"; sourceTree = "<group>"; };
+		76519925278C107F006A59BF /* RedPacketsPreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketsPreView.h; sourceTree = "<group>"; };
+		76519927278C107F006A59BF /* RedPacketsPreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketsPreView.m; sourceTree = "<group>"; };
+		76519930278C2BE5006A59BF /* QBulletScreenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBulletScreenView.m; sourceTree = "<group>"; };
+		76519931278C2BE5006A59BF /* QBulletScreenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBulletScreenView.h; sourceTree = "<group>"; };
+		765C64E12782B4ED00A6BC34 /* BTTAnimationPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTAnimationPopView.h; sourceTree = "<group>"; };
+		765C64E22782B4ED00A6BC34 /* BTTAnimationPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTAnimationPopView.m; sourceTree = "<group>"; };
+		765C64E72782B71700A6BC34 /* BTTBaseAnimationPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTBaseAnimationPopView.h; sourceTree = "<group>"; };
+		765C64E82782B71700A6BC34 /* BTTBaseAnimationPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTBaseAnimationPopView.m; sourceTree = "<group>"; };
+		765C64F02782C82A00A6BC34 /* RedPacketsRainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketsRainView.h; sourceTree = "<group>"; };
+		765C64F12782C82A00A6BC34 /* RedPacketsRainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketsRainView.m; sourceTree = "<group>"; };
 		766A6EC4276B3E36007DC6A1 /* A03ActivityManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = A03ActivityManager.h; sourceTree = "<group>"; };
 		766A6EC5276B3E36007DC6A1 /* A03ActivityManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A03ActivityManager.m; sourceTree = "<group>"; };
 		766A6EC7276B3F4A007DC6A1 /* A03PopViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = A03PopViewModel.h; sourceTree = "<group>"; };
 		766A6EC8276B3F4A007DC6A1 /* A03PopViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A03PopViewModel.m; sourceTree = "<group>"; };
+		767DF24B27914FB700F50520 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		767DF24C27914FB700F50520 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		7682A78227915183001AC772 /* mammon2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = mammon2.gif; sourceTree = "<group>"; };
+		7682A78427915CE1001AC772 /* RedPacketsPreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketsPreView.xib; sourceTree = "<group>"; };
+		7682A78B2795654E001AC772 /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
+		7682A78C2795654E001AC772 /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
+		7682A794279687D5001AC772 /* RedPacketsInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketsInfoModel.m; sourceTree = "<group>"; };
+		7682A795279687D5001AC772 /* RedPacketsInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketsInfoModel.h; sourceTree = "<group>"; };
+		7682A79727968AAE001AC772 /* RedPacketsRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedPacketsRequest.h; sourceTree = "<group>"; };
+		7682A79827968AAE001AC772 /* RedPacketsRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedPacketsRequest.m; sourceTree = "<group>"; };
+		7682A79A2796B525001AC772 /* RedPacketsIdentifyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedPacketsIdentifyModel.h; sourceTree = "<group>"; };
+		7682A79B2796B525001AC772 /* RedPacketsIdentifyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedPacketsIdentifyModel.m; sourceTree = "<group>"; };
+		7682A7A52797AE9F001AC772 /* LuckyBagModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuckyBagModel.h; sourceTree = "<group>"; };
+		7682A7A62797AE9F001AC772 /* LuckyBagModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuckyBagModel.m; sourceTree = "<group>"; };
+		7682A7B72797FD8C001AC772 /* GiftCardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GiftCardModel.h; sourceTree = "<group>"; };
+		7682A7B82797FD8C001AC772 /* GiftCardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GiftCardModel.m; sourceTree = "<group>"; };
+		7682A7BA2797FDA0001AC772 /* PrizeRecordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrizeRecordModel.h; sourceTree = "<group>"; };
+		7682A7BB2797FDA0001AC772 /* PrizeRecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrizeRecordModel.m; sourceTree = "<group>"; };
+		7682A7BD2797FDAF001AC772 /* PrizeNamesModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrizeNamesModel.h; sourceTree = "<group>"; };
+		7682A7BE2797FDAF001AC772 /* PrizeNamesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrizeNamesModel.m; sourceTree = "<group>"; };
+		7682A7C32798144A001AC772 /* FusingBlessingCardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FusingBlessingCardModel.h; sourceTree = "<group>"; };
+		7682A7C42798144A001AC772 /* FusingBlessingCardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FusingBlessingCardModel.m; sourceTree = "<group>"; };
+		76B1691927A14AA00033F301 /* RedPacketsRainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketsRainView.xib; sourceTree = "<group>"; };
 		76B4998A275F6415003CD35B /* 03Gif2022.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 03Gif2022.gif; sourceTree = "<group>"; };
 		76B499E527608DAE003CD35B /* AppdelegateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppdelegateManager.h; sourceTree = "<group>"; };
 		76B499E627608DAE003CD35B /* AppdelegateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppdelegateManager.m; sourceTree = "<group>"; };
@@ -3062,7 +3124,7 @@
 				04C6E1E524D4029D006F4DAC /* CNAddressManagerVC.xib */,
 				04935BC524D56793007A33EF /* CNAddAddressVC.h */,
 				04935BC624D56793007A33EF /* CNAddAddressVC.m */,
-				04935BC424D56793007A33EF /* CNAddAddressVC.xib */,
+				414B89D3279596F300AF45CA /* CNAddAddressVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3172,6 +3234,7 @@
 		3D13389924AF2D1900B29783 /* Utility(工具类) */ = {
 			isa = PBXGroup;
 			children = (
+				765C64E02782B4ED00A6BC34 /* BTTAnimationPopView */,
 				76FC861D276224F5005710FD /* SDWebEnternal */,
 				F787DB1126C3719300AF7133 /* New Group */,
 				F73857D3267B18E700768D14 /* View */,
@@ -4125,6 +4188,51 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		765C64E02782B4ED00A6BC34 /* BTTAnimationPopView */ = {
+			isa = PBXGroup;
+			children = (
+				7682A78C2795654E001AC772 /* MBProgressHUD+Add.h */,
+				7682A78B2795654E001AC772 /* MBProgressHUD+Add.m */,
+				767DF24B27914FB700F50520 /* UIView+Frame.h */,
+				767DF24C27914FB700F50520 /* UIView+Frame.m */,
+				765C64E12782B4ED00A6BC34 /* BTTAnimationPopView.h */,
+				765C64E22782B4ED00A6BC34 /* BTTAnimationPopView.m */,
+				765C64E72782B71700A6BC34 /* BTTBaseAnimationPopView.h */,
+				765C64E82782B71700A6BC34 /* BTTBaseAnimationPopView.m */,
+				765C64F02782C82A00A6BC34 /* RedPacketsRainView.h */,
+				765C64F12782C82A00A6BC34 /* RedPacketsRainView.m */,
+				76B1691927A14AA00033F301 /* RedPacketsRainView.xib */,
+				76519925278C107F006A59BF /* RedPacketsPreView.h */,
+				76519927278C107F006A59BF /* RedPacketsPreView.m */,
+				7682A78427915CE1001AC772 /* RedPacketsPreView.xib */,
+				76485F202787D383004EA51E /* AssistiveButton.h */,
+				76485F212787D383004EA51E /* AssistiveButton.m */,
+				76485F242787D4FB004EA51E /* PublicMethod.h */,
+				76485F232787D4FB004EA51E /* PublicMethod.m */,
+				76485F272787D777004EA51E /* UIImage+GIF.h */,
+				76485F262787D776004EA51E /* UIImage+GIF.m */,
+				76519931278C2BE5006A59BF /* QBulletScreenView.h */,
+				76519930278C2BE5006A59BF /* QBulletScreenView.m */,
+				7682A795279687D5001AC772 /* RedPacketsInfoModel.h */,
+				7682A794279687D5001AC772 /* RedPacketsInfoModel.m */,
+				7682A79A2796B525001AC772 /* RedPacketsIdentifyModel.h */,
+				7682A79B2796B525001AC772 /* RedPacketsIdentifyModel.m */,
+				7682A7A52797AE9F001AC772 /* LuckyBagModel.h */,
+				7682A7A62797AE9F001AC772 /* LuckyBagModel.m */,
+				7682A7B72797FD8C001AC772 /* GiftCardModel.h */,
+				7682A7B82797FD8C001AC772 /* GiftCardModel.m */,
+				7682A7BA2797FDA0001AC772 /* PrizeRecordModel.h */,
+				7682A7BB2797FDA0001AC772 /* PrizeRecordModel.m */,
+				7682A7BD2797FDAF001AC772 /* PrizeNamesModel.h */,
+				7682A7BE2797FDAF001AC772 /* PrizeNamesModel.m */,
+				7682A7C32798144A001AC772 /* FusingBlessingCardModel.h */,
+				7682A7C42798144A001AC772 /* FusingBlessingCardModel.m */,
+				7682A79727968AAE001AC772 /* RedPacketsRequest.h */,
+				7682A79827968AAE001AC772 /* RedPacketsRequest.m */,
+			);
+			path = BTTAnimationPopView;
+			sourceTree = "<group>";
+		};
 		76B499EB27609487003CD35B /* Request */ = {
 			isa = PBXGroup;
 			children = (
@@ -4160,6 +4268,8 @@
 		D5A4425724F36F4200014DC6 /* Gif */ = {
 			isa = PBXGroup;
 			children = (
+				41859B01279A94D300AB84FB /* newYear.gif */,
+				7682A78227915183001AC772 /* mammon2.gif */,
 				76B4998A275F6415003CD35B /* 03Gif2022.gif */,
 				76FC864A27671348005710FD /* degg03.gif */,
 				D5A4465924F3941300014DC6 /* live */,
@@ -5963,6 +6073,7 @@
 				3DCFEA9A25050AD90071F356 /* 方正兰亭大黑_GBK.ttf in Resources */,
 				D5A443B424F378CD00014DC6 /* 彩票_00071.png in Resources */,
 				048A168924CA712700411819 /* CNServerView.xib in Resources */,
+				76B1691A27A14AA10033F301 /* RedPacketsRainView.xib in Resources */,
 				D5A4455C24F393AC00014DC6 /* 棋牌_00057.png in Resources */,
 				D5A444A424F3932400014DC6 /* 数字7_00030.png in Resources */,
 				D5A443DE24F378CD00014DC6 /* 彩票_00049.png in Resources */,
@@ -6024,6 +6135,7 @@
 				0487CA0724D3BAB90013715A /* CNInviteFriendVC.xib in Resources */,
 				D5A4449E24F3932400014DC6 /* 数字7_0007.png in Resources */,
 				D5A446FF24F3941400014DC6 /* 合成 1_0001.png in Resources */,
+				41859B02279A94D300AB84FB /* newYear.gif in Resources */,
 				7636AE71272BC5940072AB0E /* BYDeleteBankCardVC.xib in Resources */,
 				D5A446D524F3941400014DC6 /* 合成 1_00074.png in Resources */,
 				E9A269DD24D80FCC00B512FF /* HYRechargePayWayCell.xib in Resources */,
@@ -6235,7 +6347,6 @@
 				D5A4471424F3941400014DC6 /* 合成 1_0005.png in Resources */,
 				D5A446DE24F3941400014DC6 /* 合成 1_00029.png in Resources */,
 				D5A4453324F393AC00014DC6 /* 棋牌_00016.png in Resources */,
-				04935BC724D56793007A33EF /* CNAddAddressVC.xib in Resources */,
 				04C0F12E24C7D20C007F1420 /* CNRealPersonVC.xib in Resources */,
 				D5A4465224F393E500014DC6 /* 足球_00039.png in Resources */,
 				04C0F0DD24C29FFD007F1420 /* CNBindPhoneVC.xib in Resources */,
@@ -6285,9 +6396,11 @@
 				04935BD224D7B662007A33EF /* CNAddressDownloadTCell.xib in Resources */,
 				D5A443DA24F378CD00014DC6 /* 彩票_00094.png in Resources */,
 				D5A443CE24F378CD00014DC6 /* 彩票_00044.png in Resources */,
+				7682A78327915183001AC772 /* mammon2.gif in Resources */,
 				D5A4453524F393AC00014DC6 /* 棋牌_00013.png in Resources */,
 				D5A4471224F3941400014DC6 /* 合成 1_00095.png in Resources */,
 				D5A443E724F378CD00014DC6 /* 彩票_00076.png in Resources */,
+				414B89D4279596F300AF45CA /* CNAddAddressVC.xib in Resources */,
 				D5A4457724F393AD00014DC6 /* 棋牌_00087.png in Resources */,
 				D5A444AE24F3932400014DC6 /* 数字7_00081.png in Resources */,
 				D5A4463D24F393E500014DC6 /* 足球_00066.png in Resources */,
@@ -6351,6 +6464,7 @@
 				E969EB3D24E2757400D58FE9 /* HYRechargeCNYEditView.xib in Resources */,
 				D5A444C924F3932500014DC6 /* 数字7_00090.png in Resources */,
 				042372A424CE65A000D37B9C /* CNSettingVC.xib in Resources */,
+				7682A78527915CE1001AC772 /* RedPacketsPreView.xib in Resources */,
 				D5A4457224F393AC00014DC6 /* 棋牌_00051.png in Resources */,
 				D5A443EE24F378CD00014DC6 /* 彩票_00093.png in Resources */,
 				D5FBFE3B24BC05E400BBCAD8 /* CNAccountInputView.xib in Resources */,
@@ -6580,6 +6694,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7682A79927968AAE001AC772 /* RedPacketsRequest.m in Sources */,
 				3DF43D4C25946AED0087F26A /* DSBProfitBoardCell.m in Sources */,
 				04C0F11B24C68715007F1420 /* CNUserInfoLoginView.m in Sources */,
 				0405FF6B24D3DAE400AC46D2 /* CNFeedBackRightTCell.m in Sources */,
@@ -6605,6 +6720,7 @@
 				04C0F0F124C54AE8007F1420 /* CNResetPwdVC.m in Sources */,
 				F7B61ED526A66FED00943B93 /* BYGloryRequest.m in Sources */,
 				3DA4F15724B30A090039123F /* SGQRCodeAlbumManager.m in Sources */,
+				76485F252787D4FB004EA51E /* PublicMethod.m in Sources */,
 				04C0F13224C7D2A6007F1420 /* CNSportVC.m in Sources */,
 				E986A1C624CC7F2B000F9CFF /* TAAnimatedDotView.m in Sources */,
 				0487C96D24CE9A630013715A /* NSDate+BRPickerView.m in Sources */,
@@ -6617,6 +6733,7 @@
 				048A168F24CACABF00411819 /* CNAlertPickerView.m in Sources */,
 				E986A1C524CC7F2B000F9CFF /* TAPageControl.m in Sources */,
 				3DF6E7BC267B1DA800911FC8 /* BYModifyPhoneVC.m in Sources */,
+				7682A79C2796B525001AC772 /* RedPacketsIdentifyModel.m in Sources */,
 				3D41DEAE251CC6FD000CA1D6 /* UIColor+Gradient.m in Sources */,
 				3DA4F15524B30A090039123F /* SGQRCodeScanManager.m in Sources */,
 				E9B5496924CECE23002CE6EF /* LTSegmentedBar.m in Sources */,
@@ -6627,6 +6744,8 @@
 				0487C9BC24D01DDE0013715A /* CNTradeRecodeVC.m in Sources */,
 				3D41DE7625199DEE000CA1D6 /* VIPGuideModel.m in Sources */,
 				3D31B95E2542D4BF005275BD /* PreLoginModel.m in Sources */,
+				767DF24D27914FB700F50520 /* UIView+Frame.m in Sources */,
+				7682A796279687D5001AC772 /* RedPacketsInfoModel.m in Sources */,
 				E9B5495324CDB646002CE6EF /* UUMarqueeView.m in Sources */,
 				E986A18C24C9D39B000F9CFF /* XmCalcAmountModel.m in Sources */,
 				3D41DE8325199DEE000CA1D6 /* VIPChartDJTQCell.m in Sources */,
@@ -6660,6 +6779,8 @@
 				3D9DA66E25918DF0003C3F28 /* DSBWeekMonthListCell.m in Sources */,
 				E97054AD24DC4C0E0007F845 /* CNImageCodeModel.m in Sources */,
 				3DA4F1A124B3199A0039123F /* HYNavigationController.m in Sources */,
+				7682A7A72797AE9F001AC772 /* LuckyBagModel.m in Sources */,
+				765C64E32782B4ED00A6BC34 /* BTTAnimationPopView.m in Sources */,
 				D5FBFE8B24BC28B200BBCAD8 /* CNBaseModel.m in Sources */,
 				0487C9F424D2AADC0013715A /* CNMessageTCell.m in Sources */,
 				3D41DECA2521CDE7000CA1D6 /* VIPRecordSelectorView.m in Sources */,
@@ -6708,6 +6829,7 @@
 				0487C98D24CEC8040013715A /* UIView+SDAutoLayout.m in Sources */,
 				0430AB3124E38F8300C873DC /* CNBankVerifySmsView.m in Sources */,
 				F78BB0F626A171F2003EAB31 /* BYGloryModel.m in Sources */,
+				76519929278C107F006A59BF /* RedPacketsPreView.m in Sources */,
 				3DF43D312592EE8B0087F26A /* V_SlideCardCell.m in Sources */,
 				04C6E1F724D41C3C006F4DAC /* CNAddressInfoTCell.m in Sources */,
 				3D41DE8125199DEE000CA1D6 /* VIPNewVersionView.m in Sources */,
@@ -6768,6 +6890,7 @@
 				76FC862F27622620005710FD /* SDWebImageFrame.m in Sources */,
 				3DCE56FC2698155200BEADD9 /* BYMultiAccountRuleView.m in Sources */,
 				04C0F10324C58A52007F1420 /* NSObject+CNParse.m in Sources */,
+				7682A7C52798144A001AC772 /* FusingBlessingCardModel.m in Sources */,
 				E98BEEEB24D023B200E6B0C8 /* LYEmptyView.m in Sources */,
 				04935BE324D8FC5B007A33EF /* CNElectrionHallCCell.m in Sources */,
 				3DA4F15424B30A090039123F /* SGQRCodeScanningView.m in Sources */,
@@ -6815,8 +6938,10 @@
 				3D41DE9A2519F996000CA1D6 /* VIPCumulateIdHeader.m in Sources */,
 				76B499EA27609237003CD35B /* A03CheckDomainModel.m in Sources */,
 				3DB600B32627E7C9002278F8 /* HYOneImgBtnAlertView.m in Sources */,
+				76519932278C2BE5006A59BF /* QBulletScreenView.m in Sources */,
 				3D41DE7325199DEE000CA1D6 /* VIPDSBUsrModel.m in Sources */,
 				3DC14E4C25FB561000D6DB85 /* BYOldMyWalletView.m in Sources */,
+				76485F222787D384004EA51E /* AssistiveButton.m in Sources */,
 				3DBA55D4256FA6D3009A2B71 /* CNSelectBtn.m in Sources */,
 				3D31B9612542E97D005275BD /* HYTapHanImageCodeView.m in Sources */,
 				3D41DEBD251F1B47000CA1D6 /* UIImageView+GIF.m in Sources */,
@@ -6828,6 +6953,7 @@
 				3DA4F15F24B30D610039123F /* GTMBase64.m in Sources */,
 				3D31B947253ACEF8005275BD /* HYWithdrawActivityAlertView.m in Sources */,
 				3D16F10025381EEC00FE0212 /* HYBuyECoinGuideVC.m in Sources */,
+				7682A7BC2797FDA0001AC772 /* PrizeRecordModel.m in Sources */,
 				3D16F0F825369CE100FE0212 /* VIPGiftTableView.m in Sources */,
 				E9D9449D24C5735B00252222 /* HY403ViewController.m in Sources */,
 				E98BEEFA24D0341A00E6B0C8 /* CTZNModel.m in Sources */,
@@ -6862,8 +6988,10 @@
 				042372A324CE65A000D37B9C /* CNSettingVC.m in Sources */,
 				0487CA0624D3BAB90013715A /* CNInviteFriendVC.m in Sources */,
 				3D564E2024F3C02C006846DD /* MessageBoxModel.m in Sources */,
+				765C64F32782C82B00A6BC34 /* RedPacketsRainView.m in Sources */,
 				E98BEF1C24D2BCA400E6B0C8 /* HYWithdrawCardCell.m in Sources */,
 				E9AE9F0424DAAF4500E8F4D8 /* ABCOneKeyRegisterBFBHelper.m in Sources */,
+				7682A7B92797FD8C001AC772 /* GiftCardModel.m in Sources */,
 				E969EB3824E2427900D58FE9 /* HYRechargeCNYViewController.m in Sources */,
 				F787DB1826C371F700AF7133 /* NSDateFormatter+BYDateFormatter.m in Sources */,
 				76FC8628276225A1005710FD /* SDWebImageCoderHelper.m in Sources */,
@@ -6914,6 +7042,7 @@
 				3D2B0873264FC4560008BB5F /* CNYuEBaoConfigModel.m in Sources */,
 				766A6EC6276B3E37007DC6A1 /* A03ActivityManager.m in Sources */,
 				3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */,
+				7682A7BF2797FDAF001AC772 /* PrizeNamesModel.m in Sources */,
 				3D41DE7825199DEE000CA1D6 /* VIPChartDSBHeaderView.m in Sources */,
 				3DC87A51253967DC0032ED1B /* BuyECoinModel.m in Sources */,
 				E98BEF3F24D3E99000E6B0C8 /* CNAmountInputView.m in Sources */,
@@ -6928,6 +7057,7 @@
 				3D65D1162568E35300917E1B /* SocketRocketUtility.m in Sources */,
 				E986A17724C979F6000F9CFF /* CNRechargeRequest.m in Sources */,
 				3D8A707E258B0B110058D50F /* SuperCopartnerTbDataSource.m in Sources */,
+				7682A78D2795654E001AC772 /* MBProgressHUD+Add.m in Sources */,
 				0430AB2924E26E5300C873DC /* CNAddBankCardVC.m in Sources */,
 				3D9DA6792591E1B6003C3F28 /* DSBRchrWthdrwHeader.m in Sources */,
 				E9063B8924D6B0AA0000273A /* HYOneBtnAlertView.m in Sources */,
@@ -6941,6 +7071,7 @@
 				3D9700222599D8D4003238C4 /* HYDSBSlideUpView.m in Sources */,
 				E98BEF1724D2AF9B00E6B0C8 /* HYWithdrawViewController.m in Sources */,
 				0487C96E24CE9A630013715A /* BRDatePickerView.m in Sources */,
+				765C64E92782B71700A6BC34 /* BTTBaseAnimationPopView.m in Sources */,
 				E9063B9324D6F3480000273A /* HYNewCTZNCell.m in Sources */,
 				3D643F9B24F396BC00B9AAA7 /* GameLineModel.m in Sources */,
 				3DBA55E42578EFCC009A2B71 /* CNDashenBoardVC.m in Sources */,
@@ -6953,6 +7084,7 @@
 				3D643F8C24F29F3600B9AAA7 /* KeyChain.m in Sources */,
 				3D31B94425399CB7005275BD /* HYBuyECoinComfirmView.m in Sources */,
 				3DC14E3F25F8DC0D00D6DB85 /* BYVocherTableVC.m in Sources */,
+				76485F282787D777004EA51E /* UIImage+GIF.m in Sources */,
 				F70128C4269544CD00ED6509 /* BYWithdrawConfirmVC.m in Sources */,
 				F791E24E269E7B44002D6648 /* BYCNYRechargeAlertView.m in Sources */,
 				E986A18F24CA8DB9000F9CFF /* ChooseAvatarsModel.m in Sources */,

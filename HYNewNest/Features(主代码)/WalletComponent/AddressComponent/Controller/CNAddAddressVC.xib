@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CNAddAddressVC">
             <connections>
+                <outlet property="addressTopLayout" destination="iJY-Sw-LWa" id="7Ga-5M-mu7"/>
                 <outlet property="borderLineCenterX" destination="FBK-hg-VgS" id="2xX-8A-VMA"/>
                 <outlet property="bottomLine" destination="O9X-Ck-hDR" id="iQh-7Y-OAX"/>
                 <outlet property="btomTipsLb" destination="bbZ-H9-SiW" id="fCd-aB-qOK"/>
@@ -19,6 +20,7 @@
                 <outlet property="linkInputView" destination="NA1-ca-qVu" id="icI-UW-pzs"/>
                 <outlet property="otherBtn" destination="OOZ-KA-ADn" id="7gk-i7-8In"/>
                 <outlet property="platformInputView" destination="Lpu-Ty-Wu5" id="cy2-tN-QO4"/>
+                <outlet property="protocolInputView" destination="iit-dK-ysn" id="5Vb-BE-jw0"/>
                 <outlet property="submitBtn" destination="CMG-Mn-bfz" id="WPD-zK-OPP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -117,6 +119,13 @@
                         <constraint firstAttribute="height" constant="75" id="ZAI-mV-kmK"/>
                     </constraints>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iit-dK-ysn" customClass="CNNormalInputView">
+                    <rect key="frame" x="15" y="188.5" width="384" height="75"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="75" id="1cK-8G-Mqk"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NA1-ca-qVu" customClass="CNNormalInputView">
                     <rect key="frame" x="15" y="188.5" width="384" height="75"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -144,15 +153,18 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Lpu-Ty-Wu5" secondAttribute="trailing" constant="15" id="AQt-Gn-f2s"/>
                 <constraint firstItem="CMG-Mn-bfz" firstAttribute="top" secondItem="bbZ-H9-SiW" secondAttribute="bottom" constant="15" id="Ln8-w1-Hqw"/>
                 <constraint firstItem="Z5l-eH-dIo" firstAttribute="top" secondItem="NA1-ca-qVu" secondAttribute="bottom" id="Ma3-y3-la6"/>
+                <constraint firstItem="iit-dK-ysn" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="15" id="OOw-4I-CfP"/>
                 <constraint firstItem="bbZ-H9-SiW" firstAttribute="top" secondItem="dmy-mo-Bzk" secondAttribute="bottom" constant="12" id="QDh-Sb-UAs"/>
                 <constraint firstItem="dmy-mo-Bzk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="U0g-3S-Klb"/>
                 <constraint firstItem="ChX-dJ-hqB" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="VGU-UG-qsq"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="CMG-Mn-bfz" secondAttribute="bottom" constant="25" id="Vso-yd-3Xh"/>
                 <constraint firstItem="NA1-ca-qVu" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="15" id="adD-ee-aVQ"/>
                 <constraint firstItem="CMG-Mn-bfz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="b9P-q1-QHG"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="iit-dK-ysn" secondAttribute="trailing" constant="15" id="eXh-1p-Pc2"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="ChX-dJ-hqB" secondAttribute="trailing" id="f0M-We-52i"/>
                 <constraint firstItem="NA1-ca-qVu" firstAttribute="top" secondItem="Lpu-Ty-Wu5" secondAttribute="bottom" id="iJY-Sw-LWa"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Z5l-eH-dIo" secondAttribute="trailing" constant="15" id="tWR-BM-FCl"/>
+                <constraint firstItem="iit-dK-ysn" firstAttribute="top" secondItem="Lpu-Ty-Wu5" secondAttribute="bottom" id="uWn-eb-B9F"/>
                 <constraint firstItem="Z5l-eH-dIo" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="15" id="ynW-3W-kUD"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="145.98214285714286"/>

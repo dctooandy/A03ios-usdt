@@ -72,12 +72,12 @@
     [[AppdelegateManager shareManager] setEnvironment:self.environment];
     WEAKSELF_DEFINE
     [[AppdelegateManager shareManager] checkDomainHandler:^{
-#ifdef DEBUG
+
     [kKeywindow jk_makeToast:[IVHttpManager shareManager].gateway
                     duration:4
                     position:JKToastPositionCenter
                        title:[NSString stringWithFormat:@"😄当前是%ld --【%@】",(long)weakSelf.environment ,weakSelf.envName]];
-#endif
+
         // 重新加载游戏线路信息
         [[HYInGameHelper sharedInstance] queryHomeInGamesStatus];
         

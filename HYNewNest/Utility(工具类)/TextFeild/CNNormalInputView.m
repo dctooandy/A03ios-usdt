@@ -7,7 +7,7 @@
 //
 
 #import "CNNormalInputView.h"
-
+#import "BRPickerView.h"
 
 @interface CNNormalInputView () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *tipLb;
@@ -17,6 +17,9 @@
 @property (nonatomic, strong) UIColor *hilghtColor;
 @property (nonatomic, strong) UIColor *wrongColor;
 @property (nonatomic, strong) UIColor *normalColor;
+@property (nonatomic, strong) NSArray *pickerTextArr;
+@property (nonatomic, copy) NSString *pickerTitleStr;
+@property (nonatomic, strong) UITapGestureRecognizer *platformTap;
 @end
 
 @implementation CNNormalInputView
@@ -117,6 +120,28 @@
     [prefixLabel setText:text];
     [self.inputTF setLeftViewMode:UITextFieldViewModeAlways];
     [self.inputTF setLeftView:prefixLabel];
+}
+
+-(void)setPicker:(NSString *)titleStr arr:(NSArray *)arr {
+    self.pickerTextArr = arr;
+    self.pickerTitleStr = titleStr;
+    self.platformTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPicker)];
+    self.platformTap.numberOfTapsRequired = 1;
+    [self.inputTF addGestureRecognizer:self.platformTap];
+}
+
+-(void)showPicker {
+    [BRStringPickerView showStringPickerWithTitle:self.pickerTitleStr dataSource:self.pickerTextArr defaultSelValue:self.inputTF.text resultBlock:^(id selectValue, NSInteger index) {
+        self.inputTF.text = selectValue;
+        [self.inputTF endEditing:true];
+        if (self->_delegate && [self->_delegate respondsToSelector:@selector(pickerViewDidEndEditing:index:)]) {
+            [self->_delegate pickerViewDidEndEditing:self index:index];
+        }
+    }];
+}
+
+-(void)removeTap {
+    [self.inputTF removeGestureRecognizer:self.platformTap];
 }
 
 @end

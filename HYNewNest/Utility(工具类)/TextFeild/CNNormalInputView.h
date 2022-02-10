@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)inputViewTextChange:(CNNormalInputView *)view;
 @optional
 - (void)inputViewDidEndEditing:(CNNormalInputView *)view;
+
+- (void)pickerViewDidEndEditing:(CNNormalInputView *)view index:(NSInteger)index;
 @end
 
 
@@ -24,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 记录对错，用于UI改变风格
 @property (assign, nonatomic) BOOL wrongAccout;
 @property (nonatomic, weak) id delegate;
+
 
 /// 错误提示
 - (void)showWrongMsg:(NSString *)msg;
@@ -41,6 +44,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setInputBackgoundColor: (UIColor *)color;
 
 - (void)setPrefixText: (NSString *)text;
+
+-(void)setPicker:(NSString *)titleStr arr:(NSArray *)arr;
+-(void)removeTap;
 
 @end
 

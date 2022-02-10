@@ -31,6 +31,21 @@
 #define kGatewayExtraPath(api)  [NSString stringWithFormat:@"by/_extra_/%@", api]  //产品网关
 //網關域名
 #define A03AppSetting                              @"getAppSetting"
+// 红包雨
+// 活动基本信息，包括初始化的倒计时等
+#define A03RainInfo                               @"activity/money-rain/info"
+// 红包雨开抢之前，创建唯一的福袋ID ,在红包雨开始时抢第一个红包时调用
+#define A03RainCreate                             @"activity/money-rain/create-identify"
+// 打开福袋
+#define A03RainOpen                               @"activity/money-rain/open-lucky-bag"
+// 查询我可用的福卡
+#define A03RainQuery                              @"activity/money-rain/query-blessing-card"
+// 集成福卡
+#define A03RainFusing                             @"activity/money-rain/fusing-blessing-card"
+// 实物中奖记录
+#define A03RainInKindPrize                        @"activity/money-rain/in-kind-prize-records"
+// 查询实物奖品与对应的中奖用户名列表
+#define A03RainGroup                              @"activity/money-rain/group-by-prize-name"
 
 #pragma mark 公共
 #define config_welcome  @"welcome"
@@ -167,6 +182,7 @@
 #define config_queryDepositBankInfos @"deposit/queryDepositBankInfos"  //查询电子货币渠道
 #define config_createOnlineOrder   @"deposit/createOnlineOrder"  // 创建订单（网银在线 扫码支付 比特币支付 币付宝 小金库）
 #define config_createOnlineOrderV2   @"deposit/createOnlineOrderV2"
+#define config_rechargeUSDTQrcode    @"deposit/createCryptoCoinDepositOrder"
 #define config_createManualDepositRequest @"deposit/createManualDepositRequest" //创建手动支付订单（USDT公链）
 #define config_queryDepositCounter @"deposit/queryDepositCounter"   //查询存款收银台地址接口
 

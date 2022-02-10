@@ -52,9 +52,9 @@
         if (timeStr.length > 0) {
             NSString * pathStr = @"";
             //手動輸入要更換的日期
-            if ([self checksStartDate:@"2021-12-12" EndDate:@"2022-01-10" serverTime:timeStr])
+            if ([self checksStartDate:@"2022-01-25" EndDate:@"2022-02-15" serverTime:timeStr])
             {
-                pathStr = @"degg03";////双但
+                pathStr = @"newYear";////双但
             }
             if (pathStr.length > 0) {
                 NSString *path = [[NSBundle mainBundle] pathForResource:pathStr ofType:@"gif"];
