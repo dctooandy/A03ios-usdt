@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UILabel *topSubLb;
 @property (nonatomic, strong) UIImageView *rankImgv;
 @property (nonatomic, strong) UIButton *btmButton;
+@property (nonatomic, strong) UILabel *btmColorTopLb;
 @property (nonatomic, strong) UILabel *btmColorLb;
 @property (nonatomic, weak) id<VIPMonlyAlertDelegate> actionDelegate;
 @end
@@ -62,6 +63,18 @@
     [self.bgView addSubview:centerRankImgv];
     self.rankImgv = centerRankImgv;
     
+    UILabel *btmColorTopLb = [[UILabel alloc] init];
+    btmColorTopLb.font = [UIFont fontPFM16];
+    btmColorTopLb.textColor = [UIColor redColor];
+    btmColorTopLb.numberOfLines = 1;
+    btmColorTopLb.textAlignment = NSTextAlignmentCenter;
+    btmColorTopLb.frame = CGRectMake(0, self.rankImgv.bottom+AD(6), self.contentView.width, AD(20));
+    btmColorTopLb.text = @"恭喜您荣膺";
+    [btmColorTopLb setHidden:YES];
+    [self.contentView addSubview:btmColorTopLb];
+    self.btmColorTopLb = btmColorTopLb;
+    [self.btmColorTopLb setHidden:YES];
+    
     UILabel *btmColorLb = [[UILabel alloc] init];
     btmColorLb.font = [UIFont fontPFM14];
     btmColorLb.textColor = kHexColor(0x8F1C34);
@@ -99,7 +112,15 @@
             if (model.vipRhqk) {
                 self.topSubLb.text = [NSString stringWithFormat:@"( %ld月累计入会%ld名,祝贺他们! ) ",(long)model.lastMonth , model.vipRhqk.betCount];
                 self.rankImgv.hidden = NO;
-                self.btmColorLb.text = [NSString stringWithFormat:@"%@ 会员荣膺“赌尊”\n(流水%@CNY-充值%@CNY)", model.vipRhqk.betZunName,  [model.vipRhqk.betAmount jk_toDisplayNumberWithDigit:0], [model.vipRhqk.depositAmount jk_toDisplayNumberWithDigit:0]];
+                // 疑问
+                // vipRhqk.betAmount 流水
+                // vipRhqk.depositAmount 充值
+                // 不确定API回吐的是CNY还是USDT
+                [self.btmColorTopLb setHidden:YES];
+                self.btmColorLb.text = [NSString stringWithFormat:@"%@ 会员荣膺“赌尊”\n(流水%@CNY-充值%@CNY)",
+                                        model.vipRhqk.betZunName,
+                                        [model.vipRhqk.betCNYAmount jk_toDisplayNumberWithDigit:0],
+                                        [model.vipRhqk.depositCNYAmount jk_toDisplayNumberWithDigit:0]];
             }
             
             UIView *framk = [UIView new];
@@ -165,16 +186,22 @@
             self.topSubLb.text = @"";
             self.rankImgv.hidden = YES;
             self.btmColorLb.hidden = YES;
-            
+            [self.btmColorTopLb setHidden:YES];
             // 绘制表格
             NSArray *leftText = @[@"入会礼金",@"月度分红",@"至尊转盘",@"累计身份",@"累计送出"];
             NSArray *rightNum;
             if (model.vipScjz) {
-                rightNum = @[[[model.vipScjz.rhlj jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"],
-                             [[model.vipScjz.ydfh jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"],
+                // 疑问
+                // vipScjz.rhlj 入会礼金
+                // vipScjz.ydfh 月度分红
+                // vipScjz.ljsf 累计身份
+                // vipScjz.ljsc 累计送出
+                // 不确定API回吐的是CNY还是USDT
+                rightNum = @[[[model.vipScjz.rhljCNY jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"],
+                             [[model.vipScjz.ydfhCNY jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"],
                              [[model.vipScjz.zzzp jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" 次"],
-                             [[model.vipScjz.ljsf jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"],
-                             [[model.vipScjz.ljsc jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"]];
+                             [[model.vipScjz.ljsfCNY jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"],
+                             [[model.vipScjz.ljscCNY jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"]];
             } else {
                 rightNum = @[@"0 CNY",@"0 CNY",@"0 CNY",@"0 CNY",@"0 CNY"];
             }
@@ -234,7 +261,11 @@
             self.bgView.height = AD(237);
             self.btmButton.hidden = NO;
             self.btmButton.y = self.bgView.bottom + AD(10);
-            self.topSubLb.text = [NSString stringWithFormat:@"( 您的战绩：流水%@CNY-充值%@CNY )", [model.totalBetAmount jk_toDisplayNumberWithDigit:0], [model.totalDepositAmount jk_toDisplayNumberWithDigit:0]];
+            // 疑问
+            // totalBetAmount 流水
+            // totalDepositAmount 充值
+            // 不确定API回吐的是CNY还是USDT
+            self.topSubLb.text = [NSString stringWithFormat:@"( 您的战绩：流水%@CNY-充值%@CNY )", [model.totalBetCNYAmount jk_toDisplayNumberWithDigit:0], [model.totalDepositCNYAmount jk_toDisplayNumberWithDigit:0]];
             
             self.rankImgv.hidden = NO;
             self.rankImgv.contentMode = UIViewContentModeCenter;
@@ -244,13 +275,35 @@
             self.btmColorLb.hidden = NO;
             
             BOOL isCanRank = model.clubLevel && [@[@2,@3,@4,@5,@6,@7] containsObject:model.clubLevel];
+            // 测试用
+//            BOOL isDev = YES;
+//            if (isDev == YES)
+//            {
+//                isCanRank = YES;
+//                model.betName = @"食神";
+//                model.preRequest = @{@"amount":@"9888"};
+//                model.clubLevel = @2;
+//            }
             if (isCanRank) {
+                [self.btmColorTopLb setHidden:NO];
                 self.rankImgv.image = [UIImage imageNamed:[NSString stringWithFormat:@"rank_%@", model.clubLevel]];
-                self.btmColorLb.text = [NSString stringWithFormat:@"恭喜您荣膺%@\n小游送你入会礼金\n%@ CNY", model.betName, model.preRequest?model.preRequest[@"amount"]:@"0"];
+                self.btmColorTopLb.text = [NSString stringWithFormat:@"恭喜您荣膺%@\n",
+                                           model.betName];
+                NSString *preRequestAmountCNYString = @"";
+                NSString *preRequestAmountUSDTString = @"";
+                if (model.preRequest)
+                {
+                    preRequestAmountUSDTString = model.preRequest[@"amount"];
+                    preRequestAmountCNYString = [NSString stringWithFormat:@"%@",[[NSNumber numberWithFloat:([model.preRequest[@"amount"] floatValue] * 7)] jk_toDisplayNumberWithDigit:0]];
+                }
+                self.btmColorLb.text = [NSString stringWithFormat:@"小游送你入会礼金\n%@ CNY(等值%@ USDT)",
+                                        preRequestAmountCNYString,
+                                        preRequestAmountUSDTString];
                 //12/17 需求: 下方使用双币种显示 , 文案改为上下排版
                 [self.btmButton setTitle:@"领取" forState:UIControlStateNormal];
                 if (!model.preRequest) self.btmButton.enabled = NO;
             } else {
+                [self.btmColorTopLb setHidden:YES];
                 self.rankImgv.image = [UIImage imageNamed:@"yuebaonone"];
                 self.btmColorLb.text = @"您还未达到入会等级\n请再接再励哦~";
                 [self.btmButton setTitle:@"看看月报" forState:UIControlStateNormal];

@@ -8,6 +8,8 @@
 
 #import "A03ActivityManager.h"
 #import "CNHomeRequest.h"
+#import "PublicMethod.h"
+#import "RedPacketsRequest.h"
 
 @interface A03ActivityManager()
 @property(nonatomic,strong)A03PopViewModel * popModel;
@@ -27,6 +29,67 @@ static A03ActivityManager * sharedSingleton;
 + (A03ActivityManager *)sharedInstance {
     return sharedSingleton;
 }
+- (void)checkTimeRedPacketRainWithCompletion:(RedPacketCallBack _Nullable)redPacketBlock
+                       WithDefaultCompletion:(RedPacketCallBack _Nullable)defaultBlock
+{
+    WEAKSELF_DEFINE
+    [RedPacketsRequest getRainInfoTask:^(id responseObj, NSString *errorMsg) {
+        weakSelf.redPacketInfoModel = [RedPacketsInfoModel cn_parse:responseObj];
+        weakSelf.redPacketInfoModel.isDev = NO;
+#ifdef DEBUG
+        BOOL isRainningSetting = [[NSUserDefaults standardUserDefaults] boolForKey:RedPacketCustomSetting];
+        if (isRainningSetting == YES)
+        {
+            NSString *selectString = [[NSUserDefaults standardUserDefaults] objectForKey:RedPacketRainningSelectValue];
+            NSArray * timeArray = [selectString componentsSeparatedByString:@":"];
+            int firstStartHour = [[timeArray firstObject] intValue];
+            int firstStartMins = [[timeArray lastObject] intValue];
+            int firstEndHour = (firstStartMins + 1) < 60 ? firstStartHour : (firstStartHour + 1);
+            int firstEndMins = (firstStartMins + 1) < 60 ? (firstStartMins + 1) : 0;
+            int secondStartHour = (firstEndMins + 1 < 60 ? firstEndHour : (firstEndHour + 1));
+            int secondStartMins = firstEndMins + 1;
+            int secondEndHour = (secondStartMins + 1 < 60 ? secondStartHour : (secondStartHour + 1));
+            int secondEndMins = secondStartMins + 1;
+            weakSelf.redPacketInfoModel.isDev = YES;
+            weakSelf.redPacketInfoModel.firstStartAt = [NSString stringWithFormat:@"%d:%d:00",firstStartHour,firstStartMins];
+            weakSelf.redPacketInfoModel.firstEndAt =  [NSString stringWithFormat:@"%d:%d:00",firstEndHour,firstEndMins];
+            weakSelf.redPacketInfoModel.secondStartAt =  [NSString stringWithFormat:@"%d:%d:00",secondStartHour,secondStartMins];
+            weakSelf.redPacketInfoModel.secondEndAt =  [NSString stringWithFormat:@"%d:%d:00",secondEndHour,secondEndMins];
+        }
+#endif
+        [weakSelf serverTime:^(NSString *timeStr) {
+            if (timeStr.length > 0)
+            {
+                NSArray *duractionArray = [PublicMethod redPacketDuracionCheck];
+                BOOL isBeforeDuration = [duractionArray[0] boolValue];
+                BOOL isActivityDuration = [duractionArray[1] boolValue];
+                if (isBeforeDuration || isActivityDuration)
+                {
+                    // 不到时间,预热
+                    // 活动期间
+                    if (redPacketBlock)
+                    {
+                        redPacketBlock(isActivityDuration ? @"1" : nil,nil);
+                    }
+                }else
+                {
+                    // 过了活动期
+                    if (defaultBlock)
+                    {
+                        defaultBlock(nil,nil);
+                    }
+                }
+            }
+        }];
+    }];
+}
+-(void)serverTime:(CheckTimeCompleteBlock)completeBlock {
+    NSDate *timeDate = [NSDate new];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    completeBlock([dateFormatter stringFromDate:timeDate]);
+}
+
 - (void)checkPopViewWithCompletionBlock:(PopViewCallBack _Nullable)completionBlock {
     
     WEAKSELF_DEFINE

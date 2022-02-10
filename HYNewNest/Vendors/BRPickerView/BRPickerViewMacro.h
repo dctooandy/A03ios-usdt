@@ -9,16 +9,16 @@
 #ifndef BRPickerViewMacro_h
 #define BRPickerViewMacro_h
 
-// 屏幕大小、宽、高
-#ifndef SCREEN_BOUNDS
-#define SCREEN_BOUNDS [UIScreen mainScreen].bounds
-#endif
-#ifndef SCREEN_WIDTH
-#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
-#endif
-#ifndef SCREEN_HEIGHT
-#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
-#endif
+//// 屏幕大小、宽、高
+//#ifndef SCREEN_BOUNDS
+//#define SCREEN_BOUNDS [UIScreen mainScreen].bounds
+//#endif
+//#ifndef SCREEN_WIDTH
+//#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+//#endif
+//#ifndef SCREEN_HEIGHT
+//#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+//#endif
 
 // RGB颜色(16进制)
 #define BR_RGB_HEX(rgbValue, a) \

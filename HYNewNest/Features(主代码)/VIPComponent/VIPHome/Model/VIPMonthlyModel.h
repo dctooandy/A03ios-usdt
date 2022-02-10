@@ -29,8 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * betZunName;
 /// 赌尊充值
 @property (nonatomic , strong) NSNumber             * depositAmount;
+@property (nonatomic , strong) NSNumber             * depositCNYAmount;
 /// 赌尊流水
 @property (nonatomic , strong) NSNumber              * betAmount;
+@property (nonatomic , strong) NSNumber              * betCNYAmount;
 
 @end
 
@@ -38,12 +40,16 @@ NS_ASSUME_NONNULL_BEGIN
 @interface VipScjz :CNBaseModel
 /// 累计送出
 @property (nonatomic , strong) NSNumber              * ljsc;
+@property (nonatomic , strong) NSNumber              * ljscCNY;
 /// 累计身份
 @property (nonatomic , strong) NSNumber              * ljsf;
+@property (nonatomic , strong) NSNumber              * ljsfCNY;
 /// 入会礼金
 @property (nonatomic , strong) NSNumber              * rhlj;
+@property (nonatomic , strong) NSNumber              * rhljCNY;
 /// 月度分红
 @property (nonatomic , strong) NSNumber              * ydfh;
+@property (nonatomic , strong) NSNumber              * ydfhCNY;
 /// 至尊转盘
 @property (nonatomic , strong) NSNumber              * zzzp;
 @property (nonatomic , strong) NSNumber              * prize;
@@ -62,10 +68,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSNumber              * clubLevel;
 /// 上月存款
 @property (nonatomic , strong) NSNumber             * totalDepositAmount;
+@property (nonatomic , strong) NSNumber             * totalDepositCNYAmount;
 /// 上月月份
 @property (nonatomic , assign) NSInteger              lastMonth;
 /// 上月流水
 @property (nonatomic , strong) NSNumber             * totalBetAmount;
+@property (nonatomic , strong) NSNumber             * totalBetCNYAmount;
 /// 当前是什么等级
 @property (nonatomic , copy) NSString              * betName;
 

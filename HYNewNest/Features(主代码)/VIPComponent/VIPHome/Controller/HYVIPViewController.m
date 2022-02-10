@@ -310,6 +310,8 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
             }
         }
         [CNVIPRequest vipsxhIsShowReportHandler:^(id responseObj, NSString *errorMsg) {
+            // 测试用
+//            if (!errorMsg && [responseObj[@"flag"] integerValue] != 1 && self.childViewControllers.count == 0) {
             if (!errorMsg && [responseObj[@"flag"] integerValue] == 1 && self.childViewControllers.count == 0) {
                 VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
                 vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
@@ -456,7 +458,10 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     
     // 修改入会礼金 等级要求流水和存款
     if (item) {
-        self.lbVipRight.text = [NSString stringWithFormat:@"会员权益: 入会礼金%@usdt", [item.rhljAmount jk_toDisplayNumberWithDigit:0]];
+        NSString * rhljNumberString = ([[CNUserManager shareManager].userInfo.uiMode isEqualToString:@"USDT"] ? [item.rhljAmount jk_toDisplayNumberWithDigit:0]: [[NSNumber numberWithFloat:[item.rhljAmount floatValue] * 7.0] jk_toDisplayNumberWithDigit:0]);
+        self.lbVipRight.text = [NSString stringWithFormat:@"会员权益: 入会礼金%@%@",
+                                rhljNumberString,
+                                [CNUserManager shareManager].userInfo.uiMode];
         self.lblNextLevelAmount.text = [[item.betAmount jk_toDisplayNumberWithDigit:2] stringByAppendingFormat:@" %@", item.currency];
         self.lblNextLevelDeposit.text = [[item.depositAmount jk_toDisplayNumberWithDigit:2] stringByAppendingFormat:@" %@", item.currency];
         

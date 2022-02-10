@@ -185,6 +185,7 @@
     [[HYNetworkConfigManager shareManager] switchEnvirnment];
 }
 
+
 /// 切换页面
 - (void)goToLogInOrRegister {
     // 去注册页面

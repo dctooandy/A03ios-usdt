@@ -60,7 +60,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FU8-Ow-S83">
                                     <rect key="frame" x="147.5" y="35" width="88" height="93"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="log_logo" translatesAutoresizingMaskIntoConstraints="NO" id="MdU-No-lZJ">
+                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="log_logo" translatesAutoresizingMaskIntoConstraints="NO" id="MdU-No-lZJ">
                                             <rect key="frame" x="0.0" y="0.0" width="88" height="93"/>
                                         </imageView>
                                     </subviews>

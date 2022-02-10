@@ -156,4 +156,15 @@
     [self POST:(config_BQPayment) parameters:paramDic completionHandler:handler];
 }
 
++(void)submitOtherUsdtPayment:(NSString *)protocol
+                       amount:(NSString *)amount
+                      handler:(HandlerBlock)handler{
+    NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
+    paramDic[@"payType"] = @"25";
+    paramDic[@"tranAmount"] = amount;
+    paramDic[@"currency"] = @"USDT";
+    paramDic[@"protocol"] = protocol;
+    [self POST:(config_rechargeUSDTQrcode) parameters:paramDic completionHandler:handler];
+}
+
 @end

@@ -116,6 +116,12 @@ NS_ASSUME_NONNULL_BEGIN
 //                      bankCode:(NSString *)bankCode
                        handler:(HandlerBlock)handler;
 
+/// 創建數字幣存款訂單
+/// @param protocol 選擇協議
+/// @param amount 金额
++(void)submitOtherUsdtPayment:(NSString *)protocol
+                       amount:(NSString *)amount
+                      handler:(HandlerBlock)handler;
 @end
 
 NS_ASSUME_NONNULL_END

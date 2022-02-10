@@ -43,6 +43,7 @@ typedef enum {
 typedef enum {
     SDCycleScrollViewPageContolStyleClassic,        // 系统自带经典样式
     SDCycleScrollViewPageContolStyleAnimated,       // 动画效果pagecontrol
+    SDCycleScrollViewPageContolStyleDefault,
     SDCycleScrollViewPageContolStyleBiyou,
     SDCycleScrollViewPageContolStyleNone            // 不显示pagecontrol
 } SDCycleScrollViewPageContolStyle;
@@ -102,6 +103,9 @@ typedef enum {
 
 /** 每张图片对应要显示的文字数组 */
 @property (nonatomic, strong) NSArray *titlesGroup;
+/** 每张图片对应要显示的文字数组 */
+@property (nonatomic, strong) NSArray *descriptionGroup;
+
 
 /** 本地图片数组 */
 @property (nonatomic, strong) NSArray *localizationImageNamesGroup;
