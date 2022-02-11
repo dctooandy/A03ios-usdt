@@ -96,7 +96,9 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 @property (strong, nonatomic) VIPHomeUserModel *sxhModel;
 
 // 领取私享金按钮
+@property (weak, nonatomic) IBOutlet UIImageView *sxgImageView;
 @property (weak, nonatomic) IBOutlet UIButton *goGetSXGBtn;
+
 @end
 
 @implementation HYVIPViewController
@@ -111,19 +113,20 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (![CNUserManager shareManager].isLogin) {
-        [self.goGetSXGBtn setEnabled:NO];
+        [self changeSXGBtnType:NO];
     }else
     {
+        WEAKSELF_DEFINE
         [CNVIPRequest vipsxhIsShowReportHandler:^(id responseObj, NSString *errorMsg) {
             // 私享会测试用
-            if (!errorMsg && [responseObj[@"flag"] integerValue] != 1 && self.childViewControllers.count == 0) {
-                //        if (!errorMsg && [responseObj[@"flag"] integerValue] == 1 && self.childViewControllers.count == 0) {
-                [self.goGetSXGBtn setEnabled:YES];
+            if (!errorMsg && [responseObj[@"flag"] integerValue] != 1 ) {
+//            if (!errorMsg && [responseObj[@"flag"] integerValue] == 1 && self.childViewControllers.count == 0) {
+                [weakSelf changeSXGBtnType:YES];
             }else
             {
-                [self.goGetSXGBtn setEnabled:NO];
+                [weakSelf changeSXGBtnType:NO];
             }
-        }];        
+        }];
     }
 }
 
@@ -144,7 +147,6 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLogoutSuccessNotification object:nil];
-    [self setupSXGBtn];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -473,7 +475,11 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     [self.collectionViewCard scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:_m_currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
 
-
+- (void)changeSXGBtnType:(BOOL)enable
+{
+    [self.sxgImageView setImage:enable ? [UIImage imageNamed:@"sxh_Default"]:[UIImage imageNamed:@"sxh_Disable"]];
+    [self.goGetSXGBtn setEnabled:enable];
+}
 #pragma mark - SET
 //0 - 5 依次是： 赌侠 赌霸 赌王 赌圣 赌神 赌尊
 - (void)setM_currentIndex:(NSInteger)m_currentIndex {
@@ -487,7 +493,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     
     // 修改入会礼金 等级要求流水和存款
     if (item) {
-        NSString * rhljNumberString = ([[CNUserManager shareManager].userInfo.uiMode isEqualToString:@"USDT"] ? [item.rhljAmount jk_toDisplayNumberWithDigit:0]: [[NSNumber numberWithFloat:[item.rhljAmount floatValue] * 7.0] jk_toDisplayNumberWithDigit:0]);
+        NSString * rhljNumberString = ([[CNUserManager shareManager].userInfo.uiMode isEqualToString:@"USDT"] ? [item.rhljAmount jk_toDisplayNumberWithDigit:0]: [item.rhljCnyAmount jk_toDisplayNumberWithDigit:0]);
         self.lbVipRight.text = [NSString stringWithFormat:@"会员权益: 入会礼金%@%@",
                                 rhljNumberString,
                                 [CNUserManager shareManager].userInfo.uiMode];
@@ -561,11 +567,6 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
         _marqueeView.touchEnabled = NO;
     }
     return _marqueeView;
-}
-- (void)setupSXGBtn
-{
-    [self.goGetSXGBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.goGetSXGBtn setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
 }
 
 @end
