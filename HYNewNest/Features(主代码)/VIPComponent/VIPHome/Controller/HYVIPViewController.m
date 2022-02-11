@@ -469,7 +469,9 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 - (void)changeSXGBtnType:(BOOL)enable
 {
-    [self.goGetSXGBtn setEnabled:enable];
+//    [self.goGetSXGBtn setEnabled:enable];
+    // 暂时都不给点
+    [self.goGetSXGBtn setEnabled:NO];
 }
 - (void)setupSXHBtn{
     [self.goGetSXGBtn setImage:ImageNamed(@"btn_default") forState:UIControlStateNormal];
