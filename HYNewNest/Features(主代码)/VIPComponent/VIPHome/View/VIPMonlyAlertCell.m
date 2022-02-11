@@ -280,8 +280,8 @@
 //            if (isDev == YES)
 //            {
 //                isCanRank = YES;
-//                model.betName = @"食神";
-//                model.preRequest = @{@"amount":@"9888"};
+//                model.betName = @"赌侠";
+//                model.preRequest = @{@"amount":@"268"};
 //                model.clubLevel = @2;
 //            }
             if (isCanRank) {
@@ -294,7 +294,7 @@
                 if (model.preRequest)
                 {
                     preRequestAmountUSDTString = model.preRequest[@"amount"];
-                    preRequestAmountCNYString = [NSString stringWithFormat:@"%@",[[NSNumber numberWithFloat:([model.preRequest[@"amount"] floatValue] * 7)] jk_toDisplayNumberWithDigit:0]];
+                    preRequestAmountCNYString = [NSString stringWithFormat:@"%@",[[NSNumber numberWithFloat:([model.preRequest[@"amount"] floatValue] * CnyAndUsdtRate)] jk_toDisplayNumberWithDigit:0]];
                 }
                 self.btmColorLb.text = [NSString stringWithFormat:@"小游送你入会礼金\n%@ CNY(等值%@ USDT)",
                                         preRequestAmountCNYString,

@@ -26,7 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 用户等级特权
 @interface EquityDataItem :CNBaseModel
 @property (nonatomic , strong) NSNumber              * depositAmount;
+@property (nonatomic , strong) NSNumber              * depositCNYAmount;
 @property (nonatomic , strong) NSNumber              * betAmount;
+@property (nonatomic , strong) NSNumber              * betCNYAmount;
 @property (nonatomic , strong) NSNumber              * ydfhAmount;
 @property (nonatomic , strong) NSNumber              * ydfhCnyAmount;
 @property (nonatomic , copy) NSString              * clubLevel;

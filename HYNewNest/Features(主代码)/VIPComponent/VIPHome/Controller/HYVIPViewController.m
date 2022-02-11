@@ -507,8 +507,8 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
         self.lbVipRight.text = [NSString stringWithFormat:@"会员权益: 入会礼金%@%@",
                                 rhljNumberString,
                                 [CNUserManager shareManager].userInfo.uiMode];
-        self.lblNextLevelAmount.text = [[item.betAmount jk_toDisplayNumberWithDigit:2] stringByAppendingFormat:@" %@", item.currency];
-        self.lblNextLevelDeposit.text = [[item.depositAmount jk_toDisplayNumberWithDigit:2] stringByAppendingFormat:@" %@", item.currency];
+        self.lblNextLevelAmount.text = [[item.betCNYAmount jk_toDisplayNumberWithDigit:2] stringByAppendingString:@" CNY"];
+        self.lblNextLevelDeposit.text = [[item.depositCNYAmount jk_toDisplayNumberWithDigit:2] stringByAppendingString:@" CNY"];
         
         float amoutPrgs = [_sxhModel.totalBetAmount floatValue] / [item.betAmount floatValue];
         self.prgsViewAmount.progress = amoutPrgs;
