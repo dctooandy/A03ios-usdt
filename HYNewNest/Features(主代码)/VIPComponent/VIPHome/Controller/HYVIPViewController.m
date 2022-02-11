@@ -97,7 +97,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 // 领取私享金按钮
 @property (weak, nonatomic) IBOutlet UIButton *goGetSXGBtn;
-
+@property (nonatomic, strong) VIPMonthlyModel *model; // 私享会月报
 @end
 
 @implementation HYVIPViewController
@@ -112,6 +112,9 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self checkSXGBtnEnable];
+    self.m_currentIndex = 0;
+    self.pageControl.currentPage = _m_currentIndex;
+    [self.collectionViewCard scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:_m_currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
 
 - (void)viewDidLoad {
@@ -478,13 +481,25 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     }else
     {
         WEAKSELF_DEFINE
-        [CNVIPRequest vipsxhIsShowReportHandler:^(id responseObj, NSString *errorMsg) {
-            // 私享会测试用
-//            if (!errorMsg && [responseObj[@"flag"] integerValue] != 1 ) {
-            if (!errorMsg && [responseObj[@"flag"] integerValue] == 1 && self.childViewControllers.count == 0) {
-                [weakSelf changeSXGBtnType:YES];
-            }else
-            {
+        // 月报
+        [CNVIPRequest vipsxhMonthReportHandler:^(id responseObj, NSString *errorMsg) {
+            if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+                weakSelf.model = [VIPMonthlyModel cn_parse:responseObj];
+                if (weakSelf.model) {
+                    if (weakSelf.model.preRequest)
+                    {
+                        [weakSelf changeSXGBtnType:YES];
+                    }else
+                    {
+                        // 私享会测试用
+//                        [weakSelf changeSXGBtnType:YES];
+                        [weakSelf changeSXGBtnType:NO];
+                    }
+                }else
+                {
+                    [weakSelf changeSXGBtnType:NO];
+                }
+            } else {
                 [weakSelf changeSXGBtnType:NO];
             }
         }];
@@ -503,10 +518,11 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     
     // 修改入会礼金 等级要求流水和存款
     if (item) {
-        NSString * rhljNumberString = ([[CNUserManager shareManager].userInfo.uiMode isEqualToString:@"USDT"] ? [item.rhljAmount jk_toDisplayNumberWithDigit:0]: [item.rhljCnyAmount jk_toDisplayNumberWithDigit:0]);
+        NSString * rhljNumberString = ([[CNUserManager shareManager].userInfo.uiMode isEqualToString:@"CNY"] ?[item.rhljCnyAmount jk_toDisplayNumberWithDigit:0] : [item.rhljAmount jk_toDisplayNumberWithDigit:0]);
+        NSString * uiModeString = [CNUserManager shareManager].userInfo.uiMode ? [CNUserManager shareManager].userInfo.uiMode : @"USDT";
         self.lbVipRight.text = [NSString stringWithFormat:@"会员权益: 入会礼金%@%@",
                                 rhljNumberString,
-                                [CNUserManager shareManager].userInfo.uiMode];
+                                uiModeString];
         self.lblNextLevelAmount.text = [[item.betCNYAmount jk_toDisplayNumberWithDigit:2] stringByAppendingString:@" CNY"];
         self.lblNextLevelDeposit.text = [[item.depositCNYAmount jk_toDisplayNumberWithDigit:2] stringByAppendingString:@" CNY"];
         
