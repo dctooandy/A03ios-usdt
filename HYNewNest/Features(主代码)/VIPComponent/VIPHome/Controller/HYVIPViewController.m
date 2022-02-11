@@ -94,6 +94,9 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 // -------- 数据源 --------
 @property (strong, nonatomic) NSArray *cardArray;
 @property (strong, nonatomic) VIPHomeUserModel *sxhModel;
+
+// 领取私享金按钮
+@property (weak, nonatomic) IBOutlet UIButton *goGetSXGBtn;
 @end
 
 @implementation HYVIPViewController
@@ -107,7 +110,21 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    if (![CNUserManager shareManager].isLogin) {
+        [self.goGetSXGBtn setEnabled:NO];
+    }else
+    {
+        [CNVIPRequest vipsxhIsShowReportHandler:^(id responseObj, NSString *errorMsg) {
+            // 私享会测试用
+            if (!errorMsg && [responseObj[@"flag"] integerValue] != 1 && self.childViewControllers.count == 0) {
+                //        if (!errorMsg && [responseObj[@"flag"] integerValue] == 1 && self.childViewControllers.count == 0) {
+                [self.goGetSXGBtn setEnabled:YES];
+            }else
+            {
+                [self.goGetSXGBtn setEnabled:NO];
+            }
+        }];        
+    }
 }
 
 - (void)viewDidLoad {
@@ -127,8 +144,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLogoutSuccessNotification object:nil];
-    
-
+    [self setupSXGBtn];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -277,6 +293,19 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     HYVIPCumulateIdVC *vc = [HYVIPCumulateIdVC new];
     [self.navigationController pushViewController:vc animated:YES];
 }
+- (IBAction)openSXG:(id)sender {
+    if (![CNUserManager shareManager].isLogin) {
+        [CNTOPHUB showError:@"请先登录"];
+        [self.navigationController pushViewController:[CNLoginRegisterVC loginVC] animated:YES];
+    }else
+    {
+        VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
+        vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
+        //添加子控制器 该方法调用了willMoveToParentViewController：方法
+        [self addChildViewController:vc];
+        [self.view addSubview:vc.view];
+    }
+}
 
 
 #pragma mark - Request
@@ -310,9 +339,9 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
             }
         }
         [CNVIPRequest vipsxhIsShowReportHandler:^(id responseObj, NSString *errorMsg) {
-            // 测试用
-//            if (!errorMsg && [responseObj[@"flag"] integerValue] != 1 && self.childViewControllers.count == 0) {
-            if (!errorMsg && [responseObj[@"flag"] integerValue] == 1 && self.childViewControllers.count == 0) {
+            // 私享会测试用
+            if (!errorMsg && [responseObj[@"flag"] integerValue] != 1 && self.childViewControllers.count == 0) {
+//            if (!errorMsg && [responseObj[@"flag"] integerValue] == 1 && self.childViewControllers.count == 0) {
                 VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
                 vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
                 //添加子控制器 该方法调用了willMoveToParentViewController：方法
@@ -533,6 +562,10 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     }
     return _marqueeView;
 }
-
+- (void)setupSXGBtn
+{
+    [self.goGetSXGBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.goGetSXGBtn setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+}
 
 @end

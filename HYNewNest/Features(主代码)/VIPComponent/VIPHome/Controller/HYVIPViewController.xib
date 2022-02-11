@@ -18,6 +18,7 @@
                 <outlet property="bottomBgView" destination="KMA-BO-i4h" id="sBU-tX-K9d"/>
                 <outlet property="btnLogin" destination="kw7-i6-gEg" id="bSt-wk-dIK"/>
                 <outlet property="collectionViewCard" destination="g2w-Lu-VqX" id="gZY-TV-y3Q"/>
+                <outlet property="goGetSXGBtn" destination="wxJ-fi-gOz" id="wiD-wV-f3E"/>
                 <outlet property="lbDubaTime" destination="sJ2-Qr-5h3" id="DNt-6I-rEe"/>
                 <outlet property="lbDushenTime" destination="OnD-kv-OXG" id="cTB-YO-cuo"/>
                 <outlet property="lbDushengTime" destination="ntd-yc-WAU" id="rnJ-2N-P1m"/>
@@ -397,6 +398,29 @@
                                     <color key="textColor" white="1" alpha="0.80319148936170215" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wxJ-fi-gOz">
+                                    <rect key="frame" x="280" y="99" width="70" height="23"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="70" id="XAh-4y-JyD"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="9"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="领取私享金">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                            <color key="value" systemColor="systemYellowColor"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                            <real key="value" value="0.5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="openSXG:" destination="-1" eventType="touchUpInside" id="Er8-4f-m0U"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -409,6 +433,7 @@
                                 <constraint firstItem="J80-p6-w6w" firstAttribute="top" secondItem="2dZ-SF-rUk" secondAttribute="top" constant="20" id="6uL-Mh-yCH"/>
                                 <constraint firstItem="BOP-7r-0AT" firstAttribute="trailing" secondItem="4sR-4D-yS9" secondAttribute="trailing" id="8Ev-a2-E6f"/>
                                 <constraint firstAttribute="trailing" secondItem="UAH-s3-R0T" secondAttribute="trailing" constant="20" id="8no-7w-GAk"/>
+                                <constraint firstAttribute="trailing" secondItem="wxJ-fi-gOz" secondAttribute="trailing" constant="20" id="Aci-Ux-j3s"/>
                                 <constraint firstItem="4sR-4D-yS9" firstAttribute="leading" secondItem="2dZ-SF-rUk" secondAttribute="leading" constant="8" id="CdS-2z-s5T"/>
                                 <constraint firstItem="J80-p6-w6w" firstAttribute="leading" secondItem="2dZ-SF-rUk" secondAttribute="leading" constant="20" id="D0M-bq-NZT"/>
                                 <constraint firstAttribute="trailing" secondItem="Mh3-dw-OQt" secondAttribute="trailing" constant="20" id="Exd-w0-w1o"/>
@@ -426,6 +451,7 @@
                                 <constraint firstAttribute="height" constant="175" id="fvV-mv-DeS"/>
                                 <constraint firstItem="eVc-8d-In0" firstAttribute="top" secondItem="Mh3-dw-OQt" secondAttribute="bottom" constant="15" id="hG1-Qt-lUm"/>
                                 <constraint firstAttribute="trailing" secondItem="pCf-CL-JCp" secondAttribute="trailing" constant="20" id="jRd-7w-heP"/>
+                                <constraint firstItem="wxJ-fi-gOz" firstAttribute="centerY" secondItem="NOB-rL-H0k" secondAttribute="centerY" id="k35-Qe-UJP"/>
                                 <constraint firstAttribute="trailing" secondItem="4sR-4D-yS9" secondAttribute="trailing" constant="8" id="m4U-VS-fOV"/>
                                 <constraint firstItem="w61-PN-QYR" firstAttribute="leading" secondItem="2dZ-SF-rUk" secondAttribute="leading" constant="20" id="mrD-2d-iNG"/>
                                 <constraint firstItem="pCf-CL-JCp" firstAttribute="top" secondItem="2dZ-SF-rUk" secondAttribute="top" constant="20" id="qZ1-WC-45I"/>
@@ -682,6 +708,9 @@
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

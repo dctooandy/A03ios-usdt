@@ -275,15 +275,15 @@
             self.btmColorLb.hidden = NO;
             
             BOOL isCanRank = model.clubLevel && [@[@2,@3,@4,@5,@6,@7] containsObject:model.clubLevel];
-            // 测试用
-//            BOOL isDev = YES;
-//            if (isDev == YES)
-//            {
-//                isCanRank = YES;
-//                model.betName = @"食神";
-//                model.preRequest = @{@"amount":@"9888"};
-//                model.clubLevel = @2;
-//            }
+            // 私享会测试用
+            BOOL isDev = YES;
+            if (isDev == YES)
+            {
+                isCanRank = YES;
+                model.betName = @"食神";
+                model.preRequest = @{@"amount":@"9888"};
+                model.clubLevel = @2;
+            }
             if (isCanRank) {
                 [self.btmColorTopLb setHidden:NO];
                 self.rankImgv.image = [UIImage imageNamed:[NSString stringWithFormat:@"rank_%@", model.clubLevel]];

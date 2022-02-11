@@ -15,7 +15,7 @@
 }
 - (NSNumber*)betCNYAmount
 {
-    return [NSNumber numberWithInt:(_betAmount.intValue * 6.5)];
+    return [NSNumber numberWithInt:(_betAmount.intValue * 7)];
 }
 @end
 
@@ -48,6 +48,6 @@
 }
 - (NSNumber*)totalBetCNYAmount
 {
-    return [NSNumber numberWithInt:(_totalBetAmount.intValue * 6.5)];
+    return [NSNumber numberWithInt:(_totalBetAmount.intValue * 7)];
 }
 @end
