@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
+
 
 @interface VIPMonthlyAlertsVC : UIViewController
+- (void)beforeDismissBlock:(nullable void(^)(void))block;
 @end
 
-NS_ASSUME_NONNULL_END
+

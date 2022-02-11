@@ -96,7 +96,6 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 @property (strong, nonatomic) VIPHomeUserModel *sxhModel;
 
 // 领取私享金按钮
-@property (weak, nonatomic) IBOutlet UIImageView *sxgImageView;
 @property (weak, nonatomic) IBOutlet UIButton *goGetSXGBtn;
 
 @end
@@ -112,22 +111,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (![CNUserManager shareManager].isLogin) {
-        [self changeSXGBtnType:NO];
-    }else
-    {
-        WEAKSELF_DEFINE
-        [CNVIPRequest vipsxhIsShowReportHandler:^(id responseObj, NSString *errorMsg) {
-            // 私享会测试用
-            if (!errorMsg && [responseObj[@"flag"] integerValue] != 1 ) {
-//            if (!errorMsg && [responseObj[@"flag"] integerValue] == 1 && self.childViewControllers.count == 0) {
-                [weakSelf changeSXGBtnType:YES];
-            }else
-            {
-                [weakSelf changeSXGBtnType:NO];
-            }
-        }];
-    }
+    [self checkSXGBtnEnable];
 }
 
 - (void)viewDidLoad {
@@ -144,7 +128,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     
     // 用户登录状态配置UI & 首页请求数据
     [self userStatusChanged];
-    
+    [self setupSXHBtn];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLogoutSuccessNotification object:nil];
 }
@@ -301,11 +285,16 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
         [self.navigationController pushViewController:[CNLoginRegisterVC loginVC] animated:YES];
     }else
     {
+        WEAKSELF_DEFINE
         VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
         vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
         //添加子控制器 该方法调用了willMoveToParentViewController：方法
+        [vc beforeDismissBlock:^{
+            [weakSelf checkSXGBtnEnable];
+        }];
         [self addChildViewController:vc];
         [self.view addSubview:vc.view];
+       
     }
 }
 
@@ -342,8 +331,8 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
         }
         [CNVIPRequest vipsxhIsShowReportHandler:^(id responseObj, NSString *errorMsg) {
             // 私享会测试用
-            if (!errorMsg && [responseObj[@"flag"] integerValue] != 1 && self.childViewControllers.count == 0) {
-//            if (!errorMsg && [responseObj[@"flag"] integerValue] == 1 && self.childViewControllers.count == 0) {
+//            if (!errorMsg && [responseObj[@"flag"] integerValue] != 1 && self.childViewControllers.count == 0) {
+            if (!errorMsg && [responseObj[@"flag"] integerValue] == 1 && self.childViewControllers.count == 0) {
                 VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
                 vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
                 //添加子控制器 该方法调用了willMoveToParentViewController：方法
@@ -477,8 +466,29 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 - (void)changeSXGBtnType:(BOOL)enable
 {
-    [self.sxgImageView setImage:enable ? [UIImage imageNamed:@"sxh_Default"]:[UIImage imageNamed:@"sxh_Disable"]];
     [self.goGetSXGBtn setEnabled:enable];
+}
+- (void)setupSXHBtn{
+    [self.goGetSXGBtn setImage:ImageNamed(@"btn_default") forState:UIControlStateNormal];
+    [self.goGetSXGBtn setImage:ImageNamed(@"btn_disable") forState:UIControlStateDisabled];
+}
+- (void)checkSXGBtnEnable {
+    if (![CNUserManager shareManager].isLogin) {
+        [self changeSXGBtnType:NO];
+    }else
+    {
+        WEAKSELF_DEFINE
+        [CNVIPRequest vipsxhIsShowReportHandler:^(id responseObj, NSString *errorMsg) {
+            // 私享会测试用
+//            if (!errorMsg && [responseObj[@"flag"] integerValue] != 1 ) {
+            if (!errorMsg && [responseObj[@"flag"] integerValue] == 1 && self.childViewControllers.count == 0) {
+                [weakSelf changeSXGBtnType:YES];
+            }else
+            {
+                [weakSelf changeSXGBtnType:NO];
+            }
+        }];
+    }
 }
 #pragma mark - SET
 //0 - 5 依次是： 赌侠 赌霸 赌王 赌圣 赌神 赌尊
