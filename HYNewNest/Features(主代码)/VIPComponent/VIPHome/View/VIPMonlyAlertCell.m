@@ -294,7 +294,7 @@
                 if (model.preRequest)
                 {
                     preRequestAmountUSDTString = model.preRequest[@"amount"];
-                    preRequestAmountCNYString = [NSString stringWithFormat:@"%@",[[NSNumber numberWithFloat:([model.preRequest[@"amount"] floatValue] * CnyAndUsdtRate)] jk_toDisplayNumberWithDigit:0]];
+                    preRequestAmountCNYString = [NSString stringWithFormat:@"%@",[[NSNumber numberWithFloat:([model.preRequest[@"amount"] floatValue] * CnyAndUsdtdDepositRate)] jk_toDisplayNumberWithDigit:0]];
                 }
                 self.btmColorLb.text = [NSString stringWithFormat:@"小游送你入会礼金\n%@ CNY(等值%@ USDT)",
                                         preRequestAmountCNYString,

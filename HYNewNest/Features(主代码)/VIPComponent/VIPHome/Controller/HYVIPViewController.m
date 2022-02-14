@@ -111,6 +111,8 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    // 首页数据
+    [self userStatusChanged];
     [self checkSXGBtnEnable];
     self.m_currentIndex = 0;
     self.pageControl.currentPage = _m_currentIndex;
@@ -217,8 +219,8 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     [self.collectionViewCard reloadData];
     
     if ([CNUserManager shareManager].isLogin) {
-        _lblThisMonthDeposit.text = [NSString stringWithFormat:@"本月充值:%@", [_sxhModel.totalDepositAmount jk_toDisplayNumberWithDigit:2]];
-        _lblThisMonthAmount.text = [NSString stringWithFormat:@"本月流水:%@",[_sxhModel.totalBetAmount jk_toDisplayNumberWithDigit:2]];
+        _lblThisMonthDeposit.text = [NSString stringWithFormat:@"本月充值:%@", [_sxhModel.totalDepositCNYAmount jk_toDisplayNumberWithDigit:2]];
+        _lblThisMonthAmount.text = [NSString stringWithFormat:@"本月流水:%@",[_sxhModel.totalBetCNYAmount jk_toDisplayNumberWithDigit:2]];
         
         // 滚动到对应等级 居中
         if (self.sxhModel.clubLevel.integerValue > 0) {
@@ -308,6 +310,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
         if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             VIPHomeUserModel *model = [VIPHomeUserModel cn_parse:responseObj];
             self.sxhModel = model;
+            self.sxhModel.equityData = model.equityData;
             [self setupUIDatas];
             [self setupRewardMarqueeView];
         }
@@ -510,31 +513,38 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 #pragma mark - SET
 //0 - 5 依次是： 赌侠 赌霸 赌王 赌圣 赌神 赌尊
 - (void)setM_currentIndex:(NSInteger)m_currentIndex {
-    if (m_currentIndex < 0 || m_currentIndex > 5) {
+    if (m_currentIndex < 0 || m_currentIndex >= _sxhModel.equityData.count) {
         return;
     }
     _m_currentIndex = m_currentIndex;
     
-    NSArray *eqArr = self.sxhModel.equityData;
+    NSArray *eqArr = _sxhModel.equityData;
     EquityDataItem *item = eqArr.count>0 ? eqArr[m_currentIndex] : nil;
     
     // 修改入会礼金 等级要求流水和存款
+    NSString * uiModeString = [CNUserManager shareManager].userInfo.uiMode ? [CNUserManager shareManager].userInfo.uiMode : @"USDT";
     if (item) {
         NSString * rhljNumberString = ([[CNUserManager shareManager].userInfo.uiMode isEqualToString:@"CNY"] ?[item.rhljCnyAmount jk_toDisplayNumberWithDigit:0] : [item.rhljAmount jk_toDisplayNumberWithDigit:0]);
-        NSString * uiModeString = [CNUserManager shareManager].userInfo.uiMode ? [CNUserManager shareManager].userInfo.uiMode : @"USDT";
         self.lbVipRight.text = [NSString stringWithFormat:@"会员权益: 入会礼金%@%@",
                                 rhljNumberString,
                                 uiModeString];
         self.lblNextLevelAmount.text = [[item.betCNYAmount jk_toDisplayNumberWithDigit:2] stringByAppendingString:@" CNY"];
         self.lblNextLevelDeposit.text = [[item.depositCNYAmount jk_toDisplayNumberWithDigit:2] stringByAppendingString:@" CNY"];
         
-        float amoutPrgs = [_sxhModel.totalBetAmount floatValue] / [item.betAmount floatValue];
+        float amoutPrgs = [_sxhModel.totalBetCNYAmount floatValue] / [item.betCNYAmount floatValue];
         self.prgsViewAmount.progress = amoutPrgs;
         self.prgsViewAmount.tintColor = amoutPrgs >= 1.0 ? kHexColor(0xE11470) : kHexColor(0x3AE3C5);
         
-        float depoPrgs = [_sxhModel.totalDepositAmount floatValue] / [item.depositAmount floatValue];
+        float depoPrgs = [_sxhModel.totalDepositCNYAmount floatValue] / [item.depositCNYAmount floatValue];
         self.prgsViewDeposit.progress = depoPrgs;
         self.prgsViewDeposit.tintColor = depoPrgs >= 1.0 ? kHexColor(0xE11470) : kHexColor(0x3AE3C5);
+    }else
+    {
+        self.lbVipRight.text = [NSString stringWithFormat:@"会员权益: 入会礼金%@%@",
+                                @"0",
+                                uiModeString];
+        self.lblNextLevelAmount.text = @"0 CNY";
+        self.lblNextLevelDeposit.text = @"0 CNY";
     }
     
     self.prgsViewDeposit.hidden = NO;
@@ -565,10 +575,10 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
             
             // 赌尊流水进度有变化
             if (self.sxhModel.clubLevel.integerValue == 7) {
-                float amoutPrgs = [_sxhModel.totalBetAmount floatValue] / [_sxhModel.vipRhqk.betAmount floatValue];
+                float amoutPrgs = [_sxhModel.totalBetCNYAmount floatValue] / [_sxhModel.vipRhqk.betCNYAmount floatValue];
                 self.prgsViewAmount.progress = amoutPrgs;
                 self.prgsViewAmount.tintColor = amoutPrgs >= 1.0 ? kHexColor(0xE11470) : kHexColor(0x3AE3C5);
-                self.lblNextLevelAmount.text = amoutPrgs >= 1.0 ? @"当前最高" : [NSString stringWithFormat:@"当前最高%@ usdt", _sxhModel.vipRhqk.betAmount];
+                self.lblNextLevelAmount.text = amoutPrgs >= 1.0 ? @"当前最高" : [NSString stringWithFormat:@"当前最高%@ usdt", _sxhModel.vipRhqk.betCNYAmount];
             }
             
             // 赌尊隐藏存款进度

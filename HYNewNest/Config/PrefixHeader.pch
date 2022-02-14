@@ -67,5 +67,6 @@
 #define RedPacketRainningSelectValue    @"RainningSelectValue" // 红包雨自设定时间
 #define RedPacketIsDev                  [[NSUserDefaults standardUserDefaults] boolForKey:RedPacketCustomSetting]
 
+// 暂时改回 原样,依照接口返回值
 #define CnyAndUsdtRate                  6.5 //CNY-USDT 礼金换算汇率
-#define CnyAndUsdtdDepositRate          7.0 //CNY-USDT 流水汇率
+#define CnyAndUsdtdDepositRate          1.0 //CNY-USDT 流水汇率

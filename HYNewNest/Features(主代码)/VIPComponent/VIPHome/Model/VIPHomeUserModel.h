@@ -49,6 +49,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * clubLevel;
 @property (nonatomic , strong) NSNumber *              totalDepositAmount;
 @property (nonatomic , strong) NSNumber *              totalBetAmount;
+@property (nonatomic , strong) NSNumber *              totalDepositCNYAmount;
+@property (nonatomic , strong) NSNumber *              totalBetCNYAmount;
 @property (nonatomic , strong) NSArray <EquityDataItem *>              * equityData;
 @property (nonatomic , strong) NSArray <VIPRewardAnocModel *>          * prizeList;
 @end

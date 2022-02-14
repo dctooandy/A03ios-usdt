@@ -11,11 +11,11 @@
 @implementation VipRhqk
 - (NSNumber*)depositCNYAmount
 {
-    return [NSNumber numberWithInt:(_depositAmount.intValue * CnyAndUsdtRate)];
+    return [NSNumber numberWithInt:(_depositAmount.intValue * CnyAndUsdtdDepositRate)];
 }
 - (NSNumber*)betCNYAmount
 {
-    return [NSNumber numberWithInt:(_betAmount.intValue * CnyAndUsdtRate)];
+    return [NSNumber numberWithInt:(_betAmount.intValue * CnyAndUsdtdDepositRate)];
 }
 @end
 
@@ -23,19 +23,19 @@
 @implementation VipScjz
 - (NSNumber*)ljscCNY
 {
-    return [NSNumber numberWithInt:(_ljsc.intValue * CnyAndUsdtRate)];
+    return [NSNumber numberWithInt:(_ljsc.intValue * CnyAndUsdtdDepositRate)];
 }
 - (NSNumber*)ljsfCNY
 {
-    return [NSNumber numberWithInt:(_ljsf.intValue * CnyAndUsdtRate)];
+    return [NSNumber numberWithInt:(_ljsf.intValue * CnyAndUsdtdDepositRate)];
 }
 - (NSNumber*)rhljCNY
 {
-    return [NSNumber numberWithInt:(_rhlj.intValue * CnyAndUsdtRate)];
+    return [NSNumber numberWithInt:(_rhlj.intValue * CnyAndUsdtdDepositRate)];
 }
 - (NSNumber*)ydfhCNY
 {
-    return [NSNumber numberWithInt:(_ydfh.intValue * CnyAndUsdtRate)];
+    return [NSNumber numberWithInt:(_ydfh.intValue * CnyAndUsdtdDepositRate)];
 }
 @end
 
@@ -44,10 +44,10 @@
 
 - (NSNumber*)totalDepositCNYAmount
 {
-    return [NSNumber numberWithInt:(_totalDepositAmount.intValue * CnyAndUsdtRate)];
+    return [NSNumber numberWithInt:(_totalDepositAmount.intValue * CnyAndUsdtdDepositRate)];
 }
 - (NSNumber*)totalBetCNYAmount
 {
-    return [NSNumber numberWithInt:(_totalBetAmount.intValue * CnyAndUsdtRate)];
+    return [NSNumber numberWithInt:(_totalBetAmount.intValue * CnyAndUsdtdDepositRate)];
 }
 @end
