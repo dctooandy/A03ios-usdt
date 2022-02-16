@@ -511,7 +511,22 @@ typedef void(^ButtonCallBack)(void);
                     }];
                 }
             } else { // 跳活动
-                [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"" needPubSite:NO];
+                if ([model.linkUrl containsString:@"AG旗舰"])
+                {
+                    [[HYInGameHelper sharedInstance] inGame:InGameTypeAGQJ];
+                }else if ([model.linkUrl containsString:@"AG国际"])
+                {
+                    [[HYInGameHelper sharedInstance] inGame:InGameTypeAGIN];
+                }else if ([model.linkUrl containsString:@"沙巴体育"])
+                {
+                    [[HYInGameHelper sharedInstance] inGame:InGameTypeSHABA];
+                }else if ([model.linkUrl containsString:@"AS棋牌"])
+                {
+                    [[HYInGameHelper sharedInstance] inGame:InGameTypeAGSTAR];
+                }else
+                {
+                    [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"" needPubSite:NO];
+                }
             }
         }
     }
