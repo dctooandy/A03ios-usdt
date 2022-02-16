@@ -439,18 +439,24 @@ typedef void(^ButtonCallBack)(void);
         NSMutableArray *imgUrls = @[].mutableCopy;
         for (AdBannerModel *model in groupModel.bannersModel) {
             // !!!: 这里要根据货币模式筛选banner
-            if([CNUserManager shareManager].isUsdtMode) {
-                if ([model.linkParam[@"mode"] isEqualToString:@"rmb"]) { // usdt模式筛掉rmb banner
-                    continue;
+            if (model.linkParam)
+            {
+                if([CNUserManager shareManager].isUsdtMode) {
+                    if ([model.linkParam[@"mode"] containsString:@"rmb"] ||
+                        [model.linkParam[@"mode"] containsString:@"cny"] ||
+                        [model.linkParam[@"mode"] containsString:@"CNY"]) { // usdt模式筛掉rmb banner
+                        continue;
+                    }
+                } else {
+                    if ([model.linkParam[@"mode"] isEqualToString:@"usdt"] ||
+                        [model.linkParam[@"mode"] isEqualToString:@"USDT"]) { // rmb模式筛掉usdt banner
+                        continue;
+                    }
                 }
-            } else {
-                if ([model.linkParam[@"mode"] isEqualToString:@"usdt"]) { // rmb模式筛掉usdt banner
-                    continue;
-                }
+                NSString *fullUrl = [[A03ActivityManager sharedInstance] nowCDNString:groupModel.domainName WithUrl:model.imgUrl];
+                [imgUrls addObject:fullUrl];
+                [modArr addObject:model];
             }
-            NSString *fullUrl = [[A03ActivityManager sharedInstance] nowCDNString:groupModel.domainName WithUrl:model.imgUrl];
-            [imgUrls addObject:fullUrl];
-            [modArr addObject:model];
         }
         strongSelf.bannerView.imageURLStringsGroup = imgUrls;
         strongSelf.bannModels = modArr;
