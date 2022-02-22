@@ -82,22 +82,30 @@
     if (strUrl.length == 0) {
         return @"";
     }
-    
+    NSString * newDomainString = [IVHttpManager shareManager].domain;
     strUrl = [strUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-
+    if (newDomainString)
+    {
+        NSString *lastChar = [newDomainString substringFromIndex:[newDomainString length] - 1];
+        if ([lastChar isEqualToString:@"/"])
+        {
+            newDomainString = [newDomainString substringToIndex:[newDomainString length] - 1];
+        }
+    }
+    
     if (![strUrl hasPrefix:@"http"]) {
         if (needPubSite && ![strUrl containsString:@"pub_site"]) {
-            strUrl = [NSString stringWithFormat:@"%@/pub_site%@",[IVHttpManager shareManager].domain,strUrl];
+            strUrl = [NSString stringWithFormat:@"%@/pub_site%@",newDomainString,strUrl];
         } else {
             if (![strUrl hasPrefix:@"/"]) {
                 strUrl = [NSString stringWithFormat:@"/%@", strUrl];
             }
             if ([strUrl containsString:@"/share"])
             {
-                strUrl = [NSString stringWithFormat:@"%@/share",[IVHttpManager shareManager].domain];
+                strUrl = [NSString stringWithFormat:@"%@/share",newDomainString];
             }else
             {
-                strUrl = [NSString stringWithFormat:@"%@%@",[IVHttpManager shareManager].domain,strUrl];
+                strUrl = [NSString stringWithFormat:@"%@%@",newDomainString,strUrl];
             }
         }
     }
