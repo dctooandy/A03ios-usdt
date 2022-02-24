@@ -148,7 +148,8 @@ NSString *const InGameTypeString[] = {
             gameId = @"";
             break;
         case InGameTypeAGEG:
-            gameName = @"AG电游厅";
+//            gameName = @"AG电游厅";
+            gameName = @"电游厅";
             gameType = @"500";
             gameId = @"500";
         default:
