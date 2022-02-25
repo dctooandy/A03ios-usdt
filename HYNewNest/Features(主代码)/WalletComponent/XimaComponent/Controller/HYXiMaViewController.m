@@ -172,15 +172,18 @@ static NSString * const KXiMaCell = @"HYXiMaCell";
                 self.xmCalAmountModel = amoutModel;
                 
                 NSMutableArray *allTypeItem = @[].mutableCopy;
-                NSInteger i = 0;
                 for (XmListItem *listItem in amoutModel.xmList) {
                     //避免Server资料错误
                     if (listItem.xmTypes != nil && self.xmPlfListItems.count > 0) {
                         for (XmTypesItem *typeItem in listItem.xmTypes) {
-                            XmPlatformListItem *item = self.xmPlfListItems[i];
-                            typeItem.xmName = item.xmName;
+                            for (int i = 0; i < self.xmPlfListItems.count; i++) {
+                                XmPlatformListItem *item = self.xmPlfListItems[i];
+                                if ([item.xmType isEqualToString:typeItem.xmType])
+                                {
+                                    typeItem.xmName = item.xmName;
+                                }
+                            }
                             [allTypeItem addObject:typeItem];
-                            i ++;
                         }
                     }
                 }
