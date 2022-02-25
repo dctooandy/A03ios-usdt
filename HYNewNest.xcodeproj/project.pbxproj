@@ -120,6 +120,13 @@
 		04935BE424D8FC5B007A33EF /* CNElectrionHallCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04935BE224D8FC5B007A33EF /* CNElectrionHallCCell.xib */; };
 		04935BEB24D93E87007A33EF /* CNELSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935BE924D93E87007A33EF /* CNELSearchVC.m */; };
 		04935BEC24D93E87007A33EF /* CNELSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04935BEA24D93E87007A33EF /* CNELSearchVC.xib */; };
+		0494C59027C8D5040016B5F6 /* CNMChannelTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0494C58627C8D5040016B5F6 /* CNMChannelTCell.m */; };
+		0494C59127C8D5040016B5F6 /* CNMAmountSelectCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0494C58727C8D5040016B5F6 /* CNMAmountSelectCCell.m */; };
+		0494C59227C8D5040016B5F6 /* CNMAmountSelectCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0494C58827C8D5040016B5F6 /* CNMAmountSelectCCell.xib */; };
+		0494C59327C8D5040016B5F6 /* CNMChannelTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0494C58927C8D5040016B5F6 /* CNMChannelTCell.xib */; };
+		0494C59427C8D5040016B5F6 /* CNMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0494C58B27C8D5040016B5F6 /* CNMAlertView.m */; };
+		0494C59527C8D5040016B5F6 /* CNMAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0494C58D27C8D5040016B5F6 /* CNMAlertView.xib */; };
+		0494C59A27C8D5270016B5F6 /* CNMBankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0494C59927C8D5270016B5F6 /* CNMBankModel.m */; };
 		04C0F0DC24C29FFD007F1420 /* CNBindPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C0F0DA24C29FFD007F1420 /* CNBindPhoneVC.m */; };
 		04C0F0DD24C29FFD007F1420 /* CNBindPhoneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C0F0DB24C29FFD007F1420 /* CNBindPhoneVC.xib */; };
 		04C0F0E324C2B282007F1420 /* CNTOPHUB.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C0F0E124C2B282007F1420 /* CNTOPHUB.m */; };
@@ -1317,6 +1324,17 @@
 		04935BE824D93E87007A33EF /* CNELSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNELSearchVC.h; sourceTree = "<group>"; };
 		04935BE924D93E87007A33EF /* CNELSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNELSearchVC.m; sourceTree = "<group>"; };
 		04935BEA24D93E87007A33EF /* CNELSearchVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CNELSearchVC.xib; sourceTree = "<group>"; };
+		0494C58427C8D5040016B5F6 /* CNMAmountSelectCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNMAmountSelectCCell.h; sourceTree = "<group>"; };
+		0494C58527C8D5040016B5F6 /* CNMChannelTCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNMChannelTCell.h; sourceTree = "<group>"; };
+		0494C58627C8D5040016B5F6 /* CNMChannelTCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNMChannelTCell.m; sourceTree = "<group>"; };
+		0494C58727C8D5040016B5F6 /* CNMAmountSelectCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNMAmountSelectCCell.m; sourceTree = "<group>"; };
+		0494C58827C8D5040016B5F6 /* CNMAmountSelectCCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNMAmountSelectCCell.xib; sourceTree = "<group>"; };
+		0494C58927C8D5040016B5F6 /* CNMChannelTCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNMChannelTCell.xib; sourceTree = "<group>"; };
+		0494C58B27C8D5040016B5F6 /* CNMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNMAlertView.m; sourceTree = "<group>"; };
+		0494C58D27C8D5040016B5F6 /* CNMAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNMAlertView.xib; sourceTree = "<group>"; };
+		0494C58E27C8D5040016B5F6 /* CNMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNMAlertView.h; sourceTree = "<group>"; };
+		0494C59827C8D5270016B5F6 /* CNMBankModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNMBankModel.h; sourceTree = "<group>"; };
+		0494C59927C8D5270016B5F6 /* CNMBankModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNMBankModel.m; sourceTree = "<group>"; };
 		04C0F0D924C29FFD007F1420 /* CNBindPhoneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNBindPhoneVC.h; sourceTree = "<group>"; };
 		04C0F0DA24C29FFD007F1420 /* CNBindPhoneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNBindPhoneVC.m; sourceTree = "<group>"; };
 		04C0F0DB24C29FFD007F1420 /* CNBindPhoneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CNBindPhoneVC.xib; sourceTree = "<group>"; };
@@ -3125,6 +3143,8 @@
 		0494C57E27C8B2EA0016B5F6 /* MatchDeposit */ = {
 			isa = PBXGroup;
 			children = (
+				0494C59727C8D5270016B5F6 /* Model */,
+				0494C58227C8D5040016B5F6 /* View */,
 			);
 			path = MatchDeposit;
 			sourceTree = "<group>";
@@ -3140,6 +3160,47 @@
 				D5B4304A27C8D1D4008330CB /* Model */,
 			);
 			path = MatchWithdraw;
+			sourceTree = "<group>";
+		};
+		0494C58227C8D5040016B5F6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0494C58327C8D5040016B5F6 /* Cell */,
+				0494C58A27C8D5040016B5F6 /* View */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0494C58327C8D5040016B5F6 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0494C58427C8D5040016B5F6 /* CNMAmountSelectCCell.h */,
+				0494C58727C8D5040016B5F6 /* CNMAmountSelectCCell.m */,
+				0494C58827C8D5040016B5F6 /* CNMAmountSelectCCell.xib */,
+				0494C58527C8D5040016B5F6 /* CNMChannelTCell.h */,
+				0494C58627C8D5040016B5F6 /* CNMChannelTCell.m */,
+				0494C58927C8D5040016B5F6 /* CNMChannelTCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		0494C58A27C8D5040016B5F6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0494C58E27C8D5040016B5F6 /* CNMAlertView.h */,
+				0494C58B27C8D5040016B5F6 /* CNMAlertView.m */,
+				0494C58D27C8D5040016B5F6 /* CNMAlertView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0494C59727C8D5270016B5F6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0494C59827C8D5270016B5F6 /* CNMBankModel.h */,
+				0494C59927C8D5270016B5F6 /* CNMBankModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		04C0F0DF24C2B282007F1420 /* HUB */ = {
@@ -6340,6 +6401,7 @@
 				D5A4471624F3941400014DC6 /* 合成 1_00097.png in Resources */,
 				D5A4462924F393E500014DC6 /* 足球_00078.png in Resources */,
 				D5A446BF24F3941400014DC6 /* 合成 1_00064.png in Resources */,
+				0494C59327C8D5040016B5F6 /* CNMChannelTCell.xib in Resources */,
 				D5A444A824F3932400014DC6 /* 数字7_00094.png in Resources */,
 				3DBA55E52578EFCC009A2B71 /* CNDashenBoardVC.xib in Resources */,
 				3DDEBA33264A4E4D0014EB87 /* BYYuEBaoVC.xib in Resources */,
@@ -6378,6 +6440,7 @@
 				D5A4454724F393AC00014DC6 /* 棋牌_0003.png in Resources */,
 				D5A444A124F3932400014DC6 /* 数字7_00031.png in Resources */,
 				D5A4464D24F393E500014DC6 /* 足球_00028.png in Resources */,
+				0494C59527C8D5040016B5F6 /* CNMAlertView.xib in Resources */,
 				D5A4471824F3941400014DC6 /* 合成 1_00054.png in Resources */,
 				D5A4460C24F393E500014DC6 /* 足球_00068.png in Resources */,
 				D5A444BE24F3932400014DC6 /* 数字7_00078.png in Resources */,
@@ -6427,6 +6490,7 @@
 				3DC841152682F75200AEB1B6 /* BYMoreCompleteMissionView.xib in Resources */,
 				3DE3CA9024ECF6E300D591C4 /* CIRCULAR.png in Resources */,
 				D5A4449424F3932400014DC6 /* 数字7_00037.png in Resources */,
+				0494C59227C8D5040016B5F6 /* CNMAmountSelectCCell.xib in Resources */,
 				D5A446FD24F3941400014DC6 /* 合成 1_00093.png in Resources */,
 				D5A443D324F378CD00014DC6 /* 彩票_00029.png in Resources */,
 				D5A445FA24F393E500014DC6 /* 足球_00034.png in Resources */,
@@ -6926,6 +6990,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7682A79927968AAE001AC772 /* RedPacketsRequest.m in Sources */,
+				0494C59A27C8D5270016B5F6 /* CNMBankModel.m in Sources */,
 				3DF43D4C25946AED0087F26A /* DSBProfitBoardCell.m in Sources */,
 				04C0F11B24C68715007F1420 /* CNUserInfoLoginView.m in Sources */,
 				0405FF6B24D3DAE400AC46D2 /* CNFeedBackRightTCell.m in Sources */,
@@ -6987,6 +7052,7 @@
 				E9D9449E24C5735B00252222 /* SplashViewController.m in Sources */,
 				E994D40D24E521E300D0D81A /* CardBinTypeModel.m in Sources */,
 				D5B4304927C8D16B008330CB /* KYMCreateWithdrewModel.m in Sources */,
+				0494C59127C8D5040016B5F6 /* CNMAmountSelectCCell.m in Sources */,
 				048A0EE524C8332600411819 /* CNLotteryVC.m in Sources */,
 				048A0EEF24C921F100411819 /* CNElResentPlayCCell.m in Sources */,
 				3DBA55EC2578F23E009A2B71 /* CNGameBtnsStackView.m in Sources */,
@@ -7011,6 +7077,7 @@
 				3DA4F15624B30A090039123F /* SGQRCodeGenerateManager.m in Sources */,
 				3D643F8924F29F3600B9AAA7 /* IVOtherInfoModel.m in Sources */,
 				F786E5812680609C008B7DDE /* BYTradeEntryModel.m in Sources */,
+				0494C59427C8D5040016B5F6 /* CNMAlertView.m in Sources */,
 				3D9DA66E25918DF0003C3F28 /* DSBWeekMonthListCell.m in Sources */,
 				E97054AD24DC4C0E0007F845 /* CNImageCodeModel.m in Sources */,
 				3DA4F1A124B3199A0039123F /* HYNavigationController.m in Sources */,
@@ -7227,6 +7294,7 @@
 				3D41DE6F25199DEE000CA1D6 /* HYVIPViewController.m in Sources */,
 				76FC862C276225E7005710FD /* NSImage+WebCache.m in Sources */,
 				E969EB3B24E2755F00D58FE9 /* HYRechargeCNYEditView.m in Sources */,
+				0494C59027C8D5040016B5F6 /* CNMChannelTCell.m in Sources */,
 				3DC8411E2682F91C00AEB1B6 /* CNTaskRequest.m in Sources */,
 				3DC14E5125FB679800D6DB85 /* BYBaseWalletAbsView.m in Sources */,
 				D5FBFE3F24BC05E400BBCAD8 /* CNAccountInputView.m in Sources */,
