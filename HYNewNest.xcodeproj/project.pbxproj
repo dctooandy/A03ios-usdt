@@ -3017,6 +3017,29 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		0494C57D27C8B2DB0016B5F6 /* MatchPay */ = {
+			isa = PBXGroup;
+			children = (
+				0494C57E27C8B2EA0016B5F6 /* MatchDeposit */,
+				0494C57F27C8B2F80016B5F6 /* MatchWithdraw */,
+			);
+			path = MatchPay;
+			sourceTree = "<group>";
+		};
+		0494C57E27C8B2EA0016B5F6 /* MatchDeposit */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MatchDeposit;
+			sourceTree = "<group>";
+		};
+		0494C57F27C8B2F80016B5F6 /* MatchWithdraw */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MatchWithdraw;
+			sourceTree = "<group>";
+		};
 		04C0F0DF24C2B282007F1420 /* HUB */ = {
 			isa = PBXGroup;
 			children = (
@@ -5093,6 +5116,7 @@
 		E986A15D24C979F6000F9CFF /* WalletComponent */ = {
 			isa = PBXGroup;
 			children = (
+				0494C57D27C8B2DB0016B5F6 /* MatchPay */,
 				3D16F0F925381E8E00FE0212 /* BuyECoinGuide(买币指南) */,
 				0430AB1E24E24E4B00C873DC /* BankCardComponent */,
 				04C6E1E124D40219006F4DAC /* AddressComponent */,
