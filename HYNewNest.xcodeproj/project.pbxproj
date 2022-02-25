@@ -412,8 +412,9 @@
 		76FC862C276225E7005710FD /* NSImage+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FC862A276225E7005710FD /* NSImage+WebCache.m */; };
 		76FC862F27622620005710FD /* SDWebImageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FC862E27622620005710FD /* SDWebImageFrame.m */; };
 		76FC863227622691005710FD /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FC863027622690005710FD /* UIImage+MultiFormat.m */; };
-		76FC863B2762288C005710FD /* SDWebImageImageIOCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FC86392762288C005710FD /* SDWebImageImageIOCoder.m */; };
 		76FC864B27671349005710FD /* degg03.gif in Resources */ = {isa = PBXBuildFile; fileRef = 76FC864A27671348005710FD /* degg03.gif */; };
+		A1F0277127C8AE6200202ACA /* NSData+EnternalImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F0277027C8AE6200202ACA /* NSData+EnternalImageContentType.m */; };
+		A1F0277427C8AF3400202ACA /* SDWebImageImageIOCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F0277227C8AF3400202ACA /* SDWebImageImageIOCoder.m */; };
 		D571B19624BE9F120087B5EC /* CNLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19524BE9F120087B5EC /* CNLineView.m */; };
 		D571B1AA24C03D790087B5EC /* CNStatementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D571B1A724C03D790087B5EC /* CNStatementView.xib */; };
 		D571B1AB24C03D790087B5EC /* CNStatementView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B1A924C03D790087B5EC /* CNStatementView.m */; };
@@ -1806,11 +1807,13 @@
 		76FC862E27622620005710FD /* SDWebImageFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageFrame.m; sourceTree = "<group>"; };
 		76FC863027622690005710FD /* UIImage+MultiFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MultiFormat.m"; sourceTree = "<group>"; };
 		76FC863127622690005710FD /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MultiFormat.h"; sourceTree = "<group>"; };
-		76FC86392762288C005710FD /* SDWebImageImageIOCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDWebImageImageIOCoder.m; path = ../../../../A01Nike_iOS/Hybird_1e3c3b/Public/Tools/ThirdParty/SDWebImage/SDWebImageImageIOCoder.m; sourceTree = "<group>"; };
-		76FC863A2762288C005710FD /* SDWebImageImageIOCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDWebImageImageIOCoder.h; path = ../../../../A01Nike_iOS/Hybird_1e3c3b/Public/Tools/ThirdParty/SDWebImage/SDWebImageImageIOCoder.h; sourceTree = "<group>"; };
 		76FC864A27671348005710FD /* degg03.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = degg03.gif; sourceTree = "<group>"; };
 		9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.debug.xcconfig"; sourceTree = "<group>"; };
 		A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1F0276F27C8AE6200202ACA /* NSData+EnternalImageContentType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+EnternalImageContentType.h"; sourceTree = "<group>"; };
+		A1F0277027C8AE6200202ACA /* NSData+EnternalImageContentType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+EnternalImageContentType.m"; sourceTree = "<group>"; };
+		A1F0277227C8AF3400202ACA /* SDWebImageImageIOCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageImageIOCoder.m; sourceTree = "<group>"; };
+		A1F0277327C8AF3400202ACA /* SDWebImageImageIOCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageImageIOCoder.h; sourceTree = "<group>"; };
 		AEF7A2146C28453736D5663C /* Pods_HYNewNest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNest_HYNewNestUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D62AAB840E46D1A6C31D05 /* Pods-HYNewNestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNestTests.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNestTests/Pods-HYNewNestTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -4259,8 +4262,10 @@
 				76FC862E27622620005710FD /* SDWebImageFrame.m */,
 				76FC863127622690005710FD /* UIImage+MultiFormat.h */,
 				76FC863027622690005710FD /* UIImage+MultiFormat.m */,
-				76FC863A2762288C005710FD /* SDWebImageImageIOCoder.h */,
-				76FC86392762288C005710FD /* SDWebImageImageIOCoder.m */,
+				A1F0277327C8AF3400202ACA /* SDWebImageImageIOCoder.h */,
+				A1F0277227C8AF3400202ACA /* SDWebImageImageIOCoder.m */,
+				A1F0276F27C8AE6200202ACA /* NSData+EnternalImageContentType.h */,
+				A1F0277027C8AE6200202ACA /* NSData+EnternalImageContentType.m */,
 			);
 			path = SDWebEnternal;
 			sourceTree = "<group>";
@@ -6799,6 +6804,7 @@
 				3DBA55D1256FA6D3009A2B71 /* CNOneStatusBtn.m in Sources */,
 				E98BEEEA24D023B200E6B0C8 /* UIView+LYExtension.m in Sources */,
 				E9D9449724C5734400252222 /* WelcomeModel.m in Sources */,
+				A1F0277427C8AF3400202ACA /* SDWebImageImageIOCoder.m in Sources */,
 				E986A12224C7E802000F9CFF /* CNUserCenterRequest.m in Sources */,
 				3DC14E5426007E3400D6DB85 /* BYVoucherRequest.m in Sources */,
 				E986A1AE24CBCEE1000F9CFF /* CNAccountSelectView.m in Sources */,
@@ -6859,6 +6865,7 @@
 				3DBA560D2580B5E4009A2B71 /* BYSuperCopartnerVC.m in Sources */,
 				3D41DE962519E9D0000CA1D6 /* VIPCumulateIdCell.m in Sources */,
 				04935BDF24D7EE2B007A33EF /* CNElectionTypeSelectorView.m in Sources */,
+				A1F0277127C8AE6200202ACA /* NSData+EnternalImageContentType.m in Sources */,
 				048A169824CBD44700411819 /* CNVIPLabel.m in Sources */,
 				04C0F0DC24C29FFD007F1420 /* CNBindPhoneVC.m in Sources */,
 				E98BEF3A24D3D27100E6B0C8 /* HYDownloadLinkView.m in Sources */,
@@ -6878,7 +6885,6 @@
 				3D31B94E253D6934005275BD /* HYSlideUpComfirmBaseView.m in Sources */,
 				3DBA55CE256FA6D3009A2B71 /* CNNormalInputView.m in Sources */,
 				E986A10F24C73604000F9CFF /* AdBannerGroupModel.m in Sources */,
-				76FC863B2762288C005710FD /* SDWebImageImageIOCoder.m in Sources */,
 				E986A11E24C7E08F000F9CFF /* GameStartPlayViewController.m in Sources */,
 				3DF43D302592EE8B0087F26A /* V_SlideCard.m in Sources */,
 				04C6E1F324D4180D006F4DAC /* CNImaginaryLine.m in Sources */,
