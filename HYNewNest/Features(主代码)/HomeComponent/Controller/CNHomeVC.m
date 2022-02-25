@@ -439,18 +439,24 @@ typedef void(^ButtonCallBack)(void);
         NSMutableArray *imgUrls = @[].mutableCopy;
         for (AdBannerModel *model in groupModel.bannersModel) {
             // !!!: 这里要根据货币模式筛选banner
-            if([CNUserManager shareManager].isUsdtMode) {
-                if ([model.linkParam[@"mode"] isEqualToString:@"rmb"]) { // usdt模式筛掉rmb banner
-                    continue;
+            if (model.linkParam)
+            {
+                if([CNUserManager shareManager].isUsdtMode) {
+                    if ([model.linkParam[@"mode"] containsString:@"rmb"] ||
+                        [model.linkParam[@"mode"] containsString:@"cny"] ||
+                        [model.linkParam[@"mode"] containsString:@"CNY"]) { // usdt模式筛掉rmb banner
+                        continue;
+                    }
+                } else {
+                    if ([model.linkParam[@"mode"] isEqualToString:@"usdt"] ||
+                        [model.linkParam[@"mode"] isEqualToString:@"USDT"]) { // rmb模式筛掉usdt banner
+                        continue;
+                    }
                 }
-            } else {
-                if ([model.linkParam[@"mode"] isEqualToString:@"usdt"]) { // rmb模式筛掉usdt banner
-                    continue;
-                }
+                NSString *fullUrl = [[A03ActivityManager sharedInstance] nowCDNString:groupModel.domainName WithUrl:model.imgUrl];
+                [imgUrls addObject:fullUrl];
+                [modArr addObject:model];
             }
-            NSString *fullUrl = [[A03ActivityManager sharedInstance] nowCDNString:groupModel.domainName WithUrl:model.imgUrl];
-            [imgUrls addObject:fullUrl];
-            [modArr addObject:model];
         }
         strongSelf.bannerView.imageURLStringsGroup = imgUrls;
         strongSelf.bannModels = modArr;
@@ -511,7 +517,22 @@ typedef void(^ButtonCallBack)(void);
                     }];
                 }
             } else { // 跳活动
-                [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"" needPubSite:NO];
+                if ([model.linkUrl containsString:@"AG旗舰"])
+                {
+                    [[HYInGameHelper sharedInstance] inGame:InGameTypeAGQJ];
+                }else if ([model.linkUrl containsString:@"AG国际"])
+                {
+                    [[HYInGameHelper sharedInstance] inGame:InGameTypeAGIN];
+                }else if ([model.linkUrl containsString:@"沙巴体育"])
+                {
+                    [[HYInGameHelper sharedInstance] inGame:InGameTypeSHABA];
+                }else if ([model.linkUrl containsString:@"AS棋牌"])
+                {
+                    [[HYInGameHelper sharedInstance] inGame:InGameTypeAGSTAR];
+                }else
+                {
+                    [NNPageRouter jump2HTMLWithStrURL:model.linkUrl title:@"" needPubSite:NO];
+                }
             }
         }
     }
