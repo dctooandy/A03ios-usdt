@@ -120,6 +120,7 @@
 		04935BE424D8FC5B007A33EF /* CNElectrionHallCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04935BE224D8FC5B007A33EF /* CNElectrionHallCCell.xib */; };
 		04935BEB24D93E87007A33EF /* CNELSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935BE924D93E87007A33EF /* CNELSearchVC.m */; };
 		04935BEC24D93E87007A33EF /* CNELSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04935BEA24D93E87007A33EF /* CNELSearchVC.xib */; };
+		0494C58127C8CFAA0016B5F6 /* otherInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 0494C58027C8CFAA0016B5F6 /* otherInfo.json */; };
 		04C0F0DC24C29FFD007F1420 /* CNBindPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C0F0DA24C29FFD007F1420 /* CNBindPhoneVC.m */; };
 		04C0F0DD24C29FFD007F1420 /* CNBindPhoneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C0F0DB24C29FFD007F1420 /* CNBindPhoneVC.xib */; };
 		04C0F0E324C2B282007F1420 /* CNTOPHUB.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C0F0E124C2B282007F1420 /* CNTOPHUB.m */; };
@@ -1280,6 +1281,7 @@
 		04935BE824D93E87007A33EF /* CNELSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNELSearchVC.h; sourceTree = "<group>"; };
 		04935BE924D93E87007A33EF /* CNELSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNELSearchVC.m; sourceTree = "<group>"; };
 		04935BEA24D93E87007A33EF /* CNELSearchVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CNELSearchVC.xib; sourceTree = "<group>"; };
+		0494C58027C8CFAA0016B5F6 /* otherInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = otherInfo.json; sourceTree = "<group>"; };
 		04C0F0D924C29FFD007F1420 /* CNBindPhoneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNBindPhoneVC.h; sourceTree = "<group>"; };
 		04C0F0DA24C29FFD007F1420 /* CNBindPhoneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNBindPhoneVC.m; sourceTree = "<group>"; };
 		04C0F0DB24C29FFD007F1420 /* CNBindPhoneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CNBindPhoneVC.xib; sourceTree = "<group>"; };
@@ -3036,6 +3038,7 @@
 		0494C57F27C8B2F80016B5F6 /* MatchWithdraw */ = {
 			isa = PBXGroup;
 			children = (
+				0494C58027C8CFAA0016B5F6 /* otherInfo.json */,
 			);
 			path = MatchWithdraw;
 			sourceTree = "<group>";
@@ -6431,6 +6434,7 @@
 				D5A443E724F378CD00014DC6 /* 彩票_00076.png in Resources */,
 				414B89D4279596F300AF45CA /* CNAddAddressVC.xib in Resources */,
 				D5A4457724F393AD00014DC6 /* 棋牌_00087.png in Resources */,
+				0494C58127C8CFAA0016B5F6 /* otherInfo.json in Resources */,
 				D5A444AE24F3932400014DC6 /* 数字7_00081.png in Resources */,
 				D5A4463D24F393E500014DC6 /* 足球_00066.png in Resources */,
 				E9063B9424D6F3480000273A /* HYNewCTZNCell.xib in Resources */,
