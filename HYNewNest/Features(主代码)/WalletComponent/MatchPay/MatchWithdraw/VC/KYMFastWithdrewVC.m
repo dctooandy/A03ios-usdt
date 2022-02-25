@@ -18,6 +18,8 @@
 #import "KYMWithdrewRequest.h"
 #import "CNMAlertView.h"
 #import "Masonry.h"
+#import "MBProgressHUD+Add.h"
+#import "SDWebImage.h"
 @interface KYMFastWithdrewVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) UIView *contentView;
@@ -475,11 +477,6 @@
 }
 - (void)customerBtnClicked {
     // 联系客服
-    [CSVisitChatmanager startWithSuperVC:self finish:^(CSServiceCode errCode) {
-        if (errCode != CSServiceCode_Request_Suc) {
-            [MBProgressHUD showError:@"暂时无法链接，请贵宾改以电话联系，感谢您的理解与支持" toView:nil];
-        }
-    }];
 }
 - (void)goToBack {
     
@@ -488,5 +485,12 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-
+- (void)showLoading
+{
+    
+}
+- (void)hideLoading
+{
+    
+}
 @end
