@@ -17,6 +17,7 @@
 #import "KeyChain.h"
 #import "CNServiceRequest.h"
 #import "AppdelegateManager.h"
+#import "KYMWithdrewRequest.h"
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 #import <UserNotifications/UserNotifications.h>
@@ -280,5 +281,15 @@
 }
 
 
-
+#pragma marks ------------------------撮合系统内联函数------------------------------------
+inline void kym_sendRequest(NSString * url, id params, KYMCallback callback) {
+    [CNBaseNetworking POST:url parameters:params completionHandler:^(id responseObj, NSString *errorMsg) {
+        IVJResponseObject *result = responseObj;
+        if ([result.head.errCode isEqualToString:@"0000"]) {
+            !callback ?: callback(YES, result.head.errMsg,result.body);
+        } else {
+            !callback ?: callback(NO, result.head.errMsg,errorMsg);
+        }
+    }];
+}
 @end

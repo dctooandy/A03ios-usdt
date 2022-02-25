@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="KYMWithdrewHomeNotifyCell" id="gTV-IL-0wX" customClass="KYMWithdrewHomeNotifyCell">
+            <rect key="frame" x="0.0" y="0.0" width="383" height="376"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="383" height="376"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="忘记资金密码？联系客服" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdG-8M-W5r">
+                        <rect key="frame" x="116.5" y="24.5" width="150" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="S9i-oy-vkw"/>
+                            <constraint firstAttribute="width" constant="150" id="SgZ-JP-k6T"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
+                        <color key="textColor" red="0.50588235294117645" green="0.52941176470588236" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="shM-70-wtV">
+                        <rect key="frame" x="121.5" y="46.5" width="140" height="1"/>
+                        <color key="backgroundColor" red="0.50588235294117645" green="0.52941176470588236" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="lfL-TE-73E"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日可以使用该通道：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dI-5t-VGw">
+                        <rect key="frame" x="15" y="79" width="120" height="17"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
+                        <color key="textColor" red="0.50588235294117645" green="0.52941176470588236" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Q6-8e-7K1">
+                        <rect key="frame" x="135" y="79" width="8" height="17"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
+                        <color key="textColor" red="0.035294117647058823" green="0.58039215686274503" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="次" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXD-VY-Zr9">
+                        <rect key="frame" x="148" y="79" width="12" height="17"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
+                        <color key="textColor" red="0.50588235290000005" green="0.52941176469999995" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在规定时间内点击确认取款，可以获得0.5%返利，礼金无上限" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDH-ay-ZIv">
+                        <rect key="frame" x="15" y="101" width="353" height="45"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="16"/>
+                        <color key="textColor" red="0.85882352941176465" green="0.72941176470588232" blue="0.51764705882352935" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZeE-7y-P69">
+                        <rect key="frame" x="0.0" y="166" width="383" height="0.5"/>
+                        <color key="backgroundColor" red="0.17254901960784313" green="0.1764705882352941" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="0Xj-v4-MDS"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重要提醒：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umA-OA-QbZ">
+                        <rect key="frame" x="15" y="192.5" width="60" height="17"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
+                        <color key="textColor" red="0.85882352939999995" green="0.72941176470000002" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bi6-0F-rVM">
+                        <rect key="frame" x="15" y="210.5" width="353" height="84"/>
+                        <string key="text">1、请务必在15分钟倒计时内点击确认取款。
+2、如果没有到账，请务必在15分钟内点击未到账，否则系统默认为确认到账。
+3、当日累计超时2次后，将取消您使用急速取款通道。
+4、超时后将不会享受存款返利。</string>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
+                        <color key="textColor" red="0.50588235290000005" green="0.52941176469999995" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <constraints>
+                <constraint firstItem="CDH-ay-ZIv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="0zS-xg-yd2"/>
+                <constraint firstItem="ZeE-7y-P69" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="12W-1u-Qg2"/>
+                <constraint firstItem="shM-70-wtV" firstAttribute="leading" secondItem="kdG-8M-W5r" secondAttribute="leading" constant="5" id="6l9-na-D0F"/>
+                <constraint firstItem="kdG-8M-W5r" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="24.5" id="8Xo-nN-vqX"/>
+                <constraint firstItem="shM-70-wtV" firstAttribute="trailing" secondItem="kdG-8M-W5r" secondAttribute="trailing" constant="-5" id="DW7-7A-Niz"/>
+                <constraint firstAttribute="trailing" secondItem="ZeE-7y-P69" secondAttribute="trailing" id="Eor-Nw-e3M"/>
+                <constraint firstAttribute="trailing" secondItem="CDH-ay-ZIv" secondAttribute="trailing" constant="15" id="Etz-By-Gmg"/>
+                <constraint firstItem="shM-70-wtV" firstAttribute="top" secondItem="kdG-8M-W5r" secondAttribute="bottom" constant="-8" id="Fju-97-iT6"/>
+                <constraint firstItem="0Q6-8e-7K1" firstAttribute="centerY" secondItem="6dI-5t-VGw" secondAttribute="centerY" id="INm-6q-LcN"/>
+                <constraint firstItem="nXD-VY-Zr9" firstAttribute="centerY" secondItem="0Q6-8e-7K1" secondAttribute="centerY" id="KYe-Yx-kIn"/>
+                <constraint firstItem="0Q6-8e-7K1" firstAttribute="leading" secondItem="6dI-5t-VGw" secondAttribute="trailing" id="NXJ-yR-Iz2"/>
+                <constraint firstItem="umA-OA-QbZ" firstAttribute="top" secondItem="ZeE-7y-P69" secondAttribute="bottom" constant="26" id="RA7-9k-zaQ"/>
+                <constraint firstItem="umA-OA-QbZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="SX9-Uk-6JD"/>
+                <constraint firstItem="kdG-8M-W5r" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="T5i-kC-ZFi"/>
+                <constraint firstAttribute="trailing" secondItem="bi6-0F-rVM" secondAttribute="trailing" constant="15" id="WjW-Wq-1tv"/>
+                <constraint firstItem="nXD-VY-Zr9" firstAttribute="leading" secondItem="0Q6-8e-7K1" secondAttribute="trailing" constant="5" id="Xl3-vj-wri"/>
+                <constraint firstItem="CDH-ay-ZIv" firstAttribute="top" secondItem="6dI-5t-VGw" secondAttribute="bottom" constant="5" id="ZLP-6t-ujW"/>
+                <constraint firstItem="6dI-5t-VGw" firstAttribute="top" secondItem="kdG-8M-W5r" secondAttribute="bottom" constant="24.5" id="bM1-eH-kVj"/>
+                <constraint firstItem="bi6-0F-rVM" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="fiU-yZ-Iot"/>
+                <constraint firstItem="ZeE-7y-P69" firstAttribute="top" secondItem="CDH-ay-ZIv" secondAttribute="bottom" constant="20" id="hKt-t7-gKX"/>
+                <constraint firstItem="6dI-5t-VGw" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="jH3-Nb-GU3"/>
+                <constraint firstItem="bi6-0F-rVM" firstAttribute="top" secondItem="umA-OA-QbZ" secondAttribute="bottom" constant="1" id="zmZ-9j-7Fc"/>
+            </constraints>
+            <size key="customSize" width="383" height="376"/>
+            <connections>
+                <outlet property="countLB" destination="0Q6-8e-7K1" id="80j-9B-QVE"/>
+                <outlet property="titleLB" destination="kdG-8M-W5r" id="7a3-GR-JN2"/>
+            </connections>
+            <point key="canvasLocation" x="303.62318840579712" y="160.71428571428569"/>
+        </collectionViewCell>
+    </objects>
+</document>
