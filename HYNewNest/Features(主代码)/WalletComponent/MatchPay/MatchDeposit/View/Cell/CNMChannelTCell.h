@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "BTTMeMainModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CNMChannelTCell : UITableViewCell
-//@property (nonatomic, strong) BTTMeMainModel *channel;
+@property (nonatomic, strong) id channel;
 @end
 
 NS_ASSUME_NONNULL_END
