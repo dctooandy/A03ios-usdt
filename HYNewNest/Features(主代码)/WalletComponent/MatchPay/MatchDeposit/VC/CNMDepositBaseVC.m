@@ -20,11 +20,19 @@
 }
 
 - (void)showLoading {
-    
+    [LoadingView showLoadingViewWithToView:nil needMask:YES];
 }
 
 - (void)hideLoading {
-    
+    [LoadingView hideLoadingViewForView:nil];
+}
+
+- (void)showError:(NSString *)msg {
+    [CNTOPHUB showError:msg];
+}
+
+- (void)showSuccess:(NSString *)msg {
+    [CNTOPHUB showSuccess:msg];
 }
 
 @end

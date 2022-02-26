@@ -131,6 +131,8 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
     self.pictureName2 = [NSMutableArray arrayWithCapacity:4];
     
     [self loadData];
+    self.navigationItem.leftBarButtonItem.target = self;
+    self.navigationItem.leftBarButtonItem.action = @selector(goToBack);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
