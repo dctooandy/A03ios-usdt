@@ -6,7 +6,7 @@
 //  Copyright © 2022 BTT. All rights reserved.
 //
 
-#import "JSONModel.h"
+#import "CNBaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +21,7 @@ typedef NS_ENUM(NSUInteger, CNMPayBillStatus) {
     CNMPayBillStatusSuccess = 100,
 };
 
-@interface CNMBankModel : JSONModel
+@interface CNMBankModel : CNBaseModel
 @property (nonatomic, copy) NSString *amount;
 @property (nonatomic, copy) NSString *bankAccountName;
 @property (nonatomic, copy) NSString *bankAccountNo;

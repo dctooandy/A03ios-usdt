@@ -336,7 +336,7 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
     [CNMatchPayRequest queryDepisit:self.transactionId finish:^(id responseObj, NSString *errorMsg) {
         if ([responseObj isKindOfClass:[NSDictionary class]]) {
             NSDictionary *dic = (NSDictionary *)responseObj;
-            CNMBankModel *bank = [[CNMBankModel alloc] initWithDictionary:[dic objectForKey:@"data"] error:nil];
+            CNMBankModel *bank = [CNMBankModel cn_parse:[dic objectForKey:@"data"]];
             if (bank.status == CNMPayBillStatusSuccess) {
                 [weakSelf reloadUIWithModel:bank];
                 return;

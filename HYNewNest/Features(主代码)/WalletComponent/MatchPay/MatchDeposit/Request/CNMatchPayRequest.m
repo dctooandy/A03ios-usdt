@@ -10,13 +10,23 @@
 
 @implementation CNMatchPayRequest
 + (void)Post:(NSString *)url para:(NSDictionary *)para finish:(HandlerBlock)finish {
-    [self POST:url parameters:para completionHandler:^(id responseObj, NSString *errorMsg) {
-        IVJResponseObject *result = responseObj;
-        if ([result.head.errCode isEqualToString:@"0000"]) {
-            !finish ?: finish(result.body, nil);
-        } else {
-            !finish ?: finish(result, errorMsg);
+    [self POST:url parameters:para completionHandler:finish];
+}
+
++ (void)queryFastPayOpenFinish:(HandlerBlock)finish {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"type"] = @"1"; // 存款
+    dic[@"merchant"] = @"A01";
+    dic[@"currency"] = @"CNY";
+    [self Post:@"deposit/checkChannel" para:dic finish:^(id responseObj, NSString *errorMsg) {
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *data = [((NSDictionary *)responseObj) objectForKey:@"data"];
+            if (data) {
+                !finish ?: finish(data, nil);
+                return;
+            }
         }
+        !finish ?: finish(responseObj, errorMsg);
     }];
 }
 

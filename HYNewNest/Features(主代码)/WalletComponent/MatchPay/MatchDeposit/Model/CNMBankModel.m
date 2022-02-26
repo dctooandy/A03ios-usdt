@@ -9,7 +9,6 @@
 #import "CNMBankModel.h"
 
 @implementation CNMBankModel
-+ (BOOL)propertyIsOptional:(NSString *)propertyName {
-    return YES;
-}
+
+
 @end
