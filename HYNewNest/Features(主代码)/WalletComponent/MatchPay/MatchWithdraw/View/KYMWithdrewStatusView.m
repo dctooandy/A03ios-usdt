@@ -39,7 +39,7 @@
         UILabel *lable = [[UILabel alloc] init];
         lable.text = self.statusTitleArray[i];
         lable.font = [UIFont fontWithName:@"PingFang SC Regular" size:14];
-        lable.textColor =  [UIColor colorWithRed:0x81 / 255.0 green:0x87 / 255.0 blue:0x91 / 255.0 alpha:1];
+        lable.textColor =  [UIColor colorWithRed:0x67 / 255.0 green:0x67 / 255.0 blue:0x67 / 255.0 alpha:1];
         lable.tag = 1230 + i;
         [self.statusItemView addSubview:lable];
         
@@ -89,9 +89,9 @@
         case KYMWithdrewStepOne:{
             realStep = 1;
             self.stautsLB1.text = @"已经提交取款订单，系统审核中...";
-            self.stautsLB1.textColor = [UIColor colorWithRed:0xF4 / 255.0 green:0x35 / 255.0 blue:0x35 / 255.0 alpha:1];
+            self.stautsLB1.textColor = [UIColor colorWithRed:0xF9 / 255.0 green:0xBD / 255.0 blue:0x52 / 255.0 alpha:1];
             self.statusLB2.text = @"耐心等待5秒到1分钟即可";
-            self.statusLB2.textColor = [UIColor colorWithRed:0x81 / 255.0 green:0x87 / 255.0 blue:0x91 / 255.0 alpha:1];
+            self.statusLB2.textColor = [UIColor colorWithRed:0xFF / 255.0 green:0xFF / 255.0 blue:0xFF / 255.0 alpha:0.4];
             self.statusLB2.font = [UIFont fontWithName:@"PingFang SC Regular" size:12] ;
             self.statusLB3.hidden = YES;
             self.statusLB4.hidden = YES;
@@ -100,9 +100,9 @@
         case KYMWithdrewStepTwo:{
             realStep = 2;
             self.stautsLB1.text = @"审核通过，系统付款中，请等待付款通知...";
-            self.stautsLB1.textColor = [UIColor colorWithRed:0xF4 / 255.0 green:0x35 / 255.0 blue:0x35 / 255.0 alpha:1];
+            self.stautsLB1.textColor = [UIColor colorWithRed:0xF9 / 255.0 green:0xBD / 255.0 blue:0x52 / 255.0 alpha:1];
             self.statusLB2.text = @"取款到账后，请务必在15分钟内点击确认到账";
-            self.statusLB2.textColor = [UIColor colorWithRed:0x81 / 255.0 green:0x87 / 255.0 blue:0x91 / 255.0 alpha:1];
+            self.statusLB2.textColor = [UIColor colorWithRed:0xFF / 255.0 green:0xFF / 255.0 blue:0xFF / 255.0 alpha:0.4];
             self.statusLB2.font = [UIFont fontWithName:@"PingFang SC Regular" size:12];
             self.statusLB3.hidden = YES;
             self.statusLB4.hidden = YES;
@@ -111,9 +111,9 @@
         case KYMWithdrewStepThree:{
             realStep = 3;
             self.stautsLB1.text = @"订单已付款，请您核实银行卡是否到账";
-            self.stautsLB1.textColor = [UIColor colorWithRed:0x81 / 255.0 green:0x87 / 255.0 blue:0x91 / 255.0 alpha:1];
+            self.stautsLB1.textColor = [UIColor colorWithRed:0xFF / 255.0 green:0xFF / 255.0 blue:0xFF / 255.0 alpha:0.4];
             self.statusLB2.text = @"请在";
-            self.statusLB2.textColor = [UIColor colorWithRed:0x81 / 255.0 green:0x87 / 255.0 blue:0x91 / 255.0 alpha:1];
+            self.statusLB2.textColor = [UIColor colorWithRed:0xFF / 255.0 green:0xFF / 255.0 blue:0xFF / 255.0 alpha:0.4];
             self.statusLB2.font = [UIFont fontWithName:@"PingFang SC Regular" size:12];
             self.statusLB3.hidden = NO;
             self.statusLB4.hidden = NO;
@@ -122,9 +122,9 @@
         case KYMWithdrewStepFour:{
             realStep = 3;
             self.stautsLB1.text = @"订单已付款，请您核实银行卡是否到账";
-            self.stautsLB1.textColor = [UIColor colorWithRed:0x81 / 255.0 green:0x87 / 255.0 blue:0x91 / 255.0 alpha:1];
+            self.stautsLB1.textColor = [UIColor colorWithRed:0xFF / 255.0 green:0xFF / 255.0 blue:0xFF / 255.0 alpha:0.4];
             self.statusLB2.text = @"未确认到账，订单异常";
-            self.statusLB2.textColor = [UIColor colorWithRed:0xF4 / 255.0 green:0x35 / 255.0 blue:0x35 / 255.0 alpha:1];
+            self.statusLB2.textColor = [UIColor colorWithRed:0xF9 / 255.0 green:0xBD / 255.0 blue:0x52 / 255.0 alpha:1];
             self.statusLB2.font = [UIFont fontWithName:@"PingFang SC Semibold" size:15];
             self.statusLB3.hidden = YES;
             self.statusLB4.hidden = YES;
@@ -133,7 +133,7 @@
         case KYMWithdrewStepFive:{
             realStep = 4;
             self.stautsLB1.text = @"您完成了一笔取款";
-            self.stautsLB1.textColor = [UIColor colorWithRed:0x81 / 255.0 green:0x87 / 255.0 blue:0x91 / 255.0 alpha:1];
+            self.stautsLB1.textColor = [UIColor colorWithRed:0xFF / 255.0 green:0xFF / 255.0 blue:0xFF / 255.0 alpha:0.4];
             self.statusLB2.hidden = YES;
             self.statusLB3.hidden = YES;
             self.statusLB4.hidden = YES;
@@ -142,7 +142,7 @@
         case KYMWithdrewStepSix:{
             realStep = 4;
             self.stautsLB1.text = @"您完成了一笔取款";
-            self.stautsLB1.textColor = [UIColor colorWithRed:0x81 / 255.0 green:0x87 / 255.0 blue:0x91 / 255.0 alpha:1];
+            self.stautsLB1.textColor = [UIColor colorWithRed:0xFF / 255.0 green:0xFF / 255.0 blue:0xFF / 255.0 alpha:0.4];
             self.statusLB2.hidden = YES;
             self.statusLB3.hidden = YES;
             self.statusLB4.hidden = YES;
@@ -156,7 +156,7 @@
         UIImageView *image = [self.statusItemView viewWithTag:1130 + i];
         image.image = [UIImage imageNamed:self.selectedImgArray[i]];
         UILabel *label = [self.statusItemView viewWithTag:1230 + i];
-        label.textColor =  [UIColor colorWithRed:0xD2 / 255.0 green:0xD2 / 255.0 blue:0xD2 / 255.0 alpha:1];
+        label.textColor =  [UIColor colorWithRed:0xFF / 255.0 green:0xFF / 255.0 blue:0xFF / 255.0 alpha:1];
     }
     CGFloat lable2W = [self.statusLB2.text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : self.statusLB2.font} context:nil].size.width + 5;
     self.statusLB2Width.constant = lable2W;
