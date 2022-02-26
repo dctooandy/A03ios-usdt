@@ -127,6 +127,15 @@
 		0494C59427C8D5040016B5F6 /* CNMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0494C58B27C8D5040016B5F6 /* CNMAlertView.m */; };
 		0494C59527C8D5040016B5F6 /* CNMAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0494C58D27C8D5040016B5F6 /* CNMAlertView.xib */; };
 		0494C59A27C8D5270016B5F6 /* CNMBankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0494C59927C8D5270016B5F6 /* CNMBankModel.m */; };
+		0494C59C27C8DFC10016B5F6 /* MatchPay.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0494C59B27C8DFC10016B5F6 /* MatchPay.xcassets */; };
+		0494C5A027C8DFC80016B5F6 /* CNMatchPayRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0494C59F27C8DFC80016B5F6 /* CNMatchPayRequest.m */; };
+		0494C5AD27C8DFD50016B5F6 /* CNMFastPayStatusVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0494C5A227C8DFD50016B5F6 /* CNMFastPayStatusVC.xib */; };
+		0494C5AE27C8DFD50016B5F6 /* CNMSelectChannelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0494C5A327C8DFD50016B5F6 /* CNMSelectChannelVC.m */; };
+		0494C5AF27C8DFD50016B5F6 /* CNMFastPayVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0494C5A527C8DFD50016B5F6 /* CNMFastPayVC.xib */; };
+		0494C5B027C8DFD50016B5F6 /* CNMFastPayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0494C5A627C8DFD50016B5F6 /* CNMFastPayVC.m */; };
+		0494C5B227C8DFD50016B5F6 /* CNMFastPayStatusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0494C5A927C8DFD50016B5F6 /* CNMFastPayStatusVC.m */; };
+		0494C5B627C9C3910016B5F6 /* CNWAmountListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0494C5B527C9C3910016B5F6 /* CNWAmountListModel.m */; };
+		0494C5B927C9C7D60016B5F6 /* CNMDepositBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0494C5B827C9C7D60016B5F6 /* CNMDepositBaseVC.m */; };
 		04C0F0DC24C29FFD007F1420 /* CNBindPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C0F0DA24C29FFD007F1420 /* CNBindPhoneVC.m */; };
 		04C0F0DD24C29FFD007F1420 /* CNBindPhoneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C0F0DB24C29FFD007F1420 /* CNBindPhoneVC.xib */; };
 		04C0F0E324C2B282007F1420 /* CNTOPHUB.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C0F0E124C2B282007F1420 /* CNTOPHUB.m */; };
@@ -1336,6 +1345,21 @@
 		0494C58E27C8D5040016B5F6 /* CNMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNMAlertView.h; sourceTree = "<group>"; };
 		0494C59827C8D5270016B5F6 /* CNMBankModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNMBankModel.h; sourceTree = "<group>"; };
 		0494C59927C8D5270016B5F6 /* CNMBankModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNMBankModel.m; sourceTree = "<group>"; };
+		0494C59B27C8DFC10016B5F6 /* MatchPay.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MatchPay.xcassets; sourceTree = "<group>"; };
+		0494C59E27C8DFC80016B5F6 /* CNMatchPayRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNMatchPayRequest.h; sourceTree = "<group>"; };
+		0494C59F27C8DFC80016B5F6 /* CNMatchPayRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNMatchPayRequest.m; sourceTree = "<group>"; };
+		0494C5A227C8DFD50016B5F6 /* CNMFastPayStatusVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNMFastPayStatusVC.xib; sourceTree = "<group>"; };
+		0494C5A327C8DFD50016B5F6 /* CNMSelectChannelVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNMSelectChannelVC.m; sourceTree = "<group>"; };
+		0494C5A427C8DFD50016B5F6 /* CNMFastPayStatusVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNMFastPayStatusVC.h; sourceTree = "<group>"; };
+		0494C5A527C8DFD50016B5F6 /* CNMFastPayVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNMFastPayVC.xib; sourceTree = "<group>"; };
+		0494C5A627C8DFD50016B5F6 /* CNMFastPayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNMFastPayVC.m; sourceTree = "<group>"; };
+		0494C5A827C8DFD50016B5F6 /* CNMSelectChannelVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNMSelectChannelVC.h; sourceTree = "<group>"; };
+		0494C5A927C8DFD50016B5F6 /* CNMFastPayStatusVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNMFastPayStatusVC.m; sourceTree = "<group>"; };
+		0494C5AB27C8DFD50016B5F6 /* CNMFastPayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNMFastPayVC.h; sourceTree = "<group>"; };
+		0494C5B427C9C3910016B5F6 /* CNWAmountListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNWAmountListModel.h; sourceTree = "<group>"; };
+		0494C5B527C9C3910016B5F6 /* CNWAmountListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNWAmountListModel.m; sourceTree = "<group>"; };
+		0494C5B727C9C7D60016B5F6 /* CNMDepositBaseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNMDepositBaseVC.h; sourceTree = "<group>"; };
+		0494C5B827C9C7D60016B5F6 /* CNMDepositBaseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNMDepositBaseVC.m; sourceTree = "<group>"; };
 		04C0F0D924C29FFD007F1420 /* CNBindPhoneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNBindPhoneVC.h; sourceTree = "<group>"; };
 		04C0F0DA24C29FFD007F1420 /* CNBindPhoneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNBindPhoneVC.m; sourceTree = "<group>"; };
 		04C0F0DB24C29FFD007F1420 /* CNBindPhoneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CNBindPhoneVC.xib; sourceTree = "<group>"; };
@@ -3137,6 +3161,7 @@
 			isa = PBXGroup;
 			children = (
 				0494C57E27C8B2EA0016B5F6 /* MatchDeposit */,
+				0494C59B27C8DFC10016B5F6 /* MatchPay.xcassets */,
 				0494C57F27C8B2F80016B5F6 /* MatchWithdraw */,
 			);
 			path = MatchPay;
@@ -3145,7 +3170,9 @@
 		0494C57E27C8B2EA0016B5F6 /* MatchDeposit */ = {
 			isa = PBXGroup;
 			children = (
+				0494C59D27C8DFC80016B5F6 /* Request */,
 				0494C59727C8D5270016B5F6 /* Model */,
+				0494C5A127C8DFD50016B5F6 /* VC */,
 				0494C58227C8D5040016B5F6 /* View */,
 			);
 			path = MatchDeposit;
@@ -3202,8 +3229,36 @@
 			children = (
 				0494C59827C8D5270016B5F6 /* CNMBankModel.h */,
 				0494C59927C8D5270016B5F6 /* CNMBankModel.m */,
+				0494C5B427C9C3910016B5F6 /* CNWAmountListModel.h */,
+				0494C5B527C9C3910016B5F6 /* CNWAmountListModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0494C59D27C8DFC80016B5F6 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				0494C59E27C8DFC80016B5F6 /* CNMatchPayRequest.h */,
+				0494C59F27C8DFC80016B5F6 /* CNMatchPayRequest.m */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		0494C5A127C8DFD50016B5F6 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				0494C5B727C9C7D60016B5F6 /* CNMDepositBaseVC.h */,
+				0494C5B827C9C7D60016B5F6 /* CNMDepositBaseVC.m */,
+				0494C5A827C8DFD50016B5F6 /* CNMSelectChannelVC.h */,
+				0494C5A327C8DFD50016B5F6 /* CNMSelectChannelVC.m */,
+				0494C5AB27C8DFD50016B5F6 /* CNMFastPayVC.h */,
+				0494C5A627C8DFD50016B5F6 /* CNMFastPayVC.m */,
+				0494C5A527C8DFD50016B5F6 /* CNMFastPayVC.xib */,
+				0494C5A427C8DFD50016B5F6 /* CNMFastPayStatusVC.h */,
+				0494C5A927C8DFD50016B5F6 /* CNMFastPayStatusVC.m */,
+				0494C5A227C8DFD50016B5F6 /* CNMFastPayStatusVC.xib */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 		04C0F0DF24C2B282007F1420 /* HUB */ = {
@@ -6155,6 +6210,7 @@
 			files = (
 				F7AF80EA268DB0B90048DBD8 /* BYChangeFundPwdVC.xib in Resources */,
 				D5A446D424F3941400014DC6 /* 合成 1_00048.png in Resources */,
+				0494C59C27C8DFC10016B5F6 /* MatchPay.xcassets in Resources */,
 				D5A4463324F393E500014DC6 /* 足球_00048.png in Resources */,
 				D5A4456F24F393AC00014DC6 /* 棋牌_00092.png in Resources */,
 				D5A445FC24F393E500014DC6 /* 足球_00021.png in Resources */,
@@ -6167,6 +6223,7 @@
 				D5A443A224F378CD00014DC6 /* 彩票_00030.png in Resources */,
 				3DC8410B2682F75200AEB1B6 /* BYMissionCompleteVC.xib in Resources */,
 				D5A4457924F393AD00014DC6 /* 棋牌_00085.png in Resources */,
+				0494C5AF27C8DFD50016B5F6 /* CNMFastPayVC.xib in Resources */,
 				3DC8410C2682F75200AEB1B6 /* BYNewbieMissionVC.xib in Resources */,
 				D5A4464524F393E500014DC6 /* 足球_0006.png in Resources */,
 				D5A4464924F393E500014DC6 /* 足球_0005.png in Resources */,
@@ -6204,6 +6261,7 @@
 				04935BEC24D93E87007A33EF /* CNELSearchVC.xib in Resources */,
 				D5A4465724F393E500014DC6 /* 足球_00012.png in Resources */,
 				E98BEF0B24D25F6E00E6B0C8 /* HYXiMaCell.xib in Resources */,
+				0494C5AD27C8DFD50016B5F6 /* CNMFastPayStatusVC.xib in Resources */,
 				D5A4453624F393AC00014DC6 /* 棋牌_00012.png in Resources */,
 				D5A4439624F378CD00014DC6 /* 彩票_00041.png in Resources */,
 				D5A4448524F3932400014DC6 /* 数字7_00016.png in Resources */,
@@ -7041,6 +7099,7 @@
 				E9B5496924CECE23002CE6EF /* LTSegmentedBar.m in Sources */,
 				048A0EEA24C834B200411819 /* CNChessVC.m in Sources */,
 				3DE3CA9624ED6AEC00D591C4 /* UILabel+Indicator.m in Sources */,
+				0494C5B627C9C3910016B5F6 /* CNWAmountListModel.m in Sources */,
 				040A08D524E114A900FBD534 /* OCBarrageManager.m in Sources */,
 				3D41DE9F251A0F59000CA1D6 /* HYVIPRuleAlertView.m in Sources */,
 				0487C9BC24D01DDE0013715A /* CNTradeRecodeVC.m in Sources */,
@@ -7088,6 +7147,7 @@
 				7682A7A72797AE9F001AC772 /* LuckyBagModel.m in Sources */,
 				765C64E32782B4ED00A6BC34 /* BTTAnimationPopView.m in Sources */,
 				D5FBFE8B24BC28B200BBCAD8 /* CNBaseModel.m in Sources */,
+				0494C5AE27C8DFD50016B5F6 /* CNMSelectChannelVC.m in Sources */,
 				0487C9F424D2AADC0013715A /* CNMessageTCell.m in Sources */,
 				3D41DECA2521CDE7000CA1D6 /* VIPRecordSelectorView.m in Sources */,
 				F73857D2267B18E200768D14 /* BYGradientButton.m in Sources */,
@@ -7163,6 +7223,7 @@
 				766A6EC9276B3F4A007DC6A1 /* A03PopViewModel.m in Sources */,
 				3D1338A424AF2E5200B29783 /* AppDelegate.m in Sources */,
 				3DC841172682F75200AEB1B6 /* BYFirstFillBannerView.m in Sources */,
+				0494C5B227C8DFD50016B5F6 /* CNMFastPayStatusVC.m in Sources */,
 				E986A18924C9CF36000F9CFF /* XmPlatformModel.m in Sources */,
 				3DA4F17C24B315940039123F /* NSURL+HYLink.m in Sources */,
 				3DBA55D0256FA6D3009A2B71 /* CNBaseTF.m in Sources */,
@@ -7213,6 +7274,7 @@
 				3DA4F16E24B314F30039123F /* UIImage+ESUtilities.m in Sources */,
 				3D9700262599DB2A003238C4 /* HYDSBSlideUpViewCell.m in Sources */,
 				3D3A9B6A24FA3696003FB33C /* DXRadianLayerView.m in Sources */,
+				0494C5B027C8DFD50016B5F6 /* CNMFastPayVC.m in Sources */,
 				0487C9CD24D133270013715A /* CNRecordTypeSelectorView.m in Sources */,
 				F772EC5F269FF97E00F786C7 /* BYGloryVC.m in Sources */,
 				3DE3CA9324ED5CFC00D591C4 /* HYUpdateAlertView.m in Sources */,
@@ -7320,6 +7382,7 @@
 				E98BEEF824D0341A00E6B0C8 /* HYCTZNPlayerViewController.m in Sources */,
 				E986A1AA24CBCD39000F9CFF /* CNLoginSuccChooseAccountVC.m in Sources */,
 				0487C9F924D2CCED0013715A /* CNDownloadVC.m in Sources */,
+				0494C5B927C9C7D60016B5F6 /* CNMDepositBaseVC.m in Sources */,
 				E986A11524C73DB8000F9CFF /* AnnounceModel.m in Sources */,
 				3D9DA66125908327003C3F28 /* DSBWeekMonthListDataSource.m in Sources */,
 				0487C9AB24CFBA6A0013715A /* JJCollectionViewFlowLayoutUtils.m in Sources */,
@@ -7350,6 +7413,7 @@
 				3DD05E822681817B004B1062 /* BYDepositUsdtEditorView.m in Sources */,
 				3DC14E4725FB52DE00D6DB85 /* BYMyWalletView.m in Sources */,
 				E98BEF2524D2C40100E6B0C8 /* HYWithdrawAddCardFooter.m in Sources */,
+				0494C5A027C8DFC80016B5F6 /* CNMatchPayRequest.m in Sources */,
 				F749383E26D8917E008F0BD4 /* BYUSDTRechargeAlertView.m in Sources */,
 				3DDEBA32264A4E4D0014EB87 /* BYYuEBaoVC.m in Sources */,
 				3D41DEB9251F1A20000CA1D6 /* WSLPhotoZoom.m in Sources */,

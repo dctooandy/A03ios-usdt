@@ -17,9 +17,9 @@
 
 @interface HYRechargeCNYEditView () <CNNormalInputViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *contentView;
-//@property (weak, nonatomic) IBOutlet UIImageView *imgvIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *imgvIcon;
 @property (weak, nonatomic) IBOutlet UILabel *lblPayWayName;
-//@property (weak, nonatomic) IBOutlet UILabel *lblPayWayLimit;
+@property (weak, nonatomic) IBOutlet UILabel *refundTip;
 @property (weak, nonatomic) IBOutlet UILabel *tipLbl;
 
 
@@ -101,8 +101,15 @@
     _amountModel = amountModel;
     
     /// 顶上信息
-//    [self.imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:itemModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
+    [self.imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:itemModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
     self.lblPayWayName.text = itemModel.payTypeName;
+    /// 急速走另外页面
+    if ([itemModel.payType isEqualToString:FastPayType]) {
+        self.refundTip.hidden = NO;
+        return;
+    }
+    self.refundTip.hidden = YES;
+    
     if ([self.lblPayWayName.text containsString:@"支付宝"] || [self.lblPayWayName.text containsString:@"微信"]) {
         self.tipLbl.attributedText = ({
             UIColor *gdColor = kHexColor(0x999999);

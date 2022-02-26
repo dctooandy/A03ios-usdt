@@ -25,6 +25,7 @@
 #import "BYCNYRechargeAlertView.h"
 #import "CNLoginRequest.h"
 #import "BYLargeAmountView.h"
+#import "CNMFastPayVC.h"
 
 @interface HYRechargeCNYViewController () <HYRechargeCNYEditViewDelegate>
 @property (nonatomic, assign) NSInteger selcPayWayIdx;
@@ -36,6 +37,7 @@
 @property (nonatomic, strong) UIScrollView *scrollContainer;
 @property (nonatomic, strong) HYRechargeCNYEditView *editView;
 @property (nonatomic, strong) BYLargeAmountView *largeAmountView;
+@property (nonatomic, strong) CNMFastPayVC *fastVC;
 @end
 
 @implementation HYRechargeCNYViewController
@@ -155,7 +157,7 @@
         }];
     }
     else {
-        [self.editView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.editView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.scrollContainer).offset(15);
             make.top.equalTo(self.scrollContainer).offset(15);
             make.height.mas_equalTo(510).priority(MASLayoutPriorityDefaultLow);
@@ -186,6 +188,40 @@
     }];
     self.btnSubmit = subBtn;
     self.btnSubmit.hidden = hidden;
+}
+
+- (void)setupFastPayUIWithHidden:(BOOL)hidden {
+    self.btnSubmit.hidden = !hidden;
+    if (hidden) {
+        [self.fastVC.view removeFromSuperview];
+        return;
+    }
+    if (!_fastVC) {
+        self.fastVC = [[CNMFastPayVC alloc] init];
+    }
+    self.fastVC.view.backgroundColor = kHexColor(0x272749);
+    self.fastVC.view.layer.cornerRadius = 10;
+    [self.scrollContainer mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self.view);
+        make.bottom.equalTo(self.btnSubmit.mas_top).offset(-30);
+    }];
+    [self.editView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.scrollContainer).offset(15);
+        make.top.equalTo(self.scrollContainer).offset(15);
+        make.height.mas_equalTo(600);
+        make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
+    }];
+    [self.editView setupPayTypeItem:self.paytypeList[_selcPayWayIdx]
+                          bankModel:nil
+                        amountModel:nil];
+    
+    [self.editView addSubview:self.fastVC.view];
+    [self.fastVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(0);
+        make.right.offset(0);
+        make.top.offset(71);
+        make.bottom.offset(0);
+    }];
 }
 
 #pragma mark - HYRechargeCNYEditViewDelegate
@@ -234,6 +270,12 @@
                 [tmp insertObject:lastItem atIndex:0];
             }
             
+            // 先插入急速存款
+            PayWayV3PayTypeItem *fastItem = [[PayWayV3PayTypeItem alloc] init];
+            fastItem.payType = FastPayType;
+            fastItem.payTypeName = @"急速转卡";
+            [tmp insertObject:fastItem atIndex:0];
+            
             self.paytypeList = (NSArray<PayWayV3PayTypeItem *> *)[NSArray arrayWithArray:tmp];
             [self refreshQueryData];
         } else {
@@ -256,12 +298,25 @@
 
 - (void)refreshQueryData {
     PayWayV3PayTypeItem *item = self.paytypeList[_selcPayWayIdx];
+    
+    if ([item.payType isEqualToString:FastPayType]) {
+        [self qureyFastPay];
+        return;
+    }
+    [self setupFastPayUIWithHidden:YES];
+    
     if (![HYRechargeHelper isOnlinePayWay:item]) {
         [self queryTransferAmount];
     } else {
         [self queryOnlineBankAmount];
     }
     
+}
+
+
+/// 查询急速转账数据
+- (void)qureyFastPay {
+    [self setupFastPayUIWithHidden:NO];
 }
 
 /**
