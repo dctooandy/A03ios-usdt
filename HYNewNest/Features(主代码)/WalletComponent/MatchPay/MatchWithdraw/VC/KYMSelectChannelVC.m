@@ -35,7 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.closeBtn setTitle:@"" forState:UIControlStateNormal];
-    self.contentView.layer.cornerRadius = 16;
+    self.contentView.layer.cornerRadius = 20;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.dataSource = self;
@@ -65,7 +65,7 @@
         cell.descLable.hidden = NO;
         cell.recommendIcon.hidden = NO;
     } else {
-        cell.titleLable.text = @"在线取款";
+        cell.titleLable.text = @"提现";
         cell.iconImageView.image = [UIImage imageNamed:@"mwd_normal"];
         cell.descLable.hidden = YES;
         cell.recommendIcon.hidden = YES;
@@ -74,7 +74,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 74;
+    return 81;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

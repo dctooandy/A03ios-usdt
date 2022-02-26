@@ -20,6 +20,7 @@
 #import "Masonry.h"
 #import "MBProgressHUD+Add.h"
 #import "SDWebImage.h"
+#import "LoadingView.h"
 @interface KYMFastWithdrewVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) UIView *contentView;
@@ -98,7 +99,7 @@
     self.amountView = [[KYMWithdrewAmountView alloc] init];
     self.bankView = [[KYMWithdrewBankView alloc] init];
     self.lineView = [[UIView alloc] init];
-    self.lineView.backgroundColor = [UIColor colorWithRed:0x2C / 255.0 green:0x2D / 255.0 blue:0x33 / 255.0 alpha:1];
+    self.lineView.backgroundColor = [UIColor colorWithRed:0x6D / 255.0 green:0x77 / 255.0 blue:0x8B / 255.0 alpha:0.3];
     self.submitView = [[KYMWithdrewSubmitView alloc] init];
     self.cusmoterView = [[KYMWithdrewCusmoterView alloc] init];
     self.noticeView = [[KYMWithdrewNoticeView alloc] init];
@@ -487,10 +488,10 @@
 
 - (void)showLoading
 {
-    
+    [LoadingView showLoadingViewWithToView:nil needMask:YES];
 }
 - (void)hideLoading
 {
-    
+    [LoadingView hideLoadingViewForView:nil];
 }
 @end

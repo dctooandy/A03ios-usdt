@@ -30,7 +30,7 @@
                                 <constraint firstAttribute="height" constant="21" id="h3W-tu-OLM"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="15"/>
-                            <color key="textColor" red="0.95686274510000002" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="0.97647058823529409" green="0.74117647058823533" blue="0.32156862745098036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请在" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYC-eb-rth">
@@ -40,7 +40,7 @@
                                 <constraint firstAttribute="height" constant="21" id="n3C-tf-81x"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" red="0.50588235290000005" green="0.52941176469999995" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00分00秒" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgc-RF-hgR">
@@ -50,7 +50,7 @@
                                 <constraint firstAttribute="width" constant="70" id="u1D-Ik-F7e"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="15"/>
-                            <color key="textColor" red="0.95686274510000002" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="0.97647058823529409" green="0.74117647058823533" blue="0.32156862745098036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内点击【确认到账】，时间结束默认完成" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRu-L1-tnq">
@@ -59,11 +59,11 @@
                                 <constraint firstAttribute="height" constant="21" id="aap-8u-a31"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
-                            <color key="textColor" red="0.50588235290000005" green="0.52941176469999995" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.16078431369999999" green="0.1764705882" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.15294117647058825" green="0.15294117647058825" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="fRu-L1-tnq" firstAttribute="leading" secondItem="pgc-RF-hgR" secondAttribute="trailing" id="77d-AQ-R1l"/>
                         <constraint firstAttribute="trailing" secondItem="6dR-WW-jlk" secondAttribute="trailing" constant="26" id="9LS-Gl-tJg"/>

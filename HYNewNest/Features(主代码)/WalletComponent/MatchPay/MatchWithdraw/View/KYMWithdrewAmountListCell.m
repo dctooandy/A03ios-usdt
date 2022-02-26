@@ -19,7 +19,7 @@
     [super awakeFromNib];
     self.layer.borderWidth = 1.0;
     self.layer.cornerRadius = 4;
-    self.layer.borderColor = [UIColor colorWithRed:0xFF / 255.0 green:0xFF / 255.0 blue:0xFF / 255.0 alpha:0.2].CGColor;
+    self.layer.borderColor = [UIColor colorWithRed:0x10/ 255.0 green:0xB4 / 255.0 blue:0xDD / 255.0 alpha:1].CGColor;
     self.selectedIcon.hidden = YES;
 }
 - (void)setSelected:(BOOL)selected
@@ -27,11 +27,11 @@
     [super setSelected:selected];
     self.selectedIcon.hidden = !selected;
     if (selected) {
-        self.layer.borderColor = [UIColor colorWithRed:0x55 / 255.0 green:0xAA / 255.0 blue:0xF5 / 255.0 alpha:1].CGColor;
+        self.backgroundColor = [UIColor colorWithRed:0x10/ 255.0 green:0xB4 / 255.0 blue:0xDD / 255.0 alpha:1];
         self.amoutLB.textColor = [UIColor colorWithRed:0xFF / 255.0 green:0xFF / 255.0 blue:0xFF / 255.0 alpha:1];
     } else {
-        self.layer.borderColor = [UIColor colorWithRed:0xFF / 255.0 green:0xFF / 255.0 blue:0xFF / 255.0 alpha:0.2].CGColor;
-        self.amoutLB.textColor = [UIColor colorWithRed:0x81 / 255.0 green:0x87 / 255.0 blue:0x91 / 255.0 alpha:1];
+        self.backgroundColor = [UIColor colorWithRed:0x10/ 255.0 green:0xB4 / 255.0 blue:0xDD / 255.0 alpha:0];
+        self.amoutLB.textColor = [UIColor colorWithRed:0x11 / 255.0 green:0xB5 / 255.0 blue:0xDD / 255.0 alpha:1];
     }
 }
 - (void)setAmount:(NSString *)amount
