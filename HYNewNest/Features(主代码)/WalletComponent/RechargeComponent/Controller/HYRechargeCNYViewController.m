@@ -28,6 +28,9 @@
 
 #import "CNMFastPayVC.h"
 #import "CNMatchPayRequest.h"
+#import "CNMAlertView.h"
+#import "CNMFastPayStatusVC.h"
+#import "KYMFastWithdrewVC.h"
 
 @interface HYRechargeCNYViewController () <HYRechargeCNYEditViewDelegate>
 @property (nonatomic, assign) NSInteger selcPayWayIdx;
@@ -265,6 +268,7 @@
         make.bottom.offset(0);
     }];
     self.fastVC.fastModel = self.fastModel;
+    [self showTradeBill];
 }
 
 - (void)removeFastPay {
@@ -274,6 +278,30 @@
         [array removeObjectAtIndex:0];
         self.paytypeList = array.copy;
         [self refreshQueryData];
+    }
+}
+
+- (void)showTradeBill {
+    __weak typeof(self) weakSelf = self;
+    if (self.fastModel.mmProcessingOrderTransactionId.length > 0) {
+        if (self.fastModel.mmProcessingOrderType == 1) { // 存款
+            [CNMAlertView showAlertTitle:@"交易提醒" content:@"老板！您当前有正在交易的存款订单" desc:nil needRigthTopClose:NO commitTitle:@"关闭" commitAction:^{
+                [weakSelf removeFastPay];
+            } cancelTitle:@"查看订单" cancelAction:^{
+                CNMFastPayStatusVC *statusVC = [[CNMFastPayStatusVC alloc] init];
+                statusVC.cancelTime = [weakSelf.fastModel.remainCancelDepositTimes integerValue];
+                statusVC.transactionId = weakSelf.fastModel.mmProcessingOrderTransactionId;
+                [weakSelf.navigationController pushViewController:statusVC animated:YES];
+            }];
+        } else { // 取款
+            [CNMAlertView showAlertTitle:@"交易提醒" content:@"老板！您当前有正在交易的取款订单" desc:nil needRigthTopClose:NO commitTitle:@"关闭" commitAction:^{
+                [weakSelf removeFastPay];
+            } cancelTitle:@"查看订单" cancelAction:^{
+                KYMFastWithdrewVC *withdrewVC = [[KYMFastWithdrewVC alloc] init];
+                withdrewVC.mmProcessingOrderTransactionId = weakSelf.fastModel.mmProcessingOrderTransactionId;
+                [weakSelf.navigationController pushViewController:withdrewVC animated:YES];
+            }];
+        }
     }
 }
 
