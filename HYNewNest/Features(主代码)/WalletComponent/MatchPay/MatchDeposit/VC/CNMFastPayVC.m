@@ -50,65 +50,44 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.layer.cornerRadius = 10;
     [self setupUI];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self showTradeBill];
-    });
-}
-
-- (void)showTradeBill {
-//    __weak typeof(self) weakSelf = self;
-//    if (self.paymentModel.mmProcessingOrderTransactionId.length > 0) {
-//        if (self.paymentModel.mmProcessingOrderType == 1) { // 存款
-//            [CNMAlertView showAlertTitle:@"交易提醒" content:@"老板！您当前有正在交易的存款订单" desc:nil needRigthTopClose:NO commitTitle:@"关闭" commitAction:^{
-//                [weakSelf removeFastPay];
-//            } cancelTitle:@"查看订单" cancelAction:^{
-//                CNMFastPayStatusVC *statusVC = [[CNMFastPayStatusVC alloc] init];
-//                statusVC.cancelTime = [weakSelf.paymentModel.remainCancelDepositTimes integerValue];
-//                statusVC.transactionId = weakSelf.paymentModel.mmProcessingOrderTransactionId;
-//                [weakSelf pushViewController:statusVC];
-//            }];
-//        } else { // 取款
-//            [CNMAlertView showAlertTitle:@"交易提醒" content:@"老板！您当前有正在交易的取款订单" desc:nil needRigthTopClose:NO commitTitle:@"关闭" commitAction:^{
-//                [weakSelf removeFastPay];
-//            } cancelTitle:@"查看订单" cancelAction:^{
-//                KYMFastWithdrewVC *withdrewVC = [[KYMFastWithdrewVC alloc] init];
-//                withdrewVC.mmProcessingOrderTransactionId = weakSelf.paymentModel.mmProcessingOrderTransactionId;
-//                [weakSelf pushViewController:withdrewVC];
-//            }];
-//        }
-//    }
 }
     
 - (void)setupUI {
     self.buttonView.hidden = YES;
     self.continueBtn.layer.borderWidth = 1;
-    self.continueBtn.layer.borderColor = kHexColor(0xF7F952).CGColor;
-    self.continueBtn.layer.cornerRadius = 8;
+    self.continueBtn.layer.borderColor = kHexColor(0x10B4DD).CGColor;
+    self.continueBtn.layer.cornerRadius = 24;
     self.depositBtn.enabled = NO;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     [self.collectionView registerNib:[UINib nibWithNibName:kCNMAmountSelectCCell bundle:nil] forCellWithReuseIdentifier:kCNMAmountSelectCCell];
-    
-//    // 数据设置
-//    self.allowUseCount.text = self.paymentModel.remainDepositTimes;
-//    self.allowCancelCount.text = self.paymentModel.remainCancelDepositTimes;
-//
-//    self.amountList = [self.paymentModel.amountList sortedArrayUsingComparator:^NSComparisonResult(CNWAmountListModel * obj1, CNWAmountListModel * obj2) {
-//        if (obj1.amount.floatValue < obj2.amount.floatValue) {
-//            return NSOrderedAscending;
-//        }
-//        return NSOrderedDescending;
-//    }];
+}
+
+- (void)setFastModel:(CNWFastPayModel *)fastModel {
+    _fastModel = fastModel;
+    // 数据设置
+    self.allowUseCount.text = fastModel.remainDepositTimes;
+    self.allowCancelCount.text = fastModel.remainCancelDepositTimes;
+
+    self.amountList = [fastModel.amountList sortedArrayUsingComparator:^NSComparisonResult(CNWAmountListModel * obj1, CNWAmountListModel * obj2) {
+        if (obj1.amount.floatValue < obj2.amount.floatValue) {
+            return NSOrderedAscending;
+        }
+        return NSOrderedDescending;
+    }];
     NSMutableArray *temArr = [NSMutableArray array];
     for (CNWAmountListModel *model in self.amountList) {
+        if (model.amount.floatValue > 3000) {
+            model.isRecommend = YES;
+        }
         if (model.isRecommend) {
             [temArr addObject:model.amount];
         }
     }
     self.recommendAmountList = temArr.copy;
-    self.collectionViewH.constant = 80 * ceilf(self.amountList.count/3.0);
-//    [self setViewHeight:(450 + self.collectionViewH.constant) fullScreen:NO];
+    self.collectionViewH.constant = 50 * ceilf(self.amountList.count/3.0);
 }
 
 - (IBAction)depositAction:(UIButton *)sender {
@@ -130,7 +109,7 @@
 //                if (!err) {
 //                    // 成功跳转
 //                    CNMFastPayStatusVC *statusVC = [[CNMFastPayStatusVC alloc] init];
-//                    statusVC.cancelTime = [weakSelf.paymentModel.remainCancelDepositTimes integerValue];
+//                    statusVC.cancelTime = [weakself.fastModel.remainCancelDepositTimes integerValue];
 //                    statusVC.transactionId = bank.transactionId;
 //                    [weakSelf pushViewController:statusVC];
 //                    return;
@@ -157,13 +136,13 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CNMAmountSelectCCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCNMAmountSelectCCell forIndexPath:indexPath];
     CNWAmountListModel *model = self.amountList[indexPath.row];
-    cell.amountLb.text = model.amount;
+    cell.amountLb.text = [NSString stringWithFormat:@"¥ %@", model.amount];
     cell.recommendTag.hidden = !model.isRecommend;
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake((collectionView.bounds.size.width-20)/3.0, 70);
+    return CGSizeMake((collectionView.bounds.size.width-20)/3.0, 40);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -186,6 +165,7 @@
         self.recommendAmount = [self getRecommendAmountFromAmount:self.selectAmount];
         [self.continueBtn setTitle:[NSString stringWithFormat:@"继续存%@元", self.selectAmount] forState:UIControlStateNormal];
         [self.recommendBtn setTitle:[NSString stringWithFormat:@"存%@元", self.recommendAmount] forState:UIControlStateNormal];
+        self.recommendBtn.enabled = YES;
         self.warningLb.text = [NSString stringWithFormat:@"存款 %@ 的用户过多，为了确保存款快速到账，推荐您选择 %@ 元存款金额。", self.selectAmount, self.recommendAmount];
     }
 }

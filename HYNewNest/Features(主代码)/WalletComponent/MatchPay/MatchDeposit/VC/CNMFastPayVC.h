@@ -7,11 +7,12 @@
 //
 
 #import "CNMDepositBaseVC.h"
+#import "CNWAmountListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CNMFastPayVC : CNMDepositBaseVC
-
+@property (nonatomic, strong) CNWFastPayModel *fastModel;
 @end
 
 NS_ASSUME_NONNULL_END

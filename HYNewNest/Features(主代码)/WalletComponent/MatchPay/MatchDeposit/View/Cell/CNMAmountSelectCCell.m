@@ -12,15 +12,19 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.checkIV.layer.borderWidth = 1;
-    self.checkIV.layer.borderColor = kHexColor(0x55AAF5).CGColor;
-    self.checkIV.layer.cornerRadius = 8;
-    self.checkIV.layer.masksToBounds = YES;
-    self.checkIV.hidden = YES;
+    self.bgView.layer.borderWidth = 1;
+    self.bgView.layer.borderColor = kHexColor(0x10B4DD).CGColor;
+    self.bgView.layer.cornerRadius = 4;
 }
 
 - (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
-    self.checkIV.hidden = !selected;
+    if (selected) {
+        self.amountLb.textColor = UIColor.whiteColor;
+        self.bgView.backgroundColor = kHexColor(0x10B4DD);
+    } else {
+        self.amountLb.textColor = kHexColor(0x10B4DD);
+        self.bgView.backgroundColor = [UIColor clearColor];
+    }
 }
 @end

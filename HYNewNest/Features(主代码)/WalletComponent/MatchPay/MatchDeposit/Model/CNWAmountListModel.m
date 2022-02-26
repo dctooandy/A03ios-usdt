@@ -9,7 +9,16 @@
 #import "CNWAmountListModel.h"
 
 @implementation CNWAmountListModel
-+ (BOOL)propertyIsOptional:(NSString *)propertyName {
-    return YES;
+
+
+@end
+
+
+@implementation CNWFastPayModel
+
++ (NSDictionary<NSString *,id> *)modelContainerPropertyGenericClass {
+    return @{
+        @"amountList" : [CNWAmountListModel class]
+    };
 }
 @end

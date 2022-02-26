@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CNMAmountSelectCCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UILabel *amountLb;
-@property (weak, nonatomic) IBOutlet UIImageView *checkIV;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UIImageView *recommendTag;
 @end
 

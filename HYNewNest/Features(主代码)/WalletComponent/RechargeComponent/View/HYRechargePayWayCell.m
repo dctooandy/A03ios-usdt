@@ -42,8 +42,13 @@
     
     [_imgvIcon sd_setImageWithURL:[NSURL getBankIconWithString:paywayModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
     _lblTitle.text = paywayModel.payTypeName;
-    _lblAmountRange.text = [NSString stringWithFormat:@"(%@)", [HYRechargeHelper amountTip:paywayModel]];
-    
+    if ([paywayModel.payType isEqualToString:FastPayType]) {
+        _lblAmountRange.text = @"返利0.5%";
+        _lblAmountRange.textColor = kHexColor(0x10B4DD);
+    } else {
+        _lblAmountRange.textColor = kHexColorAlpha(0xFFFFFF, 0.4);
+        _lblAmountRange.text = [NSString stringWithFormat:@"(%@)", [HYRechargeHelper amountTip:paywayModel]];
+    }
 }
 
 - (void)setBqBank:(BQBankModel *)bqBank {

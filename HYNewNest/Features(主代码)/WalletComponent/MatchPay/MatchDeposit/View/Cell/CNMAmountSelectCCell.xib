@@ -19,7 +19,7 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CZo-qh-rov">
                         <rect key="frame" x="0.0" y="0.0" width="253" height="160"/>
-                        <color key="backgroundColor" red="0.18431372549019609" green="0.18431372549019609" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                 <integer key="value" value="8"/>
@@ -27,50 +27,32 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="select_check" translatesAutoresizingMaskIntoConstraints="NO" id="puw-Ej-bkk">
-                        <rect key="frame" x="0.0" y="0.0" width="253" height="160"/>
-                    </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="amount_recommend" translatesAutoresizingMaskIntoConstraints="NO" id="Ayf-JY-TuB">
                         <rect key="frame" x="221" y="0.0" width="32" height="17"/>
                     </imageView>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="gle-CC-COg">
-                        <rect key="frame" x="92.5" y="62" width="68.5" height="36.5"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGC-at-Dix">
-                                <rect key="frame" x="0.0" y="0.0" width="57.5" height="36.5"/>
-                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="26"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2C-tj-HE7">
-                                <rect key="frame" x="60.5" y="0.0" width="8" height="36.5"/>
-                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGC-at-Dix">
+                        <rect key="frame" x="109" y="69.5" width="35" height="21"/>
+                        <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
+                        <color key="textColor" red="0.062745098040000002" green="0.70588235290000001" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <constraints>
-                <constraint firstItem="gle-CC-COg" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="44D-VS-hoq"/>
+                <constraint firstItem="FGC-at-Dix" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="37x-u0-Vf4"/>
                 <constraint firstAttribute="bottom" secondItem="CZo-qh-rov" secondAttribute="bottom" id="Dbe-of-jCQ"/>
                 <constraint firstItem="CZo-qh-rov" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ECy-vT-64x"/>
-                <constraint firstAttribute="trailing" secondItem="puw-Ej-bkk" secondAttribute="trailing" id="LHP-oh-Ohk"/>
-                <constraint firstItem="gle-CC-COg" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Lym-XP-QKP"/>
-                <constraint firstItem="puw-Ej-bkk" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="M7i-kR-2Bd"/>
-                <constraint firstAttribute="bottom" secondItem="puw-Ej-bkk" secondAttribute="bottom" id="Ubr-tM-lS5"/>
                 <constraint firstAttribute="trailing" secondItem="CZo-qh-rov" secondAttribute="trailing" id="ZZG-Te-Ubu"/>
-                <constraint firstItem="puw-Ej-bkk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hpC-f0-JSK"/>
                 <constraint firstAttribute="trailing" secondItem="Ayf-JY-TuB" secondAttribute="trailing" id="kta-1N-ebK"/>
+                <constraint firstItem="FGC-at-Dix" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="lYU-yU-lAA"/>
                 <constraint firstItem="Ayf-JY-TuB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="rmf-Wb-gkT"/>
                 <constraint firstItem="CZo-qh-rov" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="wZE-Kz-vtX"/>
             </constraints>
             <size key="customSize" width="253" height="160"/>
             <connections>
                 <outlet property="amountLb" destination="FGC-at-Dix" id="t5u-Fx-1nF"/>
-                <outlet property="checkIV" destination="puw-Ej-bkk" id="UhN-r9-QJO"/>
+                <outlet property="bgView" destination="CZo-qh-rov" id="1Xy-Th-u0j"/>
                 <outlet property="recommendTag" destination="Ayf-JY-TuB" id="k6q-qP-cuO"/>
             </connections>
             <point key="canvasLocation" x="284.78260869565219" y="156.69642857142856"/>
@@ -78,6 +60,5 @@
     </objects>
     <resources>
         <image name="amount_recommend" width="32" height="17"/>
-        <image name="select_check" width="26" height="26"/>
     </resources>
 </document>

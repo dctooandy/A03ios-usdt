@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CNMatchPayRequest : CNBaseNetworking
 
+/// 查询是否开启急存款速通道
+/// @param finish 完成回调
++ (void)queryFastPayOpenFinish:(HandlerBlock)finish;
+
 /// 创建撮合订单
 /// @param amount 撮合的金额
 /// @param finish 完成回调
