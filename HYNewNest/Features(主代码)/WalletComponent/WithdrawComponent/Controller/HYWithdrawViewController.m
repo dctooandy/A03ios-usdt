@@ -35,6 +35,7 @@
 #import <IVLoganAnalysis/IVLAManager.h>
 
 #import "BYWithdrawConfirmVC.h"
+#import "KYMWithdrawConfirmVC.h"
 
 @interface HYWithdrawViewController () <UITableViewDelegate, UITableViewDataSource, BYWithdrawDelegate>
 {
@@ -193,13 +194,19 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         }];
     }
     else {
-        WEAKSELF_DEFINE
-        HYWithdrawComfirmView *view = [[HYWithdrawComfirmView alloc] initWithAmountModel:self.moneyModel needPwd:self.needWithdrawPwd sumbitBlock:^(NSString * withdrawAmout, NSString *pwdText) {
-            STRONGSELF_DEFINE
-            [strongSelf sumbimtWithdrawAmount:withdrawAmout pwd:[CNEncrypt encryptString:pwdText]];
-        }];
-        self.comfirmView = view;
-        [self.view addSubview:view];
+        if (self.isMatchWithdraw) {
+            KYMWithdrawConfirmVC *vc = [[KYMWithdrawConfirmVC alloc] init];
+            vc.checkModel = self.checkModel;
+            [self presentViewController:vc animated:YES completion:nil];
+        } else {
+            WEAKSELF_DEFINE
+            HYWithdrawComfirmView *view = [[HYWithdrawComfirmView alloc] initWithAmountModel:self.moneyModel needPwd:self.needWithdrawPwd sumbitBlock:^(NSString * withdrawAmout, NSString *pwdText) {
+                STRONGSELF_DEFINE
+                [strongSelf sumbimtWithdrawAmount:withdrawAmout pwd:[CNEncrypt encryptString:pwdText]];
+            }];
+            self.comfirmView = view;
+            [self.view addSubview:view];
+        }
     }
 }
 

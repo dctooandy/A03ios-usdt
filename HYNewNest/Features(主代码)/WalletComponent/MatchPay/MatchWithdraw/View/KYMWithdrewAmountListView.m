@@ -1,21 +1,27 @@
 //
-//  KYMWithdrewAmountCell.m
-//  Hybird_1e3c3b
+//  KYMWithdrewAmountListView.m
+//  HYNewNest
 //
-//  Created by Key.L on 2022/2/16.
-//  Copyright © 2022 BTT. All rights reserved.
+//  Created by Key.L on 2022/2/26.
+//  Copyright © 2022 BYGJ. All rights reserved.
 //
 
-#import "KYMWithdrewAmountCell.h"
+#import "KYMWithdrewAmountListView.h"
 #import "KYMWithdrewAmountListCell.h"
-
-@interface KYMWithdrewAmountCell ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface KYMWithdrewAmountListView ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineHeight;
 
 @end
-@implementation KYMWithdrewAmountCell
+@implementation KYMWithdrewAmountListView
 
+- (instancetype)init {
+    self = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil].lastObject;
+    if (self) {
+
+    }
+    return self;
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.collectionView.delegate = self;
