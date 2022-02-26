@@ -21,9 +21,9 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5D7-vR-lpe">
-                    <rect key="frame" x="18" y="166.5" width="396" height="84"/>
+                    <rect key="frame" x="18" y="166.5" width="396" height="90"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="84" id="kPm-Uu-Up6"/>
+                        <constraint firstAttribute="height" constant="90" id="kPm-Uu-Up6"/>
                     </constraints>
                     <string key="text">1、请务必在15分钟倒计时内点击确认取款。
 2、如果没有到账，请务必在15分钟内点击未到账，否则系统默认为确认到账。

@@ -26,7 +26,7 @@
     NSString *formattedNumberString = [numberFormatter stringFromNumber:[NSNumber numberWithDouble:money]];
     return formattedNumberString;
 }
-+ (void)checkWithdraw:(UIViewController *)viewController totalAmount:(NSString *)totalAmount callBack:(void(^)(BOOL isMatch))callback {
++ (void)checkWithdraw:(UIViewController *)viewController totalAmount:(NSString *)totalAmount callBack:(void(^)(BOOL isMatch,KYMWithdrewCheckModel  * checkModel))callback {
     NSMutableDictionary *parmas = @{}.mutableCopy;
     parmas[@"merchant"] = @"A01";
     //网络库底层自带这两个参数，如果其他产品不带的需要加上
@@ -62,7 +62,7 @@
                                 
                             } cancelTitle:@"在线取款" cancelAction:^{
                                 //普通取款
-                                callback(NO);
+                                callback(NO,nil);
                             }];
                         } else { // 取款
                             
@@ -75,14 +75,14 @@
                                 [viewController.navigationController popViewControllerAnimated:NO];
                                 [vc stopTimer];
                                 //普通取款
-                                callback(NO);
+                                callback(NO,nil);
                             }];
                             
                             [viewController.navigationController pushViewController:vc animated:YES];
                         }
                     } else {
                         //撮合取款
-                        callback(YES);
+                        callback(YES,model);
 //                        BTTWithdrawalController *vc = [[BTTWithdrawalController alloc] init];
 //                        vc.isMatchWithdrew = YES;
 //                        vc.checkModel = model;
@@ -90,14 +90,14 @@
                     }
                 } else {
                     //普通取款
-                    callback(NO);
+                    callback(NO,nil);
                 }
                 
             };
             [viewController presentViewController:vc animated:YES completion:nil];
         } else {
             //普通取款
-            callback(NO);
+            callback(NO,nil);
 //                        BTTWithdrawalController *vc = [[BTTWithdrawalController alloc] init];
 //                        vc.isMatchWithdrew = NO;
 //                        [weakSelf.navigationController pushViewController:vc animated:YES];
