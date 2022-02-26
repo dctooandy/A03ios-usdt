@@ -18,37 +18,24 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥ 500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vo7-sh-Sas">
-                        <rect key="frame" x="79" y="33" width="36" height="19"/>
-                        <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="13"/>
-                        <color key="textColor" red="0.50588235294117645" green="0.52941176470588236" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <rect key="frame" x="77.5" y="32" width="39" height="21"/>
+                        <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
+                        <color key="textColor" red="0.066666666666666666" green="0.70980392156862748" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mwd_selected" translatesAutoresizingMaskIntoConstraints="NO" id="FGv-xi-Bza">
-                        <rect key="frame" x="176" y="67" width="18" height="18"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="18" id="CHu-D9-3Gi"/>
-                            <constraint firstAttribute="height" constant="18" id="dxS-gW-u1N"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="FGv-xi-Bza" secondAttribute="trailing" id="1P9-E7-tQ7"/>
                 <constraint firstItem="Vo7-sh-Sas" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="AHO-L7-Nax"/>
                 <constraint firstItem="Vo7-sh-Sas" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="GS1-Zg-etT"/>
-                <constraint firstAttribute="bottom" secondItem="FGv-xi-Bza" secondAttribute="bottom" id="UY4-Ef-v9d"/>
             </constraints>
             <size key="customSize" width="194" height="85"/>
             <connections>
                 <outlet property="amoutLB" destination="Vo7-sh-Sas" id="nE6-g7-wMR"/>
-                <outlet property="selectedIcon" destination="FGv-xi-Bza" id="SsK-qn-7I1"/>
             </connections>
             <point key="canvasLocation" x="242.0289855072464" y="89.397321428571431"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="mwd_selected" width="26" height="26"/>
-    </resources>
 </document>

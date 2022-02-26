@@ -937,7 +937,6 @@
 		D5B4304F27C8D210008330CB /* KYMWidthdrewUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4304D27C8D210008330CB /* KYMWidthdrewUtility.m */; };
 		D5B4305327C8D261008330CB /* KYMWithdrewRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4305227C8D261008330CB /* KYMWithdrewRequest.m */; };
 		D5B4307827C8D36E008330CB /* KYMWithdrewAmountListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B4305427C8D368008330CB /* KYMWithdrewAmountListCell.xib */; };
-		D5B4307927C8D36E008330CB /* KYMWithdrewHomeNotifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4305627C8D369008330CB /* KYMWithdrewHomeNotifyCell.m */; };
 		D5B4307A27C8D36E008330CB /* KYMWithdrewAmountView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4305727C8D369008330CB /* KYMWithdrewAmountView.m */; };
 		D5B4307B27C8D36E008330CB /* KYMWithdrewBankView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4305C27C8D36A008330CB /* KYMWithdrewBankView.m */; };
 		D5B4307C27C8D36E008330CB /* KYMWithdrewNoticeView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B4305D27C8D36A008330CB /* KYMWithdrewNoticeView1.xib */; };
@@ -955,7 +954,6 @@
 		D5B4308827C8D36E008330CB /* KYMWithdrewAmountListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4306A27C8D36C008330CB /* KYMWithdrewAmountListCell.m */; };
 		D5B4308927C8D36E008330CB /* KYMWithdrewAmountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B4306B27C8D36C008330CB /* KYMWithdrewAmountCell.xib */; };
 		D5B4308A27C8D36E008330CB /* KYMWithdrewSubmitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B4306D27C8D36C008330CB /* KYMWithdrewSubmitView.xib */; };
-		D5B4308B27C8D36E008330CB /* KYMWithdrewHomeNotifyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B4306E27C8D36C008330CB /* KYMWithdrewHomeNotifyCell.xib */; };
 		D5B4308C27C8D36E008330CB /* KYMWithdrewBankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B4307327C8D36D008330CB /* KYMWithdrewBankView.xib */; };
 		D5B4308D27C8D36E008330CB /* KYMSelectChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4307427C8D36D008330CB /* KYMSelectChannelCell.m */; };
 		D5B4308E27C8D36E008330CB /* KYMWithdrewStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B4307627C8D36E008330CB /* KYMWithdrewStatusView.xib */; };
@@ -966,6 +964,9 @@
 		D5B4309C27C8D3CA008330CB /* KYMFastWithdrewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4309627C8D3CA008330CB /* KYMFastWithdrewVC.m */; };
 		D5B4309D27C8D3CA008330CB /* KYMSelectChannelVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B4309727C8D3CA008330CB /* KYMSelectChannelVC.xib */; };
 		D5B4309E27C8D3CA008330CB /* KYMWithdrewFaildVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4309827C8D3CA008330CB /* KYMWithdrewFaildVC.m */; };
+		D5B430A127C8DF44008330CB /* KYMWithDrewHomeNotifyView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B430A027C8DF44008330CB /* KYMWithDrewHomeNotifyView.m */; };
+		D5B430A327C8DF53008330CB /* KYMWithDrewHomeNotifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B430A227C8DF53008330CB /* KYMWithDrewHomeNotifyView.xib */; };
+		D5B430A527C9B571008330CB /* MatchWithdrew.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5B430A427C9B571008330CB /* MatchWithdrew.xcassets */; };
 		D5FBFDC824B4672200BBCAD8 /* CNSkinManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FBFDC724B4672200BBCAD8 /* CNSkinManager.m */; };
 		D5FBFDF824B59DB100BBCAD8 /* SkinMapValue.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5FBFDF724B59DB100BBCAD8 /* SkinMapValue.plist */; };
 		D5FBFE2D24BC05E400BBCAD8 /* CNLoginRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FBFE0124BC05E400BBCAD8 /* CNLoginRegisterVC.m */; };
@@ -2412,7 +2413,6 @@
 		D5B4305227C8D261008330CB /* KYMWithdrewRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYMWithdrewRequest.m; sourceTree = "<group>"; };
 		D5B4305427C8D368008330CB /* KYMWithdrewAmountListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYMWithdrewAmountListCell.xib; sourceTree = "<group>"; };
 		D5B4305527C8D369008330CB /* KYMWithdrewBankView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYMWithdrewBankView.h; sourceTree = "<group>"; };
-		D5B4305627C8D369008330CB /* KYMWithdrewHomeNotifyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYMWithdrewHomeNotifyCell.m; sourceTree = "<group>"; };
 		D5B4305727C8D369008330CB /* KYMWithdrewAmountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYMWithdrewAmountView.m; sourceTree = "<group>"; };
 		D5B4305827C8D369008330CB /* KYMWithdrewAmountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYMWithdrewAmountView.h; sourceTree = "<group>"; };
 		D5B4305927C8D369008330CB /* KYMWithdrewAmountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYMWithdrewAmountCell.h; sourceTree = "<group>"; };
@@ -2427,7 +2427,6 @@
 		D5B4306227C8D36A008330CB /* KYMWithdrewAmountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYMWithdrewAmountCell.m; sourceTree = "<group>"; };
 		D5B4306327C8D36B008330CB /* KYMWithdrewNoticeView1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYMWithdrewNoticeView1.m; sourceTree = "<group>"; };
 		D5B4306427C8D36B008330CB /* KYMWithdrewSubmitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYMWithdrewSubmitView.m; sourceTree = "<group>"; };
-		D5B4306527C8D36B008330CB /* KYMWithdrewHomeNotifyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYMWithdrewHomeNotifyCell.h; sourceTree = "<group>"; };
 		D5B4306627C8D36B008330CB /* KYMWithdrewNoticeView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYMWithdrewNoticeView2.m; sourceTree = "<group>"; };
 		D5B4306727C8D36B008330CB /* KYMWithdrewStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYMWithdrewStatusView.m; sourceTree = "<group>"; };
 		D5B4306827C8D36B008330CB /* KYMWithdrewNoticeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYMWithdrewNoticeView.xib; sourceTree = "<group>"; };
@@ -2436,7 +2435,6 @@
 		D5B4306B27C8D36C008330CB /* KYMWithdrewAmountCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYMWithdrewAmountCell.xib; sourceTree = "<group>"; };
 		D5B4306C27C8D36C008330CB /* KYMWithdrewNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYMWithdrewNoticeView.h; sourceTree = "<group>"; };
 		D5B4306D27C8D36C008330CB /* KYMWithdrewSubmitView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYMWithdrewSubmitView.xib; sourceTree = "<group>"; };
-		D5B4306E27C8D36C008330CB /* KYMWithdrewHomeNotifyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYMWithdrewHomeNotifyCell.xib; sourceTree = "<group>"; };
 		D5B4306F27C8D36D008330CB /* KYMWithdrewNoticeView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYMWithdrewNoticeView1.h; sourceTree = "<group>"; };
 		D5B4307027C8D36D008330CB /* KYMWithdrewCusmoterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYMWithdrewCusmoterView.h; sourceTree = "<group>"; };
 		D5B4307127C8D36D008330CB /* KYMSelectChannelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYMSelectChannelCell.h; sourceTree = "<group>"; };
@@ -2455,6 +2453,10 @@
 		D5B4309627C8D3CA008330CB /* KYMFastWithdrewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYMFastWithdrewVC.m; sourceTree = "<group>"; };
 		D5B4309727C8D3CA008330CB /* KYMSelectChannelVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYMSelectChannelVC.xib; sourceTree = "<group>"; };
 		D5B4309827C8D3CA008330CB /* KYMWithdrewFaildVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYMWithdrewFaildVC.m; sourceTree = "<group>"; };
+		D5B4309F27C8DF44008330CB /* KYMWithDrewHomeNotifyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KYMWithDrewHomeNotifyView.h; sourceTree = "<group>"; };
+		D5B430A027C8DF44008330CB /* KYMWithDrewHomeNotifyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KYMWithDrewHomeNotifyView.m; sourceTree = "<group>"; };
+		D5B430A227C8DF53008330CB /* KYMWithDrewHomeNotifyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KYMWithDrewHomeNotifyView.xib; sourceTree = "<group>"; };
+		D5B430A427C9B571008330CB /* MatchWithdrew.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MatchWithdrew.xcassets; sourceTree = "<group>"; };
 		D5FBFDC624B4672200BBCAD8 /* CNSkinManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNSkinManager.h; sourceTree = "<group>"; };
 		D5FBFDC724B4672200BBCAD8 /* CNSkinManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNSkinManager.m; sourceTree = "<group>"; };
 		D5FBFDF724B59DB100BBCAD8 /* SkinMapValue.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SkinMapValue.plist; sourceTree = "<group>"; };
@@ -3179,6 +3181,7 @@
 		0494C57F27C8B2F80016B5F6 /* MatchWithdraw */ = {
 			isa = PBXGroup;
 			children = (
+				D5B430A427C9B571008330CB /* MatchWithdrew.xcassets */,
 				D5B4305027C8D24B008330CB /* Request */,
 				D5B4304E27C8D210008330CB /* KYMWidthdrewUtility.h */,
 				D5B4304D27C8D210008330CB /* KYMWidthdrewUtility.m */,
@@ -5111,9 +5114,9 @@
 				D5B4307027C8D36D008330CB /* KYMWithdrewCusmoterView.h */,
 				D5B4305E27C8D36A008330CB /* KYMWithdrewCusmoterView.m */,
 				D5B4305F27C8D36A008330CB /* KYMWithdrewCusmoterView.xib */,
-				D5B4306527C8D36B008330CB /* KYMWithdrewHomeNotifyCell.h */,
-				D5B4305627C8D369008330CB /* KYMWithdrewHomeNotifyCell.m */,
-				D5B4306E27C8D36C008330CB /* KYMWithdrewHomeNotifyCell.xib */,
+				D5B4309F27C8DF44008330CB /* KYMWithDrewHomeNotifyView.h */,
+				D5B430A027C8DF44008330CB /* KYMWithDrewHomeNotifyView.m */,
+				D5B430A227C8DF53008330CB /* KYMWithDrewHomeNotifyView.xib */,
 				D5B4306C27C8D36C008330CB /* KYMWithdrewNoticeView.h */,
 				D5B4307727C8D36E008330CB /* KYMWithdrewNoticeView.m */,
 				D5B4306827C8D36B008330CB /* KYMWithdrewNoticeView.xib */,
@@ -6609,7 +6612,7 @@
 				D5A446ED24F3941400014DC6 /* 合成 1_00034.png in Resources */,
 				E986A1AB24CBCD39000F9CFF /* CNLoginSuccChooseAccountVC.xib in Resources */,
 				D5A4453A24F393AC00014DC6 /* 棋牌_00039.png in Resources */,
-				D5B4308B27C8D36E008330CB /* KYMWithdrewHomeNotifyCell.xib in Resources */,
+				D5B430A327C8DF53008330CB /* KYMWithDrewHomeNotifyView.xib in Resources */,
 				D5A443AB24F378CD00014DC6 /* 彩票_00034.png in Resources */,
 				048A0EE624C8332600411819 /* CNLotteryVC.xib in Resources */,
 				D5A446DB24F3941400014DC6 /* 合成 1_00011.png in Resources */,
@@ -6807,6 +6810,7 @@
 				D5A446F124F3941400014DC6 /* 合成 1_00023.png in Resources */,
 				D5A4461E24F393E500014DC6 /* 足球_00052.png in Resources */,
 				D5A4448224F3932400014DC6 /* 数字7_00014.png in Resources */,
+				D5B430A527C9B571008330CB /* MatchWithdrew.xcassets in Resources */,
 				D5A4448D24F3932400014DC6 /* 数字7_0000.png in Resources */,
 				D5A4470D24F3941400014DC6 /* 合成 1_00057.png in Resources */,
 				D5A4464824F393E500014DC6 /* 足球_0007.png in Resources */,
@@ -7396,7 +7400,6 @@
 				E98BEF0E24D274F700E6B0C8 /* UILabel+Gradient.m in Sources */,
 				3DA4F16B24B312BE0039123F /* UIViewController+Extension.m in Sources */,
 				E98BEEFE24D1815200E6B0C8 /* HYXiMaViewController.m in Sources */,
-				D5B4307927C8D36E008330CB /* KYMWithdrewHomeNotifyCell.m in Sources */,
 				3DBB590E26787A2400F5A759 /* CNServiceRequest.m in Sources */,
 				E986A13124C7FC0E000F9CFF /* ArticalModel.m in Sources */,
 				D5B4308127C8D36E008330CB /* KYMWithdrewAmountCell.m in Sources */,
@@ -7423,6 +7426,7 @@
 				3D3D647626B4088200ECE9AA /* BYNightCityGiftAlertView.m in Sources */,
 				7636AE6E272BC4C70072AB0E /* BYDeleteBankCardVC.m in Sources */,
 				04C6E1DF24D3E995006F4DAC /* CNFeedBackLeftTCell.m in Sources */,
+				D5B430A127C8DF44008330CB /* KYMWithDrewHomeNotifyView.m in Sources */,
 				3D2B0873264FC4560008BB5F /* CNYuEBaoConfigModel.m in Sources */,
 				766A6EC6276B3E37007DC6A1 /* A03ActivityManager.m in Sources */,
 				3DA4F15224B30A090039123F /* UIButton+Indicator.m in Sources */,

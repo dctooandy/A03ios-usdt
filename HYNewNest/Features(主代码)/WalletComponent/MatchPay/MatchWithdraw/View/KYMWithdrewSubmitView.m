@@ -18,10 +18,13 @@
 - (instancetype)init {
     self = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil].lastObject;
     if (self) {
-        self.notReceivedBtn.layer.cornerRadius = 8;
+        self.notReceivedBtn.layer.cornerRadius = 24;
         self.notReceivedBtn.layer.masksToBounds = YES;
         self.notReceivedBtn.layer.borderWidth = 1;
-        self.notReceivedBtn.layer.borderColor = [UIColor colorWithRed:0xF2 / 255.0 green:0xDA / 255.0 blue:0x0F / 255.0 alpha:1].CGColor;
+        self.notReceivedBtn.layer.borderColor = [UIColor colorWithRed:0x10 / 255.0 green:0xB4 / 255.0 blue:0xDD / 255.0 alpha:1].CGColor;
+        
+        self.submitBtn.layer.cornerRadius = 24;
+        self.submitBtn.layer.masksToBounds = YES;
     }
     return self;
 }

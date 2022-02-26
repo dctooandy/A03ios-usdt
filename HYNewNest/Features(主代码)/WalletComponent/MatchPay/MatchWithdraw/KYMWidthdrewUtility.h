@@ -22,6 +22,8 @@ typedef NS_ENUM(NSInteger, KYMWithdrewStep) {
 @interface KYMWidthdrewUtility : NSObject
 /** 转换货币字符串 */
 + (NSString *)getMoneyString:(double)money;
+
++ (void)checkWithdraw:(UIViewController *)viewController totalAmount:(NSString *)totalAmount callBack:(void(^)(BOOL isMatch))callback;
 @end
 
 NS_ASSUME_NONNULL_END

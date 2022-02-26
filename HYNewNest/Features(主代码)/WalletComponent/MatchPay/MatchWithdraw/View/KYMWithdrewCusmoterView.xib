@@ -19,24 +19,17 @@
                     <attributedString key="attributedText">
                         <fragment content="如有遇到问题，请联系">
                             <attributes>
-                                <color key="NSColor" red="0.50588235294117645" green="0.52941176470588236" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="12" name="PingFangSC-Regular"/>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="14" name="PingFangSC-Regular"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
                         <fragment content="在线客服 ">
                             <attributes>
-                                <color key="NSColor" red="0.50588235294117645" green="0.52941176470588236" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="12" name="PingFangSC-Regular"/>
+                                <color key="NSColor" red="0.066666666666666666" green="0.70980392156862748" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="14" name="PingFangSC-Regular"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 <integer key="NSUnderline" value="1"/>
-                            </attributes>
-                        </fragment>
-                        <fragment content="&gt;&gt;">
-                            <attributes>
-                                <color key="NSColor" red="0.50588235294117645" green="0.52941176470588236" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="12" name="PingFangSC-Regular"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
                     </attributedString>

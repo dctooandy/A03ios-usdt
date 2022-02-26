@@ -22,7 +22,7 @@
                     <string key="text">通常没有到账可能由于银行通知延迟，
 导致当前订单出现异常，请马上联系客服处理！</string>
                     <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="14"/>
-                    <color key="textColor" red="0.50588235294117645" green="0.52941176470588236" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mwd_在线客服" translatesAutoresizingMaskIntoConstraints="NO" id="wYM-QT-fH2">
@@ -47,6 +47,6 @@
         </view>
     </objects>
     <resources>
-        <image name="mwd_在线客服" width="199" height="144"/>
+        <image name="mwd_在线客服" width="188" height="173"/>
     </resources>
 </document>
