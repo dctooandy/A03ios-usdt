@@ -115,7 +115,7 @@
         [self setupSubmitBtnWithHidden:false];
     }
     else {
-        [self setupSubmitBtn];
+        [self setupSubmitBtnWithHidden:YES];
         [self queryCNYPayways];
     }
 }
@@ -139,7 +139,7 @@
 //        make.height.mas_equalTo(kScreenHeight-kNavPlusStaBarHeight-48-24-kSafeAreaHeight);
         make.bottom.equalTo(self.btnSubmit.mas_top).offset(-30);
     }];
-    
+    self.scrollContainer.scrollEnabled = NO;
     
     if ([CNUserManager shareManager].isUsdtMode == false
         && ([CNUserManager shareManager].userDetail.depositLevel == 30
@@ -234,28 +234,29 @@
         [self.fastVC.view removeFromSuperview];
         return;
     }
-    if (!_fastVC) {
-        self.fastVC = [[CNMFastPayVC alloc] init];
-    }
-    self.fastVC.view.backgroundColor = kHexColor(0x272749);
-    self.fastVC.view.layer.cornerRadius = 10;
-    self.fastVC.fastModel = self.fastModel;
-    
-    CGFloat height = 80 * ceilf(self.fastModel.amountList.count/3.0) + 500;
-    
     [self.scrollContainer mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(self.view);
     }];
+    
+    CGFloat height = 50 * ceilf(self.fastModel.amountList.count/3.0) + 500;
+    self.scrollContainer.contentSize = CGSizeMake(self.view.size.width, height);
+    self.scrollContainer.scrollEnabled = YES;
+    
     [self.editView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.scrollContainer).offset(15);
         make.top.equalTo(self.scrollContainer).offset(15);
         make.height.mas_equalTo(height);
         make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
     }];
+    
     [self.editView setupPayTypeItem:self.paytypeList[_selcPayWayIdx]
                           bankModel:nil
                         amountModel:nil];
     
+    if (!_fastVC) {
+        self.fastVC = [[CNMFastPayVC alloc] init];
+        [self addChildViewController:self.fastVC];
+    }
     [self.editView addSubview:self.fastVC.view];
     [self.fastVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(0);
@@ -263,10 +264,17 @@
         make.top.offset(71);
         make.bottom.offset(0);
     }];
+    self.fastVC.fastModel = self.fastModel;
 }
 
 - (void)removeFastPay {
-    
+    PayWayV3PayTypeItem *first = self.paytypeList.firstObject;
+    if ([first.payType isEqualToString:FastPayType]) {
+        NSMutableArray *array = self.paytypeList.mutableCopy;
+        [array removeObjectAtIndex:0];
+        self.paytypeList = array.copy;
+        [self refreshQueryData];
+    }
 }
 
 #pragma mark - REQUEST
