@@ -115,10 +115,11 @@
             
 //            __block void(^jumpWithdrawBlock)(WithdrawCalculateModel* ) = ^(WithdrawCalculateModel * model) {
             UIViewController *topVC = [PublicMethod getCurrentVC];
-            [KYMWidthdrewUtility checkWithdraw:topVC totalAmount:@"500" callBack:^(BOOL isMatch) {
+            [KYMWidthdrewUtility checkWithdraw:topVC totalAmount:@"500" callBack:^(BOOL isMatch,KYMWithdrewCheckModel *model) {
                 if (isMatch) {
                     HYWithdrawViewController *vc = [HYWithdrawViewController new];
-    //                vc.calculatorModel = model;
+                    vc.isMatchWithdraw = YES;
+                    vc.checkModel = model;
                     [kCurNavVC pushViewController:vc animated:YES];
                 } else {
                     HYWithdrawViewController *vc = [HYWithdrawViewController new];

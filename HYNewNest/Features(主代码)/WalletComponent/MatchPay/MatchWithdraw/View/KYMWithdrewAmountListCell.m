@@ -37,6 +37,6 @@
 - (void)setAmount:(NSString *)amount
 {
     _amount = amount;
-    self.amoutLB.text = amount;
+    self.amoutLB.text = [NSString stringWithFormat:@"¥ %@",amount];
 }
 @end
