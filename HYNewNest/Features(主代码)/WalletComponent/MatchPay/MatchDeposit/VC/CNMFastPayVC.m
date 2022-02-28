@@ -51,6 +51,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = kHexColor(0x272749);
     self.view.layer.cornerRadius = 10;
     [self setupUI];
 }

@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = kHexColor(0x272749);
+    self.view.backgroundColor = kHexColor(0x10101C);
 }
 
 - (void)showLoading {
