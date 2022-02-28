@@ -48,17 +48,18 @@
     // 添加按钮
     UIButton *commitBtn = [alert createBtnWithTitle:commit];
     [commitBtn addTarget:alert action:@selector(commit) forControlEvents:UIControlEventTouchUpInside];
+    [commitBtn setBackgroundImage:[UIImage imageNamed:@"l_btn_select"] forState:UIControlStateNormal];
     alert.commitBtn = commitBtn;
     if (cancel) {
-        commitBtn.frame = CGRectMake(0, 1, (frame.size.width-1)*0.5, frame.size.height-1);
+        commitBtn.frame = CGRectMake(15, 0, (frame.size.width-15*3)*0.5, frame.size.height);
         [alert.btnView addSubview:commitBtn];
         
         UIButton *cancelBtn = [alert createBtnWithTitle:cancel];
         [cancelBtn addTarget:alert action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
-        cancelBtn.frame = CGRectMake(commitBtn.frame.size.width+1, 1, (frame.size.width-1)*0.5, frame.size.height-1);
+        cancelBtn.frame = CGRectMake(CGRectGetMaxX(commitBtn.frame)+15, 0, commitBtn.frame.size.width, commitBtn.frame.size.height);
         [alert.btnView addSubview:cancelBtn];
     } else {
-        commitBtn.frame = CGRectMake(0, 1, frame.size.width, frame.size.height-1);
+        commitBtn.frame = CGRectMake(15, 0, frame.size.width-30, frame.size.height);
         [alert.btnView addSubview:commitBtn];
     }
     return alert;
@@ -86,9 +87,9 @@
 
     // 添加按钮
     UIButton *commitBtn = [alert createBtnWithTitle:[NSString stringWithFormat:@"%ld秒后自动跳转", interval]];
-    [commitBtn setTitleColor:kHexColor(0x818791) forState:UIControlStateNormal];
     [commitBtn addTarget:alert action:@selector(commit) forControlEvents:UIControlEventTouchUpInside];
-    commitBtn.frame = CGRectMake(0, 1, frame.size.width, frame.size.height-1);
+    [commitBtn setBackgroundImage:[UIImage imageNamed:@"l_btn_select"] forState:UIControlStateNormal];
+    commitBtn.frame = CGRectMake(15, 0, frame.size.width-30, frame.size.height);
     [alert.btnView addSubview:commitBtn];
     alert.commitBtn = commitBtn;
     
@@ -113,10 +114,12 @@
 
 - (UIButton *)createBtnWithTitle:(NSString *)title {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.backgroundColor = kHexColor(0xCECECE);
-    [btn setTitleColor:kHexColor(0x1F89E9) forState:UIControlStateNormal];
+    btn.backgroundColor = kHexColor(0x38385F);
+    [btn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     [btn setTitle:title forState:UIControlStateNormal];
-    btn.titleLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
+    btn.titleLabel.font = [UIFont systemFontOfSize:16 weight:UIFontWeightSemibold];
+    btn.layer.cornerRadius = 24;
+    btn.layer.masksToBounds = YES;
     return btn;
 }
 

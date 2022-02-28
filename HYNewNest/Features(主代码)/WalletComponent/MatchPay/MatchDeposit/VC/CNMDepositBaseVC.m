@@ -20,11 +20,11 @@
 }
 
 - (void)showLoading {
-    [LoadingView showLoadingViewWithToView:nil needMask:YES];
+    [LoadingView showLoadingViewWithToView:self.view needMask:YES];
 }
 
 - (void)hideLoading {
-    [LoadingView hideLoadingViewForView:nil];
+    [LoadingView hideLoadingViewForView:self.view];
 }
 
 - (void)showError:(NSString *)msg {

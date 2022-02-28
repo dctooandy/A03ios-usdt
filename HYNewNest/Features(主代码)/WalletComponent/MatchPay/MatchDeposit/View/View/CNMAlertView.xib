@@ -23,34 +23,34 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ml3-f8-bd9">
-                    <rect key="frame" x="51" y="356" width="312" height="144"/>
+                    <rect key="frame" x="51" y="325.5" width="312" height="205"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyJ-2R-29k">
-                            <rect key="frame" x="139.5" y="22" width="33" height="26"/>
+                            <rect key="frame" x="139.5" y="30" width="33" height="26"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="26" id="lCc-Tq-uWy"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="18"/>
-                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="content" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBB-PR-lP0">
-                            <rect key="frame" x="16" y="56" width="280" height="21"/>
-                            <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="15"/>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <rect key="frame" x="16" y="73" width="280" height="20"/>
+                            <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cym-AA-bXv" userLabel="Desc">
-                            <rect key="frame" x="24" y="85" width="264" height="0.0"/>
-                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <rect key="frame" x="24" y="101" width="264" height="0.0"/>
+                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                            <color key="textColor" red="0.42745098039215684" green="0.46666666666666667" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="45e-48-5Rk">
-                            <rect key="frame" x="0.0" y="97" width="312" height="47"/>
-                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <rect key="frame" x="0.0" y="127" width="312" height="48"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="47" id="2IZ-im-Hw9"/>
+                                <constraint firstAttribute="height" constant="48" id="2IZ-im-Hw9"/>
                             </constraints>
                         </view>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guN-yz-Zmr">
@@ -60,29 +60,29 @@
                                 <constraint firstAttribute="width" constant="30" id="wSk-LA-HkV"/>
                             </constraints>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" image="pay_grayClosed"/>
+                            <state key="normal" image="modal-close"/>
                             <connections>
                                 <action selector="close:" destination="-1" eventType="touchUpInside" id="1rh-Lm-989"/>
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.80784313725490198" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.15294117647058825" green="0.15294117647058825" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="cym-AA-bXv" secondAttribute="trailing" constant="24" id="4fh-fU-nIH"/>
                         <constraint firstItem="45e-48-5Rk" firstAttribute="leading" secondItem="ml3-f8-bd9" secondAttribute="leading" id="8Ii-6b-5c5"/>
-                        <constraint firstItem="45e-48-5Rk" firstAttribute="top" secondItem="cym-AA-bXv" secondAttribute="bottom" constant="12" id="A3D-0C-TPr"/>
+                        <constraint firstItem="45e-48-5Rk" firstAttribute="top" secondItem="cym-AA-bXv" secondAttribute="bottom" constant="26" id="A3D-0C-TPr"/>
                         <constraint firstAttribute="width" constant="312" id="FPr-gK-JKi"/>
                         <constraint firstAttribute="trailing" secondItem="aBB-PR-lP0" secondAttribute="trailing" constant="16" id="FqW-hW-WE1"/>
-                        <constraint firstItem="aBB-PR-lP0" firstAttribute="top" secondItem="FyJ-2R-29k" secondAttribute="bottom" constant="8" id="Mjf-Cm-y1e"/>
+                        <constraint firstItem="aBB-PR-lP0" firstAttribute="top" secondItem="FyJ-2R-29k" secondAttribute="bottom" constant="17" id="Mjf-Cm-y1e"/>
                         <constraint firstItem="aBB-PR-lP0" firstAttribute="centerX" secondItem="ml3-f8-bd9" secondAttribute="centerX" id="OUC-Oy-ikT"/>
                         <constraint firstAttribute="trailing" secondItem="guN-yz-Zmr" secondAttribute="trailing" constant="4" id="Pn0-tZ-zat"/>
-                        <constraint firstAttribute="bottom" secondItem="45e-48-5Rk" secondAttribute="bottom" id="R4n-Vz-TWf"/>
+                        <constraint firstAttribute="bottom" secondItem="45e-48-5Rk" secondAttribute="bottom" constant="30" id="R4n-Vz-TWf"/>
                         <constraint firstItem="cym-AA-bXv" firstAttribute="top" secondItem="aBB-PR-lP0" secondAttribute="bottom" constant="8" id="Rlb-5S-eyT"/>
                         <constraint firstItem="FyJ-2R-29k" firstAttribute="centerX" secondItem="ml3-f8-bd9" secondAttribute="centerX" id="VL4-jI-moi"/>
                         <constraint firstItem="aBB-PR-lP0" firstAttribute="leading" secondItem="ml3-f8-bd9" secondAttribute="leading" constant="16" id="WvU-BA-lCe"/>
                         <constraint firstItem="guN-yz-Zmr" firstAttribute="top" secondItem="ml3-f8-bd9" secondAttribute="top" constant="4" id="jno-Fs-Ncf"/>
                         <constraint firstAttribute="trailing" secondItem="45e-48-5Rk" secondAttribute="trailing" id="mvH-QV-3Py"/>
-                        <constraint firstItem="FyJ-2R-29k" firstAttribute="top" secondItem="ml3-f8-bd9" secondAttribute="top" constant="22" id="ppt-Gw-63i"/>
+                        <constraint firstItem="FyJ-2R-29k" firstAttribute="top" secondItem="ml3-f8-bd9" secondAttribute="top" constant="30" id="ppt-Gw-63i"/>
                         <constraint firstItem="cym-AA-bXv" firstAttribute="leading" secondItem="ml3-f8-bd9" secondAttribute="leading" constant="24" id="yZ9-i4-Kaa"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
@@ -94,7 +94,7 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="ml3-f8-bd9" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-20" id="Gey-xU-6tm"/>
                 <constraint firstItem="ml3-f8-bd9" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mPk-UI-Ncx"/>
@@ -103,6 +103,6 @@
         </view>
     </objects>
     <resources>
-        <image name="pay_grayClosed" width="20" height="20"/>
+        <image name="modal-close" width="15" height="15"/>
     </resources>
 </document>

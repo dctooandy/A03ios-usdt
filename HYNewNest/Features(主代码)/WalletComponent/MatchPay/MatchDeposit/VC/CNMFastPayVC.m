@@ -91,10 +91,8 @@
 
 - (IBAction)depositAction:(UIButton *)sender {
     //提交订单
-//    [self showLoading];
     __weak typeof(self) weakSelf = self;
     [CNMatchPayRequest createDepisit:self.selectAmount finish:^(id responseObj, NSString *errorMsg) {
-//        [weakSelf hideLoading];
         if (errorMsg) {
             [weakSelf showError:errorMsg];
             return;
@@ -114,7 +112,7 @@
             }
         }
         // 失败走普通存款
-        [CNMAlertView show3SecondAlertTitle:@"极速转卡系统繁忙" content:@"系统默认转为普通支付通道处理" interval:3 commitAction:^{
+        [CNMAlertView show3SecondAlertTitle:@"急速转卡系统繁忙" content:@"系统默认转为普通支付通道处理" interval:3 commitAction:^{
             HYRechargeCNYViewController *vc = (HYRechargeCNYViewController *)weakSelf.parentViewController;
             [vc removeFastPay];
         }];
