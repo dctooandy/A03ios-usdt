@@ -48,7 +48,6 @@
     // 添加按钮
     UIButton *commitBtn = [alert createBtnWithTitle:commit];
     [commitBtn addTarget:alert action:@selector(commit) forControlEvents:UIControlEventTouchUpInside];
-    [commitBtn setBackgroundImage:[UIImage imageNamed:@"l_btn_select"] forState:UIControlStateNormal];
     alert.commitBtn = commitBtn;
     if (cancel) {
         commitBtn.frame = CGRectMake(15, 0, (frame.size.width-15*3)*0.5, frame.size.height);
@@ -56,6 +55,7 @@
         
         UIButton *cancelBtn = [alert createBtnWithTitle:cancel];
         [cancelBtn addTarget:alert action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
+        [cancelBtn setBackgroundImage:[UIImage imageNamed:@"l_btn_select"] forState:UIControlStateNormal];
         cancelBtn.frame = CGRectMake(CGRectGetMaxX(commitBtn.frame)+15, 0, commitBtn.frame.size.width, commitBtn.frame.size.height);
         [alert.btnView addSubview:cancelBtn];
     } else {
@@ -88,7 +88,6 @@
     // 添加按钮
     UIButton *commitBtn = [alert createBtnWithTitle:[NSString stringWithFormat:@"%ld秒后自动跳转", interval]];
     [commitBtn addTarget:alert action:@selector(commit) forControlEvents:UIControlEventTouchUpInside];
-    [commitBtn setBackgroundImage:[UIImage imageNamed:@"l_btn_select"] forState:UIControlStateNormal];
     commitBtn.frame = CGRectMake(15, 0, frame.size.width-30, frame.size.height);
     [alert.btnView addSubview:commitBtn];
     alert.commitBtn = commitBtn;
