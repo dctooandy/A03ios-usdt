@@ -16,15 +16,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = kHexColor(0x272749);
+    self.view.backgroundColor = kHexColor(0x10101C);
 }
 
 - (void)showLoading {
-    
+    [LoadingView showLoadingViewWithToView:self.view needMask:YES];
 }
 
 - (void)hideLoading {
-    
+    [LoadingView hideLoadingViewForView:self.view];
+}
+
+- (void)showError:(NSString *)msg {
+    [CNTOPHUB showError:msg];
+}
+
+- (void)showSuccess:(NSString *)msg {
+    [CNTOPHUB showSuccess:msg];
 }
 
 @end

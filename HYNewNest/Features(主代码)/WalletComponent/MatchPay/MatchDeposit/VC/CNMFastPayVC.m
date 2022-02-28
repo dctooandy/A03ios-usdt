@@ -14,6 +14,7 @@
 #import "CNMAmountSelectCCell.h"
 #import "CNMAlertView.h"
 #import "CNWAmountListModel.h"
+#import "HYRechargeCNYViewController.h"
 
 
 #define kCNMAmountSelectCCell  @"CNMAmountSelectCCell"
@@ -50,6 +51,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = kHexColor(0x272749);
     self.view.layer.cornerRadius = 10;
     [self setupUI];
 }
@@ -79,9 +81,6 @@
     }];
     NSMutableArray *temArr = [NSMutableArray array];
     for (CNWAmountListModel *model in self.amountList) {
-        if (model.amount.floatValue > 3000) {
-            model.isRecommend = YES;
-        }
         if (model.isRecommend) {
             [temArr addObject:model.amount];
         }
@@ -92,35 +91,32 @@
 
 - (IBAction)depositAction:(UIButton *)sender {
     //提交订单
-//    [self showLoading];
-//    __weak typeof(self) weakSelf = self;
-//    [CNMatchPayRequest createDepisit:self.selectAmount finish:^(id  _Nullable response, NSError * _Nullable error) {
-//        [weakSelf hideLoading];
-//        if (error) {
-//            IVJResponseObject *result = response;
-//            [weakSelf showError:result.head.errMsg];
-//            return;
-//        }
-//        if ([response isKindOfClass:[NSDictionary class]]) {
-//            NSDictionary *dic = (NSDictionary *)response;
-//            if ([[dic objectForKey:@"mmFlag"] boolValue]) {
-//                NSError *err;
-//                CNMBankModel *bank = [[CNMBankModel alloc] initWithDictionary:[dic objectForKey:@"mmPaymentRsp"] error:&err];
-//                if (!err) {
-//                    // 成功跳转
-//                    CNMFastPayStatusVC *statusVC = [[CNMFastPayStatusVC alloc] init];
-//                    statusVC.cancelTime = [weakself.fastModel.remainCancelDepositTimes integerValue];
-//                    statusVC.transactionId = bank.transactionId;
-//                    [weakSelf pushViewController:statusVC];
-//                    return;
-//                }
-//            }
-//        }
-//        // 失败走普通存款
-//        [CNMAlertView show3SecondAlertTitle:@"极速转卡系统繁忙" content:@"系统默认转为普通支付通道处理" interval:3 commitAction:^{
-//            [weakSelf removeFastPay];
-//        }];
-//    }];
+    __weak typeof(self) weakSelf = self;
+    [CNMatchPayRequest createDepisit:self.selectAmount finish:^(id responseObj, NSString *errorMsg) {
+        if (errorMsg) {
+            [weakSelf showError:errorMsg];
+            return;
+        }
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dic = (NSDictionary *)responseObj;
+            if ([[dic objectForKey:@"mmFlag"] boolValue]) {
+                CNMBankModel *bank = [CNMBankModel cn_parse:[dic objectForKey:@"mmPaymentRsp"]];
+                if (bank) {
+                    // 成功跳转
+                    CNMFastPayStatusVC *statusVC = [[CNMFastPayStatusVC alloc] init];
+                    statusVC.cancelTime = [weakSelf.fastModel.remainCancelDepositTimes integerValue];
+                    statusVC.transactionId = bank.transactionId;
+                    [weakSelf.parentViewController.navigationController pushViewController:statusVC animated:YES];
+                    return;
+                }
+            }
+        }
+        // 失败走普通存款
+        [CNMAlertView show3SecondAlertTitle:@"急速转卡系统繁忙" content:@"系统默认转为普通支付通道处理" interval:3 commitAction:^{
+            HYRechargeCNYViewController *vc = (HYRechargeCNYViewController *)weakSelf.parentViewController;
+            [vc removeFastPay];
+        }];
+    }];
 }
 
 - (IBAction)recommendAction:(UIButton *)sender {

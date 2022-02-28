@@ -43,6 +43,7 @@
 @property (assign, nonatomic) NSUInteger timeout;
 @property (assign, nonatomic) BOOL isStartedTimeout;
 @property (assign, nonatomic) BOOL isLoadedView;
+
 @end
 
 @implementation KYMFastWithdrewVC
@@ -51,6 +52,25 @@
 {
     [self stopTimeoutTimer];
     [self stopGetWithdrawDetail];
+}
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didEnterBackgroundNotification) name:UIApplicationDidEnterBackgroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterForegroundNotification) name:UIApplicationWillEnterForegroundNotification object:nil];
+    }
+    return self;
+}
+- (void)didEnterBackgroundNotification
+{
+    [self stopGetWithdrawDetail];
+    [self stopTimeoutTimer];
+}
+- (void)willEnterForegroundNotification
+{
+    self.isStartedTimeout = NO;
+    [self getWithdrawDetail];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -260,7 +280,7 @@
             self.noticeView2.hidden = YES;
             self.cusmoterView.hidden = NO;
             self.lineView.hidden = NO;
-            self.title = @"订单异常";
+            self.title = @"待确认到账";
             break;
         case KYMWithdrewStepFive:
             statusViewHeight = 138;
@@ -332,7 +352,7 @@
     self.bankView.confirmTime.text = detailModel.data.confirmTime;
     self.amountView.amount = detailModel.data.amount;
     
-    if (detailModel.matchStatus == KYMWithdrewDetailStatusFaild ) {
+    if (detailModel.matchStatus == KYMWithdrewDetailStatusFaild  ||  detailModel.data.status == KYMWithdrewStatusNotMatch) {
         //撮合失败,取款失败，取款未匹配，走常规取款
         [self stopTimeoutTimer];
         [self stopGetWithdrawDetail];

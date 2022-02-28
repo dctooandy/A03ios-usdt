@@ -76,6 +76,7 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
 
 
 #pragma mark - 底部提示内容
+@property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (weak, nonatomic) IBOutlet UIView *clockView;
 @property (weak, nonatomic) IBOutlet UIView *submitTipView;
 @property (weak, nonatomic) IBOutlet UIView *confirmTipView;
@@ -131,6 +132,8 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
     self.pictureName2 = [NSMutableArray arrayWithCapacity:4];
     
     [self loadData];
+    self.navigationItem.leftBarButtonItem.target = self;
+    self.navigationItem.leftBarButtonItem.action = @selector(goToBack);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -143,13 +146,11 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
     self.bankView.layer.borderColor = kHexColor(0x3A3D46).CGColor;
     self.bankView.layer.cornerRadius = 8;
     
-    self.clockView.layer.borderWidth = 1;
-    self.clockView.layer.borderColor = kHexColor(0x0994E7).CGColor;
-    self.clockView.layer.cornerRadius = 8;
+    self.clockView.layer.cornerRadius = 10;
     
     self.cancelBtn.layer.borderWidth = 1;
-    self.cancelBtn.layer.borderColor = kHexColor(0xF2DA0F).CGColor;
-    self.cancelBtn.layer.cornerRadius = 8;
+    self.cancelBtn.layer.borderColor = kHexColor(0x10B4DD).CGColor;
+    self.cancelBtn.layer.cornerRadius = 24;
 }
 
 - (void)setStatusUI:(CNMPayUIStatus)status {
@@ -161,7 +162,7 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
         UIImageView *iv = self.statusIVs[i];
         [iv setHighlighted:YES];
         UILabel *label = self.statusLbs[i];
-        label.textColor = kHexColor(0xD2D2D2);
+        label.textColor = UIColor.whiteColor;
     }
     
     switch (status) {
@@ -192,7 +193,7 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
             self.tip3Lb.hidden = YES;
             self.tip4Lb.hidden = YES;
             self.tip5Lb.hidden = NO;
-            self.tip5Lb.textColor = kHexColor(0x818791);
+            self.tip5Lb.textColor = kHexColor(0x6D778B);
             self.tip5Lb.text = @"您完成了一笔存款";
             self.tip5LbH.constant = 16;
             
@@ -205,6 +206,7 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
             self.bankRow7.hidden = YES;
             self.rowTitle6.text = @"订单编号：";
             
+            self.lineView.hidden = YES;
             self.submitTipView.hidden = YES;
             self.confirmTipView.hidden = YES;
             self.confirmTipViewH.constant = 0;
@@ -225,23 +227,23 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
             
             self.confirmTipView.hidden = YES;
             self.customerServerBtn.hidden = YES;
+            self.confirmBtn.enabled = YES;
             break;
     }
 }
 
 - (void)loadData {
     __weak typeof(self) weakSelf = self;
-//    [CNTOPHUB showLoading];
-//    [CNMatchPayRequest queryDepisit:self.transactionId finish:^(id responseObj, NSString *errorMsg) {
-//        [CNTOPHUB hideLoading];
-//        if ([response isKindOfClass:[NSDictionary class]]) {
-//            NSDictionary *dic = (NSDictionary *)response;
-//            [weakSelf reloadUIWithModel:[[CNMBankModel alloc] initWithDictionary:[dic objectForKey:@"data"] error:nil]];
-//            return;
-//        }
-//        IVJResponseObject *result = response;
-//        [CNTOPHUB showError:errMsg];
-//    }];
+    [self showLoading];
+    [CNMatchPayRequest queryDepisit:self.transactionId finish:^(id responseObj, NSString *errorMsg) {
+        [self hideLoading];
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dic = (NSDictionary *)responseObj;
+            [weakSelf reloadUIWithModel:[CNMBankModel cn_parse:[dic objectForKey:@"data"]]];
+            return;
+        }
+        [self showError:errorMsg];
+    }];
 }
 
 - (void)reloadUIWithModel:(CNMBankModel *)bank {
@@ -358,7 +360,9 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
     NSString *desc = [NSString stringWithFormat:@"您今天还有 %ld 次取消机会，如果超过%ld次，可能会冻结账号。", self.cancelTime, self.cancelTime];
     [CNMAlertView showAlertTitle:@"取消存款" content:@"老板！如已存款，请不要取消" desc:desc needRigthTopClose:NO commitTitle:@"确定" commitAction:^{
         // 调接口取消
+        [self showLoading];
         [CNMatchPayRequest cancelDepisit:weakSelf.bankModel.transactionId finish:^(id responseObj, NSString *errorMsg) {
+            [self hideLoading];
             if ([responseObj isKindOfClass:[NSDictionary class]]) {
                 NSDictionary *dic = (NSDictionary *)responseObj;
                 NSString *result = [dic objectForKey:@"code"];
@@ -596,19 +600,6 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
 }
 
 #pragma mark - Setter Getter
-
-//- (NSInteger)cancelTime {
-//    if (_cancelTime == 0) {
-//        for (UIViewController *vc in self.navigationController.viewControllers) {
-//            if ([vc isKindOfClass:[BTTMineViewController class]]) {
-//                BTTMineViewController *mine = (BTTMineViewController *)vc;
-//                _cancelTime = [mine.fastModel.payModel.remainCancelDepositTimes integerValue];
-//                break;
-//            }
-//        }
-//    }
-//    return _cancelTime;
-//}
 
 - (NSTimer *)timer {
     if (!_timer) {

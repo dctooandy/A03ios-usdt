@@ -14,6 +14,7 @@
 #import "KYMFastWithdrewVC.h"
 #import "MBProgressHUD+Add.h"
 #import "BalanceManager.h"
+#import "CNMFastPayStatusVC.h"
 @implementation KYMWidthdrewUtility
 /** 转换货币字符串 */
 + (NSString *)getMoneyString:(double)money {
@@ -65,10 +66,10 @@
                         if (model.data.mmProcessingOrderTransactionId && model.data.mmProcessingOrderTransactionId.length != 0) {
                             if (model.data.mmProcessingOrderType == 1) { // 存款
                                 [CNMAlertView showAlertTitle:@"交易提醒" content:@"您当前有正在交易的存款订单\n如需取款，请选择在线取款" desc:nil needRigthTopClose:NO commitTitle:@"查看订单" commitAction:^{
-    //                                CNMFastPayStatusVC *statusVC = [[CNMFastPayStatusVC alloc] init];
-    //                                statusVC.cancelTime = [model.data.remainCancelDepositTimes integerValue];
-    //                                statusVC.transactionId = model.data.mmProcessingOrderTransactionId;
-    //                                [viewController.navigationController pushViewController:statusVC animated:YES];
+                                    CNMFastPayStatusVC *statusVC = [[CNMFastPayStatusVC alloc] init];
+                                    statusVC.cancelTime = [model.data.remainCancelDepositTimes integerValue];
+                                    statusVC.transactionId = model.data.mmProcessingOrderTransactionId;
+                                    [viewController.navigationController pushViewController:statusVC animated:YES];
                                     
                                 } cancelTitle:@"在线取款" cancelAction:^{
                                     //普通取款
