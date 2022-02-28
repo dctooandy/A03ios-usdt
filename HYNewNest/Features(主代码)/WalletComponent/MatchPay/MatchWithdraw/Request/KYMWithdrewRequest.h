@@ -17,7 +17,7 @@ typedef void (^KYMCallback)(BOOL status,NSString *msg,id body);
 
 
 extern void kym_sendRequest(NSString * url, id params, KYMCallback callback);
-
+extern void kym_requestBalance(KYMCallback callback);
 
 @interface KYMWithdrewRequest : NSObject
 //查询撮合渠道开启状态

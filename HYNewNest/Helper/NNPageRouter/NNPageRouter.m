@@ -115,7 +115,7 @@
             
 //            __block void(^jumpWithdrawBlock)(WithdrawCalculateModel* ) = ^(WithdrawCalculateModel * model) {
             UIViewController *topVC = [PublicMethod getCurrentVC];
-            [KYMWidthdrewUtility checkWithdraw:topVC totalAmount:@"500" callBack:^(BOOL isMatch,KYMWithdrewCheckModel *model) {
+            [KYMWidthdrewUtility checkWithdraw:topVC callBack:^(BOOL isMatch,KYMWithdrewCheckModel *model) {
                 if (isMatch) {
                     HYWithdrawViewController *vc = [HYWithdrawViewController new];
                     vc.isMatchWithdraw = YES;

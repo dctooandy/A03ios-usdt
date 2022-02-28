@@ -197,6 +197,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         if (self.isMatchWithdraw) {
             KYMWithdrawConfirmVC *vc = [[KYMWithdrawConfirmVC alloc] init];
             vc.checkModel = self.checkModel;
+            vc.balance = [self.moneyModel.withdrawBal stringValue];
             [self presentViewController:vc animated:YES completion:nil];
         } else {
             WEAKSELF_DEFINE
