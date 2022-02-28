@@ -23,7 +23,7 @@ extern void kym_requestBalance(KYMCallback callback);
 //查询撮合渠道开启状态
 + (void)checkChannelWithParams:(NSDictionary *)params callback:(KYMCallback)callback;
 //创建取款提案
-+ (void)createWithdrawWithParams:(NSDictionary *)params callback:(KYMCallback)callback;
++ (void)createWithdrawWithBankNum:(NSString *)bankNum amount:(NSString *)amount pwd:(NSString *)pwd  callback:(KYMCallback)callback ;
 //获取取款明细
 + (void)getWithdrawDetailWithParams:(NSDictionary *)params callback:(KYMCallback)callback;
 //取款到账/未到账操作

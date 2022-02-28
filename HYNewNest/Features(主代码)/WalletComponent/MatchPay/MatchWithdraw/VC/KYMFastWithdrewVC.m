@@ -21,6 +21,7 @@
 #import "MBProgressHUD+Add.h"
 #import "SDWebImage.h"
 #import "LoadingView.h"
+#import <CSCustomSerVice/CSCustomSerVice.h>
 @interface KYMFastWithdrewVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) UIView *contentView;
@@ -61,6 +62,8 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.navigationItem.leftBarButtonItem.action = @selector(goToBack);
+    self.navigationItem.leftBarButtonItem.target = self;
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -162,7 +165,7 @@
         make.left.equalTo(self.contentView).offset(0);
         make.right.equalTo(self.contentView).offset(0);
         make.top.equalTo(self.bankView.mas_bottom).offset(39);
-        make.height.offset(217);
+        make.height.offset(141);
     }];
     [self.submitView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(15);
@@ -173,7 +176,7 @@
     [self.cusmoterView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.contentView);
         make.top.equalTo(self.bankView.mas_bottom).offset(107);
-        make.width.offset(191);
+        make.width.offset(205);
         make.height.offset(30);
     }];
 }
@@ -227,7 +230,7 @@
             self.noticeView2.hidden = NO;
             self.cusmoterView.hidden = NO;
             self.lineView.hidden = NO;
-            self.title = @"等待付款";
+            self.title = @"等待存款";
             break;
         case KYMWithdrewStepThree:
             statusViewHeight = 160;
@@ -329,7 +332,7 @@
     self.bankView.confirmTime.text = detailModel.data.confirmTime;
     self.amountView.amount = detailModel.data.amount;
     
-    if (detailModel.matchStatus == KYMWithdrewDetailStatusFaild || detailModel.data.status == KYMWithdrewStatusFaild || detailModel.data.status == KYMWithdrewDetailStatusNotMatch) {
+    if (detailModel.matchStatus == KYMWithdrewDetailStatusFaild ) {
         //撮合失败,取款失败，取款未匹配，走常规取款
         [self stopTimeoutTimer];
         [self stopGetWithdrawDetail];
@@ -478,6 +481,11 @@
 }
 - (void)customerBtnClicked {
     // 联系客服
+    [CSVisitChatmanager startWithSuperVC:self finish:^(CSServiceCode errCode) {
+        if (errCode != CSServiceCode_Request_Suc) {
+            [MBProgressHUD showError:@"暂时无法链接，请贵宾改以电话联系，感谢您的理解与支持" toView:nil];
+        }
+    }];
 }
 - (void)goToBack {
     
@@ -488,10 +496,10 @@
 
 - (void)showLoading
 {
-    [LoadingView showLoadingViewWithToView:nil needMask:YES];
+    [LoadingView show];
 }
 - (void)hideLoading
 {
-    [LoadingView hideLoadingViewForView:nil];
+    [LoadingView hide];
 }
 @end

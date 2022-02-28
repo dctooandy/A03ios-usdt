@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface KYMWithdrawConfirmVC : UIViewController
 @property (nonatomic, copy) NSString *balance;
 @property (nonatomic, strong) KYMWithdrewCheckModel *checkModel;
+@property (nonatomic, strong) void(^submitHandler)(NSString *pwd, NSString *amount);
 @end
 
 NS_ASSUME_NONNULL_END

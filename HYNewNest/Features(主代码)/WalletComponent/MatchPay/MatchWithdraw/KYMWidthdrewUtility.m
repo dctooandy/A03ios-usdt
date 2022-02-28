@@ -7,7 +7,6 @@
 //
 
 #import "KYMWidthdrewUtility.h"
-#import "KYMWithdrewRequest.h"
 #import "KYMSelectChannelVC.h"
 #import "CNMAlertView.h"
 #import "LoadingView.h"
@@ -26,6 +25,11 @@
     NSString *formattedNumberString = [numberFormatter stringFromNumber:[NSNumber numberWithDouble:money]];
     return formattedNumberString;
 }
++ (BOOL)isValidateWithdrawPwdNumber:(NSString *)number{
+    NSString *numberRegex = @"^\\d{6,6}$";
+    NSPredicate *num = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", numberRegex];
+    return [num evaluateWithObject:number];
+}
 + (void)checkWithdraw:(UIViewController *)viewController callBack:(void(^)(BOOL isMatch,KYMWithdrewCheckModel  * checkModel))callback {
     NSMutableDictionary *parmas = @{}.mutableCopy;
     parmas[@"merchant"] = @"A01";
@@ -34,16 +38,15 @@
 //                        parmas[@"productId"] = @"xxx";
     parmas[@"type"] = @"2";
     parmas[@"currency"] = @"CNY";
-    [LoadingView showLoadingViewWithToView:nil needMask:YES];
     [KYMWithdrewRequest checkChannelWithParams:parmas.copy callback:^(BOOL status, NSString * _Nonnull msg, KYMWithdrewCheckModel  * _Nonnull model) {
         if (!status) {
-            [LoadingView hideLoadingViewForView:nil];
             [MBProgressHUD showError:msg toView:nil];
             return;
         }
+        [LoadingView show];
         kym_requestBalance(^(BOOL status, NSString * _Nonnull msg, NSString  *_Nonnull balance) {
             if (!status) {
-                [LoadingView hideLoadingViewForView:nil];
+                [LoadingView hide];
                 [MBProgressHUD showError:msg toView:nil];
                 return;
             }
