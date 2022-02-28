@@ -599,19 +599,6 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
 
 #pragma mark - Setter Getter
 
-//- (NSInteger)cancelTime {
-//    if (_cancelTime == 0) {
-//        for (UIViewController *vc in self.navigationController.viewControllers) {
-//            if ([vc isKindOfClass:[BTTMineViewController class]]) {
-//                BTTMineViewController *mine = (BTTMineViewController *)vc;
-//                _cancelTime = [mine.fastModel.payModel.remainCancelDepositTimes integerValue];
-//                break;
-//            }
-//        }
-//    }
-//    return _cancelTime;
-//}
-
 - (NSTimer *)timer {
     if (!_timer) {
         _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerCounter) userInfo:nil repeats:YES];

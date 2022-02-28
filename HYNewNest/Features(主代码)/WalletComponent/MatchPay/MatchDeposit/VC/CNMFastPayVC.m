@@ -91,10 +91,10 @@
 
 - (IBAction)depositAction:(UIButton *)sender {
     //提交订单
-    [self showLoading];
+//    [self showLoading];
     __weak typeof(self) weakSelf = self;
     [CNMatchPayRequest createDepisit:self.selectAmount finish:^(id responseObj, NSString *errorMsg) {
-        [weakSelf hideLoading];
+//        [weakSelf hideLoading];
         if (errorMsg) {
             [weakSelf showError:errorMsg];
             return;

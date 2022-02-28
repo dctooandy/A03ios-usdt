@@ -276,7 +276,7 @@
                                     <color key="textColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PoK-fU-Iad">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PoK-fU-Iad" userLabel="BankView">
                                     <rect key="frame" x="15" y="123" width="384" height="446"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="eBd-3M-SEU">
@@ -545,14 +545,14 @@
                                         <constraint firstAttribute="bottom" secondItem="eBd-3M-SEU" secondAttribute="bottom" constant="12" id="mOG-0M-Cwf"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2h-la-RyM" userLabel="lineview">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2h-la-RyM" userLabel="LineView">
                                     <rect key="frame" x="15" y="593" width="384" height="1"/>
                                     <color key="backgroundColor" red="0.42745098039215684" green="0.46666666666666667" blue="0.54509803921568623" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="oUw-ll-uZH"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAU-Fk-PiW">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAU-Fk-PiW" userLabel="ConfirmTipView">
                                     <rect key="frame" x="0.0" y="594" width="414" height="155"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mwd_warning" translatesAutoresizingMaskIntoConstraints="NO" id="JYJ-sP-eha">
@@ -591,7 +591,7 @@
                                         <constraint firstItem="KNj-h7-rnh" firstAttribute="top" secondItem="cAU-Fk-PiW" secondAttribute="top" constant="26" id="x2L-4n-cpH"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JKa-cG-4MO">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JKa-cG-4MO" userLabel="ClockView">
                                     <rect key="frame" x="0.0" y="594" width="414" height="170"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zXz-4k-uYc">
