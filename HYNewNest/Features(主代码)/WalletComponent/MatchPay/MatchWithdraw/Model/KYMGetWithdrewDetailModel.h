@@ -19,8 +19,8 @@ typedef NS_ENUM(NSInteger, KYMWithdrewStatus) {
     KYMWithdrewStatusSubmit1 = 0, //撮合提交
     KYMWithdrewStatusSubmit = 1, //撮合提交
     KYMWithdrewStatusWaiting = 2, //取款等待
-    KYMWithdrewDetailStatusNotMatch = 3, //取款未匹配
-    KYMWithdrewDetailStatusTimeout = 4, //取款超时
+    KYMWithdrewStatusNotMatch = 3, //取款未匹配
+    KYMWithdrewStatusTimeout = 4, //取款超时
     KYMWithdrewStatusConfirm = 5, //取款确认
     KYMWithdrewStatusFaild = 6, //取款失败
     KYMWithdrewStatusSuccessed = 100, //取款成功

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "KYMWithdrewCheckModel.h"
+#import "KYMWithdrewRequest.h"
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, KYMWithdrewStep) {
@@ -22,8 +23,8 @@ typedef NS_ENUM(NSInteger, KYMWithdrewStep) {
 @interface KYMWidthdrewUtility : NSObject
 /** 转换货币字符串 */
 + (NSString *)getMoneyString:(double)money;
-
-+ (void)checkWithdraw:(UIViewController *)viewController totalAmount:(NSString *)totalAmount callBack:(void(^)(BOOL isMatch,KYMWithdrewCheckModel  * checkModel))callback;
++ (BOOL)isValidateWithdrawPwdNumber:(NSString *)number;
++ (void)checkWithdraw:(UIViewController *)viewController callBack:(void(^)(BOOL isMatch,KYMWithdrewCheckModel  * checkModel))callback;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -21,6 +21,7 @@
 #import "MBProgressHUD+Add.h"
 #import "SDWebImage.h"
 #import "LoadingView.h"
+#import <CSCustomSerVice/CSCustomSerVice.h>
 @interface KYMFastWithdrewVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) UIView *contentView;
@@ -42,6 +43,7 @@
 @property (assign, nonatomic) NSUInteger timeout;
 @property (assign, nonatomic) BOOL isStartedTimeout;
 @property (assign, nonatomic) BOOL isLoadedView;
+
 @end
 
 @implementation KYMFastWithdrewVC
@@ -50,6 +52,25 @@
 {
     [self stopTimeoutTimer];
     [self stopGetWithdrawDetail];
+}
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didEnterBackgroundNotification) name:UIApplicationDidEnterBackgroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterForegroundNotification) name:UIApplicationWillEnterForegroundNotification object:nil];
+    }
+    return self;
+}
+- (void)didEnterBackgroundNotification
+{
+    [self stopGetWithdrawDetail];
+    [self stopTimeoutTimer];
+}
+- (void)willEnterForegroundNotification
+{
+    self.isStartedTimeout = NO;
+    [self getWithdrawDetail];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,6 +82,8 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.navigationItem.leftBarButtonItem.action = @selector(goToBack);
+    self.navigationItem.leftBarButtonItem.target = self;
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -162,7 +185,7 @@
         make.left.equalTo(self.contentView).offset(0);
         make.right.equalTo(self.contentView).offset(0);
         make.top.equalTo(self.bankView.mas_bottom).offset(39);
-        make.height.offset(217);
+        make.height.offset(141);
     }];
     [self.submitView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(15);
@@ -173,7 +196,7 @@
     [self.cusmoterView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.contentView);
         make.top.equalTo(self.bankView.mas_bottom).offset(107);
-        make.width.offset(191);
+        make.width.offset(205);
         make.height.offset(30);
     }];
 }
@@ -227,7 +250,7 @@
             self.noticeView2.hidden = NO;
             self.cusmoterView.hidden = NO;
             self.lineView.hidden = NO;
-            self.title = @"等待付款";
+            self.title = @"等待存款";
             break;
         case KYMWithdrewStepThree:
             statusViewHeight = 160;
@@ -257,7 +280,7 @@
             self.noticeView2.hidden = YES;
             self.cusmoterView.hidden = NO;
             self.lineView.hidden = NO;
-            self.title = @"订单异常";
+            self.title = @"待确认到账";
             break;
         case KYMWithdrewStepFive:
             statusViewHeight = 138;
@@ -329,7 +352,7 @@
     self.bankView.confirmTime.text = detailModel.data.confirmTime;
     self.amountView.amount = detailModel.data.amount;
     
-    if (detailModel.matchStatus == KYMWithdrewDetailStatusFaild || detailModel.data.status == KYMWithdrewStatusFaild || detailModel.data.status == KYMWithdrewDetailStatusNotMatch) {
+    if (detailModel.matchStatus == KYMWithdrewDetailStatusFaild  ||  detailModel.data.status == KYMWithdrewStatusNotMatch) {
         //撮合失败,取款失败，取款未匹配，走常规取款
         [self stopTimeoutTimer];
         [self stopGetWithdrawDetail];
@@ -478,6 +501,11 @@
 }
 - (void)customerBtnClicked {
     // 联系客服
+    [CSVisitChatmanager startWithSuperVC:self finish:^(CSServiceCode errCode) {
+        if (errCode != CSServiceCode_Request_Suc) {
+            [MBProgressHUD showError:@"暂时无法链接，请贵宾改以电话联系，感谢您的理解与支持" toView:nil];
+        }
+    }];
 }
 - (void)goToBack {
     
@@ -488,10 +516,10 @@
 
 - (void)showLoading
 {
-    [LoadingView showLoadingViewWithToView:nil needMask:YES];
+    [LoadingView show];
 }
 - (void)hideLoading
 {
-    [LoadingView hideLoadingViewForView:nil];
+    [LoadingView hide];
 }
 @end
