@@ -11,6 +11,7 @@
 #import "NSImage+WebCache.h"
 #import <ImageIO/ImageIO.h>
 #import "NSData+ImageContentType.h"
+#import "NSData+EnternalImageContentType.h"
 #import "UIImage+MultiFormat.h"
 
 #if SD_UIKIT || SD_WATCH
@@ -394,9 +395,9 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
     if (format == SDImageFormatUndefined) {
         BOOL hasAlpha = SDCGImageRefContainsAlpha(image.CGImage);
         if (hasAlpha) {
-            format = SDImageFormatPNG;
+            format = SDEnternalImageFormatPNG;
         } else {
-            format = SDImageFormatJPEG;
+            format = SDEnternalImageFormatJPEG;
         }
     }
     
@@ -449,7 +450,7 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
     static BOOL canDecode = NO;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        CFStringRef imageUTType = [NSData sd_UTTypeFromSDImageFormat:SDImageFormatHEIC];
+        CFStringRef imageUTType = [NSData sd_UTTypeFromSDImageFormat:SDEnternalImageFormatHEIC];
         NSArray *imageUTTypes = (__bridge_transfer NSArray *)CGImageSourceCopyTypeIdentifiers();
         if ([imageUTTypes containsObject:(__bridge NSString *)(imageUTType)]) {
             canDecode = YES;
@@ -462,7 +463,7 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
     static BOOL canDecode = NO;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        CFStringRef imageUTType = [NSData sd_UTTypeFromSDImageFormat:SDImageFormatHEIF];
+        CFStringRef imageUTType = [NSData sd_UTTypeFromSDImageFormat:SDEnternalImageFormatHEIF];
         NSArray *imageUTTypes = (__bridge_transfer NSArray *)CGImageSourceCopyTypeIdentifiers();
         if ([imageUTTypes containsObject:(__bridge NSString *)(imageUTType)]) {
             canDecode = YES;
@@ -476,7 +477,7 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSMutableData *imageData = [NSMutableData data];
-        CFStringRef imageUTType = [NSData sd_UTTypeFromSDImageFormat:SDImageFormatHEIC];
+        CFStringRef imageUTType = [NSData sd_UTTypeFromSDImageFormat:SDEnternalImageFormatHEIC];
         
         // Create an image destination.
         CGImageDestinationRef imageDestination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)imageData, imageUTType, 1, NULL);
@@ -497,7 +498,7 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSMutableData *imageData = [NSMutableData data];
-        CFStringRef imageUTType = [NSData sd_UTTypeFromSDImageFormat:SDImageFormatHEIF];
+        CFStringRef imageUTType = [NSData sd_UTTypeFromSDImageFormat:SDEnternalImageFormatHEIF];
         
         // Create an image destination.
         CGImageDestinationRef imageDestination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)imageData, imageUTType, 1, NULL);
