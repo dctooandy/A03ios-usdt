@@ -101,11 +101,7 @@
     _amountModel = amountModel;
     
     /// 顶上信息
-    if ([itemModel.payType isEqualToString:FastPayType]) {
-        _imgvIcon.image = [UIImage imageNamed:itemModel.payTypeIcon];
-    } else {
-        [self.imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:itemModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
-    }
+    [self.imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:itemModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"channel_fastpay"]];
     self.lblPayWayName.text = itemModel.payTypeName;
     /// 急速走另外页面
     if ([itemModel.payType isEqualToString:FastPayType]) {

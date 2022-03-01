@@ -39,12 +39,7 @@
 
 - (void)setPaywayModel:(PayWayV3PayTypeItem *)paywayModel {
     _paywayModel = paywayModel;
-    
-    if ([paywayModel.payType isEqualToString:FastPayType]) {
-        _imgvIcon.image = [UIImage imageNamed:paywayModel.payTypeIcon];
-    } else {
-        [_imgvIcon sd_setImageWithURL:[NSURL getBankIconWithString:paywayModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
-    }
+    [_imgvIcon sd_setImageWithURL:[NSURL getBankIconWithString:paywayModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"channel_fastpay"]];
     _lblTitle.text = paywayModel.payTypeName;
     if ([paywayModel.payType isEqualToString:FastPayType]) {
         _lblAmountRange.text = @"返利0.5%";
