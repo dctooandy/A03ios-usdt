@@ -971,6 +971,7 @@
 		D5B430AA27CA00C2008330CB /* KYMWithdrewAmountListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B430A927CA00C2008330CB /* KYMWithdrewAmountListView.xib */; };
 		D5B430AE27CA19C2008330CB /* KYMWithdrawConfirmVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B430AC27CA19C2008330CB /* KYMWithdrawConfirmVC.m */; };
 		D5B430AF27CA19C2008330CB /* KYMWithdrawConfirmVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B430AD27CA19C2008330CB /* KYMWithdrawConfirmVC.xib */; };
+		D5B430B227CC63B3008330CB /* KYMSubmitButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B430B127CC63B3008330CB /* KYMSubmitButton.m */; };
 		D5FBFDC824B4672200BBCAD8 /* CNSkinManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FBFDC724B4672200BBCAD8 /* CNSkinManager.m */; };
 		D5FBFDF824B59DB100BBCAD8 /* SkinMapValue.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5FBFDF724B59DB100BBCAD8 /* SkinMapValue.plist */; };
 		D5FBFE2D24BC05E400BBCAD8 /* CNLoginRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FBFE0124BC05E400BBCAD8 /* CNLoginRegisterVC.m */; };
@@ -2467,6 +2468,8 @@
 		D5B430AB27CA19C2008330CB /* KYMWithdrawConfirmVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KYMWithdrawConfirmVC.h; sourceTree = "<group>"; };
 		D5B430AC27CA19C2008330CB /* KYMWithdrawConfirmVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KYMWithdrawConfirmVC.m; sourceTree = "<group>"; };
 		D5B430AD27CA19C2008330CB /* KYMWithdrawConfirmVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KYMWithdrawConfirmVC.xib; sourceTree = "<group>"; };
+		D5B430B027CC63B3008330CB /* KYMSubmitButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KYMSubmitButton.h; sourceTree = "<group>"; };
+		D5B430B127CC63B3008330CB /* KYMSubmitButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KYMSubmitButton.m; sourceTree = "<group>"; };
 		D5FBFDC624B4672200BBCAD8 /* CNSkinManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNSkinManager.h; sourceTree = "<group>"; };
 		D5FBFDC724B4672200BBCAD8 /* CNSkinManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNSkinManager.m; sourceTree = "<group>"; };
 		D5FBFDF724B59DB100BBCAD8 /* SkinMapValue.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SkinMapValue.plist; sourceTree = "<group>"; };
@@ -5148,6 +5151,8 @@
 				D5B4307227C8D36D008330CB /* KYMWithdrewSubmitView.h */,
 				D5B4306427C8D36B008330CB /* KYMWithdrewSubmitView.m */,
 				D5B4306D27C8D36C008330CB /* KYMWithdrewSubmitView.xib */,
+				D5B430B027CC63B3008330CB /* KYMSubmitButton.h */,
+				D5B430B127CC63B3008330CB /* KYMSubmitButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7459,6 +7464,7 @@
 				3D972439262EDF9D005E930C /* SCMyRebateModel.m in Sources */,
 				E986A13D24C93460000F9CFF /* CNBonusRequest.m in Sources */,
 				3DF031FE258DA36A00AF7A36 /* CNSuperCopartnerRequest.m in Sources */,
+				D5B430B227CC63B3008330CB /* KYMSubmitButton.m in Sources */,
 				F76BEC2F267AE85800577547 /* BYTradeEntryVC.m in Sources */,
 				E9063B8C24D6BE870000273A /* HYWideOneBtnAlertView.m in Sources */,
 				3DB6A0432594A1B5004A391B /* DSBProfitFooter.m in Sources */,

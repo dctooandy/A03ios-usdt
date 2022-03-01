@@ -27,8 +27,18 @@
         }
     });
 }
-+ (void)createWithdrawWithParams:(NSDictionary *)params callback:(KYMCallback)callback {
-    kym_sendRequest(@"withdraw/createRequest",params, ^(BOOL status, NSString * msg , id body) {
++ (void)createWithdrawWithBankNum:(NSString *)bankNum amount:(NSString *)amount pwd:(NSString *)pwd  callback:(KYMCallback)callback {
+    //撮合取款
+    NSMutableDictionary *mparams = @{}.mutableCopy;
+//            mparams[@"loginName"] = @""; //用户名，底层已拼接
+//            mparams[@"productId"] = @""; //脱敏产品编号，底层已拼接
+    mparams[@"accountId"] = bankNum; //银行账户编号
+    mparams[@"amount"] = amount; //取款金额
+    mparams[@"currency"] = @"CNY"; //币种
+    mparams[@"withdrawType"] = @"4"; //取款提案类型
+    mparams[@"password"] = pwd; //取款密码
+    
+    kym_sendRequest(@"withdraw/createRequest",mparams.copy, ^(BOOL status, NSString * msg , id body) {
         if (body == nil || body == NULL || ![body isKindOfClass:[NSDictionary class]]) {
             callback(NO, msg ? : @"操作失败，数据异常",@"");
             return;

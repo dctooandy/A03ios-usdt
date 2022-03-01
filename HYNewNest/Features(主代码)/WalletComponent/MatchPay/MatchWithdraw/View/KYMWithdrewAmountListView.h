@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class KYMWithdrewAmountListView;
 @protocol KYMWithdrewAmountCellDelegate <NSObject>
 
-- (void)matchWithdrewAmountCellDidSelected:(KYMWithdrewAmountListView *)self indexPath:(NSIndexPath *)indexPath;
+- (void)matchWithdrewAmountCellDidSelected:(KYMWithdrewAmountListView *)view indexPath:(NSIndexPath *)indexPath;
 
 @end
 @interface KYMWithdrewAmountListView : UIView

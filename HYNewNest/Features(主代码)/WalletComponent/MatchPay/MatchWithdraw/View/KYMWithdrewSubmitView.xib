@@ -17,7 +17,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DcK-rp-8yH">
                     <rect key="frame" x="0.0" y="0.0" width="608" height="171"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ElM-1y-TFF">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ElM-1y-TFF" customClass="KYMSubmitButton">
                             <rect key="frame" x="0.0" y="123" width="608" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="ZFA-Zw-Suz"/>

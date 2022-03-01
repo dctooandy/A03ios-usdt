@@ -36,7 +36,10 @@
 
 #import "BYWithdrawConfirmVC.h"
 #import "KYMWithdrawConfirmVC.h"
-
+#import "KYMWithdrewRequest.h"
+#import "KYMFastWithdrewVC.h"
+#import "MBProgressHUD+Add.h"
+#import "IVRsaEncryptWrapper.h"
 @interface HYWithdrawViewController () <UITableViewDelegate, UITableViewDataSource, BYWithdrawDelegate>
 {
     BOOL _isCNYBlockLevel;
@@ -197,6 +200,28 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         if (self.isMatchWithdraw) {
             KYMWithdrawConfirmVC *vc = [[KYMWithdrawConfirmVC alloc] init];
             vc.checkModel = self.checkModel;
+            vc.balance = [self.moneyModel.withdrawBal stringValue];
+            __weak typeof(self)weakSelf = self;
+            __weak typeof(vc)weakVC = vc;
+            vc.submitHandler = ^(NSString * _Nonnull pwd, NSString * _Nonnull amount) {
+                if (self.elecCardsArr.count == 0) {
+                    return;
+                }
+                AccountModel *model = weakSelf.elecCardsArr[weakSelf.selectedIdx];
+                pwd = [IVRsaEncryptWrapper encryptorString:pwd];
+                [KYMWithdrewRequest createWithdrawWithBankNum:model.accountId amount:amount pwd:pwd callback:^(BOOL status, NSString * _Nonnull msg, KYMCreateWithdrewModel  *_Nonnull model) {
+                    if (!status) {
+                        [MBProgressHUD showError:msg toView:nil];
+                        return;
+                    }
+                    KYMFastWithdrewVC *vc1 = [[KYMFastWithdrewVC alloc] init];
+                    vc1.mmProcessingOrderTransactionId = model.referenceId;
+                    [weakVC dismissViewControllerAnimated:YES completion:^{
+                        [weakSelf.navigationController pushViewController:vc1 animated:YES];
+                    }];
+                    
+                }];
+            };
             [self presentViewController:vc animated:YES completion:nil];
         } else {
             WEAKSELF_DEFINE
