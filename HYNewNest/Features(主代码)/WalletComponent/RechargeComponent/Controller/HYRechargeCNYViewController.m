@@ -133,21 +133,23 @@
 
 - (void)rightItemAction {
     [NNPageRouter presentOCSS_VC];
-//    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
+}
+
+- (BOOL)isVIP {
+    return ([CNUserManager shareManager].isUsdtMode == false &&
+            ([CNUserManager shareManager].userDetail.depositLevel == 30 ||
+             ([CNUserManager shareManager].userDetail.depositLevel >=5 &&
+              [CNUserManager shareManager].userDetail.depositLevel <= 10 &&
+              [CNUserManager shareManager].userDetail.starLevel >= 5)));
 }
 
 - (void)setupMainEditView {
     [self.scrollContainer mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.view);
-//        make.height.mas_equalTo(kScreenHeight-kNavPlusStaBarHeight-48-24-kSafeAreaHeight);
         make.bottom.equalTo(self.btnSubmit.mas_top).offset(-30);
     }];
-    self.scrollContainer.scrollEnabled = NO;
     
-    if ([CNUserManager shareManager].isUsdtMode == false
-        && ([CNUserManager shareManager].userDetail.depositLevel == 30
-            || ([CNUserManager shareManager].userDetail.depositLevel >=5 && [CNUserManager shareManager].userDetail.depositLevel <= 10 && [CNUserManager shareManager].userDetail.starLevel >= 5))) {
-        
+    if ([self isVIP]) {
         [self.largeAmountView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.scrollContainer).offset(15);
             make.top.equalTo(self.scrollContainer).offset(15);
@@ -155,7 +157,7 @@
             make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
         }];
         
-        [self.editView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.editView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.scrollContainer).offset(15);
             make.top.equalTo(self.largeAmountView.mas_bottom).offset(15);
             make.height.mas_equalTo(510).priority(MASLayoutPriorityDefaultLow);
@@ -242,15 +244,30 @@
     }];
     
     CGFloat height = 50 * ceilf(self.fastModel.amountList.count/3.0) + 500;
-    self.scrollContainer.contentSize = CGSizeMake(self.view.size.width, height);
-    self.scrollContainer.scrollEnabled = YES;
-    
-    [self.editView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.scrollContainer).offset(15);
-        make.top.equalTo(self.scrollContainer).offset(15);
-        make.height.mas_equalTo(height);
-        make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
-    }];
+    if ([self isVIP]) {
+        self.scrollContainer.contentSize = CGSizeMake(self.view.size.width, height+120);
+        [self.largeAmountView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.scrollContainer).offset(15);
+            make.top.equalTo(self.scrollContainer).offset(15);
+            make.height.mas_equalTo(120);
+            make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
+        }];
+
+        [self.editView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.scrollContainer).offset(15);
+            make.top.equalTo(self.largeAmountView.mas_bottom).offset(15);
+            make.height.mas_equalTo(height);
+            make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
+        }];
+    } else {
+        self.scrollContainer.contentSize = CGSizeMake(self.view.size.width, height);
+        [self.editView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.scrollContainer).offset(15);
+            make.top.equalTo(self.scrollContainer).offset(15);
+            make.height.mas_equalTo(height);
+            make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
+        }];
+    }
     
     [self.editView setupPayTypeItem:self.paytypeList[_selcPayWayIdx]
                           bankModel:nil
