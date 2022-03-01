@@ -86,9 +86,15 @@
                                 <font key="NSFont" size="16" name="PingFangSC-Medium"/>
                             </attributes>
                         </fragment>
-                        <fragment content="返利0.5%，礼金无上限">
+                        <fragment content="返利0.5%，">
                             <attributes>
                                 <color key="NSColor" red="0.062745098040000002" green="0.70588235290000001" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="16" name="PingFangSC-Medium"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="礼金无上限">
+                            <attributes>
+                                <color key="NSColor" red="0.098039215686274508" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
                                 <font key="NSFont" size="16" name="PingFangSC-Medium"/>
                             </attributes>
                         </fragment>
