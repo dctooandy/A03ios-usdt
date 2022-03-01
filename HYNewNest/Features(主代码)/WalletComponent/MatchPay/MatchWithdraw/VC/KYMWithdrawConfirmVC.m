@@ -59,8 +59,9 @@
     self.pwdTF.attributedPlaceholder = attr;
     [self.pwdTF addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingChanged];
     UIButton *rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
+    [rightBtn setBackgroundImage:[UIImage imageNamed:@"l_password"] forState:UIControlStateNormal];
+    [rightBtn setBackgroundImage:[UIImage imageNamed:@"l_password_s"] forState:UIControlStateSelected];
     [rightBtn addTarget:self action:@selector(pwdRightBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    rightBtn.backgroundColor = [UIColor redColor];
     self.pwdTF.rightView = rightBtn;
     self.pwdTF.rightViewMode = UITextFieldViewModeAlways;
     self.pwdTF.secureTextEntry = YES;

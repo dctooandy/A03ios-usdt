@@ -68,16 +68,13 @@
                             <color key="textColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avS-Rt-VDG">
-                            <rect key="frame" x="228" y="22.5" width="16" height="16"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mwd_rmb" translatesAutoresizingMaskIntoConstraints="NO" id="dCh-iF-zOu">
+                            <rect key="frame" x="231" y="24.5" width="16" height="16"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="16" id="i08-mj-QRx"/>
-                                <constraint firstAttribute="height" constant="16" id="x7f-vb-9yd"/>
+                                <constraint firstAttribute="width" constant="16" id="3zi-xD-kq6"/>
+                                <constraint firstAttribute="height" constant="16" id="7SL-hK-teu"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -86,13 +83,13 @@
                         <constraint firstItem="Vqr-Bb-bEw" firstAttribute="top" secondItem="vbC-2C-29u" secondAttribute="bottom" constant="22" id="Fo9-UM-1cS"/>
                         <constraint firstItem="f8J-lE-2OI" firstAttribute="top" secondItem="vbC-2C-29u" secondAttribute="bottom" constant="-5" id="JWF-88-tfd"/>
                         <constraint firstItem="vbC-2C-29u" firstAttribute="centerX" secondItem="qYB-G6-eEV" secondAttribute="centerX" id="Nem-Hc-DGp"/>
+                        <constraint firstItem="dCh-iF-zOu" firstAttribute="centerY" secondItem="vbC-2C-29u" secondAttribute="centerY" constant="2" id="Tyf-ws-bJy"/>
                         <constraint firstItem="vbC-2C-29u" firstAttribute="centerY" secondItem="5hF-ki-NS1" secondAttribute="centerY" id="c7U-0q-KNS"/>
+                        <constraint firstItem="dCh-iF-zOu" firstAttribute="leading" secondItem="vbC-2C-29u" secondAttribute="trailing" constant="11" id="eDf-70-vjB"/>
                         <constraint firstItem="Grp-cS-CFo" firstAttribute="top" secondItem="qYB-G6-eEV" secondAttribute="top" constant="2" id="fe5-K3-vyw"/>
                         <constraint firstItem="f8J-lE-2OI" firstAttribute="centerX" secondItem="qYB-G6-eEV" secondAttribute="centerX" id="idw-po-ZcK"/>
                         <constraint firstItem="Vqr-Bb-bEw" firstAttribute="width" secondItem="qYB-G6-eEV" secondAttribute="width" id="o4s-EV-OPV"/>
                         <constraint firstItem="vbC-2C-29u" firstAttribute="leading" secondItem="5hF-ki-NS1" secondAttribute="trailing" constant="8" id="q5A-c7-ISc"/>
-                        <constraint firstItem="avS-Rt-VDG" firstAttribute="leading" secondItem="vbC-2C-29u" secondAttribute="trailing" constant="8" id="r2N-0u-c51"/>
-                        <constraint firstItem="avS-Rt-VDG" firstAttribute="centerY" secondItem="vbC-2C-29u" secondAttribute="centerY" id="sfX-BN-oLJ"/>
                         <constraint firstItem="vbC-2C-29u" firstAttribute="top" secondItem="qYB-G6-eEV" secondAttribute="top" id="tS3-2S-poV"/>
                     </constraints>
                 </view>
@@ -117,4 +114,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="71.651785714285708"/>
         </view>
     </objects>
+    <resources>
+        <image name="mwd_rmb" width="16" height="17"/>
+    </resources>
 </document>
