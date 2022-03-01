@@ -354,6 +354,7 @@
             PayWayV3PayTypeItem *fastItem = [[PayWayV3PayTypeItem alloc] init];
             fastItem.payType = FastPayType;
             fastItem.payTypeName = @"急速转卡";
+            fastItem.payTypeIcon = @"channel_fastpay";
             [tmp insertObject:fastItem atIndex:0];
             
             self.paytypeList = (NSArray<PayWayV3PayTypeItem *> *)[NSArray arrayWithArray:tmp];

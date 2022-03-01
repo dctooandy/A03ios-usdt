@@ -260,7 +260,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="+" translatesAutoresizingMaskIntoConstraints="NO" id="Kea-71-LYF">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CNY" translatesAutoresizingMaskIntoConstraints="NO" id="Kea-71-LYF">
                                             <rect key="frame" x="35.5" y="0.0" width="16" height="35"/>
                                         </imageView>
                                     </subviews>
@@ -766,7 +766,7 @@
                     <rect key="frame" x="30" y="152.5" width="70" height="70"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_add" translatesAutoresizingMaskIntoConstraints="NO" id="mJt-Fp-OVH">
-                            <rect key="frame" x="27" y="27" width="16" height="16"/>
+                            <rect key="frame" x="-1" y="-1" width="72" height="72"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0l-eS-QII">
                             <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
@@ -839,7 +839,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_add" translatesAutoresizingMaskIntoConstraints="NO" id="L1o-KM-kr0">
-                                    <rect key="frame" x="27" y="27" width="16" height="16"/>
+                                    <rect key="frame" x="-1" y="-1" width="72" height="72"/>
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzM-N4-v15">
                                     <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
@@ -884,7 +884,7 @@
                             <rect key="frame" x="78" y="0.0" width="70" height="70"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_add" translatesAutoresizingMaskIntoConstraints="NO" id="tsA-XQ-dfW">
-                                    <rect key="frame" x="27" y="27" width="16" height="16"/>
+                                    <rect key="frame" x="-1" y="-1" width="72" height="72"/>
                                 </imageView>
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUf-h6-3FX">
                                     <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
@@ -929,7 +929,7 @@
                             <rect key="frame" x="156" y="0.0" width="70" height="70"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_add" translatesAutoresizingMaskIntoConstraints="NO" id="zJR-6N-qYW">
-                                    <rect key="frame" x="27" y="27" width="16" height="16"/>
+                                    <rect key="frame" x="-1" y="-1" width="72" height="72"/>
                                 </imageView>
                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZDf-uy-jkX">
                                     <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
@@ -974,7 +974,7 @@
                             <rect key="frame" x="234" y="0.0" width="70" height="70"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_add" translatesAutoresizingMaskIntoConstraints="NO" id="34R-uK-2dA">
-                                    <rect key="frame" x="27" y="27" width="16" height="16"/>
+                                    <rect key="frame" x="-1" y="-1" width="72" height="72"/>
                                 </imageView>
                                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7W5-EW-LYW">
                                     <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
@@ -1083,12 +1083,12 @@
         </view>
     </objects>
     <resources>
-        <image name="+" width="16" height="16"/>
+        <image name="CNY" width="16" height="17"/>
         <image name="clock" width="48" height="55"/>
         <image name="close_grey" width="16" height="16"/>
         <image name="copy" width="14" height="17"/>
         <image name="mwd_warning" width="14" height="14"/>
-        <image name="picture_add" width="16" height="16"/>
+        <image name="picture_add" width="72" height="72"/>
         <image name="status_confirm" width="42" height="42"/>
         <image name="status_paying" width="42" height="42"/>
         <image name="status_submit" width="42" height="42"/>
