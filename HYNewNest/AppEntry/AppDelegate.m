@@ -174,7 +174,7 @@
  * 推送注册失败
  */
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    [CNTOPHUB showError:@"推送服务注册失败 请检查推送证书"];
+//    [CNTOPHUB showError:@"推送服务注册失败 请检查推送证书"];
     
 //#ifdef DEBUG
 //    [kKeywindow jk_makeToast:[NSString stringWithFormat:@"===didFailToRegisterForRemoteNotifications===\nError:%@", error] duration:8 position:JKToastPositionBottom];
