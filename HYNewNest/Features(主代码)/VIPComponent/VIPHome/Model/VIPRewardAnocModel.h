@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * createdDate;
 @property (nonatomic , assign) NSInteger              flag;
 @property (nonatomic , copy) NSString              * loginname;
+@property (nonatomic , copy) NSString              * loginName;
 @property (nonatomic , assign) NSInteger              pageNumber;
 @property (nonatomic , assign) NSInteger              pageSize;
 @property (nonatomic , assign) NSInteger              prizeLevel;

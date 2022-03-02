@@ -219,8 +219,8 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     [self.collectionViewCard reloadData];
     
     if ([CNUserManager shareManager].isLogin) {
-        _lblThisMonthDeposit.text = [NSString stringWithFormat:@"本月充值:%@", [_sxhModel.totalDepositCNYAmount jk_toDisplayNumberWithDigit:2]];
-        _lblThisMonthAmount.text = [NSString stringWithFormat:@"本月流水:%@",[_sxhModel.totalBetCNYAmount jk_toDisplayNumberWithDigit:2]];
+        _lblThisMonthDeposit.text = [NSString stringWithFormat:@"本月充值:%@", [_sxhModel.totalDepositAmount jk_toDisplayNumberWithDigit:2]];
+        _lblThisMonthAmount.text = [NSString stringWithFormat:@"本月流水:%@",[_sxhModel.totalBetAmount jk_toDisplayNumberWithDigit:2]];
         
         // 滚动到对应等级 居中
         if (self.sxhModel.clubLevel.integerValue > 0) {
@@ -381,7 +381,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
         
     VIPRewardAnocModel *model = [self.sxhModel.prizeList objectAtIndex:index];
     UILabel *content = [itemView viewWithTag:1001];
-    content.text = [NSString stringWithFormat:@"%@ 抽中 %@",model.loginname, model.prizeName];
+    content.text = [NSString stringWithFormat:@"%@ 抽中 %@",model.loginName, model.prizeName];
 }
 
 
@@ -524,18 +524,18 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     // 修改入会礼金 等级要求流水和存款
     NSString * uiModeString = [CNUserManager shareManager].userInfo.uiMode ? [CNUserManager shareManager].userInfo.uiMode : @"USDT";
     if (item) {
-        NSString * rhljNumberString = ([[CNUserManager shareManager].userInfo.uiMode isEqualToString:@"CNY"] ?[item.rhljCnyAmount jk_toDisplayNumberWithDigit:0] : [item.rhljAmount jk_toDisplayNumberWithDigit:0]);
+        NSString * rhljNumberString = ([[CNUserManager shareManager].userInfo.uiMode isEqualToString:@"CNY"] ?[item.membershipBonusCNY jk_toDisplayNumberWithDigit:0] : [item.membershipBonusUSDT jk_toDisplayNumberWithDigit:0]);
         self.lbVipRight.text = [NSString stringWithFormat:@"会员权益: 入会礼金%@%@",
                                 rhljNumberString,
                                 uiModeString];
-        self.lblNextLevelAmount.text = [[item.betCNYAmount jk_toDisplayNumberWithDigit:2] stringByAppendingString:@" CNY"];
-        self.lblNextLevelDeposit.text = [[item.depositCNYAmount jk_toDisplayNumberWithDigit:2] stringByAppendingString:@" CNY"];
+        self.lblNextLevelAmount.text = [[item.betAmountCNY jk_toDisplayNumberWithDigit:2] stringByAppendingString:@" CNY"];
+        self.lblNextLevelDeposit.text = [[item.depositAmountCNY jk_toDisplayNumberWithDigit:2] stringByAppendingString:@" CNY"];
         
-        float amoutPrgs = [_sxhModel.totalBetCNYAmount floatValue] / [item.betCNYAmount floatValue];
+        float amoutPrgs = [_sxhModel.totalBetAmount floatValue] / [item.betAmountCNY floatValue];
         self.prgsViewAmount.progress = amoutPrgs;
         self.prgsViewAmount.tintColor = amoutPrgs >= 1.0 ? kHexColor(0xE11470) : kHexColor(0x3AE3C5);
         
-        float depoPrgs = [_sxhModel.totalDepositCNYAmount floatValue] / [item.depositCNYAmount floatValue];
+        float depoPrgs = [_sxhModel.totalDepositAmount floatValue] / [item.depositAmountCNY floatValue];
         self.prgsViewDeposit.progress = depoPrgs;
         self.prgsViewDeposit.tintColor = depoPrgs >= 1.0 ? kHexColor(0xE11470) : kHexColor(0x3AE3C5);
     }else
@@ -575,10 +575,10 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
             
             // 赌尊流水进度有变化
             if (self.sxhModel.clubLevel.integerValue == 7) {
-                float amoutPrgs = [_sxhModel.totalBetCNYAmount floatValue] / [_sxhModel.vipRhqk.betCNYAmount floatValue];
+                float amoutPrgs = [_sxhModel.totalBetAmount floatValue] / [_sxhModel.vipRhqk.betAmount floatValue];
                 self.prgsViewAmount.progress = amoutPrgs;
                 self.prgsViewAmount.tintColor = amoutPrgs >= 1.0 ? kHexColor(0xE11470) : kHexColor(0x3AE3C5);
-                self.lblNextLevelAmount.text = amoutPrgs >= 1.0 ? @"当前最高" : [NSString stringWithFormat:@"当前最高%@ usdt", _sxhModel.vipRhqk.betCNYAmount];
+                self.lblNextLevelAmount.text = amoutPrgs >= 1.0 ? @"当前最高" : [NSString stringWithFormat:@"当前最高%@ usdt", _sxhModel.vipRhqk.betAmount];
             }
             
             // 赌尊隐藏存款进度

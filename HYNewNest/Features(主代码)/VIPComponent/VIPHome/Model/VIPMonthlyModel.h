@@ -29,10 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * betZunName;
 /// 赌尊充值
 @property (nonatomic , strong) NSNumber             * depositAmount;
-@property (nonatomic , strong) NSNumber             * depositCNYAmount;
+//@property (nonatomic , strong) NSNumber             * depositCNYAmount;
 /// 赌尊流水
 @property (nonatomic , strong) NSNumber              * betAmount;
-@property (nonatomic , strong) NSNumber              * betCNYAmount;
+//@property (nonatomic , strong) NSNumber              * betCNYAmount;
 
 @end
 
@@ -68,15 +68,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSNumber              * clubLevel;
 /// 上月存款
 @property (nonatomic , strong) NSNumber             * totalDepositAmount;
-@property (nonatomic , strong) NSNumber             * totalDepositCNYAmount;
+//@property (nonatomic , strong) NSNumber             * totalDepositCNYAmount;
 /// 上月月份
 @property (nonatomic , assign) NSInteger              lastMonth;
 /// 上月流水
 @property (nonatomic , strong) NSNumber             * totalBetAmount;
-@property (nonatomic , strong) NSNumber             * totalBetCNYAmount;
+//@property (nonatomic , strong) NSNumber             * totalBetCNYAmount;
 /// 当前是什么等级
 @property (nonatomic , copy) NSString              * betName;
-
+// 0301
+@property (nonatomic , strong) NSNumber             * pendingRHLJ; // 入会礼金?
+@property (nonatomic , strong) NSNumber             * pendingSXJ; // 私享金?
 @end
 
 NS_ASSUME_NONNULL_END

@@ -119,8 +119,8 @@
                 [self.btmColorTopLb setHidden:YES];
                 self.btmColorLb.text = [NSString stringWithFormat:@"%@ 会员荣膺“赌尊”\n(流水%@CNY-充值%@CNY)",
                                         model.vipRhqk.betZunName,
-                                        [model.vipRhqk.betCNYAmount jk_toDisplayNumberWithDigit:0],
-                                        [model.vipRhqk.depositCNYAmount jk_toDisplayNumberWithDigit:0]];
+                                        [model.vipRhqk.betAmount jk_toDisplayNumberWithDigit:0],
+                                        [model.vipRhqk.depositAmount jk_toDisplayNumberWithDigit:0]];
             }
             
             UIView *framk = [UIView new];
@@ -265,7 +265,7 @@
             // totalBetAmount 流水
             // totalDepositAmount 充值
             // 不确定API回吐的是CNY还是USDT
-            self.topSubLb.text = [NSString stringWithFormat:@"( 您的战绩：流水%@CNY-充值%@CNY )", [model.totalBetCNYAmount jk_toDisplayNumberWithDigit:0], [model.totalDepositCNYAmount jk_toDisplayNumberWithDigit:0]];
+            self.topSubLb.text = [NSString stringWithFormat:@"( 您的战绩：流水%@CNY-充值%@CNY )", [model.totalBetAmount jk_toDisplayNumberWithDigit:0], [model.totalDepositAmount jk_toDisplayNumberWithDigit:0]];
             
             self.rankImgv.hidden = NO;
             self.rankImgv.contentMode = UIViewContentModeCenter;

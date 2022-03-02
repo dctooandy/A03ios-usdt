@@ -94,8 +94,8 @@ static NSString * const VIPDSBChartHeader = @"VIPChartDSBHeaderView";//头部标
         
         VIPChartDJTQCell *cell = (VIPChartDJTQCell *)[tableView dequeueReusableCellWithIdentifier:VIPDJTQCell];
         cell.lbFirst.text = dict[item.clubLevel];
-        cell.lbSecond.text = [NSString stringWithFormat:@"%@ / %@",[item.rhljCnyAmount jk_toDisplayNumberWithDigit:0],[item.rhljAmount jk_toDisplayNumberWithDigit:0]];
-        cell.lbThird.text = [NSString stringWithFormat:@"%@ / %@",[item.ydfhCnyAmount jk_toDisplayNumberWithDigit:0],[item.ydfhAmount jk_toDisplayNumberWithDigit:0]];
+        cell.lbSecond.text = [NSString stringWithFormat:@"%@ / %@",[item.membershipBonusCNY jk_toDisplayNumberWithDigit:0],[item.membershipBonusUSDT jk_toDisplayNumberWithDigit:0]];
+        cell.lbThird.text = [NSString stringWithFormat:@"%@ / %@",[item.monthlyDividendCNY jk_toDisplayNumberWithDigit:0],[item.monthlyDividendUSDT jk_toDisplayNumberWithDigit:0]];
         cell.lbFourth.text = item.zzzpTime;
         return cell;
         

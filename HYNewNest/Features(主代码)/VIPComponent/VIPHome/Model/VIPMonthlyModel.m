@@ -9,14 +9,14 @@
 #import "VIPMonthlyModel.h"
 
 @implementation VipRhqk
-- (NSNumber*)depositCNYAmount
-{
-    return [NSNumber numberWithInt:(_depositAmount.intValue * CnyAndUsdtdDepositRate)];
-}
-- (NSNumber*)betCNYAmount
-{
-    return [NSNumber numberWithInt:(_betAmount.intValue * CnyAndUsdtdDepositRate)];
-}
+//- (NSNumber*)depositCNYAmount
+//{
+//    return [NSNumber numberWithInt:(_depositAmount.intValue * CnyAndUsdtdDepositRate)];
+//}
+//- (NSNumber*)betCNYAmount
+//{
+//    return [NSNumber numberWithInt:(_betAmount.intValue * CnyAndUsdtdDepositRate)];
+//}
 @end
 
 
@@ -42,12 +42,12 @@
 
 @implementation VIPMonthlyModel
 
-- (NSNumber*)totalDepositCNYAmount
-{
-    return [NSNumber numberWithInt:(_totalDepositAmount.intValue * CnyAndUsdtdDepositRate)];
-}
-- (NSNumber*)totalBetCNYAmount
-{
-    return [NSNumber numberWithInt:(_totalBetAmount.intValue * CnyAndUsdtdDepositRate)];
-}
+//- (NSNumber*)totalDepositCNYAmount
+//{
+//    return [NSNumber numberWithInt:(_totalDepositAmount.intValue * CnyAndUsdtdDepositRate)];
+//}
+//- (NSNumber*)totalBetCNYAmount
+//{
+//    return [NSNumber numberWithInt:(_totalBetAmount.intValue * CnyAndUsdtdDepositRate)];
+//}
 @end

@@ -26,16 +26,23 @@ NS_ASSUME_NONNULL_BEGIN
 /// 用户等级特权
 @interface EquityDataItem :CNBaseModel
 @property (nonatomic , strong) NSNumber              * depositAmount;
-@property (nonatomic , strong) NSNumber              * depositCNYAmount;
+@property (nonatomic , strong) NSNumber              * depositAmountCNY;
+@property (nonatomic , strong) NSNumber              * depositAmountUSDT;
 @property (nonatomic , strong) NSNumber              * betAmount;
-@property (nonatomic , strong) NSNumber              * betCNYAmount;
-@property (nonatomic , strong) NSNumber              * ydfhAmount;
-@property (nonatomic , strong) NSNumber              * ydfhCnyAmount;
-@property (nonatomic , copy) NSString              * clubLevel;
-@property (nonatomic , strong) NSNumber              * rhljAmount;
-@property (nonatomic , strong) NSNumber              * rhljCnyAmount;
-@property (nonatomic , copy) NSString              * currency;
-@property (nonatomic , copy) NSString              * zzzpTime;
+@property (nonatomic , strong) NSNumber              * betAmountCNY;
+@property (nonatomic , strong) NSNumber              * betAmountUSDT;
+@property (nonatomic , copy) NSString                * clubLevel;
+@property (nonatomic , copy) NSString                * currency;
+@property (nonatomic , strong) NSNumber              * rhljAmount;//原入会礼金
+@property (nonatomic , strong) NSNumber              * ydfhAmount;//原私享金
+@property (nonatomic , copy) NSString                * zzzpTime;//原转盘数量
+@property (nonatomic , copy) NSString                * clubName;//人物项次
+@property (nonatomic , copy) NSString                * chance;//转盘数量
+@property (nonatomic , strong) NSNumber              * membershipBonusCNY;//入会礼金-CNY
+@property (nonatomic , strong) NSNumber              * membershipBonusUSDT;//入会礼金-USDT
+@property (nonatomic , strong) NSNumber              * monthlyDividendCNY;//私享金-CNY
+@property (nonatomic , strong) NSNumber              * monthlyDividendUSDT;//私享金-USDT
+
 @end
 
 /// 私享会用户模型
@@ -49,8 +56,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * clubLevel;
 @property (nonatomic , strong) NSNumber *              totalDepositAmount;
 @property (nonatomic , strong) NSNumber *              totalBetAmount;
-@property (nonatomic , strong) NSNumber *              totalDepositCNYAmount;
-@property (nonatomic , strong) NSNumber *              totalBetCNYAmount;
+//@property (nonatomic , strong) NSNumber *              totalDepositCNYAmount;
+//@property (nonatomic , strong) NSNumber *              totalBetCNYAmount;
 @property (nonatomic , strong) NSArray <EquityDataItem *>              * equityData;
 @property (nonatomic , strong) NSArray <VIPRewardAnocModel *>          * prizeList;
 @end
