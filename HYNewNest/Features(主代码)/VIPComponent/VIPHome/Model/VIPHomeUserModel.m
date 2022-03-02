@@ -13,22 +13,7 @@
 
 
 @implementation EquityDataItem
-//- (NSNumber*)depositCNYAmount
-//{
-//    return [NSNumber numberWithInt:(_depositAmount.intValue * CnyAndUsdtdDepositRate)];
-//}
-//- (NSNumber*)betCNYAmount
-//{
-//    return [NSNumber numberWithInt:(_betAmount.intValue * CnyAndUsdtdDepositRate)];
-//}
-//- (NSNumber*)ydfhCnyAmount
-//{
-//    return [NSNumber numberWithInt:(_ydfhAmount.intValue * CnyAndUsdtRate)];
-//}
-//- (NSNumber*)rhljCnyAmount
-//{
-//    return [NSNumber numberWithInt:(_rhljAmount.intValue * CnyAndUsdtRate)];
-//}
+
 @end
 
 

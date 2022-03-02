@@ -472,9 +472,9 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 - (void)changeSXGBtnType:(BOOL)enable
 {
-//    [self.goGetSXGBtn setEnabled:enable];
-    // 暂时都不给点
-    [self.goGetSXGBtn setEnabled:NO];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.goGetSXGBtn setEnabled:enable];
+    });
 }
 - (void)setupSXHBtn{
     [self.goGetSXGBtn setImage:ImageNamed(@"btn_default") forState:UIControlStateNormal];
@@ -491,9 +491,18 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
             if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
                 weakSelf.model = [VIPMonthlyModel cn_parse:responseObj];
                 if (weakSelf.model) {
-                    if (weakSelf.model.preRequest)
+//                    if (weakSelf.model.preRequest)
+//                    {
+//                        [weakSelf changeSXGBtnType:YES];
+//                    }else
+//                    {
+//                        [weakSelf changeSXGBtnType:NO];
+//                    }
+                    if ([[NSString stringWithFormat:@"%@", weakSelf.model.pendingSXJ] isEqualToString:@"1"])
                     {
-                        [weakSelf changeSXGBtnType:YES];
+                        // 暂时都不给点
+                        [weakSelf changeSXGBtnType:NO];
+//                        [weakSelf changeSXGBtnType:YES];
                     }else
                     {
                         // 私享会测试用

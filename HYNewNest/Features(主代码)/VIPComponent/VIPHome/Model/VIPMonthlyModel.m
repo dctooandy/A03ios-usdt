@@ -21,22 +21,22 @@
 
 
 @implementation VipScjz
-- (NSNumber*)ljscCNY
-{
-    return [NSNumber numberWithInt:(_ljsc.intValue * CnyAndUsdtdDepositRate)];
-}
-- (NSNumber*)ljsfCNY
-{
-    return [NSNumber numberWithInt:(_ljsf.intValue * CnyAndUsdtdDepositRate)];
-}
-- (NSNumber*)rhljCNY
-{
-    return [NSNumber numberWithInt:(_rhlj.intValue * CnyAndUsdtdDepositRate)];
-}
-- (NSNumber*)ydfhCNY
-{
-    return [NSNumber numberWithInt:(_ydfh.intValue * CnyAndUsdtdDepositRate)];
-}
+//- (NSNumber*)ljscCNY
+//{
+//    return [NSNumber numberWithInt:(_ljsc.intValue * CnyAndUsdtdDepositRate)];
+//}
+//- (NSNumber*)ljsfCNY
+//{
+//    return [NSNumber numberWithInt:(_ljsf.intValue * CnyAndUsdtdDepositRate)];
+//}
+//- (NSNumber*)rhljCNY
+//{
+//    return [NSNumber numberWithInt:(_rhlj.intValue * CnyAndUsdtdDepositRate)];
+//}
+//- (NSNumber*)ydfhCNY
+//{
+//    return [NSNumber numberWithInt:(_ydfh.intValue * CnyAndUsdtdDepositRate)];
+//}
 @end
 
 

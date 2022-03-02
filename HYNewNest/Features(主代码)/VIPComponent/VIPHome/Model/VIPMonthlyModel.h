@@ -40,16 +40,16 @@ NS_ASSUME_NONNULL_BEGIN
 @interface VipScjz :CNBaseModel
 /// 累计送出
 @property (nonatomic , strong) NSNumber              * ljsc;
-@property (nonatomic , strong) NSNumber              * ljscCNY;
+//@property (nonatomic , strong) NSNumber              * ljscCNY;
 /// 累计身份
 @property (nonatomic , strong) NSNumber              * ljsf;
-@property (nonatomic , strong) NSNumber              * ljsfCNY;
+//@property (nonatomic , strong) NSNumber              * ljsfCNY;
 /// 入会礼金
 @property (nonatomic , strong) NSNumber              * rhlj;
-@property (nonatomic , strong) NSNumber              * rhljCNY;
+//@property (nonatomic , strong) NSNumber              * rhljCNY;
 /// 月度分红
 @property (nonatomic , strong) NSNumber              * ydfh;
-@property (nonatomic , strong) NSNumber              * ydfhCNY;
+//@property (nonatomic , strong) NSNumber              * ydfhCNY;
 /// 至尊转盘
 @property (nonatomic , strong) NSNumber              * zzzp;
 @property (nonatomic , strong) NSNumber              * prize;
@@ -77,8 +77,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 当前是什么等级
 @property (nonatomic , copy) NSString              * betName;
 // 0301
-@property (nonatomic , strong) NSNumber             * pendingRHLJ; // 入会礼金?
-@property (nonatomic , strong) NSNumber             * pendingSXJ; // 私享金?
+@property (nonatomic , strong) NSNumber             * pendingRHLJ; // 是否有待领取的入会礼金（1 有， 0 没有）
+@property (nonatomic , strong) NSNumber             * cnyRHLJ; // 待领取的入会礼金等值cny金额
+@property (nonatomic , strong) NSNumber             * usdtRHLJ; // 待领取的入会礼金等值usdt金额
+@property (nonatomic , strong) NSNumber             * pendingSXJ; // 是否有待领取的私享金（1 有， 0 没有）
+@property (nonatomic , strong) NSNumber             * cnySXJ; // 待领取的私享金等值cny金额
+@property (nonatomic , strong) NSNumber             * usdtSXJ; // 待领取的私享金等值usdt金额
 @end
 
 NS_ASSUME_NONNULL_END

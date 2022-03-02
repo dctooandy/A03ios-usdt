@@ -197,11 +197,11 @@
                 // vipScjz.ljsf 累计身份
                 // vipScjz.ljsc 累计送出
                 // 不确定API回吐的是CNY还是USDT
-                rightNum = @[[[model.vipScjz.rhljCNY jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"],
-                             [[model.vipScjz.ydfhCNY jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"],
+                rightNum = @[[[model.vipScjz.rhlj jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"],
+                             [[model.vipScjz.ydfh jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"],
                              [[model.vipScjz.zzzp jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" 次"],
-                             [[model.vipScjz.ljsfCNY jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"],
-                             [[model.vipScjz.ljscCNY jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"]];
+                             [[model.vipScjz.ljsf jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"],
+                             [[model.vipScjz.ljsc jk_toDisplayNumberWithDigit:0] stringByAppendingString:@" CNY"]];
             } else {
                 rightNum = @[@"0 CNY",@"0 CNY",@"0 CNY",@"0 CNY",@"0 CNY"];
             }
@@ -283,6 +283,9 @@
 //                model.betName = @"赌侠";
 //                model.preRequest = @{@"amount":@"268"};
 //                model.clubLevel = @2;
+//                model.pendingRHLJ = @1;
+//                model.cnyRHLJ = @555;
+//                model.usdtRHLJ = @777;
 //            }
             if (isCanRank) {
                 [self.btmColorTopLb setHidden:NO];
@@ -291,10 +294,15 @@
                                            model.betName];
                 NSString *preRequestAmountCNYString = @"";
                 NSString *preRequestAmountUSDTString = @"";
-                if (model.preRequest)
+//                if (model.preRequest)
+//                {
+//                    preRequestAmountUSDTString = model.preRequest[@"amount"];
+//                    preRequestAmountCNYString = [NSString stringWithFormat:@"%@",[[NSNumber numberWithFloat:([model.preRequest[@"amount"] floatValue] * CnyAndUsdtdDepositRate)] jk_toDisplayNumberWithDigit:0]];
+//                }
+                if ([[NSString stringWithFormat:@"%@", model.pendingRHLJ] isEqualToString:@"1"])
                 {
-                    preRequestAmountUSDTString = model.preRequest[@"amount"];
-                    preRequestAmountCNYString = [NSString stringWithFormat:@"%@",[[NSNumber numberWithFloat:([model.preRequest[@"amount"] floatValue] * CnyAndUsdtdDepositRate)] jk_toDisplayNumberWithDigit:0]];
+                    preRequestAmountCNYString = [NSString stringWithFormat:@"%@", model.cnyRHLJ];
+                    preRequestAmountUSDTString = [NSString stringWithFormat:@"%@", model.usdtRHLJ];
                 }
                 self.btmColorLb.text = [NSString stringWithFormat:@"小游送你入会礼金\n%@ CNY(等值%@ USDT)",
                                         preRequestAmountCNYString,
