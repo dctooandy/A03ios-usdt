@@ -34,7 +34,7 @@
 #import "HYXiMaViewController.h"
 #import "CNLoginRequest.h"
 #import "BYUSDTRechargeAlertView.h"
-#import "KYMWidthdrewUtility.h"
+#import "KYMWithdrewRequest.h"
 #import "PublicMethod.h"
 
 @implementation NNPageRouter
@@ -115,16 +115,16 @@
             
 //            __block void(^jumpWithdrawBlock)(WithdrawCalculateModel* ) = ^(WithdrawCalculateModel * model) {
             UIViewController *topVC = [PublicMethod getCurrentVC];
-            [KYMWidthdrewUtility checkWithdraw:topVC callBack:^(BOOL isMatch,KYMWithdrewCheckModel *model) {
+            [KYMWithdrewRequest checkWithdraw:topVC callBack:^(BOOL isMatch,KYMWithdrewCheckModel *model) {
                 if (isMatch) {
                     HYWithdrawViewController *vc = [HYWithdrawViewController new];
                     vc.isMatchWithdraw = YES;
                     vc.checkModel = model;
-                    [kCurNavVC pushViewController:vc animated:YES];
+                    [topVC.navigationController pushViewController:vc animated:YES];
                 } else {
                     HYWithdrawViewController *vc = [HYWithdrawViewController new];
     //                vc.calculatorModel = model;
-                    [kCurNavVC pushViewController:vc animated:YES];
+                    [topVC.navigationController pushViewController:vc animated:YES];
                 }
             }];
                 
