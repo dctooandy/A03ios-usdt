@@ -22,6 +22,7 @@
 }
 - (void)setAmount:(NSString *)amount
 {
+    _amount = amount;
     self.amountLB.text = [KYMWidthdrewUtility getMoneyString:[amount doubleValue]] ;
     self.amountWidth.constant = [self.amountLB.text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : self.amountLB.font} context:nil].size.width + 1; 
 }
@@ -67,7 +68,7 @@
             self.amountStatusLB2Top.constant = 1;
             self.amountStatusLB2Height.constant = 40;
             self.amountStatusLB2.font = [UIFont fontWithName:@"PingFang SC Semibold" size:14];
-            NSString *amount = [NSString stringWithFormat:@"恭喜老板！获得取款返利金%0.2lf元\n每周一统一发放",[self.amountLB.text doubleValue] * 0.005];
+            NSString *amount = [NSString stringWithFormat:@"恭喜老板！获得取款返利金%0.2lf元\n每周一统一发放",[self.amount doubleValue] * 0.005];
             self.amountStatusLB2.text = amount;
             break;
         }
