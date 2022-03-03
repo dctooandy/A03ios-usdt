@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param finish 完成回调
 + (void)cancelDepisit:(NSString *)billId finish:(HandlerBlock)finish;
 
-/// 查询取款详情
+/// 查询存款详情
 /// @param billId  订单号
 /// @param finish 完成回调
 + (void)queryDepisit:(NSString *)billId finish:(HandlerBlock)finish;

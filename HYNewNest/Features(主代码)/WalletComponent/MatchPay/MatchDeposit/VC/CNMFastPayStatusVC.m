@@ -306,7 +306,7 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
         case CNMPayBillStatusSuccess:
             [self setStatusUI:CNMPayUIStatusSuccess];
             self.confirmDate.text = bank.transactionId;
-            self.amountTipLb.text = [NSString stringWithFormat:@"恭喜老板！获得存款返利礼金 %.2f 元\n每周一统一发放", (bank.amount.doubleValue *0.01)];
+            self.amountTipLb.text = [NSString stringWithFormat:@"恭喜老板！获得存款返利礼金 %.1f 元\n每周一统一发放", (bank.amount.doubleValue *0.01)];
             // 停止倒计时
             [self.timer invalidate];
             self.timer = nil;
