@@ -73,7 +73,9 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
 @property (weak, nonatomic) IBOutlet UILabel *confirmDate;
 /// 复制内容标签组
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray <UILabel *> *contentLbArray;
-
+/// 复制按钮
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btnCopyArray;
+@property (weak, nonatomic) IBOutlet UIStackView *tipCopyView;
 
 #pragma mark - 底部提示内容
 @property (weak, nonatomic) IBOutlet UIView *lineView;
@@ -177,6 +179,10 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
             self.bankRow5.hidden = NO;
             self.bankRow6.hidden = NO;
             self.bankRow7.hidden = YES;
+            self.tipCopyView.hidden = YES;
+            for (UIButton *copy in self.btnCopyArray) {
+                copy.hidden = YES;
+            }
             
             self.submitTipView.hidden = YES;
             self.confirmTipView.hidden = NO;
@@ -205,6 +211,10 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
             self.bankRow6.hidden = NO;
             self.bankRow7.hidden = YES;
             self.rowTitle6.text = @"订单编号：";
+            self.tipCopyView.hidden = YES;
+            for (UIButton *copy in self.btnCopyArray) {
+                copy.hidden = YES;
+            }
             
             self.lineView.hidden = YES;
             self.submitTipView.hidden = YES;
