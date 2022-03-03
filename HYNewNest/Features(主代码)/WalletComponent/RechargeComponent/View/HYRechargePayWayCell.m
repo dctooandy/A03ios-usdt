@@ -42,7 +42,7 @@
     [_imgvIcon sd_setImageWithURL:[NSURL getBankIconWithString:paywayModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"channel_fastpay"]];
     _lblTitle.text = paywayModel.payTypeName;
     if ([paywayModel.payType isEqualToString:FastPayType]) {
-        _lblAmountRange.text = @"返利0.5%";
+        _lblAmountRange.text = @"返利1%";
         _lblAmountRange.textColor = kHexColor(0x10B4DD);
     } else {
         _lblAmountRange.textColor = kHexColorAlpha(0xFFFFFF, 0.4);

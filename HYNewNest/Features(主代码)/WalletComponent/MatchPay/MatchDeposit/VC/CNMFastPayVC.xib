@@ -86,7 +86,7 @@
                                 <font key="NSFont" size="16" name="PingFangSC-Medium"/>
                             </attributes>
                         </fragment>
-                        <fragment content="返利0.5%，">
+                        <fragment content="返利1%，">
                             <attributes>
                                 <color key="NSColor" red="0.062745098040000002" green="0.70588235290000001" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <font key="NSFont" size="16" name="PingFangSC-Medium"/>
@@ -172,7 +172,7 @@
                             <rect key="frame" x="0.0" y="18" width="350.5" height="67.5"/>
                             <string key="text">1、请务必再15分钟内完成存款操作。
 2、如果当日取消超过3次，未在规定时间完成存款，将暂停您使用急速转卡 方式的权利。
-3、仅在10分钟内付款，可以获得存款返利。</string>
+3、仅在15分钟内付款，可以获得存款返利。</string>
                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                             <color key="textColor" red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
