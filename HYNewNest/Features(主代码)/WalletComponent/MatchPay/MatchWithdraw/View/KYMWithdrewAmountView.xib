@@ -58,9 +58,9 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vqr-Bb-bEw">
-                            <rect key="frame" x="0.0" y="83" width="414" height="40"/>
+                            <rect key="frame" x="0.0" y="79" width="414" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="4KB-yh-D1e"/>
+                                <constraint firstAttribute="height" constant="50" id="4KB-yh-D1e"/>
                             </constraints>
                             <string key="text">由于您未在规定时间确认，系统判断您已确认到账
 如果提现未到账或金额不符，请及时联系客服</string>
@@ -80,7 +80,7 @@
                     <constraints>
                         <constraint firstItem="Vqr-Bb-bEw" firstAttribute="centerX" secondItem="qYB-G6-eEV" secondAttribute="centerX" id="6Vq-Vx-611"/>
                         <constraint firstItem="Grp-cS-CFo" firstAttribute="leading" secondItem="qYB-G6-eEV" secondAttribute="leading" constant="15" id="Da7-13-m8E"/>
-                        <constraint firstItem="Vqr-Bb-bEw" firstAttribute="top" secondItem="vbC-2C-29u" secondAttribute="bottom" constant="22" id="Fo9-UM-1cS"/>
+                        <constraint firstItem="Vqr-Bb-bEw" firstAttribute="top" secondItem="vbC-2C-29u" secondAttribute="bottom" constant="18" id="Fo9-UM-1cS"/>
                         <constraint firstItem="f8J-lE-2OI" firstAttribute="top" secondItem="vbC-2C-29u" secondAttribute="bottom" constant="-5" id="JWF-88-tfd"/>
                         <constraint firstItem="vbC-2C-29u" firstAttribute="centerX" secondItem="qYB-G6-eEV" secondAttribute="centerX" id="Nem-Hc-DGp"/>
                         <constraint firstItem="dCh-iF-zOu" firstAttribute="centerY" secondItem="vbC-2C-29u" secondAttribute="centerY" constant="2" id="Tyf-ws-bJy"/>

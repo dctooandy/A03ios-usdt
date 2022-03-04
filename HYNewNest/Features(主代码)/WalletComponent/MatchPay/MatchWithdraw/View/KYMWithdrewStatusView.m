@@ -158,7 +158,7 @@
         UILabel *label = [self.statusItemView viewWithTag:1230 + i];
         label.textColor =  [UIColor colorWithRed:0xFF / 255.0 green:0xFF / 255.0 blue:0xFF / 255.0 alpha:1];
     }
-    CGFloat lable2W = [self.statusLB2.text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : self.statusLB2.font} context:nil].size.width + 5;
+    CGFloat lable2W = [self.statusLB2.text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : self.statusLB2.font} context:nil].size.width + 10;
     self.statusLB2Width.constant = lable2W;
 }
 
