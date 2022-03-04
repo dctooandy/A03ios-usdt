@@ -103,7 +103,8 @@
     parmas[@"currency"] = @"CNY";
     [KYMWithdrewRequest checkChannelWithParams:parmas.copy callback:^(BOOL status, NSString * _Nonnull msg, KYMWithdrewCheckModel  * _Nonnull model) {
         if (!status) {
-            [MBProgressHUD showError:msg toView:nil];
+            //普通取款
+            callback(NO,nil);
             return;
         }
         [LoadingView show];

@@ -80,7 +80,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wns-86-zgC">
                     <rect key="frame" x="12" y="304.5" width="390" height="22.5"/>
                     <attributedString key="attributedText">
-                        <fragment content="10分钟内确认付款可">
+                        <fragment content="15分钟内确认付款可">
                             <attributes>
                                 <color key="NSColor" red="0.50588235294117645" green="0.52941176470588236" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                                 <font key="NSFont" size="16" name="PingFangSC-Medium"/>
