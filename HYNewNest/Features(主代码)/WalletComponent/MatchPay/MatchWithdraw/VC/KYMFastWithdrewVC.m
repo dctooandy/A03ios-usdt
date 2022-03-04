@@ -250,7 +250,7 @@
             self.noticeView2.hidden = NO;
             self.cusmoterView.hidden = NO;
             self.lineView.hidden = NO;
-            self.title = @"等待存款";
+            self.title = @"等待付款";
             break;
         case KYMWithdrewStepThree:
             statusViewHeight = 160;

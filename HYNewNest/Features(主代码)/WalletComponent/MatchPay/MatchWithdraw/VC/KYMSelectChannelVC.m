@@ -60,7 +60,7 @@
  
     KYMSelectChannelCell *cell = [tableView dequeueReusableCellWithIdentifier:@"KYMSelectChannelCell"];
     if (indexPath.row == 0) {
-        cell.titleLable.text = @"急速转卡";
+        cell.titleLable.text = @"急速提现";
         cell.iconImageView.image = [UIImage imageNamed:@"mwd_fast"];
         cell.descLable.hidden = NO;
         cell.recommendIcon.hidden = NO;

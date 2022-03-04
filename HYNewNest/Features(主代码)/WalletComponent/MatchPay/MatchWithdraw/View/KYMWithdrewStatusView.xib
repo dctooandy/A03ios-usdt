@@ -44,7 +44,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00分00秒" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgc-RF-hgR">
-                            <rect key="frame" x="46" y="126" width="70" height="21"/>
+                            <rect key="frame" x="41" y="126" width="70" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="LBH-ka-W5I"/>
                                 <constraint firstAttribute="width" constant="70" id="u1D-Ik-F7e"/>
@@ -54,7 +54,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内点击【确认到账】，时间结束默认完成" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRu-L1-tnq">
-                            <rect key="frame" x="116" y="126" width="298" height="21"/>
+                            <rect key="frame" x="111" y="126" width="303" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="aap-8u-a31"/>
                             </constraints>
@@ -75,7 +75,7 @@
                         <constraint firstItem="pgc-RF-hgR" firstAttribute="centerY" secondItem="ZYC-eb-rth" secondAttribute="centerY" id="bUc-ID-tHC"/>
                         <constraint firstItem="ZYC-eb-rth" firstAttribute="top" secondItem="EAY-Wb-EfG" secondAttribute="bottom" constant="5" id="hYd-02-rZj"/>
                         <constraint firstItem="ZYC-eb-rth" firstAttribute="leading" secondItem="rFd-dV-heL" secondAttribute="leading" constant="15" id="hhh-Dv-ndG"/>
-                        <constraint firstItem="pgc-RF-hgR" firstAttribute="leading" secondItem="ZYC-eb-rth" secondAttribute="trailing" id="hlf-DX-kkL"/>
+                        <constraint firstItem="pgc-RF-hgR" firstAttribute="leading" secondItem="ZYC-eb-rth" secondAttribute="trailing" constant="-5" id="hlf-DX-kkL"/>
                         <constraint firstItem="EAY-Wb-EfG" firstAttribute="leading" secondItem="rFd-dV-heL" secondAttribute="leading" constant="15" id="lPE-ZY-6Qg"/>
                         <constraint firstItem="fRu-L1-tnq" firstAttribute="centerY" secondItem="pgc-RF-hgR" secondAttribute="centerY" id="nNN-kD-3NC"/>
                     </constraints>
