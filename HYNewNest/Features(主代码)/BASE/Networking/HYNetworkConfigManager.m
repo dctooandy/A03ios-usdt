@@ -35,7 +35,7 @@
         _configManager = [[HYNetworkConfigManager alloc] init];
 #ifdef DEBUG
         IVNEnvironment environment = [[NSUserDefaults standardUserDefaults] integerForKey:@"IVNEnvironment"];
-        _configManager.environment = IVNEnvironmentDevelop;
+        _configManager.environment = environment;
 #else
         _configManager.environment = IVNEnvironmentPublish;
 #endif

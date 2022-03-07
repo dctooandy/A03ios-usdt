@@ -182,7 +182,7 @@
 
 /// DEBUG 环境 点击三次切换Domain
 - (IBAction)switchEnvironmentTap:(UITapGestureRecognizer *)sender {
-//    [[HYNetworkConfigManager shareManager] switchEnvirnment];
+    [[HYNetworkConfigManager shareManager] switchEnvirnment];
 }
 
 
