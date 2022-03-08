@@ -360,9 +360,9 @@
         vc.userName = self.detailModel.data.loginName;
         vc.amountStr = self.detailModel.data.amount;
         [self.navigationController pushViewController:vc animated:YES];
-    } else if (detailModel.data.status == KYMWithdrewStatusSubmit || detailModel.data.status == KYMWithdrewStatusSubmit1 ) { // 第一步
+    } else if (detailModel.matchStatus == KYMWithdrewDetailStatusSubmit && detailModel.data.status == KYMWithdrewStatusSubmit1 ) { // 第一步
         self.step = KYMWithdrewStepOne;
-    } else if (detailModel.data.status == KYMWithdrewStatusWaiting && detailModel.data.depositStatus == KYMWithdrewStatusWaiting ) { // 第二步，等待付款
+    } else if ((detailModel.data.status == KYMWithdrewStatusSubmit && detailModel.matchStatus == KYMWithdrewDetailStatusSubmit)  || (detailModel.data.status == KYMWithdrewStatusWaiting && detailModel.data.depositStatus == KYMWithdrewStatusWaiting) ) { // 第二步，等待付款
         self.step = KYMWithdrewStepTwo;
     } else if (detailModel.data.status == KYMWithdrewStatusWaiting && detailModel.data.depositStatus == KYMWithdrewStatusConfirm ) { // 第三步，待确认到账
         self.step = KYMWithdrewStepThree;

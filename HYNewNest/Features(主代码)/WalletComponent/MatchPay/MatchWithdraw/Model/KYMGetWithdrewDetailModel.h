@@ -16,8 +16,8 @@ typedef NS_ENUM(NSInteger, KYMWithdrewDetailStatus) {
     KYMWithdrewDetailStatusFaild = -1, //撮合失败
 };
 typedef NS_ENUM(NSInteger, KYMWithdrewStatus) {
-    KYMWithdrewStatusSubmit1 = 0, //撮合提交
-    KYMWithdrewStatusSubmit = 1, //撮合提交
+    KYMWithdrewStatusSubmit1 = 0, //撮合提交，等待审核
+    KYMWithdrewStatusSubmit = 1, //撮合提交,审核通过
     KYMWithdrewStatusWaiting = 2, //取款等待
     KYMWithdrewStatusNotMatch = 3, //取款未匹配
     KYMWithdrewStatusTimeout = 4, //取款超时
