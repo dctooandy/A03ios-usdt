@@ -15,13 +15,18 @@
 #import <UIImageView+WebCache.h>
 #import "UIColor+Gradient.h"
 
-@interface HYRechargeCNYEditView () <CNNormalInputViewDelegate>
+#import "CNMAmountSelectCCell.h"
+#define kCNMAmountSelectCCell  @"CNMAmountSelectCCell"
+
+@interface HYRechargeCNYEditView () <CNNormalInputViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIImageView *imgvIcon;
 @property (weak, nonatomic) IBOutlet UILabel *lblPayWayName;
 @property (weak, nonatomic) IBOutlet UILabel *refundTip;
 @property (weak, nonatomic) IBOutlet UILabel *tipLbl;
 
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewH;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *amountBtnsTopMargin;
 @property (weak, nonatomic) IBOutlet UIView *amountBtnsContain;
@@ -103,11 +108,6 @@
     /// 顶上信息
     [self.imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:itemModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"channel_fastpay"]];
     self.lblPayWayName.text = itemModel.payTypeName;
-    /// 急速走另外页面
-    if ([itemModel.payType isEqualToString:FastPayType]) {
-        self.refundTip.hidden = NO;
-        return;
-    }
     self.refundTip.hidden = YES;
     
     if ([self.lblPayWayName.text containsString:@"支付宝"] || [self.lblPayWayName.text containsString:@"微信"]) {
@@ -220,6 +220,46 @@
     [self mas_updateConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.btmBankSelcView).offset(40);
     }];
+    
+    [self setupMatchUI];
+}
+
+#pragma mark - 撮合相关
+
+- (void)setupMatchUI {
+    //92:支付宝秒存 91:微信秒存 90：迅捷网银
+    NSArray *array = @[@"91", @"92", @"93"];
+    if ([array containsObject:self.itemModel.payType]) {
+        if (self.matchAmountList.count > 0) {
+            self.collectionView.delegate = self;
+            self.collectionView.dataSource = self;
+            self.collectionView.hidden = NO;
+            [self.collectionView registerNib:[UINib nibWithNibName:kCNMAmountSelectCCell bundle:nil] forCellWithReuseIdentifier:kCNMAmountSelectCCell];
+            self.collectionViewH.constant = 80 * ceilf(self.matchAmountList.count/3.0)+30;
+            return;
+        }
+    }
+    self.collectionViewH.constant = 0;
+    self.collectionView.hidden = YES;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.matchAmountList.count;
+}
+
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CNMAmountSelectCCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCNMAmountSelectCCell forIndexPath:indexPath];
+    cell.amountLb.text = self.matchAmountList[indexPath.row];
+    cell.recommendTag.hidden = YES;
+    return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake((collectionView.bounds.size.width-40)/3.0, 70);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    self.amountTfView.text = self.matchAmountList[indexPath.row];
 }
 
 

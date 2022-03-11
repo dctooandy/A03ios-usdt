@@ -44,6 +44,7 @@
 @property (nonatomic, strong) BYLargeAmountView *largeAmountView;
 @property (nonatomic, strong) CNMFastPayVC *fastVC;
 @property (nonatomic, strong) CNWFastPayModel *fastModel;
+@property (nonatomic, strong) NSArray *matchAmountList;
 @end
 
 @implementation HYRechargeCNYViewController
@@ -118,6 +119,7 @@
         [self setupSubmitBtnWithHidden:false];
     }
     else {
+        [self qureyFastPay];
         [self setupSubmitBtnWithHidden:YES];
         [self queryCNYPayways];
     }
@@ -145,10 +147,25 @@
 
 - (void)setupMainEditView {
     [self.scrollContainer mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(self.view);
-        make.bottom.equalTo(self.btnSubmit.mas_top).offset(-30);
+        make.left.right.top.bottom.equalTo(self.view);
     }];
     
+    CGFloat editViewHeight = 510;
+    //92:支付宝秒存 91:微信秒存 90：迅捷网银
+    NSArray *array = @[@"91", @"92", @"93"];
+    if ([array containsObject:self.paytypeList[_selcPayWayIdx].payType]) {
+        if (self.fastModel.amountList.count > 0) {
+            NSMutableArray *array = [NSMutableArray array];
+            for (CNWAmountListModel *model in self.fastModel.amountList) {
+                [array addObject:model.amount];
+            }
+            self.matchAmountList = array.copy;
+            self.editView.matchAmountList = self.matchAmountList;
+        }
+        self.editView.matchAmountList = @[@"1000", @"2000", @"3000", @"4000", @"5000", @"6000", @"7000", @"8000"];
+        editViewHeight += 80 * ceilf(self.matchAmountList.count/3.0)+30;
+    }
+    self.scrollContainer.contentSize = CGSizeMake(self.view.size.width, editViewHeight);
     if ([self isVIP]) {
         [self.largeAmountView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.scrollContainer).offset(15);
@@ -160,7 +177,7 @@
         [self.editView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.scrollContainer).offset(15);
             make.top.equalTo(self.largeAmountView.mas_bottom).offset(15);
-            make.height.mas_equalTo(510).priority(MASLayoutPriorityDefaultLow);
+            make.height.mas_equalTo(editViewHeight).priority(MASLayoutPriorityDefaultLow);
             make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
         }];
     }
@@ -168,7 +185,7 @@
         [self.editView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.scrollContainer).offset(15);
             make.top.equalTo(self.scrollContainer).offset(15);
-            make.height.mas_equalTo(510).priority(MASLayoutPriorityDefaultLow);
+            make.height.mas_equalTo(editViewHeight).priority(MASLayoutPriorityDefaultLow);
             make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
         }];
     }
@@ -187,11 +204,11 @@
     CNTwoStatusBtn *subBtn = [[CNTwoStatusBtn alloc] init];
     [subBtn setTitle:@"提交" forState:UIControlStateNormal];
     [subBtn addTarget:self action:@selector(submitRechargeRequest) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:subBtn];
+    [self.scrollContainer addSubview:subBtn];
     [subBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(30);
-        make.right.equalTo(self.view).offset(-30);
-        make.bottom.equalTo(self.view).offset(-60);
+        make.left.equalTo(self.scrollContainer).offset(30);
+        make.right.equalTo(self.scrollContainer).offset(-30);
+        make.bottom.equalTo(self.scrollContainer).offset(-60);
         make.height.mas_equalTo(48);
     }];
     self.btnSubmit = subBtn;
@@ -223,13 +240,10 @@
     [CNMatchPayRequest queryFastPayOpenFinish:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
             self.fastModel = [CNWFastPayModel cn_parse:responseObj];
-            if (self.fastModel.isAvailable && self.fastModel.amountList.count > 0) {
-                [self hiddenFastPayUI:NO];
-                return;
+            if (!self.fastModel.isAvailable || self.fastModel.mmProcessingOrderTransactionId.length > 0) {
+                self.fastModel.amountList = nil;
             }
         }
-        // 移除急速通道
-        [self removeFastPay];
     }];
 }
 
@@ -350,13 +364,6 @@
                 [tmp insertObject:lastItem atIndex:0];
             }
             
-            // 先插入急速存款
-            PayWayV3PayTypeItem *fastItem = [[PayWayV3PayTypeItem alloc] init];
-            fastItem.payType = FastPayType;
-            fastItem.payTypeName = @"急速转卡";
-            fastItem.payTypeIcon = @"channel_fastpay";
-            [tmp insertObject:fastItem atIndex:0];
-            
             self.paytypeList = (NSArray<PayWayV3PayTypeItem *> *)[NSArray arrayWithArray:tmp];
             [self refreshQueryData];
         } else {
@@ -378,14 +385,8 @@
 }
 
 - (void)refreshQueryData {
+    [self setupSubmitBtnWithHidden:NO];
     PayWayV3PayTypeItem *item = self.paytypeList[_selcPayWayIdx];
-    
-    if ([item.payType isEqualToString:FastPayType]) {
-        [self qureyFastPay];
-        return;
-    }
-    [self hiddenFastPayUI:YES];
-    
     if (![HYRechargeHelper isOnlinePayWay:item]) {
         [self queryTransferAmount];
     } else {

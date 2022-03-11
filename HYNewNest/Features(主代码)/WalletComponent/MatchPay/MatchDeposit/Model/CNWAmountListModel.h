@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 渠道是否开启
 @property (nonatomic, assign) BOOL isAvailable;
 /// 金额列表，撮合系统使用
-@property (nonatomic, copy) NSArray <CNWAmountListModel *> *amountList;
+@property (nonatomic, copy, nullable) NSArray <CNWAmountListModel *> *amountList;
 @property (nonatomic, copy) NSString *remainDepositTimes;
 @property (nonatomic, copy) NSString *remainCancelDepositTimes;
 /// 存在撮合，1 存款，2 取款
