@@ -200,17 +200,18 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     else {
         KYMWithdrawConfirmVC *vc = [[KYMWithdrawConfirmVC alloc] init];
         vc.checkModel = self.checkModel;
-        vc.balance = [self.moneyModel.withdrawBal stringValue];
+        vc.balanceModel = self.moneyModel;
         __weak typeof(self)weakSelf = self;
         __weak typeof(vc)weakVC = vc;
         vc.submitHandler = ^(NSString * _Nonnull pwd, NSString * _Nonnull amount, BOOL isMatch) {
             if (self.elecCardsArr.count == 0) {
                 return;
             }
+            pwd = [IVRsaEncryptWrapper encryptorString:pwd];
             if (isMatch) {//撮合取款
                 [weakSelf requestMatchWithdrawWithPwd:pwd amount:amount confirmVC:weakVC];
             } else {//普通取款
-                [weakSelf sumbimtWithdrawAmount:amount pwd:pwd];
+                [weakSelf sumbimtWithdrawAmount:amount pwd:pwd confirmVC:weakVC];
             }
             
         };
@@ -278,7 +279,6 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 - (void)requestMatchWithdrawWithPwd:(NSString *)pwd amount:(NSString *)amount confirmVC:(UIViewController *)confirmVC
 {
     AccountModel *model = self.elecCardsArr[self.selectedIdx];
-    pwd = [IVRsaEncryptWrapper encryptorString:pwd];
     [KYMWithdrewRequest createWithdrawWithBankNum:model.accountId amount:amount pwd:pwd callback:^(BOOL status, NSString * _Nonnull msg, KYMCreateWithdrewModel  *_Nonnull model) {
         if (!status) {
             [MBProgressHUD showError:msg toView:nil];
@@ -353,7 +353,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 
 /// ------ CNY提现
 // 提交取款金额
-- (void)sumbimtWithdrawAmount:(NSString *)amout pwd:(NSString *)pwd{
+- (void)sumbimtWithdrawAmount:(NSString *)amout pwd:(NSString *)pwd confirmVC:(UIViewController *)confirmVC {
     // 请求最后一步的闭包
     WEAKSELF_DEFINE
     if (self.elecCardsArr.count == 0) {
@@ -424,16 +424,18 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                                                handler:^(id responseObj, NSString *errorMsg) {
             STRONGSELF_DEFINE
             if (!errorMsg) {
-//                [strongSelf.comfirmView showSuccessWithdraw];
-                KYMFastWithdrewVC *vc = [KYMFastWithdrewVC new];
-                [self.navigationController pushViewController:vc animated:YES];
+                
+                [confirmVC dismissViewControllerAnimated:YES completion:^{
+                    KYMWithdrewFaildVC *vc = [KYMWithdrewFaildVC new];
+                    [strongSelf.navigationController pushViewController:vc animated:YES];
+                }];
+                
                 [strongSelf requestBalance];
                 [[NSNotificationCenter defaultCenter] postNotificationName:BYRefreshBalanceNotification object:nil]; // 让首页和我的余额刷新
             } else {
-//                [strongSelf.comfirmView removeView];
             }
         }];
-//    }
+
 
 
 }
