@@ -235,7 +235,7 @@
             self.collectionView.dataSource = self;
             self.collectionView.hidden = NO;
             [self.collectionView registerNib:[UINib nibWithNibName:kCNMAmountSelectCCell bundle:nil] forCellWithReuseIdentifier:kCNMAmountSelectCCell];
-            self.collectionViewH.constant = 80 * ceilf(self.matchAmountList.count/3.0)+30;
+            self.collectionViewH.constant = 80 * ceilf(self.matchAmountList.count/3.0)+10;
             return;
         }
     }

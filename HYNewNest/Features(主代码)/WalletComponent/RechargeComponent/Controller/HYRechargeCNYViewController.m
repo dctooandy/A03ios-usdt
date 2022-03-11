@@ -161,11 +161,9 @@
             }
             self.matchAmountList = array.copy;
             self.editView.matchAmountList = self.matchAmountList;
+            editViewHeight += 80 * ceilf(self.matchAmountList.count/3.0)+20;
         }
-        self.editView.matchAmountList = @[@"1000", @"2000", @"3000", @"4000", @"5000", @"6000", @"7000", @"8000"];
-        editViewHeight += 80 * ceilf(self.matchAmountList.count/3.0)+30;
     }
-    self.scrollContainer.contentSize = CGSizeMake(self.view.size.width, editViewHeight);
     if ([self isVIP]) {
         [self.largeAmountView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.scrollContainer).offset(15);
@@ -180,6 +178,7 @@
             make.height.mas_equalTo(editViewHeight).priority(MASLayoutPriorityDefaultLow);
             make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
         }];
+        self.scrollContainer.contentSize = CGSizeMake(self.view.size.width, editViewHeight+120+120);
     }
     else {
         [self.editView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -188,12 +187,12 @@
             make.height.mas_equalTo(editViewHeight).priority(MASLayoutPriorityDefaultLow);
             make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
         }];
+        self.scrollContainer.contentSize = CGSizeMake(self.view.size.width, editViewHeight+120);
     }
 
     [self.editView setupPayTypeItem:self.paytypeList[_selcPayWayIdx]
                           bankModel:self.curOnliBankModel
                         amountModel:self.curAmountModel];
-
 }
 
 - (void)setupSubmitBtn {
@@ -206,9 +205,9 @@
     [subBtn addTarget:self action:@selector(submitRechargeRequest) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollContainer addSubview:subBtn];
     [subBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.scrollContainer).offset(30);
-        make.right.equalTo(self.scrollContainer).offset(-30);
-        make.bottom.equalTo(self.scrollContainer).offset(-60);
+        make.left.equalTo(self.editView.mas_left).offset(0);
+        make.right.equalTo(self.editView.mas_right).offset(0);
+        make.top.equalTo(self.editView.mas_bottom).offset(60);
         make.height.mas_equalTo(48);
     }];
     self.btnSubmit = subBtn;
