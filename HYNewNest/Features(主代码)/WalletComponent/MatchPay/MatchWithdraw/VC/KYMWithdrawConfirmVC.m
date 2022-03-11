@@ -12,6 +12,8 @@
 #import "KYMSubmitButton.h"
 #import "Masonry.h"
 #import "KYMWidthdrewUtility.h"
+#import "CNAmountInputView.h"
+#import "CNCodeInputView.h"
 
 @interface KYMWithdrawConfirmVC ()<KYMWithdrewAmountCellDelegate>
 @property (weak, nonatomic) IBOutlet UIView *mainView;
@@ -19,10 +21,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *balanceLB;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *balanceLBWidth;
 @property (strong ,nonatomic) KYMWithdrewAmountListView *amountListView;
-@property (strong, nonatomic) UITextField *pwdTF;
+@property (strong, nonatomic) CNAmountInputView *amountInputView;
+@property (strong, nonatomic) CNCodeInputView *codeInputView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeight;
 @property (strong, nonatomic) KYMSubmitButton *submitBitn;
-@property (strong, nonatomic) NSIndexPath *selectedAmountIndexpath;
 
 @end
 
@@ -35,7 +37,7 @@
 
 - (void)setupSubViews
 {
-    self.balanceLB.text =  [KYMWidthdrewUtility getMoneyString:[self.balance doubleValue]];
+    self.balanceLB.text =  [KYMWidthdrewUtility getMoneyString:[self.balanceModel.withdrawBal doubleValue]];
     self.mainView.layer.cornerRadius = 20;
     self.mainView.layer.masksToBounds = YES;
     self.amountListView = [[KYMWithdrewAmountListView alloc] init];
@@ -43,8 +45,17 @@
     self.amountListView.delegate = self;
     [self.contentView addSubview:self.amountListView];
     
-    NSUInteger lineCount = self.checkModel.data.amountList.count / 3 > 0 ? self.checkModel.data.amountList.count / 3 : 1;
-    CGFloat matchWithdrewAmountH = 40 * lineCount + 16 + 8 * (lineCount - 1) + 21;
+    
+    NSUInteger lineCount = 0;
+    if (self.checkModel.data.amountList.count > 0) {
+        lineCount = ceilf(self.checkModel.data.amountList.count / 3.0) ;
+    }
+    CGFloat matchWithdrewAmountH = 0;
+ 
+    if (lineCount > 0 && !self.isForceNormalWithdraw) {
+        matchWithdrewAmountH = 40 * lineCount + 16 + 50 + 8 * (lineCount - 1);
+    }
+    
     [self.amountListView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.balanceLB.mas_bottom).offset(15);
         make.left.equalTo(self.balanceLB);
@@ -52,48 +63,53 @@
         make.height.offset(matchWithdrewAmountH);
     }];
     
-    self.pwdTF = [[UITextField alloc] init];
-    self.pwdTF.textColor = [UIColor whiteColor];
-    self.pwdTF.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
-    NSAttributedString *attr = [[NSAttributedString alloc] initWithString:@"请输入资金密码" attributes:@{NSFontAttributeName : self.pwdTF.font,NSForegroundColorAttributeName : [UIColor colorWithRed:0xFF / 255.0 green:0xFF / 255.0 blue:0xFF / 255.0 alpha:0.4]}];
-    self.pwdTF.attributedPlaceholder = attr;
-    [self.pwdTF addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingChanged];
-    UIButton *rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
-    [rightBtn setBackgroundImage:[UIImage imageNamed:@"l_password"] forState:UIControlStateNormal];
-    [rightBtn setBackgroundImage:[UIImage imageNamed:@"l_password_s"] forState:UIControlStateSelected];
-    [rightBtn addTarget:self action:@selector(pwdRightBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    self.pwdTF.rightView = rightBtn;
-    self.pwdTF.rightViewMode = UITextFieldViewModeAlways;
-    self.pwdTF.secureTextEntry = YES;
-    [self.contentView addSubview:self.pwdTF];
-    [self.pwdTF mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.amountInputView = [CNAmountInputView new];
+    self.amountInputView.delegate = self;
+    self.amountInputView.codeType = CNAmountTypeWithdraw;
+    self.amountInputView.model = self.balanceModel;
+    [self.amountInputView setPlaceholder:@"请输入提款金额"];
+    [self.contentView addSubview:self.amountInputView];
+    
+    self.codeInputView = [CNCodeInputView new];
+    self.codeInputView.delegate = self;
+    self.codeInputView.codeType = CNCodeTypeOldFundPwd;
+    [self.codeInputView setPlaceholder:@"请输入资金密码"];
+    [self.contentView addSubview:self.codeInputView];
+    
+    [self.amountInputView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.amountListView);
-        make.top.equalTo(self.amountListView.mas_bottom).offset(17);
-        make.height.offset(40);
+        make.top.equalTo(self.amountListView.mas_bottom).offset(0);
+        make.height.offset(89);
     }];
     UIView *lineView = [[UIView alloc] init];
     lineView.backgroundColor = [UIColor colorWithRed:0xFF / 255.0 green:0xFF / 255.0 blue:0xFF / 255.0 alpha:0.15];
     [self.contentView addSubview:lineView];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.pwdTF);
-        make.top.equalTo(self.pwdTF.mas_bottom);
+        make.left.right.equalTo(self.amountInputView);
+        make.top.equalTo(self.amountInputView.mas_bottom);
         make.height.offset(0.5);
     }];
-    KYMWithDrewHomeNotifyView *notifyVeiw = [[KYMWithDrewHomeNotifyView alloc] init];
-    notifyVeiw.canUseCount = self.checkModel.data.remainWithdrawTimes;
-    [self.contentView addSubview:notifyVeiw];
-    [notifyVeiw mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(lineView.mas_bottom).offset(14);
-        make.left.right.equalTo(lineView);
-        make.height.offset(210);
-    }];
     
+    [self.codeInputView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.amountListView);
+        make.top.equalTo(self.amountInputView.mas_bottom).offset(0);
+        make.height.offset(89);
+    }];
+    UIView *lineView1 = [[UIView alloc] init];
+    lineView1.backgroundColor = [UIColor colorWithRed:0xFF / 255.0 green:0xFF / 255.0 blue:0xFF / 255.0 alpha:0.15];
+    [self.contentView addSubview:lineView1];
+    [lineView1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.codeInputView);
+        make.top.equalTo(self.codeInputView.mas_bottom);
+        make.height.offset(0.5);
+    }];
+
     self.submitBitn = [[KYMSubmitButton alloc] init];
     [self.submitBitn addTarget:self action:@selector(submitBitnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.submitBitn];
     [self.submitBitn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(notifyVeiw.mas_bottom).offset(20);
-        make.left.right.equalTo(notifyVeiw);
+        make.top.equalTo(self.codeInputView.mas_bottom).offset(20);
+        make.left.right.equalTo(self.codeInputView);
         make.height.offset(48);
     }];
 }
@@ -103,31 +119,45 @@
     self.balanceLBWidth.constant = [self.balanceLB.text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : self.balanceLB.font} context:nil].size.width + 1;
     self.contentViewHeight.constant = CGRectGetMaxY(self.submitBitn.frame) + 24;
 }
-- (void)pwdRightBtnClicked:(UIButton *)button
-{
-    button.selected = !button.selected;
-    self.pwdTF.secureTextEntry = !button.selected;
-}
+
 - (void)submitBitnClicked:(UIButton *)button
 {
-    KYMWithdrewAmountModel *amountModel = self.amountListView.amountArray[self.selectedAmountIndexpath.row];
-    self.submitHandler(self.pwdTF.text, amountModel.amount);
+    BOOL isMatchWithdraw = (self.amountListView.selectedIndexPath != nil);
+    self.submitHandler(self.codeInputView.code, self.amountInputView.money, isMatchWithdraw);
 }
 - (IBAction)closeBtnClicked:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)textChanged:(UITextField *)textField
+//- (void)textChanged:(UITextField *)textField
+//{
+//    if (textField == self.amountTF) {
+//        [self.amountListView setCurrentAmount:textField.text];
+//    }
+//
+//    if ([KYMWidthdrewUtility isValidateWithdrawPwdNumber:self.pwdTF.text] && self.amountTF.text.length > 0) {
+//        self.submitBitn.enabled = true;
+//    } else {
+//        self.submitBitn.enabled = false;
+//    }
+//}
+- (void)matchWithdrewAmountCellDidSelected:(KYMWithdrewAmountListView *)view indexPath:(NSIndexPath *)indexPath
 {
-    if ([KYMWidthdrewUtility isValidateWithdrawPwdNumber:textField.text] && self.selectedAmountIndexpath) {
+    self.amountInputView.money = view.amountArray[indexPath.row].amount;
+    
+    if ([KYMWidthdrewUtility isValidateWithdrawPwdNumber:self.codeInputView.code] && self.amountInputView.money.length > 0) {
         self.submitBitn.enabled = true;
     } else {
         self.submitBitn.enabled = false;
     }
 }
-- (void)matchWithdrewAmountCellDidSelected:(KYMWithdrewAmountListView *)view indexPath:(NSIndexPath *)indexPath
-{
-    self.selectedAmountIndexpath = indexPath;
-    self.submitBitn.enabled = self.pwdTF.text.length == 6;
+#pragma mark Input Delegate
+- (void)amountInputViewTextChange:(CNAmountInputView *)view {
+    [self.amountListView setCurrentAmount:view.money];
+    [self.submitBitn setEnabled:(view.correct && view.money.length > 0) && self.codeInputView.correct];
+}
+
+- (void)codeInputViewTextChange:(CNCodeInputView *)view {
+    [self.submitBitn setEnabled:(view.correct && self.amountInputView.money.length > 0) && self.codeInputView.correct];
 }
 @end

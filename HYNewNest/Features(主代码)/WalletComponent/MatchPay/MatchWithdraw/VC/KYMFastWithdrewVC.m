@@ -74,7 +74,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"急速取款";
+    self.title = @"极速取款";
     [self setupSubViews];
     self.step = KYMWithdrewStepOne;
 }
@@ -211,6 +211,7 @@
         return;
     }
     _step = step;
+    
     self.statusView.step = step;
     self.amountView.step = step;
     self.submitView.step = step;
@@ -235,7 +236,7 @@
             self.noticeView2.hidden = YES;
             self.cusmoterView.hidden = YES;
             self.lineView.hidden = YES;
-            self.title = @"急速取款";
+            self.title = @"极速取款";
             break;
         case KYMWithdrewStepTwo:
             statusViewHeight = 160;
@@ -284,7 +285,7 @@
             break;
         case KYMWithdrewStepFive:
             statusViewHeight = 138;
-            amountViewHeight = 123;
+            amountViewHeight = 163;
             bankViewHeight = 263;
             submitHeight = 48;
             submitTop = 35;
@@ -346,7 +347,7 @@
     self.bankView.bankName.text = detailModel.data.bankName;
     self.bankView.accoutName.text = detailModel.data.bankAccountName;
     self.bankView.account.text = detailModel.data.bankAccountNo;
-    self.bankView.withdrawType.text = @"急速取款";
+    self.bankView.withdrawType.text = @"极速取款";
     self.bankView.amount.text = [[KYMWidthdrewUtility getMoneyString:[detailModel.data.amount doubleValue]] stringByAppendingString:@"元"];
     self.bankView.submitTime.text = detailModel.data.createdDate;
     self.bankView.confirmTime.text = detailModel.data.confirmTime;

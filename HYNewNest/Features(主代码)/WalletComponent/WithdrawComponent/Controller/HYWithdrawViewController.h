@@ -11,7 +11,6 @@
 NS_ASSUME_NONNULL_BEGIN
 @class WithdrawCalculateModel;
 @interface HYWithdrawViewController : CNBaseVC
-@property (nonatomic, assign) BOOL isMatchWithdraw; //是否为撮合取款
 @property (nonatomic, strong) KYMWithdrewCheckModel *checkModel;
 @property (nonatomic, strong) WithdrawCalculateModel *calculatorModel; //CNY needed
 @end

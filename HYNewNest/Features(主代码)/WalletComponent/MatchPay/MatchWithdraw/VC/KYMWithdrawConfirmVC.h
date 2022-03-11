@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "KYMWithdrewCheckModel.h"
+#import "BetAmountModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KYMWithdrawConfirmVC : UIViewController
-@property (nonatomic, copy) NSString *balance;
+
 @property (nonatomic, strong) KYMWithdrewCheckModel *checkModel;
-@property (nonatomic, strong) void(^submitHandler)(NSString *pwd, NSString *amount);
+@property (nonatomic, strong) AccountMoneyDetailModel *balanceModel;
+@property (nonatomic, strong) void(^submitHandler)(NSString *pwd, NSString *amount,BOOL isMatch);
+@property (nonatomic, assign) BOOL isForceNormalWithdraw; //是否为强制普通取款
 @end
 
 NS_ASSUME_NONNULL_END

@@ -10,6 +10,7 @@
 
 @interface KYMWithdrewAmountView ()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *amountWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *amountStautsLB1H;
 
 @end
 @implementation KYMWithdrewAmountView
@@ -41,7 +42,7 @@
         case KYMWithdrewStepThree:
             self.amountStatusLB1.hidden = YES;
             self.amountStatusLB2.hidden = NO;
-            self.amountStatusLB2Top.constant = 3;
+            self.amountStatusLB2Top.constant = -30;
             self.amountStatusLB2Height.constant = 20;
             self.amountStatusLB2.font = [UIFont fontWithName:@"PingFang SC Semibold" size:12];
             self.amountStatusLB2.text = @"在15分钟点击确认到账，可以获得0.5%取款返利金";
@@ -54,18 +55,25 @@
             self.amountStatusLB2.font = [UIFont fontWithName:@"PingFang SC Semibold" size:12];
 //            self.amountStatusLB2.text = @"在15分钟点击确认到账，可以获得0.5%取款返利金";
             break;
-        case KYMWithdrewStepFive:
+        case KYMWithdrewStepFive:{
             self.amountStatusLB1.hidden = NO;
             self.amountStatusLB2.hidden = NO;
+            
+            self.amountStautsLB1H.constant = 40;
+            self.amountStatusLB1.font = [UIFont fontWithName:@"PingFang SC Semibold" size:14];
+            NSString *amount = [NSString stringWithFormat:@"恭喜老板！获得取款返利金%0.2lf元\n每周一统一发放",[self.amount doubleValue] * 0.005];
+            self.amountStatusLB1.text = amount;
+            
             self.amountStatusLB2Top.constant = 22;
             self.amountStatusLB2Height.constant = 40;
             self.amountStatusLB2.font = [UIFont fontWithName:@"PingFang SC Semibold" size:14];
             self.amountStatusLB2.text = @"由于您未在规定时间确认，系统判断您已确认到账\n如提现未到账或金额不符，请及时联系客服";
             break;
+        }
         case KYMWithdrewStepSix: {
             self.amountStatusLB1.hidden = YES;
             self.amountStatusLB2.hidden = NO;
-            self.amountStatusLB2Top.constant = 1;
+            self.amountStatusLB2Top.constant = -30;
             self.amountStatusLB2Height.constant = 40;
             self.amountStatusLB2.font = [UIFont fontWithName:@"PingFang SC Semibold" size:14];
             NSString *amount = [NSString stringWithFormat:@"恭喜老板！获得取款返利金%0.2lf元\n每周一统一发放",[self.amount doubleValue] * 0.005];
