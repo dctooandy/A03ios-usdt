@@ -235,7 +235,7 @@
             self.collectionView.dataSource = self;
             self.collectionView.hidden = NO;
             [self.collectionView registerNib:[UINib nibWithNibName:kCNMAmountSelectCCell bundle:nil] forCellWithReuseIdentifier:kCNMAmountSelectCCell];
-            self.collectionViewH.constant = 80 * ceilf(self.matchAmountList.count/3.0)+10;
+            self.collectionViewH.constant = 60 * ceilf(self.matchAmountList.count/3.0)+10;
             [self.collectionView reloadData];
             return;
         }
@@ -256,11 +256,12 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake((collectionView.bounds.size.width-40)/3.0, 70);
+    return CGSizeMake((collectionView.bounds.size.width-40)/3.0, 50);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     self.amountTfView.text = self.matchAmountList[indexPath.row];
+    self.rechargeAmount = self.amountTfView.text;
     [self.amountTfView setStatusToNormal];
     [self checkEnableStatus];
 }

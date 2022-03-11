@@ -32,6 +32,10 @@
 #import "CNMFastPayStatusVC.h"
 #import "KYMFastWithdrewVC.h"
 
+#import "CNMatchPayRequest.h"
+#import "CNMBankModel.h"
+#import "CNMFastPayStatusVC.h"
+
 @interface HYRechargeCNYViewController () <HYRechargeCNYEditViewDelegate>
 @property (nonatomic, assign) NSInteger selcPayWayIdx;
 @property (strong, nonatomic) NSArray <PayWayV3PayTypeItem *> *paytypeList;  //支付方式
@@ -44,7 +48,6 @@
 @property (nonatomic, strong) BYLargeAmountView *largeAmountView;
 @property (nonatomic, strong) CNMFastPayVC *fastVC;
 @property (nonatomic, strong) CNWFastPayModel *fastModel;
-@property (nonatomic, strong) NSArray *matchAmountList;
 @end
 
 @implementation HYRechargeCNYViewController
@@ -159,9 +162,8 @@
             for (CNWAmountListModel *model in self.fastModel.amountList) {
                 [array addObject:model.amount];
             }
-            self.matchAmountList = array.copy;
-            self.editView.matchAmountList = self.matchAmountList;
-            editViewHeight += 80 * ceilf(self.matchAmountList.count/3.0)+20;
+            self.editView.matchAmountList = array.copy;
+            editViewHeight += 60 * ceilf(self.editView.matchAmountList.count/3.0)+20;
         }
     }
     if ([self isVIP]) {
@@ -241,6 +243,7 @@
             self.fastModel = [CNWFastPayModel cn_parse:responseObj];
             if (!self.fastModel.isAvailable || self.fastModel.mmProcessingOrderTransactionId.length > 0) {
                 self.fastModel.amountList = nil;
+                [self showTradeBill];
             }
         }
     }];
@@ -460,32 +463,63 @@
         }];
     
     } else {
-        // BQ转账
-        [CNRechargeRequest submitBQPaymentPayType:item.payType
-                                           amount:self.editView.rechargeAmount
-                                        depositor:self.editView.depositor?:self.editView.depositorId
-                                    depositorType:self.editView.depositor?0:1
-                                          handler:^(id responseObj, NSString *errorMsg) {
-            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-                BQPaymentModel *paymentBQModel = [BQPaymentModel cn_parse:responseObj];
-                paymentBQModel.payWay = item.payTypeName;
-                if ([item.payType isEqualToString:@"92"]) {
-                    //支付宝转账
-                    paymentBQModel.payWayType = @0;
-                }else if ([item.payType isEqualToString:@"91"]) {
-                    //微信转账
-                    paymentBQModel.payWayType = @1;
-                }else if ([item.payType isEqualToString:@"90"]) {
-                    //银行卡转账
-                    paymentBQModel.payWayType = @2;
-                }
-                CNRechargeChosePayTypeVC *vc = [[CNRechargeChosePayTypeVC alloc] initWithModel:paymentBQModel];
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-        }];
+        BOOL isMatch = [self.editView.matchAmountList containsObject:self.editView.rechargeAmount];
+        if (isMatch) {
+            [self submitMatchBill];
+        } else {
+            [self submitBQBill];
+        }
     }
 }
 
+- (void)submitMatchBill {
+    //提交订单
+    __weak typeof(self) weakSelf = self;
+    [CNMatchPayRequest createDepisit:self.editView.rechargeAmount finish:^(id responseObj, NSString *errorMsg) {
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dic = (NSDictionary *)responseObj;
+            if ([[dic objectForKey:@"mmFlag"] boolValue]) {
+                CNMBankModel *bank = [CNMBankModel cn_parse:[dic objectForKey:@"mmPaymentRsp"]];
+                if (bank) {
+                    // 成功跳转
+                    CNMFastPayStatusVC *statusVC = [[CNMFastPayStatusVC alloc] init];
+                    statusVC.cancelTime = [weakSelf.fastModel.remainCancelDepositTimes integerValue];
+                    statusVC.transactionId = bank.transactionId;
+                    [weakSelf.parentViewController.navigationController pushViewController:statusVC animated:YES];
+                    return;
+                }
+            }
+        }
+        // 失败走普通存款
+        [weakSelf submitBQBill];
+    }];
+}
 
+// BQ转账
+- (void)submitBQBill {
+    __block PayWayV3PayTypeItem *item = self.paytypeList[_selcPayWayIdx];
+    [CNRechargeRequest submitBQPaymentPayType:item.payType
+                                       amount:self.editView.rechargeAmount
+                                    depositor:self.editView.depositor?:self.editView.depositorId
+                                depositorType:self.editView.depositor?0:1
+                                      handler:^(id responseObj, NSString *errorMsg) {
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            BQPaymentModel *paymentBQModel = [BQPaymentModel cn_parse:responseObj];
+            paymentBQModel.payWay = item.payTypeName;
+            if ([item.payType isEqualToString:@"92"]) {
+                //支付宝转账
+                paymentBQModel.payWayType = @0;
+            }else if ([item.payType isEqualToString:@"91"]) {
+                //微信转账
+                paymentBQModel.payWayType = @1;
+            }else if ([item.payType isEqualToString:@"90"]) {
+                //银行卡转账
+                paymentBQModel.payWayType = @2;
+            }
+            CNRechargeChosePayTypeVC *vc = [[CNRechargeChosePayTypeVC alloc] initWithModel:paymentBQModel];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }];
+}
 
 @end
