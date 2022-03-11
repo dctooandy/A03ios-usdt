@@ -211,6 +211,7 @@
         return;
     }
     _step = step;
+    
     self.statusView.step = step;
     self.amountView.step = step;
     self.submitView.step = step;
@@ -284,7 +285,7 @@
             break;
         case KYMWithdrewStepFive:
             statusViewHeight = 138;
-            amountViewHeight = 123;
+            amountViewHeight = 163;
             bankViewHeight = 263;
             submitHeight = 48;
             submitTop = 35;

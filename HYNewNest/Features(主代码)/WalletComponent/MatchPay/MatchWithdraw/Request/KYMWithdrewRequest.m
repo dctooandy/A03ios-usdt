@@ -102,6 +102,17 @@
     parmas[@"type"] = @"2";
     parmas[@"currency"] = @"CNY";
     [KYMWithdrewRequest checkChannelWithParams:parmas.copy callback:^(BOOL status, NSString * _Nonnull msg, KYMWithdrewCheckModel  * _Nonnull model) {
+#if DEBUG
+        //测试数据
+//        status = YES;
+//        model = [KYMWithdrewCheckModel new];
+//        model.data = [KYMWithdrewCheckDataModel new];
+//        model.data.isAvailable = YES;
+//        KYMWithdrewAmountModel *a1 = [KYMWithdrewAmountModel new];
+//        a1.amount = @"1001";
+//        model.data.amountList = @[a1];
+        //测速数据结束
+#endif
         if (!status) {
             //普通取款
             callback(NO,nil);
