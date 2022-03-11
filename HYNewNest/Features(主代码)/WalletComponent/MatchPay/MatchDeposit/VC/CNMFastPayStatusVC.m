@@ -86,7 +86,7 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
 
 #pragma mark - 底部按钮组
 @property (weak, nonatomic) IBOutlet UIView *btnView;
-@property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
+//@property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
 @property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
 @property (weak, nonatomic) IBOutlet UIButton *customerServerBtn;
 
@@ -150,9 +150,9 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
     
     self.clockView.layer.cornerRadius = 10;
     
-    self.cancelBtn.layer.borderWidth = 1;
-    self.cancelBtn.layer.borderColor = kHexColor(0x10B4DD).CGColor;
-    self.cancelBtn.layer.cornerRadius = 24;
+//    self.cancelBtn.layer.borderWidth = 1;
+//    self.cancelBtn.layer.borderColor = kHexColor(0x10B4DD).CGColor;
+//    self.cancelBtn.layer.cornerRadius = 24;
 }
 
 - (void)setStatusUI:(CNMPayUIStatus)status {
@@ -392,6 +392,7 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
 }
 
 - (IBAction)confirm:(UIButton *)sender {
+    /* 需求变更 屏蔽图片了
     if (self.pictureView.superview) {
         // 上传图片
         [self uploadImages];
@@ -399,7 +400,9 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
     }
     self.pictureView.frame = self.midView.bounds;
     [self.midView addSubview:self.pictureView];
-    sender.enabled = NO;
+    sender.enabled = NO; */
+    
+    [self uploadFinish];
 }
 
 - (IBAction)customerServer:(UIButton *)sender {
@@ -575,12 +578,14 @@ typedef NS_ENUM(NSUInteger, CNMPayUIStatus) {
 }
 
 - (void)uploadFinish {
+    /* 屏蔽图片
     // 只要没有，重选上传
     if (self.pictureName1.count == 0 || self.pictureName2.count == 0) {
         [self uploadImages];
         return;
-    }
+    } */
     // 上报数据
+    [self showLoading];
     [CNMatchPayRequest commitDepisit:self.transactionId receiptImg:self.pictureName1.firstObject transactionImg:self.pictureName2 finish:^(id responseObj, NSString *errorMsg) {
         [self hideLoading];
         if ([responseObj isKindOfClass:[NSDictionary class]]) {
