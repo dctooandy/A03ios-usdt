@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,39 +13,39 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hk4-3J-IJv">
-                    <rect key="frame" x="120" y="48" width="8" height="17"/>
+                    <rect key="frame" x="120" y="4" width="8" height="17"/>
                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                     <color key="textColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5D7-vR-lpe">
-                    <rect key="frame" x="18" y="166.5" width="396" height="90"/>
+                    <rect key="frame" x="18" y="122.5" width="396" height="90"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="90" id="kPm-Uu-Up6"/>
                     </constraints>
                     <string key="text">1、请务必在15分钟倒计时内点击确认取款。
 2、如果没有到账，请务必在15分钟内点击未到账，否则系统默认为确认到账。
-3、当日累计超时2次后，将取消您使用急速取款通道。
+3、当日累计超时2次后，将取消您使用极速取款通道。
 4、超时后将不会享受存款返利。</string>
                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                     <color key="textColor" red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bBC-uB-RYq">
-                    <rect key="frame" x="0.0" y="135" width="414" height="0.5"/>
+                    <rect key="frame" x="0.0" y="91" width="414" height="0.5"/>
                     <color key="backgroundColor" red="0.42745098039215684" green="0.46666666666666667" blue="0.54509803921568623" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="0.5" id="gpf-xf-FTy"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日可以使用该通道：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfX-rx-IeR">
-                    <rect key="frame" x="0.0" y="44" width="120" height="25"/>
+                    <rect key="frame" x="0.0" y="0.0" width="120" height="25"/>
                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZ9-oa-YOa">
-                    <rect key="frame" x="0.0" y="74" width="414" height="45"/>
+                    <rect key="frame" x="0.0" y="30" width="414" height="45"/>
                     <attributedString key="attributedText">
                         <fragment content="在规定时间内点击确认取款，可以">
                             <attributes>
@@ -65,20 +63,20 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="次" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9OB-de-X1E">
-                    <rect key="frame" x="133" y="48" width="12" height="17"/>
+                    <rect key="frame" x="133" y="4" width="12" height="17"/>
                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mwd_warning" translatesAutoresizingMaskIntoConstraints="NO" id="RwM-03-Tgd">
-                    <rect key="frame" x="0.0" y="150" width="14" height="14"/>
+                    <rect key="frame" x="0.0" y="106" width="14" height="14"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="4qZ-Tb-grQ"/>
                         <constraint firstAttribute="width" constant="14" id="ZE1-lq-iL1"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重要提醒：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4g-ax-zgb">
-                    <rect key="frame" x="18" y="148.5" width="60" height="17"/>
+                    <rect key="frame" x="18" y="104.5" width="60" height="17"/>
                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                     <color key="textColor" red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
