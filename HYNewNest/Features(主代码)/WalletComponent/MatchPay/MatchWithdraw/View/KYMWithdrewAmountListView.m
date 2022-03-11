@@ -74,5 +74,26 @@
 {
     [self.delegate matchWithdrewAmountCellDidSelected:self indexPath:indexPath];
 }
-
+- (NSIndexPath *)selectedIndexPath
+{
+    if (self.collectionView.indexPathsForSelectedItems.count > 0) {
+        return self.collectionView.indexPathsForSelectedItems.firstObject;
+    }
+    return nil;
+}
+- (void)setCurrentAmount:(NSString *)amount
+{
+    if (self.selectedIndexPath) {
+        [self.collectionView deselectItemAtIndexPath:self.selectedIndexPath animated:NO];
+    }
+    
+    for (int i = 0; i < self.amountArray.count; i++) {
+        NSString *a = self.amountArray[i].amount;
+        if ([a isEqualToString:amount]) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+            return;
+        }
+    }
+}
 @end

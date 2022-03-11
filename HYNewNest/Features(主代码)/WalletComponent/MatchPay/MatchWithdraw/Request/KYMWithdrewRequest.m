@@ -7,7 +7,7 @@
 //
 
 #import "KYMWithdrewRequest.h"
-#import "KYMSelectChannelVC.h"
+//#import "KYMSelectChannelVC.h"
 #import "CNMAlertView.h"
 #import "LoadingView.h"
 #import "KYMFastWithdrewVC.h"
@@ -119,52 +119,34 @@
             [model.data removeAmountBiggerThanTotal:balance];
             //如果渠道开启，有金额列表，且金额列表中最小的比余额大才走撮合
             if (model.data.isAvailable && model.data.amountList.count > 0 && [balance doubleValue] >= [model.data.miniAmount doubleValue]) {
-                //取款类型选择弹框
-                KYMSelectChannelVC *vc = [[KYMSelectChannelVC alloc] init];
-                vc.checkModel = model;
-                vc.selectedChannelCallback = ^(NSInteger index) {
-                    //是否为撮合取款
-                    if (index == 0) {
-                        //是否已存在存取款提案
-                        if (model.data.mmProcessingOrderTransactionId && model.data.mmProcessingOrderTransactionId.length != 0) {
-                            if (model.data.mmProcessingOrderType == 1) { // 存款
-                                [CNMAlertView showAlertTitle:@"交易提醒" content:@"您当前有正在交易的存款订单\n如需取款，请选择在线取款" desc:nil needRigthTopClose:NO commitTitle:@"查看订单" commitAction:^{
-                                    CNMFastPayStatusVC *statusVC = [[CNMFastPayStatusVC alloc] init];
-                                    statusVC.cancelTime = [model.data.remainCancelDepositTimes integerValue];
-                                    statusVC.transactionId = model.data.mmProcessingOrderTransactionId;
-                                    [viewController.navigationController pushViewController:statusVC animated:YES];
-                                    
-                                } cancelTitle:@"在线取款" cancelAction:^{
-                                    //普通取款
-                                    callback(NO,nil);
-                                }];
-                            } else { // 取款
-                                
-                                KYMFastWithdrewVC *vc = [[KYMFastWithdrewVC alloc] init];
-                                vc.mmProcessingOrderTransactionId = model.data.mmProcessingOrderTransactionId;
-                                
-                                [CNMAlertView showAlertTitle:@"交易提醒" content:@"老板，如需再次取款，请选择在线取款" desc:nil needRigthTopClose:NO commitTitle:@"关闭" commitAction:^{
-                                    
-                                } cancelTitle:@"在线取款" cancelAction:^{
-                                    [viewController.navigationController popViewControllerAnimated:NO];
-                                    [vc stopTimer];
-                                    //普通取款
-                                    callback(NO,nil);
-                                }];
-                                
-                                [viewController.navigationController pushViewController:vc animated:YES];
-                            }
-                        } else {
-                            //撮合取款
-                            callback(YES,model);
-                        }
-                    } else {
+                //是否已存在存取款提案
+                if (model.data.mmProcessingOrderTransactionId && model.data.mmProcessingOrderTransactionId.length != 0) {
+                    //普通取款
+                    callback(NO,nil);
+                    if (model.data.mmProcessingOrderType == 1) { // 存款
+                        [CNMAlertView showAlertTitle:@"交易提醒" content:@"您当前有正在交易的存款订单" desc:nil needRigthTopClose:NO commitTitle:@"关闭" commitAction:^{
+                            
+                            
+                        } cancelTitle:@"查看订单" cancelAction:^{
+                            CNMFastPayStatusVC *statusVC = [[CNMFastPayStatusVC alloc] init];
+                            statusVC.cancelTime = [model.data.remainCancelDepositTimes integerValue];
+                            statusVC.transactionId = model.data.mmProcessingOrderTransactionId;
+                            [viewController.navigationController pushViewController:statusVC animated:YES];
+                        }];
+                    } else { // 取款
                         //普通取款
-                        callback(NO,nil);
+                        [CNMAlertView showAlertTitle:@"交易提醒" content:@"老板，当前有正在交易的取款订单" desc:nil needRigthTopClose:NO commitTitle:@"关闭" commitAction:^{
+                            
+                        } cancelTitle:@"查看订单" cancelAction:^{
+                            KYMFastWithdrewVC *vc = [[KYMFastWithdrewVC alloc] init];
+                            vc.mmProcessingOrderTransactionId = model.data.mmProcessingOrderTransactionId;
+                            [viewController.navigationController pushViewController:vc animated:YES];
+                        }];
                     }
-                    
-                };
-                [viewController presentViewController:vc animated:YES completion:nil];
+                } else {
+                    //撮合取款
+                    callback(YES,model);
+                }
             } else {
                 //普通取款
                 callback(NO,nil);
@@ -172,4 +154,5 @@
         });
     }];
 }
+
 @end

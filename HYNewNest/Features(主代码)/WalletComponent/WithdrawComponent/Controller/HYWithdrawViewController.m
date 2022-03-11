@@ -40,6 +40,7 @@
 #import "KYMFastWithdrewVC.h"
 #import "MBProgressHUD+Add.h"
 #import "IVRsaEncryptWrapper.h"
+#import "KYMWithdrewFaildVC.h"
 @interface HYWithdrawViewController () <UITableViewDelegate, UITableViewDataSource, BYWithdrawDelegate>
 {
     BOOL _isCNYBlockLevel;
@@ -197,41 +198,23 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         }];
     }
     else {
-        if (self.isMatchWithdraw) {
-            KYMWithdrawConfirmVC *vc = [[KYMWithdrawConfirmVC alloc] init];
-            vc.checkModel = self.checkModel;
-            vc.balance = [self.moneyModel.withdrawBal stringValue];
-            __weak typeof(self)weakSelf = self;
-            __weak typeof(vc)weakVC = vc;
-            vc.submitHandler = ^(NSString * _Nonnull pwd, NSString * _Nonnull amount) {
-                if (self.elecCardsArr.count == 0) {
-                    return;
-                }
-                AccountModel *model = weakSelf.elecCardsArr[weakSelf.selectedIdx];
-                pwd = [IVRsaEncryptWrapper encryptorString:pwd];
-                [KYMWithdrewRequest createWithdrawWithBankNum:model.accountId amount:amount pwd:pwd callback:^(BOOL status, NSString * _Nonnull msg, KYMCreateWithdrewModel  *_Nonnull model) {
-                    if (!status) {
-                        [MBProgressHUD showError:msg toView:nil];
-                        return;
-                    }
-                    KYMFastWithdrewVC *vc1 = [[KYMFastWithdrewVC alloc] init];
-                    vc1.mmProcessingOrderTransactionId = model.referenceId;
-                    [weakVC dismissViewControllerAnimated:YES completion:^{
-                        [weakSelf.navigationController pushViewController:vc1 animated:YES];
-                    }];
-                    
-                }];
-            };
-            [self presentViewController:vc animated:YES completion:nil];
-        } else {
-            WEAKSELF_DEFINE
-            HYWithdrawComfirmView *view = [[HYWithdrawComfirmView alloc] initWithAmountModel:self.moneyModel needPwd:self.needWithdrawPwd sumbitBlock:^(NSString * withdrawAmout, NSString *pwdText) {
-                STRONGSELF_DEFINE
-                [strongSelf sumbimtWithdrawAmount:withdrawAmout pwd:[CNEncrypt encryptString:pwdText]];
-            }];
-            self.comfirmView = view;
-            [self.view addSubview:view];
-        }
+        KYMWithdrawConfirmVC *vc = [[KYMWithdrawConfirmVC alloc] init];
+        vc.checkModel = self.checkModel;
+        vc.balance = [self.moneyModel.withdrawBal stringValue];
+        __weak typeof(self)weakSelf = self;
+        __weak typeof(vc)weakVC = vc;
+        vc.submitHandler = ^(NSString * _Nonnull pwd, NSString * _Nonnull amount, BOOL isMatch) {
+            if (self.elecCardsArr.count == 0) {
+                return;
+            }
+            if (isMatch) {//撮合取款
+                [weakSelf requestMatchWithdrawWithPwd:pwd amount:amount confirmVC:weakVC];
+            } else {//普通取款
+                [weakSelf sumbimtWithdrawAmount:amount pwd:pwd];
+            }
+            
+        };
+        [self presentViewController:vc animated:YES completion:nil];
     }
 }
 
@@ -291,7 +274,24 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         self.sumitBtn.enabled = YES;
     }];
 }
-
+//创建撮合取款提案
+- (void)requestMatchWithdrawWithPwd:(NSString *)pwd amount:(NSString *)amount confirmVC:(UIViewController *)confirmVC
+{
+    AccountModel *model = self.elecCardsArr[self.selectedIdx];
+    pwd = [IVRsaEncryptWrapper encryptorString:pwd];
+    [KYMWithdrewRequest createWithdrawWithBankNum:model.accountId amount:amount pwd:pwd callback:^(BOOL status, NSString * _Nonnull msg, KYMCreateWithdrewModel  *_Nonnull model) {
+        if (!status) {
+            [MBProgressHUD showError:msg toView:nil];
+            return;
+        }
+        KYMFastWithdrewVC *vc = [[KYMFastWithdrewVC alloc] init];
+        vc.mmProcessingOrderTransactionId = model.referenceId;
+        [confirmVC dismissViewControllerAnimated:YES completion:^{
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
+        
+    }];
+}
 - (void)requestWithdrawAddress {
     WEAKSELF_DEFINE
     [CNWDAccountRequest queryAccountHandler:^(id responseObj, NSString *errorMsg) {
@@ -424,11 +424,13 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                                                handler:^(id responseObj, NSString *errorMsg) {
             STRONGSELF_DEFINE
             if (!errorMsg) {
-                [strongSelf.comfirmView showSuccessWithdraw];
+//                [strongSelf.comfirmView showSuccessWithdraw];
+                KYMFastWithdrewVC *vc = [KYMFastWithdrewVC new];
+                [self.navigationController pushViewController:vc animated:YES];
                 [strongSelf requestBalance];
                 [[NSNotificationCenter defaultCenter] postNotificationName:BYRefreshBalanceNotification object:nil]; // 让首页和我的余额刷新
             } else {
-                [strongSelf.comfirmView removeView];
+//                [strongSelf.comfirmView removeView];
             }
         }];
 //    }

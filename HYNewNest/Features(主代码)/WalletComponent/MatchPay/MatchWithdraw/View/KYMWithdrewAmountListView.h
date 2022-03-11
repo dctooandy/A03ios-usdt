@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface KYMWithdrewAmountListView : UIView
 @property (nonatomic, strong) NSArray<KYMWithdrewAmountModel *> *amountArray;
 @property (nonatomic, weak) id<KYMWithdrewAmountCellDelegate> delegate;
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
+- (void)setCurrentAmount:(NSString *)amount;
 @end
 
 NS_ASSUME_NONNULL_END
