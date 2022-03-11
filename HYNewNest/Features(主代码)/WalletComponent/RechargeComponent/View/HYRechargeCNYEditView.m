@@ -236,6 +236,7 @@
             self.collectionView.hidden = NO;
             [self.collectionView registerNib:[UINib nibWithNibName:kCNMAmountSelectCCell bundle:nil] forCellWithReuseIdentifier:kCNMAmountSelectCCell];
             self.collectionViewH.constant = 80 * ceilf(self.matchAmountList.count/3.0)+10;
+            [self.collectionView reloadData];
             return;
         }
     }
@@ -260,6 +261,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     self.amountTfView.text = self.matchAmountList[indexPath.row];
+    [self.amountTfView setStatusToNormal];
+    [self checkEnableStatus];
 }
 
 
@@ -325,6 +328,13 @@
         }
         for (UIButton *btn in self.amountBtnsContain.subviews) {
             btn.selected = NO;
+        }
+        
+        if ([self.matchAmountList containsObject:view.text]) {
+            NSInteger index = [self.matchAmountList indexOfObject:view.text];
+            [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+        } else {
+            [self.collectionView deselectItemAtIndexPath:[self.collectionView indexPathsForSelectedItems].lastObject animated:YES];
         }
     } else if (view == self.depositorTfView) {
         if (![view.text validationType:ValidationTypeRealName]) {

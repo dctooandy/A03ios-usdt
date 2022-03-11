@@ -562,7 +562,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAU-Fk-PiW" userLabel="ConfirmTipView">
-                                    <rect key="frame" x="0.0" y="593.5" width="414" height="155"/>
+                                    <rect key="frame" x="0.0" y="593.5" width="414" height="138"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mwd_warning" translatesAutoresizingMaskIntoConstraints="NO" id="JYJ-sP-eha">
                                             <rect key="frame" x="16" y="27.5" width="14" height="14"/>
@@ -577,12 +577,11 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbo-vD-Isj">
-                                            <rect key="frame" x="34" y="44" width="365" height="101"/>
-                                            <string key="text">1、付款成功后务必点击我已存款，提交凭证。
+                                            <rect key="frame" x="34" y="44" width="365" height="84"/>
+                                            <string key="text">1、付款成功后务必点击我已存款。
 2、银行卡信息会定期更换，请不要保存。
 3、每次存款请按照流程获取存款银行卡信息，订单超时请不要继续转账，如转错，无法找回。
-4、付款成功后切勿取消订单，损失自负。
-5、如果超时，系统默认因为没有存款而取消订单。</string>
+4、如果超时，系统默认因为没有存款而取消订单。</string>
                                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                                             <color key="textColor" red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
