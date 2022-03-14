@@ -11,6 +11,8 @@
 @implementation HistoryBet
 @end
 
+@implementation AvailableIdentity
+@end
 
 @implementation EquityDataItem
 

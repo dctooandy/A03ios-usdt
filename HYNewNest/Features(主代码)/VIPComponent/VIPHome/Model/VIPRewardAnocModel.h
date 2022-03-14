@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * activityId;
 @property (nonatomic , assign) NSInteger              amount;
 @property (nonatomic , copy) NSString              * createdDate;
-@property (nonatomic , assign) NSInteger              flag;
+@property (nonatomic , assign) NSInteger              flag; //传 1，代表查询领取成功的奖品
 @property (nonatomic , copy) NSString              * loginname;
 @property (nonatomic , copy) NSString              * loginName;
 @property (nonatomic , assign) NSInteger              pageNumber;
@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * productId;
 @property (nonatomic , assign) NSInteger              refAmount;
 @property (nonatomic , copy) NSString              * remark;
+@property (nonatomic , copy) NSString              * fetchDate;
 
 @end
 

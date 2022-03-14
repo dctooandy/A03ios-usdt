@@ -12,6 +12,7 @@
 #import <UIImageView+WebCache.h>
 #import "NSURL+HYLink.h"
 #import "UIColor+Gradient.h"
+#import "NSNumber+JKRound.h"
 
 @interface NewVIPCumulateIdCell ()
 @property (weak, nonatomic) IBOutlet UIView *centerBGView;
@@ -63,9 +64,12 @@
 //        [self setNeedsLayout];
     }];
     
-    self.btnReceive.enabled = model.residueCount?YES:NO;
+    self.btnReceive.enabled = [model.isAvailable isEqualToString:@"1"] ? YES : NO;
     self.lblTitle.text = model.title;
-    self.lblContent.text = [NSString stringWithFormat:@"领取条件: %ld次%@   价值: %@%@", model.condition, club, model.amount, model.currency];
+    
+    NSString *amountCNYString = [NSString stringWithFormat:@"%@",[[NSNumber numberWithInt:[model.amountCNY intValue]] jk_toDisplayNumberWithDigit:0]];
+    NSString *amountUSDTString = [NSString stringWithFormat:@"%@",[[NSNumber numberWithInt:[model.amountUSDT intValue]] jk_toDisplayNumberWithDigit:0]];
+    self.lblContent.text = [NSString stringWithFormat:@"领取条件: %ld次%@   \n价值: %@ CNY(等值%@ USDT)", model.condition, club, amountCNYString, amountUSDTString];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

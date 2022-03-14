@@ -23,6 +23,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/// 可用的累计身份
+@interface AvailableIdentity :CNBaseModel
+@property (nonatomic , assign) NSInteger              betBaCount;
+@property (nonatomic , assign) NSInteger              betGoldCount;
+@property (nonatomic , assign) NSInteger              betKingCount;
+@property (nonatomic , assign) NSInteger              betSaintCount;
+@property (nonatomic , assign) NSInteger              betXiaCount;
+@property (nonatomic , assign) NSInteger              betZunCount;
+
+@end
+
 /// 用户等级特权
 @interface EquityDataItem :CNBaseModel
 @property (nonatomic , strong) NSNumber              * depositAmount;

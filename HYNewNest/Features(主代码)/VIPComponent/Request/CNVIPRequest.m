@@ -33,7 +33,8 @@
 + (void)vipsxhMonthReportHandler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"currency"] = @"USDT";
+    NSString * uiModeString = [CNUserManager shareManager].userInfo.uiMode ? [CNUserManager shareManager].userInfo.uiMode : @"USDT";
+    param[@"currency"] = uiModeString;
     
     [self POST:kGatewayExtraPath(activity_vipSxhReport) parameters:param completionHandler:handler];
 }
@@ -41,7 +42,8 @@
 + (void)vipsxhHomeHandler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"currency"] = @"USDT";
+    NSString * uiModeString = [CNUserManager shareManager].userInfo.uiMode ? [CNUserManager shareManager].userInfo.uiMode : @"USDT";
+    param[@"currency"] = uiModeString;
     
     [self POST:kGatewayExtraPath(activity_vipSxhHome) parameters:param completionHandler:handler];
 }
@@ -49,7 +51,8 @@
 + (void)vipsxhBigGodBoardHandler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"currency"] = @"USDT";
+    NSString * uiModeString = [CNUserManager shareManager].userInfo.uiMode ? [CNUserManager shareManager].userInfo.uiMode : @"USDT";
+    param[@"currency"] = uiModeString;
     
     [self POST:kGatewayExtraPath(activity_vipSxhRank) parameters:param completionHandler:handler];
 }
@@ -57,7 +60,8 @@
 + (void)vipsxhDrawGiftMoneyLevelStatus:(NSString *)levelStatus handler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"currency"] = [CNUserManager shareManager].userInfo.currency ? [CNUserManager shareManager].userInfo.currency : @"CNY";
+    NSString * uiModeString = [CNUserManager shareManager].userInfo.uiMode ? [CNUserManager shareManager].userInfo.uiMode : @"USDT";
+    param[@"currency"] = uiModeString;
     param[@"promoCode"] = @"VIPSXH";
     param[@"levelStatus"] = levelStatus;
     
@@ -67,18 +71,21 @@
 
 + (void)vipsxhCumulateIdentityHandler:(HandlerBlock)handler {
     NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"currency"] = @"USDT";
+    NSString * uiModeString = [CNUserManager shareManager].userInfo.uiMode ? [CNUserManager shareManager].userInfo.uiMode : @"USDT";
+    param[@"currency"] = uiModeString;
     
     [self POST:kGatewayExtraPath(activity_vipSxhIdentity) parameters:param completionHandler:handler];
 }
 
-+ (void)vipsxhApplyCumulateIdentityPrize:(NSString *)prizeids
++ (void)vipsxhApplyCumulateIdentityPrize:(NSString *)prizeLevel
                                  handler:(HandlerBlock)handler {
     
     NSMutableDictionary *param = [kNetworkMgr baseParam];
-    param[@"currency"] = @"USDT";
-    param[@"prizeids"] = prizeids;
-    param[@"defineFlag"] = @(4); // 至尊转盘3 累计身份4
+    NSString * uiModeString = [CNUserManager shareManager].userInfo.uiMode ? [CNUserManager shareManager].userInfo.uiMode : @"USDT";
+    param[@"currency"] = uiModeString;
+    param[@"prizeLevel"] = prizeLevel;
+//    param[@"defineFlag"] = @(4); // 至尊转盘3 累计身份4
+    param[@"defineFlag"] = @(2); // 自尊转盘抽奖传1,累计身份兑换传2，领取入会礼金传3，领取私享金4
     
     [self POST:kGatewayExtraPath(activity_vipSxhApply) parameters:param completionHandler:handler];
 }
@@ -89,7 +96,9 @@
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"defineFlag"] = @2; // 至尊转盘1 累计身份2
     param[@"prizeids"] = prizeids;
-    param[@"currency"] = @"USDT";
+    param[@"prizeName"] = prizeids;
+    NSString * uiModeString = [CNUserManager shareManager].userInfo.uiMode ? [CNUserManager shareManager].userInfo.uiMode : @"USDT";
+    param[@"currency"] = uiModeString;
     
     [self POST:kGatewayExtraPath(activity_vipSxhAwardDetail) parameters:param completionHandler:handler];
 }
@@ -101,9 +110,11 @@
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     param[@"promoCode"] = @"VIPPRIVILEGE";
     param[@"activityKey"] = [CNUserManager shareManager].isUsdtMode?@"VIPPRIVILEGE_ACTIVITY_ID_USDT":@"VIPPRIVILEGE_ACTIVITY_ID_CNY";
-    param[@"currency"] = @"USDT";
+    NSString * uiModeString = [CNUserManager shareManager].userInfo.uiMode ? [CNUserManager shareManager].userInfo.uiMode : @"USDT";
+    param[@"currency"] = uiModeString;
     param[@"flags"] = @1;
-    param[@"defineFlag"] = @(type); // 至尊转盘3 累计身份4
+//    param[@"defineFlag"] = @(type); // 至尊转盘3 累计身份4
+    param[@"defineFlag"] = @(type); // 标识，至尊转盘1,累计身份兑换传2，入会礼金传3，私享金4
     param[@"pageSize"] = @(200);
     param[@"endDate"] = [self jk_formatYMD:[NSDate date]];
     param[@"beginDate"] = [self jk_formatYMD:[NSDate jk_dateWithDaysBeforeNow:days]];

@@ -42,8 +42,13 @@ NS_ASSUME_NONNULL_BEGIN
                           handler:(HandlerBlock)handler;
 
 typedef NS_ENUM(NSInteger, VIPSxhAwardType) {
-    VIPSxhAwardTypeZZZP = 3,
-    VIPSxhAwardTypeLJSF = 4,
+    // 标识，至尊转盘1,累计身份兑换传2，入会礼金传3，私享金4
+//    VIPSxhAwardTypeZZZP = 3,//至尊转盘
+//    VIPSxhAwardTypeLJSF = 4,//累计身分
+    VIPSxhAwardTypeZZZP = 1,//至尊转盘
+    VIPSxhAwardTypeLJSF = 2,//累计身分
+    VIPSxhAwardTyperhlj = 3,//入会礼金
+    VIPSxhAwardTypesxh = 4,//思想会
 };
 /// 领取记录
 + (void)vipsxhReceiveAwardRecordType:(VIPSxhAwardType)type

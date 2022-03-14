@@ -46,6 +46,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 
 /// 数据
 @property (strong, nonatomic) HistoryBet *historyBet;
+@property (strong, nonatomic) AvailableIdentity *availableIdentity;
 @property (strong, nonatomic) NSDictionary *giftListDict;
 @property (strong, nonatomic) NSDictionary *rankNameLevel;
 @end
@@ -130,6 +131,13 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
     _lblDuSaintNum.text = [NSString stringWithFormat:@"%ld", (long)self.historyBet.betSaintCount];
     _lblDuGodNum.text = [NSString stringWithFormat:@"%ld", (long)self.historyBet.betGoldCount];
     _lblDuzunNum.text = [NSString stringWithFormat:@"%ld", (long)self.historyBet.betZunCount];
+    
+//    _lblDuXiaNum.text = [NSString stringWithFormat:@"%ld", (long)self.availableIdentity.betXiaCount];
+//    _lblDuBaNum.text = [NSString stringWithFormat:@"%ld", (long)self.availableIdentity.betBaCount];
+//    _lblDuKingNum.text = [NSString stringWithFormat:@"%ld", (long)self.availableIdentity.betKingCount];
+//    _lblDuSaintNum.text = [NSString stringWithFormat:@"%ld", (long)self.availableIdentity.betSaintCount];
+//    _lblDuGodNum.text = [NSString stringWithFormat:@"%ld", (long)self.availableIdentity.betGoldCount];
+//    _lblDuzunNum.text = [NSString stringWithFormat:@"%ld", (long)self.availableIdentity.betZunCount];
 }
 
 
@@ -153,6 +161,10 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
             if ([[responseObj allKeys] containsObject:@"historyBet"]) {
                 self.historyBet = [HistoryBet cn_parse:responseObj[@"historyBet"]];
                 [self setupUIDatas];
+            }
+            if ([[responseObj allKeys] containsObject:@"availableIdentity"]) {
+                self.availableIdentity = [AvailableIdentity cn_parse:responseObj[@"availableIdentity"]];
+//                [self setupUIDatas];
             }
         }
     }];
@@ -198,7 +210,7 @@ static NSString * const CUMIDHEADER = @"VIPCumulateIdHeader";
 
             if (isComfirm) {
                 // 领取
-                [CNVIPRequest vipsxhApplyCumulateIdentityPrize:model.prizeId handler:^(id responseObj, NSString *errorMsg) {
+                [CNVIPRequest vipsxhApplyCumulateIdentityPrize:model.prizeLevel handler:^(id responseObj, NSString *errorMsg) {
                     STRONGSELF_DEFINE
                     if (!errorMsg) {
                         [CNTOPHUB showSuccess:@"领取成功!"];
