@@ -27,6 +27,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger mmProcessingOrderType;
 /// 存在撮合单ID
 @property (nonatomic, copy) NSString *mmProcessingOrderTransactionId;
+
+@property (nonatomic, assign) NSInteger mmProcessingOrderStatus;
+@property (nonatomic, assign) NSInteger mmProcessingOrderPairStatus;
+@property (nonatomic, assign) BOOL mmProcessingOrderUploadFlag;
+@property (nonatomic, copy) NSString *mmProcessingOrderAmount;
+
 @end
 
 NS_ASSUME_NONNULL_END

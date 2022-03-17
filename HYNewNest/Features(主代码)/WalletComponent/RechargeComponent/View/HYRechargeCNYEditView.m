@@ -48,6 +48,8 @@
 @property (nonatomic, strong) AmountListModel *amountModel;
 @property (nonatomic, strong) BQBankModel *bqBankModel;
 
+@property (nonatomic, copy) NSArray *dataList;
+
 // OUTTER
 @property (nonatomic, copy, readwrite) NSString *rechargeAmount;
 @property (nonatomic, copy, readwrite) NSString *depositor;
@@ -230,12 +232,13 @@
     //92:支付宝秒存 91:微信秒存 90：迅捷网银
     NSArray *array = @[@"91", @"92", @"93"];
     if ([array containsObject:self.itemModel.payType]) {
-        if (self.matchAmountList.count > 0) {
+        self.dataList = [self getRecommendAmountFromAmount:nil];
+        if (self.dataList.count > 0) {
             self.collectionView.delegate = self;
             self.collectionView.dataSource = self;
             self.collectionView.hidden = NO;
             [self.collectionView registerNib:[UINib nibWithNibName:kCNMAmountSelectCCell bundle:nil] forCellWithReuseIdentifier:kCNMAmountSelectCCell];
-            self.collectionViewH.constant = 60 * ceilf(self.matchAmountList.count/3.0)+10;
+            self.collectionViewH.constant = 50 * ceilf(self.dataList.count/3.0)+10;
             [self.collectionView reloadData];
             return;
         }
@@ -245,25 +248,59 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.matchAmountList.count;
+    return self.dataList.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CNMAmountSelectCCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCNMAmountSelectCCell forIndexPath:indexPath];
-    cell.amountLb.text = self.matchAmountList[indexPath.row];
+    cell.amountLb.text = [NSString stringWithFormat:@"¥ %@", self.dataList[indexPath.row]];
     cell.recommendTag.hidden = YES;
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake((collectionView.bounds.size.width-40)/3.0, 50);
+    return CGSizeMake((collectionView.bounds.size.width-15)/3.0, 40);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    self.amountTfView.text = self.matchAmountList[indexPath.row];
+    self.amountTfView.text = self.dataList[indexPath.row];
     self.rechargeAmount = self.amountTfView.text;
     [self.amountTfView setStatusToNormal];
     [self checkEnableStatus];
+}
+
+/// 计算合理推荐金额
+- (NSArray *)getRecommendAmountFromAmount:(NSString *)amount {
+    
+    NSArray *sourceArray = self.matchAmountList;
+    
+    if (sourceArray.count < 9) {
+        return sourceArray;
+    }
+    
+    if (amount == nil || amount.length == 0) {
+        return [sourceArray subarrayWithRange:NSMakeRange(sourceArray.count - 9, 9)];
+    }
+    
+    NSMutableArray *sortArr = [sourceArray mutableCopy];
+    [sortArr addObject:amount];
+    
+    sortArr = [[sortArr sortedArrayUsingComparator:^NSComparisonResult(NSString *  _Nonnull obj1, NSString *  _Nonnull obj2) {
+        if (obj1.intValue < obj2.intValue) {
+            return NSOrderedDescending;
+        }
+        return NSOrderedAscending;
+    }] mutableCopy];
+    
+    NSInteger index = [sortArr indexOfObject:amount];
+
+    if (index < 5) {
+        return [sourceArray subarrayWithRange:NSMakeRange(0, 9)];
+    } else if  (index > (sourceArray.count - 5)) {
+        return [sourceArray subarrayWithRange:NSMakeRange(sourceArray.count - 9, 9)];
+    } else {
+        return [sourceArray subarrayWithRange:NSMakeRange(index - 4, 9)];
+    }
 }
 
 
@@ -331,8 +368,11 @@
             btn.selected = NO;
         }
         
-        if ([self.matchAmountList containsObject:view.text]) {
-            NSInteger index = [self.matchAmountList indexOfObject:view.text];
+        self.dataList = [self getRecommendAmountFromAmount:view.text];
+        [self.collectionView reloadData];
+        
+        if ([self.dataList containsObject:view.text]) {
+            NSInteger index = [self.dataList indexOfObject:view.text];
             [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
         } else {
             [self.collectionView deselectItemAtIndexPath:[self.collectionView indexPathsForSelectedItems].lastObject animated:YES];

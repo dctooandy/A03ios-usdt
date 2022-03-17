@@ -157,13 +157,21 @@
     //92:支付宝秒存 91:微信秒存 90：迅捷网银
     NSArray *array = @[@"91", @"92", @"93"];
     if ([array containsObject:self.paytypeList[_selcPayWayIdx].payType]) {
-        if (self.fastModel.amountList.count > 0) {
+        if (self.fastModel.isAvailable &&
+            self.fastModel.mmProcessingOrderTransactionId.length == 0 &&
+            self.fastModel.amountList.count > 0) {
             NSMutableArray *array = [NSMutableArray array];
             for (CNWAmountListModel *model in self.fastModel.amountList) {
                 [array addObject:model.amount];
             }
-            self.editView.matchAmountList = array.copy;
-            editViewHeight += 60 * ceilf(self.editView.matchAmountList.count/3.0)+20;
+            self.editView.matchAmountList = [array sortedArrayUsingComparator:^NSComparisonResult(NSString *  _Nonnull obj1, NSString *  _Nonnull obj2) {
+                if (obj1.intValue < obj2.intValue) {
+                    return NSOrderedDescending;
+                }
+                return NSOrderedAscending;
+            }];
+            self.editView.matchAmountList = @[@"10000", @"9000", @"8000", @"7000",@"6000",@"5000",@"4000",@"3000",@"2000",@"1000",@"500",@"300"];
+            editViewHeight += 60 * MIN(ceilf(self.editView.matchAmountList.count/3.0), 3)+20;
         }
     }
     if ([self isVIP]) {
@@ -241,8 +249,7 @@
     [CNMatchPayRequest queryFastPayOpenFinish:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg) {
             self.fastModel = [CNWFastPayModel cn_parse:responseObj];
-            if (!self.fastModel.isAvailable || self.fastModel.mmProcessingOrderTransactionId.length > 0) {
-                self.fastModel.amountList = nil;
+            if (self.fastModel.mmProcessingOrderType == 1 && self.fastModel.mmProcessingOrderTransactionId.length > 0) {
                 [self showTradeBill];
             }
         }
@@ -315,27 +322,29 @@
 }
 
 - (void)showTradeBill {
-    __weak typeof(self) weakSelf = self;
-    if (self.fastModel.mmProcessingOrderTransactionId.length > 0) {
-        if (self.fastModel.mmProcessingOrderType == 1) { // 存款
-            [CNMAlertView showAlertTitle:@"交易提醒" content:@"老板！您当前有正在交易的存款订单" desc:nil needRigthTopClose:NO commitTitle:@"关闭" commitAction:^{
-                [weakSelf removeFastPay];
-            } cancelTitle:@"查看订单" cancelAction:^{
-                CNMFastPayStatusVC *statusVC = [[CNMFastPayStatusVC alloc] init];
-                statusVC.cancelTime = [weakSelf.fastModel.remainCancelDepositTimes integerValue];
-                statusVC.transactionId = weakSelf.fastModel.mmProcessingOrderTransactionId;
-                [weakSelf.navigationController pushViewController:statusVC animated:YES];
-            }];
-        } else { // 取款
-            [CNMAlertView showAlertTitle:@"交易提醒" content:@"老板！您当前有正在交易的取款订单" desc:nil needRigthTopClose:NO commitTitle:@"关闭" commitAction:^{
-                [weakSelf removeFastPay];
-            } cancelTitle:@"查看订单" cancelAction:^{
-                KYMFastWithdrewVC *withdrewVC = [[KYMFastWithdrewVC alloc] init];
-                withdrewVC.mmProcessingOrderTransactionId = weakSelf.fastModel.mmProcessingOrderTransactionId;
-                [weakSelf.navigationController pushViewController:withdrewVC animated:YES];
-            }];
-        }
-    }
+//    if (self.fastModel.mmProcessingOrderPairStatus == 6 && self.fastModel.mmProcessingOrderStatus == 5) {
+//        [self.statusBtn setTitle:@"我要催单" forState:UIControlStateNormal];
+//        [self.statusBtn addTarget:self action:@selector(customerServer) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    else if (!self.matchModel.mmProcessingOrderUploadFlag) {
+//        [self.statusBtn setTitle:@"上传凭证" forState:UIControlStateNormal];
+//        [self.statusBtn addTarget:self action:@selector(showUploadUI) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    else if (self.fastModel.mmProcessingOrderStatus == 2) {
+//        [self.statusBtn setTitle:@"确认存款" forState:UIControlStateNormal];
+//        [self.statusBtn addTarget:self action:@selector(confirmBill) forControlEvents:UIControlEventTouchUpInside];
+//    } else {
+//        self.billView.hidden = YES;
+//        return;
+//    }
+//
+//    self.billView.hidden = hidden;
+//    self.billView.backgroundColor = kHexColor(0x23262F);
+//    self.billAmountLb.text = [NSString stringWithFormat:@"%.2f", self.matchModel.mmProcessingOrderAmount.doubleValue];
+//    self.billIdLb.text = self.matchModel.mmProcessingOrderTransactionId;
+//    self.statusBtn.layer.borderColor = self.statusBtn.titleLabel.textColor.CGColor;
+//    self.statusBtn.layer.borderWidth = 1;
+//    self.statusBtn.layer.cornerRadius = 4;
 }
 
 #pragma mark - REQUEST
