@@ -40,7 +40,9 @@
 #import "KYMFastWithdrewVC.h"
 #import "MBProgressHUD+Add.h"
 #import "IVRsaEncryptWrapper.h"
-#import "KYMWithdrewFaildVC.h"
+#import "KYMNormalWithdrewSuccessVC.h"
+#import "KYMMatchWithdrewSuccessVC.h"
+#import <CSCustomSerVice/CSCustomSerVice.h>
 @interface HYWithdrawViewController () <UITableViewDelegate, UITableViewDataSource, BYWithdrawDelegate>
 {
     BOOL _isCNYBlockLevel;
@@ -198,24 +200,38 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         }];
     }
     else {
-        KYMWithdrawConfirmVC *vc = [[KYMWithdrawConfirmVC alloc] init];
-        vc.checkModel = self.checkModel;
-        vc.balanceModel = self.moneyModel;
-        __weak typeof(self)weakSelf = self;
-        __weak typeof(vc)weakVC = vc;
-        vc.submitHandler = ^(NSString * _Nonnull pwd, NSString * _Nonnull amount, BOOL isMatch) {
-            if (self.elecCardsArr.count == 0) {
-                return;
-            }
-            pwd = [IVRsaEncryptWrapper encryptorString:pwd];
-            if (isMatch) {//撮合取款
-                [weakSelf requestMatchWithdrawWithPwd:pwd amount:amount confirmVC:weakVC];
-            } else {//普通取款
-                [weakSelf sumbimtWithdrawAmount:amount pwd:pwd confirmVC:weakVC];
-            }
-            
-        };
-        [self presentViewController:vc animated:YES completion:nil];
+        [KYMWithdrewRequest checkWithdrawWithCallBack:^(BOOL isMatch,KYMWithdrewCheckModel *model) {
+            KYMWithdrawConfirmVC *vc = [[KYMWithdrawConfirmVC alloc] init];
+            vc.checkModel = model;
+            vc.balanceModel = self.moneyModel;
+            __weak typeof(self)weakSelf = self;
+            __weak typeof(vc)weakVC = vc;
+            vc.submitHandler = ^(NSString * _Nonnull pwd, NSString * _Nonnull amount, BOOL isMatch) {
+                if (self.elecCardsArr.count == 0) {
+                    return;
+                }
+                pwd = [IVRsaEncryptWrapper encryptorString:pwd];
+                if (isMatch) {//撮合取款
+                    [weakSelf requestMatchWithdrawWithPwd:pwd amount:amount confirmVC:weakVC];
+                } else {//普通取款
+                    [weakSelf sumbimtWithdrawAmount:amount pwd:pwd confirmVC:weakVC];
+                }
+                
+            };
+            vc.confirmBtnHandler = ^{
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            };
+            vc.noConfirmBtnHandler = ^{
+                // 联系客服
+                [CSVisitChatmanager startWithSuperVC:weakSelf finish:^(CSServiceCode errCode) {
+                    if (errCode != CSServiceCode_Request_Suc) {
+                        [MBProgressHUD showError:@"暂时无法链接，请贵宾改以电话联系，感谢您的理解与支持" toView:nil];
+                    }
+                }];
+            };
+            [self presentViewController:vc animated:YES completion:nil];
+        }];
+        
     }
 }
 
@@ -284,8 +300,9 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
             [MBProgressHUD showError:msg toView:nil];
             return;
         }
-        KYMFastWithdrewVC *vc = [[KYMFastWithdrewVC alloc] init];
-        vc.mmProcessingOrderTransactionId = model.referenceId;
+        KYMMatchWithdrewSuccessVC *vc = [[KYMMatchWithdrewSuccessVC alloc] init];
+        vc.transactionId = model.referenceId;
+        vc.amountStr = [NSString stringWithFormat:@"%lf",[model.amount doubleValue] * 0.005];
         [confirmVC dismissViewControllerAnimated:YES completion:^{
             [self.navigationController pushViewController:vc animated:YES];
         }];
@@ -426,7 +443,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
             if (!errorMsg) {
                 
                 [confirmVC dismissViewControllerAnimated:YES completion:^{
-                    KYMWithdrewFaildVC *vc = [KYMWithdrewFaildVC new];
+                    KYMNormalWithdrewSuccessVC *vc = [KYMNormalWithdrewSuccessVC new];
                     [strongSelf.navigationController pushViewController:vc animated:YES];
                 }];
                 

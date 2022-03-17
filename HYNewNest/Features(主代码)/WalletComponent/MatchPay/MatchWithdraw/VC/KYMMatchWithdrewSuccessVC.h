@@ -10,9 +10,10 @@
 #import "CNBaseVC.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface KYMWithdrewFaildVC : CNBaseVC
+@interface KYMMatchWithdrewSuccessVC : CNBaseVC
 @property (nonatomic, copy) NSString *amountStr;
-@property (nonatomic, copy) NSString *userName;
+@property (nonatomic, copy) NSString *transactionId;
+
 @end
 
 NS_ASSUME_NONNULL_END

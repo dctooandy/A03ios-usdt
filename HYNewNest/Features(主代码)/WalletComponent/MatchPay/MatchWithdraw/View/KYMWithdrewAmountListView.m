@@ -10,7 +10,6 @@
 #import "KYMWithdrewAmountListCell.h"
 @interface KYMWithdrewAmountListView ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineHeight;
 
 @end
 @implementation KYMWithdrewAmountListView
@@ -28,7 +27,6 @@
     self.collectionView.dataSource = self;
     self.collectionView.scrollEnabled = NO;
     [self.collectionView registerNib:[UINib nibWithNibName:@"KYMWithdrewAmountListCell" bundle:nil] forCellWithReuseIdentifier:@"KYMWithdrewAmountListCell"];
-    self.lineHeight.constant = 1 / [UIScreen mainScreen].scale;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -86,7 +84,7 @@
     if (self.selectedIndexPath) {
         [self.collectionView deselectItemAtIndexPath:self.selectedIndexPath animated:NO];
     }
-    
+    [self.collectionView reloadData];
     for (int i = 0; i < self.amountArray.count; i++) {
         NSString *a = self.amountArray[i].amount;
         if ([a isEqualToString:amount]) {

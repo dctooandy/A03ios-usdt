@@ -433,6 +433,12 @@
 		76FC864B27671349005710FD /* degg03.gif in Resources */ = {isa = PBXBuildFile; fileRef = 76FC864A27671348005710FD /* degg03.gif */; };
 		A1F0277127C8AE6200202ACA /* NSData+EnternalImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F0277027C8AE6200202ACA /* NSData+EnternalImageContentType.m */; };
 		A1F0277427C8AF3400202ACA /* SDWebImageImageIOCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F0277227C8AF3400202ACA /* SDWebImageImageIOCoder.m */; };
+		D51ADF0627E2D7F500F77C00 /* KYMWithdrawHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = D51ADF0327E2D7F400F77C00 /* KYMWithdrawHistoryView.m */; };
+		D51ADF0727E2D7F500F77C00 /* KYMWithdrawHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D51ADF0427E2D7F400F77C00 /* KYMWithdrawHistoryView.xib */; };
+		D51ADF0E27E2FC4300F77C00 /* KYMMatchWithdrewSuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D51ADF0827E2FC4200F77C00 /* KYMMatchWithdrewSuccessVC.m */; };
+		D51ADF0F27E2FC4300F77C00 /* KYMNormalWithdrewSuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D51ADF0B27E2FC4300F77C00 /* KYMNormalWithdrewSuccessVC.m */; };
+		D51ADF1027E2FC4300F77C00 /* KYMNormalWithdrewSuccessVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D51ADF0C27E2FC4300F77C00 /* KYMNormalWithdrewSuccessVC.xib */; };
+		D51ADF1127E2FC4300F77C00 /* KYMMatchWithdrewSuccessVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D51ADF0D27E2FC4300F77C00 /* KYMMatchWithdrewSuccessVC.xib */; };
 		D571B19624BE9F120087B5EC /* CNLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19524BE9F120087B5EC /* CNLineView.m */; };
 		D571B1AA24C03D790087B5EC /* CNStatementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D571B1A724C03D790087B5EC /* CNStatementView.xib */; };
 		D571B1AB24C03D790087B5EC /* CNStatementView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B1A924C03D790087B5EC /* CNStatementView.m */; };
@@ -962,10 +968,8 @@
 		D5B4308F27C8D36E008330CB /* KYMWithdrewNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4307727C8D36E008330CB /* KYMWithdrewNoticeView.m */; };
 		D5B4309927C8D3CA008330CB /* KYMSelectChannelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4309327C8D3C9008330CB /* KYMSelectChannelVC.m */; };
 		D5B4309A27C8D3CA008330CB /* KYMFastWithdrewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B4309427C8D3CA008330CB /* KYMFastWithdrewVC.xib */; };
-		D5B4309B27C8D3CA008330CB /* KYMWithdrewFaildVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B4309527C8D3CA008330CB /* KYMWithdrewFaildVC.xib */; };
 		D5B4309C27C8D3CA008330CB /* KYMFastWithdrewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4309627C8D3CA008330CB /* KYMFastWithdrewVC.m */; };
 		D5B4309D27C8D3CA008330CB /* KYMSelectChannelVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B4309727C8D3CA008330CB /* KYMSelectChannelVC.xib */; };
-		D5B4309E27C8D3CA008330CB /* KYMWithdrewFaildVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4309827C8D3CA008330CB /* KYMWithdrewFaildVC.m */; };
 		D5B430A127C8DF44008330CB /* KYMWithDrewHomeNotifyView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B430A027C8DF44008330CB /* KYMWithDrewHomeNotifyView.m */; };
 		D5B430A327C8DF53008330CB /* KYMWithDrewHomeNotifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B430A227C8DF53008330CB /* KYMWithDrewHomeNotifyView.xib */; };
 		D5B430A527C9B571008330CB /* MatchWithdrew.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5B430A427C9B571008330CB /* MatchWithdrew.xcassets */; };
@@ -1907,6 +1911,15 @@
 		AEF7A2146C28453736D5663C /* Pods_HYNewNest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNest_HYNewNestUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D62AAB840E46D1A6C31D05 /* Pods-HYNewNestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNestTests.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNestTests/Pods-HYNewNestTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D51ADF0327E2D7F400F77C00 /* KYMWithdrawHistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYMWithdrawHistoryView.m; sourceTree = "<group>"; };
+		D51ADF0427E2D7F400F77C00 /* KYMWithdrawHistoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYMWithdrawHistoryView.xib; sourceTree = "<group>"; };
+		D51ADF0527E2D7F400F77C00 /* KYMWithdrawHistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYMWithdrawHistoryView.h; sourceTree = "<group>"; };
+		D51ADF0827E2FC4200F77C00 /* KYMMatchWithdrewSuccessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYMMatchWithdrewSuccessVC.m; sourceTree = "<group>"; };
+		D51ADF0927E2FC4300F77C00 /* KYMMatchWithdrewSuccessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYMMatchWithdrewSuccessVC.h; sourceTree = "<group>"; };
+		D51ADF0A27E2FC4300F77C00 /* KYMNormalWithdrewSuccessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYMNormalWithdrewSuccessVC.h; sourceTree = "<group>"; };
+		D51ADF0B27E2FC4300F77C00 /* KYMNormalWithdrewSuccessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYMNormalWithdrewSuccessVC.m; sourceTree = "<group>"; };
+		D51ADF0C27E2FC4300F77C00 /* KYMNormalWithdrewSuccessVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYMNormalWithdrewSuccessVC.xib; sourceTree = "<group>"; };
+		D51ADF0D27E2FC4300F77C00 /* KYMMatchWithdrewSuccessVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYMMatchWithdrewSuccessVC.xib; sourceTree = "<group>"; };
 		D571B19424BE9F120087B5EC /* CNLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNLineView.h; sourceTree = "<group>"; };
 		D571B19524BE9F120087B5EC /* CNLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNLineView.m; sourceTree = "<group>"; };
 		D571B1A724C03D790087B5EC /* CNStatementView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNStatementView.xib; sourceTree = "<group>"; };
@@ -2454,15 +2467,12 @@
 		D5B4307527C8D36D008330CB /* KYMWithdrewAmountListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYMWithdrewAmountListCell.h; sourceTree = "<group>"; };
 		D5B4307627C8D36E008330CB /* KYMWithdrewStatusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYMWithdrewStatusView.xib; sourceTree = "<group>"; };
 		D5B4307727C8D36E008330CB /* KYMWithdrewNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYMWithdrewNoticeView.m; sourceTree = "<group>"; };
-		D5B4309027C8D3C9008330CB /* KYMWithdrewFaildVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYMWithdrewFaildVC.h; sourceTree = "<group>"; };
 		D5B4309127C8D3C9008330CB /* KYMSelectChannelVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYMSelectChannelVC.h; sourceTree = "<group>"; };
 		D5B4309227C8D3C9008330CB /* KYMFastWithdrewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYMFastWithdrewVC.h; sourceTree = "<group>"; };
 		D5B4309327C8D3C9008330CB /* KYMSelectChannelVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYMSelectChannelVC.m; sourceTree = "<group>"; };
 		D5B4309427C8D3CA008330CB /* KYMFastWithdrewVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYMFastWithdrewVC.xib; sourceTree = "<group>"; };
-		D5B4309527C8D3CA008330CB /* KYMWithdrewFaildVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYMWithdrewFaildVC.xib; sourceTree = "<group>"; };
 		D5B4309627C8D3CA008330CB /* KYMFastWithdrewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYMFastWithdrewVC.m; sourceTree = "<group>"; };
 		D5B4309727C8D3CA008330CB /* KYMSelectChannelVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYMSelectChannelVC.xib; sourceTree = "<group>"; };
-		D5B4309827C8D3CA008330CB /* KYMWithdrewFaildVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYMWithdrewFaildVC.m; sourceTree = "<group>"; };
 		D5B4309F27C8DF44008330CB /* KYMWithDrewHomeNotifyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KYMWithDrewHomeNotifyView.h; sourceTree = "<group>"; };
 		D5B430A027C8DF44008330CB /* KYMWithDrewHomeNotifyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KYMWithDrewHomeNotifyView.m; sourceTree = "<group>"; };
 		D5B430A227C8DF53008330CB /* KYMWithDrewHomeNotifyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KYMWithDrewHomeNotifyView.xib; sourceTree = "<group>"; };
@@ -5107,9 +5117,12 @@
 				D5B4309127C8D3C9008330CB /* KYMSelectChannelVC.h */,
 				D5B4309327C8D3C9008330CB /* KYMSelectChannelVC.m */,
 				D5B4309727C8D3CA008330CB /* KYMSelectChannelVC.xib */,
-				D5B4309027C8D3C9008330CB /* KYMWithdrewFaildVC.h */,
-				D5B4309827C8D3CA008330CB /* KYMWithdrewFaildVC.m */,
-				D5B4309527C8D3CA008330CB /* KYMWithdrewFaildVC.xib */,
+				D51ADF0927E2FC4300F77C00 /* KYMMatchWithdrewSuccessVC.h */,
+				D51ADF0827E2FC4200F77C00 /* KYMMatchWithdrewSuccessVC.m */,
+				D51ADF0D27E2FC4300F77C00 /* KYMMatchWithdrewSuccessVC.xib */,
+				D51ADF0A27E2FC4300F77C00 /* KYMNormalWithdrewSuccessVC.h */,
+				D51ADF0B27E2FC4300F77C00 /* KYMNormalWithdrewSuccessVC.m */,
+				D51ADF0C27E2FC4300F77C00 /* KYMNormalWithdrewSuccessVC.xib */,
 				D5B430AB27CA19C2008330CB /* KYMWithdrawConfirmVC.h */,
 				D5B430AC27CA19C2008330CB /* KYMWithdrawConfirmVC.m */,
 				D5B430AD27CA19C2008330CB /* KYMWithdrawConfirmVC.xib */,
@@ -5161,6 +5174,9 @@
 				D5B4306D27C8D36C008330CB /* KYMWithdrewSubmitView.xib */,
 				D5B430B027CC63B3008330CB /* KYMSubmitButton.h */,
 				D5B430B127CC63B3008330CB /* KYMSubmitButton.m */,
+				D51ADF0527E2D7F400F77C00 /* KYMWithdrawHistoryView.h */,
+				D51ADF0327E2D7F400F77C00 /* KYMWithdrawHistoryView.m */,
+				D51ADF0427E2D7F400F77C00 /* KYMWithdrawHistoryView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6396,6 +6412,7 @@
 				D5A4470824F3941400014DC6 /* 合成 1_00090.png in Resources */,
 				D5A446C024F3941400014DC6 /* 合成 1_00070.png in Resources */,
 				D5A4457B24F393AD00014DC6 /* 棋牌_00046.png in Resources */,
+				D51ADF1127E2FC4300F77C00 /* KYMMatchWithdrewSuccessVC.xib in Resources */,
 				D5A4471F24F3941400014DC6 /* 合成 1_0004.png in Resources */,
 				D5A4461324F393E500014DC6 /* 足球_00082.png in Resources */,
 				D5A4457124F393AC00014DC6 /* 棋牌_00045.png in Resources */,
@@ -6463,7 +6480,6 @@
 				D5A4463424F393E500014DC6 /* 足球_00089.png in Resources */,
 				D5A4449824F3932400014DC6 /* 数字7_0002.png in Resources */,
 				D5A443A524F378CD00014DC6 /* 彩票_00011.png in Resources */,
-				D5B4309B27C8D3CA008330CB /* KYMWithdrewFaildVC.xib in Resources */,
 				D5A4455524F393AC00014DC6 /* 棋牌_00067.png in Resources */,
 				D5A4463E24F393E500014DC6 /* 足球_00072.png in Resources */,
 				D5A443CA24F378CD00014DC6 /* 彩票_00025.png in Resources */,
@@ -6634,6 +6650,7 @@
 				D5A444C824F3932500014DC6 /* 数字7_00047.png in Resources */,
 				D5A446D224F3941400014DC6 /* 合成 1_00075.png in Resources */,
 				04C0F13324C7D2A6007F1420 /* CNSportVC.xib in Resources */,
+				D51ADF1027E2FC4300F77C00 /* KYMNormalWithdrewSuccessVC.xib in Resources */,
 				D5A446EE24F3941400014DC6 /* 合成 1_00020.png in Resources */,
 				D5A445FD24F393E500014DC6 /* 足球_00035.png in Resources */,
 				04C6E1ED24D40728006F4DAC /* CNAddressAddTCell.xib in Resources */,
@@ -6657,6 +6674,7 @@
 				D5A4465524F393E500014DC6 /* 足球_0003.png in Resources */,
 				E98BEF1324D2A32700E6B0C8 /* HYXiMaSuccViewController.xib in Resources */,
 				D5A4460724F393E500014DC6 /* 足球_00032.png in Resources */,
+				D51ADF0727E2D7F500F77C00 /* KYMWithdrawHistoryView.xib in Resources */,
 				D5A4471E24F3941400014DC6 /* 合成 1_00082.png in Resources */,
 				D5A446CE24F3941400014DC6 /* 合成 1_00063.png in Resources */,
 				D5A4456824F393AC00014DC6 /* 棋牌_00068.png in Resources */,
@@ -7166,7 +7184,6 @@
 				3DC841142682F75200AEB1B6 /* BYMoreCompleteMissionView.m in Sources */,
 				D5FBFE2D24BC05E400BBCAD8 /* CNLoginRegisterVC.m in Sources */,
 				04C0F12D24C7D20C007F1420 /* CNRealPersonVC.m in Sources */,
-				D5B4309E27C8D3CA008330CB /* KYMWithdrewFaildVC.m in Sources */,
 				3D18CFB1260883C600E6642E /* NXPingServices.m in Sources */,
 				3DBA55F5257F67F5009A2B71 /* DSBRecharWithdrwUsrModel.m in Sources */,
 				3DA4F19D24B3195F0039123F /* HYRefreshHeader.m in Sources */,
@@ -7260,6 +7277,7 @@
 				0494C5B227C8DFD50016B5F6 /* CNMFastPayStatusVC.m in Sources */,
 				E986A18924C9CF36000F9CFF /* XmPlatformModel.m in Sources */,
 				3DA4F17C24B315940039123F /* NSURL+HYLink.m in Sources */,
+				D51ADF0E27E2FC4300F77C00 /* KYMMatchWithdrewSuccessVC.m in Sources */,
 				3DBA55D0256FA6D3009A2B71 /* CNBaseTF.m in Sources */,
 				E986A0FA24C6CBB6000F9CFF /* SmsCodeModel.m in Sources */,
 				04C0F11624C59956007F1420 /* CNEncrypt.m in Sources */,
@@ -7323,6 +7341,7 @@
 				3D8A3B3A264E4DEA00AA9AB7 /* CNYuEBaoRequest.m in Sources */,
 				76FC8629276225A1005710FD /* SDWebImageCoder.m in Sources */,
 				E986A17B24C97A42000F9CFF /* CNWithdrawRequest.m in Sources */,
+				D51ADF0F27E2FC4300F77C00 /* KYMNormalWithdrewSuccessVC.m in Sources */,
 				3DF03204258DE61400AF7A36 /* SCMyRecommenModel.m in Sources */,
 				D5B4308827C8D36E008330CB /* KYMWithdrewAmountListCell.m in Sources */,
 				040A08D324E114A900FBD534 /* OCBarrageTextDescriptor.m in Sources */,
@@ -7336,6 +7355,7 @@
 				E986A17F24C97B21000F9CFF /* CNWDAccountRequest.m in Sources */,
 				3D4179D82669BFE0003928F0 /* BYChangeFundPwdVC.m in Sources */,
 				76B499EE276094B9003CD35B /* AppSettingRequest.m in Sources */,
+				D51ADF0627E2D7F500F77C00 /* KYMWithdrawHistoryView.m in Sources */,
 				D5FBFE4224BC05E400BBCAD8 /* CNCodeInputView.m in Sources */,
 				E986A0FD24C6D1F9000F9CFF /* CNUserDetailModel.m in Sources */,
 				F76D2FF2268059FE00B5BE84 /* BYTradeEntryRequest.m in Sources */,
