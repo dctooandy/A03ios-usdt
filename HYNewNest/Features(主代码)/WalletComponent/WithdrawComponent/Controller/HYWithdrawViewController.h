@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @class WithdrawCalculateModel;
 @interface HYWithdrawViewController : CNBaseVC
-@property (nonatomic, strong) KYMWithdrewCheckModel *checkModel;
+//@property (nonatomic, strong) KYMWithdrewCheckModel *checkModel;
 @property (nonatomic, strong) WithdrawCalculateModel *calculatorModel; //CNY needed
 @end
 

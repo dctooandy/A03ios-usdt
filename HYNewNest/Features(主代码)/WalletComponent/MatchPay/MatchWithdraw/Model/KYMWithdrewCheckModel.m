@@ -32,6 +32,52 @@
         }
     }
     self.miniAmount = miniAmountStr;
+    if (amountList.count > 9) {
+        self.currentAmountList = [amountList subarrayWithRange:NSMakeRange(0, 9)];
+    } else {
+        self.currentAmountList = amountList;
+    }
+}
+- (void)setInputAmount:(NSString *)inputAmount
+{
+    _inputAmount = inputAmount;
+    self.currentAmountList = [self getRecommendAmountFromAmount:inputAmount];
+    
+}
+/// 计算合理推荐金额
+- (NSArray *)getRecommendAmountFromAmount:(NSString *)amount {
+    
+    NSArray *sourceArray = self.amountList;
+    
+    if (sourceArray.count < 9) {
+        return sourceArray;
+    }
+    
+    if (amount == nil || amount.length == 0) {
+        return [sourceArray subarrayWithRange:NSMakeRange(0, 9)];
+    }
+    
+    NSMutableArray *sortArr = [sourceArray mutableCopy];
+    KYMWithdrewAmountModel *model = [KYMWithdrewAmountModel new];
+    model.amount = amount;
+    [sortArr addObject:model];
+    
+    sortArr = [[sortArr sortedArrayUsingComparator:^NSComparisonResult(KYMWithdrewAmountModel *  _Nonnull obj1, KYMWithdrewAmountModel *  _Nonnull obj2) {
+        if (obj1.amount.intValue < obj2.amount.intValue) {
+            return NSOrderedDescending;
+        }
+        return NSOrderedAscending;
+    }] mutableCopy];
+    
+    NSInteger index = [sortArr indexOfObject:model];
+
+    if (index <= 5) {
+        return [sourceArray subarrayWithRange:NSMakeRange(0, 9)];
+    } else if  (index > (sourceArray.count - 5)) {
+        return [sourceArray subarrayWithRange:NSMakeRange(sourceArray.count - 9, 9)];
+    } else {
+        return [sourceArray subarrayWithRange:NSMakeRange(index - 5, 9)];
+    }
 }
 - (void)removeAmountBiggerThanTotal:(NSString *)totatlAmount
 {

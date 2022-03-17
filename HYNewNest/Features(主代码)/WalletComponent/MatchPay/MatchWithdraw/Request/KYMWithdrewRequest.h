@@ -31,7 +31,10 @@ extern void kym_requestBalance(KYMCallback callback);
 //取消撮合存款
 + (void)cancelWithdrawWithParams:(NSDictionary *)params callback:(KYMCallback)callback;
 
-+ (void)checkWithdraw:(UIViewController *)viewController callBack:(void(^)(BOOL isMatch,KYMWithdrewCheckModel  * checkModel))callback;
++ (void)checkWithdrawWithCallBack:(void(^)(BOOL isMatch,KYMWithdrewCheckModel  * checkModel))callback;
+
+//是否到账
++ (void)checkReceiveStats:(BOOL)isNotRceived transactionId:(NSString *)transactionId   callBack:(void(^)(BOOL status, NSString *msg))callBack;
 @end
 
 NS_ASSUME_NONNULL_END

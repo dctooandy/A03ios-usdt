@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KYMMatchWithdrewSuccessVC">
+            <connections>
+                <outlet property="customerBtn" destination="YgY-Et-QHN" id="ST8-WI-Nhf"/>
+                <outlet property="notifyLB" destination="nuD-YC-dFK" id="PPe-Rn-qik"/>
+                <outlet property="submitBtn" destination="6jR-97-foI" id="zTb-OM-xxD"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mwd_doing" translatesAutoresizingMaskIntoConstraints="NO" id="Mwl-uY-0p5">
+                    <rect key="frame" x="125.5" y="94" width="163" height="131"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="163" id="9Ds-Vs-HRX"/>
+                        <constraint firstAttribute="height" constant="131" id="Baz-7k-6Pb"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6jR-97-foI" customClass="KYMSubmitButton">
+                    <rect key="frame" x="217" y="364" width="180" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="9XC-In-wAF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="16"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="确认到账">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="submitBtnClicked:" destination="-1" eventType="touchUpInside" id="26m-Ro-DO2"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnR-2s-DtS">
+                    <rect key="frame" x="0.0" y="257" width="414" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="kgb-nI-Upq"/>
+                    </constraints>
+                    <attributedString key="attributedText">
+                        <fragment content="您的提款，正在受理中">
+                            <attributes>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="15" name="PingFangSC-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您将获得0.00元取款礼金，24小时到账" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nuD-YC-dFK">
+                    <rect key="frame" x="0.0" y="282" width="414" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="dKW-FW-Jnd"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
+                    <color key="textColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YgY-Et-QHN">
+                    <rect key="frame" x="17" y="364" width="180" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="aVc-71-QY5"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="16"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="联系客服">
+                        <color key="titleColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="customerBtnClicked:" destination="-1" eventType="touchUpInside" id="f2c-a0-qMd"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如收到取款，请点击【确认到账】" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSn-ik-cKB">
+                    <rect key="frame" x="0.0" y="307" width="414" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="7QI-2j-Le3"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="nuD-YC-dFK" firstAttribute="top" secondItem="xnR-2s-DtS" secondAttribute="bottom" constant="3" id="3kU-Mx-mgQ"/>
+                <constraint firstAttribute="trailing" secondItem="BSn-ik-cKB" secondAttribute="trailing" id="B65-0F-3zu"/>
+                <constraint firstItem="6jR-97-foI" firstAttribute="top" secondItem="YgY-Et-QHN" secondAttribute="top" id="M7H-QO-4sb"/>
+                <constraint firstItem="BSn-ik-cKB" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="MGI-Tu-OcX"/>
+                <constraint firstItem="6jR-97-foI" firstAttribute="top" secondItem="BSn-ik-cKB" secondAttribute="bottom" constant="35" id="NwQ-rF-b7q"/>
+                <constraint firstItem="xnR-2s-DtS" firstAttribute="top" secondItem="Mwl-uY-0p5" secondAttribute="bottom" constant="32" id="S1j-NL-CvF"/>
+                <constraint firstItem="Mwl-uY-0p5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="UlZ-mV-5Ou"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="xnR-2s-DtS" secondAttribute="trailing" id="YZV-56-orU"/>
+                <constraint firstItem="YgY-Et-QHN" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="17" id="azo-KF-GzW"/>
+                <constraint firstItem="nuD-YC-dFK" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="euZ-fQ-RFJ"/>
+                <constraint firstItem="6jR-97-foI" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.5" constant="-27" id="gx8-rx-3W3"/>
+                <constraint firstItem="6jR-97-foI" firstAttribute="width" secondItem="YgY-Et-QHN" secondAttribute="width" id="iee-4v-OS6"/>
+                <constraint firstAttribute="trailing" secondItem="nuD-YC-dFK" secondAttribute="trailing" id="kUH-ZK-zw9"/>
+                <constraint firstItem="xnR-2s-DtS" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="mCt-vX-n3Y"/>
+                <constraint firstItem="BSn-ik-cKB" firstAttribute="top" secondItem="nuD-YC-dFK" secondAttribute="bottom" constant="3" id="nTt-Cb-aNQ"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="6jR-97-foI" secondAttribute="trailing" constant="17" id="rMo-Lu-XnB"/>
+                <constraint firstItem="Mwl-uY-0p5" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="50" id="szV-EN-y9z"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="134.59821428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="mwd_doing" width="168" height="128"/>
+    </resources>
+</document>

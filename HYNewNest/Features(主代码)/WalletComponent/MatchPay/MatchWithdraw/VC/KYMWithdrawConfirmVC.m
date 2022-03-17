@@ -14,6 +14,10 @@
 #import "KYMWidthdrewUtility.h"
 #import "CNAmountInputView.h"
 #import "CNCodeInputView.h"
+#import "KYMWithdrawHistoryView.h"
+#import "CNMAlertView.h"
+#import "KYMWithdrewRequest.h"
+#import "MBProgressHUD+Add.h"
 
 @interface KYMWithdrawConfirmVC ()<KYMWithdrewAmountCellDelegate>
 @property (weak, nonatomic) IBOutlet UIView *mainView;
@@ -25,6 +29,8 @@
 @property (strong, nonatomic) CNCodeInputView *codeInputView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeight;
 @property (strong, nonatomic) KYMSubmitButton *submitBitn;
+@property (strong, nonatomic) KYMWithdrawHistoryView *historyView;
+
 
 @end
 
@@ -32,30 +38,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (self.checkModel.data.mmProcessingOrderType != 0) {
+        self.isForceNormalWithdraw = YES;
+    }
     [self setupSubViews];
 }
-
+- (CGFloat)getMatchAmountListHeight
+{
+    NSUInteger lineCount = 0;
+    if (self.checkModel.data.currentAmountList.count > 0) {
+        lineCount = ceilf(self.checkModel.data.currentAmountList.count / 3.0) ;
+    }
+    CGFloat matchWithdrewAmountH = 0;
+ 
+    if (lineCount > 0 && !self.isForceNormalWithdraw) {
+        matchWithdrewAmountH = 40 * lineCount + 16 + 21 + 8 * (lineCount - 1);
+    }
+    return matchWithdrewAmountH;
+}
 - (void)setupSubViews
 {
     self.balanceLB.text =  [KYMWidthdrewUtility getMoneyString:[self.balanceModel.withdrawBal doubleValue]];
     self.mainView.layer.cornerRadius = 20;
     self.mainView.layer.masksToBounds = YES;
     self.amountListView = [[KYMWithdrewAmountListView alloc] init];
-    self.amountListView.amountArray = self.checkModel.data.amountList;
+    self.amountListView.amountArray = self.checkModel.data.currentAmountList;
     self.amountListView.delegate = self;
     [self.contentView addSubview:self.amountListView];
     
-    
-    NSUInteger lineCount = 0;
-    if (self.checkModel.data.amountList.count > 0) {
-        lineCount = ceilf(self.checkModel.data.amountList.count / 3.0) ;
-    }
-    CGFloat matchWithdrewAmountH = 0;
+    CGFloat matchWithdrewAmountH = [self getMatchAmountListHeight];
  
-    if (lineCount > 0 && !self.isForceNormalWithdraw) {
-        matchWithdrewAmountH = 40 * lineCount + 16 + 50 + 8 * (lineCount - 1);
-    }
-    
     [self.amountListView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.balanceLB.mas_bottom).offset(15);
         make.left.equalTo(self.balanceLB);
@@ -67,7 +79,8 @@
     self.amountInputView.delegate = self;
     self.amountInputView.codeType = CNAmountTypeWithdraw;
     self.amountInputView.model = self.balanceModel;
-    [self.amountInputView setPlaceholder:@"请输入提款金额"];
+    NSString *placeholder = [NSString stringWithFormat:@"最小提现%@元",self.balanceModel.minWithdrawAmount];
+    [self.amountInputView setPlaceholder:placeholder];
     [self.contentView addSubview:self.amountInputView];
     
     self.codeInputView = [CNCodeInputView new];
@@ -112,12 +125,67 @@
         make.left.right.equalTo(self.codeInputView);
         make.height.offset(48);
     }];
+    
+    self.historyView = [KYMWithdrawHistoryView new];
+    self.historyView.amount = self.checkModel.data.mmProcessingOrderAmount;
+    self.historyView.orderNo = self.checkModel.data.mmProcessingOrderTransactionId;
+    __weak typeof(self)weakSelf = self;
+    self.historyView.confirmBtnHandler = ^{
+        [weakSelf confirmGetMathWithdraw];
+    };
+    self.historyView.noConfirmBtnHandler = ^{
+        [weakSelf noConfirmGetMathWithdraw];
+    };
+    
+    [self.contentView addSubview:self.historyView];
+    [self.historyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.height.offset(66);
+        make.top.equalTo(self.submitBitn.mas_bottom).offset(20);
+    }];
+    
+    self.historyView.hidden = YES;
+    
+    if (self.checkModel.data.mmProcessingOrderType == 2 && self.checkModel.data.mmProcessingOrderStatus == 2 && self.checkModel.data.mmProcessingOrderPairStatus == 5) {
+        self.historyView.hidden = NO;
+    }
 }
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
     self.balanceLBWidth.constant = [self.balanceLB.text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : self.balanceLB.font} context:nil].size.width + 1;
-    self.contentViewHeight.constant = CGRectGetMaxY(self.submitBitn.frame) + 24;
+    self.contentViewHeight.constant = CGRectGetMaxY(self.historyView.frame) + 24;
+}
+- (void)confirmGetMathWithdraw
+{
+    __weak typeof(self)weakSelf = self;
+    [CNMAlertView showAlertTitle:@"温馨提示" content:@"老板！请您再次确认是否到账" desc:nil needRigthTopClose:YES commitTitle:@"没有到账" commitAction:^{
+        [weakSelf noConfirmGetMathWithdraw];
+    } cancelTitle:@"确认到账" cancelAction:^{
+        [KYMWithdrewRequest checkReceiveStats:NO transactionId:weakSelf.checkModel.data.mmProcessingOrderTransactionId callBack:^(BOOL status, NSString *msg) {
+            if (status) {
+                [weakSelf dismissViewControllerAnimated:YES completion:^{
+                    weakSelf.confirmBtnHandler();
+                }];
+            } else {
+                [MBProgressHUD showError:msg toView:nil];
+            }
+        }];
+    }];
+    
+}
+- (void)noConfirmGetMathWithdraw
+{
+    [KYMWithdrewRequest checkReceiveStats:YES transactionId:self.checkModel.data.mmProcessingOrderTransactionId callBack:^(BOOL status, NSString *msg) {
+        if (status) {
+            __weak typeof(self)weakSelf = self;
+            [self dismissViewControllerAnimated:YES completion:^{
+                weakSelf.noConfirmBtnHandler();
+            }];
+        } else {
+            [MBProgressHUD showError:msg toView:nil];
+        }
+    }];
 }
 
 - (void)submitBitnClicked:(UIButton *)button
@@ -129,35 +197,26 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-//- (void)textChanged:(UITextField *)textField
-//{
-//    if (textField == self.amountTF) {
-//        [self.amountListView setCurrentAmount:textField.text];
-//    }
-//
-//    if ([KYMWidthdrewUtility isValidateWithdrawPwdNumber:self.pwdTF.text] && self.amountTF.text.length > 0) {
-//        self.submitBitn.enabled = true;
-//    } else {
-//        self.submitBitn.enabled = false;
-//    }
-//}
 - (void)matchWithdrewAmountCellDidSelected:(KYMWithdrewAmountListView *)view indexPath:(NSIndexPath *)indexPath
 {
     self.amountInputView.money = view.amountArray[indexPath.row].amount;
-    
-    if ([KYMWidthdrewUtility isValidateWithdrawPwdNumber:self.codeInputView.code] && self.amountInputView.money.length > 0) {
-        self.submitBitn.enabled = true;
-    } else {
-        self.submitBitn.enabled = false;
-    }
+    [self.submitBitn setEnabled:self.codeInputView.correct && self.amountInputView.correct];
 }
 #pragma mark Input Delegate
 - (void)amountInputViewTextChange:(CNAmountInputView *)view {
+    self.checkModel.data.inputAmount = view.money;
+    self.amountListView.amountArray = self.checkModel.data.currentAmountList;
     [self.amountListView setCurrentAmount:view.money];
-    [self.submitBitn setEnabled:(view.correct && view.money.length > 0) && self.codeInputView.correct];
+    CGFloat matchWithdrewAmountH = [self getMatchAmountListHeight];
+    [self.amountListView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.offset(matchWithdrewAmountH);
+    }];
+    [self.submitBitn setEnabled:view.correct && self.codeInputView.correct];
 }
 
 - (void)codeInputViewTextChange:(CNCodeInputView *)view {
-    [self.submitBitn setEnabled:(view.correct && self.amountInputView.money.length > 0) && self.codeInputView.correct];
+    [self.submitBitn setEnabled:view.correct && self.amountInputView.correct];
 }
+
+
 @end
