@@ -35,6 +35,8 @@
 #import "CNMatchPayRequest.h"
 #import "CNMBankModel.h"
 #import "CNMFastPayStatusVC.h"
+#import "CNMatchDepositStatusVC.h"
+#import <CSCustomSerVice/CSCustomSerVice.h>
 
 @interface HYRechargeCNYViewController () <HYRechargeCNYEditViewDelegate>
 @property (nonatomic, assign) NSInteger selcPayWayIdx;
@@ -347,6 +349,25 @@
 //    self.statusBtn.layer.cornerRadius = 4;
 }
 
+- (void)showUploadUI {
+    
+}
+
+- (void)confirmBill {
+    CNMatchDepositStatusVC *statusVC = [[CNMatchDepositStatusVC alloc] init];
+    statusVC.transactionId = self.fastModel.mmProcessingOrderTransactionId;
+    [self.navigationController pushViewController:statusVC animated:YES];
+}
+
+- (void)customerServer {
+    // 联系客服
+    [CSVisitChatmanager startWithSuperVC:self finish:^(CSServiceCode errCode) {
+        if (errCode != CSServiceCode_Request_Suc) {
+            [CNTOPHUB showError:@"暂时无法链接，请贵宾改以电话联系，感谢您的理解与支持"];
+        }
+    }];
+}
+
 #pragma mark - REQUEST
 
 - (void)queryCNYPayways {
@@ -491,10 +512,9 @@
                 CNMBankModel *bank = [CNMBankModel cn_parse:[dic objectForKey:@"mmPaymentRsp"]];
                 if (bank) {
                     // 成功跳转
-                    CNMFastPayStatusVC *statusVC = [[CNMFastPayStatusVC alloc] init];
-                    statusVC.cancelTime = [weakSelf.fastModel.remainCancelDepositTimes integerValue];
+                    CNMatchDepositStatusVC *statusVC = [[CNMatchDepositStatusVC alloc] init];
                     statusVC.transactionId = bank.transactionId;
-                    [weakSelf.parentViewController.navigationController pushViewController:statusVC animated:YES];
+                    [weakSelf.navigationController pushViewController:statusVC animated:YES];
                     return;
                 }
             }

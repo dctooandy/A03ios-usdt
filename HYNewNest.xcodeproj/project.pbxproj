@@ -39,6 +39,8 @@
 		044DC69124DD01AA005CB550 /* CNShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 044DC68F24DD01AA005CB550 /* CNShareView.m */; };
 		044DC69524DD1A35005CB550 /* CNShareCopyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 044DC69224DD1A34005CB550 /* CNShareCopyView.m */; };
 		044DC69624DD1A35005CB550 /* CNShareCopyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044DC69324DD1A34005CB550 /* CNShareCopyView.xib */; };
+		04516F7627E31C7D0049269A /* CNMatchDepositStatusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04516F7327E31C7B0049269A /* CNMatchDepositStatusVC.m */; };
+		04516F7727E31C7D0049269A /* CNMatchDepositStatusVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04516F7427E31C7C0049269A /* CNMatchDepositStatusVC.xib */; };
 		0487C96C24CE9A630013715A /* BRStringPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487C95B24CE9A630013715A /* BRStringPickerView.m */; };
 		0487C96D24CE9A630013715A /* NSDate+BRPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487C96024CE9A630013715A /* NSDate+BRPickerView.m */; };
 		0487C96E24CE9A630013715A /* BRDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487C96124CE9A630013715A /* BRDatePickerView.m */; };
@@ -1207,6 +1209,9 @@
 		044DC69224DD1A34005CB550 /* CNShareCopyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNShareCopyView.m; sourceTree = "<group>"; };
 		044DC69324DD1A34005CB550 /* CNShareCopyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNShareCopyView.xib; sourceTree = "<group>"; };
 		044DC69424DD1A35005CB550 /* CNShareCopyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNShareCopyView.h; sourceTree = "<group>"; };
+		04516F7327E31C7B0049269A /* CNMatchDepositStatusVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNMatchDepositStatusVC.m; sourceTree = "<group>"; };
+		04516F7427E31C7C0049269A /* CNMatchDepositStatusVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNMatchDepositStatusVC.xib; sourceTree = "<group>"; };
+		04516F7527E31C7C0049269A /* CNMatchDepositStatusVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNMatchDepositStatusVC.h; sourceTree = "<group>"; };
 		0487C95A24CE9A630013715A /* BRStringPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRStringPickerView.h; sourceTree = "<group>"; };
 		0487C95B24CE9A630013715A /* BRStringPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRStringPickerView.m; sourceTree = "<group>"; };
 		0487C95C24CE9A630013715A /* BRPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRPickerView.h; sourceTree = "<group>"; };
@@ -3270,6 +3275,9 @@
 				0494C5A427C8DFD50016B5F6 /* CNMFastPayStatusVC.h */,
 				0494C5A927C8DFD50016B5F6 /* CNMFastPayStatusVC.m */,
 				0494C5A227C8DFD50016B5F6 /* CNMFastPayStatusVC.xib */,
+				04516F7527E31C7C0049269A /* CNMatchDepositStatusVC.h */,
+				04516F7327E31C7B0049269A /* CNMatchDepositStatusVC.m */,
+				04516F7427E31C7C0049269A /* CNMatchDepositStatusVC.xib */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -6774,6 +6782,7 @@
 				D5A4471224F3941400014DC6 /* 合成 1_00095.png in Resources */,
 				D5A443E724F378CD00014DC6 /* 彩票_00076.png in Resources */,
 				414B89D4279596F300AF45CA /* CNAddAddressVC.xib in Resources */,
+				04516F7727E31C7D0049269A /* CNMatchDepositStatusVC.xib in Resources */,
 				D5A4457724F393AD00014DC6 /* 棋牌_00087.png in Resources */,
 				D5A444AE24F3932400014DC6 /* 数字7_00081.png in Resources */,
 				D5A4463D24F393E500014DC6 /* 足球_00066.png in Resources */,
@@ -7334,6 +7343,7 @@
 				E986A15624C95F4F000F9CFF /* UIButton+Indicator.m in Sources */,
 				040A08D024E114A900FBD534 /* OCBarrageTextCell.m in Sources */,
 				0487C9EC24D297CA0013715A /* CNMessageCenterVC.m in Sources */,
+				04516F7627E31C7D0049269A /* CNMatchDepositStatusVC.m in Sources */,
 				3DBA55D2256FA6D3009A2B71 /* CNTextSaleBtn.m in Sources */,
 				D5FBFE3D24BC05E400BBCAD8 /* CNImageCodeInputView.m in Sources */,
 				E986A10B24C6F5E7000F9CFF /* TopTabAGUltimateView.m in Sources */,
