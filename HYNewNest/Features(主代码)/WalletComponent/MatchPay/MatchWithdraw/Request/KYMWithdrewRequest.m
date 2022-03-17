@@ -93,7 +93,7 @@
         }
     });
 }
-+ (void)checkWithdraw:(UIViewController *)viewController callBack:(void(^)(BOOL isMatch,KYMWithdrewCheckModel  * checkModel))callback {
++ (void)checkWithdrawWithCallBack:(void(^)(BOOL isMatch,KYMWithdrewCheckModel  * checkModel))callback {
     NSMutableDictionary *parmas = @{}.mutableCopy;
     parmas[@"merchant"] = @"A01";
     //网络库底层自带这两个参数，如果其他产品不带的需要加上
@@ -127,42 +127,43 @@
             }
             [LoadingView hideLoadingViewForView:nil];
             //移除比余额小的金额
-            [model.data removeAmountBiggerThanTotal:balance];
+            if (model && model.data) {
+                [model.data removeAmountBiggerThanTotal:balance];
+            }
+            
             //如果渠道开启，有金额列表，且金额列表中最小的比余额大才走撮合
             if (model.data.isAvailable && model.data.amountList.count > 0 && [balance doubleValue] >= [model.data.miniAmount doubleValue]) {
                 //是否已存在存取款提案
                 if (model.data.mmProcessingOrderTransactionId && model.data.mmProcessingOrderTransactionId.length != 0) {
                     //普通取款
-                    callback(NO,nil);
-                    if (model.data.mmProcessingOrderType == 1) { // 存款
-                        [CNMAlertView showAlertTitle:@"交易提醒" content:@"您当前有正在交易的存款订单" desc:nil needRigthTopClose:NO commitTitle:@"关闭" commitAction:^{
-                            
-                            
-                        } cancelTitle:@"查看订单" cancelAction:^{
-                            CNMFastPayStatusVC *statusVC = [[CNMFastPayStatusVC alloc] init];
-                            statusVC.cancelTime = [model.data.remainCancelDepositTimes integerValue];
-                            statusVC.transactionId = model.data.mmProcessingOrderTransactionId;
-                            [viewController.navigationController pushViewController:statusVC animated:YES];
-                        }];
-                    } else { // 取款
-                        //普通取款
-                        [CNMAlertView showAlertTitle:@"交易提醒" content:@"老板，当前有正在交易的取款订单" desc:nil needRigthTopClose:NO commitTitle:@"关闭" commitAction:^{
-                            
-                        } cancelTitle:@"查看订单" cancelAction:^{
-                            KYMFastWithdrewVC *vc = [[KYMFastWithdrewVC alloc] init];
-                            vc.mmProcessingOrderTransactionId = model.data.mmProcessingOrderTransactionId;
-                            [viewController.navigationController pushViewController:vc animated:YES];
-                        }];
-                    }
+                    callback(NO,model);
                 } else {
                     //撮合取款
                     callback(YES,model);
                 }
             } else {
                 //普通取款
-                callback(NO,nil);
+                callback(NO,model);
             }
         });
+    }];
+}
+
++ (void)checkReceiveStats:(BOOL)isNotRceived transactionId:(NSString *)transactionId   callBack:(void(^)(BOOL status, NSString *msg))callBack
+{
+    NSMutableDictionary *params = @{}.mutableCopy;
+    params[@"merchant"] = @"A01";
+    //            mparams[@"loginName"] = @""; //用户名，底层已拼接
+    //            mparams[@"productId"] = @""; //脱敏产品编号，底层已拼接
+    params[@"opType"] = isNotRceived ? @"2" : @"1"; //是否为未到账
+    params[@"transactionId"] = transactionId;
+    
+    [self checkReceiveStatus:params callback:^(BOOL status, NSString * _Nonnull msg, id  _Nonnull body) {
+        if (!status) {
+            callBack(NO,msg);
+        } else {
+            callBack(YES,msg);
+        }
     }];
 }
 

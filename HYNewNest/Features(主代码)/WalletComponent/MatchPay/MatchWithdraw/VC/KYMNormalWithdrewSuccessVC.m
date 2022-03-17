@@ -6,19 +6,19 @@
 //  Copyright © 2022 BTT. All rights reserved.
 //
 
-#import "KYMWithdrewFaildVC.h"
+#import "KYMNormalWithdrewSuccessVC.h"
 #import "KYMWidthdrewUtility.h"
 #import "KYMSubmitButton.h"
 #import <CSCustomSerVice/CSCustomSerVice.h>
 #import "MBProgressHUD+Add.h"
-@interface KYMWithdrewFaildVC ()
+@interface KYMNormalWithdrewSuccessVC ()
 
 @property (weak, nonatomic) IBOutlet UIButton *customerBtn;
 @property (weak, nonatomic) IBOutlet KYMSubmitButton *submitBtn;
 
 @end
 
-@implementation KYMWithdrewFaildVC
+@implementation KYMNormalWithdrewSuccessVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];

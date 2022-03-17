@@ -115,5 +115,6 @@
 {
     _money = money;
     self.inputTF.text = money;
+    [self textFieldChange:self.inputTF];
 }
 @end

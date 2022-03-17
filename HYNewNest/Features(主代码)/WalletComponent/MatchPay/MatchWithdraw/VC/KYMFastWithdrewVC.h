@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "KYMGetWithdrewDetailModel.h"
 #import "CNBaseVC.h"
-#import "KYMWithdrewFaildVC.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KYMFastWithdrewVC : CNBaseVC

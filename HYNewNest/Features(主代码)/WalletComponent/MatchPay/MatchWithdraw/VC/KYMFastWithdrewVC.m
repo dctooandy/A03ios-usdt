@@ -22,6 +22,7 @@
 #import "SDWebImage.h"
 #import "LoadingView.h"
 #import <CSCustomSerVice/CSCustomSerVice.h>
+#import "KYMMatchWithdrewSuccessVC.h"
 @interface KYMFastWithdrewVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) UIView *contentView;
@@ -357,8 +358,7 @@
         //撮合失败,取款失败，取款未匹配，走常规取款
         [self stopTimeoutTimer];
         [self stopGetWithdrawDetail];
-        KYMWithdrewFaildVC *vc = [[KYMWithdrewFaildVC alloc] init];
-        vc.userName = self.detailModel.data.loginName;
+        KYMMatchWithdrewSuccessVC *vc = [[KYMMatchWithdrewSuccessVC alloc] init];
         vc.amountStr = self.detailModel.data.amount;
         [self.navigationController pushViewController:vc animated:YES];
     } else if (detailModel.matchStatus == KYMWithdrewDetailStatusSubmit && detailModel.data.status == KYMWithdrewStatusSubmit1 ) { // 第一步

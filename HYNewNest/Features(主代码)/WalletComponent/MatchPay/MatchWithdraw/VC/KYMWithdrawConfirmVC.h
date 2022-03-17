@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) KYMWithdrewCheckModel *checkModel;
 @property (nonatomic, strong) AccountMoneyDetailModel *balanceModel;
 @property (nonatomic, strong) void(^submitHandler)(NSString *pwd, NSString *amount,BOOL isMatch);
+@property (nonatomic, strong) void(^confirmBtnHandler)(void);
+@property (nonatomic, strong) void(^noConfirmBtnHandler)(void);
 @property (nonatomic, assign) BOOL isForceNormalWithdraw; //是否为强制普通取款
 @end
 
