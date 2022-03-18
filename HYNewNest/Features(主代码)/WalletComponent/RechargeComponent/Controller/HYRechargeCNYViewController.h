@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HYRechargeCNYViewController : CNBaseVC
-- (void)removeFastPay;
+
 @end
 
 NS_ASSUME_NONNULL_END

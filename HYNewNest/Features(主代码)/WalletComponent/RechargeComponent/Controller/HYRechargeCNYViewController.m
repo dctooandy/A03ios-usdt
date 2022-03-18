@@ -26,18 +26,14 @@
 #import "CNLoginRequest.h"
 #import "BYLargeAmountView.h"
 
-#import "CNMFastPayVC.h"
-#import "CNMatchPayRequest.h"
 #import "CNMAlertView.h"
-#import "CNMFastPayStatusVC.h"
 #import "KYMFastWithdrewVC.h"
-
 #import "CNMatchPayRequest.h"
 #import "CNMBankModel.h"
-#import "CNMFastPayStatusVC.h"
 #import "CNMatchDepositStatusVC.h"
 #import <CSCustomSerVice/CSCustomSerVice.h>
 #import "CNMBillView.h"
+#import "CNWAmountListModel.h"
 
 @interface HYRechargeCNYViewController () <HYRechargeCNYEditViewDelegate>
 @property (nonatomic, assign) NSInteger selcPayWayIdx;
@@ -49,7 +45,6 @@
 @property (nonatomic, strong) UIScrollView *scrollContainer;
 @property (nonatomic, strong) HYRechargeCNYEditView *editView;
 @property (nonatomic, strong) BYLargeAmountView *largeAmountView;
-@property (nonatomic, strong) CNMFastPayVC *fastVC;
 @property (nonatomic, strong) CNWFastPayModel *fastModel;
 @end
 
