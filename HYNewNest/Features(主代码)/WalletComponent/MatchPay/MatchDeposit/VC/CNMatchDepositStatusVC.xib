@@ -263,10 +263,19 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CZH-wS-Mpe" userLabel="BottomView">
-                            <rect key="frame" x="0.0" y="402" width="414" height="73"/>
+                            <rect key="frame" x="0.0" y="402" width="414" height="118"/>
                             <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请完成存款后，再点击确认存款" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRJ-nR-8Il">
+                                    <rect key="frame" x="116" y="25" width="182" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="Mak-Q3-BMC"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="13"/>
+                                    <color key="textColor" red="0.062745098040000002" green="0.70588235290000001" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYd-ok-Vjf" customClass="CNTwoStatusBtn">
-                                    <rect key="frame" x="30" y="25" width="354" height="48"/>
+                                    <rect key="frame" x="30" y="70" width="354" height="48"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="48" id="seH-x0-5dO"/>
                                     </constraints>
@@ -281,8 +290,10 @@
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="vYd-ok-Vjf" secondAttribute="trailing" constant="30" id="06E-IB-qZ0"/>
                                 <constraint firstItem="vYd-ok-Vjf" firstAttribute="leading" secondItem="CZH-wS-Mpe" secondAttribute="leading" constant="30" id="5dP-Ta-ixW"/>
-                                <constraint firstItem="vYd-ok-Vjf" firstAttribute="top" secondItem="CZH-wS-Mpe" secondAttribute="top" constant="25" id="C2Z-iL-HjM"/>
+                                <constraint firstItem="vYd-ok-Vjf" firstAttribute="top" secondItem="LRJ-nR-8Il" secondAttribute="bottom" constant="25" id="C2Z-iL-HjM"/>
+                                <constraint firstItem="LRJ-nR-8Il" firstAttribute="top" secondItem="CZH-wS-Mpe" secondAttribute="top" constant="25" id="YgO-aa-aig"/>
                                 <constraint firstAttribute="bottom" secondItem="vYd-ok-Vjf" secondAttribute="bottom" id="qIO-Pn-jlu"/>
+                                <constraint firstItem="LRJ-nR-8Il" firstAttribute="centerX" secondItem="CZH-wS-Mpe" secondAttribute="centerX" id="sW2-SO-9cH"/>
                             </constraints>
                         </view>
                     </subviews>
