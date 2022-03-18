@@ -432,7 +432,6 @@
 		A1F0277127C8AE6200202ACA /* NSData+EnternalImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F0277027C8AE6200202ACA /* NSData+EnternalImageContentType.m */; };
 		A1F0277427C8AF3400202ACA /* SDWebImageImageIOCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F0277227C8AF3400202ACA /* SDWebImageImageIOCoder.m */; };
 		D51ADF0627E2D7F500F77C00 /* KYMWithdrawHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = D51ADF0327E2D7F400F77C00 /* KYMWithdrawHistoryView.m */; };
-		D51ADF0727E2D7F500F77C00 /* KYMWithdrawHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D51ADF0427E2D7F400F77C00 /* KYMWithdrawHistoryView.xib */; };
 		D51ADF0E27E2FC4300F77C00 /* KYMMatchWithdrewSuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D51ADF0827E2FC4200F77C00 /* KYMMatchWithdrewSuccessVC.m */; };
 		D51ADF0F27E2FC4300F77C00 /* KYMNormalWithdrewSuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D51ADF0B27E2FC4300F77C00 /* KYMNormalWithdrewSuccessVC.m */; };
 		D51ADF1027E2FC4300F77C00 /* KYMNormalWithdrewSuccessVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D51ADF0C27E2FC4300F77C00 /* KYMNormalWithdrewSuccessVC.xib */; };
@@ -440,6 +439,7 @@
 		D571B19624BE9F120087B5EC /* CNLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B19524BE9F120087B5EC /* CNLineView.m */; };
 		D571B1AA24C03D790087B5EC /* CNStatementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D571B1A724C03D790087B5EC /* CNStatementView.xib */; };
 		D571B1AB24C03D790087B5EC /* CNStatementView.m in Sources */ = {isa = PBXBuildFile; fileRef = D571B1A924C03D790087B5EC /* CNStatementView.m */; };
+		D590760C27E44E8B00879938 /* KYMWithdrawHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D590760B27E44E8B00879938 /* KYMWithdrawHistoryView.xib */; };
 		D5A4438D24F378CD00014DC6 /* 彩票_00031.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A4432A24F378C400014DC6 /* 彩票_00031.png */; };
 		D5A4438E24F378CD00014DC6 /* 彩票_00023.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A4432B24F378C400014DC6 /* 彩票_00023.png */; };
 		D5A4438F24F378CD00014DC6 /* 彩票_00092.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A4432C24F378C400014DC6 /* 彩票_00092.png */; };
@@ -1907,7 +1907,6 @@
 		BE65A8392B63C85D83408E26 /* Pods_HYNewNest_HYNewNestUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNest_HYNewNestUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D62AAB840E46D1A6C31D05 /* Pods-HYNewNestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNestTests.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNestTests/Pods-HYNewNestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D51ADF0327E2D7F400F77C00 /* KYMWithdrawHistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYMWithdrawHistoryView.m; sourceTree = "<group>"; };
-		D51ADF0427E2D7F400F77C00 /* KYMWithdrawHistoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYMWithdrawHistoryView.xib; sourceTree = "<group>"; };
 		D51ADF0527E2D7F400F77C00 /* KYMWithdrawHistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYMWithdrawHistoryView.h; sourceTree = "<group>"; };
 		D51ADF0827E2FC4200F77C00 /* KYMMatchWithdrewSuccessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYMMatchWithdrewSuccessVC.m; sourceTree = "<group>"; };
 		D51ADF0927E2FC4300F77C00 /* KYMMatchWithdrewSuccessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYMMatchWithdrewSuccessVC.h; sourceTree = "<group>"; };
@@ -1920,6 +1919,7 @@
 		D571B1A724C03D790087B5EC /* CNStatementView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNStatementView.xib; sourceTree = "<group>"; };
 		D571B1A824C03D790087B5EC /* CNStatementView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNStatementView.h; sourceTree = "<group>"; };
 		D571B1A924C03D790087B5EC /* CNStatementView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNStatementView.m; sourceTree = "<group>"; };
+		D590760B27E44E8B00879938 /* KYMWithdrawHistoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYMWithdrawHistoryView.xib; sourceTree = "<group>"; };
 		D5A4432A24F378C400014DC6 /* 彩票_00031.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "彩票_00031.png"; sourceTree = "<group>"; };
 		D5A4432B24F378C400014DC6 /* 彩票_00023.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "彩票_00023.png"; sourceTree = "<group>"; };
 		D5A4432C24F378C400014DC6 /* 彩票_00092.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "彩票_00092.png"; sourceTree = "<group>"; };
@@ -5168,7 +5168,7 @@
 				D5B430B127CC63B3008330CB /* KYMSubmitButton.m */,
 				D51ADF0527E2D7F400F77C00 /* KYMWithdrawHistoryView.h */,
 				D51ADF0327E2D7F400F77C00 /* KYMWithdrawHistoryView.m */,
-				D51ADF0427E2D7F400F77C00 /* KYMWithdrawHistoryView.xib */,
+				D590760B27E44E8B00879938 /* KYMWithdrawHistoryView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6283,6 +6283,7 @@
 				D5A4454324F393AC00014DC6 /* 棋牌_00061.png in Resources */,
 				D5A4447024F3932400014DC6 /* 数字7_00061.png in Resources */,
 				D5A4453024F393AC00014DC6 /* 棋牌_00029.png in Resources */,
+				D590760C27E44E8B00879938 /* KYMWithdrawHistoryView.xib in Resources */,
 				D5A4471324F3941400014DC6 /* 合成 1_0007.png in Resources */,
 				D5A446E224F3941400014DC6 /* 合成 1_00017.png in Resources */,
 				D5A4464724F393E500014DC6 /* 足球_00017.png in Resources */,
@@ -6666,7 +6667,6 @@
 				D5A4465524F393E500014DC6 /* 足球_0003.png in Resources */,
 				E98BEF1324D2A32700E6B0C8 /* HYXiMaSuccViewController.xib in Resources */,
 				D5A4460724F393E500014DC6 /* 足球_00032.png in Resources */,
-				D51ADF0727E2D7F500F77C00 /* KYMWithdrawHistoryView.xib in Resources */,
 				D5A4471E24F3941400014DC6 /* 合成 1_00082.png in Resources */,
 				D5A446CE24F3941400014DC6 /* 合成 1_00063.png in Resources */,
 				D5A4456824F393AC00014DC6 /* 棋牌_00068.png in Resources */,
