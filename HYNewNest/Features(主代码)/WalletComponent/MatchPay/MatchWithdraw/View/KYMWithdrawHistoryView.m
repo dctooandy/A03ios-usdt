@@ -7,13 +7,13 @@
 //
 
 #import "KYMWithdrawHistoryView.h"
-
+#import "MBProgressHUD+Add.h"
 @interface KYMWithdrawHistoryView ()
 @property (weak, nonatomic) IBOutlet UILabel *orderNoLB;
 @property (weak, nonatomic) IBOutlet UILabel *amountLB;
 @property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
 @property (weak, nonatomic) IBOutlet UIButton *noConfirmBtn;
-
+@property (weak, nonatomic) IBOutlet UIStackView *orderStackView;
 @end
 @implementation KYMWithdrawHistoryView
 
@@ -38,6 +38,9 @@
     self.noConfirmBtn.layer.masksToBounds = YES;
     self.amountLB.text = _amount;
     self.orderNoLB.text = _orderNo;
+    self.orderStackView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gesture)];
+    [self.orderStackView addGestureRecognizer:gesture];
 }
 - (IBAction)confirmBtnClicked:(id)sender {
     self.confirmBtnHandler();
@@ -54,5 +57,11 @@
 {
     _orderNo = orderNo;
     self.orderNoLB.text = orderNo;
+}
+- (void)gesture
+{
+    UIPasteboard *pastboard = [UIPasteboard generalPasteboard];
+    pastboard.string = self.orderNo;
+    [MBProgressHUD showMessagNoActivity:@"已复制" toView:nil];
 }
 @end

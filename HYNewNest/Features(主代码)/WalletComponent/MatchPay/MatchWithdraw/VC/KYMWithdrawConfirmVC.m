@@ -140,7 +140,7 @@
     [self.contentView addSubview:self.historyView];
     [self.historyView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
-        make.height.offset(66);
+        make.height.offset(89);
         make.top.equalTo(self.submitBitn.mas_bottom).offset(20);
     }];
     
