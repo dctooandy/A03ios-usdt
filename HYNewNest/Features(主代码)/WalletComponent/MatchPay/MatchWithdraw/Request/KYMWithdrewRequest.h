@@ -13,7 +13,7 @@
 #import "KYMCheckReceiveModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^KYMCallback)(BOOL status,NSString *msg,id body);
+typedef void (^KYMCallback)(BOOL status,NSString *msg,id _Nullable body);
 
 
 extern void kym_sendRequest(NSString * url, id params, KYMCallback callback);

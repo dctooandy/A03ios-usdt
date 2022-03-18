@@ -20,7 +20,7 @@
 + (void)checkChannelWithParams:(NSDictionary *)params callback:(KYMCallback)callback {
     kym_sendRequest(@"deposit/checkChannel",params, ^(BOOL status, NSString * msg , NSDictionary *body) {
         if (body == nil || body == NULL || ![body isKindOfClass:[NSDictionary class]]) {
-            callback(NO, msg ? : @"操作失败，数据异常",@"");
+            callback(NO, msg ? : @"操作失败，数据异常",nil);
             return;
         }
         KYMWithdrewCheckModel *model = [KYMWithdrewCheckModel yy_modelWithJSON:body];
@@ -45,7 +45,7 @@
     
     kym_sendRequest(@"withdraw/createRequest",mparams.copy, ^(BOOL status, NSString * msg , id body) {
         if (body == nil || body == NULL || ![body isKindOfClass:[NSDictionary class]]) {
-            callback(NO, msg ? : @"操作失败，数据异常",@"");
+            callback(NO, msg ? : @"操作失败，数据异常",nil);
             return;
         }
         KYMCreateWithdrewModel *model = nil;
@@ -56,7 +56,7 @@
 + (void)getWithdrawDetailWithParams:(NSDictionary *)params callback:(KYMCallback)callback {
     kym_sendRequest(@"withdraw/getMMWithDrawDetail",params, ^(BOOL status, NSString * msg , id body) {
         if (body == nil || body == NULL || ![body isKindOfClass:[NSDictionary class]]) {
-            callback(NO, msg ? : @"操作失败，数据异常",@"");
+            callback(NO, msg ? : @"操作失败，数据异常",nil);
             return;
         }
         KYMGetWithdrewDetailModel *model = [KYMGetWithdrewDetailModel yy_modelWithJSON:body];
@@ -67,7 +67,7 @@
 + (void)checkReceiveStatus:(NSDictionary *)params callback:(KYMCallback)callback {
     kym_sendRequest(@"withdraw/withdrawOperate",params, ^(BOOL status, NSString * msg , NSDictionary *body) {
         if (body == nil || body == NULL || ![body isKindOfClass:[NSDictionary class]]) {
-            callback(NO, msg ? : @"操作失败，数据异常",@"");
+            callback(NO, msg ? : @"操作失败，数据异常",nil);
             return;
         }
         KYMCheckReceiveModel *model = [KYMCheckReceiveModel yy_modelWithJSON:body];
@@ -82,7 +82,7 @@
 + (void)cancelWithdrawWithParams:(NSDictionary *)params callback:(KYMCallback)callback {
     kym_sendRequest(@"withdraw/cancelRequest",params, ^(BOOL status, NSString * msg , id body) {
         if (body == nil || body == NULL || ![body isKindOfClass:[NSNumber class]]) {
-            callback(NO, msg ? : @"操作失败，数据异常",@"");
+            callback(NO, msg ? : @"操作失败，数据异常",nil);
             return;
         }
         if ([body boolValue]) {
