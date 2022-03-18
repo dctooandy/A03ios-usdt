@@ -13,7 +13,6 @@
 #import "KYMFastWithdrewVC.h"
 #import "MBProgressHUD+Add.h"
 #import "BalanceManager.h"
-#import "CNMFastPayStatusVC.h"
 
 @implementation KYMWithdrewRequest
 

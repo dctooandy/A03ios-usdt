@@ -20,13 +20,19 @@ NS_ASSUME_NONNULL_BEGIN
 /// 渠道是否开启
 @property (nonatomic, assign) BOOL isAvailable;
 /// 金额列表，撮合系统使用
-@property (nonatomic, copy) NSArray <CNWAmountListModel *> *amountList;
+@property (nonatomic, copy, nullable) NSArray <CNWAmountListModel *> *amountList;
 @property (nonatomic, copy) NSString *remainDepositTimes;
 @property (nonatomic, copy) NSString *remainCancelDepositTimes;
 /// 存在撮合，1 存款，2 取款
 @property (nonatomic, assign) NSInteger mmProcessingOrderType;
 /// 存在撮合单ID
 @property (nonatomic, copy) NSString *mmProcessingOrderTransactionId;
+
+@property (nonatomic, assign) NSInteger mmProcessingOrderStatus;
+@property (nonatomic, assign) NSInteger mmProcessingOrderPairStatus;
+@property (nonatomic, assign) BOOL mmProcessingOrderUploadFlag;
+@property (nonatomic, copy) NSString *mmProcessingOrderAmount;
+
 @end
 
 NS_ASSUME_NONNULL_END
