@@ -17,4 +17,10 @@
     self.statusBtn.layer.borderWidth = 1;
     self.statusBtn.layer.masksToBounds = YES;
 }
+
+- (IBAction)copyBill:(id)sender {
+    [UIPasteboard generalPasteboard].string = self.billNoLb.text;
+    [CNTOPHUB showSuccess:@"已复制"];
+}
+
 @end

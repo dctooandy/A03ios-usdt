@@ -37,6 +37,7 @@
 #import "CNMFastPayStatusVC.h"
 #import "CNMatchDepositStatusVC.h"
 #import <CSCustomSerVice/CSCustomSerVice.h>
+#import "CNMBillView.h"
 
 @interface HYRechargeCNYViewController () <HYRechargeCNYEditViewDelegate>
 @property (nonatomic, assign) NSInteger selcPayWayIdx;
@@ -172,8 +173,7 @@
                 }
                 return NSOrderedAscending;
             }];
-            self.editView.matchAmountList = @[@"10000", @"9000", @"8000", @"7000",@"6000",@"5000",@"4000",@"3000",@"2000",@"1000",@"500",@"300"];
-            editViewHeight += 60 * MIN(ceilf(self.editView.matchAmountList.count/3.0), 3)+20;
+            editViewHeight += 50 * MIN(ceilf(self.editView.matchAmountList.count/3.0), 3)+20;
         }
     }
     if ([self isVIP]) {
@@ -258,95 +258,31 @@
     }];
 }
 
-- (void)hiddenFastPayUI:(BOOL)hidden {
-    self.btnSubmit.hidden = !hidden;
-    if (hidden) {
-        [self.fastVC.view removeFromSuperview];
+- (void)showTradeBill {
+    CNMBillView *view = [[CNMBillView alloc] init];
+    if (self.fastModel.mmProcessingOrderPairStatus == 6 && self.fastModel.mmProcessingOrderStatus == 5) {
+        [view.statusBtn setTitle:@"我要催单" forState:UIControlStateNormal];
+        [view.statusBtn addTarget:self action:@selector(customerServer) forControlEvents:UIControlEventTouchUpInside];
+    }
+//    else if (!self.fastModel.mmProcessingOrderUploadFlag) {
+//        [view.statusBtn setTitle:@"上传凭证" forState:UIControlStateNormal];
+//        [view.statusBtn addTarget:self action:@selector(showUploadUI) forControlEvents:UIControlEventTouchUpInside];
+//    }
+    else if (self.fastModel.mmProcessingOrderStatus == 2) {
+        [view.statusBtn setTitle:@"确认存款" forState:UIControlStateNormal];
+        [view.statusBtn addTarget:self action:@selector(confirmBill) forControlEvents:UIControlEventTouchUpInside];
+    } else {
         return;
     }
-    [self.scrollContainer mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.bottom.equalTo(self.view);
+    [self.scrollContainer addSubview:view];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.btnSubmit.mas_bottom).offset(20);
+        make.left.equalTo(self.editView.mas_left).offset(0);
+        make.right.equalTo(self.editView.mas_right).offset(0);
+        make.height.mas_equalTo(66);
     }];
-    
-    CGFloat height = 50 * ceilf(self.fastModel.amountList.count/3.0) + 500;
-    if ([self isVIP]) {
-        self.scrollContainer.contentSize = CGSizeMake(self.view.size.width, height+120);
-        [self.largeAmountView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.scrollContainer).offset(15);
-            make.top.equalTo(self.scrollContainer).offset(15);
-            make.height.mas_equalTo(120);
-            make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
-        }];
-
-        [self.editView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.scrollContainer).offset(15);
-            make.top.equalTo(self.largeAmountView.mas_bottom).offset(15);
-            make.height.mas_equalTo(height);
-            make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
-        }];
-    } else {
-        self.scrollContainer.contentSize = CGSizeMake(self.view.size.width, height);
-        [self.editView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.scrollContainer).offset(15);
-            make.top.equalTo(self.scrollContainer).offset(15);
-            make.height.mas_equalTo(height);
-            make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
-        }];
-    }
-    
-    [self.editView setupPayTypeItem:self.paytypeList[_selcPayWayIdx]
-                          bankModel:nil
-                        amountModel:nil];
-    
-    if (!_fastVC) {
-        self.fastVC = [[CNMFastPayVC alloc] init];
-        [self addChildViewController:self.fastVC];
-    }
-    [self.editView addSubview:self.fastVC.view];
-    [self.fastVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.offset(0);
-        make.right.offset(0);
-        make.top.offset(71);
-        make.bottom.offset(0);
-    }];
-    self.fastVC.fastModel = self.fastModel;
-    [self showTradeBill];
-}
-
-- (void)removeFastPay {
-    PayWayV3PayTypeItem *first = self.paytypeList.firstObject;
-    if ([first.payType isEqualToString:FastPayType]) {
-        NSMutableArray *array = self.paytypeList.mutableCopy;
-        [array removeObjectAtIndex:0];
-        self.paytypeList = array.copy;
-        [self refreshQueryData];
-    }
-}
-
-- (void)showTradeBill {
-//    if (self.fastModel.mmProcessingOrderPairStatus == 6 && self.fastModel.mmProcessingOrderStatus == 5) {
-//        [self.statusBtn setTitle:@"我要催单" forState:UIControlStateNormal];
-//        [self.statusBtn addTarget:self action:@selector(customerServer) forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    else if (!self.matchModel.mmProcessingOrderUploadFlag) {
-//        [self.statusBtn setTitle:@"上传凭证" forState:UIControlStateNormal];
-//        [self.statusBtn addTarget:self action:@selector(showUploadUI) forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    else if (self.fastModel.mmProcessingOrderStatus == 2) {
-//        [self.statusBtn setTitle:@"确认存款" forState:UIControlStateNormal];
-//        [self.statusBtn addTarget:self action:@selector(confirmBill) forControlEvents:UIControlEventTouchUpInside];
-//    } else {
-//        self.billView.hidden = YES;
-//        return;
-//    }
-//
-//    self.billView.hidden = hidden;
-//    self.billView.backgroundColor = kHexColor(0x23262F);
-//    self.billAmountLb.text = [NSString stringWithFormat:@"%.2f", self.matchModel.mmProcessingOrderAmount.doubleValue];
-//    self.billIdLb.text = self.matchModel.mmProcessingOrderTransactionId;
-//    self.statusBtn.layer.borderColor = self.statusBtn.titleLabel.textColor.CGColor;
-//    self.statusBtn.layer.borderWidth = 1;
-//    self.statusBtn.layer.cornerRadius = 4;
+    view.amountLb.text = [NSString stringWithFormat:@"%.2f", self.fastModel.mmProcessingOrderAmount.doubleValue];
+    view.billNoLb.text = self.fastModel.mmProcessingOrderTransactionId;
 }
 
 - (void)showUploadUI {

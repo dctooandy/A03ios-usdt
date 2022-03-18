@@ -73,11 +73,22 @@
                                 </stackView>
                             </subviews>
                         </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ur7-NP-dUu">
+                            <rect key="frame" x="15" y="60.5" width="83" height="32.5"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <connections>
+                                <action selector="copyBill:" destination="-1" eventType="touchUpInside" id="QLf-uv-OiN"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="ur7-NP-dUu" firstAttribute="leading" secondItem="GEn-90-X04" secondAttribute="leading" id="1tk-1I-nYB"/>
+                        <constraint firstItem="ur7-NP-dUu" firstAttribute="top" secondItem="GEn-90-X04" secondAttribute="top" id="4Tg-Kg-ccx"/>
+                        <constraint firstItem="ur7-NP-dUu" firstAttribute="bottom" secondItem="GEn-90-X04" secondAttribute="bottom" id="Jx8-dk-AJ6"/>
                         <constraint firstItem="n35-ss-yCe" firstAttribute="leading" secondItem="CBN-ZO-Rbt" secondAttribute="leading" constant="15" id="MlC-cA-M7k"/>
                         <constraint firstAttribute="trailing" secondItem="JhZ-fA-tvw" secondAttribute="trailing" constant="15" id="Ptk-v0-G2e"/>
+                        <constraint firstItem="ur7-NP-dUu" firstAttribute="trailing" secondItem="GEn-90-X04" secondAttribute="trailing" id="Rnd-uB-jyr"/>
                         <constraint firstItem="JhZ-fA-tvw" firstAttribute="centerY" secondItem="CBN-ZO-Rbt" secondAttribute="centerY" id="pcJ-TP-R9m"/>
                         <constraint firstItem="n35-ss-yCe" firstAttribute="centerY" secondItem="CBN-ZO-Rbt" secondAttribute="centerY" id="rag-Sx-M5n"/>
                     </constraints>
