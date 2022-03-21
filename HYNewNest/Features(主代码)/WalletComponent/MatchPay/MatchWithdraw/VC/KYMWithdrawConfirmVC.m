@@ -8,7 +8,6 @@
 
 #import "KYMWithdrawConfirmVC.h"
 #import "KYMWithdrewAmountListView.h"
-#import "KYMWithDrewHomeNotifyView.h"
 #import "KYMSubmitButton.h"
 #import "Masonry.h"
 #import "KYMWidthdrewUtility.h"

@@ -27,7 +27,6 @@
 #import "BYLargeAmountView.h"
 
 #import "CNMAlertView.h"
-#import "KYMFastWithdrewVC.h"
 #import "CNMatchPayRequest.h"
 #import "CNMBankModel.h"
 #import "CNMatchDepositStatusVC.h"

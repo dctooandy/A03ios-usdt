@@ -37,7 +37,6 @@
 #import "BYWithdrawConfirmVC.h"
 #import "KYMWithdrawConfirmVC.h"
 #import "KYMWithdrewRequest.h"
-#import "KYMFastWithdrewVC.h"
 #import "MBProgressHUD+Add.h"
 #import "IVRsaEncryptWrapper.h"
 #import "KYMNormalWithdrewSuccessVC.h"
