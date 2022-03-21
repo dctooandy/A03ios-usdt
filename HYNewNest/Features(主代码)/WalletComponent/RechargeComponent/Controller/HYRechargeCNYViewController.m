@@ -156,7 +156,7 @@
     NSArray *array = @[@"91", @"92", @"93"];
     if ([array containsObject:self.paytypeList[_selcPayWayIdx].payType]) {
         if (self.fastModel.isAvailable &&
-//            self.fastModel.mmProcessingOrderTransactionId.length == 0 &&
+            self.fastModel.mmProcessingOrderTransactionId.length == 0 &&
             self.fastModel.amountList.count > 0) {
             NSMutableArray *array = [NSMutableArray array];
             for (CNWAmountListModel *model in self.fastModel.amountList) {

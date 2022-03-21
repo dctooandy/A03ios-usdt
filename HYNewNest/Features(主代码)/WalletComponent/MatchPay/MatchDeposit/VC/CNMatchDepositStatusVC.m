@@ -131,7 +131,7 @@
     [self.bankLogo sd_setImageWithURL:[NSURL URLWithString:[PublicMethod nowCDNWithUrl:bank.bankIcon]]];
     self.bankName.text = bank.bankName;
     self.accountName.text = bank.bankAccountName;
-    self.accountNo.text = bank.bankAccountNo;
+    self.accountNo.text = [self addSpaceForNum:bank.bankAccountNo];
     self.subBankName.text = bank.bankBranchName;
     self.amountTipLb.text = [NSString stringWithFormat:@"完成存款将获得%.2f元存款礼金，24小时到账", (bank.amount.doubleValue *0.01)];
 
@@ -162,6 +162,17 @@
     } else {
         self.confirmBtn.enabled = YES;
     }
+}
+
+- (NSString *)addSpaceForNum:(NSString *)num {
+    if (num.length == 0) {
+        return num;
+    }
+    NSMutableString *string = [num mutableCopy];
+    for (int i = 4; i < num.length; i += 4) {
+        [string insertString:@" " atIndex:i+(i-4)/4];
+    }
+    return string;
 }
 
 - (void)timerCounter {
@@ -220,7 +231,11 @@
 }
 
 - (IBAction)copyContent:(UIButton *)sender {
-    [UIPasteboard generalPasteboard].string = self.contentLbArray[sender.tag].text;
+    if (sender.tag == 0) {//卡号
+        [UIPasteboard generalPasteboard].string = self.bankModel.bankAccountNo;
+    } else {
+        [UIPasteboard generalPasteboard].string = self.contentLbArray[sender.tag].text;
+    }
     [self showSuccess:@"复制成功"];
 }
 
