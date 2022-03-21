@@ -36,6 +36,9 @@
 
 #pragma mark - 底部按钮
 @property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
+///倒计时
+@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, assign) NSInteger timeInterval;
 
 #pragma mark - 相册选择
 @property (weak, nonatomic) IBOutlet UIView *midView;
@@ -89,7 +92,6 @@
 - (void)setupUI {
     self.bankView.layer.cornerRadius = 8;
     self.title = @"充值";
-    self.confirmBtn.enabled = YES;
     
     for (UIButton *btn in self.btnCopyArray) {
         NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:@"复制"];
@@ -129,7 +131,7 @@
     [self.bankLogo sd_setImageWithURL:[NSURL URLWithString:[PublicMethod nowCDNWithUrl:bank.bankIcon]]];
     self.bankName.text = bank.bankName;
     self.accountName.text = bank.bankAccountName;
-    self.accountNo.text = bank.bankAccountNo;
+    self.accountNo.text = [self addSpaceForNum:bank.bankAccountNo];
     self.subBankName.text = bank.bankBranchName;
     self.amountTipLb.text = [NSString stringWithFormat:@"完成存款将获得%.2f元存款礼金，24小时到账", (bank.amount.doubleValue *0.01)];
 
@@ -153,6 +155,35 @@
             
             break;
     }
+    
+    if (bank.createdDateFmt > 0) {
+        self.timeInterval = bank.createdDateFmt;
+        [self.timer setFireDate:[NSDate distantPast]];
+    } else {
+        self.confirmBtn.enabled = YES;
+    }
+}
+
+- (NSString *)addSpaceForNum:(NSString *)num {
+    if (num.length == 0) {
+        return num;
+    }
+    NSMutableString *string = [num mutableCopy];
+    for (int i = 4; i < num.length; i += 4) {
+        [string insertString:@" " atIndex:i+(i-4)/4];
+    }
+    return string;
+}
+
+- (void)timerCounter {
+    
+    self.timeInterval -= 1;
+    if (self.timeInterval <= 0) {
+        [self.timer setFireDate:[NSDate distantFuture]];
+        self.confirmBtn.enabled = YES;
+        return;
+    }
+    [self.confirmBtn setTitle:[NSString stringWithFormat:@"确认存款(%lds)", self.timeInterval] forState:UIControlStateDisabled];
 }
 
 #pragma mark - 按钮组事件
@@ -189,14 +220,22 @@
             if ([[dic objectForKey:@"code"] isEqualToString:@"00000"]) {
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
             } else {
-                [CNTOPHUB showError:errorMsg];
+                if (errorMsg) {
+                    [CNTOPHUB showError:errorMsg];
+                } else {
+                    [CNTOPHUB showError:[dic objectForKey:@"message"]];
+                }
             }
         }
     }];
 }
 
 - (IBAction)copyContent:(UIButton *)sender {
-    [UIPasteboard generalPasteboard].string = self.contentLbArray[sender.tag].text;
+    if (sender.tag == 0) {//卡号
+        [UIPasteboard generalPasteboard].string = self.bankModel.bankAccountNo;
+    } else {
+        [UIPasteboard generalPasteboard].string = self.contentLbArray[sender.tag].text;
+    }
     [self showSuccess:@"复制成功"];
 }
 
@@ -354,6 +393,8 @@
     }
 }
 
+#pragma mark - Setter Getter
+
 - (ZLPhotoActionSheet *)photoSheet {
     if (!_photoSheet) {
         _photoSheet = [[ZLPhotoActionSheet alloc] init];
@@ -367,5 +408,18 @@
         _photoSheet.configuration.navBarColor = kHexColor(0x4083E8);
     }
     return _photoSheet;
+}
+
+- (NSTimer *)timer {
+    if (!_timer) {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerCounter) userInfo:nil repeats:YES];
+        [_timer setFireDate:[NSDate distantFuture]];
+    }
+    return _timer;
+}
+
+- (void)dealloc {
+    [_timer invalidate];
+    _timer = nil;
 }
 @end

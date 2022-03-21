@@ -34,6 +34,7 @@ typedef NS_ENUM(NSUInteger, CNMPayBillStatus) {
 /// 单号
 @property (nonatomic, copy) NSString *transactionId;
 @property (nonatomic, copy) NSString *createdDate;
+@property (nonatomic, assign) NSInteger createdDateFmt;
 
 /// 付款超时时间
 @property (nonatomic, copy) NSString *payLimitTime;

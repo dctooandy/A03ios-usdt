@@ -22,7 +22,8 @@
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIImageView *imgvIcon;
 @property (weak, nonatomic) IBOutlet UILabel *lblPayWayName;
-@property (weak, nonatomic) IBOutlet UILabel *refundTip;
+@property (weak, nonatomic) IBOutlet UIView *refundTipView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *refundTipViewH;
 @property (weak, nonatomic) IBOutlet UILabel *tipLbl;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -110,7 +111,7 @@
     /// 顶上信息
     [self.imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:itemModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"channel_fastpay"]];
     self.lblPayWayName.text = itemModel.payTypeName;
-    self.refundTip.hidden = YES;
+
     
     if ([self.lblPayWayName.text containsString:@"支付宝"] || [self.lblPayWayName.text containsString:@"微信"]) {
         self.tipLbl.attributedText = ({
@@ -234,17 +235,21 @@
     if ([array containsObject:self.itemModel.payType]) {
         self.dataList = [self getRecommendAmountFromAmount:nil];
         if (self.dataList.count > 0) {
+            self.refundTipView.hidden = NO;
+            self.refundTipViewH.constant = 38;
             self.collectionView.delegate = self;
             self.collectionView.dataSource = self;
             self.collectionView.hidden = NO;
             [self.collectionView registerNib:[UINib nibWithNibName:kCNMAmountSelectCCell bundle:nil] forCellWithReuseIdentifier:kCNMAmountSelectCCell];
-            self.collectionViewH.constant = 50 * ceilf(self.dataList.count/3.0)+10;
+            self.collectionViewH.constant = 50 * ceilf(self.dataList.count/3.0);
             [self.collectionView reloadData];
             return;
         }
     }
     self.collectionViewH.constant = 0;
     self.collectionView.hidden = YES;
+    self.refundTipView.hidden = YES;
+    self.refundTipViewH.constant = 0;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

@@ -167,7 +167,7 @@
                 }
                 return NSOrderedAscending;
             }];
-            editViewHeight += 50 * MIN(ceilf(self.editView.matchAmountList.count/3.0), 3)+20;
+            editViewHeight += 50 * MIN(ceilf(self.editView.matchAmountList.count/3.0), 3);
         }
     }
     if ([self isVIP]) {
