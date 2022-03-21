@@ -10,7 +10,6 @@
 //#import "KYMSelectChannelVC.h"
 #import "CNMAlertView.h"
 #import "LoadingView.h"
-#import "KYMFastWithdrewVC.h"
 #import "MBProgressHUD+Add.h"
 #import "BalanceManager.h"
 
