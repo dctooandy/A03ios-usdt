@@ -24,7 +24,7 @@ target 'HYNewNest' do
   pod 'SocketRocket', '~> 0.5.1'
   pod 'CocoaAsyncSocket'
   pod 'LookinServer', :configurations => ['Debug']
-  
+  pod 'KYNetworking',:git =>'http://10.66.72.115/mobile-iOS-Library/KYNetworking.git'
   # 公共接口
   pod 'IVPublicAPILibrary',:git =>'http://10.66.72.115/mobile-iOS-Library/IVPublicAPILibrary.git'
   # 网络模块
