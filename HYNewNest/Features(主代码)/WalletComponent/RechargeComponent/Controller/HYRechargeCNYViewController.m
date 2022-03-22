@@ -33,6 +33,7 @@
 #import <CSCustomSerVice/CSCustomSerVice.h>
 #import "CNMBillView.h"
 #import "CNWAmountListModel.h"
+#import "CNMUploadView.h"
 
 @interface HYRechargeCNYViewController () <HYRechargeCNYEditViewDelegate>
 @property (nonatomic, assign) NSInteger selcPayWayIdx;
@@ -254,19 +255,12 @@
 
 - (void)showTradeBill {
     CNMBillView *view = [[CNMBillView alloc] init];
-    if (self.fastModel.mmProcessingOrderPairStatus == 6 && self.fastModel.mmProcessingOrderStatus == 5) {
-        [view.statusBtn setTitle:@"我要催单" forState:UIControlStateNormal];
-        [view.statusBtn addTarget:self action:@selector(customerServer) forControlEvents:UIControlEventTouchUpInside];
-    }
-//    else if (!self.fastModel.mmProcessingOrderUploadFlag) {
-//        [view.statusBtn setTitle:@"上传凭证" forState:UIControlStateNormal];
-//        [view.statusBtn addTarget:self action:@selector(showUploadUI) forControlEvents:UIControlEventTouchUpInside];
-//    }
-    else if (self.fastModel.mmProcessingOrderStatus == 2) {
+    if (self.fastModel.mmProcessingOrderStatus == 2) {
         [view.statusBtn setTitle:@"确认存款" forState:UIControlStateNormal];
         [view.statusBtn addTarget:self action:@selector(confirmBill) forControlEvents:UIControlEventTouchUpInside];
     } else {
-        return;
+        [view.statusBtn setTitle:@"我要催单" forState:UIControlStateNormal];
+        [view.statusBtn addTarget:self action:@selector(showUploadUI) forControlEvents:UIControlEventTouchUpInside];
     }
     [self.scrollContainer addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -280,22 +274,13 @@
 }
 
 - (void)showUploadUI {
-    
+    [CNMUploadView showUploadViewTo:self billId:self.fastModel.mmProcessingOrderTransactionId];
 }
 
 - (void)confirmBill {
     CNMatchDepositStatusVC *statusVC = [[CNMatchDepositStatusVC alloc] init];
     statusVC.transactionId = self.fastModel.mmProcessingOrderTransactionId;
     [self.navigationController pushViewController:statusVC animated:YES];
-}
-
-- (void)customerServer {
-    // 联系客服
-    [CSVisitChatmanager startWithSuperVC:self finish:^(CSServiceCode errCode) {
-        if (errCode != CSServiceCode_Request_Suc) {
-            [CNTOPHUB showError:@"暂时无法链接，请贵宾改以电话联系，感谢您的理解与支持"];
-        }
-    }];
 }
 
 #pragma mark - REQUEST
