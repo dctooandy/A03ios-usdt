@@ -11,8 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CNMUploadView : CNBaseXibView
-+ (void)showUploadViewTo:(UIViewController *)superVC billId:(NSString *)billId;
-
++ (void)showUploadViewTo:(UIViewController *)superVC billId:(NSString *)billId commitDeposit:(nullable dispatch_block_t)commitBlock;
 @end
 
 NS_ASSUME_NONNULL_END

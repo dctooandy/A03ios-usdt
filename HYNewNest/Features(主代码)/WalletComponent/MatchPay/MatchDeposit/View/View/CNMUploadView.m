@@ -40,15 +40,20 @@
 @property (nonatomic, weak) UIViewController *superVC;
 /// 订单号
 @property (nonatomic, copy) NSString *billId;
+@property (nonatomic, copy) dispatch_block_t commitBlock;
 @end
 
 @implementation CNMUploadView
 
-+ (void)showUploadViewTo:(UIViewController *)superVC billId:(NSString *)billId {
++ (void)showUploadViewTo:(UIViewController *)superVC billId:(NSString *)billId commitDeposit:(dispatch_block_t)commitBlock {
     CNMUploadView *view = [[CNMUploadView alloc] initWithFrame:superVC.view.bounds];
     [superVC.view addSubview:view];
     view.superVC = superVC;
     view.billId = billId;
+    if (commitBlock) {
+        view.commitBlock = commitBlock;
+        [view.confirmBtn setTitle:@"确认存款" forState:UIControlStateNormal];
+    }
 }
 
 - (void)loadViewFromXib {
@@ -186,7 +191,8 @@
         if ([responseObj isKindOfClass:[NSDictionary class]]) {
             NSDictionary *dic = (NSDictionary *)responseObj;
             if ([[dic objectForKey:@"code"] isEqualToString:@"00000"]) {
-                [weakSelf.superVC.navigationController popToRootViewControllerAnimated:YES];
+                [weakSelf removeFromSuperview];
+                !weakSelf.commitBlock ?: weakSelf.commitBlock();
             } else {
                 if (errorMsg) {
                     [CNTOPHUB showError:errorMsg];

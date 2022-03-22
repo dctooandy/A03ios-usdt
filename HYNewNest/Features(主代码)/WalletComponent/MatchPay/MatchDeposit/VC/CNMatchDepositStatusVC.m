@@ -9,6 +9,8 @@
 #import "CNMatchDepositStatusVC.h"
 #import "CNMAlertView.h"
 #import <UIImageView+WebCache.h>
+#import <CSCustomSerVice/CSCustomSerVice.h>
+#import "CNMUploadView.h"
 
 #import "CNMatchPayRequest.h"
 #import "PublicMethod.h"
@@ -33,11 +35,14 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btnCopyArray;
 
 #pragma mark - 底部按钮
+@property (weak, nonatomic) IBOutlet UILabel *actionTipLb;
 @property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
 ///倒计时
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) NSInteger timeInterval;
 
+@property (weak, nonatomic) IBOutlet UIView *serverView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *serverViewH;
 #pragma mark - 数据参数
 @property (nonatomic, strong) CNMBankModel *bankModel;
 
@@ -103,33 +108,21 @@
     self.accountNo.text = [self addSpaceForNum:bank.bankAccountNo];
     self.subBankName.text = bank.bankBranchName;
     self.amountTipLb.text = [NSString stringWithFormat:@"完成存款将获得%.2f元存款礼金，24小时到账", (bank.amount.doubleValue *0.01)];
-
     
-    switch (bank.status) {
-        case CNMPayBillStatusSubmit:
-            break;
-        case CNMPayBillStatusPaying:
-            break;
-        case CNMPayBillStatusCancel:
-            // 订单取消，直接回到首页
-            [self.navigationController popToRootViewControllerAnimated:YES];
-            return;
-        case CNMPayBillStatusConfirm:
-            
-            break;
-        case CNMPayBillStatusUnMatch:
-            
-            break;
-        default:
-            
-            break;
-    }
-    
-    if (bank.createdDateFmt > 0) {
-        self.timeInterval = bank.createdDateFmt;
-        [self.timer setFireDate:[NSDate distantPast]];
-    } else {
+    if (bank.mmProcessingOrderUploadFlag) {
         self.confirmBtn.enabled = YES;
+        [self.confirmBtn setTitle:@"上传凭证" forState:UIControlStateNormal];
+        self.actionTipLb.text = @"请完成存款后，再点击上传凭证";
+        self.serverView.hidden = NO;
+        self.serverViewH.constant = 80;
+    } else {
+        self.actionTipLb.text = @"请完成存款后，再点击确认存款";
+        if (bank.createdDateFmt > 0) {
+            self.timeInterval = bank.createdDateFmt;
+            [self.timer setFireDate:[NSDate distantPast]];
+        } else {
+            self.confirmBtn.enabled = YES;
+        }
     }
 }
 
@@ -158,7 +151,14 @@
 #pragma mark - 按钮组事件
 
 - (IBAction)confirm:(UIButton *)sender {
-    [self commitDepisit];
+    if (self.bankModel.mmProcessingOrderUploadFlag) {
+        __weak typeof(self) weakSelf = self;
+        [CNMUploadView showUploadViewTo:self billId:self.bankModel.transactionId commitDeposit:^{
+            [weakSelf commitDepisit];
+        }];
+    } else {
+        [self commitDepisit];
+    }
 }
 
 - (void)commitDepisit {
@@ -197,6 +197,15 @@
     } else {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
+}
+
+- (IBAction)customerServer {
+    // 联系客服
+    [CSVisitChatmanager startWithSuperVC:self finish:^(CSServiceCode errCode) {
+        if (errCode != CSServiceCode_Request_Suc) {
+            [CNTOPHUB showError:@"暂时无法链接，请贵宾改以电话联系，感谢您的理解与支持"];
+        }
+    }];
 }
 
 #pragma mark - Setter Getter
