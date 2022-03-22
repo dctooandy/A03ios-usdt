@@ -39,7 +39,7 @@ typedef NS_ENUM(NSUInteger, CNMPayBillStatus) {
 /// 1-存款提交 2-存款等待 3-存款取消 4-存款超时 5-存款确认 6-存款未匹配 100-存款完成
 @property (nonatomic, assign) CNMPayBillStatus status;
 /// 是否需要上传凭证
-@property (nonatomic, assign) BOOL mmProcessingOrderUploadFlag;
+@property (nonatomic, assign) BOOL uploadFlag;
 @end
 
 NS_ASSUME_NONNULL_END
