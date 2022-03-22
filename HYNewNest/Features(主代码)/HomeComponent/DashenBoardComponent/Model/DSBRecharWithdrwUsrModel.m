@@ -37,7 +37,16 @@
         return [self.lastWithdrawalDate componentsSeparatedByString:@" "].lastObject;
     }
 }
-
+- (NSString*)headshot
+{
+    if (_headshot)
+    {
+        return self.headshot;
+    }else
+    {
+        return @"";
+    }
+}
 @end
 
 
