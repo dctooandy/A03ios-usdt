@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param imgName  存款回执单图名字
 /// @param imgNames  银行流水图名字数组
 /// @param finish 完成回调
-+ (void)commitDepisit:(NSString *)billId receiptImg:(NSString *)imgName transactionImg:(NSArray *)imgNames finish:(HandlerBlock)finish;
++ (void)commitDepisit:(NSString *)billId receiptImg:(nullable NSString *)imgName transactionImg:(nullable NSArray *)imgNames finish:(HandlerBlock)finish;
 
 /// 取消撮合订单
 /// @param billId  订单号

@@ -136,6 +136,8 @@
 		0494C5AE27C8DFD50016B5F6 /* CNMSelectChannelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0494C5A327C8DFD50016B5F6 /* CNMSelectChannelVC.m */; };
 		0494C5B627C9C3910016B5F6 /* CNWAmountListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0494C5B527C9C3910016B5F6 /* CNWAmountListModel.m */; };
 		0494C5B927C9C7D60016B5F6 /* CNMDepositBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0494C5B827C9C7D60016B5F6 /* CNMDepositBaseVC.m */; };
+		049E764F27E840720065EFBE /* CNMUploadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049E764E27E840720065EFBE /* CNMUploadView.m */; };
+		049E765127E8407F0065EFBE /* CNMUploadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049E765027E8407F0065EFBE /* CNMUploadView.xib */; };
 		04C0F0DC24C29FFD007F1420 /* CNBindPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C0F0DA24C29FFD007F1420 /* CNBindPhoneVC.m */; };
 		04C0F0DD24C29FFD007F1420 /* CNBindPhoneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C0F0DB24C29FFD007F1420 /* CNBindPhoneVC.xib */; };
 		04C0F0E324C2B282007F1420 /* CNTOPHUB.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C0F0E124C2B282007F1420 /* CNTOPHUB.m */; };
@@ -1345,6 +1347,9 @@
 		0494C5B527C9C3910016B5F6 /* CNWAmountListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNWAmountListModel.m; sourceTree = "<group>"; };
 		0494C5B727C9C7D60016B5F6 /* CNMDepositBaseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNMDepositBaseVC.h; sourceTree = "<group>"; };
 		0494C5B827C9C7D60016B5F6 /* CNMDepositBaseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNMDepositBaseVC.m; sourceTree = "<group>"; };
+		049E764D27E840720065EFBE /* CNMUploadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNMUploadView.h; sourceTree = "<group>"; };
+		049E764E27E840720065EFBE /* CNMUploadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNMUploadView.m; sourceTree = "<group>"; };
+		049E765027E8407F0065EFBE /* CNMUploadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CNMUploadView.xib; sourceTree = "<group>"; };
 		04C0F0D924C29FFD007F1420 /* CNBindPhoneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNBindPhoneVC.h; sourceTree = "<group>"; };
 		04C0F0DA24C29FFD007F1420 /* CNBindPhoneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNBindPhoneVC.m; sourceTree = "<group>"; };
 		04C0F0DB24C29FFD007F1420 /* CNBindPhoneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CNBindPhoneVC.xib; sourceTree = "<group>"; };
@@ -3183,6 +3188,9 @@
 				0494C58E27C8D5040016B5F6 /* CNMAlertView.h */,
 				0494C58B27C8D5040016B5F6 /* CNMAlertView.m */,
 				0494C58D27C8D5040016B5F6 /* CNMAlertView.xib */,
+				049E764D27E840720065EFBE /* CNMUploadView.h */,
+				049E764E27E840720065EFBE /* CNMUploadView.m */,
+				049E765027E8407F0065EFBE /* CNMUploadView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6697,6 +6705,7 @@
 				D5A446CA24F3941400014DC6 /* 合成 1_0000.png in Resources */,
 				048A0EEB24C834B200411819 /* CNChessVC.xib in Resources */,
 				D5A4462A24F393E500014DC6 /* 足球_00050.png in Resources */,
+				049E765127E8407F0065EFBE /* CNMUploadView.xib in Resources */,
 				3DFF702E261EF92E00801654 /* LLIconVersioning.sh in Resources */,
 				D5A444B024F3932400014DC6 /* 数字7_00083.png in Resources */,
 				D5A4449124F3932400014DC6 /* 数字7_00021.png in Resources */,
@@ -7140,6 +7149,7 @@
 				3D972436262E96B1005E930C /* HYSuperCopartnerAlertView.m in Sources */,
 				3DBF5FB52680A0A700C246A9 /* BYDepositUsdtVC.m in Sources */,
 				E98BEF0224D1AF4300E6B0C8 /* HYXiMaTopView.m in Sources */,
+				049E764F27E840720065EFBE /* CNMUploadView.m in Sources */,
 				3DBA56112580D9B3009A2B71 /* CALayer+Additions.m in Sources */,
 				0487C9AA24CFBA6A0013715A /* JJCollectionViewRoundFlowLayout+Alignment.m in Sources */,
 				04C0F0FF24C589EC007F1420 /* CNUserManager.m in Sources */,
