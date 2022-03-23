@@ -39,9 +39,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)queryDepisit:(NSString *)billId finish:(HandlerBlock)finish;
 
 /// 上传图片
-/// @param image  图片
+/// @param receiptImages  回执单图片组
+/// @param recordImages  流水图片数组
+/// @param billId  订单号
 /// @param finish 完成回调
-+ (void)uploadImage:(UIImage *)image finish:(HandlerBlock)finish;
++ (void)uploadRecordImages:(NSArray *)receiptImages recordImages:(NSArray *)recordImages billId:(NSString *)billId finish:(HandlerBlock)finish;
 @end
 
 NS_ASSUME_NONNULL_END

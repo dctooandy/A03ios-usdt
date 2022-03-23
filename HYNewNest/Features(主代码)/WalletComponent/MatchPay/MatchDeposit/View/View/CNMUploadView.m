@@ -20,8 +20,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *countLb1;
 /// 存放图片
 @property (nonatomic, strong) NSMutableArray *pictureArr1;
-/// 存放上传后返回图片名
-@property (nonatomic, strong) NSMutableArray *pictureName1;
 
 #pragma mark - 下面按钮组
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray <UIButton *> *pictureBtnArr;
@@ -29,8 +27,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *countLb2;
 /// 存放图片
 @property (nonatomic, strong) NSMutableArray *pictureArr2;
-/// 存放上传后返回图片名
-@property (nonatomic, strong) NSMutableArray *pictureName2;
 
 @property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
 @property (weak, nonatomic) IBOutlet UIButton *serverBtn;
@@ -60,8 +56,6 @@
     [super loadViewFromXib];
     self.pictureArr1 = [NSMutableArray arrayWithCapacity:1];
     self.pictureArr2 = [NSMutableArray arrayWithCapacity:4];
-    self.pictureName1 = [NSMutableArray arrayWithCapacity:1];
-    self.pictureName2 = [NSMutableArray arrayWithCapacity:4];
     
     NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:@"联系客服"];
     [attributeString addAttribute:NSUnderlineStyleAttributeName
@@ -100,7 +94,7 @@
 - (void)checkConfirmBtnEnable {
     self.countLb1.text = [NSString stringWithFormat:@"%ld/1", self.pictureArr1.count];
     self.countLb2.text = [NSString stringWithFormat:@"%ld/4", self.pictureArr2.count];
-    self.confirmBtn.enabled = (self.pictureArr1.count > 0 && self.pictureArr2.count > 0);
+    self.confirmBtn.enabled = (self.pictureArr1.count > 0 || self.pictureArr2.count > 0);
 }
 
 - (IBAction)selectPictures:(UIButton *)sender {
@@ -177,33 +171,6 @@
     [self uploadImages];
 }
 
-- (void)uploadFinish {
-    // 只要没有，重选上传
-    if (self.pictureName1.count == 0 || self.pictureName2.count == 0) {
-        [self uploadImages];
-        return;
-    }
-    // 上报数据
-    [LoadingView showLoadingViewWithToView:self needMask:YES];
-    __weak typeof(self) weakSelf = self;
-    [CNMatchPayRequest commitDepisit:self.billId receiptImg:self.pictureName1.lastObject transactionImg:self.pictureName2 finish:^(id responseObj, NSString *errorMsg) {
-        [LoadingView hideLoadingViewForView:self];
-        if ([responseObj isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *dic = (NSDictionary *)responseObj;
-            if ([[dic objectForKey:@"code"] isEqualToString:@"00000"]) {
-                [weakSelf removeFromSuperview];
-                !weakSelf.commitBlock ?: weakSelf.commitBlock();
-            } else {
-                if (errorMsg) {
-                    [CNTOPHUB showError:errorMsg];
-                } else {
-                    [CNTOPHUB showError:[dic objectForKey:@"message"]];
-                }
-            }
-        }
-    }];
-}
-
 - (IBAction)close:(id)sender {
     [self removeFromSuperview];
 }
@@ -222,49 +189,21 @@
 /// 图片上传
 - (void)uploadImages {
     [LoadingView showLoadingViewWithToView:self needMask:YES];
-    __block NSInteger uploadCount = self.pictureArr1.count + self.pictureArr2.count;
-    // 有就不用再次上传了
-    if (self.pictureName1.count == 0) {
-        [CNMatchPayRequest uploadImage:self.pictureArr1.lastObject finish:^(id responseObj, NSString *errorMsg) {
-            uploadCount -= 1;
-            if ([responseObj isKindOfClass:[NSDictionary class]]) {
-                NSDictionary *dic = (NSDictionary *)responseObj;
-                NSString *name = [dic objectForKey:@"fileName"];
-                if (name) {
-                    [self.pictureName1 addObject:name];
-                }
+    __weak typeof(self) weakSelf = self;
+    [CNMatchPayRequest uploadRecordImages:self.pictureArr1 recordImages:self.pictureArr2 billId:self.billId finish:^(id responseObj, NSString *errorMsg) {
+        [LoadingView hideLoadingViewForView:self];
+        if (errorMsg) {
+            [CNTOPHUB showError:errorMsg];
+            return;
+        }
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dic = (NSDictionary *)responseObj;
+            if ([[dic objectForKey:@"code"] isEqualToString:@"00000"]) {
+                [weakSelf removeFromSuperview];
+                !weakSelf.commitBlock ?: weakSelf.commitBlock();
             }
-            if (uploadCount == 0) {
-                [self uploadFinish];
-            }
-        }];
-    } else {
-        uploadCount -= self.pictureArr1.count;
-    }
-    
-    // 有就不用再次上传了
-    if (self.pictureName2.count > 0) {
-        uploadCount -= self.pictureArr2.count;
-        return;
-    }
-    for (int i = 0; i < self.pictureArr2.count; i ++) {
-        // 同时上传会超时
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((i+1)*2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [CNMatchPayRequest uploadImage:self.pictureArr2[i] finish:^(id responseObj, NSString *errorMsg) {
-                uploadCount -= 1;
-                if ([responseObj isKindOfClass:[NSDictionary class]]) {
-                    NSDictionary *dic = (NSDictionary *)responseObj;
-                    NSString *name = [dic objectForKey:@"fileName"];
-                    if (name) {
-                        [self.pictureName2 addObject:name];
-                    }
-                }
-                if (uploadCount == 0) {
-                    [self uploadFinish];
-                }
-            }];
-        });
-    }
+        }
+    }];
 }
 
 #pragma mark - Setter Getter

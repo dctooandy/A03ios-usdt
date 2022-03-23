@@ -66,16 +66,28 @@
     [self Post:@"deposit/depositDetail" para:dic finish:finish];
 }
 
-+ (void)uploadImage:(UIImage *)image finish:(HandlerBlock)finish {
++ (void)uploadRecordImages:(NSArray *)receiptImages recordImages:(NSArray *)recordImages billId:(NSString *)billId finish:(HandlerBlock)finish {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-        NSData *data = UIImageJPEGRepresentation(image, 0.01);
-        dic[@"fileContent"] = [@"data:image/jpeg;base64," stringByAppendingString:[data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]];
-        dic[@"fileName"] = @"image";
-        [self Post:@"deposit/uploadImg" para:dic finish:^(id responseObj, NSString *errorMsg) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                !finish ?: finish(responseObj, errorMsg);
-            });
+        dic[@"transactionId"] = billId;
+        [[IVHttpManager shareManager] uploadFileWithUrl:@"deposit/uploadImgV3" parameters:dic callBack:^(id  _Nullable response, NSError * _Nullable error) {
+            if ([response isKindOfClass:[IVJResponseObject class]]) {
+                IVJResponseObject *obj = (IVJResponseObject *)response;
+                if (obj.head.errMsg) {
+                    !finish ?: finish(obj.body, obj.head.errMsg);
+                } else {
+                    !finish ?: finish(obj.body, nil);
+                }
+            } else if (error) {
+                !finish ?: finish(nil, error.localizedDescription);
+            }
+        } constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            for (UIImage *img in receiptImages) {
+                [formData appendPartWithFileData:UIImageJPEGRepresentation(img, 0.01) name:@"receiptImag" fileName:@"receiptImag" mimeType:@"jpg"];
+            }
+            for (UIImage *img in recordImages) {
+                [formData appendPartWithFileData:UIImageJPEGRepresentation(img, 0.01) name:@"transactionImg" fileName:@"transactionImg" mimeType:@"jpg"];
+            }
         }];
     });
 }
