@@ -36,12 +36,12 @@
 @property (nonatomic, weak) UIViewController *superVC;
 /// 订单号
 @property (nonatomic, copy) NSString *billId;
-@property (nonatomic, copy) dispatch_block_t commitBlock;
+@property (nonatomic, copy) void(^commitBlock)(NSArray *receiptImages, NSArray *recordImages);
 @end
 
 @implementation CNMUploadView
 
-+ (void)showUploadViewTo:(UIViewController *)superVC billId:(NSString *)billId commitDeposit:(dispatch_block_t)commitBlock {
++ (void)showUploadViewTo:(UIViewController *)superVC billId:(NSString *)billId commitDeposit:(void (^)(NSArray * _Nonnull, NSArray * _Nonnull))commitBlock {
     CNMUploadView *view = [[CNMUploadView alloc] initWithFrame:superVC.view.bounds];
     [superVC.view addSubview:view];
     view.superVC = superVC;
@@ -190,15 +190,18 @@
 - (void)uploadImages {
     [LoadingView showLoadingViewWithToView:self needMask:YES];
     __weak typeof(self) weakSelf = self;
-    [CNMatchPayRequest uploadRecordImages:self.pictureArr1 recordImages:self.pictureArr2 billId:self.billId finish:^(id responseObj, NSString *errorMsg) {
+    [CNMatchPayRequest uploadReceiptImages:self.pictureArr1 recordImages:self.pictureArr2 billId:self.billId finish:^(id responseObj, NSString *errorMsg) {
         [LoadingView hideLoadingViewForView:self];
         if (errorMsg) {
             [CNTOPHUB showError:errorMsg];
             return;
         }
-        [CNTOPHUB showSuccess:@"图片上传成功"];
-        [weakSelf removeFromSuperview];
-        !weakSelf.commitBlock ?: weakSelf.commitBlock();
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            [CNTOPHUB showSuccess:@"图片上传成功"];
+            NSDictionary *dic = (NSDictionary *)responseObj;
+            [weakSelf removeFromSuperview];
+            !weakSelf.commitBlock ?: weakSelf.commitBlock([dic objectForKey:@"receiptOriginalFileNames"], [dic objectForKey:@"transactionOriginalFileNames"]);
+        }
     }];
 }
 

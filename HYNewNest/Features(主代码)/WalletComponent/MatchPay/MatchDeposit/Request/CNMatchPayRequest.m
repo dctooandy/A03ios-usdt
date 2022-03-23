@@ -66,7 +66,7 @@
     [self Post:@"deposit/depositDetail" para:dic finish:finish];
 }
 
-+ (void)uploadRecordImages:(NSArray *)receiptImages recordImages:(NSArray *)recordImages billId:(NSString *)billId finish:(HandlerBlock)finish {
++ (void)uploadReceiptImages:(NSArray *)receiptImages recordImages:(NSArray *)recordImages billId:(NSString *)billId finish:(HandlerBlock)finish {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         dic[@"transactionId"] = billId;

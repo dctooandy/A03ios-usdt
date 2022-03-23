@@ -157,19 +157,19 @@
 - (IBAction)confirm:(UIButton *)sender {
     if (self.bankModel.needUploadFlag) {
         __weak typeof(self) weakSelf = self;
-        [CNMUploadView showUploadViewTo:self billId:self.bankModel.transactionId commitDeposit:^{
-            [weakSelf commitDepisit];
+        [CNMUploadView showUploadViewTo:self billId:self.bankModel.transactionId commitDeposit:^(NSArray *receiptImages, NSArray *recordImages) {
+            [weakSelf commitDepisitWithReceiptImages:receiptImages recordImages:recordImages];
         }];
     } else {
-        [self commitDepisit];
+        [self commitDepisitWithReceiptImages:nil recordImages:nil];
     }
 }
 
-- (void)commitDepisit {
+- (void)commitDepisitWithReceiptImages:(NSArray *)receiptImages recordImages:(NSArray *)recordImages {
     // 上报数据
     [self showLoading];
     __weak typeof(self) weakSelf = self;
-    [CNMatchPayRequest commitDepisit:self.transactionId receiptImg:nil transactionImg:nil finish:^(id responseObj, NSString *errorMsg) {
+    [CNMatchPayRequest commitDepisit:self.transactionId receiptImg:receiptImages.lastObject transactionImg:recordImages finish:^(id responseObj, NSString *errorMsg) {
         [self hideLoading];
         if ([responseObj isKindOfClass:[NSDictionary class]]) {
             NSDictionary *dic = (NSDictionary *)responseObj;

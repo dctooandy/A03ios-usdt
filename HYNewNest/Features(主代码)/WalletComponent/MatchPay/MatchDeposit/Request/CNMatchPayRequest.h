@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param recordImages  流水图片数组
 /// @param billId  订单号
 /// @param finish 完成回调
-+ (void)uploadRecordImages:(NSArray *)receiptImages recordImages:(NSArray *)recordImages billId:(NSString *)billId finish:(HandlerBlock)finish;
++ (void)uploadReceiptImages:(NSArray *)receiptImages recordImages:(NSArray *)recordImages billId:(NSString *)billId finish:(HandlerBlock)finish;
 @end
 
 NS_ASSUME_NONNULL_END
