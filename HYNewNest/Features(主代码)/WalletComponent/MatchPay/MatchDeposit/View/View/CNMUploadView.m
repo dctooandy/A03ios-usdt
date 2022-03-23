@@ -29,6 +29,7 @@
 @property (nonatomic, strong) NSMutableArray *pictureArr2;
 
 @property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *promoIV;
 @property (weak, nonatomic) IBOutlet UIButton *serverBtn;
 
 @property (nonatomic, strong) ZLPhotoActionSheet *photoSheet;
@@ -94,7 +95,9 @@
 - (void)checkConfirmBtnEnable {
     self.countLb1.text = [NSString stringWithFormat:@"%ld/1", self.pictureArr1.count];
     self.countLb2.text = [NSString stringWithFormat:@"%ld/4", self.pictureArr2.count];
-    self.confirmBtn.enabled = (self.pictureArr1.count > 0 || self.pictureArr2.count > 0);
+    BOOL enabled = (self.pictureArr1.count > 0 || self.pictureArr2.count > 0);
+    self.confirmBtn.enabled = enabled;
+    self.promoIV.highlighted = enabled;
 }
 
 - (IBAction)selectPictures:(UIButton *)sender {
