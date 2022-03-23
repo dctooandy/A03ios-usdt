@@ -42,6 +42,8 @@
 #import "KYMNormalWithdrewSuccessVC.h"
 #import "KYMMatchWithdrewSuccessVC.h"
 #import <CSCustomSerVice/CSCustomSerVice.h>
+#import "KYMWithdrawHistoryView.h"
+#import "CNMAlertView.h"
 @interface HYWithdrawViewController () <UITableViewDelegate, UITableViewDataSource, BYWithdrawDelegate>
 {
     BOOL _isCNYBlockLevel;
@@ -65,6 +67,16 @@
 @property (weak, nonatomic) IBOutlet UIButton *explanationButton;
 @property (weak, nonatomic) IBOutlet UIButton *transferYEBButton;
 @property (weak, nonatomic) IBOutlet UILabel *withdrawableLb;
+
+@property (weak, nonatomic) IBOutlet UILabel *hisOrderNoLB;
+@property (weak, nonatomic) IBOutlet UILabel *hisAmountLB;
+@property (weak, nonatomic) IBOutlet UIButton *hisConfirmBtn;
+@property (weak, nonatomic) IBOutlet UIButton *hisNoConfirmBtn;
+@property (weak, nonatomic) IBOutlet UIStackView *hisOrderStackView;
+@property (weak, nonatomic) IBOutlet UIView *historyView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTop;
+
+@property (nonatomic, strong) KYMWithdrewCheckModel *checkModel;
 
 @end
 
@@ -94,7 +106,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     [self addNaviRightItemWithImageName:@"kf"];
     
     self.selectedIdx = 0;
-
+    [self setupHistory];
     [self setupTableView];
     
     [self.explanationButton setTitleColor:[UIColor gradientFromColor:kHexColor(0x19CECE)
@@ -133,6 +145,17 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         }
 
     }];
+    if (![CNUserManager shareManager].isUsdtMode) {
+        [KYMWithdrewRequest checkWithdrawWithCallBack:^(BOOL isMatch,KYMWithdrewCheckModel *model) {
+            self.checkModel = model;
+            if (model && model.data.mmProcessingOrderType == 2 && model.data.mmProcessingOrderStatus == 2 && model.data.mmProcessingOrderPairStatus == 5) {
+                self.hisAmountLB.text = model.data.mmProcessingOrderAmount;
+                self.hisOrderNoLB.text = model.data.mmProcessingOrderTransactionId;
+                self.tableViewTop.constant = 140;
+                self.historyView.hidden = NO;
+            }
+        }];
+    }
 }
 
 - (void)rightItemAction {
@@ -153,11 +176,62 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     self.sumitBtn.layer.shadowColor = [UIColor blackColor].CGColor;
     self.sumitBtn.layer.shadowOffset = CGSizeMake(2.0, 2.0f);
     self.sumitBtn.layer.shadowOpacity = 0.13f; //透明度
+    self.tableViewTop.constant = 6;
+}
 
+- (void)setupHistory
+{
+    self.hisConfirmBtn.layer.borderWidth = 1.0;
+    self.hisConfirmBtn.layer.cornerRadius = 16;
+    self.hisConfirmBtn.layer.borderColor = [UIColor colorWithRed:0x10 / 255.0 green:0xB4 / 255.0 blue:0xDD / 255.0 alpha:1].CGColor;
+    self.hisConfirmBtn.layer.masksToBounds = YES;
+    self.hisNoConfirmBtn.layer.borderWidth = 1.0;
+    self.hisNoConfirmBtn.layer.cornerRadius = 16;
+    self.hisNoConfirmBtn.layer.borderColor = [UIColor colorWithRed:0x10 / 255.0 green:0xB4 / 255.0 blue:0xDD / 255.0 alpha:1].CGColor;
+    self.hisNoConfirmBtn.layer.masksToBounds = YES;
+    self.hisAmountLB.text = @"";
+    self.hisOrderNoLB.text = @"";
+    self.hisOrderStackView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hisOrderNoGesture)];
+    [self.hisOrderStackView addGestureRecognizer:gesture];
+    self.historyView.hidden = YES;
 }
 
 
 #pragma mark - ACTION
+- (void)hisOrderNoGesture
+{
+    UIPasteboard *pastboard = [UIPasteboard generalPasteboard];
+    pastboard.string = self.hisOrderNoLB.text;
+    [MBProgressHUD showMessagNoActivity:@"已复制" toView:nil];
+}
+- (IBAction)confirmBtnClicked:(id)sender {
+    __weak typeof(self)weakSelf = self;
+    [CNMAlertView showAlertTitle:@"温馨提示" content:@"老板！请您再次确认是否到账" desc:nil needRigthTopClose:YES commitTitle:@"没有到账" commitAction:^{
+        [weakSelf noConfirmBtnClicked:nil];
+    } cancelTitle:@"确认到账" cancelAction:^{
+        [KYMWithdrewRequest checkReceiveStats:NO transactionId:weakSelf.hisOrderNoLB.text callBack:^(BOOL status, NSString *msg) {
+            if (status) {
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                
+            }
+        }];
+    }];
+}
+- (IBAction)noConfirmBtnClicked:(id)sender {
+    [KYMWithdrewRequest checkReceiveStats:YES transactionId:self.hisOrderNoLB.text callBack:^(BOOL status, NSString *msg) {
+        if (status) {
+            // 联系客服
+            [CSVisitChatmanager startWithSuperVC:self.navigationController.childViewControllers.firstObject finish:^(CSServiceCode errCode) {
+                if (errCode != CSServiceCode_Request_Suc) {
+                    [MBProgressHUD showError:@"暂时无法链接，请贵宾改以电话联系，感谢您的理解与支持" toView:nil];
+                }
+            }];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }];
+}
+
 - (IBAction)didTapWithdrawBtn:(id)sender {
     if (![CNUserManager shareManager].userDetail.mobileNoBind) {
         [HYTextAlertView showWithTitle:@"手机绑定" content:@"对不起！系统发现您还没有绑定手机，请先完成手机绑定流程，再进行提现操作。" comfirmText:@"去绑定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
@@ -199,38 +273,24 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         }];
     }
     else {
-        [KYMWithdrewRequest checkWithdrawWithCallBack:^(BOOL isMatch,KYMWithdrewCheckModel *model) {
-            KYMWithdrawConfirmVC *vc = [[KYMWithdrawConfirmVC alloc] init];
-            vc.checkModel = model;
-            vc.balanceModel = self.moneyModel;
-            __weak typeof(self)weakSelf = self;
-            __weak typeof(vc)weakVC = vc;
-            vc.submitHandler = ^(NSString * _Nonnull pwd, NSString * _Nonnull amount, BOOL isMatch) {
-                if (self.elecCardsArr.count == 0) {
-                    return;
-                }
-                pwd = [IVRsaEncryptWrapper encryptorString:pwd];
-                if (isMatch) {//撮合取款
-                    [weakSelf requestMatchWithdrawWithPwd:pwd amount:amount confirmVC:weakVC];
-                } else {//普通取款
-                    [weakSelf sumbimtWithdrawAmount:amount pwd:pwd confirmVC:weakVC];
-                }
-                
-            };
-            vc.confirmBtnHandler = ^{
-                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-            };
-            vc.noConfirmBtnHandler = ^{
-                // 联系客服
-                [CSVisitChatmanager startWithSuperVC:weakSelf finish:^(CSServiceCode errCode) {
-                    if (errCode != CSServiceCode_Request_Suc) {
-                        [MBProgressHUD showError:@"暂时无法链接，请贵宾改以电话联系，感谢您的理解与支持" toView:nil];
-                    }
-                }];
-            };
-            [self presentViewController:vc animated:YES completion:nil];
-        }];
-        
+        KYMWithdrawConfirmVC *vc = [[KYMWithdrawConfirmVC alloc] init];
+        vc.checkModel = self.checkModel;
+        vc.balanceModel = self.moneyModel;
+        __weak typeof(self)weakSelf = self;
+        __weak typeof(vc)weakVC = vc;
+        vc.submitHandler = ^(NSString * _Nonnull pwd, NSString * _Nonnull amount, BOOL isMatch) {
+            if (self.elecCardsArr.count == 0) {
+                return;
+            }
+            pwd = [IVRsaEncryptWrapper encryptorString:pwd];
+            if (isMatch) {//撮合取款
+                [weakSelf requestMatchWithdrawWithPwd:pwd amount:amount confirmVC:weakVC];
+            } else {//普通取款
+                [weakSelf sumbimtWithdrawAmount:amount pwd:pwd confirmVC:weakVC];
+            }
+            
+        };
+        [self presentViewController:vc animated:YES completion:nil];
     }
 }
 
