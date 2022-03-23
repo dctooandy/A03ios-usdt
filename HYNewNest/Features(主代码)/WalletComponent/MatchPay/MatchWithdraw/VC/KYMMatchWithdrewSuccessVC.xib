@@ -89,7 +89,7 @@
                     </constraints>
                     <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="16"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="联系客服">
+                    <state key="normal" title="返回会员中心">
                         <color key="titleColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <userDefinedRuntimeAttributes>
@@ -99,7 +99,7 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="customerBtnClicked:" destination="-1" eventType="touchUpInside" id="f2c-a0-qMd"/>
+                        <action selector="goBackUserCenter:" destination="-1" eventType="touchUpInside" id="8Gz-Sw-iG1"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如取款未到账或金额不符，请及时联系客服" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BB3-mx-SMK">
@@ -111,16 +111,52 @@
                     <color key="textColor" red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="额外0.5%返利礼金" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Opv-kl-iWx">
+                    <rect key="frame" x="217" y="397" width="180" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="njP-cQ-Cfa"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofJ-Yq-SPm">
+                    <rect key="frame" x="162" y="455" width="90" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="4o2-JY-bjz"/>
+                        <constraint firstAttribute="height" constant="40" id="9Qh-4P-w4d"/>
+                    </constraints>
+                    <color key="tintColor" red="0.0078431372550000003" green="0.65490196079999996" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain">
+                        <attributedString key="attributedTitle">
+                            <fragment content="联系客服">
+                                <attributes>
+                                    <font key="NSFont" size="14" name="PingFangSC-Medium"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                    <integer key="NSUnderline" value="1"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="customerBtnClicked:" destination="-1" eventType="touchUpInside" id="olh-Po-ChY"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="Opv-kl-iWx" firstAttribute="leading" secondItem="6jR-97-foI" secondAttribute="leading" id="0H5-Ln-bS0"/>
                 <constraint firstItem="nuD-YC-dFK" firstAttribute="top" secondItem="xnR-2s-DtS" secondAttribute="bottom" constant="3" id="3kU-Mx-mgQ"/>
+                <constraint firstItem="ofJ-Yq-SPm" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9X3-jV-Iz4"/>
                 <constraint firstAttribute="trailing" secondItem="BSn-ik-cKB" secondAttribute="trailing" id="B65-0F-3zu"/>
                 <constraint firstItem="BB3-mx-SMK" firstAttribute="top" secondItem="6jR-97-foI" secondAttribute="bottom" constant="11" id="Bcz-Kn-ARB"/>
+                <constraint firstItem="Opv-kl-iWx" firstAttribute="bottom" secondItem="6jR-97-foI" secondAttribute="bottom" id="Gzw-Dh-MF1"/>
                 <constraint firstItem="6jR-97-foI" firstAttribute="top" secondItem="YgY-Et-QHN" secondAttribute="top" id="M7H-QO-4sb"/>
                 <constraint firstItem="BSn-ik-cKB" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="MGI-Tu-OcX"/>
                 <constraint firstItem="6jR-97-foI" firstAttribute="top" secondItem="BSn-ik-cKB" secondAttribute="bottom" constant="35" id="NwQ-rF-b7q"/>
+                <constraint firstItem="ofJ-Yq-SPm" firstAttribute="top" secondItem="BB3-mx-SMK" secondAttribute="bottom" constant="10" id="R5u-Zr-jtT"/>
                 <constraint firstItem="xnR-2s-DtS" firstAttribute="top" secondItem="Mwl-uY-0p5" secondAttribute="bottom" constant="32" id="S1j-NL-CvF"/>
                 <constraint firstItem="BB3-mx-SMK" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="UYb-tc-5pW"/>
                 <constraint firstItem="Mwl-uY-0p5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="UlZ-mV-5Ou"/>
@@ -133,6 +169,7 @@
                 <constraint firstItem="BB3-mx-SMK" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="kpN-np-FGJ"/>
                 <constraint firstItem="xnR-2s-DtS" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="mCt-vX-n3Y"/>
                 <constraint firstItem="BSn-ik-cKB" firstAttribute="top" secondItem="nuD-YC-dFK" secondAttribute="bottom" constant="3" id="nTt-Cb-aNQ"/>
+                <constraint firstItem="Opv-kl-iWx" firstAttribute="trailing" secondItem="6jR-97-foI" secondAttribute="trailing" id="pnT-ER-HhV"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="6jR-97-foI" secondAttribute="trailing" constant="17" id="rMo-Lu-XnB"/>
                 <constraint firstItem="Mwl-uY-0p5" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="50" id="szV-EN-y9z"/>
             </constraints>
