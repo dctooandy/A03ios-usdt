@@ -51,6 +51,9 @@
         }
     }];
 }
+- (IBAction)goBackUserCenter:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 - (void)confirmGetMathWithdraw
 {
     __weak typeof(self)weakSelf = self;
