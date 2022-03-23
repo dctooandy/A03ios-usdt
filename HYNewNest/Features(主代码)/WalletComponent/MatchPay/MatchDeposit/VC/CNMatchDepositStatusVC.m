@@ -37,6 +37,7 @@
 #pragma mark - 底部按钮
 @property (weak, nonatomic) IBOutlet UILabel *actionTipLb;
 @property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
+@property (weak, nonatomic) IBOutlet UIButton *backBtn;
 ///倒计时
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) NSInteger timeInterval;
@@ -66,6 +67,9 @@
 - (void)setupUI {
     self.bankView.layer.cornerRadius = 8;
     self.title = @"充值";
+    self.backBtn.layer.cornerRadius = 24;
+    self.backBtn.layer.borderWidth = 1;
+    self.backBtn.layer.borderColor = kHexColor(0x10B4DD).CGColor;
     
     for (UIButton *btn in self.btnCopyArray) {
         NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:@"复制"];
@@ -197,6 +201,10 @@
     } else {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
+}
+
+- (IBAction)goToHomePage:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (IBAction)customerServer {

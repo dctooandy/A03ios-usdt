@@ -15,6 +15,7 @@
                 <outlet property="actionTipLb" destination="LRJ-nR-8Il" id="mgT-y7-Sgj"/>
                 <outlet property="amountLb" destination="az3-Ng-B4K" id="rxs-Uc-TS1"/>
                 <outlet property="amountTipLb" destination="iVX-5s-52Y" id="Jke-ho-l4y"/>
+                <outlet property="backBtn" destination="C8X-8q-D5i" id="ost-w0-5L5"/>
                 <outlet property="bankLogo" destination="aN7-ka-cHi" id="7hT-PK-wdS"/>
                 <outlet property="bankName" destination="1F0-JF-YfW" id="Uuo-EZ-lX3"/>
                 <outlet property="bankView" destination="PoK-fU-Iad" id="beP-Ie-oE7"/>
@@ -254,8 +255,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CZH-wS-Mpe" userLabel="ButtonView">
                             <rect key="frame" x="0.0" y="402" width="414" height="118"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRJ-nR-8Il">
-                                    <rect key="frame" x="207" y="25" width="0.0" height="20"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="213" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRJ-nR-8Il">
+                                    <rect key="frame" x="196.5" y="25" width="21" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="Mak-Q3-BMC"/>
                                     </constraints>
@@ -263,26 +264,44 @@
                                     <color key="textColor" red="0.062745098040000002" green="0.70588235290000001" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYd-ok-Vjf" customClass="CNTwoStatusBtn">
-                                    <rect key="frame" x="30" y="70" width="354" height="48"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="48" id="seH-x0-5dO"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                    <state key="normal" title="确认存款"/>
-                                    <connections>
-                                        <action selector="confirm:" destination="-1" eventType="touchUpInside" id="toI-n4-oL5"/>
-                                    </connections>
-                                </button>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ILI-Pb-aWc">
+                                    <rect key="frame" x="20" y="60" width="374" height="48"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8X-8q-D5i">
+                                            <rect key="frame" x="0.0" y="0.0" width="177" height="48"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="bGT-0T-mtb"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                            <state key="normal" title="返回个人中心">
+                                                <color key="titleColor" red="0.062745098040000002" green="0.70588235290000001" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="goToHomePage:" destination="-1" eventType="touchUpInside" id="53G-1N-TVw"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYd-ok-Vjf" customClass="CNTwoStatusBtn">
+                                            <rect key="frame" x="197" y="0.0" width="177" height="48"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="seH-x0-5dO"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <state key="normal" title="确认存款"/>
+                                            <connections>
+                                                <action selector="confirm:" destination="-1" eventType="touchUpInside" id="toI-n4-oL5"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="vYd-ok-Vjf" secondAttribute="trailing" constant="30" id="06E-IB-qZ0"/>
-                                <constraint firstItem="vYd-ok-Vjf" firstAttribute="leading" secondItem="CZH-wS-Mpe" secondAttribute="leading" constant="30" id="5dP-Ta-ixW"/>
-                                <constraint firstItem="vYd-ok-Vjf" firstAttribute="top" secondItem="LRJ-nR-8Il" secondAttribute="bottom" constant="25" id="C2Z-iL-HjM"/>
+                                <constraint firstItem="ILI-Pb-aWc" firstAttribute="top" secondItem="LRJ-nR-8Il" secondAttribute="bottom" constant="15" id="6Ok-Ws-iwx"/>
+                                <constraint firstAttribute="bottom" secondItem="ILI-Pb-aWc" secondAttribute="bottom" constant="10" id="GmB-BR-ddp"/>
                                 <constraint firstItem="LRJ-nR-8Il" firstAttribute="top" secondItem="CZH-wS-Mpe" secondAttribute="top" constant="25" id="YgO-aa-aig"/>
-                                <constraint firstAttribute="bottom" secondItem="vYd-ok-Vjf" secondAttribute="bottom" id="qIO-Pn-jlu"/>
+                                <constraint firstAttribute="trailing" secondItem="ILI-Pb-aWc" secondAttribute="trailing" constant="20" id="gFj-J2-soc"/>
                                 <constraint firstItem="LRJ-nR-8Il" firstAttribute="centerX" secondItem="CZH-wS-Mpe" secondAttribute="centerX" id="sW2-SO-9cH"/>
+                                <constraint firstItem="ILI-Pb-aWc" firstAttribute="leading" secondItem="CZH-wS-Mpe" secondAttribute="leading" constant="20" id="yfx-FW-Ao8"/>
                             </constraints>
                         </view>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaf-Pj-4RC" userLabel="ServerView">
@@ -339,7 +358,7 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="S4m-2v-Fqf" secondAttribute="trailing" id="mgN-cn-oHg"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="S4m-2v-Fqf" secondAttribute="bottom" id="qAd-Bu-RLC"/>
             </constraints>
-            <point key="canvasLocation" x="207.24637681159422" y="140.29017857142856"/>
+            <point key="canvasLocation" x="207.24637681159422" y="139.95535714285714"/>
         </view>
     </objects>
     <resources>
