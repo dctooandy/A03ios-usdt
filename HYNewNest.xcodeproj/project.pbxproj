@@ -3163,8 +3163,8 @@
 		0494C58227C8D5040016B5F6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0494C58327C8D5040016B5F6 /* Cell */,
 				0494C58A27C8D5040016B5F6 /* View */,
+				0494C58327C8D5040016B5F6 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";

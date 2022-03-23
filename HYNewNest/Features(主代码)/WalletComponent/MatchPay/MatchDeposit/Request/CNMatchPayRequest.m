@@ -73,20 +73,20 @@
         [[IVHttpManager shareManager] uploadFileWithUrl:@"deposit/uploadImgV3" parameters:dic callBack:^(id  _Nullable response, NSError * _Nullable error) {
             if ([response isKindOfClass:[IVJResponseObject class]]) {
                 IVJResponseObject *obj = (IVJResponseObject *)response;
-                if (obj.head.errMsg) {
-                    !finish ?: finish(obj.body, obj.head.errMsg);
-                } else {
+                if ([obj.head.errCode isEqualToString:@"0000"]) {
                     !finish ?: finish(obj.body, nil);
+                } else {
+                    !finish ?: finish(obj.body, obj.head.errMsg);
                 }
             } else if (error) {
                 !finish ?: finish(nil, error.localizedDescription);
             }
         } constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             for (UIImage *img in receiptImages) {
-                [formData appendPartWithFileData:UIImageJPEGRepresentation(img, 0.01) name:@"receiptImag" fileName:@"receiptImag" mimeType:@"jpg"];
+                [formData appendPartWithFileData:UIImageJPEGRepresentation(img, 0.01) name:@"receiptImg" fileName:@"receiptImg.jpg" mimeType:@"image/jpeg"];
             }
             for (UIImage *img in recordImages) {
-                [formData appendPartWithFileData:UIImageJPEGRepresentation(img, 0.01) name:@"transactionImg" fileName:@"transactionImg" mimeType:@"jpg"];
+                [formData appendPartWithFileData:UIImageJPEGRepresentation(img, 0.01) name:@"transactionImg" fileName:@"transactionImg.jpg" mimeType:@"image/jpeg"];
             }
         }];
     });

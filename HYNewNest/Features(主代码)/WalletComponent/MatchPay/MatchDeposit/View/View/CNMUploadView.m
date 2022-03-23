@@ -196,13 +196,9 @@
             [CNTOPHUB showError:errorMsg];
             return;
         }
-        if ([responseObj isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *dic = (NSDictionary *)responseObj;
-            if ([[dic objectForKey:@"code"] isEqualToString:@"00000"]) {
-                [weakSelf removeFromSuperview];
-                !weakSelf.commitBlock ?: weakSelf.commitBlock();
-            }
-        }
+        [CNTOPHUB showSuccess:@"图片上传成功"];
+        [weakSelf removeFromSuperview];
+        !weakSelf.commitBlock ?: weakSelf.commitBlock();
     }];
 }
 
