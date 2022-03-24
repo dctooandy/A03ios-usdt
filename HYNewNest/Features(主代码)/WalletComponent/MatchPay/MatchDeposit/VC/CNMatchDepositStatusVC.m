@@ -211,7 +211,7 @@
     // 联系客服
     [CSVisitChatmanager startWithSuperVC:self finish:^(CSServiceCode errCode) {
         if (errCode != CSServiceCode_Request_Suc) {
-            [CNTOPHUB showError:@"暂时无法链接，请贵宾改以电话联系，感谢您的理解与支持"];
+            [self showError:@"暂时无法链接，请贵宾改以电话联系，感谢您的理解与支持"];
         }
     }];
 }
