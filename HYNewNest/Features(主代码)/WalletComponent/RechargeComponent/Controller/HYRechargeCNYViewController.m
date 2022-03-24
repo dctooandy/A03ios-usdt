@@ -262,12 +262,11 @@
         [view.statusBtn setTitle:@"我要催单" forState:UIControlStateNormal];
         [view.statusBtn addTarget:self action:@selector(showUploadUI) forControlEvents:UIControlEventTouchUpInside];
     }
-    [self.scrollContainer addSubview:view];
+    self.editView.billViewH.constant = 66;
+    self.editView.billView.hidden = NO;
+    [self.editView.billView addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.btnSubmit.mas_bottom).offset(20);
-        make.left.equalTo(self.editView.mas_left).offset(0);
-        make.right.equalTo(self.editView.mas_right).offset(0);
-        make.height.mas_equalTo(66);
+        make.edges.mas_equalTo(0);
     }];
     view.amountLb.text = [NSString stringWithFormat:@"%.2f", self.fastModel.mmProcessingOrderAmount.doubleValue];
     view.billNoLb.text = self.fastModel.mmProcessingOrderTransactionId;

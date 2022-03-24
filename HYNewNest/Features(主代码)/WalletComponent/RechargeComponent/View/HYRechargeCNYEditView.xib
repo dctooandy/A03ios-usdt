@@ -16,6 +16,8 @@
                 <outlet property="amountTfViewH" destination="nTV-3R-6xk" id="b2V-hE-usS"/>
                 <outlet property="bankIcon" destination="0R4-Rk-TFf" id="Id3-nv-0HY"/>
                 <outlet property="bankTf" destination="Dnq-eU-Zr4" id="bdW-zD-xO7"/>
+                <outlet property="billView" destination="vuC-rS-Tbd" id="VRg-Ap-5Za"/>
+                <outlet property="billViewH" destination="y7H-sJ-JeZ" id="34V-XG-jhN"/>
                 <outlet property="btmBankSelcView" destination="SCp-Gt-sFU" id="g6P-fc-gXp"/>
                 <outlet property="btmBankSelcViewH" destination="L5J-b0-LkF" id="bM7-F2-oGy"/>
                 <outlet property="collectionView" destination="NFs-yC-zmD" id="XL7-xG-Mx1"/>
@@ -26,7 +28,7 @@
                 <outlet property="depositorTfView" destination="Zc7-TC-fEF" id="Hxw-XK-WfP"/>
                 <outlet property="imgvIcon" destination="1pQ-IK-tsW" id="KsX-t0-848"/>
                 <outlet property="lblPayWayName" destination="RwZ-pY-ihD" id="WTN-ri-oqv"/>
-                <outlet property="refundTipView" destination="UP8-pr-QdY" id="FwN-HO-uQf"/>
+                <outlet property="refundTipView" destination="UP8-pr-QdY" id="Gd1-wK-sZf"/>
                 <outlet property="refundTipViewH" destination="EXE-Dj-z9h" id="q5o-ep-Zge"/>
                 <outlet property="tipLbl" destination="uJI-mQ-Zht" id="xAk-Du-Cvj"/>
                 <outlet property="warningLabel" destination="ZoM-2s-QMT" id="95A-42-5jk"/>
@@ -37,14 +39,21 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="572"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AdS-ha-nqn">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AdS-ha-nqn" userLabel="LineView">
                     <rect key="frame" x="12" y="70" width="390" height="0.5"/>
                     <color key="backgroundColor" red="0.42745098039215684" green="0.46666666666666667" blue="0.54509803921568623" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="0.5" id="7N6-N5-7Sx"/>
                     </constraints>
                 </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UP8-pr-QdY">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vuC-rS-Tbd" userLabel="BillView">
+                    <rect key="frame" x="15" y="70.5" width="384" height="0.0"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" id="y7H-sJ-JeZ"/>
+                    </constraints>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UP8-pr-QdY" userLabel="TipView">
                     <rect key="frame" x="15" y="70.5" width="384" height="0.0"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="固定金额成功存款返利1%，24小时到账，礼金无上限" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fs-A6-rb7">
@@ -222,15 +231,17 @@
                 <constraint firstItem="NQW-EM-t1q" firstAttribute="leading" secondItem="Zc7-TC-fEF" secondAttribute="leading" id="7n2-cA-Z9u"/>
                 <constraint firstItem="1pQ-IK-tsW" firstAttribute="centerY" secondItem="RwZ-pY-ihD" secondAttribute="centerY" id="Aff-MS-X64"/>
                 <constraint firstItem="NQW-EM-t1q" firstAttribute="trailing" secondItem="Zc7-TC-fEF" secondAttribute="trailing" id="AyK-W6-RC9"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="vuC-rS-Tbd" secondAttribute="trailing" constant="15" id="ByK-KN-1SN"/>
                 <constraint firstItem="ZoM-2s-QMT" firstAttribute="top" secondItem="Zc7-TC-fEF" secondAttribute="bottom" constant="5" id="EaS-3U-3Sh"/>
+                <constraint firstItem="vuC-rS-Tbd" firstAttribute="top" secondItem="AdS-ha-nqn" secondAttribute="bottom" id="EsG-Ch-vph"/>
                 <constraint firstItem="uJI-mQ-Zht" firstAttribute="trailing" secondItem="Egc-ZA-96q" secondAttribute="trailing" id="GI3-PS-FG0"/>
                 <constraint firstAttribute="trailing" secondItem="AdS-ha-nqn" secondAttribute="trailing" constant="12" id="IYg-bN-Zrp"/>
+                <constraint firstItem="vuC-rS-Tbd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="Jn4-cC-lQd"/>
                 <constraint firstItem="9sI-aL-Ark" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="LBq-tP-Ryu"/>
                 <constraint firstItem="2Cf-84-UbO" firstAttribute="leading" secondItem="Zc7-TC-fEF" secondAttribute="leading" id="NNZ-Yl-8lV"/>
                 <constraint firstItem="2Cf-84-UbO" firstAttribute="trailing" secondItem="Zc7-TC-fEF" secondAttribute="trailing" id="NV0-3a-G5W"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="UP8-pr-QdY" secondAttribute="trailing" constant="15" id="PIR-dp-arN"/>
                 <constraint firstItem="AdS-ha-nqn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="70" id="QXf-im-TPm"/>
-                <constraint firstItem="UP8-pr-QdY" firstAttribute="top" secondItem="AdS-ha-nqn" secondAttribute="bottom" id="Qg3-Gq-hRw"/>
                 <constraint firstItem="RwZ-pY-ihD" firstAttribute="leading" secondItem="1pQ-IK-tsW" secondAttribute="trailing" constant="15" id="RTP-fu-8Lu"/>
                 <constraint firstItem="AdS-ha-nqn" firstAttribute="top" secondItem="RwZ-pY-ihD" secondAttribute="bottom" constant="24" id="RbF-UP-hlF"/>
                 <constraint firstItem="NFs-yC-zmD" firstAttribute="top" secondItem="UP8-pr-QdY" secondAttribute="bottom" id="SMI-hk-nX1"/>
@@ -249,6 +260,7 @@
                 <constraint firstItem="UP8-pr-QdY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="jgZ-el-z41"/>
                 <constraint firstItem="SCp-Gt-sFU" firstAttribute="trailing" secondItem="NQW-EM-t1q" secondAttribute="trailing" id="js7-Tk-eed"/>
                 <constraint firstItem="SCp-Gt-sFU" firstAttribute="leading" secondItem="NQW-EM-t1q" secondAttribute="leading" id="kV8-mu-PnD"/>
+                <constraint firstItem="vuC-rS-Tbd" firstAttribute="bottom" secondItem="UP8-pr-QdY" secondAttribute="top" id="ozd-iF-oNK"/>
                 <constraint firstItem="uJI-mQ-Zht" firstAttribute="top" secondItem="NFs-yC-zmD" secondAttribute="bottom" constant="5" id="qgD-1V-ruO"/>
                 <constraint firstItem="2Cf-84-UbO" firstAttribute="trailing" secondItem="OxX-xe-jFh" secondAttribute="trailing" id="s52-OQ-OaX"/>
                 <constraint firstItem="ke3-PS-Vi3" firstAttribute="centerY" secondItem="Egc-ZA-96q" secondAttribute="centerY" id="w5b-2D-6D8"/>
