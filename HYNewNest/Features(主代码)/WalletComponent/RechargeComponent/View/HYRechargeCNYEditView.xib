@@ -47,7 +47,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vuC-rS-Tbd" userLabel="BillView">
-                    <rect key="frame" x="15" y="70.5" width="384" height="0.0"/>
+                    <rect key="frame" x="0.0" y="70.5" width="414" height="0.0"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" id="y7H-sJ-JeZ"/>
@@ -231,12 +231,12 @@
                 <constraint firstItem="NQW-EM-t1q" firstAttribute="leading" secondItem="Zc7-TC-fEF" secondAttribute="leading" id="7n2-cA-Z9u"/>
                 <constraint firstItem="1pQ-IK-tsW" firstAttribute="centerY" secondItem="RwZ-pY-ihD" secondAttribute="centerY" id="Aff-MS-X64"/>
                 <constraint firstItem="NQW-EM-t1q" firstAttribute="trailing" secondItem="Zc7-TC-fEF" secondAttribute="trailing" id="AyK-W6-RC9"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="vuC-rS-Tbd" secondAttribute="trailing" constant="15" id="ByK-KN-1SN"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="vuC-rS-Tbd" secondAttribute="trailing" id="ByK-KN-1SN"/>
                 <constraint firstItem="ZoM-2s-QMT" firstAttribute="top" secondItem="Zc7-TC-fEF" secondAttribute="bottom" constant="5" id="EaS-3U-3Sh"/>
                 <constraint firstItem="vuC-rS-Tbd" firstAttribute="top" secondItem="AdS-ha-nqn" secondAttribute="bottom" id="EsG-Ch-vph"/>
                 <constraint firstItem="uJI-mQ-Zht" firstAttribute="trailing" secondItem="Egc-ZA-96q" secondAttribute="trailing" id="GI3-PS-FG0"/>
                 <constraint firstAttribute="trailing" secondItem="AdS-ha-nqn" secondAttribute="trailing" constant="12" id="IYg-bN-Zrp"/>
-                <constraint firstItem="vuC-rS-Tbd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="Jn4-cC-lQd"/>
+                <constraint firstItem="vuC-rS-Tbd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Jn4-cC-lQd"/>
                 <constraint firstItem="9sI-aL-Ark" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="LBq-tP-Ryu"/>
                 <constraint firstItem="2Cf-84-UbO" firstAttribute="leading" secondItem="Zc7-TC-fEF" secondAttribute="leading" id="NNZ-Yl-8lV"/>
                 <constraint firstItem="2Cf-84-UbO" firstAttribute="trailing" secondItem="Zc7-TC-fEF" secondAttribute="trailing" id="NV0-3a-G5W"/>
