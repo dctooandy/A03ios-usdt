@@ -80,7 +80,7 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BXI-42-t07" userLabel="LineView">
-                            <rect key="frame" x="0.0" y="152.5" width="414" height="0.5"/>
+                            <rect key="frame" x="15" y="152.5" width="384" height="0.5"/>
                             <color key="backgroundColor" red="0.42745098040000001" green="0.46666666670000001" blue="0.5450980392" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="0.5" id="dtx-On-7Lx"/>
@@ -96,10 +96,10 @@
                         <constraint firstItem="n35-ss-yCe" firstAttribute="leading" secondItem="CBN-ZO-Rbt" secondAttribute="leading" constant="15" id="MlC-cA-M7k"/>
                         <constraint firstAttribute="trailing" secondItem="JhZ-fA-tvw" secondAttribute="trailing" constant="15" id="Ptk-v0-G2e"/>
                         <constraint firstItem="ur7-NP-dUu" firstAttribute="trailing" secondItem="GEn-90-X04" secondAttribute="trailing" id="Rnd-uB-jyr"/>
-                        <constraint firstItem="BXI-42-t07" firstAttribute="leading" secondItem="CBN-ZO-Rbt" secondAttribute="leading" id="Xzd-uY-PT3"/>
+                        <constraint firstItem="BXI-42-t07" firstAttribute="leading" secondItem="CBN-ZO-Rbt" secondAttribute="leading" constant="15" id="Xzd-uY-PT3"/>
                         <constraint firstItem="JhZ-fA-tvw" firstAttribute="centerY" secondItem="CBN-ZO-Rbt" secondAttribute="centerY" id="pcJ-TP-R9m"/>
                         <constraint firstItem="n35-ss-yCe" firstAttribute="centerY" secondItem="CBN-ZO-Rbt" secondAttribute="centerY" id="rag-Sx-M5n"/>
-                        <constraint firstAttribute="trailing" secondItem="BXI-42-t07" secondAttribute="trailing" id="t9R-XR-DLk"/>
+                        <constraint firstAttribute="trailing" secondItem="BXI-42-t07" secondAttribute="trailing" constant="15" id="t9R-XR-DLk"/>
                     </constraints>
                 </view>
             </subviews>
