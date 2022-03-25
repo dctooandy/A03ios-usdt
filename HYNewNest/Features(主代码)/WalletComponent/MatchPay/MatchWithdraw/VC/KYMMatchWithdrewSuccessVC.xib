@@ -28,26 +28,6 @@
                         <constraint firstAttribute="height" constant="131" id="Baz-7k-6Pb"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6jR-97-foI" customClass="KYMSubmitButton">
-                    <rect key="frame" x="217" y="364" width="180" height="48"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="48" id="9XC-In-wAF"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="16"/>
-                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="确认到账">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="8"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="submitBtnClicked:" destination="-1" eventType="touchUpInside" id="26m-Ro-DO2"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnR-2s-DtS">
                     <rect key="frame" x="0.0" y="257" width="414" height="22"/>
                     <constraints>
@@ -82,28 +62,57 @@
                     <color key="textColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YgY-Et-QHN">
-                    <rect key="frame" x="17" y="364" width="180" height="48"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aaR-il-iuY">
+                    <rect key="frame" x="15" y="364" width="384" height="107"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6jR-97-foI">
+                            <rect key="frame" x="0.0" y="0.0" width="384" height="54"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="54" id="9XC-In-wAF"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="16"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title=" " backgroundImage="mwd_确认到账按钮">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="submitBtnClicked:" destination="-1" eventType="touchUpInside" id="26m-Ro-DO2"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YgY-Et-QHN">
+                            <rect key="frame" x="0.0" y="59" width="384" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="aVc-71-QY5"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="16"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="返回会员中心">
+                                <color key="titleColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="goBackUserCenter:" destination="-1" eventType="touchUpInside" id="8Gz-Sw-iG1"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="48" id="aVc-71-QY5"/>
+                        <constraint firstItem="6jR-97-foI" firstAttribute="centerX" secondItem="aaR-il-iuY" secondAttribute="centerX" id="5Y8-7N-ZWt"/>
+                        <constraint firstItem="6jR-97-foI" firstAttribute="width" secondItem="YgY-Et-QHN" secondAttribute="width" id="hBE-Np-lnW"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="16"/>
-                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="返回会员中心">
-                        <color key="titleColor" red="0.062745098039215685" green="0.70588235294117641" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="8"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="goBackUserCenter:" destination="-1" eventType="touchUpInside" id="8Gz-Sw-iG1"/>
-                    </connections>
-                </button>
+                </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如取款未到账或金额不符，请及时联系客服" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BB3-mx-SMK">
-                    <rect key="frame" x="0.0" y="423" width="414" height="22"/>
+                    <rect key="frame" x="0.0" y="482" width="414" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="M2P-qn-hfz"/>
                     </constraints>
@@ -111,17 +120,8 @@
                     <color key="textColor" red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="额外0.5%返利礼金" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Opv-kl-iWx">
-                    <rect key="frame" x="217" y="397" width="180" height="15"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="15" id="njP-cQ-Cfa"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofJ-Yq-SPm">
-                    <rect key="frame" x="162" y="455" width="90" height="40"/>
+                    <rect key="frame" x="162" y="514" width="90" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="90" id="4o2-JY-bjz"/>
                         <constraint firstAttribute="height" constant="40" id="9Qh-4P-w4d"/>
@@ -147,30 +147,24 @@
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="Opv-kl-iWx" firstAttribute="leading" secondItem="6jR-97-foI" secondAttribute="leading" id="0H5-Ln-bS0"/>
                 <constraint firstItem="nuD-YC-dFK" firstAttribute="top" secondItem="xnR-2s-DtS" secondAttribute="bottom" constant="3" id="3kU-Mx-mgQ"/>
                 <constraint firstItem="ofJ-Yq-SPm" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9X3-jV-Iz4"/>
                 <constraint firstAttribute="trailing" secondItem="BSn-ik-cKB" secondAttribute="trailing" id="B65-0F-3zu"/>
-                <constraint firstItem="BB3-mx-SMK" firstAttribute="top" secondItem="6jR-97-foI" secondAttribute="bottom" constant="11" id="Bcz-Kn-ARB"/>
-                <constraint firstItem="Opv-kl-iWx" firstAttribute="bottom" secondItem="6jR-97-foI" secondAttribute="bottom" id="Gzw-Dh-MF1"/>
-                <constraint firstItem="6jR-97-foI" firstAttribute="top" secondItem="YgY-Et-QHN" secondAttribute="top" id="M7H-QO-4sb"/>
+                <constraint firstItem="BB3-mx-SMK" firstAttribute="top" secondItem="aaR-il-iuY" secondAttribute="bottom" constant="11" id="CXE-RB-Hkm"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="aaR-il-iuY" secondAttribute="trailing" constant="15" id="Fib-4D-3BQ"/>
+                <constraint firstItem="aaR-il-iuY" firstAttribute="top" secondItem="BSn-ik-cKB" secondAttribute="bottom" constant="35" id="Jdn-f4-eY2"/>
                 <constraint firstItem="BSn-ik-cKB" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="MGI-Tu-OcX"/>
-                <constraint firstItem="6jR-97-foI" firstAttribute="top" secondItem="BSn-ik-cKB" secondAttribute="bottom" constant="35" id="NwQ-rF-b7q"/>
                 <constraint firstItem="ofJ-Yq-SPm" firstAttribute="top" secondItem="BB3-mx-SMK" secondAttribute="bottom" constant="10" id="R5u-Zr-jtT"/>
                 <constraint firstItem="xnR-2s-DtS" firstAttribute="top" secondItem="Mwl-uY-0p5" secondAttribute="bottom" constant="32" id="S1j-NL-CvF"/>
                 <constraint firstItem="BB3-mx-SMK" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="UYb-tc-5pW"/>
                 <constraint firstItem="Mwl-uY-0p5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="UlZ-mV-5Ou"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="xnR-2s-DtS" secondAttribute="trailing" id="YZV-56-orU"/>
-                <constraint firstItem="YgY-Et-QHN" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="17" id="azo-KF-GzW"/>
                 <constraint firstItem="nuD-YC-dFK" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="euZ-fQ-RFJ"/>
-                <constraint firstItem="6jR-97-foI" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.5" constant="-27" id="gx8-rx-3W3"/>
-                <constraint firstItem="6jR-97-foI" firstAttribute="width" secondItem="YgY-Et-QHN" secondAttribute="width" id="iee-4v-OS6"/>
                 <constraint firstAttribute="trailing" secondItem="nuD-YC-dFK" secondAttribute="trailing" id="kUH-ZK-zw9"/>
                 <constraint firstItem="BB3-mx-SMK" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="kpN-np-FGJ"/>
                 <constraint firstItem="xnR-2s-DtS" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="mCt-vX-n3Y"/>
                 <constraint firstItem="BSn-ik-cKB" firstAttribute="top" secondItem="nuD-YC-dFK" secondAttribute="bottom" constant="3" id="nTt-Cb-aNQ"/>
-                <constraint firstItem="Opv-kl-iWx" firstAttribute="trailing" secondItem="6jR-97-foI" secondAttribute="trailing" id="pnT-ER-HhV"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="6jR-97-foI" secondAttribute="trailing" constant="17" id="rMo-Lu-XnB"/>
+                <constraint firstItem="aaR-il-iuY" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="15" id="oHr-et-JtD"/>
                 <constraint firstItem="Mwl-uY-0p5" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="50" id="szV-EN-y9z"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="134.59821428571428"/>
@@ -178,5 +172,6 @@
     </objects>
     <resources>
         <image name="mwd_doing" width="168" height="128"/>
+        <image name="mwd_确认到账按钮" width="345" height="54"/>
     </resources>
 </document>
