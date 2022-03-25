@@ -15,7 +15,6 @@
                 <outlet property="countLb2" destination="2Xp-wE-rcx" id="q8Z-0d-ZXi"/>
                 <outlet property="deleteBtn" destination="0hw-WP-VaP" id="R36-Od-VfF"/>
                 <outlet property="pictureBtn" destination="ZDM-Uj-iU7" id="xT5-c0-hlg"/>
-                <outlet property="promoIV" destination="mHm-hE-7WP" id="YKg-gP-hCj"/>
                 <outlet property="serverBtn" destination="699-qX-Fx1" id="dSy-gG-zIb"/>
                 <outletCollection property="pictureBtnArr" destination="N6U-ro-Yqn" id="Mjs-pG-UF5"/>
                 <outletCollection property="pictureBtnArr" destination="lid-5E-iMy" id="wZT-Ah-ucc"/>
@@ -349,21 +348,17 @@
                                     <color key="textColor" red="0.42745098039215684" green="0.46666666666666667" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qne-sW-f5Y" customClass="CNTwoStatusBtn">
+                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qne-sW-f5Y">
                                     <rect key="frame" x="15" y="337" width="384" height="54"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="54" id="FGD-yP-wDl"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name=".PingFangSC-Regular" family=".PingFang SC" pointSize="16"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="-16" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="上传凭证"/>
                                     <connections>
                                         <action selector="confirm:" destination="-1" eventType="touchUpInside" id="NiE-fZ-HCr"/>
                                     </connections>
                                 </button>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="promo_grey" highlightedImage="promo_highlight" translatesAutoresizingMaskIntoConstraints="NO" id="mHm-hE-7WP">
-                                    <rect key="frame" x="82.5" y="366" width="249" height="20"/>
-                                </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Osw-zB-fSB" userLabel="BottomView">
                                     <rect key="frame" x="0.0" y="391" width="414" height="81"/>
                                     <subviews>
@@ -423,8 +418,6 @@
                                 <constraint firstAttribute="trailing" secondItem="Qne-sW-f5Y" secondAttribute="trailing" constant="15" id="rN0-ZS-Opb"/>
                                 <constraint firstItem="Osw-zB-fSB" firstAttribute="leading" secondItem="uzS-kf-oZc" secondAttribute="leading" id="sRs-l4-DbM"/>
                                 <constraint firstItem="9Qg-hc-5g4" firstAttribute="top" secondItem="YHr-r3-epv" secondAttribute="bottom" constant="12" id="wIp-lR-abI"/>
-                                <constraint firstItem="mHm-hE-7WP" firstAttribute="bottom" secondItem="Qne-sW-f5Y" secondAttribute="bottom" constant="-5" id="wJ8-vz-pM3"/>
-                                <constraint firstItem="mHm-hE-7WP" firstAttribute="centerX" secondItem="Qne-sW-f5Y" secondAttribute="centerX" id="xAe-hq-U0y"/>
                                 <constraint firstAttribute="trailing" secondItem="Osw-zB-fSB" secondAttribute="trailing" id="xT5-7T-LqT"/>
                                 <constraint firstAttribute="trailing" secondItem="4dF-bL-HGl" secondAttribute="trailing" constant="15" id="ySC-xI-Jb2"/>
                                 <constraint firstItem="etS-El-ZzG" firstAttribute="bottom" secondItem="0hx-QR-Q24" secondAttribute="bottom" id="yaz-Bz-n90"/>
@@ -457,8 +450,6 @@
     <resources>
         <image name="close_grey" width="16" height="16"/>
         <image name="picture_add" width="72" height="72"/>
-        <image name="promo_grey" width="249" height="20"/>
-        <image name="promo_highlight" width="249" height="20"/>
         <image name="tips-close" width="14" height="14"/>
     </resources>
 </document>

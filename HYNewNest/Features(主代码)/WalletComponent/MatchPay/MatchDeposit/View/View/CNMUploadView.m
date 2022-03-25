@@ -49,7 +49,11 @@
     view.billId = billId;
     if (commitBlock) {
         view.commitBlock = commitBlock;
-        [view.confirmBtn setTitle:@"确认存款" forState:UIControlStateNormal];
+        [view.confirmBtn setImage:[UIImage imageNamed:@"submit_light"] forState:UIControlStateNormal];
+        [view.confirmBtn setImage:[UIImage imageNamed:@"submit_grey"] forState:UIControlStateDisabled];
+    } else {
+        [view.confirmBtn setImage:[UIImage imageNamed:@"upload_light"] forState:UIControlStateNormal];
+        [view.confirmBtn setImage:[UIImage imageNamed:@"upload_grey"] forState:UIControlStateDisabled];
     }
 }
 
