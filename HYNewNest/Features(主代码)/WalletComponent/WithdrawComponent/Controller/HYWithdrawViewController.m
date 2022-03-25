@@ -233,6 +233,11 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 }
 
 - (IBAction)didTapWithdrawBtn:(id)sender {
+    
+    KYMMatchWithdrewSuccessVC *vc = [[KYMMatchWithdrewSuccessVC alloc] init];
+//    vc.transactionId = model.referenceId;
+//    vc.amountStr = [NSString stringWithFormat:@"%lf",[model.amount doubleValue] * 0.005];
+    [self.navigationController pushViewController:vc animated:YES];;return;;
     if (![CNUserManager shareManager].userDetail.mobileNoBind) {
         [HYTextAlertView showWithTitle:@"手机绑定" content:@"对不起！系统发现您还没有绑定手机，请先完成手机绑定流程，再进行提现操作。" comfirmText:@"去绑定" cancelText:@"取消" comfirmHandler:^(BOOL isComfirm) {
             if (isComfirm) {

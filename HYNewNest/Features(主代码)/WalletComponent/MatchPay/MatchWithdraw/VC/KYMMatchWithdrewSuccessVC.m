@@ -16,7 +16,7 @@
 @interface KYMMatchWithdrewSuccessVC ()
 
 @property (weak, nonatomic) IBOutlet UIButton *customerBtn;
-@property (weak, nonatomic) IBOutlet KYMSubmitButton *submitBtn;
+@property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 @property (weak, nonatomic) IBOutlet UILabel *notifyLB;
 
 @end
@@ -27,7 +27,6 @@
     [super viewDidLoad];
     self.title = @"提现";
     self.submitBtn.enabled = YES;
-    [self.submitBtn setTitle:@"确认到账" forState:UIControlStateNormal];
     self.customerBtn.layer.cornerRadius = 24;
     self.customerBtn.layer.masksToBounds = YES;
     self.customerBtn.layer.borderWidth = 1;
