@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *billNoLb;
 @property (weak, nonatomic) IBOutlet UILabel *amountLb;
 @property (weak, nonatomic) IBOutlet UIButton *statusBtn;
+- (void)setPromoTag:(BOOL)show;
 @end
 
 NS_ASSUME_NONNULL_END
