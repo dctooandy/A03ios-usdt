@@ -31,6 +31,9 @@
 #define kGatewayExtraPath(api)  [NSString stringWithFormat:@"by/_extra_/%@", api]  //产品网关
 //網關域名
 #define A03AppSetting                              @"getAppSetting"
+// 我的优惠
+#define A03MyBonus                               @"activity/vip-promo/promos"
+#define A03MyApplyBonus                               @"activity/vip-promo/apply"
 // 红包雨
 // 活动基本信息，包括初始化的倒计时等
 #define A03RainInfo                               @"activity/money-rain/info"
