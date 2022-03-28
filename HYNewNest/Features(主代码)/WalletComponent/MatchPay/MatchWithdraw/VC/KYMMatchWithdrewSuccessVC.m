@@ -31,7 +31,7 @@
     self.customerBtn.layer.masksToBounds = YES;
     self.customerBtn.layer.borderWidth = 1;
     self.customerBtn.layer.borderColor = [UIColor colorWithRed:0x10 / 255.0 green:0xB4 / 255.0 blue:0xDD / 255.0 alpha:1].CGColor;
-    self.notifyLB.text = [NSString stringWithFormat:@"您将获得%0.2lf元取款礼金，24小时到账",[self.amountStr doubleValue]];
+    self.notifyLB.text = [NSString stringWithFormat:@"您将获得%@元取款礼金，24小时到账",self.amountStr];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
