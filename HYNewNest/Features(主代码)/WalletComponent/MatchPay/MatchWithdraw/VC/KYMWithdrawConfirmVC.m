@@ -117,37 +117,13 @@
     }];
 
     self.submitBitn = [[KYMSubmitButton alloc] init];
-    [self.submitBitn addTarget:self action:@selector(submitBitnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.submitBitn addTarget:self action:@selector(submitBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.submitBitn];
     [self.submitBitn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.codeInputView.mas_bottom).offset(20);
         make.left.right.equalTo(self.codeInputView);
         make.height.offset(48);
     }];
-    
-//    self.historyView = [KYMWithdrawHistoryView new];
-//    self.historyView.amount = self.checkModel.data.mmProcessingOrderAmount;
-//    self.historyView.orderNo = self.checkModel.data.mmProcessingOrderTransactionId;
-//    __weak typeof(self)weakSelf = self;
-//    self.historyView.confirmBtnHandler = ^{
-//        [weakSelf confirmGetMathWithdraw];
-//    };
-//    self.historyView.noConfirmBtnHandler = ^{
-//        [weakSelf noConfirmGetMathWithdraw];
-//    };
-    
-//    [self.contentView addSubview:self.historyView];
-//    [self.historyView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.right.equalTo(self.view);
-//        make.height.offset(89);
-//        make.top.equalTo(self.submitBitn.mas_bottom).offset(20);
-//    }];
-//
-//    self.historyView.hidden = YES;
-//
-//    if (self.checkModel.data.mmProcessingOrderType == 2 && self.checkModel.data.mmProcessingOrderStatus == 2 && self.checkModel.data.mmProcessingOrderPairStatus == 5) {
-//        self.historyView.hidden = NO;
-//    }
 }
 - (void)viewDidLayoutSubviews
 {
@@ -155,39 +131,9 @@
     self.balanceLBWidth.constant = [self.balanceLB.text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : self.balanceLB.font} context:nil].size.width + 1;
     self.contentViewHeight.constant = CGRectGetMaxY(self.submitBitn.frame) + 24;
 }
-//- (void)confirmGetMathWithdraw
-//{
-//    __weak typeof(self)weakSelf = self;
-//    [CNMAlertView showAlertTitle:@"温馨提示" content:@"老板！请您再次确认是否到账" desc:nil needRigthTopClose:YES commitTitle:@"没有到账" commitAction:^{
-//        [weakSelf noConfirmGetMathWithdraw];
-//    } cancelTitle:@"确认到账" cancelAction:^{
-//        [KYMWithdrewRequest checkReceiveStats:NO transactionId:weakSelf.checkModel.data.mmProcessingOrderTransactionId callBack:^(BOOL status, NSString *msg) {
-//            if (status) {
-//                [weakSelf dismissViewControllerAnimated:YES completion:^{
-//                    weakSelf.confirmBtnHandler();
-//                }];
-//            } else {
-//                [MBProgressHUD showError:msg toView:nil];
-//            }
-//        }];
-//    }];
-//
-//}
-//- (void)noConfirmGetMathWithdraw
-//{
-//    [KYMWithdrewRequest checkReceiveStats:YES transactionId:self.checkModel.data.mmProcessingOrderTransactionId callBack:^(BOOL status, NSString *msg) {
-//        if (status) {
-//            __weak typeof(self)weakSelf = self;
-//            [self dismissViewControllerAnimated:YES completion:^{
-//                weakSelf.noConfirmBtnHandler();
-//            }];
-//        } else {
-//            [MBProgressHUD showError:msg toView:nil];
-//        }
-//    }];
-//}
 
-- (void)submitBitnClicked:(UIButton *)button
+
+- (void)submitBtnClicked:(UIButton *)button
 {
     BOOL isMatchWithdraw = (self.amountListView.selectedIndexPath != nil);
     self.submitHandler(self.codeInputView.code, self.amountInputView.money, isMatchWithdraw);

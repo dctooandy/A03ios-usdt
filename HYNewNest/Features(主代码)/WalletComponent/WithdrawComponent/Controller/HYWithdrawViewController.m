@@ -205,10 +205,11 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     pastboard.string = self.hisOrderNoLB.text;
     [MBProgressHUD showMessagNoActivity:@"已复制" toView:nil];
 }
-- (IBAction)confirmBtnClicked:(id)sender {
+- (void)showMatchConfirmAlert
+{
     __weak typeof(self)weakSelf = self;
     [CNMAlertView showAlertTitle:@"温馨提示" content:@"老板！请您再次确认是否到账" desc:nil needRigthTopClose:YES commitTitle:@"没有到账" commitAction:^{
-        [weakSelf noConfirmBtnClicked:nil];
+        [weakSelf noConfirm];
     } cancelTitle:@"确认到账" cancelAction:^{
         [KYMWithdrewRequest checkReceiveStats:NO transactionId:weakSelf.hisOrderNoLB.text callBack:^(BOOL status, NSString *msg) {
             if (status) {
@@ -218,7 +219,7 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         }];
     }];
 }
-- (IBAction)noConfirmBtnClicked:(id)sender {
+- (void)noConfirm {
     [KYMWithdrewRequest checkReceiveStats:YES transactionId:self.hisOrderNoLB.text callBack:^(BOOL status, NSString *msg) {
         if (status) {
             // 联系客服
@@ -230,6 +231,12 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }];
+}
+- (IBAction)confirmBtnClicked:(id)sender {
+    [self showMatchConfirmAlert];
+}
+- (IBAction)noConfirmBtnClicked:(id)sender {
+    [self showMatchConfirmAlert];
 }
 
 - (IBAction)didTapWithdrawBtn:(id)sender {
@@ -361,7 +368,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         }
         KYMMatchWithdrewSuccessVC *vc = [[KYMMatchWithdrewSuccessVC alloc] init];
         vc.transactionId = model.referenceId;
-        vc.amountStr = [NSString stringWithFormat:@"%lf",[model.amount doubleValue] * 0.005];
+        CGFloat notAmount = floor([model.amount doubleValue] * 0.005 * 100) / 100;
+        vc.amountStr = [NSString stringWithFormat:@"%0.2lf",notAmount];;
         [confirmVC dismissViewControllerAnimated:YES completion:^{
             [self.navigationController pushViewController:vc animated:YES];
         }];
