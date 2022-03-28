@@ -48,10 +48,13 @@
         }else
         {
             switch (_environment) {
+                case IVNEnvironmentTest://本地
+                    _gateways = @[@"http://www.pt-gateway.com/_glaxy_1e3c3b_/"];
+                    break;
                 case IVNEnvironmentDevelop://本地
                     _gateways = @[@"http://www.pt-gateway.com/_glaxy_1e3c3b_/"];
                     break;
-                case IVNEnvironmentTest://运测
+                case IVNEnvironmentPublishTest://运测
                     _gateways = @[@"https://h5.918rr.com/_glaxy_1e3c3b_/"];
                     break;
                 case IVNEnvironmentPublish:
@@ -85,6 +88,9 @@
                     _websides = @[@"https://m.ag800.com"];
                     break;
                 case IVNEnvironmentTest:
+                    _websides = @[@"https://m.ag800.com"];
+                    break;
+                case IVNEnvironmentPublishTest:
                     _websides = @[@"https://m.ag800.com"];
                     break;
                 case IVNEnvironmentPublish:
