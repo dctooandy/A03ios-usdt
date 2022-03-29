@@ -147,6 +147,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchCurrencyUI) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchCurrencyUI) name:BYRefreshBalanceNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(configUnreadMessage) name:BYMessageCountDidLoadNotificaiton object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(configHasBonus) name:BYFetchBonusDataDidLoadNotificaiton object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -161,6 +162,7 @@
     [super viewDidLayoutSubviews];
     self.scrollContentW.constant = kScreenWidth;
     [self configUnreadMessage];
+    [self configHasBonus];
 
 }
 
@@ -200,6 +202,21 @@
     }];
 }
 
+- (void)configHasBonus {
+    [self.entryIconLbs enumerateObjectsUsingBlock:^(UILabel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIView *msgView = [obj superview];
+        [msgView hideRedPoint];
+        if ([obj.text isEqualToString:@"我的优惠"]) {
+            BOOL hasBonus = [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] hasNewBonus];
+            if (hasBonus == NO) {
+                [msgView hideRedPoint];
+            }
+            else {
+                [msgView showRedPoint:CGPointMake(CGRectGetWidth(msgView.frame) - 18, 15) value:unread withWidth:25 mutiPoint:false];
+            }
+        }
+    }];
+}
 #pragma mark - 按钮事件
 /// 弹窗
 - (IBAction)didTapAskBtn:(id)sender {

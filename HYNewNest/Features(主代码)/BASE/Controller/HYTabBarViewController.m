@@ -50,6 +50,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginStatusChanged) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginStatusChanged) name:HYLogoutSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchUnreadCount) name:BYDidReadMessageNotificaiton object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchHasBonusData) name:BYDidFetchBonusDataNotificaiton object:nil];
     //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupAppearance) name:CNSkinChangeNotification object:nil];
     
     
@@ -353,7 +354,7 @@
 //            else {
 //                [item pp_addDotWithColor:[UIColor redColor]];
 //            }
-//            [[NSNotificationCenter defaultCenter] postNotificationName:BYMessageCountDidLoadNotificaiton object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:BYFetchBonusDataDidLoadNotificaiton object:nil];
         }
     }];
 }
