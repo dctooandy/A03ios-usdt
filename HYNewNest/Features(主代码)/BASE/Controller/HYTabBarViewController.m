@@ -28,6 +28,7 @@
 #import "CNUserCenterRequest.h"
 
 #import "PPBadgeView.h"
+#import "BYMyBonusRequest.h"
 
 @interface HYTabBarViewController ()<UITabBarControllerDelegate, SuspendBallDelegte, CNServerViewDelegate>
 @property (nonatomic, strong) SuspendBall *suspendBall;

@@ -52,7 +52,7 @@
             NSMutableArray *alreadyFetch = @[].mutableCopy;
             NSMutableArray *overDate = @[].mutableCopy;
             for (BYMyBounsModel *item in allPro) {
-                if ([item.status isEqualToString:@"1"]) {
+                if ([item.status isEqualToString:@"1"] || [item.status isEqualToString:@"4"]) {
                     [goFetch addObject:item];
                 } else if ([item.status isEqualToString:@"2"]) {
                     [alreadyFetch addObject:item];

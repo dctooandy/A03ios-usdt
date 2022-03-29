@@ -24,6 +24,10 @@
     param[@"requestId"] = requestId;
     [self POST:kGatewayExtraPath(A03MyApplyBonus) parameters:param completionHandler:handler];
 }
++ (void)fetchHasBonusHandler:(HandlerBlock)handler {
+    NSMutableDictionary *param = [kNetworkMgr baseParam];
+    [self POST:kGatewayExtraPath(A03HasBonus) parameters:param completionHandler:handler];
+}
 + (void)fetchServerTimeHandler:(HandlerBlock)handler {
     NSMutableDictionary *param = [kNetworkMgr baseParam];
     [self POST:A03ServerTime  parameters:param completionHandler:handler];
