@@ -3380,6 +3380,7 @@
 		3D1338A624AF2E7D00B29783 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				A195ABED27F2AE2A0077EE65 /* Tools */,
 				3DF43D2A2592EE8B0087F26A /* SlideCard */,
 				3D41DEB4251F1A20000CA1D6 /* WSLPictureBrowserView */,
 				E9B5496424CECE23002CE6EF /* LTSegmentedBar */,
@@ -4336,6 +4337,21 @@
 				A195ABDD27F192290077EE65 /* BYMyBonusTableViewController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		A195ABED27F2AE2A0077EE65 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				A195ABEE27F2AE390077EE65 /* Manager */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		A195ABEE27F2AE390077EE65 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		D5A4425724F36F4200014DC6 /* Gif */ = {

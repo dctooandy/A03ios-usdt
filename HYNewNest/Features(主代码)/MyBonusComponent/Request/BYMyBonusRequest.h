@@ -18,7 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)getMyBonusListHandler:(HandlerBlock)handler;
 // 领取我的优惠
 + (void)fetchMyBonusWithRequestID:(NSString*)requestId Handler:(HandlerBlock)handler ;
-
+// 拿取server时间
++ (void)fetchServerTimeHandler:(HandlerBlock)handler ;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -31,6 +31,8 @@
 #define kGatewayExtraPath(api)  [NSString stringWithFormat:@"by/_extra_/%@", api]  //产品网关
 //網關域名
 #define A03AppSetting                              @"getAppSetting"
+#define A03ServerTime                              @"_extra_/api/v1/serverTime"
+//#define A03ServerTime                              @"api/v1/serverTime"
 // 我的优惠
 #define A03MyBonus                               @"activity/vip-promo/promos"
 #define A03MyApplyBonus                               @"activity/vip-promo/apply"

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BYMyBonusTableViewCell : UITableViewCell
-@property (nonatomic, copy) void(^tapMoreAction)(void);
+@property (nonatomic, copy) void(^goRefreshBegin)(void);
 @property (nonatomic, copy) void(^goFetchAction)(NSString* requestId);
 @property (nonatomic, copy) void(^goDepositAction)(void);
 @property (nonatomic, strong) BYMyBounsModel *model;

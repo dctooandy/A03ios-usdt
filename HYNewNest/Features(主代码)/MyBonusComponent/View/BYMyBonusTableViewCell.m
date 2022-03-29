@@ -9,8 +9,12 @@
 #import "BYMyBonusTableViewCell.h"
 #import <UIImageView+WebCache.h>
 #import "NSURL+HYLink.h"
+#import "BYMyBonusRequest.h"
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+Add.h"
 
 @interface BYMyBonusTableViewCell()
+typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
 @property (weak, nonatomic) IBOutlet UIImageView *topImgView;
 //@property (weak, nonatomic) IBOutlet UIView *btmBgView;
 @property (weak, nonatomic) IBOutlet UILabel *lblEndDate;
@@ -18,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currencyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *countDownTimerLabel;
+@property (nonatomic, strong) dispatch_source_t fetchBonusTimer;      //领红包倒数计时器
 @end
 @implementation BYMyBonusTableViewCell
 
@@ -76,11 +82,45 @@
     {
         [self.actionButton setTitle:@"前往充值" forState:UIControlStateNormal];
     }
-   
-    
+    [self setDateString];
 }
+-(void)loadServerTime:(ServerTimeCompleteBlock)completeBlock {
+    
+    [BYMyBonusRequest fetchServerTimeHandler:^(id responseObj, NSString *errorMsg) {
+        
+        if (!errorMsg ) {
+//            NSNumber *serverTime = [NSNumber numberWithLong:(long)responseObj];
+            NSString *timeString = [NSString stringWithFormat:@"%@",responseObj];
+            completeBlock(timeString);
+        }
+    }];
+}
+- (void)setDateString
+{
+    NSDate *createDate = [NSDate jk_dateWithString:self.model.createdDate format:@"yyyy-MM-dd HH:mm:ss"];
+//    NSTimeInterval firstSec = [createDate timeIntervalSinceNow];
+    NSDate *nowDate = [NSDate now];
+    NSDate *maturityDate = [NSDate jk_dateWithString:self.model.maturityDate format:@"yyyy-MM-dd HH:mm:ss"];
+//    NSTimeInterval finalSec = [maturityDate timeIntervalSinceNow];
+    NSTimeInterval diff = [maturityDate timeIntervalSinceDate:nowDate];
+    // 测试
+//    diff = 5;
+    if (_fetchBonusTimer) dispatch_source_cancel(_fetchBonusTimer);
+    [self startTimeWithDuration:diff];
+    
+    [self loadServerTime:^(NSString * _Nonnull timeStr) {
+        // The time interval
+        NSTimeInterval theTimeInterval = [timeStr intValue];
 
+        // Create the NSDates
+        NSDate *date1 = [[NSDate alloc] init];
+        NSDate *date2 = [[NSDate alloc] initWithTimeInterval:theTimeInterval sinceDate:date1];
 
+//        NSDate *setverDate = [NSDate jk_dateWithString:timeStr format:@"yyyy-MM-dd HH:mm:ss"];
+        NSTimeInterval newDiff = [maturityDate timeIntervalSinceDate:date2];
+        
+    }];
+}
 // 配置cell高亮状态
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     [super setHighlighted:highlighted animated:animated];
@@ -113,6 +153,50 @@
             self.goFetchAction(_model.requestId);
         }
     }
+}
+// 制作倒数文字
+- (void)startTimeWithDuration:(int)timeValue
+{
+    WEAKSELF_DEFINE
+    __block int timeout = timeValue;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    _fetchBonusTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_fetchBonusTimer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(_fetchBonusTimer, ^{
+        if ( timeout <= 0 )
+        {
+            dispatch_source_cancel(weakSelf.fetchBonusTimer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (weakSelf.goRefreshBegin)
+                {
+                    weakSelf.goRefreshBegin();
+                }
+            });
+        }
+        else
+        {
+            int dInt = (int)timeout / (3600 * 24);      //剩馀天数
+            int leftTime = timeout - (dInt * 3600 * 24);
+            int hInt = (int)leftTime / 3600;            //剩馀时数
+            int mInt = (int)leftTime / 60 % 60;         //剩馀分数
+            int sInt = (int)leftTime % 60;              //剩馀秒数
+            NSString * titleStr;
+            NSString * dayString = [NSString stringWithFormat:@"%d天",dInt];
+            NSString * hourString = [NSString stringWithFormat:@"%d时",hInt];
+            NSString * minString = [NSString stringWithFormat:@"%d分",mInt];
+            titleStr = [NSString stringWithFormat:@"%@%@%@%d秒",
+                        dayString
+                        ,hourString
+                        ,minString
+                        ,sInt];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                weakSelf.countDownTimerLabel.text = titleStr;
+            });
+            timeout--;
+        }
+    });
+    dispatch_resume(_fetchBonusTimer);
 }
 
 @end

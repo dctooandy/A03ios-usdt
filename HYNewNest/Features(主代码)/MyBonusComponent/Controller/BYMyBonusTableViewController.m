@@ -95,6 +95,10 @@ static NSString *const KMyBonusCell = @"BYMyBonusTableViewCell";
     cell.goDepositAction = ^{
         [NNPageRouter jump2Deposit];
     };
+    cell.goRefreshBegin = ^{
+        STRONGSELF_DEFINE
+        [strongSelf.delegate refreshBegin];
+    };
     cell.model = item;
     return cell;
 }

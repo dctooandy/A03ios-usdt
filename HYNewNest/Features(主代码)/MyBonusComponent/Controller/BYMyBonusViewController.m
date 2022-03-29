@@ -24,6 +24,7 @@
 @implementation BYMyBonusViewController
 
 - (void)viewDidLoad {
+    self.title = @"我的优惠";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupSegBarVC];
@@ -124,9 +125,10 @@
         LTSegmentedBarViewController *segBarVC = [[LTSegmentedBarViewController alloc] init];
         
         segBarVC.segmentedBar.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44);
-        self.navigationItem.titleView = segBarVC.segmentedBar;
+//        self.navigationItem.titleView = segBarVC.segmentedBar;
+        [self.view addSubview:segBarVC.segmentedBar];
         
-        segBarVC.view.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - CGRectGetHeight(self.tabBarController.tabBar.frame));
+        segBarVC.view.frame = CGRectMake(0, 44, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - CGRectGetHeight(self.tabBarController.tabBar.frame) - 44);
         [self addChildViewController:segBarVC];
         [self.view addSubview:segBarVC.view];
         _segBarVC = segBarVC;
