@@ -110,5 +110,41 @@
     valueLbl.tag = 997;
     [self addSubview:valueLbl];
 }
+- (void)hideMyBonusRedPoint
+{
+    //按照tag值進行移除
+    for (UIView *subView in self.subviews) {
+        if (subView.tag == 899) {
+            [subView removeFromSuperview];
+        }
+    }
+}
+- (void)showMyBonusRedPoint:(CGPoint)point value:(NSInteger)value withWidth:(CGFloat)width mutiPoint:(BOOL)muti
+{
+    CGFloat viewWidth = width;
+    if (value > 100) {
+        viewWidth = 25;
+    }
+    
+    if (muti == false) {
+        [self removeRedPoint];
+    }
+    
+    UILabel *valueLbl = [[UILabel alloc]initWithFrame:CGRectMake(point.x-viewWidth*0.5, point.y-viewWidth*0.5, viewWidth, viewWidth)];
+    if (value > 99) {
+        valueLbl.text = [NSString stringWithFormat:@"99+"];
+    }
+    else {
+        valueLbl.text = [NSString stringWithFormat:@"%ld", value];
 
+    }
+    valueLbl.font = [UIFont fontPFR12];
+    valueLbl.textColor = [UIColor whiteColor];
+    valueLbl.textAlignment = NSTextAlignmentCenter;
+    valueLbl.backgroundColor = [UIColor redColor];
+    valueLbl.clipsToBounds = YES;
+    valueLbl.layer.cornerRadius = viewWidth*0.5;
+    valueLbl.tag = 899;
+    [self addSubview:valueLbl];
+}
 @end

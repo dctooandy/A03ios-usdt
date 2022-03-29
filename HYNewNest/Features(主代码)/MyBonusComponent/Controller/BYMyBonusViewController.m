@@ -36,6 +36,10 @@
     [super viewWillAppear:animated];
     [self refreshBegin];
 }
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:BYDidFetchBonusDataNotificaiton object:nil];
+}
 - (void)refreshBegin {
     [self loadDataAndHandle];
 }

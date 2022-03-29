@@ -205,14 +205,14 @@
 - (void)configHasBonus {
     [self.entryIconLbs enumerateObjectsUsingBlock:^(UILabel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIView *msgView = [obj superview];
-        [msgView hideRedPoint];
+        [msgView hideMyBonusRedPoint];
         if ([obj.text isEqualToString:@"我的优惠"]) {
             BOOL hasBonus = [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] hasNewBonus];
             if (hasBonus == NO) {
-                [msgView hideRedPoint];
+                [msgView hideMyBonusRedPoint];
             }
             else {
-                [msgView showRedPoint:CGPointMake(CGRectGetWidth(msgView.frame) - 18, 15) value:unread withWidth:25 mutiPoint:false];
+                [msgView showMyBonusRedPoint:CGPointMake(CGRectGetWidth(msgView.frame) - 18, 15) value:1 withWidth:25 mutiPoint:false];
             }
         }
     }];

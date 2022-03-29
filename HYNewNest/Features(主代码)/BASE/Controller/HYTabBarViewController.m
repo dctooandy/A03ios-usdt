@@ -393,7 +393,8 @@
         if (!errorMsg) {
             info.response = responseObj;
             info.domainBakList = responseObj[@"domainBakList"];
-            if ([[HYNetworkConfigManager shareManager] environment] != IVNEnvironmentDevelop)
+            if (([[HYNetworkConfigManager shareManager] environment] != IVNEnvironmentTest) ||
+                ([[HYNetworkConfigManager shareManager] environment] != IVNEnvironmentDevelop))
             {
                 if (reload) {
                     [CSVisitChatmanager reloadSDK:info finish:^(CSServiceCode errCode) {
