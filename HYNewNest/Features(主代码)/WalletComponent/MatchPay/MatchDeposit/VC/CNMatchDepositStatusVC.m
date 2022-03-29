@@ -42,8 +42,6 @@
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) NSInteger timeInterval;
 
-@property (weak, nonatomic) IBOutlet UIView *serverView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *serverViewH;
 #pragma mark - 数据参数
 @property (nonatomic, strong) CNMBankModel *bankModel;
 
@@ -117,8 +115,6 @@
         self.confirmBtn.enabled = YES;
         [self.confirmBtn setTitle:@"上传凭证" forState:UIControlStateNormal];
         self.actionTipLb.text = @"请完成存款后，再点击上传凭证";
-        self.serverView.hidden = NO;
-        self.serverViewH.constant = 80;
     } else {
         self.actionTipLb.text = @"请完成存款后，再点击确认存款";
         if (bank.createdDateFmt > 0) {

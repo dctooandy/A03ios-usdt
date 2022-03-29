@@ -20,8 +20,6 @@
                 <outlet property="bankName" destination="1F0-JF-YfW" id="Uuo-EZ-lX3"/>
                 <outlet property="bankView" destination="PoK-fU-Iad" id="beP-Ie-oE7"/>
                 <outlet property="confirmBtn" destination="vYd-ok-Vjf" id="ubN-eH-5MJ"/>
-                <outlet property="serverView" destination="kaf-Pj-4RC" id="e16-0S-wu8"/>
-                <outlet property="serverViewH" destination="nQV-h8-q7i" id="LhZ-ou-WIs"/>
                 <outlet property="subBankName" destination="cOd-j9-prl" id="mu8-Qe-V3Q"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="btnCopyArray" destination="h3M-hr-fSt" id="0Me-r9-NSe"/>
@@ -304,8 +302,8 @@
                                 <constraint firstItem="ILI-Pb-aWc" firstAttribute="leading" secondItem="CZH-wS-Mpe" secondAttribute="leading" constant="20" id="yfx-FW-Ao8"/>
                             </constraints>
                         </view>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaf-Pj-4RC" userLabel="ServerView">
-                            <rect key="frame" x="0.0" y="520" width="414" height="0.0"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaf-Pj-4RC" userLabel="ServerView">
+                            <rect key="frame" x="0.0" y="520" width="414" height="80"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如有疑问，请及时联系客服" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L05-D1-CzF">
                                     <rect key="frame" x="135" y="15" width="144" height="17"/>
@@ -330,7 +328,7 @@
                                 <constraint firstItem="ctm-We-91m" firstAttribute="centerX" secondItem="kaf-Pj-4RC" secondAttribute="centerX" id="BJo-0B-Ubb"/>
                                 <constraint firstItem="L05-D1-CzF" firstAttribute="centerX" secondItem="kaf-Pj-4RC" secondAttribute="centerX" id="OME-aA-2gf"/>
                                 <constraint firstItem="ctm-We-91m" firstAttribute="top" secondItem="L05-D1-CzF" secondAttribute="bottom" constant="6" id="efI-WJ-yk1"/>
-                                <constraint firstAttribute="height" id="nQV-h8-q7i"/>
+                                <constraint firstAttribute="height" constant="80" id="nQV-h8-q7i"/>
                                 <constraint firstItem="L05-D1-CzF" firstAttribute="top" secondItem="kaf-Pj-4RC" secondAttribute="top" constant="15" id="pXy-Wq-BXT"/>
                             </constraints>
                         </view>
