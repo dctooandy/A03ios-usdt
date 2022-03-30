@@ -13,7 +13,7 @@
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+Add.h"
 #import "UIColor+Gradient.h"
-
+#import "NSNumber+JKRound.h"
 @interface BYMyBonusTableViewCell()
 typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
 @property (weak, nonatomic) IBOutlet UIImageView *topImgView;
@@ -85,7 +85,8 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
     self.lblEndDate.text = [NSString stringWithFormat:@"有效期:%@至%@",model.shortCreatedDate,model.shortMaturityDate];
     
     self.currencyImageView.image = ImageNamed(([model.currency containsString:@"CNY"] ? @"icon_¥":@"icon_USDT"));
-    self.amountLabel.text = model.amount;
+    NSNumber *amountNumber = [NSNumber numberWithInt:[model.amount intValue]];
+    self.amountLabel.text = [amountNumber jk_toDisplayNumberWithDigit:0];
     NSString *betAmountString = model.betAmount;
     if ([model.promotionName containsString:@"存送"])
     {

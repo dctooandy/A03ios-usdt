@@ -263,7 +263,10 @@
     }
     
 }
-
+- (void)jumpToMyPromos
+{
+    [self.navigationController pushViewController:[BYMyBonusViewController new] animated:YES];
+}
 
 // 邀请
 - (IBAction)invite:(id)sender {

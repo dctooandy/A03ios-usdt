@@ -13,7 +13,8 @@
 #import <UIImageView+WebCache.h>
 #import "UIView+Badge.h"
 #import "SDWebImageGIFCoder.h"
-
+#import "BYMyBonusRequest.h"
+#import "CNMineVC.h"
 @interface CNUserInfoLoginView ()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *vipImageConstraint;
 @property (weak, nonatomic) IBOutlet UIImageView *clubImageView;
@@ -34,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UIView *loginView;
 @property (weak, nonatomic) IBOutlet UIImageView *shapeView;
 @property (weak, nonatomic) IBOutlet UIImageView *regisBackImageView;
+@property (weak, nonatomic) IBOutlet UIView *promoView;
 
 @end
 
@@ -197,6 +199,34 @@
                 [self.switchModeSegc setEnabled:YES];
             });
         }];
+        WEAKSELF_DEFINE
+        [BYMyBonusRequest getMyBonusListHandler:^(id responseObj, NSString *errorMsg) {
+            STRONGSELF_DEFINE
+            if (!errorMsg && [responseObj isKindOfClass:[NSArray class]]) {
+                NSArray *dicArr = responseObj;
+                NSArray *allPro = [BYMyBounsModel cn_parse:dicArr];
+                NSMutableArray *goFetch = @[].mutableCopy;
+                NSMutableArray *alreadyFetch = @[].mutableCopy;
+                NSMutableArray *overDate = @[].mutableCopy;
+                for (BYMyBounsModel *item in allPro) {
+                    if ([item.status isEqualToString:@"1"] || [item.status isEqualToString:@"4"]) {
+                        [goFetch addObject:item];
+                    } else if ([item.status isEqualToString:@"2"]) {
+                        [alreadyFetch addObject:item];
+                    } else {
+                        [overDate addObject:item];
+                    }
+                }
+                if (goFetch.count > 0)
+                {
+                    // 招牌左右晃
+                    [strongSelf.promoView setHidden:NO];
+                }else
+                {
+                    [strongSelf.promoView setHidden:YES];
+                }
+            }
+        }];
     }
 }
 
@@ -249,6 +279,17 @@
 - (IBAction)didTapQuestion:(id)sender {
     if (_delegate && [_delegate respondsToSelector:@selector(questionAction)]) {
         [_delegate questionAction];
+    }
+}
+- (IBAction)didTapToMyPromos:(id)sender {
+    [NNControllerHelper currentTabBarController].selectedIndex = 4;
+    if ([NNControllerHelper pop2ViewControllerClassString:@"CNMineVC"]) { // 如果无法pop回homepage 则直接pop回上一级
+        if ([[NNControllerHelper currentRootVcOfNavController] isKindOfClass:NSClassFromString(@"CNMineVC")])
+        {
+            [(CNMineVC *)[NNControllerHelper currentRootVcOfNavController] jumpToMyPromos];
+        }
+    } else {
+        [[NNControllerHelper currentTabBarController].navigationController popViewControllerAnimated:YES];
     }
 }
 
