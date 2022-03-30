@@ -24,7 +24,7 @@
 @end
 
 @implementation CNAmountInputView
-
+@synthesize money = _money;
 - (void)loadViewFromXib {
     [super loadViewFromXib];
     [self.inputTF addTarget:self action:@selector(textFieldChange:) forControlEvents:UIControlEventEditingChanged];
@@ -110,5 +110,11 @@
         default:
             break;
     }
+}
+- (void)setMoney:(NSString *)money
+{
+    _money = money;
+    self.inputTF.text = money;
+    [self textFieldChange:self.inputTF];
 }
 @end

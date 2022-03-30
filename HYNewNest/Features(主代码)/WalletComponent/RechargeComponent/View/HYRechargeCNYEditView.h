@@ -30,6 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, readonly) NSString *depositor;
 @property (nonatomic, copy, readonly) NSString *depositorId;
 
+@property (weak, nonatomic) IBOutlet UIView *billView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *billViewH;
+@property (nonatomic, copy) NSArray *matchAmountList;
 
 /// 代理
 @property (nonatomic, weak) id<HYRechargeCNYEditViewDelegate> delegate;

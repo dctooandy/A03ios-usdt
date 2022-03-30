@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 支付渠道
+static NSString *FastPayType = @"FastPay";
 
 /// 人民币支付渠道模型
 @interface PayWayV3PayTypeItem : CNBaseModel

@@ -26,6 +26,15 @@
 #import "CNLoginRequest.h"
 #import "BYLargeAmountView.h"
 
+#import "CNMAlertView.h"
+#import "CNMatchPayRequest.h"
+#import "CNMBankModel.h"
+#import "CNMatchDepositStatusVC.h"
+#import <CSCustomSerVice/CSCustomSerVice.h>
+#import "CNMBillView.h"
+#import "CNWAmountListModel.h"
+#import "CNMUploadView.h"
+
 @interface HYRechargeCNYViewController () <HYRechargeCNYEditViewDelegate>
 @property (nonatomic, assign) NSInteger selcPayWayIdx;
 @property (strong, nonatomic) NSArray <PayWayV3PayTypeItem *> *paytypeList;  //支付方式
@@ -36,6 +45,7 @@
 @property (nonatomic, strong) UIScrollView *scrollContainer;
 @property (nonatomic, strong) HYRechargeCNYEditView *editView;
 @property (nonatomic, strong) BYLargeAmountView *largeAmountView;
+@property (nonatomic, strong) CNWFastPayModel *fastModel;
 @end
 
 @implementation HYRechargeCNYViewController
@@ -110,7 +120,8 @@
         [self setupSubmitBtnWithHidden:false];
     }
     else {
-        [self setupSubmitBtn];
+        [self qureyFastPay];
+        [self setupSubmitBtnWithHidden:YES];
         [self queryCNYPayways];
     }
 }
@@ -125,21 +136,42 @@
 
 - (void)rightItemAction {
     [NNPageRouter presentOCSS_VC];
-//    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
+}
+
+- (BOOL)isVIP {
+    return ([CNUserManager shareManager].isUsdtMode == false &&
+            ([CNUserManager shareManager].userDetail.depositLevel == 30 ||
+             ([CNUserManager shareManager].userDetail.depositLevel >=5 &&
+              [CNUserManager shareManager].userDetail.depositLevel <= 10 &&
+              [CNUserManager shareManager].userDetail.starLevel >= 5)));
 }
 
 - (void)setupMainEditView {
-    [self.scrollContainer mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(self.view);
-//        make.height.mas_equalTo(kScreenHeight-kNavPlusStaBarHeight-48-24-kSafeAreaHeight);
-        make.bottom.equalTo(self.btnSubmit.mas_top).offset(-30);
+    [self.scrollContainer mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.equalTo(self.view);
     }];
     
-    
-    if ([CNUserManager shareManager].isUsdtMode == false
-        && ([CNUserManager shareManager].userDetail.depositLevel == 30
-            || ([CNUserManager shareManager].userDetail.depositLevel >=5 && [CNUserManager shareManager].userDetail.depositLevel <= 10 && [CNUserManager shareManager].userDetail.starLevel >= 5))) {
-        
+    CGFloat editViewHeight = 510;
+    //92:支付宝秒存 91:微信秒存 90：迅捷网银
+    NSArray *array = @[@"91", @"92", @"93"];
+    if ([array containsObject:self.paytypeList[_selcPayWayIdx].payType]) {
+        if (self.fastModel.isAvailable &&
+            self.fastModel.mmProcessingOrderTransactionId.length == 0 &&
+            self.fastModel.amountList.count > 0) {
+            NSMutableArray *array = [NSMutableArray array];
+            for (CNWAmountListModel *model in self.fastModel.amountList) {
+                [array addObject:model.amount];
+            }
+            self.editView.matchAmountList = [array sortedArrayUsingComparator:^NSComparisonResult(NSString *  _Nonnull obj1, NSString *  _Nonnull obj2) {
+                if (obj1.intValue < obj2.intValue) {
+                    return NSOrderedDescending;
+                }
+                return NSOrderedAscending;
+            }];
+            editViewHeight += 50 * MIN(ceilf(self.editView.matchAmountList.count/3.0), 3);
+        }
+    }
+    if ([self isVIP]) {
         [self.largeAmountView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.scrollContainer).offset(15);
             make.top.equalTo(self.scrollContainer).offset(15);
@@ -147,26 +179,27 @@
             make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
         }];
         
-        [self.editView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.editView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.scrollContainer).offset(15);
             make.top.equalTo(self.largeAmountView.mas_bottom).offset(15);
-            make.height.mas_equalTo(510).priority(MASLayoutPriorityDefaultLow);
+            make.height.mas_equalTo(editViewHeight).priority(MASLayoutPriorityDefaultLow);
             make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
         }];
+        self.scrollContainer.contentSize = CGSizeMake(self.view.size.width, editViewHeight+120+120);
     }
     else {
-        [self.editView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.editView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.scrollContainer).offset(15);
             make.top.equalTo(self.scrollContainer).offset(15);
-            make.height.mas_equalTo(510).priority(MASLayoutPriorityDefaultLow);
+            make.height.mas_equalTo(editViewHeight).priority(MASLayoutPriorityDefaultLow);
             make.width.equalTo(self.scrollContainer.mas_width).offset(-30);
         }];
+        self.scrollContainer.contentSize = CGSizeMake(self.view.size.width, editViewHeight+120);
     }
 
     [self.editView setupPayTypeItem:self.paytypeList[_selcPayWayIdx]
                           bankModel:self.curOnliBankModel
                         amountModel:self.curAmountModel];
-
 }
 
 - (void)setupSubmitBtn {
@@ -177,11 +210,11 @@
     CNTwoStatusBtn *subBtn = [[CNTwoStatusBtn alloc] init];
     [subBtn setTitle:@"提交" forState:UIControlStateNormal];
     [subBtn addTarget:self action:@selector(submitRechargeRequest) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:subBtn];
+    [self.scrollContainer addSubview:subBtn];
     [subBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(30);
-        make.right.equalTo(self.view).offset(-30);
-        make.bottom.equalTo(self.view).offset(-60);
+        make.left.equalTo(self.editView.mas_left).offset(0);
+        make.right.equalTo(self.editView.mas_right).offset(0);
+        make.top.equalTo(self.editView.mas_bottom).offset(60);
         make.height.mas_equalTo(48);
     }];
     self.btnSubmit = subBtn;
@@ -205,6 +238,49 @@
     self.btnSubmit.enabled = isStatusRight;
 }
 
+#pragma mark - 急速存款业务
+
+/// 查询急速转账数据
+
+- (void)qureyFastPay {
+    [CNMatchPayRequest queryFastPayOpenFinish:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            self.fastModel = [CNWFastPayModel cn_parse:responseObj];
+            if (self.fastModel.mmProcessingOrderType == 1 && self.fastModel.mmProcessingOrderTransactionId.length > 0) {
+                [self showTradeBill];
+            }
+        }
+    }];
+}
+
+- (void)showTradeBill {
+    CNMBillView *view = [[CNMBillView alloc] init];
+    if (self.fastModel.mmProcessingOrderStatus == 2) {
+        [view setPromoTag:NO];
+        [view.statusBtn addTarget:self action:@selector(confirmBill) forControlEvents:UIControlEventTouchUpInside];
+    } else {
+        [view setPromoTag:YES];
+        [view.statusBtn addTarget:self action:@selector(showUploadUI) forControlEvents:UIControlEventTouchUpInside];
+    }
+    self.editView.billViewH.constant = 66;
+    self.editView.billView.hidden = NO;
+    [self.editView.billView addSubview:view];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
+    view.amountLb.text = [NSString stringWithFormat:@"%.2f", self.fastModel.mmProcessingOrderAmount.doubleValue];
+    view.billNoLb.text = self.fastModel.mmProcessingOrderTransactionId;
+}
+
+- (void)showUploadUI {
+    [CNMUploadView showUploadViewTo:self billId:self.fastModel.mmProcessingOrderTransactionId commitDeposit:nil];
+}
+
+- (void)confirmBill {
+    CNMatchDepositStatusVC *statusVC = [[CNMatchDepositStatusVC alloc] init];
+    statusVC.transactionId = self.fastModel.mmProcessingOrderTransactionId;
+    [self.navigationController pushViewController:statusVC animated:YES];
+}
 
 #pragma mark - REQUEST
 
@@ -255,6 +331,7 @@
 }
 
 - (void)refreshQueryData {
+    [self setupSubmitBtnWithHidden:NO];
     PayWayV3PayTypeItem *item = self.paytypeList[_selcPayWayIdx];
     if (![HYRechargeHelper isOnlinePayWay:item]) {
         [self queryTransferAmount];
@@ -330,32 +407,62 @@
         }];
     
     } else {
-        // BQ转账
-        [CNRechargeRequest submitBQPaymentPayType:item.payType
-                                           amount:self.editView.rechargeAmount
-                                        depositor:self.editView.depositor?:self.editView.depositorId
-                                    depositorType:self.editView.depositor?0:1
-                                          handler:^(id responseObj, NSString *errorMsg) {
-            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
-                BQPaymentModel *paymentBQModel = [BQPaymentModel cn_parse:responseObj];
-                paymentBQModel.payWay = item.payTypeName;
-                if ([item.payType isEqualToString:@"92"]) {
-                    //支付宝转账
-                    paymentBQModel.payWayType = @0;
-                }else if ([item.payType isEqualToString:@"91"]) {
-                    //微信转账
-                    paymentBQModel.payWayType = @1;
-                }else if ([item.payType isEqualToString:@"90"]) {
-                    //银行卡转账
-                    paymentBQModel.payWayType = @2;
-                }
-                CNRechargeChosePayTypeVC *vc = [[CNRechargeChosePayTypeVC alloc] initWithModel:paymentBQModel];
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-        }];
+        BOOL isMatch = [self.editView.matchAmountList containsObject:self.editView.rechargeAmount];
+        if (isMatch) {
+            [self submitMatchBill];
+        } else {
+            [self submitBQBill];
+        }
     }
 }
 
+- (void)submitMatchBill {
+    //提交订单
+    __weak typeof(self) weakSelf = self;
+    [CNMatchPayRequest createDepisit:self.editView.rechargeAmount finish:^(id responseObj, NSString *errorMsg) {
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dic = (NSDictionary *)responseObj;
+            if ([[dic objectForKey:@"mmFlag"] boolValue]) {
+                CNMBankModel *bank = [CNMBankModel cn_parse:[dic objectForKey:@"mmPaymentRsp"]];
+                if (bank) {
+                    // 成功跳转
+                    CNMatchDepositStatusVC *statusVC = [[CNMatchDepositStatusVC alloc] init];
+                    statusVC.transactionId = bank.transactionId;
+                    [weakSelf.navigationController pushViewController:statusVC animated:YES];
+                    return;
+                }
+            }
+        }
+        // 失败走普通存款
+        [weakSelf submitBQBill];
+    }];
+}
 
+// BQ转账
+- (void)submitBQBill {
+    __block PayWayV3PayTypeItem *item = self.paytypeList[_selcPayWayIdx];
+    [CNRechargeRequest submitBQPaymentPayType:item.payType
+                                       amount:self.editView.rechargeAmount
+                                    depositor:self.editView.depositor?:self.editView.depositorId
+                                depositorType:self.editView.depositor?0:1
+                                      handler:^(id responseObj, NSString *errorMsg) {
+        if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+            BQPaymentModel *paymentBQModel = [BQPaymentModel cn_parse:responseObj];
+            paymentBQModel.payWay = item.payTypeName;
+            if ([item.payType isEqualToString:@"92"]) {
+                //支付宝转账
+                paymentBQModel.payWayType = @0;
+            }else if ([item.payType isEqualToString:@"91"]) {
+                //微信转账
+                paymentBQModel.payWayType = @1;
+            }else if ([item.payType isEqualToString:@"90"]) {
+                //银行卡转账
+                paymentBQModel.payWayType = @2;
+            }
+            CNRechargeChosePayTypeVC *vc = [[CNRechargeChosePayTypeVC alloc] initWithModel:paymentBQModel];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }];
+}
 
 @end
