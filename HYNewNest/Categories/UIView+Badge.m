@@ -114,7 +114,7 @@
 {
     //按照tag值進行移除
     for (UIView *subView in self.subviews) {
-        if (subView.tag == 899) {
+        if (subView.tag == 899 || subView.tag == 898) {
             [subView removeFromSuperview];
         }
     }
@@ -146,5 +146,17 @@
     valueLbl.layer.cornerRadius = viewWidth*0.5;
     valueLbl.tag = 899;
     [self addSubview:valueLbl];
+}
+- (void)showMyBonusRedImageView:(CGPoint)point value:(NSInteger)value mutiPoint:(BOOL)muti
+{
+    CGFloat viewWidth = 35;
+    
+    if (muti == false) {
+        [self removeRedPoint];
+    }
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(point.x, point.y-viewWidth*0.5, viewWidth, 23)];
+    imgView.image = [UIImage imageNamed:@"hot_label"];
+    imgView.tag = 898;
+    [self addSubview:imgView];
 }
 @end

@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 我会优惠专用
 - (void)hideMyBonusRedPoint;
 - (void)showMyBonusRedPoint:(CGPoint)point value:(NSInteger)value withWidth:(CGFloat)width mutiPoint:(BOOL)muti;
+- (void)showMyBonusRedImageView:(CGPoint)point value:(NSInteger)value mutiPoint:(BOOL)muti;
 @end
 
 NS_ASSUME_NONNULL_END
