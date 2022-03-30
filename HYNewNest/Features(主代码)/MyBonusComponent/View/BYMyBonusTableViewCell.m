@@ -46,8 +46,11 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
         CAShapeLayer *topMask = [CAShapeLayer layer];
         topMask.path = topPath.CGPath;
         self.topImgView.layer.mask = topMask;
-        self.countDownBGImageView.backgroundColor = [UIColor gradientColorImageFromColors:@[kHexColor(0x4052A1), kHexColor(0x253370 )] gradientType:GradientTypeUpleftToLowright imgSize:CGSizeMake(230, 22)];
-        self.countDownBGImageView.layer.cornerRadius = CGRectGetHeight(self.countDownTimerLabel.frame)/2;
+        CGFloat imgHeight =  CGRectGetHeight(self.countDownBGImageView.frame);
+        CGFloat imgWidth =  CGRectGetWidth(self.countDownBGImageView.frame);
+        self.countDownBGImageView.backgroundColor = [UIColor gradientFromColor:kHexColor(0x4052A1) toColor:[UIColor clearColor] withWidth:imgWidth];
+
+        self.countDownBGImageView.layer.cornerRadius = imgHeight/2.0;
         self.countDownBGImageView.layer.masksToBounds = YES;
 //        UIBezierPath *btmPath = [UIBezierPath bezierPathWithRoundedRect:self.btmBgView.bounds byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:CGSizeMake(10, 10)];
 //        CAShapeLayer *btmMask = [CAShapeLayer layer];
@@ -72,7 +75,7 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
         self.messageLabel.text = [NSString stringWithFormat:@"请在有效期内领取红包,%@倍流水取款,逾期作废",betAmountString];
     }
     //测试用
-//    model.status = @"4";
+//    model.status = @"3";
     if ([model.status isEqualToString:@"1"])
     {
         [self.actionButton setTitle:@"立即领取" forState:UIControlStateNormal];
@@ -86,7 +89,7 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
     {
         [self.actionButton setTitle:@"前往充值" forState:UIControlStateNormal];
     }
-    [self setDateString];
+    [self setDateStringWithFlag:([model.status isEqualToString:@"1"] || [model.status isEqualToString:@"4"])];
 }
 -(void)loadServerTime:(ServerTimeCompleteBlock)completeBlock {
     
@@ -99,31 +102,39 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
         }
     }];
 }
-- (void)setDateString
+
+- (void)setDateStringWithFlag:(BOOL)isShow
 {
-    NSDate *createDate = [NSDate jk_dateWithString:self.model.createdDate format:@"yyyy-MM-dd HH:mm:ss"];
-//    NSTimeInterval firstSec = [createDate timeIntervalSinceNow];
-    NSDate *nowDate = [NSDate now];
-    NSDate *maturityDate = [NSDate jk_dateWithString:self.model.maturityDate format:@"yyyy-MM-dd HH:mm:ss"];
-//    NSTimeInterval finalSec = [maturityDate timeIntervalSinceNow];
-    NSTimeInterval diff = [maturityDate timeIntervalSinceDate:nowDate];
-    // 测试
-//    diff = 5;
-    if (_fetchBonusTimer) dispatch_source_cancel(_fetchBonusTimer);
-    [self startTimeWithDuration:diff];
-    
-    [self loadServerTime:^(NSString * _Nonnull timeStr) {
-        // The time interval
-        NSTimeInterval theTimeInterval = [timeStr intValue];
-
-        // Create the NSDates
-        NSDate *date1 = [[NSDate alloc] init];
-        NSDate *date2 = [[NSDate alloc] initWithTimeInterval:theTimeInterval sinceDate:date1];
-
-//        NSDate *setverDate = [NSDate jk_dateWithString:timeStr format:@"yyyy-MM-dd HH:mm:ss"];
-        NSTimeInterval newDiff = [maturityDate timeIntervalSinceDate:date2];
+    if (isShow == YES)
+    {
+        [self.countDownBGImageView setHidden:NO];
+        NSDate *createDate = [NSDate jk_dateWithString:self.model.createdDate format:@"yyyy-MM-dd HH:mm:ss"];
+        //    NSTimeInterval firstSec = [createDate timeIntervalSinceNow];
+        NSDate *nowDate = [NSDate now];
+        NSDate *maturityDate = [NSDate jk_dateWithString:self.model.maturityDate format:@"yyyy-MM-dd HH:mm:ss"];
+        //    NSTimeInterval finalSec = [maturityDate timeIntervalSinceNow];
+        NSTimeInterval diff = [maturityDate timeIntervalSinceDate:nowDate];
+        // 测试
+        //    diff = 5;
+        if (_fetchBonusTimer) dispatch_source_cancel(_fetchBonusTimer);
+        [self startTimeWithDuration:diff];
         
-    }];
+        [self loadServerTime:^(NSString * _Nonnull timeStr) {
+            // The time interval
+            NSTimeInterval theTimeInterval = [timeStr intValue];
+            
+            // Create the NSDates
+            NSDate *date1 = [[NSDate alloc] init];
+            NSDate *date2 = [[NSDate alloc] initWithTimeInterval:theTimeInterval sinceDate:date1];
+            
+            //        NSDate *setverDate = [NSDate jk_dateWithString:timeStr format:@"yyyy-MM-dd HH:mm:ss"];
+            NSTimeInterval newDiff = [maturityDate timeIntervalSinceDate:date2];
+            
+        }];
+    }else
+    {
+        [self.countDownBGImageView setHidden:YES];
+    }
 }
 // 配置cell高亮状态
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
