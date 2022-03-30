@@ -106,4 +106,7 @@ static NSString *const KMyBonusCell = @"BYMyBonusTableViewCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    [self jumpToHtmlWithIndexPath:indexPath];
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return SCREEN_WIDTH * (215.0/375.0);
+}
 @end

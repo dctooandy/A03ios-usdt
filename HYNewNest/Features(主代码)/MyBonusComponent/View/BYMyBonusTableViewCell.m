@@ -23,9 +23,12 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currencyLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *currencyImageView;
 @property (weak, nonatomic) IBOutlet UILabel *countDownTimerLabel;
 @property (nonatomic, strong) dispatch_source_t fetchBonusTimer;      //领红包倒数计时器
 @property (weak, nonatomic) IBOutlet UIView *countDownBGImageView;
+@property (weak, nonatomic) IBOutlet UILabel *gradientLabel;
+
 @end
 @implementation BYMyBonusTableViewCell
 
@@ -46,12 +49,29 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
         CAShapeLayer *topMask = [CAShapeLayer layer];
         topMask.path = topPath.CGPath;
         self.topImgView.layer.mask = topMask;
+        // 现金红包Label
+        CGFloat labelHeight =  CGRectGetHeight(self.gradientLabel.frame);
+        CGFloat labelWidth =  CGRectGetWidth(self.gradientLabel.frame);
+        self.gradientLabel.textColor = [UIColor colorWithPatternImage:[UIColor gradientImageFromColors:@[kHexColor(0x00CFFF), kHexColor(0x2390E9)] gradientType:GradientTypeLeftToRight imgSize:CGSizeMake(labelWidth,labelHeight )]];
+        // 倒数计时背景
         CGFloat imgHeight =  CGRectGetHeight(self.countDownBGImageView.frame);
         CGFloat imgWidth =  CGRectGetWidth(self.countDownBGImageView.frame);
         self.countDownBGImageView.backgroundColor = [UIColor gradientFromColor:kHexColor(0x4052A1) toColor:[UIColor clearColor] withWidth:imgWidth];
-
         self.countDownBGImageView.layer.cornerRadius = imgHeight/2.0;
         self.countDownBGImageView.layer.masksToBounds = YES;
+        // 按钮
+        CGFloat btnHeight =  CGRectGetHeight(self.actionButton.frame);
+        CGFloat btnWidth =  CGRectGetWidth(self.actionButton.frame);
+        if (([self.model.status isEqualToString:@"1"] || [self.model.status isEqualToString:@"4"]))
+        {
+            self.actionButton.backgroundColor = [UIColor gradientFromColor:kHexColor(0x19CECE) toColor:kHexColor(0x10B4DD) withWidth:btnWidth];
+        }else
+        {
+            self.actionButton.backgroundColor = kHexColor(0x38385F);
+        }
+        self.actionButton.layer.cornerRadius = btnHeight/2.0;
+        self.actionButton.layer.masksToBounds = YES;
+
 //        UIBezierPath *btmPath = [UIBezierPath bezierPathWithRoundedRect:self.btmBgView.bounds byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:CGSizeMake(10, 10)];
 //        CAShapeLayer *btmMask = [CAShapeLayer layer];
 //        btmMask.path = btmPath.CGPath;
@@ -61,18 +81,20 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
 - (void)setModel:(BYMyBounsModel *)model {
     _model = model;
     
-    [self.topImgView sd_setImageWithURL:[NSURL getUrlWithString:model.imgUrl] placeholderImage:[UIImage imageNamed:@"banner--sport-2"]];
+//    [self.topImgView sd_setImageWithURL:[NSURL getUrlWithString:model.imgUrl] placeholderImage:[UIImage imageNamed:@"banner--sport-2"]];
     self.lblEndDate.text = [NSString stringWithFormat:@"有效期:%@至%@",model.shortCreatedDate,model.shortMaturityDate];
     
-    self.currencyLabel.text = model.currency;
+    self.currencyImageView.image = ImageNamed(([model.currency containsString:@"CNY"] ? @"icon_¥":@"icon_USDT"));
     self.amountLabel.text = model.amount;
     NSString *betAmountString = model.betAmount;
     if ([model.promotionName containsString:@"存送"])
     {
         self.messageLabel.text = [NSString stringWithFormat:@"请在有效期内充值满%@%@再领取红包,%@倍流水取款,逾期作废",betAmountString,model.currency,betAmountString];
+        [self.topImgView setImage:[UIImage imageNamed:@"depositBG"]];
     }else
     {
         self.messageLabel.text = [NSString stringWithFormat:@"请在有效期内领取红包,%@倍流水取款,逾期作废",betAmountString];
+        [self.topImgView setImage:[UIImage imageNamed:@"derictToGiftBG"]];
     }
     //测试用
 //    model.status = @"3";
