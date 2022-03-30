@@ -263,7 +263,12 @@
             //            self.bagImageView.transform = self.bagImageView.transform = CGAffineTransformScale(self.bagImageView.transform, 1.1f, 1.1f);
         } completion:^(BOOL finished) {
             weakSelf.shakeImgView.transform = CGAffineTransformIdentity;
-            [weakSelf shakeTimerAction];
+            [UIView animateWithDuration:0.2 animations:^{
+                weakSelf.shakeImgView.transform =  CGAffineTransformMakeTranslation(4,0);
+            }completion:^(BOOL finished) {
+                weakSelf.shakeImgView.transform = CGAffineTransformIdentity;
+                [weakSelf shakeTimerAction];
+            }];
         }];
     });
 }

@@ -119,7 +119,7 @@
             return @[@"yhq", @"yhk", @"aq", @"jl", @"xx"];
         }
     } else {
-        return @[@"xx", @"yhk", @"aq", @"jl",@"yhq"];
+        return @[@"xx", @"yhk", @"aq", @"jl",@"icon_我的优惠"];
     }
 }
 
