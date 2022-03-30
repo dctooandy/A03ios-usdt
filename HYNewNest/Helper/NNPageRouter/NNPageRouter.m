@@ -34,6 +34,8 @@
 #import "HYXiMaViewController.h"
 #import "CNLoginRequest.h"
 #import "BYUSDTRechargeAlertView.h"
+#import "KYMWithdrewRequest.h"
+#import "PublicMethod.h"
 
 @implementation NNPageRouter
 
@@ -112,9 +114,12 @@
         } else {
             
 //            __block void(^jumpWithdrawBlock)(WithdrawCalculateModel* ) = ^(WithdrawCalculateModel * model) {
-                HYWithdrawViewController *vc = [HYWithdrawViewController new];
-//                vc.calculatorModel = model;
-                [kCurNavVC pushViewController:vc animated:YES];
+            
+            UIViewController *topVC = [PublicMethod getCurrentVC];
+            HYWithdrawViewController *vc = [HYWithdrawViewController new];
+            [topVC.navigationController pushViewController:vc animated:YES];
+          
+                
 //            };
             
 //            [CNWithdrawRequest withdrawCalculatorMode:@1 amount:nil accountId:nil handler:^(id responseObj, NSString *errorMsg) {
