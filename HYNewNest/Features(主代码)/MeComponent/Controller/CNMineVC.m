@@ -212,7 +212,7 @@
                 [msgView hideMyBonusRedPoint];
             }
             else {
-                [msgView showMyBonusRedImageView:CGPointMake(CGRectGetWidth(msgView.frame) - 35, 20) value:1 mutiPoint:false];
+                [msgView showMyBonusRedImageView:CGPointMake(CGRectGetWidth(msgView.frame) - 35, 18) value:1 mutiPoint:false];
             }
         }
     }];

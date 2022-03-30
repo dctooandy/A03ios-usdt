@@ -85,12 +85,14 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
     self.lblEndDate.text = [NSString stringWithFormat:@"有效期:%@至%@",model.shortCreatedDate,model.shortMaturityDate];
     
     self.currencyImageView.image = ImageNamed(([model.currency containsString:@"CNY"] ? @"icon_¥":@"icon_USDT"));
-    NSNumber *amountNumber = [NSNumber numberWithInt:[model.amount intValue]];
-    self.amountLabel.text = [amountNumber jk_toDisplayNumberWithDigit:0];
+//    NSNumber *amountNumber = [NSNumber numberWithInt:[model.amount intValue]];
+//    self.amountLabel.text = [amountNumber jk_toDisplayNumberWithDigit:0];
+    self.amountLabel.text = model.amount;
     NSString *betAmountString = model.betAmount;
+    NSString *currencyString = ([model.currency isEqualToString:@"CNY"]) ? @"元" : model.currency;
     if ([model.promotionName containsString:@"存送"])
     {
-        self.messageLabel.text = [NSString stringWithFormat:@"请在有效期内充值满%@%@再领取红包,%@倍流水取款,逾期作废",betAmountString,model.currency,betAmountString];
+        self.messageLabel.text = [NSString stringWithFormat:@"请在有效期内充值满%@%@再领取红包,%@倍流水取款,逾期作废",betAmountString,currencyString,betAmountString];
         [self.topImgView setImage:[UIImage imageNamed:@"depositBG"]];
     }else
     {

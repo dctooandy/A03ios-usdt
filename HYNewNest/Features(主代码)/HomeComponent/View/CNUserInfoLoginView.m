@@ -193,14 +193,15 @@
 - (void)reloadBalance{
     if ([CNUserManager shareManager].isLogin) {
         [self.moneyLb showIndicatorIsBig:NO];
+        WEAKSELF_DEFINE
         //金额
         [[BalanceManager shareManager] requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-            [self.moneyLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
+            [weakSelf.moneyLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.switchModeSegc setEnabled:YES];
+                [weakSelf.switchModeSegc setEnabled:YES];
             });
         }];
-        WEAKSELF_DEFINE
+        
         [BYMyBonusRequest getMyBonusListHandler:^(id responseObj, NSString *errorMsg) {
             STRONGSELF_DEFINE
             if (!errorMsg && [responseObj isKindOfClass:[NSArray class]]) {

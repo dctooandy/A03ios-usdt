@@ -103,7 +103,7 @@
                                         <constraint firstAttribute="width" constant="20" id="sNB-NY-tO3"/>
                                     </constraints>
                                 </imageView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4BI-Km-19q">
+                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4BI-Km-19q">
                                     <rect key="frame" x="30" y="4" width="160" height="24"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_RedPacket" translatesAutoresizingMaskIntoConstraints="NO" id="Pz4-wd-mZe">
