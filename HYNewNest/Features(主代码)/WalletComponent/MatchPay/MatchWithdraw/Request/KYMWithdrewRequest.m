@@ -24,7 +24,7 @@
         }
         KYMWithdrewCheckModel *model = [KYMWithdrewCheckModel yy_modelWithJSON:body];
         NSString *errMsg = model.message ? : msg;
-        if ([model.code isEqualToString:@"00000"]) {
+        if (model && [model isKindOfClass:[KYMWithdrewCheckModel class]] && model.data) {
             callback(YES,model.message,model);
         } else {
             callback(NO,errMsg,model);
