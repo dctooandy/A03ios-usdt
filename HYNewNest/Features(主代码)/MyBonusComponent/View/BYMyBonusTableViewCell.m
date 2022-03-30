@@ -12,6 +12,7 @@
 #import "BYMyBonusRequest.h"
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+Add.h"
+#import "UIColor+Gradient.h"
 
 @interface BYMyBonusTableViewCell()
 typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
@@ -24,6 +25,7 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
 @property (weak, nonatomic) IBOutlet UILabel *currencyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *countDownTimerLabel;
 @property (nonatomic, strong) dispatch_source_t fetchBonusTimer;      //领红包倒数计时器
+@property (weak, nonatomic) IBOutlet UIView *countDownBGImageView;
 @end
 @implementation BYMyBonusTableViewCell
 
@@ -44,7 +46,9 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
         CAShapeLayer *topMask = [CAShapeLayer layer];
         topMask.path = topPath.CGPath;
         self.topImgView.layer.mask = topMask;
-        
+        self.countDownBGImageView.backgroundColor = [UIColor gradientColorImageFromColors:@[kHexColor(0x4052A1), kHexColor(0x253370 )] gradientType:GradientTypeUpleftToLowright imgSize:CGSizeMake(230, 22)];
+        self.countDownBGImageView.layer.cornerRadius = CGRectGetHeight(self.countDownTimerLabel.frame)/2;
+        self.countDownBGImageView.layer.masksToBounds = YES;
 //        UIBezierPath *btmPath = [UIBezierPath bezierPathWithRoundedRect:self.btmBgView.bounds byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:CGSizeMake(10, 10)];
 //        CAShapeLayer *btmMask = [CAShapeLayer layer];
 //        btmMask.path = btmPath.CGPath;
