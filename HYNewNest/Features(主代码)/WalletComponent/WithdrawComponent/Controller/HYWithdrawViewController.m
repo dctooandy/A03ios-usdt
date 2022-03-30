@@ -214,7 +214,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
         [KYMWithdrewRequest checkReceiveStats:NO transactionId:weakSelf.hisOrderNoLB.text callBack:^(BOOL status, NSString *msg) {
             if (status) {
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-                
+            } else {
+                [MBProgressHUD showError:msg toView:nil];
             }
         }];
     }];
@@ -229,6 +230,8 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
                 }
             }];
             [self.navigationController popToRootViewControllerAnimated:YES];
+        } else {
+            [MBProgressHUD showError:msg toView:nil];
         }
     }];
 }
