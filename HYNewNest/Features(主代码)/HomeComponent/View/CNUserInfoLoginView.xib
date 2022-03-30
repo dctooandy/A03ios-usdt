@@ -18,6 +18,7 @@
                 <outlet property="promoView" destination="4BI-Km-19q" id="PvB-iD-ytf"/>
                 <outlet property="questionBtn" destination="okc-dh-cyP" id="9xa-GM-fPY"/>
                 <outlet property="regisBackImageView" destination="rsB-6f-VZu" id="7aI-Hu-mU4"/>
+                <outlet property="shakeImgView" destination="XhS-xm-1H7" id="8AV-Ep-wHC"/>
                 <outlet property="shapeView" destination="Sim-dp-tCw" id="Jk0-um-HgH"/>
                 <outlet property="switchModeSegc" destination="WLz-tL-cWV" id="xim-H6-rAY"/>
                 <outlet property="usdtADImgv" destination="gdW-q9-I6I" id="ZDU-6E-PTm"/>
@@ -103,15 +104,18 @@
                                     </constraints>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4BI-Km-19q">
-                                    <rect key="frame" x="30" y="4" width="170" height="24"/>
+                                    <rect key="frame" x="30" y="4" width="160" height="24"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_RedPacket" translatesAutoresizingMaskIntoConstraints="NO" id="Pz4-wd-mZe">
-                                            <rect key="frame" x="0.0" y="0.0" width="30" height="24"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="28" height="24"/>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fetchRedPockets" translatesAutoresizingMaskIntoConstraints="NO" id="XhS-xm-1H7">
+                                            <rect key="frame" x="32" y="0.0" width="118" height="24"/>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T5S-mm-Pgk">
-                                            <rect key="frame" x="0.0" y="0.0" width="170" height="24"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="160" height="24"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain"/>
+                                            <buttonConfiguration key="configuration" style="plain" title=" "/>
                                             <connections>
                                                 <action selector="didTapToMyPromos:" destination="-1" eventType="touchUpInside" id="Gnp-mC-hcF"/>
                                             </connections>
@@ -121,10 +125,13 @@
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="T5S-mm-Pgk" secondAttribute="trailing" id="6C2-TH-rAX"/>
                                         <constraint firstItem="T5S-mm-Pgk" firstAttribute="top" secondItem="4BI-Km-19q" secondAttribute="top" id="6fM-S3-GH4"/>
+                                        <constraint firstItem="XhS-xm-1H7" firstAttribute="top" secondItem="4BI-Km-19q" secondAttribute="top" id="CGV-Qa-TZO"/>
                                         <constraint firstItem="Pz4-wd-mZe" firstAttribute="width" secondItem="4BI-Km-19q" secondAttribute="width" multiplier="0.176471" id="COT-Qr-LKE"/>
                                         <constraint firstItem="Pz4-wd-mZe" firstAttribute="top" secondItem="4BI-Km-19q" secondAttribute="top" id="CoW-fC-gof"/>
+                                        <constraint firstItem="XhS-xm-1H7" firstAttribute="leading" secondItem="Pz4-wd-mZe" secondAttribute="trailing" constant="4" id="HAb-Mu-I4D"/>
                                         <constraint firstAttribute="bottom" secondItem="T5S-mm-Pgk" secondAttribute="bottom" id="IEs-C0-u4l"/>
-                                        <constraint firstAttribute="width" secondItem="4BI-Km-19q" secondAttribute="height" multiplier="85:12" id="Mto-aH-24j"/>
+                                        <constraint firstAttribute="width" secondItem="4BI-Km-19q" secondAttribute="height" multiplier="40:6" id="Idf-Iy-ROw"/>
+                                        <constraint firstAttribute="bottom" secondItem="XhS-xm-1H7" secondAttribute="bottom" id="QOJ-Z2-mkG"/>
                                         <constraint firstItem="T5S-mm-Pgk" firstAttribute="leading" secondItem="4BI-Km-19q" secondAttribute="leading" id="dSf-V3-5Ad"/>
                                         <constraint firstAttribute="bottom" secondItem="Pz4-wd-mZe" secondAttribute="bottom" id="iJe-X1-hz2"/>
                                         <constraint firstItem="Pz4-wd-mZe" firstAttribute="leading" secondItem="4BI-Km-19q" secondAttribute="leading" id="r6P-qn-EZH"/>
@@ -221,6 +228,7 @@
                         <constraint firstItem="rsB-6f-VZu" firstAttribute="leading" secondItem="3hg-uc-S9h" secondAttribute="leading" id="JD8-vX-8lf"/>
                         <constraint firstItem="sLZ-3h-qrV" firstAttribute="top" secondItem="3hg-uc-S9h" secondAttribute="top" id="ONd-Uz-s58"/>
                         <constraint firstAttribute="bottom" secondItem="GBy-vV-Zaw" secondAttribute="bottom" id="RFV-df-Y6N"/>
+                        <constraint firstItem="XhS-xm-1H7" firstAttribute="width" secondItem="rsB-6f-VZu" secondAttribute="width" multiplier="0.292079" id="b8g-1o-5eO"/>
                         <constraint firstItem="rsB-6f-VZu" firstAttribute="top" secondItem="3hg-uc-S9h" secondAttribute="top" id="kBG-Ft-lQk"/>
                         <constraint firstItem="GBy-vV-Zaw" firstAttribute="top" secondItem="sLZ-3h-qrV" secondAttribute="bottom" id="nbz-91-D60"/>
                         <constraint firstAttribute="trailing" secondItem="sLZ-3h-qrV" secondAttribute="trailing" id="rdX-9f-hvb"/>
@@ -333,6 +341,7 @@
         <image name="btn_login" width="141" height="38"/>
         <image name="btn_regsiter" width="141" height="38"/>
         <image name="cz_home" width="20" height="20"/>
+        <image name="fetchRedPockets" width="114" height="22"/>
         <image name="ico_quesmark" width="26" height="25"/>
         <image name="icon" width="42" height="42"/>
         <image name="icon_vip0" width="92" height="40"/>

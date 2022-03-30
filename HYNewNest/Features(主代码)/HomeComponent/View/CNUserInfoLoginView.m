@@ -36,7 +36,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *shapeView;
 @property (weak, nonatomic) IBOutlet UIImageView *regisBackImageView;
 @property (weak, nonatomic) IBOutlet UIView *promoView;
-
+@property (weak, nonatomic) IBOutlet UIImageView *shakeImgView;
+@property (nonatomic, strong) dispatch_source_t shakeTimer;
 @end
 
 @implementation CNUserInfoLoginView
@@ -221,6 +222,7 @@
                 {
                     // 招牌左右晃
                     [strongSelf.promoView setHidden:NO];
+                    [strongSelf shakeAnimation];
                 }else
                 {
                     [strongSelf.promoView setHidden:YES];
@@ -229,7 +231,42 @@
         }];
     }
 }
-
+- (void)shakeTimerAction
+{
+    WEAKSELF_DEFINE
+    __block int timeout = 3.0;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    _shakeTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(weakSelf.shakeTimer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(weakSelf.shakeTimer, ^{
+        if ( timeout <= 0 )
+        {
+            dispatch_source_cancel(weakSelf.shakeTimer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf shakeAnimation]; 
+            });
+        }
+        else
+        {
+            timeout--;
+        }
+    });
+    dispatch_resume(_shakeTimer);
+}
+- (void)shakeAnimation
+{
+    WEAKSELF_DEFINE
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf.shakeImgView.layer removeAllAnimations];
+        [UIView animateWithDuration:0.2 animations:^{
+            weakSelf.shakeImgView.transform =  CGAffineTransformMakeTranslation(4,0);
+            //            self.bagImageView.transform = self.bagImageView.transform = CGAffineTransformScale(self.bagImageView.transform, 1.1f, 1.1f);
+        } completion:^(BOOL finished) {
+            weakSelf.shakeImgView.transform = CGAffineTransformIdentity;
+            [weakSelf shakeTimerAction];
+        }];
+    });
+}
 // 切换币种 修改买充提买按钮 必须重新加载数据
 - (void)switchAccountUIChange {
     [self refreshBottomBtnsStatus];
