@@ -87,12 +87,14 @@
     [self showLoading];
     [CNMatchPayRequest queryDepisit:self.transactionId finish:^(id responseObj, NSString *errorMsg) {
         [self hideLoading];
+        if (errorMsg) {
+            [CNTOPHUB showError:errorMsg];
+            return;
+        }
         if ([responseObj isKindOfClass:[NSDictionary class]]) {
             NSDictionary *dic = (NSDictionary *)responseObj;
             [weakSelf reloadUIWithModel:[CNMBankModel cn_parse:[dic objectForKey:@"data"]]];
-            return;
         }
-        [self showError:errorMsg];
     }];
 }
 
@@ -175,16 +177,16 @@
     __weak typeof(self) weakSelf = self;
     [CNMatchPayRequest commitDepisit:self.transactionId receiptImg:receiptImages.lastObject transactionImg:recordImages finish:^(id responseObj, NSString *errorMsg) {
         [self hideLoading];
+        if (errorMsg) {
+            [CNTOPHUB showError:errorMsg];
+            return;
+        }
         if ([responseObj isKindOfClass:[NSDictionary class]]) {
             NSDictionary *dic = (NSDictionary *)responseObj;
             if ([[dic objectForKey:@"code"] isEqualToString:@"00000"]) {
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
             } else {
-                if (errorMsg) {
-                    [CNTOPHUB showError:errorMsg];
-                } else {
-                    [CNTOPHUB showError:[dic objectForKey:@"message"]];
-                }
+                [CNTOPHUB showError:[dic objectForKey:@"message"]];
             }
         }
     }];

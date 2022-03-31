@@ -46,7 +46,7 @@
     dic[@"transactionImg"] = [imgNames componentsJoinedByString:@";"];
     dic[@"merchant"] = @"A01";
     dic[@"currency"] = @"CNY";
-    [self Post:@"deposit/depositOperate" para:dic finish:finish];
+    [self Post:@"deposit/depositOperateV2" para:dic finish:finish];
 }
 
 + (void)cancelDepisit:(NSString *)billId finish:(HandlerBlock)finish {
