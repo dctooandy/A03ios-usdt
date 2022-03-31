@@ -75,6 +75,7 @@
 @property (weak, nonatomic) IBOutlet UIStackView *hisOrderStackView;
 @property (weak, nonatomic) IBOutlet UIView *historyView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *historyViewHeight;
 
 @property (nonatomic, strong) KYMWithdrewCheckModel *checkModel;
 
@@ -148,11 +149,25 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
     if (![CNUserManager shareManager].isUsdtMode) {
         [KYMWithdrewRequest checkWithdrawWithCallBack:^(BOOL isMatch,KYMWithdrewCheckModel *model) {
             self.checkModel = model;
-            if (model && model.data.mmProcessingOrderType == 2 && model.data.mmProcessingOrderStatus == 2 && model.data.mmProcessingOrderPairStatus == 5) {
+            
+            // 已存在订单类型为取款，且存款方已确认或者订单已挂起
+            if (model && model.data.mmProcessingOrderType == 2 && ((model.data.mmProcessingOrderStatus == 2 && model.data.mmProcessingOrderPairStatus == 5) || model.data.mmProcessingOrderManualStatus == 4)) {
                 self.hisAmountLB.text = model.data.mmProcessingOrderAmount;
                 self.hisOrderNoLB.text = model.data.mmProcessingOrderTransactionId;
-                self.tableViewTop.constant = 140;
                 self.historyView.hidden = NO;
+                if (model.data.mmProcessingOrderManualStatus == 4) {
+                    self.hisNoConfirmBtn.hidden = YES;
+                    self.historyViewHeight.constant = 49;
+                    self.tableViewTop.constant = 100;
+                    [self.hisConfirmBtn setTitle:@"联系客服" forState:UIControlStateNormal];
+                    [self.hisConfirmBtn addTarget:self action:@selector(customerService) forControlEvents:UIControlEventTouchUpInside];
+                } else {
+                    self.hisNoConfirmBtn.hidden = NO;
+                    self.historyViewHeight.constant = 89;
+                    self.tableViewTop.constant = 140;
+                    [self.hisConfirmBtn setTitle:@"确认到账" forState:UIControlStateNormal];
+                    [self.hisConfirmBtn addTarget:self action:@selector(confirmBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+                }
             }
         }];
     }
@@ -223,15 +238,18 @@ static NSString * const KCardCell = @"HYWithdrawCardCell";
 - (void)noConfirm {
     [KYMWithdrewRequest checkReceiveStats:YES transactionId:self.hisOrderNoLB.text callBack:^(BOOL status, NSString *msg) {
         if (status) {
-            // 联系客服
-            [CSVisitChatmanager startWithSuperVC:self.navigationController.childViewControllers.firstObject finish:^(CSServiceCode errCode) {
-                if (errCode != CSServiceCode_Request_Suc) {
-                    [MBProgressHUD showError:@"暂时无法链接，请贵宾改以电话联系，感谢您的理解与支持" toView:nil];
-                }
-            }];
+            [self customerService];
             [self.navigationController popToRootViewControllerAnimated:YES];
         } else {
             [MBProgressHUD showError:msg toView:nil];
+        }
+    }];
+}
+- (void)customerService {
+    // 联系客服
+    [CSVisitChatmanager startWithSuperVC:self.navigationController.childViewControllers.firstObject finish:^(CSServiceCode errCode) {
+        if (errCode != CSServiceCode_Request_Suc) {
+            [MBProgressHUD showError:@"暂时无法链接，请贵宾改以电话联系，感谢您的理解与支持" toView:nil];
         }
     }];
 }
