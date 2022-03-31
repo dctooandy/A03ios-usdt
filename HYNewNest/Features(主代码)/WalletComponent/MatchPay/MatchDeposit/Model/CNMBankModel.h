@@ -40,6 +40,8 @@ typedef NS_ENUM(NSUInteger, CNMPayBillStatus) {
 @property (nonatomic, assign) CNMPayBillStatus status;
 /// 是否需要上传凭证
 @property (nonatomic, assign) BOOL needUploadFlag;
+/// 人工操作状态 4=交易挂起
+@property (nonatomic, copy) NSString *manualStatus;
 @end
 
 NS_ASSUME_NONNULL_END

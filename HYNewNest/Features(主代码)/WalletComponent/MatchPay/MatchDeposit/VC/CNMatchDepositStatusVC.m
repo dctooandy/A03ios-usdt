@@ -123,6 +123,11 @@
         } else {
             self.confirmBtn.enabled = YES;
         }
+        
+        // 交易挂起
+        if ([bank.manualStatus isEqualToString:@"4"]) {
+            self.confirmBtn.hidden = YES;
+        }
     }
 }
 
@@ -154,7 +159,10 @@
     if (self.bankModel.needUploadFlag) {
         __weak typeof(self) weakSelf = self;
         [CNMUploadView showUploadViewTo:self billId:self.bankModel.transactionId commitDeposit:^(NSArray *receiptImages, NSArray *recordImages) {
-            [weakSelf commitDepisitWithReceiptImages:receiptImages recordImages:recordImages];
+            // 交易挂起
+            if (![weakSelf.bankModel.manualStatus isEqualToString:@"4"]) {
+                [weakSelf commitDepisitWithReceiptImages:receiptImages recordImages:recordImages];
+            }
         }];
     } else {
         [self commitDepisitWithReceiptImages:nil recordImages:nil];
