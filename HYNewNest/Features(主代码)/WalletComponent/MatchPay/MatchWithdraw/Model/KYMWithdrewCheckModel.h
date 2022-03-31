@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *mmProcessingOrderAmount;
 @property (nonatomic, assign) NSInteger mmProcessingOrderStatus;
 @property (nonatomic, assign) NSInteger mmProcessingOrderPairStatus;
+@property (nonatomic, assign) NSInteger mmProcessingOrderManualStatus; //人工介入的订单交易状态，4-交易挂起
 /// 存在撮合，1 存款，2 取款
 @property (nonatomic, assign) NSInteger mmProcessingOrderType;
 //移除大于用户余额的项
