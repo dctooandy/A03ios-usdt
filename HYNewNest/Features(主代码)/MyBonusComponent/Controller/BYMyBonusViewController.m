@@ -136,7 +136,7 @@
 //        self.navigationItem.titleView = segBarVC.segmentedBar;
         [self.view addSubview:segBarVC.segmentedBar];
         
-        segBarVC.view.frame = CGRectMake(0, 44, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - CGRectGetHeight(self.tabBarController.tabBar.frame) - 44);
+        segBarVC.view.frame = CGRectMake(0, 44, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)  - 44);
         [self addChildViewController:segBarVC];
         [self.view addSubview:segBarVC.view];
         _segBarVC = segBarVC;

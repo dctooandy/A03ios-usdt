@@ -50,15 +50,15 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
         topMask.path = topPath.CGPath;
         self.topImgView.layer.mask = topMask;
         // 现金红包Label
-        CGFloat labelHeight =  CGRectGetHeight(self.gradientLabel.frame);
-        CGFloat labelWidth =  CGRectGetWidth(self.gradientLabel.frame);
-        self.gradientLabel.textColor = [UIColor colorWithPatternImage:[UIColor gradientImageFromColors:@[kHexColor(0x00CFFF), kHexColor(0x2390E9)] gradientType:GradientTypeLeftToRight imgSize:CGSizeMake(labelWidth,labelHeight )]];
+//        CGFloat labelHeight =  CGRectGetHeight(self.gradientLabel.frame);
+//        CGFloat labelWidth =  CGRectGetWidth(self.gradientLabel.frame);
+//        self.gradientLabel.textColor = [UIColor colorWithPatternImage:[UIColor gradientImageFromColors:@[kHexColor(0x00CFFF), kHexColor(0x2390E9)] gradientType:GradientTypeLeftToRight imgSize:CGSizeMake(labelWidth,labelHeight )]];
         // 倒数计时背景
-        CGFloat imgHeight =  CGRectGetHeight(self.countDownBGImageView.frame);
-        CGFloat imgWidth =  CGRectGetWidth(self.countDownBGImageView.frame);
-        self.countDownBGImageView.backgroundColor = [UIColor gradientFromColor:kHexColor(0x4052A1) toColor:[UIColor clearColor] withWidth:imgWidth];
-        self.countDownBGImageView.layer.cornerRadius = imgHeight/2.0;
-        self.countDownBGImageView.layer.masksToBounds = YES;
+//        CGFloat imgHeight =  CGRectGetHeight(self.countDownBGImageView.frame);
+//        CGFloat imgWidth =  CGRectGetWidth(self.countDownBGImageView.frame);
+//        self.countDownBGImageView.backgroundColor = [UIColor gradientFromColor:kHexColor(0x4052A1) toColor:[UIColor clearColor] withWidth:imgWidth];
+//        self.countDownBGImageView.layer.cornerRadius = imgHeight/2.0;
+//        self.countDownBGImageView.layer.masksToBounds = YES;
         // 按钮
         CGFloat btnHeight =  CGRectGetHeight(self.actionButton.frame);
         CGFloat btnWidth =  CGRectGetWidth(self.actionButton.frame);
@@ -67,7 +67,7 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
             self.actionButton.backgroundColor = [UIColor gradientFromColor:kHexColor(0x19CECE) toColor:kHexColor(0x10B4DD) withWidth:btnWidth];
         }else
         {
-            self.actionButton.backgroundColor = kHexColor(0x38385F);
+            self.actionButton.backgroundColor = kHexColor(0x999999);
         }
         self.actionButton.layer.cornerRadius = btnHeight/2.0;
         self.actionButton.layer.masksToBounds = YES;
@@ -84,7 +84,6 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
 //    [self.topImgView sd_setImageWithURL:[NSURL getUrlWithString:model.imgUrl] placeholderImage:[UIImage imageNamed:@"banner--sport-2"]];
     self.lblEndDate.text = [NSString stringWithFormat:@"有效期:%@至%@",model.shortCreatedDate,model.shortMaturityDate];
     
-    self.currencyImageView.image = ImageNamed(([model.currency containsString:@"CNY"] ? @"icon_¥":@"icon_USDT"));
 //    NSNumber *amountNumber = [NSNumber numberWithInt:[model.amount intValue]];
 //    self.amountLabel.text = [amountNumber jk_toDisplayNumberWithDigit:0];
     self.amountLabel.text = model.amount;
@@ -94,10 +93,16 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
     {
         self.messageLabel.text = [NSString stringWithFormat:@"请在有效期内充值满%@%@再领取红包,%@倍流水取款,逾期作废",betAmountString,currencyString,betAmountString];
         [self.topImgView setImage:[UIImage imageNamed:@"depositBG"]];
+        self.currencyImageView.image = ImageNamed(([model.currency containsString:@"CNY"] ? @"icon_¥-2":@"icon_USDT-2"));
+        [self.amountLabel setTextColor:[UIColor jk_colorWithHex:0x10B4DD]];
+        [self.gradientLabel setTextColor:[UIColor jk_colorWithHex:0x2390E9]];
     }else
     {
         self.messageLabel.text = [NSString stringWithFormat:@"请在有效期内领取红包,%@倍流水取款,逾期作废",betAmountString];
         [self.topImgView setImage:[UIImage imageNamed:@"derictToGiftBG"]];
+        self.currencyImageView.image = ImageNamed(([model.currency containsString:@"CNY"] ? @"icon_¥-1":@"icon_USDT-1"));
+        [self.amountLabel setTextColor:[UIColor jk_colorWithHex:0xD95274]];
+        [self.gradientLabel setTextColor:[UIColor jk_colorWithHex:0xA12830]];
     }
     //测试用
 //    model.status = @"3";
