@@ -88,17 +88,18 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
 //    self.amountLabel.text = [amountNumber jk_toDisplayNumberWithDigit:0];
     self.amountLabel.text = model.amount;
     NSString *betAmountString = model.betAmount;
+    NSString *refAmountString = model.refAmount;
     NSString *currencyString = ([model.currency isEqualToString:@"CNY"]) ? @"元" : model.currency;
     if ([model.promotionName containsString:@"存送"])
     {
-        self.messageLabel.text = [NSString stringWithFormat:@"请在有效期内充值满%@%@再领取红包,%@倍流水取款,逾期作废",betAmountString,currencyString,betAmountString];
+        self.messageLabel.text = [NSString stringWithFormat:@"请在有效期内充值满%@%@再领取红包,%@流水取款,逾期作废",refAmountString,currencyString,betAmountString];
         [self.topImgView setImage:[UIImage imageNamed:@"depositBG"]];
         self.currencyImageView.image = ImageNamed(([model.currency containsString:@"CNY"] ? @"icon_¥-2":@"icon_USDT-2"));
         [self.amountLabel setTextColor:[UIColor jk_colorWithHex:0x10B4DD]];
         [self.gradientLabel setTextColor:[UIColor jk_colorWithHex:0x2390E9]];
     }else
     {
-        self.messageLabel.text = [NSString stringWithFormat:@"请在有效期内领取红包,%@倍流水取款,逾期作废",betAmountString];
+        self.messageLabel.text = [NSString stringWithFormat:@"请在有效期内领取红包,%@流水取款,逾期作废",betAmountString];
         [self.topImgView setImage:[UIImage imageNamed:@"derictToGiftBG"]];
         self.currencyImageView.image = ImageNamed(([model.currency containsString:@"CNY"] ? @"icon_¥-1":@"icon_USDT-1"));
         [self.amountLabel setTextColor:[UIColor jk_colorWithHex:0xD95274]];
