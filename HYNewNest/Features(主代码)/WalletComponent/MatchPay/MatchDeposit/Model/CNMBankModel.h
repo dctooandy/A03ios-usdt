@@ -38,8 +38,8 @@ typedef NS_ENUM(NSUInteger, CNMPayBillStatus) {
 @property (nonatomic, copy) NSString *currency;
 /// 1-存款提交 2-存款等待 3-存款取消 4-存款超时 5-存款确认 6-存款未匹配 100-存款完成
 @property (nonatomic, assign) CNMPayBillStatus status;
-/// 是否需要上传凭证
-@property (nonatomic, assign) BOOL needUploadFlag;
+/// 是否需要上传凭证， = 1 时需要先上传
+@property (nonatomic, assign) NSInteger needUploadFlag;
 /// 人工操作状态 4=交易挂起
 @property (nonatomic, copy) NSString *manualStatus;
 @end

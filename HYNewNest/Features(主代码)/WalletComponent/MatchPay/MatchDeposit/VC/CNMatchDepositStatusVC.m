@@ -114,7 +114,7 @@
     self.amountTipLb.text = [NSString stringWithFormat:@"完成存款将获得%.2f元存款礼金，24小时到账", (bank.amount.doubleValue *0.01)];
     
     //确认按钮状态
-    if (bank.needUploadFlag) {
+    if (bank.needUploadFlag == 1) {
         self.confirmBtn.enabled = YES;
         [self.confirmBtn setTitle:@"上传凭证" forState:UIControlStateNormal];
         self.actionTipLb.text = @"请完成存款后，再点击上传凭证";
@@ -156,7 +156,7 @@
 #pragma mark - 按钮组事件
 
 - (IBAction)confirm:(UIButton *)sender {
-    if (self.bankModel.needUploadFlag) {
+    if (self.bankModel.needUploadFlag == 1) {
         __weak typeof(self) weakSelf = self;
         [CNMUploadView showUploadViewTo:self billId:self.bankModel.transactionId commitDeposit:^(NSArray *receiptImages, NSArray *recordImages) {
             // 交易挂起
