@@ -327,6 +327,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
         [CNMessageBoxView showVIPSXHMessageBoxOnView:self.view];
         
     } else {
+        [CNMessageBoxView showVIPSXHMessageBoxOnView:self.view];
         if (![CNUserManager shareManager].isLogin) {
             return;
         }
@@ -529,11 +530,11 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     
     NSArray *eqArr = _sxhModel.equityData;
     EquityDataItem *item = eqArr.count>0 ? eqArr[m_currentIndex] : nil;
-    
+    BOOL isLogin = [CNUserManager shareManager].isLogin;
     // 修改入会礼金 等级要求流水和存款
-    NSString * uiModeString = [CNUserManager shareManager].userInfo.uiMode ? [CNUserManager shareManager].userInfo.uiMode : @"USDT";
+    NSString * uiModeString = isLogin ? ([CNUserManager shareManager].userInfo.uiMode ? [CNUserManager shareManager].userInfo.uiMode : @"USDT") : @"CNY" ;
     if (item) {
-        NSString * rhljNumberString = ([[CNUserManager shareManager].userInfo.uiMode isEqualToString:@"CNY"] ?[item.membershipBonusCNY jk_toDisplayNumberWithDigit:0] : [item.membershipBonusUSDT jk_toDisplayNumberWithDigit:0]);
+        NSString * rhljNumberString = isLogin ? ([[CNUserManager shareManager].userInfo.uiMode isEqualToString:@"CNY"] ?[item.membershipBonusCNY jk_toDisplayNumberWithDigit:0] : [item.membershipBonusUSDT jk_toDisplayNumberWithDigit:0]) : [item.membershipBonusCNY jk_toDisplayNumberWithDigit:0];
         self.lbVipRight.text = [NSString stringWithFormat:@"会员权益: 入会礼金%@%@",
                                 rhljNumberString,
                                 uiModeString];
