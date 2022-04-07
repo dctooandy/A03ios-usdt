@@ -131,7 +131,7 @@
         }
         j++;
     }
-    
+    self.selectedProtocol = @"TRC20";
     if ([deposModel.bankname isEqualToString: @"dcbox"]) {
 //        self.protocols = protocolsArr;
         self.protocols = @[@"TRC20", @"ERC20"];

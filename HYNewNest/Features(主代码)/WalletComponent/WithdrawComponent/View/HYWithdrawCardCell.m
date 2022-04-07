@@ -100,8 +100,10 @@
     self.lblTitle.text = model.bankName;
     if ([CNUserManager shareManager].isUsdtMode) {
         self.lblProtocol.text = model.protocol;
+        [self.lblProtocol setHidden:YES];
     } else {
         self.lblProtocol.text = model.accountType;
+        [self.lblProtocol setHidden:NO];
     }
     self.lblCardAddr.text = model.accountNo;
     [self.imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:model.bankIcon]];
