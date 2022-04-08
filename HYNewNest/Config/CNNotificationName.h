@@ -19,6 +19,8 @@ UIKIT_EXTERN NSNotificationName const BYDidEnterHomePageNoti;
 UIKIT_EXTERN NSNotificationName const BYDidUpdateUserProfileNoti;
 UIKIT_EXTERN NSNotificationName const BYDidReadMessageNotificaiton;
 UIKIT_EXTERN NSNotificationName const BYMessageCountDidLoadNotificaiton;
+UIKIT_EXTERN NSNotificationName const BYDidFetchBonusDataNotificaiton;
+UIKIT_EXTERN NSNotificationName const BYFetchBonusDataDidLoadNotificaiton;
 
 
 #pragma mark - UserDefaultKey

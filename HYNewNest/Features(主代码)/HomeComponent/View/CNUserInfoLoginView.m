@@ -13,7 +13,8 @@
 #import <UIImageView+WebCache.h>
 #import "UIView+Badge.h"
 #import "SDWebImageGIFCoder.h"
-
+#import "BYMyBonusRequest.h"
+#import "CNMineVC.h"
 @interface CNUserInfoLoginView ()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *vipImageConstraint;
 @property (weak, nonatomic) IBOutlet UIImageView *clubImageView;
@@ -34,7 +35,9 @@
 @property (weak, nonatomic) IBOutlet UIView *loginView;
 @property (weak, nonatomic) IBOutlet UIImageView *shapeView;
 @property (weak, nonatomic) IBOutlet UIImageView *regisBackImageView;
-
+@property (weak, nonatomic) IBOutlet UIView *promoView;
+@property (weak, nonatomic) IBOutlet UIImageView *shakeImgView;
+@property (nonatomic, strong) dispatch_source_t shakeTimer;
 @end
 
 @implementation CNUserInfoLoginView
@@ -190,16 +193,86 @@
 - (void)reloadBalance{
     if ([CNUserManager shareManager].isLogin) {
         [self.moneyLb showIndicatorIsBig:NO];
+        WEAKSELF_DEFINE
         //金额
         [[BalanceManager shareManager] requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
-            [self.moneyLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
+            [weakSelf.moneyLb hideIndicatorWithText:[model.balance jk_toDisplayNumberWithDigit:2]];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.switchModeSegc setEnabled:YES];
+                [weakSelf.switchModeSegc setEnabled:YES];
             });
+        }];
+        
+        [BYMyBonusRequest getMyBonusListHandler:^(id responseObj, NSString *errorMsg) {
+            STRONGSELF_DEFINE
+            if (!errorMsg && [responseObj isKindOfClass:[NSArray class]]) {
+                NSArray *dicArr = responseObj;
+                NSArray *allPro = [BYMyBounsModel cn_parse:dicArr];
+                NSMutableArray *goFetch = @[].mutableCopy;
+                NSMutableArray *alreadyFetch = @[].mutableCopy;
+                NSMutableArray *overDate = @[].mutableCopy;
+                for (BYMyBounsModel *item in allPro) {
+                    if ([item.status isEqualToString:@"1"] || [item.status isEqualToString:@"4"]) {
+                        [goFetch addObject:item];
+                    } else if ([item.status isEqualToString:@"2"]) {
+                        [alreadyFetch addObject:item];
+                    } else {
+                        [overDate addObject:item];
+                    }
+                }
+                if (goFetch.count > 0)
+                {
+                    // 招牌左右晃
+                    [strongSelf.promoView setHidden:NO];
+                    [strongSelf shakeAnimation];
+                }else
+                {
+                    [strongSelf.promoView setHidden:YES];
+                }
+            }
         }];
     }
 }
-
+- (void)shakeTimerAction
+{
+    WEAKSELF_DEFINE
+    __block int timeout = 3.0;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    _shakeTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(weakSelf.shakeTimer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(weakSelf.shakeTimer, ^{
+        if ( timeout <= 0 )
+        {
+            dispatch_source_cancel(weakSelf.shakeTimer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf shakeAnimation]; 
+            });
+        }
+        else
+        {
+            timeout--;
+        }
+    });
+    dispatch_resume(_shakeTimer);
+}
+- (void)shakeAnimation
+{
+    WEAKSELF_DEFINE
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf.shakeImgView.layer removeAllAnimations];
+        [UIView animateWithDuration:0.2 animations:^{
+            weakSelf.shakeImgView.transform =  CGAffineTransformMakeTranslation(4,0);
+            //            self.bagImageView.transform = self.bagImageView.transform = CGAffineTransformScale(self.bagImageView.transform, 1.1f, 1.1f);
+        } completion:^(BOOL finished) {
+            weakSelf.shakeImgView.transform = CGAffineTransformIdentity;
+            [UIView animateWithDuration:0.2 animations:^{
+                weakSelf.shakeImgView.transform =  CGAffineTransformMakeTranslation(4,0);
+            }completion:^(BOOL finished) {
+                weakSelf.shakeImgView.transform = CGAffineTransformIdentity;
+                [weakSelf shakeTimerAction];
+            }];
+        }];
+    });
+}
 // 切换币种 修改买充提买按钮 必须重新加载数据
 - (void)switchAccountUIChange {
     [self refreshBottomBtnsStatus];
@@ -249,6 +322,17 @@
 - (IBAction)didTapQuestion:(id)sender {
     if (_delegate && [_delegate respondsToSelector:@selector(questionAction)]) {
         [_delegate questionAction];
+    }
+}
+- (IBAction)didTapToMyPromos:(id)sender {
+    [NNControllerHelper currentTabBarController].selectedIndex = 4;
+    if ([NNControllerHelper pop2ViewControllerClassString:@"CNMineVC"]) { // 如果无法pop回homepage 则直接pop回上一级
+        if ([[NNControllerHelper currentRootVcOfNavController] isKindOfClass:NSClassFromString(@"CNMineVC")])
+        {
+            [(CNMineVC *)[NNControllerHelper currentRootVcOfNavController] jumpToMyPromos];
+        }
+    } else {
+        [[NNControllerHelper currentTabBarController].navigationController popViewControllerAnimated:YES];
     }
 }
 
