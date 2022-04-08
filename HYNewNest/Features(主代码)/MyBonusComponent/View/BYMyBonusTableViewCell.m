@@ -151,18 +151,18 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
         if (_fetchBonusTimer) dispatch_source_cancel(_fetchBonusTimer);
         [self startTimeWithDuration:diff];
         
-        [self loadServerTime:^(NSString * _Nonnull timeStr) {
-            // The time interval
-            NSTimeInterval theTimeInterval = [timeStr intValue];
-            
-            // Create the NSDates
-            NSDate *date1 = [[NSDate alloc] init];
-            NSDate *date2 = [[NSDate alloc] initWithTimeInterval:theTimeInterval sinceDate:date1];
-            
-            //        NSDate *setverDate = [NSDate jk_dateWithString:timeStr format:@"yyyy-MM-dd HH:mm:ss"];
-            NSTimeInterval newDiff = [maturityDate timeIntervalSinceDate:date2];
-            
-        }];
+//        [self loadServerTime:^(NSString * _Nonnull timeStr) {
+//            // The time interval
+//            NSTimeInterval theTimeInterval = [timeStr intValue];
+//            
+//            // Create the NSDates
+//            NSDate *date1 = [[NSDate alloc] init];
+//            NSDate *date2 = [[NSDate alloc] initWithTimeInterval:theTimeInterval sinceDate:date1];
+//            
+//            //        NSDate *setverDate = [NSDate jk_dateWithString:timeStr format:@"yyyy-MM-dd HH:mm:ss"];
+//            NSTimeInterval newDiff = [maturityDate timeIntervalSinceDate:date2];
+//            
+//        }];
     }else
     {
         [self.countDownBGImageView setHidden:YES];

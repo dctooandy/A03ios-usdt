@@ -69,6 +69,9 @@
             strongSelf.alreadyFetchVC.promos = alreadyFetch;
             strongSelf.overDateVC.promos = overDate;
             [strongSelf.allMyBonusVC.tableView reloadData];
+            [strongSelf.goFetchBonusVC.tableView reloadData];
+            [strongSelf.alreadyFetchVC.tableView reloadData];
+            [strongSelf.overDateVC.tableView reloadData];
             strongSelf.segBarVC.segmentedBar.items = @[[NSString stringWithFormat:@"全部(%lu)",allPro.count],
                                                        [NSString stringWithFormat:@"可领(%lu)",goFetch.count],
                                                        [NSString stringWithFormat:@"已领(%lu)",alreadyFetch.count],
