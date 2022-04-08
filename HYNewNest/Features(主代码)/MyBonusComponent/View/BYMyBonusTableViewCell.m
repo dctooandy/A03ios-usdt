@@ -140,9 +140,9 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
     if (isShow == YES)
     {
         [self.countDownBGImageView setHidden:NO];
-        NSDate *createDate = [NSDate jk_dateWithString:self.model.createdDate format:@"yyyy-MM-dd HH:mm:ss"];
+//        NSDate *createDate = [NSDate jk_dateWithString:self.model.createdDate format:@"yyyy-MM-dd HH:mm:ss"];
         //    NSTimeInterval firstSec = [createDate timeIntervalSinceNow];
-        NSDate *nowDate = [NSDate now];
+        NSDate *nowDate = [NSDate date];
         NSDate *maturityDate = [NSDate jk_dateWithString:self.model.maturityDate format:@"yyyy-MM-dd HH:mm:ss"];
         //    NSTimeInterval finalSec = [maturityDate timeIntervalSinceNow];
         NSTimeInterval diff = [maturityDate timeIntervalSinceDate:nowDate];
