@@ -82,6 +82,7 @@
     [BYMyBonusRequest fetchMyBonusWithRequestID:requestIdString Handler:^(id responseObj, NSString *errorMsg) {
         STRONGSELF_DEFINE
         if (!errorMsg ) {
+            [CNTOPHUB showSuccess:@"领取成功"];
             [strongSelf loadDataAndHandle];
         }
     }];

@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString              * maturityDate;
 @property (nonatomic , copy) NSString              * pickUpTime;
 @property (nonatomic , copy) NSString              * promotionName;
-@property (nonatomic , copy) NSString              * promotionType;
+@property (nonatomic , copy) NSString              * promotionType;//优惠类型(HBYH用户优惠，XYLJ 幸运礼金，YHQLJ 优惠券礼金，YHQCS 优惠券存送)
 @property (nonatomic , copy) NSString              * refAmount;
 @property (nonatomic , copy) NSString              * remark;
 @property (nonatomic , copy) NSString              * requestId;

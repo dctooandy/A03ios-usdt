@@ -90,7 +90,8 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
     NSString *betAmountString = model.betAmount;
     NSString *refAmountString = model.refAmount;
     NSString *currencyString = ([model.currency isEqualToString:@"CNY"]) ? @"元" : model.currency;
-    if ([model.promotionName containsString:@"存送"])
+    //    if ([model.promotionName containsString:@"存送"])
+        if ([model.promotionType containsString:@"YHQCS"])
     {
         self.messageLabel.text = [NSString stringWithFormat:@"请在有效期内充值满%@%@再领取红包,%@流水取款,逾期作废",refAmountString,currencyString,betAmountString];
         [self.topImgView setImage:[UIImage imageNamed:@"depositBG"]];
@@ -237,7 +238,7 @@ typedef void (^ServerTimeCompleteBlock)(NSString * timeStr);
                         ,sInt];
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                weakSelf.countDownTimerLabel.text = titleStr;
+                weakSelf.countDownTimerLabel.text = [NSString stringWithFormat:@"剩馀时间:%@",titleStr];
             });
             timeout--;
         }
