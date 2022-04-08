@@ -42,7 +42,7 @@
 
 - (HYDownloadLinkView *)linkView {
     if (!_linkView) {
-        HYDownloadLinkView *linkView = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(90, self.codeInputView.bottom, 200, 30) normalText:@"还没有小金库账号？" tapableText:@"一键注册" tapColor:kHexColor(0x10B4DD) hasUnderLine:NO urlValue:nil];
+        HYDownloadLinkView *linkView = [[HYDownloadLinkView alloc] initWithFrame:CGRectMake(90, self.codeInputView.bottom, SCREEN_WIDTH - 180, 30) normalText:@"还没有小金库账号？" tapableText:@"一键注册" tapColor:kHexColor(0x10B4DD) hasUnderLine:NO urlValue:nil];
         linkView.tapBlock = ^{
             [[ABCOneKeyRegisterBFBHelper shareInstance] startOneKeyRegisterBFBHandler:^{
                 [self.navigationController popViewControllerAnimated:YES];

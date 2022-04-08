@@ -167,4 +167,16 @@
     [self POST:(config_rechargeUSDTQrcode) parameters:paramDic completionHandler:handler];
 }
 
++(void)submitDCUsdtPayType:(NSString *)payType
+                   Payment:(NSString *)protocol
+                    amount:(NSString *)amount
+                   handler:(HandlerBlock)handler{
+    NSMutableDictionary *paramDic = [kNetworkMgr baseParam];
+    paramDic[@"payType"] = payType;
+    paramDic[@"tranAmount"] = amount;
+    paramDic[@"currency"] = @"USDT";
+    paramDic[@"protocol"] = protocol;
+    [self POST:(config_rechargeUSDTQrcode) parameters:paramDic completionHandler:handler];
+}
+
 @end

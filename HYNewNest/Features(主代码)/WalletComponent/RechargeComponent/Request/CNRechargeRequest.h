@@ -122,6 +122,14 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)submitOtherUsdtPayment:(NSString *)protocol
                        amount:(NSString *)amount
                       handler:(HandlerBlock)handler;
+/// 創建數字幣存款訂單
+/// @param payType 選擇渠道 25 :USDT / 43: 小金库
+/// @param protocol 選擇協議
+/// @param amount 金额
++(void)submitDCUsdtPayType:(NSString *)payType
+                   Payment:(NSString *)protocol
+                    amount:(NSString *)amount
+                   handler:(HandlerBlock)handler;
 @end
 
 NS_ASSUME_NONNULL_END
