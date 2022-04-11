@@ -40,6 +40,7 @@
 #import "UIView+Badge.h"
 #import "HYTabBarViewController.h"
 
+#import "BYMyBonusViewController.h"
 @interface CNMineVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 /// 滚动视图
@@ -105,7 +106,7 @@
         }
         
     } else {
-        return @[@"消息中心", [CNUserManager shareManager].isUsdtMode ? @"提币地址":@"银行卡", @"安全中心", @"交易记录"];
+        return @[@"消息中心", [CNUserManager shareManager].isUsdtMode ? @"提币地址":@"银行卡", @"安全中心", @"交易记录",@"我的优惠"];
 
     }
 }
@@ -118,7 +119,7 @@
             return @[@"yhq", @"yhk", @"aq", @"jl", @"xx"];
         }
     } else {
-        return @[@"xx", @"yhk", @"aq", @"jl"];
+        return @[@"xx", @"yhk", @"aq", @"jl",@"icon_我的优惠"];
     }
 }
 
@@ -146,6 +147,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchCurrencyUI) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchCurrencyUI) name:BYRefreshBalanceNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(configUnreadMessage) name:BYMessageCountDidLoadNotificaiton object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(configHasBonus) name:BYFetchBonusDataDidLoadNotificaiton object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -160,6 +162,7 @@
     [super viewDidLayoutSubviews];
     self.scrollContentW.constant = kScreenWidth;
     [self configUnreadMessage];
+    [self configHasBonus];
 
 }
 
@@ -199,6 +202,21 @@
     }];
 }
 
+- (void)configHasBonus {
+    [self.entryIconLbs enumerateObjectsUsingBlock:^(UILabel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIView *msgView = [obj superview];
+        [msgView hideMyBonusRedPoint];
+        if ([obj.text isEqualToString:@"我的优惠"]) {
+            BOOL hasBonus = [(HYTabBarViewController *)[NNControllerHelper currentTabBarController] hasNewBonus];
+            if (hasBonus == NO) {
+                [msgView hideMyBonusRedPoint];
+            }
+            else {
+                [msgView showMyBonusRedImageView:CGPointMake(CGRectGetWidth(msgView.frame) - 35, 18) value:1 mutiPoint:false];
+            }
+        }
+    }];
+}
 #pragma mark - 按钮事件
 /// 弹窗
 - (IBAction)didTapAskBtn:(id)sender {
@@ -239,9 +257,16 @@
         [self.navigationController pushViewController:[CNFeedBackVC new] animated:YES];
     } else if ([name isEqualToString:@"余额宝"]) {
         [self.navigationController pushViewController:[BYYuEBaoVC new] animated:YES];
+    } else if ([name isEqualToString:@"我的优惠"]) {
+        [self.navigationController pushViewController:[BYMyBonusViewController new] animated:YES];
+        
     }
+    
 }
-
+- (void)jumpToMyPromos
+{
+    [self.navigationController pushViewController:[BYMyBonusViewController new] animated:YES];
+}
 
 // 邀请
 - (IBAction)invite:(id)sender {
@@ -313,7 +338,7 @@
     self.switchModeSegc.selectedSegmentIndex = isUsdtMode;
     
     self.lastEntryView.alpha = isNewWallet?1:0;
-    self.bottomMidleView.alpha = isNewWallet?1:0;
+//    self.bottomMidleView.alpha = isNewWallet?1:0;
     //暂时移除超级合夥人
 //    self.shareBgView.hidden = !isUsdtMode;
 //    self.shareBgViewH.constant = isUsdtMode?AD(90):0;

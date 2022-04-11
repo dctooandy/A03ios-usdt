@@ -18,6 +18,8 @@ NSNotificationName const BYDidEnterHomePageNoti                 = @"BYDidEnterHo
 NSNotificationName const BYDidUpdateUserProfileNoti             = @"BYDidUpdateUserProfileNoti";
 NSNotificationName const BYDidReadMessageNotificaiton           = @"BYDidReadMessageNotification";
 NSNotificationName const BYMessageCountDidLoadNotificaiton      = @"BYMessageCountDidLoadNotificaiton";
+NSNotificationName const BYDidFetchBonusDataNotificaiton        = @"BYDidFetchBonusDataNotificaiton";
+NSNotificationName const BYFetchBonusDataDidLoadNotificaiton    = @"BYFetchBonusDataDidLoadNotificaiton";
 
 
 NSString * const HYNotShowQKFLUserDefaultKey                    = @"HYNotShowQKFLUserDefaultKey";

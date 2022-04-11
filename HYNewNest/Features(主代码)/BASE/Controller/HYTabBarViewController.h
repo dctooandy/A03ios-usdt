@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)initOCSSSDKShouldReload:(BOOL)reload;
 
 @property (nonatomic, assign) NSInteger unreadMessage;
+@property (nonatomic, assign) BOOL hasNewBonus;
 
 @end
 
