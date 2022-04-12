@@ -28,6 +28,7 @@
 #import "CNUserCenterRequest.h"
 
 #import "PPBadgeView.h"
+#import "BYMyBonusRequest.h"
 
 @interface HYTabBarViewController ()<UITabBarControllerDelegate, SuspendBallDelegte, CNServerViewDelegate>
 @property (nonatomic, strong) SuspendBall *suspendBall;
@@ -43,11 +44,13 @@
     [self setupAppearance];
     [self checkWMQStatus];
     [self fetchUnreadCount];
+    [self fetchHasBonusData];
     [self initOCSSSDKShouldReload:false];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginStatusChanged) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginStatusChanged) name:HYLogoutSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchUnreadCount) name:BYDidReadMessageNotificaiton object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchHasBonusData) name:BYDidFetchBonusDataNotificaiton object:nil];
     //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupAppearance) name:CNSkinChangeNotification object:nil];
     
     
@@ -330,7 +333,35 @@
     self.unreadMessage = 0;
     [self.tabBar.items.lastObject pp_hiddenBadge];
 }
+#pragma mark -
+#pragma mark Fetch Has BonusData
+- (void)fetchHasBonusData {
+    [self setHasBonusDataToDefault];
+    if ([CNUserManager shareManager].isLogin == false) {
+        return;
+    }
+    
+    WEAKSELF_DEFINE
+    [BYMyBonusRequest fetchHasBonusHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg) {
+            NSInteger hasBonus = [responseObj[@"count"] intValue];
+            weakSelf.hasNewBonus = (hasBonus == 1 ? YES : NO);
+            
+//            UITabBarItem *item = self.tabBar.items.lastObject;
+//            if (unread == 0) {
+//                [item pp_hiddenBadge];
+//            }
+//            else {
+//                [item pp_addDotWithColor:[UIColor redColor]];
+//            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:BYFetchBonusDataDidLoadNotificaiton object:nil];
+        }
+    }];
+}
 
+- (void)setHasBonusDataToDefault {
+    self.hasNewBonus = NO;
+}
 /**
  *初始化/Reload OCSS
  */

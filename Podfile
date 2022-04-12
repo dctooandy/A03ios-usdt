@@ -24,10 +24,14 @@ target 'HYNewNest' do
   pod 'SocketRocket', '~> 0.5.1'
   pod 'CocoaAsyncSocket'
   pod 'LookinServer', :configurations => ['Debug']
+  pod 'ZLPhotoBrowser', '~> 3.2.0'
+
+
   pod 'KYNetworking',:git =>'http://10.66.72.115/mobile-iOS-Library/KYNetworking.git'
   # 公共接口
   pod 'IVPublicAPILibrary',:git =>'http://10.66.72.115/mobile-iOS-Library/IVPublicAPILibrary.git'
   # 网络模块
+  pod 'KYNetworking',:git =>'http://10.66.72.115/mobile-iOS-Library/KYNetworking.git'
   pod 'IVNetworkLibrary2.0',:git =>'http://10.66.72.115/mobile-iOS-Library/IVNetworkLibrary2.0.git'
   # 缓存模块
   pod 'IVCacheLibrary',:git =>'http://10.66.72.115/mobile-iOS-Library/IVCacheLibrary.git'

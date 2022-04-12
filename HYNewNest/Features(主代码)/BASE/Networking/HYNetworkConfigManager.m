@@ -64,12 +64,12 @@
     [AppdelegateManager shareManager].websides = nil;
     [IVCacheWrapper clearCache];
     self.environment += 1;
-    //    if (self.environment == 2)
-    //    {
-    //        self.environment += 1;
-    //    }
-        if (self.environment > 3) {
-            self.environment = 1;
+//    if (self.environment == 2)
+//    {
+//        self.environment += 1;
+//    }
+    if (self.environment > 3) {
+        self.environment = 1;
     }
     [[NSUserDefaults standardUserDefaults] setInteger:self.environment forKey:@"IVNEnvironment"];
     [[NSUserDefaults standardUserDefaults] synchronize];

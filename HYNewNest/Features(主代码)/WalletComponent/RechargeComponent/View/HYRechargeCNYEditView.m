@@ -15,13 +15,19 @@
 #import <UIImageView+WebCache.h>
 #import "UIColor+Gradient.h"
 
-@interface HYRechargeCNYEditView () <CNNormalInputViewDelegate>
+#import "CNMAmountSelectCCell.h"
+#define kCNMAmountSelectCCell  @"CNMAmountSelectCCell"
+
+@interface HYRechargeCNYEditView () <CNNormalInputViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *contentView;
-//@property (weak, nonatomic) IBOutlet UIImageView *imgvIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *imgvIcon;
 @property (weak, nonatomic) IBOutlet UILabel *lblPayWayName;
-//@property (weak, nonatomic) IBOutlet UILabel *lblPayWayLimit;
+@property (weak, nonatomic) IBOutlet UIView *refundTipView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *refundTipViewH;
 @property (weak, nonatomic) IBOutlet UILabel *tipLbl;
 
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewH;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *amountBtnsTopMargin;
 @property (weak, nonatomic) IBOutlet UIView *amountBtnsContain;
@@ -42,6 +48,8 @@
 @property (nonatomic, strong) OnlineBanksModel *bankModel;
 @property (nonatomic, strong) AmountListModel *amountModel;
 @property (nonatomic, strong) BQBankModel *bqBankModel;
+
+@property (nonatomic, copy) NSArray *dataList;
 
 // OUTTER
 @property (nonatomic, copy, readwrite) NSString *rechargeAmount;
@@ -101,8 +109,10 @@
     _amountModel = amountModel;
     
     /// 顶上信息
-//    [self.imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:itemModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"Icon Bankcard"]];
+    [self.imgvIcon sd_setImageWithURL:[NSURL getUrlWithString:itemModel.payTypeIcon] placeholderImage:[UIImage imageNamed:@"channel_fastpay"]];
     self.lblPayWayName.text = itemModel.payTypeName;
+
+    
     if ([self.lblPayWayName.text containsString:@"支付宝"] || [self.lblPayWayName.text containsString:@"微信"]) {
         self.tipLbl.attributedText = ({
             UIColor *gdColor = kHexColor(0x999999);
@@ -213,6 +223,89 @@
     [self mas_updateConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.btmBankSelcView).offset(40);
     }];
+    
+    [self setupMatchUI];
+}
+
+#pragma mark - 撮合相关
+
+- (void)setupMatchUI {
+    //92:支付宝秒存 91:微信秒存 90：迅捷网银
+    NSArray *array = @[@"91", @"92", @"93"];
+    if ([array containsObject:self.itemModel.payType]) {
+        self.dataList = [self getRecommendAmountFromAmount:nil];
+        if (self.dataList.count > 0) {
+            self.refundTipView.hidden = NO;
+            self.refundTipViewH.constant = 38;
+            self.collectionView.delegate = self;
+            self.collectionView.dataSource = self;
+            self.collectionView.hidden = NO;
+            [self.collectionView registerNib:[UINib nibWithNibName:kCNMAmountSelectCCell bundle:nil] forCellWithReuseIdentifier:kCNMAmountSelectCCell];
+            self.collectionViewH.constant = 50 * ceilf(self.dataList.count/3.0);
+            [self.collectionView reloadData];
+            return;
+        }
+    }
+    self.collectionViewH.constant = 0;
+    self.collectionView.hidden = YES;
+    self.refundTipView.hidden = YES;
+    self.refundTipViewH.constant = 0;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.dataList.count;
+}
+
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CNMAmountSelectCCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCNMAmountSelectCCell forIndexPath:indexPath];
+    cell.amountLb.text = [NSString stringWithFormat:@"¥ %@", self.dataList[indexPath.row]];
+    cell.recommendTag.hidden = YES;
+    return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake((collectionView.bounds.size.width-15)/3.0, 40);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    self.amountTfView.text = self.dataList[indexPath.row];
+    self.rechargeAmount = self.amountTfView.text;
+    [self.amountTfView setStatusToNormal];
+    [self checkEnableStatus];
+}
+
+/// 计算合理推荐金额
+- (NSArray *)getRecommendAmountFromAmount:(NSString *)amount {
+    
+    NSArray *sourceArray = self.matchAmountList;
+    
+    if (sourceArray.count < 9) {
+        return sourceArray;
+    }
+    
+    if (amount == nil || amount.length == 0) {
+        return [sourceArray subarrayWithRange:NSMakeRange(sourceArray.count - 9, 9)];
+    }
+    
+    NSMutableArray *sortArr = [sourceArray mutableCopy];
+    [sortArr addObject:amount];
+    
+    sortArr = [[sortArr sortedArrayUsingComparator:^NSComparisonResult(NSString *  _Nonnull obj1, NSString *  _Nonnull obj2) {
+        if (obj1.intValue < obj2.intValue) {
+            return NSOrderedDescending;
+        }
+        return NSOrderedAscending;
+    }] mutableCopy];
+    
+    NSInteger index = [sortArr indexOfObject:amount];
+
+    if (index < 5) {
+        return [sourceArray subarrayWithRange:NSMakeRange(0, 9)];
+    } else if  (index > (sourceArray.count - 5)) {
+        return [sourceArray subarrayWithRange:NSMakeRange(sourceArray.count - 9, 9)];
+    } else {
+        return [sourceArray subarrayWithRange:NSMakeRange(index - 4, 9)];
+    }
 }
 
 
@@ -278,6 +371,16 @@
         }
         for (UIButton *btn in self.amountBtnsContain.subviews) {
             btn.selected = NO;
+        }
+        
+        self.dataList = [self getRecommendAmountFromAmount:view.text];
+        [self.collectionView reloadData];
+        
+        if ([self.dataList containsObject:view.text]) {
+            NSInteger index = [self.dataList indexOfObject:view.text];
+            [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+        } else {
+            [self.collectionView deselectItemAtIndexPath:[self.collectionView indexPathsForSelectedItems].lastObject animated:YES];
         }
     } else if (view == self.depositorTfView) {
         if (![view.text validationType:ValidationTypeRealName]) {

@@ -40,6 +40,7 @@ xcuserdata/
 *.ipa
 *.dSYM.zip
 *.dSYM
+*.md
 
 # CocoaPods - Refactored to standalone file
 
@@ -58,6 +59,7 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/README.md
+
 # Code Injection
 #
 # After new code Injection tools there's a generated folder /iOSInjectionProject

@@ -17,7 +17,8 @@
 #import "KeyChain.h"
 #import "CNServiceRequest.h"
 #import "AppdelegateManager.h"
-
+#import "KYMWithdrewRequest.h"
+#import "BalanceManager.h"
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 #import <UserNotifications/UserNotifications.h>
 #endif
@@ -173,7 +174,7 @@
  * 推送注册失败
  */
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    [CNTOPHUB showError:@"推送服务注册失败 请检查推送证书"];
+//    [CNTOPHUB showError:@"推送服务注册失败 请检查推送证书"];
     
 //#ifdef DEBUG
 //    [kKeywindow jk_makeToast:[NSString stringWithFormat:@"===didFailToRegisterForRemoteNotifications===\nError:%@", error] duration:8 position:JKToastPositionBottom];
@@ -280,5 +281,22 @@
 }
 
 
-
+#pragma marks ------------------------撮合系统内联函数------------------------------------
+inline void kym_sendRequest(NSString * url, id params, KYMCallback callback) {
+    [CNBaseNetworking POST:url parameters:params completionHandler:^(id responseObj, NSString *errorMsg) {
+        !callback ?: callback(YES, errorMsg,responseObj);
+    }];
+}
+inline void kym_requestBalance(KYMCallback callback) {
+    [[BalanceManager shareManager] requestBalaceHandler:^(AccountMoneyDetailModel * _Nonnull model) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (model) {
+                callback(YES,@"", [model.balance stringValue]);
+            } else {
+                callback(NO,@"操作失败，请稍后重试", [model.balance stringValue]);
+            }
+            
+        });
+    }];
+}
 @end
