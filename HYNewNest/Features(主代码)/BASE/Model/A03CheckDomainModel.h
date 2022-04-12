@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface A03CheckDomainModel : CNBaseModel
+@property (nonatomic, copy) NSArray * gateways;
+@property (nonatomic, copy) NSArray * websites;
 @property (nonatomic, copy) NSArray * getways;
 @property (nonatomic, copy) NSArray * websides;
 @end
