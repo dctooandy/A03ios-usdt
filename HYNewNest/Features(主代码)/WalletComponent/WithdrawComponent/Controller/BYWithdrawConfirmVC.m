@@ -26,6 +26,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *availableAmountLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIView *successView;
+@property (weak, nonatomic) IBOutlet UIView *protocolContainer;
+@property (nonatomic, strong) NSArray *protocols; // 所有协议
+/// 选中的协议
+@property (nonatomic, copy, readwrite) NSString *selectedProtocol;
 
 @end
 
@@ -68,7 +72,9 @@
     [self.codeInputView setPlaceholder:@"请输入资金密码"];
     
     self.availableAmountLabel.text = [self.balance.withdrawBal jk_toDisplayNumberWithDigit:2];
-
+    self.selectedProtocol = @"TRC20";
+    self.protocols = @[@"TRC20", @"ERC20"];
+    [self setupProtocolView];
 }
 
 #pragma mark -
@@ -106,7 +112,7 @@
     WEAKSELF_DEFINE
     [CNWithdrawRequest submitWithdrawRequestAmount:self.amountInputView.money
                                          accountId:self.account.accountId
-                                          protocol:self.account.protocol
+                                          protocol:self.selectedProtocol
                                            remarks:@""
                                   subWallAccountId:nil
                                           password:[CNEncrypt encryptString:self.codeInputView.code]
@@ -126,5 +132,50 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:BYRefreshBalanceNotification object:nil]; // 让首页和我的余额刷新
         }
     }];
+}
+#pragma mark - Protocol
+
+- (UIButton *)getPortocalBtn {
+    UIButton *btn = [UIButton new];
+    [btn setImage:[UIImage imageNamed:@"unSelect"] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:@"icon_newrecharge_sel"] forState:UIControlStateSelected];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont fontDBOf16Size];
+    btn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+    [btn addTarget:self action:@selector(protocolSelected:) forControlEvents:UIControlEventTouchUpInside];
+    return btn;
+}
+
+- (void)setupProtocolView {
+    [self.protocolContainer.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj removeFromSuperview];
+    }];
+    
+    CGFloat ItemMargin = 16;
+    CGFloat ItemHight = 20;
+    CGFloat ItemWidht = 72;
+    for (__block int i=0; i<self.protocols.count; i++) {
+        UIButton *proBtn = [self getPortocalBtn];
+        [proBtn setTitle:self.protocols[i] forState:UIControlStateNormal];
+        proBtn.tag = i;
+
+        [self.protocolContainer addSubview:proBtn];
+        proBtn.frame = CGRectMake((ItemMargin + ItemWidht) * i, (self.protocolContainer.height-ItemHight)*0.5, ItemWidht, ItemHight);
+        if (i==0) { // 进入选中第一个
+            [self protocolSelected:proBtn];
+        }
+    }
+}
+
+- (void)protocolSelected:(UIButton *)aBtn {
+    for (UIButton *btn in self.protocolContainer.subviews) {
+        btn.selected = NO;
+    }
+    aBtn.selected = YES;
+    self.selectedProtocol = _protocols[aBtn.tag];
+//    self.selectProtocolAddress = _protocolAddrs[aBtn.tag];
+//    if (_delegate && [_delegate respondsToSelector:@selector(didSelectOneProtocol:)]) {
+//        [_delegate didSelectOneProtocol:self.selectedProtocol];
+//    }
 }
 @end

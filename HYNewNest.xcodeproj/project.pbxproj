@@ -431,6 +431,12 @@
 		76FC862F27622620005710FD /* SDWebImageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FC862E27622620005710FD /* SDWebImageFrame.m */; };
 		76FC863227622691005710FD /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FC863027622690005710FD /* UIImage+MultiFormat.m */; };
 		76FC864B27671349005710FD /* degg03.gif in Resources */ = {isa = PBXBuildFile; fileRef = 76FC864A27671348005710FD /* degg03.gif */; };
+		A195ABDB27F191DF0077EE65 /* BYMyBonusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A195ABDA27F191DF0077EE65 /* BYMyBonusViewController.m */; };
+		A195ABDE27F192290077EE65 /* BYMyBonusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A195ABDD27F192290077EE65 /* BYMyBonusTableViewController.m */; };
+		A195ABE227F1945E0077EE65 /* BYMyBonusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A195ABE027F1945E0077EE65 /* BYMyBonusTableViewCell.m */; };
+		A195ABE627F194BE0077EE65 /* BYMyBounsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A195ABE527F194BE0077EE65 /* BYMyBounsModel.m */; };
+		A195ABE827F196760077EE65 /* BYMyBonusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A195ABE727F196760077EE65 /* BYMyBonusTableViewCell.xib */; };
+		A195ABEB27F196BF0077EE65 /* BYMyBonusRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A195ABEA27F196BF0077EE65 /* BYMyBonusRequest.m */; };
 		A1F0277127C8AE6200202ACA /* NSData+EnternalImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F0277027C8AE6200202ACA /* NSData+EnternalImageContentType.m */; };
 		A1F0277427C8AF3400202ACA /* SDWebImageImageIOCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F0277227C8AF3400202ACA /* SDWebImageImageIOCoder.m */; };
 		D51ADF0627E2D7F500F77C00 /* KYMWithdrawHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = D51ADF0327E2D7F400F77C00 /* KYMWithdrawHistoryView.m */; };
@@ -1880,6 +1886,17 @@
 		76FC864A27671348005710FD /* degg03.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = degg03.gif; sourceTree = "<group>"; };
 		9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYNewNest.debug.xcconfig"; path = "Target Support Files/Pods-HYNewNest/Pods-HYNewNest.debug.xcconfig"; sourceTree = "<group>"; };
 		A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYNewNestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A195ABD927F191DF0077EE65 /* BYMyBonusViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYMyBonusViewController.h; sourceTree = "<group>"; };
+		A195ABDA27F191DF0077EE65 /* BYMyBonusViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYMyBonusViewController.m; sourceTree = "<group>"; };
+		A195ABDC27F192290077EE65 /* BYMyBonusTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYMyBonusTableViewController.h; sourceTree = "<group>"; };
+		A195ABDD27F192290077EE65 /* BYMyBonusTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYMyBonusTableViewController.m; sourceTree = "<group>"; };
+		A195ABDF27F1945E0077EE65 /* BYMyBonusTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYMyBonusTableViewCell.h; sourceTree = "<group>"; };
+		A195ABE027F1945E0077EE65 /* BYMyBonusTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYMyBonusTableViewCell.m; sourceTree = "<group>"; };
+		A195ABE427F194BE0077EE65 /* BYMyBounsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYMyBounsModel.h; sourceTree = "<group>"; };
+		A195ABE527F194BE0077EE65 /* BYMyBounsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYMyBounsModel.m; sourceTree = "<group>"; };
+		A195ABE727F196760077EE65 /* BYMyBonusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BYMyBonusTableViewCell.xib; sourceTree = "<group>"; };
+		A195ABE927F196BF0077EE65 /* BYMyBonusRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BYMyBonusRequest.h; sourceTree = "<group>"; };
+		A195ABEA27F196BF0077EE65 /* BYMyBonusRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BYMyBonusRequest.m; sourceTree = "<group>"; };
 		A1F0276F27C8AE6200202ACA /* NSData+EnternalImageContentType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+EnternalImageContentType.h"; sourceTree = "<group>"; };
 		A1F0277027C8AE6200202ACA /* NSData+EnternalImageContentType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+EnternalImageContentType.m"; sourceTree = "<group>"; };
 		A1F0277227C8AF3400202ACA /* SDWebImageImageIOCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageImageIOCoder.m; sourceTree = "<group>"; };
@@ -3528,6 +3545,7 @@
 				3DC14E3025F8D25700D6DB85 /* VoucherComponent */,
 				3D643F9224F36CC200B9AAA7 /* VIPComponent */,
 				E986A15D24C979F6000F9CFF /* WalletComponent */,
+				A195ABD327F1911C0077EE65 /* MyBonusComponent */,
 				E9D9446F24C1F35700252222 /* BonusComponent */,
 				E9D9446D24C1F35700252222 /* GloryComponent */,
 				E9D9447324C1F35700252222 /* HomeComponent */,
@@ -3574,6 +3592,7 @@
 		3D1338A624AF2E7D00B29783 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				A195ABED27F2AE2A0077EE65 /* Tools */,
 				3DF43D2A2592EE8B0087F26A /* SlideCard */,
 				3D41DEB4251F1A20000CA1D6 /* WSLPictureBrowserView */,
 				E9B5496424CECE23002CE6EF /* LTSegmentedBar */,
@@ -4480,6 +4499,71 @@
 				A1F0277027C8AE6200202ACA /* NSData+EnternalImageContentType.m */,
 			);
 			path = SDWebEnternal;
+			sourceTree = "<group>";
+		};
+		A195ABD327F1911C0077EE65 /* MyBonusComponent */ = {
+			isa = PBXGroup;
+			children = (
+				A195ABD527F191550077EE65 /* View */,
+				A195ABD627F191690077EE65 /* Model */,
+				A195ABD727F191730077EE65 /* Request */,
+				A195ABD827F1917C0077EE65 /* Controller */,
+			);
+			path = MyBonusComponent;
+			sourceTree = "<group>";
+		};
+		A195ABD527F191550077EE65 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A195ABDF27F1945E0077EE65 /* BYMyBonusTableViewCell.h */,
+				A195ABE027F1945E0077EE65 /* BYMyBonusTableViewCell.m */,
+				A195ABE727F196760077EE65 /* BYMyBonusTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A195ABD627F191690077EE65 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A195ABE427F194BE0077EE65 /* BYMyBounsModel.h */,
+				A195ABE527F194BE0077EE65 /* BYMyBounsModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A195ABD727F191730077EE65 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				A195ABE927F196BF0077EE65 /* BYMyBonusRequest.h */,
+				A195ABEA27F196BF0077EE65 /* BYMyBonusRequest.m */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		A195ABD827F1917C0077EE65 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A195ABD927F191DF0077EE65 /* BYMyBonusViewController.h */,
+				A195ABDA27F191DF0077EE65 /* BYMyBonusViewController.m */,
+				A195ABDC27F192290077EE65 /* BYMyBonusTableViewController.h */,
+				A195ABDD27F192290077EE65 /* BYMyBonusTableViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A195ABED27F2AE2A0077EE65 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				A195ABEE27F2AE390077EE65 /* Manager */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		A195ABEE27F2AE390077EE65 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		D5A4425724F36F4200014DC6 /* Gif */ = {
@@ -6294,6 +6378,7 @@
 				D5A4440024F37A9E00014DC6 /* 彩票_0008.png in Resources */,
 				D5A4446924F3932400014DC6 /* 数字7_00062.png in Resources */,
 				D5A446E724F3941400014DC6 /* 合成 1_00019.png in Resources */,
+				A195ABE827F196760077EE65 /* BYMyBonusTableViewCell.xib in Resources */,
 				D5A4453E24F393AC00014DC6 /* 棋牌_0001.png in Resources */,
 				0430AB2A24E26E5300C873DC /* CNAddBankCardVC.xib in Resources */,
 				D5A4470924F3941400014DC6 /* 合成 1_0002.png in Resources */,
@@ -7004,6 +7089,7 @@
 				0487C97224CE9A630013715A /* BRAddressPickerView.m in Sources */,
 				E986A19924CAC47B000F9CFF /* HYRechargeHelper.m in Sources */,
 				0487C9E124D27B960013715A /* CNNotifySettingVC.m in Sources */,
+				A195ABE627F194BE0077EE65 /* BYMyBounsModel.m in Sources */,
 				3DC14E3825F8D37500D6DB85 /* BYVocherCenterVC.m in Sources */,
 				D5B430A827CA00B4008330CB /* KYMWithdrewAmountListView.m in Sources */,
 				3D41DEBA251F1A20000CA1D6 /* WSLPictureBrowseView.m in Sources */,
@@ -7158,6 +7244,7 @@
 				3DC14E572601DDCD00D6DB85 /* BYVocherModel.m in Sources */,
 				3DED18B52662245100823BD7 /* CNYuEBaoTransferModel.m in Sources */,
 				044DC68B24DBB420005CB550 /* CNVerifyMsgAlertView.m in Sources */,
+				A195ABEB27F196BF0077EE65 /* BYMyBonusRequest.m in Sources */,
 				D571B19624BE9F120087B5EC /* CNLineView.m in Sources */,
 				0487C99924CEDE6B0013715A /* CNChoseImageCCell.m in Sources */,
 				766A6EC9276B3F4A007DC6A1 /* A03PopViewModel.m in Sources */,
@@ -7169,6 +7256,7 @@
 				3DBA55D0256FA6D3009A2B71 /* CNBaseTF.m in Sources */,
 				E986A0FA24C6CBB6000F9CFF /* SmsCodeModel.m in Sources */,
 				04C0F11624C59956007F1420 /* CNEncrypt.m in Sources */,
+				A195ABDB27F191DF0077EE65 /* BYMyBonusViewController.m in Sources */,
 				3DBA560D2580B5E4009A2B71 /* BYSuperCopartnerVC.m in Sources */,
 				3D41DE962519E9D0000CA1D6 /* VIPCumulateIdCell.m in Sources */,
 				04935BDF24D7EE2B007A33EF /* CNElectionTypeSelectorView.m in Sources */,
@@ -7199,6 +7287,7 @@
 				76FC8627276225A1005710FD /* SDWebImageCodersManager.m in Sources */,
 				3DF43D4525943D1F0087F26A /* BYMultiDataSourceTableView.m in Sources */,
 				E98BEEDC24CFF17500E6B0C8 /* HYBonusCell.m in Sources */,
+				A195ABE227F1945E0077EE65 /* BYMyBonusTableViewCell.m in Sources */,
 				3DF03207258DF6E500AF7A36 /* SCMyBonusModel.m in Sources */,
 				76FC862F27622620005710FD /* SDWebImageFrame.m in Sources */,
 				3DCE56FC2698155200BEADD9 /* BYMultiAccountRuleView.m in Sources */,
@@ -7236,6 +7325,7 @@
 				E98BEF1224D2A32700E6B0C8 /* HYXiMaSuccViewController.m in Sources */,
 				E986A17F24C97B21000F9CFF /* CNWDAccountRequest.m in Sources */,
 				3D4179D82669BFE0003928F0 /* BYChangeFundPwdVC.m in Sources */,
+				A195ABDE27F192290077EE65 /* BYMyBonusTableViewController.m in Sources */,
 				76B499EE276094B9003CD35B /* AppSettingRequest.m in Sources */,
 				D51ADF0627E2D7F500F77C00 /* KYMWithdrawHistoryView.m in Sources */,
 				D5FBFE4224BC05E400BBCAD8 /* CNCodeInputView.m in Sources */,
@@ -7602,7 +7692,7 @@
 			baseConfigurationReference = 9F8DBAA0CC27D1FAE9F74799 /* Pods-HYNewNest.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Debug";
 				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
 				CODE_SIGN_ENTITLEMENTS = "HYNewNest/币游_devDebug.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -7650,7 +7740,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.8.32;
+				MARKETING_VERSION = 3.7.52;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.1e3c3biphone01.btt01;
 				PRODUCT_NAME = "币游_dev";
@@ -7711,7 +7801,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.8.32;
+				MARKETING_VERSION = 3.7.52;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.1e3c3biphone01.btt01;
 				PRODUCT_NAME = "币游";

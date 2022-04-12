@@ -110,5 +110,53 @@
     valueLbl.tag = 997;
     [self addSubview:valueLbl];
 }
+- (void)hideMyBonusRedPoint
+{
+    //按照tag值進行移除
+    for (UIView *subView in self.subviews) {
+        if (subView.tag == 899 || subView.tag == 898) {
+            [subView removeFromSuperview];
+        }
+    }
+}
+- (void)showMyBonusRedPoint:(CGPoint)point value:(NSInteger)value withWidth:(CGFloat)width mutiPoint:(BOOL)muti
+{
+    CGFloat viewWidth = width;
+    if (value > 100) {
+        viewWidth = 25;
+    }
+    
+    if (muti == false) {
+        [self removeRedPoint];
+    }
+    
+    UILabel *valueLbl = [[UILabel alloc]initWithFrame:CGRectMake(point.x-viewWidth*0.5, point.y-viewWidth*0.5, viewWidth, viewWidth)];
+    if (value > 99) {
+        valueLbl.text = [NSString stringWithFormat:@"99+"];
+    }
+    else {
+        valueLbl.text = [NSString stringWithFormat:@"%ld", value];
 
+    }
+    valueLbl.font = [UIFont fontPFR12];
+    valueLbl.textColor = [UIColor whiteColor];
+    valueLbl.textAlignment = NSTextAlignmentCenter;
+    valueLbl.backgroundColor = [UIColor redColor];
+    valueLbl.clipsToBounds = YES;
+    valueLbl.layer.cornerRadius = viewWidth*0.5;
+    valueLbl.tag = 899;
+    [self addSubview:valueLbl];
+}
+- (void)showMyBonusRedImageView:(CGPoint)point value:(NSInteger)value mutiPoint:(BOOL)muti
+{
+    CGFloat viewWidth = 35;
+    
+    if (muti == false) {
+        [self removeRedPoint];
+    }
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(point.x, point.y-viewWidth*0.5, viewWidth, 23)];
+    imgView.image = [UIImage imageNamed:@"hot_label"];
+    imgView.tag = 898;
+    [self addSubview:imgView];
+}
 @end
