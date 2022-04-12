@@ -42,7 +42,7 @@ target 'HYNewNest' do
   pod 'IVIMPublicLibrary',:git =>'http://10.66.72.115/mobile-iOS-library/IVIMPublicLibrary.git'
   # 3S
   pod 'IN3SAnalyticsSDK',:git =>'http://10.66.72.115/mobile-iOS-library/IV3SLibrary.git'
-  pod 'IVGameLibrary',:git =>'http://10.66.72.115/mobile-iOS-Library/IVGameLibrary.git',:branch=>'v2.0'
+  pod 'IVGameLibrary',:git =>'http://10.66.72.115/mobile-iOS-Library/IVGameLibrary.git',:branch=>'master'
 
   target 'HYNewNestTests' do
     inherit! :search_paths
