@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CNMPayBillStatus mmProcessingOrderStatus;
 @property (nonatomic, copy) NSString *mmProcessingOrderAmount;
 
+/// 是否需要上传凭证， = 1 时需要先上传
+@property (nonatomic, assign) NSInteger needUploadFlag;
+
 @end
 
 NS_ASSUME_NONNULL_END

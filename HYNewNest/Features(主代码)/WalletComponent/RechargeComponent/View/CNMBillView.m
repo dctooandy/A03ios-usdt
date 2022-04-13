@@ -17,12 +17,12 @@
 
 @implementation CNMBillView
 
-- (void)setPromoTag:(BOOL)show {
+- (void)setUpload:(BOOL)upload promoTag:(BOOL)show {
     self.statusBtn.layer.borderColor = self.statusBtn.titleLabel.textColor.CGColor;
     self.statusBtn.layer.borderWidth = 1;
     self.statusBtn.layer.masksToBounds = YES;
     self.promoTagIV.hidden = !show;
-    if (show) {
+    if (upload) {
         [self.statusBtn setTitle:@"上传凭证催单" forState:UIControlStateNormal];
         self.statusBtn.layer.cornerRadius = 6;
         self.statusBtn.titleEdgeInsets = UIEdgeInsetsMake(3, 0, 0, 0);
