@@ -273,7 +273,7 @@
 }
 
 - (void)showUploadUI {
-    [CNMUploadView showUploadViewTo:self billId:self.fastModel.mmProcessingOrderTransactionId commitDeposit:nil];
+    [CNMUploadView showUploadViewTo:self billId:self.fastModel.mmProcessingOrderTransactionId promo:(self.fastModel.needUploadFlag != 1) commitDeposit:nil];
 }
 
 - (void)confirmBill {
@@ -419,7 +419,7 @@
 - (void)submitMatchBill {
     //提交订单
     __weak typeof(self) weakSelf = self;
-    [CNMatchPayRequest createDepisit:self.editView.rechargeAmount finish:^(id responseObj, NSString *errorMsg) {
+    [CNMatchPayRequest createDepisit:self.editView.rechargeAmount realName:self.editView.depositor finish:^(id responseObj, NSString *errorMsg) {
         if ([responseObj isKindOfClass:[NSDictionary class]]) {
             NSDictionary *dic = (NSDictionary *)responseObj;
             if ([[dic objectForKey:@"mmFlag"] boolValue]) {

@@ -121,7 +121,13 @@
     } else if ([bank.manualStatus isEqualToString:@"4"]) {// 交易挂起
         self.confirmBtn.hidden = YES;
     } else {
-        self.actionTipLb.text = @"请完成存款后，再点击确认存款";
+        if (bank.status == CNMPayBillStatusConfirm) {
+            [self.confirmBtn setTitle:@"上传凭证" forState:UIControlStateNormal];
+            self.actionTipLb.text = @"请完成存款后，再点击上传凭证";
+        } else {
+            [self.confirmBtn setTitle:@"确认存款" forState:UIControlStateNormal];
+            self.actionTipLb.text = @"请完成存款后，再点击确认存款";
+        }
         if (bank.createdDateFmt > 0) {
             self.timeInterval = bank.createdDateFmt;
             [self.timer setFireDate:[NSDate distantPast]];
@@ -156,16 +162,24 @@
 #pragma mark - 按钮组事件
 
 - (IBAction)confirm:(UIButton *)sender {
+    __weak typeof(self) weakSelf = self;
     if (self.bankModel.needUploadFlag == 1) {
-        __weak typeof(self) weakSelf = self;
-        [CNMUploadView showUploadViewTo:self billId:self.bankModel.transactionId commitDeposit:^(NSArray *receiptImages, NSArray *recordImages) {
-            // 交易挂起
-            if (![weakSelf.bankModel.manualStatus isEqualToString:@"4"]) {
+        [CNMUploadView showUploadViewTo:self billId:self.bankModel.transactionId promo:NO commitDeposit:^(NSArray *receiptImages, NSArray *recordImages) {
+            // 存款已确认不需要确认
+            if (weakSelf.bankModel.status == CNMPayBillStatusConfirm) {
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            } else {
                 [weakSelf commitDepisitWithReceiptImages:receiptImages recordImages:recordImages];
             }
         }];
     } else {
-        [self commitDepisitWithReceiptImages:nil recordImages:nil];
+        if (self.bankModel.status == CNMPayBillStatusConfirm) {
+            [CNMUploadView showUploadViewTo:self billId:self.bankModel.transactionId promo:YES commitDeposit:^(NSArray * _Nonnull receiptImages, NSArray * _Nonnull recordImages) {
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            }];
+        } else {
+            [self commitDepisitWithReceiptImages:nil recordImages:nil];
+        }
     }
 }
 
