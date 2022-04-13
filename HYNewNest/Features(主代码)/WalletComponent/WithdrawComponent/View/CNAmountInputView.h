@@ -24,7 +24,7 @@ typedef NS_ENUM(NSUInteger, CNAmountType) {
 
 @interface CNAmountInputView : CNBaseXibView
 /// 金额
-@property (nonatomic, readonly) NSString *money;
+@property (nonatomic, strong) NSString *money;
 /// 是否能提现
 @property (nonatomic, assign) BOOL correct;
 
