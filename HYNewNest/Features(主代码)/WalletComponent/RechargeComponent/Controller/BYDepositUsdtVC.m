@@ -181,12 +181,10 @@ USDT支付渠道
 - (IBAction)startDepositAction:(id)sender {
     DepositsBankModel *model = self.depositModels[_selIdx];
     if ([model.bankname isEqualToString:@"dcbox"]) {
-        [CNRechargeRequest submitOnlinePayOrderV2Amount:self.editorView.rechargeAmount
-                                               currency:model.currency
-                                           usdtProtocol:self.editorView.selectedProtocol
-                                                payType:model.payType
-                                                handler:^(id responseObj, NSString *errorMsg) {
-            
+        [CNRechargeRequest submitDCUsdtPayType:@"43"
+                                       Payment:self.editorView.selectedProtocol
+                                        amount:self.editorView.rechargeAmount
+                                       handler:^(id responseObj, NSString *errorMsg) {
             if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
                 ChargeManualMessgeView *view;
                 view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"address"] amount:self.editorView.rechargeAmount retelling:nil type:ChargeMsgTypeDCBOX];
@@ -196,6 +194,21 @@ USDT支付渠道
                 [kKeywindow addSubview:view];
             }
         }];
+//        [CNRechargeRequest submitOnlinePayOrderV2Amount:self.editorView.rechargeAmount
+//                                               currency:model.currency
+//                                           usdtProtocol:self.editorView.selectedProtocol
+//                                                payType:model.payType
+//                                                handler:^(id responseObj, NSString *errorMsg) {
+//            
+//            if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {
+//                ChargeManualMessgeView *view;
+//                view = [[ChargeManualMessgeView alloc] initWithAddress:responseObj[@"address"] amount:self.editorView.rechargeAmount retelling:nil type:ChargeMsgTypeDCBOX];
+//                view.clickBlock = ^(BOOL isSure) {
+//                    [self.navigationController pushViewController:[CNTradeRecodeVC new] animated:YES];
+//                };
+//                [kKeywindow addSubview:view];
+//            }
+//        }];
     } else {
         [CNRechargeRequest submitOtherUsdtPayment:self.editorView.selectedProtocol amount:self.editorView.rechargeAmount handler:^(id responseObj, NSString *errorMsg) {
             if (KIsEmptyString(errorMsg) && [responseObj isKindOfClass:[NSDictionary class]]) {

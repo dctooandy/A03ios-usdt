@@ -175,7 +175,7 @@
         [qrCodeImgv addGestureRecognizer:longPGes];
         
         
-        UILabel *lblTip = [[UILabel alloc] initWithFrame:CGRectMake(0, maxY+AD(23), kScreenWidth, 20)];
+        UILabel *lblTip = [[UILabel alloc] initWithFrame:CGRectMake(60, maxY+AD(23), kScreenWidth - 120, 20)];
         lblTip.text = chargeType==ChargeMsgTypeDCBOX?@"长按保存二维码，请使用小金库扫码支付":@"或使用任意数字货币钱包扫码支付";
         lblTip.textColor = kHexColorAlpha(0xFFFFFF, 0.6);
         lblTip.font = [UIFont fontPFR14];
@@ -183,7 +183,7 @@
         [mainView addSubview:lblTip];
         if (chargeType == ChargeMsgTypeDCBOX) {
             UIImageView *hand = [UIImageView new];
-            hand.frame = CGRectMake(AD(51), lblTip.top, 14, 16);
+            hand.frame = CGRectMake(lblTip.left - 10.0, lblTip.top, 14, 16);
             [hand setImage:[UIImage imageNamed:@"modal-lonepress"]];
             [mainView addSubview:hand];
         }
