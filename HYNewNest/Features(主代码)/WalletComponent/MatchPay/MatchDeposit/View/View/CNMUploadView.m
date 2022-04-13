@@ -42,19 +42,19 @@
 
 @implementation CNMUploadView
 
-+ (void)showUploadViewTo:(UIViewController *)superVC billId:(NSString *)billId commitDeposit:(void (^)(NSArray * _Nonnull, NSArray * _Nonnull))commitBlock {
++ (void)showUploadViewTo:(UIViewController *)superVC billId:(NSString *)billId promo:(BOOL)promo commitDeposit:(void (^)(NSArray * _Nonnull, NSArray * _Nonnull))commitBlock {
     CNMUploadView *view = [[CNMUploadView alloc] initWithFrame:superVC.view.bounds];
     [superVC.view addSubview:view];
     view.superVC = superVC;
     view.billId = billId;
-    if (commitBlock) {
-        view.commitBlock = commitBlock;
+    view.commitBlock = commitBlock;
+    if (promo) {
+        [view.confirmBtn setBackgroundImage:[UIImage imageNamed:@"upload_light"] forState:UIControlStateNormal];
+        [view.confirmBtn setBackgroundImage:[UIImage imageNamed:@"upload_grey"] forState:UIControlStateDisabled];
+    } else {
         [view.confirmBtn setBackgroundImage:[UIImage imageNamed:@"l_btn_select"] forState:UIControlStateNormal];
         [view.confirmBtn setBackgroundImage:[UIImage imageNamed:@"l_btn_hh"] forState:UIControlStateDisabled];
         [view.confirmBtn setTitle:@"确认存款" forState:UIControlStateNormal];
-    } else {
-        [view.confirmBtn setBackgroundImage:[UIImage imageNamed:@"upload_light"] forState:UIControlStateNormal];
-        [view.confirmBtn setBackgroundImage:[UIImage imageNamed:@"upload_grey"] forState:UIControlStateDisabled];
     }
 }
 
