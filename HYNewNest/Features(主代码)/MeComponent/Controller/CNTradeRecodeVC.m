@@ -390,6 +390,7 @@
             if (model.mmStatus == 2 || model.mmStatus == 5) {
                 CNMatchDepositStatusVC *statusVC = [[CNMatchDepositStatusVC alloc] init];
                 statusVC.transactionId = model.requestId;
+                statusVC.backToLastVC = YES;
                 [self.navigationController pushViewController:statusVC animated:YES];
                 return;
             }
@@ -401,6 +402,7 @@
                 KYMMatchWithdrewSuccessVC *vc = [[KYMMatchWithdrewSuccessVC alloc] init];
                 vc.transactionId = model.requestId;
                 vc.amountStr = model.amount;
+                vc.backToLastVC = YES;
                 [self.navigationController pushViewController:vc animated:YES];
                 return;
             }

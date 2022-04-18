@@ -80,6 +80,10 @@
     }];
 }
 - (void)goToBack {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    if (_backToLastVC) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 @end
