@@ -14,6 +14,7 @@
                 <outlet property="protocolContainer" destination="ocF-yA-ncw" id="fqm-Lb-swz"/>
                 <outlet property="protocolQuestBtn" destination="oxL-Yi-2TB" id="DfX-eo-SSJ"/>
                 <outlet property="tfAmount" destination="9QB-qy-vQJ" id="Meq-MS-1Su"/>
+                <outlet property="youCanTrustLabel" destination="nS8-0W-1Wn" id="ztC-Ry-bCu"/>
                 <outletCollection property="shortCutAmountBtns" destination="X0A-ff-r3Q" id="OtB-Um-Hyi"/>
                 <outletCollection property="shortCutAmountBtns" destination="Pub-DM-tSB" id="Em8-6d-zVg"/>
                 <outletCollection property="shortCutAmountBtns" destination="OGD-wc-ino" id="cUL-Mb-jSI"/>
@@ -54,11 +55,8 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ocF-yA-ncw">
-                    <rect key="frame" x="234" y="8" width="160" height="30"/>
+                    <rect key="frame" x="145.5" y="8" width="248.5" height="30"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="160" id="1fZ-qF-N94"/>
-                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fmr-9n-U4Z">
                     <rect key="frame" x="28" y="84" width="358" height="90"/>
@@ -269,6 +267,7 @@
                 <constraint firstItem="ocF-yA-ncw" firstAttribute="top" secondItem="oxL-Yi-2TB" secondAttribute="top" id="e7p-BS-tfx"/>
                 <constraint firstAttribute="trailing" secondItem="Fmr-9n-U4Z" secondAttribute="trailing" constant="28" id="fgR-2b-urd"/>
                 <constraint firstItem="LPf-v9-q9u" firstAttribute="leading" secondItem="6Rl-hz-5hK" secondAttribute="leading" id="gMQ-11-AJg"/>
+                <constraint firstItem="ocF-yA-ncw" firstAttribute="width" secondItem="oWr-RK-Naw" secondAttribute="width" multiplier="0.6" id="had-aX-fHY"/>
                 <constraint firstAttribute="trailing" secondItem="he1-a4-RWz" secondAttribute="trailing" id="lgP-ka-Top"/>
                 <constraint firstAttribute="trailing" secondItem="nS8-0W-1Wn" secondAttribute="trailing" constant="20" id="sFx-8m-SZd"/>
                 <constraint firstItem="Fmr-9n-U4Z" firstAttribute="top" secondItem="he1-a4-RWz" secondAttribute="bottom" constant="15" id="u1h-Qg-EJD"/>

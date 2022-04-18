@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *protocolQuestBtn;
 @property (weak, nonatomic) IBOutlet UILabel *amountTipsLb;
 @property (strong, nonatomic) IBOutletCollection(BYThreeStatusBtn) NSArray *shortCutAmountBtns;
+@property (weak, nonatomic) IBOutlet UILabel *youCanTrustLabel;
 
 /// 选中的协议
 @property (nonatomic, copy, readwrite) NSString *selectedProtocol;
@@ -45,6 +46,8 @@
     [self.tfAmount setValue:[UIFont fontPFR15] forKeyPath:@"placeholderLabel.font"];
     [self.tfAmount addTarget:self action:@selector(amountTfDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.tfAmount addTarget:self action:@selector(amountTfDidResignFirstResponder:) forControlEvents:UIControlEventEditingDidEnd];
+    UIColor *gradColor = [UIColor gradientFromColor:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE) withWidth:self.youCanTrustLabel.width];
+    _youCanTrustLabel.textColor = gradColor;
     
 }
 
@@ -67,7 +70,7 @@
             [obj removeFromSuperview];
     }];
     
-    CGFloat ItemMargin = 16;
+    CGFloat ItemMargin = 30;
     CGFloat ItemHight = 20;
     CGFloat ItemWidht = 72;
     for (__block int i=0; i<self.protocols.count; i++) {
@@ -77,6 +80,20 @@
 
         [self.protocolContainer addSubview:proBtn];
         proBtn.frame = CGRectMake((ItemMargin + ItemWidht) * i, (self.protocolContainer.height-ItemHight)*0.5, ItemWidht, ItemHight);
+        if (i != 0)
+        {
+            UILabel *youBetterSelectLabel = [[UILabel alloc] init];
+            youBetterSelectLabel.frame = CGRectMake(CGRectGetMaxX(proBtn.frame), 0, 25, 18);
+            youBetterSelectLabel.backgroundColor = [UIColor redColor];
+            youBetterSelectLabel.font = [UIFont systemFontOfSize:9];;
+            youBetterSelectLabel.textColor = [UIColor whiteColor];
+            youBetterSelectLabel.textAlignment = NSTextAlignmentCenter;
+            youBetterSelectLabel.text = @"推荐";
+            youBetterSelectLabel.layer.cornerRadius = 5;
+            youBetterSelectLabel.layer.masksToBounds = true;
+            [self.protocolContainer addSubview:youBetterSelectLabel];
+        }
+        
         if (i==0) { // 进入选中第一个
             [self protocolSelected:proBtn];
         }
@@ -85,12 +102,22 @@
 
 - (void)protocolSelected:(UIButton *)aBtn {
     for (UIButton *btn in self.protocolContainer.subviews) {
-        btn.selected = NO;
+        if ([btn isKindOfClass:[UIButton class]])
+        {
+            btn.selected = NO;
+        }
     }
     aBtn.selected = YES;
     self.selectedProtocol = _protocols[aBtn.tag];
 //    self.selectProtocolAddress = _protocolAddrs[aBtn.tag];
     if (_delegate && [_delegate respondsToSelector:@selector(didSelectOneProtocol:)]) {
+        if ([self.selectedProtocol isEqualToString:@"TRC20"])
+        {
+            [_youCanTrustLabel setHidden:YES];
+        }else
+        {
+            [_youCanTrustLabel setHidden:NO];
+        }
         [_delegate didSelectOneProtocol:self.selectedProtocol];
     }
 }
@@ -133,8 +160,8 @@
     }
     if ([deposModel.bankname isEqualToString: @"dcbox"]) {
 //        self.protocols = protocolsArr;
-        self.selectedProtocol = @"TRC20";
-        self.protocols = @[@"TRC20", @"ERC20"];
+        self.selectedProtocol = @"ERC20";
+        self.protocols = @[@"ERC20", @"TRC20"];
     } else {
         self.selectedProtocol = @"ERC20";
         self.protocols = @[@"ERC20", @"TRC20"];
