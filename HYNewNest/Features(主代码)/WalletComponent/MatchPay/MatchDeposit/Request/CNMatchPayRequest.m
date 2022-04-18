@@ -34,7 +34,7 @@
 + (void)createDepisit:(NSString *)amount realName:(NSString *)realName finish:(HandlerBlock)finish {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"amount"] = amount;
-//    dic[@"depositor"] = [CNEncrypt encryptString:realName];
+    dic[@"depositor"] = [CNEncrypt encryptString:realName];
     dic[@"merchant"] = @"A01";
     dic[@"currency"] = @"CNY";
     [self Post:@"deposit/MMPayment" para:dic finish:finish];
