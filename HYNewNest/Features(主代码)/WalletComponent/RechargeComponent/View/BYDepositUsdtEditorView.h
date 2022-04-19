@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *rechargeAmount; //!< 用户写入的金额
 @property (nonatomic, copy, readonly) NSString *selectedProtocol; //!< 选中的协议
 @property (strong,nonatomic,nullable) DepositsBankModel * deposModel; //!< 模型
+@property (strong,nonatomic,nullable) PayWayV3PayTypeItem * paywaysV3Model; //!< 模型
 @end
 
 NS_ASSUME_NONNULL_END

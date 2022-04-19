@@ -70,9 +70,9 @@
             [obj removeFromSuperview];
     }];
     
-    CGFloat ItemMargin = 30;
+    CGFloat ItemMargin = 22;
     CGFloat ItemHight = 20;
-    CGFloat ItemWidht = 72;
+    CGFloat ItemWidht = (SCREEN_WIDTH * 0.65 - 20 - ItemMargin * 2 )/3.0;
     for (__block int i=0; i<self.protocols.count; i++) {
         UIButton *proBtn = [self getPortocalBtn];
         [proBtn setTitle:self.protocols[i] forState:UIControlStateNormal];
@@ -80,7 +80,7 @@
 
         [self.protocolContainer addSubview:proBtn];
         proBtn.frame = CGRectMake((ItemMargin + ItemWidht) * i, (self.protocolContainer.height-ItemHight)*0.5, ItemWidht, ItemHight);
-        if (i != 0)
+        if ([_protocols[i] isEqualToString:@"TRC20"])
         {
             UILabel *youBetterSelectLabel = [[UILabel alloc] init];
             youBetterSelectLabel.frame = CGRectMake(CGRectGetMaxX(proBtn.frame), 0, 25, 18);
@@ -124,7 +124,30 @@
 
 
 #pragma mark - Setter
-
+- (void)setPaywaysV3Model:(PayWayV3PayTypeItem *)paywaysV3Model
+{
+    _paywaysV3Model = paywaysV3Model;
+    // RMB直冲方式
+    if (paywaysV3Model == nil) {
+        return;
+    }
+    NSString *tipText = [HYRechargeHelper amountTipV3USDT:paywaysV3Model];
+    _amountTipsLb.text = tipText;
+//    _tfAmount.placeholder = tipText;
+    
+    if ([paywaysV3Model.payTypeName isEqualToString: @"dcbox"]) {
+//        self.protocols = protocolsArr;
+        self.protocols = paywaysV3Model.protocolList.copy;
+//        self.protocols = @[@"ERC20", @"TRC20"];
+    } else {
+        self.protocols = paywaysV3Model.protocolList.copy;
+//        self.protocols = @[@"ERC20", @"TRC20"];
+    }
+    self.selectedProtocol = self.protocols.firstObject;
+//    self.protocolAddrs = protocolAddrsArr;
+    
+    [self setupProtocolView];
+}
 - (void)setDeposModel:(DepositsBankModel *)deposModel {
     _deposModel = deposModel;
         
@@ -158,14 +181,15 @@
         }
         j++;
     }
+    
     if ([deposModel.bankname isEqualToString: @"dcbox"]) {
 //        self.protocols = protocolsArr;
-        self.selectedProtocol = @"ERC20";
-        self.protocols = @[@"ERC20", @"TRC20"];
+        self.protocols = deposModel.protocolList.copy;
+//        self.protocols = @[@"ERC20", @"TRC20"];
     } else {
-        self.selectedProtocol = @"ERC20";
         self.protocols = @[@"ERC20", @"TRC20"];
     }
+    self.selectedProtocol = self.protocols.firstObject;
 //    self.protocolAddrs = protocolAddrsArr;
     
     [self setupProtocolView];
@@ -211,12 +235,14 @@
         _tipText = @"请输入正确的数额";
         _isAmountRight = NO;
         
-    } else if ([text floatValue] < (float)self.deposModel.minAmount) {
-        _tipText = [NSString stringWithFormat:@"请输入≥%ld%@的数额", self.deposModel.minAmount, self.deposModel.currency];;
+    } else if ([text floatValue] < (float)self.paywaysV3Model.minAmount) {
+//        _tipText = [NSString stringWithFormat:@"请输入≥%ld%@的数额", self.deposModel.minAmount, self.deposModel.currency];
+        _tipText = [NSString stringWithFormat:@"请输入≥%ldUSDT的数额", self.paywaysV3Model.minAmount];
         _isAmountRight = NO;
         
-    } else if ([text floatValue] > (float)self.deposModel.maxAmount){
-        _tipText = [NSString stringWithFormat:@"超过最大充币额度%ld%@", self.deposModel.maxAmount, self.deposModel.currency];
+    } else if ([text floatValue] > (float)self.paywaysV3Model.maxAmount){
+//        _tipText = [NSString stringWithFormat:@"超过最大充币额度%ld%@", self.deposModel.maxAmount, self.deposModel.currency];
+        _tipText = [NSString stringWithFormat:@"超过最大充币额度%ldUSDT", self.paywaysV3Model.maxAmount];
         _isAmountRight = NO;
         
     } else {

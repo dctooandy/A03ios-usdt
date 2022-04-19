@@ -28,7 +28,9 @@
 
 @property (assign,nonatomic) NSInteger selIdx; //!<选中行
 @property (nonatomic, strong) NSArray<DepositsBankModel *> *depositModels;
+@property (nonatomic, strong) NSArray<PayWayV3PayTypeItem *> *payWayV3Models;
 @property (nonatomic, strong) OnlineBanksModel *curOnliBankModel;
+@property (nonatomic, strong) NSArray *depositProtocolList;
 @end
 
 @implementation BYDepositUsdtVC
@@ -88,8 +90,9 @@
 
 - (void)setSelIdx:(NSInteger)selIdx {
     _selIdx = selIdx;
-    if (self.depositModels.count) {
-        _editorView.deposModel = self.depositModels[_selIdx];
+    if (self.payWayV3Models.count) {
+//        _editorView.deposModel = self.depositModels[_selIdx];
+        _editorView.paywaysV3Model = self.payWayV3Models[_selIdx];
         if (self.suggestRecharge != 0) {
             _editorView.rechargeAmount = [NSString stringWithFormat:@"%i", self.suggestRecharge];
         }
@@ -103,7 +106,8 @@
  */
 - (void)didSelectOneProtocol:(NSString *)selectedProtocol {
 
-    DepositsBankModel *model = self.depositModels[_selIdx];
+//    DepositsBankModel *model = self.depositModels[_selIdx];
+    PayWayV3PayTypeItem *model = self.payWayV3Models[_selIdx];
     [CNRechargeRequest queryOnlineBanksPayType:model.payType
                                   usdtProtocol:selectedProtocol
                                        handler:^(id responseObj, NSString *errorMsg) {
@@ -144,6 +148,60 @@
 USDT支付渠道
 */
 - (void)queryDepositBankPayWays {
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_queue_create("queryPaywaysV3.data", DISPATCH_QUEUE_CONCURRENT);
+//    dispatch_group_enter(group);
+//    [self loadPaywaysV3Datas:group];
+
+    dispatch_group_notify(group,queue, ^{
+        [self loadPaywaysV3Datas];
+    });
+}
+
+- (void)loadPaywaysV3Datas {
+    [CNRechargeRequest queryPayWaysV3Handler:^(id responseObj, NSString *errorMsg) {
+        if (errorMsg) {
+            return;
+        }
+        PayWayV3Model *resultModel = [PayWayV3Model cn_parse:responseObj];
+        __block NSMutableArray *models = @[].mutableCopy;
+        __block NSInteger xjkIdx = 0;
+        __block NSInteger otherWalletIdx = 0;
+
+        //去掉手工存款 paytype = 0 的情况。不再支持此方式，服务器去不掉只能客户端做过滤
+//        NSMutableArray *tmp = [NSMutableArray arrayWithArray:resultModel.payTypeList];
+//        for (PayWayV3PayTypeItem *item in resultModel.payTypeList) {
+//          if ([item.payType isEqualToString:@"43"])
+//          {
+//              self.depositProtocolList = item.protocolList;
+//          }
+//        }
+        [resultModel.payTypeList enumerateObjectsUsingBlock:^(PayWayV3PayTypeItem * _Nonnull bank, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([bank.payType caseInsensitiveCompare:@"43"] == NSOrderedSame) {
+                [models addObject:bank];
+                xjkIdx = models.count-1;
+            }
+            if ([HYRechargeHelper isUSDTOtherBankV3Model:bank]) {
+                [models addObject:bank];
+                otherWalletIdx = models.count-1;
+            }
+        }];
+        // 将小金库排到第一位
+        if (xjkIdx != 0) {
+            [models exchangeObjectAtIndex:0 withObjectAtIndex:xjkIdx];
+        }
+        if (models.count == 0) {
+            [CNTOPHUB showAlert:@"暂无可用充值渠道"];
+            return;
+        }
+        self.payWayV3Models = models;
+        
+        [self didTapTopDepositWayBtn:self->_xjkBtn];
+
+//        dispatch_group_leave(group);
+    }];
+}
+- (void)quertUSDTPayWallets {
     [CNRechargeRequest queryUSDTPayWalletsHandler:^(id responseObj, NSString *errorMsg) {
         
         NSArray *depositModels = [DepositsBankModel cn_parse:responseObj];
@@ -153,6 +211,7 @@ USDT支付渠道
         __block NSInteger otherWalletIdx = 0;
         [depositModels enumerateObjectsUsingBlock:^(DepositsBankModel * _Nonnull bank, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([bank.bankname caseInsensitiveCompare:@"dcbox"] == NSOrderedSame) {
+                bank.protocolList = self.depositProtocolList;
                 [models addObject:bank];
                 xjkIdx = models.count-1;
             }
