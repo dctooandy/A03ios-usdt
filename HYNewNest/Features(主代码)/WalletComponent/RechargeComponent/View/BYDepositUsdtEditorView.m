@@ -137,18 +137,44 @@
     _amountTipsLb.text = tipText;
 //    _tfAmount.placeholder = tipText;
     
-    if ([paywaysV3Model.payTypeName isEqualToString: @"dcbox"]) {
-//        self.protocols = protocolsArr;
-        self.protocols = paywaysV3Model.protocolList.copy;
-//        self.protocols = @[@"ERC20", @"TRC20"];
-    } else {
-        self.protocols = paywaysV3Model.protocolList.copy;
-//        self.protocols = @[@"ERC20", @"TRC20"];
-    }
+    self.protocols = paywaysV3Model.protocolList.copy;
+    [self sortProtocolList];
     self.selectedProtocol = self.protocols.firstObject;
 //    self.protocolAddrs = protocolAddrsArr;
     
     [self setupProtocolView];
+}
+- (void)sortProtocolList
+{
+    self.protocols = [self sortProtocolListArray:self.protocols].mutableCopy;
+    self.protocols = [self sortProtocolListArray:self.protocols].mutableCopy;
+}
+- (NSMutableArray *)sortProtocolListArray:(NSArray *)currentArray
+{
+    __block NSMutableArray *models = @[].mutableCopy;
+    __block NSInteger ercIdx = 0;
+    __block NSInteger omnIdx = self.protocols.count - 1;
+    [currentArray enumerateObjectsUsingBlock:^(NSString * _Nonnull protocolName, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([protocolName caseInsensitiveCompare:@"ERC20"] == NSOrderedSame) {
+            [models addObject:protocolName];
+            ercIdx = idx;
+        }else if ([protocolName caseInsensitiveCompare:@"OMNI"] == NSOrderedSame) {
+            [models addObject:protocolName];
+            omnIdx = idx;
+        }else
+        {
+            [models addObject:protocolName];
+        }
+    }];
+    // 将ERC20排到第一位
+    if (ercIdx != 0) {
+        [models exchangeObjectAtIndex:0 withObjectAtIndex:ercIdx];
+    }
+    // 将Omni排到最后一位
+    if (omnIdx != (self.protocols.count - 1)) {
+        [models exchangeObjectAtIndex:(self.protocols.count - 1) withObjectAtIndex:omnIdx];
+    }
+    return models;
 }
 - (void)setDeposModel:(DepositsBankModel *)deposModel {
     _deposModel = deposModel;
