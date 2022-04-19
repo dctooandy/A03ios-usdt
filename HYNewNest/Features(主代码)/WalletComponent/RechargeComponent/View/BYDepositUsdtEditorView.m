@@ -82,16 +82,18 @@
         proBtn.frame = CGRectMake((ItemMargin + ItemWidht) * i, (self.protocolContainer.height-ItemHight)*0.5, ItemWidht, ItemHight);
         if ([_protocols[i] isEqualToString:@"TRC20"])
         {
-            UILabel *youBetterSelectLabel = [[UILabel alloc] init];
-            youBetterSelectLabel.frame = CGRectMake(CGRectGetMaxX(proBtn.frame), 0, 25, 18);
-            youBetterSelectLabel.backgroundColor = [UIColor redColor];
-            youBetterSelectLabel.font = [UIFont systemFontOfSize:9];;
-            youBetterSelectLabel.textColor = [UIColor whiteColor];
-            youBetterSelectLabel.textAlignment = NSTextAlignmentCenter;
-            youBetterSelectLabel.text = @"推荐";
-            youBetterSelectLabel.layer.cornerRadius = 5;
-            youBetterSelectLabel.layer.masksToBounds = true;
-            [self.protocolContainer addSubview:youBetterSelectLabel];
+//            UILabel *youBetterSelectLabel = [[UILabel alloc] init];
+//            youBetterSelectLabel.frame = CGRectMake(CGRectGetMaxX(proBtn.frame), 0, 25, 18);
+//            youBetterSelectLabel.backgroundColor = [UIColor redColor];
+//            youBetterSelectLabel.font = [UIFont systemFontOfSize:9];;
+//            youBetterSelectLabel.textColor = [UIColor whiteColor];
+//            youBetterSelectLabel.textAlignment = NSTextAlignmentCenter;
+//            youBetterSelectLabel.text = @"推荐";
+//            youBetterSelectLabel.layer.cornerRadius = 5;
+//            youBetterSelectLabel.layer.masksToBounds = true;
+            UIImageView *trustImgView = [[UIImageView alloc] initWithImage:ImageNamed(@"A03_PCH5APP_充值&取款")];
+            trustImgView.frame = CGRectMake(CGRectGetMidX(proBtn.frame) - 8, -10, 34, 19);
+            [self.protocolContainer addSubview:trustImgView];
         }
         
         if (i==0) { // 进入选中第一个
