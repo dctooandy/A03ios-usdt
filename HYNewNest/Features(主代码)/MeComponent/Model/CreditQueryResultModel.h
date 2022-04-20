@@ -136,6 +136,10 @@ typedef NS_ENUM(NSInteger,TransactionProgressState) {
 #pragma mark - 余额宝
 @property (assign,nonatomic) NSInteger status; //!<转账状态，0待审批，1审批通过，-1后台拒绝，-9确认失败
 @property (copy,nonatomic) NSString *yebStatusTxt;
+
+#pragma mark - 极速存取款
+/// 2-等待 5-确认 下进详情页
+@property (nonatomic, assign) NSInteger mmStatus;
 @end
 
 @interface CreditQueryResultModel : CNBaseModel

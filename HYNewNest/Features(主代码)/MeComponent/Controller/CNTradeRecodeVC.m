@@ -21,6 +21,9 @@
 #import "NSURL+HYLink.h"
 #import <MJRefresh/MJRefresh.h>
 
+#import "CNMatchDepositStatusVC.h"
+#import "KYMMatchWithdrewSuccessVC.h"
+
 @interface CNTradeRecodeVC () <segmentHeaderViewDelegate, UITableViewDelegate, UITableViewDataSource>
 // 记录类型标签
 @property (weak, nonatomic) IBOutlet UILabel *typeLb;
@@ -378,13 +381,32 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    CreditQueryDataModel *model = self.dataList[indexPath.row];
+    
     CNRecordDetailType dtype;
     switch (_recoType) {
-        case transactionRecord_rechargeType:
+        case transactionRecord_rechargeType: {
             dtype = CNRecordTypeDeposit;
+            if (model.mmStatus == 2 || model.mmStatus == 5) {
+                CNMatchDepositStatusVC *statusVC = [[CNMatchDepositStatusVC alloc] init];
+                statusVC.transactionId = model.requestId;
+                statusVC.backToLastVC = YES;
+                [self.navigationController pushViewController:statusVC animated:YES];
+                return;
+            }
+        }
             break;
-        case transactionRecord_withdrawType:
+        case transactionRecord_withdrawType: {
             dtype = CNRecordTypeWithdraw;
+            if (model.mmStatus == 2 || model.mmStatus == 5) {
+                KYMMatchWithdrewSuccessVC *vc = [[KYMMatchWithdrewSuccessVC alloc] init];
+                vc.transactionId = model.requestId;
+                vc.amountStr = model.amount;
+                vc.backToLastVC = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+                return;
+            }
+        }
             break;
         case transactionRecord_betRecordType:
             dtype = CNRecordTypeTouZhu;
@@ -406,7 +428,7 @@
     }
         
     CNRecordDetailVC *vc = [[CNRecordDetailVC alloc] initWithType:dtype];
-    vc.model = self.dataList[indexPath.row];
+    vc.model = model;
     vc.navPopupBlock = ^(id obj) {
         if ([obj isEqual:@(1)]) {
             [self requestNewData];
