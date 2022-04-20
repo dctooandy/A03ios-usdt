@@ -78,7 +78,19 @@ form.submit();\
     [self popGestureClose];
 
     if ([self.gameUrl containsString:@"callbackUrl"] && ![self.gameName isEqualToString:@"AS真人棋牌"]) {
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
+        if ([self.gameUrl containsString:@"gameType=MOON"] ||
+            [self.gameUrl containsString:@"gameType=STAI"] ||
+            [self.gameUrl containsString:@"gameType=HILO"] ||
+            [self.gameUrl containsString:@"gameType=DICE"] ||
+            [self.gameUrl containsString:@"gameType=PLIN"] )
+        {
+            [self.navigationController setNavigationBarHidden:NO animated:YES];
+            self.navigationItem.title = self.gameName;
+            [self addNaviRightItemWithImageName:@"shuaxin"];
+        }else
+        {
+            [self.navigationController setNavigationBarHidden:YES animated:YES];
+        }
     } else {
         [self.navigationController setNavigationBarHidden:NO animated:YES];
         self.navigationItem.title = self.gameName;
@@ -143,7 +155,17 @@ form.submit();\
     [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
         STRONGSELF_DEFINE
         if ([strongSelf.gameUrl containsString:@"callbackUrl"] && ![self.gameName isEqualToString:@"AS真人棋牌"]) {
-            make.top.equalTo(strongSelf.view).mas_offset(kStatusBarHeight);
+            if ([self.gameUrl containsString:@"gameType=MOON"] ||
+                [self.gameUrl containsString:@"gameType=STAI"] ||
+                [self.gameUrl containsString:@"gameType=HILO"] ||
+                [self.gameUrl containsString:@"gameType=DICE"] ||
+                [self.gameUrl containsString:@"gameType=PLIN"] )
+            {
+                make.top.equalTo(strongSelf.view);
+            }else
+            {
+                make.top.equalTo(strongSelf.view).mas_offset(kStatusBarHeight);
+            }
         } else {
             make.top.equalTo(strongSelf.view);
         }
@@ -411,10 +433,22 @@ form.submit();\
          WEAKSELF_DEFINE
          if ([self.gameUrl containsString:@"callbackUrl"] && ![self.gameName isEqualToString:@"AS真人棋牌"]) {
 //             self.hideNavgation = YES;
-             [self.navigationController setNavigationBarHidden:YES animated:YES];
+             if ([self.gameUrl containsString:@"gameType=MOON"] ||
+                 [self.gameUrl containsString:@"gameType=STAI"] ||
+                 [self.gameUrl containsString:@"gameType=HILO"] ||
+                 [self.gameUrl containsString:@"gameType=DICE"] ||
+                 [self.gameUrl containsString:@"gameType=PLIN"] )
+             {
+                 [self.navigationController setNavigationBarHidden:NO animated:YES];
+                 self.navigationItem.title = self.gameName;
+                 [self addNaviRightItemWithImageName:@"shuaxin"];
+             }else
+             {
+                 [self.navigationController setNavigationBarHidden:YES animated:YES];
+             }
          } else {
 //             self.hideNavgation = NO;
-              [self.navigationController setNavigationBarHidden:NO animated:YES];
+             [self.navigationController setNavigationBarHidden:NO animated:YES];
              self.navigationItem.title = self.gameName;
              [self addNaviRightItemWithImageName:@"shuaxin"];
          }
