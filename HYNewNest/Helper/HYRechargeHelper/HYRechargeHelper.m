@@ -45,7 +45,20 @@
     }
     return amongStr;
 }
-
+/// 限额提示字符串
++ (NSString *)amountTipV3USDT:(PayWayV3PayTypeItem *)bank {
+    NSString *amongStr = @"";
+    NSString *minStr;
+    NSString *maxStr;
+    if (bank.minAmount > 0) {
+        minStr = [self getAmountByStr: [NSString stringWithFormat:@"%ld", bank.minAmount]];
+        maxStr = [self getAmountByStr: [NSString stringWithFormat:@"%ld", bank.maxAmount]];
+        amongStr = [NSString stringWithFormat:@"%@ USDT起，最多%@ USDT",minStr,maxStr];
+    }else{
+        amongStr = @"最少充值10USDT";
+    }
+    return amongStr;
+}
 /// 限额提示字符串
 + (NSString *)amountTipUSDT:(DepositsBankModel *)bank {
     NSString *amongStr = @"";
@@ -109,5 +122,11 @@
     }
     return NO;
 }
-
++ (BOOL)isUSDTOtherBankV3Model:(PayWayV3PayTypeItem *)item
+{
+    if ([item.payType isEqualToString:@"25"]) {
+        return YES;
+    }
+    return NO;
+}
 @end

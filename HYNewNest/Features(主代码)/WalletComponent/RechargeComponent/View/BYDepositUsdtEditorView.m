@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *protocolQuestBtn;
 @property (weak, nonatomic) IBOutlet UILabel *amountTipsLb;
 @property (strong, nonatomic) IBOutletCollection(BYThreeStatusBtn) NSArray *shortCutAmountBtns;
+@property (weak, nonatomic) IBOutlet UILabel *youCanTrustLabel;
 
 /// 选中的协议
 @property (nonatomic, copy, readwrite) NSString *selectedProtocol;
@@ -45,6 +46,8 @@
     [self.tfAmount setValue:[UIFont fontPFR15] forKeyPath:@"placeholderLabel.font"];
     [self.tfAmount addTarget:self action:@selector(amountTfDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.tfAmount addTarget:self action:@selector(amountTfDidResignFirstResponder:) forControlEvents:UIControlEventEditingDidEnd];
+    UIColor *gradColor = [UIColor gradientFromColor:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE) withWidth:self.youCanTrustLabel.width];
+    _youCanTrustLabel.textColor = gradColor;
     
 }
 
@@ -67,9 +70,9 @@
             [obj removeFromSuperview];
     }];
     
-    CGFloat ItemMargin = 16;
+    CGFloat ItemMargin = 22;
     CGFloat ItemHight = 20;
-    CGFloat ItemWidht = 72;
+    CGFloat ItemWidht = (SCREEN_WIDTH * 0.65 - 20 - ItemMargin * 2 )/3.0;
     for (__block int i=0; i<self.protocols.count; i++) {
         UIButton *proBtn = [self getPortocalBtn];
         [proBtn setTitle:self.protocols[i] forState:UIControlStateNormal];
@@ -77,6 +80,22 @@
 
         [self.protocolContainer addSubview:proBtn];
         proBtn.frame = CGRectMake((ItemMargin + ItemWidht) * i, (self.protocolContainer.height-ItemHight)*0.5, ItemWidht, ItemHight);
+        if ([_protocols[i] isEqualToString:@"TRC20"])
+        {
+//            UILabel *youBetterSelectLabel = [[UILabel alloc] init];
+//            youBetterSelectLabel.frame = CGRectMake(CGRectGetMaxX(proBtn.frame), 0, 25, 18);
+//            youBetterSelectLabel.backgroundColor = [UIColor redColor];
+//            youBetterSelectLabel.font = [UIFont systemFontOfSize:9];;
+//            youBetterSelectLabel.textColor = [UIColor whiteColor];
+//            youBetterSelectLabel.textAlignment = NSTextAlignmentCenter;
+//            youBetterSelectLabel.text = @"推荐";
+//            youBetterSelectLabel.layer.cornerRadius = 5;
+//            youBetterSelectLabel.layer.masksToBounds = true;
+            UIImageView *trustImgView = [[UIImageView alloc] initWithImage:ImageNamed(@"A03_PCH5APP_充值&取款")];
+            trustImgView.frame = CGRectMake(CGRectGetMidX(proBtn.frame) - 8, -10, 34, 19);
+            [self.protocolContainer addSubview:trustImgView];
+        }
+        
         if (i==0) { // 进入选中第一个
             [self protocolSelected:proBtn];
         }
@@ -85,19 +104,78 @@
 
 - (void)protocolSelected:(UIButton *)aBtn {
     for (UIButton *btn in self.protocolContainer.subviews) {
-        btn.selected = NO;
+        if ([btn isKindOfClass:[UIButton class]])
+        {
+            btn.selected = NO;
+        }
     }
     aBtn.selected = YES;
     self.selectedProtocol = _protocols[aBtn.tag];
 //    self.selectProtocolAddress = _protocolAddrs[aBtn.tag];
     if (_delegate && [_delegate respondsToSelector:@selector(didSelectOneProtocol:)]) {
+        if ([self.selectedProtocol isEqualToString:@"TRC20"])
+        {
+            [_youCanTrustLabel setHidden:YES];
+        }else
+        {
+            [_youCanTrustLabel setHidden:NO];
+        }
         [_delegate didSelectOneProtocol:self.selectedProtocol];
     }
 }
 
 
 #pragma mark - Setter
-
+- (void)setPaywaysV3Model:(PayWayV3PayTypeItem *)paywaysV3Model
+{
+    _paywaysV3Model = paywaysV3Model;
+    // RMB直冲方式
+    if (paywaysV3Model == nil) {
+        return;
+    }
+    NSString *tipText = [HYRechargeHelper amountTipV3USDT:paywaysV3Model];
+    _amountTipsLb.text = tipText;
+//    _tfAmount.placeholder = tipText;
+    
+    self.protocols = paywaysV3Model.protocolList.copy;
+    [self sortProtocolList];
+    self.selectedProtocol = self.protocols.firstObject;
+//    self.protocolAddrs = protocolAddrsArr;
+    
+    [self setupProtocolView];
+}
+- (void)sortProtocolList
+{
+    self.protocols = [self sortProtocolListArray:self.protocols].mutableCopy;
+    self.protocols = [self sortProtocolListArray:self.protocols].mutableCopy;
+}
+- (NSMutableArray *)sortProtocolListArray:(NSArray *)currentArray
+{
+    __block NSMutableArray *models = @[].mutableCopy;
+    __block NSInteger ercIdx = 0;
+    __block NSInteger omnIdx = self.protocols.count - 1;
+    [currentArray enumerateObjectsUsingBlock:^(NSString * _Nonnull protocolName, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([protocolName caseInsensitiveCompare:@"ERC20"] == NSOrderedSame) {
+            [models addObject:protocolName];
+            ercIdx = idx;
+        }else if ([protocolName caseInsensitiveCompare:@"OMNI"] == NSOrderedSame) {
+            [models addObject:protocolName];
+            omnIdx = idx;
+        }else
+        {
+            [models addObject:protocolName];
+        }
+    }];
+    // 将ERC20排到第一位
+    if (ercIdx != 0) {
+        [models exchangeObjectAtIndex:0 withObjectAtIndex:ercIdx];
+    }
+    // 将Omni排到最后一位
+    if (omnIdx != (self.protocols.count - 1)) {
+        [models exchangeObjectAtIndex:(self.protocols.count - 1) withObjectAtIndex:omnIdx];
+    }
+    return models;
+}
 - (void)setDeposModel:(DepositsBankModel *)deposModel {
     _deposModel = deposModel;
         
@@ -131,14 +209,15 @@
         }
         j++;
     }
+    
     if ([deposModel.bankname isEqualToString: @"dcbox"]) {
 //        self.protocols = protocolsArr;
-        self.selectedProtocol = @"TRC20";
-        self.protocols = @[@"TRC20", @"ERC20"];
+        self.protocols = deposModel.protocolList.copy;
+//        self.protocols = @[@"ERC20", @"TRC20"];
     } else {
-        self.selectedProtocol = @"ERC20";
         self.protocols = @[@"ERC20", @"TRC20"];
     }
+    self.selectedProtocol = self.protocols.firstObject;
 //    self.protocolAddrs = protocolAddrsArr;
     
     [self setupProtocolView];
@@ -184,12 +263,14 @@
         _tipText = @"请输入正确的数额";
         _isAmountRight = NO;
         
-    } else if ([text floatValue] < (float)self.deposModel.minAmount) {
-        _tipText = [NSString stringWithFormat:@"请输入≥%ld%@的数额", self.deposModel.minAmount, self.deposModel.currency];;
+    } else if ([text floatValue] < (float)self.paywaysV3Model.minAmount) {
+//        _tipText = [NSString stringWithFormat:@"请输入≥%ld%@的数额", self.deposModel.minAmount, self.deposModel.currency];
+        _tipText = [NSString stringWithFormat:@"请输入≥%ldUSDT的数额", self.paywaysV3Model.minAmount];
         _isAmountRight = NO;
         
-    } else if ([text floatValue] > (float)self.deposModel.maxAmount){
-        _tipText = [NSString stringWithFormat:@"超过最大充币额度%ld%@", self.deposModel.maxAmount, self.deposModel.currency];
+    } else if ([text floatValue] > (float)self.paywaysV3Model.maxAmount){
+//        _tipText = [NSString stringWithFormat:@"超过最大充币额度%ld%@", self.deposModel.maxAmount, self.deposModel.currency];
+        _tipText = [NSString stringWithFormat:@"超过最大充币额度%ldUSDT", self.paywaysV3Model.maxAmount];
         _isAmountRight = NO;
         
     } else {

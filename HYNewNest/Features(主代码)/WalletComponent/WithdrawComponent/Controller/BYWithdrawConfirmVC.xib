@@ -19,6 +19,7 @@
                 <outlet property="successView" destination="DHV-0J-ZGJ" id="doi-zK-iB7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewHeightConstraint" destination="svX-8t-g1v" id="gBP-CF-NC3"/>
+                <outlet property="youCanTrustLabel" destination="ZZ6-bx-v11" id="LPJ-J0-uLr"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -81,16 +82,13 @@
                                     </state>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AXr-4e-Rcj">
-                                    <rect key="frame" x="194" y="0.0" width="160" height="30"/>
+                                    <rect key="frame" x="105.5" y="0.0" width="248.5" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="160" id="yqx-bg-pdT"/>
-                                    </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="建议优先使用TRC20协议,手续费更低" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ6-bx-v11">
                                     <rect key="frame" x="0.0" y="30" width="354" height="29"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="textColor" red="0.098039215686274508" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -287,6 +285,7 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="fhn-6s-EOJ" secondAttribute="trailing" id="3YA-OW-X9i"/>
+                <constraint firstItem="AXr-4e-Rcj" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.6" id="ME6-hL-s23"/>
                 <constraint firstAttribute="bottom" secondItem="fhn-6s-EOJ" secondAttribute="bottom" id="Rzx-FS-6st"/>
                 <constraint firstItem="fhn-6s-EOJ" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="p7k-fO-HXU"/>
             </constraints>

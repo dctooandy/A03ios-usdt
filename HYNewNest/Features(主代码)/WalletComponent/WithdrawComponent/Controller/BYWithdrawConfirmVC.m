@@ -30,6 +30,7 @@
 @property (nonatomic, strong) NSArray *protocols; // 所有协议
 /// 选中的协议
 @property (nonatomic, copy, readwrite) NSString *selectedProtocol;
+@property (weak, nonatomic) IBOutlet UILabel *youCanTrustLabel;
 
 @end
 
@@ -72,8 +73,10 @@
     [self.codeInputView setPlaceholder:@"请输入资金密码"];
     
     self.availableAmountLabel.text = [self.balance.withdrawBal jk_toDisplayNumberWithDigit:2];
-    self.selectedProtocol = @"TRC20";
-    self.protocols = @[@"TRC20", @"ERC20"];
+    self.selectedProtocol = @"ERC20";
+    self.protocols = @[@"ERC20", @"TRC20"];
+    UIColor *gradColor = [UIColor gradientFromColor:kHexColor(0x10B4DD) toColor:kHexColor(0x19CECE) withWidth:self.youCanTrustLabel.width];
+    _youCanTrustLabel.textColor = gradColor;
     [self setupProtocolView];
 }
 
@@ -151,7 +154,7 @@
             [obj removeFromSuperview];
     }];
     
-    CGFloat ItemMargin = 16;
+    CGFloat ItemMargin = 30;
     CGFloat ItemHight = 20;
     CGFloat ItemWidht = 72;
     for (__block int i=0; i<self.protocols.count; i++) {
@@ -161,6 +164,21 @@
 
         [self.protocolContainer addSubview:proBtn];
         proBtn.frame = CGRectMake((ItemMargin + ItemWidht) * i, (self.protocolContainer.height-ItemHight)*0.5, ItemWidht, ItemHight);
+        if (i != 0)
+        {
+//            UILabel *youBetterSelectLabel = [[UILabel alloc] init];
+//            youBetterSelectLabel.frame = CGRectMake(CGRectGetMaxX(proBtn.frame), 0, 25, 18);
+//            youBetterSelectLabel.backgroundColor = [UIColor redColor];
+//            youBetterSelectLabel.font = [UIFont systemFontOfSize:9];;
+//            youBetterSelectLabel.textColor = [UIColor whiteColor];
+//            youBetterSelectLabel.textAlignment = NSTextAlignmentCenter;
+//            youBetterSelectLabel.text = @"推荐";
+//            youBetterSelectLabel.layer.cornerRadius = 5;
+//            youBetterSelectLabel.layer.masksToBounds = true;
+            UIImageView *trustImgView = [[UIImageView alloc] initWithImage:ImageNamed(@"A03_PCH5APP_充值&取款")];
+            trustImgView.frame = CGRectMake(CGRectGetMidX(proBtn.frame) - 8, -10, 34, 19);
+            [self.protocolContainer addSubview:trustImgView];
+        }
         if (i==0) { // 进入选中第一个
             [self protocolSelected:proBtn];
         }
@@ -169,10 +187,20 @@
 
 - (void)protocolSelected:(UIButton *)aBtn {
     for (UIButton *btn in self.protocolContainer.subviews) {
-        btn.selected = NO;
+        if ([btn isKindOfClass:[UIButton class]])
+        {
+            btn.selected = NO;
+        }
     }
     aBtn.selected = YES;
     self.selectedProtocol = _protocols[aBtn.tag];
+    if ([self.selectedProtocol isEqualToString:@"TRC20"])
+    {
+        [_youCanTrustLabel setHidden:YES];
+    }else
+    {
+        [_youCanTrustLabel setHidden:NO];
+    }
 //    self.selectProtocolAddress = _protocolAddrs[aBtn.tag];
 //    if (_delegate && [_delegate respondsToSelector:@selector(didSelectOneProtocol:)]) {
 //        [_delegate didSelectOneProtocol:self.selectedProtocol];
