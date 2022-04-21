@@ -22,7 +22,10 @@ static NSString *FastPayType = @"FastPay";
 @property (nonatomic,copy) NSString *payTypeTip;
 @property (nonatomic,assign) NSInteger minAmount;
 @property (nonatomic,assign) NSInteger maxAmount;
-
+/// 支付渠道
+@property (nonatomic,copy) NSArray *protocolList;
+@property (nonatomic,copy) NSString *showName;
+@property (nonatomic,copy) NSString *typeNameEx;
 @end
 
 
@@ -65,6 +68,8 @@ static NSString *FastPayType = @"FastPay";
 @property (nonatomic , copy) NSString * token;
 @property (nonatomic , copy) NSString * usdtProtocol;
 @property (nonatomic , copy) NSString * bankaccountno;
+/// 支付渠道
+@property (nonatomic , copy) NSArray * protocolList;
 @end
 
 

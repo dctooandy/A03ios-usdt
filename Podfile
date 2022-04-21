@@ -25,6 +25,7 @@ target 'HYNewNest' do
   pod 'CocoaAsyncSocket'
   pod 'LookinServer', :configurations => ['Debug']
   pod 'ZLPhotoBrowser', '~> 3.2.0'
+  pod 'IVGameLibrary',:git =>'http://10.66.72.115/mobile-iOS-Library/IVGameLibrary.git',:branch=>'master'
 
   pod 'KYNetworking',:git =>'http://10.66.72.115/mobile-iOS-Library/KYNetworking.git'
   # 公共接口
@@ -45,7 +46,6 @@ target 'HYNewNest' do
   pod 'IVIMPublicLibrary',:git =>'http://10.66.72.115/mobile-iOS-library/IVIMPublicLibrary.git'
   # 3S
   pod 'IN3SAnalyticsSDK',:git =>'http://10.66.72.115/mobile-iOS-library/IV3SLibrary.git'
-  pod 'IVGameLibrary',:git =>'http://10.66.72.115/mobile-iOS-Library/IVGameLibrary.git',:branch=>'v2.0'
 
   target 'HYNewNestTests' do
     inherit! :search_paths

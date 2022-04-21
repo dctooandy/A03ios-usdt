@@ -273,7 +273,7 @@
 }
 
 - (void)showUploadUI {
-    [CNMUploadView showUploadViewTo:self billId:self.fastModel.mmProcessingOrderTransactionId promo:(self.fastModel.needUploadFlag != 1) commitDeposit:nil];
+    [CNMUploadView showUploadViewTo:self billId:self.fastModel.mmProcessingOrderTransactionId promo:(self.fastModel.needUploadFlag != 1) upload:(self.fastModel.mmProcessingOrderStatus == CNMPayBillStatusConfirm) commitDeposit:nil];
 }
 
 - (void)confirmBill {

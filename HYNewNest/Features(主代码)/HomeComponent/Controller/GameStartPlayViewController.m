@@ -78,7 +78,19 @@ form.submit();\
     [self popGestureClose];
 
     if ([self.gameUrl containsString:@"callbackUrl"] && ![self.gameName isEqualToString:@"AS真人棋牌"]) {
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
+        if ([self.gameUrl containsString:@"gameType=MOON"] ||
+            [self.gameUrl containsString:@"gameType=STAI"] ||
+            [self.gameUrl containsString:@"gameType=HILO"] ||
+            [self.gameUrl containsString:@"gameType=DICE"] ||
+            [self.gameUrl containsString:@"gameType=PLIN"] )
+        {
+            [self.navigationController setNavigationBarHidden:NO animated:YES];
+            self.navigationItem.title = self.gameName;
+            [self addNaviRightItemWithImageName:@"shuaxin"];
+        }else
+        {
+            [self.navigationController setNavigationBarHidden:YES animated:YES];
+        }
     } else {
         [self.navigationController setNavigationBarHidden:NO animated:YES];
         self.navigationItem.title = self.gameName;
@@ -137,13 +149,32 @@ form.submit();\
     self.webView.opaque = NO;
     self.webView.backgroundColor = [UIColor clearColor];
     self.webView.allowsBackForwardNavigationGestures = true;
+    NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    [self.webView evaluateJavaScript:@"window.navigator.userAgent;" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"UA: Error == %@", error.localizedDescription);
+            return;;
+        }
+        self.webView.customUserAgent = [NSString stringWithFormat:@"%@ app_version=%@ great-winner Safari",result,appVersion];
+        
+    }];
     [self.view addSubview:self.webView];
     
     WEAKSELF_DEFINE
     [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
         STRONGSELF_DEFINE
         if ([strongSelf.gameUrl containsString:@"callbackUrl"] && ![self.gameName isEqualToString:@"AS真人棋牌"]) {
-            make.top.equalTo(strongSelf.view).mas_offset(kStatusBarHeight);
+            if ([self.gameUrl containsString:@"gameType=MOON"] ||
+                [self.gameUrl containsString:@"gameType=STAI"] ||
+                [self.gameUrl containsString:@"gameType=HILO"] ||
+                [self.gameUrl containsString:@"gameType=DICE"] ||
+                [self.gameUrl containsString:@"gameType=PLIN"] )
+            {
+                make.top.equalTo(strongSelf.view);
+            }else
+            {
+                make.top.equalTo(strongSelf.view).mas_offset(kStatusBarHeight);
+            }
         } else {
             make.top.equalTo(strongSelf.view);
         }
@@ -260,7 +291,7 @@ form.submit();\
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
     MyLog(@"didFinishNavigation \n")
-    
+    [self viewDidLayoutSubviews];
 }
 
 // 页面加载失败时调用
@@ -315,10 +346,13 @@ form.submit();\
         [self refresh];
         return;
     }
-    
     decisionHandler(WKNavigationActionPolicyAllow);
 }
-
+// 对于HTTPS的都会触发此代理，如果不要求验证，传默认就行
+// 如果需要证书验证，与使用AFN进行HTTPS证书验证是一样的
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *__nullable credential))completionHandler {
+    completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
+}
     
 // 在收到响应后，决定是否跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler{
@@ -411,10 +445,22 @@ form.submit();\
          WEAKSELF_DEFINE
          if ([self.gameUrl containsString:@"callbackUrl"] && ![self.gameName isEqualToString:@"AS真人棋牌"]) {
 //             self.hideNavgation = YES;
-             [self.navigationController setNavigationBarHidden:YES animated:YES];
+             if ([self.gameUrl containsString:@"gameType=MOON"] ||
+                 [self.gameUrl containsString:@"gameType=STAI"] ||
+                 [self.gameUrl containsString:@"gameType=HILO"] ||
+                 [self.gameUrl containsString:@"gameType=DICE"] ||
+                 [self.gameUrl containsString:@"gameType=PLIN"] )
+             {
+                 [self.navigationController setNavigationBarHidden:NO animated:YES];
+                 self.navigationItem.title = self.gameName;
+                 [self addNaviRightItemWithImageName:@"shuaxin"];
+             }else
+             {
+                 [self.navigationController setNavigationBarHidden:YES animated:YES];
+             }
          } else {
 //             self.hideNavgation = NO;
-              [self.navigationController setNavigationBarHidden:NO animated:YES];
+             [self.navigationController setNavigationBarHidden:NO animated:YES];
              self.navigationItem.title = self.gameName;
              [self addNaviRightItemWithImageName:@"shuaxin"];
          }
