@@ -85,6 +85,7 @@
     if ([param[@"gameCode"] isEqualToString:@"064"] && gameId.length > 0)
     {
         param[@"blockChainSingle"] = @"1";
+        [param setObject:@"0" forKey:@"inclLog"];
     }
     param[@"gameId"] = gameId.length > 0 ? gameId : @"";
     param[@"platformCurrency"] = platformCurrency;
