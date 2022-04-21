@@ -149,6 +149,15 @@ form.submit();\
     self.webView.opaque = NO;
     self.webView.backgroundColor = [UIColor clearColor];
     self.webView.allowsBackForwardNavigationGestures = true;
+    NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    [self.webView evaluateJavaScript:@"window.navigator.userAgent;" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"UA: Error == %@", error.localizedDescription);
+            return;;
+        }
+        self.webView.customUserAgent = [NSString stringWithFormat:@"%@ app_version=%@ great-winner Safari",result,appVersion];
+        
+    }];
     [self.view addSubview:self.webView];
     
     WEAKSELF_DEFINE
@@ -282,7 +291,7 @@ form.submit();\
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
     MyLog(@"didFinishNavigation \n")
-    
+    [self viewDidLayoutSubviews];
 }
 
 // 页面加载失败时调用
@@ -337,10 +346,13 @@ form.submit();\
         [self refresh];
         return;
     }
-    
     decisionHandler(WKNavigationActionPolicyAllow);
 }
-
+// 对于HTTPS的都会触发此代理，如果不要求验证，传默认就行
+// 如果需要证书验证，与使用AFN进行HTTPS证书验证是一样的
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *__nullable credential))completionHandler {
+    completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
+}
     
 // 在收到响应后，决定是否跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler{
