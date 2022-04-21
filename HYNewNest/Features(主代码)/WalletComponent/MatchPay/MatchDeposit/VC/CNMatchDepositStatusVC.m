@@ -164,7 +164,7 @@
 - (IBAction)confirm:(UIButton *)sender {
     __weak typeof(self) weakSelf = self;
     if (self.bankModel.needUploadFlag == 1) {
-        [CNMUploadView showUploadViewTo:self billId:self.bankModel.transactionId promo:NO commitDeposit:^(NSArray *receiptImages, NSArray *recordImages) {
+        [CNMUploadView showUploadViewTo:self billId:self.bankModel.transactionId promo:NO upload:(self.bankModel.status == CNMPayBillStatusConfirm) commitDeposit:^(NSArray *receiptImages, NSArray *recordImages) {
             // 存款已确认不需要确认
             if (weakSelf.bankModel.status == CNMPayBillStatusConfirm) {
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
@@ -174,7 +174,7 @@
         }];
     } else {
         if (self.bankModel.status == CNMPayBillStatusConfirm) {
-            [CNMUploadView showUploadViewTo:self billId:self.bankModel.transactionId promo:YES commitDeposit:^(NSArray * _Nonnull receiptImages, NSArray * _Nonnull recordImages) {
+            [CNMUploadView showUploadViewTo:self billId:self.bankModel.transactionId promo:YES upload:YES commitDeposit:^(NSArray * _Nonnull receiptImages, NSArray * _Nonnull recordImages) {
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
             }];
         } else {

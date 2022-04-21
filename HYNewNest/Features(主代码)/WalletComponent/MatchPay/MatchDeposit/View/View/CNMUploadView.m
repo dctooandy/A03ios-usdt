@@ -42,7 +42,11 @@
 
 @implementation CNMUploadView
 
-+ (void)showUploadViewTo:(UIViewController *)superVC billId:(NSString *)billId promo:(BOOL)promo commitDeposit:(void (^)(NSArray * _Nonnull, NSArray * _Nonnull))commitBlock {
++ (void)showUploadViewTo:(UIViewController *)superVC
+                  billId:(NSString *)billId
+                   promo:(BOOL)promo
+                  upload:(BOOL)upload
+           commitDeposit:(void (^)(NSArray * _Nonnull, NSArray * _Nonnull))commitBlock {
     CNMUploadView *view = [[CNMUploadView alloc] initWithFrame:superVC.view.bounds];
     [superVC.view addSubview:view];
     view.superVC = superVC;
@@ -54,7 +58,11 @@
     } else {
         [view.confirmBtn setBackgroundImage:[UIImage imageNamed:@"l_btn_select"] forState:UIControlStateNormal];
         [view.confirmBtn setBackgroundImage:[UIImage imageNamed:@"l_btn_hh"] forState:UIControlStateDisabled];
-        [view.confirmBtn setTitle:@"确认存款" forState:UIControlStateNormal];
+        if (upload) {
+            [view.confirmBtn setTitle:@"上传凭证" forState:UIControlStateNormal];
+        } else {
+            [view.confirmBtn setTitle:@"确认存款" forState:UIControlStateNormal];
+        }
     }
 }
 
