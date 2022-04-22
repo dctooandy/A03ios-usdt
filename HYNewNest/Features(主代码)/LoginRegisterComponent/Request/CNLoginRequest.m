@@ -101,6 +101,10 @@
     [self POST:(config_preLogin) parameters:[kNetworkMgr baseParam] completionHandler:completionHandler];
 }
 
++ (void)accountpreCreateAccountCompletionHandler:(HandlerBlock)completionHandler {
+    [self POST:(config_preCreateAccount) parameters:[kNetworkMgr baseParam] completionHandler:completionHandler];
+}
+
 + (void)accountLogin:(NSString *)account
             password:(NSString *)password
            messageId:(NSString *)messageId

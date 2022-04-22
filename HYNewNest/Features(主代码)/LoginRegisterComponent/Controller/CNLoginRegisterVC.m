@@ -28,8 +28,13 @@
 #import "ApiErrorCodeConst.h"
 #import "UILabel+Gradient.h"
 #import "CNPushRequest.h"
+#import "PuzzleVerifyPopoverView.h"
 
-@interface CNLoginRegisterVC () <CNAccountInputViewDelegate, CNCodeInputViewDelegate, HYTapHanImgCodeViewDelegate, UIScrollViewDelegate>
+static CGFloat const CNCodeImageHeight = 75.0;
+static CGFloat const CNHanCodeImageHeight = 95.0;
+static CGFloat const CNPuzzleCodeImageHeight = 131.0;
+
+@interface CNLoginRegisterVC () <CNAccountInputViewDelegate, CNCodeInputViewDelegate, HYTapHanImgCodeViewDelegate, PuzzleVerifyPopoverViewDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, assign) BOOL isLeftRightScroll;
 @property (nonatomic, assign) CGPoint oldContentOffset;
@@ -48,14 +53,13 @@
 /// 登录图形验证码视图
 @property (weak, nonatomic) IBOutlet CNImageCodeInputView *loginImageCodeView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginImageCodeViewH;
-/// 登录是否需要图形验证码
-@property (assign, nonatomic) BOOL needImageCode;
 
 /// 登录文字验证码
 @property (weak, nonatomic) IBOutlet HYTapHanImageCodeView *hanImgCodeView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *hanImgCodeViewH;
-/// 登录是否需要汉字图形验证码
-@property (assign, nonatomic) BOOL needHanImageCode;
+
+@property (strong, nonatomic) PreLoginModel *loginCaptchaModel;
+@property (strong, nonatomic) PreLoginModel *regiCaptchModel;
 
 /// 注册文字验证码
 @property (weak, nonatomic) IBOutlet HYTapHanImageCodeView *regHanImgCodeView;
@@ -76,6 +80,12 @@
 
 @property (nonatomic, strong) SmsCodeModel *smsModel;
 @property (nonatomic, strong) SmsCodeModel *diffRgonSmsModel;
+
+@property (nonatomic, weak) IBOutlet PuzzleVerifyPopoverView *loginPuzzleView;
+@property (nonatomic, weak) IBOutlet PuzzleVerifyPopoverView *regiPuzzleView;
+
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *loginPuzzleViewConstH;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *regiPuzzleViewConstH;
 
 @end
 
@@ -103,21 +113,20 @@
         
     [self configUI];
     [self setDelegate];
-    self.needImageCode = NO;
-    self.needHanImageCode = NO;
     self.hanImgCodeView.delegate = self;
     self.regHanImgCodeView.delegate = self;
-    [self preLoginAction];
+    [self preLoginRegisterAction];
 }
 
 - (void)configUI {
     [self.view addSubview:self.switchSV];
     self.view.backgroundColor = kHexColor(0x212137);
     
-    UIButton *rightTopBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    UIButton *rightTopBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightTopBtn setImage:[UIImage imageNamed:@"next"] forState:UIControlStateNormal];
     [rightTopBtn setTitle:@"去注册" forState:UIControlStateNormal];
     rightTopBtn.titleLabel.font = [UIFont fontPFM16];
+    [rightTopBtn setAdjustsImageWhenHighlighted:NO];
     [rightTopBtn setTitleColor:kHexColorAlpha(0xFFFFFF, 0.6) forState:UIControlStateNormal];
     [rightTopBtn jk_setImagePosition:LXMImagePositionRight spacing:5];
     [rightTopBtn addTarget:self action:@selector(goToLogInOrRegister) forControlEvents:UIControlEventTouchUpInside];
@@ -138,7 +147,6 @@
     // 如果是注册进来的去注册页
     if (_isRegister) {
         [self goToLogInOrRegister];
-        [self.regHanImgCodeView getImageCodeForceRefresh:YES];//direct push into register page need this
     }
 }
 
@@ -177,6 +185,18 @@
     self.smsModel = model;
 }
 
+#pragma mark - PuzzleVerifyPopoverViewDelegate
+
+- (void)puzzleViewVerifySuccess:(PuzzleVerifyPopoverView *)puzzleView {
+    puzzleView.hidden = YES;
+    if ([puzzleView isEqual:self.loginPuzzleView]) {
+        self.loginPuzzleViewConstH.constant = 0;
+        self.hanImgCodeViewH.constant = 0;
+    } else if ([puzzleView isEqual:self.regiPuzzleView]) {
+        self.regiPuzzleViewConstH.constant = 0;
+        self.regHanImgCodeViewH.constant = 0;
+    }
+}
 
 #pragma mark - ButtonAction
 
@@ -191,8 +211,10 @@
     // 去注册页面
     if (self.switchSV.contentOffset.x <= 0) {
         [self.switchSV setContentOffset:CGPointMake(kScreenWidth, 0) animated:YES];
+        self.isRegister = YES;
     } else {
         [self.switchSV setContentOffset:CGPointMake(0, 0) animated:YES];
+        self.isRegister = NO;
     }
 }
 
@@ -222,32 +244,57 @@
 
 #pragma mark - Login Action
 
-- (void)preLoginAction {
+- (void)preLoginRegisterAction {
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_group_enter(group);
+    [self preLogin:^{
+        dispatch_group_leave(group);
+    }];
+    dispatch_group_enter(group);
+    [self preCreateAccount:^{
+        dispatch_group_leave(group);
+    }];
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        [self updateNeedCaptchUI];
+    });
+}
+
+- (void)preLogin:(void(^)(void))completion {
     [CNLoginRequest accountPreLoginCompletionHandler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             PreLoginModel *model = [PreLoginModel cn_parse:responseObj];
-            if (model.needCaptcha) { //需要验证码
-                if (model.captchaType == 1) {
-                    self.needImageCode = YES;
-                    self.needHanImageCode = NO;
-                } else {
-                    self.needHanImageCode = YES;
-                    self.needImageCode = NO;
-                }
-            }
-        } else {
-            self.needImageCode = NO;
-            self.needHanImageCode = NO;
+            self.loginCaptchaModel = model;
         }
+        !completion?:completion();
     }];
 }
+
+- (void)preCreateAccount:(void(^)(void))completion {
+    [CNLoginRequest accountpreCreateAccountCompletionHandler:^(id responseObj, NSString *errorMsg) {
+        if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+            PreLoginModel *model = [PreLoginModel cn_parse:responseObj];
+            self.regiCaptchModel = model;
+        }
+        !completion?:completion();
+    }];
+}
+
+- (void)preLoginAction {
+    [self preLogin:nil];
+}
+
+- (void)preCreateAccount {
+    [self preCreateAccount:nil];
+}
+
+#pragma mark - IBAction
 
 - (IBAction)loginAction:(UIButton *)sender {
  
     NSLog(@"account=%@,code=%@,imgCode=%@", self.loginAccountView.account, self.loginCodeView.code, self.loginImageCodeView.imageCode);
 
     // 账号登录
-    if (self.needImageCode) {
+    if (self.loginCaptchaModel.captchaType == CNCaptchaTypeDigital) {
         if (self.loginImageCodeView.imageCode.length == 0) {
             [CNTOPHUB showError:@"请输入图形验证码"];
             return;
@@ -291,20 +338,27 @@
     // 校验码
     NSString *captcha = @""; //or ticket
     NSString *captchaId = @"";
-    if (self.needImageCode) {
+    if (self.loginCaptchaModel.captchaType == CNCaptchaTypeDigital) {
         if (!self.loginImageCodeView.correct) {
             [CNTOPHUB showError:@"请输入图片中的数字验证码"];
             return;
         }
         captcha = self.loginImageCodeView.imageCode;
         captchaId = self.loginImageCodeView.imageCodeId;
-    } else if (self.needHanImageCode) {
+    } else if (self.loginCaptchaModel.captchaType == CNCaptchaTypeChinese) {
         if (!self.hanImgCodeView.correct) {
             [CNTOPHUB showError:@"请按正确顺序点击图片中的文字"];
             return;
         }
         captcha = self.hanImgCodeView.ticket;
         captchaId = self.hanImgCodeView.imageCodeId;
+    } else if (self.loginCaptchaModel.captchaType == CNCaptchaTypePuzzle) {
+        if (!self.loginPuzzleView.correct) {
+            [CNTOPHUB showError:@"请拖动滑块完成拼图验证"];
+            return;
+        }
+        captcha = self.loginPuzzleView.ticket;
+        captchaId = self.loginPuzzleView.captchaId;
     }
     
     WEAKSELF_DEFINE
@@ -317,8 +371,7 @@
         STRONGSELF_DEFINE
         if (!errorMsg) {
             // 判断多账号调用多账号登录
-            if (responseObj[@"samePhoneLoginNames"] || responseObj[@"loginNames"] )
-            {
+            if (responseObj[@"samePhoneLoginNames"] || responseObj[@"loginNames"] ) {
                 SamePhoneLoginNameModel *model = [SamePhoneLoginNameModel cn_parse:responseObj];
                 NSMutableArray *names = model.samePhoneLoginNames.mutableCopy;
                 for (SamePhoneLoginNameItem *item in model.samePhoneLoginNames) {
@@ -368,8 +421,7 @@
 //                        }
 //                    }];
                 }
-            }else
-            {
+            } else {
                 [weakSelf shouldLoginAction:responseObj];
 //                [CNTOPHUB showSuccess:@"登录成功"];
 //                [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
@@ -388,6 +440,7 @@
         } else {
             if ([errorMsg isEqualToString:LoginRegionRisk_ErroCode]) {
                self.diffRgonSmsModel = [SmsCodeModel cn_parse:responseObj]; //异地登录验证码
+                
                 CNVerifyMsgAlertView * alertView = [CNVerifyMsgAlertView showRegionPhone:self.diffRgonSmsModel.mobileNo
                                                                               reSendCode:^{
                     [self sendDiffRegionVerifyCode]; // 重新发送
@@ -396,7 +449,7 @@
                     [self verifyRegionCode]; //校验验证码
                 }];
                 alertView.onCancelAction = ^{
-                    self.hanImgCodeViewH.constant = 95;
+                    self.hanImgCodeViewH.constant = CNHanCodeImageHeight;
                     [self.hanImgCodeView getImageCodeForceRefresh:YES];
                 };
               
@@ -414,13 +467,12 @@
         }
     }];
 }
-- (void)unLoginAction
-{
+- (void)unLoginAction {
     [CNTOPHUB showError:@"该帐号类型禁止登录"];
     [self preLoginAction];
 }
-- (void)shouldLoginAction:(NSDictionary *)responseObj
-{
+
+- (void)shouldLoginAction:(NSDictionary *)responseObj {
     WEAKSELF_DEFINE
     [CNTOPHUB showSuccess:@"登录成功"];
     [[CNUserManager shareManager] saveUserInfo:responseObj]; // 内部自动保存
@@ -437,7 +489,7 @@
 }
 /// 汉字验证码成功
 - (void)validationDidSuccess {
-    if (self.switchSV.contentOffset.x > 0) {
+    if (self.isRegister) {
         self.regHanImgCodeViewH.constant = 0;//47
         [self.regHanImgCodeView showSuccess];
     } else {
@@ -476,12 +528,28 @@
 
 - (IBAction)registerAction:(UIButton *)sender {
     
-    if (!self.regHanImgCodeView.correct) {
-        [CNTOPHUB showError:@"请按正确顺序点击图片中的文字"];
-        return;
+    NSString *captcha;
+    NSString *captchaId;
+    switch (self.regiCaptchModel.captchaType) {
+        case CNCaptchaTypeChinese:
+            if (!self.regHanImgCodeView.correct) {
+                [CNTOPHUB showError:@"请按正确顺序点击图片中的文字"];
+                return;
+            }
+            captcha = self.regHanImgCodeView.ticket;
+            captchaId = self.regHanImgCodeView.imageCodeId;
+            break;
+        case CNCaptchaTypePuzzle:
+            if (!self.regiPuzzleView.correct) {
+                [CNTOPHUB showError:@"请拖动滑块完成拼图验证"];
+                return;
+            }
+            captcha = self.regiPuzzleView.ticket;
+            captchaId = self.regiPuzzleView.captchaId;
+            break;
+        default:
+            break;
     }
-    NSString * captcha = self.regHanImgCodeView.ticket;
-    NSString * captchaId = self.regHanImgCodeView.imageCodeId;
     
     [CNLoginRequest accountRegisterUserName:self.registerAccountView.account
                                    password:self.registerCodeView.code
@@ -493,8 +561,24 @@
             CNBindPhoneVC *vc = [CNBindPhoneVC new];
             [self.navigationController pushViewController:vc animated:YES];
         } else {
-            [self.regHanImgCodeView getImageCodeForceRefresh:YES];
-            self.regHanImgCodeViewH.constant = 95;
+            switch (self.regiCaptchModel.captchaType) {
+                case CNCaptchaTypeDigital:
+                    break;
+                case CNCaptchaTypeChinese:
+                    self.regHanImgCodeView.hidden = NO;
+                    self.regHanImgCodeViewH.constant = CNHanCodeImageHeight;
+                    [self.regHanImgCodeView getImageCodeForceRefresh:YES];
+                    break;
+                case CNCaptchaTypePuzzle:
+                    self.regHanImgCodeViewH.constant = CNPuzzleCodeImageHeight;
+                    self.regiPuzzleViewConstH.constant = CNPuzzleCodeImageHeight;
+                    self.regHanImgCodeView.hidden = YES;
+                    self.regiPuzzleView.hidden = NO;
+                    [self.regiPuzzleView getPuzzleImageCodeForceRefresh:YES];
+                    break;
+                default:
+                    break;
+            }
         }
     }];
 }
@@ -515,6 +599,7 @@
         scrollView.pagingEnabled = YES;
         scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x,
         0);
+        self.isRegister = scrollView.contentOffset.x >= kScreenWidth;
     }
     // 此时是上下滑动
     else {
@@ -544,42 +629,122 @@
 
 - (void)updateHanCodesStatus {
     self.isLeftRightScroll = NO;
-    if (self.switchSV.contentOffset.x > 200) { // zhuceye
-        self.regHanImgCodeViewH.constant = 95;
-        [self.regHanImgCodeView getImageCodeForceRefresh:NO];
+    if (self.isRegister) {
+        switch (self.regiCaptchModel.captchaType) {
+            case CNCaptchaTypeChinese:
+                if (!self.regHanImgCodeView.correct) {
+                    self.regHanImgCodeView.hidden = NO;
+                    self.regHanImgCodeViewH.constant = CNHanCodeImageHeight;
+                    [self.regHanImgCodeView getImageCodeForceRefresh:NO];
+                }
+                break;
+            case CNCaptchaTypePuzzle:
+                if (!self.regiPuzzleView.correct) {
+                    self.regHanImgCodeViewH.constant = CNPuzzleCodeImageHeight;
+                    self.regiPuzzleViewConstH.constant = CNPuzzleCodeImageHeight;
+                    self.regHanImgCodeView.hidden = YES;
+                    self.regiPuzzleView.hidden = NO;
+                    [self.regiPuzzleView getPuzzleImageCodeForceRefresh:NO];
+                }
+                break;
+            default:
+                break;
+        }
         [self.rightNavBtn setTitle:@"去登录" forState:UIControlStateNormal];
     } else {
-        if (self.needHanImageCode) {
-            self.hanImgCodeViewH.constant = 95;
-            [self.hanImgCodeView getImageCodeForceRefresh:NO];
-        } else if (self.needImageCode) {
-            self.loginImageCodeView.hidden = NO;
-            self.loginImageCodeViewH.constant = 75;
-            [self.loginImageCodeView getImageCode];
+        switch (self.loginCaptchaModel.captchaType) {
+            case CNCaptchaTypeDigital:
+                if (!self.loginImageCodeView.correct) {
+                    self.loginImageCodeView.hidden = NO;
+                    self.loginImageCodeViewH.constant = CNCodeImageHeight;
+                    [self.loginImageCodeView getImageCode];
+                }
+                break;
+            case CNCaptchaTypeChinese:
+                if (!self.hanImgCodeView.correct) {
+                    self.hanImgCodeViewH.constant = CNHanCodeImageHeight;
+                    [self.hanImgCodeView getImageCodeForceRefresh:NO];
+                }
+                break;
+            case CNCaptchaTypePuzzle:
+                if (!self.loginPuzzleView.correct) {
+                    self.hanImgCodeViewH.constant = CNPuzzleCodeImageHeight;
+                    self.loginPuzzleViewConstH.constant = CNPuzzleCodeImageHeight;
+                    self.hanImgCodeView.hidden = YES;
+                    self.loginImageCodeView.hidden = YES;
+                    self.loginPuzzleView.hidden = NO;
+                    [self.loginPuzzleView getPuzzleImageCodeForceRefresh:NO];
+                }
+                break;
+            default:
+                break;
         }
         [self.rightNavBtn setTitle:@"去注册" forState:UIControlStateNormal];
     }
     
 }
 
-
-#pragma mark - Setter & Getter
-
-- (void)setNeedImageCode:(BOOL)needImageCode {
-    _needImageCode = needImageCode;
-    if (needImageCode) {
-        self.loginImageCodeView.hidden = NO;
-        self.loginImageCodeViewH.constant = 75;
-        [self.loginImageCodeView getImageCode];
+- (void)updateNeedCaptchUI {
+    if (self.loginCaptchaModel == nil) {
+        self.loginImageCodeView.hidden = YES;
+        self.hanImgCodeView.hidden = YES;
+        self.loginPuzzleView.hidden = YES;
+        self.loginImageCodeViewH.constant = 0;
+        self.hanImgCodeViewH.constant = 0;
+        self.loginPuzzleViewConstH.constant = 0;
+    } else {
+        self.loginPuzzleView.viewModel.codeType = CNImageCodeTypeLogin;
+        switch (self.loginCaptchaModel.captchaType) {
+            case CNCaptchaTypeDigital:
+                self.loginImageCodeView.hidden = NO;
+                self.loginImageCodeViewH.constant = CNCodeImageHeight;
+                [self.loginImageCodeView getImageCode];
+                break;
+            case CNCaptchaTypeChinese:
+                self.hanImgCodeView.hidden = NO;
+                self.hanImgCodeViewH.constant = CNHanCodeImageHeight;
+                [self.hanImgCodeView getImageCodeForceRefresh:YES];
+                break;
+            case CNCaptchaTypePuzzle:
+                self.hanImgCodeViewH.constant = CNPuzzleCodeImageHeight;
+                self.loginPuzzleViewConstH.constant = CNPuzzleCodeImageHeight;
+                self.hanImgCodeView.hidden = YES;
+                self.loginPuzzleView.hidden = NO;
+                self.loginPuzzleView.delegate = self;
+                [self.loginPuzzleView getPuzzleImageCodeForceRefresh:YES];
+                break;
+                
+            default:
+                break;
+        }
     }
-}
-
-- (void)setNeedHanImageCode:(BOOL)needHanImageCode {
-    _needHanImageCode = needHanImageCode;
-    if (needHanImageCode) {
-        self.hanImgCodeView.hidden = NO;
-        self.hanImgCodeViewH.constant = 95;
-        [self.hanImgCodeView getImageCodeForceRefresh:YES];
+    
+    if (self.regiCaptchModel == nil) {
+        self.regHanImgCodeView.hidden = YES;
+        self.regiPuzzleView.hidden = YES;
+        self.regHanImgCodeViewH.constant = 0;
+        self.regiPuzzleViewConstH.constant = 0;
+    } else {
+        self.regiPuzzleView.viewModel.codeType = CNImageCodeTypeRegister;
+        switch (self.regiCaptchModel.captchaType) {
+            case CNCaptchaTypeDigital:
+                break;
+            case CNCaptchaTypeChinese:
+                self.regHanImgCodeView.hidden = NO;
+                self.regHanImgCodeViewH.constant = CNHanCodeImageHeight;
+                [self.hanImgCodeView getImageCodeForceRefresh:YES];
+                break;
+            case CNCaptchaTypePuzzle:
+                self.regiPuzzleViewConstH.constant = CNPuzzleCodeImageHeight;
+                self.regHanImgCodeViewH.constant = CNPuzzleCodeImageHeight;
+                self.regHanImgCodeView.hidden = YES;
+                self.regiPuzzleView.hidden = NO;
+                self.regiPuzzleView.delegate = self;
+                [self.regiPuzzleView getPuzzleImageCodeForceRefresh:YES];
+                break;
+            default:
+                break;
+        }
     }
 }
 

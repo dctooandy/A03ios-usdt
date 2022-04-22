@@ -75,9 +75,13 @@
 #define config_bindMobileNoV2 @"phone/bind" //绑定手机号v2
 #define config_SendCodePhone @"phone/sendCode"   //请求手机号验证码  1.注册 2.登录 3.手机绑定 4.找回密码 5.手机修改 7.资料修改 9.常规验证 11.找回账号
 #define config_preLogin  @"customer/preLogin"   //登录前查询是否需要图形验证码
+#define config_preCreateAccount @"customer/preCreateAccount" // 注册前查询是否需要验证码
 #define config_generateCaptcha   @"captcha/generate"   //生成图片验证码
 #define config_generateHanCaptcha   @"captcha/generateCaptcha"   //生成汉字图片验证码
 #define config_validateHanCaptcha   @"captcha/validateCaptcha"   //校验汉字图片验证码
+#define config_generateSlider   @"captcha/generateSlider"   //生成滑块拼图验证码
+#define config_validateSlider   @"captcha/validateSlider"   //校验滑块拼图验证码
+
 
 #define config_LoginEx @"customer/loginEx"  //模糊登录
 #define config_sendCodeByLoginName  @"phone/sendCodeByLoginName"  //通过用户名发送验证码

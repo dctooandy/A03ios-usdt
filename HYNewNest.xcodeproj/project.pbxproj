@@ -171,6 +171,11 @@
 		04C6E1F324D4180D006F4DAC /* CNImaginaryLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C6E1F224D4180D006F4DAC /* CNImaginaryLine.m */; };
 		04C6E1F724D41C3C006F4DAC /* CNAddressInfoTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C6E1F524D41C3C006F4DAC /* CNAddressInfoTCell.m */; };
 		04C6E1F824D41C3C006F4DAC /* CNAddressInfoTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C6E1F624D41C3C006F4DAC /* CNAddressInfoTCell.xib */; };
+		0A9FE5992810FCCD00D6A5A8 /* PuzzleVerifyPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9FE5942810FCCC00D6A5A8 /* PuzzleVerifyPopoverView.m */; };
+		0A9FE59A2810FCCD00D6A5A8 /* PuzzleVerifyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9FE5982810FCCC00D6A5A8 /* PuzzleVerifyView.m */; };
+		0A9FE59E2811223700D6A5A8 /* PuzzleVerifyViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9FE59D2811223700D6A5A8 /* PuzzleVerifyViewModel.m */; };
+		0A9FE5A1281124B100D6A5A8 /* CNCaptchaRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9FE5A0281124B100D6A5A8 /* CNCaptchaRequest.m */; };
+		0A9FE5A428112B9700D6A5A8 /* CNPuzzleImageCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9FE5A328112B9700D6A5A8 /* CNPuzzleImageCodeModel.m */; };
 		167E2F2A00629D00667FC492 /* Pods_HYNewNestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0457DFB903256B1AB72D121 /* Pods_HYNewNestTests.framework */; };
 		3D13387124AD8F9C00B29783 /* HYNewNestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D13387024AD8F9C00B29783 /* HYNewNestTests.m */; };
 		3D13387C24AD8F9C00B29783 /* HYNewNestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D13387B24AD8F9C00B29783 /* HYNewNestUITests.m */; };
@@ -1410,6 +1415,16 @@
 		04C6E1F424D41C3C006F4DAC /* CNAddressInfoTCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNAddressInfoTCell.h; sourceTree = "<group>"; };
 		04C6E1F524D41C3C006F4DAC /* CNAddressInfoTCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNAddressInfoTCell.m; sourceTree = "<group>"; };
 		04C6E1F624D41C3C006F4DAC /* CNAddressInfoTCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNAddressInfoTCell.xib; sourceTree = "<group>"; };
+		0A9FE5942810FCCC00D6A5A8 /* PuzzleVerifyPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleVerifyPopoverView.m; sourceTree = "<group>"; };
+		0A9FE5952810FCCC00D6A5A8 /* PuzzleVerifyPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleVerifyPopoverView.h; sourceTree = "<group>"; };
+		0A9FE5972810FCCC00D6A5A8 /* PuzzleVerifyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleVerifyView.h; sourceTree = "<group>"; };
+		0A9FE5982810FCCC00D6A5A8 /* PuzzleVerifyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleVerifyView.m; sourceTree = "<group>"; };
+		0A9FE59C2811223700D6A5A8 /* PuzzleVerifyViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PuzzleVerifyViewModel.h; sourceTree = "<group>"; };
+		0A9FE59D2811223700D6A5A8 /* PuzzleVerifyViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PuzzleVerifyViewModel.m; sourceTree = "<group>"; };
+		0A9FE59F281124B100D6A5A8 /* CNCaptchaRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNCaptchaRequest.h; sourceTree = "<group>"; };
+		0A9FE5A0281124B100D6A5A8 /* CNCaptchaRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNCaptchaRequest.m; sourceTree = "<group>"; };
+		0A9FE5A228112B9700D6A5A8 /* CNPuzzleImageCodeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNPuzzleImageCodeModel.h; sourceTree = "<group>"; };
+		0A9FE5A328112B9700D6A5A8 /* CNPuzzleImageCodeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNPuzzleImageCodeModel.m; sourceTree = "<group>"; };
 		3D13385124AD8F9B00B29783 /* 币游_dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "币游_dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D13386C24AD8F9C00B29783 /* HYNewNestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HYNewNestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D13387024AD8F9C00B29783 /* HYNewNestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYNewNestTests.m; sourceTree = "<group>"; };
@@ -3382,6 +3397,35 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		0A9FE5932810FCCC00D6A5A8 /* PuzzleVerify */ = {
+			isa = PBXGroup;
+			children = (
+				0A9FE59B2811221A00D6A5A8 /* ViewModel */,
+				0A9FE5952810FCCC00D6A5A8 /* PuzzleVerifyPopoverView.h */,
+				0A9FE5942810FCCC00D6A5A8 /* PuzzleVerifyPopoverView.m */,
+				0A9FE5962810FCCC00D6A5A8 /* View */,
+			);
+			path = PuzzleVerify;
+			sourceTree = "<group>";
+		};
+		0A9FE5962810FCCC00D6A5A8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0A9FE5972810FCCC00D6A5A8 /* PuzzleVerifyView.h */,
+				0A9FE5982810FCCC00D6A5A8 /* PuzzleVerifyView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0A9FE59B2811221A00D6A5A8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0A9FE59C2811223700D6A5A8 /* PuzzleVerifyViewModel.h */,
+				0A9FE59D2811223700D6A5A8 /* PuzzleVerifyViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		39161D15FBBFB52668D62B53 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -5226,6 +5270,7 @@
 		D5FBFE1424BC05E400BBCAD8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0A9FE5932810FCCC00D6A5A8 /* PuzzleVerify */,
 				D5FBFE1924BC05E400BBCAD8 /* CNAccountInputView.h */,
 				D5FBFE2024BC05E400BBCAD8 /* CNAccountInputView.m */,
 				D5FBFE1C24BC05E400BBCAD8 /* CNAccountInputView.xib */,
@@ -5258,6 +5303,8 @@
 			children = (
 				04C0F11124C594D4007F1420 /* CNLoginRequest.h */,
 				04C0F11224C594D5007F1420 /* CNLoginRequest.m */,
+				0A9FE59F281124B100D6A5A8 /* CNCaptchaRequest.h */,
+				0A9FE5A0281124B100D6A5A8 /* CNCaptchaRequest.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -5342,6 +5389,8 @@
 				E986A0F924C6CBB6000F9CFF /* SmsCodeModel.m */,
 				E97054AB24DC4C0E0007F845 /* CNImageCodeModel.h */,
 				E97054AC24DC4C0E0007F845 /* CNImageCodeModel.m */,
+				0A9FE5A228112B9700D6A5A8 /* CNPuzzleImageCodeModel.h */,
+				0A9FE5A328112B9700D6A5A8 /* CNPuzzleImageCodeModel.m */,
 				3D31B95C2542D4BF005275BD /* PreLoginModel.h */,
 				3D31B95D2542D4BF005275BD /* PreLoginModel.m */,
 			);
@@ -7235,10 +7284,12 @@
 				3D972436262E96B1005E930C /* HYSuperCopartnerAlertView.m in Sources */,
 				3DBF5FB52680A0A700C246A9 /* BYDepositUsdtVC.m in Sources */,
 				E98BEF0224D1AF4300E6B0C8 /* HYXiMaTopView.m in Sources */,
+				0A9FE59E2811223700D6A5A8 /* PuzzleVerifyViewModel.m in Sources */,
 				049E764F27E840720065EFBE /* CNMUploadView.m in Sources */,
 				3DBA56112580D9B3009A2B71 /* CALayer+Additions.m in Sources */,
 				0487C9AA24CFBA6A0013715A /* JJCollectionViewRoundFlowLayout+Alignment.m in Sources */,
 				04C0F0FF24C589EC007F1420 /* CNUserManager.m in Sources */,
+				0A9FE59A2810FCCD00D6A5A8 /* PuzzleVerifyView.m in Sources */,
 				0487C97024CE9A630013715A /* BRAddressModel.m in Sources */,
 				0430AB2D24E2A3DC00C873DC /* BRImageStringPickerView.m in Sources */,
 				3DC14E572601DDCD00D6DB85 /* BYVocherModel.m in Sources */,
@@ -7319,6 +7370,7 @@
 				040A08D324E114A900FBD534 /* OCBarrageTextDescriptor.m in Sources */,
 				E9D944A124C5759400252222 /* UpdateVersionModel.m in Sources */,
 				3DA4F17D24B315940039123F /* UIFont+RCFont.m in Sources */,
+				0A9FE5A428112B9700D6A5A8 /* CNPuzzleImageCodeModel.m in Sources */,
 				E986A17624C979F6000F9CFF /* PayOnlinePaymentModel.m in Sources */,
 				0487C97724CEAE1B0013715A /* CNMineVC.m in Sources */,
 				3D5B259625BE70FD00FD23F0 /* DSBProfitBoardUsrModel.m in Sources */,
@@ -7443,11 +7495,13 @@
 				F749383E26D8917E008F0BD4 /* BYUSDTRechargeAlertView.m in Sources */,
 				3DDEBA32264A4E4D0014EB87 /* BYYuEBaoVC.m in Sources */,
 				3D41DEB9251F1A20000CA1D6 /* WSLPhotoZoom.m in Sources */,
+				0A9FE5992810FCCD00D6A5A8 /* PuzzleVerifyPopoverView.m in Sources */,
 				040A08D124E114A900FBD534 /* OCBarrageDescriptor.m in Sources */,
 				0430AB3624E3B84700C873DC /* CNCompleteInfoVC.m in Sources */,
 				3D3A9B7324FA7DA5003FB33C /* CNVIPRequest.m in Sources */,
 				3D41DE7425199DEE000CA1D6 /* VIPHomeUserModel.m in Sources */,
 				D571B1AB24C03D790087B5EC /* CNStatementView.m in Sources */,
+				0A9FE5A1281124B100D6A5A8 /* CNCaptchaRequest.m in Sources */,
 				F7BBAE6926A529D300D07B21 /* BYGloryTimelineTableViewCell.m in Sources */,
 				3D3D647626B4088200ECE9AA /* BYNightCityGiftAlertView.m in Sources */,
 				7636AE6E272BC4C70072AB0E /* BYDeleteBankCardVC.m in Sources */,
