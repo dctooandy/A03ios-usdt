@@ -32,7 +32,7 @@
 
 static CGFloat const CNCodeImageHeight = 75.0;
 static CGFloat const CNHanCodeImageHeight = 95.0;
-static CGFloat const CNPuzzleCodeImageHeight = 131.0;
+static CGFloat const CNPuzzleCodeImageHeight = 141.0;
 
 @interface CNLoginRegisterVC () <CNAccountInputViewDelegate, CNCodeInputViewDelegate, HYTapHanImgCodeViewDelegate, PuzzleVerifyPopoverViewDelegate, UIScrollViewDelegate>
 
