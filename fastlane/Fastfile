@@ -1,0 +1,219 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#A03
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+
+   lane :a03 do |options|
+	build_number = "#{options[:BUILD]}"
+	environment = ENV['ENVIRMENT']
+    configration = ENV['CONFIGRATION']
+ # 测试模式 true/false
+    isTestMode = false
+    if isTestMode
+        @receiverName = "ieandy"
+    else
+        @receiverName = "{FD375D42-F34C-43C9-951C-334F1510A69B}"
+	gym(scheme: ENV['SCHEME'],
+		workspace: ENV['WORKSPACE'],
+		clean:true,
+		configuration: ENV['CONFIGRATION'],
+		export_method: "ad-hoc",
+		output_directory:"./apps",
+		output_name:"#{ENV['APP_NAME']}#{get_version_number}.#{build_number}")
+    end
+	appName = "#{ENV['APP_NAME']}#{get_version_number}.#{build_number}"
+    callOut_Main(BUILD: build_number , NAME:appName , ENVIR:environment , CONF:configration)
+   end
+
+   lane :callOut_Main do |options|
+    commandMessage = ""
+# 产品编号
+	app_version = get_version_number
+# 产品Build编号
+	build_number = "#{options[:BUILD]}"
+# 产品名称
+	ipa_Name = "#{options[:NAME]}"
+# 产品环境
+	environment = "#{options[:ENVIR]}"
+# 产品設定
+    configration = "#{options[:CONF]}"
+# 要下載的網址
+	download_url = "itms-services://?action=download-manifest&url=https://10.82.64.200:9000/plist/A03/#{ipa_Name}"
+    qrcode_download_url = "itms-services://?action=download-manifest\\&url=https://10.82.64.200:9000/plist/A03/#{ipa_Name}"
+# 当前Git名称
+	git_branch_name = git_branch 
+# 最后Commit内容
+	commit = last_git_commit
+# Git作者
+	author = commit[:author] # author of the commit
+# 最后Git内容
+	message = commit[:message] # message of the commit
+# Git作者Email
+	author_email = commit[:author_email] # email of the author of the commit
+# Git hash
+	hash = commit[:commit_hash] # long sha of commit
+# Git short hash
+	short_hash = commit[:abbreviated_commit_hash] # short sha of commit
+
+	puts ("当前Git名称 #{git_branch_name}")
+	puts ("Git作者 #{author}")
+	puts ("最后Git内容 #{message}")
+	puts ("Git作者Email #{author_email}")
+	puts ("Git hash #{hash}")
+	puts ("Git short hash #{short_hash}")
+	puts "app 产品编号: #{app_version} "
+	puts "app build號: #{build_number} "
+	puts "app 产品名称: #{ipa_Name} "
+	puts "app 要下載的網址: #{download_url} "
+
+	sh "pwd" # => "[root]/fastlane"
+	puts Dir.pwd # => "[root]/fastlane"
+	qrCodeImagePath = Dir.pwd + "/qrCode.png"
+	puts "二维码图片path： #{qrCodeImagePath} "
+# 產生 QRCode 圖片
+    commandMessage = "🍺🍺🍺🍺🍺產生 QRCode 圖片"
+    command = "qrencode -s 16 -o #{qrCodeImagePath} #{qrcode_download_url}"
+    callOut_Command(COMMAND:command , COMMAND_MESSAGE:commandMessage)
+# 在 QRCode 圖片 加字
+    commandMessage = "🍺🍺🍺🍺🍺在 QRCode 圖片 加第一行字"
+    command = "convert -fill red \
+    -pointsize 17 \
+    -resize 350x350 \
+    -font 蘋方-繁-纖細體 \
+    -gravity center \
+    -draw 'text 0,150 'A03_iOS_#{environment}'' qrCode.png \
+    qrCode.png"
+    # 封印改圖的功能,打包機沒有安裝此套件
+    callOut_Command(COMMAND:command , COMMAND_MESSAGE:commandMessage)
+    
+    commandMessage = "🍺🍺🍺🍺🍺在 QRCode 圖片 加第二行字"
+    command = "convert -fill orange \
+    -pointsize 15 \
+    -resize 350x350 \
+    -font Arial \
+    -gravity center \
+    -draw 'text 0,167 'v#{app_version}'' qrCode.png \
+    qrCode.png"
+    # 封印改圖的功能,打包機沒有安裝此套件
+    callOut_Command(COMMAND:command , COMMAND_MESSAGE:commandMessage)
+	
+# 图片 base64 编码，并去除空行 \n 和空格
+#	qrcodeBase64Text = sh("openssl base64 -in #{qrCodeImagePath} | xargs echo -n | tr -d '[:space:]'")
+#	puts "二维码图片 base64: #{qrcodeBase64Text} "	
+#	qrcodeBase64 = "data:image/png;base64,#{qrcodeBase64Text}"
+#	puts "图片 base64: #{qrcodeBase64} "
+#	env_file = File.join(File.expand_path("", __FILE__), "qrCode.png")
+#	puts "app: #{env_file} "
+# 文字準備
+    UI.message "🍺🍺🍺🍺🍺文字準備"
+    appIdString = '{ "appId" : "A03" }'
+    authorizationString = '{ "Authorization" : "Bearer S7BG2g5Cn6MJLD6Obce2p/Ma7BJ5K8BnyBRLKkMPgZA=" }'
+    content_String = '{ "Content-Type" : "text/plain" }'
+    gitDiffString = sh("git log -1 --stat --no-merges --pretty=format:'%s(%an)' master..#{git_branch}").delete("\n")
+    #gitDiffString = sh("git log --pretty=format:'%s(%an)' $(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))..$(git describe --abbrev=0)")
+    UI.message "🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺第一种\n #{gitDiffString}\n🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺"
+    
+    gitDiffStringTwo = changelog_from_git_commits(
+        between: ["#{short_hash}", "master"],
+        pretty: "%s(%an)",
+        date_format: "short",
+        match_lightweight_tag: false,
+        merge_commit_filtering: "exclude_merges"
+        ).delete("\n")
+    
+    UI.message "🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺第二种\n #{gitDiffStringTwo}\n🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺"
+    
+# 文字代号 传输 用 %()
+    #receiverString = %({ "receiver" : "{FD375D42-F34C-43C9-951C-334F1510A69B}" ,"content" : "🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺\\n当前分支: #{git_branch}, \\n发布环境 : A03_#{environment} , \\n发布版本號: #{app_version},  \\n发布建置號: #{build_number},  \\n发布名称: #{ipa_Name},  \\n发布下载网址: #{download_url}\\n🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺" })
+    receiverString = %({ "receiver" : "#{@receiverName}" ,"content" : "【A01Nike_iOS】【A03_#{environment}】【分支：#{git_branch}】打包成功!!! #{build_number}\\n-----------------------------------------------------------\\n#{gitDiffString}"})
+        UI.message "🍺🍺🍺#{receiverString}🍺🍺🍺"
+
+# 轉換成json格式
+    UI.message "🍺🍺🍺🍺🍺轉換成json格式"
+    appIDJson = JSON.parse(appIdString)
+    authorizationJson = JSON.parse(authorizationString)
+    content_Json = JSON.parse(content_String)
+    receiver_Json = JSON.parse(receiverString)
+    #UI.message "🍺🍺#{receiver_Json}🍺"
+    
+# 代入
+    commandMessage = "🍺🍺🍺🍺🍺呼叫iTalk,传送讯息"
+    command = "curl -X POST http://10.82.64.30:8000/api/italk/send -H 'appid: A01' \
+      -H 'authorization: Bearer S7BG2g5Cn6MJLD6Obce2p/Ma7BJ5K8BnyBRLKkMPgZA=' \
+      -H 'cache-control: no-cache' \
+      -H 'content-type: application/json' \
+      -H 'postman-token: 1e650d7e-71e4-8329-827d-e4aea0c30050' \
+      -d '#{receiverString}'"
+    callOut_Command(COMMAND:command , COMMAND_MESSAGE:commandMessage)
+
+    commandMessage = "🍺🍺🍺🍺🍺呼叫iTalk,传送图片"
+    command = "curl -X POST http://10.82.64.30:8000/api/italk/sendFile -H 'appid: A01' \
+      -H 'authorization: Bearer S7BG2g5Cn6MJLD6Obce2p/Ma7BJ5K8BnyBRLKkMPgZA=' \
+      -H 'content-type: multipart/form-data' \
+      -F receiver=#{@receiverName} \
+      -F file=@#{qrCodeImagePath} \
+      -F type=image"
+    callOut_Command(COMMAND:command , COMMAND_MESSAGE:commandMessage)
+   end
+   
+   # 主要呼叫的集合方法
+   lane :callOut_Command do |options|
+      callback = lambda do |result|
+      error_occurred = true
+      UI.error "💦👋#{@innerCommandMessage}\n执行失败在下列程式码\n #{@innerCommand}" if error_occurred
+      callOut_ErrorHandler(COMMAND:@innerCommand , COMMAND_MESSAGE:@innerCommandMessage)
+      end
+      
+        @innerCommandMessage=options[:COMMAND_MESSAGE]
+        @innerCommand=options[:COMMAND]
+        UI.message "#{@innerCommandMessage}"
+        error_occurred = false
+        sh(
+        @innerCommand,
+        print_command_output: false,
+        error_callback:callback
+        )
+
+   end
+
+   # 錯誤集合方法
+   error do |lane, exception|
+   # 当前Git名称
+    commandMessage = "#{exception.to_s}"
+    callOut_ErrorHandler(COMMAND:"编译错误" , COMMAND_MESSAGE:commandMessage)
+   end
+
+   # 本地用的錯誤集合方法,與一般呼叫方法分開,避免執行緒衝突
+   lane :callOut_ErrorHandler do |options|
+     command=options[:COMMAND]
+     commandMessage=options[:COMMAND_MESSAGE]
+     finalCommandMessage = "XA01当前分支发生错误: #{git_branch} ,\\n错误原因:#{commandMessage}"
+   # 文字代号 传输 用 %()
+     receiverString = %({ "receiver" : "#{@receiverName}" ,"content" : "#{finalCommandMessage}" })
+     finalcommand = "curl -X POST http://10.82.64.30:8000/api/italk/send -H 'appid: A01' \
+      -H 'authorization: Bearer S7BG2g5Cn6MJLD6Obce2p/Ma7BJ5K8BnyBRLKkMPgZA=' \
+      -H 'cache-control: no-cache' \
+      -H 'content-type: application/json' \
+      -H 'postman-token: 1e650d7e-71e4-8329-827d-e4aea0c30050' \
+      -d '#{receiverString}'"
+     sh(
+        finalcommand,
+        print_command_output: false
+     )
+   end
+end
+
