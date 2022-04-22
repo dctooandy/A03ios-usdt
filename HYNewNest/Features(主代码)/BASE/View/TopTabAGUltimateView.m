@@ -38,7 +38,7 @@
     _wkWebView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:self.webConfig];
     _wkWebView.scrollView.scrollEnabled = YES;
     _wkWebView.opaque = NO;
-    _wkWebView.backgroundColor = [UIColor clearColor];
+    _wkWebView.backgroundColor = [UIColor whiteColor];
     [self addSubview:_wkWebView];
     [_wkWebView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.right.left.equalTo(self);
@@ -178,19 +178,19 @@
     }else if ([url hasPrefix:@"hy://main"]){
         //主页
         decisionHandler(WKNavigationActionPolicyCancel);
-        [kCurNavVC popToRootViewControllerAnimated:YES];
+        [kCurNavVC popToRootViewControllerAnimated:NO];
         [NNControllerHelper currentTabBarController].selectedIndex = 0;
         
     }else if ([url hasPrefix:@"hy://profit"]){
         //优惠
         decisionHandler(WKNavigationActionPolicyCancel);
-        [kCurNavVC popToRootViewControllerAnimated:YES];
+        [kCurNavVC popToRootViewControllerAnimated:NO];
         [NNControllerHelper currentTabBarController].selectedIndex = 2;
         
     }else if ([url hasPrefix:@"hy://user"]){
         //个人中心
         decisionHandler(WKNavigationActionPolicyCancel);
-        [kCurNavVC popToRootViewControllerAnimated:YES];
+        [kCurNavVC popToRootViewControllerAnimated:NO];
         [NNControllerHelper currentTabBarController].selectedIndex = 4;
         
     }else if ([url hasPrefix:@"hy://withdraw"]){
@@ -269,8 +269,8 @@
     else if ([url containsString:@"/noviceTask?"]){
         //新手任務v2
         decisionHandler(WKNavigationActionPolicyCancel);
-        [kCurNavVC popToRootViewControllerAnimated:false];
-        [kCurNavVC pushViewController:[[BYNewbieMissionVC alloc] init] animated:true];
+        [kCurNavVC popToRootViewControllerAnimated:NO];
+        [kCurNavVC pushViewController:[[BYNewbieMissionVC alloc] init] animated:YES];
     }else if ([url hasPrefix:@"hy://yuebao"]) {
         // 余额宝
         decisionHandler(WKNavigationActionPolicyCancel);
