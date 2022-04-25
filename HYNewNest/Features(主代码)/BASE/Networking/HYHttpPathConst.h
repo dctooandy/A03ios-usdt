@@ -83,7 +83,9 @@
 #define config_validateSlider   @"captcha/validateSlider"   //校验滑块拼图验证码
 
 
-#define config_LoginEx @"customer/loginEx"  //模糊登录
+//#define config_LoginEx @"customer/loginEx"  //模糊登录
+#define config_LoginByName @"customer/loginByName"    // 账号登录
+#define config_LoginByMobileEx @"customer/loginByMobileEx"    // 手机号登录
 #define config_sendCodeByLoginName  @"phone/sendCodeByLoginName"  //通过用户名发送验证码
 #define config_modifyPwdBySmsCode   @"customer/modifyPwdByCode"  //确认修改密码
 #define config_modifyPwd   @"customer/modifyPwd"  //修改密码
