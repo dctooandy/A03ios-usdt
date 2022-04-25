@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,7 +32,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="私享会大神榜(usdt)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqi-9z-sx7">
-                            <rect key="frame" x="15" y="21" width="144.5" height="19.5"/>
+                            <rect key="frame" x="135" y="21" width="144.5" height="19.5"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                             <color key="textColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -63,13 +63,13 @@
                         <constraint firstItem="hAQ-XA-D29" firstAttribute="top" secondItem="qFs-NH-KOn" secondAttribute="top" constant="60" id="NpJ-a9-Ftq"/>
                         <constraint firstItem="Spo-gB-Vc6" firstAttribute="top" secondItem="hAQ-XA-D29" secondAttribute="bottom" id="PRA-Gu-sEC"/>
                         <constraint firstAttribute="trailing" secondItem="hAQ-XA-D29" secondAttribute="trailing" id="T98-KG-7Vx"/>
-                        <constraint firstItem="sqi-9z-sx7" firstAttribute="leading" secondItem="qFs-NH-KOn" secondAttribute="leading" constant="15" id="aCc-Mu-oR8"/>
                         <constraint firstItem="Spo-gB-Vc6" firstAttribute="leading" secondItem="qFs-NH-KOn" secondAttribute="leading" id="bgO-9w-fca"/>
                         <constraint firstItem="uHV-Em-bdV" firstAttribute="centerY" secondItem="sqi-9z-sx7" secondAttribute="centerY" id="hdn-K2-ly6"/>
                         <constraint firstItem="hAQ-XA-D29" firstAttribute="leading" secondItem="qFs-NH-KOn" secondAttribute="leading" id="iOl-CR-HD3"/>
                         <constraint firstAttribute="bottom" secondItem="Spo-gB-Vc6" secondAttribute="bottom" id="j9i-pB-Pxj"/>
                         <constraint firstAttribute="trailing" secondItem="uHV-Em-bdV" secondAttribute="trailing" constant="12" id="lSJ-UW-mnr"/>
                         <constraint firstItem="sqi-9z-sx7" firstAttribute="top" secondItem="qFs-NH-KOn" secondAttribute="top" constant="21" id="sj2-9m-mre"/>
+                        <constraint firstItem="sqi-9z-sx7" firstAttribute="centerX" secondItem="qFs-NH-KOn" secondAttribute="centerX" id="yiz-T1-VWy"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -79,13 +79,13 @@
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="qFs-NH-KOn" secondAttribute="bottom" id="B41-U9-P2h"/>
                 <constraint firstItem="qFs-NH-KOn" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="46" id="WMc-SQ-rWa"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="qFs-NH-KOn" secondAttribute="trailing" id="qhW-V8-zDw"/>
                 <constraint firstItem="qFs-NH-KOn" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="xVm-sA-vRZ"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="131.8840579710145" y="116.51785714285714"/>
         </view>
     </objects>

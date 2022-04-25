@@ -121,7 +121,9 @@
             A03CheckDomainModel *model = [A03CheckDomainModel cn_parse:responseObj];
             NSMutableArray * tempGetArr = [NSMutableArray new];
             NSMutableArray * tempWebArr = [NSMutableArray new];
-            for (NSString *getway in model.getways) {
+            NSArray * tempGetWays = (model.gateways ? model.gateways:model.getways);
+            NSArray * tempWebsides = (model.websites ? model.websites:model.websides);
+            for (NSString *getway in tempGetWays) {
                 if ([[getway substringFromIndex:getway.length-1] isEqualToString:@"/"]) {
                     [tempGetArr addObject:[NSString stringWithFormat:@"%@_glaxy_1e3c3b_/", getway]];
                 } else {
@@ -129,7 +131,7 @@
                 }
             }
            
-            for (NSString *websit in model.websides) {
+            for (NSString *websit in tempWebsides) {
                 if ([[websit substringFromIndex:websit.length-1] isEqualToString:@"/"]) {
                     [tempWebArr addObject:websit];
                 } else {
@@ -158,7 +160,9 @@
             A03CheckDomainModel *model = [A03CheckDomainModel cn_parse:responseObj];
             NSMutableArray * tempGetArr = [NSMutableArray new];
             NSMutableArray * tempWebArr = [NSMutableArray new];
-            for (NSString *getway in model.getways) {
+            NSArray * tempGetWays = (model.gateways ? model.gateways:model.getways);
+            NSArray * tempWebsides = (model.websites ? model.websites:model.websides);
+            for (NSString *getway in tempGetWays) {
                 if ([[getway substringFromIndex:getway.length-1] isEqualToString:@"/"]) {
                     [tempGetArr addObject:[NSString stringWithFormat:@"%@_glaxy_1e3c3b_/", getway]];
                 } else {
@@ -166,7 +170,7 @@
                 }
             }
            
-            for (NSString *websit in model.websides) {
+            for (NSString *websit in tempWebsides) {
                 if ([[websit substringFromIndex:websit.length-1] isEqualToString:@"/"]) {
                     [tempWebArr addObject:websit];
                 } else {

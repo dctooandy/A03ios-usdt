@@ -74,7 +74,8 @@
                                            day:_preDays
                                        handler:^(id responseObj, NSString *errorMsg) {
         if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
-            self.awards = [VIPRewardAnocModel cn_parse:responseObj[@"result"]];
+//            self.awards = [VIPRewardAnocModel cn_parse:responseObj[@"result"]];
+            self.awards = [VIPRewardAnocModel cn_parse:responseObj[@"data"]];
             [self.tableView reloadData];
         }
     }];
@@ -98,7 +99,8 @@
     VIPRewardAnocModel *model = self.awards[indexPath.row];
     cell.textLabel.text = model.prizedesc;
     cell.textLabel.font = [UIFont fontPFR13];
-    cell.detailTextLabel.text = model.createdDate;
+//    cell.detailTextLabel.text = model.createdDate;
+    cell.detailTextLabel.text = model.fetchDate;
     cell.detailTextLabel.font = [UIFont fontPFR13];
     return cell;
 }
