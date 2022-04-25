@@ -60,7 +60,8 @@
     
     return [[IVHttpManager shareManager] sendRequestWithMethod:KYHTTPMethodPOST url:path parameters:parameters callBack:^(IVJResponseObject * _Nullable response, NSError * _Nullable error) {
         
-        if ([response.head.errCode isEqualToString:@"0000"]) { // 正常返回
+        if ([response.head.errCode isEqualToString:@"0000"] ||  // 正常返回
+            [response.head.errCode isEqualToString:@"GW_800507"]) { // 多账号登录处理
             if (![path containsString:config_newapiTask]) {
                 //新手任務頁面呼叫兩隻API Loading在新手任務頁面操控
                 [LoadingView showSuccess];
