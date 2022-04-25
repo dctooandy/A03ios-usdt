@@ -124,11 +124,13 @@ NSInteger const kBTTLoginOrRegisterCaptchaPuzzle = 3;
     self.alpha = 1.0;
     _verifyView.puzzleXPercentage = 0;
     _slider.value = 0.0;
+    [self setHidden:NO];
 }
 
 
 - (void)getPuzzleImageCodeForceRefresh:(BOOL)forceRefresh {
     if (!forceRefresh && self.viewModel.captchaId.length != 0) {
+        [self setHidden:NO];
         return;
     }
     __weak typeof(self) weakSelf = self;

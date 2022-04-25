@@ -265,7 +265,9 @@ static CGFloat const CNPuzzleCodeImageHeight = 141.0;
             PreLoginModel *model = [PreLoginModel cn_parse:responseObj];
             self.loginCaptchaModel = model;
         }
-        !completion?:completion();
+        dispatch_async(dispatch_get_main_queue(), ^{
+            !completion?:completion();
+        });
     }];
 }
 
@@ -275,16 +277,26 @@ static CGFloat const CNPuzzleCodeImageHeight = 141.0;
             PreLoginModel *model = [PreLoginModel cn_parse:responseObj];
             self.regiCaptchModel = model;
         }
-        !completion?:completion();
+        dispatch_async(dispatch_get_main_queue(), ^{
+            !completion?:completion();
+        });
     }];
 }
 
 - (void)preLoginAction {
-    [self preLogin:nil];
+    WEAKSELF_DEFINE
+    [self preLogin:^{
+        STRONGSELF_DEFINE
+        [strongSelf updateNeedCaptchUI];
+    }];
 }
 
 - (void)preCreateAccount {
-    [self preCreateAccount:nil];
+    WEAKSELF_DEFINE
+    [self preCreateAccount:^{
+        STRONGSELF_DEFINE
+        [strongSelf updateNeedCaptchUI];
+    }];
 }
 
 #pragma mark - IBAction
@@ -449,8 +461,7 @@ static CGFloat const CNPuzzleCodeImageHeight = 141.0;
                     [self verifyRegionCode]; //校验验证码
                 }];
                 alertView.onCancelAction = ^{
-                    self.hanImgCodeViewH.constant = CNHanCodeImageHeight;
-                    [self.hanImgCodeView getImageCodeForceRefresh:YES];
+                    [self preLoginAction];
                 };
               
                
@@ -696,20 +707,22 @@ static CGFloat const CNPuzzleCodeImageHeight = 141.0;
         self.loginPuzzleView.viewModel.codeType = CNImageCodeTypeLogin;
         switch (self.loginCaptchaModel.captchaType) {
             case CNCaptchaTypeDigital:
-                self.loginImageCodeView.hidden = NO;
+                self.hanImgCodeView.hidden = YES;
+                self.loginPuzzleView.hidden = YES;
                 self.loginImageCodeViewH.constant = CNCodeImageHeight;
                 [self.loginImageCodeView getImageCode];
                 break;
             case CNCaptchaTypeChinese:
-                self.hanImgCodeView.hidden = NO;
+                self.loginImageCodeView.hidden = YES;
+                self.loginPuzzleView.hidden = YES;
                 self.hanImgCodeViewH.constant = CNHanCodeImageHeight;
                 [self.hanImgCodeView getImageCodeForceRefresh:YES];
                 break;
             case CNCaptchaTypePuzzle:
                 self.hanImgCodeViewH.constant = CNPuzzleCodeImageHeight;
                 self.loginPuzzleViewConstH.constant = CNPuzzleCodeImageHeight;
+                self.loginImageCodeView.hidden = YES;
                 self.hanImgCodeView.hidden = YES;
-                self.loginPuzzleView.hidden = NO;
                 self.loginPuzzleView.delegate = self;
                 [self.loginPuzzleView getPuzzleImageCodeForceRefresh:YES];
                 break;

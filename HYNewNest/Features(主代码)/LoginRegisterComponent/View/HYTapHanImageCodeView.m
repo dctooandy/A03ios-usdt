@@ -70,6 +70,7 @@
 
 - (void)getImageCodeForceRefresh:(BOOL)isForce {
     if (!isForce && self.codeModel) { //非强制刷新并且已有模型
+        [self setHidden:NO];
         return;
     }
     
@@ -102,6 +103,7 @@
             } else {
                 self.lblText.hidden = YES;
             }
+            [self setHidden:NO];
         }
     }];
 }
