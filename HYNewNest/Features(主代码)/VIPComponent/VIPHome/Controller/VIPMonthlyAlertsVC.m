@@ -18,6 +18,7 @@
 @property (nonatomic, strong) V_SlideCard *slideCard;
 @property (nonatomic, strong) NSArray *listData;
 @property (nonatomic, strong) VIPMonthlyModel *model;
+@property (nonatomic, copy) void(^dismissBlock)(void);
 @end
 
 @implementation VIPMonthlyAlertsVC
@@ -47,12 +48,20 @@
 /// 从父VC移除
 - (void)removeSelfFromFatherVC {
     //准备移除
+    if (self.dismissBlock)
+    {
+        self.dismissBlock();
+    }
     [self willMoveToParentViewController:nil];
     [self.view removeFromSuperview];
     //确定移除 该方法会显示调用didMoveToParentViewController:nil
     [self removeFromParentViewController];
 }
 
+- (void)beforeDismissBlock:(nullable void(^)(void))block
+{
+    self.dismissBlock = block;
+}
 
 #pragma mark - VIPMonlyAlertDelegate
 - (void)didTapNextOne {

@@ -206,7 +206,8 @@
 #define activity_vipSxhFrame    @"1e3c3b/activity/vipsxh/frame" //是否弹窗月报
 #define activity_vipSxhIdentity @"1e3c3b/activity/vipsxh/identity" //累计身份
 #define activity_vipSxhApply    @"1e3c3b/activity/vipsxh/apply" //领取礼物 （累计身份和大转盘）
-#define activity_vipSxhReceiveAward     @"promo/1e3c3b/common/receive/award" //领取记录
+//#define activity_vipSxhReceiveAward     @"promo/1e3c3b/common/receive/award" //领取记录
+#define activity_vipSxhReceiveAward     @"1e3c3b/activity/vipsxh/award" //领取记录
 #define activity_vipSxhAwardDetail      @"1e3c3b/activity/vipsxh/detail" //礼物详情
 
 #pragma mark 新手任务

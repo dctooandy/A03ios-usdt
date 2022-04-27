@@ -8,6 +8,8 @@
 
 #import "CNNormalInputView.h"
 #import "BRPickerView.h"
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+Add.h"
 
 @interface CNNormalInputView () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *tipLb;
@@ -47,7 +49,32 @@
         [_delegate inputViewDidEndEditing:self];
     }
 }
-
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if ([self.inputTF.placeholder containsString:@"请输入您开卡银行"])
+    {
+        if (![self checkTextFieldString:string] && string.length > 0 )
+        {
+            [MBProgressHUD showError:@"支行名称格式错误" toView:nil];
+            return NO;
+        }else
+        {
+            return true;
+        }
+    }else
+    {
+        return true;
+    }
+}
+- (BOOL)checkTextFieldString:(NSString *)realName {
+   //中文，英文，·符号，长度2~14位
+   NSString *realNameRegex = @"[a-zA-Z·\u4e00-\u9fa5]{1,100}";
+   NSPredicate *realNamePredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",realNameRegex];
+   if (![realNamePredicate evaluateWithObject:realName]) {
+       return NO;
+   }
+   return YES;
+}
 - (void)textFieldChange:(UITextField *)textField {
     // 只要已修改就去掉错误提示
     //    self.wrongAccout = NO;

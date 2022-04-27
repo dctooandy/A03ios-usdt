@@ -94,6 +94,10 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 // -------- 数据源 --------
 @property (strong, nonatomic) NSArray *cardArray;
 @property (strong, nonatomic) VIPHomeUserModel *sxhModel;
+
+// 领取私享金按钮
+@property (weak, nonatomic) IBOutlet UIButton *goGetSXGBtn;
+@property (nonatomic, strong) VIPMonthlyModel *model; // 私享会月报
 @end
 
 @implementation HYVIPViewController
@@ -107,7 +111,12 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    // 首页数据
+    [self userStatusChanged];
+    [self checkSXGBtnEnable];
+    self.m_currentIndex = 0;
+    self.pageControl.currentPage = _m_currentIndex;
+    [self.collectionViewCard scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:_m_currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
 
 - (void)viewDidLoad {
@@ -124,11 +133,9 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     
     // 用户登录状态配置UI & 首页请求数据
     [self userStatusChanged];
-    
+    [self setupSXHBtn];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userStatusChanged) name:HYLogoutSuccessNotification object:nil];
-    
-
 }
 
 - (void)viewDidLayoutSubviews {
@@ -277,6 +284,24 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     HYVIPCumulateIdVC *vc = [HYVIPCumulateIdVC new];
     [self.navigationController pushViewController:vc animated:YES];
 }
+- (IBAction)openSXG:(id)sender {
+    if (![CNUserManager shareManager].isLogin) {
+        [CNTOPHUB showError:@"请先登录"];
+        [self.navigationController pushViewController:[CNLoginRegisterVC loginVC] animated:YES];
+    }else
+    {
+        WEAKSELF_DEFINE
+        VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
+        vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
+        //添加子控制器 该方法调用了willMoveToParentViewController：方法
+        [vc beforeDismissBlock:^{
+            [weakSelf checkSXGBtnEnable];
+        }];
+        [self addChildViewController:vc];
+        [self.view addSubview:vc.view];
+       
+    }
+}
 
 
 #pragma mark - Request
@@ -285,6 +310,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
         if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
             VIPHomeUserModel *model = [VIPHomeUserModel cn_parse:responseObj];
             self.sxhModel = model;
+            self.sxhModel.equityData = model.equityData;
             [self setupUIDatas];
             [self setupRewardMarqueeView];
         }
@@ -301,6 +327,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
         [CNMessageBoxView showVIPSXHMessageBoxOnView:self.view];
         
     } else {
+        [CNMessageBoxView showVIPSXHMessageBoxOnView:self.view];
         if (![CNUserManager shareManager].isLogin) {
             return;
         }
@@ -310,6 +337,8 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
             }
         }
         [CNVIPRequest vipsxhIsShowReportHandler:^(id responseObj, NSString *errorMsg) {
+            // 私享会测试用
+//            if (!errorMsg && [responseObj[@"flag"] integerValue] != 1 && self.childViewControllers.count == 0) {
             if (!errorMsg && [responseObj[@"flag"] integerValue] == 1 && self.childViewControllers.count == 0) {
                 VIPMonthlyAlertsVC *vc = [VIPMonthlyAlertsVC new];
                 vc.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-kStatusBarHeight);
@@ -353,7 +382,7 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
         
     VIPRewardAnocModel *model = [self.sxhModel.prizeList objectAtIndex:index];
     UILabel *content = [itemView viewWithTag:1001];
-    content.text = [NSString stringWithFormat:@"%@ 抽中 %@",model.loginname, model.prizeName];
+    content.text = [NSString stringWithFormat:@"%@ 抽中 %@",model.loginName, model.prizeName];
 }
 
 
@@ -442,31 +471,90 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     [self.collectionViewCard scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:_m_currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
 
-
+- (void)changeSXGBtnType:(BOOL)enable
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.goGetSXGBtn setEnabled:enable];
+    });
+}
+- (void)setupSXHBtn{
+    [self.goGetSXGBtn setImage:ImageNamed(@"btn_default") forState:UIControlStateNormal];
+    [self.goGetSXGBtn setImage:ImageNamed(@"btn_disable") forState:UIControlStateDisabled];
+}
+- (void)checkSXGBtnEnable {
+    if (![CNUserManager shareManager].isLogin) {
+        [self changeSXGBtnType:NO];
+    }else
+    {
+        WEAKSELF_DEFINE
+        // 月报
+        [CNVIPRequest vipsxhMonthReportHandler:^(id responseObj, NSString *errorMsg) {
+            if (!errorMsg && [responseObj isKindOfClass:[NSDictionary class]]) {
+                weakSelf.model = [VIPMonthlyModel cn_parse:responseObj];
+                if (weakSelf.model) {
+//                    if (weakSelf.model.preRequest)
+//                    {
+//                        [weakSelf changeSXGBtnType:YES];
+//                    }else
+//                    {
+//                        [weakSelf changeSXGBtnType:NO];
+//                    }
+                    if ([[NSString stringWithFormat:@"%@", weakSelf.model.pendingSXJ] isEqualToString:@"1"])
+                    {
+                        // 暂时都不给点
+                        [weakSelf changeSXGBtnType:NO];
+//                        [weakSelf changeSXGBtnType:YES];
+                    }else
+                    {
+                        // 私享会测试用
+//                        [weakSelf changeSXGBtnType:YES];
+                        [weakSelf changeSXGBtnType:NO];
+                    }
+                }else
+                {
+                    [weakSelf changeSXGBtnType:NO];
+                }
+            } else {
+                [weakSelf changeSXGBtnType:NO];
+            }
+        }];
+    }
+}
 #pragma mark - SET
 //0 - 5 依次是： 赌侠 赌霸 赌王 赌圣 赌神 赌尊
 - (void)setM_currentIndex:(NSInteger)m_currentIndex {
-    if (m_currentIndex < 0 || m_currentIndex > 5) {
+    if (m_currentIndex < 0 || m_currentIndex >= _sxhModel.equityData.count) {
         return;
     }
     _m_currentIndex = m_currentIndex;
     
-    NSArray *eqArr = self.sxhModel.equityData;
+    NSArray *eqArr = _sxhModel.equityData;
     EquityDataItem *item = eqArr.count>0 ? eqArr[m_currentIndex] : nil;
-    
+    BOOL isLogin = [CNUserManager shareManager].isLogin;
     // 修改入会礼金 等级要求流水和存款
+    NSString * uiModeString = isLogin ? ([CNUserManager shareManager].userInfo.uiMode ? [CNUserManager shareManager].userInfo.uiMode : @"USDT") : @"CNY" ;
     if (item) {
-        self.lbVipRight.text = [NSString stringWithFormat:@"会员权益: 入会礼金%@usdt", [item.rhljAmount jk_toDisplayNumberWithDigit:0]];
-        self.lblNextLevelAmount.text = [[item.betAmount jk_toDisplayNumberWithDigit:2] stringByAppendingFormat:@" usdt"];
-        self.lblNextLevelDeposit.text = [[item.depositAmount jk_toDisplayNumberWithDigit:2] stringByAppendingFormat:@" usdt"];
+        NSString * rhljNumberString = isLogin ? ([[CNUserManager shareManager].userInfo.uiMode isEqualToString:@"CNY"] ?[item.membershipBonusCNY jk_toDisplayNumberWithDigit:0] : [item.membershipBonusUSDT jk_toDisplayNumberWithDigit:0]) : [item.membershipBonusCNY jk_toDisplayNumberWithDigit:0];
+        self.lbVipRight.text = [NSString stringWithFormat:@"会员权益: 入会礼金%@%@",
+                                rhljNumberString,
+                                uiModeString];
+        self.lblNextLevelAmount.text = [[item.betAmountCNY jk_toDisplayNumberWithDigit:2] stringByAppendingString:@" CNY"];
+        self.lblNextLevelDeposit.text = [[item.depositAmountCNY jk_toDisplayNumberWithDigit:2] stringByAppendingString:@" CNY"];
         
-        float amoutPrgs = [_sxhModel.totalBetAmount floatValue] / [item.betAmount floatValue];
+        float amoutPrgs = [_sxhModel.totalBetAmount floatValue] / [item.betAmountCNY floatValue];
         self.prgsViewAmount.progress = amoutPrgs;
         self.prgsViewAmount.tintColor = amoutPrgs >= 1.0 ? kHexColor(0xE11470) : kHexColor(0x3AE3C5);
         
-        float depoPrgs = [_sxhModel.totalDepositAmount floatValue] / [item.depositAmount floatValue];
+        float depoPrgs = [_sxhModel.totalDepositAmount floatValue] / [item.depositAmountCNY floatValue];
         self.prgsViewDeposit.progress = depoPrgs;
         self.prgsViewDeposit.tintColor = depoPrgs >= 1.0 ? kHexColor(0xE11470) : kHexColor(0x3AE3C5);
+    }else
+    {
+        self.lbVipRight.text = [NSString stringWithFormat:@"会员权益: 入会礼金%@%@",
+                                @"0",
+                                uiModeString];
+        self.lblNextLevelAmount.text = @"0 CNY";
+        self.lblNextLevelDeposit.text = @"0 CNY";
     }
     
     self.prgsViewDeposit.hidden = NO;
@@ -528,6 +616,5 @@ static NSString * const kVIPCardCCell = @"VIPCardCCell";
     }
     return _marqueeView;
 }
-
 
 @end

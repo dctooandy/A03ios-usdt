@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,7 +38,7 @@
                             <fragment content="赌侠">
                                 <attributes>
                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <font key="NSFont" size="26" name="FZLTDHK--GBK1-0"/>
+                                    <font key="NSFont" metaFont="system" size="26"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
@@ -79,6 +79,7 @@
                     </imageView>
                 </subviews>
             </view>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="zSa-BK-C60" secondAttribute="trailing" constant="16" id="3Oo-l3-Ik7"/>
                 <constraint firstItem="unc-a5-Cnd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="5gI-u6-qaq"/>
@@ -98,7 +99,6 @@
                 <constraint firstAttribute="trailing" secondItem="hAu-fk-UC9" secondAttribute="trailing" id="yhR-TQ-dNK"/>
                 <constraint firstItem="zSa-BK-C60" firstAttribute="leading" secondItem="hAu-fk-UC9" secondAttribute="trailing" constant="-69" id="yii-dR-cmf"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="106" height="91"/>
             <connections>
                 <outlet property="imgvCard" destination="hAu-fk-UC9" id="fU6-Jo-skY"/>
