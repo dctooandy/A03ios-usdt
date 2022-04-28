@@ -101,7 +101,8 @@ NSString *const HeaderID = @"DSBRchrWthdrwHeader";
         }
     }
     NSString *amount = [model.totalAmount jk_toDisplayNumberWithDigit:0];
-    strArr = @[model.loginName, rank, amount, time, model.headshot].mutableCopy;
+    NSString *headshot = model.headshot ?: @"";
+    strArr = @[model.loginName, rank, amount, time, headshot].mutableCopy;
     [cell setupIndexRow:indexPath.row dataArr:strArr];
     return cell;
 }

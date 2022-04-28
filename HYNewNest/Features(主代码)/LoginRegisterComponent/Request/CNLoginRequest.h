@@ -86,6 +86,9 @@ typedef NS_ENUM(NSUInteger, CNSMSCodeType) {
 /// @param completionHandler 完成回调
 + (void)accountPreLoginCompletionHandler:(HandlerBlock)completionHandler;
 
+/// 账号预注册，判断是否需要图形验证码
+/// @param completionHandler 完成回调
++ (void)accountpreCreateAccountCompletionHandler:(HandlerBlock)completionHandler;
 
 /// 账户登录
 /// @param account 账户名或手机号（手机当做账号）

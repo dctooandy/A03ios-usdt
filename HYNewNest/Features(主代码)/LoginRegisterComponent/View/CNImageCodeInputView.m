@@ -68,6 +68,7 @@
         if (!errorMsg) {
             weakSelf.codeModel = [CNImageCodeModel cn_parse:responseObj];
             [sender setImage:weakSelf.codeModel.decodeImage forState:UIControlStateNormal];
+            [weakSelf setHidden:NO];
         }
     }];
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,8 +18,12 @@
                 <outlet property="loginCodeView" destination="vK6-gf-yzO" id="63k-wO-Gyd"/>
                 <outlet property="loginImageCodeView" destination="SfY-3I-9jV" id="xmu-mO-DAe"/>
                 <outlet property="loginImageCodeViewH" destination="hxQ-QK-38n" id="jcx-RP-naY"/>
+                <outlet property="loginPuzzleView" destination="8IK-Jd-gLb" id="PM6-vM-Eq9"/>
+                <outlet property="loginPuzzleViewConstH" destination="vPL-A4-ENE" id="Giv-zS-KFm"/>
                 <outlet property="regHanImgCodeView" destination="TKc-Xy-59y" id="yw1-kS-VSd"/>
                 <outlet property="regHanImgCodeViewH" destination="UxE-gE-31o" id="Bx8-gz-lRB"/>
+                <outlet property="regiPuzzleView" destination="WEy-3N-d8z" id="EVE-41-iqh"/>
+                <outlet property="regiPuzzleViewConstH" destination="n4O-r1-Fr7" id="TUW-dd-2dY"/>
                 <outlet property="registerAccountView" destination="VQ0-bZ-lqu" id="Ula-pw-Glq"/>
                 <outlet property="registerBtn" destination="B9t-YC-g4T" id="WdQ-Vh-XRI"/>
                 <outlet property="registerCodeView" destination="ir0-JM-89g" id="P7x-4O-agF"/>
@@ -163,6 +167,14 @@
                                         <constraint firstAttribute="width" constant="300" id="pzV-8v-3vD"/>
                                     </constraints>
                                 </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8IK-Jd-gLb" customClass="PuzzleVerifyPopoverView">
+                                    <rect key="frame" x="41.5" y="372" width="300" height="0.0"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="300" id="jx5-yE-JpW"/>
+                                        <constraint firstAttribute="height" id="vPL-A4-ENE"/>
+                                    </constraints>
+                                </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R1f-Xm-9vb">
                                     <rect key="frame" x="166.5" y="500" width="50" height="27"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -190,8 +202,10 @@
                                 <constraint firstItem="aIr-X8-Kxf" firstAttribute="centerX" secondItem="ZzA-Aa-cAB" secondAttribute="centerX" id="WPP-3e-yMN"/>
                                 <constraint firstItem="xVJ-hQ-hM5" firstAttribute="top" secondItem="1yO-hQ-dcT" secondAttribute="bottom" constant="20" id="YCg-9B-cq7"/>
                                 <constraint firstItem="R1f-Xm-9vb" firstAttribute="top" secondItem="xVJ-hQ-hM5" secondAttribute="bottom" constant="10" id="dXW-lE-nkr"/>
+                                <constraint firstItem="8IK-Jd-gLb" firstAttribute="centerX" secondItem="ZzA-Aa-cAB" secondAttribute="centerX" id="enN-b4-ZeF"/>
                                 <constraint firstAttribute="trailing" secondItem="vK6-gf-yzO" secondAttribute="trailing" constant="30" id="gHL-2U-Nkl"/>
                                 <constraint firstItem="lfD-sj-tlg" firstAttribute="leading" secondItem="ZzA-Aa-cAB" secondAttribute="leading" constant="30" id="hSU-E7-m12"/>
+                                <constraint firstItem="8IK-Jd-gLb" firstAttribute="top" secondItem="2Ax-fe-kPs" secondAttribute="bottom" constant="40" id="lma-MT-7VM"/>
                                 <constraint firstItem="SfY-3I-9jV" firstAttribute="top" secondItem="vK6-gf-yzO" secondAttribute="bottom" id="nAx-8v-zJc"/>
                                 <constraint firstItem="1yO-hQ-dcT" firstAttribute="top" secondItem="aIr-X8-Kxf" secondAttribute="bottom" constant="30" id="nV0-Be-baT"/>
                                 <constraint firstItem="aIr-X8-Kxf" firstAttribute="top" secondItem="2Ax-fe-kPs" secondAttribute="bottom" constant="40" id="p8b-p7-oRM"/>
@@ -232,6 +246,14 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="95" id="UxE-gE-31o"/>
                                         <constraint firstAttribute="width" constant="300" id="iRV-Yx-gtB"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEy-3N-d8z" customClass="PuzzleVerifyPopoverView">
+                                    <rect key="frame" x="41.5" y="365" width="300" height="0.0"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" id="n4O-r1-Fr7"/>
+                                        <constraint firstAttribute="width" constant="300" id="piy-Xd-TuF"/>
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B9t-YC-g4T" customClass="CNTwoStatusBtn">
@@ -314,9 +336,11 @@
                                 <constraint firstItem="B9t-YC-g4T" firstAttribute="top" secondItem="TKc-Xy-59y" secondAttribute="bottom" constant="30" id="PZq-hK-oY8"/>
                                 <constraint firstItem="h6o-d8-huP" firstAttribute="centerX" secondItem="v2C-Tp-I0L" secondAttribute="centerX" id="RyG-wB-fAW"/>
                                 <constraint firstAttribute="height" constant="800" id="S6e-fj-ZcB"/>
+                                <constraint firstItem="WEy-3N-d8z" firstAttribute="centerX" secondItem="v2C-Tp-I0L" secondAttribute="centerX" id="a9q-Sd-Qlq"/>
                                 <constraint firstItem="B9t-YC-g4T" firstAttribute="leading" secondItem="v2C-Tp-I0L" secondAttribute="leading" constant="30" id="aJW-W9-uGf"/>
                                 <constraint firstItem="TKc-Xy-59y" firstAttribute="centerX" secondItem="v2C-Tp-I0L" secondAttribute="centerX" id="i3m-ow-itG"/>
                                 <constraint firstItem="Kkx-dU-tls" firstAttribute="leading" secondItem="pAo-ez-34N" secondAttribute="leading" id="jbB-3K-YMa"/>
+                                <constraint firstItem="WEy-3N-d8z" firstAttribute="top" secondItem="ir0-JM-89g" secondAttribute="bottom" constant="40" id="lH5-6V-Ewi"/>
                                 <constraint firstItem="bdv-1i-kOa" firstAttribute="leading" secondItem="pAo-ez-34N" secondAttribute="leading" id="pjo-dj-78U"/>
                                 <constraint firstItem="TKc-Xy-59y" firstAttribute="top" secondItem="ir0-JM-89g" secondAttribute="bottom" constant="40" id="rLl-Nl-7ao"/>
                                 <constraint firstItem="ir0-JM-89g" firstAttribute="top" secondItem="VQ0-bZ-lqu" secondAttribute="bottom" id="rTV-4S-tlf"/>

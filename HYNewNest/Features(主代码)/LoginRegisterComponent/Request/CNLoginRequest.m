@@ -101,26 +101,36 @@
     [self POST:(config_preLogin) parameters:[kNetworkMgr baseParam] completionHandler:completionHandler];
 }
 
++ (void)accountpreCreateAccountCompletionHandler:(HandlerBlock)completionHandler {
+    [self POST:(config_preCreateAccount) parameters:[kNetworkMgr baseParam] completionHandler:completionHandler];
+}
+
 + (void)accountLogin:(NSString *)account
             password:(NSString *)password
            messageId:(NSString *)messageId
            imageCode:(NSString *)imageCode
          imageCodeId:(NSString *)imageCodeId
    completionHandler:(HandlerBlock)completionHandler {
-    
+    BOOL isPhoneLogin = messageId.length != 0;
+    NSInteger loginType = (isPhoneLogin) ? 1 : 0 ;
     NSMutableDictionary *paras = [kNetworkMgr baseParam];
-    paras[@"messageId"] = messageId;
-//    paras[@"loginName"] = [CNEncrypt encryptString:account];
-//    paras[@"verifyStr"] = [CNEncrypt encryptString:password];
-    paras[@"loginName"] = account;
-    paras[@"verifyStr"] = password;
+    paras[@"loginType"] = @(loginType);
+    if (loginType == 0) {   // 用户名
+        paras[@"loginName"] = account;
+        paras[@"password"] = [CNEncrypt encryptString:password];
+    } else { // 手机号
+        paras[@"messageId"] = messageId;
+        paras[@"mobileNo"] = [CNEncrypt encryptString:account];
+        paras[@"verifyStr"] = [CNEncrypt encryptString:password];
+    }
 
     if (!KIsEmptyString(imageCode)) {
         paras[@"captcha"] = imageCode;
         paras[@"captchaId"] = imageCodeId;
     }
+    NSString *path = isPhoneLogin ? config_LoginByMobileEx : config_LoginByName;
     
-    [self POST:(config_LoginEx) parameters:paras completionHandler:^(NSDictionary *responseObj, NSString *errorMsg) {
+    [self POST:path parameters:paras completionHandler:^(NSDictionary *responseObj, NSString *errorMsg) {
         if ([responseObj isKindOfClass:[NSDictionary class]] && [responseObj.allKeys containsObject:@"samePhoneLoginNames"]) {
             completionHandler(responseObj, errorMsg);
         } else {
